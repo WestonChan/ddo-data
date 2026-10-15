@@ -1,0 +1,11 @@
+name = "Improved False Life"
+description_template = "This item grants the wearer +20 maximum health."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Improved False Life +20"
+
+[[bonus]]
+amount_from = 0
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Hit Points"

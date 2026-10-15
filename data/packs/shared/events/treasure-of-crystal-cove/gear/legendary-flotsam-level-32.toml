@@ -1,0 +1,50 @@
+name = "Legendary Flotsam (level 32)"
+accepts_sentience = true
+description = """
+This driftwood shard has saved a few lives by being hard to detect as a weapon.
+It seems to be effective against the undead."""
+drop_location = "Treasure of Crystal Cove, Turn in 1500 Silver Doubloon 700 Golden Doubloon 45 Stolen Jasper 1000 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 15
+icon = "Dagger_5a"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Densewood"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Superior Disruption"
+
+[[effect]]
+name = "Bludgeoning 6"
+
+[[effect]]
+name = "Corrosive Salt"
+
+[[effect]]
+name = "Undead Bane 6"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "One-handed"
+weapon_type = "Dagger"

@@ -1,0 +1,22 @@
+name = "Ruby of Disintegration"
+description = """
+Upgrades a weapon with a dark, insidious power deep within.
+Occasionally, this power lashes out violently at enemies and attempts to disintegrate them.
+Drops in U48 Quest: Wake me up Inside"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 6
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Wake Me Up Inside"

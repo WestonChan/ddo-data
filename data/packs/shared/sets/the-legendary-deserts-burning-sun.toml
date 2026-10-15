@@ -1,0 +1,82 @@
+name = "The Legendary Desert's Burning Sun"
+icon = "Menechtarun"
+
+[[item]]
+name = "Legendary Bracers of the Hunter"
+
+[[item]]
+name = "Legendary Firestorm Greaves"
+
+[[item]]
+name = "Legendary Lion-headed Belt Buckle"
+
+[[item]]
+name = "Legendary Robe of Fire"
+
+[[item]]
+name = "Legendary Shard of Vollun"
+
+[[item]]
+name = "Legendary Tinder"
+
+[[item]]
+name = "Legendary Xuum"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Legendary"
+reason = "The wiki types Physical Resistance Rating as Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Physical Resistance Rating / Legendary"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 15
+reason = "The wiki gives Physical Resistance Rating +30 Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Physical Resistance Rating / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Legendary"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

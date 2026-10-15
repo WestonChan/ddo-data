@@ -1,0 +1,20 @@
+name = "Mantle of Gentle Descent"
+description = "This magical cloak will help you fall slowly."
+drop_location = "The Borderlands, chest (Rare Encounters)"
+icon = "Cloak_6"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Back"
+
+[[effect]]
+name = "Feather Falling"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Borderlands"

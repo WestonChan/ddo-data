@@ -1,0 +1,13 @@
+name = "Grip of the Hidden Hand"
+pack = "Grip of the Hidden Hand"
+quests = [
+    "Army of Eternal Night",
+    "Order in the Court!",
+    "Three Paths to Battle",
+    "Growing Pains",
+    "The Hand and the Eyes",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Grip_of_the_Hidden_Hand"
+read = "2026-10-02"

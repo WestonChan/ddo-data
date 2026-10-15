@@ -1,0 +1,26 @@
+name = "Temple of the Deathwyrm"
+bestowed_by = "Thela Bonmar"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+is_raid = true
+pack = "Shadow Under Thunderholme"
+patron = "Purple Dragon Knights"
+zone = "Aurgloroasa's Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Temple_of_the_Deathwyrm"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 30
+
+[[run]]
+tier = "legendary"
+level = 30

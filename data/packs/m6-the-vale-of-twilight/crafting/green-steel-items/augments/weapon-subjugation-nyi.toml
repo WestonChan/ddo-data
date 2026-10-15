@@ -1,0 +1,11 @@
+name = "Weapon Subjugation - NYI"
+adds_augment = "Weapon Devastation"
+description = """
+TBD
+Fire:Escalation:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: weapon subjugation"

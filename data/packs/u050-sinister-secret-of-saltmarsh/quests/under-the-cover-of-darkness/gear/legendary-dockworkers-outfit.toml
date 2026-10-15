@@ -1,0 +1,45 @@
+name = "Legendary Dockworker's Outfit"
+description = "An outfit to blend in with the hired hands in Saltmarsh."
+drop_location = "Under the Cover of Darkness, end chest, or Legendary version of Epic Dockworker's Outfit"
+enhancement_bonus = 15
+icon = "Cloth_4b"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 146
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 54
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, or legendary version of epic dockworker's outfit"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Cover of Darkness"

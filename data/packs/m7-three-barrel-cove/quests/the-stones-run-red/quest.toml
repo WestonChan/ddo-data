@@ -1,0 +1,22 @@
+name = "The Stones Run Red"
+bestowed_by = "Idas"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Three-Barrel Cove"
+patron = "The Free Agents"
+zone = "The Fire Caves"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Stones_Run_Red"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5

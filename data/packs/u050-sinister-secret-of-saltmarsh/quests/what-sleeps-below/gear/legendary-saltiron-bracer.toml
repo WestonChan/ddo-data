@@ -1,0 +1,40 @@
+name = "Legendary Saltiron Bracer"
+description = "Smiths in Saltmarsh are known for their craft in iron."
+drop_location = "What Sleeps Below, end chest, or Legendary version of Epic Saltiron Bracer"
+icon = "Bracers_17c"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 30
+slot = "Wrists"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 45
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic saltiron bracer"
+kind = "quest"
+loot_type = "chest"
+name = "What Sleeps Below"

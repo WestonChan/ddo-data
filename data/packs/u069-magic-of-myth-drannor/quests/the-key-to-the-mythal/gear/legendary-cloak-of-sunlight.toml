@@ -1,0 +1,42 @@
+name = "Legendary Cloak of Sunlight"
+description = "Brilliant regalia adorned the Elves before the fall."
+drop_location = "The Key to the Mythal, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 33
+slot = "Back"
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 59
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 14
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Key to the Mythal"

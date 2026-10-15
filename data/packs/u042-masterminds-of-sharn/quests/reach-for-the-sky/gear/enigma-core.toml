@@ -1,0 +1,49 @@
+name = "Enigma Core"
+description = "The inner machinations of my mind are an enigma."
+drop_location = "Reach for the Sky, End Chest"
+enhancement_bonus = 5
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 15
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 15
+arcane_spell_failure = 0
+armor_bonus = 1
+armor_check_penalty = 0
+armor_type = "Docent"
+max_dex_bonus = 0
+mithral_body = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 94
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 19
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 3
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 8
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Reach for the Sky"

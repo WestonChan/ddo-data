@@ -1,0 +1,68 @@
+name = "Epic Ring of Unknown Origins"
+description = """
+One of the many artificers at the laboratory found this ring on a corpse. It's
+yours now."""
+drop_location = "Flesh Maker's Laboratory (epic), end chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 27
+slot = "Ring"
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Whirlwind Ward"
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flesh Maker's Laboratory"

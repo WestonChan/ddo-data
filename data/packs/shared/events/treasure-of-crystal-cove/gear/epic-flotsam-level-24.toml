@@ -1,0 +1,49 @@
+name = "Epic Flotsam (level 24)"
+accepts_sentience = true
+description = """
+This driftwood shard has saved a few lives by being hard to detect as a weapon.
+It seems to be effective against the undead."""
+drop_location = "Treasure of Crystal Cove, Turn in 1250 Silver Doubloon 500 Golden Doubloon 40 Stolen Opal 800 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 7
+icon = "Dagger_5"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Densewood"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Greater Disruption"
+
+[[effect]]
+name = "Bludgeoning 5"
+
+[[effect]]
+name = "Corrosive Salt"
+
+[[effect]]
+name = "Undead Bane 5"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.8
+handedness = "One-handed"
+weapon_type = "Dagger"

@@ -1,0 +1,352 @@
+name = "Fighter"
+alignments = ["Any"]
+bab = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+class_specific_feat_types = ["Fighter Bonus Feat"]
+description = """
+Fighters are warriors with many extra feats (almost double what most
+classes can obtain), allowing them to super-specialize their role
+in combat. There are many ways to fight: two-handed, dual-wielding,
+a sword and shield, or even with a bow... you name it, a fighter can
+specialize in it. As such, players should examine thoroughly what
+feats they would like to pick before they create this versatile
+front-line class. Fighters also gain access to many unique feats that
+increase their offensive power, their defenses, or their ability to
+use tactical maneuvers like Trip or Stunning Blow. Depending on which
+martial path they wish to follow, a fighter might require Strength,
+Constitution, and Dexterity in varied amounts."""
+fortitude = "good"
+hit_points = 10
+large_icon = "Fighter"
+reflex = "poor"
+skill_points = 2
+small_icon = "Fighter_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+will = "poor"
+
+[[auto_buy_skill]]
+skill = "Intimidate"
+
+[[auto_buy_skill]]
+skill = "Balance"
+
+[[auto_feat]]
+level = 1
+feat = "Heavy Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Light Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Battle Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Falchion"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Great Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Great Club"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Great Sword"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Hand Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Heavy Pick"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Kukri"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Light Hammer"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Light Pick"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Longbow"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Longsword"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Maul"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Rapier"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Scimitar"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Shortbow"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Shortsword"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Throwing Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Throwing Hammer"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Warhammer"
+
+[[auto_feat]]
+level = 1
+feat = "Medium Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Shield Proficiency (General)"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Club"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dart"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Morningstar"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Quarterstaff"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Sickle"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Throwing Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Unarmed"
+
+[[auto_feat]]
+level = 1
+feat = "Tower Shield Proficiency"
+
+[[auto_feat]]
+level = 2
+feat = "Second Wind"
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 1
+update_list = [
+    "Bow Strength",
+    "Cleave",
+    "Combat Expertise",
+    "Dodge",
+    "Exotic Weapon Proficiency: Bastard Sword",
+    "Exotic Weapon Proficiency: Dwarven Axe",
+    "Exotic Weapon Proficiency: Great Crossbow",
+    "Exotic Weapon Proficiency: Handwraps",
+    "Exotic Weapon Proficiency: Kama",
+    "Exotic Weapon Proficiency: Khopesh",
+    "Exotic Weapon Proficiency: Repeating Heavy Crossbow",
+    "Exotic Weapon Proficiency: Repeating Light Crossbow",
+    "Exotic Weapon Proficiency: Shuriken",
+    "Great Cleave",
+    "Greater Single Weapon Fighting",
+    "Greater Two Handed Fighting",
+    "Greater Shield Mastery",
+    "Greater Two Weapon Fighting",
+    "Improved Critical: Bludgeoning Weapons",
+    "Improved Critical: Piercing Weapons",
+    "Improved Critical: Ranged Weapons",
+    "Improved Critical: Slashing Weapons",
+    "Improved Critical: Thrown Weapons",
+    "Improved Feint",
+    "Improved Precise Shot",
+    "Improved Shield Bash",
+    "Improved Shield Mastery",
+    "Improved Single Weapon Fighting",
+    "Improved Sunder",
+    "Improved Trip",
+    "Improved Two Handed Fighting",
+    "Improved Two Weapon Fighting",
+    "Knight's Training",
+    "Manyshot",
+    "Mobility",
+    "Offhand Versatility",
+    "Oversized Two Weapon Fighting",
+    "Point Blank Shot",
+    "Power Attack",
+    "Power Critical",
+    "Precise Shot",
+    "Precision",
+    "Quick Draw",
+    "Rapid Reload",
+    "Rapid Shot",
+    "Resilience",
+    "Sap",
+    "Shield Deflection",
+    "Shield Mastery",
+    "Shot on the Run",
+    "Single Weapon Fighting",
+    "Slicing Blow",
+    "Spring Attack",
+    "Stunning Blow",
+    "Swords to Plowshares",
+    "Ten Thousand Stars",
+    "Two Handed Fighting",
+    "Two Weapon Defense",
+    "Two Weapon Fighting",
+    "Weapon Finesse",
+    "Weapon Focus: Bludgeoning Weapons",
+    "Weapon Focus: Piercing Weapons",
+    "Weapon Focus: Ranged Weapons",
+    "Weapon Focus: Slashing Weapons",
+    "Weapon Focus: Thrown Weapons",
+    "Whirling Steel Strike",
+    "Whirlwind Attack",
+    "Zen Archery",
+]
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 2
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 4
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 6
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 8
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 10
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 12
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 14
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 16
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 18
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 20
+
+[[skill]]
+skill = "Intimidate"
+
+[[skill]]
+skill = "Jump"
+
+[[skill]]
+skill = "Repair"
+
+[[skill]]
+skill = "Swim"

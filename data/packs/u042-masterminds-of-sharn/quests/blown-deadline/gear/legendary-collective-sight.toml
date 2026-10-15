@@ -1,0 +1,265 @@
+name = "Legendary Collective Sight"
+description = "You Make The 2019! Designed by the Dungeons and Dragons: Online Community."
+drop_location = "Blown Deadline, End Chest"
+icon = "Goggles_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Goggles"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Temperance of Belief"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+13 Strength"
+description = "+13 Enhancement bonus to Strength"
+icon = "Strength"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+13 Dexterity"
+description = "+13 Enhancement bonus to Dexterity"
+icon = "Dexterity"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+13 Constitution"
+description = "+13 Enhancement bonus to Constitution"
+icon = "Constitution"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "+13 Intelligence"
+description = "+13 Enhancement bonus to Intelligence"
+icon = "Intelligence"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "+13 Wisdom"
+description = "+13 Enhancement bonus to Wisdom"
+icon = "Wisdom"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "+13 Charisma"
+description = "+13 Enhancement bonus to Charisma"
+icon = "Charisma"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "crafting: almost there"
+
+[[socket.option]]
+name = "+6 Insightful Strength"
+description = "+6 Insightful bonus to Strength"
+icon = "Strength"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+6 Insightful Dexterity"
+description = "+6 Insightful bonus to Dexterity"
+icon = "Dexterity"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+6 Insightful Constitution"
+description = "+6 Insightful bonus to Constitution"
+icon = "Constitution"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "+6 Insightful Intelligence"
+description = "+6 Insightful bonus to Intelligence"
+icon = "Intelligence"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "+6 Insightful Wisdom"
+description = "+6 Insightful bonus to Wisdom"
+icon = "Wisdom"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "+6 Insightful Charisma"
+description = "+6 Insightful bonus to Charisma"
+icon = "Charisma"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Blown Deadline"

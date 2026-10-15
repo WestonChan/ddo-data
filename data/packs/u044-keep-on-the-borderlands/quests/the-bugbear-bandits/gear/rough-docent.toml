@@ -1,0 +1,31 @@
+name = "Rough Docent"
+description = "This magical artifact will help you resist critical hits."
+drop_location = "The Bugbear Bandits, End chest"
+enhancement_bonus = 1
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 1
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = 0
+armor_type = "Docent"
+mithral_body = 5
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 38
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bugbear Bandits"

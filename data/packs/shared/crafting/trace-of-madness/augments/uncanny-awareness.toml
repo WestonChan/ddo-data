@@ -1,0 +1,21 @@
+name = "Uncanny Awareness"
+description = "Reflex Save +10: This item gives a +10 Resistance bonus to your Reflex saves."
+family = "Other"
+icon = "UncannyAwareness"
+min_level = 1
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Resistance"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[slot]]
+slot = "crafting: trace of madness"

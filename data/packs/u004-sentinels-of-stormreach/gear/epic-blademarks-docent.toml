@@ -1,0 +1,45 @@
+name = "Epic Blademark's Docent"
+description = """
+This docent was specially crafted for the warforged that serve as mercenaries
+for House Deneith."""
+drop_location = "Epic version of Blademark's Docent"
+enhancement_bonus = 6
+icon = "Docent_1f"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 20
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 20
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 9
+
+[[effect]]
+name = "DR 15/Epic"
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Construct Fortification (10%)"
+bonus_type = "Insight"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

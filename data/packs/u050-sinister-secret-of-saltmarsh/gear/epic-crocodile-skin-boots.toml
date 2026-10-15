@@ -1,0 +1,37 @@
+name = "Epic Crocodile Skin Boots"
+description = """
+Sturdy waterproof boots for the adventurer who doesn't mind the risk involved
+in obtaining the materials."""
+drop_location = "Epic version of Crocodile Skin Boots"
+icon = "Boots_11a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 20
+slot = "Feet"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Acidic Reaping"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

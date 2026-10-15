@@ -1,0 +1,60 @@
+name = "Legendary Souleater"
+accepts_sentience = true
+description = """
+This is the staff used by the sahuagin High Priestess Slikir to commune with
+and channel a demon. It took on many of the demon's aspects and is now a dangerous
+and corrupted implement."""
+drop_location = "Legendary version of Epic Souleater"
+enhancement_bonus = 15
+icon = "Quarterstaff_10b"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Legendary Trap the Soul"
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Feeding 30"
+
+[[effect]]
+name = "Vampirism 3"
+
+[[effect]]
+name = "Negativity 6"
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 45
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,2303 @@
+name = "Draconic Incarnation"
+background = "DestinyArcane"
+icon = "DraconicIncarnation"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Draconic Incarnation: Draconic Bloodline"
+cost_per_rank = [1]
+description = """
+Select a Draconic Bloodline to embody.
+No matter what color you pick, you gain:
+
+You gain the Magical Training Feat.
+
+Each Core Ability you take in the tree including this one, grants the following:
+
++1 Epic bonus to Spell DCs
++50 Spell Points
++5 Spell power associated with your chosen elements Spell power
++5 Universal Spell power"""
+icon = "DraconicBloodlineFire"
+internal_name = "U51DraconicIncarnationCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Draconic Incarnation: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Draconic Bloodline: Black"
+cost_per_rank = [1]
+description = """
+Black Dragons are aligned with Acid spells.
+
+You gain the Magical Training Feat.
+
+Each Core Ability you take in the tree including this one, grants the following:
+
++1 Epic bonus to Spell DCs
++50 Spell Points
++5 Spell power associated with Acid Spell power
++5 Universal Spell power"""
+icon = "DraconicBloodlineBlack"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Black"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Black"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Black"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[enhancement.selection]]
+name = "Draconic Bloodline: Blue"
+cost_per_rank = [1]
+description = """
+Blue Dragons are aligned with Electric spells.
+
+You gain the Magical Training Feat.
+
+Each Core Ability you take in the tree including this one, grants the following:
+
++1 Epic bonus to Spell DCs
++50 Spell Points
++5 Spell power associated with Electric spell power
++5 Universal Spell power"""
+icon = "DraconicBloodlineBlue"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Blue"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Blue"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Blue"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.selection]]
+name = "Draconic Bloodline: Green"
+cost_per_rank = [1]
+description = """
+Green Dragons are aligned with Poison spells.
+
+You gain the Magical Training Feat.
+
+Each Core Ability you take in the tree including this one, grants the following:
+
++1 Epic bonus to Spell DCs
++50 Spell Points
++5 Spell power associated with Poison spell power
++5 Universal Spell power"""
+icon = "DraconicBloodlineGreen"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Green"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Green"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Green"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.selection]]
+name = "Draconic Bloodline: Red"
+cost_per_rank = [1]
+description = """
+Red Dragons are aligned with Fire spells.
+
+You gain the Magical Training Feat.
+
+Each Core Ability you take in the tree including this one, grants the following:
+
++1 Epic bonus to Spell DCs
++50 Spell Points
++5 Spell power associated with Fire spell power
++5 Universal Spell power"""
+icon = "DraconicBloodlineFire"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Red"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Red"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Red"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.selection]]
+name = "Draconic Bloodline: Shadow"
+cost_per_rank = [1]
+description = """
+Shadow Dragons are aligned with Negative spells.
+
+You gain the Magical Training Feat.
+
+Each Core Ability you take in the tree including this one, grants the following:
+
++1 Epic bonus to Spell DCs
++50 Spell Points
++5 Spell power associated with Negative spell power
++5 Universal Spell power"""
+icon = "DraconicBloodlineShadow"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Shadow"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Shadow"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Shadow"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection]]
+name = "Draconic Bloodline: White"
+cost_per_rank = [1]
+description = """
+White Dragons are aligned with Cold spells.
+
+Each Core Ability you take in the tree including this one, grants the following:
+
++1 Epic bonus to Spell DCs
++50 Spell Points
++5 Spell power associated with Cold Spell power
++5 Universal Spell power"""
+icon = "DraconicBloodlineWhite"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: White"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: White"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: White"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement]]
+name = "Draconic Incarnation: Draconic Heritage I"
+cost_per_rank = [1]
+description = """
+-5% Spell Point cost on all spells. Your spells no longer need material
+components, as if you had the Eschew Materials feat."""
+icon = "DraconicHeritage"
+internal_name = "U51DraconicIncarnationCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPointCostPercent"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Black"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Acid"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Blue"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Green"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Red"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Shadow"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: White"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Eschew Materials"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Draconic Incarnation: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51DraconicIncarnationCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Draconic Incarnation: Elemental Blood"
+cost_per_rank = [1]
+description = """
+-5% Spell Point cost on all spells. When casting spells that match your Draconic
+Bloodline you have a 15% chance to gain 10 temporary Hit Points per character
+level that last for 10 seconds. This can only trigger once per 10 seconds."""
+icon = "ElementalBlood"
+internal_name = "U51DraconicIncarnationCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPointCostPercent"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Black"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Acid"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Blue"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Green"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Red"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Shadow"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: White"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Draconic Incarnation: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51DraconicIncarnationCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Draconic Incarnation: Draconic Heritage II"
+cost_per_rank = [1]
+description = """
+-5% Spell Point cost on all spells. Your Draconic Heritage I's Eschew Materials
+is improved: your spells no longer need special material components."""
+icon = "DraconicHeritage"
+internal_name = "U51DraconicIncarnationCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPointCostPercent"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Black"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Acid"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Blue"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Green"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Red"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Shadow"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: White"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Draconic Incarnation: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51DraconicIncarnationCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Draconic Incarnation: Draconic Perception"
+cost_per_rank = [1]
+description = "+[2/4/6] Spot, Search, and Reflex saving throws."
+icon = "DraconicPerception"
+internal_name = "U51DraconicIncarnationDraconicPerception"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = [
+    "Search",
+    "Spot",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Draconic Incarnation: Dragonhide"
+cost_per_rank = [1]
+description = """
++[2/4/6] Armor Class and Fortitude saving throws.
+Rank 3: You no longer fail Fortitude saves automatically by rolling a natural 1."""
+icon = "Dragonhide"
+internal_name = "U51DraconicIncarnationDragonhide"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SaveNoFailOn1"
+rank = 3
+targets = ["Fortitude"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Draconic Incarnation: Dragon Breath"
+cost_per_rank = [2]
+description = "Select your Dragon Breath Epic Strike - a fearsome Draconic Breath Attack!"
+icon = "DragonBreath"
+internal_name = "U51DraconicIncarnationDragonBreath"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Black Dragon Breath"
+cost_per_rank = [2]
+description = """
+Epic Strike: Conjure forth a torrent of Acid to melt your enemies.
+Deals 1d6+5 Acid damage per Character Level to all enemies caught within the spray.
+DC: 20 + Max(Int, Wis, Cha) Mod + Conjuration bonuses + Breath Weapon Bonuses.
+Metamagics: Empower, Maximize, Quicken, Intensify
+Cost: 25 Spell Points
+Cooldown: 12 seconds
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DragonBreathBlack"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationCore1",
+    "Draconic Bloodline: Black",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Blue Dragon Breath"
+cost_per_rank = [2]
+description = """
+Epic Strike: Conjure forth a galvanic storm to electrocute your enemies.
+Deals 1d6+5 Electric damage per Character Level to all enemies caught within the
+sparks.
+DC: 20 + Max(Int, Wis, Cha) Mod + Conjuration bonuses + Breath Weapon Bonuses.
+Metamagics: Empower, Maximize, Quicken, Intensify
+Cost: 25 Spell Points
+Cooldown: 12 seconds
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DragonBreathBlue"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationCore1",
+    "Draconic Bloodline: Blue",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Green Dragon Breath"
+cost_per_rank = [2]
+description = """
+Epic Strike: Conjure forth a wave of poison to infect your enemies.
+Deals 1d6+5 Poison damage per Character Level to all enemies caught within the area.
+DC: 20 + Max(Int, Wis, Cha) Mod + Conjuration bonuses + Breath Weapon Bonuses.
+Metamagics: Empower, Maximize, Quicken, Intensify
+Cost: 25 Spell Points
+Cooldown: 12 seconds
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DragonBreathGreen"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationCore1",
+    "Draconic Bloodline: Green",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Red Dragon Breath"
+cost_per_rank = [2]
+description = """
+Epic Strike: Conjure forth a gout of flame to scorch your enemies.
+Deals 1d6+5 Fire damage per Character Level to all enemies caught within the blaze.
+DC: 20 + Max(Int, Wis, Cha) Mod + Conjuration bonuses + Breath Weapon Bonuses.
+Metamagics: Empower, Maximize, Quicken, Intensify
+Cost: 25 Spell Points
+Cooldown: 12 seconds
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DragonBreath"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationCore1",
+    "Draconic Bloodline: Red",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Shadow Dragon Breath"
+cost_per_rank = [2]
+description = """
+Epic Strike: Conjure forth a wave of shadow to terrify your enemies.
+Deals 1d6+5 Negative damage per Character Level to all enemies caught within the
+blast.
+DC: 20 + Max(Int, Wis, Cha) Mod + Conjuration bonuses + Breath Weapon Bonuses.
+Metamagics: Empower, Maximize, Quicken, Intensify
+Cost: 25 Spell Points
+Cooldown: 12 seconds
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DragonBreathShadow"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationCore1",
+    "Draconic Bloodline: Shadow",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "White Dragon Breath"
+cost_per_rank = [2]
+description = """
+Epic Strike: Conjure forth a spray of frost to freeze your enemies.
+Deals 1d6+5 Cold damage per Character Level to all enemies caught within the ice.
+DC: 20 + Max(Int, Wis, Cha) Mod + Conjuration bonuses + Breath Weapon Bonuses.
+Metamagics: Empower, Maximize, Quicken, Intensify
+Cost: 25 Spell Points
+Cooldown: 12 seconds
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DragonBreathWhite"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationCore1",
+    "Draconic Bloodline: White",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Draconic Incarnation: Dragon Scales"
+cost_per_rank = [1]
+description = "+[1/2/3] Physical and Magical Resistance Rating."
+icon = "DragonScales"
+internal_name = "U51DraconicIncarnationDragocScales"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Draconic Incarnation: Arcane Studies"
+cost_per_rank = [1]
+description = """
++[2/4/6] Concentration and Spellcraft, +[1/2/3] Use Magic Device.
+Rank 3: +5 Spell Power of your Draconic Heritage and +5 Universal Spell Power."""
+icon = "ArcaneStudies"
+internal_name = "U51DraconicIncarnationArcaneStudies"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Spellcraft",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Black"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+rank = 3
+targets = ["Acid"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Blue"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+rank = 3
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Green"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+rank = 3
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Red"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+rank = 3
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: Shadow"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+rank = 3
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    10,
+    0,
+    15,
+    0,
+    20,
+    0,
+    20,
+    0,
+    20,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Draconic Bloodline: White"
+effect_type = "SpellPower"
+extra_types = ["SpellPower"]
+rank = 3
+targets = ["Cold"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Draconic Incarnation: Draconic Presence"
+cost_per_rank = [1]
+description = """
++[1/2/3] Breath Weapon DCs.
+Rank 3: Immunity to Fear."""
+icon = "U51DraconicPresence"
+internal_name = "U51DraconicIncarnationDraconicPresence"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = ["Breath Weapon"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+rank = 3
+targets = ["Fear"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Draconic Incarnation: Draconic Rage"
+cost_per_rank = [2]
+description = "You may now cast spells while Raging."
+icon = "DraconicRage"
+internal_name = "U51DraconicIncarnationDraconicRage"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Draconic Incarnation: Attune the Arcane"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Draconic Destiny Mantle: Offensive spells you cast deal an additional 1d6+6 bonus
+damage per Caster Level in the elemental damage of your Draconic Bloodline.
+This has a cooldown of 5 seconds."""
+icon = "AttuneTheArcane"
+internal_name = "U51DraconicIncarnationAttuneTheArcane"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Draconic Destiny Mantle"
+description = """
+Draconic Destiny Mantle: Offensive spells you cast have a 25% chance to deal
+1d6+6 bonus damage per caster level in the elemental damage of your Draconic Bloodline.
+This has a cooldown of 5 seconds."""
+group_name = "Mantle"
+icon = "AttuneTheArcane"
+
+[[enhancement]]
+name = "Draconic Incarnation: Coalescence"
+cost_per_rank = [1]
+description = """
+You bypass the first [5/10/15] points of Damage Reduction with your spells.
+Rank 3: +5 Spell Power of your Draconic Heritage element and +5 Universal Spell Power"""
+icon = "Coalescence"
+internal_name = "U51DraconicIncarnationCoalescence"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Black"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Blue"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Green"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Red"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: Shadow"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Coalescence: White"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Draconic Incarnation: Conduit"
+cost_per_rank = [2]
+description = "Double the Implement bonus of Quarterstaves you wield."
+icon = "Conduit"
+internal_name = "U51DraconicIncarnationConduit"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Draconic Incarnation: Scales of the Dragon"
+cost_per_rank = [2]
+description = """
+Activate this to shroud yourself in the Scales of a Dragon temporarily.
+This has two components - firstly, it absorbs 15 points of damage per Character
+Level in ablative protection. Secondly, it shields you from 50% of the Elemental
+Damage of your dragon type. The Elemental Damage shield will persist even if the
+ablative protection is depleted.
+Both effects last for 5 minutes.
+Costs 30 Spell Points.
+Cooldown: 30 Seconds."""
+icon = "ScalesOfTheDragon"
+internal_name = "U51DraconicIncarnationScalesOfTheDragon"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Draconic Incarnation: Daunting Roar"
+cost_per_rank = [2]
+description = """
+Breath Weapons (including your Dragon Breath Epic Strike) have a 25% chance to
+paralyze enemies caught within them with fear for 6 seconds with no save. This
+can only affect each monster once - once they have been feared successfully,
+successive attempts will fail. Enemies that are immune to fear are immune to
+this effect."""
+icon = "DauntingRoar"
+internal_name = "U51DraconicIncarnationDauntingRoar"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Draconic Incarnation: Inevitable"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Your Attune the Arcane Destiny Mantle now instead applies a Damage Over Time
+effect that deals its full damage 3 additional times after application, for a
+total of 4 ticks of damage beyond the first, application damage."""
+icon = "Inevitable"
+internal_name = "U51DraconicIncarnationInevitable"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51DraconicIncarnationAttuneTheArcane"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Draconic Incarnation: Arcane Spellsword"
+cost_per_rank = [1]
+description = "+[1/2/3] Imbue Dice"
+icon = "ArcaneSpellsword"
+internal_name = "U51DraconicIncarnationArcaneSpellsword"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Draconic Incarnation: Draconic Spell Focus"
+cost_per_rank = [1]
+description = "Select a Spell School to enhance."
+icon = "DraconicSpellFocus"
+internal_name = "U51DraconicIncarnationDraconicSpellFocus"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Conjuration"
+cost_per_rank = [1]
+description = "+[1/2/3] Conjuration Spell DCs"
+icon = "DraconicSpellFocus"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51DraconicIncarnationDraconicSpellFocus",
+    "Destiny Conjuration",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationDraconicSpellFocus",
+    "Destiny Conjuration",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Evocation"
+cost_per_rank = [1]
+description = "+[1/2/3] Evocation Spell DCs"
+icon = "DraconicSpellFocus"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51DraconicIncarnationDraconicSpellFocus",
+    "Destiny Evocation",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationDraconicSpellFocus",
+    "Destiny Evocation",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Necromancy"
+cost_per_rank = [1]
+description = "+[1/2/3] Necromancy Spell DCs"
+icon = "DraconicSpellFocus"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51DraconicIncarnationDraconicSpellFocus",
+    "Destiny Necromancy",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationDraconicSpellFocus",
+    "Destiny Necromancy",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Transmutation"
+cost_per_rank = [1]
+description = "+[1/2/3] Transmutation Spell DCs"
+icon = "DraconicSpellFocus"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51DraconicIncarnationDraconicSpellFocus",
+    "Destiny Transmutation",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51DraconicIncarnationDraconicSpellFocus",
+    "Destiny Transmutation",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Draconic Incarnation: Pull from the Wellspring"
+cost_per_rank = [2]
+description = """
+Wellspring of Power's duration is doubled. When you activate it, you gain
++10 Temporary Spell Points per Character Level that last for the full, doubled
+duration."""
+icon = "PullFromTheWellspring"
+internal_name = "U51DraconicIncarnationPullFromTheWellspring"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Draconic Incarnation: Improve Dragon Breath"
+cost_per_rank = [2]
+description = "Improve your Dragon Breath Epic Strike!"
+icon = "ImproveDragonBreath"
+internal_name = "U51DraconicIncarnationImproveDragonBreath"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Energy Burst"
+cost_per_rank = [2]
+description = """
+Your Dragon Breath Epic Strike is modified to instead burst from within you,
+dealing 1d6+10 damage per caster Level to all nearby enemies."""
+icon = "U51EnergyBurst"
+
+[[enhancement.selection]]
+name = "Energy Vortex"
+cost_per_rank = [2]
+description = """
+Your Dragon Breath Epic Strike is modified to instead cause energies to swirl around you,
+dealing its damage to nearby enemies every 3 seconds for 15 seconds."""
+icon = "U51EnergyVortex"
+
+[[enhancement.selection]]
+name = "Gaping Maw"
+cost_per_rank = [2]
+description = "Your Dragon Breath Epic Strike now deals 1d6+10 damage per Caster Level."
+icon = "GapingMaw"
+
+[[enhancement]]
+name = "Draconic Incarnation: Dragonspeed"
+cost_per_rank = [2]
+description = """
+Your Attune the Arcane Destiny Mantle now grants you a 10% Spell Cooldown Reduction,
+the Mobile Spellcasting feat, and a 30% Enhancement bonus to Movement speed."""
+icon = "Dragonspeed"
+internal_name = "U51DraconicIncarnationDragonspeed"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Mobile Spellcasting"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "MovementSpeed"
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51DraconicIncarnationInevitable"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Draconic Incarnation: Epic Improved Metamagic"
+cost_per_rank = [1]
+description = "Select a Metamagic to improve"
+icon = "MetamagicAttunement"
+internal_name = "U51DraconicIncarnationEpicImprovedMetamagic"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Epic Improved Enlarge"
+cost_per_rank = [1]
+description = "Enlarge: Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Epic Improved Quicken"
+cost_per_rank = [1]
+description = "Quicken: Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Draconic Incarnation: Epic Improved Metamagic"
+cost_per_rank = [1]
+description = "Select a Metamagic to improve"
+icon = "MetamagicAttunement"
+internal_name = "U51DraconicIncarnationMetamagicAttunement"
+min_spent = 20
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Epic Improved Empower"
+cost_per_rank = [1]
+description = "Reduces the cost of the Empower Metamagic by [2/4/6] spell points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Epic Improved Intensify"
+cost_per_rank = [1]
+description = "Using the Intensify Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientIntensify"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostIntensify"
+
+[[enhancement.selection.requirement]]
+items = ["Intensify Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Epic Improved Maximize"
+cost_per_rank = [1]
+description = "Reduces the cost of the Maximize Metamagic by [3/6/9] spell points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Draconic Incarnation: Bring About Destruction"
+cost_per_rank = [2]
+description = """
++10 Spell Power of your Draconic Element, +10 Universal Spell Power.
+
+Your Eladar's Electric Surge, Niac's Biting Cold, Burning Blood, Enervation,
+and Venom Concentration spells now stack two additional times."""
+icon = "U51Hellstorm"
+internal_name = "U51DraconicIncarnationHellstorm"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Black"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Blue"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Green"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Red"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: Shadow"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Bring About Destruction: White"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Draconic Incarnation: Ruin Intensified"
+cost_per_rank = [1]
+description = """
+Your Ruin and Greater Ruin now applies a secondary burst of damage based on your
+Draconic Bloodline. This scales with the appropriate Spell Power."""
+icon = "RuinIntensified"
+internal_name = "U51DraconicIncarnationRuinItensified"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Draconic Incarnation: Dragonform"
+cost_per_rank = [2]
+description = """
+Epic Moment: Activate this ability to take on the aspect of your Draconic Bloodline.
+For 30 seconds, you gain the following:
+
+You become immune to elemental damage of your Draconic Bloodline. If you are an
+Undead and aligned with Shadow Dragons, this does not apply to you.
+You gain DR 100/- and your Hit Points begin to regenerate at a fast rate.
+Your spells gain a 50% cost reduction.
+Your spells have a chance to turn a non-boss enemy to gold permanently, adding
+them to your hoard, with no save.
+Cooldown: 5 minutes."""
+icon = "Dragonform"
+internal_name = "U51DraconicIncarnationDragonform"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Draconic Incarnation: Spread your Wings"
+cost_per_rank = [1]
+description = """
+Draconic wings sprout from you and propel you forward a moderate distance.
+Cooldown 15 seconds."""
+icon = "SpreadYourWings"
+internal_name = "U51DraconicIncarnationSpreadYourWings"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Draconic Incarnation: Enhanced Draconic Spell Focus"
+cost_per_rank = [1]
+description = "+[1/2/3] Spell DCs"
+icon = "EnhancedDraconicSpellFocus"
+internal_name = "U51DraconicIncarnationEnhancedDraconicSpellFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[requirement]]
+items = ["Draconic Incarnation"]
+req_type = "Feat"

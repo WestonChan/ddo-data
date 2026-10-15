@@ -1,0 +1,3 @@
+name = "Hireling Dodge"
+category = "other"
+verbose_name_template = "%b1 Hireling Dodge +{1}"

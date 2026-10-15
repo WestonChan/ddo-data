@@ -1,0 +1,20 @@
+name = "+15 Constitution (Enhancement)"
+description = "Escalation/Earth or Positive: +15 Enhancement bonus to Constitution"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

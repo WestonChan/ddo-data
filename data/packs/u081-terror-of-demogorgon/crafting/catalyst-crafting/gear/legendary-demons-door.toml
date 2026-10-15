@@ -1,0 +1,67 @@
+name = "Legendary Demon's Door"
+description = """
+The haunting visage in this shield was once something alive, but no one is quite
+sure what."""
+drop_location = "Catalyst Crafting, Turn in Death's Door, its Legendary Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 16
+icon = "Shield_49"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Wood"
+minimum_level = 35
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 20
+max_dex_bonus = 0
+shield_bonus = 38
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Improved Demonic Shield"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Revel in Blood (Piercing)"
+
+[[effect]]
+name = "Shield Spikes D 7"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

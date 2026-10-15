@@ -1,0 +1,75 @@
+name = "Epic Shaman's Fury"
+icon = "ShamansFury"
+
+[[item]]
+name = "Epic Shaman's Band"
+
+[[item]]
+name = "Epic Shaman's Beads"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+]

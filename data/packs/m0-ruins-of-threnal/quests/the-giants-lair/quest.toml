@@ -1,0 +1,21 @@
+name = "The Giants' Lair"
+bestowed_by = "Walk-up"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 0
+pack = "Ruins of Threnal"
+zone = "The Giants' Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Giants%27_Lair"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

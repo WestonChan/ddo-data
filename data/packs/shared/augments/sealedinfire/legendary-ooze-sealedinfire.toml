@@ -1,0 +1,17 @@
+name = "Legendary Ooze"
+variant = "sealedinfire"
+description = """
+Attacks and offensive spells reduce enemy PRR and MRR
+[100% proc, minus 10 of each]. Attacks and offensive spells
+have a [~5%] chance to summon some kind of Legendary Ooze.
+[Summoned Ooze scales with quest level/difficulty, for example,
+CR52 one has around 5,000 HP and does about 250+1d8? Acid melee damage]"""
+family = "SealedInFire"
+icon = "GreenAugment"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in fire"
+
+[[slot]]
+slot = "crafting: sealed in mist"

@@ -1,0 +1,33 @@
+name = "Severlin's Leaden Boots (level 15)"
+description = "When you just need to put your foot down."
+drop_location = "Anniversary Party, Turn in 40 Party Favors"
+icon = "Boots_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 15
+slot = "Feet"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 16
+
+[[effect]]
+name = "Whirlwind Ward"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"

@@ -1,0 +1,20 @@
+name = "Goggles of Unbroken Sight"
+description = "These are magical goggles that will prevent you from becoming blinded."
+drop_location = "The Hobgoblin Horde, End chest"
+icon = "Goggles_3"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 1
+slot = "Goggles"
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hobgoblin Horde"

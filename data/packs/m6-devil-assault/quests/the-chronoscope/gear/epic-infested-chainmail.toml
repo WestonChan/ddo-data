@@ -1,0 +1,56 @@
+name = "Epic Infested Chainmail"
+description = """
+An orthon warrior's body is crawling with hungry maggots that feed on its wounds.
+This suit of armor, crafted from the salvaged parts of an orthon's protective
+gear, is similarly infested and may impart a disease to those that attack the
+wearer."""
+drop_location = "The Chronoscope"
+enhancement_bonus = 6
+icon = "LightArmor_1f"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 8
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 14
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[effect]]
+name = "Greater Disease Guard"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Demonic Shield"
+
+[[effect]]
+name = "DR 15/Good"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 28
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"

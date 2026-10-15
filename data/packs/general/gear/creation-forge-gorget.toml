@@ -1,0 +1,21 @@
+name = "Creation Forge Gorget"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Necklace_25a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+race_required = "Bladeforged"
+slot = "Neck"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 4
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

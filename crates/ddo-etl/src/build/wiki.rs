@@ -174,19 +174,8 @@ fn insert_wiki_quest(transaction: &Transaction, wiki_quest: &WikiQuest) -> Resul
         None => None,
     };
     transaction.execute(
-        "INSERT INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, difficulties, provenance)
-         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
-        params![
-            wiki_quest.name,
-            pack_id,
-            patron_id,
-            wiki_quest.level,
-            wiki_quest.epic_level,
-            wiki_quest.favor,
-            wiki_quest.is_raid.unwrap_or_default(),
-            serde_json::to_string(wiki_quest.difficulties.as_deref().unwrap_or_default())?,
-            Provenance::Wiki.as_str(),
-        ],
+        "INSERT INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, difficulties, provenance, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)",
+        params![wiki_quest.name, pack_id, patron_id, wiki_quest.level, wiki_quest.epic_level, wiki_quest.favor, wiki_quest.is_raid.unwrap_or_default(), serde_json::to_string(wiki_quest.difficulties.as_deref().unwrap_or_default())?, Provenance::Wiki.as_str(), crate::tree::xml_entity_slug("quests", None, &wiki_quest.name, None)],
     )?;
     Ok(())
 }
@@ -243,8 +232,13 @@ fn link_augment_to_quests_named_in(
 pub(super) fn write_wiki_crafting_systems(transaction: &Transaction, wiki_overrides: &WikiOverrides) -> Result<()> {
     for crafting_system in &wiki_overrides.crafting_systems {
         transaction.execute(
-            "INSERT INTO crafting_systems (name, page, npc) VALUES (?1, ?2, ?3)",
-            params![crafting_system.name, crafting_system.page, crafting_system.npc],
+            "INSERT INTO crafting_systems (name, page, npc, slug) VALUES (?1, ?2, ?3, ?4)",
+            params![
+                crafting_system.name,
+                crafting_system.page,
+                crafting_system.npc,
+                crate::tree::xml_entity_slug("crafting_systems", None, &crafting_system.name, None)
+            ],
         )?;
     }
     Ok(())
@@ -283,10 +277,10 @@ fn insert_crafting_system_contents(
         )?;
     }
     let mut ingredient_ids_by_name_and_tier = HashMap::new();
-    for ingredient in &crafting_system.ingredients {
+    for (sort_order, ingredient) in crafting_system.ingredients.iter().enumerate() {
         transaction.execute(
-            "INSERT INTO crafting_ingredients (system_id, name, tier, bind, source) VALUES (?1, ?2, ?3, ?4, ?5)",
-            params![system_id, ingredient.name, ingredient.tier, ingredient.bind, ingredient.source],
+            "INSERT INTO crafting_ingredients (system_id, sort_order, name, tier, bind, source, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+            params![system_id, sort_order as i64, ingredient.name, ingredient.tier, ingredient.bind, ingredient.source, format!("{}-{}-{}", crate::tree::slug(&crafting_system.name), crate::tree::slug(&ingredient.name), crate::tree::slug(&ingredient.tier))],
         )?;
         ingredient_ids_by_name_and_tier
             .insert((ingredient.name.as_str(), ingredient.tier.as_str()), transaction.last_insert_rowid());
@@ -324,8 +318,8 @@ fn insert_crafting_recipe(
         .map(|label| slot_type_id_labelled(transaction, "grants_slot", label))
         .transpose()?;
     transaction.execute(
-        "INSERT INTO crafting_recipes (system_id, tier, slot_id, grants_slot_id, option, note, sort_order)
-         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+        "INSERT INTO crafting_recipes (system_id, tier, slot_id, grants_slot_id, option, note, focus_path, sort_order)
+         VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
         params![
             system_id,
             recipe.tier,
@@ -333,10 +327,12 @@ fn insert_crafting_recipe(
             granted_slot_type_id,
             recipe.option,
             recipe.note,
+            recipe.note.as_deref().and_then(crate::tree::recipe_focus_path),
             sort_order as i64
         ],
     )?;
     let recipe_id = transaction.last_insert_rowid();
+    let mut augment_order = 0_i64;
     for augment_name in &recipe.augments {
         let augment_ids = augment_ids_named_in(transaction, augment_name, &crafting_system.families)?;
         if augment_ids.is_empty() {
@@ -347,18 +343,20 @@ fn insert_crafting_recipe(
         }
         for augment_id in augment_ids {
             transaction.execute(
-                "INSERT OR IGNORE INTO crafting_recipe_augments (recipe_id, augment_id) VALUES (?1, ?2)",
-                params![recipe_id, augment_id],
+                "INSERT OR IGNORE INTO crafting_recipe_augments (recipe_id, augment_id, sort_order) VALUES (?1, ?2, ?3)",
+                params![recipe_id, augment_id, augment_order],
             )?;
+            augment_order += 1;
         }
     }
-    for cost in &recipe.cost {
+    for (sort_order, cost) in recipe.cost.iter().enumerate() {
         let ingredient = crafting_system.ingredient_for(recipe, &cost.ingredient)?;
         transaction.execute(
-            "INSERT INTO crafting_recipe_ingredients (recipe_id, ingredient_id, quantity) VALUES (?1, ?2, ?3)",
+            "INSERT INTO crafting_recipe_ingredients (recipe_id, ingredient_id, sort_order, quantity) VALUES (?1, ?2, ?3, ?4)",
             params![
                 recipe_id,
                 ingredient_ids_by_name_and_tier[&(ingredient.name.as_str(), ingredient.tier.as_str())],
+                sort_order as i64,
                 cost.quantity
             ],
         )?;
@@ -412,11 +410,10 @@ fn insert_listed_loot_link(
     let replaced_pack_drops = if listed_drop.replaces_pack_drop() {
         let chest = listed_drop.chest().context("replaces_pack_drop needs a chest")?;
         let deleted = transaction.execute(
-            "DELETE FROM sources
-             WHERE kind = 'adventure_pack'
-               AND pack_id = (SELECT pack_id FROM quests WHERE id = ?1)
-               AND item_id IS ?2 AND augment_id IS ?3 AND loot_type = ?4 AND chest = ?5",
-            params![quest_id, loot.item_id(), loot.augment_id(), listed_drop.loot_type().as_str(), chest],
+            "DELETE FROM pack_drops
+             WHERE pack_id = (SELECT pack_id FROM quests WHERE id = ?1)
+               AND owner_kind = ?2 AND owner_id = ?3 AND loot_type = ?4 AND chest = ?5",
+            params![quest_id, loot.kind(), loot.id(), listed_drop.loot_type().as_str(), chest],
         )?;
         ensure!(deleted == 1, "wiki quest drop {:?} must replace exactly one pack-wide source", listed_drop.name());
         deleted
@@ -741,9 +738,15 @@ impl TableWriter<'_> {
                 })
             })
             .collect::<Result<Vec<i64>>>()?;
+        let slug = self.reserve_augment_slug(
+            &wiki_augment.name,
+            Some(&wiki_augment.description),
+            Some(wiki_augment.min_level),
+            &wiki_augment.family,
+        )?;
         self.transaction.execute(
-            "INSERT INTO augments (name, family, description, effect_description, min_level, set_bonus, provenance)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+            "INSERT INTO augments (name, family, description, effect_description, min_level, set_bonus, provenance, slug)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
             params![
                 wiki_augment.name,
                 wiki_augment.family,
@@ -752,6 +755,7 @@ impl TableWriter<'_> {
                 wiki_augment.min_level,
                 wiki_augment.set,
                 Provenance::Wiki.as_str(),
+                slug,
             ],
         )?;
         let augment_id = self.transaction.last_insert_rowid();

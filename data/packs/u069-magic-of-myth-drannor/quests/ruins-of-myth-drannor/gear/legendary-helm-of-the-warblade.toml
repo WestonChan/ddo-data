@@ -1,0 +1,46 @@
+name = "Legendary Helm of the Warblade"
+description = """
+When the Echo broke off from the Warblade, the force of its defiance manifested
+this helm, and shares its clarity of purpose."""
+drop_location = "Ruins of Myth Drannor, Yegora 's chest (rare)"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 33
+slot = "Head"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Crown of Summer"
+
+[[effect]]
+name = "Crown of Summer (power)"
+
+[[effect]]
+name = "Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Exceptional"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "yegora 's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

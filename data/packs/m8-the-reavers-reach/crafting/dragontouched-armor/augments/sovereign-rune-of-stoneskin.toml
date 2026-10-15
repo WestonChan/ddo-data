@@ -1,0 +1,10 @@
+name = "Sovereign Rune of Stoneskin"
+description = """
+Earthen Guard: When you are successfully attacked, there is a chance that a Stone
+Skin will be cast on you."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

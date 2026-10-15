@@ -1,0 +1,1891 @@
+[[row]]
+name = "Aid"
+description = """
+This spell grants the target (An ally creature.) 8 plus 1 per caster level (Maximum
+caster level 10.) temporary Hit points, and a +1 Morale bonus to attack rolls
+and saves versus fear. Aid will not stack with Bless."""
+icon = "Aid"
+max_caster_level = 10
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row]]
+name = "Aid, Mass"
+description = """
+This spell functions like Aid, except that it affects multiple targets and each
+target gains temporary hit points equal to 8+1 per caster level (Maximum
+caster level 15.) temporary hit points and a +1 Morale bonus to attack and
+saves versus fear. Aid, Mass will not stack with Bless."""
+icon = "AidMass"
+max_caster_level = 15
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row]]
+name = "Bless"
+description = """
+You and any allies near you are filled with courage and gain +1 Morale bonuses to attack
+rolls and saving throws against fear, with an additional +1 per 5 caster levels,
+max 5 at caster level 20. Bless counters and dispels Bane."""
+icon = "Bless"
+max_caster_level = 20
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+]
+bonus_type = "Morale"
+effect_type = "Weapon_Attack"
+stack_source = "Unknown"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+]
+bonus_type = "Morale"
+effect_type = "SaveBonus"
+stack_source = "Unknown"
+targets = ["Fear"]
+
+[[row]]
+name = "Celestial Bombardment"
+description = """
+Divine wrath falls from the heavens to smite your foes.
+This spell calls down three stars at your target, dealing a total
+of 1d6+3 Fire damage per character level, split into three hits. This damage is
+affected by Fire spell power and may critically hit. In addition, enemies must
+succeed at three consecutive Reflex saving throws versus a DC of
+20+Wisdom mod+Evocation spell DC modifier or be knocked prone for 4 seconds.
+Activation cost is [300/200/100] Spell points and has a cooldown of [3/2/1] minutes."""
+icon = "CelestialBombardment"
+max_caster_level = 40
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row]]
+name = "Chaos Hammer"
+description = """
+This spell deals 1d6+8 points of chaotic damage per caster level (Maximum 20d6+160)
+to lawful creatures and lawful outsiders and slows them for 6d6 seconds.
+A successful Will save reduces the damage by half and negates the slow effect.
+This spell deals only half damage to creatures who are Neutral, and are not
+slowed. This spell deals no damage to Chaotic creatures, and cannot be cast by
+Lawful casters."""
+icon = "ChaosHammer"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 8
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Chaos"
+spell_power = "Chaos"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage and Negate"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row]]
+name = "Close Wounds"
+description = """
+Positive energy is quickly channeled to heal light wounds of your target or damage
+Undead for 1d3+1 Hit Points plus 1 per caster level. (Maximum caster level 5.)
+This spell has faster casting speed than normal and minimal cooldown."""
+icon = "CloseWounds"
+max_caster_level = 5
+metamagics = [
+    "Empower",
+    "EmpowerHealing",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 1
+base_dice_number = 1
+base_dice_sides = 3
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Cometfall"
+description = """
+You conjure a bright, glowing comet, which appears in midair above your target, then
+strikes the ground with tremendous force. This area of effect spell does
+1d6+3 points of bludgeon damage per caster level. A successful Reflex save
+reduces the damage by half. The force of this comet can knock some creatures
+prone. Another successful Reflex save negates the knockdown portion."""
+icon = "Cometfall"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Bludgeon"
+spell_power = "Force"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Knocked Prone"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Command"
+description = """
+A living enemy is commanded to fall to the ground and lie Prone.
+A successful Will save negates."""
+icon = "Command"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Cure Critical Wounds, Mass"
+description = """
+Casts Cure Critical Wounds on multiple targets. Positive energy is channeled to heal
+critical wounds of allies or damage undead for 4d6+8 plus 1 per caster level
+(Maximum caster level 40) hit points, or deals the same amount of damage to
+an undead creature. (A Will save reduces this damage by half)."""
+icon = "CureCriticalWoundsMass"
+max_caster_level = 40
+metamagics = [
+    "EmpowerHealing",
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 8
+base_dice_number = 4
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Cure Serious Wounds, Mass"
+description = """
+Casts Cure Serious Wounds on multiple targets. Positive energy is channeled to heal
+serious wounds of allies for 3d6+6 plus 1 per caster level (Maximum caster
+level 35.) hit points, or deals the same amount of damage to an undead creature.
+(A Will save reduces this damage by half)."""
+icon = "CureSeriousWoundsMass"
+max_caster_level = 35
+metamagics = [
+    "EmpowerHealing",
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 3
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Death Pact"
+description = """
+This spell allows you to enter a pact with your deity that brings you back to life
+after you are slain. While under the effects of this spell, your Constitution
+is decreased by 2 and cannot be restored until you rest."""
+icon = "DeathPact"
+metamagics = ["Quicken"]
+schools = ["Necromancy"]
+
+[[row]]
+name = "Death Ward, Mass"
+description = """
+Casts Death Ward on multiple friendly creatures, granting to
+each creature immunity to death spells and effects, Energy Drained
+and negative energy effects."""
+icon = "DeathWardMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Death effects"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Level drain"]
+
+[[row]]
+name = "Deific Vengeance"
+description = """
+The divine power of an angry deity imposes a punishment in the form of a sharp,
+spiritual blow to the target, dealing 1d6+4 points of good damage per caster
+level (Maximum damage 20d6+80.). A successful Will save reduces this damage by half."""
+icon = "DeificVengeance"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Good"
+per_caster_levels = 1
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Destruction"
+description = """
+An enemy is Dead instantly, or causing 1d6+10 damage per caster level on a successful
+Fortitude save. Max caster level 20."""
+icon = "Destruction"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Bane"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Death"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Divine Favor"
+description = """
+Calling upon the strength and wisdom of a deity, you gain a +1 luck bonus on attack
+and weapon damage rolls. This bonus is increased by +1 for every 3 caster
+levels beyond level 3. (Maximum bonus +3 at caster level 9.)"""
+icon = "DivineFavor"
+max_caster_level = 9
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Luck"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "Unknown"
+targets = ["All"]
+
+[[row]]
+name = "Divine Power"
+description = """
+The divine power of a god imbues the caster with power and skill
+in combat, granting a +6 Enhancement bonus to Strength, 1 temporary hit
+point per caster level, and a base attack bonus equal to a Fighter of
+the same level."""
+icon = "DivinePower"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "OverrideBAB"
+
+[[row]]
+name = "Divine Punishment"
+description = """
+Focuses the power of the gods upon the target, inflicting 1 to 6 +1 per caster level
+Light damage every 2 seconds for a duration of 16 seconds. This spell can
+stack on the target up to 3 times, increasing the damage with each stack."""
+icon = "DivinePunishment"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Light"
+per_caster_levels = 1
+spell_power = "Light/Alignment"
+
+[[row]]
+name = "Divine Wrath"
+description = """
+Calls down divine wrath on foes, dealing 2d6 light damage per character level,
+will save for half. Allies caught within blast are healed for 1d6 Positive
+Energy damage per character level. This SLA does not require Endless Ardor, but
+casting this will reset Endless Ardor stacks to zero.
+DC: 10 + character level + Charisma or Wisdom mod
+Cooldown: 20 seconds"""
+icon = "DivineWrath"
+max_caster_level = 25
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Positive"
+spell_power = "Positive"
+
+[[row]]
+name = "Energy Drain"
+cost = 25
+description = """
+A black ray of crackling negative energy suppresses the life force of any living
+creature it strikes, granting an enemy 2d4 negative levels. If the target has
+as many negative levels as its Hit Die, it dies. Each negative level gives a
+creature -1 penalty on attack rolls, saving throws, Skill checks, Ability
+checks, and effective level. Negative levels stack."""
+icon = "EnergyDrain"
+metamagics = ["Quicken"]
+schools = ["Necromancy"]
+
+[[row]]
+name = "Find Traps"
+description = """
+Grants the caster the ability to find traps much like a skilled Rogue. The caster
+gains an insight bonus of caster level/2 to the Search Skill."""
+icon = "FindTraps"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Divination"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18,
+    19,
+    19,
+    20,
+]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "SkillBonus"
+stack_source = "Unknown"
+targets = ["Search"]
+
+[[row]]
+name = "Fire Storm"
+description = """
+Deals 1d6+8 Fire damage per caster level for targets in the storm area.
+A successful Reflex save reduces the damage by half."""
+icon = "FireStorm"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 8
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Flame Strike"
+description = """
+A flame strike produces a vertical column of divine Fire roaring downward. The spell
+deals 1d6+5 points of damage per caster level. (Maximum caster level 15) Half
+the damage is Fire damage, but the other half results directly from divine
+power and is therefore not subject to being reduced by resistance to Fire
+based attacks. A successful Reflex save reduces the damage by half."""
+icon = "FlameStrike"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 5
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Glyph of Warding"
+description = """
+A powerful inscription that explodes when entered, doing 1d4+4 damage per two caster
+levels (Maximum damage 5d4+20.) to the intruder and all nearby targets.
+A successful Reflex save reduces the damage by half."""
+icon = "GlyphOfWarding"
+max_caster_level = 5
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Electric"
+per_caster_levels = 2
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Abjuration"]
+
+[[row]]
+name = "Greater Command"
+description = """
+The caster commands multiple living enemies (Affects 1 living enemy per caster level.)
+to fall to the ground and lie Prone. A successful Will save negates."""
+icon = "GreaterCommand"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Greater Glyph of Warding"
+description = """
+A powerful inscription that explodes when entered, doing 1d4+4 damage per two caster
+levels (Maximum damage 10d4+40) to the intruder and all nearby targets.
+A successful Reflex save reduces the damage by half."""
+icon = "GreaterGlyphOfWarding"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Fire"
+per_caster_levels = 2
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Abjuration"]
+
+[[row]]
+name = "Greater Restoration"
+description = """
+Restores all negative levels suffered from Energy Drained, eliminates the conditions
+Ability Damaged, Confused, Exhausted, Fatigued, and all forms of Insanity
+suffered by the Ally."""
+icon = "GreaterRestoration"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Harm"
+description = """
+Charges the target with negative energy dealing 10 points of damage per caster level.
+(Maximum damage 150.) A successful Will save reduces the damage by half.
+Harm cannot reduce the target's Hit points to less than 1. Against Undead
+targets this spell heals like Heal."""
+icon = "Harm"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "EmpowerHealing",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+damage = "Positive"
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Heal"
+description = """
+Channels powerful positive energy into allies to wipe away injury and afflictions,
+restore 10 Hit Points per caster level (Maximum caster level 15.), removes
+the conditions or effects: Ability Damaged, Blinded, Confused, Dazed, Dazzled,
+Deafened, Diseased, Exhausted, Fatigued, Feebleminded, Insanity, Nauseated
+and Poisoned. Against Undead this spell acts as Harm. Undead who make a
+successful Will save reduce the damage by half."""
+icon = "Heal"
+max_caster_level = 15
+metamagics = [
+    "EmpowerHealing",
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Positive"
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Heal, Mass"
+description = """
+Casts Heal on multiple targets. Channels powerful positive energy into allies to wipe
+away injury and afflictions, restore 10 hit points per caster level (max 25)
+removes ability damage and the conditions blinded, confused, dazed, dazzled,
+deafened, diseased, exhausted, fatigued, feebleminded, insanity, nauseated,
+and poisoned. Against Undead this spell acts as Harm. Undead who make a
+successful Will save reduce the damage by half."""
+icon = "HealMass"
+max_caster_level = 25
+metamagics = [
+    "EmpowerHealing",
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+damage = "Positive"
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Holy Aura"
+description = """
+Allies and yourself gain +4 Sacred bonus to AC, Saves, immunity to charms/mental
+compulsions for 1 minute per caster level. Nearby enemies must make a Fortitude
+save or be blinded."""
+icon = "HolyAura"
+metamagics = [
+    "Embolden",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Sacred"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Enchantment and charm spells"]
+
+[[row]]
+name = "Holy Smite"
+description = """
+Damages targets with holy power. Deals 1d6+8 holy damage per caster level to Evil
+creatures/Outsiders (Maximum damage 20d6+160) and are Blinded for 6 seconds.
+A Will save for half damage and to negate the Blinded condition. This spell
+can only be cast by Good or Neutral casters, it has no effect when cast by an
+Evil caster."""
+icon = "HolySmite"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 8
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Holy"
+spell_power = "Light/Alignment"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage and Negate"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row]]
+name = "Implosion"
+description = """
+You create a destructive resonance field around yourself, causing nearby corporeal
+enemies to collapse in upon themselves and die instantly. This effect must
+first bypass a target's Spell Resistance to take effect, and a successful
+Fortitude save negates the effect. Every few seconds, an enemy within your
+aura will be affected by this spell, but you are free to perform other actions
+while it is active."""
+icon = "Implosion"
+metamagics = [
+    "Embolden",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Evocation"]
+
+[[row]]
+name = "Inflict Critical Wounds"
+description = """
+Negative energy is channeled through the caster touch to inflict critical wounds on
+the target for 1d6+10 damage per caster level (Maximum caster level 20.), or
+to heal Undead. A successful Will save reduces the damage by half."""
+icon = "InflictCriticalWounds"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Inflict Critical Wounds, Mass"
+description = """
+Casts Inflict Critical Wounds on multiple targets at range inflicting 1d6+10 negative
+energy damage per caster level (Maximum caster level 40.), or healing Undead.
+A successful Will save reduces the damage by half."""
+icon = "InflictCriticalWoundsMass"
+max_caster_level = 40
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Inflict Light Wounds"
+description = """
+Negative energy is channeled through the caster touch to inflict light wounds on the
+target for 1d6+2 per caster level (Maximum caster level 5.), or to heal Undead.
+A successful Will save reduces the damage by half."""
+icon = "InflictLightWounds"
+max_caster_level = 5
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Inflict Light Wounds, Mass"
+description = """
+Casts Inflict Light Wounds on multiple targets at range inflicting 1d6+2 negative
+energy damage per caster level (Maximum caster level 25.), or healing Undead.
+A successful Will save reduces the damage by half."""
+icon = "InflictLightWoundsMass"
+max_caster_level = 25
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Inflict Moderate Wounds"
+description = """
+Negative energy is channeled through the caster touch to inflict moderate wounds on
+the target for 1d6+6 damage per caster level (Maximum caster level 10.), or
+to heal Undead. A successful Will save reduces the damage by half."""
+icon = "InflictModerateWounds"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Inflict Moderate Wounds, Mass"
+description = """
+Casts Inflict Moderate Wounds on multiple targets at range inflicting 1d6+4 negative
+energy damage per every caster level (Maximum caster level 30.), or healing
+Undead. A successful Will save reduces the damage by half."""
+icon = "InflictModerateWoundsMass"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Inflict Serious Wounds"
+description = """
+Negative energy is channeled through the caster touch to inflict serious wounds on
+the target for 1d6+6 damage per caster level (Maximum caster level 15.), or
+to heal Undead. A successful Will save reduces the damage by half."""
+icon = "InflictSeriousWounds"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Inflict Serious Wounds, Mass"
+description = """
+Casts Inflict Serious Wounds on multiple targets at range inflicting 1d6+6 negative
+energy damage per caster level (Maximum caster level 35.), or healing Undead.
+A successful Will save reduces the damage by half."""
+icon = "InflictSeriousWoundsMass"
+max_caster_level = 35
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Magic Circle Against Evil"
+description = """
+Casts Protection from Evil on multiple targets for 1 minute per caster level,
+granting a +2 Deflection bonus to Armor Class, and a +2 Resistance bonus to
+saves against attacks from Evil creatures. Targets are also warded from
+magical mental control and compulsions."""
+icon = "MagicCircleAgainstEvil"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Deflection"
+effect_type = "ACBonus"
+
+[[row]]
+name = "Nimbus of Light"
+description = """
+A glittering corona of light coalesces around your outstretched arm, dealing 1d6 light
+damage per caster level, max caster level 20."""
+icon = "NimbusOfLight"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Light"
+spell_power = "Light/Alignment"
+
+[[row]]
+name = "Obscuring Mist"
+description = """
+A misty vapor arises around the caster obscuring all sight, giving all creatures in
+the fog concealment. (Attackers have 20% miss chance.) Obscuring Mist can be
+burned away with Fire spells that hit the area of the mist."""
+icon = "ObscuringMist"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Order's Wrath"
+description = """
+Lawful power smites your targets. Only Chaotic and Neutral creatures are harmed by
+the spell. The spell deals 1d6+8 points of damage per caster level (Maximum
+damage 10d6+80) to a Chaotic creatures/Outsiders and causes it to be Dazed
+for 6 seconds. A successful Will save reduces damage to half and negates the
+Dazed. The spell deals only half damage to creatures who are neither Lawful
+nor Chaotic, and they are not Dazed. This spell can only be cast by Lawful
+or Neutral casters, it has no effect when cast by a Chaotic caster."""
+icon = "OrdersWrath"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 8
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Lawful"
+spell_power = "Lawful"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage and Negate"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row]]
+name = "Prayer"
+description = """
+Gives special favor to multiple Party targets and disfavor to enemy targets, giving
+a +1 Luck bonus to allies' Attack rolls, weapon Damage rolls, saves, and
+Skill checks, and a -1 penalty to enemies for the same rolls. This bonuses
+increase every 5 caster levels - max total of 5 at caster level 20."""
+icon = "Prayer"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+]
+bonus_type = "Luck"
+effect_type = "Weapon_AttackAndDamage"
+extra_types = [
+    "SaveBonus",
+    "SkillBonus",
+]
+stack_source = "Unknown"
+targets = ["All"]
+
+[[row]]
+name = "Raise Dead"
+description = """
+This spell is a low level resurrection spell that will raise one ally from the dead,
+restores 10% of the target's Hit Points, and preserves current Spell Points."""
+icon = "RaiseDead"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Recitation"
+description = """
+This area of effect spell gives special favor to you, and any allies near you
+granting a +2 Luck bonus to Attack rolls, Armor Class and saves."""
+icon = "Recitation"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Luck"
+effect_type = "Weapon_Attack"
+extra_types = [
+    "ACBonus",
+    "SaveBonus",
+]
+targets = ["All"]
+
+[[row]]
+name = "Remove Blindness"
+description = "Cures the condition Blinded in 1 ally."
+icon = "RemoveBlindness"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Remove Paralysis"
+description = "This spell frees an ally from the condition Paralyzed, and the effects of a Slow spell."
+icon = "RemoveParalysis"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Restoration"
+description = """
+Restoration cures the conditions Ability Damaged, Exhausted  or Fatigued on the
+target, and restores 1 single negative level to a creature who has had a
+level drained."""
+icon = "Restoration"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Restoration, Mass"
+description = """
+Casts Restoration on multiple targets, curing the conditions Ability Damaged,
+Exhausted, or Fatigued on the target, and restores 1 single negative level to
+a creature who has had a level drained."""
+icon = "RestorationMass"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Resurrection"
+description = """
+Resurrects the target, restores 50% of the target's Hit Points and preserves current
+spell points."""
+icon = "Resurrection"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Searing Light"
+description = """
+Focuses divine power like a ray of the sun, causing a blast of light to deal 1d6+6
+Light damage per caster level. (Maximum damage 20d6+120)"""
+icon = "SearingLight"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Light"
+spell_power = "Light/Alignment"
+
+[[row]]
+name = "Seek Eternal Rest"
+description = "Grants the caster +4 to Sacred level for the purpose of turning Undead."
+icon = "SeekEternalRest"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Sacred"
+effect_type = "TurnLevelBonus"
+
+[[row]]
+name = "Slay Living"
+description = """
+Slays 1 living creature you touch or deals 1d6+10 damage per caster level on a
+successful Fortitude save."""
+icon = "SlayLiving"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Positive"
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Death"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Spawn Screen"
+description = """
+Prevents 1 ally per caster level from rising as Undead. Certain rare, extremely
+powerful Undead can circumvent this protection."""
+icon = "SpawnScreen"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row]]
+name = "Spell Resistance"
+description = "The creature gains Spell Resistance equal to 12 plus 1 per caster level."
+icon = "SpellResistance"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellResistance"
+stack_source = "Unknown"
+
+[[row]]
+name = "Spell Resistance, Mass"
+description = """
+Casts Spell Resistance on multiple targets, warding allies with a Spell Resistance
+of 12 plus 1 per caster level."""
+icon = "SpellResistanceMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellResistance"
+stack_source = "Unknown"
+
+[[row]]
+name = "Stalwart Pact"
+description = """
+Grants the target 5 Hit Points per caster level, a +2 luck bonus to Saving Throws
+all for 1 minute, if the target of the spell falls below 50% Hit Points."""
+icon = "StalwartPact"
+metamagics = ["Quicken"]
+schools = ["Evocation"]
+
+[[row]]
+name = "Summon Monster VII"
+description = """
+Summons 1 Monster from 3 choices: Djinn, Efreet, Huge Earth Elemental to fight for
+you for 10 minutes. You can only have 1 summoned creature of any type serving
+you at a time. Summoning a new creature of any type will return the previous
+one to its home plane."""
+icon = "SummonMonsterVII"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Symbol of Flame"
+description = """
+You scribe a potent rune of power in the air, and it's activated by an enemy who
+comes into range of it dealing 5d3+15 Fire damage to that target. A successful
+Reflex save reduces damage by half. The symbol dissolves 20 seconds after
+being triggered, or in 5 minutes otherwise."""
+icon = "SymbolOfFlame"
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Extend",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+base_dice_bonus = 15
+base_dice_number = 5
+base_dice_sides = 3
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Symbol of Pain"
+description = """
+You create a reddish symbol of power in the air, and it's activated by an enemy who
+comes into range of it inflicting severe pain on all nearby enemies. The pain
+causes -4 penalty on Attack rolls, Saving throws, and Skill checks, lasts 30
+seconds plus 12 seconds per caster level. Each enemy can make a Fortitude save
+to negate the effect. The symbol dissolves 20 seconds after being triggered,
+or in 5 minutes otherwise."""
+icon = "SymbolOfPain"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Symbol of Weakness"
+description = """
+You create a greenish symbol of power in the air, and it's activated by an enemy who
+comes into range of it, weakening all nearby enemies by inflicting a 3d6
+penalty to Strength. Each enemy can make a Fortitude save to negate the effect.
+The symbol dissolves 20 seconds after being triggered, or in 5 minutes otherwise."""
+icon = "SymbolOfWeakness"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "True Resurrection"
+description = "Resurrects the target, restoring full Hit Points and preserves current spell points."
+icon = "TrueResurrection"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Unholy Blight"
+description = """
+Unholy power smites your targets. Only Good and Neutral (Not Evil) creatures are
+harmed by the spell. This spell deals 1d6+8 points of damage per caster level
+(Maximum damage 10d6+80.) to a Good creatures/Outsiders and causes it to be
+Sickened for 6d4 seconds. A successful Will save reduces damage by half and
+negates the Sickened condition. Neutral targets take half damage 1d2+2 points
+of damage per 2 caster levels (Maximum damage 5d2+10), and they are not
+Sickened. This spell can only be cast by Evil or Neutral casters as it has no
+effect when cast by a Good caster."""
+icon = "UnholyBlight"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 8
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Evil"
+spell_power = "Evil"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage and Negate"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row]]
+name = "Word of Recall"
+description = "Teleports you to the Temple of the Sovereign Host in House Deneith."
+icon = "WordOfRecall"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]

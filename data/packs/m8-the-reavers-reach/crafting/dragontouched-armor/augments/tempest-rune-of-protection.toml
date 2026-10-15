@@ -1,0 +1,20 @@
+name = "Tempest Rune of Protection"
+description = "Protection +5: Passive: +5 Deflection bonus to Armor Class."
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Deflection"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[slot]]
+slot = "crafting: tempest rune"

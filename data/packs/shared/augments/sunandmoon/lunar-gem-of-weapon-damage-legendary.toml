@@ -1,0 +1,43 @@
+name = "Lunar Gem of Weapon Damage (Legendary)"
+description = """
++4 Profane Bonus to Weapon Damage.
+Drops in: Secrets of the Red Wizards, end chest
+The Knife's Edge, end chest
+Zoo Creeper, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Damage Bonus"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secrets of the Red Wizards"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Knife's Edge"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

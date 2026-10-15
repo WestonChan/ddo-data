@@ -1,0 +1,20 @@
+name = "+15 Wisdom (Enhancement)"
+description = "Escalation/Earth or Water: +15 Enhancement bonus to Wisdom"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

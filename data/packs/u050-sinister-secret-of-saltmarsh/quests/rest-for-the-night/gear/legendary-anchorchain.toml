@@ -1,0 +1,45 @@
+name = "Legendary Anchorchain"
+description = """
+A small anchor adorns the end of this chain, looped around your neck. It's too
+small to weigh down any serious boat."""
+drop_location = "Rest for the Night, end chest, or Legendary version of Epic Anchorchain"
+icon = "Necklace_15b"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 45
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Legendary Ice Shards Guard"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic anchorchain"
+kind = "quest"
+loot_type = "chest"
+name = "Rest for the Night"

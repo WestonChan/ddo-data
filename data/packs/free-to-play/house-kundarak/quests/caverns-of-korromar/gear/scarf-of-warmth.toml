@@ -1,0 +1,24 @@
+name = "Scarf of Warmth"
+description = """
+A thick, woolen scarf that looks far too warm for this tropical clime, it is
+imbued with magics to protect the wearer from cold."""
+drop_location = "Caverns of Korromar, Oglethorpe the Prospector 's chest"
+icon = "Necklace_42"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 7
+slot = "Neck"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "oglethorpe the prospector 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Caverns of Korromar"

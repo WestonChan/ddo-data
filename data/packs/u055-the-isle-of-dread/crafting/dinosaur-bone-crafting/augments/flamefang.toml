@@ -1,0 +1,18 @@
+name = "Flamefang"
+description = """
+Adds Good alignment bypass.
+Your attacks and spells have a small chance to deal a large amount of Fire damage."""
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Good"
+
+[[slot]]
+slot = "isle of dread: fang (weapon)"

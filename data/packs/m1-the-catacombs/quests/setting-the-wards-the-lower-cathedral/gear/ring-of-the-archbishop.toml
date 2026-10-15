@@ -1,0 +1,29 @@
+name = "Ring of the Archbishop"
+description = """
+This golden ring bears an intricate inscription commemorating a fallen hero
+of the Flame."""
+drop_location = "Setting the Wards: The Lower Cathedral, End chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 3
+slot = "Ring"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 41
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Setting the Wards: The Lower Cathedral"

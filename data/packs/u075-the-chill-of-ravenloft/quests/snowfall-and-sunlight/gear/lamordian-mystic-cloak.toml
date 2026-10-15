@@ -1,0 +1,38 @@
+name = "Lamordian Mystic Cloak"
+description = """
+Woven with arcane thread, this mantle has been to look similar to cloaks with
+far less power."""
+drop_location = "Snowfall and Sunlight, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 8
+slot = "Back"
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

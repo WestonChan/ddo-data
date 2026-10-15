@@ -1,0 +1,53 @@
+name = "Vile Blasphemy"
+description = """
+Mindflayer tentacles accented by a beholder eye in each palm form Maldetto's
+gloves. The power in the trophies fuel Maldetto's dark magic."""
+drop_location = "Ascension Chamber, Raid Warded chest"
+icon = "Gloves_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Hands"
+
+[[clickie]]
+name = "power Drain"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["power Drain"]
+
+[[socket]]
+slot = "crafting: upgradeable item (black abbot)"
+
+[[socket.option]]
+name = "Power Drain is now 3 charges and adds Greater Dispelling Guard"
+description = """
+Greater Dispelling Guard: This item is infused with a power that purges out the
+magical energies of those that strike the wearer. When the wearer is hit in melee
+it will apply a Greater Dispel Magic effect to the attacker, stripping away its
+protective spells."""
+icon = "BlackAbbot"
+min_level = 13
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"

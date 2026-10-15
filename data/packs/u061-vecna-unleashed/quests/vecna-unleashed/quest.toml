@@ -1,0 +1,29 @@
+name = "Vecna Unleashed"
+bestowed_by = "Zarnoth the Vigilant"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Vecna Unleashed"
+patron = "Morgrave University"
+zone = "Morgrave University Library"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Vecna_Unleashed_(quest)"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

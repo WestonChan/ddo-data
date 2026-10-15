@@ -1,0 +1,22 @@
+name = "The Chamber of Rahmat"
+bestowed_by = "Walk-up"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Demon Sands"
+patron = "The Free Agents"
+zone = "Tomb of the Physician"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Chamber_of_Rahmat"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10

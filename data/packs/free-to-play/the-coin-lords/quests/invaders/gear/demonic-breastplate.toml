@@ -1,0 +1,45 @@
+name = "Demonic Breastplate"
+description = """
+This adamantite breastplate has absorbed some of the extra-planar energies of
+the invading demons."""
+drop_location = "Invasion Tokens, Turn in 25 Outsider Tokens"
+enhancement_bonus = 5
+icon = "MediumArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Adamantine"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 8
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "event"
+name = "Invasion Tokens"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Invaders!"

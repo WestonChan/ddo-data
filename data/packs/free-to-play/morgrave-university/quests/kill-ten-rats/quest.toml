@@ -1,0 +1,30 @@
+name = "Kill Ten Rats"
+bestowed_by = "Frelda Brumlyn"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_free_to_play = true
+pack = "Free to Play"
+patron = "Morgrave University"
+zone = "Sharn Docks"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Kill_Ten_Rats"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

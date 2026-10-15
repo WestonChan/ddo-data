@@ -1,0 +1,58 @@
+name = "Storm"
+description = """
+This gnoll-built weapon is crude but carries an aura of magic. Its bolts fly
+through the air with great power and accuracy."""
+drop_location = "Zawabi's Revenge, Raid Warded chest"
+enhancement_bonus = 5
+icon = "HeavyCrossbow_6a"
+item_category = "Weapon"
+item_type = "Heavy Crossbow"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Lightning Strike"
+
+[[effect]]
+name = "Shocking Blast III"
+
+[[effect]]
+name = "Screeching 7"
+
+[[effect]]
+name = "Thunderstorm Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Power of the Thunderstorm"
+bonus_type = "Equipment"
+value = 84
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Heavy Crossbow"

@@ -1,0 +1,23 @@
+name = "Weaverwisp Melody"
+description = """
+Your Inspire Greatness grants your allies an additional +3 Physical Resistance Rating.
+A collection of sheet music arranged for a variety of woodwind instruments,
+author unknown."""
+family = "Named"
+icon = "HistoryBookGreen"
+min_level = 32
+
+[[effect]]
+name = "Song Physical Resistance Rating"
+bonus_type = "Exceptional"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Exceptional"
+effect = "Song Physical Resistance Rating"
+effect_type = "SongPRR"
+
+[[slot]]
+slot = "green"

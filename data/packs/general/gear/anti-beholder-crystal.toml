@@ -1,0 +1,25 @@
+name = "Anti-Beholder Crystal"
+description = """
+Beneath the polished surface of this magical blue crystal lie small carvings
+of closed beholder eyes."""
+drop_location = "DDO Store"
+icon = "Trinket_81"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Absorb Beholder and Doomsphere Spells"
+clickie = "Absorb Beholder and Doomsphere Spells"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    25,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Absorb Beholder and Doomsphere Spells"]

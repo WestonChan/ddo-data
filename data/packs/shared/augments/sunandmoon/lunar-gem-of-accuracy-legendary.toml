@@ -1,0 +1,50 @@
+name = "Lunar Gem of Accuracy (Legendary)"
+description = """
++4 Profane Bonus to Weapon Attacks.
+Drops in: The Safehold, end chest
+Rats in a Cage, end chest
+The Covered Culvert, end chest
+Land of Lamordia, Vornir Frosthelm's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "vornir frosthelm's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rats in a Cage"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Safehold"

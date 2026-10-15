@@ -1,0 +1,18 @@
+name = "Power of the Firestorm"
+description_template = "Passive: {1} Equipment bonus to Fire and Electric Spell Power."
+home_bonus_type = "Equipment"
+verbose_name_template = "Power of the Firestorm +{1}"
+
+[[bonus]]
+amount_from = 1
+bonus_type = "Equipment"
+rounding = "down"
+scale = 1.0
+target = "Electric Spell Power"
+
+[[bonus]]
+amount_from = 1
+bonus_type = "Equipment"
+rounding = "down"
+scale = 1.0
+target = "Fire Spell Power"

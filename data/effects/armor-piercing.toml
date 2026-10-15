@@ -1,0 +1,10 @@
+name = "Armor-Piercing"
+description_template = "Passive: {1}% %b1 bonus to Fortification Bypass. (Fortification Bypass makes your attacks ignore a percentage of enemy Fortification.)"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Armor-Piercing +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fortification Bypass"

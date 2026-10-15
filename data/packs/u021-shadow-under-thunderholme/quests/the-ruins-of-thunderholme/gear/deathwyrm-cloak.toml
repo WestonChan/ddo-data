@@ -1,0 +1,32 @@
+name = "Deathwyrm Cloak"
+description = """
+Praise Null, the Reaver, taker of life. Praise Null, the Guardian of the Lost,
+shepherd of spirits."""
+drop_location = "The Ruins of Thunderholme, Rare encounter chests"
+icon = "Cloak_21a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 27
+slot = "Back"
+
+[[effect]]
+name = "Permanent Nihil"
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 20
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Ruins of Thunderholme"

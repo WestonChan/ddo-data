@@ -1,0 +1,50 @@
+name = "Solar Gem of Alignment Absorption (Heroic)"
+description = """
+Artifact Alignment Absorption +3%
+Drops in: Back to the Abyss, end chest (rare)
+Terror of Demogorgon (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Artifact"
+value = 3
+
+[[effect]]
+name = "Law Absorption"
+bonus_type = "Artifact"
+value = 3
+
+[[effect]]
+name = "Good Absorption"
+bonus_type = "Artifact"
+value = 3
+
+[[effect]]
+name = "Evil Absorption"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Chaos",
+    "Lawful",
+    "Good",
+    "Evil",
+]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Back to the Abyss"

@@ -1,0 +1,3 @@
+name = "Equipoised Focus"
+description_template = "Your two-handed weapon gains a +2 Exceptional focus to Spell DCs and is considered an Implement."
+verbose_name_template = "Equipoised Focus"

@@ -1,0 +1,27 @@
+name = "Quiver of Poison (Level 12)"
+description = """
+Ammunition stored in this quiver is magically coated with vile toxins, causing
+your ranged attacks to deal debilitating effects of these magical poisons for
+as long as this quiver is equipped. This large, thin quiver will hold 3 different
+types of arrow or bolt and can store each type in a stack of up to 1000. Total
+capacity: 3000."""
+drop_location = "A Cry for Help, and Foundation of Discord, end chest (heroic normal)"
+icon = "Quiver_2"
+item_category = "Clothing"
+minimum_level = 12
+slot = "Quiver"
+
+[[effect]]
+name = "Venomed Ammunition - 1d2"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Cry for Help"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Foundation of Discord"

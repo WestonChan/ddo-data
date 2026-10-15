@@ -1,0 +1,15 @@
+name = "Legendary Affirmation"
+variant = "sealedinfire"
+description = """
+Attacks and offensive spells have a [10~33%] chance to grant
+1,000 temporary hitpoints with 1 minute duration.
+Cooldown is also one minute."""
+family = "SealedInFire"
+icon = "GreenAugment"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in fire"
+
+[[slot]]
+slot = "crafting: sealed in mist"

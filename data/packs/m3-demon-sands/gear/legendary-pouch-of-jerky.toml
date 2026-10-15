@@ -1,0 +1,51 @@
+name = "Legendary Pouch of Jerky"
+description = """
+This leather pouch contains many shreds of dried meat. It's probably best that
+you don't ask what kind of meat."""
+drop_location = "Legendary version of Epic Pouch of Jerky"
+icon = "Trinket_33a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Trinket"
+
+[[clickie]]
+name = "Jerky"
+clickie = "Jerky"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 54
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 57
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 21
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Jerky"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"

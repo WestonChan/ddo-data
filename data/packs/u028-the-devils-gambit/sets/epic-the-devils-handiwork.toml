@@ -1,0 +1,42 @@
+name = "Epic The Devil's Handiwork"
+icon = "TheDevilsHandiwork"
+
+[[item]]
+name = "Epic Barbette's Bracer"
+
+[[item]]
+name = "Epic Dice"
+
+[[item]]
+name = "Epic Eagle's Eye"
+
+[[item]]
+name = "Epic Ivy Helix"
+
+[[item]]
+name = "Epic Laurel Helix"
+
+[[item]]
+name = "Epic Lion's Mane"
+
+[[item]]
+name = "Epic Ship Kickers"
+
+[[item]]
+name = "Epic Slice"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "All Ability Scores"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]

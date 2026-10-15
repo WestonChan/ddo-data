@@ -1,0 +1,62 @@
+name = "Draconic Ferocity"
+icon = "DraconicFerocity"
+
+[[item]]
+name = "Flawless Black Dragonhide Armor"
+
+[[item]]
+name = "Flawless Black Dragonplate Armor"
+
+[[item]]
+name = "Flawless Black Dragonscale Armor"
+
+[[item]]
+name = "Flawless Black Dragonscale Docent"
+
+[[item]]
+name = "Flawless Black Dragonscale Robe"
+
+[[item]]
+name = "Helm of the Black Dragon (Level 23)"
+
+[[item]]
+name = "Helm of the Black Dragon (Level 24)"
+
+[[item]]
+name = "Helm of the Black Dragon (Level 25)"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "+3% Artifact bonus to melee Doublestrike chance"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "+3% Artifact Doublestrike and +2 Artifact hit and damage with ranged and thrown weapons."
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+value = 3
+
+[[tier.effect]]
+effect = "+2 Artifact bonus to damage with ranged and thrown weapons"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Ranged"]

@@ -1,0 +1,16 @@
+name = "Deconstructor"
+description = """
+Adds Adamantine as well as inflict Destruction and 6 to 36 bonus Rust damage on
+hit vs Constructs."""
+family = "Named"
+icon = "Deconstructor"
+min_level = 28
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

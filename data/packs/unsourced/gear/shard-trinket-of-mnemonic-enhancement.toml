@@ -1,0 +1,23 @@
+name = "Shard Trinket of Mnemonic Enhancement"
+description = "This trinket periodically replenishes some of your spell points."
+drop_location = "The Marketplace, Turn in 3 Medium Eberron Dragonshards to Davyd Turner ."
+icon = "Trinket_2"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Major Mnemonic Enhancer"
+clickie = "Major Mnemonic Enhancer"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    20,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Major Mnemonic Enhancer"]

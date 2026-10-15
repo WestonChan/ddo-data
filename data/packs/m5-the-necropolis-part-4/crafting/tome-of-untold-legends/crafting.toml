@@ -1,0 +1,125 @@
+name = "Tome of Untold Legends"
+npc = "Bilk Howland, Upper Necropolis, The Necropolis (level 10 minimum; gather the 8 Tome pages into a Tome: Binding and turn it in)"
+pack = "The Necropolis, Part 4"
+
+[[ingredient]]
+name = "Tome: Binding"
+bind = "Bound to Character"
+drop_location = "Complete set of the 8 Tome: Legend pages"
+tier = "any"
+
+[[ingredient]]
+name = "Tome: Legend I"
+drop_location = "Litany of the Dead, most frequently at Cinnis chest"
+tier = "any"
+
+[[ingredient]]
+name = "Tome: Legend II"
+drop_location = "Litany of the Dead, most frequently at Cholthulzz chest"
+tier = "any"
+
+[[ingredient]]
+name = "Tome: Legend III"
+drop_location = "Litany of the Dead, most frequently at Mentau chest"
+tier = "any"
+
+[[ingredient]]
+name = "Tome: Legend IV"
+drop_location = "Litany of the Dead, most frequently at High Priest of Vol"
+tier = "any"
+
+[[ingredient]]
+name = "Tome: Legend V"
+drop_location = "Litany of the Dead, most frequently at Mentau and Cinnis chest"
+tier = "any"
+
+[[ingredient]]
+name = "Tome: Legend VI"
+drop_location = "Litany of the Dead, most frequently at Cholthulzz and High Priest of Vol chest"
+tier = "any"
+
+[[ingredient]]
+name = "Tome: Legend VII"
+drop_location = "Litany of the Dead, most frequently at Cinnis and Cholthulzz chest"
+tier = "any"
+
+[[ingredient]]
+name = "Tome: Legend VIII"
+drop_location = "Litany of the Dead, most frequently at Mentau and High Priest of Vol chest"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Tome_of_Untold_Legends"
+read = "2026-10-02"
+
+[[recipe]]
+note = "produces Skiver (Dagger, ML 14, Bound to Character on Acquire)"
+option = "Skiver"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tome: Binding"
+quantity = 1
+
+[[recipe]]
+note = "produces Sever (Dwarven War Axe, ML 14, Bound to Character on Acquire)"
+option = "Sever"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tome: Binding"
+quantity = 1
+
+[[recipe]]
+note = "produces Phosphor (Heavy Mace, ML 14, Bound to Character on Acquire)"
+option = "Phosphor"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tome: Binding"
+quantity = 1
+
+[[recipe]]
+note = "produces Deathnip (Heavy Pick, ML 14, Bound to Character on Acquire)"
+option = "Deathnip"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tome: Binding"
+quantity = 1
+
+[[recipe]]
+note = "produces Twinblade (Bastard Sword, ML 14, Bound to Character on Acquire)"
+option = "Twinblade"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tome: Binding"
+quantity = 1
+
+[[recipe]]
+note = "produces Coronation (Morningstar, ML 14, Bound to Character on Acquire)"
+option = "Coronation"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tome: Binding"
+quantity = 1
+
+[[recipe]]
+note = "produces Razorend (Short Sword, ML 14, Bound to Character on Acquire)"
+option = "Razorend"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tome: Binding"
+quantity = 1
+
+[[recipe]]
+note = "produces Serrulae (Battle Axe, ML 14, Bound to Character on Acquire)"
+option = "Serrulae"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tome: Binding"
+quantity = 1

@@ -1,0 +1,39 @@
+name = "Syne, the Way of the Melody"
+description = "TBD"
+drop_location = "Den of Vipers, end chest"
+icon = "Goggles_3b"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 33
+slot = "Goggles"
+
+[[effect]]
+name = "Melody"
+
+[[effect]]
+name = "Anthem Melody"
+
+[[effect]]
+name = "Sounding"
+
+[[socket]]
+slot = "crafting: sealed in gloom"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Den of Vipers"

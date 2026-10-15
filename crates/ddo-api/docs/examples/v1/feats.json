@@ -9,9 +9,10 @@
         "Epic Feat"
       ],
       "icon": "Cleave",
-      "id": 12,
+      "id": 1965986190745923,
       "max_times_acquire": null,
       "name": "Cleave",
+      "slug": "cleave",
       "source_id": null,
       "source_kind": "standard",
       "source_name": null,
@@ -26,9 +27,10 @@
         "Epic Feat"
       ],
       "icon": "GreatCleave",
-      "id": 48,
+      "id": 5552236147706597,
       "max_times_acquire": null,
       "name": "Great Cleave",
+      "slug": "great-cleave",
       "source_id": null,
       "source_kind": "standard",
       "source_name": null,

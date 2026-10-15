@@ -1,0 +1,35 @@
+name = "Capelet of Cuisine"
+description = "Feast on!"
+drop_location = "Too Many Cooks, end chest"
+icon = "Cloak_4"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 18
+slot = "Back"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 104
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Too Many Cooks"

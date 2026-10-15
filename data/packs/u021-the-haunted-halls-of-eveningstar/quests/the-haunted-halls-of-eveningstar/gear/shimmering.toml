@@ -1,0 +1,40 @@
+name = "Shimmering"
+description = """
+The ultimate irony - a giant in life, bones bound in death' - Merith Strongbow,
+knight of Myth Drannor"""
+drop_location = "The Haunted Halls of Eveningstar, Acquired by taking it out of the Fallen Giant"
+icon = "Quarterstaff_7c"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Epic Giant Bane"
+
+[[effect]]
+name = "Solar IX"
+
+[[source]]
+chest = "acquired by taking it out of the fallen giant"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunted Halls of Eveningstar"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.5
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

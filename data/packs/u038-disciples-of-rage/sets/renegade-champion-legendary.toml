@@ -1,0 +1,58 @@
+name = "Renegade Champion (Legendary)"
+icon = "RenegadeChampion"
+
+[[item]]
+name = "Legendary Construct Champion's Bands"
+
+[[item]]
+name = "Legendary Quarantine"
+
+[[item]]
+name = "Legendary Stormreach Guardian's Axe"
+
+[[item]]
+name = "Legendary Stormreach Guardian's Crossbow"
+
+[[item]]
+name = "Legendary Stormreach Guardian's Hammer"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Critical Multiplier (19-20)"
+value = 1
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Rune Arm DC"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+effect_type = "TacticalDC"
+targets = ["Rune Arm"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"

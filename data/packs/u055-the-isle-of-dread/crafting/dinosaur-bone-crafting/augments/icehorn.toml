@@ -1,0 +1,8 @@
+name = "Icehorn"
+description = "Freezing Ice"
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[slot]]
+slot = "isle of dread: horn (weapon)"

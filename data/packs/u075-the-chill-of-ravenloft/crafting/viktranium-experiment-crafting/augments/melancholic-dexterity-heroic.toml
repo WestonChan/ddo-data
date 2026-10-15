@@ -1,0 +1,21 @@
+name = "Melancholic Dexterity (Heroic)"
+description = "+5 Enhancement bonus to Dexterity."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

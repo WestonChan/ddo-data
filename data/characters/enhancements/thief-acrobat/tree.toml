@@ -1,0 +1,1292 @@
+name = "Thief-Acrobat"
+background = "RogueBackground"
+icon = "Rogue"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Thief-Acrobat: Staff Control"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You can also use your Dexterity modifier to hit with Quarterstaves."
+icon = "TAStaffControl"
+internal_name = "TACore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Dexterity",
+    "Quarterstaff",
+]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Thief-Acrobat: Stick Fighting"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You can now use your Dexterity modifier for damage with Quarterstaves.
+
+You gain the 'Swords to Plowshares' feat without needing to meet the prerequisites,
+which grants a +1 Morale bonus to the Critical Threat Range to Sickles, Handwraps
+and Kama and a +2 Morale bonus to Critical Threat Range with Quarterstaves."""
+icon = "TAStickFighting"
+internal_name = "TACore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Dexterity",
+    "Quarterstaff",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Swords to Plowshares"]
+
+[[enhancement.requirement]]
+items = ["TACore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Thief-Acrobat: Tumbler"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++2% Maximum Dodge, and +2 Maximum Dexterity Bonus for light armor.
+You can pass through enemies when you tumble. +1 maximum Tumble charge."""
+icon = "TATumbler"
+internal_name = "TACore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+extra_types = ["MaxDexBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TumbleCharge"
+
+[[enhancement.requirement]]
+items = ["TACore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Thief-Acrobat: Kip Up"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++2% Maximum Dodge, and +2 Maximum Dexterity Bonus for light armor.
+You are immune to most knockdown effects and slippery surfaces."""
+icon = "TAKipUp"
+internal_name = "TACore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+extra_types = ["MaxDexBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Most Knockdown Effects"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Slippery Surfaces"]
+
+[[enhancement.requirement]]
+items = ["TACore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Thief-Acrobat: Cartwheel Charge"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++2% Maximum Dodge, and +2 Maximum Dexterity Bonus for light armor.
++20% Doublestrike while using staves. After tumbling, you gain a +2 Morale bonus
+to Strength and Dexterity for 12 seconds."""
+icon = "TACartwheelCharge"
+internal_name = "TACore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+extra_types = ["MaxDexBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Dexterity",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Tumble"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["TACore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Thief-Acrobat: Followthrough"
+cost_per_rank = [1]
+description = """
+For 12 seconds after tumbling, you gain +50% strikethrough chance and gain
+On Vorpal: Your target is knocked down.
+
+As a master thief-acrobat, you also gain the following passive benefits:
++2 Strength and Dexterity
++1 to hit and +2 damage with quarterstaves
++5% attack speed with quarterstaves
++2 critical hit damage with all weapons
++2 Balance, Jump, and Tumble
++2 Sneak Attack dice and +2 to hit when performing Sneak Attacks."""
+icon = "TAFollowthrough"
+internal_name = "TACore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TACore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Dexterity",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageCritical"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+extra_types = ["SneakAttackAttack"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.modifier.requirement]]
+items = ["Tumble"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["TACore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "TACore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Thief-Acrobat: Acrobat Staff Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and +2 damage with quarterstaves."
+icon = "TAAcrobatStaffTraining"
+internal_name = "TAAcrobatStaffTrainingI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Thief-Acrobat: Thief Acrobatics"
+cost_per_rank = [1]
+description = "+[1/2/3] Balance, Jump, and Tumble, +[5/10/15]% attack speed with quarterstaves."
+icon = "TAThiefAcrobatics"
+internal_name = "TAThiefAcrobatics"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TAThiefAcrobatics",
+    "Quarterstaff Alacrity",
+]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "TAThiefAcrobatics",
+    "Quarterstaff Alacrity",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Thief-Acrobat: Charming"
+cost_per_rank = [1]
+description = "+[1/2/3] Bluff, Diplomacy, Haggle, and Intimidate."
+icon = "TACharming"
+internal_name = "TACharming"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Intimidate",
+]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Thief-Acrobat: Sly Flourish"
+cost_per_rank = [1]
+description = """
+Deals: +30% Damage
++3 Critical Threat Range
+Melee Attack: reduces your threat with nearby enemies by 300 whether
+or not you deal damage. On Sneak Attack: Intelligent target also gains a -1
+penalty to Balance, Reflex, and Will Saves for 20 seconds. Stacks 5 times.
+Cooldown: 8 seconds
+Passively provides: 15% melee threat reduction."""
+icon = "TASlyFlourish"
+internal_name = "TASlyFlourish"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [-15]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = [
+    "HalfElfDilettanteSpecialAbilityI",
+    "Sly Flourish",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Thief-Acrobat: Fast Movement"
+cost_per_rank = [2]
+description = "While wearing light or cloth armor you run 1% faster for each of your Rogue levels."
+icon = "TAFastMovement"
+internal_name = "TAFastMovement"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+bonus_type = "Class"
+effect_type = "MovementSpeed"
+stack_source = "Rogue"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+bonus_type = "Class"
+effect_type = "MovementSpeed"
+stack_source = "Arcane Trickster"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Thief-Acrobat: Acrobat Staff Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and +2 damage with quarterstaves."
+icon = "TAAcrobatStaffTrainingII"
+internal_name = "TAAcrobatStaffTrainingII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["TAAcrobatStaffTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Thief-Acrobat: Trip Focus"
+cost_per_rank = [1]
+description = "+[1/2/3] to the save DC's of Trip Attacks"
+icon = "TATripFocus"
+internal_name = "TATripFocus"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Thief-Acrobat: Subtlety"
+cost_per_rank = [1]
+description = """
+-[20/30/40]% threat generation with melee attacks.
+(This enhancement cannot be combined with other Subtlety enhancements.)"""
+icon = "TASubtlety"
+internal_name = "TASubtlety"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TASubtlety",
+    "Melee Subtlety",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -20,
+    -30,
+    -40,
+]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = [
+    "TASubtlety",
+    "Melee Subtlety",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Thief-Acrobat: Quick Strike"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Cooldown: 12 seconds.
+Melee Quarterstaff Attack: You gain a 25% Morale bonus to melee doublestrike
+for 10 seconds."""
+icon = "TAQuickStrike"
+internal_name = "TAQuickStrike"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Thief-Acrobat: Haste Boost"
+cooldown_seconds = 30
+cost_per_rank = [2]
+description = """
+Activate to gain a 30% Action Boost bonus to attack speed for 20 seconds.
+(Cooldown: 30 seconds)"""
+duration_seconds = 20
+icon = "TAHasteBoost"
+internal_name = "TAHasteBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.attack]]
+name = "Thief-Acrobat: Haste Boost"
+cooldown_seconds = 30
+description = "Activate to gain +30% Action Boost bonus to attack speed for 20 seconds."
+duration_seconds = 20
+icon = "KenseiHasteBoost"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+effect_type = "BonusAlacrity"
+phase = "follow_on"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Thief-Acrobat: Acrobat Staff Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and +2 damage with quarterstaves."
+icon = "TAAcrobatStaffTrainingIII"
+internal_name = "TAAcrobatStaffTrainingIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["TAAcrobatStaffTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Thief-Acrobat: Improved Second Strikes"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough chance."
+icon = "TAImprovedGlancingBlows"
+internal_name = "TAImprovedGlancingBlows"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Thief-Acrobat: Shadow Dodge"
+cost_per_rank = [1]
+description = """
++[1/2/3] Dodge, and Dexterity. +[1/2/3] Maximum Dexterity bonus while wearing
+light armor."""
+icon = "TAShadowDodge"
+internal_name = "TAShadowDodge"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Thief-Acrobat: Sweeping Strikes"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals: +50% Damage
+Melee Quarterstaff Trip Attack: Trips all nearby enemies.
+Balance DC 10 + Rogue Level + [Dex/Str/Int] Modifier Negates trip
+Cooldown: 20 seconds.
+Despite saying "all nearby enemies", the attack hits enemies in a 180 degree arc."""
+icon = "TASweepingStrikes"
+internal_name = "TASweepingStrikes"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.dc]]
+name = "Thief-Acrobat: Sweeping Strikes"
+amount = [10]
+class_level = "Rogue"
+dc_type = "Trip"
+dc_versus = "Balance"
+description = """
+Deals: +50% Damage
+Melee Quarterstaff Trip Attack: Trips all nearby enemies."""
+icon = "TASweepingStrikes"
+mod_ability = [
+    "Strength",
+    "Intelligence",
+    "Dexterity",
+]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["TAQuickStrike"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Thief Acrobat: Ability I"
+cost_per_rank = [2]
+description = "Choose either Strength or Dexterity"
+icon = "StrDex"
+internal_name = "TAAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Thief-Acrobat: Acrobat Staff Training IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and +2 damage with quarterstaves."
+icon = "TAAcrobatStaffTrainingIV"
+internal_name = "TAAcrobatStaffTrainingIV"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TAAcrobatStaffTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Thief-Acrobat: Improved Defensive Roll"
+cost_per_rank = [1]
+description = "Defensive Roll now triggers at [30/40/50]% health or below."
+icon = "TAImprovedDefensiveRoll"
+internal_name = "TAImprovedDefensiveRoll"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["Defensive Roll"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Thief-Acrobat: No Mercy"
+cost_per_rank = [1]
+description = "You deal [10/20/30]% additional damage to helpless opponents."
+icon = "TANoMercy"
+internal_name = "TANoMercy"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamage"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Thief-Acrobat: Staff Lunge"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals: +60% Damage
+Cooldown: 20 seconds
+Melee Quarterstaff Attack: Whirl through enemies in a line."""
+icon = "TAStaffLunge"
+internal_name = "TAStaffLunge"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TASweepingStrikes"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Thief Acrobat: Ability II"
+cost_per_rank = [2]
+description = "Choose either Strength or Dexterity"
+icon = "StrDex"
+internal_name = "TAAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Thief-Acrobat: Acrobat Staff Training V"
+cost_per_rank = [2]
+description = "+10 Melee Power, +3 to hit and +3 damage with quarterstaves."
+icon = "TAAcrobatStaffTrainingV"
+internal_name = "TAAcrobatStaffTrainingV"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["TAAcrobatStaffTrainingIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Thief-Acrobat: Staff Specialization"
+cost_per_rank = [2]
+description = """
+You gain a +1 Competence bonus to Critical Damage Multiplier and
+Threat Range with Quarterstaves. +25% Competence bonus to Maximum Hit Points."""
+icon = "TAStaffSpecialization"
+internal_name = "TAStaffSpecialization"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Thief-Acrobat: Spinning Staff Wall"
+cost_per_rank = [2]
+description = """
+Activate to gain 50 PRR for 20 seconds.
+Cooldown: 90 seconds.
+Passive: While wearing cloth or light armor, gain 5% Dodge, 5% Maximum Dodge,
+and 5 Maximum Dexterity Bonus with Light Armor."""
+icon = "TASpinningStaffWall"
+internal_name = "TASpinningStaffWall"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = [
+    "DodgeCapBonus",
+    "MaxDexBonus",
+]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Thief-Acrobat: Vault"
+cost_per_rank = [2]
+description = """
+Quarterstaff Action: Use your quarterstaff to propel yourself forward at great speed.
+Requires you to have a quarterstaff equipped. (Cooldown: 15 seconds)"""
+icon = "TAVault"
+internal_name = "TAVault"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Vault",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["TAStaffLunge"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Rogue"]
+req_type = "BaseClass"

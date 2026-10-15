@@ -1,0 +1,74 @@
+name = "Epic Muffled Veneer"
+description = """
+This hood and face guard are rumored to have belonged to Captain Slipclaw, an
+infamous pillager of early Stormreach."""
+drop_location = "Ghosts of Perdition (epic), end chest"
+icon = "Helmet_37"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 27
+slot = "Head"
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 2
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ghosts of Perdition"

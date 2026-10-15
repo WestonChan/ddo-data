@@ -32,7 +32,7 @@ fn recipe_cost(db: &Connection, recipe_id: i64) -> Result<Vec<Value>, ApiError> 
         db,
         "SELECT i.name AS ingredient, i.tier, ri.quantity FROM crafting_recipe_ingredients ri
            JOIN crafting_ingredients i ON i.id = ri.ingredient_id
-          WHERE ri.recipe_id = ?1 ORDER BY i.id",
+          WHERE ri.recipe_id = ?1 ORDER BY ri.sort_order",
         [recipe_id],
     )
 }
@@ -54,6 +54,7 @@ pub(super) fn crafting_recipes_yielding(db: &Connection, augment_id: i64) -> Res
 
 const CRAFTING_SYSTEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("pack", "listed.pack"),
     ("ingredient_count", "listed.ingredient_count"),
@@ -113,7 +114,7 @@ async fn crafting_system_detail(State(state): State<AppState>, Path(id): Path<i6
             attach_augment_families(db, &mut crafting_system)?;
             crafting_system["ingredients"] = Value::Array(json_rows(
                 db,
-                "SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE system_id = ?1 ORDER BY id",
+                "SELECT id, name, tier, bind, source FROM crafting_ingredients WHERE system_id = ?1 ORDER BY sort_order",
                 [id],
             )?);
             let mut recipes = json_rows(
@@ -129,10 +130,11 @@ async fn crafting_system_detail(State(state): State<AppState>, Path(id): Path<i6
                 recipe["augments"] = Value::Array(json_rows(
                     db,
                     "SELECT a.id, a.name, a.min_level FROM crafting_recipe_augments ra JOIN augments a ON a.id = ra.augment_id
-                      WHERE ra.recipe_id = ?1 ORDER BY a.id",
+                      WHERE ra.recipe_id = ?1 ORDER BY ra.sort_order",
                     [recipe_id],
                 )?);
                 recipe["cost"] = Value::Array(recipe_cost(db, recipe_id)?);
+                recipe.as_object_mut().expect("recipe row").remove("id");
             }
             crafting_system["recipes"] = Value::Array(recipes);
             Ok(Json(crafting_system))

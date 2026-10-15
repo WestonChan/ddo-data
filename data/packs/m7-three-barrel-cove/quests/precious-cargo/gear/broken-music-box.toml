@@ -1,0 +1,26 @@
+name = "Broken Music Box"
+description = """
+A faint strain of haunting, mechanical song still issues from this box from
+time to time. The decorative gems were pried off it long ago. What would happen
+if they were filled?"""
+drop_location = "Precious Cargo, end chest"
+icon = "Trinket_24"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 24
+slot = "Trinket"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Precious Cargo"

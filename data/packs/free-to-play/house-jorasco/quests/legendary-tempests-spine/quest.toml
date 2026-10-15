@@ -1,0 +1,27 @@
+name = "Legendary Tempest's Spine"
+bestowed_by = "Dagobard Kell"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 11
+is_free_to_play = true
+is_raid = true
+pack = "Free to Play"
+patron = "House Jorasco"
+zone = "Tempest's Spine"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Legendary_Tempest%27s_Spine"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

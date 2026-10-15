@@ -1,0 +1,21 @@
+name = "Miserable Arcana: Fire (Heroic)"
+description = "+70 Equipment bonus to Fire Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Fire Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

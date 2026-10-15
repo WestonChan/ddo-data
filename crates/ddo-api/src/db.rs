@@ -9,7 +9,9 @@ pub(crate) fn json_rows<P: Params>(db: &Connection, sql: &str, params: P) -> Res
     let mut statement = db.prepare_cached(sql)?;
     let column_names: Vec<String> = statement.column_names().into_iter().map(str::to_string).collect();
     let rows = statement.query_map(params, |row| Ok(json_object_from_row(row, &column_names)))?;
-    Ok(rows.collect::<Result<Vec<_>, _>>()?)
+    let mut rows = rows.collect::<Result<Vec<_>, _>>()?;
+    attach_stored_entity_slugs(db, &mut rows)?;
+    Ok(rows)
 }
 
 pub(crate) fn json_row<P: Params>(db: &Connection, sql: &str, params: P) -> Result<Value, ApiError> {
@@ -17,9 +19,80 @@ pub(crate) fn json_row<P: Params>(db: &Connection, sql: &str, params: P) -> Resu
     let column_names: Vec<String> = statement.column_names().into_iter().map(str::to_string).collect();
     let mut rows = statement.query(params)?;
     match rows.next()? {
-        Some(row) => Ok(json_object_from_row(row, &column_names)),
+        Some(row) => {
+            let mut entity = json_object_from_row(row, &column_names);
+            attach_stored_entity_slug(db, &mut entity)?;
+            Ok(entity)
+        }
         None => Err(ApiError::NotFound),
     }
+}
+
+fn attach_stored_entity_slug(db: &Connection, entity: &mut Value) -> Result<(), ApiError> {
+    let Some(fields) = entity.as_object_mut() else { return Ok(()) };
+    if fields.contains_key("slug") {
+        return Ok(());
+    }
+    let Some(id) = fields.get("id").and_then(Value::as_i64) else { return Ok(()) };
+    let Some(name) = fields.get("name").or_else(|| fields.get("label")).and_then(Value::as_str) else {
+        return Ok(());
+    };
+    let mut statement =
+        db.prepare_cached("SELECT DISTINCT slug FROM entity_identity WHERE entity_id = ?1 AND name = ?2 LIMIT 2")?;
+    let slugs =
+        statement.query_map((id, name), |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<Vec<_>>>()?;
+    if slugs.len() > 1 {
+        return Err(ApiError::Internal(anyhow::anyhow!("entity {name:?} id {id} has ambiguous slugs")));
+    }
+    if let Some(slug) = slugs.into_iter().next() {
+        fields.insert("slug".to_string(), Value::String(slug));
+    }
+    Ok(())
+}
+
+fn attach_stored_entity_slugs(db: &Connection, entities: &mut [Value]) -> Result<(), ApiError> {
+    let mut positions = BTreeMap::<(i64, String), Vec<usize>>::new();
+    for (index, entity) in entities.iter().enumerate() {
+        let Some(fields) = entity.as_object() else { continue };
+        if fields.contains_key("slug") {
+            continue;
+        }
+        let Some(id) = fields.get("id").and_then(Value::as_i64) else { continue };
+        let Some(name) = fields.get("name").or_else(|| fields.get("label")).and_then(Value::as_str) else {
+            continue;
+        };
+        positions.entry((id, name.to_string())).or_default().push(index);
+    }
+    if positions.is_empty() {
+        return Ok(());
+    }
+    let mut ids = positions.keys().map(|(id, _)| *id).collect::<Vec<_>>();
+    ids.dedup();
+    let sql =
+        format!("SELECT entity_id, name, slug FROM entity_identity WHERE entity_id IN ({})", sql_integer_list(&ids));
+    let mut statement = db.prepare(&sql)?;
+    let matches = statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?;
+    let mut slugs = BTreeMap::<(i64, String), String>::new();
+    for matched in matches {
+        let (id, name, slug) = matched?;
+        let key = (id, name);
+        if positions.contains_key(&key) {
+            if let Some(previous) = slugs.insert(key.clone(), slug.clone()) {
+                if previous != slug {
+                    return Err(ApiError::Internal(anyhow::anyhow!("entity {:?} id {id} has ambiguous slugs", key.1)));
+                }
+            }
+        }
+    }
+    for (key, indices) in positions {
+        if let Some(slug) = slugs.get(&key) {
+            for index in indices {
+                entities[index]["slug"] = Value::String(slug.clone());
+            }
+        }
+    }
+    Ok(())
 }
 
 pub(crate) fn sql_integer_list(ids: &[i64]) -> String {
@@ -204,6 +277,7 @@ pub(crate) fn modifiers_for_owners(
         let source_id = modifier["owner_id"].as_i64().unwrap_or_default();
         modifier.as_object_mut().expect("modifier row").remove("owner_id");
         modifier["requirements"] = Value::Array(requirements_by_modifier.remove(&modifier_id).unwrap_or_default());
+        modifier.as_object_mut().expect("modifier row").remove("id");
         modifiers_by_owner.entry(source_id).or_default().push(modifier);
     }
     Ok(modifiers_by_owner)
@@ -227,6 +301,9 @@ pub(crate) fn stances_for(db: &Connection, owner_kind: &str, owner_id: i64) -> R
     )?;
     for stance in &mut stances {
         attach_stance_children(db, stance)?;
+        let fields = stance.as_object_mut().expect("stance row");
+        fields.remove("id");
+        fields.remove("slug");
     }
     Ok(stances)
 }
@@ -286,7 +363,7 @@ pub(crate) fn bonuses_via(
         _ => unreachable!("bonus rendering is only used for feats"),
     };
     let sql = format!(
-        "SELECT e.id, e.verbose_name_template, e.description_template, s.name AS stat, s.category AS stat_category,
+        "SELECT e.id, e.slug, e.verbose_name_template, e.description_template, s.name AS stat, s.category AS stat_category,
                 bt.name AS bonus_type,
                 ob.amount AS value,
                 CASE WHEN es.amount_from = 2 THEN ob.amount END AS value2,
@@ -300,7 +377,7 @@ pub(crate) fn bonuses_via(
                 AND (es.bonus_type_id IS ob.bonus_type_id OR es.bonus_type_id IS NULL)
            LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
           WHERE j.{owner_column} = ?1
-          ORDER BY j.sort_order, es.sort_order"
+          ORDER BY j.sort_order, ob.effect_bonus_order, ob.group_member_order"
     );
     let mut bonuses = json_rows(db, &sql, [owner_id])?;
     for bonus in &mut bonuses {
@@ -373,7 +450,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
                 tg.name AS tier_group, e.tier AS tier_rank,
                 s.name AS stat, s.category AS stat_category,
                 stat_type.name AS stat_bonus_type, ob.amount AS stat_value,
-                ob.amount_source, ob.scale, g.id AS group_id, g.name AS group_name
+                ob.amount_source, ob.scale, g.id AS group_id, g.name AS group_name, g.slug AS group_slug
            FROM {junction_table} j JOIN effects e ON e.id = j.effect_id
            LEFT JOIN effect_tier_groups tg ON tg.id = e.tier_group_id
            LEFT JOIN bonus_types link_type ON link_type.id = j.bonus_type_id
@@ -386,7 +463,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
            LEFT JOIN effects g ON g.id = ob.group_effect_id
            LEFT JOIN bonus_types stat_type ON stat_type.id = ob.bonus_type_id
           WHERE {owner_condition}
-          ORDER BY j.{owner_column}, j.sort_order, ob.stat_id"
+          ORDER BY j.{owner_column}, j.sort_order, ob.effect_bonus_order, ob.group_member_order"
     );
     let rows = json_rows(db, &sql, selector_params)?;
     let damage_rows = json_rows(
@@ -447,7 +524,7 @@ pub(crate) fn effects_via_with_link_order<P: Params>(
                 "bonus_type": row["stat_bonus_type"], "value": row["stat_value"],
                 "amount_source": row["amount_source"], "scale": row["scale"],
                 "group": if row["group_id"].is_null() { Value::Null } else {
-                    serde_json::json!({"id": row["group_id"], "name": row["group_name"]})
+                    serde_json::json!({"id": row["group_id"], "name": row["group_name"], "slug": row["group_slug"]})
                 }
             }));
         }

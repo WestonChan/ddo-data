@@ -1,0 +1,35 @@
+name = "Filtration Module"
+description = """
+A docent created for Warforged in hostile environments, it can be used to resist
+toxic substances and repair minor damage."""
+drop_location = "Cult of the Six, End reward"
+enhancement_bonus = 5
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 8
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Inherent"
+value = 10
+
+[[effect]]
+name = "Repair"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

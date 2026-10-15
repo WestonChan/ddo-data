@@ -1,0 +1,34 @@
+name = "Epic Saltiron Bracer"
+description = "Smiths in Saltmarsh are known for their craft in iron."
+drop_location = "Epic version of Saltiron Bracer"
+icon = "Bracers_17b"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 20
+slot = "Wrists"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 9
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 32
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

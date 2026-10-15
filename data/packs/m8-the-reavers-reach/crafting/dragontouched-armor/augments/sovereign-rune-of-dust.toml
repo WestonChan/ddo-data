@@ -1,0 +1,11 @@
+name = "Sovereign Rune of Dust"
+description = """
+Disintegration Guard: This item has a store of dark, insidious power deep within.
+When the wearer of this item is successfully attacked in melee, this power
+occasionally lashes out violently at enemies and attempts to disintegrate them."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

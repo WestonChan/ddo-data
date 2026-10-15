@@ -1,0 +1,27 @@
+name = "Gloves of the Scoundrel"
+description = "These fine leather gloves must have belonged to someone else before you."
+drop_location = "The Borderlands, chest (Rare Encounters)"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 1
+slot = "Hands"
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Borderlands"

@@ -1,0 +1,45 @@
+name = "Legendary Periapt of Strength"
+description = """
+A mark of strength, recognizing the bearer's might while also bolstering it
+to new heights."""
+drop_location = "The Safehold, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Trinket"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Safehold"

@@ -1,0 +1,66 @@
+name = "Menechtarun Scavenger"
+icon = "Menechtarun"
+
+[[item]]
+name = "Demon Scale Armor"
+
+[[item]]
+name = "Dynastic Falcata"
+
+[[item]]
+name = "Sandstorm Glasses"
+
+[[item]]
+name = "Seal of the Earth"
+
+[[item]]
+name = "Stinkpelt's Hide"
+
+[[item]]
+name = "Thornlord"
+
+[[item]]
+name = "Tourney Armor"
+
+[[item]]
+name = "Weathered Targe"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sheltering"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]

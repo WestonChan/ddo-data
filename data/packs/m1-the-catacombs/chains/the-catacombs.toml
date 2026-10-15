@@ -1,0 +1,17 @@
+name = "The Catacombs"
+pack = "The Catacombs"
+quests = [
+    "The Friar's Niece",
+    "Seek Dryden's Counsel",
+    "Return to the Sanctuary",
+    "The Old Archives",
+    "The Crypt of Gerard Dryden",
+    "Setting the Wards: The Lower Cathedral",
+    "Setting the Wards: The Patriarchs' Crypt",
+    "Endgame: Marguerite",
+    "Endgame: The Archbishop's Fate",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Catacombs"
+read = "2026-10-02"

@@ -1,0 +1,48 @@
+name = "Silken Mail"
+description = """
+A Mithral Chainmail hauberk, this armor is completely silent and seems impervious
+to most slashing damage."""
+drop_location = "The Chamber of Raiyum, Treasure chamber chest"
+enhancement_bonus = 5
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_bonus = 5
+armor_type = "Light"
+max_dex_bonus = 9
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Axeblock V"
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "treasure chamber chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Chamber of Raiyum"

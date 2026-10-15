@@ -1,0 +1,30 @@
+name = "Sleeping with the Fishes"
+bestowed_by = "Aramond d'Lyrandar"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Tavern Tales"
+patron = "The Free Agents"
+zone = "Stormreach Fish Market"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Sleeping_with_the_Fishes"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 35

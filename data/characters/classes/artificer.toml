@@ -1,0 +1,1646 @@
+name = "Artificer"
+alignments = ["Any"]
+bab = [
+    0,
+    0.75,
+    1.5,
+    2.25,
+    3,
+    3.75,
+    4.5,
+    5.25,
+    6,
+    6.75,
+    7.5,
+    8.25,
+    9,
+    9.75,
+    10.5,
+    11.25,
+    12,
+    12.75,
+    13.5,
+    14.25,
+    15,
+]
+casting_stats = ["Intelligence"]
+class_specific_feat_types = ["Artificer Bonus Feat"]
+description = """
+The Artificer combines magic with weapon technology and skill.
+Traditionally, Artificers prefer to avoid getting their hands dirty
+in a fight, using personally-made constructs that perform a variety
+of tasks but are especially capable in combat. Artificers are a
+jack-of-all-trades: they can serve as backup healers, decent offensive
+spell caster, can act as both ranged or melee combatants, can find and
+disable traps and open locks, and have excellent supportive abilities.
+Artificers are the only class that can gain the use of Rune Arms, and
+their primary attributes are Dexterity and Intelligence.
+
+The Artificer class must either be purchased in the DDO store or unlocked
+on a per-server basis by earning 150 House Cannith favor on a single character."""
+fortitude = "poor"
+hit_points = 8
+large_icon = "Artificer"
+reflex = "poor"
+skill_points = 4
+small_icon = "Artificer_Small"
+spell_points_per_level = [
+    0,
+    50,
+    75,
+    100,
+    125,
+    150,
+    180,
+    210,
+    245,
+    280,
+    320,
+    360,
+    405,
+    450,
+    500,
+    550,
+    600,
+    660,
+    720,
+    780,
+    845,
+]
+will = "good"
+
+[[auto_buy_skill]]
+skill = "Disable Device"
+
+[[auto_buy_skill]]
+skill = "Search"
+
+[[auto_buy_skill]]
+skill = "Open Lock"
+
+[[auto_buy_skill]]
+skill = "Repair"
+
+[[auto_buy_skill]]
+skill = "Spot"
+
+[[auto_buy_skill]]
+skill = "Use Magic Device"
+
+[[auto_feat]]
+level = 1
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 1
+feat = "Artificer Construct Mastery"
+
+[[auto_feat]]
+level = 1
+feat = "Artificer Knowledge: Scrolls"
+
+[[auto_feat]]
+level = 1
+feat = "Exotic Weapon Proficiency: Great Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Exotic Weapon Proficiency: Repeating Heavy Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Exotic Weapon Proficiency: Repeating Light Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Inscribe Artificer Scroll"
+
+[[auto_feat]]
+level = 1
+feat = "Light Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Magical Training"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Light Hammer"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Warhammer"
+
+[[auto_feat]]
+level = 1
+feat = "Medium Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Rapid Reload"
+
+[[auto_feat]]
+level = 1
+feat = "Revive Iron Defender"
+
+[[auto_feat]]
+level = 1
+feat = "Shield Proficiency (General)"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Club"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dart"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Morningstar"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Quarterstaff"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Sickle"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Throwing Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Unarmed"
+
+[[auto_feat]]
+level = 1
+feat = "Trapfinding"
+
+[[auto_feat]]
+level = 1
+feat = "Unleash Iron Defender"
+
+[[auto_feat]]
+level = 1
+feat = "Cantrip: Cut"
+
+[[auto_feat]]
+level = 1
+feat = "Cantrip: Finger of Flame"
+
+[[auto_feat]]
+level = 1
+feat = "Cantrip: Jolt"
+
+[[auto_feat]]
+level = 2
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 2
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 2
+feat = "Artificer Knowledge: Potions"
+
+[[auto_feat]]
+level = 2
+feat = "Artificer Rune Arm Use"
+
+[[auto_feat]]
+level = 3
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 3
+feat = "Artificer Knowledge: Wands"
+
+[[auto_feat]]
+level = 4
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 4
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 4
+feat = "Artificer Knowledge: Scrolls"
+
+[[auto_feat]]
+feat_name = "Trapmaking"
+level = 4
+
+[[auto_feat]]
+level = 5
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 5
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 5
+feat = "Artificer Knowledge: Arms and Armor"
+
+[[auto_feat]]
+level = 5
+feat = "Artificer Knowledge: Potions"
+
+[[auto_feat]]
+level = 5
+feat = "Retain Essence"
+
+[[auto_feat]]
+level = 6
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 6
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 6
+feat = "Artificer Knowledge: Wands"
+
+[[auto_feat]]
+level = 7
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 7
+feat = "Artificer Knowledge: Scrolls"
+
+[[auto_feat]]
+level = 7
+feat = "Artificer Knowledge: Wondrous Items"
+
+[[auto_feat]]
+level = 8
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 8
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 8
+feat = "Artificer Knowledge: Arms and Armor"
+
+[[auto_feat]]
+level = 8
+feat = "Artificer Knowledge: Potions"
+
+[[auto_feat]]
+level = 9
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 9
+feat = "Artificer Knowledge: Wands"
+
+[[auto_feat]]
+level = 10
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 10
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 10
+feat = "Artificer Knowledge: Scrolls"
+
+[[auto_feat]]
+level = 10
+feat = "Artificer Knowledge: Wondrous Items"
+
+[[auto_feat]]
+level = 11
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 11
+feat = "Artificer Knowledge: Arms and Armor"
+
+[[auto_feat]]
+level = 11
+feat = "Artificer Knowledge: Potions"
+
+[[auto_feat]]
+level = 12
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 12
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 12
+feat = "Artificer Knowledge: Wands"
+
+[[auto_feat]]
+level = 13
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 13
+feat = "Artificer Knowledge: Scrolls"
+
+[[auto_feat]]
+level = 13
+feat = "Artificer Knowledge: Wondrous Items"
+
+[[auto_feat]]
+level = 14
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 14
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 14
+feat = "Artificer Knowledge: Arms and Armor"
+
+[[auto_feat]]
+level = 14
+feat = "Artificer Knowledge: Potions"
+
+[[auto_feat]]
+level = 15
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 15
+feat = "Artificer Knowledge: Wands"
+
+[[auto_feat]]
+level = 16
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 16
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 16
+feat = "Artificer Knowledge: Wondrous Items"
+
+[[auto_feat]]
+level = 17
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 17
+feat = "Artificer Knowledge: Arms and Armor"
+
+[[auto_feat]]
+level = 18
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 18
+feat = "Artificer Craft Mastery"
+
+[[auto_feat]]
+level = 19
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 19
+feat = "Artificer Knowledge: Wondrous Items"
+
+[[auto_feat]]
+level = 20
+feat = "Arcane Lore"
+
+[[auto_feat]]
+level = 20
+feat = "Artificer Craft Mastery"
+
+[[feat_slot]]
+feat_type = "Artificer Bonus Feat"
+level = 4
+update_list = [
+    "Adamantine Body",
+    "Accelerate Spell",
+    "Augment Summoning",
+    "Combat Expertise",
+    "Construct Essence",
+    "Empower Healing Spell",
+    "Empower Spell",
+    "Enlarge Spell",
+    "Eschew Materials",
+    "Exotic Weapon Proficiency: Bastard Sword",
+    "Exotic Weapon Proficiency: Dwarven Axe",
+    "Extend Spell",
+    "Heighten Spell",
+    "Improved Construct Essence",
+    "Improved Critical: Bludgeoning Weapons",
+    "Improved Critical: Ranged Weapons",
+    "Improved Critical: Slashing Weapons",
+    "Improved Fortification",
+    "Improved Precise Shot",
+    "Least Dragonmark of Making",
+    "Maximize Spell",
+    "Mithral Body",
+    "Mithral Fluidity",
+    "Point Blank Shot",
+    "Precise Shot",
+    "Quicken Spell",
+    "Rapid Shot",
+    "Shot on the Run",
+    "Single Weapon Fighting",
+    "Skill Focus: Balance",
+    "Skill Focus: Bluff",
+    "Skill Focus: Concentration",
+    "Skill Focus: Diplomacy",
+    "Skill Focus: Disable Device",
+    "Skill Focus: Haggle",
+    "Skill Focus: Heal",
+    "Skill Focus: Hide",
+    "Skill Focus: Intimidate",
+    "Skill Focus: Jump",
+    "Skill Focus: Listen",
+    "Skill Focus: Move Silently",
+    "Skill Focus: Open Lock",
+    "Skill Focus: Perform",
+    "Skill Focus: Repair",
+    "Skill Focus: Search",
+    "Skill Focus: Spellcraft",
+    "Skill Focus: Spot",
+    "Skill Focus: Swim",
+    "Skill Focus: Tumble",
+    "Skill Focus: Use Magic Device",
+    "Two Handed Fighting",
+    "Weapon Focus: Ranged Weapons",
+    "Weapon Focus: Slashing Weapons",
+]
+
+[[feat_slot]]
+feat_type = "Artificer Bonus Feat"
+level = 8
+
+[[feat_slot]]
+feat_type = "Artificer Bonus Feat"
+level = 12
+
+[[feat_slot]]
+feat_type = "Artificer Bonus Feat"
+level = 16
+
+[[feat_slot]]
+feat_type = "Artificer Bonus Feat"
+level = 20
+
+[[skill]]
+skill = "Concentration"
+
+[[skill]]
+skill = "Disable Device"
+
+[[skill]]
+skill = "Haggle"
+
+[[skill]]
+skill = "Open Lock"
+
+[[skill]]
+skill = "Repair"
+
+[[skill]]
+skill = "Search"
+
+[[skill]]
+skill = "Spellcraft"
+
+[[skill]]
+skill = "Spot"
+
+[[skill]]
+skill = "Use Magic Device"
+
+[[spell]]
+max_caster_level = 10
+spell = "Ablative Armor"
+spell_level = 1
+spell_name = "Ablative Armor"
+
+[[spell]]
+spell = "Conjure Bolts"
+spell_level = 1
+spell_name = "Conjure Bolts"
+
+[[spell]]
+spell = "Curative Admixture: Cure Light Wounds"
+spell_level = 1
+spell_name = "Curative Admixture: Cure Light Wounds"
+
+[[spell]]
+spell = "Enchant Armor"
+spell_level = 1
+spell_name = "Enchant Armor"
+
+[[spell]]
+spell = "Enchant Weapons"
+spell_level = 1
+spell_name = "Enchant Weapons"
+
+[[spell]]
+spell = "Grease"
+spell_level = 1
+spell_name = "Grease"
+
+[[spell]]
+max_caster_level = 5
+spell = "Inflict Light Damage"
+spell_level = -1
+spell_name = "Inflict Light Damage"
+
+[[spell]]
+spell = "Master's Touch"
+spell_level = 1
+spell_name = "Master's Touch"
+
+[[spell]]
+max_caster_level = 5
+spell = "Repair Light Damage"
+spell_level = -1
+spell_name = "Repair Light Damage"
+
+[[spell]]
+spell = "Resist Energy"
+spell_level = 1
+spell_name = "Resist Energy"
+
+[[spell]]
+spell = "Resistance"
+spell_level = 1
+spell_name = "Resistance"
+
+[[spell]]
+max_caster_level = 20
+spell = "Shield of Faith"
+spell_level = 1
+spell_name = "Shield of Faith"
+
+[[spell]]
+spell = "Static Shock"
+spell_level = 1
+spell_name = "Static Shock"
+
+[[spell]]
+spell = "Bear's Endurance"
+spell_level = 2
+spell_name = "Bear's Endurance"
+
+[[spell]]
+spell = "Bull's Strength"
+spell_level = 2
+spell_name = "Bull's Strength"
+
+[[spell]]
+spell = "Byeshk Weapons"
+spell_level = 2
+spell_name = "Byeshk Weapons"
+
+[[spell]]
+spell = "Cat's Grace"
+spell_level = 2
+spell_name = "Cat's Grace"
+
+[[spell]]
+spell = "Curative Admixture: Cure Moderate Wounds"
+spell_level = 2
+spell_name = "Curative Admixture: Cure Moderate Wounds"
+
+[[spell]]
+spell = "Eagle's Splendor"
+spell_level = 2
+spell_name = "Eagle's Splendor"
+
+[[spell]]
+max_caster_level = 20
+spell = "Elemental Prod"
+spell_level = 2
+spell_name = "Elemental Prod"
+
+[[spell]]
+spell = "Elemental Weapons"
+spell_level = 2
+spell_name = "Elemental Weapons"
+
+[[spell]]
+cost = 8
+max_caster_level = 20
+spell = "Fire Trap"
+spell_level = 2
+spell_name = "Fire Trap"
+
+[[spell]]
+spell = "Flame Arrow"
+spell_level = 2
+spell_name = "Flame Arrow"
+
+[[spell]]
+spell = "Fox's Cunning"
+spell_level = 2
+spell_name = "Fox's Cunning"
+
+[[spell]]
+max_caster_level = 15
+spell = "Inflict Moderate Damage"
+spell_level = -2
+spell_name = "Inflict Moderate Damage"
+
+[[spell]]
+spell = "Insightful Strikes"
+spell_level = 2
+spell_name = "Insightful Strikes"
+
+[[spell]]
+max_caster_level = 10
+spell = "Lightning Sphere"
+spell_level = 2
+spell_name = "Lightning Sphere"
+
+[[spell]]
+spell = "Lucky Cape"
+spell_level = 2
+spell_name = "Lucky Cape"
+
+[[spell]]
+spell = "Owl's Wisdom"
+spell_level = 2
+spell_name = "Owl's Wisdom"
+
+[[spell]]
+max_caster_level = 10
+spell = "Protection From Energy"
+spell_level = 2
+spell_name = "Protection From Energy"
+
+[[spell]]
+max_caster_level = 10
+spell = "Reinforce Construct"
+spell_level = 2
+spell_name = "Reinforce Construct"
+
+[[spell]]
+cost = 8
+max_caster_level = 10
+spell = "Repair Moderate Damage"
+spell_level = -2
+spell_name = "Repair Moderate Damage"
+
+[[spell]]
+max_caster_level = 12
+spell = "Toughen Construct"
+spell_level = 2
+spell_name = "Toughen Construct"
+
+[[spell]]
+spell = "Adamantine Weapons"
+spell_level = 3
+spell_name = "Adamantine Weapons"
+
+[[spell]]
+max_caster_level = 10
+spell = "Blast Rod"
+spell_level = 3
+spell_name = "Blast Rod"
+
+[[spell]]
+spell = "Curative Admixture: Cure Serious Wounds"
+spell_level = 3
+spell_name = "Curative Admixture: Cure Serious Wounds"
+
+[[spell]]
+spell = "Curative Admixture: Remove Disease"
+spell_level = 3
+spell_name = "Curative Admixture: Remove Disease"
+
+[[spell]]
+spell = "Flame Turret"
+spell_level = 3
+spell_name = "Flame Turret"
+
+[[spell]]
+max_caster_level = 25
+spell = "Inflict Light Damage, Mass"
+spell_level = 3
+spell_name = "Inflict Light Damage, Mass"
+
+[[spell]]
+max_caster_level = 15
+spell = "Inflict Serious Damage"
+spell_level = -3
+spell_name = "Inflict Serious Damage"
+
+[[spell]]
+spell = "Insightful Damage"
+spell_level = 3
+spell_name = "Insightful Damage"
+
+[[spell]]
+cost = 10
+max_caster_level = 10
+spell = "Lightning Bolt"
+spell_level = 3
+spell_name = "Lightning Bolt"
+
+[[spell]]
+spell = "Positive Energy Infusion"
+spell_level = 3
+spell_name = "Positive Energy Infusion"
+
+[[spell]]
+max_caster_level = 25
+spell = "Repair Light Damage, Mass"
+spell_level = 3
+spell_name = "Repair Light Damage, Mass"
+
+[[spell]]
+cost = 12
+max_caster_level = 15
+spell = "Repair Serious Damage"
+spell_level = -3
+spell_name = "Repair Serious Damage"
+
+[[spell]]
+spell = "Shield of Faith, Mass"
+spell_level = 3
+spell_name = "Shield of Faith, Mass"
+
+[[spell]]
+spell = "Stoneskin"
+spell_level = 3
+spell_name = "Stoneskin"
+
+[[spell]]
+max_caster_level = 1
+spell = "Armor of Speed"
+spell_level = 4
+spell_name = "Armor of Speed"
+
+[[spell]]
+spell = "Cold Iron Weapons"
+spell_level = 4
+spell_name = "Cold Iron Weapons"
+
+[[spell]]
+spell = "Curative Admixture: Remove Poison"
+spell_level = 4
+spell_name = "Curative Admixture: Remove Poison"
+
+[[spell]]
+spell = "Greater Elemental Weapons"
+spell_level = 4
+spell_name = "Greater Elemental Weapons"
+
+[[spell]]
+max_caster_level = 20
+spell = "Inflict Critical Damage"
+spell_level = -4
+spell_name = "Inflict Critical Damage"
+
+[[spell]]
+max_caster_level = 20
+spell = "Inflict Moderate Damage, Mass"
+spell_level = 4
+spell_name = "Inflict Moderate Damage, Mass"
+
+[[spell]]
+spell = "Lesser Globe of Invulnerability"
+spell_level = 4
+spell_name = "Lesser Globe of Invulnerability"
+
+[[spell]]
+max_caster_level = 10
+spell = "Lightning Motes"
+spell_level = 4
+spell_name = "Lightning Motes"
+
+[[spell]]
+max_caster_level = 10
+spell = "Protection from Elements"
+spell_level = 4
+spell_name = "Protection from Elements"
+
+[[spell]]
+max_caster_level = 20
+spell = "Repair Critical Damage"
+spell_level = -4
+spell_name = "Repair Critical Damage"
+
+[[spell]]
+max_caster_level = 30
+spell = "Repair Moderate Damage, Mass"
+spell_level = 4
+spell_name = "Repair Moderate Damage, Mass"
+
+[[spell]]
+spell = "Thundering Armor"
+spell_level = 4
+spell_name = "Thundering Armor"
+
+[[spell]]
+spell = "Bear's Endurance, Mass"
+spell_level = 5
+spell_name = "Bear's Endurance, Mass"
+
+[[spell]]
+spell = "Bull's Strength, Mass"
+spell_level = 5
+spell_name = "Bull's Strength, Mass"
+
+[[spell]]
+spell = "Cat's Grace, Mass"
+spell_level = 5
+spell_name = "Cat's Grace, Mass"
+
+[[spell]]
+max_caster_level = 20
+spell = "Curative Admixture: Cure Critical Wounds"
+spell_level = 5
+spell_name = "Curative Admixture: Cure Critical Wounds"
+
+[[spell]]
+spell = "Curative Admixture: Remove Curse"
+spell_level = 5
+spell_name = "Curative Admixture: Remove Curse"
+
+[[spell]]
+spell = "Eagle's Splendor, Mass"
+spell_level = 5
+spell_name = "Eagle's Splendor, Mass"
+
+[[spell]]
+spell = "Fox's Cunning, Mass"
+spell_level = 5
+spell_name = "Fox's Cunning, Mass"
+
+[[spell]]
+max_caster_level = 35
+spell = "Inflict Serious Damage, Mass"
+spell_level = 5
+spell_name = "Inflict Serious Damage, Mass"
+
+[[spell]]
+cost = 40
+max_caster_level = 20
+spell = "Multivial of Acid"
+spell_level = 5
+spell_name = "Multivial of Acid"
+
+[[spell]]
+cost = 40
+max_caster_level = 20
+spell = "Multivial of Flame"
+spell_level = 5
+spell_name = "Multivial of Flame"
+
+[[spell]]
+cost = 40
+max_caster_level = 20
+spell = "Multivial of Frost"
+spell_level = 5
+spell_name = "Multivial of Frost"
+
+[[spell]]
+cost = 40
+max_caster_level = 20
+spell = "Multivial of Poison"
+spell_level = 5
+spell_name = "Multivial of Poison"
+
+[[spell]]
+cost = 40
+max_caster_level = 20
+spell = "Multivial of Sparks"
+spell_level = 5
+spell_name = "Multivial of Sparks"
+
+[[spell]]
+spell = "Owl's Wisdom, Mass"
+spell_level = 5
+spell_name = "Owl's Wisdom, Mass"
+
+[[spell]]
+spell = "Planar (Align) Weapons"
+spell_level = 5
+spell_name = "Planar (Align) Weapons"
+
+[[spell]]
+max_caster_level = 20
+spell = "Prismatic Strike"
+spell_level = 5
+spell_name = "Prismatic Strike"
+
+[[spell]]
+spell = "Radiant Forcefield"
+spell_level = 5
+spell_name = "Radiant Forcefield"
+
+[[spell]]
+max_caster_level = 35
+spell = "Repair Serious Damage, Mass"
+spell_level = 5
+spell_name = "Repair Serious Damage, Mass"
+
+[[spell]]
+spell = "Silver Weapons"
+spell_level = 5
+spell_name = "Silver Weapons"
+
+[[spell]]
+spell = "Tenser's Transformation"
+spell_level = 5
+spell_name = "Tenser's Transformation"
+
+[[spell]]
+spell = "Arcane Tempest"
+spell_level = 6
+spell_name = "Arcane Tempest"
+
+[[spell]]
+max_caster_level = 15
+spell = "Blade Barrier"
+spell_level = 6
+spell_name = "Blade Barrier"
+
+[[spell]]
+cost = 25
+spell = "Chain Lightning"
+spell_level = 6
+spell_name = "Chain Lightning"
+
+[[spell]]
+spell = "Deadly Weapons"
+spell_level = 6
+spell_name = "Deadly Weapons"
+
+[[spell]]
+max_caster_level = 15
+spell = "Deconstruct"
+spell_level = 6
+spell_name = "Deconstruct"
+
+[[spell]]
+spell = "Globe of Invulnerability"
+spell_level = 6
+spell_name = "Globe of Invulnerability"
+
+[[spell]]
+max_caster_level = 40
+spell = "Inflict Critical Damage, Mass"
+spell_level = 6
+spell_name = "Inflict Critical Damage, Mass"
+
+[[spell]]
+max_caster_level = 10
+spell = "Protection from Elements, Mass"
+spell_level = 6
+spell_name = "Protection from Elements, Mass"
+
+[[spell]]
+max_caster_level = 15
+spell = "Reconstruct"
+spell_level = 6
+spell_name = "Reconstruct"
+
+[[spell]]
+max_caster_level = 40
+spell = "Repair Critical Damage, Mass"
+spell_level = 6
+spell_name = "Repair Critical Damage, Mass"
+
+[[spell]]
+spell = "Tactical Detonation"
+spell_level = 6
+spell_name = "Tactical Detonation"
+
+[[spell_slot]]
+class_level = 1
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 2
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 3
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 3
+slots = 1
+spell_level = 2
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 4
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 4
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 5
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 5
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 6
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 6
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 6
+slots = 1
+spell_level = 3
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 7
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 7
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 7
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 8
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 8
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 8
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 9
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 9
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 9
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 9
+slots = 1
+spell_level = 4
+
+[[spell_slot]]
+class_level = 9
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 9
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 10
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 10
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 10
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 10
+slots = 2
+spell_level = 4
+
+[[spell_slot]]
+class_level = 10
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 10
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 11
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 11
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 11
+slots = 3
+spell_level = 3
+
+[[spell_slot]]
+class_level = 11
+slots = 2
+spell_level = 4
+
+[[spell_slot]]
+class_level = 11
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 11
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 12
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 12
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 12
+slots = 3
+spell_level = 3
+
+[[spell_slot]]
+class_level = 12
+slots = 2
+spell_level = 4
+
+[[spell_slot]]
+class_level = 12
+slots = 1
+spell_level = 5
+
+[[spell_slot]]
+class_level = 12
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 13
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 13
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 13
+slots = 3
+spell_level = 3
+
+[[spell_slot]]
+class_level = 13
+slots = 2
+spell_level = 4
+
+[[spell_slot]]
+class_level = 13
+slots = 2
+spell_level = 5
+
+[[spell_slot]]
+class_level = 13
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 14
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 14
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 14
+slots = 3
+spell_level = 3
+
+[[spell_slot]]
+class_level = 14
+slots = 3
+spell_level = 4
+
+[[spell_slot]]
+class_level = 14
+slots = 2
+spell_level = 5
+
+[[spell_slot]]
+class_level = 14
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 15
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 15
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 15
+slots = 4
+spell_level = 3
+
+[[spell_slot]]
+class_level = 15
+slots = 3
+spell_level = 4
+
+[[spell_slot]]
+class_level = 15
+slots = 2
+spell_level = 5
+
+[[spell_slot]]
+class_level = 15
+slots = 1
+spell_level = 6
+
+[[spell_slot]]
+class_level = 16
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 16
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 16
+slots = 4
+spell_level = 3
+
+[[spell_slot]]
+class_level = 16
+slots = 3
+spell_level = 4
+
+[[spell_slot]]
+class_level = 16
+slots = 2
+spell_level = 5
+
+[[spell_slot]]
+class_level = 16
+slots = 2
+spell_level = 6
+
+[[spell_slot]]
+class_level = 17
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 17
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 17
+slots = 4
+spell_level = 3
+
+[[spell_slot]]
+class_level = 17
+slots = 4
+spell_level = 4
+
+[[spell_slot]]
+class_level = 17
+slots = 3
+spell_level = 5
+
+[[spell_slot]]
+class_level = 17
+slots = 2
+spell_level = 6
+
+[[spell_slot]]
+class_level = 18
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 18
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 18
+slots = 4
+spell_level = 3
+
+[[spell_slot]]
+class_level = 18
+slots = 4
+spell_level = 4
+
+[[spell_slot]]
+class_level = 18
+slots = 3
+spell_level = 5
+
+[[spell_slot]]
+class_level = 18
+slots = 2
+spell_level = 6
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 19
+slots = 4
+spell_level = 4
+
+[[spell_slot]]
+class_level = 19
+slots = 4
+spell_level = 5
+
+[[spell_slot]]
+class_level = 19
+slots = 3
+spell_level = 6
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 4
+
+[[spell_slot]]
+class_level = 20
+slots = 4
+spell_level = 5
+
+[[spell_slot]]
+class_level = 20
+slots = 4
+spell_level = 6

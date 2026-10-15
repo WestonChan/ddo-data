@@ -1,0 +1,49 @@
+name = "Radiant Ring of Taer Valaestas"
+description = "This ring bears the marking of Valenar, and radiates incredible power."
+drop_location = "Project Nemesis, end chest; Masterminds of Sharn saga: Epic end reward; rare drop in any legendary Sharn quest"
+icon = "Ring_5c"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Mithral"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Law Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"
+
+[[source]]
+kind = "saga"
+name = "Masterminds of Sharn"
+tier = "epic"

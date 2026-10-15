@@ -1,0 +1,76 @@
+name = "Insightful Spellsight"
+choose_level = true
+description = "Insight bonus to Spellcraft"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10,
+    10,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+]
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Insight"
+value = 22
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Spellcraft"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[slot]]
+slot = "crafting: cannith boots extra"
+
+[[slot]]
+slot = "crafting: cannith bracers extra"
+
+[[slot]]
+slot = "crafting: cannith helmet extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: cannith rune arm extra"

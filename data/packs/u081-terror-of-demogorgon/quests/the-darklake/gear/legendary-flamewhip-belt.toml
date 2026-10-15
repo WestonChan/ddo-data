@@ -1,0 +1,41 @@
+name = "Legendary Flamewhip Belt"
+description = "Hot to the touch, it seems the Balor's whip never truly loses its power."
+drop_location = "The Darklake, Zarazurthu 's chest"
+icon = "Belt_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 35
+slot = "Waist"
+
+[[effect]]
+name = "Fire Intensity"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Quality"
+value = 79
+
+[[socket]]
+slot = "crafting: nearly complete: spell focus (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "zarazurthu 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

@@ -1,0 +1,161 @@
+[[row]]
+name = "Angelic Wings: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "AngelicWings"
+menu = "Sinister Secret of Saltmarsh"
+set = "Angelic Wings"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Angelic Wings: Charisma: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Angelic Wings: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "AngelicWings"
+menu = "Sinister Secret of Saltmarsh"
+set = "Angelic Wings"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Angelic Wings: Wisdom: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Angelic Wings: +10 Healing Amplification"
+description = """
++10 Healing Amplification
+Rare: +2 MRR"""
+icon = "AngelicWings"
+menu = "Sinister Secret of Saltmarsh"
+set = "Angelic Wings"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Angelic Wings: Healing Amplification: MRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Angelic Wings: +2 Turn Undead Uses"
+description = """
++2 Turn Undead uses
+Rare: +2 MRR"""
+icon = "AngelicWings"
+menu = "Sinister Secret of Saltmarsh"
+set = "Angelic Wings"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "ExtraTurns"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Angelic Wings: Turn Undead: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Angelic Wings: +3 MRR"
+description = """
++3 Magical Resistance Rating
+Rare: +2 PRR"""
+icon = "AngelicWings"
+menu = "Sinister Secret of Saltmarsh"
+set = "Angelic Wings"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Angelic Wings: MRR: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Angelic Wings: +4 Turn Undead Hit Dice"
+description = """
++4 Turn Undead Hit Dice
+Rare: +4 Universal Spell Power"""
+icon = "AngelicWings"
+menu = "Sinister Secret of Saltmarsh"
+set = "Angelic Wings"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "TurnDiceBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Angelic Wings: Turn Undead Hit Dice: Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Angelic Wings: +6 Universal Spell Power"
+description = """
++6 Universal Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "AngelicWings"
+menu = "Sinister Secret of Saltmarsh"
+set = "Angelic Wings"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Angelic Wings: Universal Spell Power: Universal Spell Power"
+effect_type = "UniversalSpellPower"

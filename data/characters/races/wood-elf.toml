@@ -1,0 +1,42 @@
+name = "Wood Elf"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Wood Elves are a racial variant of Elf with distinct look and mildly modified
+racial enhancement tree. Most notable, they are not eligible for the Dragonmark."""
+no_past_life = true
+short_name = "Wood Elf"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Dexterity"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Intelligence"
+
+[[granted_feat]]
+feat = "Elven Keen Senses"
+
+[[granted_feat]]
+feat = "Enchantment Save Bonus"
+
+[[granted_feat]]
+feat = "Immunity to Sleep"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Longbow"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Longsword"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Rapier"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Shortbow"

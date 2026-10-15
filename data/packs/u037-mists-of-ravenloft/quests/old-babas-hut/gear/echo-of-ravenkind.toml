@@ -1,0 +1,36 @@
+name = "Echo of Ravenkind"
+description = "A meticulously-crafted replica of the Holy Symbol of Ravenkind."
+drop_location = "Old Baba's Hut, Raid Chest"
+icon = "Trinket_25"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 28
+slot = "Trinket"
+
+[[effect]]
+name = "Eternal Holy Burst"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"

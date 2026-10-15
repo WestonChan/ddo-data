@@ -1,0 +1,744 @@
+name = "Razorclaw Shifter"
+background = "Half-OrcBackground"
+icon = "RazerclawShifter"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Razorclaw Shifter: Extra Shifting I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1 Rage uses per rest. (You expend Rage uses to activate your Shifting)."
+icon = "RazorclawExtraShifting"
+internal_name = "RazorclawCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Razorclaw Shifter: Ability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose between +1 Constitution, Dexterity or Strength"
+icon = "Constitution"
+internal_name = "RazorclawCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["RazorclawCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Razorclaw Shifter: Extra Shifting II"
+cost_per_rank = [1]
+description = "+2 Rage uses per rest."
+icon = "RazorclawExtraShifting2"
+internal_name = "RazorclawCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["RazorclawCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Razorclaw Shifter: Ability II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose between +1 Constitution, Dexterity or Strength"
+icon = "Constitution"
+internal_name = "RazorclawCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["RazorclawCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Razorclaw Shifter: Regenerating Shift"
+cost_per_rank = [1]
+description = "You regenerate 1 Rage use every 90 seconds."
+icon = "RazorclawRegeratingShift"
+internal_name = "RazorclawCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["RazorclawCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Razorclaw Shifter: Hone Claws"
+cost_per_rank = [1]
+description = "+[1/2/3] to Attack with Handwraps"
+icon = "RazorclawHoneClaws"
+internal_name = "RazorclawHoneClaws"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Handwraps"]
+
+[[enhancement]]
+name = "Razorclaw Shifter: Hunt & Track"
+cost_per_rank = [1]
+description = "+[1/2/3] Spot, Listen and Intimidate"
+icon = "RazorclawHuntAndTrack"
+internal_name = "RazorclawHuntAndTrack"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Listen",
+    "Intimidate",
+]
+
+[[enhancement]]
+name = "Razorclaw Shifter: Extend Shifting"
+cost_per_rank = [1]
+description = "Your Shifting and Barbarian rages last [25/50/75]% longer."
+icon = "RazorclawExtendShifting"
+internal_name = "RazorclawExtendShifting"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement]]
+name = "Razorclaw Shifter: Hardy Shifting"
+cost_per_rank = [1]
+description = "+[1/2/3] Constitution while Shifting or Raging."
+icon = "RazorclawHardyShifting"
+internal_name = "RazorclawHardyShifting"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Shifter: Self Reliant"
+cost_per_rank = [1]
+description = "+[1/2/3] Will Saving Throws"
+icon = "ShifterSelfReliant"
+internal_name = "RazorclawSelfReliant"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement]]
+name = "Razorclaw Shifter: Piercing Claws"
+cost_per_rank = [2]
+description = "While Raging with Handwraps, you bypass Piercing and Slashing DR."
+icon = "RazorclawPiercingClaws"
+internal_name = "RazorclawPiercingClaws"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["Handwraps"]
+value = "Pierce"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["Handwraps"]
+value = "Slash"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Razorclaw Shifter: Natural Armor"
+cost_per_rank = [1]
+description = "+[2/4/6] Natural Armor"
+icon = "RazorclawNaturalArmor"
+internal_name = "RazorclawNaturalArmor"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "NaturalArmor"
+
+[[enhancement]]
+name = "Razorclaw Shifter: Howl"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Release a mighty howl, granting nearby allies +2 Action Boost bonus to Attack,
+plus an additional 2 per 5 Character Levels you have for 20 seconds.
+Cooldown: 1 minute"""
+icon = "RazorclawHowl"
+internal_name = "RazorclawHowl"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement]]
+name = "Razorclaw Shifter: Magic Fang"
+cost_per_rank = [1]
+description = """
+Increases the Enhancement Bonus of the target's natural weapon by 1, plus 1 per
+five caster levels. An item can have only one temporary item enhancement at a time.
+Only works on players, hirelings, or pets, and only if they are Animals, Vermin,
+Magical Beats, Dragons, or Fey. Equipping a new weapon cancels the effect.
+Cost: 8 Hitpoints
+Cooldown: 20 seconds"""
+icon = "RazorclawMagicFang"
+internal_name = "RazorclawMagicFang"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[enhancement]]
+name = "Razorclaw Shifter: Shred"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage, +1 Critical Multiplier, +1 Critical Threat Range.
+Handwrap Attack: Requires equipped Handwraps. Make an attack similar to the
+Druid spell Shred: This attack may reduce the target's Armor Class by 4 for a
+short time. Some creatures may be immune to the sunder effect.
+Fortitude save negates. DC: 10 + Half Character Level + Max[Wis/Str] + Sunder bonuses."""
+icon = "RazorclawShred"
+internal_name = "RazorclawShred"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.dc]]
+name = "Razorclaw Shifter: Shred"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Fortitude"
+description = """
+Deals: +30% Damage, +1 Critical Multiplier, +1 Critical Threat Range.
+Handwrap Attack: Requires equipped Handwraps. Make an attack similar to the
+Druid spell Shred: This attack may reduce the target's Armor Class by 4 for a
+short time. Some creatures may be immune to the sunder effect.
+Fortitude save negates. DC: 10 + Half Character Level + Max[Wis/Str] + Sunder bonuses."""
+icon = "RazorclawShred"
+mod_ability = [
+    "Strength",
+    "Wisdom",
+]
+tactical = "Sunder"
+
+[[enhancement]]
+name = "Razorclaw Shifter: Destructive Shifting"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While under the effects of Razorclaw Shift, you gain Improved Destruction,
++2 to Hit and Damage with Handwraps, and trip enemies for 2 seconds on a Vorpal hit.
+Your Iconic Rage now uncenters you."""
+icon = "RazorclawDestructiveShifting"
+internal_name = "RazorclawDestructiveShifting"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["Handwraps"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Handwraps"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Razorclaw Shifter: Pounce"
+cost_per_rank = [2]
+description = """
+Rush forward, dealing +6[W] to targets near you when you land.
++1 Critical Threat Range and +1 Multiplier with this attack."""
+icon = "RazorclawPounce"
+internal_name = "RazorclawPounce"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement]]
+name = "Razorclaw Shifter: Stronger Howl"
+cost_per_rank = [1]
+description = """
+When you Howl, nearby enemies take -2 to Armor Class, minus an additional 2
+per 5 Character Levels you have for 20 seconds."""
+icon = "RazorclawStrongerHowl"
+internal_name = "RazorclawStrongerHowl"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["RazorclawHowl"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Razorclaw Shifter: Second Claw"
+cost_per_rank = [1]
+description = "+[3/6/10]% chance to make offhand attacks"
+icon = "RazorclawSecondClaw"
+internal_name = "RazorclawSecondClaw"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement]]
+name = "Razorclaw Shifter: Favored Enemy"
+cost_per_rank = [2]
+description = "Choose a Favored Enemy"
+icon = "RazorclawFavoredEnemy"
+internal_name = "RazorclawFavoredEnemy"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.selection]]
+name = "Favored Enemy: Animal"
+cost_per_rank = [2]
+description = "You receive the Favored Enemy: Animal feat: You receive a damage bonus when attacking animals."
+icon = "RazorclawFavoredEnemy"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Animal"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Fey"
+cost_per_rank = [2]
+description = "You receive the Favored Enemy: Fey feat: You receive a damage bonus when attacking fey creatures."
+icon = "RazorclawFavoredEnemyFey"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Fey"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Magical Beast"
+cost_per_rank = [2]
+description = "You receive the Favored Enemy: Magical Beast feat: You receive a damage bonus when attacking magical beats."
+icon = "RazorclawFavoredEnemyMagicalBeast"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Magical Beast"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Plant"
+cost_per_rank = [2]
+description = "You receive the Favored Enemy: Plant feat: You receive a damage bonus when attacking plants."
+icon = "RazorclawFavoredEnemyPlant"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Plant"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Reptilian"
+cost_per_rank = [2]
+description = "You receive the Favored Enemy: Reptilian feat: You receive a damage bonus when attacking reptilian creatures."
+icon = "RazorclawFavoredEnemyReptilian"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Reptilian"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Vermin"
+cost_per_rank = [2]
+description = "You receive the Favored Enemy: Vermin feat: You receive a damage bonus when attacking vermin."
+icon = "RazorclawFavoredEnemyVermin"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Vermin"]
+
+[[enhancement]]
+name = "Razorclaw Shifter: Overwhelming Shifting"
+cost_per_rank = [1]
+description = """
+While under the effects of Razorclaw Shift, you gain +2 to Hit and Damage with
+Handwraps and a +1 Primal bonus to Critical Multiplier with Handwraps."""
+icon = "RazorclawOverwhelmingShifting"
+internal_name = "RazorclawOverwhelmingShifting"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["Handwraps"]
+
+[[enhancement.modifier.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Primal"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["Handwraps"]
+
+[[enhancement.modifier.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["RazorclawDestructiveShifting"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Razorclaw Shifter: True Hunter"
+cost_per_rank = [2]
+description = """
+You gain +2 to Saves vs. Enchantments and Illusions, Freedom of Movement,
+and +10 to Spot."""
+icon = "RazorclawTrueHunter"
+internal_name = "RazorclawTrueHunter"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Enchantment",
+    "Illusion",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Spot"]
+
+[[enhancement]]
+name = "Razorclaw Shifter: Relentless Onslaught"
+cost_per_rank = [2]
+description = """
+Deals +50% damage, +1 Critical Multiplier, +1 Critical threat Range
+Handwraps Attack: Requires equipped Handwraps. Make an attack similar to
+the Druid spell Relentless Onslaught: Perform a melee attack that deals that
+knocks your target down for 4 seconds. For up to 20 seconds afterwards, as long
+as the target stays down, every successful hit against the target has a 30%
+chance of knocking it down again.
+Activation Cost: 15 Hit Points.
+Cooldown: 1 minute 15 Seconds."""
+icon = "RazorclawRelentlessOnslaught"
+internal_name = "RazorclawRelentlessOnslaught"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[requirement]]
+items = ["Razorclaw Shifter"]
+req_type = "Race"

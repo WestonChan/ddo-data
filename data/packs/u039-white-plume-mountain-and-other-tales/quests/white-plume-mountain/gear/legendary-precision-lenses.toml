@@ -1,0 +1,34 @@
+name = "Legendary Precision Lenses"
+description = "Deadly and efficient."
+drop_location = "White Plume Mountain, End chest, Burket and Snarla's chest"
+icon = "Goggles_16"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Goggles"
+
+[[effect]]
+name = "Manslayer"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, burket and snarla's chest"
+kind = "quest"
+loot_type = "chest"
+name = "White Plume Mountain"

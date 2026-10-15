@@ -1,0 +1,217 @@
+name = "Dominion"
+icon = "Dominion"
+
+[[augment]]
+name = "Electric Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Negative Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Positive Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Electric damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Evil damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Good damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Electric Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Negative Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Positive Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Electric damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Evil damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Good damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Electric Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Negative Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Positive Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Electric damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Evil damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Good damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "3% Spell Points bonus, +1% per additional augment"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "With 2–6 augments, gain a 5%–9% Legendary bonus to Spell Points."
+
+[[tier.effect]]
+effect = "Spell Point Augment Scaling"
+
+[[tier.modifier]]
+amount_type = "SetBonusCount"
+amounts = [
+    0,
+    0,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+]
+apply_as_item_effect = true
+bonus_type = "Legendary"
+effect_type = "SpellPoints"
+percent = true
+stack_source = "Dominion"
+
+[[tier.modifier.requirement]]
+items = ["Dominion"]
+req_type = "Stance"

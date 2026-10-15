@@ -1,0 +1,111 @@
+name = "Sireth, Spear of the Sky"
+accepts_sentience = true
+description = """
+Said to have been wielded by an astral deva, this spear is capable of tearing
+open the vault of heaven to bring the wrath of the skies down upon your enemies."""
+drop_location = "Caught in the Web, End Chest"
+enhancement_bonus = 7
+icon = "Quarterstaff_6a"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Steel"
+minimum_level = 23
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Supreme Good"
+
+[[effect]]
+name = "Lightning Strike"
+
+[[effect]]
+name = "Cloudburst"
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Feather Falling"
+
+[[socket]]
+slot = "crafting: attuned to heroism 1"
+
+[[socket.option]]
+name = "Planar Conflux"
+description = """
+Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped."""
+icon = "Heroism"
+min_level = 23
+
+[[socket]]
+slot = "crafting: attuned to heroism 2"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned to heroism 3"
+
+[[socket.option]]
+name = "Adds 0.5[W] Weapon dice multiplier"
+description = "Adds +0.5 weapon dice multiplier"
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: attuned to heroism 4"
+
+[[socket.option]]
+name = "Red Augment Slot"
+description = "Adds a Red augment slot to this weapon."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.grant]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Caught in the Web"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 5
+damage_modifier = "Strength"
+damage_multiplier = 3.6
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

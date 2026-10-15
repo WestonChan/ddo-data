@@ -1,0 +1,49 @@
+name = "Plasma Core"
+description = "This docent appears to be made of pure electricity."
+drop_location = "House of Pain, End Chest"
+enhancement_bonus = 5
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 15
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 15
+arcane_spell_failure = 0
+armor_bonus = 1
+armor_check_penalty = 0
+armor_type = "Docent"
+max_dex_bonus = 0
+mithral_body = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 94
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 19
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 30
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 29
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "House of Pain"

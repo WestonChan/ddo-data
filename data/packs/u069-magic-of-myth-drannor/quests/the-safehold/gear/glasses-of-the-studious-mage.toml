@@ -1,0 +1,39 @@
+name = "Glasses of the Studious Mage"
+description = "Centuries of Elven Wizards used these lenses for deeper studies."
+drop_location = "The Safehold, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 13
+slot = "Goggles"
+
+[[effect]]
+name = "Efficient Metamagic - Empower I"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 27
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Safehold"

@@ -1,0 +1,21 @@
+name = "The Lord of Stone"
+bestowed_by = "Krannoch Flamehand"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Reign of Madness"
+patron = "The Twelve"
+zone = "Deep Within Khyber"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Lord_of_Stone"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

@@ -1,0 +1,37 @@
+name = "Platemail of Giants"
+description = """
+This armor consists of shaped and fitted metal plates riveted and interlocked
+to cover the whole body."""
+drop_location = "Tempest's Spine, End Chest"
+enhancement_bonus = 1
+icon = "HeavyArmor_1"
+is_legacy = true
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 8
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "DR 5/-"
+
+[[note]]
+kind = "item"
+field = "is_legacy"
+upstream = false
+reason = "The wiki says it no longer drops; replaced by Full Plate of Giants."
+url = "https://ddowiki.com/page/Item:Platemail_of_Giants"
+read = "2026-10-01"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

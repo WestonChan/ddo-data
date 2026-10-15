@@ -1,0 +1,48 @@
+name = "Maul of Malice"
+description = """
+The maul of a soul consumed by hatred and destruction, the dark energy of its
+bearer transferred into its mighty head."""
+drop_location = "Inferno of the Damned, End chest"
+enhancement_bonus = 5
+icon = "Maul_1"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Inferno of the Damned"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 16
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Maul"

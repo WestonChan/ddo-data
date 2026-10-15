@@ -1,0 +1,45 @@
+name = "Alchemical Light Hammer"
+description = "A small sledge with a heavy blunt, square head."
+drop_location = "The Master Artificer, Either End chest"
+enhancement_bonus = 5
+icon = "LightHammer_1h"
+item_category = "Weapon"
+item_type = "Light Hammer"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[socket]]
+slot = "crafting: alchemical material type"
+
+[[socket]]
+slot = "crafting: alchemical tier 1"
+
+[[socket]]
+slot = "crafting: alchemical tier 2"
+
+[[socket]]
+slot = "crafting: alchemical tier 3"
+
+[[source]]
+chest = "either end chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Master Artificer"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Light Hammer"

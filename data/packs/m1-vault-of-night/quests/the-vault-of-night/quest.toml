@@ -1,0 +1,27 @@
+name = "The Vault of Night"
+bestowed_by = "Barrow d'Kundarak"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+flagging = "To use the new flagging system, complete the 4 quests and pick up their end rewards, then talk to Barrow d'Kundarak to be permanently flagged."
+is_raid = true
+pack = "Vault of Night"
+patron = "House Kundarak"
+zone = "Vault of Night"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Vault_of_Night"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 22

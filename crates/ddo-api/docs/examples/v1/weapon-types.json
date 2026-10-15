@@ -4,22 +4,25 @@
   "total": 48,
   "weapon_types": [
     {
-      "id": 1,
+      "id": 7188259386155221,
       "is_shield": false,
       "name": "Bastard Sword",
-      "proficiency": "Exotic"
+      "proficiency": "Exotic",
+      "slug": "bastard-sword"
     },
     {
-      "id": 2,
+      "id": 2103402765068934,
       "is_shield": false,
       "name": "Battle Axe",
-      "proficiency": "Martial"
+      "proficiency": "Martial",
+      "slug": "battle-axe"
     },
     {
-      "id": 3,
+      "id": 7837115828609330,
       "is_shield": true,
       "name": "Buckler",
-      "proficiency": null
+      "proficiency": null,
+      "slug": "buckler"
     }
   ]
 }

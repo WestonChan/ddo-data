@@ -1,0 +1,23 @@
+name = "Air II: Vertigo"
+adds_augment = "Legendary Alchemical T3"
+description = "Combine T1 item with 100 threads and stabilizing compound."
+effect_description = "Vertigo +15: +15 Enhancement bonus to the DC to resist Trip and Improved Trip attempts."
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[effect]]
+name = "Trip DC"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 2"

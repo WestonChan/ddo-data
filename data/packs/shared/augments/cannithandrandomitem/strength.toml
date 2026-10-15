@@ -1,0 +1,90 @@
+name = "Strength"
+choose_level = true
+description = "Enhancement bonus to Strength"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    2,
+    3,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    14,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: cannith belt suffix"
+
+[[slot]]
+slot = "crafting: cannith boots suffix"
+
+[[slot]]
+slot = "crafting: cannith bracers prefix"
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random belt suffix"
+
+[[slot]]
+slot = "crafting: random bracers prefix"
+
+[[slot]]
+slot = "crafting: random boots suffix"
+
+[[slot]]
+slot = "crafting: random gloves prefix"

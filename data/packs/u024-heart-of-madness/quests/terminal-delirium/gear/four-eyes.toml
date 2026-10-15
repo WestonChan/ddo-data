@@ -1,0 +1,35 @@
+name = "Four Eyes"
+description = "The Lord of Eyes sees all."
+drop_location = "Terminal Delirium, second dance bonus chest"
+icon = "Goggles_4"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 18
+slot = "Goggles"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "second dance bonus chest"
+kind = "quest"
+loot_type = "chest"
+name = "Terminal Delirium"

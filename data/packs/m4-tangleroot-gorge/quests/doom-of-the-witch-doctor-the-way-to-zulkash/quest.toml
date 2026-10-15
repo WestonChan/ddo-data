@@ -1,0 +1,30 @@
+name = "Doom of the Witch-doctor: The Way to Zulkash"
+bestowed_by = "Chief Ungurz"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Tangleroot Gorge"
+patron = "House Phiarlan"
+zone = "Outer Splinterskull Fortress"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_The_Way_to_Zulkash"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "Doom of the Witchdoctor: The Way to Zulkash"
+reason = "The wiki titles the quest Doom of the Witch-doctor: The Way to Zulkash."
+url = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_The_Way_to_Zulkash"
+read = "2026-10-02"
+
+[[run]]
+tier = "heroic"
+level = 6

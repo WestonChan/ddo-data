@@ -22,7 +22,7 @@ fn attach_single(items: &mut BTreeMap<i64, Value>, name: &str, mut rows: BTreeMa
 pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64, Value>, ApiError> {
     let mut items = BTreeMap::new();
     for mut item in json_rows(db, &format!(
-        "SELECT i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus,
+        "SELECT i.id, i.slug, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level, i.enhancement_bonus,
                 m.name AS material, i.race_required, i.icon, i.description, i.drop_location, i.set_bonus AS set_name,
                 i.accepts_sentience, i.is_minor_artifact, i.is_legacy, i.wiki_url
            FROM items i JOIN equipment_slots es ON es.id = i.slot_id LEFT JOIN item_materials m ON m.id = i.material_id
@@ -87,19 +87,21 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
         t.label, t.family, t.variant, t.qualifier FROM item_augment_slots s
         JOIN augment_slot_types t ON t.id = s.slot_id WHERE s.item_id IN ({ids}) ORDER BY s.item_id, s.sort_order",
     )?;
-    let mut options = grouped_rows(db, ids, "SELECT o.item_id AS owner_id, o.slot_order, o.id, o.name, o.description,
+    let mut options = grouped_rows(db, ids, "SELECT o.item_id AS owner_id, o.slot_order, o.id AS option_id, o.name, o.description,
         o.min_level, o.icon, (SELECT t.label FROM item_augment_slot_option_grants g
         JOIN augment_slot_types t ON t.id = g.slot_id WHERE g.option_id = o.id ORDER BY g.sort_order LIMIT 1) AS grants_slot
         FROM item_augment_slot_options o WHERE o.item_id IN ({ids}) ORDER BY o.item_id, o.slot_order, o.option_order")?;
     let option_ids: Vec<i64> = options
         .values()
         .flatten()
-        .map(|option| option["id"].as_i64().ok_or_else(|| anyhow::anyhow!("item augment option has no numeric id")))
+        .map(|option| {
+            option["option_id"].as_i64().ok_or_else(|| anyhow::anyhow!("item augment option has no numeric id"))
+        })
         .collect::<Result<_, _>>()?;
     let mut option_sets = grouped_rows(
         db,
         &option_ids,
-        "SELECT os.option_id AS owner_id, s.id, s.name
+        "SELECT os.option_id AS owner_id, s.id, s.slug, s.name
         FROM item_augment_slot_option_sets os JOIN set_bonuses s ON s.id = os.set_id
         WHERE os.option_id IN ({ids}) ORDER BY os.option_id, s.name",
     )?;
@@ -119,7 +121,7 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
                 .as_i64()
                 .ok_or_else(|| anyhow::anyhow!("item augment option has no numeric slot_order"))?;
             let option_id =
-                option["id"].as_i64().ok_or_else(|| anyhow::anyhow!("item augment option has no numeric id"))?;
+                option["option_id"].as_i64().ok_or_else(|| anyhow::anyhow!("item augment option has no numeric id"))?;
             option
                 .as_object_mut()
                 .ok_or_else(|| anyhow::anyhow!("item augment option is not an object"))?
@@ -127,6 +129,7 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
             option["sets"] = Value::Array(option_sets.remove(&option_id).unwrap_or_default());
             option["effects"] = Value::Array(option_effects.remove(&option_id).unwrap_or_default());
             option["modifiers"] = Value::Array(option_modifiers.remove(&option_id).unwrap_or_default());
+            option.as_object_mut().expect("slot option").remove("option_id");
             options_by_slot.entry(slot_order).or_default().push(option);
         }
         for slot in &mut item_slots {
@@ -149,16 +152,19 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
         LEFT JOIN clickies c ON c.id = ic.clickie_id WHERE ic.item_id IN ({ids}) ORDER BY ic.item_id, ic.sort_order",
         )?,
     );
-    attach_single(
-        &mut items,
-        "set",
-        grouped_rows(
-            db,
-            ids,
-            "SELECT sbi.item_id AS owner_id, s.id, s.name, s.icon
-        FROM set_bonus_items sbi JOIN set_bonuses s ON s.id = sbi.set_id WHERE sbi.item_id IN ({ids})",
-        )?,
-    );
+    let mut sets = grouped_rows(
+        db,
+        ids,
+        "SELECT sbi.item_id AS owner_id, s.id, s.slug, s.name, s.icon
+        FROM set_bonus_items sbi JOIN set_bonuses s ON s.id = sbi.set_id
+        JOIN items i ON i.id = sbi.item_id WHERE sbi.item_id IN ({ids})
+        ORDER BY sbi.item_id, (s.name <> i.set_bonus), s.name",
+    )?;
+    for (item_id, item) in &mut items {
+        let item_sets = sets.remove(item_id).unwrap_or_default();
+        item["set"] = item_sets.first().cloned().unwrap_or(Value::Null);
+        item["sets"] = Value::Array(item_sets);
+    }
 
     attach_sources(db, ids, &mut items)?;
     let mut modifiers = modifiers_for_owners(db, "item", ids)?;
@@ -169,19 +175,20 @@ pub(super) fn item_records(db: &Connection, ids: &[i64]) -> Result<BTreeMap<i64,
 }
 
 fn attach_sources(db: &Connection, ids: &[i64], items: &mut BTreeMap<i64, Value>) -> Result<(), ApiError> {
+    let sources = sources_via_many(db, "item_id", ids)?;
     attach_rows(items, "quests", quests_dropping_via_many(db, "item_id", ids)?);
 
     let mut chains = grouped_rows(
         db,
         ids,
-        "SELECT cr.item_id AS owner_id, c.id, c.name, cr.is_rare, c.wiki_url
+        "SELECT cr.item_id AS owner_id, c.id, c.slug, c.name, cr.is_rare, c.wiki_url
         FROM sources cr JOIN quest_chains c ON c.id = cr.chain_id
         WHERE cr.item_id IN ({ids}) ORDER BY cr.item_id, c.name",
     )?;
     convert_group_flags(&mut chains, &["is_rare"]);
     attach_rows(items, "quest_chains", chains);
 
-    let mut sagas = grouped_rows(db, ids, "SELECT sr.item_id AS owner_id, s.id, s.name, sr.tier, sr.is_rare, s.wiki_url
+    let mut sagas = grouped_rows(db, ids, "SELECT sr.item_id AS owner_id, s.id, s.slug, s.name, sr.tier, sr.is_rare, s.wiki_url
         FROM sources sr JOIN sagas s ON s.id = sr.saga_id WHERE sr.item_id IN ({ids})
         ORDER BY sr.item_id, s.name, CASE sr.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END")?;
     convert_group_flags(&mut sagas, &["is_rare"]);
@@ -192,7 +199,7 @@ fn attach_sources(db: &Connection, ids: &[i64], items: &mut BTreeMap<i64, Value>
     let mut challenges = grouped_rows(
         db,
         ids,
-        "SELECT loot.item_id AS owner_id, p.id, p.name, loot.is_rare
+        "SELECT loot.item_id AS owner_id, p.id, p.slug, p.name, loot.is_rare
         FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
         WHERE loot.kind = 'challenge' AND loot.item_id IN ({ids}) ORDER BY loot.item_id, p.name",
     )?;
@@ -209,7 +216,7 @@ fn attach_sources(db: &Connection, ids: &[i64], items: &mut BTreeMap<i64, Value>
     let mut crafting = grouped_rows(
         db,
         ids,
-        "SELECT loot.item_id AS owner_id, cs.id, cs.name,
+        "SELECT loot.item_id AS owner_id, cs.id, cs.slug, cs.name,
         loot.is_rare, cs.page AS wiki_url FROM sources loot
         JOIN crafting_systems cs ON cs.id = loot.crafting_system_id
         WHERE loot.item_id IN ({ids}) ORDER BY loot.item_id, cs.name",
@@ -220,17 +227,28 @@ fn attach_sources(db: &Connection, ids: &[i64], items: &mut BTreeMap<i64, Value>
     let mut vendors = grouped_rows(
         db,
         ids,
-        "SELECT vi.item_id AS owner_id, v.id, v.name, v.location,
+        "SELECT vi.item_id AS owner_id, v.id, v.slug, v.name, v.location,
         vi.cost, vi.is_rare, v.wiki_url FROM sources vi JOIN vendors v ON v.id = vi.vendor_id
         WHERE vi.item_id IN ({ids}) ORDER BY vi.item_id, v.name",
     )?;
     convert_group_flags(&mut vendors, &["is_rare"]);
+    for (item_id, offers) in &mut vendors {
+        for offer in offers {
+            offer["price"] = sources
+                .get(item_id)
+                .into_iter()
+                .flatten()
+                .find(|source| source["kind"] == "vendor" && source["name"] == offer["name"])
+                .map(|source| source["price"].clone())
+                .unwrap_or_else(|| Value::Array(Vec::new()));
+        }
+    }
     attach_rows(items, "vendors", vendors);
 
     let mut events = grouped_rows(
         db,
         ids,
-        "SELECT ei.item_id AS owner_id, e.id, e.name, ei.is_rare, e.wiki_url
+        "SELECT ei.item_id AS owner_id, e.id, e.slug, e.name, ei.is_rare, e.wiki_url
         FROM sources ei JOIN events e ON e.id = ei.event_id WHERE ei.item_id IN ({ids})
         ORDER BY ei.item_id, e.name",
     )?;
@@ -248,7 +266,7 @@ fn attach_sources(db: &Connection, ids: &[i64], items: &mut BTreeMap<i64, Value>
         )?,
     );
 
-    attach_rows(items, "sources", sources_via_many(db, "item_id", ids)?);
+    attach_rows(items, "sources", sources);
     Ok(())
 }
 

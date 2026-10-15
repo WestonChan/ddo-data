@@ -1,0 +1,3 @@
+name = "Chaotic Curse"
+description_template = "The curse on this item is so powerful it can be transferred to any creature that dares touch the wearer. The rents in the fabric of the underlying cloth has made the curse unstable and it can reverse itself. Note especially that while the wearer is partially shielded he is not entirely immune to this effect."
+verbose_name_template = "Chaotic Curse"

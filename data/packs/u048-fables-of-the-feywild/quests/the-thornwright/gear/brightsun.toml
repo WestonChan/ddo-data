@@ -1,0 +1,49 @@
+name = "Brightsun"
+description = "This gemstone radiates a warm orange light."
+drop_location = "The Thornwright, end chest"
+enhancement_bonus = 2
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 5
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 15
+armor_bonus = 4
+armor_type = "Docent"
+mithral_body = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 59
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Thornwright"

@@ -1,0 +1,48 @@
+name = "Flotsam (level 4)"
+description = """
+This driftwood shard has saved a few lives by being hard to detect as a weapon.
+It seems to be effective against the undead."""
+drop_location = "Treasure of Crystal Cove, Turn in 100 Silver Doubloon 50 Golden Doubloon 15 Stolen Pyrite 300 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 2
+icon = "Dagger_5"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Densewood"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Disruption"
+
+[[effect]]
+name = "Bludgeoning 2"
+
+[[effect]]
+name = "Corrosive Salt"
+
+[[effect]]
+name = "Undead Bane 2"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Dagger"

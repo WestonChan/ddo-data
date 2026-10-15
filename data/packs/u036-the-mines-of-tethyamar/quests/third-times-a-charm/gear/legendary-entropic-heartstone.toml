@@ -1,0 +1,51 @@
+name = "Legendary Entropic Heartstone"
+description = """
+This gem, set aside by Graz'zt, contains an aspect of his chaos. One can only
+muse at what his plans for it were."""
+drop_location = "Third Time's a Charm, End chest"
+enhancement_bonus = 13
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 28
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+arcane_spell_failure = 0
+armor_bonus = -7
+armor_check_penalty = 0
+armor_type = "Docent"
+max_dex_bonus = 0
+mithral_body = 15
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Quality"
+value = 35
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 53
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Third Time's a Charm"

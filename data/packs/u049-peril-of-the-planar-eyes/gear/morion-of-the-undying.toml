@@ -1,0 +1,42 @@
+name = "Morion of the Undying"
+description = "This golden helmet brings hope and peace to those you protect."
+drop_location = "Peril of the Planar Eyes, any end chest"
+icon = "Helmet_2b"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 29
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Quality"
+value = 38
+
+[[effect]]
+name = "Deific Focus III"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "any end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Peril of the Planar Eyes"

@@ -1,0 +1,3 @@
+name = "Solar Guard V"
+description_template = "When Hit in Melee: Deals 5 to 20 Light damage to your attacker."
+verbose_name_template = "Solar Guard V"

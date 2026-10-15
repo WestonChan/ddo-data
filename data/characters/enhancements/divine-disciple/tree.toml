@@ -1,0 +1,2902 @@
+name = "Divine Disciple"
+background = "ClericBackground"
+icon = "Cleric"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Divine Disciple: Emissary"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Follow the path of Light or Dark"
+icon = "DDEmissary"
+internal_name = "DDDACore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 1
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 20
+
+[[enhancement.selection]]
+name = "Deacon of Endless Darkness"
+cost_per_rank = [1]
+description = """
+Your mastery over Darkness has granted you impossible power.
++4 Wisdom, +2 to all Saving Throws, and +10 Negative spell power and Negative Healing amp.
+You gain +1 caster level and max caster level with Negative Energy spells and +1 Necromancy DCs."""
+icon = "DeaconOfEndlessDarkness"
+min_spent = 40
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDACore1",
+    "Capstone Enhancement",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Chill Touch",
+    "Energy Drain",
+    "Enervation",
+    "Finger of Death",
+    "Ghoul Touch",
+    "Harm",
+    "Inflict Light Wounds",
+    "Inflict Critical Wounds",
+    "Inflict Moderate Wounds",
+    "Inflict Serious Wounds",
+    "Ray of Enfeeblement",
+    "Ray of Exhaustion",
+    "Slay Living",
+    "Symbol of Death",
+    "Symbol of Weakness",
+    "Wail of the Banshee",
+    "Waves of Exhaustion",
+    "Waves of Fatigue",
+    "Necrotic Bolt",
+    "Negative Energy Burst",
+    "Necrotic Ray",
+    "Necrotic Blast",
+    "Improved Harm",
+    "Rend the Soul",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore2",
+    "Dark Spell book III: Power Word: Stun",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Divine Emissary of Light"
+cost_per_rank = [1]
+description = """
+You have chosen to follow the path of Light.
+For each Light Core Ability you take in this tree, you gain +5 Light, Alignment, and Universal Spell Power."""
+icon = "DDDivineEmissaryOfLight"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Divine Disciple: Emissary"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Follow the path of Light or Dark"
+icon = "DDEmissary"
+internal_name = "DDDACore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DDDACore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DDDACore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 3
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 18
+
+[[enhancement.selection]]
+name = "Dark Spell book III: Power Word: Stun"
+cost_per_rank = [1]
+description = """
+Your Cleric spell book gains Power Word: Stun as a level 8 spell.
+You also gain +1 Caster Level and Max Caster Level with Negative Spells.
+
+Power Word: Stun A single word of power is uttered, causing your target to become stunned.
+Creatures with 150 or fewer current HP are stunned to 4 to 32 seconds, creatures with 151
+to 300 HP are stunned for 2 to 16 seconds, and creatures with 301 HPs or more are stunned
+for 8 seconds."""
+icon = "DarkSpellbookIII"
+min_spent = 30
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    8,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Power Word: Stun",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    8,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Power Word: Stun",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevel"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore3",
+    "Dark Spell book II: Necrotic Ray",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement.selection]]
+name = "Empowered by Light"
+cost_per_rank = [1]
+description = "+2 to all saving throws and +3 Physical Resistance Rating."
+icon = "EmpoweredByLight"
+min_spent = 5
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Divine Disciple: Emissary"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Follow the path of Light or Dark"
+icon = "DDEmissary"
+internal_name = "DDDACore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DDDACore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DDDACore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 6
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 12
+
+[[enhancement.selection]]
+name = "Dark Spell book II: Necrotic Ray"
+cost_per_rank = [1]
+description = """
+Your Cleric spell book gains Necrotic Ray as a level 6 spell.
+
+Necrotic Ray: Blasts a target with a negative energy ray that does 5 to 8 negative energy
+damage per caster level to a living enemy. A successful Fortitude save reduces the damage
+by half. The ray also suppresses the life force of any living creature it strikes, granting
+it a negative level.
+
+D&D Dice: Deals 1d4+4 negative energy damage per caster level and bestows one negative level."""
+icon = "DDNecroticRay"
+min_spent = 20
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Necrotic Ray",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Necrotic Ray",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore4",
+    "Dark Spell book I: Enervation",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement.selection]]
+name = "Light Spell book I: Sun Bolt"
+cost_per_rank = [1]
+description = """
+Your Cleric spell book gains Sun Bolt as a level 3 spell.
+
+Sun Bolt: Powerful line of light deals 4 to 9 light damage per caster level (up to a max
+of 60 to 135 damage at caster level 15) to targets in its path. A successful Reflex save
+reduces the damage by half.
+
+D&D Dice: Deals 1d6+3 light damage per caster (max 15d6+45)"""
+icon = "DDSunBolt"
+min_spent = 10
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sun Bolt",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sun Bolt",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore2",
+    "Empowered by Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Divine Disciple: Emissary"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Follow the path of Light or Dark"
+icon = "DDEmissary"
+internal_name = "DDDACore4"
+min_spent = 10
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DDDACore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DDDACore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 12
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 6
+
+[[enhancement.selection]]
+name = "Dark Spell book I: Enervation"
+cost_per_rank = [1]
+description = """
+Your Cleric spell book gains Enervation as a level 4 spell.
+
+Enervation: A black ray of crackling negative energy suppresses the life force of any living
+creature it strikes, giving an enemy 1 to 4 negative levels. If the target has as many negative
+levels as its hit dice or levels, it dies. Each negative level gives a creature a -2 penalty on
+attack rolls, saves, skill checks, ability checks, and effective level. Negative levels stack.
+As a ray this spell has double range.
+
+D&D Dice: Gives enemies 1d4 negative levels."""
+icon = "DDEnervation"
+min_spent = 10
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Enervation",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Enervation",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore5",
+    "Empowered by Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement.selection]]
+name = "Light Spell book II: Sunbeam"
+cost_per_rank = [1]
+description = """
+Your Cleric spell book gains Sunbeam as a level 6 spell.
+
+Sunbeam: Deals 8 to 13 light damage per caster level with a mighty beam of sunlight, and
+temporarily blinds the target. Against Undead or Oozes, it does double damage. A successful
+Reflex save halves the damage and negates the blind effect. This spell has double range.
+
+D&D Dice: Deals 1d6+7 light damage per caster level."""
+icon = "DDSunbeam"
+min_spent = 20
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sunbeam",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sunbeam",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore3",
+    "Light Spell book I: Sun Bolt",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Divine Disciple: Emissary"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Follow the path of Light or Dark"
+icon = "DDEmissary"
+internal_name = "DDDACore5"
+min_spent = 5
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DDDACore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DDDACore6"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 18
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 3
+
+[[enhancement.selection]]
+name = "Empowered by Darkness"
+cost_per_rank = [1]
+description = "+2 to all saving throws and +3 Magical Resistance Rating."
+icon = "EmpoweredByDarkness"
+min_spent = 5
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Light Spell book III: Sunburst"
+cost_per_rank = [1]
+description = """
+Your Cleric spell book gains Sunburst as a level 8 spell.
+You also gain +1 Caster Level and +1 Max Caster level with Light and Alignment Spells.
+
+Sunburst: A globe of searing radiance explodes to blast targets for 5 to 10 light damage
+per caster level in addition to blinding them. Oozes and Undead take double this damage.
+A successful Reflex save reduces the damage by half and negates the blindness. Light
+fearing undead may be instantly destroyed by this spell.
+
+D&D Dice: Deals 1d6+4 light damage per caster level, double tun Undead and Oozes."""
+icon = "DDSunburst"
+min_spent = 30
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    8,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sunburst",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+targets = [
+    "Light",
+    "Alignment",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevel"
+targets = [
+    "Light",
+    "Alignment",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    8,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sunburst",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore4",
+    "Light Spell book II: Sunbeam",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Divine Disciple: Emissary"
+cost_per_rank = [1]
+description = "Follow the path of Light or Dark"
+icon = "DDEmissary"
+internal_name = "DDDACore6"
+min_spent = 0
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 20
+
+[[enhancement.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"
+value = 1
+
+[[enhancement.selection]]
+name = "Divine Emissary of Darkness"
+cost_per_rank = [1]
+description = """
+You have chosen to follow the path of Darkness. For each Dark Core Ability
+you take in this tree, you gain +5 Negative, and Universal Spell Power."""
+icon = "DDTranscendDarkness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Priest of Endless Light"
+cost_per_rank = [1]
+description = """
+Your mastery over Light has granted you impossible power.
++4 Wisdom, +2 to all Saving Throws, and +10 Light/Alignment spell power and Positive Healing amp.
+You gain +1 caster level and max caster level with Light/Alignment spells and +1 Evocation DCs."""
+icon = "DDTranscendLight"
+min_spent = 40
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDACore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Divine Punishment",
+    "Divine Wrath",
+    "Nimbus of Light",
+    "Searing Light",
+    "Sun Bolt",
+    "Sunbeam",
+    "Sunburst",
+    "Deific Vengeance",
+    "Contagion",
+    "Unholy Blight",
+    "Order's Wrath",
+    "Chaos Bolt",
+    "Chaos Sphere",
+    "Chaos Hammer",
+    "Wildstrike",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore5",
+    "Light Spell book III: Sunburst",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Divine Disciple: Prophetic Zenith I"
+cost_per_rank = [1]
+description = "You are the voice of your chosen path. You gain a new level 1 Spell-like ability."
+icon = "DDDAPropheticZenith"
+internal_name = "DDDAPropheticZenith"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Inflict Light Wounds"
+cost_per_rank = [1]
+description = """
+Gain SLA: Inflict Light Wounds
+Activation Cost: 4 spell points.
+Cooldown: 6 seconds."""
+icon = "InflictLightWounds"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Inflict Light Wounds",
+    "Cleric",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Nimbus of Light"
+cost_per_rank = [1]
+description = """
+Gain SLA: Nimbus of Light
+Activation Cost: 2 spell points.
+Cooldown: 4 seconds."""
+icon = "DDNimbusOfLight"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Nimbus of Light",
+    "Cleric",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Defense of the Heart"
+cost_per_rank = [1]
+description = "+[2/4/6] Physical Resistance Rating."
+icon = "DDDADefenseOfTheHeart"
+internal_name = "DDDADefenseOfTheHeart"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Divine Disciple: Divine Smiting I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose:"
+icon = "DDDADivineSmiting"
+internal_name = "DDDADivineSmitingI"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Arcane Smiting I"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells."
+icon = "ArcaneSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Divine Smiting I"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Light, Negative, and Alignment spells."
+icon = "DDDADivineSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Light/Alignment",
+    "Negative",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement]]
+name = "Divine Disciple: Defense of the Soul"
+cost_per_rank = [1]
+description = "+[2/4/6] Magical Resistance Rating"
+icon = "DDDADefenseOfTheSoul"
+internal_name = "DDDADefenseOfTheSoul"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Divine Disciple: Energy of the Disciple"
+cost_per_rank = [1]
+description = "+[30/60/90] Spell Points"
+icon = "DDSpellPoints"
+internal_name = "DDDASpellPoints"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    90,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Divine Disciple: Spell Penetration"
+cost_per_rank = [2]
+description = "+[1/2/3] to your Caster Level check to overcome enemy Spell Resistance."
+icon = "SpellPenetration"
+internal_name = "DDDASpellPenetration"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Divine Disciple: Efficient Metamagic I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic."""
+icon = "EfficientMetamagic"
+internal_name = "DDDAEfficientMetamagicI"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points"
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDAEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDAEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [2]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points"
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDAEfficientMetamagicI",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDAEfficientMetamagicI",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDAEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDAEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points"
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDAEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDAEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Divine Disciple: Divine Smiting II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose:"
+icon = "DDDADivineSmiting"
+internal_name = "DDDADivineSmitingII"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DDDADivineSmitingI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Arcane Smiting II"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells."
+icon = "ArcaneSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.selection.requirement]]
+items = ["DDDADivineSmitingI"]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Divine Smiting II"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Light, Negative, and Alignment spells."
+icon = "DDDADivineSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Negative",
+]
+
+[[enhancement.selection.requirement]]
+items = ["DDDADivineSmitingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Shield of Dawn"
+cost_per_rank = [1]
+description = """
+When struck, attackers are dealt [1/2/3]d6 Light damage, scaling with your spell power.
+Rank 3: They have a small chance to be blinded for 12 seconds."""
+icon = "DDDAShieldOfDawn"
+internal_name = "DDDAShieldOfDawn"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Divine Disciple: Light and Dark"
+cost_per_rank = [1]
+description = """
+Whenever you cast a Light, Alignment or Negative spell, you gain +3 to your Negative,
+Light, and Alignment Spell power for 6 seconds. This stacks up to [1/3/5] times."""
+icon = "DDDALightAndDark"
+internal_name = "DDDALightAndDark"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Divine Disciple: Prophetic Zenith II"
+cost_per_rank = [2]
+description = "You are the voice of your chosen path. You gain a new level 3 spell-like ability"
+icon = "DDDAPropheticZenith"
+internal_name = "DDDAPropheticZenithII"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Necrotic Bolt"
+cost_per_rank = [2]
+description = """
+Gain SLA: Necrotic Bolt
+Activation Cost: 6 spell points.
+Cooldown: 6 seconds."""
+icon = "DDNecroticBolt"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Necrotic Bolt",
+    "Cleric",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Searing Light"
+cost_per_rank = [2]
+description = """
+Gain SLA: Searing Light
+Activation Cost: 6 spell points.
+Cooldown: 6 seconds."""
+icon = "DDSearingLight"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Searing Light",
+    "Cleric",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Efficient Metamagic II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic."""
+icon = "EfficientMetamagic"
+internal_name = "DDDAEfficientMetamagicII"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points"
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDAEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDAEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [2]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points"
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDAEfficientMetamagicII",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDAEfficientMetamagicII",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDAEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDAEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points"
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDAEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDAEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Divine Disciple: Divine Smiting III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose:"
+icon = "DDDADivineSmiting"
+internal_name = "DDDADivineSmitingIII"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["DDDADivineSmitingII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Arcane Smiting III"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells."
+icon = "ArcaneSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.selection.requirement]]
+items = ["DDDADivineSmitingII"]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Divine Smiting III"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Light, Negative, and Alignment spells."
+icon = "DDDADivineSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Negative",
+]
+
+[[enhancement.selection.requirement]]
+items = ["DDDADivineSmitingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Disciple of Dusk or Dawn I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Select which Healing Amplification you would like."
+icon = "DDDiscipleOfDuskOrDawn"
+internal_name = "DDDiscipleOfDuskOrDawnI"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Disciple of Dawn"
+cost_per_rank = [1]
+description = "+[5/10/15] Positive Healing Amplification"
+icon = "DiscipleOfDawn"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection]]
+name = "Disciple of Dusk"
+cost_per_rank = [1]
+description = "+[5/10/15] Negative Healing Amplification"
+icon = "DiscipleOfDusk"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement]]
+name = "Divine Disciple: Wisdom I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to Wisdom"
+icon = "Wisdom"
+internal_name = "DDDAWisdomI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Divine Disciple: Prophetic Zenith III"
+cost_per_rank = [2]
+description = "You are the voice of your chosen path. You gain a new level 4 Spell-like ability"
+icon = "DDDAPropheticZenith"
+internal_name = "DDDAPropheticZenithIII"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Chaos Hammer"
+cost_per_rank = [2]
+description = """
+Gain SLA: Chaos Hammer
+Activation Cost: 8 Spell points
+Cooldown: 12 seconds"""
+icon = "DDChaosHammer"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Chaos Hammer",
+    "Cleric",
+]
+
+[[enhancement.selection]]
+name = "Holy Smite"
+cost_per_rank = [2]
+description = """
+Gain SLA: Holy Smite
+Activation Cost: 7 spell points.
+Cooldown: 6 seconds."""
+icon = "DDHolySmite"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    7,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Holy Smite",
+    "Cleric",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Order's Wrath"
+cost_per_rank = [1]
+description = """
+Gain SLA: Order's Wrath
+Activation Cost: 8 spell points.
+Cooldown: 12 seconds."""
+icon = "DDOrdersWrath"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Order's Wrath",
+    "Cleric",
+]
+
+[[enhancement.selection]]
+name = "Unholy Blight"
+cost_per_rank = [2]
+description = """
+Gain SLA: Unholy Blight
+Activation Cost: 7 spell points.
+Cooldown: 6 seconds."""
+icon = "DDDAUnholyBlight"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    7,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Unholy Blight",
+    "Cleric",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Efficient Heighten"
+cost_per_rank = [2]
+description = "Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Point per heightened level"
+icon = "EfficientHeighten"
+internal_name = "DDDAEfficientHeighten"
+min_spent = 20
+ranks = 2
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DDDAEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostHeighten"
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DDDAEfficientMetamagicII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Heighten Spell"]
+req_type = "FeatAnySource"
+
+[[enhancement.requirement]]
+items = [
+    "DDDAEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Divine Disciple: Divine Smiting IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose:"
+icon = "DDDADivineSmiting"
+internal_name = "DDDADivineSmitingIV"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DDDADivineSmitingIII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Arcane Smiting IV"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells."
+icon = "ArcaneSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.selection.requirement]]
+items = ["DDDADivineSmitingIII"]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Divine Smiting IV"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Light, Negative, and Alignment spells."
+icon = "DDDADivineSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Negative",
+]
+
+[[enhancement.selection.requirement]]
+items = ["DDDADivineSmitingIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Disciple of Dusk or Dawn II"
+cost_per_rank = [1]
+description = "Select which Healing Amplification you would like."
+icon = "DDDiscipleOfDuskOrDawn"
+internal_name = "DDDiscipleOfDuskOrDawnII"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["DDDiscipleOfDuskOrDawnI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Disciple of Dawn"
+cost_per_rank = [1]
+description = "+[5/10/15] Positive Healing Amplification"
+icon = "DiscipleOfDawn"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "DDDiscipleOfDuskOrDawnI",
+    "Disciple of Dawn",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Disciple of Dusk"
+cost_per_rank = [1]
+description = "+[5/10/15] Negative Healing Amplification"
+icon = "DiscipleOfDusk"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "DDDiscipleOfDuskOrDawnI",
+    "Disciple of Dusk",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Wisdom II"
+cost_per_rank = [2]
+description = "+1 to Wisdom"
+icon = "Wisdom"
+internal_name = "DDDAWisdomII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.requirement]]
+items = ["DDDAWisdomI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Divine Disciple: Power Balance"
+cost_per_rank = [2]
+description = "Enhance your Alignment spells."
+icon = "DDDAPowerBalance"
+internal_name = "DDDAPowerBalance"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Balance of Power"
+cost_per_rank = [2]
+description = """
+The spells Order's Wrath and Chaos Hammer now deal their increased damage to
+all enemies, regardless of alignment."""
+icon = "DDDABalanceOfPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Holy Power"
+cost_per_rank = [2]
+description = """
+The spell Holy Smite now deals its increased damage to all enemies,
+regardless of alignment."""
+icon = "DDDAHolyPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Unholy Power"
+cost_per_rank = [2]
+description = """
+The spell unholy Blight now deals its increased damage to all enemies,
+regardless of alignment."""
+icon = "DDDAUnholyPower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Transcendence"
+cost_per_rank = [2]
+description = "Transcend your choices."
+icon = "DDDATranscendence"
+internal_name = "DDDATranscendence"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Bring Balance"
+cost_per_rank = [2]
+description = "The Word of Balance spell is added to your Spell book at level 7."
+icon = "DDDATranscendence"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    7,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Word of Balance",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    7,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Word of Balance",
+    "Cleric",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Transcend Darkness"
+cost_per_rank = [2]
+description = """
+You gain the spells you would have gained from the Path of Light core abilities.
+Requires having only Divine Emissary of Darkness Cores (and no Light Cores.)"""
+icon = "DDTranscendDarkness"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    8,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sunburst",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    8,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sunburst",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sunbeam",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sunbeam",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sun Bolt",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Sun Bolt",
+    "Cleric",
+]
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Transcend Light"
+cost_per_rank = [2]
+description = "You gain the spells you would have gained from the Path of Darkness core abilities."
+icon = "DDDATranscendLight"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    8,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Power Word: Stun",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Necrotic Ray",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Enervation",
+    "Dark Apostate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    8,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Power Word: Stun",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Necrotic Ray",
+    "Cleric",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Enervation",
+    "Cleric",
+]
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Divine Smiting V"
+cost_per_rank = [2]
+description = """
+Choose:
+Arcane Smiting V: +2% Critical Chance with Fire, Cold, Acid, Electric and Force spells
+Requires both Divine Emissary of Darkness/Light
+Divine Smiting V: +2% Critical Chance with Light, Negative, and Alignment spells"""
+icon = "DDDADivineSmiting"
+internal_name = "DDDADivineSmitingV"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Divine_Disciple_enhancements"
+read = "2026-09-29"
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["DDDADivineSmitingIV"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Arcane Smiting V"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Fire, Cold, Electric, Acid and Force spells."
+icon = "ArcaneSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.selection.requirement]]
+items = ["DDDADivineSmitingIV"]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore6",
+    "Divine Emissary of Darkness",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DDDACore1",
+    "Divine Emissary of Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Divine Smiting V"
+cost_per_rank = [2]
+description = "+2% Critical Chance with Light, Negative, and Alignment spells."
+icon = "DDDADivineSmiting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Negative",
+]
+
+[[enhancement.selection.requirement]]
+items = ["DDDADivineSmitingIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Disciple: Condemnation or Acceptance"
+cost_per_rank = [2]
+description = "Condemn the unusual or accept it as your own."
+icon = "DDDACondemnationOrAcceptance"
+internal_name = "DDDACondemnationOrAcceptance"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Acceptance"
+cost_per_rank = [2]
+description = """
++5% Spell Critical Damage with Fire, Cold, Electric, Acid and Force spells.
++2 Caster Level and Maximum Caster level with Fire, Cold, Acid, Electric, and Force spells."""
+icon = "Acceptance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Acid",
+    "Cold",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = [
+    "Acid",
+    "Cold",
+    "Fire",
+    "Force",
+]
+
+[[enhancement.selection]]
+name = "Condemnation"
+cost_per_rank = [2]
+description = "+5% Spell Critical Damage with Light, Negative, and Alignment Spells."
+icon = "DDDACondemnationOrAcceptance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Negative",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement]]
+name = "Divine Disciple: Divine Empowerment"
+cost_per_rank = [2]
+description = "+1 DC to your Necromancy and Evocation spells."
+icon = "DDDADivineEmpowerment"
+internal_name = "DDDADivineEmpowerment"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Necromancy",
+    "Evocation",
+]
+
+[[enhancement.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Cleric"]
+req_type = "BaseClass"

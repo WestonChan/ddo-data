@@ -1,0 +1,43 @@
+name = "Legendary The Bloody Boulder"
+description = """
+A large and featureless blood red stone. Visions of murder and mayhem possess
+you the first time you pick up The Bloody Boulder."""
+drop_location = "Catalyst Crafting, Turn in Epic Bloodstone or Legendary Bloodstone, its Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+icon = "Trinket_87b"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 35
+slot = "Trinket"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Legendary"
+value = 6
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Legendary"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

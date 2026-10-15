@@ -1,0 +1,22 @@
+name = "+2 Insightful Wisdom"
+description = "+2 Insightful bonus to Wisdom"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: nearly complete: insightful ability score (heroic)"

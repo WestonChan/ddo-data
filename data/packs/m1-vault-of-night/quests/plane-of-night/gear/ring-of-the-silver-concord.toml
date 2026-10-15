@@ -1,0 +1,34 @@
+name = "Ring of the Silver Concord"
+description = "This magical ring is a gift to a very select few of the Aurum inner circles."
+drop_location = "Plane of Night, Raid Warded Chest"
+icon = "Ring_23a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Command"
+value = 4
+value2 = -6
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

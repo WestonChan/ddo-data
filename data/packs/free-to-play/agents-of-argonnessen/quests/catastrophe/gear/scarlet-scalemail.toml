@@ -1,0 +1,53 @@
+name = "Scarlet Scalemail"
+description = """
+These crimson scales have had their draconic magic replaced with lingering Transmutation
+magic. However they're still tougher than their appearance lets on."""
+drop_location = "Catastrophe, end chest"
+enhancement_bonus = 2
+icon = "MediumArmor_22"
+item_category = "Armor"
+item_type = "Medium"
+material = "Red Dragonscale"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 8
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 3
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Catastrophe"

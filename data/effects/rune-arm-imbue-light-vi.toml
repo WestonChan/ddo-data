@@ -1,0 +1,3 @@
+name = "Rune Arm Imbue - Light VI"
+description_template = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d12 points of light damage per hit."
+verbose_name_template = "Rune Arm Imbue - Light VI"

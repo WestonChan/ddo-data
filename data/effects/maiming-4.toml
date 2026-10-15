@@ -1,0 +1,3 @@
+name = "Maiming 4"
+description_template = "This weapon has a twisted haft or grip and spikes along its blade, head, or point. When you score a critical hit with this weapon, it does an additional +4d8 damage."
+verbose_name_template = "Maiming 4"

@@ -1,0 +1,45 @@
+name = "The Theurgy of Spring"
+description = """
+Power evenly divided between the Sun and Moon, the power of Spring at its fullest
+is channeled here."""
+drop_location = "The Key to the Mythal, end chest (rare)"
+icon = "Ring_21g"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Ring"
+
+[[effect]]
+name = "Alchemical Air Attunement"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 168
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Insight"
+value = 84
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Key to the Mythal"

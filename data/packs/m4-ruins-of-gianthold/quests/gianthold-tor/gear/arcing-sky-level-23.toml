@@ -1,0 +1,59 @@
+name = "Arcing Sky (Level 23)"
+description = "Sparks dance across the surface of this armament."
+drop_location = "Return to Gianthold Tor, Blue Dragon chest (Epic Normal)"
+icon = "RuneArm_1d"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 23
+slot = "Runearm"
+
+[[clickie]]
+name = "Electrical Blast"
+clickie = "Electrical Blast"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical III"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Inherent"
+value = 5
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Electrical Blast",
+    "Unknown",
+]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "blue dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

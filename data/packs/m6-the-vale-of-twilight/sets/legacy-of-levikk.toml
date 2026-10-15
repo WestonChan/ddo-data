@@ -1,0 +1,55 @@
+name = "Legacy of Levikk"
+icon = "Levik"
+
+[[item]]
+name = "Champion of the Twins"
+
+[[item]]
+name = "Legendary Levik's Bracers"
+
+[[note]]
+kind = "set_bonus"
+field = "name"
+upstream = "Legacy of Levik"
+reason = "The wiki spells the set Legacy of Levikk."
+url = "https://ddowiki.com/page/Item:Legendary_Levik%27s_Bracers"
+read = "2026-10-02"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = 75
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+effect_type = "ACPercent"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+effect_type = "PRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [75]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"

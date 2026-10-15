@@ -1,0 +1,39 @@
+name = "Legendary Crumbling Gloves"
+description = """
+These gauntlets are rusted, but they still have a hefty weight to them. Strange
+runes are scratched within."""
+drop_location = "Oath of Vengeance, end chest"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oath of Vengeance"

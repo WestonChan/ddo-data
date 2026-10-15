@@ -1,0 +1,8337 @@
+name = "Viktranium Experiment Crafting"
+npc = "Workbenches in Ludendorf City Hall, one each for the Heroic and Legendary systems; the Wicked Viktranium Experiment device stands at the start of the Relentless raid (and at the matching spot in the Ludendorf Wax Museum in the Lamordia wilderness)"
+pack = "The Chill of Ravenloft"
+
+[[family]]
+family = "Lamordia_Heroic"
+
+[[family]]
+family = "Lamordia_Legendary"
+
+[[ingredient]]
+name = "Bleak Alternator"
+bind = "Unbound"
+drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Bleak Alternator"
+bind = "Unbound"
+drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
+tier = "legendary"
+
+[[ingredient]]
+name = "Bleak Conductor"
+bind = "Unbound"
+drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Bleak Conductor"
+bind = "Unbound"
+drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
+tier = "legendary"
+
+[[ingredient]]
+name = "Bleak Insulator"
+bind = "Unbound"
+drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Bleak Insulator"
+bind = "Unbound"
+drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
+tier = "legendary"
+
+[[ingredient]]
+name = "Bleak Resistor"
+bind = "Unbound"
+drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Bleak Resistor"
+bind = "Unbound"
+drop_location = "The Chill of Ravenloft quests, wilderness encounters and raid"
+tier = "legendary"
+
+[[ingredient]]
+name = "Bleak Wire"
+bind = "Unbound"
+drop_location = "The raid and wilderness encounters"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Bleak Wire"
+bind = "Unbound"
+drop_location = "The raid and wilderness encounters"
+tier = "legendary"
+
+[[ingredient]]
+name = "Bleak Transformer"
+bind = "Bound to Account on Acquire"
+drop_location = "The raid and special wilderness encounters"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Bleak Transformer"
+bind = "Bound to Account on Acquire"
+drop_location = "The raid and special wilderness encounters"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Bleak Memento"
+bind = "Bound to Account on Acquire"
+drop_location = "The raid Relentless only; Legendary only"
+tier = "legendary"
+
+[[citation]]
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-09-29"
+
+[[recipe]]
+note = "All recipe tables are on this page; the linked Calamitous weapons and Cataclysmic weapons and shields pages list the weapons, not recipes. Creates an ML8 Calamitous weapon (+4 Enhancement, 1[W], Vampirism 1, Melancholic, Dolorous and Miserable weapon slots and a Red slot, Bound to Account on Acquire, no Mythic bonuses); no augment counterpart."
+option = "Heroic Calamitous weapon"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+note = "Creates an ML34 Calamitous weapon (+15 Enhancement, 5.8[W], Melancholic, Dolorous, Miserable and Woeful weapon slots plus Orange and Purple slots, Bound to Account on Acquire, no Mythic bonuses); no augment counterpart."
+option = "Legendary Calamitous weapon"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Flames"
+slot = "lamordia: melancholic (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Flames (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Flames"
+slot = "lamordia: melancholic (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Flames (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Chill"
+slot = "lamordia: melancholic (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Chill (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Chill"
+slot = "lamordia: melancholic (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Chill (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Sparks"
+slot = "lamordia: melancholic (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Sparks (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Sparks"
+slot = "lamordia: melancholic (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Sparks (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Acid"
+slot = "lamordia: melancholic (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Acid (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Acid"
+slot = "lamordia: melancholic (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Acid (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Dimlight"
+slot = "lamordia: melancholic (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Dimlight (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Dimlight"
+slot = "lamordia: melancholic (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Dimlight (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Shadows"
+slot = "lamordia: melancholic (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Shadows (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Shadows"
+slot = "lamordia: melancholic (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Shadows (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Arcana"
+slot = "lamordia: melancholic (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Arcana (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Arcana"
+slot = "lamordia: melancholic (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Arcana (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. The page also notes it grants Alchemical Fire Attunement and not Flaming."
+option = "Dolorous Flames"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Flames (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Flames"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Flames (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. The page also notes it grants Alchemical Water Attunement and not Freezing."
+option = "Dolorous Chill"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Chill (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Chill"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Chill (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. The page also notes it grants Alchemical Air Attunement and not Jolting."
+option = "Dolorous Sparks"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Sparks (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Sparks"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Sparks (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous. The page also notes it grants Alchemical Earth Attunement and not Corroding."
+option = "Dolorous Acid"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Acid (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Acid"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Acid (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+note = "The page notes there is no Heroic version."
+option = "Dolorous Dimlight"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Dimlight (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+note = "The page notes there is no Heroic version."
+option = "Dolorous Shadows"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Shadows (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+note = "The page notes the game lists this Heroic augment as Dreadful instead of Dolorous."
+option = "Dolorous Focus"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Focus (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Focus"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Focus (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Acid"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Acid (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Acid"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Acid (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Cold"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Cold (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Cold"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Cold (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Electric"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Electric (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Electric"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Electric (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Fire"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Fire (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Fire"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Fire (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Force"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Force (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Force"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Force (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Light"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Light (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Light"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Light (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Negative"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Negative (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Negative"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Negative (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Positive"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Positive (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Positive"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Positive (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Repair"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Repair (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Repair"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Repair (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Arcana: Sonic"
+slot = "lamordia: dolorous (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Sonic (Heroic)"
+family = "Lamordia_Heroic"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Arcana: Sonic"
+slot = "lamordia: dolorous (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Arcana: Sonic (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Miserable Flames"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Flames (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Flames"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Flames (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Chill"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Chill (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Chill"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Chill (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Sparks"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Sparks (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Sparks"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Sparks (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Acid"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Acid (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Acid"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Acid (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Dimlight"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Dimlight (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Dimlight"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Dimlight (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Shadows"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Shadows (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Shadows"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Shadows (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Acid"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Acid (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Acid"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Acid (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Cold"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Cold (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Cold"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Cold (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Electric"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Electric (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Electric"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Electric (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Fire"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Fire (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Fire"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Fire (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Force"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Force (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Force"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Force (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Light"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Light (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Light"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Light (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Negative"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Negative (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Negative"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Negative (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Positive"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Positive (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Positive"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Positive (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Repair"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Repair (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Repair"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Repair (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Arcana: Sonic"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Sonic (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Arcana: Sonic"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Arcana: Sonic (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+note = "The page names the Heroic version Miserable Destruction."
+option = "Miserable (Improved) Destruction"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Destruction (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable (Improved) Destruction"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Improved Destruction (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Maiming"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Maiming (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Maiming"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Maiming (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Humanoid Bane"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Humanoid Bane (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Humanoid Bane"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Humanoid Bane (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Monstrous Humanoid Bane"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Monstrous Humanoid Bane (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Monstrous Humanoid Bane"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Monstrous Humanoid Bane (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Undead Bane"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Undead Bane (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Undead Bane"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Undead Bane (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Vermin Bane"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Vermin Bane (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Vermin Bane"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Vermin Bane (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Armor-Piercing"
+slot = "lamordia: miserable (weapon)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Armor-Piercing (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Armor-Piercing"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Armor-Piercing (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+note = "The page notes Woeful weapon augments are Legendary only."
+option = "Woeful Flames"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Flames (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "The page notes Woeful weapon augments are Legendary only."
+option = "Woeful Chill"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Chill (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "The page notes Woeful weapon augments are Legendary only."
+option = "Woeful Sparks"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Sparks (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "The page notes Woeful weapon augments are Legendary only."
+option = "Woeful Acid"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Acid (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "The page notes Woeful weapon augments are Legendary only."
+option = "Woeful Dimlight"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Dimlight (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "The page notes Woeful weapon augments are Legendary only."
+option = "Woeful Shadows"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Shadows (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Melancholic False Life"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic False Life (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic False Life"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic False Life (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Charisma"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Charisma (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Charisma"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Charisma (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Constitution"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Constitution (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Constitution"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Constitution (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Dexterity"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Dexterity (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Dexterity"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Dexterity (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Intelligence"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Intelligence (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Intelligence"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Intelligence (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Strength"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Strength (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Strength"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Strength (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Wisdom"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Wisdom (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Wisdom"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Wisdom (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Acid Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Acid Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Acid Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Acid Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Cold Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Cold Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Cold Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Cold Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Electric Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Electric Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Electric Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Electric Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Fire Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Fire Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Fire Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Fire Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Force Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Force Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Force Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Force Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Light Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Light Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Light Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Light Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Negative Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Negative Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Negative Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Negative Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Positive Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Positive Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Positive Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Positive Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Repair Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Repair Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Repair Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Repair Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Sonic Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Sonic Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Sonic Spell Crit Damage"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Sonic Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Doublestrike"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Doublestrike (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Doublestrike"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Doublestrike (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Melancholic Doubleshot"
+slot = "lamordia: melancholic (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Doubleshot (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe]]
+option = "Melancholic Doubleshot"
+slot = "lamordia: melancholic (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Doubleshot (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe]]
+option = "Dolorous Healing Amplification"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Healing Amplification (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Healing Amplification"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Healing Amplification (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Negative Amplification"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Negative Amplification (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Negative Amplification"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Negative Amplification (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Repair Amplification"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Repair Amplification (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Repair Amplification"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Repair Amplification (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Accuracy"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Accuracy (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Accuracy"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Accuracy (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Deception"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Deception (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Deception"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Deception (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Seeker"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Seeker (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Seeker"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Seeker (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Acid Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Acid Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Acid Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Acid Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Cold Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Cold Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Cold Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Cold Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Electric Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Electric Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Electric Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Electric Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Fire Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Fire Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Fire Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Fire Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Force Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Force Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Force Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Force Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Light Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Light Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Light Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Light Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Negative Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Negative Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Negative Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Negative Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Positive Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Positive Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Positive Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Positive Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Repair Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Repair Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Repair Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Repair Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Sonic Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Sonic Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Sonic Spell Crit Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Sonic Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Quality Charisma"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Quality Charisma (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Quality Charisma"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Quality Charisma (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Quality Constitution"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Quality Constitution (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Quality Constitution"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Quality Constitution (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Quality Dexterity"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Quality Dexterity (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Quality Dexterity"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Quality Dexterity (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Quality Intelligence"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Quality Intelligence (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Quality Intelligence"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Quality Intelligence (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Quality Strength"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Quality Strength (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Quality Strength"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Quality Strength (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Quality Wisdom"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Quality Wisdom (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Quality Wisdom"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Quality Wisdom (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Quality Accuracy"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Quality Accuracy (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Quality Accuracy"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Quality Accuracy (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Quality Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Quality Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Quality Damage"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Quality Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Quality Combat Mastery"
+slot = "lamordia: dolorous (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Quality Combat Mastery (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Quality Combat Mastery"
+slot = "lamordia: dolorous (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Quality Combat Mastery (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe]]
+option = "Miserable Physical Resistance Rating"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Physical Resistance Rating (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Physical Resistance Rating"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Physical Resistance Rating (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Magical Resistance Rating"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Magical Resistance Rating (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Magical Resistance Rating"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Magical Resistance Rating (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Stunning"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Stunning (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Stunning"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Stunning (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Trip"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Trip (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Trip"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Trip (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Sunder"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Sunder (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Sunder"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Sunder (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Assassinate"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Assassinate (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Assassinate"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Assassinate (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Spell Penetration"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Spell Penetration (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Spell Penetration"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Spell Penetration (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Acid Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Acid Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Acid Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Acid Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Cold Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Cold Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Cold Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Cold Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Electric Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Electric Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Electric Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Electric Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Fire Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Fire Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Fire Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Fire Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Force Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Force Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Force Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Force Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Light Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Light Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Light Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Light Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Negative Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Negative Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Negative Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Negative Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Positive Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Positive Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Positive Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Positive Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Repair Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Repair Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Repair Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Repair Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Miserable Sonic Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Miserable Sonic Spell Crit Damage (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Miserable Sonic Spell Crit Damage"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Sonic Spell Crit Damage (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Woeful Resistance"
+slot = "lamordia: woeful (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Woeful Resistance (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Woeful Resistance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Resistance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Woeful Enhanced Ghostly"
+slot = "lamordia: woeful (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Woeful Enhanced Ghostly (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Woeful Enhanced Ghostly"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Enhanced Ghostly (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Woeful Relentless Fury"
+slot = "lamordia: woeful (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Woeful Relentless Fury (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Woeful Relentless Fury"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Relentless Fury (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Woeful Armor Piercing"
+slot = "lamordia: woeful (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Woeful Armor Piercing (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Woeful Armor Piercing"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Armor Piercing (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Woeful Wizardry"
+slot = "lamordia: woeful (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Woeful Wizardry (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Woeful Wizardry"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Wizardry (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Woeful Profane DCs"
+slot = "lamordia: woeful (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Woeful Profane DCs (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Woeful Profane DCs"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Profane DCs (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Woeful Sacred DCs"
+slot = "lamordia: woeful (accessory)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Woeful Sacred DCs (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Woeful Sacred DCs"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Sacred DCs (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Melancholic Device"
+slot = "lamordia: melancholic (armor)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Device (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Melancholic Device"
+slot = "lamordia: melancholic (armor)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Device (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Melancholic Plating"
+slot = "lamordia: melancholic (armor)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Plating (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Melancholic Plating"
+slot = "lamordia: melancholic (armor)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Plating (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Melancholic Converter"
+slot = "lamordia: melancholic (armor)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Converter (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Melancholic Converter"
+slot = "lamordia: melancholic (armor)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Converter (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Melancholic Booster"
+slot = "lamordia: melancholic (armor)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Melancholic Booster (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 5
+
+[[recipe.ingredient]]
+ingredient = "Bleak Wire"
+quantity = 20
+
+[[recipe]]
+option = "Melancholic Booster"
+slot = "lamordia: melancholic (armor)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Melancholic Booster (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Wire"
+quantity = 100
+
+[[recipe]]
+option = "Dolorous Silencer"
+slot = "lamordia: dolorous (armor)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Silencer (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Silencer"
+slot = "lamordia: dolorous (armor)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Silencer (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Invigorator"
+slot = "lamordia: dolorous (armor)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Invigorator (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Invigorator"
+slot = "lamordia: dolorous (armor)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Invigorator (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+option = "Dolorous Voidwheel"
+slot = "lamordia: dolorous (armor)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dolorous Voidwheel (Heroic)"
+family = "Lamordia_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Bleak Alternator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Conductor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Insulator"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Resistor"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Bleak Transformer"
+quantity = 10
+
+[[recipe]]
+option = "Dolorous Voidwheel"
+slot = "lamordia: dolorous (armor)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dolorous Voidwheel (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment Crafting: a separate device inside the Relentless raid that makes Legendary-only augments. Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Metalline"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Metalline (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Planar"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Planar (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Acid Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Acid Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Cold Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Cold Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Electric Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Electric Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Fire Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Fire Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Force Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Force Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Light Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Light Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Negative Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Negative Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Positive Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Positive Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Repair Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Repair Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Sonic Spell Crit Chance"
+slot = "lamordia: miserable (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Sonic Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Legendary Armor Piercing"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Legendary Armor Piercing (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Force Absorption"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Force Absorption (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless."
+option = "Miserable Rebellion"
+slot = "lamordia: miserable (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Miserable Rebellion (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Transformer"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Exceptional Spell Focus Mastery"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Exceptional Spell Focus Mastery (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Salt"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Salt (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Shadow"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Shadow (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Magma"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Magma (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Frostbite"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Frostbite (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Lightning"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Lightning (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Acidburn"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Acidburn (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Echoes"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Echoes (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Venom"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Venom (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page's cost reads Bleak Mementos, which exist only as Legendary Bleak Mementos."
+option = "Woeful Energy"
+slot = "lamordia: woeful (weapon)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Energy (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Acid Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Acid Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Cold Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Cold Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Electric Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Electric Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Fire Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Fire Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Force Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Force Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Light Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Light Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Negative Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Negative Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Positive Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Positive Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Repair Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Repair Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Sonic Spell Crit Chance"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Sonic Spell Crit Chance (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Quality Seeker"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Quality Seeker (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Greater Marksmanship"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Greater Marksmanship (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Strength of Purpose"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Strength of Purpose (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless. The page warns these augments are Bound to Character on Acquire."
+option = "Woeful Quality Spell Focus Mastery"
+slot = "lamordia: woeful (accessory)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Woeful Quality Spell Focus Mastery (Legendary)"
+family = "Lamordia_Legendary"
+level = 34
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 50
+
+[[recipe]]
+note = "Wicked Viktranium Experiment device in Relentless: creates a Cataclysmic weapon (Bound to Character on Acquire) or shield (Bound to Account on Acquire), a Calamitous weapon with +3/+6 loaded weapon dice; no augment counterpart."
+option = "Legendary Cataclysmic weapon or shield"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Alternator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Conductor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Insulator"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Resistor"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Legendary Bleak Memento"
+quantity = 25

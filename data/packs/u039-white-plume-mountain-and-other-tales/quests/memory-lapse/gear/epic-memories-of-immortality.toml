@@ -1,0 +1,39 @@
+name = "Epic Memories of Immortality"
+description = """
+A fragment of a misplaced thought, a brilliant light you once remembered. This
+tattered memory was once the face of someone courageous."""
+drop_location = "Memory Lapse, End chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 23
+slot = "Head"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 36
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 43
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Memory Lapse"

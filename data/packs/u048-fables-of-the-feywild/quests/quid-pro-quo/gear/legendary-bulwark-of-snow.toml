@@ -1,0 +1,69 @@
+name = "Legendary Bulwark of Snow"
+description = """
+This crystalline shield radiates the energies of Winter, and is adept at protecting
+you from enemy attacks."""
+drop_location = "Quid Pro Quo, End chest"
+enhancement_bonus = 15
+icon = "Shield_2"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Mithral"
+minimum_level = 29
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 40
+armor_check_penalty = -6
+armor_type = "Shield"
+damage_reduction = 23
+max_dex_bonus = 4
+shield_bonus = 30
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Legendary Avalanche"
+
+[[effect]]
+name = "Shield of Snow"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Quid Pro Quo"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 8
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

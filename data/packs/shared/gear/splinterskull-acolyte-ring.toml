@@ -1,0 +1,25 @@
+name = "Splinterskull Acolyte Ring"
+description = "A dark metal ring emblazoned with the emblem of Splinterskull."
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Ring_10"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 5
+slot = "Ring"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 42
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 42
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

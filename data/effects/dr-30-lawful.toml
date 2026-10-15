@@ -1,0 +1,11 @@
+name = "DR 30/Lawful"
+description_template = "Reduces physical damage by 30, except from Lawful attacks."
+verbose_name_template = "DR 30/Lawful"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "DR Damage Reduction 30/Lawful"
+reason = "The corrected DR amount and damage type follow this effect's own name and description."
+url = "internal:effect-name-and-description"
+read = "2026-10-05"

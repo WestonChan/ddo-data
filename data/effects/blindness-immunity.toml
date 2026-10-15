@@ -1,0 +1,3 @@
+name = "Blindness Immunity"
+description_template = "Grants its wearer immunity to blindness effects."
+verbose_name_template = "Blindness Immunity"

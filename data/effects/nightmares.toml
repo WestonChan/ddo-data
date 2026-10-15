@@ -1,0 +1,3 @@
+name = "Nightmares"
+description_template = "This weapon terrorizes your foes, applying a Mind Thrust effect on successful hits (dealing 5 to 40 force damage, Will vs. Enchantments negates) and exposing your foes to their greatest fears on vorpal hits, acting as a Phantasmal Killer spell."
+verbose_name_template = "Nightmares"

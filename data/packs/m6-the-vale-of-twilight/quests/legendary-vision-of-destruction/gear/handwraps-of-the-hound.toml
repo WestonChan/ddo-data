@@ -1,0 +1,58 @@
+name = "Handwraps of the Hound"
+accepts_sentience = true
+description = """
+These wraps have bestial fangs sewn across the knuckles, and appear to be quite
+good at drawing blood."""
+drop_location = "Legendary Vision of Destruction, End chest"
+enhancement_bonus = 15
+icon = "HandWraps_1h"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Sovereign Nightmares"
+
+[[effect]]
+name = "Acid Vulnerability"
+
+[[effect]]
+name = "Acid Blast 6"
+
+[[effect]]
+name = "Legendary Acid Torrent"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Handwraps"

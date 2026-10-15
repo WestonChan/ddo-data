@@ -13,11 +13,14 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(classes)).routes(routes!(class_detail))
 }
 
-const CLASS_COLUMNS: &str = "id, name, base_class, base_class_id, not_heroic, description, small_icon, large_icon, skill_points, hit_points,
+const CLASS_COLUMNS: &str = "id, name, base_class, base_class_id, not_heroic, description,
+                             small_icon, large_icon,
+                             skill_points, hit_points,
                              alignments, fortitude, reflex, will, bab, spell_points_per_level, casting_stats, class_specific_feat_types";
 
 const CLASSES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("base_class", "listed.base_class"),
     ("skill_points", "listed.skill_points"),
@@ -95,7 +98,7 @@ async fn class_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
                 "SELECT spell_name AS name, spell_level, cost, max_caster_level, spell_id FROM class_spells WHERE class_id = ?1 ORDER BY spell_level, spell_name",
                 [id],
             )?);
-            let mut feat_slots = json_rows(db, "SELECT level, feat_type, auto_populate, singular, update_list FROM class_feat_slots WHERE class_id = ?1 ORDER BY level, id", [id])?;
+            let mut feat_slots = json_rows(db, "SELECT level, feat_type, auto_populate, singular, update_list FROM class_feat_slots WHERE class_id = ?1 ORDER BY level, sort_order", [id])?;
             for feat_slot in &mut feat_slots {
                 convert_to_booleans(feat_slot, &["auto_populate", "singular"]);
             }
@@ -107,7 +110,7 @@ async fn class_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
             )?);
             class["feats"] = Value::Array(json_rows(
                 db,
-                "SELECT id, name, description, icon, acquire, max_times_acquire FROM feats WHERE source_kind = 'class' AND source_id = ?1 ORDER BY name",
+                "SELECT id, name, description, icon, acquire, max_times_acquire FROM feats WHERE source_kind = 'class' AND source_id = ?1 ORDER BY name, description, slug",
                 [id],
             )?);
             Ok(Json(class))

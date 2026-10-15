@@ -1,0 +1,48 @@
+name = "The Autumn Equinox"
+description = """
+Power evenly divided between the Sun and Moon, the power of Autumn at its fullest
+is channeled here."""
+drop_location = "Voices of the Dead, end chest (rare)"
+icon = "Ring_21g"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Ring"
+
+[[effect]]
+name = "Alchemical Earth Attunement"
+
+[[effect]]
+name = "Bloody Thorns"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

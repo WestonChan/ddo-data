@@ -1,0 +1,3 @@
+name = "Acid V"
+description_template = "On Hit: 5 to 20 Acid Damage."
+verbose_name_template = "Acid V"

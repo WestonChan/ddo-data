@@ -1,0 +1,30 @@
+name = "The Knight Who Cried Windmill"
+bestowed_by = "Sir Pifflegust"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Fables of the Feywild"
+patron = "The Summer Court"
+zone = "Saffron Hill"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Knight_Who_Cried_Windmill"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

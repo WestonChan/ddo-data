@@ -1,0 +1,11 @@
+name = "Blurry"
+description_template = "Equipping this item causes you to become slightly blurry. Attacks from enemies have a 20% chance to miss you due to concealment."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Blurry +20"
+
+[[bonus]]
+amount_from = 0
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Displacement"

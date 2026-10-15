@@ -1,0 +1,29 @@
+name = "Book Burning"
+bestowed_by = "Jurin'ildren"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Magic of Myth Drannor"
+patron = "Cormanthor Elves"
+zone = "Burning Library"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Book_Burning"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 35

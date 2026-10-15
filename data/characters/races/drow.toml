@@ -1,0 +1,56 @@
+name = "Drow"
+build_points = [
+    28,
+    28,
+    30,
+    32,
+]
+description = """
+Drow elves are basically similar to all other elves (Aerenal, Valenar, or
+Khorvaire). DDO has released them as a separate race, although they share
+several racial traits and enhancements with elves."""
+short_name = "Drow"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Dexterity"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Constitution"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Intelligence"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Charisma"
+
+[[granted_feat]]
+feat = "Elven Keen Senses"
+
+[[granted_feat]]
+feat = "Enchantment Save Bonus"
+
+[[granted_feat]]
+feat = "Exotic Weapon Proficiency: Shuriken"
+
+[[granted_feat]]
+feat = "Immunity to Sleep"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Rapier"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Shortsword"
+
+[[granted_feat]]
+feat = "Shuriken Expertise"
+
+[[granted_feat]]
+feat = "Spell Save Bonus"
+
+[[granted_feat]]
+feat = "Drow Spell Resistance"

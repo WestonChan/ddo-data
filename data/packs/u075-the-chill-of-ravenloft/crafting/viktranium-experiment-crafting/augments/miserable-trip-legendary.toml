@@ -1,0 +1,21 @@
+name = "Miserable Trip (Legendary)"
+description = "+17 Enhancement bonus to Trip DCs."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Trip DC"
+bonus_type = "Enhancement"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[slot]]
+slot = "lamordia: miserable (accessory)"

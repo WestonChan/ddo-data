@@ -1,0 +1,36 @@
+name = "Downcast Nimble Cloak"
+description = "This cloak was abandoned on a rooftop when skullduggery went wrong."
+drop_location = "The Proper Authorities, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 8
+slot = "Back"
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Proper Authorities"

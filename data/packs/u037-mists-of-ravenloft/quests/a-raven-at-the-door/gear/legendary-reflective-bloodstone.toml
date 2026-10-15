@@ -1,0 +1,37 @@
+name = "Legendary Reflective Bloodstone"
+description = "This pendant is shimmering, shining... it's almost... hypnotic..."
+drop_location = "A Raven at the Door, end chest, Rescue Yesper from the Dungeons optional chest"
+icon = "Necklace_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, rescue yesper from the dungeons optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Raven at the Door"

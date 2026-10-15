@@ -1,0 +1,34 @@
+name = "Helm of the Hunter"
+description = "The Master of the Hunt has graciously granted you this as a token of his respect."
+drop_location = "Hunt or Be Hunted, end chest"
+icon = "Helmet_1b"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 29
+slot = "Head"
+
+[[effect]]
+name = "Eversight"
+
+[[effect]]
+name = "Druidic Survival Mastery"
+
+[[effect]]
+name = "Druidic Stoneshape"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hunt or Be Hunted"

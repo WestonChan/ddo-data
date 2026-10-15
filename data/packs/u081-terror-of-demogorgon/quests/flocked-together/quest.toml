@@ -1,0 +1,30 @@
+name = "Flocked Together"
+bestowed_by = "Regmur the Learned"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+zone = "The Gallery of Angels"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Flocked_Together"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 37
+
+[[run]]
+tier = "legendary"
+level = 37

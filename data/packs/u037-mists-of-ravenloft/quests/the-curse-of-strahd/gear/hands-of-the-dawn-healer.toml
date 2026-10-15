@@ -1,0 +1,40 @@
+name = "Hands of the Dawn Healer"
+description = "A pair of small plaster hands that smell like smoke."
+drop_location = "The Curse of Strahd, raid chest"
+icon = "Trinket_37"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 28
+slot = "Trinket"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 145
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 20
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"

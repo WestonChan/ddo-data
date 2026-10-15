@@ -1,0 +1,39 @@
+name = "Legendary Scarlet Scale Cloak"
+description = """
+Made to resemble dragonscale, this cloak isn't much protection versus an open
+flame. But nothing looks better on a Dragonborn."""
+drop_location = "The Final Vintage, End chest"
+icon = "Cloak_2"
+item_category = "Clothing"
+material = "Red Dragonscale"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Breath Weapon Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Vintage"

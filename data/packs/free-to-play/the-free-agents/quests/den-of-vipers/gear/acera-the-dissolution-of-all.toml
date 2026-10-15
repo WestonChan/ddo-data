@@ -1,0 +1,55 @@
+name = "Acera, the Dissolution of All"
+accepts_sentience = true
+description = """
+Not content with bringing destruction to wherever it came from, after being
+recovered from the mists, this hungry blade demands more."""
+drop_location = "Den of Vipers, end chest"
+enhancement_bonus = 15
+icon = "Greatsword_1r"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Bone"
+minimum_level = 33
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Lingering Acidic Burn"
+
+[[effect]]
+name = "Legendary Acid Torrent"
+
+[[effect]]
+name = "Acid Blast 7"
+
+[[socket]]
+slot = "crafting: sealed in mist"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Den of Vipers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.6
+handedness = "Two-handed"
+weapon_type = "Great Sword"

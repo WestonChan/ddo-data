@@ -1,0 +1,36 @@
+name = "Lunar Gem of Search and Spot (Legendary)"
+description = """
++6 Profane Bonus to Search and Spot
+Drops in: Snowfall and Sunlight, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Search"
+bonus_type = "Profane"
+value = 6
+
+[[effect]]
+name = "Spot"
+bonus_type = "Profane"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Profane"
+effect_type = "SkillBonus"
+targets = [
+    "Search",
+    "Spot",
+]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

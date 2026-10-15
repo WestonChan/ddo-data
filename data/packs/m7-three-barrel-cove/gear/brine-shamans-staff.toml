@@ -1,0 +1,79 @@
+name = "Brine Shaman's Staff"
+description = """
+This staff, made from weathered driftwood, is adorned with small shells and
+smells of the sea air. It has the power to summon a strong and sudden gust
+of wind, likely used to fill the sails of a ship. This power recharges automatically
+as time passes."""
+drop_location = "Three-Barrel Cove (heroic), End reward"
+enhancement_bonus = 2
+icon = "Quarterstaff_15c"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 6
+slot = "Main Hand"
+
+[[clickie]]
+name = "Gust of Wind"
+clickie = "Gust of Wind"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 6
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Enhancement"
+value = 48
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Enhancement"
+value = 48
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Tidal"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Gust of Wind"]
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "reward"
+name = "Three-Barrel Cove"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

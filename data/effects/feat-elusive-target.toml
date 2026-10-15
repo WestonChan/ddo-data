@@ -1,0 +1,3 @@
+name = "Feat Elusive Target"
+description_template = "Passive: You gain the feat Elusive Target."
+verbose_name_template = "Feat - Elusive Target"

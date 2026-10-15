@@ -1,0 +1,21 @@
+name = "Spellcraft +10"
+description = "Competence bonus to Spellcraft"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect = "Spellcraft"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[slot]]
+slot = "crafting: slavelords extra"

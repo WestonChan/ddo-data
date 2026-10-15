@@ -1,0 +1,29 @@
+name = "What Dreams May Come"
+bestowed_by = "Erryn Riston"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Vecna Unleashed"
+patron = "Morgrave University"
+zone = "Morgrave University Dormitories"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/What_Dreams_May_Come"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

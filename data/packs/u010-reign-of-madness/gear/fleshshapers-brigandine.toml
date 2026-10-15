@@ -1,0 +1,41 @@
+name = "Fleshshaper's Brigandine"
+description = """
+A suit of metal plates once worn by a mad fleshcrafter of Xoriat. It's said
+that there is a matching staff, and like that staff this armor will expand
+the wearer's ability to manipulate positive and negative energies."""
+drop_location = "Reign of Madness, End reward"
+enhancement_bonus = 5
+icon = "MediumArmor_18"
+item_category = "Armor"
+item_type = "Medium"
+material = "Magesteel"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 13
+armor_check_penalty = -4
+armor_type = "Medium"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 20
+
+[[effect]]
+name = "Fleshmaker"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Disintegration Guard"
+
+[[effect]]
+name = "Power Drain"
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[source]]
+kind = "quest_chain"
+name = "Reign of Madness"

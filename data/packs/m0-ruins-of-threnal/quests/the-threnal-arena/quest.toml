@@ -1,0 +1,15 @@
+name = "The Threnal Arena"
+bestowed_by = "Threnal Ceremonial Blade"
+difficulties = ["casual"]
+favor = 0
+pack = "Ruins of Threnal"
+zone = "Ruins of Threnal"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Threnal_Arena"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

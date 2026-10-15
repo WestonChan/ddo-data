@@ -1,0 +1,75 @@
+name = "Templar's Bulwark"
+description = """
+Templars of the Silver Flame wield these massive tower shields, said to blessed
+by Tira Miron, to guard against weapon blows and elemental spells alike."""
+drop_location = "The Lords of Dust, Extra chest for purifying all altars"
+enhancement_bonus = 4
+icon = "Shield_3"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Mithral"
+minimum_level = 16
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 40
+armor_check_penalty = -6
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 4
+shield_bonus = 12
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "extra chest for purifying all altars"
+kind = "quest"
+loot_type = "chest"
+name = "The Lords of Dust"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

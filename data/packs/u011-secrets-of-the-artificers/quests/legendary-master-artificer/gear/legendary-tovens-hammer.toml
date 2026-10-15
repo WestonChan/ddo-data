@@ -1,0 +1,59 @@
+name = "Legendary Toven's Hammer"
+description = "When all you have is a hammer, everything looks like a nail."
+drop_location = "Legendary Master Artificer, end and optional chest"
+icon = "RuneArm_2b"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Rust"
+minimum_level = 29
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Transform Kinetic Energy"
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Sovereign Lightning Strike"
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Electrical Storm",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Master Artificer"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

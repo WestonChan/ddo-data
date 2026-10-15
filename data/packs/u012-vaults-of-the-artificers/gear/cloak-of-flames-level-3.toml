@@ -1,0 +1,29 @@
+name = "Cloak of Flames (level 3)"
+description = """
+Imbued with the power of a bound Fire Elemental, this smooth cloak of crimson
+fabric absorbs harmful flames and makes your fire spells stronger."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Cloak_15"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Back"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 54
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 1
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

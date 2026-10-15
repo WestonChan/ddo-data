@@ -1,0 +1,88 @@
+name = "Cutthroat's Smallblade (legacy) (level 8)"
+description = """
+When a cutlass is simply too big for the job, a pirate will turn instead to
+a trusty smallblade. This one is serrated and quite adept at inflicting painful
+wounds on living creatures."""
+drop_location = "Treasure of Crystal Cove, Turn in 650 Copper Doubloon 375 Silver Doubloon 20 Stolen Obsidian at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 2
+icon = "Shortsword_3"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Bleed"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+3 Enhancement Bonus"
+description = "+3 Enhancement Bonus: +3 Enhancement bonus to attack and damage rolls."
+icon = "Upgrade"
+min_level = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Slicing"
+description = """
+Slicing: This weapon is incredibly sharp and will do an additional 1 to 4 damage to
+targets that are vulnerable to bleeding."""
+icon = "Upgrade"
+min_level = 8
+
+[[socket.option.modifier]]
+bonus_type = "Enhancement"
+dice_damage = "Bleeding"
+dice_number = [1]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Shortsword"

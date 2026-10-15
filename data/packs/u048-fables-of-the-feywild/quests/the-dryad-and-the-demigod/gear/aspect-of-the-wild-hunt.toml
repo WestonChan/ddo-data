@@ -1,0 +1,40 @@
+name = "Aspect of the Wild Hunt"
+description = """
+This ferocious hood can only be mastered by those who have become one with their
+animalistic aspect..."""
+drop_location = "The Dryad and the Demigod, End chest and optional chest"
+icon = "Helmet_9"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Head"
+
+[[effect]]
+name = "Bone Paws"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 45
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"

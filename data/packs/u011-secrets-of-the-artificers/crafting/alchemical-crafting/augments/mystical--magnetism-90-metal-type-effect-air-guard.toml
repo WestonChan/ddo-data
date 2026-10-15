@@ -1,0 +1,103 @@
+name = "Mystical: Magnetism +90, Metal Type Effect, Air Guard"
+description = """
+Magnetism +90: Passive: +90 Equipment bonus to Electricity Spell Power.
+Bonus Effects based on the Material Selected.
+Air Guard: This Weapon stores the incredible, dynamic power of the air deep within.
+When the user of this weapon is successfully attacked in melee, this power
+occasionally comes to the surface, knocking enemies over or speeding up the
+wearer with rushing winds."""
+family = "Alchemical"
+min_level = 16
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [90]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    90,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 1: Adamantine"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    90,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 1: Byeshk"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    90,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 1: Cold Iron"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    90,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 1: Crystal"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    90,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 1: Flametouched Iron"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    90,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 1: Silver"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[slot]]
+slot = "crafting: alchemical tier 1"

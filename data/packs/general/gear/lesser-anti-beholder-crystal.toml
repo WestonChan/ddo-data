@@ -1,0 +1,25 @@
+name = "Lesser Anti-Beholder Crystal"
+description = """
+Beneath the polished surface of this magical blue crystal lie small carvings
+off closed beholder eyes."""
+drop_location = "Random, DDO Store"
+icon = "Trinket_81"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Lesser Absorption of Beholder and Doomsphere Spells"
+clickie = "Lesser Absorption of Beholder and Doomsphere Spells"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    20,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Lesser Absorption of Beholder and Doomsphere Spells"]

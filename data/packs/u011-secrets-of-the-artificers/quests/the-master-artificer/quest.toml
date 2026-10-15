@@ -1,0 +1,22 @@
+name = "The Master Artificer"
+bestowed_by = "Vesper d'Cannith"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+is_raid = true
+pack = "Secrets of the Artificers"
+patron = "House Cannith"
+zone = "Toven's Workshop"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Master_Artificer"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

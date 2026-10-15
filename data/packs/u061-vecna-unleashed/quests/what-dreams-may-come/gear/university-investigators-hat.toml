@@ -1,0 +1,39 @@
+name = "University Investigator's Hat"
+description = """
+The markings on this hat make it seem as if it were once used by an Inquisitive,
+but its destiny remains a mystery."""
+drop_location = "What Dreams May Come, End chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 18
+slot = "Head"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Dreams May Come"

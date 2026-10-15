@@ -1,0 +1,87 @@
+name = "Legendary Celestial Amethyst Ring"
+description = "A blazing amethyst is embedded into this ring."
+drop_location = "House of Pain, End chest"
+icon = "Ring_31"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Greater Auto-Repair"
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Insight"
+value = 27
+
+[[effect]]
+name = "Repair"
+bonus_type = "Competence"
+value = 20
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+13 Strength"
+description = "+13 Enhancement bonus to Strength"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+13 Intelligence"
+description = "+13 Enhancement bonus to Intelligence"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "+13 Charisma"
+description = "+13 Enhancement bonus to Charisma"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "House of Pain"

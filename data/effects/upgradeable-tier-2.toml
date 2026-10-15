@@ -1,0 +1,3 @@
+name = "Upgradeable - Tier 2"
+description_template = "This is a tier 2 upgradeable item."
+verbose_name_template = "Upgradeable - Tier 2"

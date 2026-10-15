@@ -1,0 +1,13 @@
+name = "Aspect of Ice II"
+description = """
+Freezing Ice Guard: This item stores the pitiless immovable power of the ice deep within.
+When the wearer of this item is successfully attacked in melee, this power
+occasionally comes to the surface, attempting to freeze an enemy solid and
+encase them in ice.
+Air:Water:Air+Water"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

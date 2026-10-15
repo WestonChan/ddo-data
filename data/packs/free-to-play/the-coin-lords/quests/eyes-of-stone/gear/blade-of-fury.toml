@@ -1,0 +1,48 @@
+name = "Blade of Fury"
+description = """
+The signature weapon of a Medusa general from Droaam who attempted to invade
+Stormreach. It appears that it allowed her to enter a bloodthirsty rage when
+she was sufficiently wounded."""
+drop_location = "Eyes of Stone, Coin Lords' chest"
+enhancement_bonus = 4
+icon = "Greatsword_11"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Medusa Fury"
+
+[[effect]]
+name = "Demon Fever"
+
+[[effect]]
+name = "Wounding 2"
+
+[[effect]]
+name = "Fusible"
+
+[[source]]
+chest = "coin lords' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Eyes of Stone"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

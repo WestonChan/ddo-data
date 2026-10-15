@@ -1,0 +1,59 @@
+name = "Legendary Minion of the Mockery"
+icon = "WrathOfSoraKell"
+
+[[augment]]
+name = "Legendary Minion of the Mockery"
+family = "LostPurpose"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Assassinate"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Dodge"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Damage"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Sneak Attack Damage"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Sneak Attack Damage"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Sneak Attack Damage"
+effect_type = "DodgeBonus"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"

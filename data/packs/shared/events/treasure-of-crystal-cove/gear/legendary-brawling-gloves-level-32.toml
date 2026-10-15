@@ -1,0 +1,34 @@
+name = "Legendary Brawling Gloves (level 32)"
+description = """
+Some pirates prefer to brawl with their bare hands. These strength-enhancing
+gloves are perfect for their fighting style."""
+drop_location = "Treasure of Crystal Cove, Turn in 1500 Silver Doubloon 700 Golden Doubloon 45 Stolen Jasper 1000 Green Dragonshard at Euphonia's Barter Box"
+icon = "Gloves_6b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 32
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Spike-Studded"
+
+[[effect]]
+name = "Glass Jaw Strike"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

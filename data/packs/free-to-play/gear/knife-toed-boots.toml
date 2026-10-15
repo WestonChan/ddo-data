@@ -1,0 +1,43 @@
+name = "Knife Toed Boots"
+description = """
+A pair of sturdy boots with a knife protruding from the front if you kick the
+heel just right."""
+drop_location = "Memoirs of an Illusory Larcener, End Chest"
+icon = "Boots_3"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Feet"
+
+[[effect]]
+name = "Thorn Guard +4"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Memoirs of an Illusory Larcener"
+
+[[source]]
+chest = "left end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mask of Deception"

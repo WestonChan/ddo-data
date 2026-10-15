@@ -1,0 +1,29 @@
+name = "Voices of the Dead"
+bestowed_by = "Elred Maglan"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Magic of Myth Drannor"
+patron = "Cormanthor Elves"
+zone = "The Burial Glen"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Voices_of_the_Dead"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 35

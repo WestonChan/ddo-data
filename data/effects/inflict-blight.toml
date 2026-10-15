@@ -1,0 +1,3 @@
+name = "Inflict Blight"
+description_template = "This weapon is infested with the unholy and blighted power of the earth. Rarely, this power will come to the surface, attempting to melt enemies struck with Acid, Negative, Poison, or Evil spells by dealing significant Acid damage over time."
+verbose_name_template = "Inflict Blight"

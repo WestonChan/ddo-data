@@ -1,0 +1,48 @@
+name = "Bloody Cleaver"
+description = """
+This large blade was once wielded handily by one of the Droaam Army's half-orc
+chefs. As one can imagine, it's very well-sharpened and has been used to carry
+out many a gruesome deed."""
+drop_location = "Frame Work, End chests, Dorris ' chests"
+enhancement_bonus = 4
+icon = "Falchion_1"
+item_category = "Weapon"
+item_type = "Falchion"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Bleeding 3"
+
+[[effect]]
+name = "Humanoid Bane 3"
+
+[[effect]]
+name = "Bodyfeeder"
+
+[[effect]]
+name = "Fusible"
+
+[[source]]
+chest = "end chests, dorris ' chests"
+kind = "quest"
+loot_type = "chest"
+name = "Frame Work"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Falchion"

@@ -1,0 +1,26 @@
+name = "Desecrated Temple of Vol"
+bestowed_by = "Holton Kisane"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Desecrated Temple of Vol (epic)"
+favor = 6
+pack = "The Necropolis, Part 4"
+patron = "The Silver Flame"
+zone = "Desecrated Temple of Vol"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Desecrated_Temple_of_Vol"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 29

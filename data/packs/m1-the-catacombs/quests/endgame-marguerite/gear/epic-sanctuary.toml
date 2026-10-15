@@ -1,0 +1,64 @@
+name = "Epic Sanctuary"
+description = "This shield protects its wearer from magical harm."
+drop_location = "Endgame: Marguerite, End Chest"
+enhancement_bonus = 6
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 23
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 9
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 9
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 14
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Quality"
+value = 7
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 9
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Endgame: Marguerite"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.6
+handedness = "Off-hand"
+weapon_type = "Large Shield"

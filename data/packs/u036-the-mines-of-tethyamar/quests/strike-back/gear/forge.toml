@@ -1,0 +1,52 @@
+name = "Forge"
+description = """
+In years long passed, Dwarf blacksmiths used hammers such as this to forge the
+very blades that are still wielded against the Drow."""
+drop_location = "Strike Back, End chest"
+enhancement_bonus = 5
+icon = "Warhammer_1h"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Steel"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Fiery 4"
+
+[[effect]]
+name = "Flaming 9"
+
+[[effect]]
+name = "Jolting 9"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Strike Back"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Warhammer"

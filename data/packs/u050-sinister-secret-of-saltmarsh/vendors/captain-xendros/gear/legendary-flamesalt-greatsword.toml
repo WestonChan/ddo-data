@@ -1,0 +1,59 @@
+name = "Legendary Flamesalt Greatsword"
+accepts_sentience = true
+description = """
+This weapon's steel has partially corroded due to the salt in the air, which
+interfered with the forging process. It seems to have enhanced the weapon's
+with a subtle magic, making it equivalent to Flametouched Iron, at the cost
+of some of the steel's natural durability."""
+drop_location = "Captain Xendros, Turn in 5 Legendary Quartermaster's Chits"
+enhancement_bonus = 15
+icon = "Greatsword_1e"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Flametouched Iron"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Chilling 6"
+
+[[effect]]
+name = "Monstrous Humanoid Bane 6"
+
+[[effect]]
+name = "Weakening 3"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Captain Xendros"
+
+[[source.price]]
+ingredient = "Legendary Quartermaster's Chit"
+quantity = 5
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Great Sword"

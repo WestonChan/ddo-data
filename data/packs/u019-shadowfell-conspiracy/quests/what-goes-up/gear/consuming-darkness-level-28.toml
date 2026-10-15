@@ -1,0 +1,27 @@
+name = "Consuming Darkness (Level 28)"
+description = "A ring blessed with Shar's love."
+drop_location = "What Goes Up, jeweled key chest, end chest (Epic Elite)"
+icon = "Ring_19"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 28
+slot = "Ring"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "jeweled key chest, end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Goes Up"

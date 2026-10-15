@@ -1,0 +1,32 @@
+name = "A Memento of Mori"
+description = "A token to remember you by..."
+drop_location = "Hunt or Be Hunted, end chest"
+icon = "Ring_16b"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Sacred"
+value = 2
+
+[[effect]]
+name = "Sacred Ground Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Power Of The Sacred Ground"
+
+[[effect]]
+name = "Light Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"

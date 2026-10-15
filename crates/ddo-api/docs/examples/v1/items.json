@@ -4,7 +4,7 @@
       "category": "Jewelry",
       "enhancement_bonus": null,
       "icon": "Ring_5",
-      "id": 6798,
+      "id": 1603901862026075,
       "is_legacy": false,
       "is_raid": false,
       "is_rare": false,
@@ -13,13 +13,17 @@
       "name": "Ring of Baphomet",
       "pack": "Demon Sands",
       "set": "The Desert's Starless Nights",
-      "slot": "Ring"
+      "sets": [
+        "The Desert's Starless Nights"
+      ],
+      "slot": "Ring",
+      "slug": "ring-of-baphomet"
     },
     {
       "category": "Jewelry",
       "enhancement_bonus": null,
       "icon": "Ring_2",
-      "id": 6800,
+      "id": 5571529999204577,
       "is_legacy": false,
       "is_raid": false,
       "is_rare": false,
@@ -28,13 +32,15 @@
       "name": "Ring of Brutal Force",
       "pack": "Keep on the Borderlands",
       "set": null,
-      "slot": "Ring"
+      "sets": [],
+      "slot": "Ring",
+      "slug": "ring-of-brutal-force"
     },
     {
       "category": "Jewelry",
       "enhancement_bonus": null,
       "icon": "Ring_4",
-      "id": 6802,
+      "id": 3940601684741121,
       "is_legacy": false,
       "is_raid": false,
       "is_rare": false,
@@ -43,7 +49,9 @@
       "name": "Ring of Crystalline Vanity",
       "pack": "Keep on the Borderlands",
       "set": null,
-      "slot": "Ring"
+      "sets": [],
+      "slot": "Ring",
+      "slug": "ring-of-crystalline-vanity"
     }
   ],
   "limit": 3,

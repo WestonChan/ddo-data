@@ -1,0 +1,63 @@
+name = "Legendary Masthead"
+accepts_sentience = true
+description = """
+This Great Crossbow was fashioned out of the ropes, sails and pulleys from a
+crashed and sunken ship."""
+drop_location = "All Hail the King, end chest"
+enhancement_bonus = 15
+icon = "GreatCrossbow_1"
+item_category = "Weapon"
+item_type = "Great Crossbow"
+material = "Wood"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Legendary Cursespewing"
+
+[[effect]]
+name = "Aligned"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "All Hail the King"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_multiplier = 5.2
+handedness = "Two-handed"
+weapon_type = "Great Crossbow"

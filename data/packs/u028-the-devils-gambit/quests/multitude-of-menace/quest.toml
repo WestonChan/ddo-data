@@ -1,0 +1,29 @@
+name = "Multitude of Menace"
+bestowed_by = "Belmont d'Cannith"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Devil's Gambit"
+patron = "The Gatekeepers"
+zone = "Magewright's Hall"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Multitude_of_Menace"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 30
+
+[[run]]
+tier = "legendary"
+level = 30

@@ -1,0 +1,37 @@
+name = "Pendant of Combat"
+description = "This enchanted necklace seems to glow brighter as more blood is shed."
+drop_location = "The Bugbear Bandits, end chest"
+icon = "Necklace_16"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 21
+slot = "Neck"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 8
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bugbear Bandits"

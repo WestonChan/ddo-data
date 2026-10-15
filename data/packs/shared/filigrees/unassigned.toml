@@ -1,0 +1,296 @@
+[[row]]
+name = "Abiding Path/Elemental Avatar +2 Wisdom"
+description = """
++2 Wisdom
+Rare: +4 MRR"""
+icon = "AbidingPathElementalAvatar"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Abiding Path/Elemental Avatar: +4 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "City's Beacon/Enlightened Step +2 Strength"
+description = """
++2 Strength
+Rare: +2 PRR"""
+icon = "CitysBeaconEnlightenedStep"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "City's Beacon/Enlightened Step: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Sanctified Fervor/Reverberation +2 Charisma"
+description = """
++2 Charisma
+Rare: +4 MRR"""
+icon = "SanctifiedFervorReverberation"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Sanctified Fervor/Reverberation: Rare +4 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Shadowstrike/Bend Fate +2 Dexterity"
+description = """
++2 Dexterity
+Rare: +4 PRR"""
+icon = "ShadowstrikeBendFate"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Shadowstrike/Bend Fate: +4 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Snake Bite/Grandfather's Shield +2 Constitution"
+description = """
++2 Constitution
+Rare: +4 PRR"""
+icon = "SnakeBiteGrandfathersShield"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Snake Bite/Grandfather's Shield: +2 Constitution: Rare +4 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Soulweaver/Splendid Cacophony +2 Constitution"
+description = """
++2 Constitution
+Rare: +4 PRR"""
+icon = "SoulweaverSplendidCacophony"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Soulweaver/Splendid Cacophony: Rare +4 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Spines of the Manticore/The Wreath of Flame +6 Ranged Power"
+description = """
++6 Ranged Power
+Rare: +4 Ranged Power"""
+icon = "SpinesWreath"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Spines of the Manticore/The Wreath of Flame: +6 Ranged Power: Rare +4 Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "Sucker Punch/One Against Many +2 Strength"
+description = """
++2 Strength
+Rare: +4 Melee Power"""
+icon = "SuckerPunchOneAgainstMany"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Sucker Punch/One Against Many: +2 Strength: Rare +4 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Technomage/Unbreakable +2 Constitution"
+description = """
++2 Constitution
+Rare: +4 PRR"""
+icon = "TechnomageUnbreakable"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Technomage/Unbreakable Fate: +4 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Blood Feast/Frozen Wanderer +6 PRR"
+description = """
++6 PRR
+Rare: +4 PRR"""
+icon = "TheBloodFeastFrozenWanderer"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "The Blood Feast/Frozen Wanderer: +6 PRR: Rare +4 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "To Hell and Back/Embraced by Light +2 Charisma"
+description = """
++2 Charisma
+Rare: +4 MRR"""
+icon = "ToHellAndBackEmbraceByLight"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "To Hell and Back/Embraced by Light: +2 Charisma: Rare +4 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Treachery/Twilight's Cloak +2 Dexterity"
+description = """
++2 Dexterity
+Rare: +4 PRR"""
+icon = "TreacheryTwilight"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Treachery/Twilight's Cloak: +2 Dexterity: Rare +4 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Zarigan's Arcane Enlightenment/Voltaic Experiment +2 Intelligence"
+description = """
++2 Intelligence
+Rare: +4 MRR"""
+icon = "ZarigansArcaneEnlightenmentVoltaicExperiment"
+menu = "Raid Filigrees"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Zarigan's Arcane Enlightenment/Voltaic Experiment: +4 MRR"
+effect_type = "MRR"
+is_rare = true

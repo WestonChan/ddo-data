@@ -1,0 +1,30 @@
+name = "The Hijacked Haul"
+bestowed_by = "Verna Prow"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Sinister Secret of Saltmarsh"
+patron = "The Gatekeepers"
+zone = "Marsh Shipwreck"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Hijacked_Haul"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

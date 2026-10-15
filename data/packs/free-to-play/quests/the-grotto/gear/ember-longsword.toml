@@ -1,0 +1,34 @@
+name = "Ember Longsword"
+description = "This long bladed slashing weapon is well used, and warm to the touch."
+drop_location = "The Grotto, End reward"
+icon = "Longsword_10"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Masterwork Weapon"
+
+[[effect]]
+name = "Fire Touch"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Grotto"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Longsword"

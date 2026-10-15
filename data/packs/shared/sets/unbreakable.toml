@@ -1,0 +1,63 @@
+name = "Unbreakable"
+icon = "Unbreakable"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Lay on Hands Uses"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect = "Lay on Hands Uses"
+effect_type = "ExtraLayOnHands"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Armor Class"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Armor Class Percentage"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"

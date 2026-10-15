@@ -1,0 +1,13 @@
+name = "Periapt of Proof Against Poison"
+description = "A brilliant cut black gem on a delicate silver chain."
+drop_location = "Random, level ~5 chests/rewards"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 5
+slot = "Neck"
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6

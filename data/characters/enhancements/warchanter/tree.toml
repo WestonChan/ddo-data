@@ -1,0 +1,1478 @@
+name = "Warchanter"
+background = "BardBackground"
+icon = "Bard"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Warchanter: Skaldic Rage / Skaldic Constitution"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Choose between Skaldic Rage and Constitution"
+icon = "WCSkaldicRage"
+internal_name = "WCCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Skaldic Constitution"
+cost_per_rank = [1]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Skaldic Rage"
+cost_per_rank = [1]
+description = """
+Expend a Song to fly into Rage, granting you a +4 Rage bonus to Strength
+and -4 penalty to AC. When Skaldic Rage ends you become Fatigued. Requires 4
+trained ranks in Perform to use. Skaldic Rage lasts 1 minute per bard level.
+(Rage bonuses don't stack with Barbarian Rage.)
+Note: Does not prevent spellcasting."""
+icon = "WCSkaldicRage"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Rage"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Skaldic Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [-4]
+apply_as_item_effect = true
+bonus_type = "Rage"
+effect_type = "ACBonus"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Skaldic Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Skaldic Rage"
+description = """
+Expend a Song to fly into Rage, granting you a +4 Rage bonus to Strength
+and -4 penalty to AC."""
+group_name = "User"
+icon = "WCSkaldicRage"
+
+[[enhancement]]
+name = "Warchanter: Weapon Training"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain proficiency with martial weapons. (Dwarves gain also the Waraxe.)
++10 HP. Inspire Courage grants an additional +1 damage.
++1 Imbue Dice"""
+icon = "WCWeaponTraining"
+internal_name = "WCCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Battle Axe",
+    "Falchion",
+    "Great Axe",
+    "Great Club",
+    "Great Sword",
+    "Hand Axe",
+    "Heavy Pick",
+    "Kukri",
+    "Light Hammer",
+    "Light Pick",
+    "Longbow",
+    "Longsword",
+    "Maul",
+    "Rapier",
+    "Scimitar",
+    "Shortsword",
+    "Shortbow",
+    "Throwing Axe",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Dwarven Axe",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Dwarf"]
+req_type = "Race"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SongDamageBonus"
+
+[[enhancement.requirement]]
+items = ["WCCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Warchanter: Song of Heroism"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Adds the Song of Heroism to your Ballad, and +1 Imbue Dice.
+Inspire Courage grants an additional +1 damage.
+Requires 4 trained Ranks in Perform to use.
+Greater Heroism: +4 Morale bonus to Attack, all saving throws and skill checks,
+as well as immunity to fear and some temporary hit points."""
+icon = "WCSongOfHeroism"
+internal_name = "WCCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Morale"
+effect_type = "SkillBonus"
+extra_types = [
+    "SaveBonus",
+    "Weapon_Attack",
+]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SongDamageBonus"
+
+[[enhancement.requirement]]
+items = ["WCCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["Perform"]
+req_type = "Skill"
+value = 4
+
+[[enhancement]]
+name = "Warchanter: Fighting Spirit"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++10 hit points and +1 Imbue Dice.
+You gain a +1 Competence Bonus to Critical Threat Range. This does not apply if Swashbuckling.
+Inspire Courage now grants an additional +1 damage.
+Your Inspire Greatness now uses your Charisma score for its Temporary hit points,
+doubled in Epic levels."""
+icon = "WCFightingSpirit"
+internal_name = "WCCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Music"
+effect_type = "SongDamageBonus"
+
+[[enhancement.requirement]]
+items = ["WCCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Warchanter: Victory Song"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You have +20 hit points and +1 Imbue Dice.
+You have a Base Attack Bonus equal to your character level.
+The range of your Bardic Aria is doubled."""
+icon = "WCVictorySong"
+internal_name = "WCCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "OverrideBAB"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["WCCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Warchanter: Skaldic Scream"
+cost_per_rank = [1]
+description = """
+You inspire martial combat above and beyond.
++2 Charisma, and +2 Constitution, +25 hit points and +1 Imbue Dice.
+
+Activate this ability to scream the songs of your frozen ancestors,
+expending a Bard Song to force enemies in an area to make a Fortitude saving
+throw versus being frozen solid in frigid ice for 6 seconds.
+(DC 14 + Max[Str/Dex/Cha] Mod + Bard Level + Stunning Modifiers).
+Even if they make the save, they take 20d20 Cold Damage and are significantly
+slowed for 6 seconds. Cooldown: 30 seconds."""
+icon = "WCWarmaster"
+internal_name = "WCCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.dc]]
+name = "Songs of Frozen Ancestors"
+amount = [14]
+dc_type = "Frozen"
+dc_versus = "Fortitude"
+description = """
+You can expend a Bard Song to scream the songs of your frozen ancestors,
+expending a Bard Song to force enemies in an area to make a Fortitude saving
+throw versus being frozen solid in frigid ice for 6 seconds."""
+icon = "WCWarmaster"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WCCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Charisma",
+    "Constitution",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["WCCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "WCCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Warchanter: Inspired Bravery"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Inspire Courage grants you and your allies an additional +[1/2/3] to attack
+rolls and saving throws vs. Fear."""
+icon = "WCInspiredBravery"
+internal_name = "WCInspiredBravery"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Music"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Music"
+effect_type = "SongAttackBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Music"
+effect_type = "SaveBonus"
+targets = ["Fear"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Warchanter: The Poetic Edda"
+cost_per_rank = [1]
+description = """
+You are steeped in the rich history of the elder sagas.
+The songs of warrior-poets fill your soul, and you long for battle and glory.
++[1/2/3] Attack Bonus and +[1/2/3] Bard Songs"""
+icon = "WCThePoeticEdda"
+internal_name = "WCThePoeticEdda"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Music"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Music"
+effect_type = "SongCount"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Warchanter: Enchant Weapon"
+cost_per_rank = [2]
+description = "Enchant Weapons is added to your spell book as level 1 Bard spell."
+icon = "WCEnchantWeapon"
+internal_name = "WCEnchantWeapon"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    5,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Enchant Weapons",
+    "Bard",
+]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Warchanter: Rough and Ready"
+cost_per_rank = [1]
+description = "+[2/4/6] Armor Class and +[2/4/6] Physical Resistance Rating"
+icon = "WCRoughAndReady"
+internal_name = "WCRoughAndReady"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+extra_types = ["PRR"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Warchanter: Focused"
+cost_per_rank = [1]
+description = """
++[1/2/3] Concentration, Intimidate, and Jump
+Rank 3: +1 Bard Song"""
+icon = "WCFocused"
+internal_name = "WCFocused"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Intimidate",
+    "Jump",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SongCount"
+rank = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Warchanter: Boast"
+cost_per_rank = [2]
+description = """
+Sing a Song to gain +100 Temporary HP.
+Cooldown: 8 seconds."""
+icon = "WCBoast"
+internal_name = "WCBoast"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["WCInspiredBravery"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warchanter: Words of Encouragement"
+cost_per_rank = [1]
+description = """
+Bardic Inspiration grants +[10/20/30] temporary HP for one minute.
++[5/10/15] Positive Spell Power"""
+icon = "WCWordsOfEncouragement"
+internal_name = "WCWordsOfEncouragement"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Warchanter: Ballad Melody: Arcane Shield"
+cost_per_rank = [1]
+description = """
+You and nearby allies gain a Music Bonus to Acid, Cold, Electric, Fire, and Sonic
+damage equal to your Bard, Epic, and Legendary Level"""
+icon = "WCArcaneShieldChant"
+internal_name = "WCArcaneShieldChant"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+apply_as_item_effect = true
+bonus_type = "Music"
+effect_type = "EnergyResistance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Sonic",
+]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Warchanter: Iced Edges"
+cost_per_rank = [1]
+description = "Imbue Toggle: You deal an additional 1d6 Cold damage with attacks, scaling with Cold Spell Power."
+icon = "WCIcedEdges"
+internal_name = "WCIcedEdges"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.stance]]
+name = "Iced Edges"
+description = "Imbue Toggle: You deal an additional 1d6 Cold damage with attacks, scaling with Cold Spell Power."
+group_name = "Imbue"
+icon = "WCIcedEdges"
+
+[[enhancement]]
+name = "Warchanter Action Boost: Sprint"
+cost_per_rank = [2]
+description = "+50% Action Boost bonus to movement speed for 20 seconds."
+icon = "WCActionBoostSprint"
+internal_name = "WCActionBoostSprint"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Warchanter: Ballad Melody: Ironskin"
+cost_per_rank = [1]
+description = """
+You and nearby allies gain DR 6 and Inspire Greatness now grants a Music bonus
+to PRR and MRR equal to half your Bard, Epic, and Legendary level."""
+icon = "WCIronskinChant"
+internal_name = "WCIronskinChant"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "DR"
+targets = ["-"]
+
+[[enhancement.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18,
+    19,
+    19,
+    20,
+]
+bonus_type = "Music"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["Perform"]
+req_type = "Skill"
+value = 8
+
+[[enhancement]]
+name = "Warchanter: Obstinance"
+cost_per_rank = [1]
+description = """
++[5/10/15] Positive Spell power.
+Rank 1: You gain +1 to saving throws while below 80% health.
+Rank 2: Additional +1 while below 60% health.
+Rank 3: Additional +1 while below 40% health."""
+icon = "WCObstinance"
+internal_name = "WCObstinance"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    100,
+    0,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Hitpoints"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Warchanter: Obstinance: Below 80%"
+effect_type = "SaveBonus"
+rank = 1
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["-80% Hitpoints"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Warchanter: Obstinance: Below 60%"
+effect_type = "SaveBonus"
+rank = 2
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["-60% Hitpoints"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Warchanter: Obstinance: Below 40%"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["-40% Hitpoints"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Warchanter: High Spirits"
+cost_per_rank = [1]
+description = """
+Your spirits are always high, and you are immune to Crushing Despair,
+Waves of Fatigue and Waves of Exhaustion. +[5/10/15] Positive Spell Power.
+Rank 2: You are also immune to Sleep.
+Rank 3: You are also immune to Fatigue, including Fatigue from Skaldic Rage."""
+icon = "WCHighSpirits"
+internal_name = "WCHighSpirits"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 1
+targets = ["Crushing Despair"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 1
+targets = ["Waves of Fatigue"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 1
+targets = ["Waves of Exhaustion"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 2
+targets = ["Sleep"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 3
+targets = ["Fatigue"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Warchanter: Frozen Fury"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Melee attack: Affected enemies must make a Fortitude save DC
+14 + Max[Str/Dex/Cha] modifier + Bard Level + stunning modifiers
+or become frozen solid for a number of seconds equal to your Bard level.
+Cooldown: 6 seconds
+
+Bosses cannot be frozen. Frozen enemies are helpless but gain DR 5/Adamantine.
+(Note: If you have Strikethrough, this attack can freeze multiple enemies.)"""
+icon = "WCTheFrozenFury"
+internal_name = "WCTheFrozenFury"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.dc]]
+name = "Frozen Fury"
+amount = [14]
+base_class_level = "Bard"
+dc_type = "Frozen"
+dc_versus = "Fortitude"
+description = """
+Deals +30% Damage
+Melee attack: Affected enemies must make a Fortitude save DC
+14 + Max[Str/Dex/Cha] modifier + Bard Level + stunning modifiers
+or become frozen solid for a number of seconds equal to your Bard level.
+Cooldown: 6 seconds
+DC Value is assuming full Bard level"""
+icon = "WCTheFrozenFury"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Warchanter: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Strength or Charisma"
+icon = "StrCha"
+internal_name = "WCAbilityScore"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Warchanter: Ballad Melody: Recklessness"
+cost_per_rank = [1]
+description = """
+You and nearby allies gain +[2/4/6] Music bonus to Doublestrike and Doubleshot,
+and Inspire Courage grants an additional +[3/6/9] Universal Spell Power."""
+icon = "WCRecklessChant"
+internal_name = "WCRecklessChant"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Music"
+effect_type = "SongUniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Music"
+effect_type = "Doublestrike"
+extra_types = [
+    "Doubleshot",
+    "SongDoublestrike",
+    "SongDoubleshot",
+]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Warchanter: Armorer"
+cost_per_rank = [2]
+description = """
+Gain Medium Armor Proficiency and the ability to cast arcane spells in medium
+armor without arcane spell failure."""
+icon = "WCArmorer"
+internal_name = "WCArmorer"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Medium Armor Proficiency"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-100]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement.modifier.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Warchanter: Northwind"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+When you score a vorpal hit, your enemy is briefly frozen in ice.
+This effect triggers at most once every [30/24/18] seconds.
+Vorpal: Vorpal hits are scored when you roll 20 on the attack and then confirm
+the critical hit.
+Bosses cannot be frozen."""
+icon = "WCNorthwind"
+internal_name = "WCNorthwind"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["WCTheFrozenFury"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warchanter: Ability II"
+cost_per_rank = [2]
+description = "Choose either Strength or Charisma"
+icon = "StrCha"
+internal_name = "WCAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["WCAbilityScore"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Warchanter: Movement Booster"
+cost_per_rank = [2]
+description = "Choose between Fleeting Footsteps and Rallying Cry:"
+icon = "WCMovementBooster"
+internal_name = "WCMovementBooster"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Fleeting Footsteps"
+cost_per_rank = [2]
+description = "You and nearby allies gain +15% Action Boost bonus to movement speed."
+icon = "WCExpeditiousChant"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [15]
+bonus_type = "Action Boost"
+effect_type = "MovementSpeed"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Rallying Cry"
+cost_per_rank = [2]
+description = """
+Action Boost: You and all allies within range of your songs gain +20%
+Action Boost bonus to movement speed and +1 Action Boost bonus to Saving Throws
+for twenty seconds. This ability can be used while feared, and dispels Fear effects.
+(Cooldown: 30 seconds)"""
+icon = "WCRallyingCry"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [20]
+bonus_type = "Action Boost"
+effect_type = "MovementSpeed"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Action Boost"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Warchanter: Chant of Power"
+cost_per_rank = [1]
+description = """
+You and nearby allies gain +[2/4/6]% Music bonus to melee damage,
+ranged damage, and spell critical chance."""
+icon = "WCChantOfPower"
+internal_name = "WCChantOfPower"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Music"
+effect_type = "Weapon_Damage"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Music"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Warchanter: Howl of the North"
+cost_per_rank = [2]
+description = """
+You gain a +1 Competence Bonus to Critical Multiplier. This does not apply if Swashbuckling.
++1 Critical Damage Multiplier on attack rolls of 19-20. +20% Competence bonus
+to Maximum Hit Points."""
+icon = "WCHowlOfTheNorth"
+internal_name = "WCHowlOfTheNorth"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Warchanter: Spinning Ice"
+cost_per_rank = [2]
+description = """
+Deals +40% Damage
+Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save DC
+14 + Max[Str/Dex/Cha] modifier + Bard Level + Stunning modifiers
+for a number of seconds equal to your half your Bard level.
+
+Bosses cannot be frozen.
+Activation cost: 2 SP.
+Cooldown 25 seconds."""
+icon = "WCSpinningIce"
+internal_name = "WCSpinningIce"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.dc]]
+name = "Spinning Ice"
+amount = [14]
+base_class_level = "Bard"
+dc_type = "Frozen"
+dc_versus = "Fortitude"
+description = """
+Deals +40% Damage
+Cleave Attack: Each enemy is frozen solid if they fail a Fortitude save DC
+14 + Max[Str/Dex/Cha] modifier + Bard Level + Stunning modifiers
+for a number of seconds equal to your half your Bard level.
+Activation cost: 2 SP.
+Cooldown 25 seconds.
+DC Value is assuming full Bard level"""
+icon = "WCSpinningIce"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["WCNorthwind"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warchanter: Kingly Recovery"
+cost_per_rank = [2]
+description = """
+Target ally or self heal 10,000 HP.
+Removes ability score damage, death penalty effects, negative levels, and the
+conditions blinded, dazed, deafened, diseased, exhausted, fatigued, feebleminded,
+insanity, nauseated, poisoned, and stunned. 3 uses per rest."""
+icon = "WCKinglyRecovery"
+internal_name = "WCKinglyRecovery"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Bard"]
+req_type = "BaseClass"

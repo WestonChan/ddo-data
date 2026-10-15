@@ -1,0 +1,983 @@
+[[row]]
+name = "Favored by Amaunator"
+acquire = "Train"
+description = """
+You follow Amaunator.
+You are proficient with heavy maces and gain +1 to hit with them.
+Heavy maces are considered as a favored weapon."""
+icon = "Amaunator"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Heavy Mace",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Heavy Mace"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Heavy Mace",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Forgotten Realms"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Amaunator"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Helm"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Silvanus"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored by Helm"
+acquire = "Train"
+description = """
+You follow Helm.
+You are proficient with Bastard swords and gain +1 to hit with them.
+Bastard swords are considered as a favored weapon."""
+icon = "Helm"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Bastard Sword",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Bastard Sword"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Bastard Sword",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Forgotten Realms"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Morninglord"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Amaunator"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Helm"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Silvanus"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored by Silvanus"
+acquire = "Train"
+description = """
+You follow Silvanus.
+You are proficient with mauls and gain +1 to hit with them.
+Mauls are considered as a favored weapon."""
+icon = "Silvanus"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Maul",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Maul"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Maul",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Forgotten Realms"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Morninglord"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Amaunator"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Helm"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Silvanus"]
+req_type = "Feat"
+
+[[row]]
+name = "Follower of Aureon"
+acquire = "Train"
+description = """
+You follow Aureon, member of the Sovereign Host and use his favored weapon.
+You are proficient with Quarterstaves and gain +1 to hit with them.
+Quarterstaves are considered as a favored weapon."""
+icon = "Aureon"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Quarterstaff",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Quarterstaff"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Quarterstaff",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Eberron"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Sovereign Host"]
+req_type = "Feat"
+
+[[row]]
+name = "Follower of Olladra"
+acquire = "Train"
+description = """
+You follow Olladra, member of the Sovereign Host and use his favorite weapon.
+You are proficient with Sickles and gain +1 to hit with them.
+Sickles are considered as a favored weapon."""
+icon = "Olladra"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Sickle",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Sickle"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Sickle",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Eberron"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Aureon"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Sovereign Host"]
+req_type = "Feat"
+
+[[row]]
+name = "Follower of Onatar"
+acquire = "Train"
+description = """
+You follow Onatar, member of the Sovereign Host and use his favorite weapon.
+You are proficient with Warhammers and gain +1 to hit with them.
+Warhammers considered as a favored weapon."""
+icon = "Onatar"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Warhammer",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Warhammer"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Warhammer",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Eberron"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Aureon"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Sovereign Host"]
+req_type = "Feat"
+
+[[row]]
+name = "Follower of Vulkoor"
+acquire = "Train"
+description = """
+You follow Vulkoor.
+You are proficient with Shortswords and gain +1 to hit with them.
+Shortswords are considered as a favored weapon."""
+icon = "Vulkoor"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Shortsword",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Shortsword"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Shortsword",
+]
+
+[[row.requirement]]
+items = ["Drow"]
+req_type = "Race"
+
+[[row]]
+name = "Follower of the Blood of Vol"
+acquire = "Train"
+description = """
+You follow the Blood of Vol.
+You are proficient with Daggers and gain +1 to hit with them.
+Daggers are considered as a favored weapon."""
+icon = "BloodOfVol"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Dagger",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Dagger"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Dagger",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Eberron"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Aureon"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Sovereign Host"]
+req_type = "Feat"
+
+[[row]]
+name = "Follower of the Lord of Blades"
+acquire = "Train"
+description = """
+You follow the Lord of Blades.
+You are proficient with Great Swords and gain +1 to hit with them.
+Great Swords are considered as a favored weapon."""
+icon = "LordOfBlades"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Great Sword",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Great Sword"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Great Sword",
+]
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group.requirement]]
+items = ["Warforged"]
+req_type = "Race"
+
+[[row]]
+name = "Follower of the Silver Flame"
+acquire = "Train"
+description = """
+You follow the Silver Flame.
+You are proficient with Longbows and gain +1 to hit with them.
+Longbows are considered as a favored weapon."""
+icon = "SilverFlame"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Longbow",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Longbow"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Longbow",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Eberron"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Aureon"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Sovereign Host"]
+req_type = "Feat"
+
+[[row]]
+name = "Follower of the Sovereign Host"
+acquire = "Train"
+description = """
+You follow the Sovereign Host.
+You are proficient with Longswords and gain +1 to hit with them.
+Longswords are considered as a favored weapon."""
+icon = "SovereignHost"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Longsword",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Longsword"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Longsword",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Eberron"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Aureon"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"
+
+[[row]]
+name = "Follower of the Undying Court"
+acquire = "Train"
+description = """
+You follow the Undying Court.
+You are proficient with Scimitars and gain +1 to hit with them.
+Scimitars are considered as a favored weapon."""
+icon = "Undying"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Scimitar",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Scimitar"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Scimitar",
+]
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Elf"]
+req_type = "Race"
+
+[[row.requirement_group.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement_group.requirement]]
+items = ["Wood Elf"]
+req_type = "Race"
+
+[[row.requirement_group.requirement]]
+items = ["Eladrin"]
+req_type = "Race"
+
+[[row]]
+name = "No Follower Feat Available"
+acquire = "Train"
+description = """
+You have selected a "Follower Of" feat in a standard feat slot earlier in this build.
+This stops you from training a Follower Of feat at this time. This feat slot will
+not be present in game. You can gain a feat slot by using that other slot for a
+different feat if you can move the feats as your build needs them."""
+icon = "NotARealFeat"
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Aureon"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Amaunator"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Helm"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Silvanus"]
+req_type = "Feat"

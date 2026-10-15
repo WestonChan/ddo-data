@@ -1,0 +1,8 @@
+name = "Flamehorn"
+description = "Attacks and offensive spells can reduce enemy MRR and Spell Power"
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[slot]]
+slot = "isle of dread: horn (weapon)"

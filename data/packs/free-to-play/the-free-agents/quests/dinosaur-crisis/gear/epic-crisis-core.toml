@@ -1,0 +1,51 @@
+name = "Epic Crisis Core"
+drop_location = "Dinosaur Crisis, end chest"
+enhancement_bonus = 15
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 27
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 12
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Quality"
+value = 33
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 41
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"

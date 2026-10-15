@@ -3,27 +3,30 @@
     "Slavelords_Heroic",
     "Slavelords_Legendary"
   ],
-  "id": 1,
+  "id": 2218020696701597,
   "ingredient_count": 16,
   "ingredients": [
     {
       "bind": "Unbound",
-      "id": 1,
+      "id": 6663960991195802,
       "name": "Broken Shackle",
+      "slug": "slave-lords-crafting-broken-shackle-heroic",
       "source": "Part 1, Slave Pits of the Undercity",
       "tier": "heroic"
     },
     {
       "bind": "Unbound",
-      "id": 2,
+      "id": 5149190598083635,
       "name": "Chain Links",
+      "slug": "slave-lords-crafting-chain-links-heroic",
       "source": "Part 2, Secret of the Slavers' Stockade",
       "tier": "heroic"
     },
     {
       "bind": "Unbound",
-      "id": 3,
+      "id": 3846156687207629,
       "name": "Broken Collar",
+      "slug": "slave-lords-crafting-broken-collar-heroic",
       "source": "Part 3, Assault on the Aerie of the Slave Lords",
       "tier": "heroic"
     }
@@ -37,19 +40,22 @@
     {
       "augments": [
         {
-          "id": 1674,
+          "id": 377289565002951,
           "min_level": 8,
-          "name": "Strength +5"
+          "name": "Charisma +5",
+          "slug": "charisma-5"
         },
         {
-          "id": 1675,
+          "id": 5297518226533606,
           "min_level": 8,
-          "name": "Intelligence +5"
+          "name": "Constitution +5",
+          "slug": "constitution-5"
         },
         {
-          "id": 1676,
+          "id": 3385968621626216,
           "min_level": 8,
-          "name": "Dexterity +5"
+          "name": "Dexterity +5",
+          "slug": "dexterity-5"
         }
       ],
       "cost": [
@@ -60,7 +66,6 @@
         }
       ],
       "grants_slot": null,
-      "id": 1,
       "note": null,
       "option": "Attributes +5",
       "slot": "crafting: slavelords prefix",
@@ -69,19 +74,22 @@
     {
       "augments": [
         {
-          "id": 1771,
+          "id": 383112961093775,
           "min_level": 28,
-          "name": "Strength +13"
+          "name": "Charisma +13",
+          "slug": "charisma-13"
         },
         {
-          "id": 1772,
+          "id": 1700870265449996,
           "min_level": 28,
-          "name": "Intelligence +13"
+          "name": "Constitution +13",
+          "slug": "constitution-13"
         },
         {
-          "id": 1773,
+          "id": 705573315647874,
           "min_level": 28,
-          "name": "Dexterity +13"
+          "name": "Dexterity +13",
+          "slug": "dexterity-13"
         }
       ],
       "cost": [
@@ -92,7 +100,6 @@
         }
       ],
       "grants_slot": null,
-      "id": 2,
       "note": null,
       "option": "Attributes +13",
       "slot": "crafting: legendary slavelords prefix",
@@ -101,9 +108,10 @@
     {
       "augments": [
         {
-          "id": 1680,
+          "id": 3193563957583402,
           "min_level": 8,
-          "name": "False Life +18"
+          "name": "False Life +18",
+          "slug": "false-life-18"
         }
       ],
       "cost": [
@@ -114,11 +122,11 @@
         }
       ],
       "grants_slot": null,
-      "id": 3,
       "note": null,
       "option": "False Life +18",
       "slot": "crafting: slavelords prefix",
       "tier": "heroic"
     }
-  ]
+  ],
+  "slug": "slave-lords-crafting"
 }

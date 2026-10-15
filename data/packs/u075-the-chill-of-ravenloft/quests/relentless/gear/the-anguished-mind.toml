@@ -1,0 +1,34 @@
+name = "The Anguished Mind"
+drop_location = "Relentless, end chest"
+icon = "Helmet_141"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 34
+slot = "Head"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "lamordia: woeful (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Relentless"

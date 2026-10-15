@@ -1,0 +1,42 @@
+name = "Doctor Gustav's Rubber Boots"
+description = """
+A damaged pair of galoshes, likely meant to protect the good Doctor from electrical
+experiments."""
+drop_location = "Body and Mind, end chest"
+icon = "Boots_24"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Feet"
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 18
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 5
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 19
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Body and Mind"

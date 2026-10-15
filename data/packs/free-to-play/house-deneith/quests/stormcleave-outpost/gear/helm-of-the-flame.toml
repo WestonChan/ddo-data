@@ -1,0 +1,29 @@
+name = "Helm of the Flame"
+description = """
+This helmet is blessed with the power of the Silver Flame, aiding its cleric
+in turning of undead."""
+drop_location = "Stormcleave Outpost, Insgadreer 's chest"
+icon = "Helmet_65"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 7
+slot = "Head"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 54
+
+[[effect]]
+name = "Wizardry I"
+bonus_type = "Enhancement"
+value = 25
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "insgadreer 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stormcleave Outpost"

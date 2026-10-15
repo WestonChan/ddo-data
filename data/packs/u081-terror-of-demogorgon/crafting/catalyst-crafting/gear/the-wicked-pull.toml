@@ -1,0 +1,84 @@
+name = "The Wicked Pull"
+description = """
+The goal of many adventurers over the years, you have finally got a Wicked Pull,
+after fighting your way through the fire and flames of the Demon Lords."""
+drop_location = "Catalyst Crafting, Turn in The Mad Lute, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 5
+icon = "GreatClub_5a"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 11
+
+[[effect]]
+name = "Sirocco +50"
+
+[[effect]]
+name = "Reverberating 3"
+
+[[effect]]
+name = "Screeching 8"
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Proficiency - Greatclub"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 86
+
+[[effect]]
+name = "Equipoised Focus"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.2
+handedness = "Two-handed"
+weapon_type = "Great Club"

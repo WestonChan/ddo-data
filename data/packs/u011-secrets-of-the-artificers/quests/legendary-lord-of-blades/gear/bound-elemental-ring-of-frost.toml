@@ -1,0 +1,37 @@
+name = "Bound Elemental Ring of Frost"
+description = "This elemental ring is sourced from the Cannith Engines that power the Manufactury."
+drop_location = "Legendary Lord of Blades, end and optional chest"
+icon = "Ring_12c"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 148
+
+[[effect]]
+name = "Alchemical Water Attunement"
+
+[[effect]]
+name = "Legendary Elemental Energy"
+bonus_type = "Legendary Elemental Energy"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Lord of Blades"

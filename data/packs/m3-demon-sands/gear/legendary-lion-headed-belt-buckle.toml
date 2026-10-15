@@ -1,0 +1,32 @@
+name = "Legendary Lion-headed Belt Buckle"
+description = """
+Tarnished by time and wear, the brass surface of this buckle is molded in the
+shape of a roaring lion."""
+drop_location = "Legendary version of Epic Lion-headed Belt Buckle"
+icon = "Belt_7d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Waist"
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Roar"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"

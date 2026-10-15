@@ -1,0 +1,53 @@
+name = "Topaz of Sonic Resistance"
+choose_level = true
+description = "Enhancement bonus to Sonic Resistance"
+family = "Topaz"
+icon = "Topaz"
+level_values = [
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+    40,
+]
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Sonic Resistance"
+effect_type = "EnergyResistance"
+targets = ["Sonic"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

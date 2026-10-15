@@ -1,0 +1,30 @@
+name = "For Want of a Heart"
+bestowed_by = "Brumo Zivthin"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+zone = "On A Goristro's Trail"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/For_Want_of_a_Heart"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 37
+
+[[run]]
+tier = "legendary"
+level = 37

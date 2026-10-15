@@ -1,0 +1,49 @@
+name = "Legendary Rumbling Thunder"
+accepts_sentience = true
+description = "This crossbow is... vibrating?"
+drop_location = "Security Detail, End chest"
+enhancement_bonus = 15
+icon = "GreatCrossbow_1c"
+item_category = "Weapon"
+item_type = "Great Crossbow"
+material = "Adamantine"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Reverberating 6"
+
+[[effect]]
+name = "Jolting 14"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Security Detail"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_multiplier = 5.3
+handedness = "Two-handed"
+weapon_type = "Great Crossbow"

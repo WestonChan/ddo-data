@@ -1,0 +1,8 @@
+name = "Paranoia"
+description = "Paranoia Attack Proc: Half threat for 15 seconds."
+family = "Other"
+icon = "Paranoia"
+min_level = 1
+
+[[slot]]
+slot = "crafting: trace of madness"

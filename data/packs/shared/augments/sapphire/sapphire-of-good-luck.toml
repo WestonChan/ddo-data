@@ -1,0 +1,38 @@
+name = "Sapphire of Good Luck"
+choose_level = true
+description = "A Luck bonus to saves and skill checks"
+family = "Sapphire"
+icon = "Sapphire"
+level_values = [
+    1,
+    2,
+    3,
+]
+levels = [
+    12,
+    20,
+    28,
+]
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Luck"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Luck"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+extra_types = ["SkillBonus"]
+targets = ["All"]
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "green"

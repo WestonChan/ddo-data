@@ -1,0 +1,64 @@
+name = "Shield of the Hunter"
+description = "The Master of the Hunt has graciously granted you this as a token of his respect."
+drop_location = "Hunt or Be Hunted, end chest"
+enhancement_bonus = 15
+icon = "Shield_18a"
+item_category = "Shield"
+item_type = "Buckler"
+material = "Crystal"
+minimum_level = 29
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 19
+max_dex_bonus = 0
+shield_bonus = 22
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Guardbreaking"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 22
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hunt or Be Hunted"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Off-hand"
+weapon_type = "Buckler"

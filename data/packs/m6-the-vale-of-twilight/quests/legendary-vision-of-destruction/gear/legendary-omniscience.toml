@@ -1,0 +1,43 @@
+name = "Legendary Omniscience"
+description = """
+This ring seems to be calmly aware of all that happens around you. It will warn
+you telepathically of danger, allowing you to dodge attacks more easily and
+avoid critical damage."""
+drop_location = "Legendary Vision of Destruction, End chest"
+icon = "Ring_10a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 13
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 148
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"

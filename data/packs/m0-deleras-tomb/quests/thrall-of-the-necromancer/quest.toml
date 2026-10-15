@@ -1,0 +1,26 @@
+name = "Thrall of the Necromancer"
+bestowed_by = "Delera"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Delera's Tomb"
+patron = "House Jorasco"
+zone = "Necromancer's Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Thrall_of_the_Necromancer"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 27

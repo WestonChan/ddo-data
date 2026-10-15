@@ -1,0 +1,53 @@
+name = "Epic Mushroom Cap"
+description = """
+This large mushroom cap, a remnant of Zuggtmoy's power, has an indent large
+enough to fit one's head. To the resourceful adventurer, anything can become
+useful gear."""
+drop_location = "ToEE: Water Node, Jotun Rimeblade chest (Confirmed), ToEE: Earth Node, Hyrelgas chest (Confirmed), ToEE: Air Node, dragon's hoard chests, and ToEE: Fire Node, Periron chest"
+icon = "Helmet_22"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Head"
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Deathblock VIII"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 3
+
+[[effect]]
+name = "Superior False Life"
+bonus_type = "Enhancement"
+
+[[source]]
+chest = "dragon's hoard chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"
+
+[[source]]
+chest = "hyrelgas chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "periron chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"
+
+[[source]]
+chest = "jotun rimeblade chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"

@@ -1,0 +1,38 @@
+name = "+20 Hitpoints, +6 Exceptional Strength Skills"
+adds_augment = "Accessory Aspect II"
+variant = "Water:Escalation:Material"
+description = """
+Hitpoints +20: +20 Greater Elemental Energy bonus to maximum hit points
++6 Exceptional bonus to all Strength based skills
+Water:Escalation:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Greater Elemental Energy"
+value = 20
+
+[[effect]]
+name = "Strength Skills"
+bonus_type = "Exceptional"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Greater Elemental Energy"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Exceptional"
+effect = "Strength Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: accessory devastation"

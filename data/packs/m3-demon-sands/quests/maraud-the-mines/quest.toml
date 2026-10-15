@@ -1,0 +1,21 @@
+name = "Maraud the Mines"
+bestowed_by = "Walk-up"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Demon Sands"
+patron = "The Free Agents"
+zone = "Firebrand Mines"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Maraud_the_Mines"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11

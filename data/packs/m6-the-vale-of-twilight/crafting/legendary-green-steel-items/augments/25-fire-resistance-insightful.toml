@@ -1,0 +1,24 @@
+name = "+25 Fire Resistance (Insightful)"
+description = "Material/Opposition: +25 Insightful bonus to Fire Resistance."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Insight"
+value = 25
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[slot]]
+slot = "crafting: equipment tier 2"

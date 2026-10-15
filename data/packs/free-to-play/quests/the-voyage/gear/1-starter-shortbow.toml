@@ -1,0 +1,32 @@
+name = "+1 Starter Shortbow"
+description = "A smaller wooden bow with a shorter firing distance."
+drop_location = "The Voyage, End reward"
+enhancement_bonus = 1
+icon = "Shortbow_1d"
+item_category = "Weapon"
+item_type = "Shortbow"
+material = "Wood"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Voyage"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Shortbow"

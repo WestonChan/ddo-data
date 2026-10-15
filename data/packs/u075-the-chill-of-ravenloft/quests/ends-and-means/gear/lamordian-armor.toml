@@ -1,0 +1,43 @@
+name = "Lamordian Armor"
+description = "Timeless style, meant to protect from the bitter colds."
+drop_location = "Ends and Means, optional chest"
+enhancement_bonus = 4
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 70
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"

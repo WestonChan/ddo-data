@@ -1,0 +1,26 @@
+name = "The Last Stand"
+bestowed_by = "Gullwing"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Red Fens"
+patron = "House Kundarak"
+zone = "Refuge of the Ancestors"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Last_Stand"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9
+
+[[run]]
+tier = "epic"
+level = 21

@@ -1,0 +1,27 @@
+name = "Cloak of Troll's Resistance"
+description = """
+This cloak gives a limited ability to resist cold, electric, and sonic damage
+as a troll does."""
+drop_location = "Redwillow's Ruins, Geeblebrox 's Chest"
+icon = "Cloak_19a"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 5
+slot = "Back"
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "geeblebrox 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Redwillow's Ruins"

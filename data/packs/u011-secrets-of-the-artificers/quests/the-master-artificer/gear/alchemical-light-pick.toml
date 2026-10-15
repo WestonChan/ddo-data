@@ -1,0 +1,48 @@
+name = "Alchemical Light Pick"
+description = """
+A smaller hammer with a sharp, pointed head designed to concentrate the force
+of its blow on a small area. Similar to a miner's pick, but smaller and reinforced
+for battle."""
+drop_location = "The Master Artificer, Either End chest"
+enhancement_bonus = 5
+icon = "LightPick_1b"
+item_category = "Weapon"
+item_type = "Light Pick"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[socket]]
+slot = "crafting: alchemical material type"
+
+[[socket]]
+slot = "crafting: alchemical tier 1"
+
+[[socket]]
+slot = "crafting: alchemical tier 2"
+
+[[socket]]
+slot = "crafting: alchemical tier 3"
+
+[[source]]
+chest = "either end chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Master Artificer"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Light Pick"

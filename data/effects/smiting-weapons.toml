@@ -1,0 +1,3 @@
+name = "Smiting Weapons"
+description_template = "While wearing this item, your melee and ranged weapons gain Vorpal Effect: On an attack roll of 20 which is confirmed as a critical hit this weapon will completely destroy a construct. Powerful constructs may resist the vorpal effect until sufficiently damaged."
+verbose_name_template = "Smiting Weapons"

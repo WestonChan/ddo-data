@@ -1,0 +1,3 @@
+name = "Spike Guard"
+description_template = "On Being Hit in Melee: 5% chance to do 510 to 700 Piercing Damage to the Attacker."
+verbose_name_template = "Spike Guard"

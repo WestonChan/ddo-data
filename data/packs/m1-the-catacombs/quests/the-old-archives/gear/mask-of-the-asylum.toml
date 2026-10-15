@@ -1,0 +1,27 @@
+name = "Mask of the Asylum"
+description = "This mask is worn by the attendants of the bleakest ward in the asylum."
+drop_location = "The Old Archives, End chest (by the third Fragment)"
+icon = "Helmet_23"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Head"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 41
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Old Archives"

@@ -1,0 +1,20 @@
+name = "Riposte VI"
+description_template = "When Missed by an attack: Deals 6 to 24 damage to your attacker. Passive: +3 Insight bonus to Armor Class, +3 Insight bonus to Fortitude, Reflex, and Will Saving Throws."
+home_bonus_type = "Insight"
+verbose_name_template = "Riposte VI +3"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Insight"
+constant = 3
+rounding = "down"
+scale = 1.0
+target = "Armor Class"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Insight"
+constant = 3
+rounding = "down"
+scale = 1.0
+target = "Saving Throws"

@@ -1,0 +1,21 @@
+name = "Sovereign Rune of Flame"
+description = "Combustion +84: Passive: +84 Equipment bonus to Fire Spell Power."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Fire Spell Power"
+bonus_type = "Equipment"
+value = 84
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[slot]]
+slot = "crafting: sovereign rune"

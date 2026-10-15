@@ -1,0 +1,11 @@
+name = "The Lost Seekers"
+quests = [
+    "The Kobold's Den: Clan Gnashtooth",
+    "The Kobold's Den: Rescuing Arlos",
+    "Venn's Trail: Clan Tunnelworm",
+    "Venn's Trail: Venn's Fate",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Lost_Seekers"
+read = "2026-10-02"

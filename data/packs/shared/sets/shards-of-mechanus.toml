@@ -1,0 +1,39 @@
+name = "Shards of Mechanus"
+icon = "ShardsOfMechanus"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Repair Amplification"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "Repair Healing on Hit"

@@ -1,0 +1,48 @@
+name = "Epic Marilith Chain"
+description = """
+A suit of Chain Mail created from the melted down weapons of a Marilith demon.
+A tain of evil still lingers, but some will ignore that for the protection
+this armor gives, especially as the armor does not seem to affect the use of
+skills."""
+drop_location = "Epic version of Marilith Chain"
+enhancement_bonus = 6
+icon = "LightArmor_9e"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritforged Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 9
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 11
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "DR 15/Good"
+
+[[effect]]
+name = "DR 15/Lawful"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "blue"

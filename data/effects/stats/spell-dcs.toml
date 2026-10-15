@@ -1,0 +1,4 @@
+name = "Spell DCs"
+category = "magical"
+home_bonus_type = "Orb"
+verbose_name_template = "%b1 Spell DCs +{1}"

@@ -1,0 +1,307 @@
+[[row]]
+name = "Wild Shape: Hive Keeper"
+acquire = "Train"
+description = """
+Hybrid Form: You give part of yourself to the hive, gaining insect like reflexes
+and senses. Your bodily fluids become poisonous to others, and the swarm is
+your ally.
+
+Gain +1 to caster level and max caster level of all Acid and poison spells.
+
+Gain 25% Concealment and Evasion.
+
+Your Reflex saves are increased by 1 every 3 Druid levels and you become 10% more
+Vulnerable to Cold."""
+icon = "WildShapeHiveKeeper"
+source_name = "Blight Caster"
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Displacement"
+value = 25
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Cold Absorption"
+value = -10
+
+[[row.group]]
+group_name = "Kin Form"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Racial"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Enveloping Swarm",
+    "Creeping Doom",
+    "Storm of Vengeance",
+    "Acid Spray",
+    "Melf's Acid Arrow",
+    "Acid Blast",
+    "Acid Rain",
+    "Burning Blood",
+    "Cloudkill",
+    "Acid Fog",
+    "Black Dragon Bolt",
+    "Acid Well",
+    "Hellball",
+    "Acid Storm: Black Dragon Breath",
+    "Vial of Acid",
+    "Vial Smash: Acid",
+    "Corrode Weapons",
+    "Acid Concentration",
+    "Caustic Solvent",
+    "Caustic Overload",
+    "Multivial of Acid",
+    "Caustic Obliteration",
+    "Blighted Breath",
+    "Autumn Decay",
+    "Poison",
+    "Insidious Spores",
+    "Vial of Venom",
+    "Vial Smash: Poison",
+    "Greater Venom Vial",
+    "Venom Concentration",
+    "Heartstopper Poison",
+    "Multivial of Poison",
+    "Poison Breath",
+    "Wave of Poison",
+    "Greater Wave of Poison",
+    "Venom Vial",
+    "Poison Obliteration",
+    "Blighted Breath",
+]
+
+[[row.modifier.requirement]]
+items = ["Hive Keeper"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Racial"
+effect = "Displacement"
+effect_type = "Displacement"
+
+[[row.modifier.requirement]]
+items = ["Hive Keeper"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Racial"
+effect_type = "GrantFeat"
+targets = ["Evasion"]
+
+[[row.modifier.requirement]]
+items = ["Hive Keeper"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+]
+bonus_type = "Racial"
+effect_type = "SaveBonus"
+stack_source = "Blight Caster"
+targets = ["Reflex"]
+
+[[row.modifier.requirement]]
+items = ["Hive Keeper"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Racial"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.modifier.requirement]]
+items = ["Hive Keeper"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 4
+
+[[row.stance]]
+name = "Hive Keeper"
+description = """
+Hybrid Form: You give part of yourself to the hive, gaining insect like reflexes
+and senses. Your bodily fluids become poisonous to others, and the swarm is
+your ally.
+
+Gain +1 to caster level and max caster level of all Acid and Poison spells.
+
+Gain 25% Concealment and Evasion.
+
+Your Reflex saves are increased by 1 every 3 Druid levels and you become 10% more
+Vulnerable to Cold."""
+group_name = "Major Form"
+icon = "WildShapeHiveKeeper"
+
+[[row]]
+name = "Wild Shape: Thorn-Kin"
+acquire = "Train"
+description = """
+Hybrid Form: You create a suit of living thorny wood around your body armoring
+you from harm.
+
+Gain +1 to caster level and max caster level of all Thorn and Poison spells.
+
+10% Exceptional bonus to Armor Class and 50% Fortification.
+
+You become 10% more Vulnerable to Fire."""
+icon = "WildShapeThornKin"
+source_name = "Blight Caster"
+
+[[row.effect]]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Exceptional"
+effect = "Fortification"
+value = 50
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Fire Absorption"
+value = -10
+
+[[row.group]]
+group_name = "Kin Form"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Racial"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Poison",
+    "Insidious Spores",
+    "Vial of Venom",
+    "Vial Smash: Poison",
+    "Greater Venom Vial",
+    "Venom Concentration",
+    "Heartstopper Poison",
+    "Multivial of Poison",
+    "Poison Breath",
+    "Wave of Poison",
+    "Greater Wave of Poison",
+    "Venom Vial",
+    "Poison Obliteration",
+    "Blighted Breath",
+    "Thorn Strike",
+    "Thorn Blade",
+    "Thorn Bloom",
+    "Thorn Wave",
+    "Grasping Thorns",
+    "Thorn Lance",
+]
+
+[[row.modifier.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[row.modifier.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Exceptional"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[row.modifier.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Racial"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row.modifier.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 4
+
+[[row.stance]]
+name = "Thorn-Kin"
+description = """
+Hybrid Form: You create a suit of living thorny wood around your body armoring
+you from harm.
+
+Gain +1 to caster level and max caster level of all Thorn and Poison spells.
+
+10% Exceptional bonus to Armor Class and 50% Fortification.
+
+You become 10% more Vulnerable to Fire."""
+group_name = "Major Form"
+icon = "WildShapeThornKin"
+
+[[row.stance]]
+name = "Thorns Imbue"
+description = """
+Imbue Toggle: You are covered in Thorns and all your weapon attacks,
+dealing 1d6 Piercing damage on hit, scaling with 100% ??? Spell Power. Only applies in
+any Thorn-Kin or Thorne Knight Forms."""
+group_name = "Imbue"
+icon = "WildShapeThornKin"
+
+[[row.stance.requirement_group]]
+kind = "one_of"
+
+[[row.stance.requirement_group.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.stance.requirement_group.requirement]]
+items = ["Thorne Knight"]
+req_type = "Stance"

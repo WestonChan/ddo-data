@@ -1,0 +1,49 @@
+name = "Smoldering Cudgel"
+description = """
+This crude stick was once used as campfire kindling. It has retained some of
+its fiery qualities. Wielding this will make you quite easy to spot."""
+drop_location = "Ghost of a Chance, Found in Fire Pit"
+icon = "Club_24"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Fire Touch"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = -5
+
+[[effect]]
+name = "Command"
+value = 2
+value2 = -6
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+chest = "found in fire pit"
+kind = "quest"
+loot_type = "chest"
+name = "Ghost of a Chance"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

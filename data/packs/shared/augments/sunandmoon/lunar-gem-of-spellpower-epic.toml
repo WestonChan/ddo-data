@@ -1,0 +1,29 @@
+name = "Lunar Gem of Spellpower (Epic)"
+description = """
++20 Profane Bonus to Spellpower.
+Drops in: Toil and Trouble, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Profane"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

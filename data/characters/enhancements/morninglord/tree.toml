@@ -1,0 +1,803 @@
+name = "Morninglord"
+background = "MorninglordBackground"
+icon = "Morninglord"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Morninglord: Accuracy I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain +2% to hit with all attacks. Your Point Blank Shot and Ranged Sneak
+Attack range is increased by 2 meters for each Elven Core Ability you possess from this tree."""
+icon = "ElfElvenAccuracy"
+internal_name = "MorninglordCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["RangedSneakAttackRange"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Morninglord: Intelligence I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+internal_name = "MorninglordCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["RangedSneakAttackRange"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["MorninglordCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Accuracy II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks."
+icon = "ElfElvenAccuracy"
+internal_name = "MorninglordCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["RangedSneakAttackRange"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["MorninglordCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Intelligence II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+internal_name = "MorninglordCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["RangedSneakAttackRange"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["MorninglordCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Accuracy III"
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks."
+icon = "ElfElvenAccuracy"
+internal_name = "MorninglordCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["RangedSneakAttackRange"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["MorninglordCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Rejuvenation of Dawn"
+cost_per_rank = [2]
+description = """
+Activate: Heals yourself or target ally 10,000 hit point damage, and removes
+all ability damage, death penalty effects, negative levels, and the conditions
+blinded, dazed, deafened, diseased, exhausted, fatigued, feebleminded, insanity,
+nauseated, poisoned, and stunned.
+This ability can be used twice per rest.
+Cooldown: 3 minutes"""
+icon = "MorninglordRejuvinationOfDawn"
+internal_name = "MorninglordRejuvinationOfDawn"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    180,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Rejuvenation of Dawn",
+    "None",
+]
+
+[[enhancement]]
+name = "Morninglord: Bane of the Restless"
+cost_per_rank = [1]
+description = """
+Your Turn Undead ability now also deals [6/12/18]d6 light damage to nearby undead (no save).
+You also count as [2/4/6] levels higher when turning undead. This increases the maximum level of
+creature you can turn and also increases the total number of hit dice you can turn.
+In addition, you add an additional [2/4/6] to the number of hit dice you can turn."""
+icon = "MorninglordBaneOfTheRestless"
+internal_name = "MorninglordBaneOfTheRestless"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "TurnLevelBonus"
+extra_types = ["TurnBonus"]
+
+[[enhancement]]
+name = "Morninglord: Keen Senses"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, and Spot."
+icon = "ElfKeenSenses"
+internal_name = "MorninglordKeenSenses"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement]]
+name = "Morninglord: Weapon Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++1 to hit and damage with Morningstars, Maces, and one-handed Hammers.
++1 to hit and +2 to damage with Mauls."""
+icon = "MorninglordWeaponTrainingI"
+internal_name = "MorninglordWeaponTrainingI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Morningstar",
+    "Light Mace",
+    "Heavy Mace",
+    "Light Hammer",
+    "Maul",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Morningstar",
+    "Light Mace",
+    "Heavy Mace",
+    "Light Hammer",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Maul"]
+
+[[enhancement]]
+name = "Morninglord: Arcane Fluidity"
+cost_per_rank = [1]
+description = """
+Your arcane spell failure chance while wearing armor is decreased by [5/10/15]%.
+(This has no effect on arcane spell failure from shields.)"""
+icon = "ElfArcaneFluidity"
+internal_name = "MorninglordArcaneFluidity"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement]]
+name = "Morninglord: Blessing of Amaunator"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Amaunator blesses those in the area of effect with the
+following for 1 minute per caster level (3 uses per rest):
+Aid, Spell Resistance, and Death Ward"""
+icon = "MorninglordBlessingOfAmaunator"
+internal_name = "MorninglordBlessingOfAmaunator"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    60,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Blessing of Amaunator",
+    "None",
+]
+
+[[enhancement]]
+name = "Morninglord: Enchantment Lore"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[2/4/6] saves vs. Enchantments.
+Rank 3: You also gain +1 Enchantment spell DC"""
+icon = "ElfEnchantmentLore"
+internal_name = "MorninglordEnchantmentLore"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Enchantment"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+rank = 3
+targets = ["Enchantment"]
+
+[[enhancement]]
+name = "Morninglord: Nothing Is Hidden"
+cost_per_rank = [2]
+description = """
+Your senses are so acute that you no longer need to spend time searching for the obvious.
+You will automatically perform a Search check to locate traps and secret doors when you are in
+range to Spot them, although this Search check occurs at a -[12/8/4] penalty."""
+icon = "ElfNothingIsHidden"
+internal_name = "MorninglordNothingIsHidden"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["MorninglordKeenSenses"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Weapon Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++1 to hit and damage with Morningstars, Maces, and one-handed Hammers.
++1 to hit and +2 to damage with Mauls."""
+icon = "MorninglordWeaponTrainingI"
+internal_name = "MorninglordWeaponTrainingII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Morningstar",
+    "Light Mace",
+    "Heavy Mace",
+    "Light Hammer",
+    "Maul",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Morningstar",
+    "Light Mace",
+    "Heavy Mace",
+    "Light Hammer",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Maul"]
+
+[[enhancement.requirement]]
+items = ["MorninglordWeaponTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Arcanum"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+[25/50/100] spell points and +[1/2/3] spell penetration."
+icon = "Arcanum"
+internal_name = "MorninglordArcanum"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Morninglord: Light of the Sun God"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants +[10/20/30] Light spell power."
+icon = "MorninglordLightOfTheSunGod"
+internal_name = "MorninglordLightOfTheSunGod"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement]]
+name = "Morninglord: Fey Energy Tap"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = """
+Activate: A drop of blood lets you tap into the endless energy of the realm
+of the fey, giving yourself or an ally temporary spell points (24 Spell points +6 per level),
+10% incorporeality, and a -2 penalty to Will saving throws while they last.
+This ability can be used 5 times per rest.
+Activation Cost: 1 HP.
+Cooldown: 2 minutes"""
+icon = "ElfFeyEnergyTap"
+internal_name = "MorninglordFeyEnergyTap"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["MorninglordEnchantmentLore"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Fey Sight"
+cost_per_rank = [2]
+description = """
+While you have 100 or more spell points, you can see things as they truly are.
+You are able to see invisible creatures and pierce illusions."""
+icon = "ElfFeySight"
+internal_name = "MorninglordFeySight"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["MorninglordFeyEnergyTap"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Weapon Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++1 to hit and damage with Morningstars, Maces, and one-handed Hammers.
++1 to hit and +2 to damage with Mauls."""
+icon = "MorninglordWeaponTrainingI"
+internal_name = "MorninglordWeaponTrainingIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Morningstar",
+    "Light Mace",
+    "Heavy Mace",
+    "Light Hammer",
+    "Maul",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Morningstar",
+    "Light Mace",
+    "Heavy Mace",
+    "Light Hammer",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Maul"]
+
+[[enhancement.requirement]]
+items = ["MorninglordWeaponTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Arcane Archer"
+cost_per_rank = [4]
+description = """
+You gain access to the Arcane Archer enhancement tree.
+(The Elf: Arcane Archer tree uses your total character level instead of Ranger level,
+but advances Core Abilities at a slower rate.
+You cannot spend action points in both the Ranger: Arcane Archer and Elf: Arcane Archer trees.)"""
+icon = "ElfArcaneArcher"
+internal_name = "MorninglordArcaneArcher"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "EnhancementTree"
+
+[[enhancement.requirement]]
+items = ["MorninglordArcanum"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Amaunator's Brilliance"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Sunburst
+Cooldown: 30 seconds
+Cost: 25 SP"""
+icon = "MorninglordAmaunatorsBrilliance"
+internal_name = "MorninglordAmaunatorsBrilliance"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    25,
+    0,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Sunburst",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["MorninglordLightOfTheSunGod"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["MorninglordAuraOfRadiance"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Aura of Radiance"
+arrows = ["ArrowLeft"]
+cost_per_rank = [1]
+description = """
+The light of Amaunator shines perpetually upon you, protecting you and damaging
+those who would do you harm. You gain a light shield effect that deals 2[d6/d8/d10]
+light damage to enemies each time they attack you in melee. This applies to enemy
+misses as well as hits. You also gain a +[3/6/9] sacred bonus to Armor Class against
+attacks from shadows and other undead creatures."""
+icon = "MorninglordAuraOfRadiance"
+internal_name = "MorninglordAuraOfRadiance"
+min_spent = 15
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement]]
+name = "Morninglord: Grace"
+cost_per_rank = [1]
+description = """
+You may use your Dexterity modifier to determine the damage you deal with
+Morningstars, Maces, and Hammers."""
+icon = "MorninglordGrace"
+internal_name = "MorninglordGrace"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Dexterity",
+    "Morningstar",
+    "Light Mace",
+    "Heavy Mace",
+    "Light Hammer",
+]
+
+[[enhancement.requirement]]
+items = ["MorninglordWeaponTrainingIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Weapon Training IV"
+arrows = [
+    "ArrowLeft",
+    "ArrowRight",
+]
+cost_per_rank = [2]
+description = """
++1 to hit and damage with Morningstars, Maces, and one-handed Hammers.
++1 to hit and +2 to damage with Mauls."""
+icon = "MorninglordWeaponTrainingI"
+internal_name = "MorninglordWeaponTrainingIV"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Morningstar",
+    "Light Mace",
+    "Heavy Mace",
+    "Light Hammer",
+    "Maul",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Morningstar",
+    "Light Mace",
+    "Heavy Mace",
+    "Light Hammer",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Maul"]
+
+[[enhancement.requirement]]
+items = ["MorninglordWeaponTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Morninglord: Skill"
+cost_per_rank = [1]
+description = "+3% Doublestrike, +3% Doubleshot, +3% dodge, and bypass 3% dodge."
+icon = "MorninglordSkill"
+internal_name = "MorninglordSkill"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = [
+    "Doubleshot",
+    "DodgeBonus",
+    "DodgeBypass",
+]
+
+[[enhancement.requirement]]
+items = ["MorninglordWeaponTrainingIV"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Morninglord"]
+req_type = "Race"

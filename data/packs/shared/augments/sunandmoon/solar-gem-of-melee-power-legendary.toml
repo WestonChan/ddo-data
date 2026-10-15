@@ -1,0 +1,35 @@
+name = "Solar Gem of Melee Power (Legendary)"
+description = """
++15 Artifact Bonus to Melee Power.
+Drops in: The Key to the Mythal, end chest
+A Miner Sacrifice, optional chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Artifact"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Miner Sacrifice"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Key to the Mythal"

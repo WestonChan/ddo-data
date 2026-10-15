@@ -1,0 +1,49 @@
+name = "Light Armor of the Crownblade's Reflection"
+description = """
+This armor took the power of the deathly ritual and turned it to the Crownblade's
+purposes."""
+drop_location = "Ritual Table, Turn in \nLegendary Light Armor of the Crownblade \n120 Barrier Fragments \nSigil of the Crownblade"
+enhancement_bonus = 15
+icon = "LightArmor_1e"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 35
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Equipped Healing Amplification"
+bonus_type = "Equipment"
+value = 31
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 16
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Temperance of Spirit"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Ritual Table"

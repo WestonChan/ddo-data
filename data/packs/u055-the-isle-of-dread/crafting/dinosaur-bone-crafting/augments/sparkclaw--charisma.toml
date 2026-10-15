@@ -1,0 +1,21 @@
+name = "Sparkclaw: Charisma"
+description = "+2 Exceptional bonus to Charisma."
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "isle of dread: claw (weapon)"

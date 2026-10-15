@@ -1,0 +1,5 @@
+name = "Universal Spell Power"
+category = "magical"
+description_template = "Passive: {1} %b1 bonus to Universal Spell Power."
+home_bonus_type = "Implement"
+verbose_name_template = "%b1 Universal Spell Power +{1}"

@@ -1,0 +1,8 @@
+name = "Unleash the Fire"
+description = "Unleashed Inferno: Small chance 10d440 Fire damage, in addition DC 110 Fortitude save knocked down."
+family = "PlanarSearing"
+icon = "Deconstructor"
+min_level = 32
+
+[[slot]]
+slot = "crafting: leashed power"

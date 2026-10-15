@@ -1,0 +1,38 @@
+name = "Green Steel Great Crossbow"
+description = """
+The largest of the crossbows, it is weighty enough to require special training
+to use."""
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+enhancement_bonus = 5
+icon = "GreatCrossbow_1b"
+item_category = "Weapon"
+item_type = "Great Crossbow"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[socket]]
+slot = "crafting: weapon invasion"
+
+[[source]]
+kind = "crafting_system"
+name = "Green Steel items"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Great Crossbow"

@@ -1,0 +1,43 @@
+name = "Epic Saltiron Docent"
+description = """
+With this Docent embedded, plates of Saltiron cover your body, mostly hidden
+by a fine coat."""
+drop_location = "Epic version of Saltiron Docent"
+enhancement_bonus = 6
+icon = "Docent_3b"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 20
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 15
+armor_bonus = 0
+armor_type = "Docent"
+mithral_body = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[effect]]
+name = "The Golden Curse"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 9
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"

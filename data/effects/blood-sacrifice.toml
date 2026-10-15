@@ -1,0 +1,3 @@
+name = "Blood Sacrifice"
+description_template = "Exchanges 25 hit points for 50 spell points. (This enchantment has no effect.)"
+verbose_name_template = "Blood Sacrifice"

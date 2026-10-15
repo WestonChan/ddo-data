@@ -1,0 +1,43 @@
+name = "Lunar Gem of Hide and Move Silently (Heroic)"
+description = """
++2 Profane Bonus to Hide and Move Silently
+Drops in: Ends and Means, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Hide"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Final Draw"

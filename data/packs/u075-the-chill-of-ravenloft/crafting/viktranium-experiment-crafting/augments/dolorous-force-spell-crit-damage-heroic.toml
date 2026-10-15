@@ -1,0 +1,35 @@
+name = "Dolorous Force Spell Crit Damage (Heroic)"
+description = "+5% Insight bonus to Force and Physical Spell Critical Damage."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Force Spell Critical Damage"
+bonus_type = "Insight"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Force Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Dolorous Force Spell Critical Damage (Heroic)"
+reason = "The wiki names it Dolorous Force Spell Crit Damage (Heroic), where Maetrim names it Spell Critical Damage."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-10-02"
+qualifier = 'family "Lamordia_Heroic"'
+
+[[slot]]
+slot = "lamordia: dolorous (accessory)"

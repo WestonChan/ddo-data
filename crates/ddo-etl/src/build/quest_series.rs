@@ -22,9 +22,9 @@ impl QuestSeriesTable {
     fn insert_series_sql(self) -> &'static str {
         match self {
             Self::QuestChains => {
-                "INSERT INTO quest_chains (name, pack_id, provenance, wiki_url) VALUES (?1, ?2, ?3, ?4)"
+                "INSERT INTO quest_chains (name, pack_id, provenance, wiki_url, slug) VALUES (?1, ?2, ?3, ?4, ?5)"
             }
-            Self::Sagas => "INSERT INTO sagas (name, pack_id, provenance, wiki_url) VALUES (?1, ?2, ?3, ?4)",
+            Self::Sagas => "INSERT INTO sagas (name, pack_id, provenance, wiki_url, slug) VALUES (?1, ?2, ?3, ?4, ?5)",
         }
     }
 
@@ -99,8 +99,10 @@ fn insert_quest_series<Reward>(
             })?),
         None => None,
     };
-    transaction
-        .execute(table.insert_series_sql(), params![series.name, pack_id, Provenance::Wiki.as_str(), series.page])?;
+    transaction.execute(
+        table.insert_series_sql(),
+        params![series.name, pack_id, Provenance::Wiki.as_str(), series.page, crate::tree::slug(&series.name)],
+    )?;
     let series_id = transaction.last_insert_rowid();
     for (sort_order, quest_name) in series.quests.iter().enumerate() {
         let quest_id = id_named(transaction, "SELECT id FROM quests WHERE name = ?1", quest_name)?.with_context(|| {
@@ -134,7 +136,6 @@ fn insert_quest_series_rewards<Reward: QuestSeriesReward>(
                 is_rare: reward.is_rare(),
                 chest: None,
                 tier: reward.tier(),
-                cost: None,
                 drop_text_segment: None,
                 source_match: None,
             },

@@ -1,0 +1,55 @@
+name = "Adamantine Knuckles (level 24)"
+description = "These cloth handwraps hide a hard-hitting secret-adamantine knuckles underneath."
+drop_location = "Return to Cabal for One, Feast or Famine, End chest (Epic Hard)"
+enhancement_bonus = 7
+icon = "HandWraps_1e"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Adamantine"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Adamantine Lined"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Cabal for One"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Feast or Famine"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

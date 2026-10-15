@@ -1,0 +1,65 @@
+name = "Aegis of Flame"
+description = """
+Clerics and Paladins often use their shields to bash their opponents, no doubt
+why this one is ordained with several sharp metal spikes."""
+drop_location = "Silver Flame Nugget, End reward"
+enhancement_bonus = 5
+icon = "Shield_11a"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Mithral"
+minimum_level = 16
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Silver Flame"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Spikes"
+
+[[effect]]
+name = "Holy"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "colorless"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "Off-hand"
+weapon_type = "Large Shield"

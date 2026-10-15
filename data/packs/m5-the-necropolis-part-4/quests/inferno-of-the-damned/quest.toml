@@ -1,0 +1,26 @@
+name = "Inferno of the Damned"
+bestowed_by = "Lineya Ibane"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Inferno of the Damned (epic)"
+favor = 6
+pack = "The Necropolis, Part 4"
+patron = "The Silver Flame"
+zone = "Inferno of the Damned"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Inferno_of_the_Damned"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 29

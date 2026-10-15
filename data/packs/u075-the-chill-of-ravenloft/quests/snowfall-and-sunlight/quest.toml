@@ -1,0 +1,30 @@
+name = "Snowfall and Sunlight"
+bestowed_by = "Hellmuth Neff"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Chill of Ravenloft"
+patron = "Keepers of Lamordia"
+zone = "Schloss Mordenheim"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Snowfall_and_Sunlight"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

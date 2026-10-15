@@ -1,0 +1,10 @@
+name = "The Lost Seekers"
+pack = "Free to Play"
+quests = [
+    "The Grotto",
+    "Redemption",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Lost_Seekers"
+read = "2026-10-02"

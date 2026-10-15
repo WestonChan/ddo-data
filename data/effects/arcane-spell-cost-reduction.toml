@@ -1,0 +1,3 @@
+name = "Arcane Spell Cost Reduction"
+description_template = "When you activate the epic feats Arcane Insight or Wellspring of Power your Spell Point Cost for all spells is reduced to 0 for 10 seconds."
+verbose_name_template = "Arcane Spell Cost Reduction"

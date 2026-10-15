@@ -1,0 +1,17 @@
+name = "Wraithborn Emerald"
+description = """
+Ethereal: Equipping this item causes your hands and weapons to become partially
+incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets."""
+family = "Emerald"
+icon = "Emerald"
+min_level = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[slot]]
+slot = "green"

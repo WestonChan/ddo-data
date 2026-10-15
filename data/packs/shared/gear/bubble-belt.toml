@@ -1,0 +1,40 @@
+name = "Bubble Belt"
+description = """
+Twisting a dial on this unusual belt's buckle causes the wearer to be surrounded
+by a bubble of air."""
+drop_location = "Cult of the Six, End reward"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Waist"
+
+[[clickie]]
+name = "Water Breathing"
+clickie = "Water Breathing"
+
+[[effect]]
+name = "Underwater Action"
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Water Breathing"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

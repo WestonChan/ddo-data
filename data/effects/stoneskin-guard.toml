@@ -1,0 +1,2 @@
+name = "Stoneskin Guard"
+verbose_name_template = "When struck you will occasionally have the Stoneskin spell cast on you"

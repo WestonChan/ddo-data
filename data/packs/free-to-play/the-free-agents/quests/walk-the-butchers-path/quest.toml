@@ -1,0 +1,23 @@
+name = "Walk the Butcher's Path"
+bestowed_by = "Mistress Ahura"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Free Agents"
+zone = "The Butcher's Path"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Walk_the_Butcher%27s_Path"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 2

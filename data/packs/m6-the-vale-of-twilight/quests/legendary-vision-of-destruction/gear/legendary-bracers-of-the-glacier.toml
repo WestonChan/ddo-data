@@ -1,0 +1,42 @@
+name = "Legendary Bracers of the Glacier"
+description = """
+Crafted by the great wizard Telios, these bracers are said to have been crafted
+from the flesh of Frost Giants. Telios disappeared recently, after being asked
+by members of the twelve to investigate the ruins beneath Stormreach. There
+is said to be a matching pair of gloves to these bracers."""
+drop_location = "Legendary Vision of Destruction, End chest"
+icon = "Bracers_1a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 283
+
+[[effect]]
+name = "Fire Shield (Cold)"
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 35
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"

@@ -1,0 +1,10 @@
+name = "Proof Against Disease"
+description_template = "This item grants its wearer immunity to natural diseases. This item also grants a {1} %b1 bonus to saving throws against magical diseases, and the wearer does not fail saving throws against them on a roll of a natural 1 (this renders the wearer immune to magical diseases with a DC of less than 3 + their Fortitude save)."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Proof Against Disease +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Disease Save"

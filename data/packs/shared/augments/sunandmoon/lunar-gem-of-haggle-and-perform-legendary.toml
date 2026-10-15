@@ -1,0 +1,36 @@
+name = "Lunar Gem of Haggle and Perform (Legendary)"
+description = """
++4 Profane Bonus to Haggle and Perform
+Drops in: Land of Lamordia, Fangs of Winter's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Profane"
+value = 4
+
+[[effect]]
+name = "Perform"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect_type = "SkillBonus"
+targets = [
+    "Haggle",
+    "Perform",
+]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "fangs of winter's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

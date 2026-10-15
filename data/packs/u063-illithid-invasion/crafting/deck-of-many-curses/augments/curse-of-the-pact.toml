@@ -1,0 +1,20 @@
+name = "Curse of the Pact"
+description = "+1 Fortune Bonus to Pact Dice"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Eldritch Blast Dice"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect = "Eldritch Blast Dice"
+effect_type = "EldritchBlastD6"
+
+[[slot]]
+slot = "crafting: deck curse"

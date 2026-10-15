@@ -1,0 +1,3 @@
+name = "Runic Revitalization"
+description_template = "On Positive Energy Spell Cast: You have a 10% chance to gain 100 Temporary Hit Points and 50 Temporary Spell Points for 60 seconds. This effect can trigger once per 120 seconds."
+verbose_name_template = "Runic Revitalization"

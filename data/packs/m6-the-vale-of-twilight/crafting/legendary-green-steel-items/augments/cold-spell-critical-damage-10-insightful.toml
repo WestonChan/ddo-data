@@ -1,0 +1,24 @@
+name = "Cold Spell Critical Damage 10% (Insightful)"
+description = "Ethereal/Dominion: 10% Insight bonus increase in Cold spell critical damage."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Dominion"""
+
+[[effect]]
+name = "Cold Spell Critical Damage"
+bonus_type = "Insight"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Cold Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: equipment tier 2"

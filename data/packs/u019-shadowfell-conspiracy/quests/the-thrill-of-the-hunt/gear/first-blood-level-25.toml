@@ -1,0 +1,50 @@
+name = "First Blood (Level 25)"
+description = """
+It is not who hits hardest but who hits first. However, there is much to be
+said for hitting first AND hardest."""
+drop_location = "The Thrill of the Hunt, End chest (Epic Normal); \n Shadow Over Wheloon, Quest chain end reward (Epic)"
+enhancement_bonus = 7
+icon = "BastardSword_8"
+item_category = "Weapon"
+item_type = "Bastard Sword"
+material = "Steel"
+minimum_level = 25
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Bloodletter VII"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Keen"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Thrill of the Hunt"
+
+[[source]]
+kind = "quest_chain"
+name = "Shadow Over Wheloon"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Bastard Sword"

@@ -1,0 +1,34 @@
+name = "Swampscale Armor"
+description = """
+A small suit of primitive, albeit effective armor, it's made from hundreds of
+reptile scales."""
+drop_location = "Cult of the Six, End reward"
+enhancement_bonus = 5
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 20
+armor_bonus = 5
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 7
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

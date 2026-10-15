@@ -1,0 +1,20 @@
+name = "Decorated Bracers"
+drop_location = "Advance to level 15, End reward"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Dhampir Dark Bargainer"
+slot = "Wrists"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 40
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

@@ -1,0 +1,16 @@
+name = "Sventusk's Gem"
+description = """
+This white gem is infused with a great deal of power from an ancient source.
+It may be able to be used as a component for a ritual."""
+drop_location = "Ruins of Gianthold, possible drop from Rare Encounter chest"
+icon = "Trinket_3"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Trinket"
+
+[[source]]
+chest = "possible drop from rare encounter chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Ruins of Gianthold"

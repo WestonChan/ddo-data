@@ -1,0 +1,55 @@
+name = "Orcus' Reign"
+description = "TBD"
+drop_location = "Terror of Demogorgon, any end chest; Terror of Demogorgon (Legendary) Elite/True Elite end reward"
+icon = "Belt_14f"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Waist"
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Insight"
+value = 15
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 15
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Quality"
+value = 4
+
+[[effect]]
+name = "Raging Inferno"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "any end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Terror of Demogorgon"
+
+[[source]]
+kind = "saga"
+name = "Terror of Demogorgon"
+tier = "legendary"

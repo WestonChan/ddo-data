@@ -66,7 +66,7 @@ use utoipa_axum::router::OpenApiRouter;
                        set tiers independently with their own limit and offset parameters; each owner is one row \
                        holding every one of its lines, so a `total` matches the vocabulary row's count.\n\n\
                        **Bulk.** Download `/v1/dump.sqlite` once instead of paging. Icons are at \
-                       `/icons/{family}/{icon}.png`, where `family` is `items`, `augments`, `feats`, `enhancements`, \
+                       `/icons/{kind}/{icon}.png`, where `kind` is `items`, `augments`, `feats`, `enhancements`, \
                        `spells`, `classes`, `filigrees`, `sets`, `sentient-gems` or `ui` and `icon` is the row's \
                        `icon` field.\n\n\
                        Requests are rate limited per IP (5 per second, bursts of 100); a limited request gets 429 with `Retry-After` in seconds. CORS allows any origin for GET, on error responses too, and exposes `Retry-After`.",
@@ -96,7 +96,7 @@ use utoipa_axum::router::OpenApiRouter;
         response_schemas::AugmentsDetailResponseModifiersEntryRequirementsEntry,
         response_schemas::AugmentsDetailResponseModifiersEntry,
         response_schemas::AugmentsDetailResponseQuestsEntry,
-        response_schemas::AugmentsDetailResponseSourcesEntry,
+        response_schemas::LootSource,
         response_schemas::AugmentsDetailResponse,
         response_schemas::BonusTypesPageResponseBonusTypesEntry,
         response_schemas::BonusTypesPageResponse,
@@ -182,7 +182,6 @@ use utoipa_axum::router::OpenApiRouter;
         response_schemas::ItemsDetailResponseQuestsEntry,
         response_schemas::ItemsDetailResponseSagasEntry,
         response_schemas::ItemsDetailResponseSet,
-        response_schemas::ItemsDetailResponseSourcesEntry,
         response_schemas::ItemsDetailResponseStarterRewardsEntry,
         response_schemas::ItemsDetailResponseVendorsEntry,
         response_schemas::ItemsDetailResponseWeapon,

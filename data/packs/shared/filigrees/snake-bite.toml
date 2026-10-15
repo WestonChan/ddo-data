@@ -1,0 +1,119 @@
+[[row]]
+name = "Snake Bite: +1 Attack and Damage"
+description = """
++1 Attack and Damage
+Rare: +2 PRR"""
+icon = "SnakeBite"
+menu = "Ravenloft"
+set = "Snake Bite"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Snake Bite: Attack and Damage: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Snake Bite: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "SnakeBite"
+menu = "Ravenloft"
+set = "Snake Bite"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Snake Bite: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Snake Bite: +2 Fortitude Saves"
+description = """
++2 Fortitude Save
+Rare: +2 PRR"""
+icon = "SnakeBite"
+menu = "Ravenloft"
+set = "Snake Bite"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Snake Bite: Fortitude: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Snake Bite: +4 Poison Attack DCs"
+description = """
++4 Poison Attack DCs
+Rare: +2 MRR"""
+icon = "SnakeBite"
+menu = "Ravenloft"
+set = "Snake Bite"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "TacticalDC"
+targets = ["Poison"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Snake Bite: Poison Attacks: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Snake Bite: +4 Poison Protection"
+description = """
++4 Saves versus Poison
+Rare: +2 PRR"""
+icon = "SnakeBite"
+menu = "Ravenloft"
+set = "Snake Bite"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Poison"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Snake Bite: Poison Protection: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true

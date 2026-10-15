@@ -25,7 +25,7 @@
               ],
               "damage": [],
               "description": "Provides a +9 Competence bonus to your attack rolls.",
-              "effect_id": 9,
+              "effect_id": 5669595018917774,
               "name": "Attack Bonus",
               "tier": null,
               "value": 9,
@@ -35,7 +35,6 @@
           ],
           "grants_slot": null,
           "icon": null,
-          "id": 3491,
           "min_level": 25,
           "modifiers": [
             {
@@ -55,7 +54,6 @@
               "display_name": null,
               "effect_type": "Weapon_Attack",
               "extra_types": null,
-              "id": 12813,
               "is_item_specific": false,
               "is_rare": false,
               "percent": false,
@@ -88,7 +86,7 @@
               ],
               "damage": [],
               "description": "Passive: +9 Natural Armor Bonus to Armor Class.",
-              "effect_id": 418,
+              "effect_id": 2730631434182972,
               "name": "Natural Armor",
               "tier": null,
               "value": 9,
@@ -98,7 +96,6 @@
           ],
           "grants_slot": null,
           "icon": null,
-          "id": 3492,
           "min_level": 25,
           "modifiers": [
             {
@@ -118,7 +115,6 @@
               "display_name": null,
               "effect_type": "NaturalArmor",
               "extra_types": null,
-              "id": 12814,
               "is_item_specific": false,
               "is_rare": false,
               "percent": false,
@@ -151,7 +147,7 @@
               ],
               "damage": [],
               "description": null,
-              "effect_id": 161,
+              "effect_id": 5153904484950047,
               "name": "Saving Throws",
               "tier": null,
               "value": 9,
@@ -161,7 +157,6 @@
           ],
           "grants_slot": null,
           "icon": null,
-          "id": 3493,
           "min_level": 25,
           "modifiers": [
             {
@@ -181,7 +176,6 @@
               "display_name": null,
               "effect_type": "SaveBonus",
               "extra_types": null,
-              "id": 12815,
               "is_item_specific": false,
               "is_rare": false,
               "percent": false,
@@ -198,7 +192,7 @@
         }
       ],
       "qualifier": null,
-      "slot_type_id": 48,
+      "slot_type_id": 3873108879693307,
       "sort_order": 0,
       "variant": "variant"
     },
@@ -207,7 +201,7 @@
       "label": "yellow",
       "options": [],
       "qualifier": null,
-      "slot_type_id": 7,
+      "slot_type_id": 1357484692219291,
       "sort_order": 1,
       "variant": "yellow"
     }
@@ -234,7 +228,7 @@
       ],
       "damage": [],
       "description": "Passive: +8 Enhancement bonus to Charisma.",
-      "effect_id": 6,
+      "effect_id": 8802881441344402,
       "name": "Charisma",
       "tier": null,
       "value": 8,
@@ -245,7 +239,7 @@
   "enhancement_bonus": null,
   "events": [],
   "icon": "Necklace_17b",
-  "id": 7631,
+  "id": 1507143752666985,
   "is_legacy": false,
   "is_minor_artifact": false,
   "item_type": null,
@@ -255,9 +249,10 @@
   "name": "Stolen Necklace (Level 25)",
   "quest_chains": [
     {
-      "id": 22,
+      "id": 3230735725381711,
       "is_rare": false,
       "name": "Shadow Over Wheloon",
+      "slug": "shadow-over-wheloon",
       "wiki_url": "https://ddowiki.com/page/Shadow_Over_Wheloon"
     }
   ],
@@ -270,7 +265,7 @@
         "elite"
       ],
       "epic_level": 26,
-      "id": 423,
+      "id": 1037314677748664,
       "is_free_to_play": false,
       "is_raid": false,
       "is_rare": false,
@@ -278,24 +273,29 @@
       "loot_type": "chest",
       "name": "Friends in Low Places",
       "pack": "Shadowfell Conspiracy",
-      "patron": "Purple Dragon Knights"
+      "patron": "Purple Dragon Knights",
+      "slug": "friends-in-low-places"
     }
   ],
   "race_required": null,
   "sagas": [],
   "set": null,
   "set_name": null,
+  "sets": [],
   "slot": "Neck",
+  "slug": "stolen-necklace-level-25",
   "sources": [
     {
       "character_level": null,
       "chest": "end chest",
       "cost": null,
-      "id": 423,
+      "id": 1037314677748664,
       "is_rare": false,
       "kind": "quest",
       "loot_type": "chest",
       "name": "Friends in Low Places",
+      "price": [],
+      "slug": "friends-in-low-places",
       "tier": null,
       "wiki_url": "https://ddowiki.com/page/Friends_in_Low_Places"
     },
@@ -303,11 +303,13 @@
       "character_level": null,
       "chest": null,
       "cost": null,
-      "id": 22,
+      "id": 3230735725381711,
       "is_rare": false,
       "kind": "quest_chain",
       "loot_type": null,
       "name": "Shadow Over Wheloon",
+      "price": [],
+      "slug": "shadow-over-wheloon",
       "tier": null,
       "wiki_url": "https://ddowiki.com/page/Shadow_Over_Wheloon"
     }

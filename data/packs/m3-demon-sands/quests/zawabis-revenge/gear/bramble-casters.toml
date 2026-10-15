@@ -1,0 +1,32 @@
+name = "Bramble-Casters"
+description = """
+Created by some wizard to aid in outdoor pursuits, these gloves seem to deflect
+oncoming barbs, thorns and other sharp objects."""
+drop_location = "Zawabi's Revenge, Raid Warded chest"
+icon = "Gloves_6"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Hands"
+
+[[effect]]
+name = "Blighted Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Power of the Blight"
+bonus_type = "Equipment"
+value = 80
+
+[[effect]]
+name = "Spearblock V"
+
+[[effect]]
+name = "Greater Thorn Guard"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"

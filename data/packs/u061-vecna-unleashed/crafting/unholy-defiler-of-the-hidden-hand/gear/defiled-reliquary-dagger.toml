@@ -1,0 +1,52 @@
+name = "Defiled Reliquary Dagger"
+description = "The shine of this weapon is gone; there is now only malice within it."
+drop_location = "Unholy Defiler of the Hidden Hand, defiled version of Shining Reliquary Dagger"
+enhancement_bonus = 5
+icon = "Dagger_1u"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Adamantine"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Unholy 4"
+
+[[effect]]
+name = "Penalty Good"
+
+[[effect]]
+name = "Evil Blast 4"
+
+[[effect]]
+name = "Hand Vile Grip of the Hidden Hand"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Unholy Defiler of the Hidden Hand"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "One-handed"
+weapon_type = "Dagger"

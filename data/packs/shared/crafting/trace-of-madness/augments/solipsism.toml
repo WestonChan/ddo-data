@@ -1,0 +1,8 @@
+name = "Solipsism"
+description = "Solipsism Attack Proc: Dazed for 6 seconds."
+family = "Other"
+icon = "Solipsism"
+min_level = 1
+
+[[slot]]
+slot = "crafting: trace of madness"

@@ -1,0 +1,39 @@
+name = "Skartongue's Ladel"
+description = "This magical mace, a trophy of battle, is magically enhanced."
+drop_location = "Irestone Inlet, Skartongue 's chest"
+enhancement_bonus = 2
+icon = "LightMace_1b"
+item_category = "Weapon"
+item_type = "Light Mace"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shocking Touch"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "skartongue 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Irestone Inlet"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Light Mace"

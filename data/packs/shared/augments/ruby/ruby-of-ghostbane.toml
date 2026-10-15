@@ -1,0 +1,28 @@
+name = "Ruby of Ghostbane"
+description = """
+Ghost Touch: An incorporeal creature's 50% chance to avoid damage does not apply
+to attacks with ghost touch weapons. 1 to 6 Bane damage on hit vs Undead
+Drops in: Joe Candymaker: The Night Revels Trader"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

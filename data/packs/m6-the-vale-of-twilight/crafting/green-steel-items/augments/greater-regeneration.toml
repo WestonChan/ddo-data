@@ -1,0 +1,11 @@
+name = "Greater Regeneration"
+adds_augment = "Accessory Aspect II"
+description = """
+Improved Regeneration: Causes the wearer to regenerate 2 hit point every 30 seconds using positive energy.
+Positive:Opposition:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory devastation"

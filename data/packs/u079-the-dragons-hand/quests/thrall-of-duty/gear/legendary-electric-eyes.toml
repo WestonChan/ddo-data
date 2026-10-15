@@ -1,0 +1,45 @@
+name = "Legendary Electric Eyes"
+description = """
+Lightning courses through the rims of these goggles, highlighting sources of
+energy for their wearer."""
+drop_location = "Thrall of Duty, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 34
+slot = "Goggles"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 159
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 38
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 310
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thrall of Duty"

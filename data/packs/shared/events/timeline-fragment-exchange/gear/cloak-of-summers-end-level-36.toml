@@ -1,0 +1,41 @@
+name = "Cloak of Summer's End (level 36)"
+description = "Time-Twisted version of Cloak of Summer"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 36
+slot = "Back"
+
+[[effect]]
+name = "Light Absorption"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 7
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

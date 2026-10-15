@@ -3,15 +3,17 @@ mod fields;
 pub use fields::{correctable_field, correctable_fields, CorrectableField, FieldShape};
 
 use crate::wiki::is_iso_date;
-use anyhow::{bail, Context, Result};
+use anyhow::{bail, ensure, Context, Result};
 use ddo_model::enums::CorrectionKind;
 use rusqlite::types::Value as SqlValue;
+use rusqlite::Connection;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use std::path::Path;
+use std::sync::OnceLock;
 
-const EMBEDDED_CORRECTION_FILES: &[(&str, &str)] = include!(concat!(env!("OUT_DIR"), "/correction_files.rs"));
 const CORRECTION_TABLE_NAME: &str = "correction";
+static EMBEDDED_CORRECTIONS: OnceLock<Result<Corrections, String>> = OnceLock::new();
 pub const NULL_SPELLING: &str = "null";
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
@@ -115,7 +117,7 @@ impl CorrectionValue {
                 }
                 fields.to_string()
             }
-            Self::Damage(damage) => serde_json::to_string(damage).expect("damage row serializes"),
+            Self::Damage(damage) => serde_json::to_value(damage).expect("damage row serializes").to_string(),
             Self::Null => NULL_SPELLING.to_string(),
         }
     }
@@ -215,6 +217,9 @@ pub struct Correction {
     pub from: CorrectionValue,
     pub to: CorrectionValue,
     pub family: Option<String>,
+    pub selection: Option<String>,
+    pub stance: Option<String>,
+    pub dc: Option<String>,
     pub effect: Option<String>,
     pub stat: Option<String>,
     pub bonus_type: Option<String>,
@@ -258,6 +263,15 @@ impl Correction {
 
     pub fn qualifier(&self) -> String {
         let mut qualifier_parts: Vec<String> = Vec::new();
+        if let Some(selection) = &self.selection {
+            qualifier_parts.push(format!("selection {selection:?}"));
+        }
+        if let Some(stance) = &self.stance {
+            qualifier_parts.push(format!("stance {stance:?}"));
+        }
+        if let Some(dc) = &self.dc {
+            qualifier_parts.push(format!("dc {dc:?}"));
+        }
         if let Some(family) = &self.family {
             qualifier_parts.push(format!("family {family:?}"));
         }
@@ -300,7 +314,40 @@ impl Correction {
         }
     }
 
+    pub(crate) fn target_table_name(&self) -> &'static str {
+        if self.dc.is_some() {
+            "dcs"
+        } else if self.stance.is_some() {
+            "stances"
+        } else if self.selection.is_some() {
+            "enhancement_selections"
+        } else {
+            self.kind.table_name()
+        }
+    }
+
     fn validate_qualifier_keys(&self, field: &CorrectableField) -> Result<()> {
+        ensure!(
+            self.selection.is_none() || (self.kind == CorrectionKind::Enhancement && self.field == "icon"),
+            "selection names an enhancement's icon row"
+        );
+        ensure!(
+            self.stance.is_none()
+                || (matches!(self.kind, CorrectionKind::Spell | CorrectionKind::Feat | CorrectionKind::Enhancement)
+                    && self.field == "icon"),
+            "stance names an ability's icon row"
+        );
+        ensure!(
+            self.selection.as_ref().is_none_or(|name| !name.trim().is_empty())
+                && self.stance.as_ref().is_none_or(|name| !name.trim().is_empty())
+                && self.dc.as_ref().is_none_or(|name| !name.trim().is_empty()),
+            "nested icon corrections need a nonblank row name"
+        );
+        ensure!(
+            self.dc.is_none()
+                || (self.kind == CorrectionKind::Enhancement && self.field == "icon" && self.stance.is_none()),
+            "dc names an enhancement or selection icon row"
+        );
         if self.effect.is_some()
             != (self.kind == CorrectionKind::ItemEffect && matches!(field.name, "value" | "bonus_type" | "remove"))
         {
@@ -458,7 +505,10 @@ impl Correction {
         let internal_template_source = self.source == "internal:effect-name-and-description"
             && self.kind == CorrectionKind::Effect
             && matches!(self.field.as_str(), "verbose_name_template" | "description_template");
-        if !internal_template_source && (!self.source.starts_with("https://") || self.source.len() == "https://".len())
+        let upstream_icon_folder = self.field == "icon" && self.source.starts_with("Output/DataFiles/");
+        if !internal_template_source
+            && !upstream_icon_folder
+            && (!self.source.starts_with("https://") || self.source.len() == "https://".len())
         {
             bail!(
                 "source {:?} must be a supporting https:// URL or an internal effect-template consistency check",
@@ -506,6 +556,9 @@ struct TomlCorrection {
     name: String,
     field: String,
     family: Option<String>,
+    selection: Option<String>,
+    stance: Option<String>,
+    dc: Option<String>,
     effect: Option<String>,
     stat: Option<String>,
     bonus_type: Option<String>,
@@ -531,6 +584,9 @@ impl TomlCorrection {
             from: self.from,
             to: self.to,
             family: self.family,
+            selection: self.selection,
+            stance: self.stance,
+            dc: self.dc,
             effect: self.effect,
             stat: self.stat,
             bonus_type: self.bonus_type,
@@ -550,8 +606,83 @@ pub struct Corrections {
 }
 
 impl Corrections {
+    pub fn from_data(root: &Path) -> Result<Self> {
+        let mut db = Connection::open_in_memory()?;
+        crate::tree::build_from_data(root, &mut db)?;
+        Self::from_database(&db)
+    }
+
+    pub fn from_database(db: &Connection) -> Result<Self> {
+        let mut statement = db.prepare(
+            "SELECT kind, name, field, from_value, to_value, qualifier, reason, source, read
+             FROM corrections ORDER BY id",
+        )?;
+        let rows = statement.query_map([], |row| {
+            Ok((
+                row.get::<_, String>(0)?,
+                row.get::<_, String>(1)?,
+                row.get::<_, String>(2)?,
+                row.get::<_, String>(3)?,
+                row.get::<_, String>(4)?,
+                row.get::<_, String>(5)?,
+                row.get::<_, String>(6)?,
+                row.get::<_, String>(7)?,
+                row.get::<_, String>(8)?,
+            ))
+        })?;
+        let mut entries = Vec::new();
+        for row in rows {
+            let (kind, name, field, from_value, to_value, qualifier, reason, source, read) = row?;
+            let mut correction = Correction {
+                kind: CorrectionKind::parse(&kind).with_context(|| format!("unknown correction kind {kind:?}"))?,
+                name,
+                field,
+                from: correction_value_from_json(&from_value)?,
+                to: correction_value_from_json(&to_value)?,
+                family: None,
+                selection: None,
+                stance: None,
+                dc: None,
+                effect: None,
+                stat: None,
+                bonus_type: None,
+                bonus_value: None,
+                equipped_count: None,
+                reason,
+                source,
+                read,
+                file_name: "data".to_string(),
+            };
+            set_correction_qualifiers(&mut correction, &qualifier)?;
+            ensure!(correction.qualifier() == qualifier, "{} has unparsed qualifier {qualifier:?}", correction.label());
+            correction.validate()?;
+            entries.push(correction);
+        }
+        let original_set_names = entries
+            .iter()
+            .filter(|entry| entry.kind == CorrectionKind::SetBonus && entry.field == "name")
+            .filter_map(|entry| Some((entry.to.as_text()?.to_string(), entry.from.as_text()?.to_string())))
+            .collect::<HashMap<_, _>>();
+        for entry in &mut entries {
+            if entry.kind == CorrectionKind::Item && entry.field == "set_bonus" {
+                if let Some(current_name) = entry.to.as_text() {
+                    if let Some(original_name) = original_set_names.get(current_name) {
+                        entry.to = CorrectionValue::Text(original_name.clone());
+                    }
+                }
+            }
+        }
+        Ok(Self { entries })
+    }
+
     pub fn embedded() -> Result<Self> {
-        Self::from_toml_files(EMBEDDED_CORRECTION_FILES)
+        EMBEDDED_CORRECTIONS
+            .get_or_init(|| {
+                Self::from_dir(&Path::new(env!("CARGO_MANIFEST_DIR")).join("data/corrections"))
+                    .map_err(|error| format!("{error:#}"))
+            })
+            .clone()
+            .map_err(|error| anyhow::anyhow!("{error}"))
     }
 
     pub fn from_dir(dir: &Path) -> Result<Self> {
@@ -594,6 +725,64 @@ impl Corrections {
     }
 }
 
+fn correction_value_from_json(encoded: &str) -> Result<CorrectionValue> {
+    let value: serde_json::Value = serde_json::from_str(encoded)?;
+    Ok(match value {
+        serde_json::Value::Null => CorrectionValue::Null,
+        serde_json::Value::Bool(flag) => CorrectionValue::Integer(i64::from(flag)),
+        serde_json::Value::Number(number) => number
+            .as_i64()
+            .map_or_else(|| CorrectionValue::Float(number.as_f64().unwrap_or_default()), CorrectionValue::Integer),
+        serde_json::Value::String(text) => CorrectionValue::Text(text),
+        serde_json::Value::Object(fields) => {
+            let object = serde_json::Value::Object(fields);
+            if object.get("stat").is_some() {
+                CorrectionValue::Bonus(serde_json::from_value(object)?)
+            } else if object.get("equipped_count").is_some() {
+                CorrectionValue::Tier(serde_json::from_value(object)?)
+            } else if object.get("trigger").is_some() {
+                CorrectionValue::Damage(serde_json::from_value(object)?)
+            } else {
+                CorrectionValue::Effect(serde_json::from_value(object)?)
+            }
+        }
+        serde_json::Value::Array(_) => bail!("correction value cannot be an array"),
+    })
+}
+
+fn set_correction_qualifiers(correction: &mut Correction, qualifier: &str) -> Result<()> {
+    for part in qualifier.split(", ").filter(|part| !part.is_empty()) {
+        if let Some(selection) = part.strip_prefix("selection ") {
+            correction.selection = Some(serde_json::from_str(selection)?);
+        } else if let Some(dc) = part.strip_prefix("dc ") {
+            correction.dc = Some(serde_json::from_str(dc)?);
+        } else if let Some(stance) = part.strip_prefix("stance ") {
+            correction.stance = Some(serde_json::from_str(stance)?);
+        } else if let Some(family) = part.strip_prefix("family ") {
+            correction.family = Some(serde_json::from_str(family)?);
+        } else if let Some(effect) = part.strip_prefix("effect ") {
+            correction.effect = Some(serde_json::from_str(effect)?);
+        } else if let Some(count) = part.strip_prefix("equipped_count ") {
+            correction.equipped_count = Some(count.parse()?);
+        } else if let Some(stat) = part.strip_prefix("stat ") {
+            correction.stat = Some(serde_json::from_str(stat)?);
+        } else if matches!(
+            correction.kind,
+            CorrectionKind::ItemBonus | CorrectionKind::AugmentBonus | CorrectionKind::SetTierBonus
+        ) && !matches!(correction.to, CorrectionValue::Bonus(_))
+        {
+            let names = part.split(" / ").collect::<Vec<_>>();
+            ensure!((2..=3).contains(&names.len()), "{} has invalid bonus qualifier {part:?}", correction.label());
+            correction.stat = Some(names[0].to_string());
+            correction.bonus_type = Some(names[1].to_string());
+            if let Some(amount) = names.get(2) {
+                correction.bonus_value = Some(amount.parse()?);
+            }
+        }
+    }
+    Ok(())
+}
+
 fn parse_correction_file(file_name: &str, toml_text: &str) -> Result<Vec<Correction>> {
     let mut document: toml::Table =
         toml::from_str(toml_text).with_context(|| format!("correction file {file_name}"))?;
@@ -624,4 +813,45 @@ fn parse_correction_file(file_name: &str, toml_text: &str) -> Result<Vec<Correct
             Ok(correction)
         })
         .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{CorrectionValue, Corrections, DamageRow};
+
+    #[test]
+    fn committed_data_restores_all_current_corrections() {
+        let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
+        let corrections = Corrections::from_data(&root).unwrap();
+        assert_eq!(corrections.entries.len(), Corrections::embedded().unwrap().entries.len());
+        for (name, amount) in [("Legendary Sceptre of the Oozing Hunger", 25), ("Sceptre of the Oozing Hunger", 12)] {
+            let sceptre = corrections
+                .entries
+                .iter()
+                .find(|entry| {
+                    entry.kind == ddo_model::enums::CorrectionKind::ItemBonus
+                        && entry.name == name
+                        && entry.field == "bonus_type"
+                        && entry.stat.as_deref() == Some("Acid Spell Critical Damage")
+                        && entry.bonus_value == Some(amount)
+                })
+                .unwrap();
+            assert_eq!(sceptre.to.as_text(), Some("Enhancement"));
+        }
+    }
+
+    #[test]
+    fn damage_correction_json_uses_sorted_field_names() {
+        let damage = DamageRow {
+            trigger: "On Hit".to_string(),
+            damage_type: "Acid".to_string(),
+            dice_number: 1,
+            dice_sides: 7,
+            dice_bonus: 1,
+            amount_from: 0,
+            scale: 1.0,
+            sort_order: 0,
+        };
+        assert!(CorrectionValue::Damage(damage).to_json().starts_with("{\"amount_from\":0,"));
+    }
 }

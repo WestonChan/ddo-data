@@ -1,0 +1,11 @@
+name = "Woeful Shadows (Legendary)"
+description = """
+Your attacks and offensive spells have a chance to reduce enemy Physical and Magical
+Resistance Rating.
+(Undocumented: Grants a version of Constricting Nightmare that works with spells)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

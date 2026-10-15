@@ -1,0 +1,20 @@
+name = "Emerald of Eldritch Empowerment"
+description = "Provides a +1 Enhancement bonus to bonus Imbue Dice."
+family = "Emerald"
+icon = "GreenAugment"
+min_level = 28
+
+[[effect]]
+name = "Imbue Dice"
+bonus_type = "Enhancement"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[slot]]
+slot = "green"

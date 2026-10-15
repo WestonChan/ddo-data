@@ -1,0 +1,26 @@
+name = "Glik's Bangle"
+description = "A faint whispering sound surrounds this glowing alabaster gem."
+drop_location = "Stealthy Repossession, Witch Doctor Glik 's chest"
+icon = "Trinket_3"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 2
+
+[[removed]]
+kind = "item"
+name = "Gilk's Bangle"
+reason = "A misspelled duplicate of his Glik's Bangle, identical except the name; the wiki redirects Gilk's Bangle to Glik's Bangle."
+url = "https://ddowiki.com/page/Item:Glik%27s_Bangle"
+read = "2026-10-01"
+
+[[source]]
+chest = "witch doctor glik 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stealthy Repossession"

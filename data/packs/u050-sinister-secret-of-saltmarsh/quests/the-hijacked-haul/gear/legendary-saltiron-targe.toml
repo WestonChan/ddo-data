@@ -1,0 +1,75 @@
+name = "Legendary Saltiron Targe"
+description = "Saltiron and copper reinforce this heavy shield."
+drop_location = "The Hijacked Haul, end chest, or Legendary version of Epic Saltiron Targe"
+enhancement_bonus = 15
+icon = "Shield_2d"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Crystal"
+minimum_level = 30
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 19
+max_dex_bonus = 0
+shield_bonus = 22
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Greater Undead Guard"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 54
+
+[[effect]]
+name = "Greater Turning"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Angelic Grace"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest, or legendary version of epic saltiron targe"
+kind = "quest"
+loot_type = "chest"
+name = "The Hijacked Haul"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

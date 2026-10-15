@@ -1,0 +1,10 @@
+name = "Equipped Healing Amplification"
+description_template = "This effect amplifies all incoming positive energy healing by {1} (Equipment bonus). Includes spells, potions, and other effects."
+home_bonus_type = "Equipment"
+verbose_name_template = "Equipped Healing Amplification +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Healing Amplification"

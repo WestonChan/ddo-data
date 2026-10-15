@@ -1,0 +1,21 @@
+name = "+5 Stalwart Cormyrian Scalemail"
+description = """
+This exquisite set of scalemail armor is a prime example of quality Cormyrian
+craftmanship, and equipment intended for use in service to the kingdom is layered
+with powerful enchantments by the War Wizards."""
+drop_location = "Eveningstar Challenge Pack"
+enhancement_bonus = 5
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritforged Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Medium"
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

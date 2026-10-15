@@ -1,0 +1,3 @@
+name = "Screaming"
+description_template = "Screaming weapons emit a piercing screech whenever they are used to make a successful attack. This screech does an additional 1 to 6 sonic damage."
+verbose_name_template = "Screaming"

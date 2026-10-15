@@ -1,0 +1,34 @@
+name = "Ring of Shadows (Level 12)"
+description = """
+You can just barely make out the outline of this ring as you hold it in your
+hand. It seems almost as if it has been formed out of dark clouds."""
+drop_location = "The Prison of the Planes, Mabar room's chest (Heroic Normal); The Ruins of Gianthold, quest chain end reward"
+icon = "Ring_11"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 12
+slot = "Ring"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[source]]
+chest = "mabar room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"
+
+[[source]]
+kind = "quest_chain"
+name = "The Ruins of Gianthold"

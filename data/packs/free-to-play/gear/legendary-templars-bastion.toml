@@ -1,0 +1,42 @@
+name = "Legendary Templar's Bastion"
+description = """
+Templars of the Silver Flame wear these resilient suits of armor, said to be
+blessed by Tira Miron, to protect themselves from weapon blows and harmful
+magic alike."""
+drop_location = "Legendary version of Epic Templar's Bastion"
+enhancement_bonus = 15
+icon = "MediumArmor_9d"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 20
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "DR 50/Evil"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Legendary Brilliance Guard"
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "blue"

@@ -1,0 +1,55 @@
+name = "Legendary Thunderstrike"
+accepts_sentience = true
+description = """
+This rapier subverts enemy defenses using the jolts of electricity infused within
+its slender blade."""
+drop_location = "Third Time's a Charm, End Chest"
+enhancement_bonus = 13
+icon = "Rapier_1e"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Electrifying 6"
+
+[[effect]]
+name = "Jolting 14"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Third Time's a Charm"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "One-handed"
+weapon_type = "Rapier"

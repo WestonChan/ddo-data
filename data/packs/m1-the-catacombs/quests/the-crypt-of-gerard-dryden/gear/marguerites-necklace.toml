@@ -1,0 +1,27 @@
+name = "Marguerite's Necklace"
+description = """
+This necklace is forged of interlocked black iron links. Its edges are sharp
+and cut at the flesh, and it glows with a sickly light."""
+drop_location = "The Crypt of Gerard Dryden, end chest"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Cold Iron"
+minimum_level = 3
+slot = "Neck"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 7
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crypt of Gerard Dryden"

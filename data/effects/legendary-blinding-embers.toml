@@ -1,0 +1,3 @@
+name = "Legendary Blinding Embers"
+description_template = "This weapon sheds tiny embers that can impair a creatures sight. If you roll a 20 when attacking and confirm the critical hit, the target will become blinded by a burst of fiery sparks."
+verbose_name_template = "Legendary Blinding Embers"

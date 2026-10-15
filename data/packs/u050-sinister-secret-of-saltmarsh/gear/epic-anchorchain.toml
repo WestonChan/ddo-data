@@ -1,0 +1,36 @@
+name = "Epic Anchorchain"
+description = """
+A small anchor adorns the end of this chain, looped around your neck. It's too
+small to weigh down any serious boat."""
+drop_location = "Epic version of Anchorchain"
+icon = "Necklace_15a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 32
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 1
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

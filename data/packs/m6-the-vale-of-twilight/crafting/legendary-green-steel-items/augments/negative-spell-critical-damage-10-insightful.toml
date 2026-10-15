@@ -1,0 +1,21 @@
+name = "Negative Spell Critical Damage 10% (Insightful)"
+description = "Ethereal/Dominion: 10% Insight bonus increase in Negative/Poison spell critical damage."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Dominion"""
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "crafting: equipment tier 2"

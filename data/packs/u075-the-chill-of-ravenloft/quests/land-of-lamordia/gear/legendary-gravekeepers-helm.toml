@@ -1,0 +1,41 @@
+name = "Legendary Gravekeeper's Helm"
+description = """
+Guards were once hired to protect a nearby cemetery. This helmet is a reminder
+of their failure."""
+drop_location = "Land of Lamordia, Fangs of Winter 's chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 34
+slot = "Head"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 57
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "fangs of winter 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

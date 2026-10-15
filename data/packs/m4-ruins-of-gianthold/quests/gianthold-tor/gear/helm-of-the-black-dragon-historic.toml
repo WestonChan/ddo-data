@@ -1,0 +1,35 @@
+name = "Helm of the Black Dragon (historic)"
+description = "This helm is crafted in the likeness of a fearsome black dragon."
+drop_location = "Gianthold Tor, Black Dragon 's chest"
+icon = "Helmet_26a"
+is_legacy = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Head"
+
+[[clickie]]
+name = "Black Dragon Bolt"
+clickie = "Black Dragon Bolt"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Black Dragon Bolt"]
+
+[[source]]
+chest = "black dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

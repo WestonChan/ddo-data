@@ -1,0 +1,29 @@
+name = "Silence of the Tasty Hams"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = """
+The Night Revels, Turn in Joe Candymaker,
+100 Piece of Darkest Chocolate; obtained in the Graveyard mob slayer, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 20 Spooky Almond, obtained in Under New Ravagement, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 10 Black Apple; obtained in Haverdashed, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 20 Shadowy Caramel; obtained in The Kobolds' Newest Ringleader, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace"""
+icon = "Helmet_74"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Head"
+
+[[clickie]]
+name = "Shadow Weapons"
+clickie = "Shadow Weapons"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shadow Weapons"]
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

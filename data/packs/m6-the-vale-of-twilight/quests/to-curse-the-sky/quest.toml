@@ -1,0 +1,29 @@
+name = "To Curse the Sky"
+bestowed_by = "Liria d'Deneith"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Vale of Twilight"
+patron = "House Deneith"
+zone = "House Deneith Stronghold"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/To_Curse_the_Sky"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

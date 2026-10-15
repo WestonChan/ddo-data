@@ -1,0 +1,58 @@
+name = "Mirage"
+description = "The blade of this scimitar shimmers in and out of focus."
+drop_location = "Sands of Menechtarun, Drow Area:Utach Sandcrawl Chest ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+enhancement_bonus = 5
+icon = "Scimitar_14b"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 4
+value2 = 6
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "drow area:utach sandcrawl chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

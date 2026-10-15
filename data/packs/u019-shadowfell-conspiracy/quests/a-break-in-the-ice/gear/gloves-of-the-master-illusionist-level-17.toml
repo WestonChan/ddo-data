@@ -1,0 +1,33 @@
+name = "Gloves of the Master Illusionist (Level 17)"
+description = """
+Perception is as good as reality.
+-Motto of the Thultanthar Academy of the Illusionary Arts"""
+drop_location = "A Break In the Ice, End chest (Heroic Normal); The Secret of the Storm Horns, quest chain end reward (Heroic)"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 17
+slot = "Hands"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Break in the Ice"
+
+[[source]]
+kind = "quest_chain"
+name = "The Secret of the Storm Horns"

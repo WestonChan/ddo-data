@@ -1,0 +1,9 @@
+name = "Legendary Slavelords Sorcery"
+description = "Adds the Legendary Slavelords Sorcery set bonus to this item"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSetBonusSorcery"
+min_level = 28
+set_bonus = "Legendary Slavelords Sorcery"
+
+[[slot]]
+slot = "crafting: legendary slavelords set bonus"

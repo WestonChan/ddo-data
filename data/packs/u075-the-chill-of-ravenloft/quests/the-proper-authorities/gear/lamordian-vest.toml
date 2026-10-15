@@ -1,0 +1,42 @@
+name = "Lamordian Vest"
+description = "Timeless style, meant to protect from the bitter colds."
+drop_location = "The Proper Authorities, optional chest"
+enhancement_bonus = 4
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 70
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Proper Authorities"

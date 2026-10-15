@@ -1,0 +1,34 @@
+name = "The Final Climb"
+drop_location = "Relentless, end chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 34
+slot = "Feet"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "lamordia: woeful (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Relentless"

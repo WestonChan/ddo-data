@@ -1,0 +1,56 @@
+name = "Spite, the Fractured Shards"
+accepts_sentience = true
+description = "A glass that seeks the heart."
+drop_location = "Old Baba's Hut, Raid Chest"
+enhancement_bonus = 15
+icon = "Shuriken_1j"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Glass"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Glass Shards"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Sovereign Disruption"
+
+[[effect]]
+name = "Hemorrhaging"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Thrown"
+weapon_type = "Shuriken"

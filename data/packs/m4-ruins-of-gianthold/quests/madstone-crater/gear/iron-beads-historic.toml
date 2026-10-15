@@ -1,0 +1,27 @@
+name = "Iron Beads (historic)"
+description = """
+These beads are forged from iron and weigh bizarrely heavy in your hand. Obviously
+these were meant to be worn by a giant."""
+drop_location = "Madstone Crater, end chest"
+icon = "Necklace_14"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 72
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"

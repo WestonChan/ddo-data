@@ -1,0 +1,44 @@
+name = "The Queen of Rot"
+description = "Flailing remnants of Zuggtmoy's mark on the world as she retreats."
+drop_location = "Terror of the Demon Lords, end chest"
+icon = "Cloak_22b"
+item_category = "Clothing"
+material = "Flesh"
+minimum_level = 35
+slot = "Back"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 41
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 13
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 84
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[socket]]
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"

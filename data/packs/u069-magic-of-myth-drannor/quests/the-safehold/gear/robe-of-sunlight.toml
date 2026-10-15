@@ -1,0 +1,45 @@
+name = "Robe of Sunlight"
+description = "The sun's rays embolden those who seek it."
+drop_location = "The Safehold, end chest"
+enhancement_bonus = 5
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 13
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Safehold"

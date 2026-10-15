@@ -1,0 +1,27 @@
+name = "Traveler's Bracers"
+description = "One of these bracers is attuned to flame, and the other to the cold."
+drop_location = "The Borderlands, chest (Rare Encounters)"
+icon = "Bracers_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 1
+slot = "Wrists"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Borderlands"

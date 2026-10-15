@@ -1,0 +1,42 @@
+name = "Brilliant Docent of the Dawn"
+description = "This docent is marked with the seal of the Silver Flame."
+drop_location = "The Abandoned Excavation, End reward"
+enhancement_bonus = 4
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 8
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[clickie]]
+name = "Aid"
+clickie = "Aid"
+
+[[effect]]
+name = "Magi"
+bonus_type = "Equipment"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Aid"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

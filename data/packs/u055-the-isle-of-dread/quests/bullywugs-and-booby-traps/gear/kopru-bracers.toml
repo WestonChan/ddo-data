@@ -1,0 +1,42 @@
+name = "Kopru Bracers"
+description = "Kopru are capricious, evil creatures. Treat this item with care."
+drop_location = "Bullywugs and Booby Traps, end chest"
+icon = "Bracers_23b"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 7
+slot = "Wrists"
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Kopru_Bracers"
+read = "2026-09-29"
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 17
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 15
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bullywugs and Booby Traps"

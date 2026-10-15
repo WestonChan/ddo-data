@@ -1,0 +1,1793 @@
+name = "Grandmaster of Flowers"
+background = "DestinyMartial"
+icon = "GrandmasterOfFlowers"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Inner Focus"
+cost_per_rank = [1]
+description = """
+You gain proficiency with Handwraps. You also gain +10 Maximum Ki per Epic/Legendary
+Level if you have at least one level of Monk or are in the Grandmaster of Flowers
+Destiny Mantle.
+
+Each Core ability of this tree grants, including this one, grants the following:
+
++25 Maximum Hit Points
++5 Melee Power
++5 Ranged Power
++1 Spell Resistance"""
+icon = "U51InnerFocus"
+internal_name = "U51GrandmasterOfFlowersCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Exotic Weapon Proficiency: Handwraps"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SpellResistance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+]
+bonus_type = "Destiny"
+effect_type = "KiMaximum"
+stack_source = "Epic"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Grandmaster of Flowers Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+]
+bonus_type = "Destiny"
+effect_type = "KiMaximum"
+stack_source = "Legendary"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Grandmaster of Flowers Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Disciple of Material"
+cost_per_rank = [1]
+description = """
+Select a Material Type. Your weapons bypass the chosen material type.
+Regardless of your choice you gain +5 Physical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "DiscipleOfMaterial"
+internal_name = "U51GrandmasterOfFlowersCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SpellResistance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Grandmaster of Flowers: Disciple of Material"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51GrandmasterOfFlowersCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Adamantine"
+cost_per_rank = [1]
+description = """
+Your weapons bypass the Adamantine DR type.
+Regardless of your choice you gain +5 Physical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "MaterialAdamantine"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Adamantine"
+
+[[enhancement.selection]]
+name = "Byeshk"
+cost_per_rank = [1]
+description = """
+Your weapons bypass the Byeshk DR type.
+Regardless of your choice you gain +5 Physical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "MaterialByeshk"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Byeshk"
+
+[[enhancement.selection]]
+name = "Cold Iron"
+cost_per_rank = [1]
+description = """
+Your weapons bypass the Cold Iron DR type.
+Regardless of your choice you gain +5 Physical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "MaterialColdIron"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Cold Iron"
+
+[[enhancement.selection]]
+name = "Crystal"
+cost_per_rank = [1]
+description = """
+Your weapons bypass the Crystal DR type.
+Regardless of your choice you gain +5 Physical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "MaterialCrystal"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Crystal"
+
+[[enhancement.selection]]
+name = "Silver"
+cost_per_rank = [1]
+description = """
+Your weapons bypass the Silver DR type.
+Regardless of your choice you gain +5 Physical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "MaterialSilver"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Silver"
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Disciple of Morality"
+cost_per_rank = [1]
+description = """
+Select an Alignment. Your weapons bypass the chosen alignment.
+Regardless of your choice you gain +5 Magical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "DiscipleOfMorality"
+internal_name = "U51GrandmasterOfFlowersCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SpellResistance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Grandmaster of Flowers: Disciple of Morality"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51GrandmasterOfFlowersCore2"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Chaotic"
+cost_per_rank = [1]
+description = """
+Your weapons bypass the Chaotic DR type.
+Regardless of your choice you gain +5 Magical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "MoralityChaotic"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Chaotic"
+
+[[enhancement.selection]]
+name = "Evil"
+cost_per_rank = [1]
+description = """
+Your weapons bypass the Evil DR type.
+Regardless of your choice you gain +5 Magical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "MoralityEvil"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Evil"
+
+[[enhancement.selection]]
+name = "Good"
+cost_per_rank = [1]
+description = """
+Your weapons bypass the Good DR type.
+Regardless of your choice you gain +5 Magical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "MoralityGood"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[enhancement.selection]]
+name = "Lawful"
+cost_per_rank = [1]
+description = """
+Your weapons bypass the Lawful DR type.
+Regardless of your choice you gain +5 Magical Resistance Rating, or +10 if you
+have the Discipline feat."""
+icon = "MoralityLawful"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Lawful"
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Disciple of Philosophy"
+cost_per_rank = [1]
+description = "Select a Philosophy to embody with your strikes."
+icon = "BringPeace"
+internal_name = "U51GrandmasterOfFlowersCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SpellResistance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "DodgeBypass"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "MRRCap"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51GrandmasterOfFlowersCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Disciple of Philosophy: Dark"
+cost_per_rank = [1]
+description = """
++3% Dodge Bypass, +10 Magical Resistance Rating Cap. If you have the Stunning
+Blow and/or Stunning Fist feats, you gain special versions of them which deal
+1d10 Poison damage per Character Level on hit that scales with 200% Melee Power.
+(Note: these appear as separate feats in your feat list.)
+
+You may take Monk enhancements that require Path of Inevitable Dominion."""
+icon = "DiscipleOfPhilosophyDark"
+
+[[enhancement.selection]]
+name = "Disciple of Philosophy: Light"
+cost_per_rank = [1]
+description = """
++3% Dodge Bypass, +10 Magical Resistance Rating Cap. If you have the Stunning
+Blow and/or Stunning Fist feats, you gain special versions of them which deal
+1d10 Light damage per Character Level on hit that scales with 200% Melee Power.
+(Note: these appear as separate feats in your feat list.)
+
+You may take Monk enhancements that require Path of Harmonious Balance."""
+icon = "DiscipleOfPhilosophyLight"
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Strike with Poise"
+cost_per_rank = [1]
+description = "+[2/4/6] Stunning DCs"
+icon = "StrikeWithPoise"
+internal_name = "U51GrandmasterOfFlowersStrikeWithPoise"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Disciple's Studies"
+cost_per_rank = [1]
+description = """
++[1/2/3] Heal, Diplomacy and Intimidate.
+Rank 3: +10 Positive, Negative, and Repair Amplification."""
+icon = "DisciplesStudies"
+internal_name = "U51GrandmasterOfFlowersDisciplesStudies"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Heal",
+    "Intimidate",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    10,
+]
+bonus_type = "Destiny"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Serenity"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Grandmaster of Flowers Destiny Mantle: You may now fight with the Unarmed combat style
+as if you were a Monk, and may be Centered and use Ki. When you attack with
+Handwraps or begin falling, you will use the Monk class' animations instead of
+your own. You gain a +15% Action Boost bonus to movement speed, and no longer
+take damage from falling. Finally, you are unbothered by the physical restraints
+of the world: you may tumble through enemies, and are immune to slippery surfaces
+and most forms of knockdown.
+
+You also gain 10 Ki for training this enhancement."""
+icon = "U51Serenity"
+internal_name = "U51GrandmasterOfFlowersSerenity"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Action Boost"
+effect_type = "MovementSpeed"
+
+[[enhancement.modifier.requirement]]
+items = ["Grandmaster of Flowers Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "KiMaximum"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Slippery Surfaces"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Falling Damage"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Most forms of Knockdown"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Grandmaster of Flowers Destiny Mantle"
+description = """
+Grandmaster of Flowers Destiny Mantle: You may now fight with the Unarmed combat style
+as if you were a Monk, and may be Centered and use Ki. When you attack with
+Handwraps or begin falling, you will use the Monk class' animations instead of
+your own. You gain a +15% Action Boost bonus to movement speed, and no longer
+take damage from falling. Finally, you are unbothered by the physical restraints
+of the world: you may tumble through enemies, and are immune to slippery surfaces
+and most forms of knockdown."""
+group_name = "Mantle"
+icon = "U51Serenity"
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Gain Strength"
+cost_per_rank = [1]
+description = "Select a way to restore yourself."
+icon = "U51WholenessOfSpirit"
+internal_name = "U51GrandmasterOfFlowersWholenessOfSpirit"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Inner Focus"
+cost_per_rank = [1]
+description = """
+Your soul is like a great garden, and its beauty and perfection depend on how
+you tend it during all seasons. You may activate this ability to focus your
+thoughts and instantly restore 10d12 Ki.
+Cooldown: 60 seconds"""
+icon = "InnerFocus"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    60,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Inner Focus",
+    "None",
+]
+
+[[enhancement.selection]]
+name = "Wholeness of Spirit"
+cost_per_rank = [1]
+description = """
+Bring your mind, body, and soul into harmonious balance, restoring health as if
+you were affected by the benefits of a Heal spell, as well as curing all ability
+damage, negative levels, and other Adverse Conditions that may be affecting you.
+Cooldown: 60 seconds."""
+icon = "U51WholenessOfSpirit"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    60,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Wholeness of Spirit",
+    "None",
+]
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Enlightenment"
+cost_per_rank = [1]
+description = """
++[15/30/45] Maximum Ki and +[2/4/6] Concentration.
+Rank 3: +1 Passive Ki Generation."""
+icon = "U51Enlightenment"
+internal_name = "U51GrandmasterOfFlowersEnlightenment"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    30,
+    45,
+]
+bonus_type = "Destiny"
+effect_type = "KiMaximum"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "KiPassive"
+rank = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Calm before Storms"
+cost_per_rank = [1]
+description = """
++[3/6/10] Spell Resistance.
+Rank 3: You no longer automatically fail Will saving throws when you roll a natural 1."""
+icon = "CalmBeforeStorms"
+internal_name = "U51GrandmasterOfFlowersCalmBeforeStorms"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Destiny"
+effect_type = "SpellResistance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SaveNoFailOn1"
+rank = 3
+targets = ["Will"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Grandmaster Strikes"
+cost_per_rank = [2]
+description = "Select an Epic Strike"
+icon = "GrandmasterStrikes"
+internal_name = "U51GrandmasterOfFlowersGrandmasterStrikes"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Drifting Lotus"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
++3 Critical Multiplier
++3 Critical Threat Range
+Cost: 30 Ki
+Cooldown: 15 seconds
+
+Epic Strike: Melee Cleave attack, deals 1d6+5 Force damage per character level
+to all enemies struck. The force damage scales with the higher of Melee or Ranged
+power, and is doubled versus Tainted Creatures (Undead, Aberrations, Evil Outsiders).
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DrfitingLotus"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Orchid Blossom"
+cost_per_rank = [2]
+description = """
+Cooldown: 15 seconds
+
+Epic Strike: A blossom is released from your palm in a line, exploding when it
+makes contact, dealing 1d6+10 Force damage per character level to all enemies
+within. The force damage scales with the higher of Melee or Ranged power, and is
+doubled versus Tainted Creatures (Undead, Aberrations, Evil Outsiders).
+Grants 25 Ki when used.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "GoFSpenders"
+is_clickie = true
+
+[[enhancement]]
+name = "Grandmaster of Flowers: A Dance of Flowers"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "While in the Grandmaster of Flowers Destiny Mantle, your weapons gain +1[W]."
+icon = "U51ADanceOfFlowers"
+internal_name = "U51GrandmasterOfFlowersADanceOfFlowers"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Grandmaster of Flowers Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["U51GrandmasterOfFlowersSerenity"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Lotus Blades"
+cost_per_rank = [2]
+description = "Select a feat to gain access to without meeting its prerequisites."
+icon = "LotusBladesLongsword"
+internal_name = "U51GrandmasterOfFlowersLotusBlades"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Lotus Blades - Deflection"
+cost_per_rank = [2]
+description = """
+You gain the Deflect Arrows feat, letting you knock aside one projectile every
+6 seconds."""
+icon = "Deflection"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement.selection]]
+name = "Lotus Blades - Longbow"
+cost_per_rank = [2]
+description = """
+You gain the effects of the Zen Archery feat, and may use Longbows as if they
+were Ki weapons."""
+icon = "U51Longbow"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Zen Archery"]
+
+[[enhancement.selection]]
+name = "Lotus Blades - Longsword"
+cost_per_rank = [2]
+description = """
+You gain the effects of the Whirling Steel Strike feat, and may use Longswords
+as if they were Ki weapons."""
+icon = "LotusBladesLongsword"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Whirling Steel Strike"]
+
+[[enhancement.selection]]
+name = "Lotus Blades - Sickle"
+cost_per_rank = [2]
+description = """
+You gain the effects of the Prescient Curve feat, and may use Sickles as if they
+were Ki weapons."""
+icon = "Sickle"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Prescient Curve"]
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Hail of Blows"
+cost_per_rank = [2]
+description = "+5% Offhand Strike chance, +10% Strikethrough, +3% Doublestrike and Doubleshot."
+icon = "U51HailOfBlows"
+internal_name = "U51GrandmasterOfFlowersHailOfBlows"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "Strikethrough"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Grandmaster of Flowers: The Flickering Flame"
+cost_per_rank = [1]
+description = """
++[1/2/3] to hit and damage.
+Rank 3: +25% Fire Absorption. If you are in Sun Stance, the bonuses of this
+enhancement are doubled."""
+icon = "TheFlickeringFlame"
+internal_name = "U51GrandmasterOfFlowersTheFlickeringFlame"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+display_name = "The Flickering Flame + Sun Stance"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sun Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "The Flickering Flame + Sun Stance"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sun Stance"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Flow of Water"
+cost_per_rank = [1]
+description = """
++[1/2/3] to all Saving Throws, you take [5/10/15]% less damage while Helpless.
+Rank 3: +25% Cold Absorption. If you are in Ocean Stance, the bonuses of this
+enhancement are doubled."""
+icon = "FlowOfWater"
+internal_name = "U51GrandmasterOfFlowersFlowOfWater"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "HelplessDamageReduction"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+display_name = "The Flow of Water + Ocean Stance"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+display_name = "The Flow of Water + Ocean Stance"
+effect_type = "HelplessDamageReduction"
+
+[[enhancement.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "The Flow of Water + Ocean Stance"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Serene Mercy"
+cost_per_rank = [1]
+description = """
+While in the Grandmaster of Flowers Destiny Mantle, you deal +[5/10/15]% bonus
+damage to the Helpless."""
+icon = "SereneMercy"
+internal_name = "U51GrandmasterOfFlowersSereneMercy"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "HelplessDamage"
+
+[[enhancement.modifier.requirement]]
+items = ["Grandmaster of Flowers Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51GrandmasterOfFlowersADanceOfFlowers"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Catch the Wind"
+cost_per_rank = [1]
+description = """
++[1/2/3]% Dodge chance and +[2/4/6] Armor Class.
+Rank 3: +25% Electric Absorption. If you are in Wind Stance, the bonuses of
+this enhancement are doubled."""
+icon = "CatchTheWind"
+internal_name = "U51GrandmasterOfFlowersCatchTheWind"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+display_name = "Catch the Wind + Wind Stance"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Wind Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+display_name = "Catch the Wind + Wind Stance"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Wind Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Catch the Wind + Wind Stance"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = ["Wind Stance"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Strength of Stone"
+cost_per_rank = [1]
+description = """
++[5/10/15] Maximum Hit Points, +[2/4/6] Physical Resistance Rating.
+Rank 3: +25% Acid Absorption. If you are in Mountain Stance, the bonuses of
+this enhancement are doubled."""
+icon = "StrengthOfStone"
+internal_name = "U51GrandmasterOfFlowersStrengthOfStone"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+display_name = "Strength of Stone + Mountain Stance"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+display_name = "Strength of Stone + Mountain Stance"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Strength of Stone + Mountain Stance"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Grandmaster of Flowers: The Clarity of Law"
+cost_per_rank = [1]
+description = """
+Your attacks bypass [5/10/15]% of enemy Fortification.
+Rank 3: +15% Law Absorption."""
+icon = "TheClarityOfLaw"
+internal_name = "U51GrandmasterOfFlowersTheClarityOfLaw"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "FortificationBypass"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Lawful"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Grandmaster of Flowers: The Serenity of Good"
+cost_per_rank = [1]
+description = """
++[1/2/3] Saves vs Enchantments, Curses, and Illusions, and +[2/4/6] Magical
+Resistance Rating.
+Rank 3: +15% Good Absorption"""
+icon = "TheSerenityOfGood"
+internal_name = "U51GrandmasterOfFlowersTheSerenityOfGood"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = [
+    "Enchantment",
+    "Curse",
+    "Illusion",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Good"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Lotus Bloom"
+cost_per_rank = [2]
+description = """
+Drifting Lotus and Orchid Blossom now attempts to Stun all enemies struck.
+Stun DC: 20 + Highest Ability Score Mod + Stunning Bonuses. This stun lasts 4
+seconds for Drifting Lotus and 2 seconds for Orchid Blossom."""
+icon = "EpicStrikeUpgrades"
+internal_name = "U51GrandmasterOfFlowersEpicStrikeUpgrades"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.dc]]
+name = "Lotus Bloom"
+amount = [20]
+dc_type = "Stun"
+dc_versus = "Fortitude"
+description = """
+Drifting Lotus and Orchid Blossom now attempts to Stun all enemies struck.
+This stun lasts 4 seconds for Drifting Lotus and 2 seconds for Orchid Blossom."""
+icon = "BlossomingPeace"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51GrandmasterOfFlowersGrandmasterStrikes"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Grandmaster of Flowers: The Delight of Chaos"
+cost_per_rank = [1]
+description = """
++[1/2/3] Critical Hit Confirmation and Critical Hit Damage.
+Rank 3: +15% Chaos Absorption"""
+icon = "TheDelightOfChaos"
+internal_name = "U51GrandmasterOfFlowersTheDelightOfChaos"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Chaos"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Grandmaster of Flowers: The Cruelty of Evil"
+cost_per_rank = [1]
+description = """
++[1/2/3] Sneak Attack and Sneak Attack Damage.
+Rank 3: +15% Evil Absorption"""
+icon = "TheCrueltyOfEvil"
+internal_name = "U51GrandmasterOfFlowersTheCrueltyOfEvil"
+min_spent = 20
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SneakAttackAttack"
+extra_types = ["SneakAttackDamage"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Evil"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Beyond the Center"
+cost_per_rank = [1]
+description = """
++[5/10/15] Magical Resistance Rating Cap.
+Rank 3: +15% Force Absorption"""
+icon = "BeyondTheCenter"
+internal_name = "U51GrandmasterOfFlowersBeyondTheCenter"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "MRRCap"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Force"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Imposing Force"
+cost_per_rank = [1]
+description = """
+While centered, when rolling a 19 or 20 on an attack, your Critical Multiplier
+is increased by +1."""
+icon = "ImposingForce"
+internal_name = "U51GrandmasterOfFlowersImposingForce"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Everything is Nothing"
+cost_per_rank = [2]
+description = """
+Cost: 50 Ki
+Cooldown: 3 minutes
+
+Your state of luminous consciousness allows your will to alter the fabric of the
+planes, ripping your foes out of time and space. Up to six nearby non-boss enemies
+must make a saving throw (DC: 20 + Highest Ability Score Mod + Stunning Bonuses)
+or be erased from the multi-verse. If they succeed at their saving throw, they are
+instead paralyzed by temporal shock for six seconds.
+
+When you activate Everything is Nothing, you are affected by Emptiness for 5 minutes.
+
+Emptiness: +3% Dodge, +1% Dodge cap. You gain the effects of the Elusive Target feat,
+or if you already have it, it instead has double the chance to proc."""
+icon = "EverythingIsNothing"
+internal_name = "U51GrandmasterOfFlowersEverythingIsNothing"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.dc]]
+name = "Everything is Nothing"
+amount = [20]
+dc_type = "Erased"
+dc_versus = "Fortitude"
+description = """
+Your state of luminous consciousness allows your will to alter the fabric of the planes,
+ripping your foes out of time and space. Up to six nearby non-boss enemies must
+make a saving throw (DC: 20 + Highest Ability Score Mod + Stunning Bonuses) or be
+erased from the multi-verse. If they succeed at their saving throw, they are
+instead paralyzed by temporal shock for six seconds."""
+icon = "EverythingIsNothing"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+display_name = "Emptiness (Everything is Nothing)"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Emptiness"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+display_name = "Emptiness (Everything is Nothing)"
+effect_type = "GrantFeat"
+targets = ["Elusive Target"]
+
+[[enhancement.modifier.requirement]]
+items = ["Emptiness"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Split the Soul"
+cost_per_rank = [2]
+description = """
+Cost: 100 Ki
+Cooldown: 5 minutes
+
+Epic Moment: For 30 seconds, your soul is split, and a fragment of it manifests
+beside you as a combatant. Your Soul Warrior provides the following benefits:
+
+Offensive (Dark): Your attacks may strike an additional target regardless of
+weapon type, and each attack has a 5% chance of banishing your enemies from the
+multi-verse with no save.
+
+Defensive (Light): Your Soul Warrior also grants you 25% Concealment,
+25% Incorporeality, and 25% Dodge/max Dodge, as your physical form is less
+present while you are in this state.
+
+If you follow a Monk Philosophy, your split soul will embody that choice
+(either Light or Dark), doubling either the Offensive (Dark) portions or
+Defensive (Light) portions."""
+icon = "SplitTheSoul"
+internal_name = "U51GrandmasterOfFlowersSplitTheSoul"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Grandmaster of Flowers: Legendary Flurry of Blows"
+cost_per_rank = [1]
+description = """
++[1/2/3]% Doublestrike and Doubleshot, +[3/6/10]% Strikethrough,
++[3/6/10]% Offhand Strike chance.
+
+Rank 3: While dual wielding (including handwraps) or using a quarterstaff, you gain:
+On Vorpal: Break an enemy's guard, as per a Guardbreaking effect.
+
+Guardbreaking: This item enables you to break an enemy's guard in between your
+melee attacks. On critical hits with your melee weapons, enemies will become
+dazed as a result."""
+icon = "U51BalancedAttacks"
+internal_name = "U51GrandmasterOfFlowersLegendaryFlurryOfBlows"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Destiny"
+effect_type = "Strikethrough"
+extra_types = ["OffHandAttackBonus"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[requirement]]
+items = ["Grandmaster of Flowers"]
+req_type = "Feat"

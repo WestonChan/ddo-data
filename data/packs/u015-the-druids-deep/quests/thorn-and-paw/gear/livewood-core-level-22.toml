@@ -1,0 +1,59 @@
+name = "Livewood Core (Level 22)"
+description = """
+This sphere of living wood pulses with vital energy. When inserted into the
+body of a Warforged, vines and tendrils will emerge from it, spreading leaves
+and moss across the wearer."""
+drop_location = "Thorn and Paw, Corrupted Seeds optional chest (Epic Normal)"
+enhancement_bonus = 6
+icon = "Docent_2"
+item_category = "Armor"
+item_type = "Docent"
+material = "Wood"
+minimum_level = 22
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 21
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 10
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 4
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Exceptional"
+value = 25
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 2
+
+[[note]]
+kind = "item_bonus"
+field = "value"
+reason = "The wiki has a separate Exceptional Fortification line at this value."
+url = "https://ddowiki.com/page/Item:Livewood_Core_(level_22)"
+read = "2026-10-04"
+qualifier = "Fortification / Exceptional"
+
+[[source]]
+chest = "corrupted seeds optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thorn and Paw"

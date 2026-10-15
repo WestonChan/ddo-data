@@ -1,0 +1,40 @@
+name = "Whisperdoom's Fang"
+description = "The fang of Whisperdoom, great spider of Splinterskull, drips with toxic venom."
+drop_location = "Assault on Splinterskull, End reward"
+enhancement_bonus = 3
+icon = "Dagger_1a"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Bone"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Enfeebling"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Dagger"

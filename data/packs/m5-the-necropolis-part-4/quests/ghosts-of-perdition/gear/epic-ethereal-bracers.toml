@@ -1,0 +1,104 @@
+name = "Epic Ethereal Bracers"
+description = """
+These bracers seem to be slightly blurry and somewhat translucent. When the
+bracers are equipped these properties are transferred to the wearer's hands
+and weapons allowing incorporeal creatures to be easily hit as well as granting
+some defensive benefits."""
+drop_location = "Ghosts of Perdition (epic), End chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Glass"
+minimum_level = 27
+slot = "Wrists"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Speed XIV"
+value = 30
+value2 = 14
+
+[[effect]]
+name = "Feather Falling"
+
+[[note]]
+kind = "item_bonus"
+field = "scale"
+upstream = 1.0
+reason = "Riposte grants one Armor Class per two listed ranks, rounding up."
+url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+qualifier = "Armor Class / Insight"
+
+[[note]]
+kind = "item_bonus"
+field = "rounding"
+upstream = "down"
+reason = "Riposte rounds its half-rank Armor Class bonus up."
+url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+qualifier = "Armor Class / Insight"
+
+[[note]]
+kind = "item_bonus"
+field = "scale"
+upstream = 1.0
+reason = "Riposte grants one Saving Throws per two listed ranks, rounding down."
+url = "https://ddowiki.com/page/Item:Epic_Ethereal_Bracers"
+read = "2026-10-04"
+qualifier = "Saving Throws / Insight"
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ghosts of Perdition"

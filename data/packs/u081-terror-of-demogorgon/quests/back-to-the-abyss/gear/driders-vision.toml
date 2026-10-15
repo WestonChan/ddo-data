@@ -1,0 +1,41 @@
+name = "Drider's Vision"
+description = """
+This lens originally belonged to a proud Drider warrior, who used it to sight
+targets and kill them in one blow."""
+drop_location = "Back to the Abyss, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 11
+slot = "Goggles"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 4
+value2 = 6
+
+[[socket]]
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Back to the Abyss"

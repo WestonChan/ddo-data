@@ -1,0 +1,23 @@
+name = "Horn: Fossilized Amber"
+description = "+250 Unconsciousness Range. You heal 20 HP every minute from Positive Energy."
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[effect]]
+name = "Unconsciousness Range"
+bonus_type = "Enhancement"
+value = -250
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-250]
+bonus_type = "Enhancement"
+effect = "Unconsciousness Range"
+effect_type = "UnconsciousRange"
+
+[[slot]]
+slot = "isle of dread: horn (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact horn (accessory)"

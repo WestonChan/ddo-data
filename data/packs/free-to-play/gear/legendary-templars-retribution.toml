@@ -1,0 +1,59 @@
+name = "Legendary Templar's Retribution"
+accepts_sentience = true
+description = """
+A sanctified blade that shines brightly with the power of the Silver Flame.
+It is said to deliver the wrath of Tira Miron again and again upon those that
+it strikes."""
+drop_location = "Legendary version of Epic Templar's Retribution"
+enhancement_bonus = 15
+icon = "BastardSword_13"
+item_category = "Weapon"
+item_type = "Bastard Sword"
+material = "Cold Iron"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Holy Burst 6"
+
+[[effect]]
+name = "Evil Characters"
+
+[[effect]]
+name = "Good Blast 6"
+
+[[effect]]
+name = "Coruscating 6"
+
+[[effect]]
+name = "Godly Wrath"
+
+[[effect]]
+name = "Cold Iron"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "One-handed"
+weapon_type = "Bastard Sword"

@@ -1,0 +1,28 @@
+name = "Spell Power Negative +70"
+description = "Equipment bonus to spell power"
+family = "Slavelords_Heroic"
+icon = "SlavelordsSuffix"
+min_level = 8
+
+[[effect]]
+name = "Negative Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[effect]]
+name = "Poison Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "crafting: slavelords suffix"

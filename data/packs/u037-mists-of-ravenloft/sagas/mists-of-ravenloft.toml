@@ -1,0 +1,21 @@
+name = "Mists of Ravenloft"
+pack = "Mists of Ravenloft"
+wiki_url = "https://ddowiki.com/page/Mists_of_Ravenloft_(Epic)"
+quests = [
+    "A Raven at the Door",
+    "An Invitation to Dinner",
+    "Death House",
+    "Fresh-baked Dreams",
+    "Into the Mists",
+    "Mad Tea Party",
+    "Oath of Vengeance",
+    "Ravens' Bane",
+    "Sealed in Amber",
+    "Sunrise",
+    "The Final Vintage",
+    "Wrath of the Earth",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Mists_of_Ravenloft_(Epic)"
+read = "2026-10-02"

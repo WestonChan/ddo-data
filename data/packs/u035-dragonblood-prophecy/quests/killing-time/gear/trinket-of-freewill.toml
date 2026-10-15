@@ -1,0 +1,38 @@
+name = "Trinket of Freewill"
+description = "Sound of body, sounder mind."
+drop_location = "Killing Time, warded chest"
+icon = "Trinket_10"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 28
+slot = "Trinket"
+
+[[effect]]
+name = "Psychic Ward"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"

@@ -1,0 +1,36 @@
+name = "Saltiron Plate"
+description = "Underneath this fine coat are sturdy plates of Saltiron."
+drop_location = "The Hijacked Haul, End Chest"
+enhancement_bonus = 2
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Copper"
+minimum_level = 3
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 15
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hijacked Haul"

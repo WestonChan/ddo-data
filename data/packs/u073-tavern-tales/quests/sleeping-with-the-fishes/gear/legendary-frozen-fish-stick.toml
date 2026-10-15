@@ -1,0 +1,66 @@
+name = "Legendary Frozen Fish Stick"
+accepts_sentience = true
+drop_location = "Sleeping with the Fishes, end chest"
+enhancement_bonus = 15
+icon = "Club_2"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 33
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 33
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 156
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Insight"
+value = 78
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 11
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.6
+handedness = "One-handed"
+weapon_type = "Club"

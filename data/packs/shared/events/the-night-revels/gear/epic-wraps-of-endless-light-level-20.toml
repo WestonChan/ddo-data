@@ -1,0 +1,45 @@
+name = "Epic Wraps of Endless Light (Level 20)"
+description = "These silken wraps blaze with an aura of light."
+drop_location = "The Night Revels, Turn in various ingredients to Joe Candymaker"
+enhancement_bonus = 6
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 20
+slot = "Main Hand"
+wiki_url = "https://ddowiki.com/page/Item:Epic_Wraps_of_Endless_Light_%28level_20%29"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Epic_Wraps_of_Endless_Light_%28level_20%29"
+read = "2026-09-29"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Greater Undead Bane"
+
+[[effect]]
+name = "Brilliance"
+
+[[effect]]
+name = "Light Bringer"
+
+[[effect]]
+name = "Radiant Blast"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

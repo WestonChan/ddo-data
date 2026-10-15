@@ -1,0 +1,35 @@
+name = "Kindred Pendant"
+description = "Man's best friend's best tool."
+drop_location = "Oath of Vengeance, end chest"
+icon = "Necklace_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 10
+slot = "Neck"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Augment Summoning"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oath of Vengeance"

@@ -1,0 +1,11 @@
+name = "Dazing VI"
+description_template = "On Hit: Your target suffers a -1 Penalty to Will Saving Throws for 6 seconds. This effect stacks up to 5 times. This effect may only occur on-hit once every three seconds. Passive: The DC of the saving throw to resist your Stunning Blow and Stunning Fist combat feats is increased by 11."
+home_bonus_type = "Equipment"
+verbose_name_template = "Dazing VI +11"
+
+[[bonus]]
+amount_from = 0
+constant = 11
+rounding = "down"
+scale = 1.0
+target = "Stun DC"

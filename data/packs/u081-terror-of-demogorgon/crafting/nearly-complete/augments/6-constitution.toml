@@ -1,0 +1,21 @@
+name = "+6 Constitution"
+description = "+6 Enhancement bonus to Constitution"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: nearly complete: ability score (heroic)"

@@ -1,0 +1,29 @@
+name = "The Final Draw"
+bestowed_by = "Klurgo"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Dragons' Hand"
+patron = "Agents of Argonnessen"
+zone = "Silverclaw's Palace"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Final_Draw"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

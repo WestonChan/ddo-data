@@ -1,0 +1,3 @@
+name = "Critical Befouling 3"
+description_template = "This deadly weapon saps the charm from your enemies, dealing 3 Charisma damage on each critical hit."
+verbose_name_template = "Critical Befouling 3"

@@ -1,0 +1,59 @@
+name = "Solar Gem of Sneak Attack Dice (Heroic)"
+description = """
++1 Artifact Bonus to Sneak Attack Dice.
+Drops in: Magic of Myth Drannor (Heroic), Elite and True Elite
+Ruins of Myth Drannor, Goranathanil or any red-named rare encounter chest (rare)
+The Knife's Edge, end chest (rare)
+The Covered Culvert, optional chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Sneak Attack Dice"
+bonus_type = "Artifact"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"
+
+[[source]]
+chest = "goranathanil or any red-named rare encounter chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "optional chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"
+
+[[source]]
+chest = "zarazurthu's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Knife's Edge"

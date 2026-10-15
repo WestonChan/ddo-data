@@ -1,0 +1,18 @@
+name = "Lesser Cunning Trinket"
+description = """
+Pirates have keen minds that allow them to outsmart their foes. This trinket
+gives you boosts to the effectiveness of your spells."""
+drop_location = "Treasure of Crystal Cove, Turn in at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_69"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 4
+slot = "Trinket"
+
+[[effect]]
+name = "Pirate Cleverness"
+bonus_type = "Pirate"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

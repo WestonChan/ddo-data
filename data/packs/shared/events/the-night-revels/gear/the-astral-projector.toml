@@ -1,0 +1,61 @@
+name = "The Astral Projector"
+description = """
+"Who you gonna call?
+
+A necromancer.
+Definitely a necromancer.""""
+drop_location = "The Night Revels"
+icon = "RuneArm_7b"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 7
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier III"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 18
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Disrupting Weapons"
+
+[[effect]]
+name = "Rune Arm Imbue - Evil Shot II"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Ghost Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

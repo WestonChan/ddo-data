@@ -1,0 +1,25 @@
+name = "Bracers of the Claw"
+description = """
+Drow warriors don these bracers before combat and are granted great power in
+battle. They claim the bracers are infused with Vulkoor's Wrath."""
+drop_location = "Into the Deep, End reward"
+icon = "Bracers_3e"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Wrists"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 70
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Into the Deep"

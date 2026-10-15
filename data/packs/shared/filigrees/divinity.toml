@@ -1,0 +1,206 @@
+[[row]]
+name = "Divinity/Ultimate Fury +2 Strength"
+description = """
++2 Strength
+Rare: +4 PRR"""
+icon = "DivinityUltimateFury"
+menu = "Raid Filigrees"
+set = "Divinity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Divinity/Ultimate Fury: +4 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Divinity: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "Divinity"
+menu = "Sinister Secret of Saltmarsh"
+set = "Divinity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Divinity: Charisma: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Divinity: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "Divinity"
+menu = "Sinister Secret of Saltmarsh"
+set = "Divinity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Divinity: Constitution: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Divinity: +1 Seeker"
+description = """
++1 Seeker
+Rare: +2 Melee Power"""
+icon = "Divinity"
+menu = "Sinister Secret of Saltmarsh"
+set = "Divinity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Divinity: Seeker: Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Divinity: +1 Strength"
+description = """
++1 Strength
+Rare: +2 MRR"""
+icon = "Divinity"
+menu = "Sinister Secret of Saltmarsh"
+set = "Divinity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Divinity: Strength: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Divinity: +1 Sunder"
+description = """
++1 Sunder DCs
+Rare: +2 MRR"""
+icon = "Divinity"
+menu = "Sinister Secret of Saltmarsh"
+set = "Divinity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "TacticalDC"
+targets = ["Sunder"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Divinity: Sunder: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Divinity: +2 Smite Evil"
+description = """
++2 Smite Evil uses
+Rare: +2 MRR"""
+icon = "Divinity"
+menu = "Sinister Secret of Saltmarsh"
+set = "Divinity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Divinity: Smite Evil: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Divinity: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "Divinity"
+menu = "Sinister Secret of Saltmarsh"
+set = "Divinity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Divinity: PRR: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Divinity: +4 Armor Class"
+description = """
++4 Armor Class
+Rare: +2 PRR"""
+icon = "Divinity"
+menu = "Sinister Secret of Saltmarsh"
+set = "Divinity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Divinity: Armor Class: PRR"
+effect_type = "PRR"
+is_rare = true

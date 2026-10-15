@@ -1,0 +1,23 @@
+name = "Fire I: Devotion"
+adds_augment = "Legendary Alchemical Tier 2"
+description = "Combine T0 item with 50 threads and stabilizing compound."
+effect_description = "Devotion 152: +152 Equipment Bonus to Positive Spell Power."
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[effect]]
+name = "Positive Spell Power"
+bonus_type = "Equipment"
+value = 152
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [152]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 1"

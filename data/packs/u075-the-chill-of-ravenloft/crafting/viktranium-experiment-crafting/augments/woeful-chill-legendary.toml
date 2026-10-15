@@ -1,0 +1,10 @@
+name = "Woeful Chill (Legendary)"
+description = """
+Your attacks and offensive spells have a chance to freeze your target in a block of ice.
+(Undocumented: Grants Legendary Ice)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

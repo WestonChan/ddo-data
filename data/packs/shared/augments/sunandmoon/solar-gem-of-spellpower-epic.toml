@@ -1,0 +1,21 @@
+name = "Solar Gem of Spellpower (Epic)"
+description = "+20 Artifact Bonus to Spellpower."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Artifact"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "sun"

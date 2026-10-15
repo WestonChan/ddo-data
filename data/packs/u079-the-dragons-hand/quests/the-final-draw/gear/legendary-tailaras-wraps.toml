@@ -1,0 +1,56 @@
+name = "Legendary Tailara's Wraps"
+accepts_sentience = true
+description = """
+A fragment of the White Dragon's power, hidden away by Silverclaw as a condition
+of employment."""
+drop_location = "The Final Draw, end chest"
+enhancement_bonus = 15
+icon = "HandWraps_1w"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Steel"
+minimum_level = 34
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Chilling 7"
+
+[[effect]]
+name = "Freezing 16"
+
+[[effect]]
+name = "Legendary Freezing Ice"
+
+[[effect]]
+name = "Dragon's Edge 7"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Draw"
+
+[[weapon]]
+attack_modifier = "Strength, Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength, Dexterity"
+damage_multiplier = 5.8
+handedness = "Two-handed"
+weapon_type = "Handwraps"

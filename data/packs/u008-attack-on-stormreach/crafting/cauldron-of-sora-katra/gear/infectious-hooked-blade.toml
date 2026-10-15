@@ -1,0 +1,48 @@
+name = "Infectious Hooked Blade"
+description = """
+This vicious, curved sword, capable of slicing straight through enemy limbs,
+can now confer a deadly disease to the wielder's foes."""
+drop_location = "Cauldron of Sora Katra, upgraded version of Hooked Blade"
+enhancement_bonus = 5
+icon = "Khopesh_8"
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Limb Chopper"
+
+[[effect]]
+name = "Maiming 3"
+
+[[effect]]
+name = "Human Bane 3"
+
+[[effect]]
+name = "Demon Fever"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Khopesh"

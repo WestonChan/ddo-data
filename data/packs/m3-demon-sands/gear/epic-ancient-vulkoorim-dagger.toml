@@ -1,0 +1,54 @@
+name = "Epic Ancient Vulkoorim Dagger"
+accepts_sentience = true
+description = """
+An ancient dagger forged in the days of the elven revolt against the giants.
+This dagger has a small chance to kill any giant outright."""
+drop_location = "Epic version of Ancient Vulkoorim Dagger"
+enhancement_bonus = 6
+icon = "Dagger_14"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Adamantine"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Poison Blast 4"
+
+[[effect]]
+name = "Giant Slayer"
+
+[[effect]]
+name = "Giant Bane 4"
+
+[[effect]]
+name = "Wounding 2"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Dagger"

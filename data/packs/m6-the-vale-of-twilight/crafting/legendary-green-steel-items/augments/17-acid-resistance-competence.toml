@@ -1,0 +1,23 @@
+name = "+17 Acid Resistance (Competence)"
+description = "Material/Opposition: +17 Competence bonus to Acid Resistance."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Competence"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Competence"
+effect = "Acid Resistance"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: equipment tier 3"

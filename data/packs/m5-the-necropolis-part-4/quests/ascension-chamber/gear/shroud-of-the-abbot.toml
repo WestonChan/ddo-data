@@ -1,0 +1,76 @@
+name = "Shroud of the Abbot"
+description = """
+This robe is made of pieces of the actual banner the Abbot was wrapped in when
+he was slain before being raised as a lich."""
+drop_location = "Ascension Chamber, Raid Warded chest"
+icon = "Cloth_1f"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 4
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 4
+
+[[effect]]
+name = "Boon of Undeath"
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Light Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "crafting: upgradeable item (black abbot)"
+
+[[socket.option]]
+name = "Light resistance +30 and adds Lesser Arcane Augmentation IX"
+description = """
+Light Resistance +30: Passive: +30 Enhancement bonus to your Light Resistance.
+Lesser Arcane Augmentation IX: Increases the wearer's caster level when casting
+ninth level or lower sorcerer or wizard spells by one."""
+icon = "BlackAbbot"
+min_level = 14
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Light Resistance"
+value = 30
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Equipment"
+effect = "Light Resistance"
+effect_type = "EnergyResistance"
+targets = ["Light"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"

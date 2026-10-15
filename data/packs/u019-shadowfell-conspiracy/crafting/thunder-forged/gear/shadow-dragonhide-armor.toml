@@ -1,0 +1,52 @@
+name = "Shadow Dragonhide Armor"
+description = "Leather armor crafted from the hide and scales of a shadow dragon."
+drop_location = "Magma Forge, Crafted from various ingredients"
+enhancement_bonus = 11
+icon = "LightArmor_24"
+item_category = "Armor"
+item_type = "Light"
+material = "Black Dragonscale"
+minimum_level = 26
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 10
+armor_type = "Light"
+max_dex_bonus = 19
+
+[[clickie]]
+name = "Shadow Phase"
+clickie = "Shadow Phase"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 130
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "From The Shadows"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shadow Phase"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Thunder-Forged"

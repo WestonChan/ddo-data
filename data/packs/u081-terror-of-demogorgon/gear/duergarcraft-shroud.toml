@@ -1,0 +1,43 @@
+name = "Duergarcraft Shroud"
+description = "A sturdy cloak, combining Duergar metalwork with exceptional tailoring."
+drop_location = "Demon in the Rough, end chest"
+icon = "Cloak_9"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 11
+slot = "Back"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 2
+value2 = 3
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon in the Rough"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Flocked Together"

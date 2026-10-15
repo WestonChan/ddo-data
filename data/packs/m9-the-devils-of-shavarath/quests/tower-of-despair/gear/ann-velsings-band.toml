@@ -1,0 +1,58 @@
+name = "Ann Velsing's Band"
+description = """
+A dedicated Hunter of the Dead, Ann Velsing gave her life fighting the forces
+of the undead. This simple silver ring is imbued with her purpose."""
+drop_location = "Tower of Despair, rght side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Hunter of the Dead"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Hunter of the Dead - 2 Piece bonus"
+effect_type = "ExtraRemoveDisease"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Hunter of the Dead - 3 Piece bonus"
+effect_type = "NotModeled"
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "rght side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

@@ -1,0 +1,12 @@
+name = "Persuasion"
+description_template = "This item gives a +3 Competence bonus to all Charisma based skills."
+home_bonus_type = "Competence"
+verbose_name_template = "Persuasion +3"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Competence"
+constant = 3
+rounding = "down"
+scale = 1.0
+target = "Charisma Skills"

@@ -1,0 +1,35 @@
+name = "Backstabber's Gloves (Level 25)"
+description = """
+These leather gloves were once worn by Vrall the Fearless of the Cloven-Jaw.
+They are soaked with the blood of his enemies... or perhaps his allies."""
+drop_location = "The Crucible, Harza Ghost Waker 's chest (Epic Elite)"
+icon = "Gloves_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 25
+slot = "Hands"
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Sneak Attack Bonus"
+bonus_type = "Enhancement"
+value = 5
+value2 = 8
+
+[[effect]]
+name = "Sneak Attack Bonus"
+bonus_type = "Insight"
+value = 3
+value2 = 5
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "yellow"

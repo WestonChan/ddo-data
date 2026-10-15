@@ -1,0 +1,10 @@
+name = "Melee Alacrity"
+description_template = "Gain {1}% %b1 bonus to Melee attack speed. Does not stack with the Haste spell."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Melee Alacrity {1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Melee Attack Speed"

@@ -1,0 +1,66 @@
+name = "Legendary Small Shield of the Fallen Age"
+description = "Wild magic has imbued entropy into this shield over the years."
+drop_location = "Seeds of Decay, end chest"
+enhancement_bonus = 15
+icon = "Shield_5f"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Steel"
+minimum_level = 33
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 19
+max_dex_bonus = 0
+shield_bonus = 34
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Shield Spikes D 7"
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 14
+
+[[effect]]
+name = "Legendary Conditioning"
+bonus_type = "Legendary"
+value = 10
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Seeds of Decay"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.6
+handedness = "Off-hand"
+weapon_type = "Small Shield"

@@ -1,0 +1,55 @@
+name = "Solar Gem of Strikethrough (Heroic)"
+description = """
++5% Artifact Bonus to Strikethrough.
+Drops in: Death Hosts This Banquet, end chest (rare)
+Magic of Myth Drannor (Heroic), Elite and True Elite
+Rats in a Cage, end chest (rare)
+Dinosaur Crisis, end chest (rare)
+Cold Snap, end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Strikethrough"
+bonus_type = "Artifact"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Strikethrough"
+effect_type = "Strikethrough"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Death Hosts This Banquet"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Rats in a Cage"

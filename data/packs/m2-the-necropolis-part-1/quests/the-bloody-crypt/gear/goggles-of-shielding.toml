@@ -1,0 +1,36 @@
+name = "Goggles of Shielding"
+description = "Anyone who wears these goggles feels as if they are protected by an unseen force."
+drop_location = "The Bloody Crypt, End Chest"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 5
+slot = "Goggles"
+
+[[clickie]]
+name = "Shield"
+clickie = "Shield"
+
+[[effect]]
+name = "Lesser False Life"
+bonus_type = "Enhancement"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shield"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bloody Crypt"

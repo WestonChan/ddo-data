@@ -1,0 +1,16 @@
+name = "Raiding the Giants' Vault"
+bestowed_by = "Murkletter"
+difficulties = ["solo"]
+favor = 6
+pack = "The Dreaming Dark"
+patron = "The Coin Lords"
+zone = "The Giants' Vault"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Raiding_the_Giants%27_Vault"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

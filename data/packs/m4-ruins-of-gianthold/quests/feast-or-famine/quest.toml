@@ -1,0 +1,25 @@
+name = "Feast or Famine"
+bestowed_by = "Walk-up"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "Orc Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Feast_or_Famine"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 24

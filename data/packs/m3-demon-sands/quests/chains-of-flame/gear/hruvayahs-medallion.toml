@@ -1,0 +1,45 @@
+name = "Hruvayah's Medallion"
+description = """
+This heavy pendant bears the likeness of a many-armed woman with a serpentine
+body."""
+drop_location = "Chains of Flame, end chest"
+icon = "Necklace_6"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Poison Resistance"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 20
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Chains of Flame"

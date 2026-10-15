@@ -1,0 +1,13 @@
+name = "Essence of the Dethek Runestone"
+description = """
+Runic Revitalization: On Positive Energy Spell Cast: You have a 10% chance
+to gain 100 Temporary Hit Points and 50 Temporary Spell Points for 60 seconds.
+This effect can trigger once per 120 seconds.
+Requires: 50 Threads of Fate, Empty Soul Vessel and Dethek Runestone
+(Fire on Thunder Peak)"""
+family = "Named"
+icon = "GreenRaidItemEssence"
+min_level = 30
+
+[[slot]]
+slot = "green"

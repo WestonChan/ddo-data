@@ -1,0 +1,33 @@
+name = "Faedark Faerielights"
+description = "FEYTWISTED form of Crown of Fireflies \n\nThe calm and hollow light of blinking faerylights fill your foes with despair."
+drop_location = "The Feywild, Feytwisted chests"
+icon = "Helmet_2b"
+item_category = "Clothing"
+material = "Paper"
+minimum_level = 29
+slot = "Head"
+
+[[effect]]
+name = "Faeryfire Curse"
+
+[[effect]]
+name = "Illusory Death 3"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Quality"
+value = 67
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"

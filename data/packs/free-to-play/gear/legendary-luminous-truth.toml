@@ -1,0 +1,60 @@
+name = "Legendary Luminous Truth"
+accepts_sentience = true
+description = """
+This tool was crafted for divine priests of the Silver Flame, as well as those
+who would wield a quarterstaff as a weapon in the Silver Flame's name. It deals
+fire and light damage to its targets and enhances the power of magical light
+and flames."""
+drop_location = "Legendary version of Epic Luminous Truth"
+enhancement_bonus = 15
+icon = "Quarterstaff_5b"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Purifying Flame Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Power of the Flames of Purity"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Coruscating 6"
+
+[[effect]]
+name = "Overwhelming Incineration"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

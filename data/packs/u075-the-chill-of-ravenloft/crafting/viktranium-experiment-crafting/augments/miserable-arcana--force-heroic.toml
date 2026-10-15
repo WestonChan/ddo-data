@@ -1,0 +1,25 @@
+name = "Miserable Arcana: Force (Heroic)"
+description = "+70 Equipment bonus to Force and Physical Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Force Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Equipment"
+effect = "Force Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

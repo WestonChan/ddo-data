@@ -1,0 +1,33 @@
+name = "The Band Immaterial"
+description = """
+It is said that this band was once used to convince an entire squadron of devils
+that their leader had sold them out. There were no survivors, save the ring
+itself."""
+drop_location = "Demon Assault, end chest"
+icon = "Ring_28"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon Assault"

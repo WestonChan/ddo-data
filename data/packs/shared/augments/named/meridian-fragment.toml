@@ -1,0 +1,39 @@
+name = "Meridian Fragment"
+description = "-6 SP Cost to Maximized spells. \nOnce every three seconds when you take physical damage you get Psionic Potency +8.\nThis can stack up to three times (up to Psionic Potency +24) and each stack\nlasts for 20 seconds."
+family = "Named"
+icon = "MeridianFragment"
+min_level = 28
+
+[[effect]]
+name = "Maximize Cost Reduction"
+bonus_type = "Psionic"
+value = -6
+
+[[modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Psionic Potency"]
+
+[[modifier]]
+amount_type = "SliderValue"
+amounts = [8]
+bonus_type = "Psionic"
+effect_type = "SpellPower"
+stack_source = "Psionic Potency"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-6]
+bonus_type = "Psionic"
+effect = "Maximize Cost Reduction"
+effect_type = "MetamagicCostMaximize"
+
+[[slot]]
+slot = "orange"

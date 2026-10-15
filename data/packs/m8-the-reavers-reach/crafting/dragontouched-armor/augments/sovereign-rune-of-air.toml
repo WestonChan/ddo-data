@@ -1,0 +1,12 @@
+name = "Sovereign Rune of Air"
+description = """
+Air Guard: This Weapon stores the incredible, dynamic power of the air deep within.
+When the user of this weapon is successfully attacked in melee, this power
+occasionally comes to the surface, knocking enemies over or speeding up the
+wearer with rushing winds."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

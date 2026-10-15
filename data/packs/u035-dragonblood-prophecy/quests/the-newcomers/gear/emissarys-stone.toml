@@ -1,0 +1,48 @@
+name = "Emissary's Stone"
+description = """
+This stone was once attached to a larger outfit; despite its separation, it
+seems to have retained much of its power."""
+drop_location = "The Newcomers, end chest"
+enhancement_bonus = 4
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 10
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 15
+armor_bonus = 2
+armor_type = "Docent"
+mithral_body = 8
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 77
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Newcomers"

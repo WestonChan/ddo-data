@@ -1,0 +1,59 @@
+name = "Dinosaur Bone Buckler"
+description = "This shield is expertly crafted of impossibly strong Dinosaur Bone."
+drop_location = "Skeletons in the Closet, The Mountain Keeper chest, end chest"
+icon = "Shield_19"
+item_category = "Shield"
+item_type = "Buckler"
+material = "Bone"
+minimum_level = 31
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 19
+max_dex_bonus = 0
+shield_bonus = 20
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "isle of dread: fang (weapon)"
+
+[[socket]]
+slot = "isle of dread: scale (armor)"
+
+[[socket]]
+slot = "isle of dread: fang (armor)"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "the mountain keeper chest, end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Skeletons in the Closet"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Off-hand"
+weapon_type = "Buckler"

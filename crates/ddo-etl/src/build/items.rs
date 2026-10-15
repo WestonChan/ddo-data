@@ -407,27 +407,8 @@ impl TableWriter<'_> {
     pub(super) fn insert_item_row(&self, row: &ItemRow) -> Result<i64> {
         self.transaction.execute(
             "INSERT INTO items (name, slot_id, item_category, item_type, minimum_level, enhancement_bonus, material_id, race_required,
-                                icon, description, drop_location, set_bonus, accepts_sentience, is_minor_artifact, is_legacy, wiki_url, provenance)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17)",
-            params![
-                row.name,
-                row.equipment_slot.id(),
-                row.category.as_str(),
-                row.item_type,
-                row.minimum_level,
-                row.enhancement_bonus,
-                row.material_id,
-                row.race_required,
-                row.icon,
-                row.description,
-                row.drop_location,
-                row.set_bonus,
-                row.accepts_sentience,
-                row.is_minor_artifact,
-                names_legacy_version(row.name),
-                row.wiki_url,
-                row.provenance.as_str(),
-            ],
+                                icon, description, drop_location, set_bonus, accepts_sentience, is_minor_artifact, is_legacy, wiki_url, provenance, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)",
+            params![row.name, row.equipment_slot.id(), row.category.as_str(), row.item_type, row.minimum_level, row.enhancement_bonus, row.material_id, row.race_required, row.icon, row.description, row.drop_location, row.set_bonus, row.accepts_sentience, row.is_minor_artifact, names_legacy_version(row.name), row.wiki_url, row.provenance.as_str(), crate::tree::xml_entity_slug("items", None, row.name, None)],
         )?;
         Ok(self.transaction.last_insert_rowid())
     }
@@ -543,7 +524,7 @@ impl TableWriter<'_> {
     }
 }
 
-fn weapon_damage_text(
+pub(crate) fn weapon_damage_text(
     damage_multiplier: Option<f64>,
     base_dice: Option<(i64, i64, Option<i64>)>,
     enhancement_bonus: Option<i64>,

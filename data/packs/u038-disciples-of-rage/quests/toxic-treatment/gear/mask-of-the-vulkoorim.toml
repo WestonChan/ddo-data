@@ -1,0 +1,40 @@
+name = "Mask of the Vulkoorim"
+description = "The mask, a relic held by the Vulkoorim, whispers to those who dare wear it."
+drop_location = "Toxic Treatment, End chest"
+icon = "Helmet_44"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 14
+slot = "Head"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toxic Treatment"

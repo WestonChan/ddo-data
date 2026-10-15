@@ -1,0 +1,54 @@
+name = "Legendary Syranian Kama"
+accepts_sentience = true
+description = "This tempered Adamantine weapon emanates subtle electrical power."
+drop_location = "Syranian Forged Weaponry, Turn in 1 Dampening Alloy, 1 Energizing Alloy, 1 Caustic Compound, 1 Stabilizing Compound"
+enhancement_bonus = 15
+icon = "Kama_1j"
+item_category = "Weapon"
+item_type = "Kama"
+material = "Adamantine"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Electrifying 6"
+
+[[effect]]
+name = "Holy 6"
+
+[[effect]]
+name = "Construct Bane 6"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Syranian Forged Weaponry"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Kama"

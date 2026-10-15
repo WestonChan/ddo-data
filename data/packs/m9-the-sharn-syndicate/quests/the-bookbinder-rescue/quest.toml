@@ -1,0 +1,22 @@
+name = "The Bookbinder Rescue"
+bestowed_by = "Olistair Binder"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "The Sharn Syndicate"
+patron = "The Coin Lords"
+zone = "The Binder Home"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Bookbinder_Rescue"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

@@ -1,0 +1,73 @@
+name = "Tokala's Belt"
+description = """
+Once worn by Tokala, a powerful Radiant Servant, this heavy belt is adorned
+with symbols depicting the sun."""
+drop_location = "Genesis Point, Any end chest; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[clickie]]
+name = "Greater Ardor"
+clickie = "Greater Ardor"
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Radiant Servant"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Ardor"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Radiant Servant - 2 Piece bonus"
+effect_type = "ExtraTurns"
+extra_types = ["ExtraTurns"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Radiant Servant - 2 Piece bonus"
+effect_type = "TurnLevelBonus"
+extra_types = ["TurnLevelBonus"]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Genesis Point"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

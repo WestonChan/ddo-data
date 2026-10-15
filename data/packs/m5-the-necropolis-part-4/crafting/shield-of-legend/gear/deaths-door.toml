@@ -1,0 +1,54 @@
+name = "Death's Door"
+description = """
+The magi leaders of various ogre tribes wear these shields into battle to terrify
+their enemies."""
+drop_location = "Shield of Legend, Turn in completed Shield: Frame"
+enhancement_bonus = 5
+icon = "Shield_33"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Bone"
+minimum_level = 14
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 11
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Negative Energy Spike"
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 10
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Shield of Legend"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "Off-hand"
+weapon_type = "Large Shield"

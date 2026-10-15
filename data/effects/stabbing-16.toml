@@ -1,0 +1,3 @@
+name = "Stabbing 16"
+description_template = "The edges of this weapon are serrated, dealing an additional 16d6 piercing damage on each critical hit."
+verbose_name_template = "Stabbing 16"

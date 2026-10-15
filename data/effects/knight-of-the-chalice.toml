@@ -1,0 +1,3 @@
+name = "Knight of the Chalice"
+description_template = "This item in one of two pieces of the Knight of the Chalice set. When both items are equipped you will receive gain spell resistance 22. If you have the Fiendslayer 3 Enhancement, this item will give your weapons additional damage versus Evil Outsiders."
+verbose_name_template = "Knight of the Chalice"

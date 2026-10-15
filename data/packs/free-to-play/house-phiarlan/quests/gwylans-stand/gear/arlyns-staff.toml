@@ -1,0 +1,46 @@
+name = "Arlyn's Staff"
+description = """
+A long, stout staff, engraved with the name 'Arlyn Feathercrest' and a displacer
+beast."""
+drop_location = "Gwylan's Stand, Arlyn Feathercrest 's Chest"
+enhancement_bonus = 3
+icon = "Quarterstaff_15b"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 3
+
+[[effect]]
+name = "Force"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "arlyn feathercrest 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gwylan's Stand"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

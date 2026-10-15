@@ -1,0 +1,27 @@
+name = "Calamity's Carapace"
+description = """
+A suit of armor made out of the carapace and other body parts of the spider
+Calamity."""
+drop_location = "The Smuggler's Warehouse, Calamity 's Chest"
+enhancement_bonus = 2
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 3
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "calamity 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Smuggler's Warehouse"

@@ -1,0 +1,3 @@
+name = "Greater Disease Guard"
+description_template = "This item carries the Maggot Plague disease, which deals 2d6 Constitution damage and may be contracted by enemies that hit you. A successful Fortitude Save (DC 28) will negate this effect."
+verbose_name_template = "Greater Disease Guard"

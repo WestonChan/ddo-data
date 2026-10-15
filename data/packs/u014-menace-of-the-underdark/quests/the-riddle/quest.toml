@@ -1,0 +1,21 @@
+name = "The Riddle"
+bestowed_by = "Ingval Muth"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Menace of the Underdark"
+patron = "Purple Dragon Knights"
+zone = "Dank Cave"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Riddle"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

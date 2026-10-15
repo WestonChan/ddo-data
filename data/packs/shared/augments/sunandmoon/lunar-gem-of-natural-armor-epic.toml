@@ -1,0 +1,20 @@
+name = "Lunar Gem of Natural Armor (Epic)"
+description = "+? Profane Bonus to Natural Armor."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Profane"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Profane"
+effect = "Natural Armor"
+effect_type = "NaturalArmor"
+
+[[slot]]
+slot = "moon"

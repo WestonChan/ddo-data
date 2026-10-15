@@ -1,0 +1,13 @@
+name = "The Lost Gatekeepers"
+pack = "The Lost Gatekeepers"
+quests = [
+    "The Home of Memory",
+    "Heart of the Problem",
+    "Rosemary's Ballad",
+    "The Sacred Bounty",
+    "Housekeeping",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Lost_Gatekeepers"
+read = "2026-10-02"

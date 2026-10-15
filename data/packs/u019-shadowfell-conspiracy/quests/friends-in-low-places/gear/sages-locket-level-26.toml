@@ -1,0 +1,22 @@
+name = "Sage's Locket (Level 26)"
+drop_location = "Friends in Low Places, End reward"
+icon = "Necklace_4"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Neck"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 15
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Friends in Low Places"

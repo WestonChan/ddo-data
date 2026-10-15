@@ -1,0 +1,29 @@
+name = "Sigil of Stormreach"
+description = """
+A beautiful signet ring given to Delera by the grateful residents of the city.
+One can make out the crests of all the houses on its band."""
+drop_location = "Free Delera, End chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 7
+slot = "Ring"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 9
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 9
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Free Delera"

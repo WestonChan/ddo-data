@@ -1,0 +1,27 @@
+name = "Air I: Shocking Blast + Lightning Strike"
+adds_augment = "Legendary Alchemical Tier 2"
+description = "Combine T0 item with 50 threads and stabilizing compound."
+effect_description = "Shocking Blast + Lightning Strike: No effects"
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[note]]
+kind = "augment"
+original_name = "Air I: Electric Blast + Lightning Strike"
+field = "effect_description"
+upstream = "Electric Blast + Lightning Strike: No effects"
+reason = "The wiki's legendary Air tier 1 effect is Shocking Blast 6, not Electric Blast."
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Air I: Electric Blast + Lightning Strike"
+reason = "The wiki's legendary Air tier 1 effect is Shocking Blast 6, not Electric Blast."
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-09-30"
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 1"

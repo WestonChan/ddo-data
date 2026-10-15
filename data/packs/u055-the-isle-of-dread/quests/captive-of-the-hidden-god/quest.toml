@@ -1,0 +1,30 @@
+name = "Captive of the Hidden God"
+bestowed_by = "Wulth Sulfork"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Isle of Dread"
+patron = "The Gatekeepers"
+zone = "Journey to the Isle of Dread"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Captive_of_the_Hidden_God"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

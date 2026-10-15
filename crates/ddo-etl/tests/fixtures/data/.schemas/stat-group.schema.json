@@ -1,0 +1,86 @@
+{
+  "$defs": {
+    "EffectBonus": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_from": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "constant": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "rounding": {
+          "type": "string"
+        },
+        "scale": {
+          "format": "double",
+          "type": "number"
+        },
+        "target": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        }
+      },
+      "required": [
+        "amount_from",
+        "rounding",
+        "scale",
+        "target"
+      ],
+      "type": "object",
+      "x-table": "effect_bonuses"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bonus": {
+      "items": {
+        "$ref": "#/$defs/EffectBonus"
+      },
+      "type": "array"
+    },
+    "description_template": {
+      "type": "string"
+    },
+    "home_bonus_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-reference-kind": "bonus_types"
+    },
+    "name": {
+      "type": "string"
+    },
+    "set_bonus_line_template": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verbose_name_template": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "description_template",
+    "verbose_name_template"
+  ],
+  "title": "StatGroupFile",
+  "type": "object",
+  "x-table": "effects"
+}

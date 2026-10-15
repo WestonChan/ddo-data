@@ -1,0 +1,28 @@
+name = "Thorn Blade (Level 1)"
+description = "A thorny mass of poisoned bines that sprang forth from your hands with the casting of the Thorn Blade spell. The thorns respond to the willpower and intuition of the wielder. As the Thorn Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+enhancement_bonus = 1
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+wiki_url = "https://ddowiki.com/page/Item:Thorn_Blade_%28level_1%29"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Thorn_Blade_%28level_1%29"
+read = "2026-09-29"
+
+[[effect]]
+name = "Thornblade"
+
+[[effect]]
+name = "Acidic 1"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+handedness = "One-handed"
+weapon_type = "Scimitar"

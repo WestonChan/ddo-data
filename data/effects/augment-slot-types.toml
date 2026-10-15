@@ -1,0 +1,1431 @@
+[[row]]
+family = "standard"
+label = "blue"
+variant = "blue"
+
+[[row]]
+family = "standard"
+label = "colorless"
+variant = "colorless"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: colroless"
+reason = "Colroless is a misspelling of Colorless: the wiki's Attuned by Heroism Tier 2 on this ring adds a Colorless Augment Slot."
+url = "https://ddowiki.com/page/Item:Ring_of_Deceit"
+read = "2026-10-02"
+
+[[row]]
+family = "crafting"
+label = "crafting: accessory aspect i"
+variant = "accessory aspect i"
+
+[[row]]
+family = "crafting"
+label = "crafting: accessory aspect ii"
+variant = "accessory aspect ii"
+
+[[row]]
+family = "crafting"
+label = "crafting: accessory devastation"
+variant = "accessory devastation"
+
+[[row]]
+family = "crafting"
+label = "crafting: accessory invasion"
+variant = "accessory invasion"
+
+[[row]]
+family = "crafting"
+label = "crafting: accessory subjugation"
+variant = "accessory subjugation"
+
+[[row]]
+family = "crafting"
+label = "crafting: add augment 1"
+variant = "add augment 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: add augment 2"
+variant = "add augment 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: against the slave lords set bonus"
+variant = "against the slave lords set bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: alchemical crafting tier 1"
+variant = "alchemical crafting tier 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: alchemical crafting tier 2"
+variant = "alchemical crafting tier 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: alchemical material type"
+variant = "alchemical material type"
+
+[[row]]
+family = "crafting"
+label = "crafting: alchemical tier 1"
+variant = "alchemical tier 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: alchemical tier 2"
+variant = "alchemical tier 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: alchemical tier 3"
+variant = "alchemical tier 3"
+
+[[row]]
+family = "crafting"
+label = "crafting: almost there"
+variant = "almost there"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned by heroism: tier 1"
+variant = "attuned by heroism: tier 1"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: attuned to heroism 1"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 1, the label his Stormreaver items use."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: attuned to heroism tier 1"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 1, the label his Stormreaver items use."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned by heroism: tier 2"
+variant = "attuned by heroism: tier 2"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: attuned to heroism 2"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 2, the label his Stormreaver items use."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: attuned to heroism tier 2"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 2, the label his Stormreaver items use."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned by heroism: tier 3"
+variant = "attuned by heroism: tier 3"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: attuned to heroism 3"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 3."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned by heroism: tier 4"
+variant = "attuned by heroism: tier 4"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: attuned to heroism 4"
+reason = "The wiki names the Fall of Truth upgrade Attuned by Heroism: Tier 4."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith armor ac bonus"
+variant = "cannith armor ac bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith armor check penalty"
+variant = "cannith armor check penalty"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith armor enhancement"
+variant = "cannith armor enhancement"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith armor extra"
+variant = "cannith armor extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith armor max dex/dodge bonus"
+variant = "cannith armor max dex/dodge bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith armor prefix"
+variant = "cannith armor prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith armor suffix"
+variant = "cannith armor suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith belt extra"
+variant = "cannith belt extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith belt prefix"
+variant = "cannith belt prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith belt suffix"
+variant = "cannith belt suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith boots extra"
+variant = "cannith boots extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith boots prefix"
+variant = "cannith boots prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith boots suffix"
+variant = "cannith boots suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith bracers extra"
+variant = "cannith bracers extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith bracers prefix"
+variant = "cannith bracers prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith bracers suffix"
+variant = "cannith bracers suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith cloak extra"
+variant = "cannith cloak extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith cloak prefix"
+variant = "cannith cloak prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith cloak suffix"
+variant = "cannith cloak suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith gloves extra"
+variant = "cannith gloves extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith gloves prefix"
+variant = "cannith gloves prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith gloves suffix"
+variant = "cannith gloves suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith goggles extra"
+variant = "cannith goggles extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith goggles prefix"
+variant = "cannith goggles prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith goggles suffix"
+variant = "cannith goggles suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith handwraps prefix"
+variant = "cannith handwraps prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith helmet extra"
+variant = "cannith helmet extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith helmet prefix"
+variant = "cannith helmet prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith helmet suffix"
+variant = "cannith helmet suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith melee extra"
+variant = "cannith melee extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith melee prefix"
+variant = "cannith melee prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith melee suffix"
+variant = "cannith melee suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith necklace extra"
+variant = "cannith necklace extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith necklace prefix"
+variant = "cannith necklace prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith necklace suffix"
+variant = "cannith necklace suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith orb enhancement"
+variant = "cannith orb enhancement"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith orb extra"
+variant = "cannith orb extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith orb prefix"
+variant = "cannith orb prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith orb spell casting implement"
+variant = "cannith orb spell casting implement"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith orb suffix"
+variant = "cannith orb suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith ranged extra"
+variant = "cannith ranged extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith ranged prefix"
+variant = "cannith ranged prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith ranged suffix"
+variant = "cannith ranged suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith ring extra"
+variant = "cannith ring extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith ring prefix"
+variant = "cannith ring prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith ring suffix"
+variant = "cannith ring suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith rune arm extra"
+variant = "cannith rune arm extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith rune arm prefix"
+variant = "cannith rune arm prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith rune arm suffix"
+variant = "cannith rune arm suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith shield ac bonus"
+variant = "cannith shield ac bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith shield arcane spell failure"
+variant = "cannith shield arcane spell failure"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith shield enhancement"
+variant = "cannith shield enhancement"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith shield extra"
+variant = "cannith shield extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith shield prefix"
+variant = "cannith shield prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith shield suffix"
+variant = "cannith shield suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith shield weapon base damage"
+variant = "cannith shield weapon base damage"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith thrown extra"
+variant = "cannith thrown extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith thrown prefix"
+variant = "cannith thrown prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith thrown suffix"
+variant = "cannith thrown suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith tower shield max dex bonus"
+variant = "cannith tower shield max dex bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith trinket extra"
+variant = "cannith trinket extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith trinket prefix"
+variant = "cannith trinket prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith trinket suffix"
+variant = "cannith trinket suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith weapon extra"
+variant = "cannith weapon extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith weapon prefix"
+variant = "cannith weapon prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith weapon suffix"
+variant = "cannith weapon suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: changestone ability"
+variant = "changestone ability"
+
+[[row]]
+family = "crafting"
+label = "crafting: changestone damage"
+variant = "changestone damage"
+
+[[row]]
+family = "crafting"
+label = "crafting: changestone option"
+variant = "changestone option"
+
+[[row]]
+family = "crafting"
+label = "crafting: changestone other"
+variant = "changestone other"
+
+[[row]]
+family = "crafting"
+label = "crafting: commendation upgrade"
+variant = "commendation upgrade"
+
+[[row]]
+family = "crafting"
+label = "crafting: deck curse"
+variant = "deck curse"
+
+[[row]]
+family = "crafting"
+label = "crafting: eldritch rune"
+variant = "eldritch rune"
+
+[[row]]
+family = "crafting"
+label = "crafting: enchantable: adventuring bonus"
+variant = "enchantable: adventuring bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: enchantable: crystal rush"
+variant = "enchantable: crystal rush"
+
+[[row]]
+family = "crafting"
+label = "crafting: enchantable: skilled seaman"
+variant = "enchantable: skilled seaman"
+
+[[row]]
+family = "crafting"
+label = "crafting: equipment tier 1"
+variant = "equipment tier 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: equipment tier 2"
+variant = "equipment tier 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: equipment tier 3"
+variant = "equipment tier 3"
+
+[[row]]
+family = "crafting"
+label = "crafting: finishing touch"
+variant = "finishing touch"
+
+[[row]]
+family = "crafting"
+label = "crafting: greensteel weapon active"
+variant = "greensteel weapon active"
+
+[[row]]
+family = "crafting"
+label = "crafting: greensteel weapon tier 1"
+variant = "greensteel weapon tier 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: greensteel weapon tier 2"
+variant = "greensteel weapon tier 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: greensteel weapon tier 3"
+variant = "greensteel weapon tier 3"
+
+[[row]]
+family = "crafting"
+label = "crafting: incredible potential"
+variant = "incredible potential"
+
+[[row]]
+family = "crafting"
+label = "crafting: leashed power"
+variant = "leashed power"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary alchemical material"
+variant = "legendary alchemical material"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary alchemical t3"
+variant = "legendary alchemical t3"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary alchemical tier 1"
+variant = "legendary alchemical tier 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary alchemical tier 2"
+variant = "legendary alchemical tier 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary slavelords bonus"
+variant = "legendary slavelords bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary slavelords extra"
+variant = "legendary slavelords extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary slavelords prefix"
+variant = "legendary slavelords prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary slavelords set bonus"
+variant = "legendary slavelords set bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary slavelords suffix"
+variant = "legendary slavelords suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: lost purpose"
+variant = "lost purpose"
+
+[[row]]
+family = "crafting"
+label = "crafting: mythic"
+variant = "mythic"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: ability score (heroic)"
+variant = "nearly complete: ability score (heroic)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: ability score (legendary)"
+variant = "nearly complete: ability score (legendary)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: exceptional skills (heroic)"
+variant = "nearly complete: exceptional skills (heroic)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: exceptional skills (legendary)"
+variant = "nearly complete: exceptional skills (legendary)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: healing amplification (heroic)"
+variant = "nearly complete: healing amplification (heroic)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: healing amplification (legendary)"
+variant = "nearly complete: healing amplification (legendary)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: insightful ability score (heroic)"
+variant = "nearly complete: insightful ability score (heroic)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: insightful ability score (legendary)"
+variant = "nearly complete: insightful ability score (legendary)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: quality ability score (heroic)"
+variant = "nearly complete: quality ability score (heroic)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: quality ability score (legendary)"
+variant = "nearly complete: quality ability score (legendary)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: spell focus (heroic)"
+variant = "nearly complete: spell focus (heroic)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly complete: spell focus (legendary)"
+variant = "nearly complete: spell focus (legendary)"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly finished"
+variant = "nearly finished"
+
+[[row]]
+family = "crafting"
+label = "crafting: planar searing"
+variant = "planar searing"
+
+[[row]]
+family = "crafting"
+label = "crafting: primary upgrade"
+variant = "primary upgrade"
+
+[[row]]
+family = "crafting"
+label = "crafting: random armor extra"
+variant = "random armor extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random armor prefix"
+variant = "random armor prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random armor suffix"
+variant = "random armor suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random belt extra"
+variant = "random belt extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random belt prefix"
+variant = "random belt prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random belt suffix"
+variant = "random belt suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random boots extra"
+variant = "random boots extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random boots prefix"
+variant = "random boots prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random boots suffix"
+variant = "random boots suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random bracers extra"
+variant = "random bracers extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random bracers prefix"
+variant = "random bracers prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random bracers suffix"
+variant = "random bracers suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random cloak extra"
+variant = "random cloak extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random cloak prefix"
+variant = "random cloak prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random cloak suffix"
+variant = "random cloak suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random effect"
+variant = "random effect"
+
+[[row]]
+family = "crafting"
+label = "crafting: random effect 1"
+variant = "random effect 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: random effect 2"
+variant = "random effect 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: random gloves extra"
+variant = "random gloves extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random gloves prefix"
+variant = "random gloves prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random gloves suffix"
+variant = "random gloves suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random goggles extra"
+variant = "random goggles extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random goggles prefix"
+variant = "random goggles prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random goggles suffix"
+variant = "random goggles suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random helmet extra"
+variant = "random helmet extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random helmet prefix"
+variant = "random helmet prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random helmet suffix"
+variant = "random helmet suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random necklace extra"
+variant = "random necklace extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random necklace prefix"
+variant = "random necklace prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random necklace suffix"
+variant = "random necklace suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random ring extra"
+variant = "random ring extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random ring prefix"
+variant = "random ring prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random ring suffix"
+variant = "random ring suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random shield extra"
+variant = "random shield extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random shield prefix"
+variant = "random shield prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random shield suffix"
+variant = "random shield suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random weapon extra"
+variant = "random weapon extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: random weapon prefix"
+variant = "random weapon prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: random weapon suffix"
+variant = "random weapon suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper armor"
+variant = "reaper armor"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper belt"
+variant = "reaper belt"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper boot"
+variant = "reaper boot"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper bracers"
+variant = "reaper bracers"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper cloak"
+variant = "reaper cloak"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper gloves"
+variant = "reaper gloves"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper goggles"
+variant = "reaper goggles"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper helmet"
+variant = "reaper helmet"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper necklace"
+variant = "reaper necklace"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper ring"
+variant = "reaper ring"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper shield"
+variant = "reaper shield"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper trinket"
+variant = "reaper trinket"
+
+[[row]]
+family = "crafting"
+label = "crafting: reaper weapon"
+variant = "reaper weapon"
+
+[[row]]
+family = "crafting"
+label = "crafting: sealed in fire"
+variant = "sealed in fire"
+
+[[row]]
+family = "crafting"
+label = "crafting: sealed in gloom"
+variant = "sealed in gloom"
+
+[[row]]
+family = "crafting"
+label = "crafting: sealed in mist"
+variant = "sealed in mist"
+
+[[row]]
+family = "crafting"
+label = "crafting: sealed in undeath"
+variant = "sealed in undeath"
+
+[[row]]
+family = "crafting"
+label = "crafting: secondary upgrade"
+variant = "secondary upgrade"
+
+[[row]]
+family = "crafting"
+label = "crafting: set bonus"
+variant = "set bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: set bonus 1"
+variant = "set bonus 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: set bonus 2"
+variant = "set bonus 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: shadow cloth variant"
+variant = "shadow cloth variant"
+
+[[row]]
+family = "crafting"
+label = "crafting: shadow docent variant"
+variant = "shadow docent variant"
+
+[[row]]
+family = "crafting"
+label = "crafting: shadow heavy variant"
+variant = "shadow heavy variant"
+
+[[row]]
+family = "crafting"
+label = "crafting: shadow light variant"
+variant = "shadow light variant"
+
+[[row]]
+family = "crafting"
+label = "crafting: shadow medium variant"
+variant = "shadow medium variant"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords bonus"
+variant = "slavelords bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords extra"
+variant = "slavelords extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords prefix"
+variant = "slavelords prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords set bonus"
+variant = "slavelords set bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords suffix"
+variant = "slavelords suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: sovereign rune"
+variant = "sovereign rune"
+
+[[row]]
+family = "crafting"
+label = "crafting: suppressed power"
+variant = "suppressed power"
+
+[[row]]
+family = "crafting"
+label = "crafting: tempest rune"
+variant = "tempest rune"
+
+[[row]]
+family = "crafting"
+label = "crafting: thunderforged tier 1"
+variant = "thunderforged tier 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: thunderforged tier 2"
+variant = "thunderforged tier 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: thunderforged tier 3"
+variant = "thunderforged tier 3"
+
+[[row]]
+family = "crafting"
+label = "crafting: trace of madness"
+variant = "trace of madness"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgrade"
+variant = "upgrade"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable - primary augment"
+variant = "upgradeable - primary augment"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable - secondary augment"
+variant = "upgradeable - secondary augment"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable item"
+variant = "upgradeable item"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: upgradable item"
+reason = "Upgradable is a misspelling of the wiki's Upgradeable Item, the label his other items use."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable item (black abbot)"
+variant = "upgradeable item (black abbot)"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable item (stormreaver)"
+variant = "upgradeable item (stormreaver)"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable item (toee)"
+variant = "upgradeable item (toee)"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable tier 2"
+variant = "upgradeable tier 2"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: upgradeable - tier 2"
+reason = "One upgrade tier spelled two ways in his files; the wiki names it Tier 2, and his other items use Upgradeable Tier 2."
+url = "https://ddowiki.com/page/Cavalry_Plate"
+read = "2026-09-30"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable tier 3"
+variant = "upgradeable tier 3"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: upgradeable - tier 3"
+reason = "One upgrade tier spelled two ways in his files; the wiki names it Tier 3, and his other items use Upgradeable Tier 3."
+url = "https://ddowiki.com/page/Cavalry_Plate"
+read = "2026-09-30"
+
+[[row]]
+family = "crafting"
+label = "crafting: variant"
+variant = "variant"
+
+[[row]]
+family = "crafting"
+label = "crafting: variant 1"
+variant = "variant 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: variant 2"
+variant = "variant 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: variant ability"
+variant = "variant ability"
+
+[[row]]
+family = "crafting"
+label = "crafting: variant combat"
+variant = "variant combat"
+
+[[row]]
+family = "crafting"
+label = "crafting: weapon aspect"
+variant = "weapon aspect"
+
+[[row]]
+family = "crafting"
+label = "crafting: weapon devastation"
+variant = "weapon devastation"
+
+[[row]]
+family = "crafting"
+label = "crafting: weapon invasion"
+variant = "weapon invasion"
+
+[[row]]
+family = "crafting"
+label = "crafting: weapon subjugation"
+variant = "weapon subjugation"
+
+[[row]]
+family = "crafting"
+label = "crafting: zhentarim attuned"
+variant = "zhentarim attuned"
+
+[[row.note]]
+kind = "socket_label"
+field = "name"
+upstream = "crafting: zentarim attuned"
+reason = "Zentarim is a misspelling of the wiki's Zhentarim Attuned, the label his other items use."
+url = "https://ddowiki.com/page/Zhentarim_Attuned"
+read = "2026-09-30"
+
+[[row]]
+family = "standard"
+label = "green"
+variant = "green"
+
+[[row]]
+family = "dino"
+label = "isle of dread: artifact claw (accessory)"
+qualifier = "accessory"
+variant = "artifact claw"
+
+[[row]]
+family = "dino"
+label = "isle of dread: artifact fang (accessory)"
+qualifier = "accessory"
+variant = "artifact fang"
+
+[[row]]
+family = "dino"
+label = "isle of dread: artifact horn (accessory)"
+qualifier = "accessory"
+variant = "artifact horn"
+
+[[row]]
+family = "dino"
+label = "isle of dread: artifact scale (accessory)"
+qualifier = "accessory"
+variant = "artifact scale"
+
+[[row]]
+family = "dino"
+label = "isle of dread: claw (accessory)"
+qualifier = "accessory"
+variant = "claw"
+
+[[row]]
+family = "dino"
+label = "isle of dread: claw (weapon)"
+qualifier = "weapon"
+variant = "claw"
+
+[[row]]
+family = "dino"
+label = "isle of dread: fang (accessory)"
+qualifier = "accessory"
+variant = "fang"
+
+[[row]]
+family = "dino"
+label = "isle of dread: fang (armor)"
+qualifier = "armor"
+variant = "fang"
+
+[[row]]
+family = "dino"
+label = "isle of dread: fang (weapon)"
+qualifier = "weapon"
+variant = "fang"
+
+[[row]]
+family = "dino"
+label = "isle of dread: horn (accessory)"
+qualifier = "accessory"
+variant = "horn"
+
+[[row]]
+family = "dino"
+label = "isle of dread: horn (weapon)"
+qualifier = "weapon"
+variant = "horn"
+
+[[row]]
+family = "dino"
+label = "isle of dread: scale (accessory)"
+qualifier = "accessory"
+variant = "scale"
+
+[[row]]
+family = "dino"
+label = "isle of dread: scale (armor)"
+qualifier = "armor"
+variant = "scale"
+
+[[row]]
+family = "dino"
+label = "isle of dread: scale (weapon)"
+qualifier = "weapon"
+variant = "scale"
+
+[[row]]
+family = "dino"
+label = "isle of dread: set bonus"
+variant = "set"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: dolorous (accessory)"
+qualifier = "accessory"
+variant = "dolorous"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: dolorous (armor)"
+qualifier = "armor"
+variant = "dolorous"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: dolorous (weapon)"
+qualifier = "weapon"
+variant = "dolorous"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: melancholic (accessory)"
+qualifier = "accessory"
+variant = "melancholic"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: melancholic (armor)"
+qualifier = "armor"
+variant = "melancholic"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: melancholic (weapon)"
+qualifier = "weapon"
+variant = "melancholic"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: miserable (accessory)"
+qualifier = "accessory"
+variant = "miserable"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: miserable (weapon)"
+qualifier = "weapon"
+variant = "miserable"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: woeful (accessory)"
+qualifier = "accessory"
+variant = "woeful"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: woeful (weapon)"
+qualifier = "weapon"
+variant = "woeful"
+
+[[row]]
+family = "standard"
+label = "moon"
+variant = "moon"
+
+[[row]]
+family = "standard"
+label = "orange"
+variant = "orange"
+
+[[row]]
+family = "standard"
+label = "purple"
+variant = "purple"
+
+[[row]]
+family = "standard"
+label = "red"
+variant = "red"
+
+[[row]]
+family = "standard"
+label = "sun"
+variant = "sun"
+
+[[row]]
+family = "upgrade"
+label = "upgrade: tier 1"
+variant = "tier 1"
+
+[[row]]
+family = "upgrade"
+label = "upgrade: tier 2"
+variant = "tier 2"
+
+[[row]]
+family = "upgrade"
+label = "upgrade: tier 3"
+variant = "tier 3"
+
+[[row]]
+family = "standard"
+label = "yellow"
+variant = "yellow"

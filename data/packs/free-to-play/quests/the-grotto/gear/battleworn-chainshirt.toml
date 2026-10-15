@@ -1,0 +1,26 @@
+name = "Battleworn Chainshirt"
+description = "This chain shirt appears to be of exceptional quality despite years of use."
+drop_location = "The Grotto, Sahuagin High Priestess 's chest, Non-Warforged Barbarians, Bards, Rangers, and Rogues"
+icon = "LightArmor_9c"
+item_category = "Armor"
+item_type = "Light"
+material = "Steel"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 20
+armor_bonus = 4
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Masterwork Armor"
+bonus_type = "Equipment"
+
+[[source]]
+chest = "sahuagin high priestess 's chest, non-warforged barbarians, bards, rangers, and rogues"
+kind = "quest"
+loot_type = "chest"
+name = "The Grotto"

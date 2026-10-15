@@ -1,0 +1,27 @@
+name = "Negative Spell Power - +37 Quality"
+description = "Dominion/Negative: +37 Quality bonus increase to Negative/Poison spell power."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Negative Spell Power"
+bonus_type = "Quality"
+value = 37
+
+[[effect]]
+name = "Poison Spell Power"
+bonus_type = "Quality"
+value = 37
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [37]
+bonus_type = "Quality"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

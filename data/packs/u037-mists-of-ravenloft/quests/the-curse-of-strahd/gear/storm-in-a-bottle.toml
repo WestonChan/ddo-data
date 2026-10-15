@@ -1,0 +1,58 @@
+name = "Storm in a Bottle"
+description = "This glass bottle contains a small maelstrom."
+drop_location = "The Curse of Strahd, raid chest"
+icon = "Trinket_20"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 28
+slot = "Trinket"
+
+[[clickie]]
+name = "Stormrage"
+clickie = "Stormrage"
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 45
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    29,
+    10,
+    10,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Stormrage"]
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "The wiki's Elemental Resistance +45 on this trinket is a +45 Enhancement bonus; his buff has no bonus type."
+url = "https://ddowiki.com/page/Item:Storm_in_a_Bottle"
+read = "2026-10-02"
+qualifier = "Elemental Resistance / null"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"

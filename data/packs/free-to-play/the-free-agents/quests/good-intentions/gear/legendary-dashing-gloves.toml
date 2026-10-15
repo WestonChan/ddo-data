@@ -1,0 +1,39 @@
+name = "Legendary Dashing Gloves"
+description = """
+A pair of fingerless leather gloves in the style most often worn by travelling
+minstrels."""
+drop_location = "Good Intentions, End chest"
+icon = "Gloves_6"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 28
+slot = "Hands"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Perform"
+bonus_type = "Quality"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Good Intentions"

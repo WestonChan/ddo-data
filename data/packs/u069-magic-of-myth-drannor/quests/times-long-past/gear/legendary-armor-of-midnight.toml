@@ -1,0 +1,52 @@
+name = "Legendary Armor of Midnight"
+description = "Midnight comes for all."
+drop_location = "Times Long Past, end chest"
+enhancement_bonus = 15
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 39
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 23
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 109
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Times Long Past"

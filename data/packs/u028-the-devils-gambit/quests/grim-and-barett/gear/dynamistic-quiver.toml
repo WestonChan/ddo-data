@@ -1,0 +1,23 @@
+name = "Dynamistic Quiver"
+description = "With great power, comes great destruction."
+drop_location = "Grim and Barett, end chest (heroic)"
+icon = "Quiver_1"
+item_category = "Clothing"
+minimum_level = 14
+slot = "Quiver"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Enhancement"
+value = 2
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Grim and Barett"

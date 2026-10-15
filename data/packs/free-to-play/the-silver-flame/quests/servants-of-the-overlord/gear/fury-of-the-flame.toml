@@ -1,0 +1,54 @@
+name = "Fury of the Flame"
+description = """
+A mighty weapon forged by request of the Silver Flame templars and imbued with
+the fiery wrath of the Silver Flame itself. It metes out judgement in the form
+of blinding light, burns, and broken bones."""
+drop_location = "Servants of the Overlord, Flamefang optional chest"
+enhancement_bonus = 5
+icon = "Maul_1i"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Flaming Blast IV"
+
+[[effect]]
+name = "Coruscating 4"
+
+[[effect]]
+name = "Fracturing 4"
+
+[[effect]]
+name = "Impact"
+
+[[source]]
+chest = "flamefang optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Servants of the Overlord"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "Two-handed"
+weapon_type = "Maul"

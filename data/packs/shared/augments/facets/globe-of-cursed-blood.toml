@@ -1,0 +1,39 @@
+name = "Globe of Cursed Blood"
+description = "Slotted Effect: +8 Enhancement bonus to each Ability Score."
+family = "Facets"
+icon = "DiamondOfVitality"
+min_level = 32
+
+[[effect]]
+name = "All Ability Scores"
+bonus_type = "Enhancement"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

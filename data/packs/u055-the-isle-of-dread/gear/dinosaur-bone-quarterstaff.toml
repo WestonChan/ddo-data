@@ -1,0 +1,53 @@
+name = "Dinosaur Bone Quarterstaff"
+accepts_sentience = true
+description = "Fashioned of intricately carved bones from long-forgotten Dinosaurs."
+drop_location = "The Isle of Dread, any chest"
+enhancement_bonus = 15
+icon = "Quarterstaff_13"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Bone"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "isle of dread: fang (weapon)"
+
+[[socket]]
+slot = "isle of dread: claw (weapon)"
+
+[[socket]]
+slot = "isle of dread: horn (weapon)"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "any chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "The Isle of Dread"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,74 @@
+name = "Eternal Faith"
+description = "You Turn Undead as if you were 2 levels higher"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 8
+
+[[effect]]
+name = "Turn Undead Level"
+bonus_type = "Eternal Faith"
+value = 2
+
+[[effect]]
+name = "Turn Undead Max Dice"
+bonus_type = "Eternal Faith"
+value = 2
+
+[[effect]]
+name = "Turn Undead Dice"
+bonus_type = "Eternal Faith"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Eternal Faith"
+effect = "Turn Undead Level"
+effect_type = "TurnLevelBonus"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Eternal Faith"
+effect = "Turn Undead Max Dice"
+effect_type = "TurnMaxDice"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Eternal Faith"
+effect = "Turn Undead Dice"
+effect_type = "TurnDiceBonus"
+
+[[slot]]
+slot = "crafting: cannith armor suffix"
+
+[[slot]]
+slot = "crafting: cannith helmet suffix"
+
+[[slot]]
+slot = "crafting: cannith necklace suffix"
+
+[[slot]]
+slot = "crafting: cannith ring suffix"
+
+[[slot]]
+slot = "crafting: cannith shield suffix"
+
+[[slot]]
+slot = "crafting: cannith orb suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: cannith melee suffix"
+
+[[slot]]
+slot = "crafting: cannith ranged suffix"
+
+[[slot]]
+slot = "crafting: cannith thrown suffix"
+
+[[slot]]
+slot = "crafting: cannith rune arm suffix"

@@ -1,0 +1,48 @@
+name = "Jeweled Cloak (Level 25)"
+description = """
+This cloak shimmers with light, reflected off of the many gemstones woven into
+its fabric."""
+drop_location = "The Maze of Madness, and Trial by Fire, end chest (Epic Elite)"
+icon = "Cloak_22a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 25
+slot = "Back"
+
+[[clickie]]
+name = "Spell Absorption"
+clickie = "Spell Absorption"
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    25,
+    10,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Spell Absorption"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Maze of Madness"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Trial by Fire"

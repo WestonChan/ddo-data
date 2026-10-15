@@ -1,0 +1,32 @@
+name = "Visions of the Beyond"
+description = """
+3-Piece Set Bonus: +3 Artifact bonus to Wisdom
+Requires: 50 Threads of Fate, Empty Soul Vessel and Crystalline Gauntlets
+(Too Hot to Handle)"""
+effect_description = "This augment will suppress any set bonus this item may have."
+family = "Named"
+icon = "ColorlessRaidItemEssence"
+min_level = 30
+set_bonus = "Visions of the Future"
+suppress_set_bonus = true
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

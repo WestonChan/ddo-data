@@ -1,0 +1,31 @@
+name = "Imbued Darkleaf Banded Armor"
+description = "Banded armor crafted from darkleaf wood and imbued with ancient power."
+drop_location = "Tempest's Spine, End Chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_6a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Darkwood"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 11
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

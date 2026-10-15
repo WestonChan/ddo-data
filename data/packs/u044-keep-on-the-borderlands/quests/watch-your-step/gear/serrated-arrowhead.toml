@@ -1,0 +1,33 @@
+name = "Serrated Arrowhead"
+description = "These likely pack quite a nasty sting"
+drop_location = "Watch Your Step, end chest, Proud Kobold Chieftainâ 's chest"
+icon = "Trinket_10a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 21
+slot = "Trinket"
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, proud kobold chieftainâ 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Watch Your Step"

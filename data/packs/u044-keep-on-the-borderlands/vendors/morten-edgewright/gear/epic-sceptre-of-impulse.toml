@@ -1,0 +1,64 @@
+name = "Epic Sceptre of Impulse"
+accepts_sentience = true
+description = "This magical sceptre is attuned to Force spells."
+drop_location = "Morten Edgewright, Turn in 1 Epic Arcane Ingot"
+enhancement_bonus = 6
+icon = "Club_2"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 20
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 97
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Morten Edgewright"
+
+[[source.price]]
+ingredient = "Epic Arcane Ingot"
+quantity = 1
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Club"

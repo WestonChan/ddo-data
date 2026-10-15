@@ -1,0 +1,40 @@
+name = "Legendary Belt of the Blue Abishai"
+description = "This belt seems to be attuned to elemental power."
+drop_location = "The Chronoscope (Legendary), End chest or Legendary version of Epic Belt of the Blue Abishai"
+icon = "Belt_4p"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 30
+slot = "Waist"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 54
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 48
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest or legendary version of epic belt of the blue abishai"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

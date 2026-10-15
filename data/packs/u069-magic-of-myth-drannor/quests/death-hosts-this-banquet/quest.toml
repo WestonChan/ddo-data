@@ -1,0 +1,29 @@
+name = "Death Hosts This Banquet"
+bestowed_by = "Durfryn Alearn"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Magic of Myth Drannor"
+patron = "Cormanthor Elves"
+zone = "Tyrintar's Hall"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Death_Hosts_This_Banquet"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 35

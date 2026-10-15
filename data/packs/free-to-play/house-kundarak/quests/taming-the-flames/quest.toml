@@ -1,0 +1,23 @@
+name = "Taming the Flames"
+bestowed_by = "Master Thorpe"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Kundarak"
+zone = "The Scorched Caverns"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Taming_the_Flames"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7

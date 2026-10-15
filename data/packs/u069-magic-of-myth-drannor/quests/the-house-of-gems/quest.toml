@@ -1,0 +1,29 @@
+name = "The House of Gems"
+bestowed_by = "Sharora Leonala"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Magic of Myth Drannor"
+patron = "Cormanthor Elves"
+zone = "The Onaglym"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_House_of_Gems"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 35

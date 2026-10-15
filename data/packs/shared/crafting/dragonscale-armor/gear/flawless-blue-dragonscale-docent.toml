@@ -1,0 +1,80 @@
+name = "Flawless Blue Dragonscale Docent"
+description = "This docent was crafted with the scales of a blue dragon."
+drop_location = "Black Dragonscale Armor"
+enhancement_bonus = 7
+icon = "Docent_6"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 25
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 25
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 13
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 80
+
+[[effect]]
+name = "Superior Lightning Resistance"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Spell Lore IX"
+description = "Spell Lore IX: Passive: All of your spells gain a 9% Equipment bonus to their chance to critical hit."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+value = 9
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

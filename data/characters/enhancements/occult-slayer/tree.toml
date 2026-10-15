@@ -1,0 +1,1147 @@
+name = "Occult Slayer"
+background = "BarbarianBackground"
+icon = "Barbarian"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Occult Slayer: Weapon Bond"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You build a psychic bond with your weapons.
+You strengthen this bond by damaging enemies with attacks.
+Each attack adds 1 to your weapon bond, up to a maximum of 200.
+Dying resets your weapon bond to zero.
+Active: +5 to attack for 20 seconds. Cost: 1 weapon bond. Cooldown: 20 seconds.
+Switching weapons activates a 30 seconds cooldown timer."""
+icon = "OSWeaponBond"
+internal_name = "OSCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    200,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Weapon Bond"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Occult Slayer: Resistance"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++1 to all saving throws.
+Improve your Barbarian damage reduction by +1%, +10 Hit Points"""
+icon = "OSResistance"
+internal_name = "OSCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Class"
+display_name = "Barbarian DR"
+effect_type = "DR"
+targets = ["%"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["OSCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Occult Slayer: Elemental Defense"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "When enemy spells deal elemental damage to you, there's a 25% chance you'll gain\n25 temporary hit points for 30 seconds. This can trigger up to once every 12 seconds.\nImprove your Barbarian damage reduction by +1%. \n+30 Hit Points \n+20 Healing Amplification"
+icon = "OSElementalDefense"
+internal_name = "OSCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Class"
+display_name = "Barbarian DR"
+effect_type = "DR"
+targets = ["%"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["OSCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Occult Slayer: Blank Thoughts"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain the Slippery Mind feat and improve your Barbarian damage reduction by 1%.\n+60 Hit Points \n+5 Magical Resistance Rating\n+20 Healing Amplification"
+icon = "OSBlankThoughts"
+internal_name = "OSCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Slippery Mind"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Class"
+display_name = "Barbarian DR"
+effect_type = "DR"
+targets = ["%"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [60]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["OSCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Occult Slayer: Force Ward"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain immunity to magic missiles and +5% Competence bonus to entirely\navoid incoming Force damage. Improve your Barbarian damage reduction by +1%. \n+100 Hit Points \n+5 Magical Resistance Rating\n+20 Healing Amplification"
+icon = "OSForceWard"
+internal_name = "OSCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magic Missiles"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Class"
+display_name = "Barbarian DR"
+effect_type = "DR"
+targets = ["%"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["OSCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Occult Slayer: Mind Over Magic"
+cost_per_rank = [1]
+description = "You have Spell Resistance equal to your Constitution score.\n+4 Constitution\n+150 Hit Points \n+10 Magical Resistance Rating\n+40 Healing Amplification"
+icon = "OSMindOverMagic"
+internal_name = "OSCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "OSCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "AbilityTotal"
+bonus_type = "Enhancement"
+effect_type = "SpellResistance"
+stack_source = "Constitution"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["OSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "OSCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Occult Slayer: Extend Rage"
+cost_per_rank = [1]
+description = "Your Barbarian rage lasts [25/50/75]% longer"
+icon = "OSExtendRage"
+internal_name = "OSExtendRage"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Occult Slayer: Ear Smash"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Deals: +30% Damage
+Melee Attack: Damaged enemies can't cast spells for 6 seconds.
+Cooldown: 12 seconds"""
+icon = "OSEarSmash"
+internal_name = "OSEarSmash"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Occult Slayer: Parrying Bond"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "While Weapon Bond 10+: +[2/4/6] Unique bonus to AC and +[1/2/3] Magical Resistance."
+icon = "OSParryingBond"
+internal_name = "OSParryingBond"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Unique"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["10% Weapon Bond"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Unique"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["10% Weapon Bond"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Occult Slayer: Uncanny Dodger"
+cost_per_rank = [1]
+description = "You gain +[1/2/3]% Dodge"
+icon = "OSUncannyDodger"
+internal_name = "OSUncannyDodger"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Occult Slayer: Awareness"
+cost_per_rank = [1]
+description = """
++[1/2/3] Listen, Search and Spot.
+Rank 3: +1 Reflex Saving Throw"""
+icon = "Awareness"
+internal_name = "OSAwareness"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Occult Slayer: Willpower Rage"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] to Will saving throws while raged"
+icon = "OSWillpowerRage"
+internal_name = "OSWillpowerRage"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Occult Slayer: Knockout"
+cost_per_rank = [1]
+description = "Knockout puts enemies to sleep for [6/12/18] seconds. On Vorpal, enemies are stunned instead."
+icon = "OSKnockout"
+internal_name = "OSKnockout"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["OSEarSmash"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Occult Slayer: Guarding Bond"
+cost_per_rank = [1]
+description = """
+You gain +4 Unique bonus to Physical and Magical Resistance at Weapon Bond 30+.
+Rank 2: another +4 at Weapon Bond 60+.
+Rank 3: and another +4 at Weapon Bond 90+."""
+icon = "OSGuardingBond"
+internal_name = "OSGuardingBond"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Unique"
+effect_type = "PRR"
+extra_types = ["MRR"]
+rank = 1
+
+[[enhancement.modifier.requirement]]
+items = ["30% Weapon Bond"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Unique"
+effect_type = "PRR"
+extra_types = ["MRR"]
+rank = 2
+
+[[enhancement.modifier.requirement]]
+items = ["60% Weapon Bond"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Unique"
+effect_type = "PRR"
+extra_types = ["MRR"]
+rank = 3
+
+[[enhancement.modifier.requirement]]
+items = ["90% Weapon Bond"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["OSParryingBond"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Occult Slayer: Lessons of Travel"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[2/4/6] energy resistance against Acid, Cold, Electric, Fire and Sonic damage."
+icon = "OSLEssonsOfTravel"
+internal_name = "OSLessonsOfTravel"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "OSLessonsOfTravel"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image OSLEssonsOfTravel.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Sonic",
+]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Occult Slayer: Anti-magic Boost"
+cost_per_rank = [2]
+description = """
+Action Boost: +30 Action Boost bonus to MRR and a +6 bonus to saving throws vs. magic
+Cooldown: 30 seconds"""
+icon = "OSAntimagicBoost"
+internal_name = "OSAntimagicBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Occult Slayer: Bond of Retribution"
+arrows = ["LongArrowUp"]
+cost_per_rank = [2]
+description = "While below 50% health, you gain +1 critical damage multiplier on attack rolls of 19-20."
+icon = "OSBondOfRetribution"
+internal_name = "OSBondOfRetribution"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    100,
+    0,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Hitpoints"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["-50% Hitpoints"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Occult Slayer: Lessons of Nature"
+cost_per_rank = [1]
+description = """
+You gain +[2/4/6] to save vs. both disease and poison.
+Rank 3: You don't fail disease or poison saving throws on a roll of 1."""
+icon = "OSLessonsOfNature"
+internal_name = "OSLessonsOfNature"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Disease",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveNoFailOn1"
+rank = 3
+targets = [
+    "Disease",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Occult Slayer: Arcane Encumbrance"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+When enemies damage you with spells, there's a [10/20/30]% chance they'll be
+knocked down. (Does not affect bosses.)
+Enemies knocked down this way become helpless."""
+icon = "OSArcaneEncumbrance"
+internal_name = "OSArcaneEncumbrance"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Occult Slayer: Kinetic Bond"
+cost_per_rank = [1]
+description = """
+At weapon bond strength 45+, you deal 1d20 force damage with your attacks,
+scaling with 200% Melee Power. This damage can trigger up to once every [3/2/1] seconds."""
+icon = "OSKineticBond"
+internal_name = "OSKineticBond"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["OSLessonsOfTravel"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Occult Slayer: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Constitution or Wisdom"
+icon = "ConWis"
+internal_name = "OSAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Occult Slayer: Rune Carved Armor"
+cost_per_rank = [2]
+description = """
++25% Competence bonus to maximum hit points and +2 to all Saving Throws
+versus Magic while wearing medium or heavy armor."""
+icon = "OSRuneCarvedArmor"
+internal_name = "OSRuneCarvedArmor"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Magic"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Occult Slayer: Vicious Strike"
+cost_per_rank = [2]
+description = """
+Deals: +50% Damage
+Melee Attack: Inflicts Feedback on the enemy for 18 seconds.
+Cooldown: 12 seconds
+Feedback - On Spellcast: Caster suffers 6-60 force damage.
+This damage is increased by the target's Spell Power."""
+icon = "OSViciousStrike"
+internal_name = "OSViciousStrike"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["OSArcaneEncumbrance"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Occult Slayer: Driving Force"
+cost_per_rank = [2]
+description = """
+Expend 10 Weapon Bond to gain +10 Melee Power and +20 MRR for 20 seconds.
+Cooldown: 24 seconds."""
+icon = "OSDrivingForce"
+internal_name = "OSDrivingForce"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Occult Slayer: Ability II"
+cost_per_rank = [2]
+description = "Choose either Constitution or Wisdom"
+icon = "ConWis"
+internal_name = "OSAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["OSAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Occult Slayer: Bond of Destruction"
+cost_per_rank = [2]
+description = """
+Your Bond of Retribution no longer has a health requirement.
+Passive: +10% Quality bonus to Hit Points"""
+icon = "OSBondOfDestruction"
+internal_name = "OSBondOfDestruction"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Occult Slayer: Bond of Retribution with Bond of Destruction"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Quality"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["OSBondOfRetribution"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Occult Slayer: Vampiric Bond"
+cost_per_rank = [1]
+description = """
+At Weapon Bond 100+, your weapon provides you 20 temporary hit points when you damage
+an enemy. These Temporary hit Points scale with 200% Melee Power. This can
+trigger at most once every [12/9/6] seconds."""
+icon = "OSVampiricBond"
+internal_name = "OSVampiricBond"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Occult Slayer: Seeker's Strike"
+cost_per_rank = [2]
+description = """
+Deals: +70% Damage
++1 Critical Multiplier
++1 Critical Threat Range
+Melee Cleave Attack: Expend 20 stacks of Weapon Bond to attack all nearby enemies.
+Cooldown: 3 seconds"""
+icon = "OSSeekersStrike"
+internal_name = "OSSeekersStrike"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Occult Slayer: Occult Metalline"
+cost_per_rank = [2]
+description = """
+Your bonded weapon gains Occult Metalline.
+It bypass Adamantine, Alchemical Silver, Byeshk and Cold Iron damage reduction.
++1 Competence bonus to Critical Threat Range and Critical Multiplier"""
+icon = "OSOccultMetalline"
+internal_name = "OSOccultMetalline"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Adamantine"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Silver"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Byeshk"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Cold Iron"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalMultiplier"]
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Occult Slayer: One Spirit"
+cost_per_rank = [2]
+description = """
+Expend 100 Weapon Bond. You heal for 400 positive energy.
+This healing scales with 100% Melee Power.
+Cooldown: 15 seconds
+Passive: +30 HP, +12 Magical Resistance"""
+icon = "OSOneSpirit"
+internal_name = "OSOneSpirit"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [12]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Barbarian"]
+req_type = "Class"

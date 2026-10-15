@@ -1,0 +1,44 @@
+name = "Solar Gem of Will (Legendary)"
+description = """
++3 Artifact Bonus to Will Save.
+Drops in: Death Hosts This Banquet, end chest
+The Cerulean Hills, Romira and Juvian's chest (requires completion of Sleeping with the Fishes)
+Ruins of Myth Drannor, Romira and Juvian's right chest (requires completion of Sleeping with the Fishes)
+Beneath the City Streets, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Death Hosts This Banquet"
+
+[[source]]
+chest = "romira and juvian's right chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

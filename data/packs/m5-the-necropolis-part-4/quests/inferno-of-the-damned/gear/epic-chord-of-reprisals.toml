@@ -1,0 +1,75 @@
+name = "Epic Chord of Reprisals"
+description = """
+This cloth cord belt appears to have flames dancing down its length. When struck,
+this belt lashes out at the attacker with the intensity of the fires of hell."""
+drop_location = "Inferno of the Damned (epic), end chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 27
+slot = "Waist"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 144
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Soundproof"
+
+[[effect]]
+name = "Roar"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Inferno of the Damned"

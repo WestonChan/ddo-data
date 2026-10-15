@@ -1,0 +1,105 @@
+name = "Mystical: Lightning Lore VI, Greater Spark, Metal Type Effect"
+description = """
+Lightning Lore VI: Passive: Your Electricity spells gain a 16% Equipment bonus to their chance to
+critical hit."""
+family = "Alchemical"
+min_level = 18
+
+[[effect]]
+name = "Electric Spell Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    16,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 2: Adamantine"
+effect_type = "SpellLore"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    16,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 2: Byeshk"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    16,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 2: Cold Iron"
+effect_type = "SpellLore"
+targets = ["Sonic"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    16,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 2: Crystal"
+effect_type = "SpellLore"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    16,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 2: Flametouched Iron"
+effect_type = "SpellLore"
+targets = ["Positive"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    16,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 2: Silver"
+effect_type = "SpellLore"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[slot]]
+slot = "crafting: alchemical tier 2"

@@ -1,0 +1,40 @@
+name = "Blue Dragonhide Armor"
+description = "Leather armor crafted from the hide and scales of a blue dragon."
+drop_location = "Blue Dragonscale Armor, Turn in 20 Blue Dragon Scales"
+enhancement_bonus = 5
+icon = "LightArmor_13"
+item_category = "Armor"
+item_type = "Light"
+material = "Blue Dragonscale"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 6
+armor_type = "Light"
+max_dex_bonus = 12
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 52
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

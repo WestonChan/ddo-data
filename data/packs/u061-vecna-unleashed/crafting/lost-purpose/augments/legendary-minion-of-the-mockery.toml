@@ -1,0 +1,9 @@
+name = "Legendary Minion of the Mockery"
+description = "Adds the Legendary Minion of the Mockery set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 32
+set_bonus = "Legendary Minion of the Mockery"
+
+[[slot]]
+slot = "crafting: lost purpose"

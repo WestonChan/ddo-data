@@ -1,0 +1,33 @@
+name = "Softsole Slippers"
+description = "Not a sound was heard. Ever, again."
+drop_location = "Wrath of the Earth, End Chest"
+icon = "Boots_2"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 10
+slot = "Feet"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Anthem"
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wrath of the Earth"

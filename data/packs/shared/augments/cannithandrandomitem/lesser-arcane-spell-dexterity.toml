@@ -1,0 +1,71 @@
+name = "Lesser Arcane Spell Dexterity"
+choose_level = true
+description = "A 5% reduction in your arcane spell failure chance."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+]
+
+[[effect]]
+name = "Arcane Spell Failure"
+bonus_type = "Equipment"
+value = -5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-5]
+bonus_type = "Equipment"
+effect = "Arcane Spell Failure"
+effect_type = "ArcaneSpellFailure"
+
+[[slot]]
+slot = "crafting: cannith armor prefix"
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

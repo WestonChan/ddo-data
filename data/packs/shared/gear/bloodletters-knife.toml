@@ -1,0 +1,39 @@
+name = "Bloodletter's Knife"
+description = """
+This wicked serrated knife, once possessed by the kobold Bloodletter, deals
+additional slashing damage to foes that are not immune to bleeding."""
+drop_location = "The Lost Seekers, End reward"
+enhancement_bonus = 2
+icon = "Dagger_1a"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Slicing"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Dagger"

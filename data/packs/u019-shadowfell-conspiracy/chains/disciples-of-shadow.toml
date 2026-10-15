@@ -1,0 +1,11 @@
+name = "Disciples of Shadow"
+pack = "Shadowfell Conspiracy"
+quests = [
+    "Disciples of Shar",
+    "Escape Plan",
+    "Shadow of a Doubt",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Disciples_of_Shadow"
+read = "2026-10-02"

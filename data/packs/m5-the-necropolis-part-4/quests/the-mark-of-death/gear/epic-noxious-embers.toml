@@ -1,0 +1,79 @@
+name = "Epic Noxious Embers"
+description = """
+This small glass phial is attached to a necklace of blood red hair and filled
+with the ashes of Salasso's warped and twisted heart. The phial becomes extremely
+hot to the touch at times, as if something inside were trying to escape..."""
+drop_location = "The Mark of Death, warded chest"
+icon = "Necklace_24"
+item_category = "Jewelry"
+material = "Bone"
+minimum_level = 26
+slot = "Neck"
+
+[[clickie]]
+name = "Lesser Maximize"
+clickie = "Lesser Maximize"
+
+[[effect]]
+name = "Efficient Metamagic - Enlarge II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Lesser Maximize"]
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Mark of Death"

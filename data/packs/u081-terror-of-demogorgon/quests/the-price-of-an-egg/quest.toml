@@ -1,0 +1,30 @@
+name = "The Price of an Egg"
+bestowed_by = "Jurdor the Provisioner"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+zone = "The Wormwrithings"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Price_of_an_Egg"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 37
+
+[[run]]
+tier = "legendary"
+level = 37

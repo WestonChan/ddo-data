@@ -1,0 +1,42 @@
+name = "Legendary Blademark Amulet"
+description = """
+The Lord of Blades has left his mark on these pendants, meant to protect his
+most loyal followers and devotees."""
+drop_location = "The Bark and the Blade, End chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 32
+slot = "Neck"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 48
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 57
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bark and the Blade"

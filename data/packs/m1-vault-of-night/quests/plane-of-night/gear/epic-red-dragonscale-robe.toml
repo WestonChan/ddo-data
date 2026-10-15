@@ -1,0 +1,51 @@
+name = "Epic Red Dragonscale Robe"
+description = """
+A finely crafted silk robe that includes many scales from the Red Dragon, Velah.
+This suit of armor can be repaired by a smith knowledgable in white dragonscale
+repair techniques."""
+drop_location = "Plane of Night"
+enhancement_bonus = 6
+icon = "Cloth_7b"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Red Dragonscale"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Eternal Fire"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Fire Guard II"
+
+[[effect]]
+name = "Incineration Guard"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

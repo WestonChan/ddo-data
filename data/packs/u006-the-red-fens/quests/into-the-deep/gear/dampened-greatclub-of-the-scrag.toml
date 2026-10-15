@@ -1,0 +1,51 @@
+name = "Dampened Greatclub of the Scrag"
+description = """
+This particularly nasty weapon once belonged to one of the Scrag in High Priestess'
+Slikir's service. It seems that when the troll was killed, its blood seeped
+into this club, granting the weapon some of the creature's characteristics."""
+drop_location = "Into the Deep, Mine chest"
+enhancement_bonus = 2
+icon = "GreatClub_1c"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Wood"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Dampened"
+
+[[effect]]
+name = "True Chaos"
+
+[[effect]]
+name = "Cold Touch"
+
+[[effect]]
+name = "Regeneration"
+
+[[source]]
+chest = "mine chest"
+kind = "quest"
+loot_type = "chest"
+name = "Into the Deep"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Club"

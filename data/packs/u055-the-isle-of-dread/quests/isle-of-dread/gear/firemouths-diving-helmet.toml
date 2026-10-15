@@ -1,0 +1,40 @@
+name = "Firemouth's Diving Helmet"
+description = "This sturdy metal helmet allows you to breathe underwater."
+drop_location = "Isle of Dread (wilderness), rare encounter chest"
+icon = "Helmet_8a"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 7
+slot = "Head"
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 4
+
+[[effect]]
+name = "Underwater Action"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

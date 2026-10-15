@@ -1,0 +1,3 @@
+name = "Legendary Steam"
+description_template = "Your attacks and offensive spells have a chance to deal Untyped damage."
+verbose_name_template = "Legendary Steam"

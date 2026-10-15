@@ -1,0 +1,503 @@
+[[row]]
+name = "Half-Elf Dilettante: Alchemist"
+acquire = "Train"
+description = """
+You have a knack for experimentation with potions and poisons.
+You have +10 Universal Spell Power. For item use purposes, you count as a level
+one Alchemist in addition to any other classes you possess.
+This feat is not recommended for characters with actual Alchemist levels."""
+icon = "AlchemicalSpellcasting"
+source_name = "Half-Elf"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 10
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Intelligence"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Artificer"
+acquire = "Train"
+description = """
+You have watched the artificers of House Cannith work their trade.
+You gain proficiency with all crossbows and Artificer Knowledge:
+Scrolls (You gain a +2 bonus to Use Magic Device checks when using scrolls and
+their Caster Level is increased by one - this Caster Level increase is capped by
+your Intelligence modifier.) You are able to use wands and scrolls as if you
+were a level one Artificer. For item use purposes you count as a level one
+Artificer in addition to any other classes you possess (though this does not
+grant the ability to use Rune Arms). This feat is not recommended for characters
+with actual Artificer levels."""
+icon = "DilettanteArtificer"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Great Crossbow",
+    "Heavy Crossbow",
+    "Light Crossbow",
+    "Repeating Heavy Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Intelligence"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Barbarian"
+acquire = "Train"
+description = """
+You have become toughened by time spent outdoors and amongst Barbarian tribes.
+You gain Damage Reduction 1/- as if you were a Barbarian. This feat does not
+stack with Barbarian Damage Reduction. For item use purposes, you count as a
+level one Barbarian in addition to any other classes you possess.
+This feat is not recommended for characters with actual Barbarian levels."""
+icon = "DilettanteBarbarian"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+display_name = "Half-Elf Dilettante: Barbarian DR"
+effect_type = "DR"
+targets = ["-"]
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Constitution"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Bard"
+acquire = "Train"
+description = """
+You have the gift of song and have learned a few tips from famous bards.
+You can produce a Bardic Fascinate effect three times per rest that mesmerizes
+nearby enemies, with a Will DC based on a Perform check (or 1d20 + Charisma
+Modifier if untrained) to negate. You are able to use wands and scrolls as if
+you were a level one Bard and for item use purposes you count as a level one
+Bard in addition to any other classes you possess.
+This feat is not recommended for characters with actual Bard levels."""
+icon = "DilettanteBard"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fascinate",
+    "None",
+]
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Charisma"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Cleric"
+acquire = "Train"
+description = """
+You have learned much by watching clerics perform their arts.
+You are able to use wands and scrolls as if you were a level one Cleric and for
+item use purposes you count as a level one Cleric in addition to any other classes you possess.
+This feat is not recommended for characters with actual Cleric levels."""
+icon = "DilettanteCleric"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Wisdom"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Druid"
+acquire = "Train"
+description = """
+You have watched some of the secret rituals of the druids.
+You are able to use wands and scrolls as if you were a level one Druid and for
+item use purposes you count as a level one Druid in addition to any other
+classes you possess.
+This feat is not recommended for characters with actual Druid levels."""
+icon = "DilettanteDruid"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Wisdom"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Favored Soul"
+acquire = "Train"
+description = """
+You have fought alongside the chosen of the gods and a little bit
+of divine favor appears to have rubbed off on you. You are able to use wands
+and scrolls as if you were a level one Favored Soul and for item use purposes
+you count as a level one Favored Soul in addition to any other classes you possess.
+This feat is not recommended for characters with actual Favored Soul levels."""
+icon = "DilettanteFavoredSoul"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Charisma"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Fighter"
+acquire = "Train"
+description = """
+You have trained with the best and your martial skills have improved.
+You gain proficiency with all martial melee weapons and for item use purposes
+you count as a level one Fighter in addition to any other classes you possess.
+This feat is not recommended for characters with actual Fighter levels."""
+icon = "DilettanteFighter"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Battle Axe",
+    "Falchion",
+    "Great Axe",
+    "Great Club",
+    "Great Sword",
+    "Hand Axe",
+    "Heavy Pick",
+    "Kukri",
+    "Light Hammer",
+    "Light Pick",
+    "Longbow",
+    "Longsword",
+    "Maul",
+    "Rapier",
+    "Scimitar",
+    "Shortsword",
+    "Shortbow",
+    "Throwing Axe",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Strength"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Monk"
+acquire = "Train"
+description = """
+You have meditated alongside monks in the most remote of places.
+You gain proficiency with the quarterstaff, kama and shuriken and can add up
+to 2 points of your Wisdom bonus to your Armor Class as long as you are
+Defensively Centered (unarmored and unencumbered).
+This Armor Class bonus does not stack with the similar Monk class ability.
+For item use purposes you count as a level one Monk in addition to any other
+classes you possess.
+This feat is not recommended for characters with actual Monk levels."""
+icon = "DilettanteMonk"
+source_name = "Half-Elf"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Armor Class"
+value = 2
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[row.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Kama",
+    "Shuriken",
+    "Quarterstaff",
+]
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Wisdom"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Paladin"
+acquire = "Train"
+description = """
+You have spent enough time among holy warriors that you know their
+chants by heart. You can add up to 2 points of your Charisma bonus to all saves.
+This bonus does not stack with the Divine Grace ability.
+You are able to use wands and scrolls as if you were a level one Paladin and
+for item use purposes you count as a level one Paladin in addition to any other
+classes you possess.
+This feat is not recommended for characters with actual Paladin levels."""
+icon = "DilettantePaladin"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0]
+bonus_type = "Feat"
+effect_type = "DivineGrace"
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Charisma"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Ranger"
+acquire = "Train"
+description = """
+You have hunted with some of the greatest rangers of Khorvaire.
+You gain proficiency with all martial ranged weapons and can add up to 2 points
+of your Strength bonus to bow damage. You are able to use wands and scrolls as
+if you were a level one Ranger. For item use purposes you count as a level one
+Ranger in addition to any other classes you possess.
+This feat is not recommended for characters with actual Ranger levels."""
+icon = "DilettanteRanger"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "WeaponProficiencyClass"
+targets = ["Ranged"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Ranged"]
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Dexterity"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Rogue"
+acquire = "Train"
+description = """
+You have learned a few tricks from less reputable sources.
+You deal +1d6 Sneak Attack damage, but this does not stack with the Rogue Sneak
+Attack ability. For item use purposes you count as a level one Rogue in addition
+to any other classes you possess.
+This feat is not recommended for characters with actual Rogue levels."""
+icon = "DilettanteRogue"
+source_name = "Half-Elf"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sneak Attack Dice"
+value = 1
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Dexterity"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Sorcerer"
+acquire = "Train"
+description = """
+Your travels and adventures seem to have awakened a bit of power
+within your blood. You are able to use wands and scrolls as if you were a level
+one Sorcerer and for item use purposes you count as a level one Sorcerer in
+addition to any other classes you possess.
+This feat is not recommended for characters with actual Sorcerer levels."""
+icon = "DilettanteSorcerer"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Charisma"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Warlock"
+acquire = "Train"
+description = """
+Able to use wands and scrolls as if you were a level one Warlock.
+Toggle: You deal 1D4 extra Fire damage with attacks and spells.
+This trigger at most once every two seconds.
+This toggle is exclusive with Warlock Pact toggles."""
+icon = "DilettanteWarlock"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Charisma"]
+req_type = "Ability"
+value = 13
+
+[[row]]
+name = "Half-Elf Dilettante: Wizard"
+acquire = "Train"
+description = """
+You have studied ancient tomes alongside powerful wizards.
+You are able to use wands and scrolls as if you were a level one Wizard and for
+item use purposes you count as a level one Wizard in addition to any other
+classes you possess.
+This feat is not recommended for characters with actual Wizard levels."""
+icon = "DilettanteWizard"
+source_name = "Half-Elf"
+
+[[row.group]]
+group_name = "Dilettante Feat"
+
+[[row.requirement]]
+items = ["Half-Elf"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Intelligence"]
+req_type = "Ability"
+value = 13

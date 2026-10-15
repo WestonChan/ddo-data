@@ -1,0 +1,42 @@
+name = "Periapt of Charisma"
+description = """
+A mark of charisma, recognizing the bearer's leadership while emboldening their
+confidence."""
+drop_location = "Voices of the Dead, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 13
+slot = "Trinket"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Enchantment Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 4
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

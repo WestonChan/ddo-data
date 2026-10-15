@@ -1,0 +1,23 @@
+name = "Shard Trinket of Sunburst"
+description = "This trinket periodically casts sunburst."
+drop_location = "House Deneith, Turn in 3 Medium Eberron Dragonshards to Flintchip Fireson ."
+icon = "Trinket_2"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Sunburst"
+clickie = "Sunburst"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    13,
+    20,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Sunburst"]

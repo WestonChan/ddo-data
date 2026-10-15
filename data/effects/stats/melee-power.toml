@@ -1,0 +1,6 @@
+name = "Melee Power"
+category = "martial"
+default_value = 1
+description_template = "This item provides a {1} %b1 bonus to Melee Power."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Melee Power +{1}"

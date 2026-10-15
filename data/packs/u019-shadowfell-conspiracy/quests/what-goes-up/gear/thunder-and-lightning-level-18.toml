@@ -1,0 +1,50 @@
+name = "Thunder and Lightning (Level 18)"
+description = """
+These handwraps are said to have been spun from the silver linings of many dark
+clouds."""
+drop_location = "What Goes Up, End chest (Heroic Hard)"
+enhancement_bonus = 4
+icon = "HandWraps_1i"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Silver"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Shock V"
+
+[[effect]]
+name = "Shrieking IV"
+
+[[effect]]
+name = "Impact"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Goes Up"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

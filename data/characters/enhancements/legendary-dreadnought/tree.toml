@@ -1,0 +1,1114 @@
+name = "Legendary Dreadnought"
+background = "DestinyMartial"
+icon = "LegendaryDreadnought"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Legendary Dreadnought: Fearless"
+cost_per_rank = [1]
+description = """
+You are now immune to Fear.
+
+Each Core ability in this tree, including this one, grants the following:
+
++25 Maximum Hit Points
++5 Melee Power
++5 Ranged Power"""
+icon = "U51Fearless"
+internal_name = "U51LegendaryDreadnoughtCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Legendary Dreadnought: Weaponmaster"
+cost_per_rank = [1]
+description = "+2 to Attack and Damage with all Weapons."
+icon = "U51Weaponmaster"
+internal_name = "U51LegendaryDreadnoughtCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51LegendaryDreadnoughtCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Thick Skinned"
+cost_per_rank = [1]
+description = "+15 Physical Resistance Rating."
+icon = "U51ThickSkinned"
+internal_name = "U51LegendaryDreadnoughtCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51LegendaryDreadnoughtCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Unparalleled Accuracy"
+cost_per_rank = [1]
+description = "When you activate an Action Boost, you gain 5% Dodge Bypass for 20 seconds."
+icon = "U55Unstoppable"
+internal_name = "U51LegendaryDreadnoughtCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Destiny"
+effect_type = "DodgeBypass"
+
+[[enhancement.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51LegendaryDreadnoughtCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Push Through The Line"
+cost_per_rank = [1]
+description = """
+Activating an Action Boost grants +[1/2/3] to all Ability Scores for the duration
+of that Action Boost."""
+icon = "PushThroughTheLine"
+internal_name = "U51LegendaryDreadnoughtPushThroughTheLine"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Legendary Dreadnought: Epic Tactics"
+cost_per_rank = [1]
+description = "+[1/2/3] to Tactics DCs"
+icon = "EpicTactics"
+internal_name = "U51LegendaryDreadnoughtEpicTactics"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+    "Rune Arm",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Legendary Dreadnought: Dire Attack"
+cost_per_rank = [1]
+description = "Pick a Melee or Ranged attack."
+icon = "DireAttack"
+internal_name = "U51LegendaryDreadnoughtDireAttack"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Dire Charge"
+cost_per_rank = [1]
+description = """
+Deals +40% Damage
+Cooldown: 12 seconds
+
+Epic Strike: Melee Attack: Rush forward at the targeted foe, attacking it and all
+nearby foes. Affected enemies must make a Fortitude save (20 + highest ability
+score modifier + Stun bonuses) or be Sundered.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DireAttack"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Dire Charge"
+amount = [20]
+dc_type = "Sunder"
+dc_versus = "Fortitude"
+description = """
+Epic Strike: Melee Attack: Rush forward at the targeted foe, attacking it and all
+nearby foes. Affected enemies must make a Fortitude save (20 + highest ability
+score modifier + Stun bonuses) or be Sundered.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DireAttack"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.selection]]
+name = "Dire Shot"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+Cooldown: 12 seconds
+
+Epic Strike: AOE Ranged Attack: Fire a single shot, hitting every enemy in an area around where the shot
+hits. Affected enemies must make a Fortitude save (20 + highest ability score
+modifier + Sunder bonuses) or be Sundered.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DireShot"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Dire Shot"
+amount = [20]
+dc_type = "Sunder"
+dc_versus = "Fortitude"
+description = """
+Epic Strike: AOE Ranged Attack: Fire a single shot, hitting every enemy in an area around where the shot
+hits. Affected enemies must make a Fortitude save (20 + highest ability score
+modifier + Stun bonuses) or be Sundered.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "DireShot"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Dread Mantle"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Legendary Dreadnought Destiny Mantle: Your weapon attacks apply 1 stack of Terror.
+(0.1 second cooldown).
+
+Terror: -1 Melee and Ranged Power, -3 Spell Power, -1 Armor Class. Stacks up to
+15 times."""
+icon = "DreadMantle"
+internal_name = "U51LegendaryDreadnoughtDreadMantle"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Dread Mantle"
+description = """
+Legendary Dreadnought Destiny Mantle: Your weapon attacks apply 1 stack of Terror.
+(0.1 second cooldown).
+
+Terror:-1 Melee and Ranged Power, -3 Spell Power, -1 Armor Class. Stacks up to
+15 times."""
+group_name = "Mantle"
+icon = "DreadMantle"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Shrug Off Punishment"
+cost_per_rank = [1]
+description = "+[10/20/30] Maximum Hit Points"
+icon = "U51ShrugOffPunishment"
+internal_name = "U51LegendaryDreadnoughtShrugOffPunishment"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Legendary Dreadnought: Extra Action Boost"
+cost_per_rank = [1]
+description = "+[1/2/3] additional Action Boost use per rest."
+icon = "U51ExtraActionBoost"
+internal_name = "U51LegendaryDreadnoughtExtraActionBoosts"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Legendary Dreadnought: Esoteric Touch"
+cost_per_rank = [1]
+description = """
+Your melee and ranged weapons gain the Ghost Touch effect.
++1 Imbue Dice."""
+icon = "EpicPowerAttack"
+internal_name = "U51LegendaryDreadnoughtGhostTouch"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Legendary Dreadnought: Honor or Backstab"
+cost_per_rank = [1]
+description = "Pick a style of approach to combat!"
+icon = "HonorOrBackstab"
+internal_name = "U51LegendaryDreadnoughtHonorOrBackstab"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Backstab"
+cost_per_rank = [1]
+description = """
++[2/4/6] to Attack while Flanking.
+If you have the Tactician feat, double this bonus."""
+icon = "Backstab"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    0,
+    4,
+    8,
+    12,
+]
+bonus_type = "Destiny"
+display_name = "Legendary Dreadnought: Backstab"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Flanking"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Honor"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Attack.
+If you have the Tactician feat, double this bonus."""
+icon = "HonorOrBackstab"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+    0,
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+display_name = "Legendary Dreadnought: Honor"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement]]
+name = "Legendary Dreadnought: Combat Brute"
+cost_per_rank = [2]
+description = "While in your Legendary Dreadnought Destiny Mantle, your weapons gain +1[W]."
+icon = "U51CombatBrute"
+internal_name = "U51LegendaryDreadnoughtCombatBrute"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Dread Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["U51LegendaryDreadnoughtDreadMantle"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Life and Death"
+cost_per_rank = [1]
+description = "+[3/6/10] Positive, Negative, and Repair Healing Amplification"
+icon = "LifeAndDeath"
+internal_name = "U51LegendaryDreadnoughtLifeAndDeath"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Destiny"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Legendary Dreadnought: Action Boost Tactics"
+cost_per_rank = [2]
+description = """
+Activate to gain a +9 Action Boost bonus to Tactical DCs for 20 seconds.
+Cooldown: 30 seconds"""
+icon = "ActionBoostTactics"
+internal_name = "U51LegendaryDreadnoughtActionBoostTactics"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [9]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = [
+    "Assassinate",
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+    "Rune Arm",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Legendary Dreadnought: Strike Twice"
+cost_per_rank = [1]
+description = "+[2/4/6]% Doublestrike and Doubleshot"
+icon = "StrikeTwice"
+internal_name = "U51LegendaryDreadnoughtStrikeTwice"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Legendary Dreadnought: Momentum Swing"
+cost_per_rank = [2]
+description = """
+When you use your Legendary Dreadnought Epic Strike, enemies must now also make
+a Fortitude save or be Tripped. Trip DC is (20 + highest ability modifier +
+bonuses to Stun)."""
+icon = "MomentumSwing"
+internal_name = "U51LegendaryDreadnoughtMomentumSwing"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.dc]]
+name = "Momentum Swing Trip"
+amount = [20]
+dc_type = "Trip"
+dc_versus = "Fortitude"
+description = """
+When you use your Legendary Dreadnought Epic Strike, enemies must now also make
+a Fortitude save or be Tripped. Trip DC is ((20 + highest ability modifier +
+bonuses to Stun attacks)."""
+icon = "U51MomentumSwing"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51LegendaryDreadnoughtDireAttack"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Epic Power & Precision"
+cost_per_rank = [1]
+description = """
+When you have Power Attack active, you gain +[2/4/6] Critical Hit damage (before
+weapon multipliers). When you have Precision active, you gain +[2/4/6] to your
+critical confirmation rolls."""
+icon = "EpicPowerAndPrecision"
+internal_name = "U51LegendaryDreadnoughtEpicPowerAndPrecision"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_DamageCritical"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackCritical"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Precision"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Legendary Dreadnought: Armor of Dusk"
+cost_per_rank = [1]
+description = """
++[2/4/6] Armor Class and Maximum Dexterity Bonus.
+-[1/2/3] Armor Check Penalty to Skills."""
+icon = "ArmorOfDusk"
+internal_name = "U51LegendaryDreadnoughtArmorOfDusk"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+extra_types = ["MaxDexBonus"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "ArmorCheckPenalty"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Legendary Dreadnought: Carry On"
+cost_per_rank = [2]
+description = """
+When you activate any Action Boost, you gain a 10% Action Boost bonus to attack
+speed for 20 seconds."""
+icon = "CarryOn"
+internal_name = "U51LegendaryDreadnoughtCarryOn"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Action Boost"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Legendary Dreadnought: Strike with Fear"
+cost_per_rank = [2]
+description = """
+Your weapon attacks against creatures that are Afraid, Shaken, or have 5+ stacks
+of Terror add one stack of Vulnerability."""
+icon = "StrikeWithFear"
+internal_name = "U51LegendaryDreadnoughtStrikeWithFear"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Legendary Dreadnought: Lay Waste"
+cost_per_rank = [2]
+description = """
+When you use your Legendary Dreadnought Epic Strike, enemies must now make a
+Fortitude save or be Stunned. Stun DC is (20 + highest ability Mod + bonus to
+Stun attacks)."""
+icon = "LayWaste"
+internal_name = "U51LegendaryDreadnoughtLayWaste"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.dc]]
+name = "Lay Waste Stun"
+amount = [20]
+dc_type = "Stun"
+dc_versus = "Fortitude"
+description = """
+When you use your Legendary Dreadnought Epic Strike, enemies must now make a
+Fortitude save or be Stunned. Stun DC is (20 + highest ability Mod + bonus to
+Stun attacks)."""
+icon = "LayWaste"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51LegendaryDreadnoughtDireAttack"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Kick While They're Down"
+cost_per_rank = [1]
+description = """
+While in your Dreadnought Destiny Mantle, you deal +[5/10/15]% damage to
+Helpless opponents."""
+icon = "KickWhileTheyreDown"
+internal_name = "U51LegendaryDreadnoughtKickWhileTheyreDown"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "HelplessDamage"
+
+[[enhancement.modifier.requirement]]
+items = ["Dread Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51LegendaryDreadnoughtDreadMantle"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Untouchable"
+cost_per_rank = [2]
+description = "While any Action Boost is active, you have Displacement."
+icon = "U51Untouchable"
+internal_name = "U51LegendaryDreadnoughtUntouchable"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[enhancement.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Legendary Dreadnought: Overpower"
+cost_per_rank = [1]
+description = "Select a boost to Bludgeoning, Piercing, or Slashing weapons"
+icon = "OverpowerBludgeon"
+internal_name = "U51LegendaryDreadnoughtOverpower"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.selection]]
+name = "Impaler"
+cost_per_rank = [1]
+description = """
+When using a Piercing weapon in your main hand, you gain +1 Critical
+Multiplier on rolls of 19-20."""
+icon = "OverpowerImpaler"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Piercing"]
+req_type = "GroupMember"
+
+[[enhancement.selection]]
+name = "Lacerator"
+cost_per_rank = [1]
+description = """
+When using a Slashing weapon in your main hand, you gain +1 Critical
+Multiplier on rolls of 19-20."""
+icon = "OverpowerLacerator"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Slashing"]
+req_type = "GroupMember"
+
+[[enhancement.selection]]
+name = "Pulverizer"
+cost_per_rank = [1]
+description = """
+When using a Bludgeoning weapon in your main hand, you gain +1 Critical
+Multiplier on rolls of 19-20."""
+icon = "OverpowerBludgeon"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Bludgeoning"]
+req_type = "GroupMember"
+
+[[enhancement]]
+name = "Legendary Dreadnought: Legendary Rally"
+cost_per_rank = [1]
+description = "Pick a Melee or Ranged attack."
+icon = "LegendaryRally"
+internal_name = "U51LegendaryDreadnoughtLegendaryRally"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.selection]]
+name = "Legendary Rally (Melee)"
+cost_per_rank = [1]
+description = """
+Deals +50% Damage
++2 Critical Multiplier
++100 Critical Threat Range
+
+Cleave Attack: Can be used while Crowd Controlled, clears all Crowd Control
+effects on you when used.
+Cooldown: 30 seconds."""
+icon = "LegendaryRally"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Legendary Rally (Ranged)"
+cost_per_rank = [1]
+description = """
+Deals +40% Damage
++2 Critical Multiplier
++100 Critical Threat Range
+
+AOE Ranged Attack: Fire a single shot, hitting every enemy in an area around where
+the shot hits. Can be used while Crowd Controlled, clears all Crowd Control
+effects on you when used. (If used while Crowd Controlled, it will fire an arrow
+at your hard-targeted foe).
+Cooldown: 30 seconds"""
+icon = "LegendaryRallyRanged"
+is_clickie = true
+
+[[enhancement]]
+name = "Legendary Dreadnought: Sundering Swings"
+cost_per_rank = [1]
+description = """
+Creatures affected by your Improved Trip are also made Helpless. This supersedes
+other Improved Trip effects.
+
+Creatures affected by your Improved Sunder take -75% Fortification instead of
+the usual -25%. This supersedes other Improved Sunder effects."""
+icon = "SunderingSwings"
+internal_name = "U51LegendaryDreadnoughtSunderingSwings"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Legendary Dreadnought: Dusk Surge"
+cost_per_rank = [1]
+description = """
+While in Legendary Dreadnought Destiny Mantle, hitting enemies with your weapons
+has a chance to regenerate an Action Boost charge. Does not stack with other
+abilities that can regenerate Action Boost charges."""
+icon = "DuskSurge"
+internal_name = "U51LegendaryDreadnoughtDuskSurge"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Legendary Dreadnought: Action Hero"
+cost_per_rank = [1]
+description = """
+Epic Moment: This ability is counted as an Action Boost, and triggers everything
+that a normal Action Boost triggers for the duration, but does not place other
+Action Boosts on cooldown.
+
+ +8  Action Boost Bonus to Attack
++30  Action Boost Bonus to Melee and Ranged Power
++30% Action Boost Bonus to Attack Speed
++30% Action Boost Bonus to Doublestrike and Doubleshot
++50% Action Boost Bonus to Movement Speed
++15  Action Boost Bonus to Armor Class and Physical Resistance Rating
++15% Action Boost Bonus to Dodge. This bonus ignores your Dodge Cap.
+ +9  Action Boost bonus to Sunder, Trip, and Stun DCs.
+ +6  Action Boost Bonus to Saving Throws
+ +6  Action Boost Bonus to Skills
+
+Cooldown: 5 minutes"""
+icon = "U51ActionHero"
+internal_name = "U51LegendaryDreadnoughtActionHero"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[requirement]]
+items = ["Legendary Dreadnought"]
+req_type = "Feat"

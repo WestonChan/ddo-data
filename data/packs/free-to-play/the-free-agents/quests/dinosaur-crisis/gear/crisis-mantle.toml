@@ -1,0 +1,44 @@
+name = "Crisis Mantle"
+drop_location = "Dinosaur Crisis, end chest"
+enhancement_bonus = 5
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 7
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Quality"
+value = 21
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 23
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"

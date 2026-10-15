@@ -1,0 +1,77 @@
+name = "Coronation Shield"
+description = """
+12 shields were crafted for the personal guard of a long forgotten drow chieftain
+to use during his coronation ceremony. Only this one remains."""
+drop_location = "Sands of Menechtarun, Undead Area: The Thirsty One 's or Palumak the Scourer 's Chest ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+enhancement_bonus = 5
+icon = "Shield_4n"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 10
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 9
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[clickie]]
+name = "Blinding Flash"
+clickie = "Blinding Flash"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Holy Blast 3"
+
+[[effect]]
+name = "Blinding"
+
+[[effect]]
+name = "Paragon Light Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Blinding Flash"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "undead area: the thirsty one 's or palumak the scourer 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

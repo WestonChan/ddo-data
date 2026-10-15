@@ -1,0 +1,21 @@
+name = "Miserable Acid Spell Crit Chance (Legendary)"
+description = "Your Acid spells have a +23% Equipment Bonus to their chance to Critical Hit."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Acid Spell Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

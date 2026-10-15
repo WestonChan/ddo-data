@@ -1,0 +1,23 @@
+name = "The Pit"
+bestowed_by = "Vargus d'Deneith"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Deneith"
+zone = "The Pit"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Pit"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7

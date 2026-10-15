@@ -1,0 +1,3 @@
+name = "Unnatural"
+description_template = "Items so profane can have unintended consequences... This item will uncenter you and break your druidic oath."
+verbose_name_template = "Unnatural"

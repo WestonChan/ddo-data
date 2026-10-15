@@ -1,0 +1,83 @@
+name = "Epic Cavalry Plate (legacy) (level 20)"
+description = """
+High-seas pirates plundered this richly-decorated plate mail from naval cavalry
+officers. Although it did not suit the pirates well, a fighter looking for
+better protection may benefit from it."""
+drop_location = "Treasure of Crystal Cove, Turn in 1200 Copper Doubloon 600 Silver Doubloon 35 Stolen Diamond at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 6
+icon = "MediumArmor_9a"
+is_legacy = true
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 20
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Demonic Shield"
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "DR 3/Chaotic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Superior False Life"
+description = "Superior False Life: This item grants the wearer +40 maximum health."
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "False Life"
+value = 40
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds DR 5/Chaotic and a Blue augment slot"
+description = "Adds a Blue augment slot to this item"
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "DR"
+targets = ["Chaotic"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

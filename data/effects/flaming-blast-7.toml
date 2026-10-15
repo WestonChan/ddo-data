@@ -1,0 +1,3 @@
+name = "Flaming Blast 7"
+description_template = "This weapon burns with deadly magical fire, dealing 7d6 Fire damage on a successful hit, and an additional 7d6 Fire damage on a critical hit."
+verbose_name_template = "Flaming Blast 7"

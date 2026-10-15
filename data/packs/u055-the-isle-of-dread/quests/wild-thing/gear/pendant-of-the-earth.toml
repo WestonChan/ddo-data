@@ -1,0 +1,37 @@
+name = "Pendant of the Earth"
+description = "This weighty necklace carries energy from the earth."
+drop_location = "Wild Thing, end chest"
+icon = "Necklace_11d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 7
+slot = "Neck"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 33
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Insight"
+value = 33
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Insight"
+value = 33
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wild Thing"

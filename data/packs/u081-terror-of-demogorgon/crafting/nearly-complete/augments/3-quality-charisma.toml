@@ -1,0 +1,21 @@
+name = "+3 Quality Charisma"
+description = "+3 Quality bonus to Charisma"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: nearly complete: quality ability score (legendary)"

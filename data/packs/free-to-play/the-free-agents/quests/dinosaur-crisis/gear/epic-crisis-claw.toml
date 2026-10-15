@@ -1,0 +1,54 @@
+name = "Epic Crisis Claw"
+accepts_sentience = true
+drop_location = "Dinosaur Crisis, end chest (rare)"
+enhancement_bonus = 15
+icon = "HeavyPick_1"
+item_category = "Weapon"
+item_type = "Heavy Pick"
+material = "Steel"
+minimum_level = 27
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Entropic 6"
+
+[[effect]]
+name = "Maiming 6"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 19
+
+[[effect]]
+name = "Improved Destruction"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.4
+handedness = "One-handed"
+weapon_type = "Heavy Pick"

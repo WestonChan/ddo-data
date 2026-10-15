@@ -1,0 +1,48 @@
+name = "Legendary Memory of Hiding in Darkness"
+description = """
+This stone resonates with the memory of a tailor fleeing from those who would
+take him from his family."""
+drop_location = "A Raven at the Door, End chest, Rescue Yesper from the Dungeons chest"
+enhancement_bonus = 14
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 29
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -8
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, rescue yesper from the dungeons chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Raven at the Door"

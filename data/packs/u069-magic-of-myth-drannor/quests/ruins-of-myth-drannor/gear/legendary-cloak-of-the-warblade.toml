@@ -1,0 +1,45 @@
+name = "Legendary Cloak of the Warblade"
+description = """
+When the Echo broke off from the Warblade, the force of its defiance manifested
+this cloak, and shares its clarity of purpose."""
+drop_location = "Ruins of Myth Drannor, Goranathanil 's chest (rare)"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 33
+slot = "Back"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 23
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "goranathanil 's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

@@ -1,0 +1,32 @@
+name = "Disc of Acid Warding"
+description = """
+This metal disc is engraved with the runes of warding, and a colored gemstone
+is set at its center."""
+drop_location = "Redwillow's Ruins, Black Bile Eater 's chest"
+enhancement_bonus = 3
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 4
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "black bile eater 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Redwillow's Ruins"

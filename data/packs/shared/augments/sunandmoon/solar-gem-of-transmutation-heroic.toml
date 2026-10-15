@@ -1,0 +1,30 @@
+name = "Solar Gem of Transmutation (Heroic)"
+description = """
+Artifact Transmutation Focus +2
+Drops in: Special Delivery, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Transmutation Focus"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"

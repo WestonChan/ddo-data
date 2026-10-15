@@ -1,0 +1,56 @@
+name = "Spectral Greataxe (level 16)"
+description = """
+The residual power left behind as thousands of Spectral Dragon Scales crumbled
+to dust formed this ethereal weapon."""
+drop_location = "The Night Revels, Turn in various ingredients to Joe Candymaker"
+enhancement_bonus = 5
+icon = "GreatAxe_3"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Force"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Ghostbane 4"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Evil Outsider Bane 4"
+
+[[effect]]
+name = "Improved Vorpal"
+
+[[effect]]
+name = "Crushing 9"
+
+[[note]]
+kind = "item"
+field = "name"
+upstream = "Spectral Great Axe (level 16)"
+reason = "The Night Revels page lists the Spectral Greataxe, one word as the weapon type is spelled, among the event's rewards."
+url = "https://ddowiki.com/page/The_Night_Revels"
+read = "2026-10-02"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.7
+handedness = "Two-handed"
+weapon_type = "Great Axe"

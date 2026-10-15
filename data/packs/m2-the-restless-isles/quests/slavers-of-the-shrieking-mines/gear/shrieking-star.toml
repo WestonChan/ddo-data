@@ -1,0 +1,51 @@
+name = "Shrieking Star"
+description = """
+The resonant crystals of the Shrieking Mines have an extreme affinity with sonic
+energy. A cunning ogre mage took advantage of this property, expertly fusing
+tiny crystal shards with metal to craft this powerful crystalline weapon."""
+drop_location = "Slavers of the Shrieking Mines, Locked chest"
+enhancement_bonus = 4
+icon = "Morningstar_1i"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Glass"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Shrieking"
+
+[[effect]]
+name = "Roaring"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "Slavers of the Shrieking Mines"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Morningstar"

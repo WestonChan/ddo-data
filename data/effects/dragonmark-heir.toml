@@ -1,0 +1,3 @@
+name = "Dragonmark Heir"
+description_template = "This item is one of two pieces of the Dragonmark Heir set. When both items are equipped you will gain two additional uses of Greater Dragonmark after resting."
+verbose_name_template = "Dragonmark Heir"

@@ -1,0 +1,45 @@
+name = "Alchemical Battle Axe"
+description = "A sturdy, broad-headed axe used as a weapon especially among dwarves."
+drop_location = "The Master Artificer, Either End chest"
+enhancement_bonus = 5
+icon = "BattleAxe_6"
+item_category = "Weapon"
+item_type = "Battle Axe"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[socket]]
+slot = "crafting: alchemical material type"
+
+[[socket]]
+slot = "crafting: alchemical tier 1"
+
+[[socket]]
+slot = "crafting: alchemical tier 2"
+
+[[socket]]
+slot = "crafting: alchemical tier 3"
+
+[[source]]
+chest = "either end chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Master Artificer"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Battle Axe"

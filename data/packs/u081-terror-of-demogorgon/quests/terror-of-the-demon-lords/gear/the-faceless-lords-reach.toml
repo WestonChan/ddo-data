@@ -1,0 +1,54 @@
+name = "The Faceless Lord's Reach"
+accepts_sentience = true
+description = "Juiblex's power continues to manifest in his absence."
+drop_location = "Terror of the Demon Lords, end chest"
+enhancement_bonus = 16
+icon = "Longbow_1k"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Legendary Slime"
+
+[[effect]]
+name = "Revel in Blood (Piercing)"
+
+[[effect]]
+name = "Elasticity"
+bonus_type = "Base"
+
+[[effect]]
+name = "Disintegrate 7"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 6.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

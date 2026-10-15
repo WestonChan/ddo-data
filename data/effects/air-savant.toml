@@ -1,0 +1,3 @@
+name = "Air Savant"
+description_template = "This item in one of two pieces of the Air Savant set. When both items are equipped, electricity spells gain a +5% chance to critical hit. Electricity spell critical damage is increased by 0.5 to the spell critical multiplier."
+verbose_name_template = "Air Savant"

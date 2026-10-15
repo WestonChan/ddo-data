@@ -1,0 +1,40 @@
+name = "Maenya's Fists"
+description = """
+A pair of gloves said to have been originally crafted for the hag queen Sora
+Maenya. They bestow the wearer with fearsome strength and the ability to terrorize
+foes."""
+drop_location = "Eyes of Stone, End chest"
+icon = "Gloves_3b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Battle-Scarred"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Eyes of Stone"

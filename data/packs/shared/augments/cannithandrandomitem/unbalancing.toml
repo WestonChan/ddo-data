@@ -1,0 +1,10 @@
+name = "Unbalancing"
+description = """
+Anything that melee attacks a character with an Unbalancing item has a chance (10%)
+to be pulled off balance giving them a -2 penalty to their AC"""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[slot]]
+slot = "crafting: cannith weapon prefix"

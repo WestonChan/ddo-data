@@ -1,0 +1,69 @@
+name = "Legendary Staff of the Deep"
+accepts_sentience = true
+description = "Lying in the darkness for centuries looks good on this expertly made staff."
+drop_location = "Back to the Abyss, Forgefeeder 's chest"
+enhancement_bonus = 16
+icon = "Quarterstaff_1"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 35
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 114
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 57
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Equipoised Focus"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "forgefeeder 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Back to the Abyss"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

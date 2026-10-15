@@ -1,0 +1,57 @@
+name = "Sunken Obscurity"
+description = """
+Commissioned as thanks for a daring rescue by a prodigal monk, these matching
+blades were lost at sea decades ago. The inscription on the blade reads 'a
+small repayment' in flowing Elven script. Whoever this 'Arkat' was, he must
+have done something very heroic."""
+drop_location = "Lost at Sea, Gift of the Devourer optional chest"
+enhancement_bonus = 5
+icon = "Kama_1g"
+item_category = "Weapon"
+item_type = "Kama"
+material = "Cold Iron"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Negativity 4"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Cold Iron"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "gift of the devourer optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Lost at Sea"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Kama"

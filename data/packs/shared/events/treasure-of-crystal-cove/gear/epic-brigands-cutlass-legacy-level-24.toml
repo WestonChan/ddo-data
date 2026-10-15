@@ -1,0 +1,99 @@
+name = "Epic Brigand's Cutlass (legacy) (level 24)"
+description = """
+A curved sword with an elegant hilt, popular amongst pirates for its intimidating
+and yet sophisticated appearance. This particular blade is infused with the
+rowdiness and anarchy of a high-seas brigand, and is impeccably useful against
+lawful opponents."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Silver Doubloon 500 Golden Doubloon 40 Stolen Opal at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 6
+icon = "Scimitar_4"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Anarchic Burst"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+6 Enhancement Bonus"
+description = "+7 Enhancement Bonus: +7 Enhancement bonus to attack and damage rolls."
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Absolute Chaos and a Red augment slot"
+description = """
+Absolute Chaos: This weapon is infused with the ultimate power of Chaos. It does
+an additional 2 to 12 damage to non-chaotic targets and can only be wielded by
+Chaotic-aligned characters.
+Adds a Red augment slot to this item"""
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.grant]]
+slot = "red"
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Unknown"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Non-Chaotic"]
+req_type = "EnemyType"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

@@ -1,0 +1,21 @@
+name = "+15% Cold Absorption"
+description = "Cold Absorption +15%: Passive: +15% Equipment Bonus to Cold Absorption."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Equipment"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: incredible potential"

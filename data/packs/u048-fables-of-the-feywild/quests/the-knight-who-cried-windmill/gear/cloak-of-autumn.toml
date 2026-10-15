@@ -1,0 +1,36 @@
+name = "Cloak of Autumn"
+description = """
+This cloak appears to be made of still-living foliage, in the form of autumn
+leaves."""
+drop_location = "The Knight Who Cried Windmill, End chest"
+icon = "Cloak_6"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 5
+slot = "Back"
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Feat - Wind through the Trees"
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Knight Who Cried Windmill"

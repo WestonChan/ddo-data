@@ -1,0 +1,25 @@
+name = "Brooch of Waterbreathing"
+description = """
+This enchanted brooch can be recharged by spending time in a tavern or using
+a Rest Shrine."""
+drop_location = "Special event items, Special Purchase Bonus Items"
+icon = "Trinket_66"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Water Breathing"
+clickie = "Water Breathing"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Water Breathing"]

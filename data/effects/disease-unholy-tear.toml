@@ -1,0 +1,3 @@
+name = "Disease - Unholy Tear"
+description_template = "This weapon saps the vitality from your enemies, dealing 6d6 Evil damage on each hit. It also has a chance to spread its disease whenever you strike an enemy, which will reduce their Armor Class and Positive Healing Amplification."
+verbose_name_template = "Disease - Unholy Tear"

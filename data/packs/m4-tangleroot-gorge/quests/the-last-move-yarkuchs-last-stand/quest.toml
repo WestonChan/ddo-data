@@ -1,0 +1,22 @@
+name = "The Last Move: Yarkuch's Last Stand"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Tangleroot Gorge"
+patron = "House Phiarlan"
+zone = "Inner Splinterskull Fortress"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Last_Move:_Yarkuch%27s_Last_Stand"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7

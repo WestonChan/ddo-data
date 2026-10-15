@@ -1,0 +1,48 @@
+name = "The Leaf Mail"
+description = """
+This light armor seems to be patterned after the traditional clothing of the
+Eladrin."""
+drop_location = "Wake Me Up Inside, End Chest"
+enhancement_bonus = 2
+icon = "LightArmor_5"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 5
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 3
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 8
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wake Me Up Inside"

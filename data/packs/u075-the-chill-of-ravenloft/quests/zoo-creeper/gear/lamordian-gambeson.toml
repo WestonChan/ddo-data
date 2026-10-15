@@ -1,0 +1,45 @@
+name = "Lamordian Gambeson"
+description = "Timeless style, meant to protect from the bitter colds."
+drop_location = "Zoo Creeper, Lacheln 's chest"
+enhancement_bonus = 4
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 16
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 5
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 2
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "lacheln 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

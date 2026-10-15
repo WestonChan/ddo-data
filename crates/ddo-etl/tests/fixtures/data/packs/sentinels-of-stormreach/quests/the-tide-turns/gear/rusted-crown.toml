@@ -1,0 +1,27 @@
+name = "Rusted Crown"
+description = "At least this helm has nothing to fear from rust monsters."
+drop_location = "The Tide Turns, End Chest, End Reward"
+icon = "Helmet_11"
+item_category = "Clothing"
+material = "Rust"
+minimum_level = 5
+slot = "Head"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 1
+
+[[effect]]
+name = "Unraveling Enchantments"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tide Turns"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Tide Turns"

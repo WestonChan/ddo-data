@@ -1,0 +1,49 @@
+name = "Ruby of Fey Bane"
+description = """
+Additional 2d8 Bane Damage to Fey creatures on hit.
+Drops in U48 Quest: Wake me up Inside"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 6
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [2]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonus"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Fey"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [2]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Fey"]
+req_type = "Stance"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Wake Me Up Inside"

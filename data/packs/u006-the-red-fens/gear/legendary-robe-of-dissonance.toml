@@ -1,0 +1,40 @@
+name = "Legendary Robe of Dissonance"
+description = """
+This vibrant robe hums faintly with two separate yet intertwined forces. The
+magical field it projects blocks harmful sound-based effects, as well as strengthening
+the wearer's sonic-based and force-based spells."""
+drop_location = "Legendary version of Epic Robe of Dissonance"
+enhancement_bonus = 15
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Spell Resonance"
+
+[[effect]]
+name = "Soundproof"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[socket]]
+slot = "blue"

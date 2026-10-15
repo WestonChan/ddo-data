@@ -1,0 +1,214 @@
+name = "Epic"
+alignments = ["Epic"]
+bab = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+]
+description = "Standard Epic level"
+fortitude = "none"
+hit_points = 10
+large_icon = "Epic"
+not_heroic = true
+reflex = "none"
+skill_points = 0
+small_icon = "Epic_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+will = "none"
+
+[[auto_feat]]
+level = 1
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 1
+feat = "Epic Skills"
+
+[[auto_feat]]
+level = 2
+feat = "Epic Knowledge"
+
+[[auto_feat]]
+level = 2
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 2
+feat = "Epic Saves"
+
+[[auto_feat]]
+level = 2
+feat = "Epic Skills"
+
+[[auto_feat]]
+level = 3
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 3
+feat = "Epic Skills"
+
+[[auto_feat]]
+level = 4
+feat = "Epic Knowledge"
+
+[[auto_feat]]
+level = 4
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 4
+feat = "Epic Saves"
+
+[[auto_feat]]
+level = 4
+feat = "Epic Skills"
+
+[[auto_feat]]
+level = 5
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 5
+feat = "Epic Skills"
+
+[[auto_feat]]
+level = 6
+feat = "Epic Knowledge"
+
+[[auto_feat]]
+level = 6
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 6
+feat = "Epic Saves"
+
+[[auto_feat]]
+level = 6
+feat = "Epic Skills"
+
+[[auto_feat]]
+level = 7
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 7
+feat = "Epic Skills"
+
+[[auto_feat]]
+level = 8
+feat = "Epic Knowledge"
+
+[[auto_feat]]
+level = 8
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 8
+feat = "Epic Saves"
+
+[[auto_feat]]
+level = 8
+feat = "Epic Skills"
+
+[[auto_feat]]
+level = 9
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 9
+feat = "Epic Skills"
+
+[[auto_feat]]
+level = 10
+feat = "Epic Knowledge"
+
+[[auto_feat]]
+level = 10
+feat = "Epic Power"
+
+[[auto_feat]]
+level = 10
+feat = "Epic Saves"
+
+[[auto_feat]]
+level = 10
+feat = "Epic Skills"
+
+[[feat_slot]]
+feat_type = "Epic Feat"
+level = 1
+
+[[feat_slot]]
+feat_type = "Epic Destiny Feat"
+level = 2
+update_list = ["Toughness"]
+
+[[feat_slot]]
+feat_type = "Epic Feat"
+level = 4
+
+[[feat_slot]]
+feat_type = "Epic Destiny Feat"
+level = 5
+
+[[feat_slot]]
+feat_type = "Epic Feat"
+level = 7
+
+[[feat_slot]]
+feat_type = "Epic Destiny Feat"
+level = 8
+
+[[feat_slot]]
+feat_type = "Epic Feat"
+level = 10
+
+[[feat_slot]]
+feat_type = "Legendary Feat"
+level = 10
+
+[[feat_slot]]
+feat_type = "Dark Gift Upgrade"
+level = 10

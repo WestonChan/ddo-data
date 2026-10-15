@@ -1,0 +1,21 @@
+name = "Spell Lore Cold +21"
+description = "Legendary Equipment bonus to spell critical chance"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Cold Spell Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [21]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

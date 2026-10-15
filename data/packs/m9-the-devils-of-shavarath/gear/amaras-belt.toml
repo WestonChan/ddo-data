@@ -1,0 +1,60 @@
+name = "Amara's Belt"
+description = """
+This fine leather belt is branded with patterns to appear to be on fire. It
+was worn by Amara, a powerful Exorcist of the Silverflame."""
+drop_location = "A New Invasion, Any chest; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[clickie]]
+name = "Greater Ardor"
+clickie = "Greater Ardor"
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Exorcist of the Silver Flame"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Ardor"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Exorcist of the Silver Flame - 2 Piece bonus"
+effect_type = "ExtraTurns"
+extra_types = ["ExtraTurns"]
+targets = ["All"]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "A New Invasion"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

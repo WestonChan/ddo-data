@@ -1,0 +1,63 @@
+name = "The Wreath of Flame"
+icon = "TheWreathOfFlame"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Fire Absorption"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Cold Absorption"
+value = 50
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Stacking"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Fire Spell Power"
+value = 50
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Imbue Dice"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Stacking"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"

@@ -1,0 +1,29 @@
+name = "Eye of Vol"
+description = "The Eye of Vol glows a deep blood red when activated."
+drop_location = "Litany of the Dead, Black dragon chamber work table"
+icon = "Trinket_28b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Sight of Vol"
+clickie = "Sight of Vol"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Sight of Vol"]
+
+[[source]]
+chest = "black dragon chamber work table"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

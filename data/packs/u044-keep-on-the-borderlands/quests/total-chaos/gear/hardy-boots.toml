@@ -1,0 +1,22 @@
+name = "Hardy Boots"
+description = "These will take a few hits on your behalf."
+drop_location = "Total Chaos, End chest"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Feet"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 1
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Total Chaos"

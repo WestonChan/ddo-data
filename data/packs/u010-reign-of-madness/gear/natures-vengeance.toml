@@ -1,0 +1,46 @@
+name = "Nature's Vengeance"
+description = """
+Surely the tool of a Gatekeeper druid for driving back extraplanar horrors,
+this wooden staff is a potent weapon against such terrible foes. The fate of
+the item's original owner, as well as the exact age of the staff, remain unknown."""
+drop_location = "Reign of Madness, End reward"
+enhancement_bonus = 5
+icon = "Quarterstaff_15i"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Greater Aberration Bane"
+
+[[effect]]
+name = "Sun Burst"
+
+[[effect]]
+name = "Greater Stability"
+
+[[effect]]
+name = "Densewood"
+
+[[source]]
+kind = "quest_chain"
+name = "Reign of Madness"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

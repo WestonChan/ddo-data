@@ -1,0 +1,33 @@
+name = "+1 Reaper Bonus to saves and +3 MRR"
+description = "+1 Reaper Bonus to saves and +3 MRR"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Reaper"
+value = 1
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Reaper"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Reaper"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "crafting: reaper bracers"

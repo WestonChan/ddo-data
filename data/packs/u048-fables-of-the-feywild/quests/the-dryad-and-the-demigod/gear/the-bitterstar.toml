@@ -1,0 +1,56 @@
+name = "The Bitterstar"
+accepts_sentience = true
+description = "FEYTWISTED form of The Bitter Edge \n\nThis morningstar seems to be crafted of the same bitter ice that the Prince\nof Frost commands."
+drop_location = "The Dryad and the Demigod, Greater feytwisted chest"
+enhancement_bonus = 15
+icon = "Morningstar_1e"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Ice"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Royalty's Frigid Response"
+
+[[effect]]
+name = "Frostbite"
+
+[[effect]]
+name = "Vorpal Lethargy"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Icy Blast 6"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "greater feytwisted chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Morningstar"

@@ -1,0 +1,31 @@
+name = "Scavenged Scale"
+description = "Rough-sewn but flexible, this armor will help you resist being critically hit."
+drop_location = "Obstructing the Orcs, End Chest"
+enhancement_bonus = 1
+icon = "MediumArmor_2b"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritcraft Leather"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 4
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 38
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Obstructing the Orcs"

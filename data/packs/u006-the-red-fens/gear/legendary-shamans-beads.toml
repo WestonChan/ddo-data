@@ -1,0 +1,39 @@
+name = "Legendary Shaman's Beads"
+description = """
+Favored by Drow shamans, necklaces such as this one are a powerful aid to spells
+in combat."""
+drop_location = "Legendary version of Epic Shaman's Beads"
+icon = "Necklace_14a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 13
+
+[[effect]]
+name = "Efficient Metamagic - Intensify II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

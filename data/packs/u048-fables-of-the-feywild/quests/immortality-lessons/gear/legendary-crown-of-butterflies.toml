@@ -1,0 +1,36 @@
+name = "Legendary Crown of Butterflies"
+description = "Delightful butterflies flutter around your head."
+drop_location = "Immortality Lessons, End chest, 'Granny' Optional Chest"
+icon = "Helmet_5"
+item_category = "Clothing"
+material = "Wood"
+minimum_level = 29
+slot = "Head"
+
+[[effect]]
+name = "Crown of Summer"
+
+[[effect]]
+name = "Crown of Summer (power)"
+
+[[effect]]
+name = "Winged Allure"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, 'granny' optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Immortality Lessons"

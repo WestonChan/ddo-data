@@ -32,6 +32,7 @@ fn buffs_with_modifiers(
 
 const GUILD_BUFFS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("guild_level", "listed.guild_level"),
     ("description", "description"),
@@ -67,8 +68,13 @@ async fn guild_buffs(State(state): State<AppState>, ApiQuery(query, _): ApiQuery
         .await
 }
 
-const OPTIONAL_BUFFS_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("description", "description"), ("icon", "icon")];
+const OPTIONAL_BUFFS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("slug", "listed.name"),
+    ("id", "listed.id"),
+    ("description", "description"),
+    ("icon", "icon"),
+];
 
 declare_list_parameters!(OptionalBuffsParameters, OPTIONAL_BUFFS_SORT_FIELDS, "");
 

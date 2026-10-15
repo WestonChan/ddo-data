@@ -1,0 +1,52 @@
+name = "Curse Necromancer (Legendary)"
+icon = "CurseNecromancer"
+
+[[item]]
+name = "Legendary Cursed Skull"
+
+[[item]]
+name = "Legendary Cursekeeper"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Spell Power"
+value = 30
+
+[[tier.effect]]
+effect = "Dreadful Curse Extended"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Negative Spell Power"
+effect_type = "NegativeHealingAmplification"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Negative Spell Power"
+effect_type = "SpellLore"
+targets = ["Negative"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Negative Spell Power"
+effect_type = "SpellPower"
+targets = ["Negative"]

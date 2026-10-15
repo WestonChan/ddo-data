@@ -1,0 +1,27 @@
+name = "Cloak of Attraction"
+description = "This enchanted cloak is sure to help you convince others."
+drop_location = "Watch Your Step, End Chest"
+icon = "Cloak_8"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Back"
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Watch Your Step"

@@ -1,0 +1,40 @@
+name = "Legendary Emblem of Elemental Evil"
+description = "The temple's first evil, and also its final one."
+drop_location = "ToEE: Depths of the Temple, end chest"
+icon = "Trinket_72"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Trinket"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 47
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 14
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"

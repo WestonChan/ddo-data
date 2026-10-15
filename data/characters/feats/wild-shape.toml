@@ -1,0 +1,1297 @@
+[[row]]
+name = "Wild Shape: Bear"
+acquire = "Train"
+description = """
+You can transform into Bear form.
+Bear now allows you to Strikethrough as long as you are not in the Defensive
+Fighting stance. You can Strikethrough while moving in Bear Form.
+You gain +2 racial bonus to constitution, +10% exceptional bonus to AC"""
+icon = "WildShapeBear"
+source_name = "Druid"
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Intelligence"
+value = -2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Charisma"
+value = -2
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Constitution"
+value = 2
+
+[[row.effect]]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+value = 10
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Racial"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[row.modifier.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Druid"]
+req_type = "Class"
+value = 2
+
+[[row.stance]]
+name = "Bear"
+description = "You transform into a Bear gaining animal specific abilities"
+group_name = "Major Form"
+icon = "WildShapeBear"
+
+[[row]]
+name = "Wild Shape: Blighted Wolf"
+acquire = "Train"
+description = """
+Animal Form: Transform into a Blighted Wolf. While in this form, you gain a +20%
+Combat Style bonus to attack speed, a 15% bonus to movement speed, and a 10%
+Profane bonus to Max Hit Points. You suffer a -2 penalty to Intelligence and
+Charisma and take 15% more damage from fire. While in Blighted Wolf form you
+gain access to a number of spells and enhancements that require Wold form, but
+the cooldowns of your non-animal form spells are increased to 2.5 times their
+normal length.
+
+You now attack with tooth and claw using the stats of whatever weapon held in
+your right hand. Shields work normally but you cannot shield bash.
+
+Filled with blight you are considered a plant, gaining 100% Fortification,
+immunity to stun, mind effects and drowning. If you are a Warforged, you are no
+longer considered a Living Construct, and can now be healed normally by Positive
+energy spells, and you become immune to repair spells.
+
+You cannot use wands or scrolls while in animal form."""
+icon = "WildShapeBlightedWolf"
+source_name = "Blight Caster"
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee Attack Speed"
+value = 20
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Ranged Attack Speed"
+value = 20
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Intelligence"
+value = -2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Charisma"
+value = -2
+
+[[row.effect]]
+bonus_type = "Profane"
+effect = "Hit Points"
+value = 10
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+value = 15
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Fire Absorption"
+value = -15
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Fortification"
+value = 100
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[row.modifier.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[row.modifier.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[row.modifier.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = [
+    "Stun",
+    "Mind Affecting Spells",
+    "Downing",
+]
+
+[[row.modifier.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-15]
+bonus_type = "Racial"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row.modifier.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Racial"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[row.modifier.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 11
+
+[[row.stance]]
+name = "Blighted Wolf"
+description = "You transform into a Blighted Wolf gaining animal specific abilities."
+group_name = "Major Form"
+icon = "WildShapeBlightedWolf"
+
+[[row]]
+name = "Wild Shape: Dire Bear"
+acquire = "Train"
+description = """
+You can transform into Dire Bear form.
+Dire Bear now allows you to Strikethrough as long as you are not in the Defensive
+Fighting stance. You gain +4 racial bonus to constitution, and +15% exceptional
+bonus to AC. Gain 20% Strikethrough chance."""
+icon = "WildShapeDireBear"
+source_name = "Druid"
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Intelligence"
+value = -2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Charisma"
+value = -2
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Constitution"
+value = 4
+
+[[row.effect]]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+value = 15
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Strikethrough"
+value = 20
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[row.modifier.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Racial"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[row.modifier.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Racial"
+effect = "Strikethrough"
+effect_type = "Strikethrough"
+
+[[row.modifier.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Druid"]
+req_type = "Class"
+value = 8
+
+[[row.stance]]
+name = "Dire Bear"
+description = "You transform into a Dire Bear gaining animal specific abilities"
+group_name = "Major Form"
+icon = "WildShapeDireBear"
+
+[[row]]
+name = "Wild Shape: Fire Elemental"
+acquire = "Train"
+description = """
+You can transform into Fire Elemental form.
+When in this form you do 1d6 Fire damage per Imbue Dice that scales with Fire
+spell power per attack. +3 Imbue Dice"""
+icon = "WildShapeFireElemental"
+source_name = "Druid"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fire Absorption"
+value = 65
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+value = -15
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Intelligence"
+value = -2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Charisma"
+value = -2
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 3
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [65]
+bonus_type = "Feat"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-15]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[row.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Druid"]
+req_type = "Class"
+value = 13
+
+[[row.stance]]
+name = "Fire Elemental"
+description = "You transform into a Fire elemental gaining elemental specific abilities"
+group_name = "Major Form"
+icon = "WildShapeFireElemental"
+
+[[row.stance]]
+name = "Fire Elemental Imbue"
+description = """
+When in this form you do 1d6 Fire damage per Imbue Dice that scales with Fire
+spell power per attack. +1 Imbue Dice"""
+group_name = "Imbue"
+icon = "WildShapeFireElemental"
+
+[[row]]
+name = "Wild Shape: Hive Master"
+acquire = "Train"
+description = """
+Swarm Form: You become one with the swarm.
+
+Gain +3 to caster level and max caster level of all Acid and Poison spells.
+
+Gain 50% Concealment and Improved Evasion.
+
+Your Reflex saves are increased by 1 every 2 Druid levels.
+
+You are now ethereal to monsters when you tumble.
+
+You become 15% more Vulnerable to Cold and are Immune to Mind effects and Knock
+down."""
+icon = "WildShapeHiveMaster"
+source_name = "Blight Caster"
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Displacement"
+value = 50
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Cold Absorption"
+value = -15
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Racial"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "All",
+    "Enveloping Swarm",
+    "Creeping Doom",
+    "Storm of Vengeance",
+    "Acid Spray",
+    "Melf's Acid Arrow",
+    "Acid Blast",
+    "Acid Rain",
+    "Burning Blood",
+    "Cloudkill",
+    "Acid Fog",
+    "Black Dragon Bolt",
+    "Acid Well",
+    "Hellball",
+    "Acid Storm: Black Dragon Breath",
+    "Vial of Acid",
+    "Vial Smash: Acid",
+    "Corrode Weapons",
+    "Acid Concentration",
+    "Caustic Solvent",
+    "Caustic Overload",
+    "Multivial of Acid",
+    "Caustic Obliteration",
+    "Blighted Breath",
+    "Autumn Decay",
+    "Poison",
+    "Insidious Spores",
+    "Vial of Venom",
+    "Vial Smash: Poison",
+    "Greater Venom Vial",
+    "Venom Concentration",
+    "Heartstopper Poison",
+    "Multivial of Poison",
+    "Poison Breath",
+    "Wave of Poison",
+    "Greater Wave of Poison",
+    "Venom Vial",
+    "Poison Obliteration",
+    "Blighted Breath",
+]
+
+[[row.modifier.requirement]]
+items = ["Hive Master"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Racial"
+effect = "Displacement"
+effect_type = "Displacement"
+percent = true
+
+[[row.modifier.requirement]]
+items = ["Hive Master"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Exceptional"
+effect_type = "GrantFeat"
+targets = ["Improved Evasion"]
+
+[[row.modifier.requirement]]
+items = ["Hive Master"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+]
+bonus_type = "Racial"
+effect_type = "SaveBonus"
+stack_source = "Blight Caster"
+targets = ["Reflex"]
+
+[[row.modifier.requirement]]
+items = ["Hive Master"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = [
+    "Mind Affecting Spells",
+    "Knockdown",
+]
+
+[[row.modifier.requirement]]
+items = ["Hive Master"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-15]
+bonus_type = "Racial"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.modifier.requirement]]
+items = ["Hive Master"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 13
+
+[[row.stance]]
+name = "Hive Master"
+description = "You transform into Hive Master gaining animal specific abilities"
+group_name = "Major Form"
+icon = "WildShapeHiveMaster"
+
+[[row]]
+name = "Wild Shape: Plague Wolf"
+acquire = "Train"
+description = """
+Animal Form: Transform into a Plague Wolf. While in this form, you gain a +10%
+Combat Style bonus to attack speed, a +3 bonus to attack while flanking, 10%
+bonus to movement speed and you can use either the Biting Acid or Biting Poison
+Imbue. You gain a -2 penalty to Intelligence and Charisma. While in Wolf form you
+gain access to a number of spells and enhancements that require Wold form, but
+the cooldowns of your non-animal form spells are increased to 2.5 times their
+normal length.
+
+You now attack with tooth and claw using the stats of whatever weapon held in
+your right hand. Shields work normally but you cannot shield bash.
+
+You are considered an animal. If you are a Warforged, you are no longer considered
+a Living Construct, and can now be healed normally by Positive energy spells, and
+you become immune to repair spells.
+
+You cannot use wands or scrolls while in animal form."""
+icon = "WildShapePlagueWolf"
+source_name = "Blight Caster"
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee Attack Speed"
+value = 10
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Ranged Attack Speed"
+value = 10
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Intelligence"
+value = -2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Charisma"
+value = -2
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Attack Bonus"
+value = 3
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+value = 10
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[row.modifier.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement]]
+items = ["Flanking"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[row.modifier.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 2
+
+[[row.stance]]
+name = "Plague Wolf"
+description = "You transform into a Plague Wolf gaining animal specific abilities"
+group_name = "Major Form"
+icon = "WildShapePlagueWolf"
+
+[[row]]
+name = "Wild Shape: Thorne Knight"
+acquire = "Train"
+description = """
+Plant Form: You become a full Thorn Knight.
+
+You gain +3 bonus to the caster level and maximum caster level of all Thorn
+and Poison spells.
+
+You take 15% more damage from fire.
+
+You are a Plant, instead of your previous race.
+
+As a Plant, you have +100% fortification, immunity to sleep, stun, paralysis,
+poison and mind-affecting abilities.
+
+You have a +10% exceptional bonus to AC and 100% fortification and 10%
+piercing and 5% bludgeoning absorption.
+The two sources of fortification stack, for a total of +200%.
+You gain +2 Imbue dice."""
+icon = "WildShapeThorneKnight"
+source_name = "Blight Caster"
+
+[[row.effect]]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Fortification"
+value = 100
+
+[[row.effect]]
+bonus_type = "Exceptional"
+effect = "Fortification"
+value = 100
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Fire Absorption"
+value = -15
+
+[[row.effect]]
+bonus_type = "Racial"
+effect = "Imbue Dice"
+value = 2
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Racial"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "All",
+    "Poison",
+    "Insidious Spores",
+    "Vial of Venom",
+    "Vial Smash: Poison",
+    "Greater Venom Vial",
+    "Venom Concentration",
+    "Heartstopper Poison",
+    "Multivial of Poison",
+    "Poison Breath",
+    "Wave of Poison",
+    "Greater Wave of Poison",
+    "Venom Vial",
+    "Poison Obliteration",
+    "Blighted Breath",
+    "Thorn Strike",
+    "Thorn Blade",
+    "Thorn Bloom",
+    "Thorn Wave",
+    "Grasping Thorns",
+    "Thorn Lance",
+]
+
+[[row.modifier.requirement]]
+items = ["Thorne Knight"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[row.modifier.requirement]]
+items = ["Thorne Knight"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Racial"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[row.modifier.requirement]]
+items = ["Thorne Knight"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Exceptional"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[row.modifier.requirement]]
+items = ["Thorne Knight"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = [
+    "Sleep",
+    "Stun",
+    "Paralysis",
+    "Poison",
+    "Mind Affecting Spells",
+]
+
+[[row.modifier.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Racial"
+effect_type = "EnergyAbsorbance"
+targets = ["Pierce"]
+
+[[row.modifier.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Racial"
+effect_type = "EnergyAbsorbance"
+targets = ["Bludgeon"]
+
+[[row.modifier.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-15]
+bonus_type = "Racial"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row.modifier.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Racial"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.modifier.requirement]]
+items = ["Thorn-Kin"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 13
+
+[[row.stance]]
+name = "Thorne Knight"
+description = "You transform into Thorne Knight gaining animal specific abilities"
+group_name = "Major Form"
+icon = "WildShapeThorneKnight"
+
+[[row]]
+name = "Wild Shape: Water Elemental"
+acquire = "Train"
+description = """
+You can transform into Water Elemental form.
+When in this form you do 1d6 Cold damage per Imbue Dice that scales with Cold
+spell power per attack. +3 imbue Dice"""
+icon = "WildShapeWaterElemental"
+source_name = "Druid"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+value = 65
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fire Absorption"
+value = -15
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Intelligence"
+value = -2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Charisma"
+value = -2
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 3
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [65]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.modifier.requirement]]
+items = ["Water Elemental"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-15]
+bonus_type = "Feat"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row.modifier.requirement]]
+items = ["Water Elemental"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[row.modifier.requirement]]
+items = ["Water Elemental"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.modifier.requirement]]
+items = ["Water Elemental"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Druid"]
+req_type = "Class"
+value = 13
+
+[[row.stance]]
+name = "Water Elemental"
+description = "You transform into a Water elemental gaining elemental specific abilities"
+group_name = "Major Form"
+icon = "WildShapeWaterElemental"
+
+[[row.stance]]
+name = "Water Elemental Imbue"
+description = """
+When in this form you do 1d6 Cold damage per Imbue Dice that scales with Cold
+spell power per attack."""
+group_name = "Imbue"
+icon = "WildShapeWaterElemental"
+
+[[row]]
+name = "Wild Shape: Winter Wolf"
+acquire = "Train"
+description = """
+You can transform into Winter Wolf form.
+You gain a +20% combat style bonus to melee attack speed, +5 to attack while flanking,
++2d6 sneak attack damage, and +[10+druid level]% to movement speed."""
+icon = "WildShapeWinterWolf"
+source_name = "Druid"
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee Attack Speed"
+value = 20
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Ranged Attack Speed"
+value = 20
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Intelligence"
+value = -2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Charisma"
+value = -2
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Attack Bonus"
+value = 5
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Dice"
+value = 2
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "MovementSpeed"
+stack_source = "Druid"
+
+[[row.modifier.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[row.modifier.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement]]
+items = ["Flanking"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[row.modifier.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Druid"]
+req_type = "Class"
+value = 8
+
+[[row.stance]]
+name = "Winter Wolf"
+description = "You transform into a Winter Wolf gaining animal specific abilities"
+group_name = "Major Form"
+icon = "WildShapeWinterWolf"
+
+[[row]]
+name = "Wild Shape: Wolf"
+acquire = "Train"
+description = """
+You can transform into Wolf form.
+You gain a +10% Combat Style bonus to attack speed, +3 to attack while flanking,
++1d6 sneak attack damage, and +10% to movement speed."""
+icon = "WildShapeWolf"
+source_name = "Druid"
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee Attack Speed"
+value = 10
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Ranged Attack Speed"
+value = 10
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Intelligence"
+value = -2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Charisma"
+value = -2
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Attack Bonus"
+value = 3
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Dice"
+value = 1
+
+[[row.group]]
+group_name = "Wild Shape"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[row.modifier.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement]]
+items = ["Flanking"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[row.modifier.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Druid"]
+req_type = "Class"
+value = 2
+
+[[row.stance]]
+name = "Wolf"
+description = "You transform into a Wolf gaining animal specific abilities"
+group_name = "Major Form"
+icon = "WildShapeWolf"

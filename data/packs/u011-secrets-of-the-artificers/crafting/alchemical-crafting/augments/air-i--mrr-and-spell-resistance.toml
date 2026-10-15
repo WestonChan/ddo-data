@@ -1,0 +1,36 @@
+name = "Air I: MRR and Spell Resistance"
+adds_augment = "Legendary Alchemical Tier 2"
+description = "Combine T0 item with 50 threads and stabilizing compound."
+effect_description = """
+Magical Sheltering +33: This item provides a +38 Enhancement bonus to your Magical Resistance Rating.
+Spell Resistance +38: +38 Enhancement bonus to spell resistance."""
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 38
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [33]
+bonus_type = "Enhancement"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [38]
+bonus_type = "Enhancement"
+effect = "Spell Resistance"
+effect_type = "SpellResistance"
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 1"

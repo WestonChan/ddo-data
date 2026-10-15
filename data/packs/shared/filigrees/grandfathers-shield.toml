@@ -1,0 +1,92 @@
+[[row]]
+name = "Grandfather's Shield: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "GrandfathersShield"
+menu = "Ravenloft"
+set = "Grandfather's Shield"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Grandfather's Shield: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Grandfather's Shield: +10 Healing Amplification"
+description = """
++10 Healing Amplification
+Rare: +2 MRR"""
+icon = "GrandfathersShield"
+menu = "Ravenloft"
+set = "Grandfather's Shield"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Grandfather's Shield: Healing Amplification: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Grandfather's Shield: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "GrandfathersShield"
+menu = "Ravenloft"
+set = "Grandfather's Shield"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Grandfather's Shield: PRR: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Grandfather's Shield: +4 Armor Class"
+description = """
++4 Armor Class
+Rare: +2 PRR"""
+icon = "GrandfathersShield"
+menu = "Ravenloft"
+set = "Grandfather's Shield"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Grandfather's Shield: Armor Class: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true

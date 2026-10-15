@@ -1,0 +1,60 @@
+name = "Stone Wall"
+drop_location = "Terminal Delirium, Third Dance Bonus Chest"
+enhancement_bonus = 6
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Stone"
+minimum_level = 18
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 40
+armor_check_penalty = -7
+armor_type = "Shield"
+damage_reduction = 14
+max_dex_bonus = 2
+shield_bonus = 16
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spearblock V"
+
+[[effect]]
+name = "Axeblock V"
+
+[[effect]]
+name = "Hardened Exterior"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Orlassk's Prison"
+
+[[effect]]
+name = "Stone Paws"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "third dance bonus chest"
+kind = "quest"
+loot_type = "chest"
+name = "Terminal Delirium"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

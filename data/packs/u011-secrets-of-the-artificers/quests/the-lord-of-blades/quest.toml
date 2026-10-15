@@ -1,0 +1,22 @@
+name = "The Lord of Blades"
+bestowed_by = "Kenneth d'Cannith"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+is_raid = true
+pack = "Secrets of the Artificers"
+patron = "House Cannith"
+zone = "Eldritch Site Prime"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Lord_of_Blades"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 20

@@ -1,0 +1,52 @@
+name = "Iridiscent Fang"
+description = """
+Spell Focus Mastery +5.
+On quarterstaff also +5 Exceptional bonus to Spell Critical Chance."""
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Exceptional"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = [
+    "Weapon1",
+    "Quarterstaff",
+]
+req_type = "ItemTypeInSlot"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Iridescent Fang"
+reason = "The wiki spells it Iridiscent Fang, where Maetrim spells it Iridescent."
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-10-02"
+qualifier = 'family "DinosaurBone"'
+
+[[slot]]
+slot = "isle of dread: fang (weapon)"

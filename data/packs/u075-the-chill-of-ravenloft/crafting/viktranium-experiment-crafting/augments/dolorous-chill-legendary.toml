@@ -1,0 +1,18 @@
+name = "Dolorous Chill (Legendary)"
+description = """
+Adds Chaotic alignment bypass. Your attacks and spells have a chance to inflict ten
+stacks of Cold damage over time.
+(Undocumented: Grants Alchemical Water Attunement)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Chaotic"
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

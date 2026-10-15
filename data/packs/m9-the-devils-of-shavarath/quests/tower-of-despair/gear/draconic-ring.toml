@@ -1,0 +1,60 @@
+name = "Draconic Ring"
+description = """
+This simple gold ring belonged to a member of the ancient order of Purple Dragon
+Knights, an order heralded as heroes even before they journeyed to Shavarath
+to assist the Angelic Host."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Purple Dragon Knight"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    10,
+    10,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Purple Dragon Knight - 2 Piece bonus"
+effect_type = "ThreatBonusMelee"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Purple Dragon Knight - 2 Piece bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

@@ -1,0 +1,32 @@
+name = "Ruby of the Iron Hand"
+description = """
+Cold Iron: This iron mined deep underground, known for its effectiveness against
+fey creatures, is forged at a lower temperature to preserve its delicate properties.
+When combined with Good damage types, Cold Iron weapons are able to overcome the
+damage reduction of most Demons like Fire Reavers or Flesh Renders. See Monster
+DR and weaknesses for specifics.
+Drops in: Flurry: Snowpeaks Festival Trader"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Cold Iron"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+kind = "event"
+name = "Snowpeaks Festival"

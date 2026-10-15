@@ -1,0 +1,13 @@
+name = "Amulet of Natural Armor"
+description = "This magical amulet increases the natural armor of its wearer by 1."
+drop_location = "Special event items, DDO:Stormreach Pre Order Purchase Bonus Item"
+icon = "Necklace_37"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Neck"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 1

@@ -1,0 +1,1320 @@
+[[row]]
+name = "Amaunator's Flames"
+acquire = "Train"
+description = """
+You are a devoted follower of Amaunator, and your faith has been rewarded.
+Toggling this on gives you Amaunator's Flames: You are wreathed in flames that
+deal 1d8 fire damage enemies who hit you, and provide a Sacred bonus that
+reduces 25% cold damage."""
+icon = "AmaunatorsBrilliance"
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Absorption"
+value = 25
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.modifier.requirement]]
+items = ["Amaunator's Flames"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Amaunator"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.stance]]
+name = "Amaunator's Flames"
+description = """
+Toggling this on gives you Amaunator's Flames: You are wreathed in flames that
+deal 1d8 fire damage enemies who hit you, and provide a Sacred bonus that
+reduces 25% cold damage."""
+icon = "AmaunatorsBrilliance"
+
+[[row]]
+name = "Aureon's Instruction"
+acquire = "Train"
+description = """
+You are a devoted follower of Aureon and your faith has been rewarded.
+Activate this ability to channel the power of Aureon's wisdom for 24 seconds
+plus 6 seconds per Religious Lore feat you have. In this state, you gain
++4 Wisdom, +3 to Spell Penetration, +2 to your effective level for Turn Undead,
++4 to maximum Hit Dice affected when using Turn Undead and +4 to the total
+Hit Dice affected by Turn Undead."""
+icon = "Aureon"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Wisdom"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Penetration"
+value = 3
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Turn Undead Level"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Turn Undead Max Dice"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Turn Undead Dice"
+value = 4
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["Aureon's Instruction"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[row.modifier.requirement]]
+items = ["Aureon's Instruction"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Turn Undead Level"
+effect_type = "TurnLevelBonus"
+
+[[row.modifier.requirement]]
+items = ["Aureon's Instruction"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Turn Undead Max Dice"
+effect_type = "TurnMaxDice"
+
+[[row.modifier.requirement]]
+items = ["Aureon's Instruction"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Turn Undead Dice"
+effect_type = "TurnDiceBonus"
+
+[[row.modifier.requirement]]
+items = ["Aureon's Instruction"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Aureon"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.stance]]
+name = "Aureon's Instruction"
+description = """
+You are a devoted follower of Aureon and your faith has been rewarded.
+Activate this ability to channel the power of Aureon's wisdom for 24 seconds
+plus 6 seconds per Religious Lore feat you have. In this state, you gain
++4 Wisdom, +3 to Spell Penetration, +2 to your effective level for Turn Undead,
++4 to maximum Hit Dice affected when using Turn Undead and +4 to the total
+Hit Dice affected by Turn Undead."""
+icon = "Aureon"
+
+[[row]]
+name = "Bladesworn Transformation"
+acquire = "Train"
+description = """
+You are a devoted follower of the Lord of Blades and your faith has been rewarded.
+Activate this ability to attempt to become a juggernaut of destruction for 24
+seconds plus 6 seconds per Religious Lore feat you have. While transformed,
+you have a +4 Profane bonus to Strength, +4 natural armor bonus to AC, a +4
+profane bonus on damage rolls, +10 enhancement bonus to Will saves against
+mind affecting magic and proficiency in all simple and martial weapons.
+Your base attack bonus equals your level. You lose your spellcasting ability.
+You have immunity to critical hits and sneak attacks, but cannot be healed by
+healing spells."""
+icon = "LordOfBlades"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Strength"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Natural Armor"
+value = 4
+
+[[row.effect]]
+bonus_type = "Profane"
+effect = "Damage Bonus"
+value = 4
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["Bladesworn Transformation"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Natural Armor"
+effect_type = "NaturalArmor"
+
+[[row.modifier.requirement]]
+items = ["Bladesworn Transformation"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Bladesworn Transformation"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "OverrideBAB"
+
+[[row.modifier.requirement]]
+items = ["Bladesworn Transformation"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Battle Axe",
+    "Falchion",
+    "Great Axe",
+    "Great Club",
+    "Great Sword",
+    "Hand Axe",
+    "Heavy Pick",
+    "Kukri",
+    "Light Hammer",
+    "Light Pick",
+    "Longbow",
+    "Longsword",
+    "Maul",
+    "Rapier",
+    "Scimitar",
+    "Shortsword",
+    "Shortbow",
+    "Throwing Axe",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[row.modifier.requirement]]
+items = ["Bladesworn Transformation"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Lord of Blades"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.stance]]
+name = "Bladesworn Transformation"
+description = """
+You become a juggernaut of destruction for 24 seconds plus 6 seconds per
+Religious Lore feat you have. While transformed, you have a +4 Profane bonus
+to Strength, +4 natural armor bonus to AC, a +4 profane bonus on damage rolls,
++10 enhancement bonus to Will saves against mind affecting magic and proficiency
+in all simple and martial weapons.
+Your base attack bonus equals your level. You lose your spellcasting ability.
+You have immunity to critical hits and sneak attacks, but cannot be healed by
+healing spells."""
+icon = "LordOfBlades"
+
+[[row]]
+name = "Blessing of Silvanus"
+acquire = "Train"
+description = """
+You are a devoted follower of Silvanus and your faith has been rewarded.
+Toggling this on gives you Blessing of Silvanus: You permanently gain a
++4 natural armor bonus to AC and Mauls you wield gain +2 to their Critical Threat Range."""
+icon = "Silvanus"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Natural Armor"
+value = 4
+
+[[row.effect]]
+effect = "Critical Threat Range (Maul)"
+value = 2
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Natural Armor"
+effect_type = "NaturalArmor"
+
+[[row.modifier.requirement]]
+items = ["Blessing of Silvanus"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Critical Threat Range (Maul)"
+effect_type = "Weapon_CriticalRange"
+targets = ["Maul"]
+
+[[row.modifier.requirement]]
+items = ["Blessing of Silvanus"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Silvanus"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.stance]]
+name = "Blessing of Silvanus"
+description = """
+You are a devoted follower of Silvanus and your faith has been rewarded.
+Toggling this on gives you Blessing of Silvanus: You permanently gain a
++4 natural armor bonus to AC and Mauls you wield gain +2 to their Critical Threat Range."""
+icon = "Silvanus"
+
+[[row]]
+name = "Ever Watchful"
+acquire = "Train"
+description = """
+You are a devoted follower of Helm and your faith has been rewarded.
+Activate this ability to draw upon the vigilance of Helm for 24 seconds plus
+6 seconds per Religious Lore feat you have. In this state, you gain True Seeing,
++5 Sacred bonus to Spot and Search, +4 Wisdom, +5 to Fortitude saves and PRR
+equal to the number of Religious Lore feats you have."""
+icon = "Helm"
+
+[[row.effect]]
+bonus_type = "Sacred"
+effect = "Spot"
+value = 5
+
+[[row.effect]]
+bonus_type = "Sacred"
+effect = "Search"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Wisdom"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortitude Save"
+value = 5
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Sacred"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Search",
+]
+
+[[row.modifier.requirement]]
+items = ["Ever Watchful"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["Ever Watchful"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier.requirement]]
+items = ["Ever Watchful"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "FeatCount"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+]
+bonus_type = "Feat"
+effect_type = "PRR"
+stack_source = "Religious Lore"
+
+[[row.modifier.requirement]]
+items = ["Ever Watchful"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Favored by Helm"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.stance]]
+name = "Ever Watchful"
+description = """
+You are a devoted follower of Helm and your faith has been rewarded.
+Activate this ability to draw upon the vigilance of Helm for 24 seconds plus
+6 seconds per Religious Lore feat you have. In this state, you gain True Seeing,
++5 Sacred bonus to Spot and Search, +4 Wisdom, +5 to Fortitude saves and PRR
+equal to the number of Religious Lore feats you have."""
+icon = "Helm"
+
+[[row]]
+name = "Luck of Olladra"
+acquire = "Train"
+description = """
+Luck of Olladra: You are a devoted follower of Olladra and your faith has been rewarded.
+Activate this ability to heal yourself or an ally to full health and bestow
++1d6 Luck bonus to each Ability Score, lasting 24 seconds plus 6 seconds per
+Religious Lore feat you have."""
+icon = "Olladra"
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row]]
+name = "No Deity Feat Available"
+acquire = "Train"
+description = """
+You have selected a "Deity" feat in a standard feat slot earlier in this build.
+This stops you from training a Deity feat at this time. This feat slot will
+not be present in game. You can gain a feat slot by using that other slot for a
+different feat if you can move the feats as your build needs them."""
+icon = "NotARealFeat"
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Search the Soul"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Aureon's Instruction"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["The Blood is The Life"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Bladesworn Transformation"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Luck of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Onatar's Forge"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Silver Flame Exorcism"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Undying Call"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Unyielding Sovereignty"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Vulkoor's Avatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Amaunator's Flames"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Ever Watchful"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Blessing of Silvanus"]
+req_type = "Feat"
+
+[[row]]
+name = "Onatar's Forge"
+acquire = "Train"
+description = """
+You are a devoted follower of Onatar and your faith has been rewarded.
+Activate this ability to channel the power of Onatar's mighty forge for 24
+seconds plus 6 seconds per Religious Lore feat you have. In this state, you
+gain +3 to tactical feat DCs, +10 Melee Power, +10 Repair Spell Power,
++10 Rust Spell Power and +10 Fire Spell Power. If you are a Warforged or
+otherwise already benefit from Repair, you gain +30 Repair Amplification."""
+icon = "Onatar"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Tactics"
+value = 3
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Melee Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Repair Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Repair Amplification"
+value = 30
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Tactics"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[row.modifier.requirement]]
+items = ["Onatar's Forge"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[row.modifier.requirement]]
+items = ["Onatar's Forge"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[row.modifier.requirement]]
+items = ["Onatar's Forge"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[row.modifier.requirement]]
+items = ["Onatar's Forge"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.stance]]
+name = "Onatar's Forge"
+description = """
+You are a devoted follower of Onatar and your faith has been rewarded.
+Activate this ability to channel the power of Onatar's mighty forge for 24
+seconds plus 6 seconds per Religious Lore feat you have. In this state, you
+gain +3 to tactical feat DCs, +10 Melee Power, +10 Repair Spell Power,
++10 Rust Spell Power and +10 Fire Spell Power. If you are a Warforged or
+otherwise already benefit from Repair, you gain +30 Repair Amplification."""
+icon = "Onatar"
+
+[[row]]
+name = "Search the Soul"
+acquire = "Train"
+description = """
+You are seeking guidance to new paths of Faith.
+Passive: You gain +3 to the Concentration skill. As this Feat has no particular
+required Deity, while you have this feat (and assuming you meet all other
+requirements), you can exchange your Deity with a Feat Exchange (using normal
+Feat Exchange rules and costs)."""
+icon = "SearchTheSoul"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Concentration"
+value = 3
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Concentration"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Search the Soul"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Aureon's Instruction"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["The Blood is The Life"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Bladesworn Transformation"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Luck of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Onatar's Forge"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Silver Flame Exorcism"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Undying Call"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Unyielding Sovereignty"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Vulkoor's Avatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Amaunator's Flames"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Ever Watchful"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Blessing of Silvanus"]
+req_type = "Feat"
+
+[[row]]
+name = "Silver Flame Exorcism"
+acquire = "Train"
+description = """
+You are a devoted follower of the Silver Flame and your faith has been rewarded.
+Activate this ability to attempt to exorcise an extra-planar creature, which
+is entirely consumed in holy fire on a failed Will save or savagely burned by
+the light of the Silver Flame. A successful Fortitude save reduces the damage
+to half. The Save DC for this ability is 10 + Cleric Level + Charisma Modifier."""
+icon = "SilverFlame"
+
+[[row.dc]]
+name = "Silver Flame Exorcism"
+amount = [10]
+class_level = "Cleric"
+dc_type = "Half Damage"
+dc_versus = "Will"
+description = """
+Activate this ability to attempt to exorcise an extra-planar creature, which
+is entirely consumed in holy fire on a failed Will save or savagely burned by
+the light of the Silver Flame. A successful Fortitude save reduces the damage
+to half."""
+icon = "SilverFlame"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row]]
+name = "The Blood is The Life"
+acquire = "Train"
+description = """
+You are a devoted follower of The Blood of Vol and your zeal has been rewarded.
+Activate this ability to draw upon the power within your own blood for 24
+seconds plus 6 seconds per Religious Lore feat you have. In this state, you
+gain +4 Constitution, 100% Fortification, +10 to Fortitude Saves, PRR and MRR
+equal to the number of Religious Lore feats you have. While in this state and
+have a Dagger in your main hand, you also gain Vampirism, stacking with other
+sources of Vampirism."""
+icon = "TheBloodIsTheLife"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Constitution"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortification"
+value = 100
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortitude Save"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 20
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["The Blood is The Life"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Feat"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[row.modifier.requirement]]
+items = ["The Blood is The Life"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier.requirement]]
+items = ["The Blood is The Life"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier.requirement]]
+items = ["The Blood is The Life"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[row.modifier.requirement]]
+items = ["The Blood is The Life"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.stance]]
+name = "The Blood is The Life"
+description = """
+You are a devoted follower of The Blood of Vol and your zeal has been rewarded.
+Activate this ability to draw upon the power within your own blood for 24
+seconds plus 6 seconds per Religious Lore feat you have. In this state, you
+gain +4 Constitution, 100% Fortification, +10 to Fortitude Saves, PRR and MRR
+equal to the number of Religious Lore feats you have. While in this state and
+have a Dagger in your main hand, you also gain Vampirism, stacking with other
+sources of Vampirism."""
+icon = "TheBloodIsTheLife"
+
+[[row]]
+name = "Undying Call"
+acquire = "Train"
+description = """
+You are a devoted follower of the Undying Court and your faith has been rewarded.
+Activate this ability to lead a dead ally's spirit back to this world, acting
+as a True Resurrection on high elven spirits or a Raise Dead for others."""
+icon = "Undying"
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "True Resurrection",
+    "None",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Undying Court"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row]]
+name = "Unyielding Sovereignty"
+acquire = "Train"
+description = """
+You are a devoted follower of the Sovereign Host and your faith has been rewarded.
+Activate this ability to fully heal hit point damage done to a targeted ally,
+remove ability damage, death penalty effects, negative levels and the conditions
+blinded, confused, dazed, dazzled, deafened, diseased, exhausted, fatigued,
+feebleminded, insanity, nauseated, poisoned and stunned."""
+icon = "SovereignHost"
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Unyielding Sovereignty",
+    "None",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Sovereign Host"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row]]
+name = "Vulkoor's Avatar"
+acquire = "Train"
+description = """
+You are a devoted follower of Vulkoor and your faith has been rewarded.
+Activate this ability to ask Vulkoor to send one of his servants to destroy your
+enemies. Duration: 10 minutes"""
+icon = "Vulkoor"
+
+[[row.group]]
+group_name = "Deity"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Vulkoor"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Cleric"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[row.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6

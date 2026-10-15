@@ -1,0 +1,37 @@
+name = "Legendary Cursebane Ring"
+description = """
+This ring has a layer of purple string woven into it. When worn, the skies look
+just a little brighter."""
+drop_location = "Oath of Vengeance, End chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Curse Resistance"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[effect]]
+name = "Deathblock"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oath of Vengeance"

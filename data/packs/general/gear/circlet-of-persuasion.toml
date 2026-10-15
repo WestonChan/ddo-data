@@ -1,0 +1,11 @@
+name = "Circlet of Persuasion"
+description = "A circlet of silver chain holding a glowing green gem."
+drop_location = "Random, any ~level 7 chest"
+icon = "Helmet_36"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 7
+slot = "Head"
+
+[[effect]]
+name = "Persuasion"

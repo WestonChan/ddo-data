@@ -1,0 +1,194 @@
+[[row]]
+name = "Embraced by Light: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "EmbracedByLight"
+menu = "Ravenloft"
+set = "Embraced by Light"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Embraced by Light: Charisma: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Embraced by Light: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "EmbracedByLight"
+menu = "Ravenloft"
+set = "Embraced by Light"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Embraced by Light: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Embraced by Light: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "EmbracedByLight"
+menu = "Ravenloft"
+set = "Embraced by Light"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Embraced by Light: Wisdom: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Embraced by Light: +10 Healing Amplification"
+description = """
++10 Healing Amplification
+Rare: +2 MRR"""
+icon = "EmbracedByLight"
+menu = "Ravenloft"
+set = "Embraced by Light"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Embraced by Light: Healing Amplification: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Embraced by Light: +12 Positive Spell Power"
+description = """
++12 light Spell power
+Rare: +4 Universal Spell power"""
+icon = "EmbracedByLight"
+menu = "Ravenloft"
+set = "Embraced by Light"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Embraced by Light: Positive Spell Power: Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Embraced by Light: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "EmbracedByLight"
+menu = "Ravenloft"
+set = "Embraced by Light"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Embraced by Light: MRR: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Embraced by Light: +4 Turn Undead"
+description = """
++4 to Turn Undead Checks
+Rare: +4 universal Spell power"""
+icon = "EmbracedByLight"
+menu = "Ravenloft"
+set = "Embraced by Light"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "TurnDiceBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Embraced by Light: Turn Undead: Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Embraced by Light: +9 Light Spell Power"
+description = """
++9 light Spell power
+Rare: +4 Universal Spell power"""
+icon = "EmbracedByLight"
+menu = "Ravenloft"
+set = "Embraced by Light"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Embraced by Light: Light Spell Power: Rare +4 UniversalSpell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

@@ -1,0 +1,2 @@
+name = "You gain +5 to Attack and Damage vs Tripped Targets"
+verbose_name_template = "You gain +5 to Attack and Damage vs Tripped Targets"

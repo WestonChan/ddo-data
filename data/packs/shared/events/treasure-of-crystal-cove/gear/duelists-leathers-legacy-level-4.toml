@@ -1,0 +1,76 @@
+name = "Duelist's Leathers (legacy) (level 4)"
+description = """
+When pirates who prefer light blades in battle need armor, this is the kind
+of item they will put their money on- a lightweight vest of leather or hide
+that allows plenty of stylish movement in combat."""
+drop_location = "Treasure of Crystal Cove, Turn in 500 Copper Doubloon 250 Silver Doubloon 15 Stolen Alabaster at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 1
+icon = "LightArmor_1b"
+is_legacy = true
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 3
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+2 Enhancement Bonus"
+description = "+2 Enhancement Bonus: +2 Enhancement bonus to Armor Class."
+icon = "Upgrade"
+min_level = 4
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Balance +7"
+description = "Balance +7: Passive: +7 Competence bonus to the Balance skill."
+icon = "Upgrade"
+min_level = 4
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Balance"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Competence"
+effect = "Balance"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

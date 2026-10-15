@@ -1,0 +1,10 @@
+name = "Shining Silver Scales"
+description_template = "This cloak is fashioned from shining silver Dragonscale, and is warded against the cold. {1}% Enhancement bonus to Cold absorption."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Shining Silver Scales +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Cold Absorption"

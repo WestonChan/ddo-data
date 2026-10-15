@@ -1,0 +1,50 @@
+name = "The Legendary Magic Conch"
+description = "This Conch Shell resonates with magical power."
+drop_location = "Dread Sea Scrolls, end chest"
+icon = "Trinket_57"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 29
+slot = "Trinket"
+
+[[clickie]]
+name = "Horn of Thunder"
+clickie = "Horn of Thunder"
+
+[[effect]]
+name = "Soundproof"
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Horn of Thunder"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dread Sea Scrolls"

@@ -1,0 +1,29 @@
+name = "Belt of Myriad Pockets"
+description = """
+One wonders where the items go when placed in the pockets... But they're always
+there when you go to retrieve them."""
+drop_location = "Swim at Your Own Risk, end chest"
+icon = "Belt_8"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 3
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Swim at Your Own Risk"

@@ -1,0 +1,3 @@
+name = "Wailing"
+description_template = "Shrieking weapons emit a haunting wail whenever they are used to make a successful attack. This wail deals an additional 3 to 18 sonic damage."
+verbose_name_template = "Wailing"

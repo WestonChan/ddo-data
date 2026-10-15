@@ -1,0 +1,87 @@
+[[row]]
+name = "Lionheart"
+description = """
+Imbues a single ally with great bravery, making him immune to fear for 1 minute per
+caster level."""
+icon = "Lionheart"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Resistance"
+description = """
+Imbues the ally with magical energy that protects from harm, granting them a +1
+Resistance bonus on saves (+2 at 6th level, +3 at 9th level)."""
+icon = "Resistance"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Resistance"
+effect_type = "SaveBonus"
+stack_source = "Unknown"
+targets = ["All"]
+
+[[row]]
+name = "Virtue"
+description = """
+Grants 10 temporary Hit Points plus 2 per caster level over level 4th (Maximum Hit
+Points 20.) to an ally."""
+icon = "Virtue"
+max_caster_level = 5
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]

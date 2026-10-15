@@ -1,0 +1,35 @@
+name = "Morleth's Docent"
+description = """
+This docent once belonged to a sorcerer that assisted the Silver Flame in fighting
+back an undead incursion."""
+drop_location = "Necropolis, Turn in Dark Scarab Powder"
+enhancement_bonus = 3
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 4
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[effect]]
+name = "Wizardry II"
+bonus_type = "Enhancement"
+value = 50
+
+[[effect]]
+name = "Lesser Arcane Sigil"
+bonus_type = "Enhancement"
+
+[[source]]
+kind = "vendor"
+name = "Squire Rale"
+
+[[source.price]]
+ingredient = "Dark Scarab Powder"
+quantity = 1

@@ -1,0 +1,25 @@
+name = "An Offering of Blood"
+bestowed_by = "Calyx Shattermoon"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "Demon Sands"
+patron = "The Free Agents"
+zone = "The Vulkoorim Spiral"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/An_Offering_of_Blood"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 21

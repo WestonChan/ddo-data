@@ -1,0 +1,27 @@
+name = "Hellfire Cloak"
+description = "This cloak is worn by the attendants of the bleakest ward in the asylum."
+drop_location = "The Missing Party, End chest"
+icon = "Cloak_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Back"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 17
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Missing Party"

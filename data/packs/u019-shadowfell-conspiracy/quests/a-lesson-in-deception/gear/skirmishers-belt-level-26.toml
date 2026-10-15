@@ -1,0 +1,22 @@
+name = "Skirmisher's Belt (Level 26)"
+drop_location = "A Lesson in Deception, End reward"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Waist"
+
+[[effect]]
+name = "Speed IX"
+value = 30
+value2 = 9
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 8
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "A Lesson in Deception"

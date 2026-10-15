@@ -1,0 +1,3 @@
+name = "Legendary Conditioning"
+description_template = "You have a +{1}% Legendary bonus to Maximum Hit Points."
+verbose_name_template = "Legendary Conditioning"

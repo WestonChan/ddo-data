@@ -1,0 +1,22 @@
+name = "Topaz of Augmented Summoning"
+description = """
+Grants the feat "Augment Summoning"
+Drops in U48: Any Feywild rare encounter chest."""
+family = "Named"
+icon = "Topaz"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Augment Summoning"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

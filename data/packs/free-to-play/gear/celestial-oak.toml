@@ -1,0 +1,72 @@
+name = "Celestial Oak"
+description = "This wooden shield is carved from strange wood of unknown origins."
+drop_location = "Legendary Hound of Xoriat, End chest and Legendary Tempest's Spine End chest"
+enhancement_bonus = 14
+icon = "Shield_1b"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Densewood"
+minimum_level = 27
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 18
+max_dex_bonus = 0
+shield_bonus = 19
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Healers Bounty"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Quality"
+value = 66
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Hound of Xoriat"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Tempest's Spine"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.4
+handedness = "Off-hand"
+weapon_type = "Small Shield"

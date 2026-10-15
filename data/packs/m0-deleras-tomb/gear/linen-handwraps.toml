@@ -1,0 +1,31 @@
+name = "Linen Handwraps"
+description = """
+Filthy bandages that smell of gravedust and mildew. When worn, the wraps seem
+to enhance the strength of the wearer."""
+drop_location = "Delera's Tomb, End reward"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Curse of Clumsiness"
+bonus_type = "Penalty"
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Delera's Tomb"

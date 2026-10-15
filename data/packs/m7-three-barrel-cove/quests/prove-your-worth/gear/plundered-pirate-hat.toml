@@ -1,0 +1,35 @@
+name = "Plundered Pirate Hat"
+description = """
+Stolen fair and square from a long string of disreputable pirates, tracing all
+the way back to a surly Bugbear deckhand in Lhazaar."""
+drop_location = "Prove Your Worth (epic), end chest"
+icon = "Helmet_46"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 24
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Prove Your Worth"

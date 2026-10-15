@@ -1,0 +1,26 @@
+name = "Oilskin Tunic"
+description = "Slippery leather armor that appears to be coated in an acid-repelling substance."
+drop_location = "Cult of the Six, End reward"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

@@ -1,0 +1,78 @@
+name = "Echo of The Tome of Strahd"
+description = """
+The book, written by Strahd himself, is bound in a thick leather cover with
+steel hinges and castenings. It seems to hold some trace of the evil power
+of its owner."""
+drop_location = "The Curse of Strahd, Raid Warded Chest"
+icon = "Orb_4"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 28
+slot = "Off Hand"
+
+[[clickie]]
+name = "Dark Discorporation"
+clickie = "Dark Discorporation"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 28
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Spell Lore V"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Taint of Evil"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    29,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Dark Discorporation"]
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

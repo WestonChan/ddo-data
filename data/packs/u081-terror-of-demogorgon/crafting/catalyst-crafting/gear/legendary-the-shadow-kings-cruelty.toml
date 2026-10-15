@@ -1,0 +1,50 @@
+name = "Legendary The Shadow King's Cruelty"
+description = """
+A personal gift from the Demon Prince of Pleasure himself, this sultry armor
+is both impressive to look at and comfortable to wear. When you see yourself
+in the mirror, it's hard to look away.nnPerhaps this changed form is the reason
+he left it to you. As you continue to stare, you begin to understand."""
+drop_location = "Catalyst Crafting, Turn in Legendary Graz'zt's Habiliment, its Legendary Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 16
+icon = "LightArmor_8"
+item_category = "Armor"
+item_type = "Light"
+material = "Red Dragonscale"
+minimum_level = 35
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 34
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 24
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 84
+
+[[effect]]
+name = "Revel in Blood (Slashing)"
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

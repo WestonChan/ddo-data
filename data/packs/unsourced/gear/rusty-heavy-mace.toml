@@ -1,0 +1,25 @@
+name = "Rusty Heavy Mace"
+description = """
+This mace is rather heavy, but the head is rusted with age. Double-click on
+this weapon to equip it."""
+drop_location = "Shipwreck Shore, Jeets Shimis"
+icon = "HeavyMace_3h"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

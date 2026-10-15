@@ -1,0 +1,50 @@
+name = "Madness of the Demon Lords"
+description = """
+This mighty blade has become an embodiment of the madness of the Demon Lords.
+Some of that madness seeps into you."""
+drop_location = "Catalyst Crafting, Turn in Insanity, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 5
+icon = "Greatsword_15"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Wild Frenzy"
+value = 50
+
+[[effect]]
+name = "Bleeding 3"
+
+[[effect]]
+name = "Unbalancing"
+
+[[effect]]
+name = "Unwieldy"
+bonus_type = "Penalty"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "Two-handed"
+weapon_type = "Great Sword"

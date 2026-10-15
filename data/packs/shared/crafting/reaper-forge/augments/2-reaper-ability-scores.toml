@@ -1,0 +1,21 @@
+name = "+2 Reaper Ability Scores"
+description = "+2 Reaper bonus to all Ability Scores"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "All Ability Scores"
+bonus_type = "Reaper"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Reaper"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: reaper helmet"

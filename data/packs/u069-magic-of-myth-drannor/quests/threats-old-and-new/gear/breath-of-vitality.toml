@@ -1,0 +1,43 @@
+name = "Breath of Vitality"
+description = "Unparalleled life."
+drop_location = "Threats Old and New, Raid Warded chest"
+icon = "Necklace_14c"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 33
+slot = "Neck"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Quality"
+value = 9
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Quality"
+value = 40
+
+[[effect]]
+name = "Divine Augmentation IX"
+
+[[socket]]
+slot = "crafting: sealed in undeath"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Threats Old and New"

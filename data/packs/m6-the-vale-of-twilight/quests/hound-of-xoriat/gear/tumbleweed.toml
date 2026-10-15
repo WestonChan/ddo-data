@@ -1,0 +1,32 @@
+name = "Tumbleweed"
+description = """
+This silver ring has a series of small barbs engraved on the outside of the
+ring. It was said to have been worn by an infamous cutpurse that disappeared
+investigating the ruins beneath Stormreach."""
+drop_location = "Hound of Xoriat, Raid Warded chest"
+icon = "Ring_12e"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 10
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hound of Xoriat"

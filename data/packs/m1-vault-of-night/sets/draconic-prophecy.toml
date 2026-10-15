@@ -1,0 +1,41 @@
+name = "Draconic Prophecy"
+icon = "Kundarak"
+
+[[item]]
+name = "Azure Necklace of Prophecy"
+
+[[item]]
+name = "Crimson Necklace of Prophecy"
+
+[[item]]
+name = "Dragon's Eye"
+
+[[item]]
+name = "Silver Necklace of Prophecy"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"

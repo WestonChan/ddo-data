@@ -1,0 +1,22 @@
+name = "Gateway to Khyber"
+bestowed_by = "Clipse"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Vault of Night"
+patron = "House Kundarak"
+zone = "Blackheart Encampment"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Gateway_to_Khyber"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

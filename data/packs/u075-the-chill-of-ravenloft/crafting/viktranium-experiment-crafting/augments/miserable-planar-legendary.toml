@@ -1,0 +1,36 @@
+name = "Miserable Planar (Legendary)"
+description = "This weapon bypasses alignment based damage reduction."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Chaotic"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Evil"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Lawful"
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

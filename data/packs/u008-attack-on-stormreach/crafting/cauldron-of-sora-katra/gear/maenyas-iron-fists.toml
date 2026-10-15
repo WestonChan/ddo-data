@@ -1,0 +1,38 @@
+name = "Maenya's Iron Fists"
+description = """
+This pair of gloves, said to have been originally crafted for the hag queen
+Sora Maenya, has been upgraded. They bestow the wearer with fearsome strength
+and the ability to terrorize foes."""
+drop_location = "Cauldron of Sora Katra, Upgraded from Maenya's Fists, a Mark of Rhesh Turakbar, and a Mark of Bal Molesh ."
+icon = "Gloves_3b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"

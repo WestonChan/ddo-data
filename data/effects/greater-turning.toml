@@ -1,0 +1,11 @@
+name = "Greater Turning"
+description_template = "Increases total number of Turn Undead uses by 4, once wielder rests. If you unequip the item you will lose these turns."
+home_bonus_type = "Equipment"
+verbose_name_template = "Greater Turning +4"
+
+[[bonus]]
+amount_from = 0
+constant = 4
+rounding = "down"
+scale = 1.0
+target = "Turn Undead Bonus"

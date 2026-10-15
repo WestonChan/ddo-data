@@ -1,0 +1,28 @@
+name = "Scale: Force Spell Critical Damage"
+description = "+20% Enhancement bonus to Force Spell Critical Damage"
+family = "DinosaurBone"
+icon = "ScalePurple"
+min_level = 31
+
+[[effect]]
+name = "Force Spell Critical Damage"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Force Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[slot]]
+slot = "isle of dread: scale (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact scale (accessory)"

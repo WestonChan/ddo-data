@@ -1,0 +1,66 @@
+name = "Smedgar's Necklace"
+description = """
+This slender necklace was worn by the Virtuoso, Smedgar. His voice, already
+inspiring, obtained a near magical quality."""
+drop_location = "Bastion of Power, Any end chest ; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 48
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Virtuoso"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Virtuoso - 2 Piece bonus"
+effect_type = "SongCount"
+extra_types = ["SongCount"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    -2,
+    -2,
+]
+bonus_type = "Equipment"
+display_name = "Virtuoso - 2 Piece bonus"
+effect_type = "MetamagicCostExtend"
+extra_types = ["MetamagicCostExtend"]
+
+[[modifier.requirement]]
+items = ["Extend"]
+req_type = "Stance"
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bastion of Power"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

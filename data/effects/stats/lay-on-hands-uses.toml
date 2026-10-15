@@ -1,0 +1,6 @@
+name = "Lay on Hands Uses"
+category = "other"
+default_value = 5
+description_template = "You have {1} Lay on Hands charges."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Extra Lay on Hands +{1}"

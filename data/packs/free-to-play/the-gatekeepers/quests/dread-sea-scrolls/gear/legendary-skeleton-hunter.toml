@@ -1,0 +1,59 @@
+name = "Legendary Skeleton Hunter"
+accepts_sentience = true
+description = "This Maul seeks to crumble all bones laid before it."
+drop_location = "Dread Sea Scrolls, end chest"
+enhancement_bonus = 15
+icon = "Maul_2a"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Flametouched Iron"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Bonesplitter"
+
+[[effect]]
+name = "Fracturing 6"
+
+[[effect]]
+name = "Ghostbane 6"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Undead Bane 6"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dread Sea Scrolls"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Maul"

@@ -1,0 +1,25 @@
+name = "Palace of Stone"
+bestowed_by = "Durk the Deranged"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Heart of Madness"
+patron = "The Twelve"
+zone = "Palace of Stone"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Palace_of_Stone"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 26

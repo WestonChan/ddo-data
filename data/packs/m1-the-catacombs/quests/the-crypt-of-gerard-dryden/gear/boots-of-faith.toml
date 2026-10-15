@@ -1,0 +1,25 @@
+name = "Boots of Faith"
+description = "These boots inspire their wearer to ascend great heights."
+drop_location = "The Crypt of Gerard Dryden, End chest"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Feet"
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Feather Falling"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crypt of Gerard Dryden"

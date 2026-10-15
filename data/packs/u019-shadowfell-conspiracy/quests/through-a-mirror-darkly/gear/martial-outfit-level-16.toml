@@ -1,0 +1,27 @@
+name = "Martial Outfit (Level 16)"
+description = """
+This item currently cannot be fed to sentient jewels and probably should be
+able to."""
+drop_location = "Through a Mirror Darkly, End reward"
+icon = "Cloth_2a"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 7
+
+[[effect]]
+name = "Heroism"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Through a Mirror Darkly"

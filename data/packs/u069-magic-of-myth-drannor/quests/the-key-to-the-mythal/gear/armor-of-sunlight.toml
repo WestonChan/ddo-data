@@ -1,0 +1,50 @@
+name = "Armor of Sunlight"
+description = """
+As the morning brings comfort to those who lived through the night, this armor
+brings fire and light."""
+drop_location = "The Key to the Mythal, end chest"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Key to the Mythal"

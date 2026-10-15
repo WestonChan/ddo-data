@@ -1,0 +1,43 @@
+name = "Legendary Boots of the Rose"
+description = """
+These boots are crafted of swirling thorns and rose petals, hand grown from
+some druidic magic."""
+drop_location = "Growing Pains, end chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 31
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 5
+value2 = 8
+
+[[effect]]
+name = "Hide"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Insight"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Growing Pains"

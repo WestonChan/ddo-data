@@ -1,0 +1,552 @@
+[[row]]
+name = "Cat's Grace"
+description = "An ally gains a +4 Enhancement bonus to Dexterity for 1 minute per caster level."
+icon = "CatsGrace"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row]]
+name = "Chain Missiles"
+description = """
+Fires a cluster of three magical energy darts that unerringly strikes its target
+inflicting 4 to 5 force damage. Each missile striking your target, explode
+outwards, striking other creatures near the primary target in a small radius.
+D&D Dice: Each missile deals 1d2+3 force damage."""
+icon = "ChainMissiles"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 9
+bonus_dice_number = 3
+bonus_dice_sides = 2
+damage = "Force"
+per_caster_levels = 2
+spell_power = "Force"
+
+[[row]]
+name = "Crushing Despair"
+description = """
+An invisible cone of despair gives the targets -2 penalties to attack, saving throws,
+skill checks and weapon damage. A successful Will save negates this effect.
+This spell also applies a Weaken Will effect on all targets (-5 to will save
+for 15 seconds) whether they succeed or fail their saving throw."""
+icon = "CrushingDespair"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Daze Monster"
+description = """
+Clouds the mind of an enemy so that it takes no actions for 6 seconds. Creatures of 7 or more Hit
+Die are not affected. A successful Will save negates this effect. It weakens the
+Will save for a brief period of time even in a successful save."""
+icon = "DazeMonster"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Feather Fall"
+description = "Causes an ally to fall slowly, although faster than feathers typically do."
+icon = "FeatherFall"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling Damage"]
+
+[[row]]
+name = "Force Missiles"
+description = """
+A powerful missile of magical force darts from your fingertips and unerringly strikes
+its target, inflicting 1d4+1 points of force damage per 2 caster levels.
+You gain one additional missile at levels 4, 8, and 12 for a maximum of 4 missiles."""
+icon = "ForceMissiles"
+max_caster_level = 12
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+base_dice_bonus = 1
+base_dice_number = 1
+base_dice_sides = 4
+damage = "Force"
+per_caster_levels = 2
+spell_power = "Force"
+
+[[row]]
+name = "Fox's Cunning"
+description = "An ally gains a +4 Enhancement bonus to Intelligence for 1 minute per caster level."
+icon = "FoxsCunning"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row]]
+name = "Freedom of Movement"
+description = """
+This spell enables an ally to move and attack normally for the duration of the spell,
+even under the influence of magic or conditions that normally impedes movement,
+such as Entangled, Paralyzed, or Solid Fog."""
+icon = "FreedomOfMovement"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Freedom of Movement"]
+
+[[row]]
+name = "Frost Lance"
+description = """
+Shoots a target with a freezing energy spear, dealing 1d6 + 4 of Cold damage
+per 2 caster levels on impact. The number of lances increases by 1 for every
+4 levels beyond 3rd, to a maximum of 3 at 11th level. Each lances damage also
+increases by 1 every 2 caster levels.
+A successful Fortitude saves reduces the damage by half.
+As a Ray this spell has double range."""
+icon = "FrostLance"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+per_caster_levels = 2
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Evocation"]
+
+[[row]]
+name = "Heroism"
+description = """
+This spell imbues a single ally creature with great bravery and Morale in battle.
+The target gains a +2 Morale bonus on attack rolls, saving throws, and skill checks."""
+icon = "Heroism"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Morale"
+effect_type = "Weapon_Attack"
+extra_types = [
+    "SaveBonus",
+    "SkillBonus",
+]
+targets = ["All"]
+
+[[row]]
+name = "Hold Person"
+description = """
+The enemy humanoid becomes paralyzed and freezes in place. It is aware, but it can
+take no actions for a maximum of 6 seconds per caster level. A successful Will
+save negates this effect. The enemy may attempt to make a new Will save every
+3 seconds. Humanoids include Kobolds, Goblinoids, player races except for
+Warforged, and more creatures. Attacks against a held opponent are treated as
+if the opponent is helpless."""
+icon = "HoldPerson"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Hypnotic Pattern"
+description = """
+A twisting pattern of subtle, shifting colors weaves through the air, fascinating
+targets within it. A successful Will save negates this effect. It weakens the
+Will save by 3 for a brief period of time even in a successful save.
+The spell's duration is 30 seconds."""
+icon = "HypnoticPattern"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Illusion"]
+
+[[row]]
+name = "Magic Missile"
+description = """
+A missile of magical energy darts forth and unerringly strikes its target inflicting
+1d2+3 force damage. For every 2 caster levels beyond first you gain an
+additional missile, up to a maximum of 5 missiles at 9th level and higher."""
+icon = "MagicMissile"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 2
+damage = "Force"
+per_caster_levels = 2
+spell_power = "Force"
+
+[[row]]
+name = "Merfolk's Blessing"
+description = "Gives an ally a +10 Enhancement bonus on Swim plus 1 for every 2 caster levels beyond 1st."
+icon = "MerfolksBlessing"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18,
+    19,
+    19,
+    20,
+    20,
+    21,
+    21,
+    22,
+    22,
+    23,
+    23,
+    24,
+    24,
+    25,
+    25,
+    26,
+    26,
+    27,
+    27,
+    28,
+    28,
+    29,
+    29,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Unknown"
+targets = ["Swim"]
+
+[[row]]
+name = "Phantasmal Killer"
+description = """
+A target who fails a Will saving throw followed by a failed Fortitude saving throw
+dies from fear. A successful Fortitude save still results in 1d3 + 1 damage per
+caster level. A Will save disbelieves the spell and negates ill effects."""
+icon = "PhantasmalKiller"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 3
+damage = "Bane"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negate"
+dc_versus = "Will"
+schools = [
+    "Illusion",
+    "Fear",
+]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = [
+    "Illusion",
+    "Fear",
+]
+
+[[row]]
+name = "Protection from Evil"
+description = """
+Creates a magical barrier that wards a target from attacks by Evil creatures.
+It grants a +2 Deflection bonus to Armor Class, and a +2 Resistance bonus to
+saves versus attacks from Evil creatures. The target is also warded from Evil
+magical controls and compulsions."""
+icon = "ProtectionFromEvil"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Deflection"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magical Controls and Compulsion"]
+
+[[row]]
+name = "Remove Curse"
+description = "Removes all curses on an ally. Counters and dispels Bestow Curse."
+icon = "RemoveCurse"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Repair Critical Damage"
+description = """
+Transmutes the structure of a living Construct ally to repair 4d6+8 Hit Points plus
+1 per caster level. (Maximum caster level 20.)"""
+icon = "RepairCriticalDamage"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 8
+base_dice_number = 4
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Rust"
+per_caster_levels = 1
+spell_power = "Rust"
+
+[[row]]
+name = "Repair Light Damage"
+description = """
+Transmutes the structure of a living Construct ally to repair 1d6+2 Hit Points plus
+1 per caster level."""
+icon = "RepairLightDamage"
+max_caster_level = 5
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 2
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Repair"
+spell_power = "Repair"
+
+[[row]]
+name = "Repair Serious Damage"
+description = """
+Transmutes the structure of a living Construct ally to repair 3d6+6 Hit Points plus
+1 per caster level. (Maximum caster level 15.)"""
+icon = "RepairSeriousDamage"
+max_caster_level = 15
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 3
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Repair"
+per_caster_levels = 1
+spell_power = "Repair"
+
+[[row]]
+name = "Scorching Ray"
+description = """
+Blasts a target with fiery rays, each doing 1d6+6 Fire damage on impact per
+2 caster levels on impact. The number of rays increases by 1 ray for every 4
+levels beyond 3rd, to a maximum of 3 rays at 11th level.
+Ray spells have double range."""
+icon = "ScorchingRay"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 1
+base_dice_sides = 6
+damage = "Fire"
+per_caster_levels = 2
+spell_power = "Fire"
+
+[[row]]
+name = "Tumble"
+description = "Gives an ally a +10 Enhancement bonus to the Skill Tumble."
+icon = "Tumble"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Tumble"]

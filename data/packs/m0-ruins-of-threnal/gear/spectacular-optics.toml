@@ -1,0 +1,22 @@
+name = "Spectacular Optics"
+description = """
+These lenses are enchanted to let their wearer glimpse a second into the future,
+allowing them to avoid traps and attacks."""
+drop_location = "The Abandoned Excavation, End reward"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Goggles"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

@@ -1,0 +1,29 @@
+name = "Bracelet of Friends"
+description = """
+This sparkling bracelet feels warm to the touch. The jewels seem to reach out
+to each other with an abstract pattern in the metal that makes you think of
+friendship and togetherness."""
+drop_location = "DDO Store"
+icon = "Trinket_64"
+item_category = "Jewelry"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Summon Party Member"
+clickie = "Summon Party Member"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    10,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Party Member"]
+
+[[source]]
+kind = "event"
+name = "Anniversary Card Collection"

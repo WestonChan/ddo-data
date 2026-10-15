@@ -1,0 +1,57 @@
+name = "Rahl's Might"
+description = """
+This versatile Monk weapon was the favored implement of a hill giant follower
+of the Path of Inevitable Dominion. Rahl's students created many of these bladed
+staves, altering their enchantments to suit their desires."""
+drop_location = "The Mindsunder, Disc locked optional end chest ; \n Chance on every 3rd completion of The Mindsunder"
+enhancement_bonus = 5
+icon = "Quarterstaff_6c"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "crafting: suppressed power"
+
+[[source]]
+chest = "disc locked optional end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mindsunder"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 11
+critical_multiplier = 3
+critical_threat_range = 0
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

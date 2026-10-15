@@ -1,0 +1,23 @@
+name = "Undeniable Truth"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Sun Elf"
+slot = "Waist"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

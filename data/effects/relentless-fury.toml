@@ -1,0 +1,3 @@
+name = "Relentless Fury"
+description_template = "While this item is equipped, any killing blows you strike against enemies may drive you into a furious rage, providing a 5% Enchantment damage bonus to your melee, ranged and unarmed attacks for 30 seconds. Slaying weaker opponents has a reduced chance of producing this effect."
+verbose_name_template = "Relentless Fury"

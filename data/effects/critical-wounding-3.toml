@@ -1,0 +1,3 @@
+name = "Critical Wounding 3"
+description_template = "This deadly weapon saps the health from your enemies, dealing 3 Constitution damage on each critical hit."
+verbose_name_template = "Critical Wounding 3"

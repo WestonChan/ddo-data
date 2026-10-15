@@ -1,0 +1,51 @@
+name = "Cormyrian Red Dragonscale Robe"
+description = "A finely crafted robe that includes many scales from a red dragon."
+drop_location = "Mikrom Sum: Purple Dragon Knight Patron Vendor"
+icon = "Cloth_7"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Red Dragonscale"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 9
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 10
+
+[[source]]
+kind = "crafting_system"
+name = "Mikrom Sum"

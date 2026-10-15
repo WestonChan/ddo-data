@@ -1,0 +1,23 @@
+name = "Horn: Dimensional Horn"
+description = "+5% Enhancement bonus to Dodge Bypass."
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[effect]]
+name = "Dodge Bypass"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Dodge Bypass"
+effect_type = "DodgeBypass"
+
+[[slot]]
+slot = "isle of dread: horn (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact horn (accessory)"

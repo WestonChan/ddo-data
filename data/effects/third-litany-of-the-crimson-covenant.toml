@@ -1,0 +1,3 @@
+name = "Third Litany of the Crimson Covenant"
+description_template = '"...and in its call can be heard the promise of eternal life." On Hit: Strip the vitality from your enemies, dealing 3 Constitution damage and reducing their Physical and Magical Resistance Ratings by 10.'
+verbose_name_template = "Third Litany of the Crimson Covenant"

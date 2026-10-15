@@ -1,0 +1,635 @@
+name = "Halfling"
+background = "HalflingBackground"
+icon = "Halfling"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Halfling: Luck I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1 to all Saving Throws"
+icon = "HalflingHalflingLuck"
+internal_name = "HalflingCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Halfling: Dexterity I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+internal_name = "HalflingCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["HalflingCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Luck II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1 to all Saving Throws"
+icon = "HalflingHalflingLuck"
+internal_name = "HalflingCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["HalflingCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Dexterity II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+internal_name = "HalflingCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["HalflingCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Luck III"
+cost_per_rank = [1]
+description = "+1 to all Saving Throws"
+icon = "HalflingHalflingLuck"
+internal_name = "HalflingCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["HalflingCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Jorasco Dragonmark Focus"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark use per day, +[1/2/3] Heal"
+icon = "HalflingJorascoDragonmarkFocus"
+internal_name = "HalflingJorascoDragonmarkFocus"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DragonmarkUse"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Heal"]
+
+[[enhancement.requirement]]
+items = ["Least Dragonmark of Healing"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Halfling: Stealthy"
+cost_per_rank = [1]
+description = """
++[1/2/3] Hide and Move Silently.
+Rank 3: Thrown attacks you perform while sneaking deal +1[W] damage."""
+icon = "HalflingStealthy"
+internal_name = "HalflingStealthy"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Dart",
+    "Shuriken",
+    "Throwing Axe",
+    "Throwing Dagger",
+    "Throwing Hammer",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Sneak"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Halfling: Acrobatic"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Balance, Jump, and Tumble. +[2/4/6] Armor Class while tumbling."
+icon = "HalflingAcrobatic"
+internal_name = "HalflingAcrobatic"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Tumbling"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Halfling: Cunning"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Bluff skill and to hit while performing Sneak Attacks."
+icon = "HalflingCunning"
+internal_name = "HalflingCunning"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Bluff"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+targets = ["All"]
+
+[[enhancement]]
+name = "Halfling: Bold"
+cost_per_rank = [1]
+description = """
+You overcome fear quickly
+Fear and shaken effects are removed from you after [12/6/3] seconds."""
+icon = "HalflingBold"
+internal_name = "HalflingBold"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement]]
+name = "Halfling: Lesser Dragonmark of Healing"
+arrows = [
+    "ArrowRight",
+    "ArrowUp",
+]
+cost_per_rank = [2]
+description = "Lesser Dragonmark Spell: Cure Serious Wounds."
+icon = "HalflingLesserDragonmarkOfHealing"
+internal_name = "HalflingLesserDragonmarkOfHealing"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cure Serious Wounds",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["HalflingJorascoDragonmarkFocus"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Break Out The Leeches"
+cost_per_rank = [1]
+description = """
+Lesser Dragonmark Spell: Positive Energy Leeches.
+Removes one negative level, one poison, and one disease from your living target once every 3 seconds.
+Duration is equal to your Heal skill.
+This ability shares a counter with Lesser Dragonmark of Healing."""
+icon = "HalflingBreakOutTheLeeches"
+internal_name = "HalflingBreakOutTheLeeches"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Bring Out the Leeches",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["HalflingLesserDragonmarkOfHealing"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Nimble Reaction"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Armor Maximum Dexterity Bonus and Maximum Dodge Bonus"
+icon = "HalflingNimbleReaction"
+internal_name = "HalflingNimbleReaction"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.requirement]]
+items = ["HalflingAcrobatic"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Guile I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 Sneak attack die"
+icon = "HalflingGuile"
+internal_name = "HalflingGuileI"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.requirement]]
+items = ["HalflingCunning"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Heroic Companion"
+cost_per_rank = [2]
+description = """
+Action Boost: Grants an ally +1[W],
++6 to hit and saving throws, +4% Dodge and +10 PRR.
+(Cooldown: 30 seconds)"""
+icon = "HalflingHeroicCompanion"
+internal_name = "HalflingHeroicCompanion"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = [
+    "HarperSeizeTheMoment",
+    "Heroic Companion",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Greater Dragonmark of Healing"
+cost_per_rank = [2]
+description = "Greater Dragonmark Spell: Heal."
+icon = "HalflingGreaterDragonmarkOfHealing"
+internal_name = "HalflingGreaterDragonmarkOfHealing"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Heal",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["HalflingLesserDragonmarkOfHealing"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Skillful Thrower"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain +2 to hit and damage while using a throwing weapons."
+icon = "HalflingSkillfulThrower"
+internal_name = "HalflingSkillfulThrower"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_Damage"]
+targets = [
+    "Dart",
+    "Shuriken",
+    "Throwing Axe",
+    "Throwing Dagger",
+    "Throwing Hammer",
+]
+
+[[enhancement]]
+name = "Halfling: Improved Dodge"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3]% Dodge when wearing light or no armor."
+icon = "HalflingImprovedDodge"
+internal_name = "HalflingImprovedDodge"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["HalflingNimbleReaction"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Dodge"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Halfling: Guile II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 Sneak attack die"
+icon = "HalflingGuile"
+internal_name = "HalflingGuileII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.requirement]]
+items = ["HalflingGuileI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Master Thrower"
+cost_per_rank = [1]
+description = """
+You gain a +1 Competence bonus to the Critical Threat Range of returning
+thrown weapons."""
+icon = "HalflingMasterThrower"
+internal_name = "HalflingMasterThrower"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "WeaponCriticalRangeClass"
+targets = ["Thrown"]
+
+[[enhancement.requirement]]
+items = ["HalflingSkillfulThrower"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Agility"
+cost_per_rank = [2]
+description = """
+Up to once per second when you are hit, you gain 1% dodge until you are missed.
+This effect can stack up to 5 times."""
+icon = "HalflingAgility"
+internal_name = "HalflingAgility"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["HalflingImprovedDodge"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Halfling: Guile III"
+cost_per_rank = [1]
+description = "+1 Sneak attack die"
+icon = "HalflingGuile"
+internal_name = "HalflingGuileIII"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.requirement]]
+items = ["HalflingGuileII"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Halfling"]
+req_type = "Race"

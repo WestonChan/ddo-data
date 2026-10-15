@@ -1,0 +1,64 @@
+name = "Caustic Longsword of the Fallen Age"
+description = "Wild magic has imbued entropy into this weapon over the years."
+drop_location = "Magic of Myth Drannor, any end chest"
+enhancement_bonus = 5
+icon = "Longsword_1"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 13
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 13
+
+[[effect]]
+name = "Proficiency - Longsword"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 87
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "any end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Magic of Myth Drannor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.6
+handedness = "One-handed"
+weapon_type = "Longsword"

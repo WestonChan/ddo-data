@@ -1,6 +1,6 @@
 mod comments;
 
-use anyhow::{bail, Context, Result};
+use anyhow::{bail, ensure, Context, Result};
 use clap::{Parser, Subcommand};
 use comments::{comments_in, without_comments};
 use std::path::{Path, PathBuf};
@@ -47,6 +47,23 @@ enum Task {
         db: PathBuf,
         #[arg(long)]
         all_details: bool,
+    },
+    DiffDb {
+        first: PathBuf,
+        second: PathBuf,
+        #[arg(long)]
+        by_slug: bool,
+        #[arg(
+            long,
+            help = "Crawl this API using its /v1/dump.sqlite identities (fetched and cached under target/ by dataset SHA); the first database remains the table baseline"
+        )]
+        against_api: Option<String>,
+        #[arg(long, help = "Accept exactly the committed, reviewed differences listed in this file")]
+        allow_list: Option<PathBuf>,
+    },
+    RoundTrip {
+        #[arg(long = "data")]
+        data_dir: PathBuf,
     },
     WikiTooltips {
         #[arg(long)]
@@ -95,9 +112,15 @@ enum Task {
         #[arg(long)]
         source: Option<PathBuf>,
     },
+    #[command(
+        about = "Check database integrity",
+        long_about = "Run database checks without source files. With --source, also audit buff_types_not_classified and effect_definitions_with_partially_mapped_targets: these compare Maetrim's buff families with the XML mapping vocabulary, which the database does not retain."
+    )]
     CheckDb {
         db: PathBuf,
-        #[arg(long)]
+        #[arg(long = "data", help = "Deprecated: pack exceptions are read from the database")]
+        data_dir: Option<PathBuf>,
+        #[arg(long, help = "Also run the two XML buff-family mapping audits against this DataFiles directory")]
         source: Option<PathBuf>,
         #[arg(long)]
         corrections: Option<PathBuf>,
@@ -119,10 +142,13 @@ enum Task {
 fn main() -> Result<()> {
     match Cli::parse().command {
         Task::Lint => {
+            xtask::data_file_lints::deny_generic_file_mappers(&workspace_root().join("crates/ddo-etl/src/tree"))?;
             deny_clippy_warnings()?;
             corrections_from(None)?;
-            deny_correction_file_whitespace()?;
-            deny_api_contract_or_scale_regressions()?;
+            ddo_etl::tree::schemas::validate_source_fields(&workspace_root().join("data"))?;
+            deny_invalid_data_files()?;
+            deny_data_schema_drift()?;
+            deny_contract_or_scale_regressions()?;
             deny_comments()
         }
         Task::NoComments { fix: false } => deny_comments(),
@@ -139,6 +165,24 @@ fn main() -> Result<()> {
             println!("validated {responses} real responses across {routes} JSON routes");
             Ok(())
         }
+        Task::DiffDb { first, second, by_slug, against_api, allow_list } => {
+            let report = if by_slug {
+                xtask::diff_db::diff_databases_by_slug_against_api(&first, &second, against_api.as_deref())?
+            } else {
+                xtask::diff_db::diff_databases_against_api(&first, &second, against_api.as_deref())?
+            };
+            if let Some(allow_list) = allow_list {
+                ensure!(by_slug, "--allow-list requires --by-slug");
+                xtask::diff_db::check_allowed_differences(&report, &allow_list)?;
+                println!("{}", report.to_string().lines().next().unwrap_or_default());
+                println!("all differences match {}", allow_list.display());
+            } else {
+                println!("{report}");
+                ensure!(report.is_equal(), "database differences found");
+            }
+            Ok(())
+        }
+        Task::RoundTrip { data_dir } => xtask::round_trip::verify_round_trip(&data_dir),
         Task::WikiTooltips { db } => {
             let report = check_wiki_tooltips(&db)?;
             println!("{report}");
@@ -176,9 +220,19 @@ fn main() -> Result<()> {
             println!("{}", wiki_check_report(&data_files_dir, wiki_dir.as_deref(), corrections_dir.as_deref())?);
             Ok(())
         }
-        Task::CheckDb { db: db_path, source: data_files_dir, corrections: corrections_dir, allowed_empty_tables } => {
-            check_database_integrity(&db_path, data_files_dir, corrections_dir.as_deref(), allowed_empty_tables)
-        }
+        Task::CheckDb {
+            db: db_path,
+            data_dir,
+            source: data_files_dir,
+            corrections: corrections_dir,
+            allowed_empty_tables,
+        } => check_database_integrity(
+            &db_path,
+            data_dir,
+            data_files_dir,
+            corrections_dir.as_deref(),
+            allowed_empty_tables,
+        ),
         Task::WikiBatch { out: batch_dir, wiki: wiki_dir, corrections: corrections_dir, source: data_files_dir } => {
             let data_files_dir = data_files_dir.unwrap_or_else(default_data_files_dir);
             let batch_dir = batch_dir.unwrap_or_else(|| workspace_root().join("target/wiki-batch"));
@@ -190,6 +244,58 @@ fn main() -> Result<()> {
             Ok(())
         }
     }
+}
+
+fn deny_invalid_data_files() -> Result<()> {
+    let data_root = workspace_root().join("data");
+    for entry in WalkDir::new(&data_root) {
+        let entry = entry?;
+        let path = entry.path();
+        if !entry.file_type().is_file() || path.extension().is_none_or(|extension| extension != "toml") {
+            continue;
+        }
+        for (index, line) in std::fs::read_to_string(path)?.lines().enumerate() {
+            if let Some((field, _)) = line.split_once(" = ") {
+                let field = field.trim();
+                ensure!(
+                    !field.ends_with("_id")
+                        && !matches!(
+                            field,
+                            "id" | "sort_order" | "owner_kind" | "source_kind" | "table" | "provenance"
+                        ),
+                    "{}:{}: data field {field} belongs in a name relation or folder",
+                    path.display(),
+                    index + 1
+                );
+            }
+        }
+    }
+    let mut db = rusqlite::Connection::open_in_memory()?;
+    ddo_etl::tree::build_from_data(&data_root, &mut db)?;
+    Ok(())
+}
+
+fn deny_data_schema_drift() -> Result<()> {
+    let schema_root = workspace_root().join("data/.schemas");
+    let expected_files = ddo_etl::tree::schemas::schema_files()?;
+    for entry in std::fs::read_dir(&schema_root)? {
+        let path = entry?.path();
+        if path.extension().is_some_and(|extension| extension == "json") {
+            let file_name = path.file_name().and_then(|name| name.to_str()).context("schema name is not UTF-8")?;
+            ensure!(
+                expected_files.contains_key(file_name),
+                "{} is an obsolete schema; run ddo-etl export",
+                path.display()
+            );
+        }
+    }
+    for (file_name, expected) in expected_files {
+        let path = schema_root.join(file_name);
+        let actual = std::fs::read_to_string(&path).with_context(|| format!("reading {}", path.display()))?;
+        ensure!(actual == expected, "{} is stale; run ddo-etl export", path.display());
+    }
+    ddo_etl::tree::schemas::validate_taplo_config(&workspace_root())?;
+    Ok(())
 }
 
 fn refresh_response_examples(
@@ -222,17 +328,15 @@ fn refresh_response_examples(
 
 fn check_database_integrity(
     db_path: &Path,
+    _data_dir: Option<PathBuf>,
     data_files_dir: Option<PathBuf>,
     corrections_dir: Option<&Path>,
     allowed_empty_tables: Vec<String>,
 ) -> Result<()> {
     let db = rusqlite::Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)
         .with_context(|| format!("opening {}", db_path.display()))?;
-    let options = IntegrityOptions {
-        corrections: corrections_from(corrections_dir)?,
-        allowed_empty_tables,
-        data_files_dir: data_files_dir.unwrap_or_else(default_data_files_dir),
-    };
+    let options =
+        IntegrityOptions { corrections: corrections_from(corrections_dir)?, allowed_empty_tables, data_files_dir };
     let report = integrity_report(&db, &options)?;
     println!("{report}");
     let failed_check_names = report.failed_hard_check_names();
@@ -257,40 +361,67 @@ fn deny_clippy_warnings() -> Result<()> {
     Ok(())
 }
 
-fn deny_correction_file_whitespace() -> Result<()> {
-    let corrections_dir = workspace_root().join("crates/ddo-etl/data/corrections");
-    for entry in std::fs::read_dir(corrections_dir)? {
-        let path = entry?.path();
-        if path.extension().is_none_or(|extension| extension != "toml") {
-            continue;
-        }
-        let source = std::fs::read_to_string(&path)?;
-        if !source.ends_with('\n') || source.ends_with("\n\n") {
-            anyhow::bail!("{} needs exactly one final newline", path.display());
-        }
-        for (index, line) in source.lines().enumerate() {
-            if line.ends_with([' ', '\t']) {
-                anyhow::bail!("{}:{} has trailing whitespace", path.display(), index + 1);
-            }
-        }
-    }
-    Ok(())
-}
-
-fn deny_api_contract_or_scale_regressions() -> Result<()> {
-    for test_name in [
-        "list_parameter_docs_share_descriptions_and_match_runtime_sort_fields",
-        "item_pack_query_count_does_not_grow_with_rows_or_sources",
-        "item_full_page_query_count_does_not_grow_with_rows",
-        "typed_response_schemas_resolve_every_reference_and_describe_fields",
-        "every_json_route_response_matches_its_openapi_schema",
+fn deny_contract_or_scale_regressions() -> Result<()> {
+    for (crate_name, test_target, test_name) in [
+        ("ddo-etl", &["--lib"][..], "tree::build::file_name_tests::pseudo_pack_names_cannot_be_real_packs"),
+        (
+            "ddo-etl",
+            &["--lib"][..],
+            "tree::build::file_name_tests::pack_release_prefixes_preserve_identity_and_reject_mismatched_folders",
+        ),
+        (
+            "ddo-etl",
+            &["--lib"][..],
+            "tree::layout::tests::filigree_sets_keep_all_members_together_and_resolve_existing_aliases",
+        ),
+        ("ddo-etl", &["--lib"][..], "tree::layout::tests::source_records_and_rewards_share_their_resolved_folders"),
+        ("ddo-api", &["--test", "api"][..], "list_parameter_docs_share_descriptions_and_match_runtime_sort_fields"),
+        ("ddo-api", &["--test", "api"][..], "item_pack_query_count_does_not_grow_with_rows_or_sources"),
+        ("ddo-api", &["--test", "api"][..], "item_full_page_query_count_does_not_grow_with_rows"),
+        ("ddo-api", &["--test", "api"][..], "loot_source_references_match_entity_routes"),
+        ("ddo-api", &["--test", "api"][..], "loot_source_schemas_share_required_nullable_references"),
+        ("ddo-api", &["--test", "api"][..], "feat_bonus_references_match_the_granting_effect"),
+        ("ddo-api", &["--test", "api"][..], "typed_response_schemas_resolve_every_reference_and_describe_fields"),
+        ("ddo-api", &["--test", "api"][..], "every_json_route_response_matches_its_openapi_schema"),
+        ("ddo-etl", &["--lib"][..], "tree::tests::complete_export_query_count_does_not_grow_with_entities"),
+        ("ddo-etl", &["--lib"][..], "tree::schemas::tests::item_and_augment_sources_use_singular_tables"),
+        ("ddo-etl", &["--lib"][..], "tree::schemas::tests::pack_local_entity_names_do_not_override_folder_kinds"),
+        ("ddo-etl", &["--lib"][..], "tree::schemas::tests::effect_names_cannot_take_reserved_vocabulary_filenames"),
+        ("ddo-etl", &["--lib"][..], "tree::schemas::catalog::tests::catalog_names_and_slugs_match_the_real_export"),
+        ("ddo-etl", &["--test", "data_find"][..], "find_reads_names_slugs_and_variants_without_a_database"),
+        ("ddo-etl", &["--lib"][..], "tree::schemas::tests::data_paths_share_reader_editor_and_icon_kinds"),
+        (
+            "ddo-etl",
+            &["--lib"][..],
+            "tree::build::file_name_tests::reserved_record_names_always_use_the_parent_identity",
+        ),
+        (
+            "ddo-etl",
+            &["--lib"][..],
+            "tree::build::file_name_tests::pack_local_file_names_cannot_borrow_the_kind_folder_identity",
+        ),
+        ("ddo-etl", &["--lib"][..], "tree::pack_layout::tests::every_member_must_resolve_to_one_pack"),
+        (
+            "ddo-etl",
+            &["--lib"][..],
+            "tree::pack_layout::tests::pack_derivation_uses_real_sources_without_following_derived_owners",
+        ),
+        ("ddo-etl", &["--lib"][..], "tree::pack_layout::tests::unsourced_versions_use_only_unanimous_sourced_siblings"),
+        ("ddo-etl", &["--lib"][..], "tree::pack_layout::tests::crafting_recipe_outputs_participate_in_pack_derivation"),
+        (
+            "ddo-etl",
+            &["--lib"][..],
+            "icons::icon_index_tests::copied_icons_preserve_upstream_case_and_report_mismatched_references",
+        ),
     ] {
         let test_status = Command::new("cargo")
-            .args(["test", "-p", "ddo-api", "--test", "api", test_name, "--", "--exact"])
+            .args(["test", "-p", crate_name])
+            .args(test_target)
+            .args([test_name, "--", "--exact"])
             .status()
-            .with_context(|| format!("checking API contract or scale guard: {test_name}"))?;
+            .with_context(|| format!("checking contract or scale guard: {test_name}"))?;
         if !test_status.success() {
-            bail!("API contract or scale guard failed: {test_name}");
+            bail!("contract or scale guard failed: {test_name}");
         }
     }
     Ok(())

@@ -1,0 +1,46 @@
+name = "Miserable Arcana: Light (Legendary)"
+description = "+159 Equipment bonus to Light and Alignment Spellpower."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Light Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[effect]]
+name = "Chaos Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[effect]]
+name = "Evil Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[effect]]
+name = "Good Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[effect]]
+name = "Law Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [159]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

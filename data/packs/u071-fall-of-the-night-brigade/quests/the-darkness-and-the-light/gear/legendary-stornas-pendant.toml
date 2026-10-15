@@ -1,0 +1,44 @@
+name = "Legendary Storna's Pendant"
+description = """
+The pendant of Storna, Leader of the Night Brigade. Her connection to Shar is
+amplified out through this pendant, though those of other faiths may be able
+to use it to similar effect."""
+drop_location = "The Darkness and the Light, end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 33
+slot = "Neck"
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Insightful Faith"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 37
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darkness and the Light"

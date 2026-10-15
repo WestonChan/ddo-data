@@ -1,0 +1,42 @@
+name = "Quiver of Alacrity"
+description = """
+Said to allow the user to draw arrows or bolts at a very fast rate, this large,
+thin quiver will hold 3 different types of arrow or bolt and can store each
+type of up to 1500. Total capacity: 4500."""
+drop_location = "Ascension Chamber, Raid Warded chest"
+icon = "Quiver_1"
+item_category = "Clothing"
+minimum_level = 0
+slot = "Quiver"
+
+[[effect]]
+name = "Ranged Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "crafting: upgradeable item (black abbot)"
+
+[[socket.option]]
+name = "Adds Striding 30%"
+description = "Striding +30%: Makes the wearer more fleet of foot, giving a 30% bonus to run speed."
+icon = "BlackAbbot"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Movement Speed"
+value = 30
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Equipment"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"

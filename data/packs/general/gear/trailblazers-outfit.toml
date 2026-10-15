@@ -1,0 +1,30 @@
+name = "Trailblazer's Outfit"
+description = """
+This outfit, passed through generations of Tabaxi Trailblazers, allows for surprisingly
+free movement."""
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 4
+icon = "Cloth_6"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 15
+race_required = "Tabaxi Trailblazer"
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

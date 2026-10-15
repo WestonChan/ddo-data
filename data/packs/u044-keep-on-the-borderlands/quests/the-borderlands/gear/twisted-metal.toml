@@ -1,0 +1,60 @@
+name = "Twisted Metal"
+description = "This broken and bent shield should pack quite the punch."
+drop_location = "The Borderlands, chest (Rare Encounters)"
+enhancement_bonus = 6
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Steel"
+minimum_level = 21
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Shield Spikes 5 D 6"
+
+[[effect]]
+name = "Bleeding 5"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Borderlands"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.2
+handedness = "Off-hand"
+weapon_type = "Small Shield"

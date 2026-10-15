@@ -1,0 +1,76 @@
+name = "Dolorous Invigorator (Legendary)"
+description = "+2 Profane bonus to Spell DCs, Tactical DCs, and Assassinate."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Spell Focus Mastery"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Not Set"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+    "Assassinate",
+]
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+reason = "The wiki's Dolorous Invigorator gives +2 Profane bonus to Tactical DCs (Profane Combat Mastery +2); his TacticalDC effect is Not Set."
+url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
+read = "2026-10-02"
+qualifier = "Trip DC / null"
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+reason = "The wiki's Dolorous Invigorator gives +2 Profane bonus to Tactical DCs (Profane Combat Mastery +2); his TacticalDC effect is Not Set."
+url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
+read = "2026-10-02"
+qualifier = "Sunder DC / null"
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+reason = "The wiki's Dolorous Invigorator gives +2 Profane bonus to Tactical DCs (Profane Combat Mastery +2); his TacticalDC effect is Not Set."
+url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
+read = "2026-10-02"
+qualifier = "Stun DC / null"
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+reason = "The wiki's Dolorous Invigorator gives +2 Profane bonus to Tactical DCs (Profane Combat Mastery +2); his TacticalDC effect is Not Set."
+url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(legendary)"
+read = "2026-10-02"
+qualifier = "Assassinate DC / null"
+
+[[slot]]
+slot = "lamordia: dolorous (armor)"

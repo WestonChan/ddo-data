@@ -1,0 +1,57 @@
+name = "Arcane Shard"
+description = """
+This staff is what remains of an ancient giant artifact that was said to imbue
+the wielder with phenomenal magical power."""
+drop_location = "Dreams of Insanity, End Chest"
+enhancement_bonus = 5
+icon = "Quarterstaff_1"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 40
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dreams of Insanity"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,11 @@
+name = "Minor Lightning Guard"
+adds_augment = "Accessory Subjugation"
+description = """
+50% chance to do 1d4 Electrical damage on being hit
+Air:Dominion:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory invasion"

@@ -1,0 +1,36 @@
+name = "Enlightened Robes"
+description = "A robe spun from acid infused threads that glow with power."
+drop_location = "The Pit, end chest"
+icon = "Cloth_17"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 5
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 75
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Pit"

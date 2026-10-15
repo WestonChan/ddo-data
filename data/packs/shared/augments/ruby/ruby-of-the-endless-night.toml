@@ -1,0 +1,20 @@
+name = "Ruby of the Endless Night"
+description = """
+Inflicts a Negative Level on vorpal hits.
+Drop Location: Joe Candymaker: The Night Revels Trader"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 1
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

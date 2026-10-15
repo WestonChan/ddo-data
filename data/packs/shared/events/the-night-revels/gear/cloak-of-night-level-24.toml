@@ -1,0 +1,35 @@
+name = "Cloak of Night (level 24)"
+description = """
+This cloak is as smooth and dark as the most pitch-black of nights. Wearing
+it makes you difficult to spot and attack, and by awakening its powers you
+will enable it to aid you against creatures native to the darkness."""
+drop_location = "The Night Revels, Turn in and Cloak of Night (level 20) \n and 250 Piece of Darkest Chocolate; obtained in the Graveyard mob slayer, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 120 Spooky Almond, obtained in Under New Ravagement, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 100 Black Apple; obtained in Haverdashed, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace"
+icon = "Cloak_14"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 24
+slot = "Back"
+
+[[effect]]
+name = "Invisibility Guard"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Nightmare Guard"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "DR 10/Good"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

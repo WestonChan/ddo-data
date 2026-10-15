@@ -19,7 +19,7 @@
     "Epic Feat"
   ],
   "icon": "Cleave",
-  "id": 12,
+  "id": 1965986190745923,
   "max_times_acquire": null,
   "modifiers": [],
   "name": "Cleave",
@@ -34,6 +34,7 @@
       "value": null
     }
   ],
+  "slug": "cleave",
   "source_id": null,
   "source_kind": "standard",
   "source_name": null,
@@ -58,7 +59,6 @@
       "display_name": null,
       "effect_type": "BonusDamagePercent",
       "extra_types": null,
-      "id": 55,
       "is_item_specific": false,
       "is_rare": false,
       "percent": false,
@@ -86,7 +86,6 @@
       "display_name": null,
       "effect_type": "BonusThreatRange",
       "extra_types": null,
-      "id": 56,
       "is_item_specific": false,
       "is_rare": false,
       "percent": false,
@@ -114,7 +113,6 @@
       "display_name": null,
       "effect_type": "BonusCriticalMultiplier",
       "extra_types": null,
-      "id": 57,
       "is_item_specific": false,
       "is_rare": false,
       "percent": false,

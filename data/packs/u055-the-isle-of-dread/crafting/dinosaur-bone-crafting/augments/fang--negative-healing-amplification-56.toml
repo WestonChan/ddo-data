@@ -1,0 +1,20 @@
+name = "Fang: Negative Healing Amplification +56"
+description = "+56 Profane bonus to Negative Healing Amplification"
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[effect]]
+name = "Negative Healing Amplification"
+bonus_type = "Profane"
+value = 56
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [56]
+bonus_type = "Profane"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[slot]]
+slot = "isle of dread: fang (accessory)"

@@ -1,0 +1,46 @@
+name = "Heavy Crossbow of the Oozing Hunger"
+description = "An aspect of the Unspeakable."
+drop_location = "Sealed Altar, Turn in Duergarcraft Heavy Crossbow and 50 Abyssal Gems"
+enhancement_bonus = 5
+icon = "HeavyCrossbow_1j"
+item_category = "Weapon"
+item_type = "Heavy Crossbow"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Acid Blast 3"
+
+[[effect]]
+name = "Slime"
+
+[[effect]]
+name = "Acidic 3"
+
+[[effect]]
+name = "Destructive Acid +2"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Sealed Altar"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Dexterity"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Heavy Crossbow"

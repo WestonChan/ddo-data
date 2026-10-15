@@ -1,0 +1,37 @@
+name = "Bracers of the Fox"
+description = "Wearing these bracers makes you feel clever."
+drop_location = "Caged Beast, End chest"
+icon = "Bracers_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 21
+slot = "Wrists"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 203
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 101
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Caged Beast"

@@ -1,0 +1,39 @@
+name = "Marilithskin Boots"
+description = "A fine pair of boots made from the shed skin of a Marilith."
+drop_location = "The Darklake, J'anara 's chest"
+icon = "Boots_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Feet"
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Deception"
+bonus_type = "Quality"
+value = 1
+value2 = 2
+
+[[socket]]
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "j'anara 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

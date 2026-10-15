@@ -1,0 +1,34 @@
+name = "Risk and Reward"
+icon = "RiskAndReward"
+
+[[item]]
+name = "Reward"
+
+[[item]]
+name = "Risk"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "Your melee attacks deal an additional +0.5[W] damage dice."
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "Melee attacks deal +0.5[W] and have a 5% chance to Bluff the target for 4 seconds."
+
+[[tier.effect]]
+effect = "Melee Damage and Bluff"
+
+[[tier.effect]]
+effect = "Bluff on Hit"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]

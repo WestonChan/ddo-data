@@ -1,0 +1,3339 @@
+[[row]]
+name = "Acid Concentration"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of caustic liquid, you throw a projectile at a single foe that
+deals 1 to 6 Acid damage, +1 per caster level, max caster level 20.
+This Acid continues to eat away, dealing its damage every 2 seconds for 16 seconds.
+You may stack this 3 times.
+
+DND Dice: Deals 1d6 Acid damage +1 per caster level, max 1d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AcidConcentration"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Acid"
+per_caster_levels = 1
+spell_power = "Acid"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Alluring Elixir"
+description = """
+Primer Element: Ceruleite
+This small vial of golden liquid will increase you confidence and your allure,
+granting you a +4 Insight bonus to your social skills for 1 minute + 1 minute
+per Caster Level."""
+icon = "AlluringElixer"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "SkillBonusAbility"
+targets = ["Charisma"]
+
+[[row]]
+name = "Augment Armor"
+description = """
+Primer Element: Ceruleite
+Coat yourself in liquid armor, granting it greater defenses. Grants a +2 Deflection
+bonus to Armor Class, and a +3 Deflection bonus to Physical Resistance rating for
+30 seconds per Caster Level. Every 5 Alchemist levels, these bonuses increase by 1."""
+icon = "AugmentArmor"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+]
+bonus_type = "Deflection"
+effect_type = "ACBonus"
+extra_types = ["PRR"]
+stack_source = "Unknown"
+
+[[row]]
+name = "Bitter Frost Burst"
+description = """
+Primer Element: Crimsonite
+Throw a bottle at a single foe, causing a huge spike of Cold damage. Deals 7 to 12
+Cold damage per caster level, max caster level 15, to a single target.
+
+DND Dice: Deals 1d6+6 Cold damage, max 15d6+90.
+A successful Fortitude save reduces the damage by half."""
+icon = "BitterFrostBurst"
+max_caster_level = 15
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Bottled Boost: Attack"
+description = """
+Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Attack.
+You gain a +8 Action Boost Bonus to Attack for 20 seconds. In addition to this
+spell's normal cooldown, this spell puts all Action Boosts and Bottled Boost
+spells on a 30 second cooldown."""
+icon = "BottledBoostAttack"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Bottled Boost: Defense"
+description = """
+Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Defense.
+You gain +15 Action Boost Bonus to Armor Class and Physical Resistance Rating
+for 20 seconds. In addition to this spell's normal cooldown, this spell puts
+all Action Boosts and Bottled Boost spells on a 30 second cooldown."""
+icon = "BottledBoostDefense"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Bottled Boost: Double"
+description = """
+Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Doublestrike and Doubleshot.
+You gain a +30% Action Boost Bonus to Doublestrike and Doubleshot for 20 seconds.
+In addition to this spell's normal cooldown, this spell puts all Action Boosts
+and Bottled Boost spells on a 30 second cooldown."""
+icon = "BottledBoostDouble"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Bottled Boost: Haste"
+description = """
+Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Haste.
+You gain a +30% Action Boost Bonus to Attack speed for 20 seconds. In addition
+to this spell's normal cooldown, this spell puts all Action Boosts and Bottled
+Boost spells on a 30 second cooldown."""
+icon = "BottledBoostHaste"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Bottled Boost: Power"
+description = """
+Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Power.
+You gain a +30 Action Boost Bonus to Melee and Ranged Power for 20 seconds.
+In addition to this spell's normal cooldown, this spell puts all Action Boosts
+and Bottled Boost spells on a 30 second cooldown."""
+icon = "BottledBoostPower"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Bottled Boost: Spell"
+description = """
+Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Spell Power.
+You gain a +30 Action Boost Bonus to Universal Spell Power for 20 seconds.
+In addition to this spell's normal cooldown, this spell puts all Action Boosts
+and Bottled Boost spells on a 30 second cooldown."""
+icon = "BottledBoostSpell"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Bottled Boost: Sprint"
+description = """
+Primer Element: Ceruleite
+Drink a potion with the effects of Action Boost: Sprint.
+You gain a +50% Action Boost Bonus to Movement Speed for 20 seconds.
+In addition to this spell's normal cooldown, this spell puts all Action Boosts
+and Bottled Boost spells on a 30 second cooldown."""
+icon = "BottledBoostSprint"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Caustic Overload"
+description = """
+Primer Element: Gildleaf
+Throw a bottle at a targeted foe that explodes into caustic Acid dealing 5 to 10
+Acid damage per caster level to enemies struck. In addition, enemies must make
+a Fortitude saving throw or have their Physical Resistance Rating reduced by 5
+for 12 seconds.
+DND Dice: Deals 1d6+4 Acid damage per caster level, max 20d6+80.
+A successful Reflex save reduces the damage by half and negates the debuff"""
+icon = "CausticOverload"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates PRR Debuff"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Caustic Solvent"
+description = """
+Primer Element: Crimsonite
+Smash a bottle on a single foe, causing caustic Acid to eat away at their flesh for
+significant Acid damage over time. This Acid damage stacks, and will become
+increasingly deadly over time. Deals 4 to 9 Acid damage per Caster Level, Max
+Caster Level 15, every 3 seconds, stacking up to 3 times and lasting for 9 seconds.
+
+DND Dice: Deals: 1d6+3 Acid damage, max 15d6+45.
+A successful Reflex save reduces damage by half."""
+icon = "CausticSolvent"
+max_caster_level = 15
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Choking Smog"
+description = """
+Primer Element: Gildleaf
+Smash a bottle full of noxious chemical smog that silences and slows enemies caught
+within unless they make a Fortitude saving throw. This effect lasts for 6 seconds
++1 second per Caster Level. Foes that do not breathe or are wearing protective gear
+are immune to this effect."""
+icon = "ChockingSmog"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Cindersmoke"
+description = """
+Primer Element: Gildleaf
+Throw a bottle at a targeted foe that explodes into fiery cloud dealing 5 to 10
+Fire damage per caster level to enemies struck. In addition, enemies must make
+a Reflex save or be blinded for 12 seconds.
+DND Dice: Deals 1d6+4 Fire damage per caster level, max 20d6+80.
+A successful Reflex save reduces the damage by half and negates the blind"""
+icon = "Cindersmoke"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage, negate Blind"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Cold Spike"
+description = """
+Primer Element: Gildleaf
+Lob a vial of freezing liquid at a single foe that deals heavy damage and slows
+movement of whatever it strikes. Deals 4 to 8 Cold damage per Caster Level, max
+Caster Level 10, to a single foe, and reduces their movement speed by 30% and
+damage by 4 for 15 seconds +2 seconds per Caster Level.
+
+DND Dice: Deals 1d4+4 Cold damage per caster level, max 10d4+40. A successful
+Reflex save reduces the damage by half."""
+icon = "ColdSpike"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Cold"
+per_caster_levels = 1
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Corrode Weapons"
+description = """
+Primer Element: Gildleaf
+Lob a vial of caustic liquid at a single foe that deals heavy damage and corrodes
+the weapons of whatever it strikes. Deals 4 to 8 Acid damage per Caster Level, max
+Caster Level 10, to a single foe, and reduces their accuracy and Melee and Ranged
+Power by 4 for 15 seconds +2 seconds per Caster Level.
+
+DND Dice: Deals 1d4+4 Acid damage per caster level, max 10d4+40. A successful
+Reflex save reduces the damage by half."""
+icon = "CorrodeWeapons"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Acid"
+per_caster_levels = 1
+spell_power = "Acid"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Corrosive Dust"
+description = """
+Primer Element: Crimsonite
+Scatter a corrosive dust in front of you, causing significant Rust damage on contact.
+Deals 9 to 14 Rust damage per caster level, max caster level 20. Note that Rust damage
+only affects Constructs and some inanimate objects.
+DND Dice: Deals 1d6+8 Rust damage per caster level, max 20d6+160.
+A successful Reflex save reduces the damage by half"""
+icon = "CorrosiveDust"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 8
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Rust"
+spell_power = "Rust"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Cure Critical Wounds"
+description = """
+Infuses a Cure Critical  Wounds potion with magical energy, hurling it towards your
+target in an arc. The potion explodes in a small AOE that deals 4d6+8 plus 1
+per caster level (maximum caster level 20) positive energy damage to nearby
+living allies and enemy undead. This infusion is affected by
+Artificer Knowledge: Potions.."""
+icon = "RMCurativeAdmixtureCCW"
+max_caster_level = 20
+metamagics = [
+    "Accelerate",
+    "Empower",
+    "EmpowerHealing",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 8
+base_dice_number = 4
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row]]
+name = "Curative Admixture: Cure Light Wounds"
+description = """
+Primer Element: Gildleaf
+Infusing a Cure Light Wounds potion with magical energy, hurling it towards your
+target in an arc. The potion explodes in a small AOE that deals 1d8+1 positive
+energy damage to nearby living allies and enemy undead.
+Special material component: Potion of Cure Light Wounds.
+This infusion is affected by Artificer Knowledge: Potions."""
+icon = "CurativeAdmixtureCureLightWounds"
+max_caster_level = 5
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Empower",
+    "EmpowerHealing",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 8
+damage = "Positive"
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Cure Moderate Wounds"
+description = """
+Infusing a Cure Moderate Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 2d6+4 + 1
+per caster level (max +10) positive energy damage to nearby living allies and
+enemy undead. Special material component: Potion of Cure Moderate Wounds."""
+icon = "CurativeAdmixtureCureModerateWounds"
+max_caster_level = 10
+metamagics = [
+    "Accelerate",
+    "Empower",
+    "EmpowerHealing",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 2
+bonus_dice_sides = 6
+damage = "Positive"
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Cure Serious Wounds"
+description = """
+Infusing a Cure Serious Wounds potion with magical energy, hurling it towards your
+target in an arc. The potion explodes in a small AOE that deals 3d8+5 positive
+energy damage to nearby living allies and enemy undead.
+Special material component: Potion of Cure Serious Wounds.
+This infusion is affected by Artificer Knowledge: Potions."""
+icon = "CurativeAdmixtureCureSeriousWounds"
+max_caster_level = 15
+metamagics = [
+    "Accelerate",
+    "Empower",
+    "EmpowerHealing",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 5
+bonus_dice_number = 3
+bonus_dice_sides = 8
+damage = "Positive"
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Harm"
+description = """
+Primer Element: Gildleaf
+Infuses a Harm potion with magical energy, hurling it towards your target in an arc.
+This channels powerful negative energy into targets to wipe away injury and afflictions,
+restore 10 hit points per caster level (up to a max of 150 hit points at caster
+level 15), and remove ability damage and conditions blinded, confused, dazed,
+dazzled, deafened, diseased, exhausted, fatigued, feebleminded, insanity,
+nauseated and poisoned. Against undead this spell acts as Heal. Undead who make a
+successful Will save reduce the damage by half.
+DND Dice: Harms 10 hp per caster level (max 150).
+This spell receives reduced benefit from spell power."""
+icon = "CurativeAdmixtureHarm"
+max_caster_level = 15
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Empower",
+    "EmpowerHealing",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Heal"
+description = """
+Primer Element: Gildleaf
+Infuses a Heal potion with magical energy, hurling it towards your target in an arc.
+This channels powerful positive energy into targets to wipe away injury and afflictions,
+restore 10 hit points per caster level (up to a max of 150 hit points at caster
+level 15), and remove ability damage and conditions blinded, confused, dazed,
+dazzled, deafened, diseased, exhausted, fatigued, feebleminded, insanity,
+nauseated and poisoned. Against undead this spell acts as Harm. Undead who make a
+successful Will save reduce the damage by half.
+DND Dice: Heals 10 hp per caster level (max 150).
+This spell receives reduced benefit from spell power."""
+icon = "CurativeAdmixtureHeal"
+max_caster_level = 15
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Empower",
+    "EmpowerHealing",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+damage = "Positive"
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Inflict Critical Wounds"
+description = """
+Primer Element: Gildleaf
+Infuses an Inflict Critical Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 4d6+8 plus
+1 per caster level (maximum caster level 20) negative energy damage to nearby
+living allies and enemy undead."""
+icon = "CurativeAdmixtureICW"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "EmpowerHealing",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 8
+base_dice_number = 4
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Inflict Light Wounds"
+description = """
+Primer Element: Gildleaf
+Infuses an Inflict Light Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 1d6+2 plus
+1 per caster level (maximum caster level 5) negative energy damage to nearby
+living allies and enemy undead."""
+icon = "CurativeAdmixtureInflictLightWounds"
+max_caster_level = 5
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "EmpowerHealing",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 2
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Inflict Moderate Wounds"
+description = """
+Primer Element: Gildleaf
+Infuses a Inflict Moderate Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 2d6+4 plus 1
+per Caster Level (Max 10) negative energy damage to nearby living allies and enemy
+undead."""
+icon = "CurativeAdmixtureIMW"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "EmpowerHealing",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 4
+base_dice_number = 2
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Inflict Serious Wounds"
+description = """
+Primer Element: Gildleaf
+Infuses an Inflict Serious Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 3d6+6 plus
+1 per caster level (maximum caster level 15) negative energy damage to nearby
+living allies and enemy undead."""
+icon = "CurativeAdmixtureISW"
+max_caster_level = 15
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "EmpowerHealing",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 3
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Remove Curse"
+description = """
+Primer Element: Gildleaf
+Infuses a Remove Curse potion with magical energy, hurling it towards your target
+in an arc. The potion explodes in a small AOE that removes curse from nearby allies."""
+icon = "CurativeAdmixtureRemoveCurse"
+metamagics = [
+    "Primer",
+    "Accelerate",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Remove Disease"
+description = """
+Primer Element: Gildleaf
+Infuses a Remove Disease potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that removes diseases
+from nearby allies."""
+icon = "CurativeAdmixtureRemoveDisease"
+metamagics = [
+    "Primer",
+    "Accelerate",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Remove Paralysis"
+description = """
+Primer Element: Gildleaf
+Infuses a Remove Paralysis potion with magical energy, hurling it towards your target
+in an arc. The potion explodes in a small AOE that removes magical Paralysis from
+everyone hit. This infusion is affected by Artificer and Alchemist Knowledge: Potions."""
+icon = "CurativeAdmixtureRemoveParalysis"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Curative Admixture: Remove Poison"
+description = """
+Primer Element: Gildleaf
+Infuses a potion of Poison Neutralization with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that removes poisons
+from nearby allies. (It does not confer immunity to poisons.)"""
+icon = "CurativeAdmixtureRemovePoison"
+metamagics = [
+    "Primer",
+    "Accelerate",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Displacement Draught"
+description = """
+Primer Element: Ceruleite
+Drink a potion with the effects of the Displacement spell. Your appearance becomes
+extremely blurred, giving enemies a 50% miss chance when attacking for 6 seconds
+per Caster Level."""
+icon = "DisplacementDraught"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[row]]
+name = "Dust of Confusion"
+description = """
+Primer Element: Ceruleite
+Scatter dust around you that causes enemies around you to begin to vividly
+hallucinate. On a failed Will save, they become Confused, attacking and able to
+be attacked by friend and foe alike. This effect lasts for 15 seconds +2 per
+Caster Level, and enemies make a recurring save once every 24 seconds."""
+icon = "DustOfConfusion"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Elemental Combination"
+description = """
+Primer Element: Crimsonite
+Throw a single bottle of a volatile magical concoction that deals an intense
+combination of Poison, Fire, Cold, Acid, and Electric damage, chosen randomly
+each time.
+DND Dice: Deals: 1d6+3 damage of a random 3 selections among Poison, Fire, Cold,
+Acid and Electric damage per caster level, max 20d6+60 per element.
+A successful Reflex save reduces the damage by half."""
+icon = "ElementalCombination"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Elemental Skin"
+description = """
+Primer Element: Ceruleite
+This potion will mutate you and make your skin a little bit more resistant to
+elemental damage. This grants a +5 Alchemical bonus to Elemental Resistance
+against Fire, Cold, Acid, and Electric damage, increasing to 10 at caster level
+10 and 15 at caster level 20. This effect lasts for 1 minute per caster level."""
+icon = "AlchemistElementalSkin"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Alchemical"
+effect_type = "EnergyResistance"
+stack_source = "Unknown"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+]
+
+[[row]]
+name = "Elemental Weapons"
+description = """
+Your target's currently equipped weapons gain hit effect: 1d6 elemental damage of your choice.
+An item can have only one temporary item enchantment at a time."""
+icon = "ElementalWeapons"
+metamagics = ["Quicken"]
+schools = ["Evocation"]
+
+[[row]]
+name = "Empty Bottle"
+description = """
+Primer Element: Crimsonite
+Throw an empty bottle at a single foe, dealing 3 to 8 Bludgeoning damage per
+caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Bludgeoning damage per caster level, max 10d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AlchemistEmptyBottle"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Bludgeon"
+spell_power = "Force"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Evolution"
+description = """
+Primer Element: Ceruleite
+Choose something to mutate into, giving +2 Alchemical bonus to the chosen Ability score.
+You may only have one Mutation active at a time. This lasts for 5 minutes.
+At Caster Level 6 and higher, this add +1 minute per
+Caster Level."""
+icon = "Evolution"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["StrEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier.requirement]]
+items = ["IntEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["WisEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier.requirement]]
+items = ["DexEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["ConEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["SChaEvolution"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "StrEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Strength"
+group_name = "Evolution Option"
+icon = "Strength"
+
+[[row.stance]]
+name = "IntEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Intelligence"
+group_name = "Evolution Option"
+icon = "Intelligence"
+
+[[row.stance.note]]
+kind = "spell"
+field = "icon"
+upstream = "intelligence"
+reason = "DDOBuilderV2's SpellImages folder spells the image Intelligence.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row.stance]]
+name = "WisEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Wisdom"
+group_name = "Evolution Option"
+icon = "Wisdom"
+
+[[row.stance]]
+name = "DexEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Dexterity"
+group_name = "Evolution Option"
+icon = "Dexterity"
+
+[[row.stance]]
+name = "ConEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Constitution"
+group_name = "Evolution Option"
+icon = "Constitution"
+
+[[row.stance]]
+name = "ChaEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Charisma"
+group_name = "Evolution Option"
+icon = "Charisma"
+
+[[row]]
+name = "Feathers Extract"
+description = """
+Primer Element: Ceruleite
+This potion will mutate you, making your bones slightly less dense causing small
+feathers to grow from your skin. Grants the effects of the Feather Fall and Jump
+spells: You gain Feather Falling and a +10 Enhancement bonus to Jump. This bonus
+increases to +20 as 5th level, and +30 at 9th level. These effects last for 30
+seconds +6 seconds per Caster Level."""
+icon = "AlchemistFeathersExtract"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    10,
+    10,
+    10,
+    10,
+    20,
+    20,
+    20,
+    20,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Unknown"
+targets = ["Jump"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling Damage"]
+
+[[row]]
+name = "Fine Dust"
+description = """
+Primer Element: Gildleaf
+Scatter fine, nearly-frictionless dust, forcing enemies caught within to make
+a Reflex saving throw or trip for 6 seconds. While tripped, enemies get recurring
+balance check to get up every 2 seconds, at the same DC as the initial save."""
+icon = "AlchemistFineDust"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Trip"
+dc_versus = "Reflex"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Flame Concentration"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of burning liquid, you throw a projectile at a single foe that
+deals 1 to 6 Fire damage, +1 per caster level, max caster level 20.
+This Fire will burn over time, dealing its damage every 2 seconds for 16 seconds.
+You may stack this 3 times.
+
+DND Dice: Deals 1d6 Fire damage +1 per caster level, max 1d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "FireConcentration"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Flash Freeze"
+description = """
+Primer Element: Gildleaf
+Smash a bottle beneath your feet containing a volatile chemical reaction that
+creates an explosion of intense Cold, locking enemies in solid ice. Enemies who
+fail a Fortitude save are stunned and helpless for 6 seconds per Caster Level.
+Enemies get a recurring save every 3 seconds."""
+icon = "FlashFreeze"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Flash Powder"
+description = """
+Primer Element: Ceruleite
+You crush components in your hand, creating a load boom and sharp flash.
+An enemy at touch range must make a Fortitude save or be Stunned for 3 seconds."""
+icon = "FlashPowder"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Stun"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Flashbang"
+description = """
+Primer Element: Gildleaf
+Lob a vial that explodes on impact. Nearby enemies must make a Fortitude save
+or be blinded. If they fail this save and are already blinded, they instead will be stunned."""
+icon = "Alchemist_Flashbang"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Flesh to Gold"
+description = """
+Primer Element: Ceruleite
+Turn an enemy to Gold with a single touch. Creatures made of flesh that fail a
+Fortitude save are turned to a metallic, helpless statue with minor resistance
+to piercing damage. This lasts 60 seconds plus 10 seconds per caster level,
+but the target has a chance to remake its Fortitude save every 24 seconds."""
+icon = "FleshToGold"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Flesh to Gold, Mass"
+description = """
+Primer Element: Gildleaf
+Enemies around you must make a Fortitude saving throw or be turned to gold. Creatures
+made of flesh that fail a Fortitude save are turned to metallic, helpless statues
+with minor resistance to piercing damage. This lasts 30 seconds plus 12 seconds
+per caster level, but the target has a chance to remake its Fortitude save every
+12 seconds."""
+icon = "FleshToGoldMass"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Frost Concentration"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of freezing liquid, you throw a projectile at a single foe that
+deals 1 to 6 Cold damage, +1 per caster level, max caster level 20.
+This Cold continues to deal damage over time, dealing its damage every 2 seconds
+for 16 seconds. You may stack this 3 times.
+
+DND Dice: Deals 1d6 Cold damage +1 per caster level, max 1d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "FrostConcentration"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Gills Extract"
+description = """
+Primer Element: Ceruleite
+This potion will mutate you, granting you gills and increased ability to swim underwater.
+This grants the effects of the Water Breathing and Merfolk's Blessing spells:
+You gain the ability to breathe underwater and a +10 Enhancement bonus to Swim,
+plus 1 for every 2 caster levels beyond the first. These effects last for 30
+seconds +6 seconds per Caster Level"""
+icon = "AlchemistGillsExtract"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18,
+    19,
+    19,
+    20,
+    20,
+    21,
+    21,
+    22,
+    22,
+    23,
+    23,
+    24,
+    24,
+    25,
+    25,
+    26,
+    26,
+    27,
+    27,
+    28,
+    28,
+    29,
+    29,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Unknown"
+targets = ["Swim"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Drowning"]
+
+[[row]]
+name = "Glue Bomb"
+description = """
+Primer Element: Ceruleite
+Log a glass vial full of sticky, organic glue, trapping enemies within its embrace.
+Enemies that fail a Reflex save become stuck in place. Victims of the glue may
+attempt to free themselves every 4 seconds with a successful strength check.
+Lasts for 15 seconds + 1 per level"""
+icon = "GlueBomb"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Reflex"
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Recurring Strength"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Gold Breath"
+description = """
+Primer Element: Crimsonite
+You exhale gold through your mouth in a large cone, causing enemies caught within
+the area to take 4 to 9 Fire and 4 to 9 Bludgeon damage per caster level, max
+caster level 20. This is a Breath attack.
+DND Dice: Deals 1d6+3 Fire and 1d6+3 Bludgeon, max 20d6+60 and 20d6+60.
+A successful Fortitude save reduces the damage by half."""
+icon = "GoldBreath"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 3
+base_dice_number = 1
+base_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.damage]]
+base_dice_bonus = 3
+base_dice_number = 1
+base_dice_sides = 6
+damage = "Bludgeon"
+spell_power = "Force"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Goldskin Potion"
+description = """
+Primer Element: Ceruleite
+Turn your skin to metallic, magical gold. Gain a resistance to physical damage
+of 30/Adamantine for the duration. Once this potion has prevented 30 points of
+damage per caster level, it is discharged"""
+icon = "GoldskinPotion"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Greater Elemental Weapons"
+description = """
+Primer Element: Crimsonite
+Your target gains +2 Imbue Dice (Alchemical bonus). An item can have only one
+temporary item enchantment at a time."""
+icon = "GreaterElementalWeapons"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "ImbueDice"
+
+[[row]]
+name = "Greater Evolution"
+description = """
+Primer Element: Ceruleite
+Choose something to mutate into and gain a +4 Alchemical bonus to the chosen Ability Score.
+You may only have one Mutation active at a time. This lasts for 1 minute per
+caster level."""
+icon = "GreaterEvolution"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["StrEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier.requirement]]
+items = ["IntEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["WisEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier.requirement]]
+items = ["DexEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["ConEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["SChaEvolution"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "StrEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Strength"
+group_name = "Evolution Option"
+icon = "Strength"
+
+[[row.stance]]
+name = "IntEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Intelligence"
+group_name = "Evolution Option"
+icon = "Intelligence"
+
+[[row.stance.note]]
+kind = "spell"
+field = "icon"
+upstream = "intelligence"
+reason = "DDOBuilderV2's SpellImages folder spells the image Intelligence.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row.stance]]
+name = "WisEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Wisdom"
+group_name = "Evolution Option"
+icon = "Wisdom"
+
+[[row.stance]]
+name = "DexEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Dexterity"
+group_name = "Evolution Option"
+icon = "Dexterity"
+
+[[row.stance]]
+name = "ConEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Constitution"
+group_name = "Evolution Option"
+icon = "Constitution"
+
+[[row.stance]]
+name = "ChaEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Charisma"
+group_name = "Evolution Option"
+icon = "Charisma"
+
+[[row]]
+name = "Greater Heartseeker Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the Fortitude from your enemies
+on contact. On Hit: -1 Fortitude Save per stack, stacks 3 times.
+On Critical: 1d6 Constitution Damage.
+On Vorpal: 1 stack of Vulnerability
+An item can have only one temporary item Enhancement at a time."""
+icon = "GreaterHeartseekerPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Greater Ice Chill Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the speed from your enemies
+on contact. On Hit: -1 Reflex Save per stack, stacks 3 times.
+On Critical: 1d6 Dexterity Damage.
+On Vorpal: 1 stack of Vulnerability
+An item can have only one temporary item Enhancement at a time."""
+icon = "GreaterIceChillPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Greater Liquid Courage"
+description = """
+Primer Element: Ceruleite
+Drink a personal vial of glowing golden liquid that grants incredible courage
+and protections against Fear, granting the effects of the Greater Heroism spell.
+This potion grants a +4 Morale bonus to attack rolls, saving throws, and skill
+checks. The target also receives temporary hitpoints equal to the caster level
+and immunity to Fear.
+This lasts for 7 minutes."""
+icon = "GreaterLiquidCourage"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Morale"
+effect_type = "Weapon_Attack"
+extra_types = [
+    "SaveBonus",
+    "SkillBonus",
+]
+targets = ["All"]
+
+[[row]]
+name = "Greater Restorative Draught"
+description = """
+Primer Element: Ceruleite
+Throw a small vial of magical liquid at a single target that grants the effect
+of the Greater Restoration spell: Cures all temporary ability damage, restores all
+negative levels suffered from energy drain, and eliminates fatigue, exhaustion,
+confusion and insanity effects on you."""
+icon = "GreaterRestorativeDraught"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Greater Soulshatter Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the willpower from your enemies
+on contact. On Hit: -1 Will Save per stack, stacks 3 times.
+On Critical: 1d6 Wisdom Damage.
+On Vorpal: 1 stack of Vulnerability
+An item can have only one temporary item Enhancement at a time."""
+icon = "GreaterSoulshatterPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Greater Stoneskin"
+description = """
+Primer Element: Ceruleite
+Turn your skin to durable and magical stone. Gain a resistance to physical damage
+of 20/Adamantine for the duration. Once this potion has prevented 20 points of
+damage per caster level, it is discharged"""
+icon = "GreaterStoneskin"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Greater Venom Vial"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of magical poison, you throw a projectile that explodes on impact,
+dealing 3 to 8 Poison damage per caster level, max caster level 10, to all foes
+caught within the area. The poison will leave enemies struck Contaminated.
+
+DND Dice: Deals 1d6+2 Poison damage per caster level in an AOE, max 10d6+20.
+A successful Fortitude save reduces the damage by half."""
+icon = "GreaterVenomVial"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Greater Voidmind Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the defenses from your enemies
+on contact. On Hit: -1 Spell Resistance per stack, stacks 3 times.
+On Critical: 1d6 Intelligence Damage.
+On Vorpal: 1 stack of Vulnerability
+An item can have only one temporary item Enhancement at a time."""
+icon = "GreaterVoidmindPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Heartseeker Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the Fortitude from your enemies
+on contact. On Hit: -1 Fortitude Save per stack, stacks 3 times.
+On Critical: 1d6 Constitution Damage.
+An item can have only one temporary item Enhancement at a time."""
+icon = "HeartseekerPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Heartstopper Poison"
+description = """
+Primer Element: Crimsonite
+Throw a vial of deadly poison that explodes on impact, dealing 4 to 9 Poison damage
+per caster level, max caster level 15, to a small cluster of enemies. This poison
+will leave the enemies Contaminated.
+
+DND Dice: Deals 1d6+3 Poison damage per caster level, max 15d6+45.
+A successful Reflex save reduces the damage by half."""
+icon = "HeartstopperPoison"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 3
+base_dice_number = 1
+base_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Hypnotic Combination"
+description = """
+Primer Element: Ceruleite
+Throw a bottle at a single target full of hallucinogenic material. On a failed Will
+save, the target is Confused, attacking and able to be attacked by friend and foe
+alike. Targets can re-attempt the Will save every 24 seconds. This effect lasts
+for 15 seconds +2 per Caster Level."""
+icon = "HypnoticCombination"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Ice Chill Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the speed from your enemies
+on contact. On Hit: -1 Reflex Save per stack, stacks 3 times.
+On Critical: 1d6 Dexterity Damage.
+An item can have only one temporary item Enhancement at a time."""
+icon = "IceChillPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Invisibility Potion"
+description = """
+Primer Element: Ceruleite
+This shadowy liquid will turn you invisible for a time, granting the effect of the
+Invisibility spell. If you attack a target, this invisibility will end. This lasts
+for 1 minute per Caster Level."""
+icon = "InvisibilityPotion"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Iron Shavings"
+description = """
+Primer Element: Gildleaf
+Smash a bottle at your feet to spread Flametouched Iron shavings into the air
+around you, causing nearby Incorporeal foes that fail a Fortitude save to become
+Corporeal for 6 seconds, plus 1 second per Caster Level"""
+icon = "IronShavings"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Lesser Evolution"
+description = """
+Primer Element: Ceruleite
+Choose something to mutate into, giving +1 Alchemical bonus to the chosen Ability score.
+You may only have one Alchemical Mutation active at a time. Duration: 1 Minute"""
+icon = "AlchemistLesserEvolution"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["StrEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier.requirement]]
+items = ["IntEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["WisEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier.requirement]]
+items = ["DexEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["ConEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["SChaEvolution"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "StrEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Strength"
+group_name = "Evolution Option"
+icon = "Strength"
+
+[[row.stance]]
+name = "IntEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Intelligence"
+group_name = "Evolution Option"
+icon = "Intelligence"
+
+[[row.stance.note]]
+kind = "spell"
+field = "icon"
+upstream = "intelligence"
+reason = "DDOBuilderV2's SpellImages folder spells the image Intelligence.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row.stance]]
+name = "WisEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Wisdom"
+group_name = "Evolution Option"
+icon = "Wisdom"
+
+[[row.stance]]
+name = "DexEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Dexterity"
+group_name = "Evolution Option"
+icon = "Dexterity"
+
+[[row.stance]]
+name = "ConEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Constitution"
+group_name = "Evolution Option"
+icon = "Constitution"
+
+[[row.stance]]
+name = "ChaEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Charisma"
+group_name = "Evolution Option"
+icon = "Charisma"
+
+[[row]]
+name = "Lesser Heartseeker Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the Fortitude from your enemies
+on contact. On Hit: -1 Fortitude Save. On Critical: 1d6 Constitution Damage.
+An item can have only one temporary item Enhancement at a time."""
+icon = "LesserHeartseekerPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Lesser Ice Chill Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the speed from your enemies
+on contact. On Hit: -1 Reflex Save. On Critical: 1d6 Dexterity Damage.
+An item can have only one temporary item Enhancement at a time."""
+icon = "LesserIceChillPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Lesser Restorative Draught"
+description = """
+Primer Element: Ceruleite
+Throw a small vial of magical liquid at a single target that provides the effects
+of the Lesser Restoration spell: Dispells magical effects reducing your Ability
+scores, eliminates fatigue, and improves exhaustion to fatigue."""
+icon = "AlchemistLesserRestorativeDraught"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Lesser Soulshatter Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the willpower from your enemies
+on contact. On Hit: -1 Will Save. On Critical: 1d6 Wisdom Damage.
+An item can have only one temporary item Enhancement at a time."""
+icon = "LesserSoulshatterPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Lesser Voidmind Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the defenses from your enemies
+on contact. On Hit: -1 Spell Resistance. On Critical: 1d6 Intelligence Damage.
+An item can have only one temporary item Enhancement at a time."""
+icon = "LesserVoidmindPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Liquid Courage"
+description = """
+Primer Element: Ceruleite
+Drink a personal vial of glowing golden liquid that grants incredible courage.
+This potion grants the effects of the Heroism spell: A +2 Morale bonus to attack
+rolls, saving throws, and skill checks. This lasts for 1 minute per Caster Level."""
+icon = "LiquidCourage"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Morale"
+effect_type = "Weapon_Attack"
+extra_types = [
+    "SaveBonus",
+    "SkillBonus",
+]
+targets = ["All"]
+
+[[row]]
+name = "Melt Armor"
+description = """
+Primer Element: Gildleaf
+Lob a vial of burning liquid at a single foe that deals heavy damage and melts
+the armor of whatever it strikes. Deals 4 to 8 Fire damage per caster level,
+max caster level 10, to a single target, and reduces their Armor Class and
+Physical Resistance rating by 4 for 15 seconds + 2 seconds per Caster Level.
+
+DND Dice: Deals 1d4+4 Fire damage per caster level, max 10d6+40.
+A successful Reflex save reduces the damage by half."""
+icon = "MeltArmor"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Melt Lock"
+description = """
+Primer Element: Ceruleite
+Throws a caustic liquid at a lock, attempting to dissolve it.
+You make a d20 + Spellcraft skill check against the DC of the lock, and if
+successful, the lock will behave as if it has been affected by a Knock spell
+of equivalent effectiveness."""
+icon = "MeltLock"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Molotov Cocktail"
+description = """
+Primer Element: Crimsonite
+Lob a glass bottle full of reactive chemicals that shatters and then ignites
+in a large area, dealing damage to all enemies struck. Enemies are ignited,
+dealing 4 to 9 Fire damage per caster level, max caster level 15.
+
+DND Dice: Deals 1d6+3 Fire damage per caster level, max 15d6+45"""
+icon = "MolotovCocktail"
+max_caster_level = 15
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Multivial of Acid"
+description = """
+Primer Element: Crimsonite
+Conjuring many bottles of caustic liquid, you throw 5 projectiles that explode on
+impact, with each dealing 2 to 7 Acid damage per caster level to all nearby foes,
+max caster level 20.
+DND Dice: Deals 1d4+3 Acid damage per caster level per projectile, max 10d4+30.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells."""
+icon = "MultivialOfAcid"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Acid"
+spell_power = "Acid"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Multivial of Flame"
+description = """
+Primer Element: Crimsonite
+Conjuring many bottles of burning liquid, you throw 5 projectiles that explode on
+impact, with each dealing 2 to 7 Fire damage per caster level to all nearby foes,
+max caster level 20.
+DND Dice: Deals 1d4+3 Fire damage per caster level per projectile, max 10d4+30.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells."""
+icon = "MultivialOfFlame"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Multivial of Frost"
+description = """
+Primer Element: Crimsonite
+Conjuring many bottles of freezing liquid, you throw 5 projectiles that explode on
+impact, with each dealing 2 to 7 Cold damage per caster level to all nearby foes,
+max caster level 20.
+DND Dice: Deals 1d4+3 Cold damage per caster level per projectile, max 10d4+30.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells."""
+icon = "MultivialOfFrost"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Multivial of Poison"
+description = """
+Primer Element: Crimsonite
+Conjuring many bottles of poisonous material, you throw 5 projectiles that explode on
+impact, with each dealing 2 to 7 poison damage per caster level to all nearby foes,
+max caster level 20.
+DND Dice: Deals 1d4+3 poison damage per caster level per projectile, max 10d4+30.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells."""
+icon = "MultivialOfPoison"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Multivial of Sparks"
+description = """
+Primer Element: Crimsonite
+Conjuring many bottles of reactive material, you throw 5 projectiles that explode on
+impact, with each dealing 2 to 7 Electric damage per caster level to all nearby foes,
+max caster level 20.
+DND Dice: Deals 1d4+3 Electric damage per caster level per projectile, max 10d4+30.
+A successful Reflex save reduces this damage by half. Shares a cooldown with all
+other Multivial spells."""
+icon = "MultivialOfSparks"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Poison Breath"
+description = """
+Primer Element: Crimsonite
+You exhale poison through your mouth in a large cone, causing enemies caught within
+the area to take 6 to 11 Poison damage per caster level, max caster level 20.
+This is a breathe attack. This poison will leave enemies Contaminated.
+DND Dice: Deals 1d6+5 Poison damage per caster level, max 20d6+100 Poison damage.
+A successful Fortitude save reduces the damage by half."""
+icon = "PoisonBreath"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 5
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Quicksilver Potion"
+description = """
+Primer Element: Ceruleite
+Drink a potion of shiny silver liquid that bestows incredible speed for a short
+time, the effect of the Haste spell. You are quickened, causing you to attack
+15% faster than normal. In addition, you gain a +1 Enhancement bonus to attack
+rolls, a +1 bonus to Reflex Saving Throws, and a +1% Dodge."""
+icon = "QuicksilverPotion"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Rapid Condensation"
+description = """
+Primer Element: Gildleaf
+Throw a bottle that explodes on impact, rapidly condensing water in the air
+with a magical reaction that has the effect of the Obscuring Mist Spell: A
+misty vapor arises, obscuring all sight, giving all creatures in the fog
+concealment (attackers have 20% miss chance). Obscuring mist can be burned
+away with Fire spells that hit the area of the mist."""
+icon = "AlchemistRapidCondensation"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Restorative Draught"
+description = """
+Primer Element: Ceruleite
+Throw a small vial of magical liquid at a single target that grants the effect
+of the Restoration spell: Cures all temporary ability damage, restores a single
+negative level suffered from energy drain, and eliminates fatigue and exhaustion."""
+icon = "RestorativeDraught"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Salt Crystals"
+description = """
+Primer Element: Ceruleite
+Smash a bottle beneath your feet that rapidly crystallizes, trapping nearby enemies
+that fail a Fortitude save in brittle salt. They are considered Dazed for 6 seconds,
+and any damage will remove the salt."""
+icon = "SaltCrystals"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Sanctified Vial"
+description = """
+Primer Element: Ceruleite
+Casting this spell requires levels in Cleric, Paladin, or Favored Soul, or for
+you to be in a Divine Epic Destiny. Throw a bottle that splashes Holy Water
+when it breaks, dealing 1d4+4 Bane Damage per Caster Level to Undead and
+extra-planar creatures nearby. (This damage scales with Force Spell Power).
+The Holy Water will attempt to force all extra-planar creatures in the bottle's
+splash back to their home plane with the effect of the Banishment spell. A
+successful Will save negates this effect. (DC = spell's save DC - creature's
+Hit Dice of Level + your caster level)."""
+icon = "SanctifiedVial"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Sleep Powder"
+description = """
+Primer Element: Gildleaf
+Scatter a dust-based magical poison that causes enemies that inhale the mixture
+to fall asleep. This Sleep lasts for 20 seconds + 2 seconds per Caster Level, or
+until damaged. A successful Will save negates this effect; the save is repeated
+every 12 seconds the creature remains asleep. Has no effect on enemies that do
+not need to breathe or sleep."""
+icon = "AlchemistSleepPowder"
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Sleep"
+dc_versus = "Will"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Smoke Bomb"
+description = """
+Primer Element: Gildleaf
+Throw a bottle beneath you that explodes into a clod of smoke and leaves you
+Invisible and Displaced for 12 seconds."""
+icon = "SmokeBomb"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Soulshatter Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the willpower from your enemies
+on contact. On Hit: -1 Will Save per stack, stacks 3 times.
+On Critical: 1d6 Wisdom Damage.
+An item can have only one temporary item Enhancement at a time."""
+icon = "SoulshatterPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Sparks Concentration"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of reactive material, you throw a projectile at a single foe that
+deals 1 to 6 Electric damage, +1 per caster level, max caster level 20.
+This Electricity continues to deal damage over time every 2 seconds for 16 seconds.
+You may stack this 3 times.
+
+DND Dice: Deals 1d6 Electric damage +1 per caster level, max 1d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "SparksConcentration"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Electric"
+per_caster_levels = 1
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Stiffen Skin"
+description = """
+Primer Element: Ceruleite
+This potion will mutate you and make your skin a little bit more resistant to
+physical damage. This grants a +2 Deflection bonus to AC, +1 per 6 Caster Levels,
+for 1 minute per caster level."""
+icon = "AlchemistStiffenSkin"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+]
+bonus_type = "Deflection"
+effect_type = "ACBonus"
+stack_source = "Unknown"
+
+[[row]]
+name = "Stoneskin Potion"
+description = """
+Primer Element: Ceruleite
+Turn your skin to durable stone. Gain a resistance to physical damage of 10/Adamantine
+for the duration. Once this potion has prevented 10 points of damage per caster level,
+it is discharged"""
+icon = "StoneskinPotion"
+metamagics = [
+    "Primer",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Turn to Frog"
+description = """
+Primer Element: Crimsonite
+Throw a vial at a single enemy, who must succeed a Fortitude saving throw or be
+turned into a frog."""
+icon = "TurnToFrog"
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Vein Freeze"
+description = """
+Primer Element: Gildleaf
+Throw a bottle at a targeted foe that explodes, dealing 5 to 10 Cold damage per
+Caster Level, and slows enemies caught within. Some enemies may be required to
+make a Fortitude save to be Frozen for 12 seconds.
+DND Dice: Deals 1d6+4 Cold damage per caster level, max 20d6+80.
+A successful Reflex save reduces the damage by half and negates the debuff."""
+icon = "VeinFreeze"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates Frozen"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Venom Concentration"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of magical poison, you throw a projectile at a single foe
+that deals 1 to 6 Poison damage, +1 per caster level, max caster level 20.
+This poison will eat away at the enemy, dealing its damage every 2 seconds for
+16 seconds. You may stack this poison 3 times. This poison will leave the enemy
+Contaminated.
+
+DND Dice: Deals 1d6 Poison damage +1 per caster level, max 1d6+20.
+A successful Fortitude save reduces the damage by half."""
+icon = "VenomConcentration"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Poison"
+per_caster_levels = 1
+spell_power = "Poison"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial of Acid"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of caustic liquid, you throw a projectile at a single foe
+that deals 3 to 8 Acid damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Acid damage per caster level, max 10d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AlchemistVialOfAcid"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial of Flame"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of burning liquid, you throw a projectile at a single foe
+that deals 3 to 8 Fire damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Fire damage per caster level, max 10d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AlchemistVialOfFlame"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial of Frost"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of freezing liquid, you throw a projectile at a single foe
+that deals 3 to 8 Cold damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Cold damage per caster level, max 10d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AlchemistVialOfFrost"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial of Sparks"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of reactive material, you throw a projectile at a single foe
+that deals 3 to 8 Electric damage per caster level, max caster level 10.
+
+DND Dice: Deals 1d6+2 Electric damage per caster level, max 10d6+20.
+A successful Reflex save reduces the damage by half."""
+icon = "AlchemistVialOfSparks"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial of Venom"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of magical poison, you throw a projectile at a single foe
+that deals 3 to 8 Poison damage per caster level, max caster level 10.
+This poison will leave the enemy Contaminated.
+
+DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20.
+A successful Fortitude save reduces the damage by half."""
+icon = "AlchemistVialOfVenom"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Voidmind Poison Imbue"
+description = """
+Primer Element: Crimsonite
+Coat your weapon in a magical poison that saps the defenses from your enemies
+on contact. On Hit: -1 Spell Resistance per stack, stacks 3 times.
+On Critical: 1d6 Intelligence Damage.
+An item can have only one temporary item Enhancement at a time."""
+icon = "VoidmindPoisonImbue"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Voltaic Backlash"
+description = """
+Primer Element: Gildleaf
+Lob a vial of volatile liquid at a single foe that deals heavy damage and disrupts
+the offensive spellcasting capacity of whatever it strikes. Deals 4 to 8 Electric
+damage per Caster Level, max Caster Level 10, to a single foe, and reduces
+Universal Spell Power by 10 for 15 seconds +2 seconds per Caster Level.
+
+DND Dice: Deals 1d4+4 Electric damage per caster level, max 10d4+40.
+A successful Reflex save reduces the damage by half."""
+icon = "VoltaicBacklash"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Voltaic Burst"
+description = """
+Primer Element: Gildleaf
+Throw a bottle at a targeted foe that explodes, dealing 5 to 10 Electric damage per
+Caster Level to enemies caught in the blast. In addition, enemies must make a
+Fortitude saving throw or take -5 Magical Resistance Rating for 12 seconds.
+DND Dice: Deals 1d6+4 Electric damage per caster level, max 20d6+80.
+A successful Reflex save reduces the damage by half and negates the debuff."""
+icon = "VoltaicFreeze"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates MRR Debuff"
+dc_versus = "Fortitude"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Voltaic Induction"
+description = """
+Primer Element: Crimsonite
+Shatter a small bottle of volatile mixtures on the first target hit, causing
+lightning to arc between them. This has an initial jolt of 4 to 9 Electric damage
+per caster level, max caster level 15, to all targets hit, and then periodically
+shocks affected enemies for 4 to 6 Electric damage every 2 seconds for 16 seconds.
+This damage over time does not stack.
+
+DND Dice: Deals 1d6+3 Electric damage, and an additional 1d3+3 damage per caster
+level over time, max 15d6+45 and 15d3+45. A successful Reflex save reduces the
+damage by half."""
+icon = "VoltaicInduction"
+max_caster_level = 15
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]

@@ -1,0 +1,39 @@
+name = "Epic Dockworker's Outfit"
+description = "An outfit to blend in with the hired hands in Saltmarsh."
+drop_location = "Epic version of Dockworker's Outfit"
+enhancement_bonus = 6
+icon = "Cloth_4d"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 38
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"

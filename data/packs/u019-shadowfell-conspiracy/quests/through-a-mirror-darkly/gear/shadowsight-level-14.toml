@@ -1,0 +1,36 @@
+name = "Shadowsight (Level 14)"
+description = """
+Goggle attuned to the Shadowfell that makes hitting shadows and other incorporeal
+creatures easier."""
+drop_location = "Through a Mirror Darkly, end chest (Heroic Normal); Shadow Over Wheloon, quest chain end reward (Heroic)"
+icon = "Goggles_10"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 14
+slot = "Goggles"
+
+[[effect]]
+name = "Ethereal"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 6
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Through a Mirror Darkly"
+
+[[source]]
+kind = "quest_chain"
+name = "Shadow Over Wheloon"

@@ -1,0 +1,52 @@
+name = "Kelas' Volatile Mixture"
+description = 'A small and simple inscription adorns the label... "Do Not Drink"'
+drop_location = "Skeletons in the Closet, Free Yarrow optional chest"
+icon = "Orb_7"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Bone"
+minimum_level = 31
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[effect]]
+name = "Utter Disintegration"
+
+[[effect]]
+name = "Legendary Nightmare Guard"
+
+[[effect]]
+name = "Legendary Virulent Poison"
+
+[[effect]]
+name = "Legendary Air Guard"
+
+[[effect]]
+name = "The Golden Curse"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "free yarrow optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Skeletons in the Closet"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

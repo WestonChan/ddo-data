@@ -1,0 +1,45 @@
+name = "Mithral Breastplate of the Elements"
+description = """
+A breastplate covers your front and back. A light suit of studded leather beneath
+the breastplate protects your limbs without restricting movement much."""
+drop_location = "Tempest's Spine"
+enhancement_bonus = 1
+icon = "MediumArmor_1"
+is_legacy = true
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 5
+armor_type = "Light"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Mithral"
+
+[[note]]
+kind = "item"
+field = "is_legacy"
+upstream = false
+reason = "The wiki says it no longer drops; replaced by Elemental Mithral Breastplate."
+url = "https://ddowiki.com/page/Item:Mithral_Breastplate_of_the_Elements"
+read = "2026-10-01"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

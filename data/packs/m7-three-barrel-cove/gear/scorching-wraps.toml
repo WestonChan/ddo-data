@@ -1,0 +1,48 @@
+name = "Scorching Wraps"
+description = """
+These cloth handwraps, favored by the minotaur brawler Scorchtusk, were enchanted
+so that his blows will strike with the power of the flame. They're also 'enchanted'
+with nails. Pointy-ends out."""
+drop_location = "Three-Barrel Cove (heroic), Scorchtusk 's Chest (Rare Encounter)"
+enhancement_bonus = 2
+icon = "HandWraps_1l"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Flaming Burst"
+
+[[effect]]
+name = "Spiked"
+
+[[effect]]
+name = "Bleed"
+
+[[source]]
+chest = "scorchtusk 's chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Three-Barrel Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

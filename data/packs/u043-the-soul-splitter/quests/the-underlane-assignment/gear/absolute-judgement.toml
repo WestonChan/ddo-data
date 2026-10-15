@@ -1,0 +1,56 @@
+name = "Absolute Judgement"
+description = "Only a mad scientist deals in absolutes."
+drop_location = "The Underlane Assignment, End chest"
+enhancement_bonus = 5
+icon = "Maul_1d"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 17
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Holy 4"
+
+[[effect]]
+name = "Axiomatic 4"
+
+[[effect]]
+name = "Evil Outsider Bane 4"
+
+[[effect]]
+name = "Command"
+value = 5
+value2 = -6
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Underlane Assignment"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.4
+handedness = "Two-handed"
+weapon_type = "Maul"

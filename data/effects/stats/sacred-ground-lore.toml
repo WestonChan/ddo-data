@@ -1,0 +1,5 @@
+name = "Sacred Ground Lore"
+category = "magical"
+description_template = "Passive: Your Acid, Light, and Alignment spells gain a {1} %b1 bonus to their chance to critical hit."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Sacred Ground Lore +{1}%"

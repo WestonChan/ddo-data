@@ -1,0 +1,27 @@
+name = "Fire on Thunder Peak"
+bestowed_by = "Vaklos Halmar"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+flagging = "After defeating Dagan: Regent Of Thunderholme in The Ruins of Thunderholme, return to The Thunder Peaks public area to speak with Vaklos Halmar to be bestowed the Fire on Thunder Peak raid."
+is_raid = true
+pack = "Shadow Under Thunderholme"
+patron = "Purple Dragon Knights"
+zone = "Mountain Summit"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Fire_on_Thunder_Peak"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 30
+
+[[run]]
+tier = "legendary"
+level = 30

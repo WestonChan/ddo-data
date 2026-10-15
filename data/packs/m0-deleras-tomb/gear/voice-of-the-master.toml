@@ -1,0 +1,30 @@
+name = "Voice of the Master"
+description = """
+A comforting and inspiring presence surrounds you as you hold this carving.
+A short chain of adamantine connects the carved head to a curiously shaped
+polyhedron with 20's carved on each side."""
+drop_location = "Delera's Tomb, End reward"
+icon = "Trinket_34"
+item_category = "Jewelry"
+material = "Adamantine"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Heroic Inspiration"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 1
+
+[[note]]
+kind = "item"
+field = "set_bonus"
+reason = "The wiki's DM's Vision items are Voice of the Master, its Epic version and Mantle of the Worldshaper; his item names no set."
+url = "https://ddowiki.com/page/Category:DM%27s_Vision_items"
+read = "2026-10-02"
+
+[[source]]
+kind = "quest_chain"
+name = "Delera's Tomb"

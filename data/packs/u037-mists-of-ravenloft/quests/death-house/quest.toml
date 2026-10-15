@@ -1,0 +1,30 @@
+name = "Death House"
+bestowed_by = "Magdelena the Curious"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "Death House"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Death_House"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

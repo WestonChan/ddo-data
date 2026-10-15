@@ -1,0 +1,52 @@
+name = "Melt Wood Staff"
+description = """
+The hollowed out gem embedded in this staff houses a small reservoir of acid,
+which refills very slowly. It was the favorite weapon of a notable Gnashtooth
+Kobold Shaman."""
+drop_location = "The Lost Seekers, End reward"
+enhancement_bonus = 2
+icon = "Quarterstaff_10d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 2
+slot = "Main Hand"
+
+[[clickie]]
+name = "Melf's Acid Arrow"
+clickie = "Melf's Acid Arrow"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    3,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Melf's Acid Arrow"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

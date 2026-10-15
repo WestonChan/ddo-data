@@ -1,0 +1,29 @@
+name = "Dragonborn"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Born to fight, Dragonborn are a race of warriors and adventurers that hail from
+Argonnessen. They have the unique ability to channel elements into a Breath
+Weapon attack."""
+short_name = "Dragonborn"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Strength"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Dexterity"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Charisma"
+
+[[feat_slot]]
+feat_type = "Dragonborn Racial"
+level = 1

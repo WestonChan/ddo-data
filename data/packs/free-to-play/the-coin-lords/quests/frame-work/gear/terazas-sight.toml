@@ -1,0 +1,38 @@
+name = "Teraza's Sight"
+description = """
+A crown said to have been originally crafted for the hag queen Sora Teraza.
+It bestows its wearer with great wisdom, and the ability to see things as they
+truly are."""
+drop_location = "Frame Work, End chests, Dorris ' chests"
+icon = "Helmet_18b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Battle-Scarred"
+
+[[source]]
+chest = "end chests, dorris ' chests"
+kind = "quest"
+loot_type = "chest"
+name = "Frame Work"

@@ -1,0 +1,37 @@
+name = "Ring of the High Priest"
+description = "The High Priest's ring signified his status and power within the Cult of Vol."
+drop_location = "Litany of the Dead, High Priest of Vol's chest"
+icon = "Ring_40"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Ring"
+
+[[clickie]]
+name = "Greater Command"
+clickie = "Greater Command"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Command"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "high priest of vol's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

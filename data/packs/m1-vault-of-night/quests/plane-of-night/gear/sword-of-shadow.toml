@@ -1,0 +1,41 @@
+name = "Sword of Shadow"
+description = """
+This great sword was forged inside the Vault of Night itself. The essence of
+Shadow has seeped into this sword granting it exceptional death-dealing abilities."""
+drop_location = "Plane of Night, Raid Warded Chest"
+enhancement_bonus = 5
+icon = "Greatsword_2"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Adamantine"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Adamantine"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

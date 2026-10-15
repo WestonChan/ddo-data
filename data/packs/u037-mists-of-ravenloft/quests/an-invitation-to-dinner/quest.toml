@@ -1,0 +1,30 @@
+name = "An Invitation to Dinner"
+bestowed_by = "Ismark Kolyanovich"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "Castle Ravenloft"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/An_Invitation_to_Dinner"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 32

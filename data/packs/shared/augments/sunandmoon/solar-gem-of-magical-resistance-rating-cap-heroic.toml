@@ -1,0 +1,58 @@
+name = "Solar Gem of Magical Resistance Rating Cap (Heroic)"
+description = """
++10 Artifact Bonus to Magical Resistance Rating Cap.
+Drops in: Magic of Myth Drannor (Heroic), Elite and True Elite
+Ruins of Myth Drannor, Any red-named rare encounter chest (rare)
+The Covered Culvert, end chest (rare)
+Locked Away (Part One), end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Magical Resistance Rating Cap"
+bonus_type = "Artifact"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Flocked Together"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part One)"
+
+[[source]]
+chest = "any red-named rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Wizard's Labyrinth"

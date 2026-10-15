@@ -1,0 +1,35 @@
+name = "Epic Sacred Band"
+description = """
+Though used primarily by drow ascetics, this ring will aid any healer in his
+or her duties."""
+drop_location = "Epic version of Sacred Band"
+icon = "Ring_25"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Turning"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

@@ -1,0 +1,66 @@
+name = "Legendary Ol' Reliable"
+accepts_sentience = true
+description = """
+This hefty wooden hammer is everything you need to repair and maintain a seaworthy
+vessel."""
+drop_location = "The Curse and the Captive Crustacean, end chest"
+enhancement_bonus = 15
+icon = "Warhammer_1e"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Wood"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Force Blast 6"
+
+[[effect]]
+name = "Aligned"
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Human Bane 6"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Curse and the Captive Crustacean"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "One-handed"
+weapon_type = "Warhammer"

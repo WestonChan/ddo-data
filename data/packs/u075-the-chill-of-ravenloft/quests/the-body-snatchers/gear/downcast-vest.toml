@@ -1,0 +1,48 @@
+name = "Downcast Vest"
+description = """
+Experimental socketry is integrated well into this garment, allowing it to push
+past its normal limits."""
+drop_location = "The Body Snatchers, end chest (rare)"
+enhancement_bonus = 4
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "lamordia: woeful (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"

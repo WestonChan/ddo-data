@@ -1,0 +1,908 @@
+[[entity]]
+table = "augments"
+upstream_id = 1031
+name = "Legendary Affirmation"
+description = "Requires Positive Positive Positive\nAttacks and offensive spells have a [10~33%] chance to grant\n1,000 temporary hitpoints with 1 minute duration.\nCooldown is also one minute."
+variant = "legendary-green-steel-items"
+
+[[entity]]
+table = "augments"
+upstream_id = 1035
+name = "Legendary Vacuum"
+description = "Requires Negative and Air Only\nAttacks and offensive spells have a [30%?] chance to inflict\nmultiple [2-4] stacks of Vulnerable. Originally had 100%,\n6-7 stacks but nerfed."
+variant = "legendary-green-steel-items"
+
+[[entity]]
+table = "augments"
+upstream_id = 1038
+name = "Legendary Dust"
+description = "Requires Negative and Earth only\nAttacks and offensive spells have a 50% chance to reduce enemy\nPRR and Positive Healing Amplification. This penalty stacks.\n[-7 PRR and -20 healing amp per stack, maximum stack 5, hence -35 PRR\nand -100 healing amp at full stack. 11 seconds duration each stack]"
+variant = "legendary-green-steel-items"
+
+[[entity]]
+table = "augments"
+upstream_id = 1042
+name = "Legendary Ash"
+description = "Requires Negative and Fire only\nAttacks and offensive spells have a 50% chance to reduce enemy\nMRR and Universal Spell Power. This penalty stacks. -7MRR\nand -20USP, MRR does not go negative, so it provides no additional\nmagic damage on most enemies. 12 seconds duration."
+variant = "legendary-green-steel-items"
+
+[[entity]]
+table = "augments"
+upstream_id = 1043
+name = "Legendary Ooze"
+description = "Requires Earth and Water only\nAttacks and offensive spells reduce enemy PRR and MRR\n[100% proc, minus 10 of each]. Attacks and offensive spells\nhave a [~5%] chance to summon some kind of Legendary Ooze.\n[Summoned Ooze scales with quest level/difficulty, for example,\nCR52 one has around 5,000 HP and does about 250+1d8? Acid melee damage]"
+variant = "legendary-green-steel-items"
+
+[[entity]]
+table = "augments"
+upstream_id = 1046
+name = "Legendary Salt"
+description = "Requires Water and Negative only\nAttacks and offensive spells have a [100%] chance to greatly\nreduce enemy movement speed and attack speed [about -90% slowdown].\nThis inflicts 8 stacks, which fade overtime. Has a short internal\ncooldown [1/4 seconds]. Doesn't affect bosses.\n[duration 11 seconds]"
+variant = "legendary-green-steel-items"
+
+[[entity]]
+table = "augments"
+upstream_id = 1644
+name = "Essence of The Masque"
+description = "Soundproof: Protects against stunning, dazing and disorientation from\nsound-based spells such as Soundburst and Greater Shout.\nRequires: 50 Threads of Fate, Empty Soul Vessel and The Masque (The Curse of Strahd)"
+variant = "sapphire"
+
+[[entity]]
+table = "augments"
+upstream_id = 1645
+name = "Essence of the Champion of the Twins"
+description = "Healer's Bounty: This item has a small percentage chance to cast a heal spell\non you when you take damage.\nRequires: 50 Threads of Fate, Empty Soul Vessel and Champion of the Twins (Legendary Vision of Destruction)"
+variant = "sapphire"
+
+[[entity]]
+table = "augments"
+upstream_id = 1648
+name = "Legendary Dust"
+description = "Attacks and offensive spells have a 50% chance to reduce enemy\nPRR and Positive Healing Amplification. This penalty stacks.\n[-7 PRR and -20 healing amp per stack, maximum stack 5, hence -35 PRR\nand -100 healing amp at full stack. 11 seconds duration each stack]"
+variant = "sealedinfire"
+
+[[entity]]
+table = "augments"
+upstream_id = 1649
+name = "Legendary Ash"
+description = "Attacks and offensive spells have a 50% chance to reduce enemy MRR and Universal\nSpell Power. This penalty stacks 3 times, -7 MRR and -20 Universal Spell Power\neach time, 12 seconds duration. Can make MRR negative."
+variant = "sealedinfire"
+
+[[entity]]
+table = "augments"
+upstream_id = 1650
+name = "Legendary Vacuum"
+description = "Attacks and offensive spells have a [30%?] chance to inflict\nmultiple [2-4] stacks of Vulnerable. Originally had 100%, 6-7 stacks but nerfed."
+variant = "sealedinfire"
+
+[[entity]]
+table = "augments"
+upstream_id = 1651
+name = "Legendary Ooze"
+description = "Attacks and offensive spells reduce enemy PRR and MRR\n[100% proc, minus 10 of each]. Attacks and offensive spells\nhave a [~5%] chance to summon some kind of Legendary Ooze.\n[Summoned Ooze scales with quest level/difficulty, for example,\nCR52 one has around 5,000 HP and does about 250+1d8? Acid melee damage]"
+variant = "sealedinfire"
+
+[[entity]]
+table = "augments"
+upstream_id = 1652
+name = "Legendary Salt"
+description = "Attacks and offensive spells have a [100%] chance to greatly\nreduce enemy movement speed and attack speed [about -90% slowdown].\nThis inflicts 8 stacks, which fade overtime. Has a short internal\ncooldown [1/4 seconds]. Doesn't affect bosses.\n[duration 11 seconds]"
+variant = "sealedinfire"
+
+[[entity]]
+table = "augments"
+upstream_id = 1653
+name = "Legendary Affirmation"
+description = "Attacks and offensive spells have a [10~33%] chance to grant\n1,000 temporary hitpoints with 1 minute duration.\nCooldown is also one minute."
+variant = "sealedinfire"
+
+[[entity]]
+table = "augments"
+upstream_id = 1668
+name = "Quality Strength +3"
+description = "Quality Strength +3: This item gives the wearer the power of Ogre Strength,\ngranting a +15 Quality bonus to Strength."
+variant = "sealedinundeath"
+
+[[entity]]
+table = "augments"
+upstream_id = 1669
+name = "Quality Constitution +3"
+description = "Quality Constitution +3: This item gives the wearer improved health, granting\na +3 Quality bonus to Constitution."
+variant = "sealedinundeath"
+
+[[entity]]
+table = "augments"
+upstream_id = 1670
+name = "Quality Dexterity +3"
+description = "Quality Dexterity +3: This item makes the wearer more nimble and dexterous, granting\na +3 Quality bonus to Dexterity."
+variant = "sealedinundeath"
+
+[[entity]]
+table = "augments"
+upstream_id = 1671
+name = "Quality Intelligence +3"
+description = "Quality Intelligence +3: This item focuses the power of the wearer's mind, granting\na +3 Quality bonus to Intelligence."
+variant = "sealedinundeath"
+
+[[entity]]
+table = "augments"
+upstream_id = 1672
+name = "Quality Wisdom +3"
+description = "Quality Wisdom +3: This item makes the wearer more in tune with her surroundings, granting\na +3 Quality bonus to Wisdom."
+variant = "sealedinundeath"
+
+[[entity]]
+table = "augments"
+upstream_id = 1673
+name = "Quality Charisma +3"
+description = "Quality Charisma +3: This item makes the wearer have more flair, granting\na +3 Quality bonus to Charisma."
+variant = "sealedinundeath"
+
+[[entity]]
+table = "augments"
+upstream_id = 171
+name = "Deathblock"
+description = "This effect grants immunity to all death spells and magical death effects."
+variant = "cannithandrandomitem"
+
+[[entity]]
+table = "augments"
+upstream_id = 1835
+name = "Quality Strength +3"
+description = "Legendary quality bonus to Strength"
+variant = "slave-lords-crafting"
+
+[[entity]]
+table = "augments"
+upstream_id = 1836
+name = "Quality Intelligence +3"
+description = "Legendary quality bonus to Intelligence"
+variant = "slave-lords-crafting"
+
+[[entity]]
+table = "augments"
+upstream_id = 1837
+name = "Quality Dexterity +3"
+description = "Legendary quality bonus to Dexterity"
+variant = "slave-lords-crafting"
+
+[[entity]]
+table = "augments"
+upstream_id = 1838
+name = "Quality Wisdom +3"
+description = "Legendary quality bonus to Wisdom"
+variant = "slave-lords-crafting"
+
+[[entity]]
+table = "augments"
+upstream_id = 1839
+name = "Quality Constitution +3"
+description = "Legendary quality bonus to Constitution"
+variant = "slave-lords-crafting"
+
+[[entity]]
+table = "augments"
+upstream_id = 1840
+name = "Quality Charisma +3"
+description = "Legendary quality bonus to Charisma"
+variant = "slave-lords-crafting"
+
+[[entity]]
+table = "augments"
+upstream_id = 2247
+name = "Essence of The Masque"
+description = "This sapphire carries the soul of The Masque.\nSlotted Effect: Soundproof\nRequires: 50 Thread of Fate, 1 Empty Soul Vessel and 1 The Masque (The Curse of Strahd), at the Soulforge in the Hall of Heroes"
+variant = "named"
+
+[[entity]]
+table = "augments"
+upstream_id = 2248
+name = "Essence of the Champion of the Twins"
+description = "This sapphire carries the soul of the Champion of the Twins.\nSlotted Effect: Healer's Bounty\nRequires: 50 Thread of Fate, 1 Empty Soul Vessel and 1 Champion of the Twins (Legendary Vision of Destruction), at the Soulforge in the Hall of Heroes"
+variant = "named"
+
+[[entity]]
+table = "augments"
+upstream_id = 319
+name = "Twilight"
+description = "The twilight armor reduces the chance of arcane spell failure by -10%."
+variant = "ml-30"
+
+[[entity]]
+table = "augments"
+upstream_id = 355
+name = "Twilight"
+description = "This suit of armor favored by eladrin spell casters, becomes semi-incorporeal when donned.\nThe twilight armor reduces the chance of arcane spell failure by -10%."
+variant = "ml-1"
+
+[[entity]]
+table = "augments"
+upstream_id = 729
+name = "Wizardry VI, +2 Exceptional Charisma Skills"
+description = "Wizardry VI: +150 Elemental Spell Power bonus to spell points.\n+2 Exceptional bonus to all Charisma based skills\nAir:Escalation:Ethereal"
+variant = "Air:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 730
+name = "Wizardry VI, +2 Exceptional Wisdom Skills"
+description = "Wizardry VI: +150 Elemental Spell Power bonus to spell points.\n+2 Exceptional bonus to all Wisdom based skills\nEarth:Escalation:Ethereal"
+variant = "Earth:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 731
+name = "Wizardry VI, +2 Exceptional Intelligence Skills"
+description = "Wizardry VI: +150 Elemental Spell Power bonus to spell points.\n+2 Exceptional bonus to all Intelligence based skills\nFire:Escalation:Ethereal"
+variant = "Fire:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 732
+name = "Wizardry VI, +2 Exceptional Wisdom Skills"
+description = "Wizardry VI: +150 Elemental Spell Power bonus to spell points.\n+2 Exceptional bonus to all Wisdom based skills\nWater:Escalation:Ethereal"
+variant = "Water:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 733
+name = "Wizardry VI, +2 Exceptional Intelligence Skills"
+description = "Wizardry VI: +150 Elemental Spell Power bonus to spell points.\n+2 Exceptional bonus to all Intelligence based skills\nNegative:Escalation:Ethereal"
+variant = "Negative:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 734
+name = "Wizardry VI, +2 Exceptional Charisma Skills"
+description = "Wizardry VI: +150 Elemental Spell Power bonus to spell points.\n+2 Exceptional bonus to all Charisma based skills\nPositive:Escalation:Ethereal"
+variant = "Positive:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 735
+name = "+10 Hitpoints, +2 Exceptional Dexterity Skills"
+description = "Hitpoints +10: +10 Elemental Energy bonus to maximum hit points\n+2 Exceptional bonus to all Dexterity based skills\nAir:Escalation:Material"
+variant = "Air:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 736
+name = "+10 Hitpoints, +2 Exceptional Constitution Skills"
+description = "Hitpoints +10: +10 Elemental Energy bonus to maximum hit points\n+2 Exceptional bonus to all Constitution based skills\nEarth:Escalation:Material"
+variant = "Earth:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 737
+name = "+10 Hitpoints, +2 Exceptional Dexterity Skills"
+description = "Hitpoints +10: +10 Elemental Energy bonus to maximum hit points\n+2 Exceptional bonus to all Dexterity based skills\nFire:Escalation:Material"
+variant = "Fire:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 738
+name = "+10 Hitpoints, +2 Exceptional Strength Skills"
+description = "Hitpoints +10: +10 Elemental Energy bonus to maximum hit points\n+2 Exceptional bonus to all Strength based skills\nWater:Escalation:Material"
+variant = "Water:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 739
+name = "+10 Hitpoints, +2 Exceptional Strength Skills"
+description = "Hitpoints +10: +10 Elemental Energy bonus to maximum hit points\n+2 Exceptional bonus to all Strength based skills\nNegative:Escalation:Material"
+variant = "Negative:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 740
+name = "+10 Hitpoints, +2 Exceptional Constitution Skills"
+description = "Hitpoints +10: +10 Elemental Energy bonus to maximum hit points\n+2 Exceptional bonus to all Constitution based skills\nPositive:Escalation:Material"
+variant = "Positive:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 741
+name = "+5 Reflex Save"
+description = "Reflex Save +5: +5 Resistance bonus to your Reflex save.\nAir:Opposition:Ethereal"
+variant = "Air:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 742
+name = "+5 Fortitude Save"
+description = "Fortitude Save +5: +5 Resistance bonus to your Fortitude save.\nEarth:Opposition:Ethereal"
+variant = "Earth:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 743
+name = "+5 Reflex Save"
+description = "Reflex Save +5: +5 Resistance bonus to your Reflex save.\nFire:Opposition:Ethereal"
+variant = "Fire:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 744
+name = "+5 Will Save"
+description = "Will Save +5: +5 Resistance bonus to your Will save.\nWater:Opposition:Ethereal"
+variant = "Water:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 745
+name = "+5 Fortitude Save"
+description = "Fortitude Save +5: +5 Resistance bonus to your Fortitude save.\nNegative:Opposition:Ethereal"
+variant = "Negative:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 746
+name = "+5 Will Save"
+description = "Will Save +5: +5 Resistance bonus to your Will save.\nPositive:Opposition:Ethereal"
+variant = "Positive:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 765
+name = "+50 Spell Points, +4 Exceptional Charisma Skills"
+description = "Wizardry II: +50 Improved Elemental Spell Power bonus to spell points.\n+4 Exceptional bonus to all Charisma based skills\nAir:Escalation:Ethereal"
+variant = "Air:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 766
+name = "+50 Spell Points, +4 Exceptional Wisdom Skills"
+description = "Wizardry II: +50 Improved Elemental Spell Power bonus to spell points.\n+4 Exceptional bonus to all Wisdom based skills\nEarth:Escalation:Ethereal"
+variant = "Earth:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 767
+name = "+50 Spell Points, +4 Exceptional Intelligence Skills"
+description = "Wizardry II: +50 Improved Elemental Spell Power bonus to spell points.\n+4 Exceptional bonus to all Intelligence based skills\nFire:Escalation:Ethereal"
+variant = "Fire:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 768
+name = "+50 Spell Points, +4 Exceptional Wisdom Skills"
+description = "Wizardry II: +50 Improved Elemental Spell Power bonus to spell points.\n+4 Exceptional bonus to all Wisdom based skills\nWater:Escalation:Ethereal"
+variant = "Water:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 769
+name = "+50 Spell Points, +4 Exceptional Intelligence Skills"
+description = "Wizardry II: +50 Improved Elemental Spell Power bonus to spell points.\n+4 Exceptional bonus to all Intelligence based skills\nNegative:Escalation:Ethereal"
+variant = "Negative:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 770
+name = "+50 Spell Points, +4 Exceptional Charisma Skills"
+description = "Wizardry II: +50 Improved Elemental Spell Power bonus to spell points.\n+4 Exceptional bonus to all Charisma based skills\nPositive:Escalation:Ethereal"
+variant = "Positive:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 771
+name = "+15 Hitpoints, +4 Exceptional Dexterity Skills"
+description = "Hitpoints +15: +15 Improved Elemental Energy bonus to maximum hit points\n+4 Exceptional bonus to all Dexterity based skills\nAir:Escalation:Material"
+variant = "Air:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 772
+name = "+15 Hitpoints, +4 Exceptional Constitution Skills"
+description = "Hitpoints +15: +15 Improved Elemental Energy bonus to maximum hit points\n+4 Exceptional bonus to all Constitution based skills\nEarth:Escalation:Material"
+variant = "Earth:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 773
+name = "+15 Hitpoints, +4 Exceptional Dexterity Skills"
+description = "Hitpoints +15: +15 Improved Elemental Energy bonus to maximum hit points\n+4 Exceptional bonus to all Dexterity based skills\nFire:Escalation:Material"
+variant = "Fire:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 774
+name = "+15 Hitpoints, +4 Exceptional Strength Skills"
+description = "Hitpoints +15: +15 Improved Elemental Energy bonus to maximum hit points\n+4 Exceptional bonus to all Strength based skills\nWater:Escalation:Material"
+variant = "Water:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 775
+name = "+15 Hitpoints, +4 Exceptional Strength Skills"
+description = "Hitpoints +15: +15 Improved Elemental Energy bonus to maximum hit points\n+4 Exceptional bonus to all Strength based skills\nNegative:Escalation:Material"
+variant = "Negative:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 776
+name = "+15 Hitpoints, +4 Exceptional Constitution Skills"
+description = "Hitpoints +15: +15 Improved Elemental Energy bonus to maximum hit points\n+4 Exceptional bonus to all Constitution based skills\nPositive:Escalation:Material"
+variant = "Positive:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 777
+name = "+1 Exceptional Reflex Save"
+description = "Reflex Save +1: +1 Exceptional bonus to your Reflex save.\nAir:Opposition:Ethereal"
+variant = "Air:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 778
+name = "+1 Exceptional Fortitude Save"
+description = "Fortitude Save +1: +1 Exceptional Resistance bonus to your Fortitude save.\nEarth:Opposition:Ethereal"
+variant = "Earth:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 779
+name = "+1 Exceptional Reflex Save"
+description = "Reflex Save +1: +1 Exceptional Resistance bonus to your Reflex save.\nFire:Opposition:Ethereal"
+variant = "Fire:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 780
+name = "+1 Exceptional Will Save"
+description = "Will Save +1: +1 Exceptional Resistance bonus to your Will save.\nWater:Opposition:Ethereal"
+variant = "Water:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 781
+name = "+1 Exceptional Fortitude Save"
+description = "Fortitude Save +1: +1 Exceptional Resistance bonus to your Fortitude save.\nNegative:Opposition:Ethereal"
+variant = "Negative:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 782
+name = "+1 Exceptional Will Save"
+description = "Will Save +1: +1 Exceptional Resistance bonus to your Will save.\nPositive:Opposition:Ethereal"
+variant = "Positive:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 822
+name = "+100 Spell Points, +6 Exceptional Charisma Skills"
+description = "Wizardry VI: +100 Greater Elemental Spell Power bonus to spell points.\n+6 Exceptional bonus to all Charisma based skills\nAir:Escalation:Ethereal"
+variant = "Air:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 823
+name = "+100 Spell Points, +6 Exceptional Wisdom Skills"
+description = "Wizardry VI: +100 Greater Elemental Spell Power bonus to spell points.\n+6 Exceptional bonus to all Wisdom based skills\nEarth:Escalation:Ethereal"
+variant = "Earth:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 824
+name = "+100 Spell Points, +6 Exceptional Intelligence Skills"
+description = "Wizardry VI: +100 Greater Elemental Spell Power bonus to spell points.\n+6 Exceptional bonus to all Intelligence based skills\nFire:Escalation:Ethereal"
+variant = "Fire:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 825
+name = "+100 Spell Points, +6 Exceptional Wisdom Skills"
+description = "Wizardry VI: +100 Greater Elemental Spell Power bonus to spell points.\n+6 Exceptional bonus to all Wisdom based skills\nWater:Escalation:Ethereal"
+variant = "Water:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 826
+name = "+100 Spell Points, +6 Exceptional Intelligence Skills"
+description = "Wizardry VI: +100 Greater Elemental Spell Power bonus to spell points.\n+6 Exceptional bonus to all Intelligence based skills\nNegative:Escalation:Ethereal"
+variant = "Negative:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 827
+name = "+100 Spell Points, +6 Exceptional Charisma Skills"
+description = "Wizardry VI: +100 Greater Elemental Spell Power bonus to spell points.\n+6 Exceptional bonus to all Charisma based skills\nPositive:Escalation:Ethereal"
+variant = "Positive:Escalation:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 828
+name = "+20 Hitpoints, +6 Exceptional Dexterity Skills"
+description = "Hitpoints +20: +20 Greater Elemental Energy bonus to maximum hit points\n+6 Exceptional bonus to all Dexterity based skills\nAir:Escalation:Material"
+variant = "Air:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 829
+name = "+20 Hitpoints, +6 Exceptional Constitution Skills"
+description = "Hitpoints +20: +20 Greater Elemental Energy bonus to maximum hit points\n+6 Exceptional bonus to all Constitution based skills\nEarth:Escalation:Material"
+variant = "Earth:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 830
+name = "+20 Hitpoints, +6 Exceptional Dexterity Skills"
+description = "Hitpoints +20: +20 Greater Elemental Energy bonus to maximum hit points\n+6 Exceptional bonus to all Dexterity based skills\nFire:Escalation:Material"
+variant = "Fire:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 831
+name = "+20 Hitpoints, +6 Exceptional Strength Skills"
+description = "Hitpoints +20: +20 Greater Elemental Energy bonus to maximum hit points\n+6 Exceptional bonus to all Strength based skills\nWater:Escalation:Material"
+variant = "Water:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 832
+name = "+20 Hitpoints, +6 Exceptional Strength Skills"
+description = "Hitpoints +20: +20 Greater Elemental Energy bonus to maximum hit points\n+6 Exceptional bonus to all Strength based skills\nNegative:Escalation:Material"
+variant = "Negative:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 833
+name = "+20 Hitpoints, +6 Exceptional Constitution Skills"
+description = "Hitpoints +20: +20 Greater Elemental Energy bonus to maximum hit points\n+6 Exceptional bonus to all Constitution based skills\nPositive:Escalation:Material"
+variant = "Positive:Escalation:Material"
+
+[[entity]]
+table = "augments"
+upstream_id = 834
+name = "+2 Exceptional Reflex Save"
+description = "Reflex Save +1: +2 Exceptional bonus to your Reflex save.\nAir:Opposition:Ethereal"
+variant = "Air:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 835
+name = "+2 Exceptional Fortitude Save"
+description = "Fortitude Save +1: +2 Exceptional Resistance bonus to your Fortitude save.\nEarth:Opposition:Ethereal"
+variant = "Earth:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 836
+name = "+2 Exceptional Reflex Save"
+description = "Reflex Save +1: +2 Exceptional Resistance bonus to your Reflex save.\nFire:Opposition:Ethereal"
+variant = "Fire:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 837
+name = "+2 Exceptional Will Save"
+description = "Will Save +1: +2 Exceptional Resistance bonus to your Will save.\nWater:Opposition:Ethereal"
+variant = "Water:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 838
+name = "+2 Exceptional Fortitude Save"
+description = "Fortitude Save +1: +2 Exceptional Resistance bonus to your Fortitude save.\nNegative:Opposition:Ethereal"
+variant = "Negative:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 839
+name = "+2 Exceptional Will Save"
+description = "Will Save +1: +2 Exceptional Resistance bonus to your Will save.\nPositive:Opposition:Ethereal"
+variant = "Positive:Opposition:Ethereal"
+
+[[entity]]
+table = "augments"
+upstream_id = 844
+name = "Deathblock"
+description = "This effect grants immunity to all death spells and magical death effects. \nNegative:Opposition:Material"
+variant = "Negative:Opposition:Material"
+
+[[entity]]
+table = "crafting_systems"
+upstream_id = 28
+name = "Ritual Table"
+[[entity.removed]]
+kind = "quest"
+name = "Ritual Table"
+read = "2026-10-05"
+reason = "The Ritual Table is a crafting station, already modeled as a crafting system, not a quest."
+url = "https://ddowiki.com/page/Ritual_Table"
+
+[[entity]]
+table = "effects"
+upstream_id = 1380
+name = "Feat: Elusive Target"
+variant = "2"
+[[entity.note]]
+field = "name"
+kind = "slug_collision"
+read = "2026-10-07"
+reason = "The two effects have different descriptions and owner links, so both rows remain for review."
+url = "upstream/Output/DataFiles/ItemBuffs.xml"
+upstream = "Feat Elusive Target"
+
+[[entity]]
+table = "effects"
+upstream_id = 2093
+name = "Underwater action"
+variant = "2"
+[[entity.note]]
+field = "name"
+kind = "slug_collision"
+read = "2026-10-07"
+reason = "The capitalized effect has a water-breathing description; this row has no description."
+url = "upstream/Output/DataFiles/ItemBuffs.xml"
+upstream = "Underwater Action"
+
+[[entity]]
+table = "effects"
+upstream_id = 2099
+name = "+3 Artifact bonus to attack and damage"
+variant = "2"
+[[entity.note]]
+field = "name"
+kind = "slug_collision"
+read = "2026-10-07"
+reason = "The case-variant effects have different description templates and owner links."
+url = "upstream/Output/DataFiles/SetBonuses.xml"
+upstream = "+3 Artifact bonus to Attack and Damage"
+
+[[entity]]
+table = "feats"
+upstream_id = 31
+name = "Eschew Materials"
+description = "While this metamagic feat is active, normal material components are not\nrequired, but spells consume 2 additional spell points."
+variant = "standard"
+
+[[entity]]
+table = "feats"
+upstream_id = 32
+name = "Eschew Materials"
+description = "While this metamagic feat is active, normal material components are not\nrequired, but spells consume 2 additional spell points."
+variant = "other"
+
+[[entity]]
+table = "feats"
+upstream_id = 381
+name = "Echoing Soul"
+description = "Your soul is fractured, shifted, or connected to another in some way.\nGain +3 to all Skills plus an additional +1 for every 2 Character Levels.\nGain +1 to all Saving Throws plus an additional +1 every 3 Character Levels.\n\nWhen you get hit in Melee or Ranged attacks, there is a very small chance your\nEchoing Soul will cause you to become Afraid, Blinded, or Immobilized for six\nseconds with no save. Immunities to these conditions do not apply to this effect."
+variant = "dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 382
+name = "Form of Pain"
+description = "Your body is cursed to be prone to all manner of damage, but with the ability to\nwithstand it. Passively grants +5 PRR/MRR.\n\nWhen you take damage your body changes and you gain the Form of Pain effect\nwhich grants +2 PRR/MRR but also reduces movement speed and increases spell\ncosts by 1% as the pain distracts you. This can stack 10 times, with one stack\nbeing removed every 5 seconds."
+variant = "dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 383
+name = "Living Shadow"
+description = "Your Shadow extends your reach, acting out your dark impulse, nearly doubling your\nrange with melee weapon attacks in the front arc.\n\nYet, there is a small change when you critical hit a target that the shadow drains\nyou briefly, reducing your damage by 15% for 6 seconds. This can only occur once\nevery 30 seconds."
+variant = "dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 384
+name = "Minion of the Eldritch"
+description = "Cooldown: 2 minutes\nTarget: Self\n\nYour soul has touched something beyond the planes, and a connection has formed\nthere. Activate: You gain +5 Spell Power per Character Level, and +1% Spell\nCritical Damage for every 2 Character Levels you have for 12 seconds.\n\nWhen you use this ability, there is a chance the Eldritch Being you reach out\nto will grow tired of your petitions and decide to punish you instead.\nThis chance increases each time you use this ability between rests."
+variant = "dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 385
+name = "Mist Walker"
+description = "Cooldown: 15 seconds\nTarget: Self, Directional\n\nYou have learned how to navigate the Mists with time and a little luck.\nTrigger this ability to leap forward, and briefly gain a +5 bonus to Reflex\nSaves and a stacking 20% bonus to Incorporeality defense. This feat shares a\ncooldown with Abundant Step.\n\nWhen using this ability there is a small chance the mists will nearly catch up\nand you will become Exhausted for 6 seconds, -50% penalty to movement speed,\n-6 to Strength and Dexterity, cannot tumble. Normal immunities or remedies to\nexhaustion will not protect against this."
+variant = "dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 386
+name = "Touch of Death"
+description = "Every touch causes life to wilt, but you can use this power if you know the way...\nGain +3 Negative Spell power and Negative Healing Amplification per Character Level.\nLose 5 Positive Spell Power and Healing Amplification per Character Level."
+variant = "dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 387
+name = "Webtouched Wretch"
+description = "You've become entwined with a great cosmic web, which occasionally becomes coterminous\nwith reality. Your offensive spells, melee and ranged attacks occasionally cause\nstrange spectral webs to coat your enemies either slowing them or entangling\nthem for up to 6 seconds with no save.\n\nWhen you get hit with Melee or Ranged attacks, there is a small chance the webs\nturn on you, applying a weakened slow effect which lasts 6 seconds but can\nstack 3 times. Spells/Immunities like Freedom of Movement do not prevent this."
+variant = "dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 388
+name = "Echoing Soul"
+description = "Your soul is fractured, shifted, or connected to another in some way.\nGain +3 to all Skills plus an additional +1 for every 2 Character Levels.\nGain +1 to all Saving Throws plus an additional +1 every 3 Character Levels.\n\nWhen you get hit in Melee or Ranged attacks, there is a very small chance your\nEchoing Soul will cause you to become Afraid, Blinded, or Immobilized for six\nseconds with no save. Immunities to these conditions do not apply to this effect."
+variant = "alter-dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 389
+name = "Form of Pain"
+description = "Your body is cursed to be prone to all manner of damage, but with the ability to\nwithstand it. Passively grants +5 PRR/MRR.\n\nWhen you take damage your body changes and you gain the Form of Pain effect\nwhich grants +2 PRR/MRR but also reduces movement speed and increases spell\ncosts by 1% as the pain distracts you. This can stack 10 times, with one stack\nbeing removed every 5 seconds."
+variant = "alter-dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 390
+name = "Living Shadow"
+description = "Your Shadow extends your reach, acting out your dark impulse, nearly doubling your\nrange with melee weapon attacks in the front arc.\n\nYet, there is a small change when you critical hit a target that the shadow drains\nyou briefly, reducing your damage by 15% for 6 seconds. This can only occur once\nevery 30 seconds."
+variant = "alter-dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 391
+name = "Minion of the Eldritch"
+description = "Cooldown: 2 minutes\nTarget: Self\n\nYour soul has touched something beyond the planes, and a connection has formed\nthere. Activate: You gain +5 Spell Power per Character Level, and +1% Spell\nCritical Damage for every 2 Character Levels you have for 12 seconds.\n\nWhen you use this ability, there is a chance the Eldritch Being you reach out\nto will grow tired of your petitions and decide to punish you instead.\nThis chance increases each time you use this ability between rests."
+variant = "alter-dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 392
+name = "Mist Walker"
+description = "Cooldown: 15 seconds\nTarget: Self, Directional\n\nYou have learned how to navigate the Mists with time and a little luck.\nTrigger this ability to leap forward, and briefly gain a +5 bonus to Reflex\nSaves and a stacking 20% bonus to Incorporeality defense. This feat shares a\ncooldown with Abundant Step.\n\nWhen using this ability there is a small chance the mists will nearly catch up\nand you will become Exhausted for 6 seconds, -50% penalty to movement speed,\n-6 to Strength and Dexterity, cannot tumble. Normal immunities or remedies to\nexhaustion will not protect against this."
+variant = "alter-dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 393
+name = "Touch of Death"
+description = "Every touch causes life to wilt, but you can use this power if you know the way...\nGain +3 Negative Spell power and Negative Healing Amplification per Character Level.\nLose 5 Positive Spell Power and Healing Amplification per Character Level."
+variant = "alter-dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 394
+name = "Webtouched Wretch"
+description = "You've become entwined with a great cosmic web, which occasionally becomes coterminous\nwith reality. Your offensive spells, melee and ranged attacks occasionally cause\nstrange spectral webs to coat your enemies either slowing them or entangling\nthem for up to 6 seconds with no save.\n\nWhen you get hit with Melee or Ranged attacks, there is a small chance the webs\nturn on you, applying a weakened slow effect which lasts 6 seconds but can\nstack 3 times. Spells/Immunities like Freedom of Movement do not prevent this."
+variant = "alter-dark-gift"
+
+[[entity]]
+table = "feats"
+upstream_id = 769
+name = "Watchful Eye"
+description = "If you pass withing 5 feet of a trap, you make a Search check to notice\nit as if actively Searching. (You still need the Trapfinding feat to successfully\nSearch for difficult traps.)"
+variant = "epic-feat"
+
+[[entity]]
+table = "feats"
+upstream_id = 770
+name = "Watchful Eye"
+description = "If you pass withing 5 feet of a trap, you make a Search check to notice\nit as if actively Searching. (You still need the Trapfinding feat to successfully\nSearch for difficult traps.)"
+variant = "fake-group-to-avoid-error-report"
+
+[[entity]]
+table = "feats"
+upstream_id = 899
+name = "Lay on Hands"
+description = "Activate this Paladin ability to apply a burst of holiness to your target,\neither healing an amount based on your Paladin level times your Charisma bonus\nor dealing that much damage to an undead target."
+variant = "paladin-level"
+
+[[entity]]
+table = "feats"
+upstream_id = 900
+name = "Lay on Hands"
+description = "Activate this ability to apply a burst of holiness to your target, either healing\nan amount based on your Total level times your Charisma bonus or dealing that\nmuch damage to an undead target."
+variant = "total-level"
+
+[[entity]]
+table = "items"
+upstream_id = 1828
+name = "Dhovras' Armlet"
+[[entity.removed]]
+kind = "item"
+name = "Dhovras' Amulet"
+read = "2026-10-01"
+reason = "A misnamed duplicate of his Dhovras' Armlet, identical except the name; the Toil and Trouble page lists Dhovras' Armlet."
+url = "https://ddowiki.com/page/Toil_and_Trouble"
+
+[[entity]]
+table = "items"
+upstream_id = 2366
+name = "Epic Dhovras' Armlet"
+[[entity.removed]]
+kind = "item"
+name = "Epic Dhovras' Amulet"
+read = "2026-10-01"
+reason = "A misnamed older copy of his Epic Dhovras' Armlet (Spell Focus Mastery 3 where the Armlet has 4); the Toil and Trouble page lists Epic Dhovras' Armlet."
+url = "https://ddowiki.com/page/Toil_and_Trouble"
+
+[[entity]]
+table = "items"
+upstream_id = 2854
+name = "Epic Unicorn's Remembrance"
+[[entity.removed]]
+kind = "item"
+name = "Epic Unicorn's Rememberance"
+read = "2026-09-30"
+reason = "A misspelled duplicate of his Epic Unicorn's Remembrance, identical in every field; the wiki spells it Remembrance."
+url = "https://ddowiki.com/page/Item:Epic_Unicorn%27s_Remembrance"
+
+[[entity]]
+table = "items"
+upstream_id = 3333
+name = "Glik's Bangle"
+description = "A faint whispering sound surrounds this glowing alabaster gem."
+[[entity.removed]]
+kind = "item"
+name = "Gilk's Bangle"
+read = "2026-10-01"
+reason = "A misspelled duplicate of his Glik's Bangle, identical except the name; the wiki redirects Gilk's Bangle to Glik's Bangle."
+url = "https://ddowiki.com/page/Item:Glik%27s_Bangle"
+
+[[entity]]
+table = "items"
+upstream_id = 5157
+name = "Legendary Mining Lenses"
+description = "While wearing these, rocks and debris in your way become simply a miner inconvenience."
+[[entity.removed]]
+kind = "item"
+name = "Legendary Mining Sights"
+read = "2026-09-30"
+reason = "The wiki has no Legendary Mining Sights; his row repeats Legendary Mining Lenses' drop, level and sockets."
+url = "https://ddowiki.com/page/Item:Legendary_Mining_Sights"
+
+[[entity]]
+table = "items"
+upstream_id = 6136
+name = "Mining Lenses"
+description = "While wearing these, rocks and debris in your way become simply a miner inconvenience."
+[[entity.removed]]
+kind = "item"
+name = "Mining Sights"
+read = "2026-09-30"
+reason = "The wiki redirects Mining Sights to Mining Lenses; his Mining Sights repeats Mining Lenses' stats and drop."
+url = "https://ddowiki.com/page/Item:Mining_Sights"
+
+[[entity]]
+table = "items"
+upstream_id = 6783
+name = "Rakhat's Spangle"
+description = "A faint whispering sound surrounds this glowing purple gem."
+[[entity.removed]]
+kind = "item"
+name = "Rahkat's Spangle"
+read = "2026-10-01"
+reason = "The wiki and his own drop text spell the witch doctor Rakhat; his Rahkat's Spangle repeats Rakhat's Spangle's bonuses, level and drop."
+url = "https://ddowiki.com/page/Durk%27s_Got_a_Secret"
+
+[[entity]]
+table = "items"
+upstream_id = 6784
+name = "Rakhat's Trifle"
+description = "A faint whispering sound surrounds this glowing blue gem."
+[[entity.removed]]
+kind = "item"
+name = "Rahkat's Trifle"
+read = "2026-10-01"
+reason = "The wiki and his own drop text spell the witch doctor Rakhat; his Rahkat's Trifle repeats Rakhat's Trifle's bonuses, level and drop."
+url = "https://ddowiki.com/page/Durk%27s_Got_a_Secret"
+
+[[entity]]
+table = "items"
+upstream_id = 8379
+name = "Unicorn's Remembrance"
+[[entity.removed]]
+kind = "item"
+name = "Unicorn's Rememberance"
+read = "2026-09-30"
+reason = "A misspelled duplicate of his Unicorn's Remembrance, identical in every field; the wiki spells it Remembrance."
+url = "https://ddowiki.com/page/Item:Unicorn%27s_Remembrance"
+
+[[entity]]
+table = "quests"
+upstream_id = 602
+name = "Kobold Island - Short Cuts Epic"
+variant = "2"
+[[entity.note]]
+field = "name"
+kind = "slug_collision"
+read = "2026-10-07"
+reason = "The two epic challenge rows differ in maximum level and remain separate for review."
+url = "upstream/Output/DataFiles/Challenges.xml"
+upstream = "Kobold Island - Short Cuts - EPIC"

@@ -1,0 +1,48 @@
+name = "Perfected Warhammer of the Weapon Master"
+description = """
+Though no longer as apt for critical strikes, these weapons have other ways
+of leaving their mark."""
+drop_location = "Catalyst Crafting, Turn in Drow Warhammer of the Weapon Master, the Weapon Master Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 5
+icon = "Warhammer_1"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Force Blast 3"
+
+[[effect]]
+name = "Maiming 3"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Guardbreaking"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.2
+handedness = "One-handed"
+weapon_type = "Warhammer"

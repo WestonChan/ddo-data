@@ -1,0 +1,3 @@
+name = "Evocation Focus"
+category = "magical"
+verbose_name_template = "%b1 Evocation Focus +{1}"

@@ -1,0 +1,9 @@
+name = "Reconstruction"
+home_bonus_type = "Equipment"
+verbose_name_template = "Reconstruction +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Repair Spell Power"

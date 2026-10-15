@@ -1,0 +1,78 @@
+name = "Insightful Magical Sheltering"
+choose_level = true
+description = "Insight bonus to MRR"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    1,
+    2,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+    18,
+]
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Insight"
+value = 16
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "crafting: cannith bracers suffix"
+
+[[slot]]
+slot = "crafting: cannith cloak extra"
+
+[[slot]]
+slot = "crafting: cannith helmet extra"
+
+[[slot]]
+slot = "crafting: cannith necklace extra"
+
+[[slot]]
+slot = "crafting: cannith ring extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"

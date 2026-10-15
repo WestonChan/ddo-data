@@ -1,0 +1,19 @@
+name = "Kneeza's Bauble"
+description = "A faint whispering sound surrounds this glowing green gem."
+drop_location = "Walk the Butcher's Path, Witch Doctor Kneeza 's chest"
+icon = "Trinket_4a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 1
+
+[[source]]
+chest = "witch doctor kneeza 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Walk the Butcher's Path"

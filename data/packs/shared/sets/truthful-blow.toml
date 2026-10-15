@@ -1,0 +1,21 @@
+name = "Truthful Blow"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Truthful Blow"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"

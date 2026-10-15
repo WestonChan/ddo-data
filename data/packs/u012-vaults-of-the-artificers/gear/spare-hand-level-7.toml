@@ -1,0 +1,119 @@
+name = "Spare Hand (Level 7)"
+description = """
+A belt with a remarkable augmentation: a clawed hand that extends from it and
+will help you attack your foes and make tasks easier to perform."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+icon = "Belt_20"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Waist"
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Disable Device +11 and Open Lock +11"
+description = """
+Disable Device +11: Passive: +11 Competence bonus to the Disable Device skill.
+Open Lock +11: Passive: +11 Competence bonus to the Open Lock skill."""
+icon = "Upgrade"
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Disable Device"
+value = 11
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
+value = 11
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Insightful Combat Mastery +3, Disable Device +13, Open Lock +13 and a Green Augment Slot"
+description = """
+Disable Device +13: Passive: +13 Competence bonus to the Disable Device skill.
+Open Lock +13: Passive: +13 Competence bonus to the Open Lock skill.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Combat Mastery"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Disable Device"
+value = 13
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
+value = 13
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Tactics"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

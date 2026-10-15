@@ -1,0 +1,33 @@
+name = "Min's Handwraps"
+description = """
+This strip of cloth, once worn by the promising disciple Min, has been enhanced
+to do additional fire damage to your opponents."""
+drop_location = "The Collaborator, End reward"
+icon = "HandWraps_1l"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Minor Flaming"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Collaborator"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

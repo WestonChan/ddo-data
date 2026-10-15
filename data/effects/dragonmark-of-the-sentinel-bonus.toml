@@ -1,0 +1,3 @@
+name = "Dragonmark of the Sentinel bonus"
+description_template = "You gain the effects of the Deific Warding feat. This does not stack with the feat itself."
+verbose_name_template = "Dragonmark of the Sentinel bonus"

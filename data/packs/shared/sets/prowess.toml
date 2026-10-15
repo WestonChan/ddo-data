@@ -1,0 +1,58 @@
+name = "Prowess"
+icon = "Prowess"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Physical Resistance Rating"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Melee Power"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "Action Boost Charges"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Melee Power"
+value = 50
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Stacking"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[tier.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"

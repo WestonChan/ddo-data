@@ -1,0 +1,67 @@
+name = "Insightful Spell Power"
+choose_level = true
+description = "Insight bonus to Spell Power"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    19,
+    21,
+    23,
+    27,
+    29,
+    31,
+    33,
+    35,
+    36,
+    38,
+    40,
+    42,
+    43,
+    45,
+    47,
+    48,
+    50,
+    52,
+    54,
+    55,
+    57,
+    59,
+    61,
+    62,
+    64,
+    66,
+    67,
+    69,
+    71,
+    73,
+    74,
+    76,
+    78,
+    79,
+    81,
+    83,
+    83,
+    83,
+    83,
+    83,
+]
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 25
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: cannith orb suffix"
+
+[[slot]]
+slot = "crafting: cannith ring extra"

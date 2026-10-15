@@ -1,0 +1,62 @@
+name = "Mutineer's Blade"
+accepts_sentience = true
+description = """
+Throwing the captain overboard was the easy part. It was fending off her ghost,
+month after month, that harried the mutinous crew."""
+drop_location = "Old Tomb, New Tenants, End Chest; Three-Barrel Cove (epic), All Rare Encounters"
+enhancement_bonus = 7
+icon = "Rapier_1f"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Ghostbane VIII"
+
+[[effect]]
+name = "Brilliance"
+
+[[effect]]
+name = "Coruscating"
+
+[[effect]]
+name = "Improved Disruption"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "all rare encounters"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Three-Barrel Cove"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Old Grey Garl"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 5
+damage_modifier = "Strength"
+damage_multiplier = 3.8
+handedness = "One-handed"
+weapon_type = "Rapier"

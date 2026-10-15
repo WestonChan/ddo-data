@@ -1,34 +1,56 @@
 {
-  "id": 1,
+  "id": 6234245124529164,
   "item_count": 181,
   "items": [
     {
       "cost": "1 Epic Ethereal Ingot",
-      "id": 2428,
+      "id": 3575227694034373,
       "is_rare": false,
       "minimum_level": 20,
       "name": "Epic Ethereal Bastard Sword",
-      "slot": "Main Hand"
+      "price": [
+        {
+          "ingredient": "Epic Ethereal Ingot",
+          "quantity": 1
+        }
+      ],
+      "slot": "Main Hand",
+      "slug": "epic-ethereal-bastard-sword"
     },
     {
       "cost": "1 Epic Ethereal Ingot",
-      "id": 2429,
+      "id": 4631576927287034,
       "is_rare": false,
       "minimum_level": 20,
       "name": "Epic Ethereal Battle Axe",
-      "slot": "Main Hand"
+      "price": [
+        {
+          "ingredient": "Epic Ethereal Ingot",
+          "quantity": 1
+        }
+      ],
+      "slot": "Main Hand",
+      "slug": "epic-ethereal-battle-axe"
     },
     {
       "cost": "1 Epic Ethereal Ingot",
-      "id": 2431,
+      "id": 3658449778994683,
       "is_rare": false,
       "minimum_level": 20,
       "name": "Epic Ethereal Club",
-      "slot": "Main Hand"
+      "price": [
+        {
+          "ingredient": "Epic Ethereal Ingot",
+          "quantity": 1
+        }
+      ],
+      "slot": "Main Hand",
+      "slug": "epic-ethereal-club"
     }
   ],
   "location": "The Keep on the Borderlands",
   "name": "Morten Edgewright",
   "pack": "Keep on the Borderlands",
+  "slug": "morten-edgewright",
   "wiki_url": "https://ddowiki.com/page/Morten_Edgewright"
 }

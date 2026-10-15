@@ -1,0 +1,44 @@
+name = "Lantern Ring"
+description = """
+This plain, brass ring emits a single globe of light. The globe moves and changes
+intensity in response to the wearer's silent will. In Eveningstar, these rings
+are worn by Lord Tessaril and all Purple Dragons."""
+drop_location = "The Haunted Halls of Eveningstar, Fallen Giant or Dragon chest"
+icon = "Ring_15"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Ring"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 144
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Radiant Glory"
+
+[[note]]
+kind = "item_socket"
+field = "add"
+reason = "The wiki's Lantern Ring is Zhentarim Attuned; his item has no Zhentarim Attuned socket."
+url = "https://ddowiki.com/page/Zhentarim_Attuned"
+read = "2026-09-30"
+qualifier = "crafting: zhentarim attuned"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "crafting: zhentarim attuned"
+
+[[source]]
+chest = "fallen giant or dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunted Halls of Eveningstar"

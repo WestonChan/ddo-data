@@ -1,0 +1,33 @@
+name = "Voltaic Experiment"
+icon = "VoltaicExperiment"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Universal Spell Power"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Doublestrike and Doubleshot"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]

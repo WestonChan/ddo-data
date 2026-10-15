@@ -1,0 +1,41 @@
+name = "Docent of Defiance"
+description = "Runes of deep and dark magic are heavily inscribed on the surface of this docent."
+drop_location = "The Cursed Crypt, End Chest"
+enhancement_bonus = 4
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 10
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 5
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Hidden Effect - Cursed Defiance"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Cursed Crypt"

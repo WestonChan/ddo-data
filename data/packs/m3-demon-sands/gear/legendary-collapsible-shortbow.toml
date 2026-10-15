@@ -1,0 +1,64 @@
+name = "Legendary Collapsible Shortbow"
+accepts_sentience = true
+description = """
+A small bow ingeniously jointed to collapse into a small pack. Wielding this
+bow, allows a rogue to perform prodigious athletic feats. Arrows fired from
+this bow gain magical barbs of force, dealing slashing and piercing damage."""
+drop_location = "Legendary version of Epic Collapsible Shortbow"
+enhancement_bonus = 15
+icon = "Shortbow_2a"
+item_category = "Weapon"
+item_type = "Shortbow"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Force Blast 6"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 20
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Shortbow"

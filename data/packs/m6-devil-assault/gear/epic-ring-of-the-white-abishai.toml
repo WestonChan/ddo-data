@@ -1,0 +1,33 @@
+name = "Epic Ring of the White Abishai"
+description = "This ring seems to be attuned to elemental power."
+drop_location = "Epic version of Ring of the White Abishai"
+icon = "Ring_7j"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Quality"
+value = 27
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Efficient Metamagic - Empower II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

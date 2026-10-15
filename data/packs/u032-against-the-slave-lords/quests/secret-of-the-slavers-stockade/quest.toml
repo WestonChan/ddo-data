@@ -1,0 +1,30 @@
+name = "Secret of the Slavers' Stockade"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Against the Slave Lords"
+patron = "The Gatekeepers"
+zone = "Slavers' Stockade"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Secret_of_the_Slavers%27_Stockade"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

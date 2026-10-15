@@ -1,0 +1,51 @@
+name = "Legendary Soul of the Red Dragon"
+icon = "RedDragon"
+
+[[item]]
+name = "Legendary Helm of the Red Dragon"
+
+[[item]]
+name = "Legendary Red Dragonhide Armor"
+
+[[item]]
+name = "Legendary Red Dragonplate Armor"
+
+[[item]]
+name = "Legendary Red Dragonscale Armor"
+
+[[item]]
+name = "Legendary Red Dragonscale Docent"
+
+[[item]]
+name = "Legendary Red Dragonscale Robe"
+
+[[item]]
+name = "Perfected Helm of the Red Dragon"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

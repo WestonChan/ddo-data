@@ -1,0 +1,3 @@
+name = "Rockslide"
+description_template = "This weapon stores the power of a volatile rockslide deep within. On hit, there is a chance to do massive bludgeoning damage to your enemy."
+verbose_name_template = "Rockslide"

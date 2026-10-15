@@ -1,0 +1,57 @@
+name = "Legendary Cutthroat's Smallblade (level 32)"
+accepts_sentience = true
+description = """
+When a cutlass is simply too big for the job, a pirate will turn instead to
+a trusty smallblade. This one is serrated and quite adept at inflicting painful
+wounds on living creatures."""
+drop_location = "Treasure of Crystal Cove, Turn in 1500 Silver Doubloon 700 Golden Doubloon 45 Stolen Jasper 1000 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 15
+icon = "Shortsword_11"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Bleeding 6"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 21
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "One-handed"
+weapon_type = "Shortsword"

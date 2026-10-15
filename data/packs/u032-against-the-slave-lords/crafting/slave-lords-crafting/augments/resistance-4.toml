@@ -1,0 +1,21 @@
+name = "Resistance +4"
+description = "Resistance bonus to Saves"
+family = "Slavelords_Heroic"
+icon = "SlavelordsSuffix"
+min_level = 8
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Resistance"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: slavelords suffix"

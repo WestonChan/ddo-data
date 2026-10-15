@@ -1,0 +1,35 @@
+name = "Dwarf"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Dwarves are known for their skill in warfare, their ability to withstand physical
+and magical punishment and their hard work."""
+short_name = "Dwarf"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Constitution"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Charisma"
+
+[[granted_feat]]
+feat_name = "Spell Save Bonus"
+
+[[granted_feat]]
+feat = "Dwarven Stability"
+
+[[granted_feat]]
+feat = "Dwarven Stonecutting"
+
+[[granted_feat]]
+feat = "Orc and Goblin Bonus"
+
+[[granted_feat]]
+feat = "Poison Save Bonus"

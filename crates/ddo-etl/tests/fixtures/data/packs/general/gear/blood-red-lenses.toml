@@ -1,0 +1,18 @@
+name = "Blood-Red Lenses"
+drop_location = "Advance to level 15, End reward"
+icon = "Goggles_9a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 15
+race_required = "Dhampir Dark Bargainer"
+slot = "Goggles"
+
+[[effect]]
+name = "Efficient Maximize II"
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

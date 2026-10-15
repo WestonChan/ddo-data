@@ -1,0 +1,56 @@
+name = "Fangs of the Wild Hunt"
+description = "Some aspect of the ferocity of the Feywild exists through this curious collar"
+drop_location = "The Feywild, rare encounters"
+enhancement_bonus = 2
+icon = "Collar1"
+item_category = "Weapon"
+item_type = "Collar"
+material = "Bone"
+minimum_level = 5
+race_required = "Pet"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Frostbite"
+
+[[effect]]
+name = "Vorpal Lethargy"
+
+[[effect]]
+name = "Chilling 2"
+
+[[effect]]
+name = "Speed"
+value = 15
+value2 = 5
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "rare encounters"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Collar"

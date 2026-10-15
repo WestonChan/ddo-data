@@ -1,0 +1,22 @@
+name = "Spellworker's Gloves"
+drop_location = "Advance to level 15, End reward"
+icon = "Gloves_3b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Eladrin Chaosmancer"
+slot = "Hands"
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 14
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 81
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

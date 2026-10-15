@@ -1,0 +1,30 @@
+name = "ToEE: Lower Temple Complex"
+bestowed_by = "Sig the Weaver"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Temple of Elemental Evil"
+patron = "The Gatekeepers"
+zone = "Lower Temple of Elemental Evil"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/ToEE:_Lower_Temple_Complex"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

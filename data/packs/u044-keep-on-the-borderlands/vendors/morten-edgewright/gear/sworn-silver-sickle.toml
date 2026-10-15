@@ -1,0 +1,46 @@
+name = "Sworn Silver Sickle"
+description = """
+This is a fine weapon, crafted of exquisite Silver. It's likely quite useful
+against the Undead or certain, powerful Devils."""
+drop_location = "Morten Edgewright, Turn in 1 Silver Ingot"
+enhancement_bonus = 1
+icon = "Sickle_1"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Silver"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Morten Edgewright"
+
+[[source.price]]
+ingredient = "Silver Ingot"
+quantity = 1
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Sickle"

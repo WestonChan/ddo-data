@@ -1,0 +1,3 @@
+name = "Fire Touch"
+description_template = "This weapon gives off a faint aura of warmth. A fire touch weapon deals an additional +1 Fire damage on a successful hit."
+verbose_name_template = "Fire Touch"

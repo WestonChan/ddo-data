@@ -1,0 +1,27 @@
+name = "The High Steps"
+description = "These boots are enchanted to add a little spring to your step."
+drop_location = "Treasure Hunt, End chest"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Feet"
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Treasure Hunt"

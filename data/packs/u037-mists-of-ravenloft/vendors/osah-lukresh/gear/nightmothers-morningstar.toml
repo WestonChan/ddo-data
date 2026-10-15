@@ -1,0 +1,57 @@
+name = "Nightmother's Morningstar"
+accepts_sentience = true
+description = """
+Forged in the Demiplane of Dread, this weapon has been hallowed in the name
+of Mother Night. It holds ineffable power... and something else?"""
+drop_location = "Blue Water Inn, Turn in 80 Vistani Totems"
+enhancement_bonus = 15
+icon = "Morningstar_1b"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Mother Night's Embrace"
+
+[[effect]]
+name = "Human Bane 6"
+
+[[effect]]
+name = "Vampirism 2"
+
+[[effect]]
+name = "Chilling 6"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "vendor"
+name = "Osah Lukresh"
+
+[[source.price]]
+ingredient = "Vistani Totem"
+quantity = 80
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Morningstar"

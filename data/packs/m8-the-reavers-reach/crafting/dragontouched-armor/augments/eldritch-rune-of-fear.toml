@@ -1,0 +1,10 @@
+name = "Eldritch Rune of Fear"
+description = """
+Fearsome: This item causes those who strike the user to be overcome with terror, as
+from the Fear spell (DC 17)"""
+family = "Dragontouched_EldritchRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: eldritch rune"

@@ -1,0 +1,33 @@
+name = "Pall of Blood"
+description = """
+This deep red robe is lined with purple highlights and a blood red symbol of
+the lich on the shoulder."""
+drop_location = "The Bloody Crypt, End Chest"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 4
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bloody Crypt"

@@ -1,0 +1,12 @@
+name = "Trinket"
+description = "A small trinket capable of being imbued with magical effects."
+drop_location = "Random, and DDO Store and special events (e.g. Snowpeaks Festival )"
+icon = "Trinket_16a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[source]]
+kind = "event"
+name = "Snowpeaks Festival"

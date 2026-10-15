@@ -1,0 +1,20 @@
+name = "Voidscale"
+description = "+5% Exceptional bonus to Universal Spell Lore"
+family = "DinosaurBone"
+icon = "ScaleLightOrange"
+min_level = 31
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Exceptional"
+effect = "Universal Spell Lore"
+effect_type = "UniversalSpellLore"
+
+[[slot]]
+slot = "isle of dread: scale (armor)"

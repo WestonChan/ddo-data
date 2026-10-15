@@ -1,0 +1,5 @@
+name = "Healing Amplification"
+category = "other"
+description_template = "This effect amplifies all incoming positive energy healing by {1} (%b1 bonus ). Includes spells, potions, and other effects."
+home_bonus_type = "Competence"
+verbose_name_template = "%b1 Healing Amplification +{1}"

@@ -1,0 +1,21 @@
+name = "Cruel Cut"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Cruel Cut"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

@@ -1,0 +1,29 @@
+name = "Graveyard Shift"
+bestowed_by = "Hagen Silverthumb"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Mines of Tethyamar"
+patron = "The Harpers"
+zone = "Tethyamar Mineshaft 214S"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Graveyard_Shift"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

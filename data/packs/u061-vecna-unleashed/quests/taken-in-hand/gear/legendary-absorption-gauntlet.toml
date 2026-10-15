@@ -1,0 +1,42 @@
+name = "Legendary Absorption Gauntlet"
+description = """
+Built by a Cannith Artificer to help make explosive disasters a lot less of
+a health hazard."""
+drop_location = "Taken in Hand, End chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 32
+slot = "Hands"
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Taken in Hand"

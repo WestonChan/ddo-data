@@ -1,0 +1,78 @@
+name = "Profane Experiment"
+icon = "ProfaneExperiment"
+
+[[item]]
+name = "Experiment Garb"
+
+[[item]]
+name = "Experimenter's Goggles"
+
+[[item]]
+name = "Lenses of the Dark Depths"
+
+[[item]]
+name = "Researcher's Leathers"
+
+[[item]]
+name = "Spectre Boots"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Intelligence"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Constitution"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Constitution",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"

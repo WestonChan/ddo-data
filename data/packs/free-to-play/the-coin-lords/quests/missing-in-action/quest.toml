@@ -1,0 +1,23 @@
+name = "Missing in Action"
+bestowed_by = "Ulcana Braddock"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "The Foul Chambers"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Missing_in_Action"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3

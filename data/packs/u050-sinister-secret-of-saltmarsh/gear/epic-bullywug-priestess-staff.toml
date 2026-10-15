@@ -1,0 +1,72 @@
+name = "Epic Bullywug Priestess' Staff"
+accepts_sentience = true
+description = """
+The Quarterstaff is imbued with the Cold light of the depths. It appears to
+be attuned to profane magic."""
+drop_location = "Epic version of Bullywug Priestess' Staff"
+enhancement_bonus = 6
+icon = "Quarterstaff_1j"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 20
+
+[[effect]]
+name = "Frozen Depths Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Power of the Frozen Depths"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Bless Ward"
+
+[[effect]]
+name = "Bane of the Depths"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "colorless"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

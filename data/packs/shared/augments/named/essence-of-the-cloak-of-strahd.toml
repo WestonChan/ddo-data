@@ -1,0 +1,19 @@
+name = "Essence of the Cloak of Strahd"
+description = """
+Invisibility Guard: This item has a 10% chance of granting you temporary invisibility
+when you are hit by foes. The invisibility will not be removed when you attack
+or take damage, but it will wear off after 10 seconds.
+Requires: 50 Threads of Fate, Empty Soul Vessel and The Invisible Cloak of Strahd
+(The Curse of Strahd)"""
+family = "Named"
+icon = "TopazRaidItemEssence"
+min_level = 30
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

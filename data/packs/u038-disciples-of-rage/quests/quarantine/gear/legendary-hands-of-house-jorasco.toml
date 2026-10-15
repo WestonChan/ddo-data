@@ -1,0 +1,42 @@
+name = "Legendary Hands of House Jorasco"
+description = """
+Healing is a noble art, but the sight of the sick and dying have a way of sticking
+in one's memories..."""
+drop_location = "Quarantine, End Chest"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Heal"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Equipped Healing Amplification"
+bonus_type = "Equipment"
+value = 27
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Quarantine"

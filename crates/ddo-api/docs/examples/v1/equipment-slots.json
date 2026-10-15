@@ -2,20 +2,23 @@
   "equipment_slots": [
     {
       "category": "weapon",
-      "id": 1,
+      "id": 6388452860937210,
       "name": "Main Hand",
+      "slug": "main-hand",
       "sort_order": 1
     },
     {
       "category": "weapon",
-      "id": 2,
+      "id": 5660883122864753,
       "name": "Off Hand",
+      "slug": "off-hand",
       "sort_order": 2
     },
     {
       "category": "weapon",
-      "id": 3,
+      "id": 746872127394037,
       "name": "Ranged",
+      "slug": "ranged",
       "sort_order": 3
     }
   ],

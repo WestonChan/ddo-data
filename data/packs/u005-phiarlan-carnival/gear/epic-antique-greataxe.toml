@@ -1,0 +1,76 @@
+name = "Epic Antique Greataxe"
+accepts_sentience = true
+description = """
+Lamden Wynn of the Golden Wing Inn kept this greataxe behind the bar in case
+of trouble. It's an old family heirloom, but he offered it to you as compensation
+for your efforts."""
+drop_location = "Epic version of Antique Greataxe"
+enhancement_bonus = 6
+icon = "GreatAxe_2g"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Adamantine"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Force Blast 4"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Righteous"
+
+[[effect]]
+name = "Anarchic 4"
+
+[[effect]]
+name = "Penalty Lawful"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "colorless"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 20
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Great Axe"

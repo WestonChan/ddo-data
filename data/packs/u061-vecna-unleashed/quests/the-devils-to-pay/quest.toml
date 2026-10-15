@@ -1,0 +1,29 @@
+name = "The Devils to Pay"
+bestowed_by = "Calliope Feldren"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Vecna Unleashed"
+patron = "Morgrave University"
+zone = "Perpetual Bond Student Loan Office"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Devils_to_Pay"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

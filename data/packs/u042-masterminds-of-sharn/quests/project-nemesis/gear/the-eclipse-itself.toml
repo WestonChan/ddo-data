@@ -1,0 +1,100 @@
+name = "The Eclipse Itself"
+accepts_sentience = true
+description = """
+This was taken from the hands of the Radiant Idol, Qaspiel Mistwalker, before
+his departure. It resonates with latent fury."""
+drop_location = "Project Nemesis, Raid Warded Chest"
+enhancement_bonus = 15
+icon = "Quarterstaff_1g"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 25
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Arcane Augmentation IX"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Purple Augment Slot"
+description = "Adds a Purple Augment Slot"
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket]]
+slot = "crafting: almost there"
+
+[[socket.option]]
+name = "Fetters of Unreality"
+description = """
+Fetters of Unreality: This weapon is cruel and deadly, and leaves behind wounds
+that affect both the body and the soul. This weapon has a chance to inflict
+multiple stacks of Vulnerable.
+Vulnerable: You take 1% more damage for 3 seconds. This effect stacks up to 20
+times, and loses one stack on expiration."""
+
+[[socket]]
+slot = "crafting: finishing touch"
+
+[[socket.option]]
+name = "Completed Weapon"
+description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
+min_level = 1
+
+[[socket.option.modifier]]
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

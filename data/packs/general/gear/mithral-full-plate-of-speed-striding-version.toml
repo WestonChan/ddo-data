@@ -1,0 +1,32 @@
+name = "Mithral Full Plate of Speed (Striding version)"
+description = """
+This mithral full plate is a masterpiece of armorsmithing. It has also been
+enchanted to increase the speed at which the wearer moves and fights in melee."""
+drop_location = "Random, Low level chests/rewards"
+enhancement_bonus = 1
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 8
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 15

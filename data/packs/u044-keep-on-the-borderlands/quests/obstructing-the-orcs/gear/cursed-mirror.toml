@@ -1,0 +1,37 @@
+name = "Cursed Mirror"
+description = "Reflects everything but yourself."
+drop_location = "Obstructing the Orcs, End Chest"
+icon = "Trinket_10a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 21
+slot = "Trinket"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Obstructing the Orcs"

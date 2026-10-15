@@ -1,0 +1,109 @@
+name = "Tinah, Sword of the Sea"
+accepts_sentience = true
+description = """
+Once wielded by the Legendary sailor, Paeyn the Bold, this blade was the scourge
+of dragons for miles around the Sea of Fallen Stars. How it came to be here
+is a mystery."""
+drop_location = "Caught in the Web, End Chest"
+enhancement_bonus = 7
+icon = "Longsword_2a"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 23
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Supreme Good"
+
+[[effect]]
+name = "Crushing Wave"
+
+[[effect]]
+name = "Freezing Ice"
+
+[[effect]]
+name = "Greater Dragon Bane"
+
+[[effect]]
+name = "Underwater Action"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Planar Conflux"
+description = """
+Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped."""
+icon = "Heroism"
+min_level = 23
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 3"
+
+[[socket.option]]
+name = "+0.5[W] Weapon Dice"
+description = "Adds 0.5[W} to the weapons base damage multiplier"
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 4"
+
+[[socket.option]]
+name = "Red Augment Slot"
+description = "Adds a Red augment slot to this weapon."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.grant]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Caught in the Web"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.6
+handedness = "One-handed"
+weapon_type = "Longsword"

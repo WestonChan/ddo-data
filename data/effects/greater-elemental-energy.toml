@@ -1,0 +1,11 @@
+name = "Greater Elemental Energy"
+description_template = "Harnessing a small amount of power and potential of the raw elements, this item gives you a +20 bonus to your maximum hit points. This stacks with all bonuses except for Greater Elemental Energy."
+home_bonus_type = "Elemental Energy"
+verbose_name_template = "Greater Elemental Energy +20"
+
+[[bonus]]
+amount_from = 0
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Hit Points"

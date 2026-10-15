@@ -1,0 +1,3 @@
+name = "Minor Freezing Ice"
+description_template = "On items: While you are wearing this item, your melee, ranged, and unarmed attacks gain the Minor Freezing Ice ability. (When the weapon is used, an icy power occasionally comes to the surface, attempting to freeze an enemy solid and encase them in ice.) - (duration: 5 seconds)"
+verbose_name_template = "Minor Freezing Ice"

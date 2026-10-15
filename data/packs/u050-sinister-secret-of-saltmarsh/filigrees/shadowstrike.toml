@@ -1,0 +1,187 @@
+[[row]]
+name = "Shadowstrike: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "Shadowstrike"
+menu = "Sinister Secret of Saltmarsh"
+set = "Shadowstrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shadowstrike: Dexterity: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Shadowstrike: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "Shadowstrike"
+menu = "Sinister Secret of Saltmarsh"
+set = "Shadowstrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shadowstrike: Intelligence: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Shadowstrike: +1% Dodge and Max Dodge"
+description = """
++1% Dodge and Dodge Cap
+Rare: +2 PRR"""
+icon = "Shadowstrike"
+menu = "Sinister Secret of Saltmarsh"
+set = "Shadowstrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[row.modifier]]
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shadowstrike: Dodge and Max Dodge: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Shadowstrike: +1% Doubleshot"
+description = """
++1% Doubleshot
+Rare: +2 Ranged Power"""
+icon = "Shadowstrike"
+menu = "Sinister Secret of Saltmarsh"
+set = "Shadowstrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Doubleshot"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shadowstrike: Doubleshot: Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "Shadowstrike: +1% Doublestrike"
+description = """
++1% Doublestrike
+Rare: +2 Melee Power"""
+icon = "Shadowstrike"
+menu = "Sinister Secret of Saltmarsh"
+set = "Shadowstrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Doublestrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shadowstrike: Doublestrike: Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Shadowstrike: +2 Deception"
+description = """
++2 Sneak Attack bonus and +2 Sneak Attack damage
+Rare: +2 Ranged Power"""
+icon = "Shadowstrike"
+menu = "Sinister Secret of Saltmarsh"
+set = "Shadowstrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SneakAttackAttack"
+extra_types = ["SneakAttackDamage"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shadowstrike: Deception: Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "Shadowstrike: +2 Reflex Saves"
+description = """
++2 Reflex Saves
+Rare: +2 MRR"""
+icon = "Shadowstrike"
+menu = "Sinister Secret of Saltmarsh"
+set = "Shadowstrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shadowstrike: Reflex Saves: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Shadowstrike: +3 PRR"
+description = """
++3 PRR
+Rare: +2 PRR"""
+icon = "Shadowstrike"
+menu = "Sinister Secret of Saltmarsh"
+set = "Shadowstrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shadowstrike: PRR: PRR"
+effect_type = "PRR"
+is_rare = true

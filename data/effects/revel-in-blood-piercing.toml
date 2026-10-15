@@ -1,0 +1,3 @@
+name = "Revel in Blood (Piercing)"
+description_template = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On weapon critical: 16d6 Piercing Damage."
+verbose_name_template = "Revel in Blood (Piercing)"

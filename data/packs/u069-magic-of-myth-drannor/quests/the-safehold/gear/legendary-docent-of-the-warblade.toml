@@ -1,0 +1,53 @@
+name = "Legendary Docent of the Warblade"
+description = """
+When the Echo broke off from the Warblade, the force of its defiance manifested
+this docent, and shares its clarity of purpose."""
+drop_location = "The Safehold, end chest (rare)"
+enhancement_bonus = 15
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 33
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 23
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Legendary Demonic Shield"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Legendary"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Safehold"

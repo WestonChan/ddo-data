@@ -1,0 +1,29 @@
+name = "Eye Know Whodunnit"
+bestowed_by = "Alban Kimble"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Peril of the Planar Eyes"
+patron = "Morgrave University"
+zone = "Crawben Bix's Construction Site"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Eye_Know_Whodunnit"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

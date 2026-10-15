@@ -1,0 +1,116 @@
+name = "Epic Elemental Khopesh of Water"
+accepts_sentience = true
+description = """
+This khopesh is part of a mass-produced line of the House Cannith weapons with
+elementals bound to them. This one is infused with water and deals cold damage
+as a result."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 5
+icon = "Khopesh_9"
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Icy Burst"
+
+[[effect]]
+name = "Improved Paralyzing"
+
+[[effect]]
+name = "Crushing Wave"
+
+[[effect]]
+name = "Slowburst"
+
+[[effect]]
+name = "Freezing Ice"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+6 Enhancement Bonus, Fire Resistance 38 and a Colorless augment slot"
+description = """
++6 Enhancement Bonus: +6 enhancement bonus to attack and damage rolls.
+Fire Resistance +38: Passive: +38 Enhancement bonus to your Fire Resistance.
+Adds a Colorless augment slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+value = 38
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [38]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Fire Resistance 41 and Adds a Purple augment slot"
+description = """
+Fire Resistance +41: Passive: +41 Enhancement bonus to your Fire Resistance.
+Adds a Purple augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+value = 41
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [41]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Khopesh"

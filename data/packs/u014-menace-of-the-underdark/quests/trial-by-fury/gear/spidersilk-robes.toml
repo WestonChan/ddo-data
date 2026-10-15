@@ -1,0 +1,142 @@
+name = "Spidersilk Robes"
+description = """
+This clothing is spun entirely from the silk of some arachnid. It is strong,
+flexible, and nearly weightless."""
+drop_location = "Trial by Fury, Shufarix chest"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 22
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 9
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 72
+
+[[effect]]
+name = "Wizardry IX"
+bonus_type = "Enhancement"
+value = 225
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[note]]
+kind = "item_socket"
+field = "add"
+reason = "The wiki's Mikrom Sum upgrades Spidersilk Robes into the Battle Arcanist set; his item has no upgrade socket."
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-09-30"
+qualifier = "crafting: upgrade"
+
+[[socket]]
+slot = "crafting: variant ability"
+
+[[socket.option]]
+name = "Intelligence +8"
+description = "Intelligence +8: This item focuses the power of the wearer's mind, granting a +8 enhancement bonus to Intelligence."
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Insightful Intelligence +3"
+description = "+3 Insight bonus to Intelligence"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Charisma +8"
+description = "Charisma +8: This item makes the wearer have more flair, granting a +8 enhancement bonus to Charisma."
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket.option]]
+name = "Insightful Charisma +3"
+description = "+3 Insight bonus to Charisma"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "crafting: upgrade"
+
+[[source]]
+chest = "shufarix chest"
+kind = "quest"
+loot_type = "chest"
+name = "Trial by Fury"

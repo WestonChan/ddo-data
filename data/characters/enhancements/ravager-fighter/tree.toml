@@ -1,0 +1,986 @@
+name = "Ravager (Fighter)"
+background = "FighterBackground"
+icon = "Fighter"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Ravager: Furious Rage"
+cost_per_rank = [1]
+description = """
+When you miss your attack by rolling 1, you gain Fury for six seconds.
+
+Fury: +1 Rage bonus to Attack and Damage. This effect stacks up to six times
+and one stack fades every six seconds.
+
+You cannot take this enhancement if you have any points in the Barbarian's
+version of this tree."""
+icon = "RavFuriousRage"
+internal_name = "DLRavCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "RavFuriousrage"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image RavFuriousRage.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["RavCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Pain Touch I"
+cost_per_rank = [1]
+description = "+5 Melee power and +5 Healing Amplification"
+icon = "RavPainTouch"
+internal_name = "DLRavCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["DLRavCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Demoralizing Success"
+cost_per_rank = [1]
+description = """
+Passive: You gain +15 Hit Points and +5 Healing Amplification. When you score a
+Vorpal hit in melee, you inflict Crushing Despair on nearby enemies for 30 seconds
+on a failed DC 20 Will saving throw. You then inflict Vulnerable Will for 15
+seconds, regardless of the Crushing Despair saving throw.
+
+Crushing Despair: -2 penalty to Attack, Damage, Saving Throws, and Skill checks.
+
+Vulnerable Will: -3 to Will Saving throws.
+
+Vorpal Strike: Requires rolling 20 on the Attack roll and confirming the Critical
+hit."""
+icon = "RavDemoralizingSuccess"
+internal_name = "DLRavCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.dc]]
+name = "Ravager: Demoralizing Success"
+amount = [20]
+dc_type = "Crushing Despair"
+dc_versus = "Will"
+description = """
+When you score a Vorpal hit in melee, you inflict Crushing Despair on nearby
+enemies for 30 seconds on a failed DC 20 Will saving throw. You then inflict
+Vulnerable Will for 15 seconds, regardless of the Crushing Despair saving throw."""
+icon = "RavDemoralizingSuccess"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 6
+
+[[enhancement.requirement]]
+items = ["DLRavCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Pain Touch II"
+cost_per_rank = [1]
+description = """
++5 Melee Power. You gain +30 Maximum Hit Points, +2 Intimidate, and +10 Healing
+Amplification"""
+icon = "RavPainTouch"
+internal_name = "DLRavCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 12
+
+[[enhancement.requirement]]
+items = ["DLRavCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Subsiding Fury"
+cost_per_rank = [1]
+description = """
+When you use Second Wind, you gain 3 stacks of Fury.
+Passive: You gain +50 Maximum Hit Points, +2 Intimidate, and +10 Healing
+Amplification.
+
+Fury: +1 Rage bonus to attack and damage. This effect stacks up to 6 times and
+one stack fades every 6 seconds."""
+icon = "RavSubsidingFury"
+internal_name = "DLRavCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 18
+
+[[enhancement.requirement]]
+items = ["DLRavCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Visage of Terror"
+cost_per_rank = [1]
+description = """
+Terrorize up to six enemies, killing them with fear if they fail a Will Saving Throw
+(1d20 + your Intimidate skill). Enemies who make their saving throw are paralyzed
+with Fear for six seconds instead.
+Cooldown: 30 seconds
+
+Does not affect bosses, Raid Bosses, or monsters immune to Fear or Paralysis.
+
+Passive:
++4 Constitution
++75 Maximum Hit Points
++2 Intimidate
++20 Positive Healing Amplification"""
+icon = "RavVisageOfTerror"
+internal_name = "DLRavCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.dc]]
+name = "Visage of Terror"
+dc_type = "Death"
+dc_versus = "Will"
+description = """
+Terrorize up to six enemies, killing them with fear if they fail a Will
+save. Enemies who make their saving throw are paralyzed with Fear for six seconds instead.
+Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)"""
+icon = "RavVisageOfTerror"
+other = "1d20"
+skill = "Intimidate"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DLRavCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 20
+
+[[enhancement.requirement]]
+items = ["DLRavCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "DLRavCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Ravager: Ritual Scarring"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Intimidate, Haggle and Physical Resistance."
+icon = "RavRitualScarring"
+internal_name = "DLRavRitualScarring"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Intimidate",
+    "Haggle",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Ravager: Hate"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Attack: Generates extra threat.
+Cooldown: 6 seconds"""
+icon = "RavHate"
+internal_name = "DLRavHate"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Ravager: Do You Like Pain?"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "When you are hit: [20/40/60]% chance attacker loses 10 Armor Class."
+icon = "RavDoYouLikePain"
+internal_name = "DLRavDoYouLikePain"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Ravager: Draconic Power Attack"
+cost_per_rank = [1]
+description = """
+Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.
+Note: Stacks with Improved Power Attack. Damage is doubled when Two Handed
+Fighting or fighting in an animal form."""
+icon = "RavBarbarianPowerAttack"
+internal_name = "DLRavDraconicPowerAttack"
+is_clickie = true
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement.requirement]]
+items = ["Power Attack"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Ravager: Hardy Rage"
+cost_per_rank = [1]
+description = "+[1/2/3] Action Boost Charges."
+icon = "BEExtraActionBoost"
+internal_name = "DLRavHardyRage"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Ravager: Fear me!"
+cost_per_rank = [2]
+description = """
+When you Intimidate, affected enemies are Shaken for 6 seconds.
+Shaken: -2 penalty on Attack rolls, Saving Throws, and Skill checks."""
+icon = "RavFearMe"
+internal_name = "DLRavFearMe"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DLRavRitualScarring"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Mutilate"
+cost_per_rank = [1]
+description = """
+Hate additionally deals 1d[4/6/8] Charisma damage and 1d[4/6/8] Bane damage.
+The bane damage scales with 200% Melee Power. Charisma damage from this attack
+can only affect a creature once every 10 seconds."""
+icon = "RavMutilate"
+internal_name = "DLRavMutilate"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DLRavHate"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: I Like Pain"
+arrows = ["LongArrowUp"]
+cost_per_rank = [1]
+description = """
+When you are hit: Small chance to gain [50/100/150] Temporary Hit Points.
+This gain scales with 100% Melee Power"""
+icon = "RavILikePain"
+internal_name = "DLRavILikePain"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DLRavDoYouLikePain"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Cruel Cut"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Melee Attack: Deals 3d6 extra Constitution damage as long as you damage your
+target. Rank 3 of Cruel Cut now adds +1d6 of additional Constitution damage for
+every 2 Character Levels you have.
+Cooldown: 6 seconds
+
+(Monsters with zero in any ability score are considered Helpless and receive
++50% extra damage.)"""
+icon = "RavCruelCut"
+internal_name = "DLRavCruelCut"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Ravager: Action Boost: Melee Power"
+cost_per_rank = [2]
+description = """
+Activate this ability to receive a +30 Action Boost bonus to Melee and
+Ranged Power for 20 seconds.
+Cooldown: 30 seconds"""
+icon = "RavActionBoostMeleePower"
+internal_name = "DLRavActionBoostMeleePower"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Ravager: Aura of Fear"
+cost_per_rank = [1]
+description = """
+Nearby enemies receive a -2 penalty to Strength and Charisma.
+Rank 2: Nearby enemies receive a -2 penalty to Strength, Charisma, Dexterity and Wisdom.
+Rank 3: Nearby enemies receive a -2 penalty to all ability scores."""
+icon = "RavAuraOfFear"
+internal_name = "DLRavAuraOfFear"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Ravager: Slaughter"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals: +100% Damage
+Melee Attack: Deals high amounts of damage.
+Cooldown: 12 seconds"""
+icon = "RavSlaughter"
+internal_name = "DLRavSlaughter"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Ravager: Festering Wound"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Cruel Cut additionally inflicts [1/2/3] stacks of Festering Wound. Each stack deals
+1d6 Poison damage that scales with 200% Melee Power every 2 seconds, to a maximum
+of 10 stacks. In addition, enemies hit by Cruel Cut have their Positive Energy
+healing reduced by 50% for 5 seconds.
+Rank 3: Festering Wound becomes Greater Festering Wound and gains an additional
+1d6 Poison Damage for every 10 Character Levels you have. Also affects bosses."""
+icon = "RavFesteringWound"
+internal_name = "DLRavFesteringWound"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["DLRavCruelCut"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Strength or Constitution"
+icon = "StrCon"
+internal_name = "DLRavAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Ravager: Laughter"
+cost_per_rank = [2]
+description = """
+When Slaughter damages an enemy, you gain three stacks of Fury. When Slaughter scores
+a critical hit on an enemy, you gain three more Fury (for a total of six) and
+gain 10 Melee Power for 15 seconds.
+
+Fury: +1 Rage bonus to attack and damage. This effect stacks up to 6 times and
+one stack fades every 6 seconds.
+
+For many Ravagers, there's no Laughter without Slaughter."""
+icon = "RavLaughter"
+internal_name = "DLRavLaughter"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DLRavSlaughter"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: I Hit Back!"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+When you are hit: 20% chance to deal [2/4/6]d8 bane damage to attacker.
+This damage scales with 100% Melee Power."""
+icon = "RavIHitBack"
+internal_name = "DLRavIHitBack"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DLRavILikePain"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Dismember"
+cost_per_rank = [1]
+description = """
+When you use Cruel Cut, you gain +5 Melee Power for 10 seconds. In addition, targets
+hit by Cruel Cut take 6d[4/6/8] Slashing damage which scales with 200% Melee Power
+and have their movement slowed by 50% for 5 seconds.
+Rank 3: Your Slashing Damage from Dismember increases by +1d8 for every 2 Character
+Levels you have. (Movement and attack speed debuffs last for 5 seconds each and
+affect bosses.)"""
+icon = "RavDismember"
+internal_name = "DLRavDismember"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DLRavFesteringWound"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Ability II"
+cost_per_rank = [2]
+description = "Choose either Constitution or Strength"
+icon = "StrCon"
+internal_name = "DLRavAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DLRavAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Ravager: Blood Strength"
+cost_per_rank = [2]
+description = """
+Each time you land a hit there is a 12% chance you heal positive damage equal
+to half your Dragon Lord level. Each time you kill an opponent you are healed
+for 20 hit points. This healing scales with 100% Melee Power.
+Blood Strength has a one-second cooldown when you kill an enemy."""
+icon = "RavBloodStrength"
+internal_name = "DLRavBloodStrength"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Ravager: Bully"
+cost_per_rank = [1]
+description = "You deal +[5/10/15]% damage to Helpless enemies."
+icon = "RavBully"
+internal_name = "DLRavBully"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamage"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["DLRavIHitBack"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Uncanny Balance"
+cost_per_rank = [2]
+description = """
+You are immune to most knockdowns and slippery surfaces.
+
+You gain a +25% Competence bonus to Maximum Hit Points."""
+icon = "RavUncannyBalance"
+internal_name = "DLRavUncannyBalance"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Knockdown"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Slippery Surfaces"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Ravager: Critical Rage"
+cost_per_rank = [1]
+description = "+[1/2] Competence bonus to Critical Threat Range with all weapons."
+icon = "RavCriticalRage"
+internal_name = "DLRavCriticalRage"
+is_tier5 = true
+min_spent = 30
+ranks = 2
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"

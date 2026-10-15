@@ -1,0 +1,29 @@
+name = "Ravens' Bane"
+bestowed_by = "Muriel Vinshaw"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "The Ruins of Berez"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Ravens%27_Bane"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 31

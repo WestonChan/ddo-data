@@ -1,0 +1,62 @@
+name = "Lorikk's Champion"
+description = """
+This relic of the Silver Flame was supposedly once worn by the powerful cleric
+Lorikk. Lorikk and his brother Levik disappeared many years ago while investigating
+tales of an ancient creature residing beneath Stormreach."""
+drop_location = "Hound of Xoriat, Warded chest (All difficulties )"
+enhancement_bonus = 5
+icon = "Shield_11"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Mithral"
+minimum_level = 14
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[clickie]]
+name = "Panacea"
+clickie = "Panacea"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Eternal Faith"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Panacea"]
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hound of Xoriat"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

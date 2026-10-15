@@ -1,0 +1,40 @@
+name = "Legendary Neglected Wedding Ring"
+description = """
+This looks as if it used to be a really nice ring.
+Something clearly changed."""
+drop_location = "Kill Ten Rats, End Chest"
+icon = "Ring_11"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Ring"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Kill Ten Rats"

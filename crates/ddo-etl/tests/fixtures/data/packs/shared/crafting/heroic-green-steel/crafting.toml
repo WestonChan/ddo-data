@@ -1,0 +1,81 @@
+name = "Heroic Green Steel"
+npc = "Altar of Invasion"
+
+[[family]]
+family = "Greensteel_Heroic"
+
+[[ingredient]]
+name = "Small Shard of Power"
+bind = "Bound to Account"
+drop_location = "The Shroud"
+tier = "heroic"
+
+[[ingredient]]
+name = "Small Focus of Earth"
+tier = "heroic"
+
+[[ingredient]]
+name = "Small Focus of Fire"
+tier = "heroic"
+
+[[ingredient]]
+name = "Shroud Commendation"
+bind = "Unbound"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Green_Steel_items"
+read = "2026-09-27"
+
+[[recipe]]
+option = "+5 Fortitude Save"
+slot = "crafting: accessory invasion"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+5 Fortitude Save"
+level = 11
+description = """
+Fortitude Save +5: +5 Resistance bonus to your Fortitude save.
+Earth:Opposition:Ethereal"""
+
+[[recipe.augment]]
+name = "+5 Fortitude Save"
+level = 11
+description = """
+Fortitude Save +5: +5 Resistance bonus to your Fortitude save.
+Negative:Opposition:Ethereal"""
+
+[[recipe.ingredient]]
+ingredient = "Small Shard of Power"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Small Focus of Earth"
+quantity = 1
+
+[[recipe]]
+option = "Minor Fire Guard"
+slot = "crafting: accessory invasion"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Minor Fire Guard"
+level = 11
+
+[[recipe.ingredient]]
+ingredient = "Small Shard of Power"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Small Focus of Fire"
+quantity = 1
+
+[[recipe]]
+note = "Returns a crafted item to its blank state; no augment counterpart."
+option = "Cleanse an item"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Shroud Commendation"
+quantity = 5

@@ -1,0 +1,10 @@
+name = "Tendon Slice +4"
+description = """
+Enhancement bonus to Tendon Slice
+On Hit: 4% chance to slow target's movement speed by 50% for 10 seconds."""
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[slot]]
+slot = "crafting: slavelords extra"

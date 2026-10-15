@@ -1,0 +1,42 @@
+name = "Fleshshaper's Docent"
+description = """
+This docent was infused with the strange powers wielded by mad fleshcrafters
+of Xoriat. It's said that there is a matching staff, and like that staff this
+armor will expand the ability of the wearer to knit the wounds of an ally or
+inflict them upon enemies."""
+drop_location = "Reign of Madness, End reward"
+enhancement_bonus = 5
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 14
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 16
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 7
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 20
+
+[[effect]]
+name = "Fleshmaker"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Disintegration Guard"
+
+[[effect]]
+name = "Power Drain"
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[source]]
+kind = "quest_chain"
+name = "Reign of Madness"

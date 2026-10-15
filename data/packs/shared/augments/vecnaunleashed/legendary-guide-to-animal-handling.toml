@@ -1,0 +1,14 @@
+name = "Legendary Guide to Animal Handling"
+description = "+3 Enhancement bonus to Wild Empathy Charges."
+family = "VecnaUnleashed"
+icon = "HistoryBookYellow"
+min_level = 32
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

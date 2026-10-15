@@ -1,0 +1,44 @@
+name = "Insurrection"
+description = "This great axe split the altar to Vol in a single mighty blow."
+drop_location = "Desecrated Temple of Vol, End Chest"
+enhancement_bonus = 5
+icon = "GreatAxe_10"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Construct Bane"
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desecrated Temple of Vol"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 18
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Great Axe"

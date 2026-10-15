@@ -1,0 +1,24 @@
+name = "Boots of Nimbleness"
+description = "These magical boots are sturdy and tough, but extremely light."
+drop_location = "Stopping the Sahuagin, Chest at Devourer altar near the Giantish device."
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Feet"
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 1
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+chest = "chest at devourer altar near the giantish device"
+kind = "quest"
+loot_type = "chest"
+name = "Stopping the Sahuagin"

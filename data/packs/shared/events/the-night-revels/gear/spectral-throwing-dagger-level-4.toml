@@ -1,0 +1,48 @@
+name = "Spectral Throwing Dagger (level 4)"
+description = """
+The residual power left behind as thousands of Spectral Dragon Scales crumbled
+to dust formed these ethereal blades."""
+drop_location = "The Night Revels, Turn in various ingredients at Joe Candymaker"
+enhancement_bonus = 2
+icon = "ThrowingDagger_2"
+item_category = "Weapon"
+item_type = "Throwing Dagger"
+material = "Force"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Ghostbane 2"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Evil Outsider Bane 2"
+
+[[effect]]
+name = "Crushing 4"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Throwing Dagger"

@@ -1,0 +1,3 @@
+name = "Greater Shocking Blow"
+description_template = "This item is charged with electricity. When in melee, on an attack roll of 20 which is confirmed as a critical hit it will punish the target with a powerful bolt of lightning (20 to 120 electric damage)."
+verbose_name_template = "Greater Shocking Blow"

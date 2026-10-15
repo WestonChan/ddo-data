@@ -1,0 +1,36 @@
+name = "Legendary Frost Worm Tooth Ring"
+description = "The sharp spike of a tooth rises up from the band of this ring."
+drop_location = "Cold Snap, end chest"
+icon = "Ring_16"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 34
+slot = "Ring"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 13
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 12
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"

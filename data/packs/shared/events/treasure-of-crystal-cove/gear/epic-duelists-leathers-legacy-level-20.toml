@@ -1,0 +1,85 @@
+name = "Epic Duelist's Leathers (legacy) (level 20)"
+description = """
+When pirates who prefer light blades in battle need armor, this is the kind
+of item they will put their money on- a lightweight vest of leather or hide
+that allows plenty of stylish movement in combat."""
+drop_location = "Treasure of Crystal Cove, Turn in 1200 Copper Doubloon 600 Silver Doubloon 35 Stolen Diamond at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 6
+icon = "LightArmor_1b"
+is_legacy = true
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 18
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Superior Nimbleness"
+bonus_type = "Stacking"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Epic Nimbleness"
+description = """
+Epic Nimbleness: This suit of armor looks much less restrictive than others of
+its type. A suit of armor that has this property has a maximum Dexterity bonus
+6 higher than normal, and its armor check penalty is reduced by 4."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Dodge 8% and a Blue Augment Slot"
+description = """
+Dodge +8%: +8% Enhancement bonus to Dodge.
+Adds a Blue Augment Slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 8
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

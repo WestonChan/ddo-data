@@ -1,0 +1,508 @@
+{
+  "$defs": {
+    "AugmentEffect": {
+      "additionalProperties": false,
+      "properties": {
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "name": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "value2": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "type": "object",
+      "x-table": "augment_effects"
+    },
+    "AugmentSlot": {
+      "additionalProperties": false,
+      "properties": {
+        "slot": {
+          "type": "string",
+          "x-reference-kind": "augment_slot_types"
+        }
+      },
+      "required": [
+        "slot"
+      ],
+      "type": "object",
+      "x-table": "augment_slots"
+    },
+    "AugmentSource": {
+      "additionalProperties": false,
+      "properties": {
+        "chest": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "is_rare": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "loot_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "tier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "name"
+      ],
+      "type": "object",
+      "x-source-reference": true
+    },
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "citations"
+    },
+    "EntityNote": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "entity_notes"
+    },
+    "FileNumber": {
+      "anyOf": [
+        {
+          "format": "int64",
+          "type": "integer"
+        },
+        {
+          "format": "double",
+          "type": "number"
+        }
+      ]
+    },
+    "Modifier": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "amounts": {
+          "items": {
+            "$ref": "#/$defs/FileNumber"
+          },
+          "type": "array"
+        },
+        "apply_as_item_effect": {
+          "type": "boolean"
+        },
+        "bonus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "cap": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_bonus": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_number": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_sides": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "effects"
+        },
+        "effect_type": {
+          "type": "string"
+        },
+        "extra_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_item_specific": {
+          "type": "boolean"
+        },
+        "is_rare": {
+          "type": "boolean"
+        },
+        "percent": {
+          "type": "boolean"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rank": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        },
+        "stack_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "targets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect_type"
+      ],
+      "type": "object",
+      "x-table": "modifiers"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "req_type": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "req_type"
+      ],
+      "type": "object",
+      "x-table": "requirements"
+    },
+    "RequirementGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "requirement"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adds_augment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "choose_level": {
+      "type": "boolean"
+    },
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "description": {
+      "type": "string"
+    },
+    "dual_values": {
+      "type": "boolean"
+    },
+    "effect": {
+      "items": {
+        "$ref": "#/$defs/AugmentEffect"
+      },
+      "type": "array"
+    },
+    "effect_description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "enter_value": {
+      "type": "boolean"
+    },
+    "family": {
+      "type": "string"
+    },
+    "grants_augment": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-image-kind": ""
+    },
+    "level_values": {
+      "items": {
+        "$ref": "#/$defs/FileNumber"
+      },
+      "type": "array"
+    },
+    "level_values2": {
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "levels": {
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "min_level": {
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "modifier": {
+      "items": {
+        "$ref": "#/$defs/Modifier"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "note": {
+      "items": {
+        "$ref": "#/$defs/EntityNote"
+      },
+      "type": "array"
+    },
+    "set_bonus": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "slot": {
+      "items": {
+        "$ref": "#/$defs/AugmentSlot"
+      },
+      "type": "array"
+    },
+    "source": {
+      "items": {
+        "$ref": "#/$defs/AugmentSource"
+      },
+      "type": "array"
+    },
+    "suppress_set_bonus": {
+      "type": "boolean"
+    },
+    "variant": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "weapon_class": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "family"
+  ],
+  "title": "AugmentFile",
+  "type": "object",
+  "x-table": "augments"
+}

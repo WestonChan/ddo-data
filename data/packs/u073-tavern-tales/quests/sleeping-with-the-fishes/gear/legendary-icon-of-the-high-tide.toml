@@ -1,0 +1,42 @@
+name = "Legendary Icon of the High Tide"
+drop_location = "Sleeping with the Fishes, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Trinket"
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 37
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 56
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"

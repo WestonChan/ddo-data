@@ -1,0 +1,34 @@
+name = "Sustaining Symbiont"
+description = """
+A leech-like creature bred as a counterbalance to certain other symbiotic creatures
+that cause harm to their wearers. It also grants its host increased physical
+durability."""
+drop_location = "The Sane Asylum, Fred's chest"
+icon = "Trinket_61"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 15
+slot = "Trinket"
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Suppress Madness"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Exceptional"
+value = 10
+
+[[source]]
+chest = "fred's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Sane Asylum"

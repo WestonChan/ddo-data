@@ -1,0 +1,58 @@
+name = "Epic Swashbuckler (legacy) (level 24)"
+description = """
+An indispensable tool for many a pirate when dueling with a single blade. It
+can parry an enemy's blows effectively and even leave them open to counterattack."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Silver Doubloon 500 Golden Doubloon 40 Stolen Malachite at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 7
+icon = "Shield_18d"
+is_legacy = true
+item_category = "Shield"
+item_type = "Buckler"
+material = "Dwarven Iron"
+minimum_level = 24
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 8
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Guardbreaking"
+
+[[effect]]
+name = "Riposte Riposte"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Off-hand"
+weapon_type = "Buckler"

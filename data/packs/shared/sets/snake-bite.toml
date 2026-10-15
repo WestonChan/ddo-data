@@ -1,0 +1,31 @@
+name = "Snake Bite"
+icon = "SnakeBite"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+4 Saving throws versus Poison"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Poison"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Imbue Dice"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"

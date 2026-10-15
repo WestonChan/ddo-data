@@ -1,0 +1,28 @@
+name = "Bracers of Assistance"
+description = "This pair of simple leather bracers glow faintly of magic."
+drop_location = "The Cannith Crystal, End reward"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Wrists"
+
+[[clickie]]
+name = "Aid"
+clickie = "Aid"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Aid"]
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Cannith Crystal"

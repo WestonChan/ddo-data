@@ -1,0 +1,41 @@
+name = "Legendary Stitched Duergarcraft Cloak"
+description = "A sturdy cloak, combining Duergar metalwork with exceptional tailoring."
+drop_location = "For Want of a Heart, Toruk the Prophet 's chest"
+icon = "Cloak_9"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 35
+slot = "Back"
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 52
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 81
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "toruk the prophet 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "For Want of a Heart"

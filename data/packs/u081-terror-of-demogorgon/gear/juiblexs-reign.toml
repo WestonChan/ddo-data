@@ -1,0 +1,50 @@
+name = "Juiblex's Reign"
+description = "A dream of a Demon Lord, ruling over everything."
+drop_location = "Terror of Demogorgon, any end chest; Terror of Demogorgon (Legendary) Elite/True Elite end reward"
+icon = "Belt_4t"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Waist"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 22
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 59
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Sticky Goo Guard"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "any end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Terror of Demogorgon"
+
+[[source]]
+kind = "saga"
+name = "Terror of Demogorgon"
+tier = "legendary"

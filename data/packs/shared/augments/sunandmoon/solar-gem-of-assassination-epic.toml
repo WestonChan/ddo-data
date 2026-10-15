@@ -1,0 +1,21 @@
+name = "Solar Gem of Assassination (Epic)"
+description = "+2 Artifact Bonus to Assassinate DCs."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Assassinate"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[slot]]
+slot = "sun"

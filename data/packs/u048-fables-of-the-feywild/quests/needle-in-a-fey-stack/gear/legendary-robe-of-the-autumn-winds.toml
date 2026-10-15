@@ -1,0 +1,45 @@
+name = "Legendary Robe of the Autumn Winds"
+description = "This robe rustles softly, even when there is no wind."
+drop_location = "Needle in a Fey Stack, end chest"
+enhancement_bonus = 15
+icon = "Cloth_13"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 29
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Needle in a Fey Stack"

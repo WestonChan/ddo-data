@@ -1,0 +1,31 @@
+name = "Gravnok's Band"
+description = """
+This grime incrusted ring has a series of faint etchings that are worn from
+use."""
+drop_location = "The Captives, Gravnok 's Chest (End Chest)"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 2
+slot = "Ring"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 3
+
+[[source]]
+chest = "gravnok 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Captives"

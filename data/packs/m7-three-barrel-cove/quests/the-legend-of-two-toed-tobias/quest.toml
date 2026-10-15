@@ -1,0 +1,26 @@
+name = "The Legend of Two-Toed Tobias"
+bestowed_by = "Laurent Chastel"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Three-Barrel Cove"
+patron = "The Free Agents"
+zone = "The Wheeping Cove"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Legend_of_Two-Toed_Tobias"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5
+
+[[run]]
+tier = "epic"
+level = 25

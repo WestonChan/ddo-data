@@ -1,0 +1,76 @@
+name = "Marro, the Bone of Demons"
+accepts_sentience = true
+description = "The power inscribed on a bone, made manifest."
+drop_location = "Fire Over Morgrave, end chest"
+enhancement_bonus = 15
+icon = "Club_2g"
+item_category = "Weapon"
+item_type = "Club"
+material = "Adamantine"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 32
+
+[[effect]]
+name = "Power of the Firestorm"
+value = 158
+
+[[effect]]
+name = "Efficient Metamagic - Embolden II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Efficient Metamagic - Intensify II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Greater Elemental Spell Power"
+bonus_type = "Greater Elemental Spell Power"
+
+[[effect]]
+name = "Planar Searing"
+
+[[note]]
+kind = "item_effect"
+field = "add"
+reason = "The wiki lists Planar Searing on this weapon, which Maetrim omits."
+url = "https://ddowiki.com/page/Item:Marro,_the_Bone_of_Demons"
+read = "2026-10-05"
+qualifier = "Planar Searing"
+
+[[socket]]
+slot = "crafting: planar searing"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Fire Over Morgrave"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "One-handed"
+weapon_type = "Club"

@@ -1,0 +1,16 @@
+name = "Deathblock"
+adds_augment = "Accessory Aspect II"
+variant = "Negative:Opposition:Material"
+description = "This effect grants immunity to all death spells and magical death effects. \nNegative:Opposition:Material"
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Death"]
+
+[[slot]]
+slot = "crafting: accessory devastation"

@@ -1,0 +1,38 @@
+name = "Legendary Steel-Toed Steps"
+description = "Lighter than they look and exactly as tough as they look."
+drop_location = "Turn the Page (quest), End chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 32
+slot = "Feet"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Diehard"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Turn the Page"

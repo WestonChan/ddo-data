@@ -1,0 +1,26 @@
+name = "Tharashk Arena"
+bestowed_by = "Dirge of Karrnath"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Vault of Night"
+patron = "House Kundarak"
+zone = "Tharashk Arena"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tharashk_Arena"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 21

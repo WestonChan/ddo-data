@@ -1,0 +1,3 @@
+name = "Sticky Goo Guard"
+description_template = "This item has a chance of encasing a creature in sticky goo, much like an attack of a mimic. It reduces the creatures move speed and attack speed."
+verbose_name_template = "Sticky Goo Guard"

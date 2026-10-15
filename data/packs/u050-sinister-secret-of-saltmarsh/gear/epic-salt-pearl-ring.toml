@@ -1,0 +1,34 @@
+name = "Epic Salt-Pearl Ring"
+description = "This ring features a singular pearl encrusted with bitter salt."
+drop_location = "Epic version of Salt-Pearl Ring"
+icon = "Ring_21d"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

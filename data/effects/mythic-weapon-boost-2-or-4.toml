@@ -1,0 +1,3 @@
+name = "Mythic Weapon Boost +2 or +4"
+description_template = "+2 or +4 Mythic bonus to Melee, Ranged, and Universal Spell Power.(This is a rare enchantment that does not show up on all drops of this item.)"
+verbose_name_template = "Mythic Weapon Boost +2 or +4"

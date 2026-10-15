@@ -1,0 +1,85 @@
+name = "Nyoko's Necklace"
+description = """
+This thin choker was worn by Nyoko, a very talented Ninja Spy whose location
+is now unknown."""
+drop_location = "Genesis Point, Any end chest ; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[clickie]]
+name = "Invisibility"
+clickie = "Invisibility"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Ninja Spy"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Invisibility"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Ninja Spy - 2 Piece bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+    5,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Ninja Spy - 2 Piece bonus"
+effect_type = "SneakAttackDamage"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    -20,
+    -20,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Ninja Spy - 2 Piece bonus"
+effect_type = "ThreatBonusMelee"
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Genesis Point"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

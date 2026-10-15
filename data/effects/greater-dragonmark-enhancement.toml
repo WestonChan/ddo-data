@@ -1,0 +1,3 @@
+name = "Greater Dragonmark Enhancement"
+description_template = "This will increase the total number of Greater Dragonmarks you can use by 3. However, these additional Greater Dragonmarks will only take effect after the wielder rests."
+verbose_name_template = "Greater Dragonmark Enhancement"

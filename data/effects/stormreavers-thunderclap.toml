@@ -1,0 +1,3 @@
+name = "Stormreaver's Thunderclap"
+description_template = "This item crackles with power, flickers of lightning emanating from it. On a Melee strike of a Natural 20 that is confirmed as a critical hit, this item will strike your foe with a tremendous burst of lightning. A DC 100 Reflex save will prevent half of this damage."
+verbose_name_template = "Stormreaver's Thunderclap"

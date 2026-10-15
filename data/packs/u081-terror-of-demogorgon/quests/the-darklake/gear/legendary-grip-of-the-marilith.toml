@@ -1,0 +1,42 @@
+name = "Legendary Grip of the Marilith"
+description = """
+A single pair of gloves, worn by a Marilith. One wonders where the other two
+pairs are."""
+drop_location = "The Darklake, J'anara 's chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Hands"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Improved Metamagic"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "j'anara 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

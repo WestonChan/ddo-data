@@ -1,0 +1,1310 @@
+name = "Fury of the Wild"
+background = "DestinyPrimal"
+icon = "FuryOfTheWild"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Fury of the Wild: Die Hard"
+cost_per_rank = [1]
+description = """
+You gain the Diehard feat.
+
+Each core ability in this tree, including this one, grants the following:
+
++25 Maximum Hit Points
++5 Melee Power
++5 Ranged Power"""
+icon = "Brawn"
+internal_name = "U51FuryOfTheWildCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Diehard"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fury of the Wild: Die Harder"
+cost_per_rank = [1]
+description = "+100 Unconsciousness Range."
+icon = "Brawn"
+internal_name = "U51FuryOfTheWildCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-100]
+bonus_type = "Enhancement"
+effect_type = "UnconsciousRange"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51FuryOfTheWildCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fury of the Wild: Die Harderest"
+cost_per_rank = [1]
+description = "+250 Unconsciousness Range."
+icon = "Brawn"
+internal_name = "U51FuryOfTheWildCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-250]
+bonus_type = "Enhancement"
+effect_type = "UnconsciousRange"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51FuryOfTheWildCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fury of the Wild: Be the Whirlwind"
+cost_per_rank = [1]
+description = """
+Using any of the feats Trip, Improved Trip, Whirlwind Attack or Quick Cutter
+causes a whirlwind of force to burst from you striking nearby enemies for 1d10
+bludgeon damage per character level. Scales with 150% Melee Power. Improved Trip
+also causes all affected enemies to be tripped unless they succeed at a Balance
+check (DC equal to Improved Trip)."""
+icon = "Brawn"
+internal_name = "U51FuryOfTheWildCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51FuryOfTheWildCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fury of the Wild: Acute Senses"
+cost_per_rank = [1]
+description = """
++[2/4/6] Fortitude, Reflex, and Will Saving Throws Vs. Traps.
+Rank 3: Your dodge is increased by 1%"""
+icon = "AcuteSenses"
+internal_name = "U51FuryOfTheWildAcuteSenses"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["Traps"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "DodgeBonus"
+rank = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fury of the Wild: Strength or Swiftness"
+cost_per_rank = [1]
+description = "Select an Epic Strike."
+icon = "StrengthOrSwiftness"
+internal_name = "U51FuryOfTheWildEpicStrike"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Adrenaline"
+cost_per_rank = [1]
+description = """
+Epic Strike: Your next Melee attack deals +75% damage, and increases
+your threat by 16. Requires a melee weapon to use. Cooldown: 9 seconds.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "Adrenaline"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Quick Cutter"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
++3 Critical Threat Range
+
+Epic Strike: Cleave Attack: This attack strikes all enemies around you twice.
+When you activate this ability, you gain Quick if you successfully strike a target,
+and all enemies hit gain Cutter.
+Cooldown: 8 seconds.
+
+Quick: +6% Dodge, Duration: 9 seconds
+
+Cutter: 1d6 Slash damage per Character Level every 2 seconds. Stacks 3 times
+and scales with 100% of Melee Power. Duration: 8 seconds
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "QuickCutter"
+is_clickie = true
+
+[[enhancement]]
+name = "Fury of the Wild: Savage Take Down"
+cost_per_rank = [1]
+description = """
++[1/2/3] Trip DCs.
+Rank 3: While wearing Medium or Light Armor, +3 additional bonuses to Trip DCs."""
+icon = "SavageTakedown"
+internal_name = "U51FuryOfTheWildSavageTakeDown"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+]
+bonus_type = "Destiny"
+display_name = "Light and Medium Armor trip bonus"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fury of the Wild: Mantle of Fury"
+cost_per_rank = [1]
+description = """
+Fury of the Wild Destiny Mantle: You deal +9% damage against helpless targets.
+You also gain 6d10 Positive Energy Healing every 15 seconds. This healing
+scales with the highest of 100% Positive Spell Power or 200% Melee Power."""
+icon = "MantleOfFury"
+internal_name = "U51FuryOfTheWildMantleOfFury"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [9]
+bonus_type = "Destiny"
+effect_type = "HelplessDamage"
+
+[[enhancement.modifier.requirement]]
+items = ["Mantle of Fury"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Mantle of Fury"
+description = """
+Fury of the Wild Destiny Mantle: Gain 9% damage against helpless targets.
+You also heal 6d10 Hit Points every 15 seconds. This healing scales with
+the highest of 100% Positive Spell Power or 200% Melee Power."""
+group_name = "Mantle"
+icon = "MantleOfFury"
+
+[[enhancement]]
+name = "Fury of the Wild: Enduring"
+cost_per_rank = [1]
+description = "+[2/4/6] Physical Resistance Rating."
+icon = "DamageReduction"
+internal_name = "U51FuryOfTheWildEnduring"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fury of the Wild: Speed or Strength"
+cost_per_rank = [2]
+description = "Speed or Strength"
+icon = "SpeedOrStrength"
+internal_name = "U51FuryOfTheWildSpeedOrStrength"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Boulder's Might"
+cost_per_rank = [2]
+description = """
+Deals +50% Damage
+Cooldown: 6 seconds
+Melee Attack: Requires you to be fighting in Two Handed Fighting style (using a
+Two Handed Weapon while not Natural Fighting) to use."""
+icon = "SpeedOrStrength"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Fast and Furious"
+cost_per_rank = [2]
+description = """
+Deals +10% Damage
++1 Critical Multiplier
+Cooldown: 8 seconds.
+Melee Charge Attack: Rush forward and strike your enemies!
+Cooldown: 12 seconds"""
+icon = "SpeedOrStrength"
+is_clickie = true
+
+[[enhancement]]
+name = "Fury of the Wild: Fear my Vengeance"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] to Attack and Damage against Shaken and Feared enemies."
+icon = "FearMyVengeance"
+internal_name = "U51FuryOfTheWildFearMyVengeance"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shaken Enemy"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Feared Enemy"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fury of the Wild: I'm Always Angry"
+cost_per_rank = [1]
+description = "You gain the Barbarian Rage Feat. Adds +[1/2/3] uses of Rage per rest."
+icon = "UnstoppableFury"
+internal_name = "U51FuryOfTheWildImAlwaysAngry"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Rage"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fury of the Wild: Primal Scream"
+cost_per_rank = [2]
+description = """
+Nearby Enemies take 1d20 Sonic damage per character level and are Shaken for 30
+seconds. This damage scales with the highest of 200% with Melee Power or 100% Sonic
+Spell Power. You and your allies gain a +2 Morale bonus to Strength, Dexterity and
+Constitution for 5 minutes. The Morale bonus cannot be refreshed until the
+previous one expires.
+Cooldown: 30 seconds."""
+icon = "PrimalScream"
+internal_name = "U51FuryOfTheWildPrimalScream"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Fury of the Wild: Primal Scream"
+effect_type = "AbilityBonus"
+extra_types = ["AbilityBonus"]
+targets = [
+    "Strength",
+    "Constitution",
+    "Dexterity",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Primal Scream"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Primal Scream"
+description = """
+You and your allies gain a +2 Morale bonus to Strength, Dexterity and
+Constitution for 5 minutes. The Morale bonus cannot be refreshed until the
+previous one expires."""
+group_name = "User"
+icon = "PrimalScream"
+
+[[enhancement]]
+name = "Fury of the Wild: Gird against Demons"
+cost_per_rank = [2]
+description = "Weapons you wield bypass Cold Iron damage reduction."
+icon = "GirdAgainstDemons"
+internal_name = "U51FuryOfTheWildGirdAgainstDemons"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Cold Iron"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fury of the Wild: Sense Weakness"
+cost_per_rank = [1]
+description = """
++[2/4/6]% Fortification Bypass. Your Fury of the Wild Destiny Mantle grants you an
+additional [3/6/9]% damage against helpless targets."""
+icon = "SenseWeakness"
+internal_name = "U51FuryOfTheWildSenseWeakness"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "FortificationBypass"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Destiny"
+effect_type = "HelplessDamage"
+
+[[enhancement.modifier.requirement]]
+items = ["Mantle of Fury"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51FuryOfTheWildMantleOfFury"]
+req_type = "Enhancement"
+value = 1
+
+[[enhancement]]
+name = "Fury of the Wild: Wild Weapons"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Choose between Strikethrough, Offhand Strike Chance, or Doublestrike."
+icon = "WildWeapons"
+internal_name = "U51FuryOfTheWildWildWeapons"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Doublestrike"
+cost_per_rank = [1]
+description = "+[1/2/3]% Doublestrike"
+icon = "WildWeaponsDoublestrike"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+
+[[enhancement.selection]]
+name = "Offhand Strike Chance"
+cost_per_rank = [1]
+description = "+[3/6/10]% Offhand Strike Chance"
+icon = "WildWeaponsOffHandAttack"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Destiny"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.selection]]
+name = "Strikethrough"
+cost_per_rank = [1]
+description = "+[5/10/15]% Strikethrough Chance"
+icon = "WildWeapons"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "Strikethrough"
+
+[[enhancement]]
+name = "Fury of the Wild: Eternal Rage"
+cost_per_rank = [1]
+description = """
+If you are not Raging and are currently out of Rage charges, you have a [1/2/3]%
+chance to gain a charge of Rage whenever you strike a foe."""
+icon = "EternalRage"
+internal_name = "U51FuryOfTheWildEternalRage"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Fury of the Wild: Fury Selector"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Enhance your Epic Strike or yourself."
+icon = "FuryEternal"
+internal_name = "U51FuryOfTheWildFurySelector"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Furious"
+cost_per_rank = [1]
+description = """
++[1/2/3] Strength while Raging.
+Adrenaline damage bonus is increased by [25/50/75]%."""
+icon = "OverwhelmingForce"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Spirit of the Beast"
+cost_per_rank = [1]
+description = """
++[2/4/6] Attack bonus.
+Rank 3: The effects of Ram's Might and Animal Growth are doubled for you.
+Your Cutter effect from Quick Cutter is increased to 2d6."""
+icon = "SpiritOfTheBeast"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Size"
+display_name = "Ram's Might + Spirit of the Beast"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Size"
+display_name = "Ram's Might + Spirit of the Beast"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Size"
+display_name = "Animal Growth + Spirit of the Beast"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Size"
+display_name = "Animal Growth + Spirit of the Beast"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    -4,
+]
+apply_as_item_effect = true
+bonus_type = "Penalty"
+display_name = "Animal Growth + Spirit of the Beast"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Fury of the Wild: Embrace the Pain"
+cost_per_rank = [1]
+description = """
+When you are below [15/25/40]% of your Max Hit Points, you immediately heal 2d10
+Positive Energy Healing, and continue to do so every 6 seconds until you are over
+[15/25/40]% HP. This healing scales with the highest of 100% Positive Spell Power
+or 200% Melee Power."""
+icon = "EmbraceThePain"
+internal_name = "U51FuryOfTheWildEmbraceThePain"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Fury of the Wild: Top Dog"
+cost_per_rank = [2]
+description = "You gain the Improved Trip feat."
+icon = "TopDog"
+internal_name = "U51FuryOfTheWildTopDog"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Improved Trip"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Fury of the Wild: Wilder Weapons"
+cost_per_rank = [1]
+description = "Choose between Strikethrough, Offhand Strike Chance, or Doublestrike."
+icon = "WildWeapons"
+internal_name = "U51FuryOfTheWildWadeThroughStrikeThrough"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51FuryOfTheWildWildWeapons"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Wilder Weapons - Doublestrike"
+cost_per_rank = [1]
+description = "+[2/4/6]% Doublestrike"
+icon = "WildWeaponsDoublestrike"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+
+[[enhancement.selection]]
+name = "Wilder Weapons - Offhand Strike Chance"
+cost_per_rank = [1]
+description = "+[3/6/10]% Offhand Strike Chance"
+icon = "WildWeaponsOffHandAttack"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Destiny"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.selection]]
+name = "Wilder Weapons - Strikethrough"
+cost_per_rank = [1]
+description = "+[10/15/25]% Strikethrough Chance"
+icon = "WadeThroughStrikethrough"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    25,
+]
+bonus_type = "Destiny"
+effect_type = "Strikethrough"
+
+[[enhancement]]
+name = "Fury of the Wild: The Voice of Fury"
+cost_per_rank = [2]
+description = """
+Doubles the damage and stat bonuses of your Primal Scream. If Adrenaline or
+Quick is active when you use Primal Scream, the damage is tripled instead, and
+nearby enemies have a 75% chance to become confused for 3 seconds, no save.
+Adrenaline and Quick are consumed."""
+icon = "TheVoiceOfFury"
+internal_name = "U51FuryOfTheWildTheVoiceOfFury"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Fury of the Wild: Primal Scream"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Constitution",
+    "Dexterity",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Primal Scream"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Fury of the Wild: Force Selector"
+cost_per_rank = [1]
+description = "Enhance your Epic Strike or yourself."
+icon = "ForceSelector"
+internal_name = "U51FuryOfTheWildForceSelector"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51FuryOfTheWildFurySelector"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Overwhelming Force"
+cost_per_rank = [1]
+description = """
+Adrenaline now grants an additional [25/50/75]% bonus to damage.
+Rank 3: Foes struck by your Adrenaline attacks are now knock down for 4 seconds."""
+icon = "OverwhelmingForce"
+
+[[enhancement.selection]]
+name = "Primal Force"
+cost_per_rank = [1]
+description = """
+You gain a +[1/2/3] Attack bonus and [2/4/6]% Fortification Bypass.
+Rank 3: If duel wielding, using punch weapons or in animal form gain a +2% Epic Damage
+bonus to all physical attacks.
+Your Cutter effect from Quick Cutter is increased to 3d6."""
+icon = "SpiritOfTheBeast"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "FortificationBypass"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Epic"
+effect_type = "Weapon_Damage"
+percent = true
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Fury of the Wild: Unquenchable Rage"
+cost_per_rank = [1]
+description = """
+Reduce all damage, except Untyped, by [8/12/15]% for 5 seconds after you consume
+a Rage charge or use Primal Scream.
+Rank 3: You also apply the effects of the Heal spell to yourself which scales
+with Melee Power."""
+icon = "TunnelVision"
+internal_name = "U51FuryOfTheWildUnquenchableRage"
+min_spent = 20
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Fury of the Wild: Lore of the Wilds"
+cost_per_rank = [2]
+description = "Every 2 Wilderness Lore feats now grant a 1% Primal bonus to Maximum Hit Points."
+icon = "U51LoreOfTheWilds"
+internal_name = "U51FuryOfTheWildLoreOfTheWilds"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "FeatCount"
+amounts = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    16,
+]
+bonus_type = "Destiny"
+effect_type = "HitpointsPercent"
+stack_source = "Wilderness Lore"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Fury of the Wild: Scarred by Chaos"
+cost_per_rank = [2]
+description = """
+Gain +50 Maximum Hit Points and +10 Physical Resistance Rating.
+Double these bonuses if you have the Harbinger of Chaos feat.
+Bug: These provide +34HP and +11 PRR when doubled."""
+icon = "Injury"
+internal_name = "U51FuryOfTheWildScarredByChaos"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    34,
+]
+bonus_type = "Destiny"
+display_name = "Harbinger of Chaos / Scarred by Chaos"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    11,
+]
+bonus_type = "Destiny"
+display_name = "Harbinger of Chaos / Scarred by Chaos"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Fury of the Wild: Unbridled Fury"
+cost_per_rank = [2]
+description = """
+Epic Moment: You gain +1000 Unconsciousness Range and 100% Strikethrough.
+Every 5 seconds you heal for 10% of your max Hit Points, gain Adrenaline and Quick
+Effects, and the cooldown for the Great Leveler resets.
+Cooldown: 5 minutes."""
+icon = "U51UnbridledFury"
+internal_name = "U51FuryOfTheWildUnbridledFury"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Fury of the Wild: Nature's Fury"
+cost_per_rank = [1]
+description = """
+While Two Weapon Fighting, Two Handed Fighting, or while in Animal Form,
+you gain a +1 bonus to your Critical Multiplier on rolls of 19 or 20."""
+icon = "FuryDevastatingBlow"
+internal_name = "U51FuryOfTheWildNaturesFury"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Fury of the Wild: The Great Leveler"
+cost_per_rank = [2]
+description = """
+Deals +60% Damage
++16 Critical Threat Range
+Cooldown: 20 seconds.
+Melee attack: +500 to Hit. You stop in place to create a shockwave that blasts
+all enemies in a short line. The size of the line triples if Adrenaline or Quick
+is active consuming those effects. Applies a Trip to all enemies struck
+(DC 20 + Max(Str/Dex/Con) + Trip DCs vs Balance). Targets who make their save are
+still Tripped for 2 seconds."""
+icon = "TheGreatLeveller"
+internal_name = "U51FuryOfTheWildTheGreatLeveler"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.dc]]
+name = "The Great Leveler"
+amount = [20]
+dc_type = "Trip"
+dc_versus = "Balance"
+description = """
+Applies Trip (DC 20 + Max(Str/Dex/Con) + Trip/Tactics DCs).
+Cooldown of 30 seconds."""
+icon = "TheGreatLeveller"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+]
+tactical = "Trip"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[requirement]]
+items = ["Fury of the Wild"]
+req_type = "Feat"

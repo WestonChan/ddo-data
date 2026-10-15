@@ -1,0 +1,27 @@
+name = "Old Grey Garl"
+bestowed_by = "Red Tom"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Old Tomb, New Tenants"
+favor = 5
+pack = "Three-Barrel Cove"
+patron = "The Free Agents"
+zone = "Garl's Tomb"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Old_Grey_Garl"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 25

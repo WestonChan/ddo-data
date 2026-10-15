@@ -2,23 +2,26 @@
   "augment_slot_types": [
     {
       "family": "crafting",
-      "id": 246,
+      "id": 4558741735317796,
       "label": "crafting: accessory aspect i",
       "qualifier": null,
+      "slug": "crafting-accessory-aspect-i",
       "variant": "accessory aspect i"
     },
     {
       "family": "crafting",
-      "id": 248,
+      "id": 4420206011592316,
       "label": "crafting: accessory aspect ii",
       "qualifier": null,
+      "slug": "crafting-accessory-aspect-ii",
       "variant": "accessory aspect ii"
     },
     {
       "family": "crafting",
-      "id": 247,
+      "id": 173083694621333,
       "label": "crafting: accessory devastation",
       "qualifier": null,
+      "slug": "crafting-accessory-devastation",
       "variant": "accessory devastation"
     }
   ],

@@ -1,0 +1,56 @@
+name = "Epic Cutthroat's Smallblade (level 28)"
+accepts_sentience = true
+description = """
+When a cutlass is simply too big for the job, a pirate will turn instead to
+a trusty smallblade. This one is serrated and quite adept at inflicting painful
+wounds on living creatures."""
+drop_location = "Treasure of Crystal Cove, Turn in 1500 Silver Doubloon 600 Golden Doubloon 45 Stolen Jasper 900 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 12
+icon = "Shortsword_3"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Bleeding 6"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 19
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "One-handed"
+weapon_type = "Shortsword"

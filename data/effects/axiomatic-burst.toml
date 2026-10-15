@@ -1,0 +1,3 @@
+name = "Axiomatic Burst"
+description_template = "An axiomatic weapon is lawfully aligned and infused with the power of law. It makes the weapon law-aligned and thus bypasses the corresponding damage reduction. It deals an extra 2 to 12 points of damage against all of chaotic alignment and an extra 3 to 18 on a critical for weapons with a x2 critical multiplier, 4 to 24 for a x3 multiplier, and 5 to 30 for a x4 multiplier."
+verbose_name_template = "Axiomatic Burst"

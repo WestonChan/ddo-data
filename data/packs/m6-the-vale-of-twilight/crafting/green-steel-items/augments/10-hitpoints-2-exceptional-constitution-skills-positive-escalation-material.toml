@@ -1,0 +1,38 @@
+name = "+10 Hitpoints, +2 Exceptional Constitution Skills"
+adds_augment = "Accessory Subjugation"
+variant = "Positive:Escalation:Material"
+description = """
+Hitpoints +10: +10 Elemental Energy bonus to maximum hit points
++2 Exceptional bonus to all Constitution based skills
+Positive:Escalation:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Elemental Energy"
+value = 10
+
+[[effect]]
+name = "Constitution Skills"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Elemental Energy"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Constitution Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: accessory invasion"

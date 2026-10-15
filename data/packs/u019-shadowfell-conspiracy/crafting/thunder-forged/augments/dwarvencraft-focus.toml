@@ -1,0 +1,91 @@
+name = "Dwarvencraft Focus"
+adds_augment = "Thunderforged Tier 3"
+description = "Dwarvencraft Focus: Passive: +3 Equipment Bonus to all Spell DCs."
+family = "Thunderforged"
+min_level = 26
+weapon_class = "Two Handed"
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "Bane of Dragons"
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Dragon"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Dwarvencraft Minor Lore"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[slot]]
+slot = "crafting: thunderforged tier 2"

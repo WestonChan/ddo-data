@@ -1,0 +1,79 @@
+name = "Horseshoe Crab Shield (Level 7)"
+drop_location = "ToEE: Air Node, dragon's hoard chests, ToEE: Fire Node, Periron chest, ToEE: Water Node, Jotun Rimeblade chest, and ToEE: Earth Node, Hyrelgas chest"
+enhancement_bonus = 3
+icon = "Shield_14"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Bone"
+minimum_level = 7
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 7
+max_dex_bonus = 0
+shield_bonus = 8
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Bashing"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 3
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "dragon's hoard chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"
+
+[[source]]
+chest = "hyrelgas chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "periron chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"
+
+[[source]]
+chest = "jotun rimeblade chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Small Shield"

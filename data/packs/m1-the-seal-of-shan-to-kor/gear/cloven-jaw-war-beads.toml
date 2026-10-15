@@ -1,0 +1,19 @@
+name = "Cloven Jaw War Beads"
+description = """
+A thick string of carved decorative beads given to a prestigious hobgoblin captains
+to give them a boost to staying power in battle."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Bone"
+minimum_level = 1
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 2
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

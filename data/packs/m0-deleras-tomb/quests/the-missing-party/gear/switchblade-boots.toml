@@ -1,0 +1,29 @@
+name = "Switchblade Boots"
+description = """
+The toes of these boots are fitted with spring-loaded blades, a nasty surprise
+for the unwary opponent."""
+drop_location = "The Missing Party, End chest"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Feet"
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 9
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Missing Party"

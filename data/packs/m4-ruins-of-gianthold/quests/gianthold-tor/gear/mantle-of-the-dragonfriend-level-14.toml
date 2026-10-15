@@ -1,0 +1,31 @@
+name = "Mantle of the Dragonfriend (Level 14)"
+description = """
+The secrets of the dragons of Argonnessen are woven into this cloak's shimmering
+fabric. It must have been a goodwill gift in times long past. Upon close inspection,
+the fabric seems to have been cut from a larger article of clothing and re-sewn
+by modern hands."""
+drop_location = "Gianthold Tor, Blue Dragon 's chest (Heroic Elite)"
+icon = "Cloak_22a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 14
+slot = "Back"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "blue dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

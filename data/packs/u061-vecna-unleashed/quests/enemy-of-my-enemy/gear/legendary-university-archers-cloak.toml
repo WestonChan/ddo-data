@@ -1,0 +1,45 @@
+name = "Legendary University Archer's Cloak"
+description = """
+Though it's a bit frayed from the winds and time, there's still possibility
+weaved into this cloak's threads."""
+drop_location = "Enemy of My Enemy, End chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 32
+slot = "Back"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Enemy of My Enemy"

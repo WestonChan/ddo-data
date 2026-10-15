@@ -1,0 +1,22 @@
+name = "Secure the Area"
+bestowed_by = "Jan Falner"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Ruins of Threnal"
+patron = "House Phiarlan"
+zone = "The Western Excavation"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Secure_the_Area"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10

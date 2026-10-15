@@ -1,0 +1,21 @@
+name = "+16 Charisma (Catalyst Crafting)"
+description = "+16 Enhancement bonus to Charisma"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 16
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: nearly complete: ability score (legendary)"

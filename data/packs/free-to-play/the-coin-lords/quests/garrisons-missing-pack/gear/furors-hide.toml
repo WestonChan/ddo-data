@@ -1,0 +1,17 @@
+name = "Furor's Hide"
+description = "This worg hide seems strangely resistant to tearing."
+drop_location = "Garrison's Missing Pack, Furor 's chest"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Back"
+
+[[effect]]
+name = "Axeblock II"
+
+[[source]]
+chest = "furor 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Garrison's Missing Pack"

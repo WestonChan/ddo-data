@@ -1,0 +1,25 @@
+name = "Hat of the Night Hag"
+description = "Many candy-loving hags died to bring us this hat."
+drop_location = """
+The Night Revels, Turn in Joe Candymaker :
+100 Piece of Darkest Chocolate; obtained in the Graveyard mob slayer, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 10 Spooky Almond, obtained in Under New Ravagement, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 20 Black Apple; obtained in Haverdashed, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 20 Pinch of Sinister Cinnamon; obtained in The Snitch and the Lich, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace"""
+icon = "Helmet_63"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 5
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[source]]
+chest = "the lich, hayweird foundry, or getting ahead in lordsmarch palace"
+kind = "quest"
+loot_type = "chest"
+name = "The Snitch"

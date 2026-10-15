@@ -1,0 +1,39 @@
+name = "Face of the Demon"
+description = """
+This skull-faced helmet covers the entire face and head, focusing the wearer's
+vision on but a single target."""
+drop_location = "The Tear of Dhakaan, Champion Nartrar 's chest"
+icon = "Helmet_34b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 7
+slot = "Head"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = -5
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = -5
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "champion nartrar 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tear of Dhakaan"

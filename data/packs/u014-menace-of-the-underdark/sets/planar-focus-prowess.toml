@@ -1,0 +1,57 @@
+name = "Planar Focus: Prowess"
+icon = "ProwessPlanarConfluxSetBonus"
+
+[[item]]
+name = "Planar Focus of Prowess"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Attack Bonus +4 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Attack Bonus / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Damage Bonus +4 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Damage Bonus / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+4 Artifact bonus to attack and damage"
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Attack Bonus"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
+value = 4
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

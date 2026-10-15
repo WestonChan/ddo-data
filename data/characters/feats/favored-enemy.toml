@@ -1,0 +1,2270 @@
+[[row]]
+name = "Favored Enemy (Passive)"
+acquire = "Automatic"
+description = """
+Each Favored Enemy feat grants a damage bonus when fighting certain foes.
+When fighting a Favored Enemy, you gain +2 Damage for each Favored Enemy feat
+you have. If you have more than one Favored Enemy feat that applies to a
+particular Enemy, the damage applies for each type that matches a Favored
+Enemy feat you have."""
+icon = "FavoredEnemy"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row]]
+name = "Favored Enemy: Aberration"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Aberrations"
+icon = "FavoredEnemyAberration"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Animal"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Animals"
+icon = "FavoredEnemyAnimal"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Chaotic Outsider"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Chaotic Outsiders"
+icon = "FavoredEnemyChaoticOutsider"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Construct"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Constructs"
+icon = "FavoredEnemyConstruct"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Dragon"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Dragons"
+icon = "FavoredEnemyDragon"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Dwarf"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Dwarfs"
+icon = "FavoredEnemyDwarf"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Elemental"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Elementals"
+icon = "FavoredEnemyElemental"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Elf"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Elves"
+icon = "FavoredEnemyElf"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Evil Outsider"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Evil Outsiders"
+icon = "FavoredEnemyEvilOutsider"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Fey"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Fey"
+icon = "FavoredEnemyFey"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Giant"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Giants"
+icon = "FavoredEnemyGiant"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Gnoll"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Gnolls"
+icon = "FavoredEnemyGnoll"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Goblinoid"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Goblinoids"
+icon = "FavoredEnemyGoblinoid"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Halfling"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Halflings"
+icon = "FavoredEnemyHalfling"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Human"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Humans"
+icon = "FavoredEnemyHuman"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Lawful Outsider"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Lawful Outsiders"
+icon = "FavoredEnemyLawfulOutsider"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Magical Beast"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Magical Beasts"
+icon = "FavoredEnemyMagicalBeast"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Monstrous Humanoid"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Monstrous Humanoids"
+icon = "FavoredEnemyMonstrousHumanoid"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Ooze"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Oozes"
+icon = "FavoredEnemyOoze"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Orc"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Orcs"
+icon = "FavoredEnemyOrc"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Plant"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Plants"
+icon = "FavoredEnemyPlant"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Reptilian"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Reptilians"
+icon = "FavoredEnemyReptilian"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Undead"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Undead"
+icon = "FavoredEnemyUndead"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]
+
+[[row]]
+name = "Favored Enemy: Vermin"
+acquire = "Train"
+description = "+2 Damage per Favored Enemy feat against Vermin"
+icon = "FavoredEnemyVermin"
+source_name = "Ranger"
+
+[[row.group]]
+group_name = "Favored Enemy"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Favored Enemy Damage"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "EnemyType"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["Spell"]

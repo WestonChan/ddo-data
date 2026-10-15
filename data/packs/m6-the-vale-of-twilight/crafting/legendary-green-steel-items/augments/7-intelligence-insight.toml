@@ -1,0 +1,21 @@
+name = "+7 Intelligence (Insight)"
+description = "Escalation/Fire or Negative: +7 Insight bonus to Intelligence"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

@@ -1,0 +1,41 @@
+name = "Cloak of Invisibility"
+description = """
+This cloak bends light around the wearer, allowing him once a day to cast invisibility
+as per the spell."""
+drop_location = "Tempest's Spine, A'tchkar 's chest"
+icon = "Cloak_19b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Back"
+
+[[clickie]]
+name = "Invisibility"
+clickie = "Invisibility"
+
+[[effect]]
+name = "Invisibility"
+bonus_type = "Deflection"
+
+[[effect]]
+name = "Ghostly"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Invisibility"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "a'tchkar 's chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

@@ -1,0 +1,23 @@
+name = "Shard Trinket of Mass Hold Person"
+description = "This trinket periodically casts mass hold person."
+drop_location = "The Marketplace, Turn in 3 Medium Eberron Dragonshards to Loura Jotun ."
+icon = "Trinket_2"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Hold Person, Mass"
+clickie = "Hold Person, Mass"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    25,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Hold Person, Mass"]

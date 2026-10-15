@@ -1,0 +1,30 @@
+name = "Assault on the Aerie of the Slave Lords"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Against the Slave Lords"
+patron = "The Gatekeepers"
+zone = "Slave Lords' Redoubt"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Assault_on_the_Aerie_of_the_Slave_Lords"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

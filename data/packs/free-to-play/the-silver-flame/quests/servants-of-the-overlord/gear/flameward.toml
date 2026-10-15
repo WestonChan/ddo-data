@@ -1,0 +1,66 @@
+name = "Flameward"
+description = """
+A small implement that has been imbued with magic to shield the wielder from
+extreme heat. Apparently that protection was not quite enough to preserve its
+previous owner, but at least it also makes the wielder glowingly confident."""
+drop_location = "Servants of the Overlord, Fire Reaver Lord 's chest"
+enhancement_bonus = 5
+icon = "Club_6"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Exceptional"
+value = 1
+
+[[source]]
+chest = "fire reaver lord 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Servants of the Overlord"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 3
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Club"

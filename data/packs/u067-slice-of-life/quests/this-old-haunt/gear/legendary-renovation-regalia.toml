@@ -1,0 +1,48 @@
+name = "Legendary Renovation Regalia"
+description = "Move! That! Airship!"
+drop_location = "This Old Haunt, end chest, Wraith's chest"
+enhancement_bonus = 15
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 32
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 18
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest, wraith's chest"
+kind = "quest"
+loot_type = "chest"
+name = "This Old Haunt"

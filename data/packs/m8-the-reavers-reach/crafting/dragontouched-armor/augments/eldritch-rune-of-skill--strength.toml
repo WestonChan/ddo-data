@@ -1,0 +1,29 @@
+name = "Eldritch Rune of Skill:Strength"
+description = "Exceptional Strength Skills +6"
+family = "Dragontouched_EldritchRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Strength Skills"
+bonus_type = "Exceptional"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Exceptional"
+effect = "Strength Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Strength"]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Eldritch Rune of Skill: Strength"
+reason = "The wiki spells it Eldritch Rune of Skill:Strength, with no space."
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-09-30"
+
+[[slot]]
+slot = "crafting: eldritch rune"

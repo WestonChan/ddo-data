@@ -1,0 +1,41 @@
+name = "Legendary Maenya's Iron Fists"
+description = """
+This pair of gloves, said to have been originally crafted for the hag queen
+Sora Maenya, have been upgraded. They bestow the wearer with fearsome strength
+and the ability to terrorize foes."""
+drop_location = "Cauldron of Sora Katra, upgraded version of Legendary Maenya's Fists"
+icon = "Gloves_3b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 31
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"

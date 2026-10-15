@@ -1,0 +1,30 @@
+name = "The Legend of the Lost Locket"
+bestowed_by = "Lord Thekian"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Fables of the Feywild"
+patron = "The Summer Court"
+zone = "Kelpie Lord's Grotto"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Legend_of_the_Lost_Locket"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

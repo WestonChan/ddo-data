@@ -1,0 +1,48 @@
+name = "Legendary Ship-Mage's Attire"
+description = """
+This purple robe is heavy, made for a caster to endure the elements, and also
+provides an unusual attunement to Necromantic energies."""
+drop_location = "The Final Enemy, end chest, or Legendary version of Epic Ship-Mage's Attire"
+enhancement_bonus = 15
+icon = "Cloth_15c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 277
+
+[[effect]]
+name = "Greater Boon of Undeath"
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 45
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic ship-mage's attire"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Enemy"

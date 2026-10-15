@@ -1,0 +1,45 @@
+name = "Helm of Workplace Safety"
+description = "Safety first!"
+drop_location = "The Covered Culvert, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 4
+slot = "Head"
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Helm_of_Workplace_Safety"
+read = "2026-09-29"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"

@@ -1,0 +1,27 @@
+name = "Lizardfolk Tooth Necklace"
+description = "A warning to Lizardfolk to watch their mouths around you."
+drop_location = "Danger at Dunwater, end chest"
+icon = "Necklace_35b"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 3
+slot = "Neck"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Danger at Dunwater"

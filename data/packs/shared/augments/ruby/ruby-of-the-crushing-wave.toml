@@ -1,0 +1,24 @@
+name = "Ruby of the Crushing Wave"
+description = """
+Crushing Wave: This weapon stores the unstoppable force of the ocean's fury deep
+within. When this weapon is used, this power occasionally comes to the surface,
+crushing enemies beneath a torrent of frigid water.
+Drop Location: Ghost of a Chance (epic), puzzle chest"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 20
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+chest = "puzzle chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ghost of a Chance"

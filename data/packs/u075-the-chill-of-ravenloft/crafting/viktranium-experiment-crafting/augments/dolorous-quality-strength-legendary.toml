@@ -1,0 +1,21 @@
+name = "Dolorous Quality Strength (Legendary)"
+description = "+3 Quality bonus to Strength."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "lamordia: dolorous (accessory)"

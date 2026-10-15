@@ -1,0 +1,3 @@
+name = "Venomed Ammunition - 1d8"
+description_template = "On Ranged Attack: 1 to 8 Poison Damage"
+verbose_name_template = "Venomed Ammunition - 1d8"

@@ -1,0 +1,19 @@
+name = "Defensive Wrists"
+description = "These will help you take some extra hits in the thick of battle."
+drop_location = "Obstructing the Orcs, End chest"
+icon = "Bracers_10"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 1
+slot = "Wrists"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 3
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Obstructing the Orcs"

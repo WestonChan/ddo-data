@@ -1,0 +1,21 @@
+name = "Sovereign Rune of Frost"
+description = "Glaciation +84: Passive: +84 Equipment bonus to Cold Spell Power."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Cold Spell Power"
+bonus_type = "Equipment"
+value = 84
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: sovereign rune"

@@ -1,0 +1,46 @@
+name = "Roughcut Armor"
+description = "This rough armor protects you from the worst of the Isle's weather."
+drop_location = "Wild Thing, end chest"
+enhancement_bonus = 3
+icon = "MediumArmor_11"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 7
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 10
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 33
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wild Thing"

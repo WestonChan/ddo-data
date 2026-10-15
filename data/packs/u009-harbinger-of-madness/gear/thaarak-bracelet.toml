@@ -1,0 +1,43 @@
+name = "Thaarak Bracelet"
+description = """
+This ornament, adorned with a prominent green gem, will empower it's wearer
+with many of the qualities of dreaded Thaarak Hounds, like their tough skin
+the ability to breath deadly acid."""
+drop_location = "Harbinger of Madness, End reward"
+icon = "Bracers_34"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+slot = "Wrists"
+
+[[clickie]]
+name = "Acid Breath"
+clickie = "Acid Breath"
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "DR 3/Lawful"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 4
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Acid Breath"]
+
+[[source]]
+kind = "quest_chain"
+name = "Harbinger of Madness"

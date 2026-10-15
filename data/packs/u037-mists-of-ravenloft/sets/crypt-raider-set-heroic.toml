@@ -1,0 +1,55 @@
+name = "Crypt Raider Set (Heroic)"
+icon = "CryptRaiderSet"
+
+[[item]]
+name = "Coat of the Traveler"
+
+[[item]]
+name = "Cursebane Focus"
+
+[[item]]
+name = "Ward-Inscribed Pendant"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+value = 1
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = -20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Threat Generation"
+value = -20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [-20]
+bonus_type = "Artifact"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusRanged"]

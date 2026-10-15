@@ -1,0 +1,36 @@
+name = "Song-Chime Locket"
+description = "When opened, little chimes play out. They remind you of home."
+drop_location = "Turn the Page (quest), End chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Sonic Absorption"
+bonus_type = "Enhancement"
+value = 26
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Melody Bulwark"
+bonus_type = "Exceptional"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Turn the Page"

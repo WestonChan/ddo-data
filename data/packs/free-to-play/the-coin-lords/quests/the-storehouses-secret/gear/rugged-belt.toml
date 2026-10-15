@@ -1,0 +1,17 @@
+name = "Rugged Belt"
+description = "This leather belt appears to be well worn and used."
+drop_location = "The Storehouse's Secret, End reward"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Waist"
+
+[[effect]]
+name = "Lesser False Life"
+bonus_type = "Enhancement"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Storehouse's Secret"

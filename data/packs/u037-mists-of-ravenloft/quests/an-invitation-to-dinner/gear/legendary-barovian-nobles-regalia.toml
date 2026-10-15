@@ -1,0 +1,45 @@
+name = "Legendary Barovian Nobles' Regalia"
+description = "Many a now-dead noble has worn a robe such as this."
+drop_location = "An Invitation to Dinner, End chest, Challenge Strahd Again optional chest"
+enhancement_bonus = 15
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 29
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, challenge strahd again optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "An Invitation to Dinner"

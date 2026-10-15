@@ -1,0 +1,21 @@
+name = "Quality Heal +5"
+description = "Legendary quality bonus to Heal"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Heal"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Heal"
+effect_type = "SkillBonus"
+targets = ["Heal"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

@@ -1,0 +1,1477 @@
+name = "Apothecary"
+background = "DruidBackground"
+icon = "Alchemist"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Apothecary: Determination"
+cost_per_rank = [1]
+description = """
++1 to your Will Saving throws. Each Core Ability you take in this tree beyond the
+first grants +5 Positive and Negative Spell Power."""
+icon = "ApothDetermination"
+internal_name = "ApothCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Apothecary: Alchemical Shield"
+cost_per_rank = [1]
+description = """
+While in Cloth armor or Composite Body, your equipped armor or docent grants
+you a +4 Alchemical bonus to Armor Class and immunity to Magic Missiles.
+Passive: While your Reaction is Verdanite, you get +2% Positive and Negative
+Spell Critical Damage."""
+icon = "ApothAlchemicalShield"
+internal_name = "ApothCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = [
+    "Magic Missiles",
+    "Will",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Verdanite"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["ApothCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Curative Admixture: Cure Serious Wounds"
+cost_per_rank = [1]
+description = """
+Curative Admixture: Cure Serious Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 4
+Cooldown 8 seconds
+
+Infuses a Cure Serious Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 3d6+6
+plus 1 per caster level (maximum caster level 15) positive energy damage to
+nearby living allies and enemy undead.
+
+While your Reaction is Verdanite, you get +2% Positive and Negative Spell
+Critical Damage."""
+icon = "ApothCurativeAdmixtureCureSeriousWounds"
+internal_name = "ApothCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    15,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Cure Serious Wounds",
+    "Alchemist",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Verdanite"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["ApothCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Spill the Bad Stuff"
+cost_per_rank = [1]
+description = """
+Spill the Bad Stuff
+Metamagic: Empower, Maximize, Quicken, Heighten, Intensify
+Spell Point Cost: 15
+Cooldown 12 seconds
+Primer Element: Gildleaf
+
+Deals 1d6+4 per Caster Level of a random type of damage to enemies in a short cone.
+The damage all scales with Positive Spell Power. Affected enemies have a chance
+to be Blinded, Dazed, Silenced, Tripped, Stunned, or Paralyzed.
+(Fortitude save negates).
+
+Passive: While your Reaction is Verdanite, you get +2% Positive and Negative Spell
+Critical Damage."""
+icon = "ApothSpillTheBadStuff"
+internal_name = "ApothCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Spill the Bad Stuff",
+    "Alchemist",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Verdanite"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["ApothCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Curative Admixture: Heal"
+cost_per_rank = [1]
+description = """
+Curative Admixture: Heal
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 45
+Cooldown 12 seconds
+Primer Element: Gildleaf
+
+Infuses a Heal potion with magical energy, hurling it towards your target in an arc.
+The potion explodes in a small AOE that deals 10 points per caster level
+(maximum caster level 15) of positive energy damage to nearby living allies and
+enemy undead. This also grants you the Spell-Like Ability: Curative Admixture: Harm.
+
+Passive: While your Reaction is Verdanite, you get +2% Positive and Negative Spell
+Critical Damage."""
+icon = "ApothCuractiveAdmixtureHeal"
+internal_name = "ApothCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    45,
+    15,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Heal",
+    "Alchemist",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    45,
+    15,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Harm",
+    "Alchemist",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Verdanite"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["ApothCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Genius Never Dies"
+cost_per_rank = [1]
+description = """
++4 Intelligence. +20 Concentration. +1000 Unconscious Range.
+You gain the Diehard feat. +1 Spell Penetration, +2 Transmutation DCs.
+
+Passive: While your Reaction is Verdanite, you get +2% Positive and Negative
+Spell Critical Damage."""
+icon = "ApothGeniusNeverDies"
+internal_name = "ApothCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ApothCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-1000]
+bonus_type = "Enhancement"
+effect_type = "UnconsciousRange"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Verdanite"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["ApothCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "ApothCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Apothecary: Curative Admixture: Cure or Inflict Light Wounds"
+cost_per_rank = [1]
+description = "Choose between Curative Admixture: Inflict/Cure Light Wounds"
+icon = "ApothCurativeAdmixtureCLW"
+internal_name = "ApothCurativeAdmixtureCLW"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Curative Admixture: Cure Light Wounds"
+cost_per_rank = [1]
+description = """
+Curative Admixture: Cure Light Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 2
+Cooldown 4 seconds
+Primer Element: Gildleaf
+
+Infuses a Cure Light Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 1d6+2
+plus 1 per caster level (maximum caster level 5) positive energy damage to
+nearby living allies and enemy undead. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions."""
+icon = "ApothCurativeAdmixtureCLW"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Cure Light Wounds",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "Curative Admixture: Inflict Light Wounds"
+cost_per_rank = [1]
+description = """
+Curative Admixture: Inflict Light Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 2
+Cooldown 4 seconds
+Primer Element: Gildleaf
+
+Infuses an InflictLight Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 1d6+2
+plus 1 per caster level (maximum caster level 5) negative energy damage to
+nearby undead allies and living enemies. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions."""
+icon = "ApothCurativeAdmixtureILW"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Inflict Light Wounds",
+    "Alchemist",
+]
+
+[[enhancement]]
+name = "Apothecary: Apothecary Skills"
+cost_per_rank = [1]
+description = """
++[1/2/3] Haggle, Concentration, and Heal.
+Rank 3: +1 Will Saves"""
+icon = "ApothApothecarySkills"
+internal_name = "ApothApothecarySkills"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Haggle",
+    "Heal",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Will"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Apothecary: Spell Critical Chance: Positive & Negative I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% chance to critically hit with Positive and Negative Spells."
+icon = "ApothSpellCriticalI"
+internal_name = "ApothSpellCriticalI"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Apothecary: Energy of the Scholar"
+cost_per_rank = [1]
+description = "+[30/60/100] Maximum Spell Points"
+icon = "ApothEnergyOfTheScholar"
+internal_name = "ApothEnergyOfTheScholar"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Apothecary: Soothing Poultices"
+cost_per_rank = [1]
+description = """
+While your Reaction is Verdanite, when you cast spells on yourself of allies you
+grant temporary hit points equal to [33/66/100]% of your Intelligence. These last
+for three minutes."""
+icon = "ApothSoothingPoultices"
+internal_name = "ApothSoothingPoultices"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Apothecary: Hale & Hearty"
+cost_per_rank = [1]
+description = "+[3/6/10] Positive and Negative Healing Amplification"
+icon = "ApothHaleAndHearty"
+internal_name = "ApothHaleAndHearty"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+extra_types = ["NegativeHealingAmplification"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Apothecary: Spell Critical Chance: Positive & Negative II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% chance to critically hit with Positive and Negative Spells."
+icon = "ApothSpellCriticalII"
+internal_name = "ApothSpellCriticalII"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["ApothSpellCriticalI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Stone of the Scholar"
+cost_per_rank = [2]
+description = """
+Stone of the Scholar: Alchemist's Stone Toggle: While wielding an Orb in
+your off-hand, you gain +10 Healing Amplification and +20 Positive Spell Power.
+You can only have one Alchemist's Stone Toggle active at a time."""
+icon = "ApothStoneOfTheScholar"
+internal_name = "ApothStoneOfTheScholar"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier.requirement]]
+items = ["Stone of the Scholar"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier.requirement]]
+items = ["Stone of the Scholar"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.stance]]
+name = "Stone of the Scholar"
+description = """
+While wielding an Orb in your off-hand, you gain +10 Healing Amplification
+and +20 Positive Spell Power. You can only have one Alchemist's Stone Toggle
+active at a time."""
+group_name = "Alchemist's Stone"
+icon = "ApothStoneOfTheScholar"
+
+[[enhancement]]
+name = "Apothecary: Life Salve"
+cost_per_rank = [2]
+description = """
+Training this Enhancement also grants you a similar ability Death Salve.
+
+Target player, hireling, or pet takes 100% base healing from Positive spells
+for the next 3 minutes (or until target dies.) Has no effect on NPC allies or
+allies that already take 100% base Positive healing. This overrides their
+innate base healing from Positive spells for the duration. Shares a cooldown
+with Death Salve and Converter."""
+icon = "ApothLifeSalve"
+internal_name = "ApothLifeSalve"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Life Salve",
+    "Alchemist",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Death Salve",
+    "Alchemist",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Apothecary: Panacea Poultice"
+cost_per_rank = [2]
+description = """
+Panacea Poultice
+Spell Point Cost: 1
+Cooldown: 6 seconds
+Primer Element: Gildleaf
+
+Channels powerful positive energy into a target at touch range to wipe away
+afflictions, restores 3 to 8 hit points plus an additional 1 per caster level
+(max +20), and removed temporary ability damage and the conditions blinded,
+confused, dazed, dazzled, deafened, diseased, exhausted, fatigued, feebleminded,
+insanity, nauseated, and poisoned. Against undead this spell will damage 3 to 8
+hit points +1 per caster level (max +20). Undead who make a successful Will save
+reduce the damage by half.
+
+D&D Dice: Heals 1d6+2 hp +1 pointer per caster level (max +20) and removes
+temp ability damage and many afflictions."""
+icon = "ApothPanaceaPoultice"
+internal_name = "ApothPanaceaPoultice"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    20,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Panacea",
+    "Alchemist",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Apothecary: Safety Goggles"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] Armor Class and +[2/4/6] Resistance to Fire, Cold, Acid and Electric damage.
+Rank 3: You are immune to Blindness.
+
+Safety First!"""
+icon = "ApothSafetyGoggles"
+internal_name = "ApothSafetyGoggles"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = [
+    "Fire",
+    "Cold",
+    "Acid",
+    "Electric",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 3
+targets = ["Blindness"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Apothecary: Spell Critical Chance: Positive & Negative III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% chance to critically hit with Positive and Negative Spells."
+icon = "ApothSpellCriticalIII"
+internal_name = "ApothSpellCriticalIII"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["ApothSpellCriticalII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Willful Ambition"
+cost_per_rank = [2]
+description = "When your Reaction is Verdanite, you gain +1 Will Save, +1 for every 5 Alchemist Levels you have."
+icon = "ApothUnbreakableAmbition"
+internal_name = "ApothUnbreakableAmbition"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+stack_source = "Alchemist"
+targets = ["Will"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Apothecary: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose between Intelligence and Constitution"
+icon = "IntCon"
+internal_name = "ApothAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement]]
+name = "Apothecary: Apothecary's Satchel"
+cost_per_rank = [2]
+description = """
+Spells you cast cost 5% less Spell Points.
+
+It has pockets!"""
+icon = "ApothApothecarySatchel"
+internal_name = "ApothApothecarySatchel"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellCostReduction"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ApothInsulatedBoots"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Insulated Boots"
+arrows = [
+    "ArrowLeft",
+    "ArrowUp",
+]
+cost_per_rank = [1]
+description = """
++[2/4/6] Magical Resistance Rating.
+Rank 3: You are immune to Slippery Surfaces.
+
+Not quite fashionable, but they'll keep you standing!"""
+icon = "ApothInsulatedBoots"
+internal_name = "ApothInsulatedBoots"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 3
+targets = ["Slippery Surfaces"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ApothSafetyGoggles"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Spell Critical Chance: Positive & Negative IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% chance to critically hit with Positive and Negative Spells."
+icon = "ApothSpellCriticalIV"
+internal_name = "ApothSpellCriticalIV"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ApothSpellCriticalIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Run for your life!"
+cost_per_rank = [2]
+description = "While your Reaction is Verdanite, you gain 1% Movement Speed per Alchemist Level."
+icon = "ApothRunForYourLife"
+internal_name = "ApothRunForYourLife"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "MovementSpeed"
+stack_source = "Alchemist"
+
+[[enhancement.modifier.requirement]]
+items = ["Verdanite"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Apothecary: Ability II"
+cost_per_rank = [2]
+description = "Choose between Intelligence and Constitution"
+icon = "IntCon"
+internal_name = "ApothAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ApothAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement]]
+name = "Apothecary: Curative Admixture: Cure or Inflict Critical Wounds"
+cost_per_rank = [1]
+description = "Choose between Cure or Inflict Critical Wounds."
+icon = "ApothCurativeAdmixtureCCW"
+internal_name = "ApothCurativeAdmixtureCCW"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Curative Admixture: Cure Critical Wounds"
+cost_per_rank = [1]
+description = """
+Curative Admixture: Cure Critical Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 45
+Cooldown 12 seconds
+Primer Element: Gildleaf
+
+Infuses a Cure Critical Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 4d6+8
+plus 1 per caster level (maximum caster level 20) positive energy damage to
+nearby living allies and enemy undead. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions."""
+icon = "ApothCurativeAdmixtureCCW"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    45,
+    20,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Cure Critical Wounds",
+    "Alchemist",
+]
+
+[[enhancement.selection]]
+name = "Curative Admixture: Inflict Critical Wounds"
+cost_per_rank = [1]
+description = """
+Curative Admixture: Inflict Critical Wounds
+Metamagic: Empower, Empower Heal, Maximize, Intensify
+Spell Point Cost: 45
+Cooldown 12 seconds
+Primer Element: Gildleaf
+
+Infuses an Inflict Critical Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 4d6+8
+plus 1 per caster level (maximum caster level 20) negative energy damage to
+nearby undead allies and living enemies. This infusion is affected by
+Artificer/Alchemist Knowledge: Potions."""
+icon = "ApothCurativeAdmixtureICW"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    45,
+    20,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Inflict Critical Wounds",
+    "Alchemist",
+]
+
+[[enhancement]]
+name = "Apothecary: Gloves of the Master Apothecary"
+cost_per_rank = [2]
+description = """
++5 Use Magic Device, +10 Universal Spell Power.
+You have a 15% chance to retain a copy of any single-use Positive, Negative,
+or Repair Healing Potion that you drink.
+
+The mark of a true Apothecary, and helpful when handling volatile materials."""
+icon = "ApothGlovesOfTheMasterApothecary"
+internal_name = "ApothGlovesOfTheMasterApothecary"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["ApothInsulatedBoots"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Master Apothecary"
+cost_per_rank = [2]
+description = """
+You have no Max Caster Level with Curative Admixtures and any Gildleaf Alchemist Spells.
++2 Transmutation DCs, and +2 Spell Penetration."""
+icon = "ApothMasterApothecary"
+internal_name = "ApothMasterApothecary"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1000]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevelSchool"
+targets = ["Gildleaf"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["ApothSpellCriticalIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Apothecary: Dissolve"
+cost_per_rank = [2]
+description = """
+Target enemy at touch range that is Fascinated, Sleeping, Dancing, Dazed, Tripped,
+Mesmerized, Paralyzed, Petrified, or Stunned must make a Fortitude save
+(d20 + your Heal skill) or die instantly.
+Cooldown: 20 seconds"""
+icon = "ApothDissolve"
+internal_name = "ApothDissolve"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.dc]]
+name = "Dissolve"
+dc_type = "Death"
+dc_versus = "Fortitude"
+description = """
+Target enemy at touch range that is Fascinated, Sleeping, Dancing, Dazed, Tripped,
+Mesmerized, Paralyzed, Petrified, or Stunned must make a Fortitude save
+(d20 + your Heal skill) or die instantly."""
+icon = "ApothDissolve"
+other = "d20"
+skill = "Heal"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Apothecary: Sleep or Death"
+cost_per_rank = [1]
+description = "Choose between Deadly Neurotoxin and Nightshade."
+icon = "ApothDeadlyNeurotoxin"
+internal_name = "ApothDeadlyNeurotoxin"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Deadly Neurotoxin"
+cost_per_rank = [1]
+description = """
+Offensive Gildleaf or Ceruleite Spells will reduce your targets Armor Class and
+Magical Resistance rating by -1 per stack, max 5."""
+icon = "ApothDeadlyNeurotoxin"
+
+[[enhancement.selection]]
+name = "Nightshade"
+cost_per_rank = [1]
+description = """
+SLA: Nightshade
+Spell Point Cost: 10
+Cooldown: 30 seconds
+Primer Element: Gildleaf
+Target enemy falls asleep for 6 seconds with no save."""
+icon = "ApothNightshade"
+is_clickie = true
+
+[[requirement]]
+items = ["Alchemist"]
+req_type = "Class"

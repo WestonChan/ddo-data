@@ -1,0 +1,2 @@
+name = "Power Reduction on Hit"
+verbose_name_template = "Your Melee and Ranged attacks have a chance to reduce enemy Melee/Ranged power by 10 for 10 seconds"

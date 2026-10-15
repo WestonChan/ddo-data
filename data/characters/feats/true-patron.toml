@@ -1,0 +1,51 @@
+[[row]]
+name = "True Patron: Fiend"
+acquire = "Train"
+description = """
+You have made a pact with a fiend from the lower planes of existence,
+a being whose aims are evil, even if you strive against those aims. Such beings
+desire the corruption or destruction of all things, ultimately including you.
+
+Pact Toggle: Your Eldritch Blast deals +1 Fire damage, plus 1d4 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)."""
+icon = "TruePatronFiend"
+source_name = "Acolyte of the Skin"
+
+[[row.dc]]
+name = "Warlock: Pact: Fiend"
+amount = [19]
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+description = """
+Toggle on: Your Eldritch Blast deals +1 Fire damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw."""
+icon = "EpicEldritchBlast"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "True Patron"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Lawful Good"]
+req_type = "Alignment"
+
+[[row.requirement_group.requirement]]
+items = ["Neutral Good"]
+req_type = "Alignment"
+
+[[row.requirement_group.requirement]]
+items = ["Chaotic Good"]
+req_type = "Alignment"
+
+[[row.stance]]
+name = "Eldritch Blast: Focused"
+description = """
+Your Eldritch Blast deals +1 Fire damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)"""
+group_name = "Blast Shape"
+icon = "EpicEldritchBlast"

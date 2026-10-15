@@ -93,12 +93,12 @@ fn writes_a_wiki_saga_whose_rewards_carry_their_tier() {
     assert_eq!(
         strings(
             &db,
-            "SELECT i.name || ' ' || COALESCE(sr.tier, '-') || ' ' || sr.is_rare FROM sources sr
+            "SELECT i.name || ' ' || sr.tier || ' ' || sr.is_rare FROM sources sr
                JOIN items i ON i.id = sr.item_id JOIN sagas s ON s.id = sr.saga_id
               WHERE s.name = 'Masterminds of Sharn' AND i.provenance = 'maetrim' AND i.name <> 'Band of Diani ir''Wynarn'
               ORDER BY i.name, sr.tier"
         ),
-        ["Alabaster of the Twelve - 0", "Five Rings epic 0", "Five Rings legendary 1"]
+        ["Alabaster of the Twelve any 0", "Five Rings epic 0", "Five Rings legendary 1"]
     );
     assert_eq!(strings(&db, "SELECT provenance FROM sagas"), ["wiki", "wiki"]);
     assert_eq!((report.wiki_saga_count, report.saga_quest_link_count, report.saga_reward_count), (2, 4, 3));
@@ -194,7 +194,7 @@ fn links_his_items_to_the_saga_and_tier_their_drop_text_credits() {
     assert_eq!(
         reward_rows(
             &db,
-            "SELECT s.name || ' / ' || i.name || ' ' || COALESCE(sr.tier, '-') FROM sources sr
+            "SELECT s.name || ' / ' || i.name || ' ' || sr.tier FROM sources sr
                JOIN sagas s ON s.id = sr.saga_id JOIN items i ON i.id = sr.item_id
               WHERE i.name IN ('Band of Diani ir''Wynarn', 'Ring of the Kraken') ORDER BY i.name"
         ),

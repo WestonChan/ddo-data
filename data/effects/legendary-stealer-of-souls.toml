@@ -1,0 +1,3 @@
+name = "Legendary Stealer of Souls"
+description_template = "Blackrazor hungers for the Souls of those you have defeated. On a Vorpal hit with this weapon, Blackrazor will absorb some of its Soul, draining one level from the target. When you strike the killing blow on an enemy, Blackrazor retains one Defeated Soul, up to a maximum of 20. Each Defeated Soul grants you +1 Profane bonus to Melee Power and +1 Profane bonus to Damage. If you block or unequip Blackrazor, the Defeated Souls will be released. Defeated Souls last for 30 seconds."
+verbose_name_template = "Legendary Stealer of Souls"

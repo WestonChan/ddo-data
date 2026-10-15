@@ -1,0 +1,36 @@
+name = "Epic Vim and Vigor"
+description = """
+A charm representing vitality encompassed by strength, hangs from a thin titanium
+chain."""
+drop_location = "Terminal Delirium, second bonus dance chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Neck"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Superior False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Greater Heroism"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 9
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "second bonus dance chest"
+kind = "quest"
+loot_type = "chest"
+name = "Terminal Delirium"

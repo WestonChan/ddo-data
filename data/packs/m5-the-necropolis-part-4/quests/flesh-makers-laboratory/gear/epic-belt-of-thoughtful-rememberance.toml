@@ -1,0 +1,76 @@
+name = "Epic Belt of Thoughtful Rememberance"
+description = """
+This belt is said to protect the wielder from dark energies, and conjure images
+of a soothing nature."""
+drop_location = "Flesh Maker's Laboratory (epic), end chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 27
+slot = "Waist"
+
+[[effect]]
+name = "Deathblock VII"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Greater Regeneration"
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flesh Maker's Laboratory"

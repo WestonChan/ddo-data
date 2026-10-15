@@ -1,0 +1,26 @@
+name = "Plane of Night"
+bestowed_by = "Barrow d'Kundarak"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_raid = true
+pack = "Vault of Night"
+patron = "House Kundarak"
+zone = "Plane of Night"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Plane_of_Night"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 22

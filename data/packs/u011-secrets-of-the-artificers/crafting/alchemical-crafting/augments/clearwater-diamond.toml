@@ -1,0 +1,26 @@
+name = "Clearwater Diamond"
+description = "Upgrade an item to grant 1 Positive Healing ever minute."
+family = "Alchemical"
+icon = "Diamond"
+min_level = 4
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

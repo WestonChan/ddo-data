@@ -1,0 +1,189 @@
+[[row]]
+name = "Dance of the Wind/Next Fall +2 Dexterity"
+description = """
++2 Dexterity
+Rare: +4 PRR"""
+icon = "DanceOfTheWindNextFall"
+menu = "Raid Filigrees"
+set = "Dance of the Wind"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Dance of the Wind/Next Fall: +4 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Dance of the Wind: +1 Attack and Damage"
+description = """
++1 to Attack and Damage
+Rare: +2 PRR"""
+icon = "DanceOfTheWind"
+menu = "Masterminds of Sharn"
+set = "Dance of the Wind"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dance of the Wind: Attack and Damage: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Dance of the Wind: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "DanceOfTheWind"
+menu = "Masterminds of Sharn"
+set = "Dance of the Wind"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dance of the Wind: Dexterity: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Dance of the Wind: +1 Strength"
+description = """
++1 Strength
+Rare: +2 PRR"""
+icon = "DanceOfTheWind"
+menu = "Masterminds of Sharn"
+set = "Dance of the Wind"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dance of the Wind: Strength: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Dance of the Wind: +1 Trip DCs"
+description = """
++1 Trip DCs
+Rare: +2 PRR"""
+icon = "DanceOfTheWind"
+menu = "Masterminds of Sharn"
+set = "Dance of the Wind"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dance of the Wind: Trip DCs: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Dance of the Wind: +2 Tumble"
+description = """
++2 Tumble
+Rare: +2 MRR"""
+icon = "DanceOfTheWind"
+menu = "Masterminds of Sharn"
+set = "Dance of the Wind"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SkillBonus"
+targets = ["Tumble"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dance of the Wind: Tumble: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dance of the Wind: +3 PRR"
+description = """
++3 PRR
+Rare: +2 PRR"""
+icon = "DanceOfTheWind"
+menu = "Masterminds of Sharn"
+set = "Dance of the Wind"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dance of the Wind: PRR: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Dance of the Wind: +4 Armor Class"
+description = """
++4 Armor Class
+Rare: +2 PRR"""
+icon = "DanceOfTheWind"
+menu = "Masterminds of Sharn"
+set = "Dance of the Wind"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dance of the Wind: Armor Class: PRR"
+effect_type = "PRR"
+is_rare = true

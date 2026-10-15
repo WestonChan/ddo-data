@@ -1,0 +1,31 @@
+name = "Grudgebearer's Plate"
+description = "This armor is polished to a fine sheen."
+drop_location = "Caverns of Korromar, Adorgar the Grudgebearer 's chest"
+enhancement_bonus = 3
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 12
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Command"
+value = 2
+value2 = -6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "adorgar the grudgebearer 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Caverns of Korromar"

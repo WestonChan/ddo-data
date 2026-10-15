@@ -1,0 +1,52 @@
+name = "Legendary Rope and Pulley"
+accepts_sentience = true
+description = """
+An old sailor's creed, "A ship's only as good as its weakest link," applies
+doubly so in a storm."""
+drop_location = "Whispers of Return, end chest"
+enhancement_bonus = 15
+icon = "HeavyMace_1i"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Wood"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Icy Blast 6"
+
+[[effect]]
+name = "Frostbite"
+
+[[effect]]
+name = "Vorpal Lethargy"
+
+[[effect]]
+name = "Legendary Slowburst"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Whispers of Return"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

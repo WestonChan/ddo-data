@@ -1,0 +1,23 @@
+name = "Garrison's Missing Pack"
+bestowed_by = "Garrison Felmar"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "The Scavenger's Warren"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Garrison%27s_Missing_Pack"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 2

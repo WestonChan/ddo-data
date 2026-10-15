@@ -1,0 +1,105 @@
+name = "Seal of House Szind"
+description = "This ring bears a stylized impression of a human ribcage."
+drop_location = "The House of Death Undone, Matron Zhivisha chest"
+icon = "Ring_1"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 21
+slot = "Ring"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 68
+
+[[effect]]
+name = "Wizardry IX"
+bonus_type = "Enhancement"
+value = 225
+
+[[socket]]
+slot = "crafting: variant ability"
+
+[[socket.option]]
+name = "Charisma +7"
+description = "Charisma +7: This item makes the wearer have more flair, granting a +7 enhancement bonus to Charisma."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket.option]]
+name = "Insightful Charisma +2"
+description = "+2 Insight bonus to Charisma"
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket.option]]
+name = "Intelligence +7"
+description = "Intelligence +7: This item focuses the power of the wearer's mind, granting a +7 enhancement bonus to Intelligence."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Insightful Intelligence +2"
+description = "+2 Insight bonus to Intelligence"
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[source]]
+chest = "matron zhivisha chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Death Undone"

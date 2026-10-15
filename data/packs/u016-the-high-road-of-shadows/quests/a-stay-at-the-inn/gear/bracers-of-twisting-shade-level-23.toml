@@ -1,0 +1,44 @@
+name = "Bracers of Twisting Shade (Level 23)"
+description = """
+These leather bracers will slightly dim any source of light they are brought
+close to."""
+drop_location = "A Stay at the Inn, End chest (Epic), Netherese Legacy chain end reward"
+icon = "Bracers_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 23
+slot = "Wrists"
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Exceptional"
+value = 4
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Stay at the Inn"
+
+[[source]]
+kind = "quest_chain"
+name = "Netherese Legacy"

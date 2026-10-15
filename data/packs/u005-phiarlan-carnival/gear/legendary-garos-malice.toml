@@ -1,0 +1,49 @@
+name = "Legendary Garos' Malice"
+accepts_sentience = true
+description = """
+A shortsword imbued with the essence of a powerful red abishai. It assails those
+it is wielded against with flames, and its attacks on unaware targets are stronger."""
+drop_location = "Legendary version of Epic Garos' Malice"
+enhancement_bonus = 15
+icon = "Shortsword_2c"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Legendary Blinding Embers"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Overwhelming Incineration"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.5
+handedness = "One-handed"
+weapon_type = "Shortsword"

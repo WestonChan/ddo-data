@@ -1,0 +1,35 @@
+name = "Storm Signet"
+drop_location = "Sleeping with the Fishes, end chest"
+icon = "Ring_21"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 3
+slot = "Ring"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Quality"
+value = 12
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Efficient Metamagic - Maximize I"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"

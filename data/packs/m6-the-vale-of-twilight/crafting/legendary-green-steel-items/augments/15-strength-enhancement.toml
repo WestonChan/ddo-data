@@ -1,0 +1,20 @@
+name = "+15 Strength (Enhancement)"
+description = "Escalation/Water or Negative: +15 Enhancement bonus to Strength"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

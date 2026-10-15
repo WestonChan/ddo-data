@@ -1,0 +1,37 @@
+name = "Choker of the Silver Tongue"
+description = "This thin silver necklace enhances its user's bluff and diplomacy skills."
+drop_location = "Tempest's Spine, Fire and Ice chest"
+icon = "Necklace_38"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 9
+slot = "Neck"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "fire and ice chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

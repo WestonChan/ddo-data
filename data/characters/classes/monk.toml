@@ -1,0 +1,371 @@
+name = "Monk"
+alignments = [
+    "Lawful Good",
+    "Lawful Neutral",
+]
+bab = [
+    0,
+    0.75,
+    1.5,
+    2.25,
+    3,
+    3.75,
+    4.5,
+    5.25,
+    6,
+    6.75,
+    7.5,
+    8.25,
+    9,
+    9.75,
+    10.5,
+    11.25,
+    12,
+    12.75,
+    13.5,
+    14.25,
+    15,
+]
+class_specific_feat_types = [
+    "Monk Bonus",
+    "Monk Philosophy",
+]
+description = """
+A Monk is a combatant that performs amazing techniques in battle by
+using a power source called Ki. They can have extremely high Dodge and
+at high levels have a higher base movement speed than any other class.
+In order to use their special abilities, monks must be centered and
+remain in a state of physical and mental balance. To remain centered,
+a Monk must be unencumbered, wielding Monk-specific weapons or unarmed,
+and be wearing no armor except robes or outfits. When not centered,
+monks lose the majority of their special bonuses. While they are limited
+in their weapon selection, monks can gain specialized training through
+feats or other class enhancements to enable other weapons to be used
+while centered and gain a variety of special feats as they gain levels.
+The primary attribute of monks is Wisdom, which they use in retaining Ki,
+increase their Armor Class, and increase the effectiveness of their Ki
+attacks and Monk-specific tactical abilities. Strength, Constitution,
+and Dexterity are also important."""
+fortitude = "good"
+hit_points = 8
+large_icon = "Monk"
+reflex = "good"
+skill_points = 4
+small_icon = "Monk_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+will = "good"
+
+[[auto_buy_skill]]
+skill = "Concentration"
+
+[[auto_feat]]
+level = 1
+feat = "AC Bonus: Wisdom"
+
+[[auto_feat]]
+level = 1
+feat = "AC Bonus (Monk)"
+
+[[auto_feat]]
+level = 1
+feat = "Diamond Body"
+
+[[auto_feat]]
+level = 1
+feat = "Flurry of Blows"
+
+[[auto_feat]]
+level = 1
+feat = "Mountain Stance"
+
+[[auto_feat]]
+level = 1
+feat = "Ocean Stance"
+
+[[auto_feat]]
+level = 1
+feat = "Sun Stance"
+
+[[auto_feat]]
+level = 1
+feat = "Wind Stance"
+
+[[auto_feat]]
+level = 1
+feat = "Unarmed Strike"
+
+[[auto_feat]]
+level = 1
+feat = "Exotic Weapon Proficiency: Handwraps"
+
+[[auto_feat]]
+level = 1
+feat = "Exotic Weapon Proficiency: Kama"
+
+[[auto_feat]]
+level = 1
+feat = "Exotic Weapon Proficiency: Shuriken"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Hand Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Club"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Quarterstaff"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Unarmed"
+
+[[auto_feat]]
+level = 2
+feat = "Evasion"
+
+[[auto_feat]]
+level = 2
+feat = "Meditation"
+
+[[auto_feat]]
+level = 3
+feat = "Fast Movement (Monk)"
+
+[[auto_feat]]
+level = 3
+feat = "Still Mind"
+
+[[auto_feat]]
+level = 4
+feat = "Ki Strike: Magic"
+
+[[auto_feat]]
+level = 4
+feat = "Slow Fall"
+
+[[auto_feat]]
+level = 4
+feat = "Unarmed Strike"
+
+[[auto_feat]]
+level = 5
+feat = "Purity of Body"
+
+[[auto_feat]]
+level = 6
+feat = "Slow Fall"
+
+[[auto_feat]]
+level = 6
+feat = "Adept of Forms"
+
+[[auto_feat]]
+level = 7
+feat = "Wholeness of Body"
+
+[[auto_feat]]
+level = 8
+feat = "Slow Fall"
+
+[[auto_feat]]
+level = 8
+feat = "Unarmed Strike"
+
+[[auto_feat]]
+level = 9
+feat = "Improved Evasion"
+
+[[auto_feat]]
+level = 10
+feat = "Ki Strike: Lawful"
+
+[[auto_feat]]
+level = 10
+feat = "Slow Fall"
+
+[[auto_feat]]
+level = 11
+feat = "Diamond Body"
+
+[[auto_feat]]
+level = 12
+feat = "Master of Forms"
+
+[[auto_feat]]
+level = 12
+feat = "Slow Fall"
+
+[[auto_feat]]
+level = 12
+feat = "Unarmed Strike"
+
+[[auto_feat]]
+level = 12
+feat = "Abundant Step"
+
+[[auto_feat]]
+level = 13
+feat = "Diamond Soul"
+
+[[auto_feat]]
+level = 14
+feat = "Slow Fall"
+
+[[auto_feat]]
+level = 15
+feat = "Quivering Palm"
+
+[[auto_feat]]
+level = 16
+feat = "Ki Strike: Adamantine"
+
+[[auto_feat]]
+level = 16
+feat = "Slow Fall"
+
+[[auto_feat]]
+level = 16
+feat = "Unarmed Strike"
+
+[[auto_feat]]
+level = 17
+feat = "Timeless Body"
+
+[[auto_feat]]
+level = 18
+feat = "Grandmaster of Forms"
+
+[[auto_feat]]
+level = 18
+feat = "Slow Fall"
+
+[[auto_feat]]
+level = 19
+feat = "Empty Body"
+
+[[auto_feat]]
+level = 20
+feat = "Perfect Self"
+
+[[auto_feat]]
+level = 20
+feat = "Slow Fall"
+
+[[auto_feat]]
+level = 20
+feat = "Perfect Slow Fall"
+
+[[auto_feat]]
+level = 20
+feat = "Unarmed Strike"
+
+[[feat_slot]]
+feat_type = "Monk Bonus"
+level = 1
+update_list = [
+    "Combat Expertise",
+    "Deflect Arrows",
+    "Diehard",
+    "Discipline",
+    "Dodge",
+    "Exotic Weapon Proficiency: Shuriken",
+    "Great Fortitude",
+    "Improved Sunder",
+    "Improved Trip",
+    "Iron Will",
+    "Lightning Reflexes",
+    "Mobility",
+    "Power Attack",
+    "Precision",
+    "Resilience",
+    "Single Weapon Fighting",
+    "Shuriken Expertise",
+    "Spring Attack",
+    "Swords to Plowshares",
+    "Ten Thousand Stars",
+    "Toughness",
+    "Two Handed Fighting",
+    "Two Weapon Fighting",
+    "Weapon Finesse",
+    "Whirling Steel Strike",
+    "Zen Archery",
+]
+
+[[feat_slot]]
+feat_type = "Monk Bonus"
+level = 2
+
+[[feat_slot]]
+feat_type = "Monk Philosophy"
+level = 3
+
+[[feat_slot]]
+feat_type = "Monk Bonus"
+level = 6
+
+[[skill]]
+skill = "Balance"
+
+[[skill]]
+skill = "Concentration"
+
+[[skill]]
+skill = "Diplomacy"
+
+[[skill]]
+skill = "Hide"
+
+[[skill]]
+skill = "Jump"
+
+[[skill]]
+skill = "Listen"
+
+[[skill]]
+skill = "Move Silently"
+
+[[skill]]
+skill = "Spot"
+
+[[skill]]
+skill = "Swim"
+
+[[skill]]
+skill = "Tumble"

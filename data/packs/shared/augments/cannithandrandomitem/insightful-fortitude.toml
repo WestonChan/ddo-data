@@ -1,0 +1,67 @@
+name = "Insightful Fortitude"
+choose_level = true
+description = "You have a insight bonus to Fortitude saves"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+]
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[slot]]
+slot = "crafting: random helmet extra"
+
+[[slot]]
+slot = "crafting: random ring suffix"

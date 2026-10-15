@@ -1,0 +1,54 @@
+name = "Crippling Rocksplitter"
+description = """
+This pick, said to be infused with the Shadow's arcane power, can now cripple
+an enemy and hamper its movement."""
+drop_location = "Cauldron of Sora Katra, Rocksplitter + Gnollish War Bow + Mark of Rhesh Turakbar"
+enhancement_bonus = 5
+icon = "HeavyPick_1k"
+item_category = "Weapon"
+item_type = "Heavy Pick"
+material = "Adamantine"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Sonic Blast 3"
+
+[[effect]]
+name = "Reverberating 3"
+
+[[effect]]
+name = "Destruction"
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Heavy Pick"

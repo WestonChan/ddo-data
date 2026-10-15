@@ -1,0 +1,36 @@
+name = "Symphonic Lenses"
+description = """
+Cracked but not yet broken, these spectacles once belonged to a brilliant Barovian
+composer who spent his life writing organ music. After creative differences
+with Strahd himself, his career was ended early - and quite suddenly."""
+drop_location = "An Invitation to Dinner, End chest, Challenge Strahd Again optional chest"
+icon = "Goggles_3"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 10
+slot = "Goggles"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Anthem"
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, challenge strahd again optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "An Invitation to Dinner"

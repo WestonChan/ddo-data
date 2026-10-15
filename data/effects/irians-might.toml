@@ -1,0 +1,3 @@
+name = "Irian's Might"
+description_template = "This holy weapon can unleash incredible power. If Quarterstaves are your favored weapon, whenever you Turn Undead, you become Favored by Irian, increasing your Fire and Light Spell Critical Damage by 5% (Quality Bonus) for 20 seconds."
+verbose_name_template = "Irian's Might"

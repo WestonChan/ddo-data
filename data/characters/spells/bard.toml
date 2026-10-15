@@ -1,0 +1,688 @@
+[[row]]
+name = "Blindness"
+description = "Renders an enemy blinded. A successful Fortitude save negates this effect."
+icon = "Blindness"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Break Enchantment"
+description = """
+Affected allies in an area are freed from enchantments, transmutations, and curses.
+Enemies have beneficial effects removed. Must succeed on a check of 1d20+your
+caster level (Maximum caster level 15.) versus 11+the spell's caster level to
+remove an effect."""
+icon = "BreakEnchantment"
+max_caster_level = 15
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Break Enchantment"
+dc_versus = "Caster Level"
+schools = ["Abjuration"]
+
+[[row]]
+name = "Cure Critical Wounds"
+description = """
+Positive energy heals an ally for 4d6+8 plus 1 per caster level (Maximum caster level
+20.) hit points, or deals the same amount of damage to an undead creature.
+(A Will save reduces this damage by half.)"""
+icon = "CureCriticalWounds"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "EmpowerHealing",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 8
+base_dice_number = 4
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Cure Light Wounds"
+description = """
+Positive energy heals an ally for 1d6+2 plus 1 per caster level (Maximum caster level 5.)
+hit points, or deals the same amount of damage to an Undead creature.
+A successful Will save takes half damage (undead only)."""
+icon = "CureLightWounds"
+max_caster_level = 5
+metamagics = [
+    "Empower",
+    "EmpowerHealing",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 2
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Cure Light Wounds, Mass"
+description = """
+Casts Cure Light Wounds on multiple targets. Positive energy is channeled to heal
+light wounds of allies or damage undead for 1d6+2 plus 1 per caster level
+(Maximum caster level 25.) hit points, or deals the same amount of damage to
+an undead creature. (A Will save reduces this damage by half.)"""
+icon = "CureLightWoundsMass"
+max_caster_level = 25
+metamagics = [
+    "Empower",
+    "EmpowerHealing",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 2
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Cure Moderate Wounds"
+description = """
+Positive energy heals an ally for 2d6+4 plus 1 per caster level (Maximum caster level 10.) hit points,
+or deals the same amount of damage to an undead creature.
+(A Will save reduces this damage by half.)"""
+icon = "CureModerateWounds"
+max_caster_level = 10
+metamagics = [
+    "Empower",
+    "EmpowerHealing",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 4
+base_dice_number = 2
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Cure Moderate Wounds, Mass"
+description = """
+Casts Cure Moderate Wounds on multiple targets. Positive energy is channeled to heal
+moderate wounds of allies or damage undead for 2d6+4 plus 1 per caster level
+(Maximum caster level 30.) hit points, or deals the same amount of damage to
+an undead creature.
+(A Will save reduces this damage by half.)"""
+icon = "CureModerateWoundsMass"
+max_caster_level = 30
+metamagics = [
+    "Empower",
+    "EmpowerHealing",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 4
+base_dice_number = 2
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Cure Serious Wounds"
+description = """
+Positive energy heals an ally for 3d6+6 plus 1 per caster level (Maximum caster
+level 15.) hit points, or deals the same amount of damage to an undead creature.
+(A Will save reduces this damage by half.)"""
+icon = "CureSeriousWounds"
+max_caster_level = 15
+metamagics = [
+    "Empower",
+    "EmpowerHealing",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 3
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Dominate Person"
+description = """
+You can control the actions of any humanoid creature that fails its Will save through
+a telepathic link that you establish with the subjects mind. Dominate acts
+like Charm Person, with additional Will saves every 15 to 30 seconds, but the
+creature will follow you throughout the dungeon."""
+icon = "DominatePerson"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Focusing Chant"
+description = "You gain a +1 Circumstance bonus to attack rolls and skill checks, 30+6 seconds per caster level."
+icon = "FocusingChant"
+metamagics = ["Extend"]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Circumstance"
+effect_type = "Weapon_Attack"
+extra_types = ["SkillBonus"]
+targets = ["All"]
+
+[[row]]
+name = "Glitterdust"
+description = """
+A cloud of golden particles covers everything in an area, causing targets to become Blinded and
+outlining Invisible creatures. (-40 to Hide checks, and visually affects party
+members.) A successful Will save negates Blinded."""
+icon = "Glitterdust"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Good Hope"
+description = """
+This area of effect spell instills powerful hope to the recipient, granting a +2
+Morale bonus to attack rolls, saving throws, skill checks, and weapon damage
+rolls."""
+icon = "GoodHope"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Morale"
+effect_type = "Weapon_AttackAndDamage"
+extra_types = [
+    "SaveBonus",
+    "SkillBonus",
+]
+targets = ["All"]
+
+[[row]]
+name = "Greater Dispel Magic"
+description = "Removes ongoing spells that have been cast on a target. You must make a caster level\ncheck of 1d20+your caster level (Maximum caster level 20.) of DC 11+spell's\ncaster level to remove an effect. In addition, this spell can be used to sever\nthe connection between a summoner and his or her summoned monster, causing the\nsummoned creature to attack unpredictably, possibly turning on its summoner. \nIf cast on a spell ward trap, this spell will reduce the level of the trap by\n1d4 levels. If the level of the trap is reduced to 0, the trap is disabled."
+icon = "GreaterDispelMagic"
+max_caster_level = 20
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Greater Dispel Magic"
+dc_versus = "Caster Level"
+schools = ["Abjuration"]
+
+[[row]]
+name = "Greater Heroism"
+description = """
+This spell imbues a single ally creature with great bravery and Morale in battle.
+The target gains a +4 Morale bonus on attack rolls, saves and skill checks.
+The target also receives temporary hit points equal to the caster level and
+immunity to fear."""
+icon = "GreaterHeroism"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Morale"
+effect_type = "Weapon_Attack"
+extra_types = [
+    "SkillBonus",
+    "SaveBonus",
+]
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[row]]
+name = "Greater Shout"
+description = """
+Emits an ear-splitting yell that deafens and deals 1d6+3 Sonic damage per caster
+level to a max of 20d6+60 and stuns targets in its path. A successful
+Fortitude save halves the damage and negates stun."""
+icon = "GreaterShout"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Sonic"
+spell_power = "Sonic"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage and Stun"
+dc_versus = "Fortitude"
+schools = ["Evocation"]
+
+[[row]]
+name = "Heroes' Feast"
+description = """
+Brings forth a great feast for all nearby allies. While this spell is active on
+someone, the next time they use a rest shrine they consume the feast.
+The nectar like beverage which is part of the feast cures them of all Diseases,
+Nauseated, and Sickened, makes them immune to Poison for 1 minute per caster
+level, and grants 1d8 temporary Hit Points plus 1 per 2 caster levels.
+(Maximum caster level 20.)
+The ambrosial food that is consumed grants each creature that partakes a +1
+Morale bonus on Attack rolls, Will saves, and immunity to fear for 1 minute
+per caster level."""
+icon = "HeroesFeast"
+max_caster_level = 20
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Neutralize Poison"
+description = """
+Detoxifies any sort of venom in an ally, causing him to suffer no additional effects
+from the Poison. Additionally, it immunizes the ally from any Poison he is
+exposed to during the duration of the spell."""
+icon = "NeutralizePoison"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Otto's Irresistible Dance"
+description = """
+This spell makes it impossible for the enemy to do anything other than caper and
+prance in place."""
+icon = "OttosIrresistibleDance"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Otto's Sphere of Dancing"
+description = """
+A magical sphere that compels all enemies who enter it to dance. A successful Will
+save negates this effect."""
+icon = "OttosSphereOfDancing"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Rage"
+description = """
+This area of effect spell grants to targets +2 Morale bonus to Strength and to
+Constitution, +1 Morale bonus on will saves, and a -2 penalty to Armor Class.
+The spell's duration is 60 + 6 seconds per caster level."""
+icon = "Rage"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Morale"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Constitution",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Morale"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "ACBonus"
+
+[[row]]
+name = "Remove Fear"
+description = """
+Instills courage in an ally, granting a +4 Morale bonus against fear effects for 10 minutes.
+This area of effects spell counters and dispels Cause Fear."""
+icon = "RemoveFear"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Morale"
+effect_type = "SaveBonus"
+targets = ["Fear"]
+
+[[row]]
+name = "Shout"
+description = """
+Emits an ear-splitting yell that does 1d6+3 Sonic damage per caster level (max CL 15)
+to all targets in its path. A successful Fortitude save halves the damage."""
+icon = "Shout"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Sonic"
+spell_power = "Sonic"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Evocation"]
+
+[[row]]
+name = "Slow"
+description = """
+One target moves at 50% run speed, attacks at a 30% slowed rate, -1 on Attack rolls,
+Armor Class, and Reflex saves. A successful Will save negates this effect."""
+icon = "Slow"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Sonic Blast"
+description = """
+Blasts an enemy with loud high-pitched sounds, dealing 1d6+1 Sonic damage per caster level.
+(Maximum damage 10d6+10.) The target must make a successful Will save to avoid
+be Dazed for a short period of time, or until they take damage."""
+icon = "SonicBlast"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Sonic"
+spell_power = "Sonic"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Daze"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row]]
+name = "Soundburst"
+description = """
+A tremendous cacophony creates a burst area of effect dealing to every creature
+1d6 points of Sonic damage, and each creature must succeed on a Fortitude
+save to avoid being stunned for 6 seconds. Max caster level 15"""
+icon = "Soundburst"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Sonic"
+per_caster_levels = 1
+spell_power = "Sonic"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Stun"
+dc_versus = "Fortitude"
+schools = ["Evocation"]
+
+[[row]]
+name = "Suggestion, Mass"
+description = """
+Casts Suggestion on multiple enemies. The actions of affected enemies are influenced
+by you, allowing you to suggest that they fight as your allies for 6 seconds
+per caster level. A successful Will save negates this effect."""
+icon = "SuggestionMass"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Summon Monster II"
+description = """
+Summons 1 Monster from 3 choices: Black Widow, Fiendish Bat, Fiendish Monstrous Scorpion
+to fight for you for 10 minutes. You can only have 1 summoned creature of any
+type serving you at a time. Summoning a new creature of any type will return the
+previous one to its home plane."""
+icon = "SummonMonsterII"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Summon Monster V"
+description = """
+Summons 1 Monster from 3 choices: Bearded Devil, Medium Earth Elemental or Umbral
+Worg to fight for you for 10 minutes. You can only have 1 summoned creature
+of any type serving you at a time. Summoning a new creature of any type will
+return the previous one to its home plane."""
+icon = "SummonMonsterV"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]

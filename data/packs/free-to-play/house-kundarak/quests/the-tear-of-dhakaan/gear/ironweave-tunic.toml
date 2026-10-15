@@ -1,0 +1,37 @@
+name = "Ironweave Tunic"
+description = """
+This chain shirt is reinforced with a stiff extra layer of fine mesh. The added
+protection comes with a price; the shirt is a lot less flexible than a normal
+chain shirt."""
+drop_location = "The Tear of Dhakaan, Champion Prantag 's chest"
+enhancement_bonus = 3
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 5
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 7
+
+[[effect]]
+name = "DR 3/Bludgeoning"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = -2
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "champion prantag 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tear of Dhakaan"

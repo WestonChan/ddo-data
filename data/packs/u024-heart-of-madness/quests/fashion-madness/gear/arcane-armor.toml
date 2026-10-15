@@ -1,0 +1,46 @@
+name = "Arcane Armor"
+description = """
+The result of an experiment in forming a brigade of armored wizards. The Wizards
+may have died in battle, but the armor remains."""
+drop_location = "Fashion Madness, End chest"
+enhancement_bonus = 6
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 18
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Wizardry V"
+bonus_type = "Enhancement"
+value = 125
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Arcane Casting Dexterity"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fashion Madness"

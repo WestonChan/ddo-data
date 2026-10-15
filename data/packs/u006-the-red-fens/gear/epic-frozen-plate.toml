@@ -1,0 +1,41 @@
+name = "Epic Frozen Plate"
+description = """
+A sturdy suit of armor covered in a thin layer of ice and infuse with the power
+of cold. It seems to have been left on the ocean floor and taken on the properties
+of the freezing, forbidding depths."""
+drop_location = "Epic version of Frozen Plate"
+enhancement_bonus = 6
+icon = "HeavyArmor_1e"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Freezing Ice Guard"
+
+[[socket]]
+slot = "blue"

@@ -1,0 +1,27 @@
+name = "Cloak of Protection"
+description = "A fine sable cloak with protective runes embroidered on the hem."
+drop_location = 'The Shadow Crypt, Optional "big chest"'
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Back"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = 'optional "big chest"'
+kind = "quest"
+loot_type = "chest"
+name = "The Shadow Crypt"

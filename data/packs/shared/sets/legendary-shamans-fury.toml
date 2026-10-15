@@ -1,0 +1,75 @@
+name = "Legendary Shaman's Fury"
+icon = "ShamansFury"
+
+[[item]]
+name = "Legendary Shaman's Band"
+
+[[item]]
+name = "Legendary Shaman's Beads"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Power"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect_type = "SpellLore"
+targets = [
+    "Fire",
+    "Cold",
+    "Electric",
+    "Acid",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Cold",
+    "Electric",
+    "Acid",
+]

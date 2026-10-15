@@ -1,0 +1,47 @@
+name = "Duergarcraft Chain"
+description = "Protective gear made by Duergar craftspeople."
+drop_location = "A Long Way to Mushrooms, end chest"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 11
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 80
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 5
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Long Way to Mushrooms"

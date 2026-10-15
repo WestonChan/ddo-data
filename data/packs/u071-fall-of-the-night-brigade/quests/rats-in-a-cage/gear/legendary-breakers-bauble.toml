@@ -1,0 +1,45 @@
+name = "Legendary Breaker's Bauble"
+description = """
+This broken bit of armor, held together loosely with string, is a reminder that
+no defense cannot be broken."""
+drop_location = "Rats in a Cage, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Trinket"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 23
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 23
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rats in a Cage"

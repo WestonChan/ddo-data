@@ -1,0 +1,26 @@
+name = "Another Man's Treasure"
+bestowed_by = "Bimbog Jabyt"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "White Plume Mountain and Other Tales"
+patron = "The Twelve"
+zone = "Stormreach Dump"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Another_Man%27s_Treasure"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 21

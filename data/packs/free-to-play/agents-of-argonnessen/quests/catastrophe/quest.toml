@@ -1,0 +1,31 @@
+name = "Catastrophe"
+bestowed_by = "Lady Nilith"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "Agents of Argonnessen"
+zone = 'On the Trail of the "Dragon"'
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Catastrophe"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

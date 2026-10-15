@@ -1,0 +1,23 @@
+name = "Fire Spell Critical Damage 20%"
+description = "Ethereal/Dominion: 20% Enhancement bonus increase in Fire spell critical damage."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Dominion"""
+
+[[effect]]
+name = "Fire Spell Critical Damage"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Fire Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Fire"]
+
+[[slot]]
+slot = "crafting: equipment tier 1"

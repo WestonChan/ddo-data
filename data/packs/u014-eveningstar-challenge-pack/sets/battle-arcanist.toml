@@ -1,0 +1,26 @@
+name = "Battle Arcanist"
+icon = "BattleArcanist"
+
+[[item]]
+name = "War Wizard's Amulet"
+
+[[item]]
+name = "War Wizard's Bracers"
+
+[[item]]
+name = "War Wizard's Robes"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Point Cost Reduction"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Spell Point Cost Reduction"
+effect_type = "SpellPointCostPercent"

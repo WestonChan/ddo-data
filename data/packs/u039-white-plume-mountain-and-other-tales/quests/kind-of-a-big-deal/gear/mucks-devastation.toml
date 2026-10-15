@@ -1,0 +1,48 @@
+name = "Muck's Devastation"
+description = "Muck II: The Revenge"
+drop_location = "Kind of a Big Deal, End chest"
+enhancement_bonus = 3
+icon = "GreatClub_1g"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Glass"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Ooze Bane 2"
+
+[[effect]]
+name = "Crushing 5"
+
+[[effect]]
+name = "Blazing 5"
+
+[[effect]]
+name = "Smashing 5"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Kind of a Big Deal"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Club"

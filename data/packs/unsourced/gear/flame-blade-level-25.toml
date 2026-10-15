@@ -1,0 +1,38 @@
+name = "Flame Blade (Level 25)"
+description = "A blazing beam of red hot fire that sprang forth from your hands with the casting of the Flame Blade spell. The flames respond to the willpower and intuition of the wielder. As the Flame Blade is not physical, monks may use it without becoming uncentered."
+drop_location = "The page gives no location"
+enhancement_bonus = 10
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Fire"
+minimum_level = 25
+slot = "Main Hand"
+wiki_url = "https://ddowiki.com/page/Item:Flame_Blade_%28level_25%29"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Flame_Blade_%28level_25%29"
+read = "2026-09-29"
+
+[[effect]]
+name = "Flameblade"
+
+[[effect]]
+name = "Fiery 5"
+
+[[effect]]
+name = "Flaming Blast 5"
+
+[[effect]]
+name = "Overwhelming Incineration"
+
+[[effect]]
+name = "Blinding Embers"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_multiplier = 4.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

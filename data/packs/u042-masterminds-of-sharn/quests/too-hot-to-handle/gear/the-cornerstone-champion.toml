@@ -1,0 +1,93 @@
+name = "The Cornerstone Champion"
+description = """
+The Cornerstone is the largest arena in Sharn, and winning a bout is a surefire
+way to attain fame and fortune."""
+drop_location = "Too Hot to Handle, end chest"
+icon = "Belt_7b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Superior Reinforced Fists"
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+3 Quality Strength"
+description = "+3 Quality bonus to Strength"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Strength"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+3 Quality Dexterity"
+description = "+3 Quality bonus to Dexterity"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Dexterity"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+3 Quality Wisdom"
+description = "+3 Quality bonus to Wisdom"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Wisdom"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"

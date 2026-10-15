@@ -1,0 +1,32 @@
+name = "The Chronoscope"
+bestowed_by = "A harbor quest giver"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+flagging = "None; open to all."
+is_raid = true
+pack = "Devil Assault"
+patron = "The Coin Lords"
+zone = "The Harbor"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Chronoscope"
+read = "2026-09-28"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 21
+
+[[run]]
+tier = "legendary"
+level = 34

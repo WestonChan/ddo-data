@@ -1,0 +1,46 @@
+name = "Cloak of the Zephyr"
+description = "This diaphanous wrap enables its wearer to fade from sight."
+drop_location = "Zawabi's Revenge, Raid Warded Chest"
+icon = "Cloak_18b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Back"
+
+[[clickie]]
+name = "Invisibility"
+clickie = "Invisibility"
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Invisibility Guard"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 80
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Invisibility"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"

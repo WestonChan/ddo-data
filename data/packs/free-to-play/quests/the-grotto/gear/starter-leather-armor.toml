@@ -1,0 +1,25 @@
+name = "Starter Leather Armor"
+description = """
+The breastplate and shoulder protectors of this armor are made of leather that
+has been stiffened by being boiled in oil. The rest of the armor is made of
+softer and more flexible leather."""
+drop_location = "The Grotto, Sahuagin High Priestess 's chest, Non-Warforged Druids"
+icon = "LightArmor_1"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 3
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[source]]
+chest = "sahuagin high priestess 's chest, non-warforged druids"
+kind = "quest"
+loot_type = "chest"
+name = "The Grotto"

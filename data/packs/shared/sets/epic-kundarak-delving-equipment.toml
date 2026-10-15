@@ -1,0 +1,50 @@
+name = "Epic Kundarak Delving Equipment"
+icon = "Kundarak"
+
+[[item]]
+name = "Epic Kundarak Delving Boots"
+
+[[item]]
+name = "Epic Kundarak Delving Goggles"
+
+[[item]]
+name = "Epic Kundarak Delving Suit"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SneakAttackDice"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]

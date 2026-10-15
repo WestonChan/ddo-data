@@ -1,0 +1,35 @@
+name = "+6 Dexterity Skills, +14 Hit Points"
+description = "Material/Escalation: +6 Competence bonus to Dexterity based skills. +14 Quality Hit Points"
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Escalation"""
+
+[[effect]]
+name = "Dexterity Skills"
+bonus_type = "Quality"
+value = 6
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Quality"
+value = 14
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Quality"
+effect = "Dexterity Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Dexterity"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Quality"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[slot]]
+slot = "crafting: equipment tier 3"

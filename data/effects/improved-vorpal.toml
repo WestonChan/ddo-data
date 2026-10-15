@@ -1,0 +1,3 @@
+name = "Improved Vorpal"
+description_template = "Passive: +0.5[W] damage dice. On a Vorpal Strike: If your target has fewer than 1500 hit points, it is instantly slain. If your target has above 1500 hit points, it takes 150 damage."
+verbose_name_template = "Vorpal"

@@ -1,0 +1,22 @@
+name = "The Twilight Forge"
+bestowed_by = "Ostler Caulstone"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 10
+is_raid = true
+pack = "The Restless Isles"
+patron = "The Free Agents"
+zone = "Twilight Forge"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Twilight_Forge"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11

@@ -1,0 +1,48 @@
+name = "Epic Soul of the Red Dragon"
+icon = "RedDragon"
+
+[[item]]
+name = "Epic Helm of the Red Dragon"
+
+[[item]]
+name = "Epic Red Dragonhide Armor"
+
+[[item]]
+name = "Epic Red Dragonplate Armor"
+
+[[item]]
+name = "Epic Red Dragonscale Armor"
+
+[[item]]
+name = "Epic Red Dragonscale Docent"
+
+[[item]]
+name = "Epic Red Dragonscale Robe"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

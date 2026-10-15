@@ -1,0 +1,119 @@
+name = "Antipode, Fist of the Horizon"
+accepts_sentience = true
+description = """
+Spun from enchanted golden thread, this cloth was created to harness and contain
+planer energies. When wrapped around ones hands, their unarmed attacks can
+unleash those energies to devastating effect."""
+drop_location = "Caught in the Web, End Chest"
+enhancement_bonus = 7
+icon = "HandWraps_1m"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Gold"
+minimum_level = 23
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Antipodal"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Reinforced Fists"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Planar Conflux"
+description = """
+Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped."""
+icon = "Heroism"
+min_level = 23
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 3"
+
+[[socket.option]]
+name = "Adds 0.5[W] Base Damage"
+description = "Adds 0.5[W] to the base damage of this weapon."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Equipment"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 4"
+
+[[socket.option]]
+name = "Red Augment Slot"
+description = "Adds a Red augment slot to this weapon."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.grant]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Caught in the Web"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 3.6
+handedness = "Two-handed"
+weapon_type = "Handwraps"

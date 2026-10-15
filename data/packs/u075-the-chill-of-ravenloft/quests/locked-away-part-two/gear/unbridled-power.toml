@@ -1,0 +1,64 @@
+name = "Unbridled Power"
+description = """
+A strong enough electric shock can end life. Another strong one can begin it
+again."""
+drop_location = "Locked Away (Part Two), end chest"
+icon = "RuneArm_3e"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 8
+slot = "Runearm"
+
+[[clickie]]
+name = "Electrical Blast"
+clickie = "Electrical Blast"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Insight"
+value = 35
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Electrical Blast",
+    "Unknown",
+]
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part Two)"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

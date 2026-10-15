@@ -1,0 +1,42 @@
+name = "Void Lore V"
+adds_augment = "Accessory Aspect II"
+description = """
+Void Lore V: Passive: Your Negative and Poison spells gain a 12% Equipment bonus
+to their chance to critical hit and a 0.25 spell critical damage bonus.
+Negative:Dominion:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[effect]]
+name = "Negative Spell Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Poison Spell Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Equipment"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [0.25]
+bonus_type = "Equipment"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "crafting: accessory devastation"

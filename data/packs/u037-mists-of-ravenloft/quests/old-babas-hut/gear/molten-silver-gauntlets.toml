@@ -1,0 +1,40 @@
+name = "Molten Silver Gauntlets"
+description = """
+These silver gauntlets are partially melted, and envelop your hands and weapons.
+Do not eat."""
+drop_location = "Old Baba's Hut, Raid Chest"
+icon = "Gloves_4a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 28
+slot = "Hands"
+
+[[effect]]
+name = "Feat: Pierce Silver"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 21
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"

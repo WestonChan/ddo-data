@@ -1,0 +1,68 @@
+name = "Leopard's Chill"
+drop_location = "ToEE: Water Node, Jotun Rimeblade chest (Confirmed), ToEE: Air Node, dragon's hoard chests, ToEE: Fire Node, Periron chest, and ToEE: Earth Node, Hyrelgas chest"
+enhancement_bonus = 3
+icon = "Scimitar_7"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Lesser Evil Outsider Bane"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[effect]]
+name = "Freezing Ice"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "dragon's hoard chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"
+
+[[source]]
+chest = "hyrelgas chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "periron chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"
+
+[[source]]
+chest = "jotun rimeblade chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

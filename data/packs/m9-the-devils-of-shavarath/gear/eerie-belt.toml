@@ -1,0 +1,84 @@
+name = "Eerie Belt"
+description = """
+Once worn by Sanora, a dreaded Pale Master, this dark leather belt enhances
+the power of the wearer, while creating in her a sense on unease."""
+drop_location = "Genesis Point, Any end chest; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[clickie]]
+name = "Greater Efficacy"
+clickie = "Greater Efficacy"
+
+[[effect]]
+name = "Archmagi"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Pale Master"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Efficacy"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    30,
+    30,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Pale Master - 2 Piece bonus"
+effect_type = "SpellCriticalDamage"
+extra_types = ["SpellCriticalDamage"]
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    60,
+    60,
+    60,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Pale Master - 3 Piece bonus"
+effect_type = "SpellCriticalDamage"
+extra_types = ["SpellCriticalDamage"]
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Genesis Point"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

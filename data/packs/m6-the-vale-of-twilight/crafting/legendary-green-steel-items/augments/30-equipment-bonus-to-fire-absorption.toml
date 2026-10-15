@@ -1,0 +1,20 @@
+name = "+30 Equipment bonus to Fire Absorption"
+description = "Opposition/Fire: +30 Equipment bonus to Fire Absorption"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Equipment"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Equipment"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

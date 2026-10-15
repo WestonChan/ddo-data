@@ -1,0 +1,42 @@
+name = "Signet of Caustic Persuasion"
+description = """
+The quori used this ring against their slaves to prod them to do their bidding
+if they resisted their mind control."""
+drop_location = "The Twilight Forge, locked chest in entrance area"
+icon = "Ring_13"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Ring"
+
+[[clickie]]
+name = "Melf's Acid Arrow"
+clickie = "Melf's Acid Arrow"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Enhancement"
+value = 66
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Melf's Acid Arrow"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "locked chest in entrance area"
+kind = "quest"
+loot_type = "raid"
+name = "The Twilight Forge"

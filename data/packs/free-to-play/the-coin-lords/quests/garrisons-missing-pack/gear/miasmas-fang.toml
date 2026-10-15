@@ -1,0 +1,45 @@
+name = "Miasma's Fang"
+description = "A short dagger crafted from the fang of a giant spider."
+drop_location = "Garrison's Missing Pack, Miasma 's chest"
+enhancement_bonus = 1
+icon = "Dagger_19"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Bone"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 1
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "miasma 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Garrison's Missing Pack"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Dagger"

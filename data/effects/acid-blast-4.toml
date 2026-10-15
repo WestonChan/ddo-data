@@ -1,0 +1,3 @@
+name = "Acid Blast 4"
+description_template = "This weapon is covered in a strong and deadly acid, dealing 4d6 Acid damage on a successful hit, and an additional 4d6 Acid damage on a critical hit."
+verbose_name_template = "Acid Blast 4"

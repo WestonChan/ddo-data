@@ -1,0 +1,47 @@
+name = "Solar Gem of Critical Confirmation (Heroic)"
+description = """
+Artifact Seeker +2
+Drops in: The Body Snatchers, end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty
+Body and Mind, end chest (rare)
+The Darklake, red-named rare encounter chests (rare)
+Terror of Demogorgon (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Critical_Confirmation_(Heroic)"
+read = "2026-09-29"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Body and Mind"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"
+
+[[source]]
+chest = "red-named rare encounter chests"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

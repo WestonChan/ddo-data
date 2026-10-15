@@ -259,7 +259,7 @@ fn wiki_check_warns_about_a_wiki_item_that_looks_like_a_variant_of_a_maetrim_ite
 }
 
 #[test]
-fn wiki_check_warns_about_a_wiki_effect_spelled_like_a_maetrim_effect_apart_from_punctuation() {
+fn wiki_check_rejects_a_wiki_effect_with_an_existing_slug() {
     let fixture_items = std::fs::read_to_string(fixtures_dir().join("wiki/items.toml")).unwrap();
     let items_with_effect = |effect_name: &str| {
         fixture_items.replacen(
@@ -275,14 +275,21 @@ fn wiki_check_warns_about_a_wiki_effect_spelled_like_a_maetrim_effect_apart_from
             .unwrap()
     };
 
-    let report = report_for(&items_with_effect("Maximum Charge Tier / III"));
-    let effect_warning =
-        "warning: wiki effect \"Maximum Charge Tier / III\" may be Maetrim's \"Maximum Charge Tier III\" spelled differently";
-    let warnings_start = report.find("\nwarnings:").unwrap_or_else(|| panic!("no warnings section in\n{report}"));
-    assert!(
-        report[warnings_start..].lines().any(|line| line == effect_warning),
-        "missing {effect_warning:?} in\n{report}"
+    let collision_dir = draft_dir_with_fixture_quests();
+    std::fs::write(collision_dir.path().join("items_draft.toml"), items_with_effect("Maximum Charge Tier / III"))
+        .unwrap();
+    let collision = format!(
+        "{:#}",
+        wiki_check_report(
+            &fixtures_dir().join("DataFiles"),
+            Some(collision_dir.path()),
+            Some(&fixture_corrections_dir()),
+        )
+        .unwrap_err()
     );
+    assert!(collision.contains("slug collision"), "{collision}");
+    assert!(collision.contains("Maximum Charge Tier / III"), "{collision}");
+    assert!(collision.contains("Maximum Charge Tier III"), "{collision}");
     assert!(
         !report_for(&items_with_effect("Maximum Charge Tier: III")).contains("wiki effect"),
         "the build reuses his"

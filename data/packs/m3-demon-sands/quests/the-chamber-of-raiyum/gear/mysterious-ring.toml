@@ -1,0 +1,64 @@
+name = "Mysterious Ring"
+description = """
+A featureless gold band that has some mysterious magical effect.
+
+This item may be used with Cannith Crafting."""
+drop_location = "The Chamber of Raiyum, treasure chamber chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Ring"
+
+[[socket]]
+slot = "crafting: cannith ring prefix"
+
+[[socket]]
+slot = "crafting: cannith ring suffix"
+
+[[socket]]
+slot = "crafting: cannith ring extra"
+
+[[socket]]
+slot = "crafting: set bonus"
+
+[[socket.option]]
+name = "The Desert's Starless Nights"
+description = "The Desert's Starless Nights"
+min_level = 5
+
+[[socket.option.set]]
+set = "The Desert's Starless Nights"
+
+[[socket.option]]
+name = "The Desert's Burning Sun"
+description = "The Desert's Burning Sun"
+min_level = 5
+
+[[socket.option.set]]
+set = "The Desert's Burning Sun"
+
+[[socket.option]]
+name = "The Desert's Biting Sands"
+description = "The Desert's Biting Sands"
+min_level = 5
+
+[[socket.option.set]]
+set = "The Desert's Biting Sands"
+
+[[socket.option]]
+name = "The Desert's Writhing Storm"
+description = "The Desert's Writhing Storm"
+min_level = 5
+
+[[socket.option.set]]
+set = "The Desert's Writhing Storm"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "treasure chamber chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Chamber of Raiyum"

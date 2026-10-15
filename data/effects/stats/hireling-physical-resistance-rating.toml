@@ -1,0 +1,3 @@
+name = "Hireling Physical Resistance Rating"
+category = "other"
+verbose_name_template = "%b1 Hireling Physical Resistance Rating +{1}"

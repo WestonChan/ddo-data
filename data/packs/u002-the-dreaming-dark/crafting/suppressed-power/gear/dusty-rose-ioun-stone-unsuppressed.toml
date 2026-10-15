@@ -1,0 +1,17 @@
+name = "Dusty Rose Ioun Stone (unsuppressed)"
+description = "A dusty rose gem about 1 inch in diameter."
+drop_location = "Dreamforge, Suppressed Power Crafting"
+icon = "Trinket_3"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[source]]
+kind = "crafting_system"
+name = "Suppressed Power"

@@ -1,0 +1,52 @@
+name = "Khyber's Fury"
+description = "The fires of the Dragon Below simmer within this artifact."
+drop_location = "Assault on Splinterskull, End reward"
+icon = "RuneArm_3a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 5
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier II"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 75
+
+[[effect]]
+name = "Rune Arm Imbue - Fire I"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Exploding Fire Shot",
+    "None",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

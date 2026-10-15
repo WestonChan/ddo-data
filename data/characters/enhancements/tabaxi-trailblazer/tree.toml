@@ -1,0 +1,643 @@
+name = "Tabaxi Trailblazer"
+background = "HumanBackground"
+icon = "TabaxiTrailblazer"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Instinct I"
+cost_per_rank = [1]
+description = """
++1% Dodge, +1 Maximum Dexterity Bonus in Light Armor.
+You gain Dexterity to Hit with Quarterstaff."""
+icon = "TabInstinct"
+internal_name = "TabTrailCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Dexterity",
+    "Quarterstaff",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Ability I"
+cost_per_rank = [2]
+description = "+1 Dexterity or Wisdom"
+icon = "DexWis"
+internal_name = "TabTrailCore2"
+min_spent = 1
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TabTrailCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Instinct II"
+cost_per_rank = [1]
+description = "+1% Dodge, +2% Dodge Bypass"
+icon = "TabInstinct"
+internal_name = "TabTrailCore3"
+min_spent = 2
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBypass"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["TabTrailCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Ability II"
+cost_per_rank = [2]
+description = "+1 Dexterity or Wisdom"
+icon = "DexWis"
+internal_name = "TabTrailCore4"
+min_spent = 3
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["TabTrailCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Instinct III"
+cost_per_rank = [1]
+description = "+1% Dodge and Dodge Cap, +2% Dodge Bypass"
+icon = "TabInstinct"
+internal_name = "TabTrailCore5"
+min_spent = 4
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBypass"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["TabTrailCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Sharp Claws"
+cost_per_rank = [1]
+description = "+[1/2/3] to Attack"
+icon = "TabSharpClaws"
+internal_name = "TabTrailSharpClaws"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Low Blows"
+cost_per_rank = [1]
+description = "+[1/2/3] Trip DCs. Doubled if you have a Quarterstaff equipped."
+icon = "TabLowBlows"
+internal_name = "TabTrailLowBlows"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[enhancement.modifier.requirement]]
+items = ["Quarterstaff"]
+req_type = "WeaponTypesEquipped"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Acrobatic"
+cost_per_rank = [1]
+description = "+[1/2/3] Balance, Jump, and Tumble. +[2/4/6] Armor Class while Tumbling."
+icon = "TabAcrobatic"
+internal_name = "TabTrailAcrobatic"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Tumbling"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Land on Your Feet"
+cost_per_rank = [1]
+description = "You don't take falling damage."
+icon = "TabLandOnYourFeet"
+internal_name = "TabTrailLandOnYouFeet"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling Damage"]
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Sneaky Strikes I"
+cost_per_rank = [1]
+description = "+1 Sneak Attack Die."
+icon = "TabSneakyStrikes"
+internal_name = "TabTrailSneakyStrikesI"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Staff Deflection"
+cost_per_rank = [1]
+description = """
+Staff Deflection: While holding a Quarterstaff, when Deflect Arrows triggers
+you gain a +10% Action Boost bonus to Doublestrike for 6 seconds."""
+icon = "TabStaffDeflection"
+internal_name = "TabTrailStaffDeflection"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Wayfinder's Weapons"
+cost_per_rank = [1]
+description = "Quarterstaves and any Wooden Weapons you are wielding are immune to damage."
+icon = "TabWayfindersWeapons"
+internal_name = "TabTrailWayfindersWeapons"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: High Places"
+cost_per_rank = [1]
+description = """
+After falling for at least 1.5 seconds, when you land you gain +2 Critical
+Hit Confirmation, +2 Critical Hit Damage, and +25% Armor Piercing for 20 seconds."""
+icon = "TabHighPlaces"
+internal_name = "TabTrailHighPlaces"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Deflect Arrows"
+cost_per_rank = [1]
+description = """
+You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+projectile that would have struck you every 6 seconds."""
+icon = "TabHonedReflexes"
+internal_name = "TabTrailHonedReflexes"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Slip Out of Danger"
+cost_per_rank = [1]
+description = """
++[2/4/6] Saves vs. Traps.
+Rank 3: You gain +1 to Reflex Saves."""
+icon = "TabSlipOutOfDanger"
+internal_name = "TabTrailSlipOutOfDanger"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Traps"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Attune"
+cost_per_rank = [1]
+description = "+1 Ki Regeneration on Melee attacks, +1 Passive Ki Regeneration"
+icon = "TabAttune"
+internal_name = "TabTrailAttune"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "KiPassive"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "KiHit"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Great Weapon Aptitude"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "TabGreatWeaponAptitude"
+internal_name = "TabTrailGreatWeaponAptitude"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Feat"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Natural Fighting"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Improved Instincts"
+cost_per_rank = [1]
+description = "You gain Dexterity to Damage with Quarterstaves."
+icon = "TabStealthy"
+internal_name = "TabTrailStealthy"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Dexterity",
+    "Quarterstaff",
+]
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Focused Agility"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Your Feline Agility now only requires you to stand still for 3 seconds,
+and lasts for 9 seconds."""
+icon = "TabFocusedAgility"
+internal_name = "TabTrailFocusedAgility"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Sneaky Strikes II"
+cost_per_rank = [1]
+description = "+1 Sneak Attack Die."
+icon = "TabSneakyStrikes"
+internal_name = "TabTrailSneakyStrikesII"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Wide Sweep"
+cost_per_rank = [2]
+description = """
+Deals: +50% Damage
+Quarterstaff Melee Attack: Enemies who are hit must make a Balance check
+(DC 14 + Max(DEX,WIS) Mod + Trip bonuses) or be Tripped for 20 seconds.
+Shares cooldown with Great Cleave."""
+icon = "TabTrailWideSweep"
+internal_name = "TabTrailWideSweep"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.dc]]
+name = "Tabaxi Trailblazer: Wide Sweep"
+amount = [14]
+dc_type = "Save"
+dc_versus = "Balance"
+description = """
+Deals: +50% Damage
+Quarterstaff Melee Attack: Enemies who are hit must make a Balance check
+(DC 14 + Max(DEX,WIS) Mod + Trip bonuses) or be Tripped for 20 seconds.
+Shares cooldown with Great Cleave."""
+icon = "TabTrailWideSweep"
+mod_ability = [
+    "Dexterity",
+    "Wisdom",
+]
+tactical = "Trip"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Springing Pounce"
+cost_per_rank = [1]
+description = """
+You gain the Spring Attack feat. When you use it while holding a Quarterstaff,
+you gain Feline Agility and deal bludgeoning damage equal to your Jump score to
+all enemies Spring Attack hits. This damage scales with 200% Melee Power."""
+icon = "TabTrailSpringingPounce"
+internal_name = "TabTrailSpringingPounce"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Spring Attack"]
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Cat's Eye"
+cost_per_rank = [1]
+description = "You have True Seeing, which cannot be dispelled from you."
+icon = "TabTrailCatsEye"
+internal_name = "TabTrailCatsEye"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TrueSeeing"
+targets = ["All"]
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Fast Sprinter"
+cost_per_rank = [1]
+description = """
+Your Feline Agility now grants 30% Action Boost Bonus to Movement Speed and lasts
+for 18 seconds."""
+icon = "TabTrailFastSprinter"
+internal_name = "TabTrailFastSprinter"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["TabTrailFocusedAgility"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tabaxi Trailblazer: Escape Artist"
+cost_per_rank = [1]
+description = """
+When you tumble, you gain 25% Incorporeality and 25% Concealment for 20 seconds.
+This can only trigger once per minute."""
+icon = "TabTrailEscapeArtist"
+internal_name = "TabTrailEscapeArtist"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+extra_types = ["Incorporeality"]
+
+[[enhancement.modifier.requirement]]
+items = ["Tumbling"]
+req_type = "Stance"
+
+[[requirement]]
+items = ["Tabaxi Trailblazer"]
+req_type = "Race"

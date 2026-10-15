@@ -1,0 +1,24 @@
+name = "Hero's Leathers (Level 16)"
+drop_location = "Through a Mirror Darkly, End reward"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 5
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 11
+
+[[effect]]
+name = "Heroism"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Through a Mirror Darkly"

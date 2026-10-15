@@ -1,0 +1,26 @@
+name = "Skirmisher's Circlet (Level 27)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Breaking the Ranks, End reward"
+icon = "Helmet_48"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 27
+slot = "Head"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 120
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Breaking the Ranks"

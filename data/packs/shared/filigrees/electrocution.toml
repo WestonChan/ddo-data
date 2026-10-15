@@ -1,0 +1,164 @@
+[[row]]
+name = "Electrocution: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "Electrocution"
+menu = "Ravenloft"
+set = "Electrocution"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Electrocution: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Electrocution: +2 Fortitude Saves"
+description = """
++2 Fortitude saves
+Rare: +2 PRR"""
+icon = "Electrocution"
+menu = "Ravenloft"
+set = "Electrocution"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Electrocution: Fortitude: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Electrocution: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "Electrocution"
+menu = "Ravenloft"
+set = "Electrocution"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Electrocution: MRR: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Electrocution: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "Electrocution"
+menu = "Ravenloft"
+set = "Electrocution"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Electrocution: PRR: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Electrocution: +5% Electric Absorption"
+description = """
++5% Electric Absorption
+Rare: +2 MRR"""
+icon = "Electrocution"
+menu = "Ravenloft"
+set = "Electrocution"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Electrocution: Electric Absorption: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Electrocution: +9 Electric Spell Power"
+description = """
++9 Electric Spell Power
+Rare: +2 PRR"""
+icon = "Electrocution"
+menu = "Ravenloft"
+set = "Electrocution"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Electrocution: Electric Spell Power: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Electrocution: Air Elemental Protection"
+description = """
+Immune to Air Elemental Knockdown
+Rare: +2 MRR"""
+icon = "Electrocution"
+menu = "Ravenloft"
+set = "Electrocution"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Air Elemental Knockdown"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Electrocution: Air Elemental Knockdown: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true

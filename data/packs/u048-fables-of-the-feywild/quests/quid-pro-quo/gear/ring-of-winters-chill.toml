@@ -1,0 +1,37 @@
+name = "Ring of Winter's Chill"
+description = "The chill beckons you."
+drop_location = "Quid Pro Quo, End chest"
+icon = "Ring_26b"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 5
+slot = "Ring"
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 59
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Quid Pro Quo"

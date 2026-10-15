@@ -1,0 +1,94 @@
+[[row]]
+name = "The Cry of Battle: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "TheCryOfBattle"
+menu = "Ravenloft"
+set = "The Cry of Battle"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Cry of Battle: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Cry of Battle: +2 Fortitude Saves"
+description = """
++2 Fortitude saves
+Rare: +2 PRR"""
+icon = "TheCryOfBattle"
+menu = "Ravenloft"
+set = "The Cry of Battle"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Cry of Battle: Fortitude: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Cry of Battle: +2 Will Saves"
+description = """
++2 Will saves
+Rare: +2 MRR"""
+icon = "TheCryOfBattle"
+menu = "Ravenloft"
+set = "The Cry of Battle"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Cry of Battle: Will: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "The Cry of Battle: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "TheCryOfBattle"
+menu = "Ravenloft"
+set = "The Cry of Battle"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Cry of Battle: PRR: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true

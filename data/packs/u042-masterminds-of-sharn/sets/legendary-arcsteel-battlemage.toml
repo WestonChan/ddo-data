@@ -1,0 +1,121 @@
+name = "Legendary Arcsteel Battlemage"
+icon = "ArcsteelBattlemage"
+
+[[item]]
+name = "Legendary Arcsteel Brim"
+
+[[item]]
+name = "Legendary Attunement Gauntlets"
+
+[[item]]
+name = "Legendary Mastermaker's Fingers"
+
+[[item]]
+name = "Legendary Plasma Core"
+
+[[item]]
+name = "Staggershockers"
+
+[[item]]
+name = "The Legendary Mark IV"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Force Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Force Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Intelligence"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Repair",
+    "Rust",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellLore"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Repair",
+    "Rust",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]

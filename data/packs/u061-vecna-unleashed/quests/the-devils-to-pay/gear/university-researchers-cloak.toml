@@ -1,0 +1,42 @@
+name = "University Researcher's Cloak"
+description = """
+Reseachers from the university are often seen with these cloaks, but something
+feels as if it's missing from this one."""
+drop_location = "The Devils to Pay, End chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 18
+slot = "Back"
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 34
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 13
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Devils to Pay"

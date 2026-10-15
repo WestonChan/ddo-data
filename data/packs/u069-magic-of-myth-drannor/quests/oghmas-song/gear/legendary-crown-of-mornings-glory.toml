@@ -1,0 +1,45 @@
+name = "Legendary Crown of Morning's Glory"
+description = """
+As the morning brings comfort to those who lived through the night, this helm
+brings fire and light."""
+drop_location = "Oghma's Song, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 33
+slot = "Head"
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 37
+
+[[effect]]
+name = "Light Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oghma's Song"

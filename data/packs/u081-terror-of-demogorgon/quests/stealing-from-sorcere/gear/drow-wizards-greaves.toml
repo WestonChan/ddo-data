@@ -1,0 +1,35 @@
+name = "Drow Wizard's Greaves"
+description = "House Baenre's symbol adorns the sides of these boots."
+icon = "Boots_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Feet"
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Efficient Metamagic - Enlarge I"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Stealing from Sorcere"

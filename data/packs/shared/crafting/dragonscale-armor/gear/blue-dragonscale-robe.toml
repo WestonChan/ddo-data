@@ -1,0 +1,41 @@
+name = "Blue Dragonscale Robe"
+description = "A finely crafted silk robe that includes many scales from a blue dragon."
+drop_location = "Blue Dragonscale Armor, Turn in 20 Blue Dragon Scales"
+icon = "Cloth_11"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Blue Dragonscale"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 8
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 52
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

@@ -1,0 +1,10 @@
+name = "No Upgrade"
+description = """
+Planar Searing: This weapon harbors a burn unlike anything you've ever seen,
+As if otherworldly power has started to change it forever."""
+family = "PlanarSearing"
+icon = "Deconstructor"
+min_level = 32
+
+[[slot]]
+slot = "crafting: planar searing"

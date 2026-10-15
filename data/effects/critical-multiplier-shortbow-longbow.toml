@@ -1,0 +1,2 @@
+name = "Critical Multiplier (Shortbow, Longbow)"
+verbose_name_template = "Critical Multiplier +{1} (Shortbow, Longbow)"

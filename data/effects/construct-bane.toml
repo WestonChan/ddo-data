@@ -1,0 +1,3 @@
+name = "Construct Bane"
+description_template = "A bane weapon excels at attacking one type or subtype of creature. Against Constructs, this weapon's effective enhancement bonus is +2 better than its normal enhancement bonus. It deals an extra 2 to 12 points of damage against the foe."
+verbose_name_template = "Construct Bane"

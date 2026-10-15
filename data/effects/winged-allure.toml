@@ -1,0 +1,3 @@
+name = "Winged Allure"
+description_template = "The butterflies of this crown have a tendency to distract your enemies. When hit or missed in melee combat, your foes have a chance to be Fascinated with no save."
+verbose_name_template = "Winged Allure"

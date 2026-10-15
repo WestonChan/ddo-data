@@ -1,0 +1,43 @@
+name = "Legendary Levik's Bracers"
+description = """
+This relic of the Silver Flame was supposedly once worn by the powerful paladin
+Levik. Levik and his brother Lorrik disappeared many years ago while investigating
+tales of an ancient creature residing beneath Stormreach."""
+drop_location = "Legendary Vision of Destruction, End chest"
+icon = "Bracers_1a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 55
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 46
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 52
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"

@@ -1,0 +1,21 @@
+name = "Claw: +17 Assassinate"
+description = "+17 Assassinate"
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Enhancement"
+effect = "Assassinate"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[slot]]
+slot = "isle of dread: artifact claw (accessory)"

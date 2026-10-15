@@ -1,0 +1,41 @@
+name = "Periapt of Dexterity"
+description = """
+A mark of dexterity, recognizing the bearer's nimbleness and empowering them
+with new swiftness."""
+drop_location = "Secrets of the Red Wizards, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 13
+slot = "Trinket"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Dexterity Skills - Exceptional Bonus"
+value = 2
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secrets of the Red Wizards"

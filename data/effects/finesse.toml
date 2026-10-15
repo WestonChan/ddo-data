@@ -1,0 +1,11 @@
+name = "Finesse"
+default_value = 2
+description_template = "This weapon has a small Air Elemental bound to it. The wielder can use a finesse weapon as if they had the Weapon Finesse feat. In addition, the weapon grants a {1} enhancement bonus to the wielder's Dexterity score."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Finesse +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Dexterity"

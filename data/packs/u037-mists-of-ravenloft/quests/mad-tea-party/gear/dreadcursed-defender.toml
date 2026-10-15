@@ -1,0 +1,45 @@
+name = "Dreadcursed Defender"
+description = "Animated defense systems, patterned after the Animated Armors of old."
+drop_location = "Mad Tea Party, End chest"
+enhancement_bonus = 5
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 10
+race_required = "Construct, Iron Defender"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 15
+armor_bonus = 1
+armor_type = "Docent"
+mithral_body = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 77
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 19
+
+[[effect]]
+name = "Don't Count Me Out!"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Mad Tea Party"

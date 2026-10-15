@@ -1,0 +1,80 @@
+name = "Legendary Part of the Family"
+icon = "PartOfTheFamily"
+
+[[item]]
+name = "Legendary Enforcer's Coat"
+
+[[item]]
+name = "Legendary Enforcer's Plate"
+
+[[item]]
+name = "Legendary Family Recruit Sigil"
+
+[[item]]
+name = "Legendary Hammerfist"
+
+[[item]]
+name = "Legendary Platinum Knuckles"
+
+[[item]]
+name = "Legendary Turncoat"
+
+[[item]]
+name = "Legendary Umbral Soul"
+
+[[item]]
+name = "Legendary Wildcard"
+
+[[item]]
+name = "The Family's Blessing"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "Doublestrike"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "MeleePower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "HelplessDamage"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"

@@ -12,8 +12,13 @@ impl TableWriter<'_> {
         }
         for guild_buff in guild_buffs::parse(path)? {
             let inserted_row_count = self.transaction.execute(
-                "INSERT OR IGNORE INTO guild_buffs (name, description, guild_level) VALUES (?1, ?2, ?3)",
-                params![guild_buff.name, trimmed_non_empty(guild_buff.description.as_deref()), guild_buff.guild_level],
+                "INSERT INTO guild_buffs (name, description, guild_level, slug) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(name) DO NOTHING",
+                params![
+                    guild_buff.name,
+                    trimmed_non_empty(guild_buff.description.as_deref()),
+                    guild_buff.guild_level,
+                    crate::tree::xml_entity_slug("guild_buffs", None, &guild_buff.name, None)
+                ],
             )?;
             if inserted_row_count == 0 {
                 continue;
@@ -31,11 +36,12 @@ impl TableWriter<'_> {
         }
         for optional_buff in optional_buffs::parse(path)? {
             let inserted_row_count = self.transaction.execute(
-                "INSERT OR IGNORE INTO optional_buffs (name, icon, description) VALUES (?1, ?2, ?3)",
+                "INSERT INTO optional_buffs (name, icon, description, slug) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(name) DO NOTHING",
                 params![
                     optional_buff.name,
                     trimmed_non_empty(optional_buff.icon.as_deref()),
-                    trimmed_non_empty(optional_buff.description.as_deref())
+                    trimmed_non_empty(optional_buff.description.as_deref()),
+                    crate::tree::xml_entity_slug("optional_buffs", None, &optional_buff.name, None)
                 ],
             )?;
             if inserted_row_count == 0 {

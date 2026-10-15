@@ -1,0 +1,40 @@
+name = "Morgrave Skeleton Key"
+description = """
+Once, the tiny bone key contained here could open every door at Morgrave University.
+Even the most secret ones. The locks have since been remade with different
+magics, but the key still grants its holder considerable skill."""
+drop_location = "Grand Theft Aureon, End chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 18
+slot = "Trinket"
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Exceptional Nimble Skills Bonus"
+bonus_type = "Exceptional"
+value = 8
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 2
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 17
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Grand Theft Aureon"

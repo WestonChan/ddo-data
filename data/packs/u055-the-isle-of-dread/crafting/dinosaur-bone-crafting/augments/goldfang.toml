@@ -1,0 +1,20 @@
+name = "Goldfang"
+description = "+2d6 Sneak Attack Dice (Profane bonus)"
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[effect]]
+name = "Sneak Attack Dice"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[slot]]
+slot = "isle of dread: fang (armor)"

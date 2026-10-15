@@ -1,0 +1,173 @@
+name = "Embrace of the Spider Queen"
+description = """
+This disturbing armor, crafted from black metal, is engraved with the images
+of spiders."""
+drop_location = "Reclaiming the Rift, End chest"
+enhancement_bonus = 6
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Adamantine"
+minimum_level = 22
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 21
+armor_check_penalty = -5
+armor_type = "Heavy"
+damage_reduction = 0
+max_dex_bonus = 1
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "DR 5/-"
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = 'On Embrace of the Spider Queen, Proof Against Poison "grants an Enhancement bonus to saving throws against magical poisons"; his buff has no bonus type.'
+url = "https://ddowiki.com/page/Proof_Against_Poison"
+read = "2026-10-03"
+qualifier = "Poison Save / null / 6"
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "The wiki's Fortification +100% on this armor is a +100% Enhancement bonus; his buff has no bonus type."
+url = "https://ddowiki.com/page/Item:Embrace_of_the_Spider_Queen"
+read = "2026-10-02"
+qualifier = "Fortification / null / 100"
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "The wiki's Exceptional Fortification (+10%) on this armor is considered an Insight bonus; his buff has no bonus type."
+url = "https://ddowiki.com/page/Item:Embrace_of_the_Spider_Queen"
+read = "2026-10-02"
+qualifier = "Fortification / null / 10"
+
+[[note]]
+kind = "item_socket"
+field = "add"
+reason = "The wiki's Mikrom Sum upgrades Embrace of the Spider Queen into the Knight's Loyalty set; his item has no upgrade socket."
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-09-30"
+qualifier = "crafting: upgrade"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Strength +8"
+description = """
+Strength +8: This item gives the wearer the power of Ogre Strength, granting
+a +8 enhancement bonus to Strength."""
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "Insightful Strength +3"
+description = """
+Insightful Strength +3: This item gives the wearer the power of Ogre Strength,
+granting a +3 insight bonus to Strength."""
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "Constitution +8"
+description = """
+Constitution +8: This item gives the wearer improved health, granting a
++8 Enhancement bonus to Constitution."""
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "Insightful Constitution +3"
+description = """
+Insightful Constitution +3: This item gives the wearer improved health,
+granting a +3 insight bonus to Constitution."""
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket]]
+slot = "crafting: upgrade"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Reclaiming the Rift"

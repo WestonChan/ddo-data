@@ -1,0 +1,40 @@
+name = "Legendary Crystalline Wristlet"
+description = "Made of pure crystal, this mysterious bangle holds off many ills."
+drop_location = "Vecna Denied, End chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 32
+slot = "Wrists"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 147
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Poison Resistance"
+bonus_type = "Enhancement"
+value = 54
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Vecna Denied"

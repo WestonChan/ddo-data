@@ -1,0 +1,20 @@
+name = "Miserable Legendary Armor Piercing (Legendary)"
+description = "+5 Legendary bonus to bypass enemy Fortification."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Fortification Bypass"
+bonus_type = "Legendary"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Legendary"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[slot]]
+slot = "lamordia: miserable (accessory)"

@@ -1,0 +1,34 @@
+name = "Spare Hand (Level 3)"
+description = """
+A belt with a remarkable augmentation: a clawed hand that extends from it and
+will help you attack your foes and make tasks easier to perform."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+icon = "Belt_20"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Waist"
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 6
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

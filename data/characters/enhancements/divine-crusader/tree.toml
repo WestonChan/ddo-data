@@ -1,0 +1,1292 @@
+name = "Divine Crusader"
+background = "DestinyDivine"
+icon = "DivineCrusader"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Divine Crusader: Just Cause"
+cost_per_rank = [1]
+description = """
+You gain +1 Attack, Damage, Armor Class, and Saving Throws versus Evil creatures.
+
+Each core ability you take in this tree, including this one, grants the following:
+
++25 Maximum Hit Points
++5 Melee Power
++5 Ranged Power"""
+icon = "SunderEvil"
+internal_name = "U51DivineCrusaderCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamage"
+extra_types = ["ACBonus"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Creatures"]
+req_type = "EnemyType"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Creatures"]
+req_type = "EnemyType"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Confront any Foe"
+cost_per_rank = [1]
+description = "Your weapons are immune to durability damage. +3 to all saving throws."
+icon = "U51ExtraordinaryVirtue"
+internal_name = "U51DivineCrusaderCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Weapon Durability Damage"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51DivineCrusaderCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Crusader: Weather any Blow"
+cost_per_rank = [1]
+description = """
++5 Armor Class and  Physical Resistance Rating, +15 Positive, Negative, and Repair
+Healing Amplification."""
+icon = "U51ConfrontAnyFoe"
+internal_name = "U51DivineCrusaderCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+extra_types = ["PRR"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51DivineCrusaderCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Crusader: Sunder Evil"
+cost_per_rank = [1]
+description = """
+Using Sunder or Improved Sunder deals 1d6 Light damage per Character Level and
+applies a Divine Sundering effect. The Light damage scales with 200% of the higher
+of your Melee and Ranged Power.
+
+Divine Sundering: -10% AC, -25% Fortification, -3 Saving Throws. Lasts 12 seconds."""
+icon = "U55SunderEvil"
+internal_name = "U51DivineCrusaderCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51DivineCrusaderCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Crusader: Divine Smite"
+cost_per_rank = [2]
+description = """
+You gain the Smite Evil feat, and +1 use of Smite Evil. Enhances Smite Evil by
+adding 5 effective Paladin levels to its damage calculation. Furthermore, Smite
+Evil attacks grant you and nearby allies 1d2 Positive Healing per Character Level
+when they hit an enemy. This may only apply once every 10 seconds."""
+icon = "DivineSmite"
+internal_name = "U51DivineCrusaderDivineSmite"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Smite Evil"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Shield of Justice"
+cost_per_rank = [1]
+description = "+[5/10/15]% secondary shield bash chance."
+icon = "ShieldOfJustice"
+internal_name = "U51DivineCrusaderShieldOfJustice"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SecondaryShieldBash"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Spear of Light"
+cost_per_rank = [1]
+description = "+[1/2/3] to Attack and Damage rolls."
+icon = "SpearOfLight"
+internal_name = "U51DivineCrusaderSpearOfLight"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Divine Sundering"
+cost_per_rank = [1]
+description = "+[2/4/6] Sunder DCs"
+icon = "DivineSundering"
+internal_name = "U51DivineCrusaderDivineSundering"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = ["Sunder"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Consecration"
+cost_per_rank = [1]
+description = """
+Epic Strike: The ground you are standing on is consecrated. While standing on
+consecrated ground you and your allies are healed every 3 seconds for 1 point of
+positive energy per character level. This is affected by your Positive Spell Power.
+Cost: 15 Spell Points
+Cooldown: 20 seconds.
+Duration: 15 seconds.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "Consecration"
+internal_name = "U51DivineCrusaderConsecration"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Endless Smiting"
+cost_per_rank = [1]
+description = "+[2/4/6] Uses of Smite Evil, Smite Evil regenerates [10/20/30]% faster."
+icon = "U51EndlessSmiting"
+internal_name = "U51DivineCrusaderEndlessSmiting"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraSmite"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Holy Mantle"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Divine Crusader Destiny Mantle: Weapons and Shields you wield are considered to
+have your Alignment for DR purposes. Your Base Attack Bonus is now equal to your
+Character Level."""
+icon = "U51HolyMantle"
+internal_name = "U51DivineCrusaderHolyMantle"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "OverrideBAB"
+
+[[enhancement.modifier.requirement]]
+items = ["Holy Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Lawful"
+
+[[enhancement.modifier.requirement]]
+items = ["Holy Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Lawful"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Chaotic"
+
+[[enhancement.modifier.requirement]]
+items = ["Holy Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Chaotic"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[enhancement.modifier.requirement]]
+items = ["Holy Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Good"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Holy Mantle"
+description = """
+Weapons and Shields you wield are considered to have your Alignment for DR purposes.
+Your Base Attack Bonus is now equal to your Character Level."""
+group_name = "Mantle"
+icon = "U51HolyMantle"
+
+[[enhancement]]
+name = "Divine Crusader: Shield of Light"
+cost_per_rank = [1]
+description = """
++[2/4/6] Physical Resistance Rating and Magical Resistance Rating.
+Rank 3: While holding a Shield, you have Magic Missile immunity as per the Shield
+spell."""
+icon = "ShieldOfLight"
+internal_name = "U51DivineCrusaderShieldOfLight"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+rank = 3
+targets = ["Magic Missiles"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Bulk Up"
+cost_per_rank = [1]
+description = "+[5/10/15] Maximum Hit Points, +[25/55/75]% Fortification"
+icon = "BulkUp"
+internal_name = "U51DivineCrusaderBulkUp"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    55,
+    75,
+]
+bonus_type = "Destiny"
+effect_type = "Fortification"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Divine Deflection"
+cost_per_rank = [1]
+description = "+[1/2/3] to all Saving Throws, with an additional +[1/2/3] to Saves vs Enchantments"
+icon = "DivineDefelection"
+internal_name = "U51DivineCrusaderDivineDeflection"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["Enchantment"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Divine Crusader: Gaze of the Divine"
+cost_per_rank = [2]
+description = "You gain True Seeing and are immune to Blindness."
+icon = "GazeOfTheDivine"
+internal_name = "U51DivineCrusaderGazeOfTheDivine"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "TrueSeeing"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Blindness"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Divine Crusader: Strike with Poise"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Your Divine Crusader Destiny Mantle now grants Favored Weapons an additional +[1/2/3] to their Enhancement bonus.
+Rank 3: Favored Weapons are also now considered Implements to you automatically,
+and gain +1[W]."""
+icon = "DCStrikeWithPoise"
+internal_name = "U51DivineCrusaderStrikeWithPoise"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_Enchantment"
+extra_types = ["ShieldEnchantment"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "GroupMember"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_BaseDamage"
+rank = 3
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "GroupMember"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+rank = 3
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "GroupMember"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon (Shield)"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51DivineCrusaderHolyMantle"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Crusader: Axiom of Faith"
+cost_per_rank = [2]
+description = """
+Select a Religion: You are considered a follower of that religion and use its
+Favored Weapon."""
+icon = "AxiomOfFaith"
+internal_name = "U51DivineCrusaderAxiomOfFaith"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Amaunator's Blessing"
+cost_per_rank = [2]
+description = "You may use a Heavy Mace as your Favored Weapon."
+icon = "AmunatorsBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Heavy Mace",
+]
+
+[[enhancement.selection]]
+name = "Aureon's Blessing"
+cost_per_rank = [2]
+description = "You may use a Quarterstaff as your Favored Weapon."
+icon = "AureonsBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Quarterstaff",
+]
+
+[[enhancement.selection]]
+name = "Helm's Blessing"
+cost_per_rank = [2]
+description = "You may use a Bastard Sword as your Favored Weapon."
+icon = "HelmsBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Bastard Sword",
+]
+
+[[enhancement.selection]]
+name = "Olladra's Blessing"
+cost_per_rank = [2]
+description = "You may use a Sickle as your Favored Weapon."
+icon = "OlladrasBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Sickle",
+]
+
+[[enhancement.selection]]
+name = "Onatar's Blessing"
+cost_per_rank = [2]
+description = "You may use a Warhammer as your Favored Weapon."
+icon = "OnatarsBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Warhammer",
+]
+
+[[enhancement.selection]]
+name = "Silvanus' Blessing"
+cost_per_rank = [2]
+description = "You may use a Maul as your Favored Weapon."
+icon = "SilvanusBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Maul",
+]
+
+[[enhancement.selection]]
+name = "The Blood of Vol's Blessing"
+cost_per_rank = [2]
+description = "You may use a Dagger as your Favored Weapon."
+icon = "TheBloodOfVolsBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Dagger",
+]
+
+[[enhancement.selection]]
+name = "The Lord of Blades' Blessing"
+cost_per_rank = [2]
+description = "You may use a Greatsword as your Favored Weapon."
+icon = "TheLordOfBladesBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Great Sword",
+]
+
+[[enhancement.selection]]
+name = "The Silver Flame's Blessing"
+cost_per_rank = [2]
+description = "You may use a Longbow as your Favored Weapon."
+icon = "TheSilverFlamesBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Longbow",
+]
+
+[[enhancement.selection]]
+name = "The Sovereign Host's Blessing"
+cost_per_rank = [2]
+description = "You may use a Longsword as your Favored Weapon."
+icon = "TheSoveignHostsBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Longsword",
+]
+
+[[enhancement.selection]]
+name = "The Undying Court's Blessing"
+cost_per_rank = [2]
+description = "You may use a Scimitar as your Favored Weapon."
+icon = "TheUndyingCourtsBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Scimitar",
+]
+
+[[enhancement.selection]]
+name = "Vulkoor's Blessing"
+cost_per_rank = [2]
+description = "You may use a Shortsword as your Favored Weapon."
+icon = "VulkoorsBlessing"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Shortsword",
+]
+
+[[enhancement]]
+name = "Divine Crusader: Crusade"
+cost_per_rank = [2]
+description = """
+Consecration now grants Crusade to allies who stand inside of it, and burns
+enemies that step inside. Enemies take 1d6 damage split between Fire and Light
+damage per Character Level, with both damage types scaling with Fire spell power.
+
+Crusade: +10% damage and +1 bonus Imbue Dice, lasts 4 seconds, refreshed every
+3 seconds while standing within the Consecrated Ground."""
+icon = "U51Crusade"
+internal_name = "U51DivineCrusaderCrusade"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Divine Crusader: How Dare You Strike Me"
+cost_per_rank = [1]
+description = """
+Being struck by offensive magic has a [10/20/30]% chance to regenerate a Smite
+Evil charge.
+Rank 3: When you are struck while below 50% HP, you automatically Consecrate the
+ground at your location. This may only trigger once every 2 minutes."""
+icon = "HowDareYouStrikeMe"
+internal_name = "U51DivineCrusaderHow DareYouStrikeMe"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Divine Crusader: Purge the Wicked"
+cost_per_rank = [1]
+description = """
++[1/2/3] Critical Hit Damage and +[1/2/3] to your Critical Hit Confirmation,
+or +[2/4/6] if you have the Power Critical feat."""
+icon = "U51PurgeTheWicked"
+internal_name = "U51DivineCrusaderPurgeTheWicked"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+display_name = "Power Critical Bonus"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Power Critical"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Divine Crusader: Heavenly Presence"
+cost_per_rank = [1]
+description = """
+Your Divine Crusader Destiny Mantle now grants you the defensive traits of a Celestial:
++10 Physical Resistance Rating and 10% Acid, Cold and Electricity Absorption.
+In addition, you are immune to Petrification."""
+icon = "U51HeavenlyPresence"
+internal_name = "U51DivineCrusaderHeavenlyPresence"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Holy Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Holy Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Petrification"]
+
+[[enhancement.modifier.requirement]]
+items = ["Holy Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51DivineCrusaderStrikeWithPoise"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Crusader: Blessed Strikes"
+cost_per_rank = [1]
+description = "+[2/4/6]% Doublestrike and Doubleshot"
+icon = "BlessedStrikes"
+internal_name = "U51DivineCrusaderBlessedStrikes"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Divine Crusader: Cower Before Me"
+cost_per_rank = [2]
+description = """
+When you activate Consecration, nearby enemies must make a Fortitude saving
+throw (DC: 20 + highest ability score mod + Sunder DC) or become Cowered for 4
+seconds. Cower makes an enemy helpless for the duration as they are paralyzed
+with awe at your presence. Only sentient creatures, Undead, Aberrations, and
+Outsiders may be cowered."""
+icon = "CowerBeforeMe"
+internal_name = "U51DivineCrusaderCowerBeforeMe"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.dc]]
+name = "Cower Before Me"
+amount = [20]
+dc_type = "Helpless"
+dc_versus = "Fortitude"
+description = """
+When you use Consecrate, nearby enemies must make a Fortitude save or become
+Cowered for 4 seconds. Cower makes an enemy helpless for the duration."""
+icon = "CowerBeforeMe"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Intelligence",
+    "Wisdom",
+    "Constitution",
+    "Charisma",
+]
+tactical = "Sunder"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51DivineCrusaderConsecration"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Divine Crusader: Rend Armor"
+cost_per_rank = [2]
+description = "You gain the Improved Sunder feat."
+icon = "RendArmor"
+internal_name = "U51DivineCrusaderRendArmor"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Improved Sunder"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Divine Crusader: Mighty Crusade"
+cost_per_rank = [2]
+description = """
+Smite Evil attacks apply the Crusade buff to your entire party for 4 seconds.
+You gain +1 Armor Class and +1 Physical Resistance Rating for every two Religious
+Lore feats you have."""
+icon = "U51MightyCrusade"
+internal_name = "U51DivineCrusaderMightyCrusade"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "FeatCount"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18,
+    19,
+    19,
+    20,
+    20,
+]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+extra_types = ["PRR"]
+stack_source = "Religious Lore"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Divine Crusader: Bring Down Wrath"
+cost_per_rank = [1]
+description = """
+Your weapon attacks apply a stack of Vulnerability and Armor Destruction on
+Critical Hits.
+
+Your shield is now considered a Favored Weapon for the purposes of your Divine
+Crusader Destiny Mantle, and may now Doublestrike as if it were an offhand weapon."""
+icon = "BringDownWrath"
+internal_name = "U51DivineCrusaderBringDownWrath"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Buckler",
+    "Small Shield",
+    "Large Shield",
+    "Tower Shield",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Holy Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Divine Crusader: Law of the Divine"
+cost_per_rank = [1]
+description = """
+You gain the Embodiment of Law feat if you didn't have it already. If you had the
+feat, you now deal an extra 1d6 Law damage on each attack per Epic or Legendary
+level, scaling with 200% Melee or Ranged Power."""
+icon = "LawOfTheDivine"
+internal_name = "U51DivineCrusaderLawOfTheDivine"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Embodiment of Law"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Divine Crusader: Blessed Blades"
+cost_per_rank = [1]
+description = "While using a Favored Weapon, +1 Critical Multiplier on a roll of 19-20."
+icon = "U51BlessedBlades"
+internal_name = "U51DivineCrusaderBlessedBlades"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "GroupMember"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Divine Crusader: Beckon Divinity"
+cost_per_rank = [2]
+description = """
+Epic Moment: Divine Power infuses you and your party members, granting them Divinity
+for 30 seconds. This blessing is so strong that any allies who are dead are
+resurrected with their Maximum Hit Points.
+
+Divinity: When you are struck by any type of damage, you are healed for 4d6 Positive
+Healing (this healing becomes Repair if you are a Warforged, or Negative if you
+are Undead). Furthermore, for the first 10 seconds, you are immune to all forms
+of Crowd Control.
+
+The Resurrection portion of this ability may only affect you once per rest."""
+icon = "BeckonDivinity"
+internal_name = "U51DivineCrusaderBeckonDivinity"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[requirement]]
+items = ["Divine Crusader"]
+req_type = "Feat"

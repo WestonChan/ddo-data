@@ -1,0 +1,40 @@
+name = "Legendary Lizardfolk Gloves of Accuracy"
+description = """
+This pair of gloves has notches along the edges that supposedly assist with
+aiming."""
+drop_location = "The Newcomers, end chest"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 28
+slot = "Hands"
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 10
+value2 = 15
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Insight"
+value = 10
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Newcomers"

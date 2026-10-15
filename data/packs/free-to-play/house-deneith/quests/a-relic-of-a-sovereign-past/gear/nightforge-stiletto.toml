@@ -1,0 +1,45 @@
+name = "Nightforge Stiletto"
+description = "Assassins favor these slim blades for their light weight and incredible strength."
+drop_location = "A Relic of a Sovereign Past, Turn in 8 Adamantine Ore"
+enhancement_bonus = 5
+icon = "Dagger_19"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Adamantine"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "turn in 8 adamantine ore"
+kind = "quest"
+loot_type = "chest"
+name = "A Relic of a Sovereign Past"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Dagger"

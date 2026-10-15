@@ -1,0 +1,3 @@
+name = "Greater Sirocco"
+description_template = "A critical hit with this weapon causes a whirlwind of desert sand to swirl about the target, temporarily blinding it. A successful Reflex save (DC 35) prevents the effect."
+verbose_name_template = "Greater Sirocco"

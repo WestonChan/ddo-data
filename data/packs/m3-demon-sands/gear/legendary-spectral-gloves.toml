@@ -1,0 +1,33 @@
+name = "Legendary Spectral Gloves"
+description = "These gloves have an ethereal quality to them."
+drop_location = "Legendary version of Epic Spectral Gloves"
+icon = "Gloves_1d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Hands"
+
+[[effect]]
+name = "Ethereal"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"

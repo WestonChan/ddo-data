@@ -1,0 +1,52 @@
+name = "Legendary Light Armor of the Crownblade"
+description = """
+When the Echo broke off from the Crownblade, the force of its defiance manifested
+this armor, and shares its clarity of purpose."""
+drop_location = "Seeds of Decay, end chest (rare)"
+enhancement_bonus = 15
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 35
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Equipment"
+value = 30
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Linguistics 15%"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Seeds of Decay"

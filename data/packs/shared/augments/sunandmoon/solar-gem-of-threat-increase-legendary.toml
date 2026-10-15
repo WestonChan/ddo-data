@@ -1,0 +1,43 @@
+name = "Solar Gem of Threat Increase (Legendary)"
+description = """
++100% Artifact Bonus to Melee Threat Increase.
+Drops in: Ruins of Myth Drannor, Goranathanil or Yegora rare encounter chest
+Romira and Juvian's right chest (requires completion of Sleeping with the Fishes)
+Sleeping with the Fishes, House Lyrandar uprising optional chest
+Land of Lamordia, Fangs of Winter's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Melee Threat Generation"
+bonus_type = "Artifact"
+value = 100
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "fangs of winter's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"
+
+[[source]]
+chest = "goranathanil or yegora rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "house lyrandar uprising optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"

@@ -1,0 +1,42 @@
+name = "Turncoat"
+description = "For when you can only truly trust yourself."
+drop_location = "A Sharn Welcome, End chest"
+enhancement_bonus = 5
+icon = "Cloth_4"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 15
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 94
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 19
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 30
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 29
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Sharn Welcome"

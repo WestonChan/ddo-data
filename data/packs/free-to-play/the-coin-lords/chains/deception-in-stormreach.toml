@@ -1,0 +1,10 @@
+name = "Deception in Stormreach"
+quests = [
+    "Diplomatic Impunity",
+    "Frame Work",
+    "Eyes of Stone",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Deception_in_Stormreach"
+read = "2026-10-02"

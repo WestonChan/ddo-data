@@ -1,0 +1,87 @@
+name = "Corrosive Nullified Quarterstaff"
+description = "This quarterstaff is fused from two separate sceptres."
+drop_location = "Cauldron of Sora Katra, Fusible Sceptre of Corrosion + Malleable Sceptre of Nullification"
+enhancement_bonus = 6
+icon = "Quarterstaff_1d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 12
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 84
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 84
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 42
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Insight"
+value = 42
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,20 @@
+name = "Dolorous Repair Amplification (Heroic)"
+description = "+19 Competence bonus to Repair Healing Amplification."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 19
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[slot]]
+slot = "lamordia: dolorous (accessory)"

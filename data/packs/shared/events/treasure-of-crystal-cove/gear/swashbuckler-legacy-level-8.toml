@@ -1,0 +1,54 @@
+name = "Swashbuckler (legacy) (level 8)"
+description = """
+An indispensable tool for many a pirate when dueling with a single blade. It
+can parry an enemy's blows effectively and even leave them open to counterattack."""
+drop_location = "Treasure of Crystal Cove, Turn in 650 Copper Doubloon 375 Silver Doubloon 20 Stolen Amber at Dusty Old Treasure of Crystal Cove"
+icon = "Shield_18d"
+is_legacy = true
+item_category = "Shield"
+item_type = "Buckler"
+material = "Steel"
+minimum_level = 8
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 4
+max_dex_bonus = 0
+shield_bonus = 3
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Parrying I"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Guardbreaking"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Buckler"

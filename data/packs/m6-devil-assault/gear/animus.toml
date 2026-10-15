@@ -1,0 +1,72 @@
+name = "Animus"
+description = """
+A lemure's spirit is trapped within this rune arm. The loathing it has for you
+is exceeded only by its hatred of your enemies."""
+drop_location = "Devil Assault (quest), End Chest"
+icon = "RuneArm_2c"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 19
+slot = "Runearm"
+
+[[clickie]]
+name = "Exploding Fire Shot"
+clickie = "Exploding Fire Shot"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Banishing Weapons"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[effect]]
+name = "Rune Arm Imbue - Fire IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Exploding Fire Shot",
+    "Unknown",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Devil Assault (Elite)"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Devil Assault (Hard)"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Devil Assault (Normal)"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

@@ -1,0 +1,48 @@
+name = "Wolfinson's Monocular Enhancer"
+description = """
+A strange, singular, glass eyepiece that appear to be a relic from the Last
+War. Legend has it that Professor Philius Wolfinson used it to repair constructs
+during that time period, until it was lost on an expedition to Xen'drik to
+recover ancient artifacts for House Cannith."""
+drop_location = "Power Play, Scrapheap's chest"
+icon = "Goggles_16"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 18
+slot = "Goggles"
+
+[[clickie]]
+name = "Reconstruct"
+clickie = "Reconstruct"
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Enhancement"
+value = 72
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Search"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Reconstruct"]
+
+[[source]]
+chest = "scrapheap's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Power Play"

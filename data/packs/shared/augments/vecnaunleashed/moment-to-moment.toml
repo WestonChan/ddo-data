@@ -1,0 +1,14 @@
+name = "Moment to Moment"
+description = "+1 Enhancement bonus to Action Boost charges."
+family = "VecnaUnleashed"
+icon = "HistoryBookYellow"
+min_level = 18
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

@@ -1,0 +1,50 @@
+name = "Melancholic Arcana (Heroic)"
+description = """
++41 Equipment bonus to all Spell powers.
+If this is slotted in a Quarterstaff, also grants a +1 Exceptional bonus to
+Spell DCs and makes the Quarterstaff an Implement."""
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 41
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [41]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = [
+    "Weapon1",
+    "Quarterstaff",
+]
+req_type = "ItemTypeInSlot"
+
+[[slot]]
+slot = "lamordia: melancholic (weapon)"

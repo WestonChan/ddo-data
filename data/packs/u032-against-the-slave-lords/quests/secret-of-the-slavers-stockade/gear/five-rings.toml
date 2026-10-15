@@ -1,0 +1,31 @@
+name = "Five Rings"
+description = """
+A set of rings which adorn each finger, torn from the dead hands of the Slave
+Masters."""
+drop_location = "Secret of the Slavers' Stockade, Small chest"
+icon = "Ring_30"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 8
+slot = "Ring"
+
+[[socket]]
+slot = "crafting: slavelords prefix"
+
+[[socket]]
+slot = "crafting: slavelords suffix"
+
+[[socket]]
+slot = "crafting: slavelords extra"
+
+[[socket]]
+slot = "crafting: slavelords bonus"
+
+[[socket]]
+slot = "crafting: slavelords set bonus"
+
+[[source]]
+chest = "small chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secret of the Slavers' Stockade"

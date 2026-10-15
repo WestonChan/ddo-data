@@ -1,0 +1,49 @@
+name = "Epic Stone Exoskeleton"
+description = """
+This armor was made by a skilled stone worker. His skill was so impressive,
+the Lord of Stone decided the craftsman would make a valuable addition to his
+statue collection."""
+drop_location = "Palace of Stone, end chest"
+enhancement_bonus = 10
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Steel"
+minimum_level = 26
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 24
+armor_bonus = -6
+armor_type = "Docent"
+mithral_body = 12
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 40
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Palace of Stone"

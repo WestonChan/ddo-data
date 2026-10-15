@@ -1,0 +1,36 @@
+name = "Lunar Gem of Repair and Use Magic Device (Legendary)"
+description = """
++6 Profane Bonus to Repair and Use Magic Device
+Drops in: Special Delivery, Max Entsetzen's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Repair"
+bonus_type = "Profane"
+value = 6
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Profane"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Profane"
+effect_type = "SkillBonus"
+targets = [
+    "Repair",
+    "Use Magic Device",
+]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "max entsetzen's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"

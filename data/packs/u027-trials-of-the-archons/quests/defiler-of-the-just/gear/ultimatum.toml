@@ -1,0 +1,83 @@
+name = "Ultimatum"
+description = "There is no question anymore; evil hands will never prevail."
+drop_location = "Defiler of the Just, Warded chest"
+enhancement_bonus = 13
+icon = "Shield_3d"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Planeforged Steel"
+minimum_level = 26
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 21
+max_dex_bonus = 2
+shield_bonus = 25
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Improved Bashing X"
+
+[[effect]]
+name = "Holy 6"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Petrification Immunity"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 10
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.2
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

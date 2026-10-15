@@ -1,0 +1,8 @@
+name = "Unleash the Lightning"
+description = "Unleashed Storm: Small chance 10d440 electric damage, in addition DC 110 Fortitude save paralyzed."
+family = "PlanarSearing"
+icon = "Deconstructor"
+min_level = 32
+
+[[slot]]
+slot = "crafting: leashed power"

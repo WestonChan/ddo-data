@@ -1,0 +1,45 @@
+name = "Cook's Coat"
+description = "Prepare for the Feast in style."
+drop_location = "Too Many Cooks, end chest"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 18
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 26
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 22
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Too Many Cooks"

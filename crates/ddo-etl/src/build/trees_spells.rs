@@ -1,15 +1,19 @@
 use super::{json_number_array, json_string_array, trimmed_non_empty, BuildReport, TableWriter};
 use crate::xml::feats::Attack;
 use crate::xml::spells;
-use crate::xml::trees::{self, Enhancement, EnhancementSelection};
+use crate::xml::trees::{Enhancement, EnhancementSelection, EnhancementTree};
 use anyhow::Result;
 use ddo_model::enums::{AbilityOwner, EnhancementTreeKind, ModifierSource, RequirementOwner};
 use rusqlite::{params, OptionalExtension};
-use std::path::Path;
+use std::collections::HashMap;
 
 impl TableWriter<'_> {
-    pub(super) fn write_tree_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
-        let tree = trees::parse(path)?;
+    pub(super) fn write_tree(
+        &mut self,
+        tree: &EnhancementTree,
+        enhancement_name_counts: &HashMap<String, usize>,
+        report: &mut BuildReport,
+    ) -> Result<()> {
         let tree_kind = if tree.is_racial {
             EnhancementTreeKind::Racial
         } else if tree.is_destiny {
@@ -30,33 +34,29 @@ impl TableWriter<'_> {
             return Ok(());
         }
         self.transaction.execute(
-            "INSERT INTO enhancement_trees (name, version, kind, is_legacy, icon, background) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
-            params![
-                tree.name,
-                tree.version,
-                tree_kind.as_str(),
-                tree.is_legacy,
-                trimmed_non_empty(tree.icon.as_deref()),
-                trimmed_non_empty(tree.background.as_deref())
-            ],
+            "INSERT INTO enhancement_trees (name, version, kind, is_legacy, icon, background, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+            params![tree.name, tree.version, tree_kind.as_str(), tree.is_legacy, trimmed_non_empty(tree.icon.as_deref()), trimmed_non_empty(tree.background.as_deref()), crate::tree::xml_entity_slug("enhancement_trees", None, &tree.name, None)],
         )?;
         let tree_id = self.transaction.last_insert_rowid();
         if let Some(requirements) = &tree.requirements {
             self.write_requirements(RequirementOwner::EnhancementTree, tree_id, requirements)?;
         }
         for enhancement in &tree.enhancements {
-            self.write_enhancement(tree_id, enhancement)?;
+            let variant = (enhancement_name_counts[&enhancement.internal_name] > 1)
+                .then(|| format!("v{}", tree.version.unwrap_or_default()));
+            self.write_enhancement(tree_id, enhancement, variant.as_deref())?;
             report.enhancement_count += 1;
         }
         report.enhancement_tree_count += 1;
         Ok(())
     }
 
-    fn write_enhancement(&mut self, tree_id: i64, enhancement: &Enhancement) -> Result<()> {
+    fn write_enhancement(&mut self, tree_id: i64, enhancement: &Enhancement, variant: Option<&str>) -> Result<()> {
+        let identity = crate::tree::qualified_slug(&enhancement.internal_name, variant);
         self.transaction.execute(
             "INSERT INTO enhancements (tree_id, internal_name, name, description, icon, x, y, cost_per_rank, ranks, min_spent, is_tier5, is_clickie, arrows,
-                                       cooldown_seconds, duration_seconds)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15)",
+                                       cooldown_seconds, duration_seconds, slug, variant)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17)",
             params![
                 tree_id,
                 enhancement.internal_name,
@@ -73,6 +73,8 @@ impl TableWriter<'_> {
                 json_string_array(&enhancement.arrows),
                 enhancement.attack.as_ref().and_then(|a| a.cooldown_seconds),
                 enhancement.attack.as_ref().and_then(Attack::duration_seconds),
+                identity,
+                variant,
             ],
         )?;
         let enhancement_id = self.transaction.last_insert_rowid();
@@ -82,6 +84,7 @@ impl TableWriter<'_> {
         self.write_abilities(
             AbilityOwner::Enhancement,
             enhancement_id,
+            &identity,
             &enhancement.stances,
             &enhancement.dcs,
             enhancement.attack.as_ref(),
@@ -96,7 +99,7 @@ impl TableWriter<'_> {
                 )?;
             }
             for (sort_order, selection) in selector.selections.iter().enumerate() {
-                self.write_enhancement_selection(enhancement_id, sort_order as i64, selection)?;
+                self.write_enhancement_selection(enhancement_id, &identity, sort_order as i64, selection)?;
             }
         }
         Ok(())
@@ -105,13 +108,15 @@ impl TableWriter<'_> {
     fn write_enhancement_selection(
         &mut self,
         enhancement_id: i64,
+        enhancement_slug: &str,
         sort_order: i64,
         selection: &EnhancementSelection,
     ) -> Result<()> {
+        let identity = ddo_model::identity::nested_slug(enhancement_slug, &selection.name);
         self.transaction.execute(
             "INSERT INTO enhancement_selections (enhancement_id, sort_order, name, description, icon, cost_per_rank, ranks, min_spent, is_clickie,
-                                                 cooldown_seconds, duration_seconds)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
+                                                 cooldown_seconds, duration_seconds, slug)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12)",
             params![
                 enhancement_id,
                 sort_order,
@@ -124,6 +129,7 @@ impl TableWriter<'_> {
                 selection.is_clickie,
                 selection.attack.as_ref().and_then(|a| a.cooldown_seconds),
                 selection.attack.as_ref().and_then(Attack::duration_seconds),
+                identity,
             ],
         )?;
         let selection_id = self.transaction.last_insert_rowid();
@@ -133,6 +139,7 @@ impl TableWriter<'_> {
         self.write_abilities(
             AbilityOwner::EnhancementSelection,
             selection_id,
+            &identity,
             &selection.stances,
             &selection.dcs,
             selection.attack.as_ref(),
@@ -145,16 +152,8 @@ impl TableWriter<'_> {
     pub(super) fn write_spells(&mut self, spells: &[spells::Spell], report: &mut BuildReport) -> Result<()> {
         for spell in spells {
             let inserted_row_count = self.transaction.execute(
-                "INSERT OR IGNORE INTO spells (name, description, icon, schools, max_caster_level, cost, metamagics) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
-                params![
-                    spell.name,
-                    trimmed_non_empty(spell.description.as_deref()),
-                    trimmed_non_empty(spell.icon.as_deref()),
-                    json_string_array(&spell.schools),
-                    spell.maximum_caster_level,
-                    spell.cost,
-                    json_string_array(&spell.metamagics),
-                ],
+                "INSERT INTO spells (name, description, icon, schools, max_caster_level, cost, metamagics, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8) ON CONFLICT(name) DO NOTHING",
+                params![spell.name, trimmed_non_empty(spell.description.as_deref()), trimmed_non_empty(spell.icon.as_deref()), json_string_array(&spell.schools), spell.maximum_caster_level, spell.cost, json_string_array(&spell.metamagics), crate::tree::xml_entity_slug("spells", None, &spell.name, None)],
             )?;
             if inserted_row_count == 0 {
                 report.skipped_duplicate_spell_count += 1;
@@ -200,7 +199,14 @@ impl TableWriter<'_> {
                     ],
                 )?;
             }
-            self.write_abilities(AbilityOwner::Spell, spell_id, &spell.stances, &[], None)?;
+            self.write_abilities(
+                AbilityOwner::Spell,
+                spell_id,
+                &crate::tree::slug(&spell.name),
+                &spell.stances,
+                &[],
+                None,
+            )?;
             self.write_modifiers(ModifierSource::Spell, spell_id, &spell.effects)?;
             report.spell_count += 1;
         }

@@ -1,0 +1,19 @@
+name = "Dolorous Flames (Heroic)"
+description = """
+Adds Flaming. This effect causes the edges of this weapon to burn with enchanted
+flames, dealing 6d6 Fire damage on each critical hit."""
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Fire"
+dice_number = [6]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

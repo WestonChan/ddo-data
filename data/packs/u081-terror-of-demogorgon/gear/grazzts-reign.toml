@@ -1,0 +1,46 @@
+name = "Graz'zt's Reign"
+description = "A dream of a Demon Lord, ruling over everything."
+drop_location = "Terror of Demogorgon, any end chest; Terror of Demogorgon (Legendary) Elite/True Elite end reward"
+icon = "Goggles_25"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 35
+slot = "Goggles"
+
+[[effect]]
+name = "Linguistics 15%"
+
+[[effect]]
+name = "Winged Allure"
+
+[[effect]]
+name = "Notable Target"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 16
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "any end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Terror of Demogorgon"
+
+[[source]]
+kind = "saga"
+name = "Terror of Demogorgon"
+tier = "legendary"

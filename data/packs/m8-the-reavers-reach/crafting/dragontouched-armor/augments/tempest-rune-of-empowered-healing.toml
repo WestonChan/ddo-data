@@ -1,0 +1,22 @@
+name = "Tempest Rune of Empowered Healing"
+description = """
+Efficient Metamagic - Empower Healing II: The additional spell point cost for using
+the Empower Healing Metamagic feat is reduced by 2 SP."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Empower Healing Cost Reduction"
+bonus_type = "Equipment"
+value = -2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Equipment"
+effect = "Empower Healing Cost Reduction"
+effect_type = "MetamagicCostEmpowerHealing"
+
+[[slot]]
+slot = "crafting: tempest rune"

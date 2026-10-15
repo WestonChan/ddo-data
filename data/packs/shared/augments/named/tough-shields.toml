@@ -1,0 +1,32 @@
+name = "Tough Shields"
+description = """
+3-Piece Set Bonus: +30 Artifact bonus to Physical Resistance Rating
+Requires: 50 Threads of Fate, Empty Soul Vessel and Dumathoin's Bracers
+(Temple of the Deathwyrm)"""
+effect_description = "This augment will suppress any set bonus this item may have."
+family = "Named"
+icon = "ColorlessRaidItemEssence"
+min_level = 30
+set_bonus = "Tough Shield"
+suppress_set_bonus = true
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

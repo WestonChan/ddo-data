@@ -1,0 +1,29 @@
+name = "Acrobat's Ring"
+description = """
+A slightly tarnished ring with a faded engraving that must have been lost down
+a sewer drain. When worn, the bearer is imbued with phenomenal agility."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Ring_7"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 3
+slot = "Ring"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 7
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

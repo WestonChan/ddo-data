@@ -1,0 +1,37 @@
+name = "Yarkuch's Greatsword"
+description = "This blade once belonged to Yarkuch, mighty warrior chief of Splinterskull."
+drop_location = "Assault on Splinterskull, End reward"
+enhancement_bonus = 3
+icon = "Greatsword_16"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Elf Bane"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Great Sword"

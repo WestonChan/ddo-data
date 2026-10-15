@@ -1,0 +1,35 @@
+name = "Solar Gem of Spell Penetration (Heroic)"
+description = """
++3 Artifact Bonus to Spell Penetration.
+Drops in: Times Long Past, end chest
+Snowfall and Sunlight, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Times Long Past"

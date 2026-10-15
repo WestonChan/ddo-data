@@ -1,0 +1,47 @@
+name = "Pastemaker"
+description = """
+This Great Club once belonged to a frenzied Ogre, Murat the Maniacal. Its gnarled
+and knobby features make it imposing and difficult for enemies to judge its
+attacks."""
+drop_location = "The Lost Seekers, End reward"
+enhancement_bonus = 2
+icon = "GreatClub_5"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Wood"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Club"

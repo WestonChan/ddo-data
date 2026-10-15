@@ -1,0 +1,38 @@
+name = "Ravil's Book of Legendary Recipes"
+description = "+48 Vitality bonus to Maximum HP."
+family = "VecnaUnleashed"
+icon = "HistoryBookWhite"
+min_level = 32
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Vitality"
+value = 48
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [48]
+bonus_type = "Vitality"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

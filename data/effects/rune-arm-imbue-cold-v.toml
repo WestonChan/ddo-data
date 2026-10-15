@@ -1,0 +1,3 @@
+name = "Rune Arm Imbue - Cold V"
+description_template = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of cold damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher)."
+verbose_name_template = "Rune Arm Imbue - Cold V"

@@ -1,0 +1,81 @@
+name = "Chained Elementals"
+icon = "ChainedElementals"
+
+[[item]]
+name = "Bound Elemental Ring of Acid"
+
+[[item]]
+name = "Bound Elemental Ring of Flames"
+
+[[item]]
+name = "Bound Elemental Ring of Frost"
+
+[[item]]
+name = "Bound Elemental Ring of Lightning"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Fire",
+    "Electric",
+    "Cold",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Fire",
+    "Electric",
+    "Cold",
+]

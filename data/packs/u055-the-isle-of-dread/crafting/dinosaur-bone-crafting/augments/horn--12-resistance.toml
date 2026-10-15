@@ -1,0 +1,24 @@
+name = "Horn: +12 Resistance"
+description = "+12 Resistance bonus to all saves (Bug game only gives +11)"
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Resistance"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "isle of dread: horn (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact horn (accessory)"

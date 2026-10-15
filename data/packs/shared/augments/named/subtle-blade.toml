@@ -1,0 +1,32 @@
+name = "Subtle Blade"
+description = """
+3 pieces equipped: +3 Artifact bonus to Assassinate DCs.
+Requires: Thread of Fate x 50, Empty Soul Vessel, Page Regalia: Unsanctioned Arcana
+(Fire Over Morgrave, end chest)"""
+effect_description = "This augment will suppress any set bonus this item may have."
+family = "Named"
+icon = "ColorlessSpecialtemEssence"
+min_level = 30
+set_bonus = "Subtle Blade"
+suppress_set_bonus = true
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

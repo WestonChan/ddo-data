@@ -1,0 +1,19 @@
+name = "Echoes of 2006"
+description_template = "Take a trip into the past!"
+verbose_name_template = "Echoes of 2006"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "Earthen Guard"
+reason = "The wiki names the goggles' effect Echoes of 2006; Maetrim swapped its display text with Earthen Guard's."
+url = "https://ddowiki.com/page/Item:Rose_Colored_Goggles"
+read = "2026-10-06"
+
+[[note]]
+kind = "effect"
+field = "description_template"
+upstream = "When you are successfully attacked, there is a chance that a Stone Skin will be cast on you."
+reason = "The wiki gives Echoes of 2006 the text Maetrim put on Earthen Guard; the Stone Skin text he put here belongs to Earthen Guard."
+url = "https://ddowiki.com/page/Item:Rose_Colored_Goggles"
+read = "2026-10-06"

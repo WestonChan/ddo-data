@@ -1,0 +1,13 @@
+name = "The Mines of Tethyamar"
+pack = "The Mines of Tethyamar"
+quests = [
+    "Graveyard Shift",
+    "Records of the Past",
+    "Third Time's a Charm",
+    "Strike Back",
+    "Desire in the Dark",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Mines_of_Tethyamar"
+read = "2026-10-02"

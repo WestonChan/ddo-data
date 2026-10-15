@@ -1,0 +1,70 @@
+name = "Legendary Sceptre of the Oozing Hunger"
+accepts_sentience = true
+description = "An aspect of the Unspeakable."
+drop_location = "Sealed Altar, Turn in Legendary Duergarcraft Sceptre and 50 Legendary Abyssal Gems"
+enhancement_bonus = 16
+icon = "Club_2l"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Lingering Acidic Burn"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 49
+
+[[effect]]
+name = "Blighted Lore"
+bonus_type = "Equipment"
+value = 25
+
+[[effect]]
+name = "Acid Intensity"
+bonus_type = "Insight"
+value = 14
+
+[[effect]]
+name = "Acid Intensity"
+bonus_type = "Enhancement"
+value = 25
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "The wiki tooltip of the sceptre's Acid Intensity +25% calls it an Enhancement bonus; his buff has no bonus type."
+url = "https://ddowiki.com/page/Item:Legendary_Sceptre_of_the_Oozing_Hunger"
+read = "2026-10-07"
+qualifier = "Acid Spell Critical Damage / null / 25"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Sealed Altar"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "One-handed"
+weapon_type = "Club"

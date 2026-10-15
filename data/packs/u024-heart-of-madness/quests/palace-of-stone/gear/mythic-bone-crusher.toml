@@ -1,0 +1,66 @@
+name = "Mythic Bone Crusher"
+accepts_sentience = true
+description = """
+Infused with a magic which attunes itself to the wielder, the polished stone
+staff anticipates movement allowing the heavy weapon to swing effortlessly
+through the air."""
+drop_location = "Palace of Stone, End chest"
+enhancement_bonus = 10
+icon = "Quarterstaff_2a"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Stone"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Rockslide"
+
+[[effect]]
+name = "Shockwave"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Exceptional"
+value = 2
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Palace of Stone"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.2
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

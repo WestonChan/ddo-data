@@ -1,0 +1,3 @@
+name = "Spearblock VI"
+description_template = "Passive: Reduces physical damage taken by 12, except from Bludgeoning or Slashing weapons. (Damage Reduction: 12/Slash, Bludgeon)"
+verbose_name_template = "Spearblock VI"

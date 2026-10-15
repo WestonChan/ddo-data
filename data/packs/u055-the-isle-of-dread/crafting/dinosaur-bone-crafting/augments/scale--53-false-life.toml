@@ -1,0 +1,20 @@
+name = "Scale: +53 False Life"
+description = "+53 Enhancement bonus to Maximum HP."
+family = "DinosaurBone"
+icon = "ScalePurple"
+min_level = 31
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 53
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [53]
+bonus_type = "Enhancement"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[slot]]
+slot = "isle of dread: scale (accessory)"

@@ -1,0 +1,46 @@
+name = "Legendary Snowscale"
+description = "This impressive suit of armor seems to inspire fear in your enemies."
+drop_location = "Quid Pro Quo, End chest"
+enhancement_bonus = 15
+icon = "MediumArmor_5"
+item_category = "Armor"
+item_type = "Medium"
+material = "Ice"
+minimum_level = 29
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 18
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 53
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Quid Pro Quo"

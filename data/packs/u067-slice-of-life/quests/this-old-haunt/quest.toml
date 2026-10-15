@@ -1,0 +1,29 @@
+name = "This Old Haunt"
+bestowed_by = "Gwen Toriun"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Slice of Life"
+patron = "Morgrave University"
+zone = "Upper Nymph's Court"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/This_Old_Haunt"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

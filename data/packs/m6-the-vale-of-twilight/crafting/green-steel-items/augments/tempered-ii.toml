@@ -1,0 +1,14 @@
+name = "Tempered II"
+description = """
+Elemental Mastery Guard: This item is imbued with the energy of elemental mastery.
+Where the forces of the elements converge in harmony, each is equally potent.
+When the wearer of this item is successfully attacked in melee, there is a
+chance that the attacker will take 1d6 of any or all of the following elemental
+damage types: acid, electric, fire and cold.
+Fire:Water:Earth+Air"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

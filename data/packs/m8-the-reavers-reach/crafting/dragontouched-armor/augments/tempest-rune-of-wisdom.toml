@@ -1,0 +1,23 @@
+name = "Tempest Rune of Wisdom"
+description = """
+Wisdom +6: This item makes the wearer more in tune with her surroundings, granting a
++6 enhancement bonus to Wisdom."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: tempest rune"

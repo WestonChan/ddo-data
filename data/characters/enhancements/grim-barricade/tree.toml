@@ -1,0 +1,1349 @@
+name = "Grim Barricade"
+background = "Reaper"
+icon = "ReaperTree"
+kind = "reaper"
+version = 1
+
+[[enhancement]]
+name = "Reaper's Defense I"
+cost_per_rank = [1]
+description = """
++10 Hit Points in Reaper Difficulty.
+In addition, Every ability you take in this tree grants +8 Maximum Hit Points
+in Reaper Difficulty."""
+icon = "ReapersDefense"
+internal_name = "GrimCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [8]
+bonus_type = "Reaper"
+display_name = "Grim Barricade: HP per action point"
+effect_type = "HitpointsReaper"
+stack_source = "Grim Barricade"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Reaper"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Defense II"
+cost_per_rank = [1]
+description = "+1 to all Saves, +20 Hit Points"
+icon = "ReapersDefense"
+internal_name = "GrimCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Reaper"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["GrimCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 9
+
+[[enhancement]]
+name = "Reaper's Defense III"
+cost_per_rank = [1]
+description = "+1 Constitution"
+icon = "Constitution"
+internal_name = "GrimCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+items = ["GrimCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 15
+
+[[enhancement]]
+name = "Reaper's Defense IV"
+cost_per_rank = [1]
+description = "+1 to all Saves, +100 Hit Points"
+icon = "ReapersDefense"
+internal_name = "GrimCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Reaper"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["GrimCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Defense V"
+cost_per_rank = [1]
+description = "+1 Dodge, +1 PRR and MRR"
+icon = "ReapersDefense"
+internal_name = "GrimCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["GrimCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 25
+
+[[enhancement]]
+name = "Reaper's Defense VI"
+cost_per_rank = [1]
+description = "+1 Dodge Cap, +2 PRR and MRR"
+icon = "ReapersDefense"
+internal_name = "GrimCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Reaper"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Reaper"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["GrimCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Reaper's Bulwark/Shroud I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] (PRR or MRR) while in Reaper Difficulty"
+icon = "ReapersBulwarkShroud"
+internal_name = "GrimBulwarkShroudI"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "PRR"
+cost_per_rank = [1]
+description = "+[1/2/3] PRR"
+icon = "PRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "MRR"
+cost_per_rank = [1]
+description = "+[1/2/3] MRR"
+icon = "MRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Reflex/Fortitude/Will I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] to Reflex, Fortitude or Will Saves while in Reaper Difficulty"
+icon = "ReapersSave"
+internal_name = "GrimReapersSaveI"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "Reflex Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Reflex Save"
+icon = "ReapersReflex"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "Fortitude Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Fortitude Save"
+icon = "ReapersFortitude"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "Will Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Will Save"
+icon = "ReapersWill"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Luck"
+cost_per_rank = [1]
+description = """
+While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +15 Reaper Bonus to Saving Throws for 30 seconds."""
+icon = "ReapersLuck"
+internal_name = "GrimReapersLuck"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Constitution I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Constitution while in Reaper Difficulty"
+icon = "Constitution"
+internal_name = "GrimAbilityI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Evasion I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Dodge while in Reaper Difficulty"
+icon = "ReapersEvasion"
+internal_name = "GrimReapersEvasionI"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Bulwark/Shroud II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 1)"
+icon = "ReapersBulwarkShroud"
+internal_name = "GrimBulwarkShroudII"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["GrimBulwarkShroudI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection]]
+name = "PRR"
+cost_per_rank = [1]
+description = "+[1/2/3] PRR"
+icon = "PRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimBulwarkShroudI",
+    "PRR",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection]]
+name = "MRR"
+cost_per_rank = [1]
+description = "+[1/2/3] MRR"
+icon = "MRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimBulwarkShroudI",
+    "MRR",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Reflex/Fortitude/Will II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] to Reflex, Fortitude or Will Saves while in Reaper Difficulty (Take the same as tier 1)"
+icon = "ReapersSave"
+internal_name = "GrimReapersSaveII"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["GrimReapersSaveI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection]]
+name = "Reflex Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Reflex Save"
+icon = "ReapersReflex"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimReapersSaveI",
+    "Reflex Save",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection]]
+name = "Fortitude Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Fortitude Save"
+icon = "ReapersFortitude"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimReapersSaveI",
+    "Fortitude Save",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection]]
+name = "Will Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Will Save"
+icon = "ReapersWill"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimReapersSaveI",
+    "Will Save",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Constitution II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Constitution while in Reaper Difficulty"
+icon = "Constitution"
+internal_name = "GrimAbilityII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["GrimAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Evasion II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Dodge while in Reaper Difficulty"
+icon = "ReapersEvasion"
+internal_name = "GrimReapersEvasionII"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["GrimReapersEvasionI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Bulwark/Shroud III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 1)"
+icon = "ReapersBulwarkShroud"
+internal_name = "GrimBulwarkShroudIII"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["GrimBulwarkShroudII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection]]
+name = "PRR"
+cost_per_rank = [1]
+description = "+[1/2/3] PRR"
+icon = "PRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimBulwarkShroudI",
+    "PRR",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection]]
+name = "MRR"
+cost_per_rank = [1]
+description = "+[1/2/3] MRR"
+icon = "MRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimBulwarkShroudI",
+    "MRR",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Reflex/Fortitude/Will III"
+cost_per_rank = [1]
+description = "+[1/2/3] to Reflex, Fortitude or Will Saves while in Reaper Difficulty (Take the same as tier 1)"
+icon = "ReapersSave"
+internal_name = "GrimReapersSaveIII"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["GrimReapersSaveII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection]]
+name = "Reflex Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Reflex Save"
+icon = "ReapersReflex"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimReapersSaveI",
+    "Reflex Save",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection]]
+name = "Fortitude Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Fortitude Save"
+icon = "ReapersFortitude"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimReapersSaveI",
+    "Fortitude Save",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection]]
+name = "Will Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Will Save"
+icon = "ReapersWill"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimReapersSaveI",
+    "Will Save",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Constitution III"
+cost_per_rank = [1]
+description = "+1 to Constitution while in Reaper Difficulty"
+icon = "Constitution"
+internal_name = "GrimAbilityIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["GrimAbilityII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Evasion III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Dodge while in Reaper Difficulty"
+icon = "ReapersEvasion"
+internal_name = "GrimReapersEvasionIII"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["GrimReapersEvasionII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Bulwark/Shroud IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[2/4/6] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 1)"
+icon = "ReapersBulwarkShroud"
+internal_name = "GrimBulwarkShroudIV"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["GrimBulwarkShroudIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement.selection]]
+name = "PRR"
+cost_per_rank = [1]
+description = "+[2/4/6] PRR"
+icon = "PRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimBulwarkShroudI",
+    "PRR",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement.selection]]
+name = "MRR"
+cost_per_rank = [1]
+description = "+[2/4/6] MRR"
+icon = "MRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimBulwarkShroudI",
+    "MRR",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Resistance"
+cost_per_rank = [2]
+description = """
+While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +30 Profane Bonus to PRR for 30 Seconds."""
+icon = "ReapersResistance"
+internal_name = "GrimReapersResistance"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Steadfastness"
+cost_per_rank = [2]
+description = """
+While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +90 Reaper Bonus to Fortification and a +30 Reaper Bonus to Energy
+Resistance for 30 Seconds."""
+icon = "ReapersSteadfastness"
+internal_name = "GrimReapersSteadfastness"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Heightened Evasion I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 Dodge Cap while in Reaper Difficulty"
+icon = "ReapersHeightenedEvasion"
+internal_name = "GrimReapersHeightenedEvasionI"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["GrimReapersEvasionIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Bulwark/Shroud V"
+cost_per_rank = [1]
+description = "+[2/4/6] (PRR or MRR) while in Reaper Difficulty (Take the same as tier 4)"
+icon = "ReapersBulwarkShroud"
+internal_name = "GrimBulwarkShroudV"
+min_spent = 30
+ranks = 3
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["GrimBulwarkShroudIV"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection]]
+name = "PRR"
+cost_per_rank = [1]
+description = "+[2/4/6] PRR"
+icon = "PRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimBulwarkShroudIV",
+    "PRR",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection]]
+name = "MRR"
+cost_per_rank = [1]
+description = "+[2/4/6] MRR"
+icon = "MRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "GrimBulwarkShroudIV",
+    "MRR",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Reflex/Fortitude/Will V"
+cost_per_rank = [1]
+description = "+[1/2/3] to Reflex, Fortitude or Will Saves while in Reaper Difficulty"
+icon = "ReapersSave"
+internal_name = "GrimReapersSaveV"
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection]]
+name = "Reflex Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Reflex Save"
+icon = "ReapersReflex"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection]]
+name = "Fortitude Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Fortitude Save"
+icon = "ReapersFortitude"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection]]
+name = "Will Save"
+cost_per_rank = [1]
+description = "+[1/2/3] Will Save"
+icon = "ReapersWill"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Charge"
+cost_per_rank = [1]
+description = "+1 Maximum Reaper Charge"
+icon = "ReapersCharge"
+internal_name = "GrimReapersCharge"
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Constitution V"
+cost_per_rank = [1]
+description = "+1 to Constitution while in Reaper Difficulty"
+icon = "Constitution"
+internal_name = "GrimAbilityV"
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Heightened Evasion II"
+cost_per_rank = [1]
+description = "+1 Dodge Cap while in Reaper Difficulty"
+icon = "ReapersHeightenedEvasion"
+internal_name = "GrimReapersHeightenedEvasionII"
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["GrimReapersHeightenedEvasionI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27

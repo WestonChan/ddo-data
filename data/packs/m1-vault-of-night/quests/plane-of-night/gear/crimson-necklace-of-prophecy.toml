@@ -1,0 +1,36 @@
+name = "Crimson Necklace of Prophecy"
+description = """
+This glittering necklace is rumored to contain important hints of the draconic
+prophecy. They rarely fall in the hands of non-dragon kind."""
+drop_location = "Plane of Night, warded chest"
+icon = "Necklace_12a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Neck"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 73
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 19
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

@@ -1,0 +1,39 @@
+name = "Ring of Unknown Origins"
+description = """
+One of the many artificers at the laboratory found this ring on a corpse. It's
+yours now."""
+drop_location = "Flesh Maker's Laboratory, end chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flesh Maker's Laboratory"

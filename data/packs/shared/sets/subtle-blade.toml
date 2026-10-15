@@ -1,0 +1,22 @@
+name = "Subtle Blade"
+icon = "ColorlessSpecialtemEssence"
+
+[[augment]]
+name = "Subtle Blade"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Assassinate"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Assassinate"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]

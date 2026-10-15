@@ -1,0 +1,21 @@
+name = "Running with the Devils"
+bestowed_by = "Walk-up"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "The Vale of Twilight"
+patron = "The Twelve"
+zone = "Eladrin Stronghold"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Running_with_the_Devils"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16

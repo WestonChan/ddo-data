@@ -1,0 +1,9 @@
+name = "The Legendary Dread Isle's Curse"
+description = "Adds The Legendary Dread Isle's Curse set bonus"
+family = "DinosaurBone"
+icon = "DinosaurSetBonus"
+min_level = 31
+set_bonus = "The Legendary Dread Isle's Curse"
+
+[[slot]]
+slot = "isle of dread: set bonus"

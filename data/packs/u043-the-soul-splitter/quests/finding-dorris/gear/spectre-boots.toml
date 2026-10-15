@@ -1,0 +1,35 @@
+name = "Spectre Boots"
+description = "These are enchanted to help guide your footsteps"
+drop_location = "Finding Dorris, end chest"
+icon = "Boots_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 17
+slot = "Feet"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Finding Dorris"

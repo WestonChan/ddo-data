@@ -1,0 +1,43 @@
+name = "Lunar Gem of Constitution (Legendary)"
+description = """
++4 Profane Bonus to Constitution
+Drops in: Oghma's Song, end chest
+Rats in a Cage, end chest
+Beneath the City Streets, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oghma's Song"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rats in a Cage"

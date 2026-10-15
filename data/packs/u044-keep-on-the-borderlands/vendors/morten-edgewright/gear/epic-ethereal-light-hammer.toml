@@ -1,0 +1,59 @@
+name = "Epic Ethereal Light Hammer"
+accepts_sentience = true
+description = """
+A subtle mist surrounds this weapon. It is likely quite useful against certain
+Undead foes that other weapons have a hard time connecting with."""
+drop_location = "Morten Edgewright, Turn in 1 Epic Ethereal Ingot"
+enhancement_bonus = 6
+icon = "LightHammer_1i"
+item_category = "Weapon"
+item_type = "Light Hammer"
+material = "Adamantine"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impactful 4"
+
+[[effect]]
+name = "Ghostbane 4"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Weaken Undead"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Morten Edgewright"
+
+[[source.price]]
+ingredient = "Epic Ethereal Ingot"
+quantity = 1
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Light Hammer"

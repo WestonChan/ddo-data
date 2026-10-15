@@ -1,0 +1,39 @@
+name = "Outpost Sniper's Belt"
+description = """
+The weights secured in the pockets of this Dwarven belt are meant to level the
+trejectory[sic] of any projectile launched by its user."""
+drop_location = "Records of the Past, End Chest"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 15
+slot = "Waist"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Speed"
+value = 25
+value2 = 11
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Records of the Past"

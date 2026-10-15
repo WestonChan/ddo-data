@@ -1,0 +1,154 @@
+name = "Intricate Field Optics (Level 25)"
+description = """
+These field optics are of too precise a workmanship for the ancient giants to
+have created them. They must have been assembled by elven artisans in the presence
+of a giant master."""
+drop_location = "Return to Gianthold Tor, White Dragon 's chest (Epic Elite)"
+icon = "Goggles_5b"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 25
+slot = "Goggles"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "crafting: variant ability"
+
+[[socket.option]]
+name = "Charisma +8"
+description = "Charisma +8: This item makes the wearer have more flair, granting a +8 enhancement bonus to Charisma."
+icon = "Variant"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket.option]]
+name = "Insightful Charisma +3"
+description = "+3 Insight bonus to Charisma"
+icon = "Variant"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket.option]]
+name = "Intelligence +8"
+description = "Intelligence +8: This item focuses the power of the wearer's mind, granting a +8 enhancement bonus to Intelligence."
+icon = "Variant"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Insightful Intelligence +3"
+description = "+3 Insight bonus to Intelligence"
+icon = "Variant"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Wisdom +8"
+description = "Wisdom +8: This item makes the wearer more in tune with her surroundings, granting a +8 enhancement bonus to Wisdom."
+icon = "Variant"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Insightful Wisdom +3"
+description = "+3 Insight bonus to Wisdom"
+icon = "Variant"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "white dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

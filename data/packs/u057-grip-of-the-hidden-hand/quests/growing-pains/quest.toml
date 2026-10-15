@@ -1,0 +1,29 @@
+name = "Growing Pains"
+bestowed_by = "Teo Gandrin"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Grip of the Hidden Hand"
+patron = "Morgrave University"
+zone = "Overgrown Farmland"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Growing_Pains"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

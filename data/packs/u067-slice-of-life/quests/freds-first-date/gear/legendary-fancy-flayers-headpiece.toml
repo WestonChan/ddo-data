@@ -1,0 +1,40 @@
+name = "Legendary Fancy Flayer's Headpiece"
+description = "You can't just devour intelligence, you have to look smart as well!"
+drop_location = "Fred's First Date, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 32
+slot = "Head"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fred's First Date"

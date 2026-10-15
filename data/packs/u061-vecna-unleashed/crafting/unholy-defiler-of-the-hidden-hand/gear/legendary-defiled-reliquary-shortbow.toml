@@ -1,0 +1,60 @@
+name = "Legendary Defiled Reliquary Shortbow"
+accepts_sentience = true
+description = "The shine of this weapon is gone; there is now only malice within it."
+drop_location = "Unholy Defiler of the Hidden Hand, defiled version of Legendary Shining Reliquary Shortbow"
+enhancement_bonus = 15
+icon = "Shortbow_1k"
+item_category = "Weapon"
+item_type = "Shortbow"
+material = "Steel"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Unholy 6"
+
+[[effect]]
+name = "Penalty Good"
+
+[[effect]]
+name = "Evil Blast 6"
+
+[[effect]]
+name = "Legendary Vile Grip of the Hidden Hand"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Unholy Defiler of the Hidden Hand"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 5.4
+handedness = "Two-handed"
+weapon_type = "Shortbow"

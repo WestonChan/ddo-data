@@ -1,0 +1,42 @@
+name = "Bow of the Elements (Ice)"
+description = "A longbow containing a bound water elemental."
+drop_location = "Ghosts of Perdition, End chest"
+enhancement_bonus = 5
+icon = "Longbow_1v"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Icy Burst"
+
+[[effect]]
+name = "Feat - Precise Shot"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ghosts of Perdition"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Longbow"

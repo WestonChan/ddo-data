@@ -1,0 +1,105 @@
+name = "Bracers of Wind (level 7)"
+description = """
+Bracers empowered by a bound Air Elemental. They surround you with a windy aura
+that deflects missiles occasionally, makes you harder to hit, and boosts the
+power of your electric spells."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Bracers_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Wrists"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 69
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Magnetism +74 and Lightning Lore +11%"
+description = """
+Magnetism +74: Passive: +74 Equipment bonus to Electricity Spell Power.
+Lightning Lore +11: Passive: Your Electricity spells gain a 11% Equipment bonus to their chance to critical hit."""
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 74
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 11
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [74]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Magnetism +79 and Lightning Lore +12% and a Green Augment Slot"
+description = """
+Magnetism +79: Passive: +79 Equipment bonus to Electricity Spell Power.
+Lightning Lore +12: Passive: Your Electricity spells gain a 12% Equipment bonus to their chance to critical hit.
+Adds a Green augment slot"""
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 79
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 12
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [79]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

@@ -1,0 +1,63 @@
+name = "Legendary Rune Arm of Nature's Wrath"
+description = """
+These branches, found within the Tangled Trees, still remember Venom's fall
+and seek their revenge."""
+drop_location = "Ettercap Incursion, end chest (rare)"
+icon = "RuneArm_3e"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Wood"
+minimum_level = 33
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Insight"
+value = 76
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Equipment"
+value = 30
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Bee Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ettercap Incursion"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

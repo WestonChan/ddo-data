@@ -1,0 +1,10 @@
+name = "Sneak Attack Bonus"
+description_template = "Provides a {1} %b1 modifier to your attack bonus and a {2} %b1 bonus to damage for any attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Sneak Attack Bonus +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Sneak Attack"

@@ -1,0 +1,3 @@
+name = "Jet Propulsion"
+description_template = "Use this item to activate the air elemental bound within, thus propelling you forward at great speeds. It takes ten minutes to recharge between uses."
+verbose_name_template = "Jet Propulsion"

@@ -1,0 +1,25 @@
+name = "Greater Cold Resistance"
+adds_augment = "Accessory Subjugation"
+description = """
+Greater Cold Resistance: This property absorbs the first 30 points of Cold damage
+per attack that the wearer would normally take.
+Water:Opposition:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Equipment"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Equipment"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: accessory invasion"

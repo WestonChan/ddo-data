@@ -1,0 +1,56 @@
+name = "Epic Stonemeld Plate Armor"
+description = """
+A large earth elemental is bound into this armor and crystalline structures
+appear on various areas of its surface."""
+drop_location = "Epic version of Stonemeld Plate Armor"
+enhancement_bonus = 6
+icon = "HeavyArmor_1f"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[clickie]]
+name = "Stoneskin"
+clickie = "Stoneskin"
+
+[[effect]]
+name = "Earthgrab Guard"
+
+[[effect]]
+name = "DR 15/-"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 8
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Stoneskin"]
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

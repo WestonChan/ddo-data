@@ -1,0 +1,50 @@
+name = "Lunar Gem of Charisma (Legendary)"
+description = """
++4 Profane Bonus to Charisma
+Drops in: Death Hosts This Banquet, end chest
+Rats in a Cage, end chest
+The Wizard's Labyrinth, end chest
+Beneath the City Streets, Dead Man's Wrath's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "dead man's wrath's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Death Hosts This Banquet"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rats in a Cage"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wizard's Labyrinth"

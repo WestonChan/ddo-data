@@ -1,0 +1,43 @@
+name = "Lunar Gem of Dexterity (Legendary)"
+description = """
++4 Profane Bonus to Dexterity
+Drops in: Voices of the Dead, end chest
+The Knife's Edge, end chest
+Locked Away (Part Two), end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part Two)"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Knife's Edge"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

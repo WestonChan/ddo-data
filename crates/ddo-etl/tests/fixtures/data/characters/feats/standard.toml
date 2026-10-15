@@ -1,0 +1,833 @@
+[[row]]
+name = "Adamantine Body"
+acquire = "Train"
+description = """
+Docents you equip provide armor equivalent to Full Plate. This is treated
+as metallic heavy armor. You have damage reduction 2/Adamantine, a 35% arcane
+spell failure chance, -5 armor check penalty to certain skills and a +1 maximum
+dexterity bonus."""
+icon = "WarforgedFeat"
+
+[[row.effect]]
+bonus_type = "Armor"
+effect = "Armor Class"
+value = 8
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Arcane Spell Failure"
+value = 35
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Armor Check Penalty"
+value = -5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Max Dex Bonus (Armor)"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Illusion Save"
+value = 2
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Armor"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+    2,
+    3,
+    4,
+    5,
+]
+bonus_type = "Feat"
+display_name = "Adamantine Body Damage Reduction"
+effect_type = "DR"
+extra_types = [
+    "DR",
+    "DR",
+    "DR",
+]
+targets = ["Adamantine"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Feat"
+effect = "Arcane Spell Failure"
+effect_type = "ArcaneSpellFailure"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-5]
+bonus_type = "Feat"
+effect = "Armor Check Penalty"
+effect_type = "ArmorCheckPenalty"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Max Dex Bonus (Armor)"
+effect_type = "MaxDexBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Illusion Save"
+effect_type = "SaveBonus"
+targets = ["Illusion"]
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Warforged"]
+req_type = "Race"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Druidic Oath"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Mithral Body"]
+req_type = "Feat"
+
+[[row]]
+name = "Adept of Forms"
+acquire = "Train"
+description = """
+You continue on the path to enlightenment, improving your elemental
+stances and learning new elemental strikes."""
+icon = "AdeptOfForms"
+
+[[row.effect]]
+effect = "Melee and Ranged Attack Speed (Melee, Thrown)"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    2,
+    3,
+    4,
+]
+bonus_type = "Feat"
+display_name = "Mountain Stance: Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -2,
+    -2,
+    -2,
+]
+bonus_type = "Feat"
+display_name = "Mountain Stance: Dexterity Penalty"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+]
+bonus_type = "Feat"
+display_name = "Mountain Stance: AC Bonus"
+effect_type = "ACPercent"
+
+[[row.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    8,
+    12,
+    15,
+]
+bonus_type = "Feat"
+display_name = "Mountain Stance: PRR"
+effect_type = "PRR"
+
+[[row.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    40,
+    55,
+    70,
+]
+bonus_type = "Feat"
+display_name = "Mountain Stance: Threat Bonus"
+effect_type = "ThreatBonusMelee"
+
+[[row.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -10,
+    -10,
+    -10,
+    -10,
+]
+bonus_type = "Feat"
+display_name = "Mountain Stance: Movement Speed"
+effect_type = "MovementSpeed"
+
+[[row.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    2,
+    3,
+    4,
+]
+bonus_type = "Feat"
+display_name = "Ocean Stance: Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+    12,
+]
+bonus_type = "Feat"
+display_name = "Ocean Stance: Dodge"
+effect_type = "DodgeBonus"
+
+[[row.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    8,
+]
+bonus_type = "Feat"
+display_name = "Ocean Stance: Dodge Cap"
+effect_type = "DodgeCapBonus"
+
+[[row.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    3,
+    4,
+    5,
+]
+bonus_type = "Feat"
+display_name = "Ocean Stance: Saves"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -2,
+    -2,
+    -2,
+]
+bonus_type = "Feat"
+display_name = "Ocean Stance: Strength Penalty"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+bonus_type = "Feat"
+display_name = "Ocean Stance: Passive Ki"
+effect_type = "KiPassive"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    2,
+    3,
+    4,
+]
+bonus_type = "Feat"
+display_name = "Sun Stance: Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["Sun Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -2,
+    -2,
+    -2,
+]
+bonus_type = "Feat"
+display_name = "Sun Stance: Wisdom Penalty"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["Sun Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+bonus_type = "Feat"
+display_name = "Sun Stance: Critical Multiplier"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Sun Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    2,
+    3,
+    4,
+]
+bonus_type = "Feat"
+display_name = "Wind Stance: Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier.requirement]]
+items = ["Wind Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -2,
+    -2,
+    -2,
+]
+bonus_type = "Feat"
+display_name = "Wind Stance: Constitution Penalty"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["Wind Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    7.5,
+    10,
+    12.5,
+    15,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Wind Stance: Attack Speed"
+effect = "Melee and Ranged Attack Speed (Melee, Thrown)"
+effect_type = "WeaponAlacrityClass"
+targets = [
+    "Melee",
+    "Thrown",
+]
+
+[[row.modifier.requirement]]
+items = ["Wind Stance"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+    12,
+]
+bonus_type = "Feat"
+display_name = "Wind Stance: Doublestrike"
+effect_type = "Doublestrike"
+
+[[row.modifier.requirement]]
+items = ["Wind Stance"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[row.requirement]]
+req_type = "Level"
+value = 6
+
+[[row.sub_item]]
+name = "Adept of Flame"
+description = """
+Sun Stance now grants +2 Strength at a cost of -2 Wisdom.
+While in Sun Stance you gain 'Hit Effect: Gain 1 Ki.' and 'Critical Effect: Gain 3 Ki.'"""
+icon = "AdeptOfFlame"
+
+[[row.sub_item]]
+name = "Adept of Rain"
+description = """
+Ocean Stance now grants +2 Wisdom, +6% dodge, +4 Maximum Dodge,
+and +3 to all Saving Throws at a cost of -2 Strength."""
+icon = "AdeptOfRain"
+
+[[row.sub_item]]
+name = "Adept of Rock"
+description = """
+Mountain Stance now grants +2 Constitution, a 10% boost to AC,
+8 physical resistance and a +40% Insight bonus to melee threat generation,
+at the cost of -2 Dexterity and -10% movement speed.
+While in Mountain Stance, you gain 'Get Hit Effect: Gain 1 Ki.'"""
+icon = "AdeptOfRock"
+
+[[row.sub_item]]
+name = "Adept of Wind"
+description = """
+Wind Stance now grants +2 Dexterity, a 10% Enhancement bonus to melee
+and thrown attack speed and grants a 6% chance to doublestrike with melee weapons,
+at the cost of -2 Constitution."""
+icon = "AdeptOfWind"
+
+[[row]]
+name = "Cleave"
+acquire = "Train"
+description = """
+Deals: +20% damage.
++1 Critical Threat Range
++1 Critical Multiplier
+Tactical Melee Cleave: Activate this ability to attack one or more enemies in
+an arc in front of you.
+Cooldown: 5 seconds"""
+icon = "Cleave"
+
+[[row.attack]]
+name = "Cleave"
+cooldown_seconds = 5
+description = """
+This attack deals +20% damage.
++1 Critical Threat Range
++1 Critical Multiplier"""
+icon = "Cleave"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+effect_type = "BonusDamagePercent"
+phase = "this_attack"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+effect_type = "BonusThreatRange"
+phase = "this_attack"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+effect_type = "BonusCriticalMultiplier"
+phase = "this_attack"
+
+[[row.requirement]]
+items = ["Power Attack"]
+req_type = "Feat"
+
+[[row]]
+name = "Heavy Armor Proficiency"
+acquire = "Train"
+description = """
+You are proficient with heavy armor and do not suffer armor penalties
+to your attack rolls when wearing heavy armor. You also gain 2 times your BAB
+in physical resistance when wearing heavy armor."""
+icon = "HeavyArmorProficiency"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+items = ["Medium Armor Proficiency"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Feint"
+acquire = "Train"
+description = """
+Tactical Melee Attack: A melee attack which also Bluffs enemies, enabling sneak
+attacks for a short period of time. This attack deals +20% damage."""
+icon = "ImprovedFeint"
+
+[[row.attack]]
+name = "Improved Feint"
+cooldown_seconds = 6
+description = """
+Tactical Melee Attack: A melee attack which also Bluffs enemies, enabling sneak
+attacks for a short period of time. This attack deals +20% damage."""
+duration_seconds = 4
+icon = "ImprovedFeint"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+effect_type = "AllowSneakAttack"
+phase = "follow_on"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+effect_type = "BonusDamagePercent"
+phase = "this_attack"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Rogue"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Sneak Attack"]
+req_type = "Feat"
+
+[[row]]
+name = "Light Armor Proficiency"
+acquire = "Train"
+description = "You are proficient with light armor and do not suffer armor penalties\nto your attack rolls when wearing light armor. You also gain you BAB in \nphysical resistance when wearing light armor."
+icon = "LightArmorProficiency"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row]]
+name = "Martial Weapon Proficiency: Battle Axe"
+acquire = "Train"
+description = "You do not suffer a -4 penalty on attack rolls when using a Battle Axe."
+icon = "MartialWeaponProficiency"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Battle Axe",
+]
+
+[[row]]
+name = "Past Life: Soldier of the Faith"
+acquire = "Train"
+description = """
+You recall more about your past life as a Paladin.
+You have +2 to your Heal skill and can invoke Divine Favor upon yourself three
+times per rest. (Activate this Paladin ability to call upon the strength and
+wisdom of a deity to grant a +1 luck bonus on weapon attack and damage.
+This bonus is increased by +1 for every 3 caster levels beyond level 3, to a
+maximum of +3 at caster level 9.)"""
+icon = "PastLifePaladin"
+source_name = "Paladin"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Heal"
+value = 2
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Heal"
+effect_type = "SkillBonus"
+targets = ["Heal"]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Divine Favor",
+    "Paladin",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 3
+
+[[row.requirement]]
+items = ["Past Life: Paladin"]
+req_type = "Feat"
+
+[[row]]
+name = "Power Attack"
+acquire = "Train"
+description = """
+Reduces your hit bonus by 5, or your Base Attack Bonus, whichever is lower.
+Then your successful attacks will have their damage increased by the same amount.
+Two-handed weapons get twice that damage bonus."""
+icon = "PowerAttack"
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-5]
+bonus_type = "Feat"
+effect_type = "WeaponAttackBonusClass"
+extra_types = ["WeaponAttackBonusCriticalClass"]
+targets = ["Melee"]
+
+[[row.modifier.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["One Handed"]
+
+[[row.modifier.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Two Handed"]
+
+[[row.modifier.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Strength"]
+req_type = "Ability"
+value = 13
+
+[[row.stance]]
+name = "Power Attack"
+description = """
+Reduces your hit bonus by 5, or your Base Attack Bonus, whichever is lower.
+Then your successful attacks will have their damage increased by the same amount.
+Two-handed weapons get twice that damage bonus."""
+icon = "PowerAttack"
+incompatible = [
+    "Defensive Fighting",
+    "Combat Expertise",
+    "Resilience",
+    "Precision",
+]
+
+[[row]]
+name = "Toughness"
+acquire = "Train"
+description = """
+Increases your hit points by +3 at first level and 1 additional hit
+point for each additional level."""
+icon = "Toughness"
+max_times_acquire = 99
+
+[[row.group]]
+group_name = "Standard"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+]
+bonus_type = "Feat"
+effect_type = "Hitpoints"

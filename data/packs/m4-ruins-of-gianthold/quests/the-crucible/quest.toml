@@ -1,0 +1,25 @@
+name = "The Crucible"
+bestowed_by = "Walk-up"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "The Crucible"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Crucible"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 24

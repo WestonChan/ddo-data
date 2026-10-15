@@ -1,0 +1,3 @@
+name = "Spell Singer"
+description_template = "This item in one of two pieces of the Spell Singer set. When both items are equipped you gain two additional bard songs after resting."
+verbose_name_template = "Spell Singer"

@@ -1,0 +1,37 @@
+name = "Legendary Defender's Masque"
+drop_location = "The Curse and the Captive Crustacean, end chest"
+icon = "Helmet_17"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 31
+slot = "Head"
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 149
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Curse and the Captive Crustacean"

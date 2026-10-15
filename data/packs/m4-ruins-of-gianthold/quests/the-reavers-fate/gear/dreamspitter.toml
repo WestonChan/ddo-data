@@ -1,0 +1,135 @@
+name = "Dreamspitter"
+description = """
+This is a truly ancient relic of the giant wars against Dal Quor. The dream-monsters
+were best fought with weapons that struck down the spirit, rather than the
+flesh."""
+drop_location = "The Reaver's Fate, Raid Warded chest"
+enhancement_bonus = 5
+icon = "Quarterstaff_7b"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Crystal"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Greater Evil Outsider Bane"
+
+[[effect]]
+name = "Life Stealing"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[socket]]
+slot = "crafting: suppressed power"
+
+[[socket.option]]
+name = "Adds Holy"
+description = """
+Holy: A holy weapon is imbued with holy power. This power makes the weapon
+good-aligned. Evil characters wielding this weapon suffer a negative level.
+The weapon deals an extra 2 to 12 damage against all targets of evil alignment."""
+icon = "Upgrade"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Good"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Evil"]
+req_type = "EnemyType"
+
+[[socket.option.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "DRBypass"
+value = "Good"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Evil"]
+req_type = "AlignmentType"
+
+[[socket]]
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[socket.option]]
+name = "Adds Force Burst"
+description = """
+Force Burst: This weapon is humming with magical force, and does 1 to 6 force
+damage each hit. Critical hits deal an additional 1 to 10 force damage for
+weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30
+for a x4 multiplier."""
+icon = "Stormreaver"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Force"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Force"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

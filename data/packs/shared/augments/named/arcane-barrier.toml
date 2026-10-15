@@ -1,0 +1,32 @@
+name = "Arcane Barrier"
+description = """
+3-Piece Set Bonus: +30 Magical Resistance Rating Cap
+Requires: 50 Threads of Fate, Empty Soul Vessel and Mantle of Escher
+(The Curse of Strahd)"""
+effect_description = "This augment will suppress any set bonus this item may have."
+family = "Named"
+icon = "ColorlessRaidItemEssence"
+min_level = 30
+set_bonus = "Arcane Barrier"
+suppress_set_bonus = true
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

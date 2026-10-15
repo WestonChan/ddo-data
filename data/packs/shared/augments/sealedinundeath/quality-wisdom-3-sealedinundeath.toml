@@ -1,0 +1,27 @@
+name = "Quality Wisdom +3"
+variant = "sealedinundeath"
+description = """
+Quality Wisdom +3: This item makes the wearer more in tune with her surroundings, granting
+a +3 Quality bonus to Wisdom."""
+family = "SealedInUndeath"
+icon = "Wisdom"
+min_level = 32
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: sealed in undeath"
+
+[[slot]]
+slot = "crafting: sealed in gloom"

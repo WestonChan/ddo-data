@@ -1,0 +1,26 @@
+name = "Test Gem of Oozing Resistance"
+description = "Test description: a gem that drips."
+effect_description = "Test effect description: the wearer resists ooze."
+family = "Named"
+min_level = 29
+set_bonus = "Eminence of Winter"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Test_Gem_of_Oozing_Resistance"
+read = "2026-10-01"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 5
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "colorless"

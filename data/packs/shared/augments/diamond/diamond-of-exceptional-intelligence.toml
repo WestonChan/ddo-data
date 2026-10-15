@@ -1,0 +1,41 @@
+name = "Diamond of Exceptional Intelligence"
+choose_level = true
+description = "Exceptional bonus to Intelligence"
+family = "Diamond"
+icon = "Diamond"
+level_values = [1]
+levels = [20]
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

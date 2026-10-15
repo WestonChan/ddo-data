@@ -1,0 +1,45 @@
+name = "University Spellshield's Outfit"
+description = "This sleeveless shirt offers strong protection from the arcane."
+drop_location = "What Dreams May Come, End chest"
+enhancement_bonus = 5
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 18
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 104
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Dreams May Come"

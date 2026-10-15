@@ -1,0 +1,51 @@
+name = "Legendary Ironweave Robe"
+description = "An incredibly rare magical robe forged by the dwarves of the Toldorath clan."
+drop_location = "Legendary version of Epic Ironweave Robe"
+enhancement_bonus = 15
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Greater Spark"
+clickie = "Greater Spark"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 291
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Spark"]
+
+[[socket]]
+slot = "blue"

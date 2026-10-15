@@ -1,0 +1,885 @@
+{
+  "$defs": {
+    "Armor": {
+      "additionalProperties": false,
+      "properties": {
+        "adamantine_body": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "arcane_spell_failure": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "armor_bonus": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "armor_check_penalty": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "armor_type": {
+          "type": "string"
+        },
+        "damage_reduction": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "max_dex_bonus": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "mithral_body": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "shield_bonus": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "armor_type"
+      ],
+      "type": "object",
+      "x-table": "item_armor_stats"
+    },
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "citations"
+    },
+    "EntityNote": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "entity_notes"
+    },
+    "FileNumber": {
+      "anyOf": [
+        {
+          "format": "int64",
+          "type": "integer"
+        },
+        {
+          "format": "double",
+          "type": "number"
+        }
+      ]
+    },
+    "ItemCategoryFile": {
+      "enum": [
+        "Armor",
+        "Shield",
+        "Weapon",
+        "Jewelry",
+        "Clothing"
+      ],
+      "type": "string"
+    },
+    "ItemClickie": {
+      "additionalProperties": false,
+      "properties": {
+        "clickie": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "clickies"
+        },
+        "name": {
+          "type": "string"
+        },
+        "spell": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "spells"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "x-table": "item_clickies"
+    },
+    "ItemDrBypass": {
+      "additionalProperties": false,
+      "properties": {
+        "bypass": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "bypass"
+      ],
+      "type": "object",
+      "x-table": "item_dr_bypass"
+    },
+    "ItemEffect": {
+      "additionalProperties": false,
+      "properties": {
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "name": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "value2": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "x-table": "item_effects"
+    },
+    "ItemSource": {
+      "additionalProperties": false,
+      "properties": {
+        "chest": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "is_rare": {
+          "type": "boolean"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "loot_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "price": {
+          "items": {
+            "$ref": "#/$defs/VendorPrice"
+          },
+          "type": "array"
+        },
+        "tier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "name"
+      ],
+      "type": "object",
+      "x-source-reference": true
+    },
+    "Modifier": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "amounts": {
+          "items": {
+            "$ref": "#/$defs/FileNumber"
+          },
+          "type": "array"
+        },
+        "apply_as_item_effect": {
+          "type": "boolean"
+        },
+        "bonus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "cap": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_bonus": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_number": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_sides": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "effects"
+        },
+        "effect_type": {
+          "type": "string"
+        },
+        "extra_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_item_specific": {
+          "type": "boolean"
+        },
+        "is_rare": {
+          "type": "boolean"
+        },
+        "percent": {
+          "type": "boolean"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rank": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        },
+        "stack_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "targets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect_type"
+      ],
+      "type": "object",
+      "x-table": "modifiers"
+    },
+    "RemovedEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "name",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "removed_entities"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "req_type": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "req_type"
+      ],
+      "type": "object",
+      "x-table": "requirements"
+    },
+    "RequirementGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "Socket": {
+      "additionalProperties": false,
+      "properties": {
+        "option": {
+          "items": {
+            "$ref": "#/$defs/SocketOption"
+          },
+          "type": "array"
+        },
+        "slot": {
+          "type": "string",
+          "x-reference-kind": "augment_slot_types"
+        }
+      },
+      "required": [
+        "slot"
+      ],
+      "type": "object",
+      "x-table": "item_augment_slots"
+    },
+    "SocketGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "slot": {
+          "type": "string",
+          "x-reference-kind": "augment_slot_types"
+        }
+      },
+      "required": [
+        "slot"
+      ],
+      "type": "object",
+      "x-table": "item_augment_slot_option_grants"
+    },
+    "SocketOption": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "items": {
+            "$ref": "#/$defs/SocketOptionEffect"
+          },
+          "type": "array"
+        },
+        "grant": {
+          "items": {
+            "$ref": "#/$defs/SocketGrant"
+          },
+          "type": "array"
+        },
+        "icon": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-image-kind": ""
+        },
+        "min_level": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "modifier": {
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "set": {
+          "items": {
+            "$ref": "#/$defs/SocketSet"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "x-table": "item_augment_slot_options"
+    },
+    "SocketOptionEffect": {
+      "additionalProperties": false,
+      "properties": {
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "effect": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        },
+        "value": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "effect",
+        "value"
+      ],
+      "type": "object",
+      "x-table": "item_augment_slot_option_effects"
+    },
+    "SocketSet": {
+      "additionalProperties": false,
+      "properties": {
+        "set": {
+          "type": "string",
+          "x-reference-kind": "set_bonuses"
+        }
+      },
+      "required": [
+        "set"
+      ],
+      "type": "object",
+      "x-table": "item_augment_slot_option_sets"
+    },
+    "VendorPrice": {
+      "additionalProperties": false,
+      "properties": {
+        "ingredient": {
+          "type": "string",
+          "x-reference-kind": "vendor_currencies|crafting_ingredients"
+        },
+        "quantity": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "ingredient",
+        "quantity"
+      ],
+      "type": "object"
+    },
+    "Weapon": {
+      "additionalProperties": false,
+      "properties": {
+        "attack_modifier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "base_dice_bonus": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "base_dice_count": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "base_dice_sides": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "critical_multiplier": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "critical_threat_range": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "damage_modifier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "damage_multiplier": {
+          "format": "double",
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "handedness": {
+          "type": "string"
+        },
+        "weapon_type": {
+          "type": "string",
+          "x-reference-kind": "weapon_types"
+        }
+      },
+      "required": [
+        "handedness",
+        "weapon_type"
+      ],
+      "type": "object",
+      "x-table": "item_weapon_stats"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepts_sentience": {
+      "type": "boolean"
+    },
+    "armor": {
+      "items": {
+        "$ref": "#/$defs/Armor"
+      },
+      "type": "array"
+    },
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "clickie": {
+      "items": {
+        "$ref": "#/$defs/ItemClickie"
+      },
+      "type": "array"
+    },
+    "description": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dr_bypass": {
+      "items": {
+        "$ref": "#/$defs/ItemDrBypass"
+      },
+      "type": "array"
+    },
+    "drop_location": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "effect": {
+      "items": {
+        "$ref": "#/$defs/ItemEffect"
+      },
+      "type": "array"
+    },
+    "enhancement_bonus": {
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-image-kind": ""
+    },
+    "is_legacy": {
+      "type": "boolean"
+    },
+    "is_minor_artifact": {
+      "type": "boolean"
+    },
+    "item_category": {
+      "$ref": "#/$defs/ItemCategoryFile"
+    },
+    "item_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "material": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-reference-kind": "item_materials"
+    },
+    "minimum_level": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "modifier": {
+      "items": {
+        "$ref": "#/$defs/Modifier"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "note": {
+      "items": {
+        "$ref": "#/$defs/EntityNote"
+      },
+      "type": "array"
+    },
+    "race_required": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "removed": {
+      "items": {
+        "$ref": "#/$defs/RemovedEntry"
+      },
+      "type": "array"
+    },
+    "slot": {
+      "type": "string",
+      "x-reference-kind": "equipment_slots"
+    },
+    "socket": {
+      "items": {
+        "$ref": "#/$defs/Socket"
+      },
+      "type": "array"
+    },
+    "source": {
+      "items": {
+        "$ref": "#/$defs/ItemSource"
+      },
+      "type": "array"
+    },
+    "weapon": {
+      "items": {
+        "$ref": "#/$defs/Weapon"
+      },
+      "type": "array"
+    },
+    "wiki_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "item_category",
+    "minimum_level",
+    "slot"
+  ],
+  "title": "ItemFile",
+  "type": "object",
+  "x-table": "items"
+}

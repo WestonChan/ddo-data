@@ -1,0 +1,36 @@
+name = "Pendant of Crippling Strikes"
+description = "This intricate necklace depicts Elven blades in miniature."
+drop_location = "Portal to Below, end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Neck"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Kick 'Em While They're Down"
+
+[[effect]]
+name = "Crippling"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Portal to Below"

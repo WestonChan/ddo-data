@@ -1,0 +1,81 @@
+name = "Heal"
+choose_level = true
+description = "Competence bonus to Heal"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    15,
+    16,
+    16,
+    16,
+    17,
+    17,
+    17,
+    18,
+    18,
+    18,
+    18,
+    19,
+    19,
+    19,
+    19,
+    20,
+    20,
+    20,
+    21,
+    21,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+]
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 22
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Competence"
+effect = "Heal"
+effect_type = "SkillBonus"
+targets = ["Heal"]
+
+[[slot]]
+slot = "crafting: cannith gloves suffix"
+
+[[slot]]
+slot = "crafting: cannith necklace prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random gloves suffix"
+
+[[slot]]
+slot = "crafting: random necklace prefix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

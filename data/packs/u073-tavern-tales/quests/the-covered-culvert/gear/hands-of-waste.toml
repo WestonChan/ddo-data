@@ -1,0 +1,40 @@
+name = "Hands of Waste"
+drop_location = "The Covered Culvert, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 4
+slot = "Hands"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 56
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 28
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"

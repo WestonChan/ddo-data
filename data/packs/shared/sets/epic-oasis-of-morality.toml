@@ -1,0 +1,64 @@
+name = "Epic Oasis of Morality"
+icon = "Menechtarun"
+
+[[item]]
+name = "Epic Adherent's Pendant"
+
+[[item]]
+name = "Epic Bejeweled Letter Opener"
+
+[[item]]
+name = "Epic Chainmail Coif"
+
+[[item]]
+name = "Epic Coronation Shield"
+
+[[item]]
+name = "Epic Shining Crest of St. Markus"
+
+[[item]]
+name = "Epic Vambraces of Inner Light"
+
+[[item]]
+name = "Epic Ward of Undeath"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "SpellLore"
+targets = ["Positive"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"

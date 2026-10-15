@@ -1,0 +1,66 @@
+name = "Connor's Pendant"
+description = """
+Connor, the Deep Wood Sniper, possessed this simple cord and wood necklace.
+It is said to be enchanted by a spirit of the same forest Connor called home."""
+drop_location = "A New Invasion, Any chest ; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Deepwood Sniper"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+    5,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Deepwood Sniper - 2 Piece bonus"
+effect_type = "WeaponAlacrityClass"
+targets = ["Ranged"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Deepwood Sniper - 2 Piece bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "A New Invasion"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

@@ -1,0 +1,19 @@
+name = "Zizoo's Spangle"
+description = "A faint whispering sound surrounds this glowing purple gem."
+drop_location = "Durk's Got A Secret, Witch Doctor Zizoo 's chest"
+icon = "Trinket_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 1
+
+[[source]]
+chest = "witch doctor zizoo 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Durk's Got a Secret"

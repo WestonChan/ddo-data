@@ -1,0 +1,21 @@
+name = "A New Invasion"
+bestowed_by = "Nomti"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The Devils of Shavarath"
+patron = "The Yugoloth"
+zone = "Hall of the Third Legion"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/A_New_Invasion"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

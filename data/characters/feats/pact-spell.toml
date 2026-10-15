@@ -1,0 +1,1168 @@
+[[row]]
+name = "Pact Magic: Binding Chain"
+acquire = "Train"
+description = "Spell info here"
+icon = "BindingChain"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    33,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Binding Chain",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fiend"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 14
+
+[[row]]
+name = "Pact Magic: Blindness"
+acquire = "Train"
+description = "Renders an enemy blinded. A successful Fortitude save negates this effect."
+icon = "Blindness"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    10,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Blindness",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fey"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Pact Magic: Creeping Cold"
+acquire = "Train"
+icon = "SleetStorm"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    6,
+    18,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Creeping Cold",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Carceri Storm"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 9
+
+[[row]]
+name = "Pact Magic: Death Aura"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "DeathAura"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    25,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Death Aura",
+    "Warlock",
+]
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Pact: The Abyss"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Pact: The Dark Powers"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 14
+
+[[row]]
+name = "Pact Magic: Dominate Person"
+acquire = "Train"
+description = """
+You can control the actions of any humanoid creature that fails
+its Will save through a telepathic link that you establish with the subjects
+mind. Dominate acts like Charm Person, with additional Will saves every 15 to
+30 seconds, but the creature will follow you throughout the dungeon."""
+icon = "DominatePerson"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    40,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Dominate Person",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Great Old One"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 14
+
+[[row]]
+name = "Pact Magic: Dust to Dust"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "DustToDust"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    20,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Dust to Dust",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Dark Powers"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 17
+
+[[row]]
+name = "Pact Magic: Fire Shield"
+acquire = "Train"
+description = """
+Wreaths the caster in hot or cold flames. Any creature striking
+you in melee takes 1d3+3 plus 1 per caster level (Maximum caster
+level 15.) damage. The Fire version of this spell deals fire
+damage and reduces damage the caster takes from cold by half.
+The cold version of this spell deals cold damage and reduces
+damage the caster takes from fire by half. The flame from the
+fire version will burn away any webs that attempt to entangle
+you."""
+icon = "FireShield"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    25,
+    15,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Fire Shield",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fiend"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 9
+
+[[row]]
+name = "Pact Magic: Freedom of Movement"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "FreedomOfMovement"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    25,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Freedom of Movement",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Celestial"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 19
+
+[[row]]
+name = "Pact Magic: Greater Creeping Cold"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "GreaterCreepingCold"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    20,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Greater Creeping Cold",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Carceri Storm"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 19
+
+[[row]]
+name = "Pact Magic: Greater Death Aura"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "GreaterDeathAura"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    20,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Greater Death Aura",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Dark Powers"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 19
+
+[[row]]
+name = "Pact Magic: Greater Dispel Magic"
+acquire = "Train"
+description = "Removes ongoing spells that have been cast on a target. You must\nmake a caster level check of 1d20+your caster level (Maximum caster level 20.)\nof DC 11+spell's caster level to remove an effect. In addition, this spell can\nbe used to sever the connection between a summoner and his or her summoned\nmonster, causing the summoned creature to attack unpredictably, possibly turning\non its summoner. \nIf cast on a spell ward trap, this spell will reduce the level of the trap by 1d4 levels.\nIf the level of the trap is reduced to 0, the trap is disabled."
+icon = "GreaterDispelMagic"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    30,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Greater Dispel Magic",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fey"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 14
+
+[[row]]
+name = "Pact Magic: Gust of Wind"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "GustOfWind"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [
+    2,
+    5,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Gust of Wind",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Carceri Storm"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Pact Magic: Halt Undead"
+acquire = "Train"
+icon = "HaltUndead"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    20,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Halt Undead",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Abyss"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 9
+
+[[row]]
+name = "Pact Magic: Holy Aura"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "HolyAura"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    45,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Holy Aura",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Celestial"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 17
+
+[[row]]
+name = "Pact Magic: Howl of Terror"
+acquire = "Train"
+description = """
+You utter a terrifying howl, filling your foes with a paralyzing fear.
+Foes around you are paralyzed for 6 to 24 seconds. Will save negates."""
+icon = "HowlOfTerror"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    30,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Howl of Terror",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fiend"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 19
+
+[[row]]
+name = "Pact Magic: Ice Storm"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "IceStorm"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    25,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Ice Storm",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Carceri Storm"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 14
+
+[[row]]
+name = "Pact Magic: Knock"
+acquire = "Train"
+description = """
+Unlocks locked doors and chests as if a Rogue with a Open Lock
+skill of caster level+casting ability modifier (Charisma for Warlocks) was attempting to
+pick the lock."""
+icon = "Knock"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    15,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Knock",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Great Old One"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Pact Magic: Lesser Death Aura"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "LesserDeathAura"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [
+    2,
+    5,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Lesser Death Aura",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Dark Powers"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Pact Magic: Magic Circle against Evil"
+acquire = "Train"
+icon = "MagicCircleAgainstEvil"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    20,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Magic Circle Against Evil",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Celestial"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 9
+
+[[row]]
+name = "Pact Magic: Mass Suggestion"
+acquire = "Train"
+description = """
+Casts Suggestion on multiple enemies. The actions of affected
+enemies are influenced by you, allowing you to suggest that they fight as
+your allies for 6 seconds per caster level. A successful Will save negates
+this effect."""
+icon = "MassSuggestion"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    35,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Suggestion, Mass",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Great Old One"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 17
+
+[[row]]
+name = "Pact Magic: Niac's Biting Cold"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "NiacsBitingCold"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    20,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Niac's Biting Cold",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Carceri Storm"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 17
+
+[[row]]
+name = "Pact Magic: Otto's Irresistible Dance"
+acquire = "Train"
+description = """
+This spell makes it impossible for the enemy to do anything
+other than caper and prance in place."""
+icon = "OttosIrresistibleDance"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    45,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Otto's Irresistible Dance",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fey"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 19
+
+[[row]]
+name = "Pact Magic: Otto's Sphere of Dancing"
+acquire = "Train"
+description = """
+A magical sphere that compels all enemies who enter it to dance.
+A successful Will save negates this effect."""
+icon = "OttosSphereOfDancing"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    40,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Otto's Sphere of Dancing",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fey"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 17
+
+[[row]]
+name = "Pact Magic: Phantasmal Killer"
+acquire = "Train"
+description = """
+A target who fails a Will saving throw followed by a failed
+Fortitude saving throw dies from fear. A successful Fortitude
+save still results in 1d3 + 1 damage per caster level. A Will
+save disbelieves the spell and negates ill effects."""
+icon = "PhantasmalKiller"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    25,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Phantasmal Killer",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Great Old One"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 9
+
+[[row]]
+name = "Pact Magic: Power Word: Blind"
+acquire = "Train"
+description = """
+A single word of power is uttered, causing your target to become
+Blinded. Creatures are Blinded for at least 6+6d4 seconds and
+players are Blinded for at least 4+1d6 seconds. Creatures with
+more than 100,000 Hit Points are unaffected by Power Word: Blind."""
+icon = "PowerWordBlind"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    10,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Power Word: Blind",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fiend"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 17
+
+[[row]]
+name = "Pact Magic: Power Word: Kill"
+acquire = "Train"
+description = """
+A single word causes the death of a single enemy with no
+saving throw allowed. Cooldown timer of 210 seconds."""
+icon = "PowerWordKill"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    50,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Power Word: Kill",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Great Old One"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 19
+
+[[row]]
+name = "Pact Magic: Prayer"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "Prayer"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    20,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Prayer",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Celestial"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 14
+
+[[row]]
+name = "Pact Magic: Rage"
+acquire = "Train"
+description = """
+This area of effect spell grants to targets +2 morale bonus to
+Strength and to Constitution, +1 morale bonus on will saves and a -2 penalty to
+Armor Class. The spell's duration is 60 + 6 seconds per caster level."""
+icon = "Rage"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    20,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Rage",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fiend"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "BaseClass"
+value = 5
+
+[[row]]
+name = "Pact Magic: Ray of Exhaustion"
+acquire = "Train"
+icon = "RayOfExhaustion"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    6,
+    18,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Ray of Exhaustion",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Dark Powers"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 9
+
+[[row]]
+name = "Pact Magic: Rend the Soul"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "RendTheSoul"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Rend the Soul",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Abyss"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 19
+
+[[row]]
+name = "Pact Magic: Slow"
+acquire = "Train"
+description = """
+One target moves at 50% run speed, attacks at a 30% slowed
+rate, -1 on Attack rolls, Armor Class and Reflex saves. A successful Will save
+negates this effect."""
+icon = "Slow"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    10,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Slow",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fey"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 9
+
+[[row]]
+name = "Pact Magic: Soundburst"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "Soundburst"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    15,
+    15,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Soundburst",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Celestial"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Pact Magic: Spawn Screen"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "SpawnScreen"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    15,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Spawn Screen",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Abyss"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Pact Magic: Symbol of Pain"
+acquire = "Train"
+description = "This spell is added to your Warlock spell book."
+icon = "SymbolOfPain"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Spell"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    15,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Symbol of Pain",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: The Abyss"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 17

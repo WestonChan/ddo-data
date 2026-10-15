@@ -1,0 +1,35 @@
+name = "Shamanic Fetish (Level 14)"
+description = """
+This object is of spiritual significance to many of the solders of the Storm's
+Fist."""
+drop_location = "A Cabal for One, and Feast or Famine, end chest (Heroic Elite)"
+icon = "Trinket_51"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 14
+slot = "Trinket"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 72
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 72
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Cabal for One"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Feast or Famine"

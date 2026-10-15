@@ -1,0 +1,38 @@
+name = "+100 Spell Points, +6 Exceptional Charisma Skills"
+adds_augment = "Accessory Aspect II"
+variant = "Air:Escalation:Ethereal"
+description = """
+Wizardry VI: +100 Greater Elemental Spell Power bonus to spell points.
++6 Exceptional bonus to all Charisma based skills
+Air:Escalation:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Greater Elemental Spell Power"
+value = 100
+
+[[effect]]
+name = "Charisma Skills"
+bonus_type = "Exceptional"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Greater Elemental Spell Power"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Exceptional"
+effect = "Charisma Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: accessory devastation"

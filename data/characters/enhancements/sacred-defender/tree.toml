@@ -1,0 +1,2089 @@
+name = "Sacred Defender"
+background = "PaladinBackground"
+icon = "Paladin"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Sacred Defender: Holy Bastion"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain +1 Hit Point and 1 Positive Energy Spell Power for each action point
+you spend in this tree. Each Sacred Defender Core Ability you possess grants
++2% Fortification."""
+icon = "SDHolyBastion"
+internal_name = "SacredCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Sacred Defender: Hit point per action point"
+effect_type = "Hitpoints"
+stack_source = "Sacred Defender"
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Sacred Defender: Positive spell power per action point"
+effect_type = "SpellPower"
+stack_source = "Sacred Defender"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Sacred Defender: Sacred Defense"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Defensive Combat Stance: +10 Physical and Magical Resistance Rating.
++150% bonus to threat generation
+Cannot become raged while Sacred Defense is active.
+Note: The enhancements which require wearing Medium/Heavy Armor or Shields,
+also work for Sacred Fist as long as they are centered."""
+icon = "SDSacredDefense"
+internal_name = "SacredCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["SacredCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Sacred Defense"
+description = """
+Defensive Combat Stance: +10 Physical and Magical Resistance
++150% bonus to threat generation"""
+group_name = "Defensive Combat Stance"
+icon = "SDSacredDefense"
+
+[[enhancement]]
+name = "Sacred Defender: Divine Righteousness"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Channel Divinity: You gain temporary hit points equal your Charisma score and a
+200% Sacred bonus to threat generation for 60 seconds.
+Activation Cost: 1 use of Turn Undead. Cooldown: 6 seconds"""
+icon = "SDDivineRighteousness"
+internal_name = "SacredCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-1]
+bonus_type = "Enhancement"
+display_name = "Sacred Defender: Divine Righteousness: In game bug"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+items = ["SacredCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Sacred Defender: Redemption"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+The following spells are added to the Paladin spell list:
+Level 2: Raise Dead
+Level 3: Resurrection
+Level 4: True Resurrection
+Passive: You gain +5 to Physical and Magical Resistance Rating."""
+icon = "SDRedemption"
+internal_name = "SacredCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    30,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Raise Dead",
+    "Paladin",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    40,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Resurrection",
+    "Paladin",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    45,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "True Resurrection",
+    "Paladin",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    30,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Raise Dead",
+    "Sacred Fist",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    40,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "Resurrection",
+    "Sacred Fist",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    45,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellListAddition"
+targets = [
+    "True Resurrection",
+    "Sacred Fist",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.requirement]]
+items = ["SacredCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Sacred Defender: Glorious Stand"
+cost_per_rank = [1]
+description = """
++25 Positive Healing Amplification
++3 Lay on Hands charges
++10% Sacred Bonus to Maximum Hit Points
++5 to Physical and Magical Resistance rating"""
+icon = "SDGloriousStand"
+internal_name = "SacredCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Sacred"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Defender of Siberys - 3 Piece bonus"
+effect_type = "ACBonus"
+extra_types = [
+    "ACBonus",
+    "ACBonus",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Enhancement"
+display_name = "Sacred Defense/Glorious Stand In game bug"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["SacredCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Sacred Defender: Eternal Defender"
+cost_per_rank = [1]
+description = """
+Passive: You gain +2 Charisma, +2 Constitution, + 10 to Physical and Magical
+Resistance Rating, +100% Melee Threat, and your range of unconsciousness extends
+by 250 hit points. Toggle: While Eternal Defender is active, if you drop below
+0 hit points but are not killed, two uses of Turn Undead are immediately expended
+and you receive a reactive heal for 250 points of Positive Energy healing."""
+icon = "SDEternalDefender"
+internal_name = "SacredCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SacredCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-250]
+bonus_type = "Enhancement"
+effect_type = "UnconsciousRange"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Charisma",
+    "Constitution",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusRanged"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-1]
+bonus_type = "Enhancement"
+display_name = "Sacred Defender: Eternal Defender: In game bug"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+items = ["SacredCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "SacredCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Sacred Defender: Item Defense"
+cost_per_rank = [1]
+description = "You have a [25/50/75]% chance to negate potential item wear."
+icon = "SDItemDefense"
+internal_name = "SacredItemDefense"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Sacred Defender: Extra Lay on Hands"
+cost_per_rank = [1]
+description = "+[1/2/3] Lay on Hands use per rest."
+icon = "SDExtraLayOnHands"
+internal_name = "SacredExtraLayOnHands"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraLayOnHands"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Sacred Defender: Improved Sacred Defense I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Improves your Sacred Defense Stance."
+icon = "SDImprovedSacredDefense"
+internal_name = "SacredImprovedSacredDefenseI"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Durable Defense"
+cost_per_rank = [1]
+description = "When in Sacred Defense, you gain +[5/10/15] Sacred bonus to Physical and Magical Resistance Rating."
+icon = "SDDurableDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Sacred"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Inciting Defense"
+cost_per_rank = [1]
+description = "When in Sacred Defense, you gain [150/300/450]% Sacred bonus to melee threat generation."
+icon = "SDIncitingDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    150,
+    300,
+    450,
+]
+bonus_type = "Sacred"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Resilient Defense"
+cost_per_rank = [1]
+description = "When in Sacred Defense, you gain a +[1/2/3] Sacred bonus to all Saving Throws."
+icon = "SDResilientDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Sacred Defender: Sacred Armor Mastery"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Armor Class and Armor Maximum Dexterity Bonus."
+icon = "SDSacredArmorMastery"
+internal_name = "SacredSacredArmorMastery"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+extra_types = ["MaxDexBonus"]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Sacred Defender: Commanding Presence"
+cost_per_rank = [1]
+description = "+[2/4/6] PRR and +[50/100/150]% Melee Threat."
+icon = "SDCommandingPresence"
+internal_name = "SDCommandingPresence"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    50,
+    100,
+    150,
+]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Sacred Defender: Instinctive Defense"
+cost_per_rank = [1]
+description = "You take [5/10/15]% less damage when struck while helpless."
+icon = "SDInstinctiveDefense"
+internal_name = "SacredInstinctiveDefense"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamageReduction"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Sacred Defender: Bulwark Aura"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Your Aura now grants an additional +[1/3/5] Armor Class."
+icon = "SDBulwarkAura"
+internal_name = "SacredBulwarkAura"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    3,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Aura of Courage"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Sacred Defender: Improved Sacred Defense II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Improves your Sacred Defense stance."
+icon = "SDImprovedSacredDefense"
+internal_name = "SacredImprovedSacredDefenseII"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["SacredImprovedSacredDefenseI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Durable Defense"
+cost_per_rank = [1]
+description = """
+When in Sacred Defense, you gain +[5/10/15] Sacred bonus to Physical
+and Magical Resistance Rating."""
+icon = "SDDurableDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Sacred"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Inciting Defense"
+cost_per_rank = [1]
+description = "When in Sacred Defense, you gain [150/300/450]% Sacred bonus to melee threat generation."
+icon = "SDIncitingDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    150,
+    300,
+    450,
+]
+bonus_type = "Sacred"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Resilient Defense"
+cost_per_rank = [1]
+description = "When in Sacred Defense, you gain a +[1/2/3] Sacred bonus to all Saving Throws."
+icon = "SDResilientDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selector_exclusion]]
+internal_name = "SacredImprovedSacredDefenseI"
+
+[[enhancement]]
+name = "Sacred Defender: Sacred Shield Mastery"
+cost_per_rank = [1]
+description = "+[5/10/15]% Shield Armor Class and +[1/2/3] Tower Shield Maximum Dexterity Bonus."
+icon = "SDSacredShieldMastery"
+internal_name = "SacredSacredShieldMastery"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonusTowerShield"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonusShield"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["SacredSacredArmorMastery"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Defender: Defense Boost"
+cost_per_rank = [2]
+description = """
+Activate to gain a +15 Action Boost bonus to Armor Class, Physical Resistance
+Rating and Magical Resistance Rating for 20 seconds."""
+icon = "SDDefenseBoost"
+internal_name = "SacredDefenseBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Sacred Defender: Resistance Aura"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Your Aura now grants an additional +[1/2/3] to Saving Throws."
+icon = "SDResistanceAura"
+internal_name = "SacredResistanceAura"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Aura of Courage"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["SacredBulwarkAura"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Defender: Improved Sacred Defense III"
+cost_per_rank = [1]
+description = """
+Improves your Sacred Defense stance.
+Pick the third option left."""
+icon = "SDImprovedSacredDefense"
+internal_name = "SacredImprovedSacredDefenseIII"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["SacredImprovedSacredDefenseII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Durable Defense"
+cost_per_rank = [1]
+description = """
+When in Sacred Defense, you gain +[5/10/15] Sacred bonus to Physical and
+Magical Resistance Rating."""
+icon = "SDDurableDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Sacred"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Inciting Defense"
+cost_per_rank = [1]
+description = "When in Sacred Defense, you gain [150/300/450]% Sacred bonus to melee threat generation."
+icon = "SDIncitingDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    150,
+    300,
+    450,
+]
+bonus_type = "Sacred"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Resilient Defense"
+cost_per_rank = [1]
+description = "When in Sacred Defense, you gain a +[1/2/3] Sacred bonus to all Saving Throws."
+icon = "SDResilientDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selector_exclusion]]
+internal_name = "SacredImprovedSacredDefenseI"
+
+[[enhancement.selector_exclusion]]
+internal_name = "SacredImprovedSacredDefenseII"
+
+[[enhancement]]
+name = "Sacred Defender: Greater Sacred Defense I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Further improves your Sacred Defense stance."
+icon = "SDGreaterSacredDefense"
+internal_name = "SacredGreaterSacredDefenseI"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Hardy Defense"
+cost_per_rank = [1]
+description = """
+Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[2/4/6] Sacred bonus to Constitution."""
+icon = "SDHardyDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Hardy Defense (Armor/Shield)"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Hardy Defense (Divine Dream)"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Dream"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Strong Defense"
+cost_per_rank = [1]
+description = """
+Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[2/4/6] Sacred bonus to Strength."""
+icon = "SDStrongDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Strong Defense (Armor/Shield)"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Strong Defense (Divine Dream)"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Dream"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Tenacious Defense"
+cost_per_rank = [1]
+description = """
+Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[10/15/25]% Competence bonus to maximum hit points."""
+icon = "SDTenaciousDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Sacred Defender: Tenacious Defense (Armor/Shield)"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Sacred Defender: Tenacious Defense (Divine Dream)"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Dream"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Sacred Defender: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Charisma or Constitution"
+icon = "ChaCon"
+internal_name = "SacredAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement]]
+name = "Sacred Defender: Reinforced Defense I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Improves the Armor Class bonuses you receive from shields or armor."
+icon = "SDReinforcedDefense"
+internal_name = "SacredReinforcedDefenseI"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Reinforced Armor"
+cost_per_rank = [1]
+description = "The Armor Class bonus you gain from armor or docents is increased by [15/30/50]%."
+icon = "SDReinforcedArmor"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    30,
+    50,
+]
+bonus_type = "Enhancement"
+effect_type = "ArmorACBonus"
+
+[[enhancement.selection]]
+name = "Reinforced Shield"
+cost_per_rank = [1]
+description = """
+The Armor Class bonus you gain from using a shield is increased by [15/30/50]%.
+Note: The Shield bonus does not stack with the bonus from the Unyielding Sentinel Epic Destiny.
+Note: This stacks with Reinforced Defense from Stalwart Defender."""
+icon = "SDReinforcedShield"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    30,
+    50,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonusShield"
+
+[[enhancement]]
+name = "Sacred Defender: Spell Shield Aura"
+cost_per_rank = [1]
+description = "Your Aura now also grants a +[2/4/6] Sacred bonus to Spell Resistance."
+icon = "SDSpellshieldAura"
+internal_name = "SacredSpellshieldAura"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+effect_type = "SpellResistance"
+
+[[enhancement.modifier.requirement]]
+items = ["Aura of Courage"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SacredResistanceAura"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Defender: Swift Defense"
+cost_per_rank = [1]
+description = "Sacred Defense grants a 10% Action Boost bonus to your movement speed."
+icon = "SDSwiftDefense"
+internal_name = "SacredSwiftDefense"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Action Boost"
+effect_type = "MovementSpeed"
+
+[[enhancement.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Sacred Defender: Greater Sacred Defense II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Further improves your Sacred Defense stance.
+Choose one of the options you did not pick at tier 3."""
+icon = "SDGreaterSacredDefense"
+internal_name = "SacredGreaterSacredDefenseII"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SacredGreaterSacredDefenseI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Hardy Defense"
+cost_per_rank = [1]
+description = """
+Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[2/4/6] Sacred bonus to Constitution."""
+icon = "SDHardyDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Hardy Defense (Armor/Shield)"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Hardy Defense (Divine Dream)"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Dream"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Strong Defense"
+cost_per_rank = [1]
+description = """
+Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[2/4/6] Sacred bonus to Strength."""
+icon = "SDStrongDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Strong Defense (Armor/Shield)"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Strong Defense (Divine Dream)"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Dream"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Tenacious Defense"
+cost_per_rank = [1]
+description = """
+Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[10/15/25]% Competence bonus to maximum hit points."""
+icon = "SDTenaciousDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Sacred Defender: Tenacious Defense (Armor/Shield)"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Sacred Defender: Tenacious Defense (Divine Dream)"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Dream"]
+req_type = "Feat"
+
+[[enhancement.selector_exclusion]]
+internal_name = "SacredGreaterSacredDefenseI"
+
+[[enhancement]]
+name = "Sacred Defender: Ability II"
+cost_per_rank = [2]
+description = "Choose either Charisma or Constitution"
+icon = "ChaCon"
+internal_name = "SacredAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SacredAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement]]
+name = "Sacred Defender: Reinforced Defense II"
+cost_per_rank = [1]
+description = """
+Improves the Armor Class bonuses you receive from shields or armor.
+Choose the option you didn't chose at Tier 4."""
+icon = "SDReinforcedDefense"
+internal_name = "SacredReinforcedDefenseII"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SacredReinforcedDefenseI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Reinforced Armor"
+cost_per_rank = [1]
+description = "The Armor Class bonus you gain from armor or docents is increased by [15/30/50]%."
+icon = "SDReinforcedArmor"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    30,
+    50,
+]
+bonus_type = "Enhancement"
+effect_type = "ArmorACBonus"
+
+[[enhancement.selection]]
+name = "Reinforced Shield"
+cost_per_rank = [1]
+description = """
+The Armor Class bonus you gain from using a shield is increased by [15/30/50]%.
+Note: The Shield bonus does not stack with the bonus from the Unyielding Sentinel Epic Destiny.
+Note: This stacks with Reinforced Defense from Stalwart Defender."""
+icon = "SDReinforcedShield"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    30,
+    50,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonusShield"
+
+[[enhancement.selector_exclusion]]
+internal_name = "SacredReinforcedDefenseI"
+
+[[enhancement]]
+name = "Sacred Defender: Harbored by Light"
+cost_per_rank = [1]
+description = """
+You gain +[10/15/25] Physical and Magical Resistance Rating.
+You gain [1/2/3] additional uses of Lay on Hands.
+In addition, while you are actively blocking with a shield, enemies that attack you
+will take [3/4/5]d4 Light Damage."""
+icon = "SDHarboredByLight"
+internal_name = "SacredHarboredByLight"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    25,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraLayOnHands"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Sacred Defender: Divine Revelation"
+cost_per_rank = [1]
+description = """
+Improves your Aura of Courage. Your Aura of Courage now grants +[1/2/3] additional
+Armor Class, +[1/2/3] additional Saving Throws, and +[1/2/3] additional Spell
+Resistance. In addition, you personally also gain 100 HP."""
+icon = "SSDDivineRevelation"
+internal_name = "SSDDivineRevelation"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Aura of Courage"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Aura of Courage"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellResistance"
+
+[[enhancement.modifier.requirement]]
+items = ["Aura of Courage"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+rank = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -3,
+]
+bonus_type = "Enhancement"
+display_name = "Sacred Defender: Divine Revelation: In game bug"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Sacred Defender: Greater Sacred Defense III"
+cost_per_rank = [1]
+description = """
+Further improves your Sacred Defense stance.
+Pick the third option left."""
+icon = "SDGreaterSacredDefense"
+internal_name = "SacredGreaterSacredDefenseIII"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SacredGreaterSacredDefenseII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Hardy Defense"
+cost_per_rank = [1]
+description = """
+Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[2/4/6] Sacred bonus to Constitution."""
+icon = "SDHardyDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Hardy Defense (Armor/Shield)"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Hardy Defense (Divine Dream)"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Dream"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Strong Defense"
+cost_per_rank = [1]
+description = """
+Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[2/4/6] Sacred bonus to Strength."""
+icon = "SDStrongDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Strong Defense (Armor/Shield)"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Sacred"
+display_name = "Sacred Defender: Strong Defense (Divine Dream)"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Dream"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Tenacious Defense"
+cost_per_rank = [1]
+description = """
+Sacred Defense: While wearing medium or heavy armor or wielding a shield
+you gain a +[10/15/25]% Competence bonus to maximum hit points."""
+icon = "SDTenaciousDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Sacred Defender: Tenacious Defense (Armor/Shield)"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Sacred Defender: Tenacious Defense (Divine Dream)"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Dream"]
+req_type = "Feat"
+
+[[enhancement.selector_exclusion]]
+internal_name = "SacredGreaterSacredDefenseI"
+
+[[enhancement.selector_exclusion]]
+internal_name = "SacredGreaterSacredDefenseII"
+
+[[enhancement]]
+name = "Sacred Defender: Sacred Shield"
+cost_per_rank = [2]
+description = """
+You have a +10% Exceptional bonus to Armor Class, as well as +12 Spell
+Resistance and are protected from Magic Missiles."""
+icon = "SDSacredShield"
+internal_name = "SDSacredShield"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+effect_type = "ACPercent"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magic Missiles"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect_type = "SpellResistance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-1]
+bonus_type = "Enhancement"
+display_name = "Sacred Defender: Sacred Shield: In game bug"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Enhancement"
+display_name = "Sacred Defender: Sacred Shield: In game bug"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Paladin"]
+req_type = "BaseClass"

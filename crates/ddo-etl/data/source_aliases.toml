@@ -5,6 +5,22 @@ reason = "The Isle of Dread is the expansion pack; Isle of Dread is the wilderne
 source = "https://ddowiki.com/page/The_Isle_of_Dread"
 read = "2026-10-05"
 
+[[adventure_pack]]
+text = "Temple of Elemental Evil Part One"
+pack = "The Temple of Elemental Evil"
+placement_only = true
+reason = "Part One is a quest inside The Temple of Elemental Evil pack."
+source = "https://ddowiki.com/page/The_Temple_of_Elemental_Evil"
+read = "2026-10-07"
+
+[[adventure_pack]]
+text = "Temple of Elemental Evil Part Two"
+pack = "The Temple of Elemental Evil"
+placement_only = true
+reason = "Part Two is a quest inside The Temple of Elemental Evil pack."
+source = "https://ddowiki.com/page/The_Temple_of_Elemental_Evil"
+read = "2026-10-07"
+
 [[challenge]]
 text = "Vaults of the Artificers"
 pack = "Vaults of the Artificers"

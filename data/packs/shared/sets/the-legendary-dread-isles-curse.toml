@@ -1,0 +1,399 @@
+name = "The Legendary Dread Isle's Curse"
+icon = "TheDreadIslesCurse"
+
+[[augment]]
+name = "The Legendary Dread Isle's Curse"
+family = "DinosaurBone"
+
+[[item]]
+name = "Alaric's Grim Gauntlets"
+
+[[item]]
+name = "Attuned Bone Bastard Sword"
+
+[[item]]
+name = "Attuned Bone Battle Axe"
+
+[[item]]
+name = "Attuned Bone Club"
+
+[[item]]
+name = "Attuned Bone Dagger"
+
+[[item]]
+name = "Attuned Bone Dart"
+
+[[item]]
+name = "Attuned Bone Dwarven Waraxe"
+
+[[item]]
+name = "Attuned Bone Falchion"
+
+[[item]]
+name = "Attuned Bone Great Crossbow"
+
+[[item]]
+name = "Attuned Bone Greataxe"
+
+[[item]]
+name = "Attuned Bone Greatclub"
+
+[[item]]
+name = "Attuned Bone Greatsword"
+
+[[item]]
+name = "Attuned Bone Hand Axe"
+
+[[item]]
+name = "Attuned Bone Handwraps"
+
+[[item]]
+name = "Attuned Bone Heavy Crossbow"
+
+[[item]]
+name = "Attuned Bone Heavy Mace"
+
+[[item]]
+name = "Attuned Bone Heavy Pick"
+
+[[item]]
+name = "Attuned Bone Kama"
+
+[[item]]
+name = "Attuned Bone Khopesh"
+
+[[item]]
+name = "Attuned Bone Kukri"
+
+[[item]]
+name = "Attuned Bone Light Crossbow"
+
+[[item]]
+name = "Attuned Bone Light Hammer"
+
+[[item]]
+name = "Attuned Bone Light Mace"
+
+[[item]]
+name = "Attuned Bone Light Pick"
+
+[[item]]
+name = "Attuned Bone Longbow"
+
+[[item]]
+name = "Attuned Bone Longsword"
+
+[[item]]
+name = "Attuned Bone Maul"
+
+[[item]]
+name = "Attuned Bone Morningstar"
+
+[[item]]
+name = "Attuned Bone Quarterstaff"
+
+[[item]]
+name = "Attuned Bone Rapier"
+
+[[item]]
+name = "Attuned Bone Repeating Heavy Crossbow"
+
+[[item]]
+name = "Attuned Bone Repeating Light Crossbow"
+
+[[item]]
+name = "Attuned Bone Scimitar"
+
+[[item]]
+name = "Attuned Bone Shortbow"
+
+[[item]]
+name = "Attuned Bone Shortsword"
+
+[[item]]
+name = "Attuned Bone Shuriken"
+
+[[item]]
+name = "Attuned Bone Sickle"
+
+[[item]]
+name = "Attuned Bone Throwing Axe"
+
+[[item]]
+name = "Attuned Bone Throwing Dagger"
+
+[[item]]
+name = "Attuned Bone Throwing Hammer"
+
+[[item]]
+name = "Attuned Bone Warhammer"
+
+[[item]]
+name = "Dinosaur Bone Belt"
+
+[[item]]
+name = "Dinosaur Bone Boots"
+
+[[item]]
+name = "Dinosaur Bone Bracers"
+
+[[item]]
+name = "Dinosaur Bone Buckler"
+
+[[item]]
+name = "Dinosaur Bone Gloves"
+
+[[item]]
+name = "Dinosaur Bone Large Shield"
+
+[[item]]
+name = "Dinosaur Bone Necklace"
+
+[[item]]
+name = "Dinosaur Bone Orb"
+
+[[item]]
+name = "Dinosaur Bone Ring"
+
+[[item]]
+name = "Dinosaur Bone Runearm"
+
+[[item]]
+name = "Dinosaur Bone Small Shield"
+
+[[item]]
+name = "Dinosaur Bone Tower Shield"
+
+[[item]]
+name = "Doctor Lifestone's Hunting Horn"
+
+[[item]]
+name = "Gorth's Mage Hand"
+
+[[item]]
+name = "Kelas' Volatile Mixture"
+
+[[item]]
+name = "Legendary Admiral's Cummerbund"
+
+[[item]]
+name = "Legendary Admiral's Gloves"
+
+[[item]]
+name = "Legendary Admiral's Gumshoes"
+
+[[item]]
+name = "Legendary Admiral's Wristwatch"
+
+[[item]]
+name = "Legendary Beachcombers"
+
+[[item]]
+name = "Legendary Belt of the Black Sands"
+
+[[item]]
+name = "Legendary Birchlore Gauntlets"
+
+[[item]]
+name = "Legendary Blue Raptor Feather"
+
+[[item]]
+name = "Legendary Bottle o' Rum"
+
+[[item]]
+name = "Legendary Bronzed Bracers"
+
+[[item]]
+name = "Legendary Captain's Spyglass"
+
+[[item]]
+name = "Legendary Commodore Alaina's Cutlass"
+
+[[item]]
+name = "Legendary Fimbric, Lost Longsword"
+
+[[item]]
+name = "Legendary Firesplitter"
+
+[[item]]
+name = "Legendary Greenpine Gauntlets"
+
+[[item]]
+name = "Legendary Kopru Bracers"
+
+[[item]]
+name = "Legendary Magma Waders"
+
+[[item]]
+name = "Legendary Masthead"
+
+[[item]]
+name = "Legendary Naildriver"
+
+[[item]]
+name = "Legendary Ol' Ironsides"
+
+[[item]]
+name = "Legendary Ol' Reliable"
+
+[[item]]
+name = "Legendary Pendant of the Earth"
+
+[[item]]
+name = "Legendary Pendant of the Sea"
+
+[[item]]
+name = "Legendary Pendant of the Sky"
+
+[[item]]
+name = "Legendary Powder-Packed Barrel"
+
+[[item]]
+name = "Legendary Red Raptor Feather"
+
+[[item]]
+name = "Legendary Rope and Pulley"
+
+[[item]]
+name = "Legendary Seaweed-woven Belt"
+
+[[item]]
+name = "Legendary Shipbreaker"
+
+[[item]]
+name = "Legendary Signet Ring of the Earth"
+
+[[item]]
+name = "Legendary Signet Ring of the Sea"
+
+[[item]]
+name = "Legendary Signet Ring of the Sky"
+
+[[item]]
+name = "Legendary Spearfisher"
+
+[[item]]
+name = "Legendary Twinchopper"
+
+[[item]]
+name = "Legendary Wheel of the St. Marie"
+
+[[item]]
+name = "Legendary Wreckage of the Beachcomber"
+
+[[item]]
+name = "Legendary Wreckage of the Drowned Rat"
+
+[[item]]
+name = "Legendary Wreckage of the Tabernack"
+
+[[item]]
+name = "Lindal's Mighty Belt"
+
+[[item]]
+name = "Osfield's Lightning Boots"
+
+[[item]]
+name = "The Legendary Compass Rose"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Attack Bonus +4 Profane at 5 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 5, Attack Bonus / Profane"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Damage Bonus +4 Profane at 5 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 5, Damage Bonus / Profane"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Spell DCs"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+value = 2
+
+[[tier.effect]]
+effect = "+5 Profane bonus to hit and damage"
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Attack Bonus"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Damage Bonus"
+value = 4
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "PRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Profane"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]

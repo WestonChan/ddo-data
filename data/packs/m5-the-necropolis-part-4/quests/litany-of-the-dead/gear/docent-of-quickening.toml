@@ -1,0 +1,41 @@
+name = "Docent of Quickening"
+description = "Mercury flows freely through a series of hollow crystals in this docent."
+drop_location = "Litany of the Dead, any boss end chest"
+enhancement_bonus = 5
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 12
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 16
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 7
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Ranged Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "any boss end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

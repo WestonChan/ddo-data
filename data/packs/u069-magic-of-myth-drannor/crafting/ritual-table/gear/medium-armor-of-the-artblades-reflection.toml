@@ -1,0 +1,52 @@
+name = "Medium Armor of the Artblade's Reflection"
+description = """
+This armor took the power of the deathly ritual and turned it to the Artblade's
+purposes."""
+drop_location = "Ritual Table, Turn in \nLegendary Medium Armor of the Artblade \n120 Barrier Fragments \nSigil of the Artblade"
+enhancement_bonus = 15
+icon = "MediumArmor_2a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 40
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Ritual Table"

@@ -1,0 +1,20 @@
+name = "Melancholic False Life (Legendary)"
+description = "+57 Enhancement bonus to Maximum HP."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 57
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [57]
+bonus_type = "Enhancement"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

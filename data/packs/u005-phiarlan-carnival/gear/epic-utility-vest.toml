@@ -1,0 +1,46 @@
+name = "Epic Utility Vest"
+description = """
+It looks like this leather outfit was designed by someone who wanted to be able
+to tamper with or escape from any trap or device. It is filled with secret
+pockets and odd tools."""
+drop_location = "Epic version of Utility Vest"
+enhancement_bonus = 6
+icon = "LightArmor_1c"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 16
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Greater Nimbleness"
+bonus_type = "Stacking"
+
+[[socket]]
+slot = "blue"

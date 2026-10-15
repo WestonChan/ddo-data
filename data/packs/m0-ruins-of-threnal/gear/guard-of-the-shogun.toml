@@ -1,0 +1,36 @@
+name = "Guard of the Shogun"
+description = """
+Exotic splint mail from a distant land, the Guard was supposed to be displayed
+at Moregrave University. It never arrived."""
+drop_location = "The Abandoned Excavation, End reward"
+enhancement_bonus = 5
+icon = "HeavyArmor_6"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 10
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

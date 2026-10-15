@@ -1,0 +1,29 @@
+name = "Lunar Gem of Abjuration (Legendary)"
+description = """
++4 Profane Bonus to Abjuration DCs
+Drops in: The Proper Authorities, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Abjuration Focus"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Abjuration Focus"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Proper Authorities"

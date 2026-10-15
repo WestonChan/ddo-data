@@ -1,0 +1,3 @@
+name = "Faeryfire Curse"
+description_template = "Empowered by the Fearylights, your Illusion spells have a chance to curse your enemies with Purple Faery Fire, dispelling stealth, invisibility, blur, and displacement for 30 seconds, and giving a -40 penalty to hide. Sightless enemies are immune to the dazzle effect."
+verbose_name_template = "Faeryfire Curse"

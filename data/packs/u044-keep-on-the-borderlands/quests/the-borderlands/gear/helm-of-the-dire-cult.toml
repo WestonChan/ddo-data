@@ -1,0 +1,37 @@
+name = "Helm of the Dire Cult"
+description = "Consort with Chaos."
+drop_location = "The Borderlands, chest (Rare Encounters)"
+icon = "Helmet_18"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 21
+slot = "Head"
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 40
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Insight"
+value = 57
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Quality"
+value = 28
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 25
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Borderlands"

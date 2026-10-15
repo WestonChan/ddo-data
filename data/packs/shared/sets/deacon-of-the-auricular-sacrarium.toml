@@ -1,0 +1,73 @@
+name = "Deacon of the Auricular Sacrarium"
+icon = "DeaconOfTheAuricularSacrarium"
+
+[[augment]]
+name = "Deacon of the Auricular Sacrarium"
+family = "DinosaurBone"
+
+[[item]]
+name = "Legendary Docent of the Locus"
+
+[[item]]
+name = "Legendary Manaweave Armor"
+
+[[item]]
+name = "Legendary Robe of the Locus"
+
+[[item]]
+name = "Legendary Sacrarium Cloak"
+
+[[item]]
+name = "Legendary Sacrarium Suncatcher"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "UniversalSpellLore"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Legendary"
+effect = "Magical Resistance Rating Cap"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"

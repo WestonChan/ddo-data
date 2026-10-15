@@ -1,0 +1,67 @@
+name = "Pomura's Impaler"
+accepts_sentience = true
+description = """
+The Pixie Pomura held this crystalline Rapier in her valiant fight against you,
+but was no match for your heroic might."""
+drop_location = "Hunt or Be Hunted, end chest"
+enhancement_bonus = 15
+icon = "Rapier_1h"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Crystal"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Cold Vulnerability"
+
+[[effect]]
+name = "Icy Blast 6"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Insight"
+value = 74
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Quality"
+value = 36
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hunt or Be Hunted"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 5.3
+handedness = "One-handed"
+weapon_type = "Rapier"

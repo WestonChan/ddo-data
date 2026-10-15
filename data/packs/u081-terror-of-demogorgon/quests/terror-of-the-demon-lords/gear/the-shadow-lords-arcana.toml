@@ -1,0 +1,68 @@
+name = "The Shadow Lord's Arcana"
+accepts_sentience = true
+description = "A sceptre oft used in secret by Graz'zt."
+drop_location = "Terror of the Demon Lords, end chest"
+enhancement_bonus = 16
+icon = "Club_2m"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 35
+
+[[effect]]
+name = "Legendary Negation"
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Graz'zt's Magic: Trap the Soul"
+
+[[note]]
+kind = "item_effect"
+field = "add"
+reason = "The wiki item carries Graz'zt's Magic: Trap the Soul; his file has no such effect."
+url = "https://ddowiki.com/page/Item:The_Shadow_Lord%27s_Arcana"
+read = "2026-10-07"
+qualifier = "Graz'zt's Magic: Trap the Soul"
+
+[[socket]]
+slot = "crafting: nearly complete: spell focus (legendary)"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "One-handed"
+weapon_type = "Club"

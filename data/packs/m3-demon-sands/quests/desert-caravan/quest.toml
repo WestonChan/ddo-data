@@ -1,0 +1,21 @@
+name = "Desert Caravan"
+bestowed_by = "Iosynne d'Phiarlan"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Demon Sands"
+patron = "House Phiarlan"
+zone = "The Broken Highway"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Desert_Caravan"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11

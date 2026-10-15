@@ -1,0 +1,36 @@
+name = "Ring of Spell Storing"
+description = """
+This ring is capable of storing the magical energy necessary to cast spells.
+When the ring is activated the wearer's store of power is replenished enough
+to cast a Level 4 Spell."""
+drop_location = "Sands of Menechtarun, Undead Area: General Tanankh 's chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Ring_3"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Ring"
+
+[[clickie]]
+name = "Spell Store"
+clickie = "Spell Store"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    4,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Spell Store"]
+
+[[source]]
+chest = "undead area: general tanankh 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

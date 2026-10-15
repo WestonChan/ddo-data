@@ -1,0 +1,34 @@
+name = "Ember Sickle"
+description = "This small sickle is covered in soot and is warm to the touch."
+drop_location = "The Grotto, End reward"
+icon = "Sickle_1m"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Masterwork Weapon"
+
+[[effect]]
+name = "Fire Touch"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Grotto"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Sickle"

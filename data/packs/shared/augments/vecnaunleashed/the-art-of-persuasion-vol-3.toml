@@ -1,0 +1,27 @@
+name = "The Art of Persuasion, Vol. 3"
+description = "+16 Enhancement bonus to Assassinate DCs."
+family = "VecnaUnleashed"
+icon = "HistoryBookYellow"
+min_level = 32
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 16
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect = "Assassinate"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

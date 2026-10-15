@@ -1,0 +1,13 @@
+name = "Aspect of Fire II"
+description = """
+Incineration Guard: This item stores the power of a raging inferno deep within.
+When the wearer of this item is successfully attacked in melee, this destructive
+power occasionally comes to the surface, devastating enemies with massive fire
+damage.
+Fire:Fire:Fire"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

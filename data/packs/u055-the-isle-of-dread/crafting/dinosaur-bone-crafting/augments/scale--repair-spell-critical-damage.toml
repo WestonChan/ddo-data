@@ -1,0 +1,27 @@
+name = "Scale: Repair Spell Critical Damage"
+description = "+20% Enhancement bonus to Repair Spell Critical Damage"
+family = "DinosaurBone"
+icon = "ScalePurple"
+min_level = 31
+
+[[effect]]
+name = "Repair Spell Critical Damage"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Repair Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[slot]]
+slot = "isle of dread: scale (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact scale (accessory)"

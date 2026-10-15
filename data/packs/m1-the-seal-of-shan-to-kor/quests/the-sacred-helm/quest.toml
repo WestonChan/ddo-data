@@ -1,0 +1,22 @@
+name = "The Sacred Helm"
+bestowed_by = "Greezix"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Seal of Shan-To-Kor"
+patron = "The Coin Lords"
+zone = "Cloven Jaw Stronghold"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Sacred_Helm"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3

@@ -1,0 +1,44 @@
+name = "Legendary Robe of Fire"
+description = """
+A small fire elemental has been bound into the silken cloth of this robe enhancing
+many aspects of the wearer's command of fire."""
+drop_location = "Legendary version of Epic Robe of Fire"
+enhancement_bonus = 15
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Fire Shield (Hot)"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Quality"
+value = 36
+
+[[effect]]
+name = "Legendary Magma Surge Guard"
+
+[[socket]]
+slot = "blue"

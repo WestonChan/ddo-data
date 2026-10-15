@@ -1,0 +1,3 @@
+name = "Frenzied Berserker"
+description_template = "This item in one of two pieces of the Frenzied Berserker set. When both items are equipped you will gain an additional Rage after resting, and an additional 2 points of damage per swing. If you have the fifth Core Enhancement in the Frenzied Berserker tree, this item will grant an additional +2 to Strength and Constitution. This bonus will stack with all existing bonuses."
+verbose_name_template = "Frenzied Berserker"

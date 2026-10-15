@@ -1,0 +1,42 @@
+name = "Mournlode Light Mace (Level 4)"
+description = """
+A weapon crafted from valuable purple Mournlode crystal is especially effective
+against the undead."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 1
+icon = "LightMace_1c"
+item_category = "Weapon"
+item_type = "Light Mace"
+material = "Steel"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Righteous"
+
+[[effect]]
+name = "Undead Bane 2"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Light Mace"

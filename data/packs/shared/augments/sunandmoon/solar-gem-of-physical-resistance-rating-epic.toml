@@ -1,0 +1,20 @@
+name = "Solar Gem of Physical Resistance Rating (Epic)"
+description = "+20 Artifact Bonus to Physical Resistance Rating."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Artifact"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[slot]]
+slot = "sun"

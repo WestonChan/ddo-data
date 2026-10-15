@@ -1,0 +1,69 @@
+name = "Legendary Hellfire Crossbow"
+accepts_sentience = true
+description = """
+This crossbow has much in common with an orthon warrior's ranged weaponry. It
+invests the ammunition it launches with powerful, fiery energy."""
+drop_location = "The Chronoscope (Legendary), end chest, or Legendary version of Epic Hellfire Crossbow"
+enhancement_bonus = 15
+icon = "RepeatingHeavyCrossbow_2"
+item_category = "Weapon"
+item_type = "Repeating Heavy Crossbow"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[clickie]]
+name = "Scorching Ray"
+clickie = "Scorching Ray"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Flamebitten"
+
+[[effect]]
+name = "Overwhelming Incineration"
+
+[[effect]]
+name = "Feat - Precise Shot"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Scorching Ray"]
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest, or legendary version of epic hellfire crossbow"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Repeating Heavy Crossbow"

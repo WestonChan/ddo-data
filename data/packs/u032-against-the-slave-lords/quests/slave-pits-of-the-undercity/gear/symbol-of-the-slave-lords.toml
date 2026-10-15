@@ -1,0 +1,59 @@
+name = "Symbol of the Slave Lords"
+description = "A mark which defines power and control."
+drop_location = "Slave Pits of the Undercity, End chest"
+icon = "Trinket_47"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 8
+slot = "Trinket"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "crafting: against the slave lords set bonus"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Might Set bonus"
+icon = "SlavelordsMight"
+min_level = 8
+
+[[socket.option.set]]
+set = "Slavelords Might"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Sorcery Set bonus"
+icon = "SlavelordsSorcery"
+min_level = 8
+
+[[socket.option.set]]
+set = "Slavelords Sorcery"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Endurance Set bonus"
+icon = "SlavelordsEndurance"
+min_level = 8
+
+[[socket.option.set]]
+set = "Slavelords Endurance"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Slave Pits of the Undercity"

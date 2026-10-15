@@ -1,0 +1,11 @@
+name = "Quori Mind Shield"
+description_template = "There are some benefits to being... connected. You are immune to Confusion and Domination effects, and gain a +23% Enhancement bonus to Chaos absorption."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Quori Mind Shield +23"
+
+[[bonus]]
+amount_from = 0
+constant = 23
+rounding = "down"
+scale = 1.0
+target = "Chaos Absorption"

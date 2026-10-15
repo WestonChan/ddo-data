@@ -1,0 +1,50 @@
+name = "Oath of Droaam"
+description = """
+The great axe was enchanted by the daughters of Sora Kell for the last champion
+of Droaam ."""
+drop_location = "Tharashk Arena, Special quest only temporary weapon"
+enhancement_bonus = 5
+icon = "GreatAxe_10a"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Adamantine"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Flaming Burst"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Adamantine"
+
+[[source]]
+chest = "special quest only temporary weapon"
+kind = "quest"
+loot_type = "chest"
+name = "Tharashk Arena"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.5
+handedness = "Two-handed"
+weapon_type = "Great Axe"

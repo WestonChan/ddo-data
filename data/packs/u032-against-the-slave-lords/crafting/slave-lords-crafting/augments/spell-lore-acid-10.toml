@@ -1,0 +1,21 @@
+name = "Spell Lore Acid +10"
+description = "Equipment bonus to spell critical chance"
+family = "Slavelords_Heroic"
+icon = "SlavelordsSuffix"
+min_level = 8
+
+[[effect]]
+name = "Acid Spell Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: slavelords suffix"

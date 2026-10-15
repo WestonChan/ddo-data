@@ -1,0 +1,43 @@
+name = "Legendary Shard of the Mad Gem"
+description = """
+Found in the remnants of the shattered gem, part of its maddening magic still
+lingers, and can be putto good use."""
+drop_location = "Demon in the Rough, end chest"
+icon = "Trinket_111"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 35
+slot = "Trinket"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 23
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon in the Rough"

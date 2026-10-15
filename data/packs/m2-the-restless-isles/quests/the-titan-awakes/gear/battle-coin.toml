@@ -1,0 +1,36 @@
+name = "Battle Coin"
+description = """
+This ancient gold coin is stamped with arcane symbols usually associated with
+Shavarath, the Battleground."""
+drop_location = "The Titan Awakes, Raid Warded chest"
+icon = "Trinket_59"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Trinket"
+
+[[clickie]]
+name = "Heal Moderate Wounds"
+clickie = "Heal Moderate Wounds"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 1
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Heal Moderate Wounds"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

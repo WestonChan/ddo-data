@@ -1,0 +1,12 @@
+name = "Sovereign Rune of Ooze"
+description = """
+Sundering Ooze Guard: This item stores the corrosive, voracious power of the ooze deep
+within. When the wearer of this item is successfully attacked in melee, this
+power can come to the surface, decreasing an opponents AC, and occasionally
+summoning a wild ooze that will fight against your enemies."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

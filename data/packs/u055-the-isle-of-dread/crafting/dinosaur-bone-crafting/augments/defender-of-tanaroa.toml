@@ -1,0 +1,9 @@
+name = "Defender of Tanaroa"
+description = "Adds the Defender of Tanaroa set bonus"
+family = "DinosaurBone"
+icon = "DinosaurSetBonus"
+min_level = 31
+set_bonus = "Defender of Tanaroa"
+
+[[slot]]
+slot = "isle of dread: set bonus"

@@ -1,0 +1,3 @@
+name = "Unholy 3"
+description_template = "This weapon is used by the wicked to smite the pure, dealing an additional 3d6 evil damage on each hit. This effect makes the weapon evil aligned. Good characters wielding this weapon will suffer one negative level."
+verbose_name_template = "Unholy 3"

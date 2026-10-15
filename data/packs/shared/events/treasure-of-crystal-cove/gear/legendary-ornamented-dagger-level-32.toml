@@ -1,0 +1,69 @@
+name = "Legendary Ornamented Dagger (level 32)"
+accepts_sentience = true
+description = """
+A dagger set with precious gems, each of which are enchanted with spell-enhancing
+magic. Most likely it was seized from nobles by a band of pirates as part of
+their pillaging."""
+drop_location = "Treasure of Crystal Cove, Turn in 1500 Silver Doubloon 700 Golden Doubloon 45 Stolen Jasper 1000 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 15
+icon = "Dagger_2e"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 32
+slot = "Main Hand"
+
+[[clickie]]
+name = "Lesser Maximize"
+clickie = "Lesser Maximize"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 106
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Lesser Maximize"]
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "One-handed"
+weapon_type = "Dagger"

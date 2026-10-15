@@ -1,0 +1,22 @@
+name = "Cunning Impact"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Cunning Impact"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Dexterity"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]

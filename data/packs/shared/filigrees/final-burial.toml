@@ -1,0 +1,164 @@
+[[row]]
+name = "Final Burial/Coalesced Magic +2 Wisdom"
+description = """
++2 Wisdom
+Rare: +4 PRR"""
+icon = "FinalBurialCoalescedMagic"
+menu = "Raid Filigrees"
+set = "Final Burial"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Final Burial/Coalesced Magic: +4 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Final Burial: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "FinalBurial"
+menu = "Masterminds of Sharn"
+set = "Final Burial"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Final Burial: Charisma: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Final Burial: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "FinalBurial"
+menu = "Masterminds of Sharn"
+set = "Final Burial"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Final Burial: Constitution: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Final Burial: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "FinalBurial"
+menu = "Masterminds of Sharn"
+set = "Final Burial"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Final Burial: Wisdom: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Final Burial: +3 Turn Undead Charges"
+description = """
++3 Turn Undead charges
+Rare: +2 PRR"""
+icon = "FinalBurial"
+menu = "Masterminds of Sharn"
+set = "Final Burial"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "ExtraTurns"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Final Burial: Turn Undead Charges: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Final Burial: +3 Turn Undead Hit Dice"
+description = """
++3 Turn Undead Hit Dice
+Rare: +2 PRR"""
+icon = "FinalBurial"
+menu = "Masterminds of Sharn"
+set = "Final Burial"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "TurnDiceBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Final Burial: Turn Undead Hit Dice: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Final Burial: +3 Turn Undead Max Dice"
+description = """
++3 Turn Undead Max Dice
+Rare: +2 PRR"""
+icon = "FinalBurial"
+menu = "Masterminds of Sharn"
+set = "Final Burial"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "TurnMaxDice"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Final Burial: Turn Undead Max Dice: +2 PRR"
+effect_type = "PRR"
+is_rare = true

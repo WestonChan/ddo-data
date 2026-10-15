@@ -1,0 +1,38 @@
+name = "Legendary Sight of the Sleepwalker"
+description = "These will allow you to see beyond the world that you inhabit."
+drop_location = "Beautiful Nightmares, End chest"
+icon = "Goggles_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Goggles"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 98
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 10
+value2 = 15
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beautiful Nightmares"

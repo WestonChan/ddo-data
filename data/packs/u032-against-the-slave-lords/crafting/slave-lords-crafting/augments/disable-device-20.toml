@@ -1,0 +1,21 @@
+name = "Disable Device +20"
+description = "Legendary Competence bonus to Disable Device"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Disable Device"
+effect_type = "SkillBonus"
+targets = ["Disable Device"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

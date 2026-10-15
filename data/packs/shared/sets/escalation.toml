@@ -1,0 +1,144 @@
+name = "Escalation"
+icon = "Escalation"
+
+[[augment]]
+name = "+22 Charisma Skills / +6 UMD, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Wisdom Skills, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Intelligence Skills, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Dexterity Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Constitution Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Strength Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Charisma Skills / +3 UMD, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Wisdom Skills, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Intelligence Skills, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Dexterity Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Constitution Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Strength Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Charisma Skills / +1 UMD, +75 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Wisdom Skills, +75 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Intelligence Skills, +75 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Dexterity Skills, +14 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Constitution Skills, +14 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Strength Skills, +14 Hit Points"
+family = "Greensteel_Legendary"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "1% Dodge Cap, +1% per 3 additional augment"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "With 2–6 augments, gain +1% to +3% Maximum Dodge."
+
+[[tier.effect]]
+effect = "Maximum Dodge Augment Scaling"
+
+[[tier.modifier]]
+amount_type = "SetBonusCount"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    13,
+    13,
+    13,
+]
+apply_as_item_effect = true
+bonus_type = "Legendary"
+effect_type = "DodgeCapBonus"
+stack_source = "Escalation"
+
+[[tier.modifier.requirement]]
+items = ["Escalation"]
+req_type = "Stance"

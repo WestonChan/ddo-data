@@ -1,0 +1,1089 @@
+name = "Unyielding Sentinel"
+background = "DestinyDivine"
+icon = "UnyieldingSentinel"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Unyielding Sentinel: Unyielding"
+cost_per_rank = [1]
+description = "You gain the Diehard feat.\n         \nEach Core Ability of this tree, including this one, grants the following:\n\n+35 Maximum Hit Points,\n+20 Maximum Spell Points\n+5 Melee Power"
+icon = "StandAgainstTheTideI"
+internal_name = "U51UnyieldingSentinelCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Diehard"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Unyielding Sentinel: Ward Against Darkness"
+cost_per_rank = [1]
+description = """
+You are protected by a ward against curses. This ward can absorb one curse every
+60 seconds. You take 10% less Evil damage."""
+icon = "StandAgainstTheTideII"
+internal_name = "U51UnyieldingSentinelCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Evil"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51UnyieldingSentinelCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Unyielding Sentinel: Stand Against the Tide"
+cost_per_rank = [1]
+description = "You are immune to most forms of knockdown while wearing a shield."
+icon = "StandAgainstTheTideIII"
+internal_name = "U51UnyieldingSentinelCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Most forms of Knockdown"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51UnyieldingSentinelCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Unyielding Sentinel: Last Hope"
+cost_per_rank = [1]
+description = """
+When you drop below 20% health you gain +50 Melee Power and Physical and Magical
+Resistance Rating for 8 seconds and you apply a heal spell to yourself as the
+divine spell, four times over the duration of the effect. This can occur once
+every 5 minutes, or if you have the Guardian Angel feat, once every 3 minutes."""
+icon = "LastHope"
+internal_name = "U51UnyieldingSentinelCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51UnyieldingSentinelCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Unyielding Sentinel: Ever Watchful"
+cost_per_rank = [1]
+description = """
++[2/4/6] Spot, Listen and Intimidate.
+Rank 3: You gain Immunity to Blindness"""
+icon = "EverWatchful"
+internal_name = "U51UnyieldingSentinelEverWatchful"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Listen",
+    "Intimidate",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+rank = 3
+targets = ["Blindness"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Unyielding Sentinel: Divine Energy Resistance"
+cost_per_rank = [2]
+description = """
+Spell-Like Ability: Grants 35 Resistance to Acid, Cold, Fire, Sonic, Electric
+damage for 1 minute per Character Level to all allies in the standard area of
+effect, centered on the caster. The effect does not stack with the Resist Energy
+spell.
+Cost: 15 Spell Points
+Cooldown: 6 seconds."""
+icon = "DivineEnergyResistance"
+internal_name = "U51UnyieldingSentinelDivineEnergyResistance"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Divine Energy Resistance",
+    "None",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Unyielding Sentinel: Epic Strike"
+cost_per_rank = [2]
+description = "Choose a strike type"
+icon = "GuardUp"
+internal_name = "U51UnyieldingSentinelEpicStrike"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Celestial Mandate"
+cost_per_rank = [2]
+description = """
+Deals +75% Damage
+Cooldown: 6 seconds
+
+Epic Strike: Melee strike: +30 to hit. Adds 3000 Hate to target and slows their
+movement by 50% for 8 seconds. Grants a stack of Battle Guard per target hit.
+Gain an additional stack if using a Shield, even if you hit nothing.
+Stacks 5 times, shares stacks with other sources of Battle Guard.
+Cooldown: 6 seconds.
+
+Battle Guard: +10 PRR/MRR per stack, lasts 12 seconds, effect ends early if you
+block for more than 3 seconds continuously. This ability uses Sunder's animations
+for both one-handed and two-handed weapons.
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "U51CelestialMandate"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Battle Guard"]
+
+[[enhancement.selection.modifier]]
+amount_type = "SliderValue"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+stack_source = "Battle Guard"
+
+[[enhancement.selection]]
+name = "Guard Up"
+cost_per_rank = [2]
+description = """
+Epic Strike: Active: Gain a Sacred bonus to Temporary Hit Point bonus equal to
+300% of your Melee Power for 6 seconds. This can be used while under the effects
+of Crowd Control.
+Cooldown: 12 seconds
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "GuardUp"
+is_clickie = true
+
+[[enhancement]]
+name = "Unyielding Sentinel: Attack and Defend"
+cost_per_rank = [1]
+description = """
+Gain +[1/2/3] to Attack.
+Rank 3: If using Combat Expertise, this bonus is doubled."""
+icon = "AttackAndDefend"
+internal_name = "U51UnyieldingSentinelAttackAndDefend"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Combat Expertise"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Unyielding Sentinel: Brace for Impact"
+cost_per_rank = [1]
+description = """
++[10/25/50]% Fortification
+Rank 3: +1 to all Saves."""
+icon = "U51BraceForImpact"
+internal_name = "U51UnyieldingSentinelBraceForImpact"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    25,
+    50,
+]
+bonus_type = "Destiny"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Unyielding Sentinel: Renewal"
+cost_per_rank = [1]
+description = """
+Active Ability: Heals 1d2 Hit Points per every 2 Character Levels you have every
+2 seconds for 8 seconds. As a Spell-like ability it benefits from Metamagic feats
+at no additional cost.
+Cost: 5 Spell Points
+Cooldown: 8 seconds."""
+icon = "U51Renewal"
+internal_name = "U51UnyieldingSentinelRenewal"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    0,
+    8,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Renewal",
+    "None",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Unyielding Sentinel: Mantle of the Sentinel"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Unyielding Sentinel Destiny Mantle: While this mantle is active you gain +15
+Positive Healing Amplification, +15% Fire, Electric, Cold, Acid, Force, Sonic,
+Evil and Chaos damage absorption. You are also immune to Mind-Altering Effects
+and Compulsions as per a Protection from Alignment spell."""
+icon = "MantleOfTheSentinel"
+internal_name = "U51UnyieldingSentinelMantleOftheSemtinel"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier.requirement]]
+items = ["Mantle of the Sentinel"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    0,
+    15,
+    0,
+    15,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Unyielding Sentinel: Mantle of the Sentinel"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Acid",
+    "Chaos",
+    "Cold",
+    "Electric",
+    "Evil",
+    "Fire",
+    "Force",
+    "Sonic",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Mantle of the Sentinel"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Mantle of the Sentinel"
+description = """
+Unyielding Sentinel Destiny Mantle: While this mantle is active you gain +15
+Positive Healing Amplification, +15% Fire, Electric, Cold, Acid, Force, Sonic,
+Evil and Chaos damage absorption. You are also immune to Mind-Altering Effects
+and Compulsions as per a Protection from Alignment spell."""
+group_name = "Mantle"
+icon = "MantleOfTheSentinel"
+
+[[enhancement]]
+name = "Unyielding Sentinel: Commanding Presence"
+cost_per_rank = [1]
+description = "Increases hate generation by [150/300/450]%"
+icon = "U51CommandingPresence"
+internal_name = "U51UnyieldingSentinelCommandingPresence"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    150,
+    300,
+    450,
+]
+bonus_type = "Destiny"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Unyielding Sentinel: Knight's Challenge"
+cost_per_rank = [2]
+description = """
+Active: Throw a spiritual version of your Shield at a single target for 1d20 Law
+Damage per Character Level, scaling with 200% Melee power. Creatures struck by
+the shield reset their hate and are compelled to target you for 8 seconds.
+Requires a Shield to be equipped to activate.
+Cooldown: 20 seconds."""
+icon = "KnightsChallenge"
+internal_name = "U51UnyieldingSentinelKnightsChallenge"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Unyielding Sentinel: Shield Prowess"
+cost_per_rank = [1]
+description = "Your shield's AC contribution is increased by [15/30/50]%"
+icon = "U51ShieldProwess"
+internal_name = "U51UnyieldingSentinelShieldProwess"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    30,
+    50,
+]
+bonus_type = "Destiny"
+effect_type = "ACBonusShield"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Unyielding Sentinel: Hands of the Sentinel"
+cost_per_rank = [2]
+description = """
+Gain the Lay on Hands feat. Using Lay Hands now uses the highest of Charisma or
+Constitution score to determine its effect and also uses your total Character
+Level instead of Paladin level."""
+icon = "HandsOfTheSentinel"
+internal_name = "U51UnyieldingSentinelHandsOfTheSentinel"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Lay on Hands"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Unyielding Sentinel: Rule of Law"
+cost_per_rank = [1]
+description = """
+Your Unyielding Sentinel Destiny Mantle now grants your Melee attacks a chance
+to create a wave of Lawful energy around you, dealing 1d[3/4/6] Law damage per
+Character Level. This wave can occur once every 8 seconds. Scales with the highest
+of 200% Melee Power or Light Spell Power."""
+icon = "U51RuleOfLaw"
+internal_name = "U51UnyieldingSentinelRuleOfLaw"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51UnyieldingSentinelMantleOftheSemtinel"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Unyielding Sentinel: Legendary Shield Mastery"
+cost_per_rank = [1]
+description = """
+While wearing a shield you gain +[5/10/15] Physical Resistance rating.
+Rank 3: You also gain 6% Doublestrike."""
+icon = "U51LegendaryShieldMastery"
+internal_name = "U51UnyieldingSentinelLegendaryShieldMastery"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Unyielding Sentinel: Spark of Life"
+cost_per_rank = [2]
+description = "+25 Maximum Hit Points. Any armor you wear gains the Deathblock effect."
+icon = "U51SparkOfLife"
+internal_name = "U51UnyieldingSentinelSparkOfLife"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Death Effects"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Unyielding Sentinel: Into the Fray"
+cost_per_rank = [1]
+description = """
+When you first strike a foe with a Melee attack, you gain +[2/4/6] Damage,
++[10/15/25] Physical and Magical Resistance Rating for 5 seconds. This effect
+will not reoccur until you are out of combat for at least 10 seconds."""
+icon = "IntoTheFray"
+internal_name = "U51UnyieldingSentinelIntoTheFray"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Unyielding Sentinel: Endless Vigil"
+cost_per_rank = [1]
+description = """
++[1/2/3] Lay On Hands use per rest. Lay On Hands regenerates one use every
+[180/160/145] seconds."""
+icon = "EndlessVigil"
+internal_name = "U51UnyieldingSentinelEndlessVigil"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "ExtraLayOnHands"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    180,
+    160,
+    145,
+]
+bonus_type = "Destiny"
+effect_type = "LOHRegenRate"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Lay on Hands"]
+req_type = "FeatAnySource"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Lay on Hands "]
+req_type = "FeatAnySource"
+
+[[enhancement]]
+name = "Unyielding Sentinel: Hardened"
+cost_per_rank = [1]
+description = """
++[5/10/15] bonus to Armor Class.
+Rank 3: Increase the Absorption of your Mantle of the Sentinel by 10%."""
+icon = "U51Hardened"
+internal_name = "U51UnyieldingSentinelHardened"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    0,
+    15,
+    0,
+    15,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+display_name = "Unyielding Sentinel: Mantle of the Sentinel"
+effect_type = "EnergyAbsorbance"
+extra_types = ["EnergyAbsorbance"]
+targets = [
+    "Acid",
+    "Chaos",
+    "Cold",
+    "Electric",
+    "Evil",
+    "Fire",
+    "Force",
+    "Sonic",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Mantle of the Sentinel"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Unyielding Sentinel: Divine Bulwark"
+cost_per_rank = [1]
+description = """
+Gain +5 Physical Resistance Rating. If you have Bulwark of Defense feat, You gain
+an additional +10 Physical Resistance Rating."""
+icon = "DivineBulwark"
+internal_name = "U51UnyieldingSentinelDivineBulwark"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    15,
+]
+bonus_type = "Destiny"
+display_name = "Unyielding Sentinel: Divine Bulwark"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Unyielding Sentinel: Throw the Boom"
+cost_per_rank = [2]
+description = """
+Active: throw a spiritual version of your Shield at a single target for 1d20 Law
+Damage per Character Level, scaling with 200% Melee Power. This resonates against
+its point of impact, striking all nearby enemies. Creatures struck by the shield
+reset their hate and are compelled to target you for 8 seconds, and they must
+succeed on a Fortitude saving throw (DC: 20 + Highest Ability Score Modifier +
+Stun DCs) or be Stunned for 4 seconds. Requires a Shield equipped to activate."""
+icon = "ThrowTheBoom"
+internal_name = "U51UnyieldingSentinelThrowTheBoom"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51UnyieldingSentinelKnightsChallenge"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Unyielding Sentinel: The Best Defense"
+cost_per_rank = [1]
+description = """
+Blocking a Melee attack now grants a +[1/2/4] bonus to Attack, Damage, and
+Critical Damage for 12 seconds. This can only occur once every 12 seconds.
+Passive: Gain +[20/40/60] to Maximum Hit Points"""
+icon = "TheBestDefense"
+internal_name = "U51UnyieldingSentinelTheBestDefense"
+min_spent = 20
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    20,
+    40,
+    60,
+]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Unyielding Sentinel: Resurrection"
+cost_per_rank = [1]
+description = """
+You can now cast Resurrection as a spell-like ability.
+Cooldown: 6 seconds
+Cost: 15 Spell points"""
+icon = "U51Resurrection"
+internal_name = "U51UnyieldingSentinelResurrection"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Resurrection",
+    "None",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Unyielding Sentinel: Strength of Vitality"
+cost_per_rank = [1]
+description = """
++[3/6/10]% Insight bonus to Maximum Hit Points.
+
+Rank 3: Double this bonus if you are using the Unyielding Sentinel Destiny Mantle."""
+icon = "U51StrengthOfVitality"
+internal_name = "U51UnyieldingSentinelStrengthOfVitality"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Unyielding Sentinel: Strength of Vitality (No mantle)"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    20,
+]
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Unyielding Sentinel: Strength of Vitality (with mantle)"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier.requirement]]
+items = ["Mantle of the Sentinel"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Unyielding Sentinel: Undying Vanguard"
+cost_per_rank = [2]
+description = """
+Epic Moment: Your body becomes a towering fortress. Completely heal yourself and
+gain 10,000 Temporary Hit Points, and +5[W] Weapon Dice for 30 seconds. You can
+use this while Crowd Controlled.
+Cooldown: 5 minutes"""
+icon = "UndyingVanguard"
+internal_name = "U51UnyieldingSentinelUndyingVanguard"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Unyielding Sentinel: Deific Resilience"
+cost_per_rank = [1]
+description = """
+You gain the Deific Warding feat. If you already have it, you gain +5% Quality
+bonus to Maximum Hit Points."""
+icon = "DeificResilience"
+internal_name = "U51UnyieldingSentinelDeificResilience"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Deific Warding"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Quality"
+display_name = "Unyielding Sentinel: Deific Resilience"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier.requirement]]
+items = ["Deific Warding"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Unyielding Sentinel: Light the Dark"
+cost_per_rank = [1]
+description = """
+Requires Lay On Hands: Lay on Hands is now an AoE, healing friends and damaging
+undead near the selected target. This effect scales with the highest of 200%
+Melee Power or 50% Positive Spell Power."""
+icon = "U51LightTheDark"
+internal_name = "U51UnyieldingSentinelLightTheDark"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Lay on Hands"]
+req_type = "FeatAnySource"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Lay on Hands "]
+req_type = "FeatAnySource"
+
+[[requirement]]
+items = ["Unyielding Sentinel"]
+req_type = "Feat"

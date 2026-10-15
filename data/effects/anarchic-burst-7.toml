@@ -1,0 +1,11 @@
+name = "Anarchic Burst 7"
+description_template = "This weapon is a chaotic conduit, dealing 7d6 Chaos damage on a successful hit to Lawful enemies, and 16d6 Chaos damage on a critical hit to Lawful enemies. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level."
+verbose_name_template = "Anarchic Burst 7"
+
+[[note]]
+kind = "effect"
+field = "description_template"
+upstream = "This weapon is a chaotic conduit, dealing 7d6 Chaos damage on a successful hit to Lawful enemies, and 14d6 Chaos damage on a critical hit to Lawful enemies. This effect makes the weapon chaotically aligned. Lawful characters wielding this weapon will suffer one negative level."
+reason = "The wiki gives the critical dice and full tooltip for this named effect."
+url = "https://ddowiki.com/page/Item:Legendary_Demogorgon%27s_Sinew"
+read = "2026-10-05"

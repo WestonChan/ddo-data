@@ -1,0 +1,53 @@
+name = "Legendary Heavy Armor of the Crownblade"
+description = """
+When the Echo broke off from the Crownblade, the force of its defiance manifested
+this armor, and shares its clarity of purpose."""
+drop_location = "Voices of the Dead, end chest (rare)"
+enhancement_bonus = 15
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 43
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Equipment"
+value = 30
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Linguistics 15%"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

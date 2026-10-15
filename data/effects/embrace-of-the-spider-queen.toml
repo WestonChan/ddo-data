@@ -1,0 +1,11 @@
+name = "Embrace of the Spider Queen"
+description_template = "While Lolth protects her faithful from the venom of her spiders, non-evil beings who bear items sacred to her may feel her displeasure, suffering a -6 penalty to Fortitude saving throws versus Poison."
+home_bonus_type = "Penalty"
+verbose_name_template = "Embrace of the Spider Queen -6"
+
+[[bonus]]
+amount_from = 0
+constant = -6
+rounding = "down"
+scale = 1.0
+target = "Poison Save"

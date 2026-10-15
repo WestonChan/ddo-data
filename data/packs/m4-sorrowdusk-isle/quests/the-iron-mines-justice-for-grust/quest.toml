@@ -1,0 +1,22 @@
+name = "The Iron Mines: Justice for Grust"
+bestowed_by = "Bruku"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Sorrowdusk Isle"
+patron = "House Deneith"
+zone = "The Iron Mines"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Iron_Mines:_Justice_for_Grust"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6

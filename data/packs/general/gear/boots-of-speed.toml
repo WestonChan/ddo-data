@@ -1,0 +1,25 @@
+name = "Boots of Speed"
+description = """
+Leather boots that give their wearer the ability to cast the Haste spell twice
+a day."""
+drop_location = "Random, Found only in low level loot, ~level 6 loot tables"
+icon = "Boots_2b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Feet"
+
+[[clickie]]
+name = "Haste"
+clickie = "Haste"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Haste"]

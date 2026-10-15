@@ -1,0 +1,33 @@
+name = "Linen Wraps"
+description = """
+Filthy bandages that smell of gravedust and mildew. When worn, the wraps seem
+to enhance the strength of the wearer."""
+drop_location = "Thrall of the Necromancer, End chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Curse of Clumsiness"
+bonus_type = "Penalty"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thrall of the Necromancer"

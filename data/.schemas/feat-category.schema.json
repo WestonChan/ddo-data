@@ -1,0 +1,685 @@
+{
+  "$defs": {
+    "Attack": {
+      "additionalProperties": false,
+      "properties": {
+        "cooldown_seconds": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "duration_seconds": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "icon": {
+          "type": "string",
+          "x-image-kind": ""
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "cooldown_seconds",
+        "description",
+        "icon"
+      ],
+      "type": "object",
+      "x-table": "attacks"
+    },
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "citations"
+    },
+    "ConditionalFeatGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "groups": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object",
+      "x-table": "feat_conditional_groups"
+    },
+    "DifficultyClass": {
+      "additionalProperties": false,
+      "properties": {
+        "amount": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "base_class_level": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "class_level": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dc_type": {
+          "type": "string"
+        },
+        "dc_versus": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string",
+          "x-image-kind": ""
+        },
+        "mod_ability": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "note": {
+          "items": {
+            "$ref": "#/$defs/EntityNote"
+          },
+          "type": "array"
+        },
+        "other": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "skill": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "tactical": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "dc_type",
+        "dc_versus",
+        "description",
+        "icon"
+      ],
+      "type": "object",
+      "x-table": "dcs"
+    },
+    "EffectGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "effect": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect"
+      ],
+      "type": "object"
+    },
+    "EntityNote": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "entity_notes"
+    },
+    "Feat": {
+      "additionalProperties": false,
+      "properties": {
+        "acquire": {
+          "type": "string"
+        },
+        "attack": {
+          "items": {
+            "$ref": "#/$defs/Attack"
+          },
+          "type": "array"
+        },
+        "auto_acquire_ignores_requirements": {
+          "type": "boolean"
+        },
+        "citation": {
+          "items": {
+            "$ref": "#/$defs/Citation"
+          },
+          "type": "array"
+        },
+        "conditional_group": {
+          "items": {
+            "$ref": "#/$defs/ConditionalFeatGroup"
+          },
+          "type": "array"
+        },
+        "dc": {
+          "items": {
+            "$ref": "#/$defs/DifficultyClass"
+          },
+          "type": "array"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "items": {
+            "$ref": "#/$defs/EffectGrant"
+          },
+          "type": "array"
+        },
+        "group": {
+          "items": {
+            "$ref": "#/$defs/FeatGroup"
+          },
+          "type": "array"
+        },
+        "icon": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-image-kind": ""
+        },
+        "max_times_acquire": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "modifier": {
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "note": {
+          "items": {
+            "$ref": "#/$defs/EntityNote"
+          },
+          "type": "array"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        },
+        "source_name": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "classes|races"
+        },
+        "sphere": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "stance": {
+          "items": {
+            "$ref": "#/$defs/Stance"
+          },
+          "type": "array"
+        },
+        "sub_item": {
+          "items": {
+            "$ref": "#/$defs/FeatSubItem"
+          },
+          "type": "array"
+        },
+        "variant": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name",
+        "acquire"
+      ],
+      "type": "object",
+      "x-table": "feats"
+    },
+    "FeatGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "group_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "group_name"
+      ],
+      "type": "object",
+      "x-table": "feat_groups"
+    },
+    "FeatSubItem": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string",
+          "x-image-kind": ""
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "icon"
+      ],
+      "type": "object",
+      "x-table": "feat_sub_items"
+    },
+    "FileNumber": {
+      "anyOf": [
+        {
+          "format": "int64",
+          "type": "integer"
+        },
+        {
+          "format": "double",
+          "type": "number"
+        }
+      ]
+    },
+    "Modifier": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "amounts": {
+          "items": {
+            "$ref": "#/$defs/FileNumber"
+          },
+          "type": "array"
+        },
+        "apply_as_item_effect": {
+          "type": "boolean"
+        },
+        "bonus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "cap": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_bonus": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_number": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_sides": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "effects"
+        },
+        "effect_type": {
+          "type": "string"
+        },
+        "extra_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_item_specific": {
+          "type": "boolean"
+        },
+        "is_rare": {
+          "type": "boolean"
+        },
+        "percent": {
+          "type": "boolean"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rank": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        },
+        "stack_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "targets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect_type"
+      ],
+      "type": "object",
+      "x-table": "modifiers"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "req_type": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "req_type"
+      ],
+      "type": "object",
+      "x-table": "requirements"
+    },
+    "RequirementGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "Stance": {
+      "additionalProperties": false,
+      "properties": {
+        "auto_controlled": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "group_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "icon": {
+          "type": "string",
+          "x-image-kind": ""
+        },
+        "incompatible": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "note": {
+          "items": {
+            "$ref": "#/$defs/EntityNote"
+          },
+          "type": "array"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "icon"
+      ],
+      "type": "object",
+      "x-table": "stances"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "row": {
+      "items": {
+        "$ref": "#/$defs/Feat"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "row"
+  ],
+  "title": "FeatCategoryFile",
+  "type": "object"
+}

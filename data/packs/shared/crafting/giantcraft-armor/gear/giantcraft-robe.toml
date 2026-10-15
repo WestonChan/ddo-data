@@ -1,0 +1,30 @@
+name = "Giantcraft Robe"
+description = "A fine silk robe imbued with the magic of the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Ancient Giant Relics"
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 5
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Vengeful"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

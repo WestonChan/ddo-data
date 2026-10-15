@@ -1,0 +1,22 @@
+name = "Valak's Mausoleum"
+bestowed_by = "Dead Girl"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Delera's Tomb"
+patron = "House Jorasco"
+zone = "Valak's Mausoleum"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Valak%27s_Mausoleum"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6

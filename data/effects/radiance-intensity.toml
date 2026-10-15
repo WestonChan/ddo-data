@@ -1,0 +1,4 @@
+name = "Radiance Intensity"
+description_template = "Your Light and Alignment spells gin a {1}% %b1 bonus to critical damage."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Radiance Intensity +{1}%"

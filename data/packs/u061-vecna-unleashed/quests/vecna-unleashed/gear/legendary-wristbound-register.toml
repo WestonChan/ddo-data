@@ -1,0 +1,42 @@
+name = "Legendary Wristbound Register"
+description = """
+Popular among university scholars, a small compartment on this bracer opens
+to reveal a small notebook."""
+drop_location = "Vecna Unleashed (quest), End chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 32
+slot = "Wrists"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 147
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Vecna Unleashed"

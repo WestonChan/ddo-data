@@ -1,0 +1,26 @@
+name = "How to Cast Faster"
+description = "+3 Enhancement bonus to the cost reduction to Quicken spells."
+family = "VecnaUnleashed"
+icon = "HistoryBookBlue"
+min_level = 32
+
+[[effect]]
+name = "Quicken Cost Reduction"
+bonus_type = "Enhancement"
+value = -3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-3]
+bonus_type = "Enhancement"
+effect = "Quicken Cost Reduction"
+effect_type = "MetamagicCostQuicken"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

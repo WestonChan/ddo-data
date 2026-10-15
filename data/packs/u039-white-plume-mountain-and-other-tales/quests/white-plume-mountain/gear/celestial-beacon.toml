@@ -1,0 +1,63 @@
+name = "Celestial Beacon"
+description = """
+This sceptre radiates brilliant light. It's painful to look at, but at least
+you'll have trouble losing it."""
+drop_location = "White Plume Mountain, Burket and Snarla's chest"
+enhancement_bonus = 3
+icon = "Club_2"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 9
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 9
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 73
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "burket and snarla's chest"
+kind = "quest"
+loot_type = "chest"
+name = "White Plume Mountain"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

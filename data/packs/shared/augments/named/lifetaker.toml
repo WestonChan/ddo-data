@@ -1,0 +1,17 @@
+name = "Lifetaker"
+description = """
+Upgrades a weapon with a dark and sinister power deep within.
+When this weapon is used, this power occasionally comes to the surface, attempting
+to instantly snuff out the life force of the enemy.
+Drops in U48 Quest: Witch Hunt"""
+family = "Named"
+icon = "PurpleRuby"
+min_level = 6
+
+[[slot]]
+slot = "purple"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Witch Hunt"

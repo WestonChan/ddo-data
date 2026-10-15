@@ -1,0 +1,30 @@
+name = "Jorgundal's Collar (Level 14)"
+description = """
+This spike-studded collar was once worn as a ring by Jorgundal, the Master of
+the Storm's Fist. It is a reminder of the stone giant's joy in the bloody clash
+of armies."""
+drop_location = "Gianthold Tor, White Dragon 's chest (Heroic Elite)"
+icon = "Necklace_25a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 14
+slot = "Neck"
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 30
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "white dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

@@ -1,0 +1,5 @@
+name = "Rune Arm Spell Focus"
+category = "magical"
+description_template = "{1} %b1 bonus to the DC of Rune Arm spells."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Rune Arm Focus +{1}"

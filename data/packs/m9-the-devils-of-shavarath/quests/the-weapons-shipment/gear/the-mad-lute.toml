@@ -1,0 +1,85 @@
+name = "The Mad Lute"
+description = """
+The goal of many adventurers over the years, you have finally found the Mad
+Lute, after fighting through the fires and flames of Shavarath."""
+drop_location = "The Weapons Shipment, Travaxis chest or extra End chests"
+enhancement_bonus = 5
+icon = "GreatClub_5a"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Steel"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Shrieking"
+
+[[effect]]
+name = "Thunderclap"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 84
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Proficiency - Greatclub"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "travaxis chest or extra end chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Weapons Shipment"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Club"

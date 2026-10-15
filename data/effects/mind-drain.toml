@@ -1,0 +1,3 @@
+name = "Mind Drain"
+description_template = "This item reduces your maximum spell points by 5% while equipped."
+verbose_name_template = "Mind Drain"

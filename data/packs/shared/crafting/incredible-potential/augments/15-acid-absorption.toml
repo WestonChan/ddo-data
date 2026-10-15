@@ -1,0 +1,21 @@
+name = "+15% Acid Absorption"
+description = "Acid Absorption +15%: Passive: +15% Equipment Bonus to Acid Absorption."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Equipment"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Acid Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: incredible potential"

@@ -1,0 +1,26 @@
+name = "Swordcrossed Topaz"
+description = "+6% Enhancement bonus to Doublestrike chance"
+family = "Topaz"
+icon = "TopazBlueBorder"
+min_level = 8
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "green"

@@ -1,0 +1,30 @@
+name = "Belt of the Sun Soul"
+description = """
+The Order of the Sun Soul is a monastic order dedicated to the welfare of the
+common folk of FaerÃ»n. This simple, braided cloth belt can help focus your
+thoughts."""
+drop_location = "Eveningstar, Turn in 5 Commendations: Villagers of Eveningstar Commendation: Villagers of Eveningstar : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Villagers of Eveningstar. You can exchange it in Eveningstar for powerful equipment."
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 20
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 15
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

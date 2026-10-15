@@ -1,0 +1,47 @@
+name = "Electric Spell Power - +139 Equipment"
+description = "Dominion/Air: +139 Equipment bonus increase to Electric spell power."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Electric Spell Power"
+bonus_type = "Equipment"
+value = 139
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[note]]
+kind = "augment"
+original_name = "Electric Spell Power - +150 Equipment"
+field = "description"
+upstream = "Dominion/Air: +150 Equipment bonus increase to Electric spell power."
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Magnetism 139."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Electric Spell Power - +150 Equipment"
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Magnetism 139."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment_bonus"
+original_name = "Electric Spell Power - +150 Equipment"
+field = "value"
+upstream = 150
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Magnetism 139."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+qualifier = "Electric Spell Power / Equipment"
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

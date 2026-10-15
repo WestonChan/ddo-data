@@ -1,0 +1,46 @@
+name = "Legendary Helm of the Crownblade"
+description = """
+When the Echo broke off from the Crownblade, the force of its defiance manifested
+this helm, and shares its clarity of purpose."""
+drop_location = "Ruins of Myth Drannor, Yegora 's chest (rare)"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 33
+slot = "Head"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "yegora 's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

@@ -1,0 +1,56 @@
+name = "Woodsman's Guile"
+icon = "WoodsmansGuile"
+
+[[item]]
+name = "Boots of the Woodsman"
+
+[[item]]
+name = "Leathers of the Woodsman"
+
+[[item]]
+name = "Lenses of the Woodsman"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Artifact"
+reason = "The wiki types Sneak Attack Hit as Enhancement at 3 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Sneak Attack Hit / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Artifact"
+reason = "The wiki types Sneak Attack Damage as Enhancement at 3 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Sneak Attack Damage / Artifact"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+value = 6
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"

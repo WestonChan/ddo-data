@@ -1,0 +1,3 @@
+name = "The Golden Curse"
+description_template = "A strange inscription winds around this artifact. When the wearer of this item is successfully attacked, occasionally an incredible power comes to the surface, shielding its wielder in solid gold to protect from further attacks."
+verbose_name_template = "The Golden Curse"

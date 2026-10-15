@@ -1,0 +1,45 @@
+name = "Solar Gem of Illusion (Heroic)"
+description = """
+Artifact Illusion Focus +2
+Drops in: Locked Away (Part Two), end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty
+The Price of an Egg, end chest (rare)
+Terror of Demogorgon (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Illusion_(Heroic)"
+read = "2026-09-29"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Illusion Focus"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part Two)"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Price of an Egg"

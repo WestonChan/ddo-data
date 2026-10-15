@@ -1,0 +1,3 @@
+name = "Feat - First Blood"
+description_template = "While equipped this item grants the feat First Blood."
+verbose_name_template = "Feat - First Blood"

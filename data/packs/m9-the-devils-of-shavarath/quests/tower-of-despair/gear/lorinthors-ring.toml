@@ -1,0 +1,63 @@
+name = "Lorinthor's Ring"
+description = """
+This intricately inscribed ring belonged to Lorinthor, a dedicated Knight of
+the Chalice."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Knight of the Chalice"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    22,
+    22,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Knight of the Chalice - 2 Piece bonus"
+effect_type = "SpellResistance"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Knight of the Chalice - 3 Piece bonus"
+effect_type = "NotModeled"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

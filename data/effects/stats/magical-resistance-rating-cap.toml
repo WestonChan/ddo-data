@@ -1,0 +1,3 @@
+name = "Magical Resistance Rating Cap"
+category = "defensive"
+verbose_name_template = "%b1 Magical Resistance Rating Cap +{1}"

@@ -1,0 +1,3 @@
+name = "Dreadful Curse"
+description_template = "Whenever you cast a Negative spell, you have a chance to apply a stack of Dreadful Curse, reducing the enemy's Fortitude by 1. This can stack up to 3 times, and each stack lasts 30 seconds."
+verbose_name_template = "Dreadful Curse"

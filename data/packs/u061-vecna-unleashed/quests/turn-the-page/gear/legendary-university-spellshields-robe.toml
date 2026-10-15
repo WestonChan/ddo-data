@@ -1,0 +1,48 @@
+name = "Legendary University Spellshield's Robe"
+description = "The type of robe a war mage might wear, this robe is essential in magical duels."
+drop_location = "Turn the Page (quest), End chest"
+enhancement_bonus = 15
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 32
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 153
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Turn the Page"

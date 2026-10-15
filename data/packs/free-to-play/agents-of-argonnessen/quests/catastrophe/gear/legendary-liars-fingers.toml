@@ -1,0 +1,41 @@
+name = "Legendary Liar's Fingers"
+description = "If the tongue of a lair is effective, then their hands can make light work."
+drop_location = "Catastrophe, End chest"
+icon = "Gloves_7o"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 32
+slot = "Hands"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Catastrophe"

@@ -1,0 +1,44 @@
+name = "Alchemist's Crown"
+description = """
+House Cannith alchemists often don crowns such as this to grant them wisdom
+and foresight, allowing them to make decisions with greater clarity."""
+drop_location = "House Cannith Manufactury, Tegan Darsit 's chest (Rare encounter)"
+icon = "Helmet_36"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 18
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Enhancement"
+value = 72
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Enhancement"
+value = 72
+
+[[note]]
+kind = "item"
+field = "set_bonus"
+reason = "The wiki lists this item as a member of Alchemist's Lore."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Alchemist's Lore"
+description = "Upgrades the item to include the Alchemist's Lore set bonus"
+icon = "AlchemistsLore"
+min_level = 18
+
+[[socket.option.set]]
+set = "Alchemist's Lore"

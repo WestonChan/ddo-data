@@ -1,0 +1,21 @@
+name = "Miserable Acid (Heroic)"
+description = "+1 Exceptional bonus to Constitution."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

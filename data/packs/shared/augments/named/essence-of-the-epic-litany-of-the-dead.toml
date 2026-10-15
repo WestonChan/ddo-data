@@ -1,0 +1,42 @@
+name = "Essence of the Epic Litany of the Dead"
+description = """
+Litany of the Dead II - Ability Bonus: The Litany of the Dead enhances the physical
+and mental abilities of its owner. Grants a +2 Profane bonus to all Abilities.
+Requires: 50 Threads of Fate, Empty Soul Vessel and Epic Litany of the Dead (Mark of Death)"""
+family = "Named"
+icon = "TopazRaidItemEssence"
+min_level = 30
+
+[[effect]]
+name = "All Ability Scores"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

@@ -1,0 +1,98 @@
+name = "Epic Cavalry Plate (legacy) (level 24)"
+description = """
+High-seas pirates plundered this richly-decorated plate mail from naval cavalry
+officers. Although it did not suit the pirates well, a fighter looking for
+better protection may benefit from it."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Silver Doubloon 500 Golden Doubloon 40 Stolen Malachite at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 6
+icon = "MediumArmor_9a"
+is_legacy = true
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 24
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 24
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Demonic Shield"
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "DR 13/Chaotic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 7
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+7 Enhancement bonus, Superior False Life and DR 14/Chaotic"
+description = """
++7 Enhancement Bonus: +7 enhancement bonus to Armor Class.
+Superior False Life: This item grants the wearer +40 maximum health.
+Damage Reduction 14/Chaotic: Reduces physical damage by 14, except from Chaotic aligned attacks."""
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 7
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "False Life"
+value = 40
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Enhancement"
+effect_type = "DR"
+targets = ["Chaotic"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Blue augment slot"
+description = "Adds a Blue augment slot to this item"
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

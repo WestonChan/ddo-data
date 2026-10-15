@@ -1,0 +1,11 @@
+name = "Warp the Seared"
+adds_augment = "Leashed Power"
+description = """
+Adds Warp Souls: Your attacks and spells apply a single stack of Soul Scar, which
+reduces your target's Will saves, Armor Class and Fortification by 1 per stack, max 10."""
+family = "PlanarSearing"
+icon = "Deconstructor"
+min_level = 32
+
+[[slot]]
+slot = "crafting: planar searing"

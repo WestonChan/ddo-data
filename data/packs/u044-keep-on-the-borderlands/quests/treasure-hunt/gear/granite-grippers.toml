@@ -1,0 +1,22 @@
+name = "Granite Grippers"
+description = "Enchanted stone gloves, made to increase your strength."
+drop_location = "Treasure Hunt, End Chest"
+icon = "Gloves_6"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 1
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Treasure Hunt"

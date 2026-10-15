@@ -1,0 +1,30 @@
+name = "The Proper Authorities"
+bestowed_by = "Petra Meldung"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Chill of Ravenloft"
+patron = "Keepers of Lamordia"
+zone = "Schloss Aubrecker - Reception"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Proper_Authorities"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

@@ -1,0 +1,26 @@
+name = "Horn: +286 Wizardry"
+description = """
++286 Enhancement Bonus to Spell Points.
+If you have Sorcerer or Favored Soul levels, you gain additional spell points
+proportionate to the ratio of those levels to other classes."""
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Enhancement"
+value = 286
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [286]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "isle of dread: horn (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact horn (accessory)"

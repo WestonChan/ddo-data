@@ -1,0 +1,37 @@
+name = "Mournlode Chain (Level 4)"
+description = """
+Metal armor constructed from valuable purple Mournlode crystal is imbued with
+a protective, almost holy power. Undead are seared by it,and it protects the
+wearer from evil."""
+drop_location = "Vaults of the Artificers, Turn in Various Cannith challenge ingredients"
+enhancement_bonus = 1
+icon = "LightArmor_9c"
+item_category = "Armor"
+item_type = "Light"
+material = "Steel"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 4
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 3
+
+[[effect]]
+name = "Undead Guard"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

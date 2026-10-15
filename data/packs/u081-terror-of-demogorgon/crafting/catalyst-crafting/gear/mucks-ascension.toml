@@ -1,0 +1,59 @@
+name = "Muck's Ascension"
+description = "No longer Muck's Doom. He will rise. Seek the Sealed Altar."
+drop_location = "Catalyst Crafting, Turn in Muck's Doom, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 5
+icon = "Club_16"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 11
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 86
+
+[[effect]]
+name = "Acid Intensity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 43
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.2
+handedness = "One-handed"
+weapon_type = "Club"

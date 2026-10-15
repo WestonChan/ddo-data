@@ -1,0 +1,3 @@
+name = "Wounding 3"
+description_template = "A wounding weapon deals 3 points of Constitution damage from blood loss when it hits a creature. Creatures immune to critical hits are immune to the Constitution damage dealt by this weapon."
+verbose_name_template = "Wounding 3"

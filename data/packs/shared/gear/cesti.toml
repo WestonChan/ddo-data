@@ -1,0 +1,24 @@
+name = "Cesti"
+description = """
+Made to be worn on each hand, the cestus aids in unarmed combat by covering
+the wearer's knuckle with metal studs."""
+drop_location = "Cult of the Six, End reward"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 4
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

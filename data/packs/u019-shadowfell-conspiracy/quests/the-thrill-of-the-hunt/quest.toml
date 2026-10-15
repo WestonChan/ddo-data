@@ -1,0 +1,25 @@
+name = "The Thrill of the Hunt"
+bestowed_by = "Hargrove Jalt"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Shadowfell Conspiracy"
+patron = "Purple Dragon Knights"
+zone = "Merchant's Townhouse"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Thrill_of_the_Hunt"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 26

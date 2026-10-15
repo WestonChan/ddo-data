@@ -1,0 +1,47 @@
+name = "Legendary Perfect Pinnacle"
+description = """
+Dance, like the wind, like the flames, like the sun. Dance with your bare feet
+touching the earth and water."""
+drop_location = "An Invitation to Dinner, end chest, Challenge Strahd Again optional chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Greater Reinforced Fists"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Soul of the Elements"
+
+[[effect]]
+name = "Beyond the Soul of Storm"
+
+[[effect]]
+name = "Beyond the Soul of Stone"
+
+[[effect]]
+name = "Beyond the Soul of Flame"
+
+[[effect]]
+name = "Beyond the Soul of Tide"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, challenge strahd again optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "An Invitation to Dinner"

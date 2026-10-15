@@ -1,0 +1,8 @@
+name = "Land of Lamordia"
+difficulties = []
+favor = 0
+pack = "Chill of Ravenloft"
+
+[[run]]
+tier = "heroic"
+level = 1

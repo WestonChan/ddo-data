@@ -1,0 +1,3 @@
+name = "Reverberating 3"
+description_template = "This effect causes the edges of this weapon to pulse with sound, dealing 3d6 sonic damage on each hit."
+verbose_name_template = "Reverberating 3"

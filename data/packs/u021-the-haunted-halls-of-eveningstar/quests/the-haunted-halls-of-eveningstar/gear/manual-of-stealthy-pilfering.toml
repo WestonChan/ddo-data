@@ -1,0 +1,161 @@
+name = "Manual of Stealthy Pilfering"
+description = "A black, hide-covered book, this is a guide to expertise at thievery."
+drop_location = "The Haunted Halls of Eveningstar, Ancient Mummy 's, Dragon 's or Whisper 's chest"
+icon = "Trinket_31"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 26
+slot = "Trinket"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 2
+
+[[effect]]
+name = "Dexterity Skills - Exceptional Bonus"
+value = 4
+
+[[effect]]
+name = "Intelligence Skills - Exceptional Bonus"
+value = 4
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "crafting: zhentarim attuned"
+
+[[socket.option]]
+name = "Good Luck +3, Exceptional Bonus for Dex/Int to +6 and UMD +5"
+description = """
+Good Luck +3: This item gives a +3 Luck bonus to all saves and skill checks.
+Dexterity Skills - Exceptional Bonus +6: Passive +6 Exceptional bonus to the Dexterity based skills of: Balance, Hide, Move Silently, Open Lock, and Tumble.
+Intelligence Skills - Exceptional Bonus +6: Passive +6 Exceptional bonus to the Intelligence based skills of: Disable Device, Repair, Search, and Spellcraft
+Use Magic Device +5: Passive: +5 Competence bonus to the Use Magic Device skill.
+Adds a Green Augment slot"""
+icon = "Upgrade"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Luck"
+effect = "Saving Throws"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Balance"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Hide"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Move Silently"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Open Lock"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Tumble"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Disable Device"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Repair"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Search"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Spellcraft"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Use Magic Device"
+value = 5
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Luck"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+extra_types = ["SkillBonus"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Exceptional"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Hide",
+    "Move Silently",
+    "Open Lock",
+    "Tumble",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Exceptional"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Repair",
+    "Search",
+    "Spellcraft",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Competence"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[source]]
+chest = "ancient mummy 's, dragon 's or whisper 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunted Halls of Eveningstar"

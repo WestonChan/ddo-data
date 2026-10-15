@@ -1,0 +1,3 @@
+name = "Healers Bounty"
+description_template = "This shield has a small percentage chance to cast a Heal spell on you when you take damage."
+verbose_name_template = "Healers Bounty"

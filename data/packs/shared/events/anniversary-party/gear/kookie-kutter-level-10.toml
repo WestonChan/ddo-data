@@ -1,0 +1,48 @@
+name = "Kookie Kutter (level 10)"
+description = "This doesn't look well suited for cooking."
+drop_location = "Anniversary Party, Turn in 20"
+enhancement_bonus = 4
+icon = "Sickle_1"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Bleeding 3"
+
+[[effect]]
+name = "Gashing 7"
+
+[[effect]]
+name = "Slashing 3"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 9
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Sickle"

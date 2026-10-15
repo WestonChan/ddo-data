@@ -1,0 +1,39 @@
+name = "Legendary Lamordian Nimble Cloak"
+description = "A lightweight cloak for when speed matters."
+drop_location = "Locked Away (Part Two), end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 34
+slot = "Back"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part Two)"

@@ -1,0 +1,48 @@
+name = "Legendary Doublecross Bow"
+accepts_sentience = true
+description = """
+The drow of Faerun's Underdark favor small handcrossbows that can be used quickly,
+silently, and with poisoned ammunition. The bolts fired from this light repeating
+weapon will inject a struck target with a venom that may put it to sleep instantly."""
+drop_location = "Legendary version of Epic Doublecross Bow"
+enhancement_bonus = 15
+icon = "RepeatingLightCrossbow_1e"
+item_category = "Weapon"
+item_type = "Repeating Light Crossbow"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Poison Blast 6"
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Twining Hemlock"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Intelligence, Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Repeating Light Crossbow"

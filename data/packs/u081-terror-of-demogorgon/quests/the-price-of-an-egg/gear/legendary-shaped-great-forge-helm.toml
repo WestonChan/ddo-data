@@ -1,0 +1,41 @@
+name = "Legendary Shaped Great Forge Helm"
+description = "Made centuries ago in the glory days of Gauntlgrym."
+drop_location = "The Price of an Egg, Gruorg 's chest"
+icon = "Helmet_12"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 35
+slot = "Head"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "gruorg 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Price of an Egg"

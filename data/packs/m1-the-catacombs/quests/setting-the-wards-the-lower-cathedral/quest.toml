@@ -1,0 +1,26 @@
+name = "Setting the Wards: The Lower Cathedral"
+bestowed_by = "Archbishop Dryden"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "The Catacombs"
+patron = "The Silver Flame"
+zone = "Lower Cathedral"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Setting_the_Wards:_The_Lower_Cathedral"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 23

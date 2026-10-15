@@ -1,0 +1,68 @@
+name = "Golden Orb of Death (Level 7)"
+description = "A convincing forgery"
+drop_location = "ToEE: Earth Node, Hyrelgas chest (Confirmed), ToEE: Air Node, dragon's hoard chests, ToEE: Fire Node, Periron chest, and ToEE: Water Node, Jotun Rimeblade chest"
+icon = "Orb_5"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gold"
+minimum_level = 7
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 3
+
+[[effect]]
+name = "Elemental Absorption"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Spell Lore II"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Energy Siphon IV"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "dragon's hoard chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"
+
+[[source]]
+chest = "hyrelgas chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "periron chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"
+
+[[source]]
+chest = "jotun rimeblade chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

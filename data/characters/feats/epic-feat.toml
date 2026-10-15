@@ -1,0 +1,2991 @@
+[[row]]
+name = "Arcane Insight"
+acquire = "Train"
+description = """
+Activate to gain +6 to all spell DCs and +6 to Spell Penetration for 30 seconds.
+Duration 30 seconds, 3 minute cooldown
+Passive: +110 Maximum Spell Point"""
+icon = "ArcaneInsight"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 6
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Penetration"
+value = 6
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 110
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Arcane Insight"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Feat"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[row.modifier.requirement]]
+items = ["Arcane Insight"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [110]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.stance]]
+name = "Arcane Insight"
+description = """
+Activate to gain +6 to all spell DCs and +6 to Spell Penetration for 30 seconds.
+Duration 30 seconds, 3 minute cooldown"""
+icon = "ArcaneInsight"
+
+[[row]]
+name = "Blinding Speed"
+acquire = "Train"
+description = """
+You are permanently hasted. You gain:
+32% Enhancement Bonus to Movement Speed.
+15% Enhancement Bonus to Melee Attack Speed.
+15% Enhancement Bonus to Ranged Attack Speed.
++1 Enhancement Bonus to Attack Rolls.
++1% Dodge Bonus.
++1 to Reflex Saving Throws."""
+icon = "BlindingSpeed"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+value = 32
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Melee Alacrity"
+value = 15
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Ranged Alacrity"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Dodge"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Reflex Save"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [32]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Melee Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Melee"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Ranged Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Ranged"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 27
+
+[[row]]
+name = "Bulwark of Defense"
+acquire = "Train"
+description = """
+Epic Feat: When in a defensive stance, you gain an additional +2 to
+all saving throws and +5% Armor Class, and +10 Melee Power."""
+icon = "BulwarkOfDefense"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Saving Throws"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Armor Class Percentage"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Melee Power"
+value = 10
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Defensive Fighting"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Combat Expertise"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Resilience"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Stalwart Defense"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Defensive Fighting"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Combat Expertise"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Resilience"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Stalwart Defense"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Defensive Fighting"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Combat Expertise"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Resilience"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Stalwart Defense"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Sacred Defense"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    0,
+    15,
+]
+bonus_type = "Destiny"
+display_name = "Unyielding Sentinel: Divine Bulwark"
+effect_type = "PRR"
+extra_types = ["PRR"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Burst of Glacial Wrath"
+acquire = "Train"
+description = """
+Cone spell, deals 30d6 Cold Damage and freezes creatures within the cone.
+Spell Point Cost: 35  Target: Foe, Directional, Breakable  Spell Point Cost: 35
+Target: Foe, Directional, Breakable  Monsters who succeed a Fortitude save of
+(20 + the highest of your INT/WIS/CHA modifiers + Evocation bonuses) negate the freeze.
+Passive: +140 Maximum Spell Points."""
+icon = "BurstOfGlacialWrath"
+source_name = "Epic"
+
+[[row.dc]]
+name = "Burst of Glacial Wrath"
+amount = [20]
+dc_type = "Frozen"
+dc_versus = "Fortitude"
+description = """
+Cone spell, deals 30d6 Cold Damage and freezes creatures within the cone.
+Spell Point Cost: 35  Target: Foe, Directional, Breakable  Spell Point Cost: 35
+Target: Foe, Directional, Breakable  Monsters who succeed a Fortitude save of
+(20 + the highest of your INT/WIS/CHA modifiers + Evocation bonuses) negate the freeze."""
+icon = "BurstOfGlacialWrath"
+mod_ability = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 140
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [140]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row]]
+name = "Combat Archery"
+acquire = "Train"
+description = """
+Your ranged damage is increased by +1[W].
+You gain a 2% Dodge bonus while using a ranged weapon.
+In addition, while using a Longbow or Shortbow, you gain +1 Critical Multiplier
+and Critical Threat Range."""
+icon = "CombatArchery"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Dodge"
+value = 2
+
+[[row.effect]]
+effect = "Critical Threat Range (Shortbow, Longbow)"
+value = 1
+
+[[row.effect]]
+effect = "Critical Multiplier (Shortbow, Longbow)"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[row.modifier.requirement]]
+items = ["Ranged Combat"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Dart",
+    "Great Crossbow",
+    "Heavy Crossbow",
+    "Light Crossbow",
+    "Longbow",
+    "Repeating Heavy Crossbow",
+    "Repeating Light Crossbow",
+    "Shortbow",
+    "Shuriken",
+    "Throwing Axe",
+    "Throwing Dagger",
+    "Throwing Hammer",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalMultiplier"]
+targets = [
+    "Shortbow",
+    "Longbow",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.requirement]]
+items = ["Point Blank Shot"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Dexterity"]
+req_type = "Ability"
+value = 17
+
+[[row]]
+name = "Construct Exemplar"
+acquire = "Train"
+description = "You gain +20 Repair Amplification and 10 MRR"
+icon = "ConstructExemplar"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Repair Amplification"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 10
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Machrotechnic: Sprockets + Construct Exemplar"
+effect_type = "PRR"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Warforged"]
+req_type = "Race"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group.requirement]]
+items = ["Improved Construct Essence"]
+req_type = "Feat"
+
+[[row]]
+name = "Defensive Tumble"
+acquire = "Train"
+description = """
+When you Tumble, for the next 3 seconds you take 20% less damage from all sources
+(except Bane). In addition, the bonus to Reflex Saving Throws you receive while
+actively Tumbling is now also applied to Fortitude and Will saving throws while
+Tumbling. Finally, your Tumble charges recharge 0.5 seconds faster."""
+icon = "DefensiveTumble"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Eerie Aim"
+acquire = "Train"
+description = "You gain +5% Dodge Bypass +5% Deflection Bypass, and +10 to Attack."
+icon = "EerieAim"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Dodge Bypass"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+value = 10
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Dodge Bypass"
+effect_type = "DodgeBypass"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect_type = "MissileDeflectionBypass"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Embolden Spell"
+acquire = "Train"
+description = """
+While this metamagic feat is active, you gain +2 to the DC of spells
+affected by Embolden Spell, but they consume 10 additional spell points.
+Passive: +140 Maximum Spell Points"""
+icon = "EmboldenSpell"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Embolden Cost Reduction"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 140
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Embolden Spell"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Embolden Cost Reduction"
+effect_type = "MetamagicCostEmbolden"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [140]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+    0,
+    6,
+    0,
+    9,
+    0,
+    12,
+    0,
+    15,
+    0,
+    18,
+    0,
+    21,
+    0,
+    24,
+    0,
+    27,
+    0,
+    30,
+    0,
+    33,
+]
+bonus_type = "Destiny"
+display_name = "Magus of the Eclipse: Lunar Studies"
+effect_type = "SpellResistance"
+extra_types = [
+    "MRR",
+    "MRRCap",
+    "SpellResistance",
+    "MRR",
+    "MRRCap",
+]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+display_name = "Arcane Trickster: Sharp Magic"
+effect_type = "SneakAttackDice"
+extra_types = ["SneakAttackDice"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    0,
+    4,
+    0,
+    6,
+    0,
+    8,
+    0,
+    10,
+    0,
+    12,
+    0,
+    14,
+    0,
+    16,
+    0,
+    18,
+    0,
+    20,
+    0,
+    22,
+    0,
+    24,
+]
+bonus_type = "Enhancement"
+display_name = "Archmage: Metamagic Mastery"
+effect_type = "SpellCriticalDamage"
+extra_types = ["SpellCriticalDamage"]
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row.stance]]
+name = "Embolden Spell"
+description = """
+While this metamagic feat is active, you gain +2 to the DC of spells
+affected by Embolden Spell, but they consume 10 additional spell points."""
+group_name = "Metamagics"
+icon = "EmboldenSpell"
+
+[[row]]
+name = "Epic Barbarian Damage Reduction"
+acquire = "Train"
+description = """
+Your Barbarian Damage Reduction is increased by 1%.
+You also gain +5 Physical and Magical Resistance Rating."""
+icon = "EpicBarbarianDamageReduction"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 5
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Class"
+display_name = "Barbarian DR"
+effect_type = "DR"
+targets = ["%"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[row.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Damage Reduction"
+acquire = "Train"
+description = "+10 Physical Resistance."
+icon = "EpicDamageReduction"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.requirement]]
+req_type = "Level"
+value = 27
+
+[[row]]
+name = "Epic Fortitude"
+acquire = "Train"
+description = """
++2 Fortitude Saving Throws. You don't automatically fail Fortitude
+saving throws on a roll of 1."""
+icon = "EpicFortitude"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortitude Save"
+value = 2
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "SaveNoFailOn1"
+targets = ["Fortitude"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 27
+
+[[row]]
+name = "Epic Mental Toughness"
+acquire = "Train"
+description = """
+Increases your maximum spell points by 200 and your spell critical chance by 1%.
+Increases your Cantrip step die (e.g. 1d6->1d8)."""
+icon = "EpicMentalToughness"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 200
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Lore"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [200]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.requirement]]
+items = ["Improved Mental Toughness"]
+req_type = "Feat"
+
+[[row]]
+name = "Epic Piercing Acid"
+acquire = "Train"
+description = """
+An enchantment that neutralizes immunity or absorption for this damage type
+on your target and enemies near them for 20 seconds. This does not affect
+resistance flat reductions.
+Duration 20 seconds.
+Cost: 2 Spell points
+Cooldown: 2 seconds"""
+icon = "EpicPiercingAcid"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+items = ["Piercing Acid"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Piercing Cold"
+acquire = "Train"
+description = """
+An enchantment that neutralizes immunity or absorption for this damage type
+on your target and enemies near them for 20 seconds. This does not affect
+resistance flat reductions.
+Duration 20 seconds.
+Cost: 2 Spell points
+Cooldown: 2 seconds"""
+icon = "EpicPiercingCold"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+items = ["Piercing Cold"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Piercing Electricity"
+acquire = "Train"
+description = """
+An enchantment that neutralizes immunity or absorption for this damage type
+on your target and enemies near them for 20 seconds. This does not affect
+resistance flat reductions.
+Duration 20 seconds.
+Cost: 2 Spell points
+Cooldown: 2 seconds"""
+icon = "EpicPiercingElectricity"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+items = ["Piercing Electricity"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Piercing Fire"
+acquire = "Train"
+description = """
+An enchantment that neutralizes immunity or absorption for this damage type
+on your target and enemies near them for 20 seconds. This does not affect
+resistance flat reductions.
+Duration 20 seconds.
+Cost: 2 Spell points
+Cooldown: 2 seconds"""
+icon = "EpicPiercingFire"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+items = ["Piercing Fire"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Piercing Negativity"
+acquire = "Train"
+description = """
+An enchantment that neutralizes immunity or absorption for this damage type
+on your target and enemies near them for 20 seconds. This does not affect
+resistance flat reductions.
+Duration 20 seconds.
+Cost: 2 Spell points
+Cooldown: 2 seconds"""
+icon = "EpicPiercingNegativity"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+items = ["Piercing Negativity"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Piercing Poison"
+acquire = "Train"
+description = """
+An enchantment that neutralizes immunity or absorption for this damage type
+on your target and enemies near them for 20 seconds. This does not affect
+resistance flat reductions.
+Duration 20 seconds.
+Cost: 2 Spell points
+Cooldown: 2 seconds"""
+icon = "EpicPiercingPoison"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+items = ["Piercing Poison"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Power Attack"
+acquire = "Train"
+description = "Your Power Attack feat does +5 additional points of bonus damage."
+icon = "EpicPowerAttack"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["One Handed"]
+
+[[row.modifier.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Two Handed"]
+
+[[row.modifier.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Power Attack"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Precision"
+acquire = "Train"
+description = """
+Your Precision stance grants an additional +5% to-hit and +15% Fortification
+Bypass."""
+icon = "EpicPrecision"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortification Bypass"
+value = 15
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Precision"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[row.modifier.requirement]]
+items = ["Precision"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Precision"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Reflexes"
+acquire = "Train"
+description = """
++2 Reflex Saving Throws. You don't automatically fail Reflex saving throws
+on a roll of 1."""
+icon = "EpicReflexes"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Reflex Save"
+value = 2
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "SaveNoFailOn1"
+targets = ["Reflex"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 27
+
+[[row]]
+name = "Epic Reputation"
+acquire = "Train"
+description = "+5 Bluff, Diplomacy, Haggle, Intimidate and Perform."
+icon = "EpicReputation"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Bluff"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Diplomacy"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Haggle"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Intimidate"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Perform"
+value = 5
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Intimidate",
+    "Perform",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 27
+
+[[row]]
+name = "Epic Resilience"
+acquire = "Train"
+description = """
+While in your Resilience Defensive Combat Stance, you gain an additional
++4 Saving throws, as well as +10 MRR and +10 MRR cap. In addition, you no
+longer fail any saves automatically by rolling a Natural 1."""
+icon = "EpicResilience"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Saving Throws"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating Cap"
+value = 10
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Resilience"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "MRR"
+extra_types = ["MRRCap"]
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Resilience"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "SaveNoFailOn1"
+targets = [
+    "Fortitude",
+    "Reflex",
+    "Will",
+]
+
+[[row.modifier.requirement]]
+items = ["Resilience"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Resilience"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Epic Spell Focus"
+acquire = "Train"
+description = "You gain +2 to all Spell DCs."
+icon = "EpicSpellFocus"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Spell Focus: Abjuration"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Spell Focus: Conjuration"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Spell Focus: Enchantment"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Spell Focus: Evocation"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Spell Focus: Illusion"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Spell Focus: Necromancy"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Spell Focus: Transmutation"]
+req_type = "Feat"
+
+[[row]]
+name = "Epic Spell Penetration"
+acquire = "Train"
+description = """
+Adds +6 to your caster level check for defeating spell resistance
+(in addition to the +6 from the Spell Penetration and Greater Spell Penetration feats)."""
+icon = "EpicSpellPenetration"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Penetration"
+value = 6
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Feat"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.requirement]]
+items = ["Greater Spell Penetration"]
+req_type = "Feat"
+
+[[row]]
+name = "Epic Toughness"
+acquire = "Train"
+description = "Increases your maximum hit points by 50."
+icon = "EpicToughness"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hit Points"
+value = 50
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Feat"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.requirement]]
+items = ["Toughness"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Constitution"]
+req_type = "Ability"
+value = 21
+
+[[row]]
+name = "Epic Will"
+acquire = "Train"
+description = "+2 Will Saving Throws. You don't automatically fail Will saving throws on a roll of 1."
+icon = "EpicWill"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Will Save"
+value = 2
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "SaveNoFailOn1"
+targets = ["Will"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 27
+
+[[row]]
+name = "Expanded Clip"
+acquire = "Train"
+description = "You gain +33% stacking Doubleshot with Repeating Crossbows."
+icon = "ExpandedClip"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Stacking"
+effect = "Doubleshot"
+value = 33
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [33]
+bonus_type = "Stacking"
+effect = "Doubleshot"
+effect_type = "Doubleshot"
+
+[[row.modifier.requirement]]
+items = ["RepeatingCrossbow"]
+req_type = "GroupMember"
+
+[[row.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Great Charisma"
+acquire = "Train"
+description = """
+Your powers of persuasion and leadership are greater than normal.
+Your charisma increases by 1. This feat can be taken multiple times."""
+icon = "GreatCharisma"
+max_times_acquire = 10
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Charisma"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Great Constitution"
+acquire = "Train"
+description = """
+Your health and endurance are greater than normal.
+Your constitution increases by 1. This feat can be taken multiple times."""
+icon = "GreatConstitution"
+max_times_acquire = 10
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Constitution"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Great Dexterity"
+acquire = "Train"
+description = """
+Your agility and coordination are greater than normal.
+Your dexterity increases by 1. This feat can be taken multiple times."""
+icon = "GreatDexterity"
+max_times_acquire = 10
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Dexterity"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Great Intelligence"
+acquire = "Train"
+description = """
+Your powers of reason and learning are greater than normal.
+Your intelligence increases by 1. This feat can be taken multiple times."""
+icon = "GreatIntelligence"
+max_times_acquire = 10
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Intelligence"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Great Strength"
+acquire = "Train"
+description = """
+Your muscle and physical power are greater than normal.
+Your strength increases by 1. This feat can be taken multiple times."""
+icon = "GreatStrength"
+max_times_acquire = 10
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Strength"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Great Wisdom"
+acquire = "Train"
+description = """
+Your willpower and insight are greater than normal.
+Your wisdom increases by 1. This feat can be taken multiple times."""
+icon = "GreatWisdom"
+max_times_acquire = 10
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Wisdom"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Greater Ruin"
+acquire = "Train"
+description = """
+Deal 1000 untyped damage to a single enemy. Spell Point Cost: 150, No saving throw.
+Passive: +140 Maximum Spell Points"""
+icon = "GreaterRuin"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 140
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [140]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    150,
+    0,
+    15,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Ruin",
+    "None",
+]
+
+[[row.requirement]]
+items = ["Ruin"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Improved Augment Summoning"
+acquire = "Train"
+description = """
+Your summoned creature, charmed minions, pets and hirelings have +8 to all
+ability scores, +10% Dodge and +100 Maximum Hit Points
+Passive: +140 Maximum Spell Points"""
+icon = "ImprovedAugmentSummoning"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Abilities"
+value = 8
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Hit Points"
+value = 100
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Dodge"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 140
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Feat"
+effect = "Hireling Abilities"
+effect_type = "HirelingAbilityBonus"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Feat"
+effect = "Hireling Hit Points"
+effect_type = "HirelingHitpoints"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Hireling Dodge"
+effect_type = "HirelingDodge"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [140]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+display_name = "Illusory Augmentation: Improved Augment Summoning"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+]
+bonus_type = "Enhancement"
+display_name = "Illusory Augmentation: Improved Augment Summoning"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[row.requirement]]
+items = ["Augment Summoning"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row]]
+name = "Improved Inspiration Melody: Excellence"
+acquire = "Train"
+description = "Your Inspire Excellence now grants an additional +2 to all Ability Scores."
+icon = "ImprovedInspireExcellence"
+
+[[row.effect]]
+bonus_type = "Competence"
+effect = "All Ability Scores"
+value = 2
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Competence"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Inspire Excellence"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Improved Martial Arts"
+acquire = "Train"
+description = """
+You deal +1[W] when fighting with Handwraps, and +0.5[W] with using other Ki weapons
+such as Kamas, Quarterstaves, and Shuriken."""
+icon = "ImprovedMartialArts"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Handwraps",
+    "Unarmed",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Feat"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Bastard Sword",
+    "Battle Axe",
+    "Club",
+    "Dagger",
+    "Dart",
+    "Dwarven Axe",
+    "Falchion",
+    "Great Crossbow",
+    "Great Axe",
+    "Great Club",
+    "Great Sword",
+    "Hand Axe",
+    "Heavy Crossbow",
+    "Heavy Mace",
+    "Heavy Pick",
+    "Kama",
+    "Khopesh",
+    "Kukri",
+    "Light Crossbow",
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Longbow",
+    "Longsword",
+    "Maul",
+    "Morningstar",
+    "Quarterstaff",
+    "Rapier",
+    "Repeating Heavy Crossbow",
+    "Repeating Light Crossbow",
+    "Scimitar",
+    "Shortbow",
+    "Shortsword",
+    "Shuriken",
+    "Sickle",
+    "Throwing Axe",
+    "Throwing Dagger",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[row.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[row.requirement_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Improved Sneak Attack"
+acquire = "Train"
+description = """
+Your sneak attacks are more deadly than normal.
+You gain +3d6 sneak attack damage."""
+icon = "ImprovedSneakAttack"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sneak Attack Dice"
+value = 3
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[row.requirement]]
+items = ["Rogue"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[row.requirement]]
+items = ["Dexterity"]
+req_type = "Ability"
+value = 21
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Inspire Excellence"
+acquire = "Train"
+description = """
+You can improve the abilities of your comrades through your performance.
+This song grants a +2 competence bonus to all ability scores to yourself and
+all allies near you. Requires 20 trained ranks (not total mod) of the Perform
+skill to use."""
+icon = "InspireExcellence"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Competence"
+effect = "All Ability Scores"
+value = 2
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Competence"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[row.requirement]]
+items = ["Perform"]
+req_type = "Skill"
+value = 20
+
+[[row]]
+name = "Inspiring Bond"
+acquire = "Train"
+description = """
+When your Hirelings or Pets die, after 2.5 seconds they are automatically resurrected
+and heal to full health. This can occur only once for each creature every 3 minutes.
+(If that Hireling or Pet has an effect that blocks Resurrection, it will wait
+to attempt this Resurrection until that effect is gone).
+
+Passive: Your Hirelings, Pets, and Summons gain +25 Physical Resistance Rating
+and Magical Resistance Rating."""
+icon = "InspiringBond"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Physical Resistance Rating"
+value = 25
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Magical Resistance Rating"
+value = 25
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Feat"
+effect_type = "HirelingPRR"
+extra_types = ["HirelingMRR"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Intensify Spell"
+acquire = "Train"
+description = """
+While this metamagic feat is active, you gain 125 Spell Power while casting
+spells affected by Intensify Spell, but they cost 15 additional spell points.
+This bonus stacks with Empower.
+Passive: +140 Maximum Spell Points"""
+icon = "IntensifySpell"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 125
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Intensify Cost Reduction"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 140
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [125]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier.requirement]]
+items = ["Intensify Spell"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect = "Intensify Cost Reduction"
+effect_type = "MetamagicCostIntensify"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [140]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+    0,
+    6,
+    0,
+    9,
+    0,
+    12,
+    0,
+    15,
+    0,
+    18,
+    0,
+    21,
+    0,
+    24,
+    0,
+    27,
+    0,
+    30,
+    0,
+    33,
+]
+bonus_type = "Destiny"
+display_name = "Magus of the Eclipse: Lunar Studies"
+effect_type = "SpellResistance"
+extra_types = [
+    "MRR",
+    "MRRCap",
+    "SpellResistance",
+    "MRR",
+    "MRRCap",
+]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+display_name = "Arcane Trickster: Sharp Magic"
+effect_type = "SneakAttackDice"
+extra_types = ["SneakAttackDice"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    0,
+    4,
+    0,
+    6,
+    0,
+    8,
+    0,
+    10,
+    0,
+    12,
+    0,
+    14,
+    0,
+    16,
+    0,
+    18,
+    0,
+    20,
+    0,
+    22,
+    0,
+    24,
+]
+bonus_type = "Enhancement"
+display_name = "Archmage: Metamagic Mastery"
+effect_type = "SpellCriticalDamage"
+extra_types = ["SpellCriticalDamage"]
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row.stance]]
+name = "Intensify Spell"
+description = """
+While this metamagic feat is active, you gain 125 Spell Power while casting
+spells affected by Intensify Spell, but they cost 15 additional spell points.
+This bonus stacks with Empower."""
+group_name = "Metamagics"
+icon = "IntensifySpell"
+
+[[row]]
+name = "Legendary Martial Arts"
+acquire = "Train"
+description = "While centered, your weapons gain +1[W]."
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.note]]
+kind = "feat"
+field = "icon"
+upstream = "LegendaryMartialArts"
+reason = "DDOBuilderV2's FeatImages folder has no LegendaryMartialArts.png."
+url = "Output/DataFiles/FeatImages"
+read = "2026-10-07"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Improved Martial Arts"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Legendary Sneak Attack"
+acquire = "Train"
+description = "+3 Sneak Attack Dice."
+icon = "LegendarySneakAttack"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sneak Attack Dice"
+value = 3
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[row.requirement]]
+items = ["Improved Sneak Attack"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Legendary Spell Focus"
+acquire = "Train"
+description = "You gain +3 to all Spell DCs."
+icon = "LegendarySpellFocus"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 3
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row.requirement]]
+items = ["Epic Spell Focus"]
+req_type = "Feat"
+
+[[row]]
+name = "Legendary Strength of Arms"
+acquire = "Train"
+description = """
+Improves the shield granted by Strength of Arms. The shield is now equal to
+twice your Melee Power, stacks up to 3 times, and can trigger once every 6
+seconds."""
+icon = "LegendaryStrengthOfArms"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+items = ["Strength of Arms"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Legendary Trick Shot"
+acquire = "Train"
+description = """
+Your Trick Shot now grants +80 to Ranged Power and +10 to Attack for 4 seconds
+when you Tumble. In addition, your Tumble charges recharge an additional 0.5
+seconds faster, for a total of 1 second."""
+icon = "LegendaryTrickShot"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Ranged Power"
+value = 40
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+value = 10
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Feat"
+effect = "Ranged Power"
+effect_type = "RangedPower"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Tumble"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Tumble"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Trick Shot"]
+req_type = "Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Master of Alignment"
+acquire = "Train"
+description = """
+Your Direct Damage Evil, Light, Law and Good spells do an additional 1d6+3 damage
+per Epic or Legendary level. This can only occur once cast. This does not apply
+to persistent spells like clouds, walls or guardians.
+
+Passive: +150 Maximum Spell Points"""
+icon = "MasterOfAlignment"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 150
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row]]
+name = "Master of Decay"
+acquire = "Train"
+description = """
+Your Direct Damage Negative Energy spells do an additional 1d6+3 damage per Epic or
+Legendary level. This can only occur once cast. This does not apply to persistent
+spells like clouds, walls or guardians.
+
+Passive: +150 Maximum Spell Points"""
+icon = "MasterOfTheDead"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 150
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row]]
+name = "Master of Fire and LIght"
+acquire = "Train"
+description = """
+Your Direct Damage Fire spells do an additional 1d6+3 damage per Epic or Legendary
+level. This can only occur once cast. This does not apply to persistent spells
+like clouds, walls or guardians.
+
+Passive: +150 Maximum Spell Points"""
+icon = "MasterOfFire"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 150
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "MaxCasterLevelSpell"
+targets = [
+    "Burning Hands",
+    "Scorch",
+    "Fireball",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row]]
+name = "Master of Force"
+acquire = "Train"
+description = """
+Your Direct Damage Force or Physical spells do an additional 1d6+3 damage per Epic
+or Legendary level. This can only occur once cast. This does not apply to
+persistent spells like clouds, walls or guardians.
+
+Passive: +150 Maximum Spell Points"""
+icon = "MasterOfForce"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 150
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row]]
+name = "Master of Knowledge"
+acquire = "Train"
+description = """
+Your Arcane Bolt and Arcane Blast spells now grant you one stack of Mental
+Honing (+6 Universal Spell Power, +4% Spell Critical Damage) when cast. This effect
+can stack up to 15 times. One stack is removed every 6 seconds.
+Passive: +140 Maximum Spell Points"""
+icon = "MasterOfKnowledge"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 140
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Mental Honing"]
+
+[[row.modifier]]
+amount_type = "SliderValue"
+amounts = [6]
+bonus_type = "Feat"
+display_name = "Master of Knowledge: Mental Honing stacks"
+effect_type = "UniversalSpellPower"
+stack_source = "Mental Honing"
+
+[[row.modifier]]
+amount_type = "SliderValue"
+amounts = [4]
+bonus_type = "Feat"
+display_name = "Master of Knowledge: Mental Honing stacks"
+effect_type = "SpellCriticalDamage"
+stack_source = "Mental Honing"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [140]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row]]
+name = "Master of the Storm"
+acquire = "Train"
+description = """
+Your Direct Damage Electric spells do an additional 1d6+3 damage per Epic or
+Legendary level. This can only occur once cast. This does not apply to
+persistent spells like clouds, walls or guardians.
+
+Passive: +150 Maximum Spell Points"""
+icon = "MasterOfAir"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 150
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 24
+
+[[row]]
+name = "Overwhelming Critical"
+acquire = "Train"
+description = """
+When rolling a 19 or 20 on an attack with any weapons used by the character,
+your critical damage multiplier is increased by +1."""
+icon = "OverwhelmingCritical"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Critical Multiplier (19-20)"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Critical Multiplier (19-20)"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Improved Critical: Bludgeoning Weapons"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Improved Critical: Piercing Weapons"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Improved Critical: Ranged Weapons"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Improved Critical: Slashing Weapons"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Improved Critical: Thrown Weapons"]
+req_type = "Feat"
+
+[[row]]
+name = "Paranoid"
+acquire = "Train"
+description = """
+You take 10% less damage from Traps, and you automatically Spot almost all traps
+as you approach them."""
+icon = "Paranoid"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Patience"
+acquire = "Train"
+description = """
+Your attack speed is reduced by 10%, but you gain +1 Critical Multiplier with all weapons.
+Also reduces Crossbow Reload Speed by 10%."""
+icon = "Patience"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Melee Attack Speed"
+value = -10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Ranged Attack Speed"
+value = -10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Critical Multiplier"
+value = 1
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Feat"
+effect_type = "Weapon_Alacrity"
+targets = [
+    "All",
+    "All",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Critical Multiplier"
+effect_type = "Weapon_CriticalMultiplier"
+targets = [
+    "All",
+    "All",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Ruin"
+acquire = "Train"
+description = """
+Deal 500 untyped damage to a single enemy. (No saving throw.)
+Cooldown: 15 seconds"""
+icon = "Ruin"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    15,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Ruin",
+    "None",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 27
+
+[[row]]
+name = "Strength of Arms"
+acquire = "Train"
+description = """
+Your melee strikes grant a shield of Temporary HP. This shield is equal to
+your Melee Power, can trigger once every 8 seconds, lasts for 10 seconds,
+and stacks up to 2 times."""
+icon = "StrengthOfArms"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Trick Shot"
+acquire = "Train"
+description = """
+When you Tumble, you gain +40 Ranged Power for 4 seconds.
+In addition, your Tumble charges recharge 0.5 seconds faster"""
+icon = "TrickShot"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Ranged Power"
+value = 40
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Feat"
+effect = "Ranged Power"
+effect_type = "RangedPower"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Tumble"]
+req_type = "Stance"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Vorpal Strikes"
+acquire = "Train"
+description = """
+Your unarmed strikes are now considered vorpal and slashing.
+Note: Vorpal Strikes is a stance, similar to power attack. It can be turned on
+and off and is off when you first log in."""
+icon = "VorpalStrikes"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "DRBypass"
+targets = ["Handwraps"]
+value = "Slash"
+
+[[row.modifier.requirement]]
+items = ["Vorpal Strikes"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.requirement_group.requirement]]
+items = ["Wisdom"]
+req_type = "Ability"
+value = 23
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[row.requirement_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Improved Critical: Bludgeoning Weapons"]
+req_type = "Feat"
+
+[[row.stance]]
+name = "Vorpal Strikes"
+description = "Your unarmed strikes are now considered vorpal and slashing."
+icon = "VorpalStrikes"
+
+[[row]]
+name = "Watchful Eye"
+acquire = "Train"
+variant = "epic-feat"
+description = """
+If you pass withing 5 feet of a trap, you make a Search check to notice
+it as if actively Searching. (You still need the Trapfinding feat to successfully
+Search for difficult traps.)"""
+icon = "WatchfulEye"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Pierce Deception + Watchful Eye"
+effect_type = "Doubleshot"
+
+[[row.requirement]]
+req_type = "Level"
+value = 27
+
+[[row]]
+name = "Wellspring of Power"
+acquire = "Train"
+description = """
+Activate to gain +150 Universal Spell Power and +20% Spell Critical Damage
+for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown.
+Passive: +110 Maximum Spell Points"""
+icon = "WellspringOfPower"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 150
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 110
+
+[[row.group]]
+group_name = "Epic Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier.requirement]]
+items = ["Wellspring of Power"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+
+[[row.modifier.requirement]]
+items = ["Wellspring of Power"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [110]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row.stance]]
+name = "Wellspring of Power"
+description = """
+Activate to gain +150 Universal Spell Power and +20% Spell Critical Damage
+for 30 seconds. Target: Self  Duration: 30 seconds  3 minute cooldown."""
+icon = "WellspringOfPower"

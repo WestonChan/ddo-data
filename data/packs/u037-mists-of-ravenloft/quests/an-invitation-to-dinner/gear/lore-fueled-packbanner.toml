@@ -1,0 +1,37 @@
+name = "Lore-Fueled Packbanner"
+description = """
+Tie this around your paws and feel the spirit of the wilds course through your
+veins."""
+drop_location = "An Invitation to Dinner, End chest + some other chests"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 10
+slot = "Wrists"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Druidic Stoneshape"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest + some other chests"
+kind = "quest"
+loot_type = "chest"
+name = "An Invitation to Dinner"

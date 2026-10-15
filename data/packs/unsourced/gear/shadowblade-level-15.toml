@@ -1,0 +1,35 @@
+name = "Shadowblade (Level 15)"
+description = "This manifestation of Illusion Magic is made real by your touch. As you increase in level, this weapon will also increase in power. Because it is a manifestation of pure magic rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+enhancement_bonus = 6
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Force"
+minimum_level = 15
+slot = "Main Hand"
+wiki_url = "https://ddowiki.com/page/Item:Shadowblade_%28level_15%29"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Shadowblade_%28level_15%29"
+read = "2026-09-29"
+
+[[effect]]
+name = "Shadowblade"
+
+[[effect]]
+name = "Impactful 4"
+
+[[effect]]
+name = "Force Blast 4"
+
+[[effect]]
+name = "Greater Nightmares"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Shortsword"

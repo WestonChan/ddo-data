@@ -1,0 +1,36 @@
+name = "Legendary Ring of Unbridled Might"
+description = """
+This ring unlocks something deep within its wearer, giving them the might to
+tear through armor and debilitate foes."""
+drop_location = "Astral Ambush, end chest"
+icon = "Ring_21a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 32
+slot = "Ring"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Insight"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

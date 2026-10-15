@@ -1,0 +1,3 @@
+name = "Chaosguard"
+description_template = "The bearer of this item gains +2 Deflection bonus to AC and +2 Resistance bonus to saving throws from Chaotic Enemies."
+verbose_name_template = "Chaosguard"

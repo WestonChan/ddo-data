@@ -1,0 +1,16 @@
+name = "Starter Module"
+description = "This item cannot be fed to sentient jewels ."
+enhancement_bonus = 1
+icon = "Collar1"
+item_category = "Weapon"
+item_type = "Collar"
+minimum_level = 1
+race_required = "Pet"
+slot = "Main Hand"
+
+[[weapon]]
+critical_multiplier = 2
+critical_threat_range = 1
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Collar"

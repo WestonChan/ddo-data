@@ -1,0 +1,24 @@
+name = "Sovereign Rune of Insight"
+description = """
+Heightened Awareness 4: This item helps you to quickly read situations with sharpness
+and clarity, allowing you to predict actions before they occur. You gain a +4
+Insight bonus to AC."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Insight"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[slot]]
+slot = "crafting: sovereign rune"

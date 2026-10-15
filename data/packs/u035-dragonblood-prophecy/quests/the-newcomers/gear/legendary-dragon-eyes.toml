@@ -1,0 +1,38 @@
+name = "Legendary Dragon Eyes"
+description = """
+"I look out upon the field of battle. What do my Dragon Eyes see?"
+-Druth Felgon, Dragonborn Barbarian"""
+drop_location = "The Newcomers, end chest"
+icon = "Goggles_3"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 28
+race_required = "Dragonborn"
+slot = "Goggles"
+
+[[effect]]
+name = "Breath Weapon Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Newcomers"

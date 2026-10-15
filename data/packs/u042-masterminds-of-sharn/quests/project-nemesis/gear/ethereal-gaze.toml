@@ -1,0 +1,37 @@
+name = "Ethereal Gaze"
+description = "These are slightly intangible."
+drop_location = "Project Nemesis, End Chest"
+icon = "Goggles_14"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Goggles"
+
+[[effect]]
+name = "Exceptional Nimble Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[effect]]
+name = "Insightful Nimble Skills Bonus"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Ethereal"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"

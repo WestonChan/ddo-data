@@ -1,0 +1,17 @@
+name = "Eldritch Rune of Featherfalling"
+description = """
+Feather Falling: This item is engraved with feathers and bestows a powerful magical
+effect. Whenever the wearer begins to fall from any height, this effect slows
+the descent dramatically, causing the wearer to fall like a feather."""
+family = "Dragontouched_EldritchRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling"]
+
+[[slot]]
+slot = "crafting: eldritch rune"

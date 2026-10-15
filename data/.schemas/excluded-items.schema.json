@@ -1,0 +1,36 @@
+{
+  "$defs": {
+    "ExcludedItem": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "reason"
+      ],
+      "type": "object",
+      "x-table": "excluded_items"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "row": {
+      "items": {
+        "$ref": "#/$defs/ExcludedItem"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "row"
+  ],
+  "title": "ExcludedItemsFile",
+  "type": "object"
+}

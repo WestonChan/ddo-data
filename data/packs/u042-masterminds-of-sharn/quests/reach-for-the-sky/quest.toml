@@ -1,0 +1,29 @@
+name = "Reach for the Sky"
+bestowed_by = "Jix Boromar"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Masterminds of Sharn"
+patron = "Sharn City Council"
+zone = "Skyway Odeum"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Reach_for_the_Sky"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

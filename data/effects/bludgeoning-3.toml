@@ -1,0 +1,3 @@
+name = "Bludgeoning 3"
+description_template = "The edges of this weapon are blunted, dealing an additional 3d6 bludgeon damage on each hit."
+verbose_name_template = "Bludgeoning 3"

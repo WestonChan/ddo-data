@@ -1,0 +1,40 @@
+name = "Epic Switchblade Boots"
+description = """
+The toes of these boots are fitted with spring-loaded blades, a nasty surprise
+for the unwary opponent."""
+drop_location = "The Missing Party, End chest"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 25
+slot = "Feet"
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 9
+value2 = 14
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Missing Party"

@@ -1,0 +1,30 @@
+name = "Demon in the Rough"
+bestowed_by = "Dreline the Trader"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+zone = "Mantol-Derith"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Demon_in_the_Rough"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 37
+
+[[run]]
+tier = "legendary"
+level = 37

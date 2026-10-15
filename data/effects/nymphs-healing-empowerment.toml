@@ -1,0 +1,11 @@
+name = "Nymph's Healing Empowerment"
+description_template = "This soft and soothing magic empowers your ability to heal others. Your Empower Healing metamagic costs 3SP less to use."
+home_bonus_type = "Equipment"
+verbose_name_template = "Nymph's Healing Empowerment -3"
+
+[[bonus]]
+amount_from = 0
+constant = -3
+rounding = "down"
+scale = 1.0
+target = "Empower Healing Cost Reduction"

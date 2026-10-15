@@ -1,0 +1,3 @@
+name = "Nightsinger"
+description_template = "5% Chance On Sonic Spell Hit: Target is Blinded for 6 Seconds"
+verbose_name_template = "Nightsinger"

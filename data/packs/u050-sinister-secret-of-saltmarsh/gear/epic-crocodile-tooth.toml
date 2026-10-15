@@ -1,0 +1,34 @@
+name = "Epic Crocodile Tooth"
+description = """
+A chip is missing from this tooth, a memory of the battle involved in taking
+from its owner."""
+drop_location = "Epic version of Crocodile Tooth"
+icon = "Trinket_55"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 20
+slot = "Trinket"
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Insight"
+value = 7
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

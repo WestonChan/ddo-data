@@ -1,0 +1,53 @@
+name = "Epic Windlasher's Ferocity"
+icon = "Menechtarun"
+
+[[item]]
+name = "Epic Cape of the Roc"
+
+[[item]]
+name = "Epic Chaosblade"
+
+[[item]]
+name = "Epic Dustless Boots"
+
+[[item]]
+name = "Epic Hyena Claw Necklace"
+
+[[item]]
+name = "Epic Marilith Chain"
+
+[[item]]
+name = "Epic Mirage"
+
+[[item]]
+name = "Epic Unkor's Cleaver"
+
+[[item]]
+name = "Epic Wolf Whistle"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

@@ -1,0 +1,11 @@
+name = "Feat: Pierce Adamantine"
+description_template = "Pierce Adamantine: While equipped this item grants the feat Pierce Adamantine."
+verbose_name_template = "Feat: Pierce Adamantine"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "Feat"
+reason = "The effect name and description identify Pierce Adamantine; the template keeps only the first word."
+url = "internal:effect-name-and-description"
+read = "2026-10-05"

@@ -1,0 +1,52 @@
+name = "Zuggtmoy's Reign"
+description = "A dream of a Demon Lord, ruling over everything."
+drop_location = "Terror of Demogorgon, any end chest; Terror of Demogorgon (Legendary) Elite/True Elite end reward"
+icon = "Necklace_14c"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 35
+slot = "Neck"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 26
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Quality"
+value = 44
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Insight"
+value = 8
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "any end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Terror of Demogorgon"
+
+[[source]]
+kind = "saga"
+name = "Terror of Demogorgon"
+tier = "legendary"

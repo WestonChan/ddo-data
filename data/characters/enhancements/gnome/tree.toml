@@ -1,0 +1,669 @@
+name = "Gnome"
+background = "GnomeBackground"
+icon = "Gnome"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Gnome: Perseverance I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1% Dodge, +1 Use Magic Device"
+icon = "GnomeGnomishPerserveranceI"
+internal_name = "GnomeCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Gnome: Intelligence I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+internal_name = "GnomeCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["GnomeCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Gnome: Perseverance II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1% Dodge, +1 Use Magic Device"
+icon = "GnomeGnomishPerserveranceII"
+internal_name = "GnomeCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["GnomeCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Gnome: Intelligence II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+internal_name = "GnomeCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["GnomeCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Scrolls: Retain Essence"
+cost_per_rank = [1]
+description = """
+You gain a 15% Racial bonus to your odds of retaining a copy of a Scroll when using it.
++2% Dodge, +1 Use Magic Device"""
+icon = "GnomeScrollsRetainEssence"
+internal_name = "GnomeCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["GnomeCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Gnome: Sivis Dragonmark Focus"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark use per day, +[1/2/3] Use Magic Device"
+icon = "GnomeSivisDragonmarkFocus"
+internal_name = "GnomeSivisDragonmarkFocus"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DragonmarkUse"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[enhancement.requirement]]
+items = ["Least Dragonmark of Scribing"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Gnome: Wand and Scroll Mastery"
+cost_per_rank = [1]
+description = """
++[25/50/75]% effectiveness from your wands, scrolls, and other items
+that cast spells, and +[1/2/3] to the save DC of your offensive wands."""
+icon = "GnomeWandAndScrollMastery"
+internal_name = "GnomeWandAndScrollMastery"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "GnomeWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Wands"]
+
+[[enhancement.requirement]]
+items = [
+    "GnomeWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Gnome: Keen Insight"
+cost_per_rank = [1]
+description = "+[2/4/6] to Will saving throws vs. Illusions"
+icon = "GnomeKeenInsight"
+internal_name = "GnomeKeenInsight"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Illusion"]
+
+[[enhancement]]
+name = "Gnome: Stealth or Awareness"
+cost_per_rank = [1]
+description = "Choose between Awareness or Stealthy"
+icon = "Awareness"
+internal_name = "GnomeStealthOrAwareness"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.selection]]
+name = "Awareness"
+cost_per_rank = [1]
+description = "+[1/2/3] to Listen, Spot and Search."
+icon = "Awareness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Spot",
+    "Search",
+]
+
+[[enhancement.selection]]
+name = "Stealthy"
+cost_per_rank = [1]
+description = "+[1/2/3] to Hide and Move Silently."
+icon = "Stealthy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement]]
+name = "Gnome: Weapon Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++1 to hit and damage with Light Hammers, Light Maces, Light Picks, Shortswords,
+Shortbows, Light Crossbows, and Light Repeating Crossbows."""
+icon = "GnomeGnomishWeaponTrainingI"
+internal_name = "GnomeGnomishWeaponTrainingI"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement]]
+name = "Gnome: Lesser Dragonmark of Scribing"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Lesser Dragonmark Spell: Illusory Mark of Flame.
+This spell works acts as the Symbol of Flame spell, but with Illusion as its school
+and Will as its saving throw."""
+icon = "GnomeLessaerDragonmarkOfScribing"
+internal_name = "GnomeLessaerDragonmarkOfScribing"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Illusory Mark of Flame",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["GnomeSivisDragonmarkFocus"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Gnome: Against the Giants"
+cost_per_rank = [1]
+description = """
+Gnomes have passed their tactics for eluding Giants down over generations.
++[2/4/6] to Saving Throws and Armor Class against Giants."""
+icon = "GnomeAgainstTheGiants"
+internal_name = "GnomeAgainstTheGiants"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement]]
+name = "Gnome: Greater Color Spray"
+cost_per_rank = [2]
+description = """
+Enemies are sprayed with illusions of color, and must make a Will save or be
+Dazed, Blinded, and/or Silenced. The target must make a saving throw for each effect.
+Activation Cost: 2 Spell Points. Cooldown: 8 seconds."""
+icon = "GnomeColorSpray"
+internal_name = "GnomeColorSpray"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Color Spray",
+    "None",
+]
+
+[[enhancement]]
+name = "Gnome: Permanent Blur"
+cost_per_rank = [1]
+description = "You gain a permanent Blur effect."
+icon = "GnomePermanentBlur"
+internal_name = "GnomePermanentBlur"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[enhancement]]
+name = "Gnome: Weapon Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++1 to hit and damage with Light Hammers, Light Maces, Light Picks, Shortswords,
+Shortbows, Light Crossbows, and Light Repeating Crossbows."""
+icon = "GnomeGnomishWeaponTrainingII"
+internal_name = "GnomeGnomishWeaponTrainingII"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement.requirement]]
+items = ["GnomeGnomishWeaponTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Gnome: Greater Dragonmark of Scribing"
+cost_per_rank = [2]
+description = """
+Greater Dragonmark Spell: Illusory Symbol of Stunning.
+This spell works acts as the Symbol of Stunning spell, but with Illusion as its
+school and Will as its saving throw."""
+icon = "GnomeGreaterDragonmarkOfScribing"
+internal_name = "GnomeGreaterDragonmarkOfScribing"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Illusory Symbol of Stunning",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["GnomeLessaerDragonmarkOfScribing"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Gnome: Nimble Reaction"
+cost_per_rank = [1]
+description = "+[1/2/3] Armor Maximum Dexterity Bonus and Maximum Dodge Bonus."
+icon = "GnomeNimbleReaction"
+internal_name = "GnomeNimbleReaction"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+
+[[enhancement]]
+name = "Gnome Spell Focus: Illusion"
+cost_per_rank = [1]
+description = "+[1/2/3] to Illusion DCs"
+icon = "GnomeRacialSpellFocusIllusion"
+internal_name = "GnomeRacialSpellFocusIllusion"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement]]
+name = "Gnome: Weapon Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++2 to hit and damage with Light Hammers, Light Maces, Light Picks, Shortswords,
+Shortbows, Light Crossbows, and Light Repeating Crossbows."""
+icon = "GnomeGnomishWeaponTrainingIII"
+internal_name = "GnomeGnomishWeaponTrainingIII"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement.requirement]]
+items = ["GnomeGnomishWeaponTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Gnome: Favored Enemy"
+cost_per_rank = [2]
+description = """
+Gnomes have a history of racial enmity with several kinds of creatures.
+Choose a Favored Enemy feat for one of these: Gnoll or Reptilian"""
+icon = "GnomeGnomishFavoredEnemy"
+internal_name = "GnomeGnomishFavoredEnemy"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.selection]]
+name = "Gnoll"
+cost_per_rank = [2]
+description = "You have Gnolls as a favored enemy"
+icon = "FavoredEnemyGnoll"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Gnoll"]
+
+[[enhancement.selection]]
+name = "Reptillian"
+cost_per_rank = [2]
+description = "You have Reptiles as a favored enemy"
+icon = "FavoredEnemyReptilian"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Reptilian"]
+
+[[enhancement]]
+name = "Gnome: Weapon Training IV"
+cost_per_rank = [2]
+description = """
++2 to hit and damage with Light Hammers, Light Maces, Light Picks, Shortswords,
+Shortbows, Light Crossbows, and Light Repeating Crossbows.
++1 Competence Bonus to Critical Threat Range with the same weapons."""
+icon = "GnomeGnomishWeaponTrainingIV"
+internal_name = "GnomeGnomishWeaponTrainingIV"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement.requirement]]
+items = ["GnomeGnomishWeaponTrainingIII"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Gnome"]
+req_type = "Race"

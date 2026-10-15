@@ -1,0 +1,42 @@
+name = "Solar Gem of Dodge (Legendary)"
+description = """
++10% Artifact Bonus to Dodge.
+Drops in: The House of Gems, end chest
+Dinosaur Crisis, end chest
+Ends and Means, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Artifact"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Gems"

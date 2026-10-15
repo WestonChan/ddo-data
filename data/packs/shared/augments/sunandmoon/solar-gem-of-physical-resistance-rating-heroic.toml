@@ -1,0 +1,49 @@
+name = "Solar Gem of Physical Resistance Rating (Heroic)"
+description = """
++10 Artifact Bonus to Physical Resistance Rating.
+Drops in: Secrets of the Red Wizards, end chest
+The Darkness and the Light, end chest
+The Covered Culvert, optional chest
+Zoo Creeper, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Artifact"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secrets of the Red Wizards"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darkness and the Light"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

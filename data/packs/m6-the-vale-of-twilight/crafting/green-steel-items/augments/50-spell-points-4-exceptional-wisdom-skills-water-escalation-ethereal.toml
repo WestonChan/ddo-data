@@ -1,0 +1,40 @@
+name = "+50 Spell Points, +4 Exceptional Wisdom Skills"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+variant = "Water:Escalation:Ethereal"
+description = """
+Wizardry II: +50 Improved Elemental Spell Power bonus to spell points.
++4 Exceptional bonus to all Wisdom based skills
+Water:Escalation:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Improved Elemental Spell Power"
+value = 50
+
+[[effect]]
+name = "Wisdom Skills"
+bonus_type = "Exceptional"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Improved Elemental Spell Power"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Exceptional"
+effect = "Wisdom Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: accessory subjugation"

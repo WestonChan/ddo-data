@@ -1,0 +1,26 @@
+name = "Legendary Arrowbound Topaz"
+description = "+8% Enhancement bonus to Doubleshot chance"
+family = "Topaz"
+icon = "TopazBlueBorder"
+min_level = 30
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Doubleshot"
+effect_type = "Doubleshot"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

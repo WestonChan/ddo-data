@@ -1,0 +1,35 @@
+name = "Epic Wards of House Kundarak"
+icon = "Kundarak"
+
+[[item]]
+name = "Epic Kundarak Warding Bracers"
+
+[[item]]
+name = "Epic Kundarak Warding Shield"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "ACPercent"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

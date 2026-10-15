@@ -1,0 +1,28 @@
+name = "Curse of Major Arcana"
+description = "+2 Fortune Bonus to Spellcraft and Concentration"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Fortune"
+value = 2
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Spellcraft",
+]
+
+[[slot]]
+slot = "crafting: deck curse"

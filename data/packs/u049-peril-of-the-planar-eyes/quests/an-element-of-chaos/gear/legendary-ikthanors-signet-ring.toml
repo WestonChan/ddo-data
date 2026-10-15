@@ -1,0 +1,32 @@
+name = "Legendary Ik'thanor's Signet Ring"
+description = "The Slaad you took this from had very, very expensive taste."
+drop_location = "An Element of Chaos, End chest"
+icon = "Ring_16"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Arcane Augmentation IX"
+
+[[effect]]
+name = "Divine Augmentation IX"
+
+[[effect]]
+name = "Alchemical Conservation"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "An Element of Chaos"

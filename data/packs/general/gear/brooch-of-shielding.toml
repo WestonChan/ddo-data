@@ -1,0 +1,25 @@
+name = "Brooch of Shielding"
+description = """
+This finely crafted golden brooch has the capacity to absorb incoming Magic
+Missile spells. This brooch will crumble to dust when the last charge is expended."""
+drop_location = "Random, ~Level 4 chests/rewards"
+icon = "Trinket_65"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 5
+slot = "Trinket"
+
+[[clickie]]
+name = "Absorbs Magic Missiles"
+clickie = "Absorbs Magic Missiles"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    50,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Absorbs Magic Missiles"]

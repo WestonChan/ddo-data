@@ -1,0 +1,36 @@
+name = "Adamantine Cloak of the Wolf"
+description = """
+The interior of this cloak is reinforced with a lightweight chainmail mesh,
+providing extra protection while retaining ease of movement."""
+drop_location = "Eveningstar Challenge Pack, Turn in various ingredients"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Adamantine"
+minimum_level = 24
+slot = "Back"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 4
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[source]]
+chest = "turn in various ingredients"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

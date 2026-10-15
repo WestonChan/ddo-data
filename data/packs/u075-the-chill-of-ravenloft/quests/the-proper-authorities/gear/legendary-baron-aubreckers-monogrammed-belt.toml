@@ -1,0 +1,41 @@
+name = "Legendary Baron Aubrecker's Monogrammed Belt"
+description = """
+The monogramming on this belt looks elegant until you look at it closely, where
+the rough edges betray it."""
+drop_location = "The Proper Authorities, end chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 34
+slot = "Waist"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 12
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Proper Authorities"

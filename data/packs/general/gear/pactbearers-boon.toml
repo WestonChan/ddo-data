@@ -1,0 +1,23 @@
+name = "Pactbearer's Boon"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Ring_3"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 15
+race_required = "Dhampir Dark Bargainer"
+slot = "Ring"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

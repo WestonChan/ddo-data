@@ -1,0 +1,36 @@
+name = "Solar Gem of Force Absorption (Heroic)"
+description = """
+Artifact Force Absorption +2%
+Drops in: Snowfall and Sunlight, end chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Force Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Force"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Fetid Wedding"

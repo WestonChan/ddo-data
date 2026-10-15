@@ -1,0 +1,4 @@
+name = "Arcane Spell Failure"
+category = "magical"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Arcane Spell Failure +{1}"

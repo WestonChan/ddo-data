@@ -1,0 +1,20 @@
+name = "Solar Gem of Enduring (Epic)"
+description = "+?% Legendary Bonus to Maximum Hit Points."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Maximum Hit Points"
+bonus_type = "Legendary"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+effect_type = "HitpointsPercent"
+
+[[slot]]
+slot = "sun"

@@ -1,0 +1,27 @@
+name = "The Legendary Book of Defense: Fortitude"
+description = "+12 Resistance bonus to Fortitude Saving Throws."
+family = "VecnaUnleashed"
+icon = "HistoryBookBlue"
+min_level = 32
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Resistance"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

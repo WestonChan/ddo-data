@@ -1,0 +1,35 @@
+name = "Lenses of the Dark Depths"
+description = "Peer into the depths below..."
+drop_location = "Safety in Numbers, end chest"
+icon = "Goggles_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 17
+slot = "Goggles"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Speed"
+value = 27
+value2 = 12
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Safety in Numbers"

@@ -1,0 +1,50 @@
+name = "Medium Armor of the Crownblade"
+description = """
+When the Echo broke off from the Crownblade, the force of its defiance manifested
+this armor, and shares its clarity of purpose."""
+drop_location = "Times Long Past, end chest (rare)"
+enhancement_bonus = 5
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 17
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 7
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Linguistics 15%"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Times Long Past"

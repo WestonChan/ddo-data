@@ -1,0 +1,37 @@
+name = "Legendary Silverthread Cloak"
+description = "This cloak was fashioned from thread made of pure silver."
+drop_location = "Into the Mists, end chest"
+icon = "Cloak_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Into the Mists"

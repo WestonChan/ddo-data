@@ -1,0 +1,27 @@
+name = "Deepsnow Boots"
+description = "These boots are perfect for navigating extreme weather."
+drop_location = "A Frosty Reception, End chest, Frost Giant chest"
+icon = "Boots_9"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 5
+slot = "Feet"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, frost giant chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Frosty Reception"

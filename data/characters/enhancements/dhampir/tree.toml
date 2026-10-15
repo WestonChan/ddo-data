@@ -1,0 +1,795 @@
+name = "Dhampir"
+background = "DhampirBackground"
+icon = "Dhampir"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Dhampir: Dark Future I"
+cost_per_rank = [1]
+description = "+1 to Attack while performing Sneak Attacks."
+icon = "DarkFuture"
+internal_name = "DhampirCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Dhampir: Ability I"
+cost_per_rank = [2]
+description = "Choose between Strength, Constitution, or Charisma"
+icon = "StrConCha"
+internal_name = "DhampirCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+items = ["DhampirCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection.requirement]]
+items = ["DhampirCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection.requirement]]
+items = ["DhampirCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection.requirement]]
+items = ["DhampirCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dhampir: Dark Future II"
+cost_per_rank = [1]
+description = "+2 to Attack while performing Sneak Attacks, +1 Sneak Attack Die, +20 Negative Amplification."
+icon = "DarkFutureII"
+internal_name = "DhampirCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+items = ["DhampirCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement]]
+name = "Dhampir: Ability II"
+cost_per_rank = [2]
+description = "Choose between Strength, Constitution, or Charisma"
+icon = "StrConCha"
+internal_name = "DhampirCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+items = ["DhampirCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection.requirement]]
+items = ["DhampirCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection.requirement]]
+items = ["DhampirCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection.requirement]]
+items = ["DhampirCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dhampir: Dark Future III"
+cost_per_rank = [1]
+description = "+3 to Attack while performing Sneak Attacks, +2 Sneak Attack Die, +20 Negative Amplification."
+icon = "DarkFutureIII"
+internal_name = "DhampirCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+items = ["DhampirCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement]]
+name = "Dhampir: Draining Bite"
+cost_per_rank = [1]
+description = """
+Your Vampiric Bite now applies 1 Negative Level.
+This increases by 1 for every 5 Character Levels you have."""
+icon = "DrainingBite"
+internal_name = "DhampirDrainingBite"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement]]
+name = "Dhampir: Skills"
+cost_per_rank = [1]
+description = "+[1/2/3] to Hide, Move Silently and Jump"
+icon = "DhampirSkills"
+internal_name = "DhampirSkills"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+    "Jump",
+]
+
+[[enhancement]]
+name = "Dhampir: Drink in"
+cost_per_rank = [1]
+description = "How do you get your energy?"
+icon = "DrinkInLife"
+internal_name = "DhampirDrinkInLife"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.selection]]
+name = "Drink in Death"
+cost_per_rank = [1]
+description = "+20 Negative Healing Amplification"
+icon = "DrinkInDeath"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.selection]]
+name = "Drink in Life"
+cost_per_rank = [1]
+description = "+20 Positive Healing Amplification"
+icon = "DrinkInLife"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement]]
+name = "Dhampir: Tenuous Relationship With Death"
+cost_per_rank = [1]
+description = """
+Your range of unconsciousness extends by +[5/10/20] Hit Points.
+Rank 3: You automatically stabilize when Unconscious."""
+icon = "TenuousRelationshipWithDeath"
+internal_name = "DhampirTenuousRelationshipWithDeath"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -20,
+]
+bonus_type = "Enhancement"
+effect_type = "UnconsciousRange"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+rank = 3
+targets = ["Diehard"]
+
+[[enhancement]]
+name = "Dhampir: Innate Protection"
+cost_per_rank = [1]
+description = "+[1/2/3] to Saves vs Spells."
+icon = "DhampirInnateProtection"
+internal_name = "DhampirInnateProtection"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Spell"]
+
+[[enhancement]]
+name = "Dhampir: Lifeblood"
+cost_per_rank = [1]
+description = """
+When you successfully use your Vampiric Bite on a living target in corporeal form,
+you gain +[1/2/3] to all Ability Scores for 60 seconds."""
+icon = "DhampirLifeblood"
+internal_name = "DhampirLifeblood"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Vampiric Bite"]
+req_type = "Stance"
+
+[[enhancement.stance]]
+name = "Vampiric Bite"
+description = "You have successfully bitten a corporeal living enemy."
+icon = "VampiricBite"
+
+[[enhancement]]
+name = "Dhampir: Dominate Animal"
+cost_per_rank = [1]
+description = """
+Dominate Animal SLA: Telepathically control the actions of an Animal, Magical Beast,
+or Vermin, causing it to change sides. Dominate acts like Charm, with additional
+Will saves every 15 to 30 seconds, but the creature will follow you throughout
+the dungeon. Mindless targets cannot save, but the duration is halved.
+DC (15 + Highest of INT/WIS/CHA Mod + Enchantment Bonuses)
+Cooldown: 18 seconds"""
+icon = "DhampirDominateAnimal"
+internal_name = "DhampirDominateAnimal"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    18,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Dominate Animal",
+    "None",
+]
+
+[[enhancement]]
+name = "Dhampir: Embrace Death"
+cost_per_rank = [1]
+description = """
+Embrace Death: Toggle: While Embrace Death is active, you gain 100% critical hit
+resistance and are able to be healed by Negative Energy. You take 50% healing
+from Positive, and double damage from Light. (This replaces your natural
+vulnerability to Light). You are considered Undead rather than your original
+type for the purposes of most effects. You gain +2 Intelligence, +2 Charisma,
++2 Wisdom, and +3 Perform. Your melee attacks have a 10% chance to heal you
+for 1d3 with Negative Energy per Character level (max 20).
+This is a Major Form, and counts as a Shroud for the purpose of Pale Master.
+Cooldown: 30 seconds"""
+icon = "DhampirEmbraceDeath"
+internal_name = "DhampirEmbraceDeath"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Stacking"
+effect_type = "Fortification"
+
+[[enhancement.modifier.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = [
+    "Charisma",
+    "Intelligence",
+    "Wisdom",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[enhancement.modifier.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.stance]]
+name = "Embrace Death"
+description = """
+Toggle: While Embrace Death is active, you gain 100% critical hit
+resistance and are able to be healed by Negative Energy. You take 50% healing
+from Positive, and double damage from Light. (This replaces your natural
+vulnerability to Light). You are considered Undead rather than your original
+type for the purposes of most effects. You gain +2 Intelligence, +2 Charisma,
++2 Wisdom, and +3 Perform. Your melee attacks have a 10% chance to heal you
+for 1d3 with Negative Energy per Character level (max 20).
+This is a Major Form, and counts as a Shroud for the purpose of Pale Master."""
+group_name = "Major Form"
+icon = "DhampirEmbraceDeath"
+
+[[enhancement]]
+name = "Dhampir: Rush of Bats"
+cost_per_rank = [2]
+description = """
+Turn into a swarm of bats and rush to target foe's position.
+[24/18/12] second cooldown."""
+icon = "DhampirRushOfBats"
+internal_name = "DhampirRushOfBats"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement]]
+name = "Dhampir: Cloak of Undeath"
+cost_per_rank = [1]
+description = """
++[2/4/6] MRR.
+Rank 3: +6 MRR Cap."""
+icon = "DhampirCloakOfUndeath"
+internal_name = "DhampirCloakOfUndeath"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MRRCap"
+
+[[enhancement]]
+name = "Dhampir: Fearsome Countenance"
+cost_per_rank = [1]
+description = """
+Target enemy must make a Will Saving Throw
+(Will save vs. DC 10 + [Str/Con/Cha] Mod + Stunning bonuses + Enchantment DC Bonuses)
+or be Cowered for 6 seconds. This is considered a Fear effect.
+On Save: -10% Movement and Attack Speed for 6 seconds.
+Cooldown: 12 seconds"""
+icon = "DhampirFearsomeCountenance"
+internal_name = "DhampirFearsomeCountenance"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.dc]]
+name = "Dhampir: Fearsome Countenance"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Will"
+description = """
+Target enemy must make a Will Saving Throw
+(Will save vs. DC 10 + [Str/Con/Cha] Mod + Stunning bonuses + Enchantment DC Bonuses)
+or be Cowered for 6 seconds. This is considered a Fear effect.
+On Save: -10% Movement and Attack Speed for 6 seconds.
+Cooldown: 12 seconds"""
+icon = "DhampirFearsomeCountenance"
+mod_ability = [
+    "Strength",
+    "Constitution",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement]]
+name = "Dhampir: Stunning Visage"
+cost_per_rank = [1]
+description = "+[2/3/4] to Stun DCs."
+icon = "DhampirStunningVisage"
+internal_name = "DhampirStunningVisage"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    3,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[enhancement]]
+name = "Dhampir: Deathly Bite"
+cost_per_rank = [1]
+description = """
+When you are considered Undead (via Embrace Death or any other source),
+your Vampiric Bite heals you for Negative energy instead of Positive."""
+icon = "DhampirDeathlyBite"
+internal_name = "DhampirDeathlyBite"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement]]
+name = "Dhampir: Harrying Swarm"
+cost_per_rank = [1]
+description = """
+Enemies in a small area around where you finish your Rush of Bats take -5% Dodge
+and -5 Attack for 12 seconds. Additionally, when you finish Rush of Bats, you
+gain 5% Incorporeality and +2 Stunning DCs for 6 seconds."""
+icon = "DhampirHarryingSwarm"
+internal_name = "DhampirHarryingSwarm"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement]]
+name = "Dhampir: Improved Dodge"
+cost_per_rank = [1]
+description = "+[1/2/3]% Dodge when wearing Light or no armor."
+icon = "DhampirImprovedDodge"
+internal_name = "DhampirImprovedDodge"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Dhampir: Ascendant Bite"
+cost_per_rank = [1]
+description = """
+Your Vampiric Bite now applies 5 stacks of Vulnerability and deals double the Piercing damage.
+If the target of your Vampiric Bite is Cowered, living and corporeal they must
+make a Fortitude Saving Throw (DC 16 + [Str/Con/Int/Cha] Mod + Stunning
+Bonuses + Enchantment Bonuses) or die."""
+icon = "DhampirAscendantBite"
+internal_name = "DhampirAscendantBite"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.dc]]
+name = "Dhampir: Ascendant Bite"
+amount = [16]
+dc_type = "Avoid Death"
+dc_versus = "Fortitude"
+description = """
+Your Vampiric Bite now applies 5 stacks of Vulnerability and deals double the Piercing damage.
+If the target of your Vampiric Bite is Cowered, living and corporeal they must
+make a Fortitude Saving Throw (DC 16 + [Str/Con/Int/Cha] Mod + Stunning
+Bonuses + Enchantment Bonuses) or die."""
+icon = "DhampirAscendantBite"
+mod_ability = [
+    "Strength",
+    "Constitution",
+    "Intelligence",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement]]
+name = "Dhampir: Vampiric Persuasion"
+cost_per_rank = [1]
+description = "+[1/2/3] Enchantment DCs"
+icon = "DhampirVampiricPersuasion"
+internal_name = "DhampirVampiricPersuasion"
+min_spent = 15
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement]]
+name = "Dhampir: Dominate Person"
+cost_per_rank = [2]
+description = """
+Spell-Like Ability: Dominates one target humanoid, causing it to change sides.
+DC: 15 + [Int/Wis/Cha] Mod + Enchantment Bonuses
+Cooldown: 18 seconds"""
+icon = "DhampirDominatePerson"
+internal_name = "DhampirDominatePerson"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    18,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Dominate Person",
+    "None",
+]
+
+[[enhancement]]
+name = "Dhampir: Biting Swarm"
+cost_per_rank = [1]
+description = """
+Living, corporeal enemies in a small area around where you finish your Rush of Bats
+are bitten by the bats, causing them to bleed, taking 1d12 damage per Character
+Level every 2 seconds for 12 seconds. This damage scales with 200% Melee Power."""
+icon = "DhampirBitingSwarm"
+internal_name = "DhampirBitingSwarm"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[requirement]]
+items = ["Dhampir"]
+req_type = "Race"

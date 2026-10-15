@@ -1,0 +1,65 @@
+name = "Insightful Tendon Slice"
+choose_level = true
+description = "Any melee attack that does damage has an Insight chance to Hamstring your opponent"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+]
+
+[[slot]]
+slot = "crafting: cannith melee suffix"
+
+[[slot]]
+slot = "crafting: cannith ranged suffix"
+
+[[slot]]
+slot = "crafting: cannith thrown suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random gloves extra"
+
+[[slot]]
+slot = "crafting: random weapon extra"

@@ -1,0 +1,41 @@
+name = "Storna's Pendant"
+description = """
+The pendant of Storna, Leader of the Night Brigade. Her connection to Shar is
+amplified out through this pendant, though those of other faiths may be able
+to use it to similar effect."""
+drop_location = "The Darkness and the Light, end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 4
+slot = "Neck"
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Insightful Faith"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 28
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darkness and the Light"

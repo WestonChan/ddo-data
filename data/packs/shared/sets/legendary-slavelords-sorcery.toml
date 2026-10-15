@@ -1,0 +1,99 @@
+name = "Legendary Slavelords Sorcery"
+icon = "SlavelordsSorcery"
+
+[[augment]]
+name = "Legendary Slavelords Sorcery"
+family = "Slavelords_Legendary"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 5
+reason = "The wiki gives Universal Spell Power +4 Artifact at 3 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Universal Spell Power / Artifact"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Intelligence"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Wisdom"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Charisma"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]

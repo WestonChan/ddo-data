@@ -1,0 +1,163 @@
+name = "Ring of Master Artifice (Level 15)"
+description = """
+A ring said to have been worn by a legendary artificer. Using it, he was able
+to take things that seemed beyond repair and make them good as new."""
+drop_location = "Vaults of the Artificers, from exchanged challenge rewards or upgraded from level 12 version"
+icon = "Ring_22"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+slot = "Ring"
+
+[[clickie]]
+name = "Reconstruct"
+clickie = "Reconstruct"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 159
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 96
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Improved Auto-Repair"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Reconstruct"]
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Wizardry 173, Reconstruction 102, Repair Lore 15"
+description = """
+Wizardry +173: +173 Enhancement bonus to spell points.
+Reconstruction +102: Passive: +102 Equipment bonus to Repair and Rust Spell Power.
+Repair Lore +15: Passive: Your Repair and Rust spells gain a 15% Equipment bonus
+to their chance to critical hit."""
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+value = 173
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+value = 102
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [173]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [102]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+effect_type = "SpellLore"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Wizardry 187, Reconstruction 108, Repair Lore 16 and a Green Augment Slot"
+description = """
+Wizardry +187: +187 Enhancement bonus to spell points.
+Reconstruction +108: Passive: +108 Equipment bonus to Repair and Rust Spell Power.
+Repair Lore +16: Passive: Your Repair and Rust spells gain a 16% Equipment bonus
+to their chance to critical hit.
+Adds a Green Augment Slot"""
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+value = 187
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+value = 108
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+value = 16
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [187]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [108]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+effect_type = "SpellLore"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

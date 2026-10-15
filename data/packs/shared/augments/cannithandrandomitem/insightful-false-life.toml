@@ -1,0 +1,25 @@
+name = "Insightful False Life"
+description = "Grants the wearer False Life Hitpoints"
+enter_value = true
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "False Life"
+bonus_type = "Insight"
+value = 57
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [57]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[slot]]
+slot = "crafting: random belt extra"
+
+[[slot]]
+slot = "crafting: random ring extra"

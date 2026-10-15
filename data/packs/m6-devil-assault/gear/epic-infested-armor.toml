@@ -1,0 +1,48 @@
+name = "Epic Infested Armor"
+description = """
+An orthon warrior's body is crawling with hungry maggots that feed on its wounds.
+This suit of armor, crafted from the salvaged parts of an orthon's protective
+gear, is similarly infested and may impart a disease to those that attack the
+wearer."""
+drop_location = "Epic version of Infested Armor"
+enhancement_bonus = 6
+icon = "HeavyArmor_1f"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[effect]]
+name = "Greater Disease Guard"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Demonic Shield"
+
+[[effect]]
+name = "DR 5/Good"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 28
+
+[[socket]]
+slot = "blue"

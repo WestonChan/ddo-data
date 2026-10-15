@@ -1,0 +1,44 @@
+name = "Rosethorn Necklace"
+description = "A necklace of roses by any other name would smell just as sweet."
+drop_location = "Fables of the Feywild, any chest"
+icon = "Necklace_13b"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Darkwood"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Thorn of the Rose"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 5
+value2 = 8
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 21
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "any chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Fables of the Feywild"

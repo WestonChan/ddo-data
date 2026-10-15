@@ -1,0 +1,28 @@
+name = "Disc of Enhancement"
+description = "A plain steel disc, designed to fit the chest of a warforged."
+drop_location = "Caverns of Korromar, Brunhilde Firegout 's Chest"
+enhancement_bonus = 4
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 6
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "brunhilde firegout 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Caverns of Korromar"

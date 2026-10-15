@@ -1,0 +1,47 @@
+name = "Epic Skullduggery Cap"
+description = "When shady work is the order of the evening, a light cap can be essential."
+drop_location = "Epic version of Skullduggery Cap"
+icon = "Helmet_1d"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 20
+slot = "Head"
+
+[[clickie]]
+name = "Death Ward, Mass"
+spell = "Death Ward, Mass"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Trap the Soul Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Death Ward, Mass"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

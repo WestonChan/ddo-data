@@ -1,0 +1,32 @@
+name = "Healing Lore III"
+adds_augment = "Accessory Subjugation"
+description = """
+Healing Lore III: Passive: Your Positive spells gain a 6% Equipment bonus
+to their chance to critical hit and a 0.25 spell critical damage bonus.
+Positive:Dominion:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[effect]]
+name = "Positive Spell Lore"
+bonus_type = "Equipment"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Equipment"
+effect = "Positive Spell Lore"
+effect_type = "SpellLore"
+targets = ["Positive"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [0.25]
+bonus_type = "Equipment"
+effect_type = "SpellCriticalDamage"
+targets = ["Positive"]
+
+[[slot]]
+slot = "crafting: accessory invasion"

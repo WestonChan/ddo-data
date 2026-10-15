@@ -1,0 +1,50 @@
+name = "Adoryn's Malice"
+description = """
+This light mace was named after one of the workers that worked in the foundry
+of the Twilight Forge thousands of years ago. Adoryn was responsible for running
+the forge that birthed the Warforged Titan . Upon realizing what he had helped
+unleash on the world, he attempted to destroy it with this specially designed,
+handcrafted light mace."""
+drop_location = "The Twilight Forge, End Chest"
+enhancement_bonus = 5
+icon = "LightMace_1"
+item_category = "Weapon"
+item_type = "Light Mace"
+material = "Adamantine"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Greater Construct Bane"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Twilight Forge"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Light Mace"

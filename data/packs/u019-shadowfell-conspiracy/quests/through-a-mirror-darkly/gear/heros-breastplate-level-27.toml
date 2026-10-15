@@ -1,0 +1,27 @@
+name = "Hero's Breastplate (Level 27)"
+description = """
+This item currently cannot be fed to sentient jewels and probably should be
+able to."""
+drop_location = "Through a Mirror Darkly, End reward"
+enhancement_bonus = 10
+icon = "MediumArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Dwarven Iron"
+minimum_level = 27
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 18
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 7
+
+[[effect]]
+name = "Greater Heroism"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Through a Mirror Darkly"

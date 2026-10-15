@@ -1,0 +1,41 @@
+name = "Topaz of Proof Against Disease"
+choose_level = true
+description = "Enhancement bonus to saves versus disease"
+family = "Topaz"
+icon = "Topaz"
+level_values = [
+    2,
+    4,
+    5,
+    6,
+    8,
+]
+levels = [
+    4,
+    8,
+    12,
+    16,
+    20,
+]
+
+[[effect]]
+name = "Disease Save"
+bonus_type = "Enhancement"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Disease Save"
+effect_type = "SaveBonus"
+targets = ["Disease"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

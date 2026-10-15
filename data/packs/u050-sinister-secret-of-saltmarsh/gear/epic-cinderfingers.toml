@@ -1,0 +1,39 @@
+name = "Epic Cinderfingers"
+description = """
+Sparks of flame dance between the fingertips of these heavy leather gloves.
+They're perfect for burning away Webs."""
+drop_location = "Epic version of Cinderfingers"
+icon = "Gloves_7l"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 20
+slot = "Hands"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Web Immunity"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

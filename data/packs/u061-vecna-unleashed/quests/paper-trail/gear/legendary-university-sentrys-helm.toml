@@ -1,0 +1,45 @@
+name = "Legendary University Sentry's Helm"
+description = """
+Used by guardians of the gates, this helmet has lost its purpose but seems like
+it could find a new one."""
+drop_location = "Paper Trail, End chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 32
+slot = "Head"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 76
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 14
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 14
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Paper Trail"

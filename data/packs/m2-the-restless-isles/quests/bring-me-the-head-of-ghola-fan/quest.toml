@@ -1,0 +1,22 @@
+name = "Bring Me the Head of Ghola-Fan!"
+bestowed_by = "Mul-Tong"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Restless Isles"
+patron = "The Free Agents"
+zone = "Ghola Fan's Compound"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Bring_Me_the_Head_of_Ghola-Fan!"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10

@@ -1,0 +1,24 @@
+name = "Claw: Sonic Spell Critical Damage"
+description = "+5% Quality bonus to Sonic spell critical damage"
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Sonic Spell Critical Damage"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Sonic Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Sonic"]
+
+[[slot]]
+slot = "isle of dread: claw (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact claw (accessory)"

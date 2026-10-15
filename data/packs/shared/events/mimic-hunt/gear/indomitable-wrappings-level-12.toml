@@ -1,0 +1,35 @@
+name = "Indomitable Wrappings (level 12)"
+description = "The best offense is a great defense."
+drop_location = "Mimic Hunt, Turn in 80 Mimic Tokens"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 12
+slot = "Waist"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "False Life"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 25
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "event"
+name = "Mimic Hunt"

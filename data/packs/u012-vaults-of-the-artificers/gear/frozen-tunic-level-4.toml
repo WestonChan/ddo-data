@@ -1,0 +1,37 @@
+name = "Frozen Tunic (Level 4)"
+description = """
+This tunic shimmers like frost and is filled with a powerful freezing energy.
+It will invest your attacks with an icy edge, as well as boosting the power
+of your ice-related magic. A bound Water Elemental fuels this item."""
+drop_location = "Vaults of the Artificers, Crafted from various challenge ingredients"
+icon = "Cloth_16a"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 3
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 54
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Minor Freezing Ice"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

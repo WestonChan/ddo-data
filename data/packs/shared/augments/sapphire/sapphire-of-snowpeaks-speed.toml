@@ -1,0 +1,27 @@
+name = "Sapphire of Snowpeaks Speed"
+description = "Striding +30%: Makes the wearer more fleet of foot, giving a 30% bonus to run speed."
+family = "Sapphire"
+icon = "SapphireBlueBorder"
+min_level = 8
+
+[[effect]]
+name = "Movement Speed"
+bonus_type = "Enhancement"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

@@ -1,0 +1,55 @@
+name = "Nullscale Armor"
+description = """
+An unusual suit of Blue Dragonscale that wraps magical energy around it, offering
+the wearer a great deal of magical resistance. Unfortunately, it also hinders
+all spellcasting. Even Divine casters can have their spells fail while wearing
+this robe."""
+drop_location = "Killing Time, end chest"
+enhancement_bonus = 15
+icon = "HeavyArmor_2"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Blue Dragonscale"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Nullmagic Guard"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 145
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Magical Null"
+bonus_type = "Penalty"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"

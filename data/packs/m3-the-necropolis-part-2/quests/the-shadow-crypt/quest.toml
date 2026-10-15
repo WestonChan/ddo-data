@@ -1,0 +1,22 @@
+name = "The Shadow Crypt"
+bestowed_by = "The Herald"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The Necropolis, Part 2"
+patron = "The Silver Flame"
+zone = "The Shadow Crypt"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Shadow_Crypt"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

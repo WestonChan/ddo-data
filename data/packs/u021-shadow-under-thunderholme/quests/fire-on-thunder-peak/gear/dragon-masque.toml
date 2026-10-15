@@ -1,0 +1,38 @@
+name = "Dragon Masque"
+description = "You must reanimate additional dracoliches."
+drop_location = "Fire on Thunder Peak, raid chest"
+icon = "Helmet_28a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Head"
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 5
+value2 = 8
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Shadow Spike"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Fire on Thunder Peak"

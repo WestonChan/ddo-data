@@ -1,0 +1,34 @@
+name = "Kobold Admiral's Uniform"
+description = """
+The self-styled kobold 'Admiral' Ancker gussied up this old set of leathers
+to the best of his ability, sticking several makeshift medals to the chest."""
+drop_location = "Three-Barrel Cove (heroic), Admiral Ancker 's Chest (Rare Encounter)"
+enhancement_bonus = 3
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 3
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Axeblock III"
+
+[[effect]]
+name = "Spearblock III"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "admiral ancker 's chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Three-Barrel Cove"

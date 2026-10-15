@@ -1,0 +1,95 @@
+name = "Flawless White Dragonscale Docent"
+description = "This docent was crafted with the scales of a white dragon."
+drop_location = "Black Dragonscale Armor"
+enhancement_bonus = 7
+icon = "Docent_7"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 25
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 25
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 13
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 7
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 6
+
+[[effect]]
+name = "Superior Cold Resistance"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Protection +8 and Shield +8"
+description = """
+Protection +8: Passive: +8 Deflection bonus to Armor Class.
+Shield +8: While this item is equipped, you are partially protected by a field
+of magical force which can deflect enemy attacks. This item provides a +8 Shield
+bonus to Armor Class. It does not stack with an equipped shield."""
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Deflection"
+effect = "Armor Class"
+value = 8
+
+[[socket.option.effect]]
+bonus_type = "Shield"
+effect = "Armor Class"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Shield"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

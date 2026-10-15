@@ -1,0 +1,11 @@
+name = "Pirate Vitality"
+description_template = "You gain the toughness of a pirate, which bestows a +10 bonus to your maximum hit points. This stacks with all bonuses except itself."
+home_bonus_type = "Pirate"
+verbose_name_template = "Pirate Vitality +10"
+
+[[bonus]]
+amount_from = 0
+constant = 10
+rounding = "down"
+scale = 1.0
+target = "Hit Points"

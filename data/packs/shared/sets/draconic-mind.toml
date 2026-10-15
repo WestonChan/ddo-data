@@ -1,0 +1,41 @@
+name = "Draconic Mind"
+icon = "DraconicMind"
+
+[[item]]
+name = "Flawless Blue Dragonhide Armor"
+
+[[item]]
+name = "Flawless Blue Dragonplate Armor"
+
+[[item]]
+name = "Flawless Blue Dragonscale Armor"
+
+[[item]]
+name = "Flawless Blue Dragonscale Docent"
+
+[[item]]
+name = "Flawless Blue Dragonscale Robe"
+
+[[item]]
+name = "Helm of the Blue Dragon (Level 23)"
+
+[[item]]
+name = "Helm of the Blue Dragon (Level 24)"
+
+[[item]]
+name = "Helm of the Blue Dragon (Level 25)"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"

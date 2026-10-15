@@ -1,0 +1,49 @@
+name = "Epic Unicorn's Remembrance"
+drop_location = "Toil and Trouble, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 27
+slot = "Back"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 253
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 41
+
+[[removed]]
+kind = "item"
+name = "Epic Unicorn's Rememberance"
+reason = "A misspelled duplicate of his Epic Unicorn's Remembrance, identical in every field; the wiki spells it Remembrance."
+url = "https://ddowiki.com/page/Item:Epic_Unicorn%27s_Remembrance"
+read = "2026-09-30"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

@@ -1,0 +1,34 @@
+name = "The Fall of Truth"
+bestowed_by = "The Stormreaver"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+flagging = "Speak to Draznok ar'Athad, complete Return to Madstone Crater, Return to Prison of the Planes and Return to Cabal for One, then complete Return to Gianthold Tor and speak to Draznok again."
+is_raid = true
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "Stormreaver's Chambers"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Fall_of_Truth"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "epic_level"
+reason = "The wiki's quest index gives an epic level of 25; his Quests.xml gives none."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 25
+
+[[run]]
+tier = "epic"
+level = 25

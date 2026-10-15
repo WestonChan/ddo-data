@@ -1,0 +1,3 @@
+name = "Sun Burst"
+description_template = "This weapon flashes an intense burst of sunlight on any critical hit. The target is blasted for 6 to 36 of light damage and is blinded as well. Oozes and Undead take 12 to 72 light damage. A successful DC 22 Reflex save reduces the damage by half and negates the blindness."
+verbose_name_template = "Sun Burst"

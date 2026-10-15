@@ -1,0 +1,38 @@
+name = "Legendary Birchlore Gauntlets"
+description = "These gloves are patterned to look like the bark of a birch tree."
+drop_location = "Spiders and Flies, end chest"
+icon = "Gloves_7b"
+item_category = "Clothing"
+material = "Wood"
+minimum_level = 31
+slot = "Hands"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 47
+
+[[socket]]
+slot = "isle of dread: scale (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Spiders and Flies"

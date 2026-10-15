@@ -1,0 +1,20 @@
+name = "Hobnail Boots"
+description = "A pair of rugged leather workboots. Their soles are studded with sharp cleats."
+drop_location = "Cult of the Six, End reward"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Feet"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

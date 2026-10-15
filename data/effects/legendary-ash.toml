@@ -1,0 +1,3 @@
+name = "Legendary Ash"
+description_template = "Your attacks and offensive spells have a chance to reduce enemy Magical Resistance Rating and Universal Spell Power."
+verbose_name_template = "Legendary Ash"

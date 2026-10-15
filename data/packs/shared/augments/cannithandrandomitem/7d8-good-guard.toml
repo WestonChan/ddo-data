@@ -1,0 +1,25 @@
+name = "7d8 Good Guard"
+description = "On being hit in melee combat you do 7d8 good damage to your attacker"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+dice_damage = "Good"
+dice_number = [7]
+dice_sides = [8]
+effect_type = "Guard"
+
+[[slot]]
+slot = "crafting: cannith armor suffix"
+
+[[slot]]
+slot = "crafting: cannith shield suffix"
+
+[[slot]]
+slot = "crafting: cannith orb suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"

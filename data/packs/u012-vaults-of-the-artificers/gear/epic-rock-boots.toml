@@ -1,0 +1,118 @@
+name = "Epic Rock Boots"
+description = """
+These boots are encased in a stony shell, bolstered by the power of a bound
+Earth Elemental. They allow the user to execute a ferocious stomp that knocks
+nearby enemies over, as well as turning your attackers to stone on occasion."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Boots_12"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 20
+slot = "Feet"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 110
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Stone Prison Guard"
+
+[[effect]]
+name = "Earthgrab Guard"
+
+[[effect]]
+name = "Immunity to Slippery Surfaces"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Corrosion 116, Acid Lore 17% and a Colorless augment slot"
+description = """
+Corrosion +116: Passive: +116 Equipment bonus to Acid Spell Power.
+Acid Lore +17: Passive: Your Acid spells gain a 17% Equipment bonus to their chance
+to critical hit.
+Adds a Colorless augment slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 116
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+value = 17
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [116]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Corrosion 122, Acid Lore 18% and a Colorless augment slot"
+description = """
+Corrosion +122: Passive: +122 Equipment bonus to Acid Spell Power.
+Acid Lore +18: Passive: Your Acid spells gain a 18% Equipment bonus to their chance
+to critical hit.
+Adds a Green augment slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 122
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+value = 18
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [122]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [18]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

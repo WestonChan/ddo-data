@@ -1,0 +1,3 @@
+name = "Vulnerable"
+description_template = "You take 1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration."
+verbose_name_template = "Vulnerable"

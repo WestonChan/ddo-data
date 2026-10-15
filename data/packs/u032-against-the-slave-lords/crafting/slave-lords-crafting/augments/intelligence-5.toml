@@ -1,0 +1,21 @@
+name = "Intelligence +5"
+description = "Enhancement bonus to Intelligence"
+family = "Slavelords_Heroic"
+icon = "SlavelordsPrefix"
+min_level = 8
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "crafting: slavelords prefix"

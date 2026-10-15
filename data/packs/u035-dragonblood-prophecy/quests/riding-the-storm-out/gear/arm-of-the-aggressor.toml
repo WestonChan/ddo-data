@@ -1,0 +1,42 @@
+name = "Arm of the Aggressor"
+description = """
+Brought from Argonessen, this armband once belonged to a notable Dragonborn
+warlord."""
+drop_location = "Riding the Storm Out, Warded chest"
+icon = "Bracers_1a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 27
+slot = "Wrists"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[effect]]
+name = "Incite"
+bonus_type = "Insight"
+value = 52
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Insight"
+value = 9
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Riding the Storm Out"

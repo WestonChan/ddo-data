@@ -1,0 +1,22 @@
+name = "Dark Blue Ioun Stone (unsuppressed)"
+description = "A dark blue gem about 1 inch in diameter."
+drop_location = "Dreamforge, Suppressed Power Crafting"
+icon = "Trinket_7a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 15
+
+[[source]]
+kind = "crafting_system"
+name = "Suppressed Power"

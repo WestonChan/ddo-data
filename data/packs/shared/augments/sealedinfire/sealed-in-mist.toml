@@ -1,0 +1,11 @@
+name = "Sealed in Mist"
+description = """
+Sealed in Mist: This weapon has its true power obscured by mist.
+It can have its power unsealed at the Augmentation Altar, adding one effect.
+Attempting to add another will remove the original."""
+family = "SealedInFire"
+icon = "AlienMind"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in mist"

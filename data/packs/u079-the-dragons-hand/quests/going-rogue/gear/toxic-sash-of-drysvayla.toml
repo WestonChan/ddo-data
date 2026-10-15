@@ -1,0 +1,41 @@
+name = "Toxic Sash of Drysvayla"
+description = "A remarkable sash, fit for a Dragon disguising themselves in humanoid form."
+drop_location = "Going Rogue, end chest (rare )"
+icon = "Cloak_8"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 10
+slot = "Back"
+
+[[effect]]
+name = "Poison Absorption"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 19
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Going Rogue"

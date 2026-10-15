@@ -1,0 +1,21 @@
+name = "Scale: Negative Spell Critical Damage"
+description = "+20% Enhancement bonus to Negative and Poison Spell Critical Damage"
+family = "DinosaurBone"
+icon = "ScalePurple"
+min_level = 31
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "isle of dread: scale (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact scale (accessory)"

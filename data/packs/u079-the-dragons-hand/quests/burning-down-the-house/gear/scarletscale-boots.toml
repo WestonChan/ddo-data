@@ -1,0 +1,40 @@
+name = "Scarletscale Boots"
+description = "These scale boots keep one's feet perpetually warm, even in the deepest snow."
+drop_location = "Burning Down the House, end chest"
+icon = "Boots_24"
+item_category = "Clothing"
+material = "Red Dragonscale"
+minimum_level = 10
+slot = "Feet"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 77
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 38
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 22
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Burning Down the House"

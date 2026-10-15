@@ -1,0 +1,36 @@
+name = "Melancholic Converter (Legendary)"
+description = """
++61 Competence bonus to Positive Healing Amplification
++61 Enhancement bonus to Repair Healing Amplification
++61 Profane bonus to Negative Healing Amplification"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 61
+
+[[effect]]
+name = "Negative Healing Amplification"
+bonus_type = "Competence"
+value = 61
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 61
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [61]
+bonus_type = "Competence"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[slot]]
+slot = "lamordia: melancholic (armor)"

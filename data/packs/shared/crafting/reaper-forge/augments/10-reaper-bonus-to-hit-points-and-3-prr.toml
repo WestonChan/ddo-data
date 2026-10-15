@@ -1,0 +1,33 @@
+name = "+10 Reaper Bonus to hit points, and +3 PRR"
+description = "+10 Reaper Bonus to hit points, and +3 PRR"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Reaper"
+value = 10
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Reaper"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Reaper"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Reaper"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: reaper belt"

@@ -1,0 +1,27 @@
+name = "Jeweler's Loupe"
+description = """
+Magnifying lenses allow a skilled appraiser to view gems and other valuables
+with great clarity."""
+drop_location = "Cult of the Six, End reward"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Goggles"
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

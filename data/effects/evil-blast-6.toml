@@ -1,0 +1,3 @@
+name = "Evil Blast 6"
+description_template = "This weapon is a sinister implement of evil deeds, dealing 6d6 Evil damage on a successful hit, and an additional 6d6 Evil damage on a critical hit. This effect makes the weapon evil aligned. Good characters wielding this weapon will suffer one negative level."
+verbose_name_template = "Evil Blast 6"

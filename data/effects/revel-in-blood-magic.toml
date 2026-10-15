@@ -1,0 +1,3 @@
+name = "Revel in Blood (Magic)"
+description_template = "Your weapon hungers to let blood flow. Your attacks and offensive spells have a high chance to deal very strong Bane damage over time to creatures vulnerable to Bleeding. On offensive spellcast: 2d6 Force Damage."
+verbose_name_template = "Revel in Blood (Magic)"

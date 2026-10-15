@@ -1,0 +1,70 @@
+name = "Legendary Date With a Mind Flayer"
+icon = "DateWithAMindFlayer"
+
+[[item]]
+name = "Legendary Charm Bracelet"
+
+[[item]]
+name = "Legendary Fancy Flayer's Cape"
+
+[[item]]
+name = "Legendary Fancy Flayer's Date Night Duds"
+
+[[item]]
+name = "Legendary Fancy Flayer's Headpiece"
+
+[[item]]
+name = "Legendary Pair of Mind Flayer Nickels"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell Penetration"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "SpellPenetrationBonus"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "MRRCap"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]

@@ -1,0 +1,47 @@
+name = "Epic Wooden Prayer Beads"
+description = "These simple wooden beads grant holy boons in times of need."
+drop_location = "Endgame: The Archbishop's Fate, End Chest"
+icon = "Trinket_35"
+item_category = "Jewelry"
+material = "Wood"
+minimum_level = 23
+slot = "Trinket"
+
+[[clickie]]
+name = "Protection from Elements, Mass"
+clickie = "Protection from Elements, Mass"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 43
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 220
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 27
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Protection from Elements, Mass"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Endgame: The Archbishop's Fate"

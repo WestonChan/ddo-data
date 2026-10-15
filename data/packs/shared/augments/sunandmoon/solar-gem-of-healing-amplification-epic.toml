@@ -1,0 +1,20 @@
+name = "Solar Gem of Healing Amplification (Epic)"
+description = "+20 Artifact Bonus to Healing Amplification."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Artifact"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "sun"

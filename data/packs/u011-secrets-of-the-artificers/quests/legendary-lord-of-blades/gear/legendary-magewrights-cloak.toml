@@ -1,0 +1,96 @@
+name = "Legendary Magewright's Cloak"
+description = """
+A cloak often sported by House Cannith magewrights. It enhances the wearer's
+natural flair and increases his or her ability to manipulate objects of magical
+origin."""
+drop_location = "Legendary Lord of Blades, End and Optional Chest"
+icon = "Cloak_19"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 283
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+13 Charisma"
+description = "+13 Enhancement bonus to Charisma"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket.option]]
+name = "+6 Insightful Charisma"
+description = "+6 Insight bonus to Charisma"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket.option]]
+name = "+3 Quality Charisma"
+description = "+3 Quality bonus to Charisma"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Charisma"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Lord of Blades"

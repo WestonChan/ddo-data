@@ -1,0 +1,2 @@
+name = "Metamagic Spell Cost Reduction"
+verbose_name_template = "Empower, Empower Heal and Maximize cost 2 fewer SP; spells cost 10%/20%/30% less below 50%/25%/10% HP."

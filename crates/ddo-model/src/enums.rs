@@ -646,6 +646,20 @@ impl SourceKind {
         }
     }
 
+    pub const fn table_name(self) -> &'static str {
+        match self {
+            Self::Quest => "quest_drops",
+            Self::QuestChain => "quest_chain_rewards",
+            Self::Saga => "saga_rewards",
+            Self::AdventurePack => "pack_drops",
+            Self::Challenge => "challenge_rewards",
+            Self::CraftingSystem => "crafting_outputs",
+            Self::Vendor => "vendor_offers",
+            Self::Event => "event_rewards",
+            Self::Starter => "starter_gear",
+        }
+    }
+
     pub const fn identifying_column(self) -> &'static str {
         match self {
             Self::Quest => "quest_id",
@@ -680,16 +694,18 @@ pub enum SagaTier {
     Heroic,
     Epic,
     Legendary,
+    Any,
 }
 
 impl SagaTier {
-    pub const ALL: &'static [SagaTier] = &[Self::Heroic, Self::Epic, Self::Legendary];
+    pub const ALL: &'static [SagaTier] = &[Self::Heroic, Self::Epic, Self::Legendary, Self::Any];
 
     pub const fn as_str(self) -> &'static str {
         match self {
             Self::Heroic => "heroic",
             Self::Epic => "epic",
             Self::Legendary => "legendary",
+            Self::Any => "any",
         }
     }
 }
@@ -971,6 +987,10 @@ pub enum CorrectionKind {
     Quest,
     Feat,
     Enhancement,
+    EnhancementTree,
+    Clickie,
+    OptionalBuff,
+    Filigree,
     Race,
     Class,
     AdventurePack,
@@ -995,6 +1015,10 @@ impl CorrectionKind {
         Self::Quest,
         Self::Feat,
         Self::Enhancement,
+        Self::EnhancementTree,
+        Self::Clickie,
+        Self::OptionalBuff,
+        Self::Filigree,
         Self::Race,
         Self::Class,
         Self::AdventurePack,
@@ -1019,6 +1043,10 @@ impl CorrectionKind {
             Self::Quest => "quest",
             Self::Feat => "feat",
             Self::Enhancement => "enhancement",
+            Self::EnhancementTree => "enhancement_tree",
+            Self::Clickie => "clickie",
+            Self::OptionalBuff => "optional_buff",
+            Self::Filigree => "filigree",
             Self::Race => "race",
             Self::Class => "class",
             Self::AdventurePack => "adventure_pack",
@@ -1044,6 +1072,10 @@ impl CorrectionKind {
             Self::Quest => "quests",
             Self::Feat => "feats",
             Self::Enhancement => "enhancements",
+            Self::EnhancementTree => "enhancement_trees",
+            Self::Clickie => "clickies",
+            Self::OptionalBuff => "optional_buffs",
+            Self::Filigree => "filigrees",
             Self::Race => "races",
             Self::Class => "classes",
             Self::AdventurePack => "adventure_packs",

@@ -1,0 +1,32 @@
+name = "Crystal Prism"
+description = """
+When swung on its silver chain, this glass crystal has a calming effect on its
+viewer."""
+drop_location = "The Abandoned Excavation, End reward"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 9
+slot = "Neck"
+
+[[clickie]]
+name = "Suggestion"
+clickie = "Suggestion"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Suggestion"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

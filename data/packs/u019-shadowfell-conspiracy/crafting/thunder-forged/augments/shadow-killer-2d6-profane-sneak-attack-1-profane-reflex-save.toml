@@ -1,0 +1,43 @@
+name = "Shadow Killer - +2d6 Profane Sneak Attack, +1 Profane Reflex save"
+description = """
++2d6 Profane bonus to Sneak Attack
++1 Profane bonus to Reflex saving throws"""
+family = "Thunderforged"
+min_level = 26
+
+[[effect]]
+name = "Sneak Attack Dice"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Profane"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[slot]]
+slot = "crafting: shadow light variant"
+
+[[slot]]
+slot = "crafting: shadow medium variant"
+
+[[slot]]
+slot = "crafting: shadow heavy variant"
+
+[[slot]]
+slot = "crafting: shadow docent variant"

@@ -1,0 +1,29 @@
+name = "Charged Gauntlets"
+description = "These gloves channel powerful electric energy into enemies that you strike."
+drop_location = "The Chronoscope, End reward"
+icon = "Gloves_9"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Hands"
+
+[[effect]]
+name = "Shocking Blow"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"

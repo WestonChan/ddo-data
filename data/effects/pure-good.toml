@@ -1,0 +1,3 @@
+name = "Pure Good"
+description_template = "This weapon is infused with the power of Pure Good. It does an additional 1 to 6 damage to non-good targets and can only be wielded by Good-aligned characters."
+verbose_name_template = "Pure Good"

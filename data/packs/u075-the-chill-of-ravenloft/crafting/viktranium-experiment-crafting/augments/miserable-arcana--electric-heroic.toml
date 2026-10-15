@@ -1,0 +1,21 @@
+name = "Miserable Arcana: Electric (Heroic)"
+description = "+70 Equipment bonus to Electric Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Electric Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

@@ -1,0 +1,27 @@
+name = "+1 Exceptional Fortitude Save"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+variant = "Earth:Opposition:Ethereal"
+description = """
+Fortitude Save +1: +1 Exceptional Resistance bonus to your Fortitude save.
+Earth:Opposition:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[slot]]
+slot = "crafting: accessory subjugation"

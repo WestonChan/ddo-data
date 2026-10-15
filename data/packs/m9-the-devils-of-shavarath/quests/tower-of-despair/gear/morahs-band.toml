@@ -1,0 +1,47 @@
+name = "Morah's Band"
+description = """
+This thin golden band was worn by Morah, a vaunted performer in the marketplace
+of Stormreach. Such was her acrobatic skill that she could cross the marketplace
+from end to end without ever touching the ground."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Thief Acrobat"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+    15,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Thief Acrobat - 2 Piece bonus"
+effect_type = "SkillBonus"
+targets = ["Jump"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

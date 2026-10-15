@@ -1,0 +1,37 @@
+name = "Arcsteel Brim"
+description = "Keep the rain out of your eyes."
+drop_location = "No Refunds, End chest"
+icon = "Helmet_3"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 15
+slot = "Head"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 7
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 9
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 19
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "No Refunds"

@@ -1,0 +1,81 @@
+name = "Quorforged Docent of Battle"
+description = """
+This docent was worn by the servants of the quori in their battles from ages
+long past."""
+drop_location = "The Mindsunder, Disc locked optional end chest"
+enhancement_bonus = 5
+icon = "Docent_12"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 18
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 20
+arcane_spell_failure = 0
+armor_bonus = -2
+armor_check_penalty = 0
+armor_type = "Docent"
+max_dex_bonus = 0
+mithral_body = 9
+
+[[effect]]
+name = "Construct Fortification (10%)"
+bonus_type = "Insight"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Improved False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = -2
+
+[[socket]]
+slot = "crafting: suppressed power"
+
+[[socket.option]]
+name = "Adds Superior False Life and Vitality +20"
+description = """
+Superior False Life: This item grants the wearer +40 maximum health.
+Vitality +20: Passive: +20 Vitality bonus to Hit Points."""
+icon = "Upgrade"
+min_level = 18
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Hit Points"
+value = 40
+
+[[socket.option.effect]]
+bonus_type = "Vitality"
+effect = "Hit Points"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Vitality"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[source]]
+chest = "disc locked optional end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mindsunder"

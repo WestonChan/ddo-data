@@ -1,0 +1,28 @@
+name = "Solar Gem of Doublestrike (Epic)"
+description = """
++10% Artifact Bonus to Doublestrike.
+Drops in: Toil and Trouble, optional chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Artifact"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

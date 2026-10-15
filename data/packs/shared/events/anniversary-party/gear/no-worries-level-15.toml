@@ -1,0 +1,34 @@
+name = "No Worries (level 15)"
+description = "So be happy."
+drop_location = "Anniversary Party, Turn in 40 Party Favors"
+enhancement_bonus = 5
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 15
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 16
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 47
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 9
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"

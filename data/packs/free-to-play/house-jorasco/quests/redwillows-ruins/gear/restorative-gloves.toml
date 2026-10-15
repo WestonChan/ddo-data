@@ -1,0 +1,27 @@
+name = "Restorative Gloves"
+description = "These gloves give bonuses to healing and repair skills."
+drop_location = "Redwillow's Ruins, Reeksun Bloodcraver 's chest"
+icon = "Gloves_15a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Hands"
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Repair"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "reeksun bloodcraver 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Redwillow's Ruins"

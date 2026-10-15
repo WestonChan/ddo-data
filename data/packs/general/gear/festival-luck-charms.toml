@@ -1,0 +1,18 @@
+name = "Festival Luck Charms"
+description = "A short chain with three small, but lucky, adornments."
+drop_location = "DDO Store"
+icon = "Trinket_102"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Good Luck - Reflex"
+bonus_type = "Luck"
+value = 1
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 10

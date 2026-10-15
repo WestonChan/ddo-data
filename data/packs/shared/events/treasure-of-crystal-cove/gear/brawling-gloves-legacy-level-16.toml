@@ -1,0 +1,85 @@
+name = "Brawling Gloves (legacy) (level 16)"
+description = """
+Some pirates prefer to brawl with their bare hands. These strength-enhancing
+gloves are perfect for their fighting style."""
+drop_location = "Treasure of Crystal Cove, Turn in at Dusty Old Treasure of Crystal Cove"
+icon = "Gloves_6"
+is_legacy = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 16
+slot = "Hands"
+
+[[effect]]
+name = "Spike-Studded"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Glass Jaw Strike"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Sneak Attack Bonus +4"
+description = """
+Sneak Attack Bonus +4: Provides a +4 to attack bonus and a +6 to damage for any
+attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue."""
+icon = "Upgrade"
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+value = 4
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Strength +6"
+description = """
+Strength +6: This item gives the wearer the power of Ogre Strength, granting
+a +6 enhancement bonus to Strength."""
+icon = "Upgrade"
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

@@ -1,0 +1,37 @@
+name = "Flamekeep Docent"
+description = """
+This docent was blessed in the heart of Flamekeep by the order of the Silver
+Flame."""
+drop_location = "Endgame: Marguerite, End chest"
+enhancement_bonus = 2
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 2
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[effect]]
+name = "Command"
+value = 2
+value2 = -6
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Endgame: Marguerite"

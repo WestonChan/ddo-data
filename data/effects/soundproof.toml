@@ -1,0 +1,3 @@
+name = "Soundproof"
+description_template = "Protects against stunning, dazing and disorientation from sound-based spells such as Soundburst and Greater Shout."
+verbose_name_template = "Soundproof"

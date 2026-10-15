@@ -1,0 +1,38 @@
+name = "White Hood of Schemes"
+description = "Lined with gilded thread and smells faintly of incense."
+drop_location = "Watch Your Step, end chest"
+icon = "Helmet_50"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 21
+slot = "Head"
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 18
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 8
+value2 = 12
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 18
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 18
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Watch Your Step"

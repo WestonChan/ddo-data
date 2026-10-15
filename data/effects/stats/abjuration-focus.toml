@@ -1,0 +1,5 @@
+name = "Abjuration Focus"
+category = "magical"
+description_template = "{1} %b1 bonus to the DC of Abjuration spells."
+home_bonus_type = "Insight"
+verbose_name_template = "%b1 Abjuration Focus +{1}"

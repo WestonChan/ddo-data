@@ -1,0 +1,25 @@
+name = "Melancholic Flames (Legendary)"
+description = "Adds Adamantine material type. On hit: 16d6 Fire Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Adamantine"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [16]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: melancholic (weapon)"

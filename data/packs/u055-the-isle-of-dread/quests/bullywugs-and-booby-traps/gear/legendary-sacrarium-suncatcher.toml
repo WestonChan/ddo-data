@@ -1,0 +1,40 @@
+name = "Legendary Sacrarium Suncatcher"
+description = "Keeps the sun out of your eyes."
+drop_location = "Bullywugs and Booby Traps, end chest"
+icon = "Helmet_59"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 31
+slot = "Head"
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 47
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bullywugs and Booby Traps"

@@ -1,0 +1,26 @@
+name = "The Dryad and the Demigod"
+bestowed_by = "Hermia"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 10
+is_raid = true
+pack = "Fables of the Feywild"
+patron = "The Summer Court"
+zone = "Valley of the Door"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Dryad_and_the_Demigod"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

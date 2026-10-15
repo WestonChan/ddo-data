@@ -1,0 +1,90 @@
+name = "Stunning"
+choose_level = true
+description = "Adds an equipment bonus to the DC of your Stunning Blow, Stunning Fist, or Kukan-Do check."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18,
+    18,
+    18,
+    18,
+]
+
+[[effect]]
+name = "Stun DC"
+bonus_type = "Equipment"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Equipment"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[slot]]
+slot = "crafting: cannith belt suffix"
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith helmet suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: cannith melee suffix"
+
+[[slot]]
+slot = "crafting: random belt suffix"
+
+[[slot]]
+slot = "crafting: random gloves prefix"
+
+[[slot]]
+slot = "crafting: random helmet suffix"
+
+[[slot]]
+slot = "crafting: random weapon suffix"

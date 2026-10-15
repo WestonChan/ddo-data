@@ -1,0 +1,36 @@
+name = "Legendary Necklace of Venom"
+description = """
+Drow assassins say this necklace is infused with Vulkoor's subtle poisons. Wearing
+it will make one's attacks deft and lethal."""
+drop_location = "Legendary version of Epic Necklace of Venom"
+icon = "Necklace_4c"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Insight"
+value = 7
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

@@ -1,0 +1,43 @@
+name = "Battleworn Shield"
+description = """
+This light steel shield appears to be of exceptional quality despite years of
+use."""
+drop_location = "The Grotto, Sahuagin High Priestess 's chest, Non-Warforged Clerics, Favored Souls, Fighters, and Paladins"
+icon = "Shield_5g"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Steel"
+minimum_level = 1
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 2
+max_dex_bonus = 0
+shield_bonus = 2
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Masterwork Armor"
+bonus_type = "Equipment"
+
+[[source]]
+chest = "sahuagin high priestess 's chest, non-warforged clerics, favored souls, fighters, and paladins"
+kind = "quest"
+loot_type = "chest"
+name = "The Grotto"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Small Shield"

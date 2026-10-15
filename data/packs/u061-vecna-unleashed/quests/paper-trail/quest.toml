@@ -1,0 +1,29 @@
+name = "Paper Trail"
+bestowed_by = "Halman Best"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Vecna Unleashed"
+patron = "Morgrave University"
+zone = "On the Trail of the Manuscript"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Paper_Trail"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

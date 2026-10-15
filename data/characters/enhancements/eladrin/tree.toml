@@ -1,0 +1,1159 @@
+name = "Eladrin"
+background = "ElfBackground"
+icon = "Eladrin"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Eladrin: Elven Accuracy I"
+cost_per_rank = [1]
+description = """
+You gain +2% to hit with all attacks. Your Point Blank Shot and Ranged Sneak
+Attack range is increased by 2 meters for each Elven Core Ability you possess
+from this tree."""
+icon = "ElfElvenAccuracy"
+internal_name = "EladrinCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Eladrin: Ability I"
+cost_per_rank = [2]
+description = "Choose between Dexterity, Intelligence, or Charisma."
+icon = "DexChaInt"
+internal_name = "EladrinCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+items = ["EladrinCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Eladrin: Elven Accuracy II"
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks."
+icon = "ElfElvenAccuracy"
+internal_name = "EladrinCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+items = ["EladrinCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement]]
+name = "Eladrin: Ability II"
+cost_per_rank = [2]
+description = "Choose between Dexterity, Intelligence, or Charisma."
+icon = "DexChaInt"
+internal_name = "EladrinCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+items = ["EladrinCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Eladrin: Elven Accuracy III"
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks."
+icon = "ElfElvenAccuracy"
+internal_name = "EladrinCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+items = ["EladrinCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement]]
+name = "Eladrin: Nothing is Hidden"
+cost_per_rank = [1]
+description = """
+Your senses are so acute that you no longer need to spend time searching for
+the obvious. You will automatically perform a Search check to locate traps and
+secret doors when you are in range to Spot them, although this Search check occurs
+at a -[12/8/4] penalty."""
+icon = "ElfNothingIsHidden"
+internal_name = "EladrinNothingIsHidden"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["EladrinKeenSenses"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Keen Senses"
+arrows = ["ArrowLeft"]
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, and Spot."
+icon = "ElfKeenSenses"
+internal_name = "EladrinKeenSenses"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement]]
+name = "Eladrin: Fey Step"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = """
+Disappear and reappear several feet in front of you. You start with 2 charges
+per Rest. Based on your season, this has an additional effect:
+
+Spring: You gain a +20% temporary Dodge bonus, with an additional +1 per Character
+Levels, for 10 seconds.
+
+Summer: You gain a +3 weapon damage bonus, with an additional +1 per 5 Character
+Levels, for 10 seconds.
+
+Autumn: You gain +3 Sneak Attack Dice, +1 more Dice per 5 Character Levels,
+for 10 seconds.
+
+Winter: You gain a +3 bonus to Tactics DCs, with an additional +1 per 5 Character
+Levels, for 10 seconds."""
+icon = "EladrinFeyStep"
+internal_name = "EladrinFeyStep"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+]
+bonus_type = "Feat"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Spring Affinity"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Fey Step"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Summer Affinity"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Fey Step"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SneakAttackDice"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Autumn Affinity"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Fey Step"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Winter Affinity"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Fey Step"]
+req_type = "Stance"
+
+[[enhancement.stance]]
+name = "Fey Step"
+description = """
+Disappear and reappear several feet in front of you. You start with 2 charges
+per Rest. Based on your season, this has an additional effect:
+
+Spring: You gain a +20% temporary Dodge bonus, with an additional +1 per Character
+Levels, for 10 seconds.
+
+Summer: You gain a +3 weapon damage bonus, with an additional +1 per 5 Character
+Levels, for 10 seconds.
+
+Autumn: You gain +3 Sneak Attack Dice, +1 more Dice per 5 Character Levels,
+for 10 seconds.
+
+Winter: You gain a +3 bonus to Tactics DCs, with an additional +1 per 5 Character
+Levels, for 10 seconds."""
+group_name = "User"
+icon = "EladrinFeyStep"
+
+[[enhancement]]
+name = "Eladrin: Step Through The Fade"
+cost_per_rank = [1]
+description = "+[1/2/3] charges of Fey Step per rest."
+icon = "EladrinStepThroughTheFade"
+internal_name = "EladrinStepThroughTheFade"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["EladrinFeyStep"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Arcane Fluidity"
+cost_per_rank = [1]
+description = """
+Your arcane spell failure chance while wearing armor is decreased by [5/10/15]%.
+(This has no effect on arcane spell failure from shields.)"""
+icon = "ElfArcaneFluidity"
+internal_name = "EladrinArcaneFluidity"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement]]
+name = "Eladrin: Minor Spring Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3]% Dodge chance. Your Spring Attunement grants you an additional +[1/2/3]
+Reflex Saving Throws."""
+icon = "EladrinMinorSpringAttunement"
+internal_name = "EladrinMinorSpringAttunement"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier.requirement]]
+items = ["Spring Affinity"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Eladrin: Minor Summer Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] critical hit confirmation. Your Summer Attunement grants you an additional +[1/2/3]
+Fortitude Saving Throws."""
+icon = "EladrinMinorSummerAttunement"
+internal_name = "EladrinMinorSummerAttunement"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackCritical"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier.requirement]]
+items = ["Summer Affinity"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Eladrin: Arcanum"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+[25/50/100] spell points and +[1/2/3] spell penetration."
+icon = "Arcanum"
+internal_name = "EladrinArcanum"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Eladrin: Minor Autumn Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] to hit with Sneak Attacks. Your Autumn Attunement grants you an additional +[1/2/3]
+Will Saving Throws."""
+icon = "EladrinMinorAutumnAttunement"
+internal_name = "EladrinMinorAutumnAttunement"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.modifier.requirement]]
+items = ["Autumn Affinity"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Eladrin: Minor Winter Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] to hit. Your Winter Attunement grants you an additional +[1/2/3]
+Physical and Magical Resistance Rating."""
+icon = "EladrinMinorWinterAttunement"
+internal_name = "EladrinMinorWinterAttunement"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier.requirement]]
+items = ["Winter Affinity"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Eladrin: Major Spring Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3]% Doublestrike and Doubleshot.
+Your Spring Affinity grants you an additional +1 Charisma"""
+icon = "EladrinMajorSpringAttunement"
+internal_name = "EladrinMajorSpringAttunement"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier.requirement]]
+items = ["Spring Affinity"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["EladrinMinorSpringAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Major Summer Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] damage.
+Your Summer Affinity grants you an additional +1 Strength"""
+icon = "EladrinMajorSummerAttunement"
+internal_name = "EladrinMajorSummerAttunement"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement]]
+items = ["Summer Affinity"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["EladrinMinorSummerAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Fey Sight"
+cost_per_rank = [2]
+description = """
+While you have 100 or more spell points, you can see things as they truly are.
+You are able to see invisible creatures and pierce illusions."""
+icon = "ElfFeySight"
+internal_name = "EladrinFeySight"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["EladrinArcanum"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Major Autumn Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] Sneak Attack damage.
+Your Autumn Affinity grants you an additional +1 Wisdom."""
+icon = "EladrinMajorAutumnAttunement"
+internal_name = "EladrinMajorAutumnAttunement"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDamage"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.modifier.requirement]]
+items = ["Autumn Affinity"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["EladrinMinorAutumnAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Major Winter Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] Fortitude Saves.
+Your Winter Affinity grants you an additional +1 Intelligence."""
+icon = "EladrinMajorWinterAttunement"
+internal_name = "EladrinMajorWinterAttunement"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.modifier.requirement]]
+items = ["Winter Affinity"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["EladrinMinorWinterAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Spring Spell - Vigor"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Vigor: A positive energy conjuration that heals 1d6,
++1 per 3 caster levels (max +3 at caster level 9), every 2 seconds for 8 seconds.
+When the initial effect expires, a smaller healing effect that heals 1 HP every
+5 seconds for 30 seconds is applied.
+Cost: 2 Spell Points
+Cooldown: 3 seconds
+
+Only one Vigor spell can be active at a time, with the most beneficial taking
+priority. If multiple Vigor spells are cast on the same target, then the duration
+is extended."""
+icon = "EladrinVigor"
+internal_name = "EladrinSpringSpell"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Vigor",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["EladrinMajorSpringAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Summer Spell - Fire Shield (Flame)"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Fire Shield (Hot): You are wreathed in flames that do fire damage
+to attackers and reduce all Cold damage taken by half.
+Cost: 10 Spell Points
+Cooldown: 3 seconds"""
+icon = "EladrinFireShield"
+internal_name = "EladrinSummerSpell"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fire Shield (Fire)",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["EladrinMajorSummerAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Skill"
+cost_per_rank = [1]
+description = """
++3% Doublestrike
++3% Doubleshot
++3% Dodge
+You bypass +3% Dodge.
+
+Doublestrike: Your mainhand melee attacks gain a percent chance to strike twice.
+
+Doubleshot: Your ranged attacks, including thrown attacks, gain a percent chance
+to attack with an extra projectile. Repeating Crossbows have a reduced chance to
+produce extra shots."""
+icon = "EladrinSkill"
+internal_name = "EladrinSkill"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = [
+    "Doubleshot",
+    "DodgeBonus",
+    "DodgeBypass",
+]
+
+[[enhancement]]
+name = "Eladrin: Autumn Spell - Night Shield"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Night Shield: Grants a +1 Resistance bonus to saves (+2 at 6th
+level, +3 at 9th) and protection from magic missiles.
+Cost: 2 Spell Points
+Cooldown: 3 seconds"""
+icon = "EladrinNightshield"
+internal_name = "EladrinAutumnSpell"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Nightshield",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["EladrinMajorAutumnAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin: Spring Spell - Displacement"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Displacement: Your appearance becomes extremely blurred, , giving
+enemies a 50% miss chance when attacking.
+Cost: 15 Spell Points
+Cooldown: 3 seconds"""
+icon = "EladrinDisplacement"
+internal_name = "EladrinSWinterSpell"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Blur",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["EladrinMajorWinterAttunement"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Eladrin"]
+req_type = "Race"

@@ -1,0 +1,21 @@
+name = "+16 Wisdom (Catalyst Crafting)"
+description = "+16 Enhancement bonus to Wisdom"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 16
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: nearly complete: ability score (legendary)"

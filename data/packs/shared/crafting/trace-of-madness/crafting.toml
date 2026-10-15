@@ -1,0 +1,338 @@
+name = "Trace of Madness"
+npc = 'Altar of Insanity, Hall of the Planes in the Tower of the Twelve (head south from the tower entrance to the purple "Door" icon; the altar is on the right)'
+
+[[family]]
+family = "Other"
+
+[[ingredient]]
+name = "Watcher's Eye"
+bind = "Bound to Account"
+drop_location = "Any appropriate Reign of Madness enemy (Update 10); added to the ingredient bag automatically when you or a party member kills it"
+tier = "any"
+
+[[ingredient]]
+name = "Polished Stone"
+bind = "Bound to Account"
+drop_location = "Any appropriate Reign of Madness enemy (Update 10); added to the ingredient bag automatically when you or a party member kills it"
+tier = "any"
+
+[[ingredient]]
+name = "Adhesive Slime"
+bind = "Bound to Account"
+drop_location = "Any appropriate Reign of Madness enemy (Update 10); added to the ingredient bag automatically when you or a party member kills it"
+tier = "any"
+
+[[ingredient]]
+name = "Brain Sample"
+bind = "Bound to Account"
+drop_location = "Any appropriate Reign of Madness enemy (Update 10); added to the ingredient bag automatically when you or a party member kills it"
+tier = "any"
+
+[[ingredient]]
+name = "Trace of Madness item"
+drop_location = "Items with the Trace of Madness trait from Harbinger of Madness, Reign of Madness and Disciples of Rage quests (Updates 9, 10 and 38); ML 14 heroic and ML 29 legendary versions"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Altar_of_Insanity"
+read = "2026-09-29"
+
+[[recipe]]
+note = "Applies Melodic Guard to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten."
+option = "Xoriat Madness: Mania"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Melodic Guard"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 10
+
+[[recipe]]
+note = "Applies Hysteria to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten."
+option = "Xoriat Madness: Hysteria"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Hysteria"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 20
+
+[[recipe]]
+note = "Applies Obsession to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten."
+option = "Xoriat Madness: Obsession"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Obsession"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 10
+
+[[recipe]]
+note = "Applies Paranoia to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten."
+option = "Xoriat Madness: Paranoia"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Paranoia"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 10
+
+[[recipe]]
+note = "Applies Delirium to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten."
+option = "Xoriat Madness: Delirium"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Delirium"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 20
+
+[[recipe]]
+note = "Applies Solipsism to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten. The page gives Solipsism the same cost as Paranoia."
+option = "Xoriat Madness: Solipsism"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Solipsism"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 10
+
+[[recipe]]
+note = "Applies Will Save +10 (does not stack with Resistance items) to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten."
+option = "Xoriat Madness: Alien Mind"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Alien Mind"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 50
+
+[[recipe]]
+note = "Applies Reflex Save +10 (does not stack with Resistance items) to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten."
+option = "Xoriat Madness: Uncanny Awareness"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Uncanny Awareness"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 10
+
+[[recipe]]
+note = "Applies Conjuration Focus +2, Illusion Focus +2 to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten."
+option = "Xoriat Madness: Subtle Ambition"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Subtle Ambition"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 50
+
+[[recipe]]
+note = "Applies Spell Lore I to an item with the Trace of Madness trait (the page's tooltip says any armor item). The item stays Bound to Account with no change in minimum level; once applied the recipe is fixed and cannot be overwritten."
+option = "Xoriat Madness: Chaotic Ambition"
+slot = "crafting: trace of madness"
+tier = "any"
+
+[[recipe.augment]]
+name = "Chaotic Ambition"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Trace of Madness item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Watcher's Eye"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Polished Stone"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Adhesive Slime"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Brain Sample"
+quantity = 50

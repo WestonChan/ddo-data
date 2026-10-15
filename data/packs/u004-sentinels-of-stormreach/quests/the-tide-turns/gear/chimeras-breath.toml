@@ -1,0 +1,58 @@
+name = "Chimera's Breath"
+description = "Artificers that serve House Deneith prefer their fights up close and personal."
+drop_location = "The Tide Turns, End chest"
+icon = "RuneArm_3e"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 5
+slot = "Runearm"
+
+[[clickie]]
+name = "Electrical Blast"
+clickie = "Electrical Blast"
+
+[[effect]]
+name = "Maximum Charge Tier III"
+
+[[effect]]
+name = "Proficiency - Bastard Sword"
+
+[[effect]]
+name = "Diehard"
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical II"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Electrical Blast",
+    "Unknown",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tide Turns"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

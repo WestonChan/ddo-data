@@ -1,0 +1,3 @@
+name = "The Falling Star"
+description_template = "On hit, this weapon has a chance to put down a falling star upon your foes, dealing 90d6 Fire Damage and 30d6 Bludgeoning Damage to enemies caught within the blast. This blast is so powerful it has a chance to knock nearby enemies down upon impact."
+verbose_name_template = "The Falling Star"

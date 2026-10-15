@@ -1,0 +1,91 @@
+name = "Ring of the Stalker (Level 11)"
+description = """
+A bound Invisible Stalker makes this ring a dangerous asset for anyone striking
+their enemies from the shadows."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Ring_24"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 11
+slot = "Ring"
+
+[[effect]]
+name = "Manslayer"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 2
+value2 = 3
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "crafting: upgradeable tier 2"
+
+[[socket.option]]
+name = "Seeker +7 and a Green Augment Slot"
+description = "Seeker +7: Provides a +7 Enhancement bonus to confirm critical hits, and a +7 Enhancement bonus to critical hit damage (before multipliers are applied)."
+min_level = 11
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: upgradeable tier 2"
+
+[[socket.option]]
+name = "Insightful Deception +3, Seeker +8 and a Green Augment Slot"
+description = """
+Insightful Deception +3: +3 Insight bonus to hit and +5 to damage for any hit that
+would qualify as a sneak attack.
+Seeker +8: Provides a +8 Enhancement bonus to confirm critical hits, and a +8
+Enhancement bonus to critical hit damage (before multipliers are applied)."""
+min_level = 11
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Hit"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Damage"
+value = 5
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

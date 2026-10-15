@@ -1,0 +1,69 @@
+name = "Epic Seraphim"
+description = "This helm was taken from the body of a fallen Astral Deva."
+drop_location = "Inferno of the Damned (epic), end chest"
+icon = "Helmet_10"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 27
+slot = "Head"
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Insightful Faith"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 144
+
+[[effect]]
+name = "Deathblock VII"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Inferno of the Damned"

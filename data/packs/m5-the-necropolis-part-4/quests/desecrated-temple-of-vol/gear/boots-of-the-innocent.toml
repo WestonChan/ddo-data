@@ -1,0 +1,25 @@
+name = "Boots of the Innocent"
+description = """
+These boots belonged to an ancient nobleman's son. Kidnapped from Stormreach,
+he was sacrificed to Vol in this shrine. His ghost haunts the remains of the
+shrine."""
+drop_location = "Desecrated Temple of Vol, end chest"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 13
+slot = "Feet"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desecrated Temple of Vol"

@@ -1,0 +1,21 @@
+name = "Quality Balance +5"
+description = "Legendary quality bonus to Balance"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Balance"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Balance"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

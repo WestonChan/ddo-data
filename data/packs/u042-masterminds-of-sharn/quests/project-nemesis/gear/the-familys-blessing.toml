@@ -1,0 +1,40 @@
+name = "The Family's Blessing"
+description = "You're an honorary part of the Family. Wear it with pride."
+drop_location = "Project Nemesis, end chest"
+icon = "Necklace_10"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"

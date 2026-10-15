@@ -1,0 +1,24 @@
+name = "Miserable Undead Bane (Legendary)"
+description = """
+Those that have died must return, and this weapon is attuned specifically to lay
+them to rest. This weapon deals an additional 7d10 bane damage vs. Undead."""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus = "Not Set"
+dice_damage = "Bane"
+dice_number = [7]
+dice_sides = [10]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

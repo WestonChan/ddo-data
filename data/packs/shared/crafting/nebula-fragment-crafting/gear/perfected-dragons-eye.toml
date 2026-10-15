@@ -1,0 +1,69 @@
+name = "Perfected Dragon's Eye"
+description = """
+A massive star ruby that resembles an eye, especially as it winks from time
+to time."""
+drop_location = "Lahar, Turn in Nebula Fragment"
+icon = "Trinket_28c"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 30
+slot = "Trinket"
+
+[[clickie]]
+name = "Superior Efficacy"
+clickie = "Superior Efficacy"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Superior Efficacy"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Nebula Fragment Crafting"

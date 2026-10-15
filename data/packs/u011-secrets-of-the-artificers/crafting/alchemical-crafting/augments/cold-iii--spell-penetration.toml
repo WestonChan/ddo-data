@@ -1,0 +1,22 @@
+name = "Cold III: Spell Penetration"
+adds_augment = "Purple"
+description = "Combine T2 item with 250 threads and stabilizing compound. Weapon gains 0.5[W]."
+effect_description = "Spell Penetration +9: Passive: +9 Equipment Bonus to Spell Penetration checks."
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[slot]]
+slot = "crafting: legendary alchemical t3"

@@ -1,0 +1,139 @@
+[[row]]
+name = "Energy Absorption: Acid"
+acquire = "Train"
+description = "You gain Acid Absorbance: 10%."
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Acid Absorption"
+value = 10
+
+[[row.group]]
+group_name = "Energy Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Acid Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Energy Absorption: Cold"
+acquire = "Train"
+description = "You gain Cold Absorbance: 10%."
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+value = 10
+
+[[row.group]]
+group_name = "Energy Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Energy Absorption: Electricity"
+acquire = "Train"
+description = "You gain Electricity Absorbance: 10%."
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Electric Absorption"
+value = 10
+
+[[row.group]]
+group_name = "Energy Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Electric Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Energy Absorption: Fire"
+acquire = "Train"
+description = "You gain Fire Absorbance: 10%."
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fire Absorption"
+value = 10
+
+[[row.group]]
+group_name = "Energy Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 5
+
+[[row]]
+name = "Energy Absorption: Sonic"
+acquire = "Train"
+description = "You gain Sonic Absorbance: 10%."
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sonic Absorption"
+value = 10
+
+[[row.group]]
+group_name = "Energy Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Sonic Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Sonic"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 5

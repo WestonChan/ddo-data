@@ -1,21 +1,24 @@
 use serde_json::Value;
 use std::collections::{BTreeMap, BTreeSet};
 
-pub type SourcePackNames = BTreeMap<(String, i64), BTreeSet<String>>;
+pub type SourcePackNames = BTreeMap<(String, String), BTreeSet<String>>;
 
 pub fn source_pack_names(db: &rusqlite::Connection) -> rusqlite::Result<SourcePackNames> {
     let mut source_packs = SourcePackNames::new();
     let mut statement = db.prepare(
-        "SELECT DISTINCT s.kind, COALESCE(s.quest_id, s.chain_id, s.saga_id), p.name
+        "SELECT DISTINCT s.kind, COALESCE(q.name, c.name, sa.name), p.name
          FROM loot_adventure_packs lp JOIN sources s ON s.id = lp.source_id
          JOIN adventure_packs p ON p.id = lp.pack_id
+         LEFT JOIN quests q ON q.id = s.quest_id
+         LEFT JOIN quest_chains c ON c.id = s.chain_id
+         LEFT JOIN sagas sa ON sa.id = s.saga_id
          WHERE s.kind IN ('quest', 'quest_chain', 'saga')",
     )?;
     let rows = statement
-        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, i64>(1)?, row.get::<_, String>(2)?)))?;
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?;
     for row in rows {
-        let (kind, id, pack_name) = row?;
-        source_packs.entry((kind, id)).or_default().insert(pack_name);
+        let (kind, name, pack_name) = row?;
+        source_packs.entry((kind, name)).or_default().insert(pack_name);
     }
     Ok(source_packs)
 }
@@ -58,18 +61,19 @@ pub fn detail_has_unique_drop_locations(
         ));
     }
     for pack in packs {
-        if !pack_sources.iter().any(|source| {
-            ["id", "name", "loot_type", "chest", "is_rare"].iter().all(|field| pack[*field] == source[*field])
-        }) {
+        if !pack_sources
+            .iter()
+            .any(|source| ["name", "loot_type", "chest", "is_rare"].iter().all(|field| pack[*field] == source[*field]))
+        {
             return Err(format!("{path}.adventure_packs: no pack-wide source for {pack}"));
         }
         for source in
             sources.iter().filter(|source| matches!(source["kind"].as_str(), Some("quest" | "quest_chain" | "saga")))
         {
-            let Some(source_id) = source["id"].as_i64() else {
+            let Some(source_name) = source["name"].as_str() else {
                 continue;
             };
-            let source_key = (source["kind"].as_str().unwrap().to_owned(), source_id);
+            let source_key = (source["kind"].as_str().unwrap().to_owned(), source_name.to_owned());
             let same_pack =
                 source_packs.get(&source_key).is_some_and(|names| names.contains(pack["name"].as_str().unwrap_or("")));
             if same_pack && source["chest"] == pack["chest"] {

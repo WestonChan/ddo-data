@@ -1,0 +1,88 @@
+name = "Legacy of Lorikk"
+icon = "Levik"
+
+[[item]]
+name = "Champion of the Twins"
+primary = true
+
+[[item]]
+name = "Legendary Lorik's Necklace"
+
+[[note]]
+kind = "set_bonus"
+field = "name"
+upstream = "Legacy of Lorik"
+reason = "The wiki spells the set Legacy of Lorikk, matching his own Lorikk's Champion set name."
+url = "https://ddowiki.com/page/Item:Legendary_Lorik%27s_Necklace"
+read = "2026-10-02"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Light Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Chaos Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Evil Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Good Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Law Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Light and Alignment Spell Power"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect_type = "SpellLore"
+targets = [
+    "Positive",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]

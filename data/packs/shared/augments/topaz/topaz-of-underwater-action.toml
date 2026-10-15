@@ -1,0 +1,20 @@
+name = "Topaz of Underwater Action"
+description = "You can breathe underwater"
+family = "Topaz"
+icon = "Topaz"
+min_level = 4
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Drowning"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

@@ -1,0 +1,24 @@
+name = "Glorious Dawn (Level 27)"
+description = "A ring blessed with Amaunator's love."
+drop_location = "A Lesson in Deception, end chest (Epic Elite)"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 27
+slot = "Ring"
+
+[[effect]]
+name = "Deathblock VI"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Solar Guard VIII"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Lesson in Deception"

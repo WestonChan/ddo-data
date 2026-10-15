@@ -1,0 +1,38 @@
+name = "Red Raptor Feather"
+description = "A red plumed feather from a raptor of the Isle of Dread."
+drop_location = "Captive of the Hidden God, end chest"
+icon = "Trinket_56a"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 7
+slot = "Trinket"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 3
+value2 = 5
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 1
+value2 = 2
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Captive of the Hidden God"

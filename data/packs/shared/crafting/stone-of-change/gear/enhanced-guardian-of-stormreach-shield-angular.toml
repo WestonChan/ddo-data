@@ -1,0 +1,49 @@
+name = "Enhanced Guardian of Stormreach Shield (angular)"
+description = "Guardian of Stormreach use this sun and water motif shield as a symbol of the city's Harbor. This shield now has the powerful treasure effects of the Battered Guardian Shield and the impressive appearance of a new Guardian of Stormreach Shield."
+drop_location = "Stone of Change, Battered Guardian Shield (angular) + Guardian of Stormreach Shield (angular)"
+enhancement_bonus = 3
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 10
+slot = "Off Hand"
+wiki_url = "https://ddowiki.com/page/Item:Enhanced_Guardian_of_Stormreach_Shield_%28angular%29"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+shield_bonus = 6
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Enhanced_Guardian_of_Stormreach_Shield_%28angular%29"
+read = "2026-09-30"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Resistance"
+value = 2
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[source]]
+kind = "crafting_system"
+name = "Stone of Change"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+handedness = "Off-hand"
+weapon_type = "Large Shield"

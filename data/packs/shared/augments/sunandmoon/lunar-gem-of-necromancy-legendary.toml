@@ -1,0 +1,41 @@
+name = "Lunar Gem of Necromancy (Legendary)"
+description = """
++4 Profane Bonus to Necromancy DCs
+Drops in: A Light in the Attic, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "For Want of a Heart"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Going Rogue"

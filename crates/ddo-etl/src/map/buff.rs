@@ -398,7 +398,7 @@ impl BuffResolver {
         }
     }
 
-    pub fn effect_family_name(&self, effect_type: &str, target: Option<&str>, stat_name: &str) -> String {
+    pub fn effect_tier_name(&self, effect_type: &str, target: Option<&str>, stat_name: &str) -> String {
         if effect_type == "AbilityBonus" && target == Some("All") {
             return "All Ability Scores".to_string();
         }

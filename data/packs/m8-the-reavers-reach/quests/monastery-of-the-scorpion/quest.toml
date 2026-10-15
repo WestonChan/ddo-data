@@ -1,0 +1,21 @@
+name = "Monastery of the Scorpion"
+bestowed_by = "Milaxia"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "The Reaver's Reach"
+patron = "Agents of Argonnessen"
+zone = "Drow Monastery"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Monastery_of_the_Scorpion"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

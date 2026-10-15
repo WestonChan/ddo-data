@@ -1,0 +1,69 @@
+name = "Smoldering Platemail Armor"
+description = "Armor from deep within the Temple of Elemental Evil."
+drop_location = "Temple of Elemental Evil Part Two, Elemental nodes chests"
+enhancement_bonus = 3
+icon = "HeavyArmor_1a"
+is_legacy = true
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 7
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 13
+armor_check_penalty = 0
+armor_type = "Heavy"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[socket]]
+slot = "crafting: upgradeable item"
+
+[[socket.option]]
+name = "Adds Dusk, Fortification +75% and a Green augment slot."
+description = """
+Dusk: Equipping this item engulfs you in twilight shadows. Attacks from enemies
+have a 10% chance to miss you due to concealment.
+Fortification +75%: +75% Enhancement bonus to reduced chance of taking critical
+damage on a critical hit.
+Adds a Green Augment slot."""
+icon = "Upgrade"
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Displacement"
+value = 10
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification"
+value = 75
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Displacement"
+effect_type = "Displacement"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [75]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"

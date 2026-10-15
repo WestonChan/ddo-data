@@ -1,0 +1,42 @@
+name = "Lunar Gem of Peace (Heroic)"
+description = """
++2 Profane Bonus to Heal, Listen and Concentration
+Drops in: Land of Lamordia, Experiment Y's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Heal"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Listen"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Listen",
+    "Concentration",
+]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "experiment y's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

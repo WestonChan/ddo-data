@@ -1,0 +1,44 @@
+name = "Mummy Wrappings"
+description = "A suit of padded armor made using the wrappings from several mummies."
+drop_location = "Sands of Menechtarun, Undead Area: Thumok the Mad 's Chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+enhancement_bonus = 5
+icon = "LightArmor_10c"
+item_category = "Armor"
+item_type = "Light"
+material = "Cloth"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_bonus = 3
+armor_type = "Light"
+max_dex_bonus = 9
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 20
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Fearsome"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "undead area: thumok the mad 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

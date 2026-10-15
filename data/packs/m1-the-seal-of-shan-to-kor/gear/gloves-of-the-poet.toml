@@ -1,0 +1,24 @@
+name = "Gloves of the Poet"
+description = """
+A famous Stormreach bard offered these flashy gloves to the one who defeats
+Hetman Shaagh ."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Hands"
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

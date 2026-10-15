@@ -1,0 +1,30 @@
+name = "Chimera's Crown"
+description = "A sturdy helm that is often a gift to the dragonmarked from House Deneith."
+drop_location = "The Tide Turns, End chest"
+icon = "Helmet_11"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 5
+slot = "Head"
+
+[[effect]]
+name = "Minor Lesser Dragonmark Enhancement"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tide Turns"

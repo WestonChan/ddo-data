@@ -1,0 +1,62 @@
+name = "Sapphire of Defense"
+choose_level = true
+description = "Physical and Magical Resistance Rating"
+family = "Sapphire"
+icon = "Sapphire"
+level_values = [
+    3,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+    40,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+]
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Enhancement"
+value = 16
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "green"

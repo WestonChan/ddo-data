@@ -1,0 +1,34 @@
+name = "Elise's Grasp"
+description = "Reach out for the truth, and perhaps you can take it for your own."
+drop_location = "Snowfall and Sunlight, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Hands"
+
+[[effect]]
+name = "Temperance of Belief"
+
+[[effect]]
+name = "Strength of Purpose"
+bonus_type = "Enhancement"
+value = 128
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

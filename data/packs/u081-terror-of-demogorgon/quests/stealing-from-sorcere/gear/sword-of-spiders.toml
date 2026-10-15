@@ -1,0 +1,48 @@
+name = "Sword of Spiders"
+description = "A Drow sword made in devotion to Lolth."
+drop_location = "Stealing from Sorcere, end chest"
+enhancement_bonus = 5
+icon = "Longsword_1p"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Poisonous 3"
+
+[[effect]]
+name = "Toxic 7"
+
+[[effect]]
+name = "Nightshade Venom"
+
+[[effect]]
+name = "Crippling"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stealing from Sorcere"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.2
+handedness = "One-handed"
+weapon_type = "Longsword"

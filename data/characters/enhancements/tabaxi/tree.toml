@@ -1,0 +1,673 @@
+name = "Tabaxi"
+background = "HumanBackground"
+icon = "Tabaxi"
+kind = "racial"
+version = 2
+
+[[enhancement]]
+name = "Tabaxi: Nimble Cat I"
+cost_per_rank = [1]
+description = "+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor."
+icon = "TabNimbleCat"
+internal_name = "TabCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Tabaxi: Ability I"
+cost_per_rank = [2]
+description = "+1 Dexterity or Charisma"
+icon = "DexCha"
+internal_name = "TabCore2"
+min_spent = 1
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TabCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "TabaxI: Nimble Cat II"
+cost_per_rank = [1]
+description = "+1% Dodge, +1 Maximum Dexterity Bonus in Light Armor"
+icon = "TabNimbleCat"
+internal_name = "TabCore3"
+min_spent = 2
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["TabCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tabaxi: Ability II"
+cost_per_rank = [2]
+description = "+1 Dexterity or Charisma"
+icon = "DexCha"
+internal_name = "TabCore4"
+min_spent = 3
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["TabCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Tabaxi: Nimble Cat III"
+cost_per_rank = [1]
+description = "+1% Dodge and Dodge Cap, +1 Maximum Dexterity Bonus in Light Armor"
+icon = "TabNimbleCat"
+internal_name = "TabCore5"
+min_spent = 4
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["TabCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tabaxi: Sharp Claws"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] to Attack"
+icon = "TabSharpClaws"
+internal_name = "TabSharpClaws"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement]]
+name = "Tabaxi: Cat Scratch"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Deals: +20% Damage
+Melee Attack: Strike all nearby foes in front of you for +20% damage.
+6 second cooldown."""
+icon = "TabCatScratch"
+internal_name = "TabCatScratch"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement]]
+name = "Tabaxi: Acrobatic"
+cost_per_rank = [
+    1,
+    1,
+    1,
+]
+description = "+[1/2/3] Balance, Jump, and Tumble. +[2/4/6] Armor Class while Tumbling."
+icon = "TabAcrobatic"
+internal_name = "TabAcrobatic"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Tumbling"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Tabaxi: Land on Your Feet"
+cost_per_rank = [1]
+description = "You don't take falling damage."
+icon = "TabLandOnYourFeet"
+internal_name = "TabLandOnYouFeet"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling Damage"]
+
+[[enhancement]]
+name = "Tabaxi: Sneaky Strikes I"
+cost_per_rank = [1]
+description = "+1 Sneak Attack Die."
+icon = "TabSneakyStrikes"
+internal_name = "TabSneakyStrikesI"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement]]
+name = "Tabaxi: Surprise Claws"
+cost_per_rank = [
+    1,
+    1,
+    1,
+]
+description = "+[1/2/3] to Attack while Flanking."
+icon = "TabSurpriseClaws"
+internal_name = "TabSurpriseClaws"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Flanking"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Tabaxi: Hunt Down"
+cost_per_rank = [1]
+description = """
+Your Cat Scratch now Hamstrings opponents for 3 seconds, reducing their
+movement rate by 50%. Some creatures are immune to the Hamstring effect."""
+icon = "TabHuntDown"
+internal_name = "TabHuntDown"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["TabCatScratch"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tabaxi: High Places"
+cost_per_rank = [1]
+description = """
+After falling for at least 1.5 seconds, when you land you gain +2 Critical
+Hit Confirmation, +2 Critical Hit Damage, and +25% Armor Piercing for 20 seconds."""
+icon = "TabHighPlaces"
+internal_name = "TabHighPlaces"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement]]
+name = "Tabaxi: Deflect Arrows"
+cost_per_rank = [1]
+description = """
+You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+projectile that would have struck you every 6 seconds."""
+icon = "TabHonedReflexes"
+internal_name = "TabHonedReflexes"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement]]
+name = "Tabaxi: Slip Out of Danger"
+cost_per_rank = [
+    1,
+    1,
+    1,
+]
+description = """
++[2/4/6] Saves vs. Traps.
+Rank 3: You gain +1 to Reflex Saves."""
+icon = "TabSlipOutOfDanger"
+internal_name = "TabSlipOutOfDanger"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Traps"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement]]
+name = "Tabaxi: Sharp Claws II"
+cost_per_rank = [1]
+description = "+[1/2/3] to Damage."
+icon = "TabSharpClawsII"
+internal_name = "TabSharpClawsII"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement]]
+name = "Tabaxi: Corner"
+cost_per_rank = [
+    1,
+    1,
+    1,
+]
+description = "+[1/2/3]% Dodge Bypass"
+icon = "TabCorner"
+internal_name = "TabCorner"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBypass"
+
+[[enhancement]]
+name = "Tabaxi: Focused Agility"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Your Feline Agility now only requires you to stand still for 3 seconds,
+and lasts for 9 seconds."""
+icon = "TabFocusedAgility"
+internal_name = "TabFocusedAgility"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement]]
+name = "Tabaxi: Sneaky Strikes II"
+cost_per_rank = [1]
+description = "+1 Sneak Attack Die."
+icon = "TabSneakyStrikes"
+internal_name = "TabSneakyStrikesII"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement]]
+name = "Tabaxi: Feline Versatility"
+cost_per_rank = [1]
+description = "Choose an ability."
+icon = "TabLashOut"
+internal_name = "TabLashOut"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.selection]]
+name = "Lash Out"
+cost_per_rank = [1]
+description = "+5% Offhand Strike Chance if using a Light Melee Weapon or Rapier in both hands."
+icon = "TabLashOut"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Light"]
+req_type = "WeaponClassMainHand"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = [
+    "Rapier",
+    "Rapier",
+]
+req_type = "WeaponTypesEquipped"
+
+[[enhancement.selection]]
+name = "Quick Paw"
+cost_per_rank = [1]
+description = "+3% Doubleshot with Thrown Weapons"
+icon = "TabQuickPaw"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doubleshot"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Thrown"]
+req_type = "WeaponClassMainHand"
+
+[[enhancement.selection]]
+name = "Rapid Scratch"
+cost_per_rank = [1]
+description = "+3% Doublestrike while Single Weapon Fighting"
+icon = "TabRapidScratch"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Vigor"
+cost_per_rank = [1]
+description = "You gain Vigor as a SLA"
+icon = "TabVigor"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Vigor",
+    "None",
+]
+
+[[enhancement]]
+name = "Tabaxi: Deep Scratches"
+cost_per_rank = [1]
+description = """
+Your Cat Scratch now deals Bane damage to targets it hits that are vulnerable
+to Bleed. This damage is equal to 1d4 per Character Level, and scales with
+Melee Power."""
+icon = "TabDeepScratches"
+internal_name = "TabDeepScratches"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["TabCatScratch"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tabaxi: Nine Lives"
+cost_per_rank = [1]
+description = """
+You gain Rogue's Defensive Roll feat.
+While below 20% HP, there's a chance equal to your Reflex save that attacks do
+half damage and have their effects negated."""
+icon = "TabNineLives"
+internal_name = "TabNineLives"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Defensive Roll"]
+
+[[enhancement]]
+name = "Tabaxi: Fast Sprinter"
+cost_per_rank = [1]
+description = """
+Your Feline Agility now grants 30% Action Boost Bonus to Movement Speed
+and lasts for 18 seconds."""
+icon = "TabFastSprinter"
+internal_name = "TabFastSprinter"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["TabFocusedAgility"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tabaxi: Lucky Cat"
+cost_per_rank = [1]
+description = "You gain Evasion."
+icon = "TabLuckyCat"
+internal_name = "TabLuckyCat"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Evasion"]
+
+[[requirement]]
+items = ["Tabaxi"]
+req_type = "Race"

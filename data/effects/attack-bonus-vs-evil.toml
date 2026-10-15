@@ -1,0 +1,3 @@
+name = "Attack Bonus vs Evil"
+description_template = "Grants an additional +2 enhancement bonus to attack chance against evil creatures."
+verbose_name_template = "+2 vs Evil"

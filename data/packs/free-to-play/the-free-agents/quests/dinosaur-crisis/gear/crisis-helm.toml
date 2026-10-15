@@ -1,0 +1,38 @@
+name = "Crisis Helm"
+drop_location = "Dinosaur Crisis, optional chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 13
+slot = "Head"
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"

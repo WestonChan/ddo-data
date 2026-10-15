@@ -1,0 +1,59 @@
+name = "The Butcher's Tongue"
+accepts_sentience = true
+description = """
+One of the heads of Yeenoghu's mighty flail, attached to a sturdy haft. It carries
+its former owner's desire for violence."""
+drop_location = "Terror of the Demon Lords, end chest"
+enhancement_bonus = 16
+icon = "LightMace_1a"
+item_category = "Weapon"
+item_type = "Light Mace"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Legendary Vacuum"
+
+[[effect]]
+name = "Revel in Blood (Piercing)"
+
+[[effect]]
+name = "Paralyzing"
+
+[[effect]]
+name = "Yeenoghu's Butchery"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "One-handed"
+weapon_type = "Light Mace"

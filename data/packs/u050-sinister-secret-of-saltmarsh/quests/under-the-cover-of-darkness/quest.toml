@@ -1,0 +1,30 @@
+name = "Under the Cover of Darkness"
+bestowed_by = "Anders Solmor"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "Sinister Secret of Saltmarsh"
+patron = "The Gatekeepers"
+zone = "On the Trail of the Smugglers"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Under_the_Cover_of_Darkness"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

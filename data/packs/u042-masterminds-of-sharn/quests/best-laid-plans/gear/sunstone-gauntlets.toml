@@ -1,0 +1,37 @@
+name = "Sunstone Gauntlets"
+description = "This... This is a pair of gloves tied to a rock."
+drop_location = "Best Laid Plans, end chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Stone"
+minimum_level = 15
+slot = "Hands"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 9
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 94
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 154
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Best Laid Plans"

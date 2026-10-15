@@ -1,0 +1,40 @@
+name = "Legendary Signet of Lamannia"
+description = "This signet ring bears the sigil of the plane of Lamannia."
+drop_location = "Growing Pains, end chest"
+icon = "Ring_26b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Ring"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Growing Pains"

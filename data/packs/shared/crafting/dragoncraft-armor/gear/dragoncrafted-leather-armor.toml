@@ -1,0 +1,37 @@
+name = "Dragoncrafted Leather Armor"
+description = """
+Leather armor imbued with the power of the ancient dragons for the few humanoids
+they favored."""
+drop_location = "Dragoncraft Armor, Turn in 10 Ancient Dragon Relics"
+enhancement_bonus = 4
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 3
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 7
+
+[[source]]
+kind = "crafting_system"
+name = "Dragoncraft Armor"

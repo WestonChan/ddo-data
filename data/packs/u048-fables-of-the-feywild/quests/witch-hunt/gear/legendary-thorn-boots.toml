@@ -1,0 +1,35 @@
+name = "Legendary Thorn Boots"
+description = "A pair of boots with living vines and angry thorns wound around them."
+drop_location = "Witch Hunt, End chest"
+icon = "Boots_8"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 29
+slot = "Feet"
+
+[[effect]]
+name = "Bloody Thorns"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 5
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Witch Hunt"

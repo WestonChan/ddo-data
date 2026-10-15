@@ -1,0 +1,37 @@
+name = "Blackfeather Cloak"
+description = """
+Formed of exquisite blackened feathers, this cloak is enchanted to help you
+escape even the most dire of situations."""
+drop_location = "Violent Delights, End Chest"
+icon = "Cloak_6"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 21
+slot = "Back"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 12
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Violent Delights"

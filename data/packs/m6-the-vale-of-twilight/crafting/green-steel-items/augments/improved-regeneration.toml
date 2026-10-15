@@ -1,0 +1,13 @@
+name = "Improved Regeneration"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+description = """
+Improved Regeneration: Causes the wearer to regenerate 1 hit point every 30 seconds using positive energy.
+Positive:Opposition:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory subjugation"

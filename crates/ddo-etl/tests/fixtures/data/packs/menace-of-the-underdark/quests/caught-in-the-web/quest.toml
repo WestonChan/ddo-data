@@ -1,0 +1,15 @@
+name = "Caught in the Web"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+is_raid = true
+pack = "Menace of the Underdark"
+patron = "Purple Dragon Knights"
+
+[[run]]
+tier = "heroic"
+level = 24

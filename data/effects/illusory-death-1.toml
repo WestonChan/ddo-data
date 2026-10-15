@@ -1,0 +1,3 @@
+name = "Illusory Death 1"
+description_template = "Increases your caster level when casting Illusion and Necromancy spells by 1."
+verbose_name_template = "Illusory Death 1"

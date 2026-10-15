@@ -1,0 +1,56 @@
+name = "The Banhammer"
+description = """
+You have received an infraction.
+-------
+Your very existence is being called into question.
+-------
+
+Serious
+infractions will never expire."""
+drop_location = "Anniversary Party, Turn in 40"
+enhancement_bonus = 5
+icon = "Warhammer_7"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Wood"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Improved Vorpal"
+
+[[effect]]
+name = "Improved Banishing"
+
+[[effect]]
+name = "Improved Smiting"
+
+[[effect]]
+name = "Improved Disruption"
+
+[[effect]]
+name = "Anchoring"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.5
+handedness = "One-handed"
+weapon_type = "Warhammer"

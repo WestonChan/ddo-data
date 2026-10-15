@@ -1,0 +1,43 @@
+name = "Ironweave Robe"
+description = "An incredibly rare magical robe forged by the dwarves of the Toldorath clan."
+drop_location = "Plane of Night, Raid Warded Chest"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 5
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 112
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 77
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

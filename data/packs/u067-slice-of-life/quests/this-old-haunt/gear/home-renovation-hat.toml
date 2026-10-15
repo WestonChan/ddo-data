@@ -1,0 +1,39 @@
+name = "Home Renovation Hat"
+description = """
+This cap doesn't look like a hard hat, but it confers a surprising amount of
+protection from workplace hazards. Safety first!"""
+drop_location = "This Old Haunt, end chest, Wraith chest"
+icon = "Helmet_124"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 18
+slot = "Head"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 22
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, wraith chest"
+kind = "quest"
+loot_type = "chest"
+name = "This Old Haunt"

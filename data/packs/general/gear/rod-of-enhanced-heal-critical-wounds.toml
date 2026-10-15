@@ -1,0 +1,42 @@
+name = "Rod of Enhanced Heal Critical Wounds"
+description = "A sceptre containing multiple charges of Enhanced Heal Critical Wounds."
+drop_location = "DDO Store"
+enhancement_bonus = 3
+icon = "Club_17"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 11
+slot = "Main Hand"
+
+[[clickie]]
+name = "Enhanced Heal Critical Wounds"
+clickie = "Enhanced Heal Critical Wounds"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    50,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Enhanced Heal Critical Wounds"]
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

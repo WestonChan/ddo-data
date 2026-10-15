@@ -1,0 +1,84 @@
+name = "Legendary Esoteric Initiate"
+icon = "EsotericInitiate"
+
+[[item]]
+name = "Attunement's Gaze"
+
+[[item]]
+name = "Legendary Aetherband"
+
+[[item]]
+name = "Legendary Dusk Lenses"
+
+[[item]]
+name = "Legendary Enigma Core"
+
+[[item]]
+name = "Legendary Order's Garb"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Intelligence"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Wisdom"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Charisma"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"

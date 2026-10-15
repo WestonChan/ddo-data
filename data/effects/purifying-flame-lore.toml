@@ -1,0 +1,40 @@
+name = "Purifying Flame Lore"
+description_template = "Passive: Your Fire and Light spells gain a {1} %b1 bonus to their chance to critical hit."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Purifying Flame Lore +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fire Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Light Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Chaos Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Evil Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Good Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Law Spell Lore"

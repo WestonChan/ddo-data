@@ -1,0 +1,43 @@
+name = "Full Plate of the Defender"
+description = """
+This mithral full plate is a masterpiece of armorsmithing. It is said to have
+been worn by Relk, a brave knight that adventured more than two centuries ago."""
+drop_location = "A Vision of Destruction, End chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 20
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "A Vision of Destruction"

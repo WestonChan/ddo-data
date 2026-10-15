@@ -1,0 +1,3 @@
+name = "Deadly"
+category = "martial"
+verbose_name_template = "Deadly +{1}"

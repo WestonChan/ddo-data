@@ -1,0 +1,10 @@
+name = "Striding"
+description_template = "Makes the wearer more fleet of foot, giving a {1}% bonus to run speed."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Striding +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Movement Speed"

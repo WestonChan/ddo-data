@@ -1,0 +1,58 @@
+name = "The Mother Board (level 15)"
+description = """
+At the heart of the old speaking forum in Stormreach was a large tree. People
+would come and post messages on the tree, in the hopes that others would read
+them and benefit from their sage words. When that tree fell, the wood was used
+to make this shield."""
+drop_location = "Anniversary Party, Turn in 40"
+enhancement_bonus = 5
+icon = "Shield_17"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Wood"
+minimum_level = 15
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 11
+max_dex_bonus = 2
+shield_bonus = 12
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Bashing 4"
+
+[[effect]]
+name = "Bludgeoning 4"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Impact"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

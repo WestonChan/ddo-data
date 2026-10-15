@@ -1,0 +1,95 @@
+name = "Legendary Tinkerer's Gloves"
+description = """
+Gloves worn by House Cannith tinkers to grant them greater dexterity and aid
+them in working with complex devices."""
+drop_location = "Legendary Lord of Blades, End and optional chest"
+icon = "Gloves_15"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+13 Dexterity"
+description = "+13 Enhancement bonus to Dexterity"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+6 Insightful Dexterity"
+description = "+6 Insight bonus to Dexterity"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+3 Quality Dexterity"
+description = "+3 Quality bonus to Dexterity"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Dexterity"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Lord of Blades"

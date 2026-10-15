@@ -1,0 +1,16 @@
+name = "Legendary Dust"
+variant = "sealedinfire"
+description = """
+Attacks and offensive spells have a 50% chance to reduce enemy
+PRR and Positive Healing Amplification. This penalty stacks.
+[-7 PRR and -20 healing amp per stack, maximum stack 5, hence -35 PRR
+and -100 healing amp at full stack. 11 seconds duration each stack]"""
+family = "SealedInFire"
+icon = "GreenAugment"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in fire"
+
+[[slot]]
+slot = "crafting: sealed in mist"

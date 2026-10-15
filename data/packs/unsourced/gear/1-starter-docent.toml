@@ -1,0 +1,13 @@
+name = "+1 Starter Docent"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Enhancement bonus"
+enhancement_bonus = 1
+icon = "Docent_1"
+item_category = "Armor"
+item_type = "Docent"
+minimum_level = 1
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+armor_type = "Docent"

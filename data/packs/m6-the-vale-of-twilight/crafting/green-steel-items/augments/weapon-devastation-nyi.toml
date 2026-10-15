@@ -1,0 +1,11 @@
+name = "Weapon Devastation - NYI"
+adds_augment = "Weapon Aspect"
+description = """
+TBD
+Fire:Escalation:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: weapon devastation"

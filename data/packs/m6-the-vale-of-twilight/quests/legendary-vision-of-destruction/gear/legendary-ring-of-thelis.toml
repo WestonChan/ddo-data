@@ -1,0 +1,43 @@
+name = "Legendary Ring of Thelis"
+description = """
+This silver ring has been engraved with arcane runes. It was said to have been
+owned by a renowned sorcerer Thelis, who vanished nearly a century ago while
+investigating the disappearance of several adventurers in the ruins beneath
+Stormreach."""
+drop_location = "Legendary Vision of Destruction, End chest"
+icon = "Ring_12e"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 283
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Efficient Metamagic - Empower II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"

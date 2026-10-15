@@ -1,0 +1,45 @@
+name = "The Eye of Lamannia"
+description = """
+This weapon becomes an Implement. +146 Equipment bonus to Positive and Force
+Spellpower."""
+family = "Ruby"
+icon = "RubyEye"
+min_level = 30
+
+[[effect]]
+name = "Positive Spell Power"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Force Spell Power"
+bonus_type = "Equipment"
+value = 146
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [146]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+targets = ["All"]
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

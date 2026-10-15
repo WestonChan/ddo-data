@@ -1,0 +1,26 @@
+name = "Guardian's Ring (Level 27)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "What Goes Up, End reward"
+icon = "Ring_25e"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 27
+slot = "Ring"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "What Goes Up"

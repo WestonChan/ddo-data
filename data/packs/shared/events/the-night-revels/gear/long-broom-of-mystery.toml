@@ -1,0 +1,44 @@
+name = "Long Broom of Mystery"
+description = """
+The carved handle of this broom is hot to the touch; a firey power lives deep
+inside it."""
+drop_location = "The Night Revels, Turn in Joe Candymaker,"
+icon = "Quarterstaff_16"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[clickie]]
+name = "Flaming Sphere"
+clickie = "Flaming Sphere"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    5,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Flaming Sphere"]
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,10 @@
+name = "A Man Named Baudry Cartamon"
+quests = [
+    "Protect Baudry's Interests",
+    "Stop Hazadill's Shipment",
+    "Retrieve the Stolen Goods",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/A_Man_Named_Baudry_Cartamon"
+read = "2026-10-02"

@@ -1,0 +1,3 @@
+name = "Wondrous Craftsmanship"
+description_template = "This item's enchantments are more Powerful than is normal for an item of this level. (+2 Total Enhancement Value.)"
+verbose_name_template = "Wondrous Craftsmanship"

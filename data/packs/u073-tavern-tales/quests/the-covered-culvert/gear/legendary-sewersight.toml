@@ -1,0 +1,42 @@
+name = "Legendary Sewersight"
+drop_location = "The Covered Culvert, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 33
+slot = "Goggles"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 156
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 302
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"

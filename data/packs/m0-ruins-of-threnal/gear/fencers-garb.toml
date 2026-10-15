@@ -1,0 +1,26 @@
+name = "Fencer's Garb"
+description = "An immaculate suit of leather armor made to turn aside a rapier's point."
+drop_location = "The Abandoned Excavation, End reward"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 9
+
+[[effect]]
+name = "Spearblock III"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

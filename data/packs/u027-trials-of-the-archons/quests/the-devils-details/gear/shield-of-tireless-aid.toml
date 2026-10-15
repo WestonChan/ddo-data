@@ -1,0 +1,62 @@
+name = "Shield of Tireless Aid"
+description = "A steadfast healer is often the difference between victory and defeat."
+drop_location = "The Devil's Details, End chest"
+enhancement_bonus = 5
+icon = "Shield_1d"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Densewood"
+minimum_level = 13
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 9
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 20
+
+[[effect]]
+name = "Healers Bounty"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Devil's Details"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.6
+handedness = "Off-hand"
+weapon_type = "Large Shield"

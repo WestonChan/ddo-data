@@ -1,0 +1,55 @@
+name = "Epic Phiarlan Spy Dagger"
+accepts_sentience = true
+description = """
+House Phiarlan assassins and spies carry daggers like this when they need to
+carry out a mission efficiently and from the shadows. This particular blade
+drips acid when drawn and can lure foes into letting down their guard."""
+drop_location = "Epic version of Phiarlan Spy Dagger"
+enhancement_bonus = 6
+icon = "Dagger_1h"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Acid Blast 4"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Critical Weakening 2"
+
+[[effect]]
+name = "Improved Paralyzing"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Dagger"

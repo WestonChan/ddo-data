@@ -1,0 +1,35 @@
+name = "Ring of Elemental Essence"
+description = """
+This ring seems very ancient, and is set with numerous colored gems that pulse
+with elemental power. It will enhance the effectiveness of many kinds of offensive
+magic."""
+drop_location = "The Maleficent Cabal, End reward"
+icon = "Ring_10"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 4
+slot = "Ring"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 55
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 55
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 55
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 55
+
+[[source]]
+kind = "quest_chain"
+name = "The Maleficent Cabal"

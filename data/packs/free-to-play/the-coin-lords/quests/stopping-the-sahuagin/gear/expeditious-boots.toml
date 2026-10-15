@@ -1,0 +1,29 @@
+name = "Expeditious Boots"
+description = "These magical boots are said to make a person capable of amazing boosts of speed."
+drop_location = "Stopping the Sahuagin, Chest at Devourer altar near the Giantish device."
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Feet"
+
+[[clickie]]
+name = "Expeditious Retreat"
+clickie = "Expeditious Retreat"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Expeditious Retreat"]
+
+[[source]]
+chest = "chest at devourer altar near the giantish device"
+kind = "quest"
+loot_type = "chest"
+name = "Stopping the Sahuagin"

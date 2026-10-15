@@ -1,0 +1,13 @@
+name = "Lesser Ice Guard"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+description = """
+50% chance to do 1d4 Cold damage on being hit
+Water:Dominion:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory subjugation"

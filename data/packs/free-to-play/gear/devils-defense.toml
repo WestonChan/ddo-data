@@ -1,0 +1,70 @@
+name = "Devil's Defense"
+description = "A good soldier sometimes scraps a shield out of whatever's available."
+drop_location = "Legendary Hound of Xoriat, End chest and Legendary Tempest's Spine End chest"
+enhancement_bonus = 14
+icon = "Shield_9"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Planeforged Steel"
+minimum_level = 27
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 18
+max_dex_bonus = 0
+shield_bonus = 23
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Healers Bounty"
+
+[[effect]]
+name = "Bashing 6"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Hound of Xoriat"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Tempest's Spine"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 8
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.4
+handedness = "Off-hand"
+weapon_type = "Large Shield"

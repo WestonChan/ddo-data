@@ -1,0 +1,48 @@
+name = "Seasons of Change"
+icon = "SeasonsOfChange"
+
+[[item]]
+name = "Giant's Platter"
+
+[[item]]
+name = "Wild Flame"
+
+[[item]]
+name = "Wild Frost"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Evocation Focus"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Evocation Focus"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Fire",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]

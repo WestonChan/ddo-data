@@ -1,0 +1,41 @@
+name = "Blue Dragonplate Armor"
+description = "Plate armor forged from the scales of a blue dragon."
+drop_location = "Blue Dragonscale Armor, Turn in 20 Blue Dragon Scales"
+enhancement_bonus = 5
+icon = "HeavyArmor_10"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Blue Dragonscale"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 17
+armor_check_penalty = -3
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 52
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

@@ -1,0 +1,73 @@
+name = "Torn, That Which Renders Despair"
+accepts_sentience = true
+description = "Tear them apart."
+drop_location = "Old Baba's Hut, Raid Chest"
+enhancement_bonus = 15
+icon = "GreatAxe_8"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Fetters of Unreality"
+
+[[effect]]
+name = "Vulnerable"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Metalline"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Two-handed"
+weapon_type = "Great Axe"

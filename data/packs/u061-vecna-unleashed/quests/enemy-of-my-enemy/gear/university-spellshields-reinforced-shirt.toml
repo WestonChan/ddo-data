@@ -1,0 +1,50 @@
+name = "University Spellshield's Reinforced Shirt"
+description = """
+Arcane energies run through this shirt, protecting the wearer from a variety
+of magics."""
+drop_location = "Enemy of My Enemy, End chest"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 18
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 104
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Enemy of My Enemy"

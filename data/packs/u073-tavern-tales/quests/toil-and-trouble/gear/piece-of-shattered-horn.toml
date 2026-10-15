@@ -1,0 +1,37 @@
+name = "Piece of Shattered Horn"
+drop_location = "Toil and Trouble, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

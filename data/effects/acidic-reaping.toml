@@ -1,0 +1,3 @@
+name = "Acidic Reaping"
+description_template = "While this item is equipped, any killing blows you strike against enemies grants you 40 Acid resistance for 30 seconds. Slaying weaker opponents has a reduced chance of producing this effect."
+verbose_name_template = "Acidic Reaping"

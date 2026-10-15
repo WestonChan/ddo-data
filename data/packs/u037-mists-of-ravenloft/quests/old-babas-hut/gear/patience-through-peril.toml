@@ -1,0 +1,47 @@
+name = "Patience Through Peril"
+description = """
+To those with patience and faith, it was always certain that Barovia would be
+one day freed from the grip of Strahd. Most who held that belief died before
+that happened, but their patience endured in this garment."""
+drop_location = "Old Baba's Hut, Raid Chest"
+enhancement_bonus = 15
+icon = "Cloth_2b"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"

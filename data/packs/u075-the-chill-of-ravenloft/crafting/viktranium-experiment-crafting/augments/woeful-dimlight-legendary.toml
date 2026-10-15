@@ -1,0 +1,10 @@
+name = "Woeful Dimlight (Legendary)"
+description = """
+Your attacks and offensive spells have a chance to grant you 1,000 Temporary HP.
+(Undocumented: Grants Legendary Affirmation)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

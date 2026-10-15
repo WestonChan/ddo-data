@@ -1,0 +1,28 @@
+name = "Use Magic Device"
+description = "Competence bonus to Use Magic Device"
+enter_value = true
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 28
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Competence"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[slot]]
+slot = "crafting: random goggles prefix"
+
+[[slot]]
+slot = "crafting: random gloves suffix"
+
+[[slot]]
+slot = "crafting: random helmet suffix"

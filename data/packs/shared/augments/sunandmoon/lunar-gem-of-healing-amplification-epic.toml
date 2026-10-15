@@ -1,0 +1,20 @@
+name = "Lunar Gem of Healing Amplification (Epic)"
+description = "+20 Profane Bonus to Healing Amplification."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Profane"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Profane"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "moon"

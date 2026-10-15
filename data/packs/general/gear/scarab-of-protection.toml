@@ -1,0 +1,31 @@
+name = "Scarab of Protection"
+description = """
+The scarab's possessor gains 20 spell resistance. The scarab absorbs energy-draining
+attacks, death effects and negative energy effects. Upon absorbing 12 such
+attacks, the scarab turns to powder and is destroyed."""
+drop_location = "Random, level ~10-17 chests/rewards"
+icon = "Trinket_91"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Scarab of Protection Ward"
+clickie = "Scarab of Protection Ward"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    12,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Scarab of Protection Ward"]

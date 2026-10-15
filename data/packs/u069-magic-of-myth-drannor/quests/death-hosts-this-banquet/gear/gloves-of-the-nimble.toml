@@ -1,0 +1,40 @@
+name = "Gloves of the Nimble"
+description = "Nimble fingers make light work of the intricate blades the Elves once crafted."
+drop_location = "Death Hosts This Banquet, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Hands"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Speed"
+value = 23
+value2 = 9
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Death Hosts This Banquet"

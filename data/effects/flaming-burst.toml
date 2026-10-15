@@ -1,0 +1,3 @@
+name = "Flaming Burst"
+description_template = "This weapon is sheathed in fire, and deals 1 to 6 fire damage each hit. Critical hits deal an additional 1 to 10 fire damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier."
+verbose_name_template = "Flaming Burst"

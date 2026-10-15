@@ -1,0 +1,43 @@
+name = "Stitched Great Forge Shroud"
+description = "A sturdy cloak, combining Dwarven metalwork with exceptional tailoring."
+drop_location = "Flocked Together, The Decomposter 's chest"
+icon = "Cloak_6"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 11
+slot = "Back"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "the decomposter 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flocked Together"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Stealing from Sorcere"

@@ -1,0 +1,11 @@
+name = "Greater Good Guard"
+adds_augment = "Accessory Aspect II"
+description = """
+1d8 Good damage on being hit
+Positive:Dominion:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory devastation"

@@ -1,0 +1,22 @@
+name = "Ash Boots"
+description = "These black leather boots leave a trail of footsteps filled with ash."
+drop_location = "Litany of the Dead, Cinnis ' chest"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Feet"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 30
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "cinnis ' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

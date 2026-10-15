@@ -1,0 +1,39 @@
+name = "Gauntlets of Innate Arcanum"
+description = """
+Though appearing as simple gauntlets, on the right hands these gloves act as
+a conduit for magic."""
+drop_location = "Sunrise, End chest, Abbot chest"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 10
+slot = "Hands"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 112
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, abbot chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sunrise"

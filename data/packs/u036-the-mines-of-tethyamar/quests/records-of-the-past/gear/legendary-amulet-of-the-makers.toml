@@ -1,0 +1,40 @@
+name = "Legendary Amulet of the Makers"
+description = """
+The Dwarf blacksmiths who wear these gleaming amulets are regarded as masters
+of their craft. As you drape it across your neck, you feel a surge of motivation
+to create, better and more than any smith before you."""
+drop_location = "Records of the Past, end chest"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 28
+slot = "Neck"
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Quality"
+value = 67
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Records of the Past"

@@ -1,0 +1,180 @@
+{
+  "$defs": {
+    "AbilityModifier": {
+      "additionalProperties": false,
+      "properties": {
+        "modifier": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "stat": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        }
+      },
+      "required": [
+        "modifier",
+        "stat"
+      ],
+      "type": "object",
+      "x-table": "race_ability_modifiers"
+    },
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "citations"
+    },
+    "RaceFeatSlot": {
+      "additionalProperties": false,
+      "properties": {
+        "feat_type": {
+          "type": "string"
+        },
+        "level": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "update_list": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "feat_type",
+        "level"
+      ],
+      "type": "object",
+      "x-table": "race_feat_slots"
+    },
+    "RaceGrantedFeat": {
+      "additionalProperties": false,
+      "properties": {
+        "feat": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "feats"
+        },
+        "feat_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object",
+      "x-table": "race_granted_feats"
+    },
+    "Skill": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "skill"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "ability_modifier": {
+      "items": {
+        "$ref": "#/$defs/AbilityModifier"
+      },
+      "type": "array"
+    },
+    "auto_buy_skill": {
+      "items": {
+        "$ref": "#/$defs/Skill"
+      },
+      "type": "array"
+    },
+    "build_points": {
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "description": {
+      "type": "string"
+    },
+    "feat_slot": {
+      "items": {
+        "$ref": "#/$defs/RaceFeatSlot"
+      },
+      "type": "array"
+    },
+    "granted_feat": {
+      "items": {
+        "$ref": "#/$defs/RaceGrantedFeat"
+      },
+      "type": "array"
+    },
+    "iconic_class": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "is_construct": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "no_past_life": {
+      "type": "boolean"
+    },
+    "short_name": {
+      "type": "string"
+    },
+    "skill_points": {
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "starting_world": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "short_name",
+    "starting_world"
+  ],
+  "title": "RaceFile",
+  "type": "object",
+  "x-table": "races"
+}

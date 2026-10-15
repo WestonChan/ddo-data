@@ -1,0 +1,78 @@
+name = "Reflection of Wave"
+accepts_sentience = true
+description = "I echo the crash of waves in your ears. Seize the moment, and swim for the surface."
+drop_location = "Schism Shard Crafting, Turn in 5 Schism Shards, Legendary Echo of Wave, and Sentient Jewel of Wave"
+enhancement_bonus = 15
+icon = "Quarterstaff_12"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Bone"
+minimum_level = 29
+slot = "Main Hand"
+
+[[clickie]]
+name = "Swirling Icy Shield"
+clickie = "Swirling Icy Shield"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Paragon Cerulean Wave"
+
+[[effect]]
+name = "Frozen Thunderstorm Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Power of the Frozen Thunderstorm"
+bonus_type = "Equipment"
+value = 145
+
+[[effect]]
+name = "Greater Water Elemental Form"
+
+[[effect]]
+name = "Underwater Action"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Swirling Icy Shield"]
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Schism Shard Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

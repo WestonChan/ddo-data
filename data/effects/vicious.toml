@@ -1,0 +1,3 @@
+name = "Vicious"
+description_template = "When a vicious weapon strikes an opponent, it creates a flash of disruptive energy that resonates between the opponent and the wielder. This energy deals an extra 2 to 12 points of damage to the opponent and 1 to 3 points of damage to the wielder."
+verbose_name_template = "Vicious"

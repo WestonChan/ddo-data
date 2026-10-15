@@ -1,0 +1,40 @@
+name = "Legendary Tiny Brain in a Tiny Jar"
+description = """
+Is this a real brain, or simply a bauble that looks like one? You're sure not
+opening the jar to find out."""
+drop_location = "Special Delivery, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 34
+slot = "Trinket"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Intelligence Skills - Exceptional Bonus"
+value = 6
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"

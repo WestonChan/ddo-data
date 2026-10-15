@@ -1,0 +1,68 @@
+name = "Verik's Necklace"
+description = """
+This thin chain necklace was the property of the famous Kensai, Verik. Its protection
+saved him in many a duel by turning the blade of the opponent."""
+drop_location = "A New Invasion, Any chest; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Lesser Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Kensei"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Kensei - 2 Piece bonus"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_Attack"]
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Kensei - 3 Piece bonus"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_Attack"]
+targets = ["All"]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "A New Invasion"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

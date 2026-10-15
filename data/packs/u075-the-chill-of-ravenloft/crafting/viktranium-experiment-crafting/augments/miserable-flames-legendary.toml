@@ -1,0 +1,21 @@
+name = "Miserable Flames (Legendary)"
+description = "+2 Exceptional bonus to Strength."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Strength"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

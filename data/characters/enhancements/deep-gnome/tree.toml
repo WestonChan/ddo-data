@@ -1,0 +1,754 @@
+name = "Deep Gnome"
+background = "DeepGnomeBackground"
+icon = "DeepGnome"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Deep Gnome: Wariness I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1% Dodge, +2 Magical Resistance Rating"
+icon = "DeepGnomeWariness"
+internal_name = "DeepGnomeCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Deep Gnome: Ability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Select either Intelligence or Wisdom"
+internal_name = "DeepGnomeCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "IntWis"
+reason = "DDOBuilderV2's EnhancementImages folder has no IntWis.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-07"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DeepGnomeCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Deep Gnome: Wariness II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1% Dodge, +2 Magical Resistance Rating"
+icon = "DeepGnomeWarinessII"
+internal_name = "DeepGnomeCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["DeepGnomeCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deep Gnome: Ability II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Select either Intelligence or Wisdom"
+internal_name = "DeepGnomeCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "IntWis"
+reason = "DDOBuilderV2's EnhancementImages folder has no IntWis.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-07"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["DeepGnomeCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Scrolls: Retain Essence"
+cost_per_rank = [1]
+description = """
+You gain a 15% Racial bonus to your odds of retaining a copy of a Scroll when using it.
++2% Dodge, +2 Magical Resistance Rating"""
+icon = "DeepGnomeScrollsRetainEssence"
+internal_name = "DeepGnomeCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["DeepGnomeCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deep Gnome: Illusory Escape"
+cost_per_rank = [1]
+description = """
+When you tumble, you will phase out of reality briefly, passing through
+enemies as you do so."""
+icon = "DeepGnomeIllusoryEscape"
+internal_name = "DeepGnomeIllusoryEscape"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement]]
+name = "Deep Gnome: Wand and Scroll Mastery"
+cost_per_rank = [1]
+description = """
++[25/50/75]% effectiveness from your wands, scrolls, and other items that
+cast spells, and +[1/2/3] to the save DC of your offensive wands."""
+icon = "DeepGnomeWandAndScrollMastery"
+internal_name = "DeepGnomeWandAndScrollMastery"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DeepGnomeWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Wands"]
+
+[[enhancement.requirement]]
+items = [
+    "DeepGnomeWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Deep Gnome: Underdark Experience"
+cost_per_rank = [1]
+description = "+[1/2/3] to all saves."
+icon = "DeepGnomeUnderdarkExperience"
+internal_name = "DeepGnomeUnderdarkExperience"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement]]
+name = "Deep Gnome: Stealth or Awareness"
+cost_per_rank = [1]
+description = "Choose one:"
+icon = "Awareness"
+internal_name = "DeepGnomeStealthOrAwareness"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.selection]]
+name = "Awareness"
+cost_per_rank = [1]
+description = "+[1/2/3] to Listen, Spot and Search."
+icon = "Awareness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Spot",
+    "Search",
+]
+
+[[enhancement.selection]]
+name = "Stealthy"
+cost_per_rank = [1]
+description = "+[1/2/3] to Hide and Move Silently."
+icon = "Stealthy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement]]
+name = "Deep Gnome: Weapon Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++1 to hit and damage with Light Hammers, Light Maces, Light Picks, Shortswords,
+Shortbows, Light Crossbows, and Light Repeating Crossbows."""
+icon = "GnomeGnomishWeaponTrainingI"
+internal_name = "DeepGnomeGnomishWeaponTrainingI"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement]]
+name = "Deep Gnome: Conjure Stone"
+cost_per_rank = [2]
+description = """
+Conjure a boulder and hurl it at an enemy, dealing [6/12/20]d4 bludgeoning
+damage and knocking down enemy on failed Reflex save DC [10/15/20] + INT modifier.
+Activation Cost: [25/15/5] Spell points. Cooldown: [10/8/6] seconds."""
+icon = "DeepGnomeConjureStone"
+internal_name = "DeepGnomeConjureStone"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.dc]]
+name = "Deep Gnome: Conjure Stone"
+amount = [
+    10,
+    15,
+    20,
+]
+dc_type = "Knockdown"
+dc_versus = "Reflex"
+description = """
+Conjure a boulder and hurl it at an enemy, dealing [6/12/20]d4 bludgeoning
+damage and knocking down enemy on failed Reflex save."""
+icon = "DeepGnomeConjureStone"
+mod_ability = ["Intelligence"]
+
+[[enhancement]]
+name = "Deep Gnome: Hardy Nature"
+cost_per_rank = [1]
+description = "+[2/4/6] to Armor Class and +[1/2/3] Physical Resistance Rating."
+icon = "DeepGnomeHardyNature"
+internal_name = "DeepGnomeHardyNature"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement]]
+name = "Deep Gnome: Greater Color Spray"
+cost_per_rank = [2]
+description = """
+Enemies are sprayed with illusions of color, and must make a Will save or be
+Dazed, Blinded, and/or Silenced. The target must make a saving throw for each effect.
+Activation Cost: 2 SP.
+Cooldown: 8 seconds"""
+icon = "DeepGnomeColorSpray"
+internal_name = "DeepGnomeGreaterColorSpray"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Color Spray",
+    "None",
+]
+
+[[enhancement]]
+name = "Deep Gnome: Permanent Blur"
+cost_per_rank = [1]
+description = "You gain a permanent Blur effect."
+icon = "GnomePermanentBlur"
+internal_name = "DeepGnomePermanentBlur"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[enhancement]]
+name = "Deep Gnome: Weapon Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++1 to hit and damage with Light Hammers, Light Maces, Light Picks, Shortswords,
+Shortbows, Light Crossbows, and Light Repeating Crossbows."""
+icon = "GnomeGnomishWeaponTrainingII"
+internal_name = "DeepGnomeGnomishWeaponTrainingII"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement.requirement]]
+items = ["DeepGnomeGnomishWeaponTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deep Gnome: Spellcraft"
+cost_per_rank = [1]
+description = "+[5/10/20] Spellcraft"
+icon = "DeepGnomeSpellcraft"
+internal_name = "DeepGnomeSpellcraft"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["AMSpellCraft"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deep Gnome: Nimble Reaction"
+cost_per_rank = [1]
+description = "+[1/2/3] Armor Maximum Dexterity Bonus and Maximum Dodge Bonus."
+icon = "GnomeNimbleReaction"
+internal_name = "DeepGnomeNimbleReaction"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement]]
+name = "Deep Gnome: Stoneskin"
+cost_per_rank = [2]
+description = """
+You get Stoneskin as an SLA.
+Activation Cost: 10 SP.
+Cooldown: 10 seconds."""
+icon = "DeepGnomeStoneskin"
+internal_name = "DeepGnomeStoneskin"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Stoneskin",
+    "None",
+]
+
+[[enhancement]]
+name = "Deep Gnome Spell Focus: Illusion"
+cost_per_rank = [1]
+description = "+[1/2/3] to Illusion DCs"
+icon = "DeepGnomeRacialSpellFocusIllusion"
+internal_name = "DeepGnomeRacialSpellFocusIllusion"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement]]
+name = "Deep Gnome: Weapon Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++2 to hit and damage with Light Hammers, Light Maces, Light Picks, Shortswords,
+Shortbows, Light Crossbows, and Light Repeating Crossbows."""
+icon = "GnomeGnomishWeaponTrainingIII"
+internal_name = "DeepGnomeGnomishWeaponTrainingIII"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement.requirement]]
+items = ["DeepGnomeGnomishWeaponTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deep Gnome: Phantasmal Killer"
+cost_per_rank = [2]
+description = """
+You gain Phantasmal Killer as an SLA.
+Activation Cost: 5 SP.
+Cooldown: 16 seconds"""
+icon = "DeepGnomePhantasmalKiller"
+internal_name = "DeepGnomePhantasmalKiller"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    0,
+    16,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Phantasmal Killer",
+    "None",
+]
+
+[[enhancement]]
+name = "Deep Gnome: Favored Enemy"
+cost_per_rank = [2]
+description = """
+Gnomes have a history of racial enmity with several kinds of creatures.
+Choose a Favored Enemy feat for one of these: Goblinoid or Reptilian"""
+icon = "GnomeGnomishFavoredEnemy"
+internal_name = "DeepGnomeGnomishFavoredEnemy"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.selection]]
+name = "Favored Enemy: Goblinoid"
+cost_per_rank = [2]
+description = "You gain Goblinoids as a favored enemy"
+icon = "FavoredEnemyGoblinoid"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Goblinoid"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Reptilian"
+cost_per_rank = [2]
+description = "You gain Reptiles as a favored enemy"
+icon = "FavoredEnemyReptilian"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Reptilian"]
+
+[[enhancement]]
+name = "Deep Gnome: Weapon Training IV"
+cost_per_rank = [2]
+description = """
++2 to hit and damage with Light Hammers, Light Maces, Light Picks, Shortswords,
+Shortbows, Light Crossbows, and Light Repeating Crossbows.
++1 Competence Bonus to Critical Threat Range with the same weapons."""
+icon = "GnomeGnomishWeaponTrainingIV"
+internal_name = "DeepGnomeGnomishWeaponTrainingIV"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = [
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Shortsword",
+    "Light Crossbow",
+    "Repeating Light Crossbow",
+]
+
+[[enhancement.requirement]]
+items = ["DeepGnomeGnomishWeaponTrainingIII"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Deep Gnome"]
+req_type = "Race"

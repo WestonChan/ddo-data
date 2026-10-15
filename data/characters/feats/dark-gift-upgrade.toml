@@ -1,0 +1,211 @@
+[[row]]
+name = "Enhanced Echoing Soul"
+acquire = "Train"
+description = """
+You have learned to handle outbursts of your echoes better. When afflicted by
+Echoing Souls the duration only lasts 3 seconds instead of 6."""
+icon = "EchoingSoul"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.group]]
+group_name = "Dark Gift Upgrade"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row.requirement]]
+items = ["Echoing Soul "]
+req_type = "Feat"
+
+[[row]]
+name = "Enhanced Form of Pain"
+acquire = "Train"
+description = "You passively gain another 10 Physical and Magical Resistance Rating."
+icon = "FormOfPain"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 10
+
+[[row.group]]
+group_name = "Dark Gift Upgrade"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row.requirement]]
+items = ["Form of Pain "]
+req_type = "Feat"
+
+[[row]]
+name = "Enhanced Living Shadow"
+acquire = "Train"
+description = """
+When your living shadow darkgift now procs deep shadows instead of shadow
+exerts, which causes your damage and all incoming damage to be reduced by 15%
+for 6 seconds. This can only occur once every 30 seconds."""
+icon = "LivingShadow"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.group]]
+group_name = "Dark Gift Upgrade"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row.requirement]]
+items = ["Living Shadow "]
+req_type = "Feat"
+
+[[row]]
+name = "Enhanced Minion of the Eldritch"
+acquire = "Train"
+description = """
+Your eldritch lords punishment now only lasts 12 seconds.
+Passive: You gain 5 Universal spell power."""
+icon = "MinionOfTheEldritch"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 5
+
+[[row.group]]
+group_name = "Dark Gift Upgrade"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row.requirement]]
+items = ["Minion of the Eldritch "]
+req_type = "Feat"
+
+[[row]]
+name = "Enhanced Mist Walker"
+acquire = "Train"
+description = """
+Your Mist Walker ability's reflex save and incorporeal buff increases to +8
+and 30% stacking incorporeality respectively and now linger for 6 seconds,
+assuming the mists don't catch you."""
+icon = "MistWalker"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Reflex Save"
+value = 8
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Incorporeality"
+value = 30
+
+[[row.group]]
+group_name = "Dark Gift Upgrade"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier.requirement]]
+items = ["Mist Walker"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect = "Incorporeality"
+effect_type = "Incorporeality"
+
+[[row.modifier.requirement]]
+items = ["Mist Walker"]
+req_type = "Stance"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row.requirement]]
+items = ["Mist Walker "]
+req_type = "Feat"
+
+[[row]]
+name = "Enhanced Touch of Death"
+acquire = "Train"
+description = "You benefit from death block in addition to Touch of Deaths other effects."
+icon = "TouchOfDeath"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.group]]
+group_name = "Dark Gift Upgrade"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Death Effects"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row.requirement]]
+items = ["Touch of Death "]
+req_type = "Feat"
+
+[[row]]
+name = "Enhanced Webtouched Wretch"
+acquire = "Train"
+description = """
+You gain Web Immunity though your own webs can still bind you, but only for
+4 seconds now instead of 6."""
+icon = "WebtouchedWretch"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.group]]
+group_name = "Dark Gift Upgrade"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Web Immunity"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row.requirement]]
+items = ["Webtouched Wretch "]
+req_type = "Feat"

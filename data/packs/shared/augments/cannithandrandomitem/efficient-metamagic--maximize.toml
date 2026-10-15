@@ -1,0 +1,23 @@
+name = "Efficient Metamagic: Maximize"
+description = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Maximize Cost Reduction"
+bonus_type = "Equipment"
+value = -2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Equipment"
+effect = "Maximize Cost Reduction"
+effect_type = "MetamagicCostMaximize"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: cannith rune arm extra"

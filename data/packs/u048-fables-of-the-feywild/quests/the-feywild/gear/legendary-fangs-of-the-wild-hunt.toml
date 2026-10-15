@@ -1,0 +1,60 @@
+name = "Legendary Fangs of the Wild Hunt"
+description = """
+Guard dogs have been used throughout Barovia over the years, grim reminders
+that none are welcome. Bug: Likely to be changed in the future, because it
+is a raw copy-n-paste from Hound of the Night by the devs."""
+drop_location = "The Feywild, rare encounters"
+enhancement_bonus = 15
+icon = "Collar1"
+item_category = "Weapon"
+item_type = "Collar"
+material = "Bone"
+minimum_level = 29
+race_required = "Pet"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Frostbite"
+
+[[effect]]
+name = "Vorpal Lethargy"
+
+[[effect]]
+name = "Chilling 6"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "rare encounters"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 5
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Collar"

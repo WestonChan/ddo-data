@@ -1,0 +1,10 @@
+name = "Repair Intensity"
+description_template = "Your Repair and Rust spells gin a {1}% %b1 bonus to critical damage."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Repair Intensity +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Repair Spell Critical Damage"

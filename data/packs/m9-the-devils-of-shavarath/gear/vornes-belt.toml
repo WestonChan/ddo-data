@@ -1,0 +1,63 @@
+name = "Vorne's Belt"
+description = """
+This weathered leather belt is torn and tattered. The crude markings that cover
+it declare that it was worn by the feared Occult Slayer, Vorne."""
+drop_location = "Sins of Attrition, Any chest; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Occult Slayer - 2 Piece bonus"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = [
+    "Will",
+    "Reflex",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    22,
+    22,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Occult Slayer - 2 Piece bonus"
+effect_type = "SpellResistance"
+extra_types = ["SpellResistance"]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sins of Attrition"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

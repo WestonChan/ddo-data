@@ -1,0 +1,3 @@
+name = "Staggering 117"
+description_template = "This item is enchanted to make your attacks send enemies reeling. When you roll a 20 on an attack with a melee weapon you will knock the target down unless it makes a DC 117 Balance check."
+verbose_name_template = "Staggering 117"

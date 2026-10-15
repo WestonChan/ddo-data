@@ -1,0 +1,3 @@
+name = "Murderous Point"
+description_template = "On hit: 16d6 Piercing Damage. This item is considered Metalline, bypassing all kinds of material damage resistance."
+verbose_name_template = "Murderous Point"

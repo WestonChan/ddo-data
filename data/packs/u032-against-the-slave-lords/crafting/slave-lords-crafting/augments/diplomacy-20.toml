@@ -1,0 +1,21 @@
+name = "Diplomacy +20"
+description = "Legendary Competence bonus to Diplomacy"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Diplomacy"
+effect_type = "SkillBonus"
+targets = ["Diplomacy"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

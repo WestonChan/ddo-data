@@ -1,0 +1,53 @@
+name = "The Staff of Shadow"
+accepts_sentience = true
+description = """
+This great staff was forged inside The Vault of Night itself. The essence of
+Shadow has seeped into this staff, granting it exceptional death-dealing abilities."""
+drop_location = "Killing Time, end chest"
+enhancement_bonus = 15
+icon = "Quarterstaff_14"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Adamantine"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,39 @@
+name = "Shimmer"
+description = """
+The magical threads woven into this cloak were designed to be attractive to
+others. Even in pitch darkness, the cloak lures passersby like a siren's song."""
+drop_location = "Third Time's a Charm, End Chest"
+icon = "Cloak_4"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 15
+slot = "Back"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Third Time's a Charm"

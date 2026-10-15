@@ -1,0 +1,5 @@
+name = "Poison IV"
+description_template = """
+On Hit: 4 to 16 Poison Damage.
+On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage."""
+verbose_name_template = "Poison IV"

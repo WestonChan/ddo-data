@@ -1,0 +1,3 @@
+name = "Demon Fever"
+description_template = "This weapon is infected with a night hag's Demon Fever disease. On critical hits it will transfer the disease to enemies, dealing 1d8 Constitution damage. A successful Fortitude save (DC 22) negates this effect."
+verbose_name_template = "Demon Fever"

@@ -1,0 +1,47 @@
+name = "Chain Shirt of Toppling (level 20)"
+description = "Time-Twisted version of Chain Shirt of Crippling"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+enhancement_bonus = 6
+icon = "LightArmor_9f"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 17
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Kick 'Em While They're Down"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

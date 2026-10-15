@@ -1,0 +1,22 @@
+name = "Poison Ring"
+description = """
+Careful inspection reveals a hidden compartment in the ring. Perfect for storing
+deadly substances."""
+drop_location = "Cult of the Six, End reward"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Ring"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

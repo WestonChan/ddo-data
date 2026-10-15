@@ -1,0 +1,53 @@
+name = "The Repulsor Boots"
+description = "These carry a subtle heat, as if they were still warm from the forge."
+drop_location = "Legendary Lord of Blades, end chest"
+icon = "Boots_4a"
+item_category = "Clothing"
+material = "Copper"
+minimum_level = 29
+slot = "Feet"
+
+[[clickie]]
+name = "Enhanced Jet Propulsion"
+clickie = "Enhanced Jet Propulsion"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Mighty Skills Bonus"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Mighty Skills Bonus"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Feather Falling"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    1,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Enhanced Jet Propulsion"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Lord of Blades"

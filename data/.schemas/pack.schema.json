@@ -1,0 +1,110 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "citations"
+    },
+    "EntityNote": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "entity_notes"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "is_free_to_play": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "note": {
+      "items": {
+        "$ref": "#/$defs/EntityNote"
+      },
+      "type": "array"
+    },
+    "released": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "update": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "title": "PackFile",
+  "type": "object",
+  "x-table": "adventure_packs"
+}

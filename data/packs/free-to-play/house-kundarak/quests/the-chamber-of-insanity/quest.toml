@@ -1,0 +1,23 @@
+name = "The Chamber of Insanity"
+bestowed_by = "Kranig Stoneshield"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Kundarak"
+zone = "Chamber of Insanity"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Chamber_of_Insanity"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5

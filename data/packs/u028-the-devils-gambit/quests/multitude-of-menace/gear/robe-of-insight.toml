@@ -1,0 +1,44 @@
+name = "Robe of Insight"
+description = """
+The lavish fabric exudes the feeling of a deep understanding of the underlying
+connections that bind the world together."""
+drop_location = "Multitude of Menace, end chest"
+enhancement_bonus = 5
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Wizardry II"
+bonus_type = "Insight"
+value = 50
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Multitude of Menace"

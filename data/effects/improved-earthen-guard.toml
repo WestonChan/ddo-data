@@ -1,0 +1,3 @@
+name = "Improved Earthen Guard"
+description_template = "When you are successfully attacked, there is a 15% chance that a Stone Skin will be cast on you."
+verbose_name_template = "Improved Earthen Guard"

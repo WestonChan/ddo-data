@@ -1,0 +1,5 @@
+name = "Electric Resistance"
+category = "defensive"
+description_template = "Passive: {1} %b1 bonus to your Electric Resistance."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Electric Resistance +{1}"

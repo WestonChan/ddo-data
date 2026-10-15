@@ -1,0 +1,39 @@
+name = "+11 Wisdom Skills, +151 Spell Points"
+description = """
+Ethereal/Escalation: +11 Insight bonus to Wisdom based skills.
++151 Insight spell points"""
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Escalation"""
+
+[[effect]]
+name = "Wisdom Skills"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Insight"
+value = 151
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Wisdom"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [151]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: equipment tier 2"

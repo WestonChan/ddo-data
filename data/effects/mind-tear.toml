@@ -1,0 +1,3 @@
+name = "Mind Tear"
+description_template = "This weapon tears at the identity of your foes, reducing their MRR and Spell Power."
+verbose_name_template = "Mind Tear"

@@ -1,0 +1,40 @@
+name = "Legendary Control Gauntlet"
+description = "A modified version of an Absorption Gauntlet, meant to aid in the magic of control."
+drop_location = "Taken in Hand, End chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 32
+slot = "Hands"
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Quality"
+value = 11
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Taken in Hand"

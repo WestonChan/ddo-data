@@ -1,0 +1,20 @@
+name = "Phantasmic Masque"
+description = "This mask is worn by the attendants of the bleakest ward in the asylum."
+drop_location = "Cult of the Six, End reward"
+icon = "Helmet_69"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Head"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 60
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

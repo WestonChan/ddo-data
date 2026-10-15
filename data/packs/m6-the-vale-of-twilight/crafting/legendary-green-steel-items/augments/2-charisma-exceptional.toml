@@ -1,0 +1,20 @@
+name = "+2 Charisma (Exceptional)"
+description = "Escalation/Air or Positive: +2 Exceptional bonus to Charisma"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

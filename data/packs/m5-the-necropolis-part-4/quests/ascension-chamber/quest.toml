@@ -1,0 +1,23 @@
+name = "Ascension Chamber"
+bestowed_by = "Sir Rohine Stiedra"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+flagging = "Reflagging is required for this raid once per TR."
+is_raid = true
+pack = "The Necropolis, Part 4"
+patron = "The Silver Flame"
+zone = "Hall of Ascension"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Ascension_Chamber"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

@@ -1,0 +1,18 @@
+name = "Delera's Tomb"
+pack = "Delera's Tomb"
+wiki_url = "https://ddowiki.com/page/Delera%27s_Tomb"
+quests = [
+    "The Mystery of Delera's Tomb",
+    "The Missing Party",
+    "Free Delera",
+    "Return to Delera's Tomb",
+    "Thrall of the Necromancer",
+    "Valak's Mausoleum",
+    "The Keeper's Sanctuary",
+    "And the Dead Shall Rise...",
+    "From Beyond the Grave",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Delera%27s_Tomb"
+read = "2026-10-02"

@@ -1,0 +1,93 @@
+name = "Dragon's Edge"
+adds_augment = "Thunderforged Tier 3"
+description = "Dragon's Edge: Passive: Armor-Piercing 35%. On Crit: 33 to 105 Bleeding Damage."
+family = "Thunderforged"
+min_level = 26
+weapon_class = "Two Handed"
+
+[[effect]]
+name = "Fortification Bypass"
+bonus_type = "Enhancement"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Enhancement"
+display_name = "Dragon's Edge"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_bonus = [25]
+dice_damage = "Bleeding"
+dice_number = [9]
+dice_sides = [8]
+display_name = "Dragon's Edge"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_number = [2]
+dice_sides = [6]
+display_name = "Fracturing"
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "Bane of Dragons"
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Dragon"]
+req_type = "Stance"
+
+[[slot]]
+slot = "crafting: thunderforged tier 2"

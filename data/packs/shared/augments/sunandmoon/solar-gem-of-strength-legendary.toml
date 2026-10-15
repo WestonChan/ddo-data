@@ -1,0 +1,43 @@
+name = "Solar Gem of Strength (Legendary)"
+description = """
++4 Artifact Bonus to Strength
+Drops in: The House of Gems, end chest
+Dinosaur Crisis, optional chest
+Cold Snap, Althea's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Strength"
+bonus_type = "Artifact"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "althea's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Gems"

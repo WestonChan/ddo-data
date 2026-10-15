@@ -1,0 +1,15 @@
+name = "The Voyage"
+difficulties = ["normal"]
+favor = 0
+flagging = "Requires Veteran Status; starts automatically when a new level 1 character enters the game."
+is_free_to_play = true
+pack = "Free to Play"
+zone = 'The Airship "Heart of Wind"'
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Voyage"
+read = "2026-10-02"
+
+[[run]]
+tier = "heroic"
+level = 1

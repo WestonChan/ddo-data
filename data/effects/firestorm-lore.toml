@@ -1,0 +1,26 @@
+name = "Firestorm Lore"
+description_template = "Passive: Your Fire and Lightning spells gain a {1}% Equipment bonus to their chance to critical hit."
+home_bonus_type = "Equipment"
+verbose_name_template = "Firestorm Lore +{1}%"
+
+[[bonus]]
+amount_from = 1
+bonus_type = "Equipment"
+rounding = "down"
+scale = 1.0
+target = "Electric Spell Lore"
+
+[[bonus]]
+amount_from = 1
+bonus_type = "Equipment"
+rounding = "down"
+scale = 1.0
+target = "Fire Spell Lore"
+
+[[note]]
+kind = "effect"
+field = "description_template"
+upstream = "Passive: Your Fire and Lightning spells gain a {1}%% Equipment bonus to their chance to critical hit."
+reason = "The doubled percent sign after the amount placeholder is a template typo; the line and description state one percentage."
+url = "internal:effect-name-and-description"
+read = "2026-10-05"

@@ -1,0 +1,31 @@
+name = "Onyx of the Twelve"
+description = "This fragment of a gemstone is infused with the power from The Twelve."
+drop_location = "The Marketplace, Turn in 10 Planar Shards from The Subterrane"
+icon = "Trinket_78"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Trinket"
+
+[[clickie]]
+name = "Raise Dead"
+clickie = "Raise Dead"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    1,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Raise Dead"]
+
+[[source]]
+kind = "vendor"
+name = "Vagan Taneer"
+
+[[source.price]]
+ingredient = "Planar Shard"
+quantity = 10

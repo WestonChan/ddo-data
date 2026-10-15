@@ -1,0 +1,8 @@
+name = "Citrene of Greater Dragonmarks"
+description = "Upgrade an item to grant +1 Greater Dragonmark charges"
+family = "Alchemical"
+icon = "Citrene"
+min_level = 28
+
+[[slot]]
+slot = "orange"

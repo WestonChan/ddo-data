@@ -1,0 +1,32 @@
+name = "Dockworker's Outfit"
+description = "An outfit to blend in with the hired hands in Saltmarsh."
+drop_location = "Under the Cover of Darkness, End"
+enhancement_bonus = 2
+icon = "Cloth_4"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 3
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Cover of Darkness"

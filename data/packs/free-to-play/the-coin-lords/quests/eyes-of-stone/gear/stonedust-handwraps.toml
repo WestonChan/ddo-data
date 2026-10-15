@@ -1,0 +1,51 @@
+name = "Stonedust Handwraps"
+description = """
+These strips of cloth seem to be always covered in dust and fine bits of rock.
+When striking enemies they will occasionally stun them or turn them to stone,
+and when wielded by a Monk in Earth Stance they will sometimes protect the
+wearer with stone as well."""
+drop_location = "Eyes of Stone, End chest"
+enhancement_bonus = 4
+icon = "HandWraps_1"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Path of the Guarding Stone"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Stone Prison"
+
+[[effect]]
+name = "Fusible"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Eyes of Stone"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

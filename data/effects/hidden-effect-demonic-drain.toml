@@ -1,0 +1,3 @@
+name = "Hidden Effect Demonic Drain"
+description_template = "Demonic Drain (1% chance)"
+verbose_name_template = "Hidden Effect"

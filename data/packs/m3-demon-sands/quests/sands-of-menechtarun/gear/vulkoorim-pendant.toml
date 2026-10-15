@@ -1,0 +1,44 @@
+name = "Vulkoorim Pendant"
+description = "A golden chain holds a carved jade scorpion."
+drop_location = "Sands of Menechtarun, Volrune the Curate chest (Rare Encounter); Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Necklace_4"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 80
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 80
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "volrune the curate chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

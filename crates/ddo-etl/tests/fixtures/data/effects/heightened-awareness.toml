@@ -1,0 +1,10 @@
+name = "Heightened Awareness"
+description_template = "This item helps you to quickly read situations with sharpness and clarity, allowing you to predict actions before they occur. You gain a {1} Insight bonus to AC."
+home_bonus_type = "Insight"
+verbose_name_template = "Heightened Awareness {1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"

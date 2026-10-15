@@ -1,0 +1,46 @@
+name = "Platemail of the Barovian Lord"
+description = "This plate holds up well in battle, despite being originally for show."
+drop_location = "Wrath of the Earth, End chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_3"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 15
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 77
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wrath of the Earth"

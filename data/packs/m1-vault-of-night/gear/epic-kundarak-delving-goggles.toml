@@ -1,0 +1,36 @@
+name = "Epic Kundarak Delving Goggles"
+description = """
+These goggles are Kundarak-forged and useful for exploring (and infiltrating)
+secure spaces."""
+drop_location = "Epic version of Kundarak Delving Goggles"
+icon = "Goggles_11b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Goggles"
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 17
+
+[[socket]]
+slot = "yellow"

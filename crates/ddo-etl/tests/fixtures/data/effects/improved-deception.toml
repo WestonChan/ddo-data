@@ -1,0 +1,13 @@
+name = "Improved Deception"
+default_value = 5
+description_template = "This item makes your weapons hard to focus upon and thus provides a {1} enhancement bonus to Bluff checks. In addition, while using this item your weapons have a chance to envelop the target in darkness, making them vulnerable to sneak attacks for a short time."
+home_bonus_type = "Enhancement"
+tier = 2
+tier_group = "Deception"
+verbose_name_template = "%b1 Improved Deception +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Bluff"

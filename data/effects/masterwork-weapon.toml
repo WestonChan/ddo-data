@@ -1,0 +1,3 @@
+name = "Masterwork Weapon"
+description_template = "This weapon is more finely crafted than normal, providing a +1 Enhancement bonus on attack rolls."
+verbose_name_template = "Masterwork"

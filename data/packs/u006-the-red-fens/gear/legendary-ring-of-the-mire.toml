@@ -1,0 +1,35 @@
+name = "Legendary Ring of the Mire"
+description = "This ring was crafted to ease travel through thick, overgrown marsh territory."
+drop_location = "Legendary version of Epic Ring of the Mire"
+icon = "Ring_42"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Ring"
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Legendary Stone Guard"
+
+[[effect]]
+name = "Feather Falling"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

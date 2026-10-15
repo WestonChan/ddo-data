@@ -1,0 +1,3 @@
+name = "Crippling Flames"
+description_template = "On Hit: 5% chance to apply 2 Negative Levels. On Critical: 135 to 325 Fire Damage."
+verbose_name_template = "Crippling Flames"

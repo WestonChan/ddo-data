@@ -1,0 +1,11 @@
+name = "Legendary Concordant Opposition"
+description = """
+Requires Positive and Negative only
+[1~2%] chance to gain HP and SP when hit [50-60 points, no cooldown?].
+Offensive spells have a [~?%] chance to briefly grant 100 temporary
+spell points (This has a one minute cooldown)."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

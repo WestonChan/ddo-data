@@ -1,0 +1,36 @@
+name = "Epic Elder's Cap"
+description = """
+Tribal drow elders use these caps to focus their minds and recall past events.
+They are passed down through the generations but few of them remain in existence."""
+drop_location = "Epic version of Elder's Cap"
+icon = "Helmet_30c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Head"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

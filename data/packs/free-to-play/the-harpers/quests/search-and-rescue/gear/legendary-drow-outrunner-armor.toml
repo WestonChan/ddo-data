@@ -1,0 +1,51 @@
+name = "Legendary Drow Outrunner Armor"
+description = """
+This armor is favored by the scouts of a Drow war party due to the protective
+enchantments placed upon it."""
+drop_location = "Search and Rescue, Drow Priestess chest"
+enhancement_bonus = 14
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 8
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 22
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Quality"
+value = 10
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 10
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "drow priestess chest"
+kind = "quest"
+loot_type = "chest"
+name = "Search and Rescue"

@@ -1,0 +1,32 @@
+name = "War Wizard's Bracers"
+description = """
+These bracers have been layered with powerful enchantments to help a War Wizard
+in battle."""
+drop_location = "Eveningstar, Turn in 5 Commendations: War Wizards Commendation: War Wizards : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the War Wizards. You can exchange it in Eveningstar for powerful equipment."
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 20
+slot = "Wrists"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 9
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Elemental Spell Power"
+bonus_type = "Elemental Spell Power"
+
+[[effect]]
+name = "Greater Elemental Energy"
+bonus_type = "Elemental Energy"
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

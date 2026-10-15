@@ -4,7 +4,7 @@
       "background": "WarlockBackground",
       "enhancement_count": 30,
       "icon": "Warlock",
-      "id": 107,
+      "id": 977209680269402,
       "is_legacy": false,
       "kind": "class",
       "name": "Acolyte of the Skin",
@@ -19,13 +19,14 @@
           "value": null
         }
       ],
+      "slug": "acolyte-of-the-skin",
       "version": 1
     },
     {
       "background": "SorcererBackground",
       "enhancement_count": 29,
       "icon": "Sorcerer",
-      "id": 93,
+      "id": 585534480958838,
       "is_legacy": false,
       "kind": "class",
       "name": "Air Savant",
@@ -40,13 +41,14 @@
           "value": null
         }
       ],
+      "slug": "air-savant",
       "version": 1
     },
     {
       "background": "FavoredSoulBackground",
       "enhancement_count": 31,
       "icon": "Favored Soul",
-      "id": 42,
+      "id": 8218443113590432,
       "is_legacy": false,
       "kind": "class",
       "name": "Angel of Vengeance",
@@ -61,6 +63,7 @@
           "value": null
         }
       ],
+      "slug": "angel-of-vengeance",
       "version": 1
     }
   ],

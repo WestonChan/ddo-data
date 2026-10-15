@@ -1,0 +1,3 @@
+name = "Acid Touch"
+description_template = "This weapon gives off the faint smell of acid. An acid touch weapon deals an additional +1 acid damage on a successful hit."
+verbose_name_template = "Acid Touch"

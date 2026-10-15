@@ -1,0 +1,5 @@
+name = "Poison VIII"
+description_template = """
+On Hit: 8 to 32 Poison Damage.
+On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage."""
+verbose_name_template = "Poison VIII"

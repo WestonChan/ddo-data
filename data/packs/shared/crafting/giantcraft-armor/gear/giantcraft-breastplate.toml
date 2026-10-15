@@ -1,0 +1,33 @@
+name = "Giantcraft Breastplate"
+description = "A breastplate imbued with the magic of the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Ancient Giant Relics"
+enhancement_bonus = 4
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Adamantine"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 8
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Vengeful"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Adamantine"
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

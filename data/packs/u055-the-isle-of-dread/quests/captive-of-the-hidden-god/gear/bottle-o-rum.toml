@@ -1,0 +1,46 @@
+name = "Bottle o' Rum"
+description = "This broken glass bottle carries quite the sharp edge."
+drop_location = "Captive of the Hidden God, end chest"
+enhancement_bonus = 3
+icon = "Dagger_1"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Glass"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Bleeding 2"
+
+[[effect]]
+name = "Tendon Slice"
+value = 4
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Captive of the Hidden God"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Dagger"

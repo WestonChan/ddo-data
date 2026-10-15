@@ -1,0 +1,32 @@
+name = "Crown of Fireflies"
+description = "The warm and inviting light of living fireflies fill you with hope."
+drop_location = "The Endless Revels, End chest"
+icon = "Helmet_5"
+item_category = "Clothing"
+material = "Light"
+minimum_level = 5
+slot = "Head"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Endless Revels"

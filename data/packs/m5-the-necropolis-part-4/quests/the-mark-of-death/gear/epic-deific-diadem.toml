@@ -1,0 +1,79 @@
+name = "Epic Deific Diadem"
+description = """
+The crown the abbot had made to signify his ascension and godhood, now a reminder
+of his ultimate failure."""
+drop_location = "The Mark of Death, warded chest"
+icon = "Helmet_17a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Head"
+
+[[clickie]]
+name = "Lesser Heighten"
+clickie = "Lesser Heighten"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Lesser Heighten"]
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Mark of Death"

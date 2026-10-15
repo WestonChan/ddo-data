@@ -1,0 +1,25 @@
+name = "Melancholic Sparks (Heroic)"
+description = "Adds Silver material type. On hit: 2d6 Electric Damage."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Silver"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus = "Not Set"
+dice_damage = "Electric"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: melancholic (weapon)"

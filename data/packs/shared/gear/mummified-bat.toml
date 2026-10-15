@@ -1,0 +1,27 @@
+name = "Mummified Bat"
+description = """
+A tiny, desiccated bat corpse. Tribal elders carry these charms into battle,
+enabling them to perform supernatural feats."""
+drop_location = "Cult of the Six, End reward"
+icon = "Trinket_84"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 9
+slot = "Trinket"
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Feather Falling"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

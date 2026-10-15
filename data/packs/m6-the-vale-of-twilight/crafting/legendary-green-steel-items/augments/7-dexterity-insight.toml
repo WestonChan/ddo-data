@@ -1,0 +1,21 @@
+name = "+7 Dexterity (Insight)"
+description = "Escalation/Air or Fire: +7 Insight bonus to Dexterity"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

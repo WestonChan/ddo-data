@@ -1,0 +1,383 @@
+name = "Unholy Defiler of the Hidden Hand"
+npc = "Unholy Defiler of the Hidden Hand, Morgrave University - Upper Commons, in the rafters above Steps Obliss (reached from the barrels in the nearby tavern); visible only while wearing Steps' Lenses of Seein' Hidden Hand Secrets, which Steps Obliss gives after talking to him on 14 consecutive days on one character"
+pack = "Vecna Unleashed"
+
+[[ingredient]]
+name = "Gray Dust of Vile Darkness"
+drop_location = "Vecna Denied (Belanatharis Dragon second chest)"
+tier = "heroic"
+
+[[ingredient]]
+name = "Black Dust of Vile Darkness"
+drop_location = "Taken in Hand (second main room, behind barrels)"
+tier = "heroic"
+
+[[ingredient]]
+name = "Crimson Dust of Vile Darkness"
+drop_location = "The Evil We Know (underneath Conch optional)"
+tier = "heroic"
+
+[[ingredient]]
+name = "Golden Dust of Vile Darkness"
+drop_location = "The Hand and the Eyes (north of the final shrine), part of Grip of the Hidden Hand"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Gray Dust of Vile Darkness"
+drop_location = "Vecna Denied (Belanatharis Dragon second chest)"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Black Dust of Vile Darkness"
+drop_location = "Taken in Hand (second main room, behind barrels)"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Crimson Dust of Vile Darkness"
+drop_location = "The Evil We Know (underneath Conch optional)"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Golden Dust of Vile Darkness"
+drop_location = "The Hand and the Eyes (north of the final shrine), part of Grip of the Hidden Hand"
+tier = "legendary"
+
+[[citation]]
+url = "https://ddowiki.com/page/Unholy_Defiler_of_the_Hidden_Hand"
+read = "2026-09-29"
+
+[[recipe]]
+note = "All recipe facts are on this page. Introduced in Update 61 to upgrade Vecna Unleashed weapons and shields and create Minor Artifacts; legendary weapons can be upgraded further at the Esoteric Table in Fire Over Morgrave, which removes Taint of Evil. Upgrades Shining Reliquary <Weapon> into Defiled Reliquary <Weapon>, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Defiled Reliquary <Weapon>"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Gray Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Black Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Crimson Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Golden Dust of Vile Darkness"
+quantity = 6
+
+[[recipe]]
+note = "Upgrades Azure Buckler into Defiled Azure Buckler, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Defiled Azure Buckler"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Gray Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Black Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Crimson Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Golden Dust of Vile Darkness"
+quantity = 6
+
+[[recipe]]
+note = "Upgrades Azure Targe into Defiled Azure Targe, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Defiled Azure Targe"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Gray Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Black Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Crimson Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Golden Dust of Vile Darkness"
+quantity = 6
+
+[[recipe]]
+note = "Upgrades Azure Rotella into Defiled Azure Rotella, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Defiled Azure Rotella"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Gray Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Black Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Crimson Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Golden Dust of Vile Darkness"
+quantity = 6
+
+[[recipe]]
+note = "Upgrades Azure Tower into Defiled Azure Tower, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Defiled Azure Tower"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Gray Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Black Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Crimson Dust of Vile Darkness"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Golden Dust of Vile Darkness"
+quantity = 6
+
+[[recipe]]
+note = "Upgrades Legendary Shining Reliquary <Weapon> into Legendary Defiled Reliquary <Weapon>, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Legendary Defiled Reliquary <Weapon>"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Legendary Azure Buckler into Legendary Defiled Azure Buckler, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Legendary Defiled Azure Buckler"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Legendary Azure Targe into Legendary Defiled Azure Targe, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Legendary Defiled Azure Targe"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Legendary Azure Rotella into Legendary Defiled Azure Rotella, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Legendary Defiled Azure Rotella"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Defiled Azure Tower into Legendary Defiled Azure Tower, a new item; no augment counterpart, and Maetrim has no augment family for this system. The page lists Defiled Azure Tower as the base item, where the pattern of the other rows suggests Legendary Azure Tower."
+option = "Legendary Defiled Azure Tower"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Legendary Study Spectacles into Desolation Spectacles, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Desolation Spectacles"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Legendary Eyes of Enlightenment into Eyes of Defilement, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Eyes of Defilement"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Legendary Mystic Monocle into Misery Monocle, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Misery Monocle"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Legendary Buckle of Transformation into Buckle of Assimilation, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Buckle of Assimilation"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Legendary Bladesworn Bandolier into Blade-Barbed Bandolier, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Blade-Barbed Bandolier"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12
+
+[[recipe]]
+note = "Upgrades Legendary Book-Cover Beltstrap into Beltstrap of Forbidden Tomes, a new item; no augment counterpart, and Maetrim has no augment family for this system."
+option = "Beltstrap of Forbidden Tomes"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Gray Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Black Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Crimson Dust of Vile Darkness"
+quantity = 12
+
+[[recipe.ingredient]]
+ingredient = "Legendary Golden Dust of Vile Darkness"
+quantity = 12

@@ -1,0 +1,12 @@
+name = "Tempest Rune of Magma"
+description = """
+Magma Surge Guard: This item stores the immeasurable heart of the planet's molten
+mantle. When the wearer of this item is successfully attacked in melee,
+superheated magma occasionally surges to the surface, slowing an enemy down and
+inflicting massive fire damage over time."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: tempest rune"

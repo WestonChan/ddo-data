@@ -1,0 +1,19 @@
+name = "Goggles of Intuition"
+description = """
+Anyone who wears these goggles is able to quickly identify weak points and vulnerable
+spots for a physical blow."""
+drop_location = "The Bloody Crypt, end chest"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 5
+slot = "Goggles"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bloody Crypt"

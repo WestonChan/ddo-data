@@ -1,0 +1,1534 @@
+name = "Vanguard"
+background = "FighterBackground"
+icon = "FighterPaladin"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Vanguard: To the Fore!"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While you have a shield equipped,you gain +1 to hit and damage with main hand weapon
+and with your shield bash attacks."""
+icon = "VanguardToTheFore"
+internal_name = "VanguardCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vanguard: Shield Combat I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+10% chance to make a secondary shield bash"
+icon = "VanguardShieldCombatI"
+internal_name = "VanguardCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SecondaryShieldBash"
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["VanguardCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Vanguard: Vicious Shield I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Additional +10% (total +20%) chance to make a secondary shield bash.
+While you have a shield equipped, +5% Combat Style bonus to melee attack speed."""
+icon = "VanguardViciousShieldI"
+internal_name = "VanguardCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SecondaryShieldBash"
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["VanguardCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Vanguard: Shield Combat II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Additional +10% (total 30%) chance to make a secondary shield bash.
+While you have a shield equipped, you gain a +1 Competence Bonus to Critical
+Multiplier and a +5% (total 10%) Combat style bonus to Melee Attack Speed.
+
+Your shield gains +1[W]."""
+icon = "VanguardShieldCombatII"
+internal_name = "VanguardCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SecondaryShieldBash"
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Buckler",
+    "Small Shield",
+    "Large Shield",
+    "Tower Shield",
+]
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["VanguardCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Vanguard: Vicious Shield II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Shield gains +1 Critical Threat Range, +1 Critical Multiplier, and +1[W].
+
+While you have a shield equipped, +5% (total 15%) Combat Style bonus to Melee
+Attack Speed."""
+icon = "VanguardViciousShieldII"
+internal_name = "VanguardCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalMultiplier"]
+targets = [
+    "Buckler",
+    "Small Shield",
+    "Large Shield",
+    "Tower Shield",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Buckler",
+    "Small Shield",
+    "Large Shield",
+    "Tower Shield",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["VanguardCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Vanguard: Shield Champion"
+cost_per_rank = [1]
+description = """
+While you have a shield equipped, you gain +2 attack, +2 damage, and +5% Doublestrike,
++5% (total 20%) Combat Style bonus to Melee Attack Speed.
+
+Your shield gains +1[W].
+
+Your shield bashes stuns enemies 10% of the time.
+DC(10 + 1/2 Character level + strength modifier + stun bonus)"""
+icon = "VanguardShieldChampion"
+internal_name = "VanguardCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.dc]]
+name = "Vanguard: Shield Champion: Stun"
+amount = [10]
+dc_type = "Stun"
+dc_versus = "Will"
+description = """
+Your shield bashes stuns enemies 10% of the time.
+DC(10 + 1/2 Character level + strength modifier + stun bonus)"""
+icon = "VanguardShieldChampion"
+mod_ability = ["Strength"]
+tactical = "Stun"
+
+[[enhancement.dc]]
+name = "Vanguard: Shield Champion"
+amount = [10]
+dc_type = "Stun"
+dc_versus = "Will?"
+description = "Shield bash stuns 10% of the time"
+icon = "VanguardShieldChampion"
+mod_ability = ["Strength"]
+tactical = "Stun"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "VanguardCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Buckler",
+    "Small Shield",
+    "Large Shield",
+    "Tower Shield",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["VanguardCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = [
+    "VanguardCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement]]
+name = "Vanguard: Shield Specialization I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "While you have a shield equipped, you gain +1 to hit, damage, and armor class."
+icon = "VanguardShieldSpecializationI"
+internal_name = "VanguardShieldSpecializationI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vanguard: No Weakness"
+cost_per_rank = [1]
+description = "+[1/2/3] Fortitude saving throws."
+icon = "VanguardNoWeakness"
+internal_name = "VanguardNoWeakness"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vanguard: Shield Smash"
+cost_per_rank = [1]
+description = """
+Deals +75% Damage
+Cooldown: 6 seconds
+Shield Attack: On damage you gain 1 stack of Battle Guard.
+Battle Guard: +10 PRR/MRR for 12 seconds, stacks 5 times. Each stack lasts 12 seconds.
+Blocking for more than 3 seconds removes all stacks."""
+icon = "VanguardShieldSmash"
+internal_name = "VanguardShieldSmash"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Battle Guard"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+stack_source = "Battle Guard"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vanguard: Unbalancing Shove"
+cost_per_rank = [1]
+description = "When you shield bash, damaged enemies get -1 to saving throws for [2/4/6] seconds."
+icon = "VanguardUnbalancingShove"
+internal_name = "VanguardUnbalancingShove"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vanguard: Armor Training"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Balance, Intimidate, and Jump.
+Reduces total penalty to skills from armor and shield by [1/2/3] points."""
+icon = "VanguardArmorTraining"
+internal_name = "VanguardArmorTraining"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Intimidate",
+    "Jump",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ArmorCheckPenalty"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vanguard: Shield Specialization II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "While you have a shield equipped, you gain +1 to hit, damage, and armor class."
+icon = "VanguardShieldSpecializationII"
+internal_name = "VanguardShieldSpecializationII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["VanguardShieldSpecializationI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Vanguard: Brutality"
+cost_per_rank = [1]
+description = "+[1/2/3] to the DC of Stunning abilities (e.g. Stunning Blow and Stunning Shield)"
+icon = "VanguardBrutality"
+internal_name = "VanguardBrutality"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Stun",
+    "Stunning Shield",
+]
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Vanguard: Stunning Shield"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 15 seconds
+Shield Attack: This attack stuns enemies unless they make a Fortitude save vs
+DC(10 + highest ability modifier + character level + stunning bonuses)."""
+icon = "VanguardStunningShield"
+internal_name = "VanguardStunningShield"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.dc]]
+name = "Vanguard: Shield Champion"
+amount = [10]
+class_level = "All"
+dc_type = "Stun"
+dc_versus = "Fortitude"
+description = "While shield equipped, Activate: Melee shield bash with shield for +30% Damage."
+icon = "VanguardStunningShield"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Vanguard: Missile Shield"
+cost_per_rank = [1]
+description = """
+While you have a shield equipped, you gain the benefits of the Deflect Arrows feat,
+knocking aside one incoming projectile that would have struck you every [6/4/2]
+seconds. Anti-requisite: Deflect Arrows."""
+icon = "VanguardMissileShield"
+internal_name = "VanguardMissileShield"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Vanguard: Action Boost Power"
+cost_per_rank = [2]
+description = """
++30 Action Boost bonus to Melee and Ranged Power for 20 seconds.
+Usable 5 times per rest. Cooldown: 30 seconds"""
+icon = "VanguardActionBoostMeleePower"
+internal_name = "VanguardActionBoostMeleePower"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier.requirement]]
+items = ["Vanguard: Power"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.stance]]
+name = "Vanguard: Power"
+description = "+30 Action Boost bonus to Melee and Ranged Power for 20 seconds"
+icon = "VanguardActionBoostMeleePower"
+
+[[enhancement]]
+name = "Vanguard: Shield Specialization III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "While you have a shield equipped, you gain +1 to hit, damage, and armor class."
+icon = "VanguardShieldSpecializationIII"
+internal_name = "VanguardShieldSpecializationIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["VanguardShieldSpecializationII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Vanguard: Follow Up"
+cost_per_rank = [1]
+description = """
+When you hit an enemy with an activated attack with certain stunning abilities
+(such as Stunning Blow or Stunning Shield), your Melee Power is increased by
+[5/10/15] points for 30 seconds whether the stun works or not."""
+icon = "VanguardFollowUp"
+internal_name = "VanguardFollowUp"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Stun Attack"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Vanguard: Fatal Bulwark"
+cost_per_rank = [2]
+description = "Your shield gains +1 Critical Threat Range."
+icon = "VanguardFatalBulwark"
+internal_name = "VanguardFatalBulwark"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = [
+    "Buckler",
+    "Small Shield",
+    "Large Shield",
+    "Tower Shield",
+]
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Vanguard: Shield Riposte"
+cost_per_rank = [1]
+description = """
+When missed in melee while wearing a shield: Deals 1d[4/6/8] bludgeoning damage
+to your attacker. Scales with Melee Power."""
+icon = "VanguardShieldRiposte"
+internal_name = "VanguardShieldRiposte"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Vanguard: Ability I"
+cost_per_rank = [2]
+description = "Choose one:"
+icon = "StrDex"
+internal_name = "VanguardAbilityScore"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Vanguard: Shield Specialization IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "While you have a shield equipped, you gain +1 to hit, damage, and armor class."
+icon = "VanguardShieldSpecializationIV"
+internal_name = "VanguardShieldSpecializationIV"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["VanguardShieldSpecializationIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Vanguard: Vanguard Armor Mastery"
+cost_per_rank = [1]
+description = """
++[1/2/3] Armor Class and Armor Maximum Dexterity Bonus.
+(Maximum dexterity bonus limits your maximum Dodge as well).
+Undocumented: Also provides the same bonus to Tower Shield MDB."""
+icon = "VanguardArmorMastery"
+internal_name = "VanguardArmorMastery"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+extra_types = [
+    "MaxDexBonus",
+    "MaxDexBonusTowerShield",
+]
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Vanguard: Shield Charge"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 12 seconds
+Shield Attack: Rush forward up to 30 feet to your selected opponent and deliver
+a shield attack that hits enemies around you. Enemies can be knocked down.
+DC: 10 + Max[Str,Dex,Con,Int,Wis,Cha] Modifier + character level + trip bonuses."""
+icon = "VanguardShieldCharge"
+internal_name = "VanguardShieldCharge"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.dc]]
+name = "Vanguard: Shield Charge"
+amount = [10]
+class_level = "All"
+dc_type = "Knock down"
+dc_versus = "Will"
+description = """
+Shield Attack: Rush forward up to 30 feet to your selected opponent and deliver
+a shield attack that hits enemies around you. Enemies can be knocked down."""
+icon = "VanguardShieldCharge"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+tactical = "Trip"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Vanguard: Myrmidon's Edge"
+cost_per_rank = [1]
+description = """
++[1/2/3] to attack rolls to confirm critical hits and +[1/2/3] damage on
+critical hits (before weapon multipliers)."""
+icon = "VanguardMyrmidonsEdge"
+internal_name = "VanguardMyrmidonsEdge"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Vanguard: Ability II"
+cost_per_rank = [2]
+description = "Choose one:"
+icon = "StrDex"
+internal_name = "VanguardAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Vanguard: Shield Specialization V"
+cost_per_rank = [2]
+description = "While you have a shield equipped, you gain +3 to hit, damage, and armor class."
+icon = "VanguardShieldToTheFace"
+internal_name = "VanguardShieldToTheFace"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement_group.requirement]]
+items = ["VanguardShieldSpecializationIV"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement]]
+name = "Vanguard: Disorienting Smash"
+cost_per_rank = [1]
+description = """
+When you shield bash, damaged enemies gain 1d4 stacks of Vulnerability.
+This can occur at most once every [3/2/1] second(s).
+
+Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
+20 times, and loses one stack every 3 seconds."""
+icon = "VanguardDisorientatingSmash"
+internal_name = "VanguardDisorientatingSmash"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement]]
+name = "Vanguard: Shield Rush"
+cost_per_rank = [2]
+description = """
+Deals +60% Damage
+Cooldown: 20 seconds
+Shield Attack: Move forward in a line, delivering a shield bash attack to every
+creature hit. Each opponent is knocked down. The knockdown is negated on a
+Fortitude saving throw vs DC (20 + highest ability modifier + class level +
+bonus to trip attacks)."""
+icon = "VanguardShieldRush"
+internal_name = "VanguardShieldRush"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.dc]]
+name = "Vanguard: Shield Rush"
+amount = [20]
+class_level = "All"
+dc_type = "Knockdown"
+dc_versus = "Fortitude"
+description = """
+Shield Attack: Move forward in a line, delivering a shield bash attack to every
+creature hit. Each opponent is knocked down. The knockdown is negated on a
+Fortitude saving throw vs DC (20 + highest ability modifier + class level +
+bonus to trip attacks)."""
+icon = "VanguardShieldRush"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+tactical = "Trip"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement]]
+name = "Vanguard: Armored Strength"
+cost_per_rank = [2]
+description = "+15 to Melee Power, +10% chance to make a Secondary Shield Bash."
+icon = "VanguardArmoredStrength"
+internal_name = "VanguardArmoredStrength"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["SecondaryShieldBash"]
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement]]
+name = "Vanguard: Brutal Impact"
+cost_per_rank = [2]
+description = """
+While wielding a Shield, you gain a +1 Competence Bonus to Critical Threat Range.
+You gain a +25% Competence bonus to Maximum Hit Points."""
+icon = "VanguardBrutalImpact"
+internal_name = "VanguardBrutalImpact"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[requirement_group]]
+kind = "one_of"
+
+[[requirement_group.requirement]]
+items = ["Fighter"]
+req_type = "Class"
+
+[[requirement_group.requirement]]
+items = ["Paladin"]
+req_type = "Class"

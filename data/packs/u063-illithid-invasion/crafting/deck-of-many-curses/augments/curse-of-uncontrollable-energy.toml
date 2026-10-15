@@ -1,0 +1,21 @@
+name = "Curse of Uncontrollable Energy"
+description = "+2% Fortune Bonus to Spell Critical Damage"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Universal Spell Critical Damage"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Universal Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: deck curse"

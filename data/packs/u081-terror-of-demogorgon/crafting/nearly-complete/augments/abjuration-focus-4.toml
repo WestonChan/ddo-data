@@ -1,0 +1,21 @@
+name = "Abjuration Focus +4"
+description = "+4 Equipment bonus to the DCs of Abjuration spells."
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Abjuration Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Equipment"
+effect = "Abjuration Focus"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[slot]]
+slot = "crafting: nearly complete: spell focus (heroic)"

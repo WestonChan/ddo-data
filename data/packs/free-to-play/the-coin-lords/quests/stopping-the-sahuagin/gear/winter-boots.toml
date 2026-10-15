@@ -1,0 +1,21 @@
+name = "Winter Boots"
+description = """
+While worn, these boots seem to keep out the winter's chill, leaving your feet
+snug and warm, regardless of how low the temperature plummets."""
+drop_location = "Stopping the Sahuagin, Chest at Devourer altar near the Giantish device."
+icon = "Boots_13b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Feet"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 3
+
+[[source]]
+chest = "chest at devourer altar near the giantish device"
+kind = "quest"
+loot_type = "chest"
+name = "Stopping the Sahuagin"

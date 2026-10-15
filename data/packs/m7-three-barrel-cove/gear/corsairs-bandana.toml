@@ -1,0 +1,30 @@
+name = "Corsair's Bandana"
+description = """
+A stylish bandana. Ownership of one like this is a sign of respect from the
+pirates of Three-Barrel Cove."""
+drop_location = "Three-Barrel Cove (heroic), End reward"
+icon = "Helmet_56"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 5
+slot = "Head"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "reward"
+name = "Three-Barrel Cove"

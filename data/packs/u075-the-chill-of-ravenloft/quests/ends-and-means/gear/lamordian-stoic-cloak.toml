@@ -1,0 +1,36 @@
+name = "Lamordian Stoic Cloak"
+description = """
+The markings on the top of this cloak announced the station of a well-employed
+guard."""
+drop_location = "Ends and Means, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 8
+slot = "Back"
+
+[[effect]]
+name = "Ram's Might"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"

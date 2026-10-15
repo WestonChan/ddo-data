@@ -1,0 +1,37 @@
+name = "Ring of Subtle Villainy"
+description = "Revel in your villainy."
+drop_location = "Caged Beast, End chest"
+icon = "Ring_6"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 21
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 33
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Caged Beast"

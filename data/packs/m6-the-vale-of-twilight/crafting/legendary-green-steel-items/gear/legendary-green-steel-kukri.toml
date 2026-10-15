@@ -1,0 +1,46 @@
+name = "Legendary Green Steel Kukri"
+description = "A heavy, curved knife with a sharp edge on the inside of the curve."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+enhancement_bonus = 14
+icon = "Kukri_4"
+item_category = "Weapon"
+item_type = "Kukri"
+material = "Steel"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 1"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 2"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 3"
+
+[[socket]]
+slot = "crafting: greensteel weapon active"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Green Steel items"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.2
+handedness = "One-handed"
+weapon_type = "Kukri"

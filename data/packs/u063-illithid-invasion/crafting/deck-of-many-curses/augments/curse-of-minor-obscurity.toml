@@ -1,0 +1,28 @@
+name = "Curse of Minor Obscurity"
+description = "+1 Fortune Bonus to Hide and Move Silently"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Hide"
+bonus_type = "Fortune"
+value = 1
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[slot]]
+slot = "crafting: deck curse"

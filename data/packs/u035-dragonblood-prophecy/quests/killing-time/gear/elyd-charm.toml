@@ -1,0 +1,36 @@
+name = "Elyd Charm"
+description = "This necklace seems to hum along with you."
+drop_location = "Killing Time, Raid Warded Chest"
+icon = "Necklace_22"
+item_category = "Jewelry"
+material = "Crystal"
+minimum_level = 28
+slot = "Neck"
+
+[[effect]]
+name = "Anthem"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Insight"
+value = 72
+
+[[effect]]
+name = "Melody"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"

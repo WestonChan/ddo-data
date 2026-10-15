@@ -1,0 +1,31 @@
+name = "Consuming Darkness (Level 17)"
+description = "A ring blessed with Shar's love."
+drop_location = "What Goes Up, jeweled key chest, end chest (Heroic Normal); The Secret of the Storm Horns, quest chain end reward (Heroic)"
+icon = "Ring_19"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 17
+slot = "Ring"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "jeweled key chest, end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Goes Up"
+
+[[source]]
+kind = "quest_chain"
+name = "The Secret of the Storm Horns"

@@ -1,0 +1,50 @@
+name = "Heavy Armor of the Warblade's Reflection"
+description = """
+This armor took the power of the deathly ritual and turned it to the Warblade's
+purposes."""
+drop_location = "Ritual Table, Turn in \nLegendary Heavy Armor of the Warblade \n120 Barrier Fragments \nSigil of the Warblade"
+enhancement_bonus = 15
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 43
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 24
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Shadow Striker"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Legendary"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Ritual Table"

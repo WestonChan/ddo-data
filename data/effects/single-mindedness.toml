@@ -1,0 +1,11 @@
+name = "Single-Mindedness"
+description_template = "This item drives your magic towards chaos, and you cannot focus as well on the nuances of subtler spells. -2 DCs on your enchantment spells."
+home_bonus_type = "Penalty"
+verbose_name_template = "Single-Mindedness -2"
+
+[[bonus]]
+amount_from = 0
+constant = -2
+rounding = "down"
+scale = 1.0
+target = "Enchantment Focus"

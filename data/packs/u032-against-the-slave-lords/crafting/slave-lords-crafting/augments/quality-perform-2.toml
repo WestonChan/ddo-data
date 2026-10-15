@@ -1,0 +1,21 @@
+name = "Quality Perform +2"
+description = "Quality bonus to Perform"
+family = "Slavelords_Heroic"
+icon = "SlavelordsBonus"
+min_level = 8
+
+[[effect]]
+name = "Perform"
+bonus_type = "Quality"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Perform"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[slot]]
+slot = "crafting: slavelords bonus"

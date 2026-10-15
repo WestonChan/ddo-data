@@ -1,0 +1,3 @@
+name = "Knee Cracker"
+description_template = "On Hit: 15% chance to slow 25% (No Save) for 5 seconds (non-bosses only)."
+verbose_name_template = "Knee Cracker"

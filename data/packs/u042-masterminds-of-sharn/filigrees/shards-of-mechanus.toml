@@ -1,0 +1,143 @@
+[[row]]
+name = "Shards of Mechanus: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "ShardsOfMechanus"
+menu = "Masterminds of Sharn"
+set = "Shards of Mechanus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shards of Mechanus: Constitution: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Shards of Mechanus: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "ShardsOfMechanus"
+menu = "Masterminds of Sharn"
+set = "Shards of Mechanus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shards of Mechanus: Intelligence: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Shards of Mechanus: +10 Repair Amplification"
+description = """
++10 Repair Amplification
+Rare: +2 PRR"""
+icon = "ShardsOfMechanus"
+menu = "Masterminds of Sharn"
+set = "Shards of Mechanus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "RepairAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shards of Mechanus: Repair Amplification: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Shards of Mechanus: +25% Fortification"
+description = """
++25% Fortification
+Rare: +2 PRR"""
+icon = "ShardsOfMechanus"
+menu = "Masterminds of Sharn"
+set = "Shards of Mechanus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Stacking"
+effect_type = "Fortification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shards of Mechanus: Fortification: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Shards of Mechanus: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "ShardsOfMechanus"
+menu = "Masterminds of Sharn"
+set = "Shards of Mechanus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shards of Mechanus: MRR: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Shards of Mechanus: +9 Repair Spell Power"
+description = """
++9 Repair Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "ShardsOfMechanus"
+menu = "Masterminds of Sharn"
+set = "Shards of Mechanus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Shards of Mechanus: Repair Spell Power: +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

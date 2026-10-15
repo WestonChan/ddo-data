@@ -1,0 +1,72 @@
+name = "Stave of the Seer"
+description = """
+Ur-Keshik the Seer was known to be a powerful Mystic under Ghola-Fan's reign.
+Whether his power was truly his own or merely derived from this staff remains
+unknown."""
+drop_location = "Bring Me the Head of Ghola-Fan!, Ur-Keshik the Seer 's chest"
+enhancement_bonus = 4
+icon = "Quarterstaff_17"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 8
+slot = "Main Hand"
+
+[[clickie]]
+name = "True Seeing"
+clickie = "True Seeing"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["True Seeing"]
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "ur-keshik the seer 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bring Me the Head of Ghola-Fan!"
+
+[[weapon]]
+attack_modifier = "Intelligence, Wisdom"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Intelligence, Wisdom"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,60 @@
+name = "Telvi's Touch"
+description = """
+When the Water Savant Telvi saved a forest village from a wild fire that threatened
+to consume it, this glittering gold ring was circling his finger."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Water Savant"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+    5,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Water Savant - 2 Piece bonus"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    50,
+    50,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Water Savant - 2 Piece bonus"
+effect_type = "SpellCriticalDamage"
+targets = ["Cold"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

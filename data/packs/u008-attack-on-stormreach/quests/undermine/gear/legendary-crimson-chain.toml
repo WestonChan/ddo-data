@@ -1,0 +1,52 @@
+name = "Legendary Crimson Chain"
+description = """
+A suit of chainmail crafted for Droaam troops to make them react more swiftly.
+When the wearer is struck by an attack, it will sometimes increase the speed
+of his or her movements and attacks briefly."""
+drop_location = "Undermine, Rhyolite's chest"
+enhancement_bonus = 15
+icon = "LightArmor_18"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 18
+armor_type = "Light"
+max_dex_bonus = 12
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Legendary Air Guard"
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "rhyolite's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Undermine"

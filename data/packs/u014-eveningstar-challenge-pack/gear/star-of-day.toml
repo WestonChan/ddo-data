@@ -1,0 +1,215 @@
+name = "Star of Day"
+accepts_sentience = true
+description = """
+Though seemingly made of pure gold, the blade of this bastard sword is as hard
+as steel. It is also surprisingly light, able to be wielded effectively by
+anyone who is proficient in the use of short swords. The clergy of the sun
+god, Amaunator, have brought a number of these powerful relics to Eveningstar
+in order to help combat the Darkening. Rumor and hushed whispers tell of three
+blades among the Stars of Day that stand out from their bretheren, feared by
+all that hide in shadow and darkness. This blade is not one of them."""
+drop_location = "Eveningstar, Turn in 15 Commendations: Clerics of the Amaunator Commendation: Clerics of Amaunator : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Clerics of Amaunator. You can exchange it in Eveningstar for powerful equipment."
+enhancement_bonus = 6
+icon = "Shortsword_4b"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Gold"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Brilliance"
+
+[[socket]]
+slot = "crafting: variant 1"
+
+[[socket.option]]
+name = "Fiery Detonation"
+description = """
+Fiery Detonation: This weapon is imbued with a fiery wrath. On an attack roll
+of 20 which is confirmed as a critical hit this burning power will be released,
+dealing damage to the target and all enemies near it for 15d6 fire damage.
+A successful Fortitude save (DC 39) reduces this by half."""
+icon = "Variant"
+min_level = 20
+
+[[socket.option]]
+name = "Radiance"
+description = """
+Radiance: This weapon is imbued with a brilliant, radiant power that deals an
+additional 4 to 24 points of light damage and blinds the target on a successful
+critical hit."""
+icon = "Variant"
+min_level = 20
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Light"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: variant 2"
+
+[[socket.option]]
+name = "Disruption"
+description = """
+Disruption: On Hit: 4 to 24 Bane damage to Undead.
+On Vorpal Hit: If an undead struck by this weapon has fewer than 1000 Hit Points,
+it is instantly slain. If the undead has above 1000 Hit Points, it takes 100 damage."""
+icon = "Variant"
+min_level = 20
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Flaming Burst"
+description = """
+Flaming Burst: This weapon is sheathed in fire, and deals 1 to 6 fire damage
+each hit. Critical hits deal an additional 1 to 10 fire damage for weapons with
+a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier."""
+icon = "Variant"
+min_level = 20
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Fire"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Greater Good"
+description = """
+Greater Good: This weapon is infused with the ultimate power of Good. It does an
+additional 2 to 12 damage to non-good targets and can only be wielded by
+Good-aligned characters."""
+icon = "Variant"
+min_level = 20
+
+[[socket.option.modifier]]
+bonus_type = "Stacking"
+dice_damage = "Good"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Non-Good"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Holy Burst"
+description = """
+Holy Burst: A holy weapon is imbued with holy power. This power makes the weapon
+good-aligned and thus bypasses the corresponding damage reduction. It deals an
+extra 2 to 12 points of damage against all of evil alignment and an extra 3 to
+18 on a critical for weapons with a x2 critical multiplier, 4 to 24 for a x3
+multiplier, and 5 to 30 for a x4 multiplier."""
+icon = "Variant"
+min_level = 20
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Good"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Evil"]
+req_type = "EnemyType"
+
+[[socket.option.modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Good"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "DRBypass"
+value = "Good"
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Shortsword"

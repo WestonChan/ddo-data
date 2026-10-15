@@ -1,0 +1,30 @@
+name = "Lunar Gem of Transmutation (Legendary)"
+description = """
++4 Profane Bonus to Transmutation DCs
+Drops in: Ends and Means, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Transmutation Focus"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"

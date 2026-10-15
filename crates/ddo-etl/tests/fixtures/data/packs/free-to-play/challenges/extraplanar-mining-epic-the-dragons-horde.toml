@@ -1,0 +1,9 @@
+name = "Extraplanar Mining - Epic The Dragon's Horde"
+difficulties = []
+is_challenge = true
+max_level = 20
+pack = "Free to Play"
+
+[[run]]
+tier = "heroic"
+level = 15

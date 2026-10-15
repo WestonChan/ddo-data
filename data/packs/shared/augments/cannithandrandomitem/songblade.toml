@@ -1,0 +1,29 @@
+name = "Songblade"
+description = """
+Songblade items sing an eerie counterpoint to music.
+This gives a +2 Enhancement bonus to the Perform skills."""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[effect]]
+name = "Perform"
+bonus_type = "Enhancement"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect = "Perform"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[slot]]
+slot = "crafting: cannith shield prefix"
+
+[[slot]]
+slot = "crafting: cannith weapon prefix"
+
+[[slot]]
+slot = "crafting: cannith orb prefix"

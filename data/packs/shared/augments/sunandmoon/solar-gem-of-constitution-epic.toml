@@ -1,0 +1,29 @@
+name = "Solar Gem of Constitution (Epic)"
+description = """
++3 Artifact Bonus to Constitution
+Drops in: Toil and Trouble, optional chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

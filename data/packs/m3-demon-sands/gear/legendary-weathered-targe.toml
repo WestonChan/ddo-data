@@ -1,0 +1,67 @@
+name = "Legendary Weathered Targe"
+description = """
+This ancient, worn shield is crafted from densewood. Despite its age and exposure
+to the elements, it still provides excellent protection."""
+drop_location = "Legendary version of Epic Weathered Targe"
+enhancement_bonus = 15
+icon = "Shield_8b"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Densewood"
+minimum_level = 30
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 20
+max_dex_bonus = 0
+shield_bonus = 20
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[effect]]
+name = "Densewood"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Off-hand"
+weapon_type = "Small Shield"

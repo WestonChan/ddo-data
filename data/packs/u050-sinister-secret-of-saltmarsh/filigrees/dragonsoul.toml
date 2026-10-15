@@ -1,0 +1,213 @@
+[[row]]
+name = "Dragonsoul: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "Dragonsoul"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dragonsoul"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dragonsoul: Charisma: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dragonsoul: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "Dragonsoul"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dragonsoul"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dragonsoul: Intelligence: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dragonsoul: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "Dragonsoul"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dragonsoul"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dragonsoul: Wisdom: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dragonsoul: +5% Acid Absorption"
+description = """
++5% Acid Absorption
+Rare: +2 MRR"""
+icon = "Dragonsoul"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dragonsoul"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dragonsoul: Acid Absorption: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dragonsoul: +5% Cold Absorption"
+description = """
++5% Cold Absorption
+Rare: +2 MRR"""
+icon = "Dragonsoul"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dragonsoul"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dragonsoul: Cold Absorption: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dragonsoul: +5% Electric Absorption"
+description = """
++5% Electric Absorption
+Rare: +2 MRR"""
+icon = "Dragonsoul"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dragonsoul"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dragonsoul: Electric Absorption: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dragonsoul: +5% Fire Absorption"
+description = """
++5% Fire Absorption
+Rare: +2 MRR"""
+icon = "Dragonsoul"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dragonsoul"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dragonsoul: Fire Absorption: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dragonsoul: -10% Arcane Spell Failure"
+description = """
+-10% Arcane Spell Failure
+Rare: +4 Universal Spell Power"""
+icon = "Dragonsoul"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dragonsoul"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Stacking"
+effect_type = "ArcaneSpellFailure"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Dragonsoul: Arcane Spell Failure: Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Dragonsoul: Universal Spell Power"
+description = """
++6 Universal Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "Dragonsoul"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dragonsoul"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Dragonsoul: Universal Spell Power: Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

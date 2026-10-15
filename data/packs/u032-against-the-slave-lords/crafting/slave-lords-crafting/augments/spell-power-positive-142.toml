@@ -1,0 +1,21 @@
+name = "Spell Power Positive +142"
+description = "Legendary Equipment bonus to spell power"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Positive Spell Power"
+bonus_type = "Equipment"
+value = 142
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [142]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

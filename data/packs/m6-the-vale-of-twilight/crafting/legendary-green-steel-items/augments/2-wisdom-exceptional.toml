@@ -1,0 +1,20 @@
+name = "+2 Wisdom (Exceptional)"
+description = "Escalation/Earth or Water: +2 Exceptional bonus to Wisdom"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

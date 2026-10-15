@@ -1,0 +1,58 @@
+name = "Crystalline Scepter (Level 23)"
+accepts_sentience = true
+description = """
+This scepter must have been held by the ancient giant warlock when the draconic
+spell hit and annihilated the giants. The spell seems to have warped the very
+metal of the scepter into a crystalline form."""
+drop_location = "Return to Madstone Crater, End chest (Epic Normal)"
+enhancement_bonus = 6
+icon = "Club_3"
+item_category = "Weapon"
+item_type = "Club"
+material = "Crystal"
+minimum_level = 23
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 108
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Club"

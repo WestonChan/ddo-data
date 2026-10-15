@@ -1,0 +1,56 @@
+name = "Legendary Planar Lariat"
+description = """
+This belt of interlocking gold disks us emblazoned with runes related to various
+Planes. Several pieces are bent and blistered from intense heat."""
+drop_location = "Catalyst Crafting, Turn in Planar Gird, its Legendary Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Waist"
+
+[[clickie]]
+name = "Greater Heroism"
+clickie = "Greater Heroism"
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Quality Shield"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    11,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Heroism"]
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

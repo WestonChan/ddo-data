@@ -1,0 +1,3 @@
+name = "Slay Living"
+description_template = "This weapon stores a dark and sinister power deep within. When the weapon is used, this power occasionally comes to the surface, attempting to instantly snuff out the life force of the enemy."
+verbose_name_template = "Slay Living"

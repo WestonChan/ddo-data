@@ -1,0 +1,65 @@
+name = "Head of Good Fortune"
+description = """
+You feel a surge of hope as you hold this charm consisting of a small molding
+of the Stormreaver's head attached to a chain. The other end of the chain is
+looped for ease of attachment to the hilt of your weapon."""
+drop_location = "The Reaver's Fate, Raid Warded chest"
+icon = "Trinket_41"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Trinket"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 2
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 75
+
+[[socket]]
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[socket.option]]
+name = "Fortification +100% and Dodge +4%"
+description = """
+Fortification +100%: This suit of armor or shield produces a magical force that
+protects vital areas of the wearer much more effectively. When a critical hit
+or sneak attack is scored on the wearer, there is a 100% chance that the critical
+hit or sneak attack is negated and damage is instead rolled normally.
+Dodge +4%: +4% Enhancement bonus to Dodge."""
+icon = "Stormreaver"
+min_level = 13
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 4
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification"
+value = 100
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"

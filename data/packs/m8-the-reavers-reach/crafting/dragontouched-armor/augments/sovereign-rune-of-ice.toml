@@ -1,0 +1,12 @@
+name = "Sovereign Rune of Ice"
+description = """
+Freezing Ice Guard: This item stores the pitiless immovable power of the ice deep within.
+When the wearer of this item is successfully attacked in melee, this power
+occasionally comes to the surface, attempting to freeze an enemy solid and encase
+them in ice."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

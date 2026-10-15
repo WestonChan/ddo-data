@@ -1,0 +1,30 @@
+name = "Solar Gem of Necromancy (Heroic)"
+description = """
+Artifact Necromancy Focus +2
+Drops in: The Body Snatchers, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"

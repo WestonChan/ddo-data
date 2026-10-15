@@ -1,0 +1,72 @@
+name = "Epic Glimpse of the Soul"
+description = "These goggles allow the wearer to see the true nature of someone's soul."
+drop_location = "Inferno of the Damned (epic), End chest"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 27
+slot = "Goggles"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Intercession Ward"
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Illusion Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Enchantment Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"

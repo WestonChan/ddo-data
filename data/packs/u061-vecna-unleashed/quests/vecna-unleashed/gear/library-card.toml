@@ -1,0 +1,41 @@
+name = "Library Card"
+description = """
+A student once tried to enchant this Library Card so that they would no longer
+accrue late fees. It didn't work, but a great deal of knowledge was enchanted
+upon it instead."""
+drop_location = "Vecna Unleashed (quest), End chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 18
+slot = "Trinket"
+
+[[effect]]
+name = "Linguistics 10%"
+
+[[effect]]
+name = "Soundproof"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Vecna Unleashed"

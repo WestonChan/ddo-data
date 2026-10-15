@@ -1,0 +1,15 @@
+name = "The Chill of Ravenloft"
+update = "Update 75"
+released = "2025-08-20"
+
+[[citation]]
+url = "https://ddowiki.com/page/Modules_and_updates"
+read = "2026-10-13"
+
+[[note]]
+kind = "adventure_pack"
+field = "name"
+upstream = "Chill of Ravenloft"
+reason = "The wiki names the pack The Chill of Ravenloft."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"

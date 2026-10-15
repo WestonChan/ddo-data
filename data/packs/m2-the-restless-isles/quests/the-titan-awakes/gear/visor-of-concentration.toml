@@ -1,0 +1,46 @@
+name = "Visor of Concentration"
+description = """
+Some mystics believe that by weakening one sense, another is sharpened. This
+enchanted visor is based around this belief."""
+drop_location = "The Titan Awakes, Warded Chest"
+icon = "Goggles_23"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 9
+slot = "Goggles"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = -7
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 48
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 48
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

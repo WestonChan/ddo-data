@@ -1,0 +1,53 @@
+name = "Glass Cannon (legacy) (tier 3)"
+description = "Made of hardened volcanic glass, this rune arm fires conjured stones which will explode upon impact."
+drop_location = "Treasure of Crystal Cove, Turn in 80 Stolen Star Rubies, 750 Gold Doubloons, 750 Silver Doubloons"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Glass"
+minimum_level = 24
+slot = "Runearm"
+wiki_url = "https://ddowiki.com/page/Item:Glass_Cannon_%28legacy%29_%28tier_3%29"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Glass_Cannon_%28legacy%29_%28tier_3%29"
+read = "2026-09-30"
+
+[[effect]]
+name = "Force Spell Power"
+bonus_type = "Equipment"
+value = 120
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Penalty"
+value = -25
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Exploding Cannon Shot"
+
+[[effect]]
+name = "Upgradeable - Tier 3"
+
+[[effect]]
+name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4"
+
+[[effect]]
+name = "Rune Arm Imbue - Fire V"
+
+[[effect]]
+name = "Rune Arm Imbue - Bludgeon V"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

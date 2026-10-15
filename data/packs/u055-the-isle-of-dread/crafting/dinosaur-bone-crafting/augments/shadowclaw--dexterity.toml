@@ -1,0 +1,21 @@
+name = "Shadowclaw: Dexterity"
+description = "+2 Exceptional bonus to Dexterity."
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "isle of dread: claw (weapon)"

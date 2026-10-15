@@ -1,0 +1,40 @@
+name = "Cold Iron: Mystical 1: Resonance +90, Mystical 2: Sonic Lore VI"
+description = """
+Your weapon gains Adamantine DR bypass.
+If you select Mystical Augments at Tier 1 or 2 You gain:
+Tier 1: Resonance +90
+Tier 2: Sonic Lore VI"""
+family = "Alchemical"
+min_level = 16
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Cold Iron"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    90,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 1: Cold Iron"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    16,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 2: Cold Iron"
+effect_type = "SpellLore"
+targets = ["Sonic"]
+
+[[slot]]
+slot = "crafting: alchemical material type"

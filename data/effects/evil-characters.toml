@@ -1,0 +1,3 @@
+name = "Evil Characters"
+description_template = "Evil characters wielding this weapon will suffer one negative level."
+verbose_name_template = "Evil Characters"

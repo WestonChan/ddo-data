@@ -1,0 +1,92 @@
+name = "Ornamented Dagger (legacy) (level 12)"
+description = """
+A dagger set with precious gems, each of which are enchanted with spell-enhancing
+magic. Most likely it was seized from nobles by a band of pirates as part of
+their pillaging."""
+drop_location = "Treasure of Crystal Cove, Turn in at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 3
+icon = "Dagger_2"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 9
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 36
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Potency +36"
+description = "Potency +36: Passive: +36 Equipment bonus to each Spell Power."
+icon = "Upgrade"
+min_level = 12
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 36
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [36]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Potency +44"
+description = "Potency +44: Passive: +44 Equipment bonus to each Spell Power."
+icon = "Upgrade"
+min_level = 12
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 44
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [44]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Dagger"

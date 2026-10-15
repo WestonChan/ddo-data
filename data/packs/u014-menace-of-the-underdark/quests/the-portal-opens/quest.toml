@@ -1,0 +1,32 @@
+name = "The Portal Opens"
+bestowed_by = "Jenneth Gosmere"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "Menace of the Underdark"
+patron = "Purple Dragon Knights"
+zone = "Sschindylryn Ziggurat"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Portal_Opens"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "epic_level"
+reason = "The wiki's quest index gives an epic level of 22; his Quests.xml gives none."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 22
+
+[[run]]
+tier = "epic"
+level = 22

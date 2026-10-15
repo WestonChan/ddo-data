@@ -1,0 +1,48 @@
+name = "Dwarvencraft Ice Lore"
+description = "Dwarvencraft Ice Lore: Passive: Your Cold spells gain a +22% Equipment Bonus to their chance to Critical Hit."
+family = "Thunderforged"
+min_level = 28
+
+[[effect]]
+name = "Cold Spell Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: thunderforged tier 3"

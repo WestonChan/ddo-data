@@ -1,0 +1,11 @@
+name = "Efficient Metamagic - Empower I"
+description_template = "The additional spell point cost for using the Empower Metamagic feat is reduced by 1 SP."
+home_bonus_type = "Equipment"
+verbose_name_template = "Efficient Metamagic - Empower I -1"
+
+[[bonus]]
+amount_from = 0
+constant = -1
+rounding = "down"
+scale = 1.0
+target = "Empower Cost Reduction"

@@ -1,0 +1,37 @@
+name = "Legendary Red Dragonscale Boots"
+description = """
+These boots are crafted out of Red Dragonscale, and have an incredible tolerance
+for heat."""
+drop_location = "The Thornwright, End chest"
+icon = "Boots_10"
+item_category = "Clothing"
+material = "Red Dragonscale"
+minimum_level = 29
+slot = "Feet"
+
+[[effect]]
+name = "Fire Shield (Hot)"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Thornwright"

@@ -1,0 +1,23 @@
+name = "Small Shard Trinket"
+description = "This trinket periodically casts cure serious wounds."
+drop_location = "The Marketplace, Turn in 3 Small Eberron Dragonshards to Rudolf Rightman ."
+icon = "Trinket_2"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Cure Serious Wounds"
+clickie = "Cure Serious Wounds"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    20,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cure Serious Wounds"]

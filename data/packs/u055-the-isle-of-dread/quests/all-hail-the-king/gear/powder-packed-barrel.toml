@@ -1,0 +1,72 @@
+name = "Powder-Packed Barrel"
+description = "Primed and ready to explode!"
+drop_location = "All Hail the King end chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Wood"
+minimum_level = 7
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 7
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 3
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 1
+
+[[note]]
+kind = "item"
+field = "drop_location"
+upstream = "Isle of Dread (wilderness), rare encounter chest, and All Hail the King end chest"
+reason = "The non-legendary barrel drops from All Hail the King, not the wilderness rare encounter."
+url = "https://ddowiki.com/page/Item:Powder-Packed_Barrel"
+read = "2026-10-05"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "All Hail the King"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

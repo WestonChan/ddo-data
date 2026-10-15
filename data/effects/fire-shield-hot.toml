@@ -1,0 +1,3 @@
+name = "Fire Shield (Hot)"
+description_template = "When you are successfully attacked, there is a 10% chance that a Fire Shield (Hot) will be cast on you. If this effect activates while you have an active Fire Shield (Cold) from another item source, they will nullify each-other."
+verbose_name_template = "Fire Shield (Hot)"

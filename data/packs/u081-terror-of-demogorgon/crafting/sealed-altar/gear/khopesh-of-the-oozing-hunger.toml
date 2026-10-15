@@ -1,0 +1,53 @@
+name = "Khopesh of the Oozing Hunger"
+description = "An aspect of the Unspeakable."
+drop_location = "Sealed Altar, Turn in Duergarcraft Khopesh and 50 Abyssal Gems"
+enhancement_bonus = 5
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Acid Blast 3"
+
+[[effect]]
+name = "Slime"
+
+[[effect]]
+name = "Acidic 3"
+
+[[effect]]
+name = "Destructive Acid +2"
+
+[[note]]
+kind = "item"
+field = "icon"
+upstream = "Khopesh_1q"
+reason = "DDOBuilderV2's ItemImages folder has no Khopesh_1q.png."
+url = "Output/DataFiles/ItemImages"
+read = "2026-10-07"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Sealed Altar"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Khopesh"

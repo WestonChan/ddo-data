@@ -1,0 +1,3 @@
+name = "Greater Incineration"
+description_template = "This weapon stores the power of a raging inferno deep within. Occasionally, this destructive power comes to the surface, devastating enemies with massive fire damage. This damage will be dealt more often than a standard Incineration weapon."
+verbose_name_template = "Greater Incineration"

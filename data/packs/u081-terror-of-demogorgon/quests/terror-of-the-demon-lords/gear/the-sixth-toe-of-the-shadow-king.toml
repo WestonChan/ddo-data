@@ -1,0 +1,45 @@
+name = "The Sixth Toe of the Shadow King"
+description = """
+The toe of Graz'zt. A gift, really. He wanted you to have it. It's unclear if
+this makes things better or worse."""
+drop_location = "Terror of the Demon Lords, end chest"
+icon = "Trinket_14d"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 35
+slot = "Trinket"
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+
+[[effect]]
+name = "Smoke Screen"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Legendary Demonic Shield"
+
+[[socket]]
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"

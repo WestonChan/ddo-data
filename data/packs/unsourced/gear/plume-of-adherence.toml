@@ -1,0 +1,27 @@
+name = "Plume of Adherence"
+description = """
+This helm is mainly an emerald color, with a bright blood red plume running
+down the center. An etched claw adorns the right side."""
+drop_location = "Emerald Claw Nugget, End reward"
+icon = "Helmet_32a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+slot = "Head"
+
+[[effect]]
+name = "Efficient Metamagic - Maximize I"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 78
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 78
+
+[[socket]]
+slot = "green"

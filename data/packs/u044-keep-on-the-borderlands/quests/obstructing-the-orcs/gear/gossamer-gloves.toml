@@ -1,0 +1,35 @@
+name = "Gossamer Gloves"
+description = "So light you can barely tell that you're wearing them."
+drop_location = "Obstructing the Orcs, end chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 21
+slot = "Hands"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Obstructing the Orcs"

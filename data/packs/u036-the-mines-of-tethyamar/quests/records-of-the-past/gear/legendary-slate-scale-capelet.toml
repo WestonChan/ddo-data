@@ -1,0 +1,40 @@
+name = "Legendary Slate-Scale Capelet"
+description = """
+This capelet is formed from a mosaic of tiny, scale-shaped pieces of slate.
+The enchantments afforded to it offer a surprising amount of protection to
+the wearer."""
+drop_location = "Records of the Past, End chest"
+icon = "Cloak_2"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 28
+slot = "Back"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Quality"
+value = 35
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Records of the Past"

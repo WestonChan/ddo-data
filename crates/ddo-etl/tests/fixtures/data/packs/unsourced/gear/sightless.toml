@@ -1,0 +1,42 @@
+name = "Sightless"
+description = """
+Be thou the bringer of justice, but trust not thine eyes; the truth is better
+seen without them."""
+drop_location = "Defiler of the Just, warded chest"
+icon = "Helmet_19"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Head"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Sheltering"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"

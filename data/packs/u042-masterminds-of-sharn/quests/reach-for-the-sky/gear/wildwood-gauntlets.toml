@@ -1,0 +1,36 @@
+name = "Wildwood Gauntlets"
+description = "Crafted of intricately placed twigs grown together into a cohesive whole."
+drop_location = "Reach for the Sky, end chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Wood"
+minimum_level = 15
+slot = "Hands"
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 8
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Enhancement"
+value = 12
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Reach for the Sky"

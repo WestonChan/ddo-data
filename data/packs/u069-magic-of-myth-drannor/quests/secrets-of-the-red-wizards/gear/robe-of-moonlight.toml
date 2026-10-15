@@ -1,0 +1,45 @@
+name = "Robe of Moonlight"
+description = "The moon's beam embolden those who seek it."
+drop_location = "Secrets of the Red Wizards, end chest"
+enhancement_bonus = 5
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secrets of the Red Wizards"

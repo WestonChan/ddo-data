@@ -1,0 +1,3 @@
+name = "Feat - Wind through the Trees"
+description_template = "While equipped, this item grants the feat Wind through the Trees."
+verbose_name_template = "Feat - Wind through the Trees"

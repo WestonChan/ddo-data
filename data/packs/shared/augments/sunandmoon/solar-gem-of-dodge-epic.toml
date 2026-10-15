@@ -1,0 +1,28 @@
+name = "Solar Gem of Dodge (Epic)"
+description = """
++6% Artifact Bonus to Dodge.
+Drops in: Dinosaur Crisis, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Artifact"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"

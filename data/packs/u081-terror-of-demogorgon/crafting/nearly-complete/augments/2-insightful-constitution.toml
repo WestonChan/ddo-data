@@ -1,0 +1,22 @@
+name = "+2 Insightful Constitution"
+description = "+2 Insightful bonus to Constitution"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: nearly complete: insightful ability score (heroic)"

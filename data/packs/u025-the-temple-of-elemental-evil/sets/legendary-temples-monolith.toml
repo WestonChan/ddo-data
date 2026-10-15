@@ -1,0 +1,70 @@
+name = "Legendary Temple's Monolith"
+icon = "TemplesMonolith"
+
+[[item]]
+name = "Legendary Black Earth Guardian's Lenses"
+
+[[item]]
+name = "Legendary Docent of the Black Earth"
+
+[[item]]
+name = "Legendary Eyes of the Black Earth"
+
+[[item]]
+name = "Legendary Heavy Armor of the Black Earth"
+
+[[item]]
+name = "Legendary Light Armor of the Black Earth"
+
+[[item]]
+name = "Legendary Medium Armor of the Black Earth"
+
+[[item]]
+name = "Legendary Pendant of Subtle Pain"
+
+[[item]]
+name = "Legendary Robes of the Black Earth"
+
+[[item]]
+name = "Legendary The Earth and the Sky"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

@@ -1,0 +1,50 @@
+name = "Chaosblade"
+description = "A sword wielded by the demonic Marilith."
+drop_location = "Zawabi's Revenge, Raid Chest"
+enhancement_bonus = 5
+icon = "Khopesh_1i"
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Anarchic Blast 3"
+
+[[effect]]
+name = "Vampirism 1"
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Enhancement"
+value = 15
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.9
+handedness = "One-handed"
+weapon_type = "Khopesh"

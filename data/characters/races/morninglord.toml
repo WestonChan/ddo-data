@@ -1,0 +1,44 @@
+name = "Morninglord"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+A battle-ready Cleric of the great sun-god who wields holy light against the dark
+in all its wicked forms.
+
+Starts with 1 level of: Cleric"""
+iconic_class = "Cleric"
+short_name = "Morninglord"
+starting_world = "Forgotten Realms"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Constitution"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Intelligence"
+
+[[granted_feat]]
+feat = "Elven Keen Senses"
+
+[[granted_feat]]
+feat = "Enchantment Save Bonus"
+
+[[granted_feat]]
+feat = "Immunity to Sleep"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Longbow"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Longsword"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Rapier"
+
+[[granted_feat]]
+feat = "Martial Weapon Proficiency: Shortbow"

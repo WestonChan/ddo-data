@@ -1,0 +1,12 @@
+name = "Legendary Affirmation"
+variant = "legendary-green-steel-items"
+description = """
+Requires Positive Positive Positive
+Attacks and offensive spells have a [10~33%] chance to grant
+1,000 temporary hitpoints with 1 minute duration.
+Cooldown is also one minute."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

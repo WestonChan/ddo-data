@@ -1,0 +1,47 @@
+name = "Dolorous Arcana: Light (Heroic)"
+description = "+35 Insight bonus to Light and Alignment Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Light Spell Power"
+bonus_type = "Insight"
+value = 35
+
+[[effect]]
+name = "Chaos Spell Power"
+bonus_type = "Insight"
+value = 35
+
+[[effect]]
+name = "Evil Spell Power"
+bonus_type = "Insight"
+value = 35
+
+[[effect]]
+name = "Good Spell Power"
+bonus_type = "Insight"
+value = 35
+
+[[effect]]
+name = "Law Spell Power"
+bonus_type = "Insight"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

@@ -1,0 +1,61 @@
+name = "Halcyon Boots"
+description = """
+A sensation of peace and tranquility flows through you while wearing these boots.
+It seems the giants have found a way to calm the chaotic energies of the Madstone,
+safely focusing its power toward more productive ends, The polished orbs of
+crystal worked into these boots no longer possess the dangerous side-effects
+of Madstone."""
+drop_location = "The Fall of Truth, raid warded chest (epic normal)"
+icon = "Boots_16b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 25
+slot = "Feet"
+
+[[effect]]
+name = "Halcyon Mind"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 80
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Colorless Augment Slot"
+description = "Add a Colorless augment slot to this item"
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Fall of Truth"

@@ -1,0 +1,21 @@
+name = "Corrosion +78"
+description = "Corrosion +78: +78 Equipment bonus to Acid spell power."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Acid Spell Power"
+bonus_type = "Equipment"
+value = 78
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: incredible potential"

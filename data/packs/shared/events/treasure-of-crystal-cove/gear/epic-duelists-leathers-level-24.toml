@@ -1,0 +1,86 @@
+name = "Epic Duelist's Leathers (level 24)"
+description = """
+When pirates who prefer light blades in battle need armor, this is the kind
+of item they will put their money on- a lightweight vest of leather or hide
+that allows plenty of stylish movement in combat."""
+drop_location = "Treasure of Crystal Cove, Turn in 1250 Silver Doubloon 500 Golden Doubloon 40 Stolen Opal 800 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 6
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 24
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Epic Nimbleness"
+bonus_type = "Stacking"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+5 Enhancement Bonus"
+description = "+7 Enhancement Bonus: +7 enhancement bonus to attack and damage rolls."
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Dodge 10% and Adds a Blue augment slot"
+description = """
+Dodge +10%: +10% Enhancement bonus to Dodge.
+Adds a Blue augment slot to this item"""
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 10
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

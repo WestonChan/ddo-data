@@ -1,0 +1,13 @@
+name = "The Maleficent Cabal"
+pack = "Phiarlan Carnival"
+wiki_url = "https://ddowiki.com/page/Phiarlan_Carnival"
+quests = [
+    "A Small Problem",
+    "Partycrashers",
+    "The Snitch",
+    "Under the Big Top",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Phiarlan_Carnival"
+read = "2026-10-02"

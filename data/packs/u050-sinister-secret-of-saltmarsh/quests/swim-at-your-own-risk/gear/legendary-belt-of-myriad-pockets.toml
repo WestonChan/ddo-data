@@ -1,0 +1,46 @@
+name = "Legendary Belt of Myriad Pockets"
+description = """
+One wonders where the items go when placed in the pocketsâ¦ But they're always
+there when you go to retrieve them."""
+drop_location = "Swim at Your Own Risk, end chest, or Legendary version of Epic Belt of Myriad Pockets"
+icon = "Belt_4b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 30
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 13
+
+[[effect]]
+name = "Legendary Elemental Energy"
+bonus_type = "Legendary Elemental Energy"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic belt of myriad pockets"
+kind = "quest"
+loot_type = "chest"
+name = "Swim at Your Own Risk"

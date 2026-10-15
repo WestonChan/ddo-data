@@ -1,0 +1,48 @@
+name = "The Beast's Mantle"
+icon = "TheBeastsMantle"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Natural Armor"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect = "Natural Armor"
+effect_type = "NaturalArmor"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Fortification Bypass"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Imbue Dice"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"

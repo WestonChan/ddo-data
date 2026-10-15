@@ -1,0 +1,10 @@
+name = "Air I: Heightened Awareness + Lightning Storm guard(Alchemical)"
+adds_augment = "Legendary Alchemical Tier 2"
+description = "Combine T0 item with 50 threads and stabilizing compound."
+effect_description = "Heightened Awareness + Lightning Storm Guard: No effects"
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 1"

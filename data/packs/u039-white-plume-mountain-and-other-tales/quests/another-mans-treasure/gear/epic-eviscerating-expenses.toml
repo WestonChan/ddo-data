@@ -1,0 +1,66 @@
+name = "Epic Eviscerating Expenses"
+accepts_sentience = true
+description = """
+You're pretty sure this sharp khopesh won't turn you to platinum, too. Pretty
+sure."""
+drop_location = "Another Man's Treasure, End chest"
+enhancement_bonus = 6
+icon = "Khopesh_1"
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Platinum"
+minimum_level = 21
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Transmuted Platinum"
+
+[[effect]]
+name = "Bludgeoning 5"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Gashing 11"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Another Man's Treasure"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.2
+handedness = "One-handed"
+weapon_type = "Khopesh"

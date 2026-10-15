@@ -1,0 +1,89 @@
+name = "Stickerclick, the Bitter Hail of Bolts"
+accepts_sentience = true
+description = """
+This mechanical crossbow was once held by Irk, the conniving Goblin mercenery.
+It has a modified firing mechanism that will let you fire additional bolts
+at incredible speeds, and the cruel barbs can cause incredible trauma. Front
+towards enemy."""
+drop_location = "Project Nemesis, End chest"
+enhancement_bonus = 15
+icon = "RepeatingHeavyCrossbow_1b"
+item_category = "Weapon"
+item_type = "Repeating Heavy Crossbow"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Bleeding 6"
+
+[[effect]]
+name = "Ranged Alacrity"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Purple Augment Slot"
+description = "Adds a Purple Augment Slot"
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket]]
+slot = "crafting: almost there"
+
+[[socket.option]]
+name = "Fetters of Unreality"
+description = """
+Fetters of Unreality: This weapon is cruel and deadly, and leaves behind wounds
+that affect both the body and the soul. This weapon has a chance to inflict
+multiple stacks of Vulnerable.
+Vulnerable: You take 1% more damage for 3 seconds. This effect stacks up to 20
+times, and loses one stack on expiration."""
+
+[[socket]]
+slot = "crafting: finishing touch"
+
+[[socket.option]]
+name = "Completed Weapon"
+description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
+min_level = 1
+
+[[socket.option.modifier]]
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 5.3
+handedness = "Two-handed"
+weapon_type = "Repeating Heavy Crossbow"

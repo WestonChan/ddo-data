@@ -1,0 +1,3 @@
+name = "Negative Healing on Hit"
+description_template = "Your weapon attacks heal you for 1d6 Negative Damage on hit. This damage scales with Negative Spell Power."
+verbose_name_template = "Negative Healing on Hit"

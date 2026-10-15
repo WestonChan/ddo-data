@@ -1,0 +1,31 @@
+name = "Locus of Vol"
+description = """
+This amulet looks nearly identical to the symbol of Vol, with a vial of real
+blood flowing in the center. Rumors persist that these ancient amulets allowed
+Vol to influence her followers directly."""
+drop_location = "Desecrated Temple of Vol, end chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 13
+slot = "Neck"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desecrated Temple of Vol"

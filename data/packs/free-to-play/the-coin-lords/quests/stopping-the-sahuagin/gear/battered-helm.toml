@@ -1,0 +1,23 @@
+name = "Battered Helm"
+description = "This battered helm has seen a good deal of use."
+drop_location = "Stopping the Sahuagin, End reward"
+icon = "Helmet_13"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 1
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Stopping the Sahuagin"

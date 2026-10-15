@@ -1,0 +1,3 @@
+name = "Pale Master"
+description_template = "This item in one of two pieces of the Pale Master set. When both items are equipped you gain a 30% bonus to all Negative Energy damage, as if you possessed Greater Nullification IX item. If you also have the Pale Master Core 3 Enhancement, these items will grant a 60% bonus to all Negative Energy damage, as if you possessed an Epic Nullification IX item."
+verbose_name_template = "Pale Master"

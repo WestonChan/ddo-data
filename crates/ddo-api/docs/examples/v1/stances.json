@@ -7,7 +7,7 @@
       "description": "You are fighting with a weapon in each hand or with handwraps",
       "group_name": "Auto",
       "icon": "TwoWeaponFighting",
-      "id": 336,
+      "id": 366561459575610,
       "incompatible": null,
       "modifiers": [],
       "name": "Two Weapon Fighting",
@@ -39,14 +39,15 @@
           "req_type": "Stance",
           "value": null
         }
-      ]
+      ],
+      "slug": "two-weapon-fighting"
     },
     {
       "auto_controlled": true,
       "description": "You are fighting with a single weapon in both hands",
       "group_name": "Auto",
       "icon": "TwoHandedFighting",
-      "id": 337,
+      "id": 6865120789121418,
       "incompatible": null,
       "modifiers": [],
       "name": "Two Handed Fighting",
@@ -60,14 +61,15 @@
           "req_type": "GroupMember",
           "value": null
         }
-      ]
+      ],
+      "slug": "two-handed-fighting"
     },
     {
       "auto_controlled": true,
       "description": "You are fighting with a ranged weapon",
       "group_name": "Auto",
       "icon": "RangedCombat",
-      "id": 338,
+      "id": 5377851033921924,
       "incompatible": null,
       "modifiers": [],
       "name": "Ranged Combat",
@@ -81,7 +83,8 @@
           "req_type": "GroupMember",
           "value": null
         }
-      ]
+      ],
+      "slug": "ranged-combat"
     }
   ],
   "total": 30

@@ -1,0 +1,97 @@
+[[row]]
+name = "Chaos Bolt"
+description = """
+Fires a small orb of chaotic energy at a target, doing 3 to 8 Chaos damage for every
+caster level (up to a max of 30 to 80 at caster level 10)."""
+icon = "ChaosBolt"
+max_caster_level = 10
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Chaos"
+spell_power = "Chaos"
+
+[[row]]
+name = "Chaos Sphere"
+description = """
+A sphere of chaos bursts from your outstretched hand, dealing 4 to 9 Chaos damage per
+caster level (up to a max of 40 to 90 damage at caster level 10) to targets in
+its path. A successful Reflex save reduces the damage by half."""
+icon = "ChaosSphere"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Chaos"
+spell_power = "Chaos"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Greater Color Spray"
+description = """
+Enemies are sprayed with illusions of color, and must make a Will save or be Dazed,
+Blinded, and/or Silenced. The target must make a saving throw for each effect.
+Activation Cost: [10/5/2] Spell Points. Cooldown: 8 seconds"""
+icon = "ColorSpray"
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row]]
+name = "Wildstrike"
+description = """
+Target: Foe
+Surround target adversary with rainbows, dealing 1d6+10 Chaos Damage per caster
+level (Maximum damage 10d6+100). they take a random (but powerful) effect, and
+every 2 seconds, they take another random effect. A successful Will save reduces
+the damage by half and negates the additional effects."""
+icon = "WildStrike"
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.note]]
+kind = "spell"
+field = "icon"
+upstream = "Wildstrike"
+reason = "DDOBuilderV2's SpellImages folder spells the image WildStrike.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"

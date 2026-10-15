@@ -1,0 +1,51 @@
+name = "Legendary Robe of the Artblade"
+description = """
+When the Echo broke off from the Artblade, the force of its defiance manifested
+this robe, and shares its clarity of purpose."""
+drop_location = "Secrets of the Red Wizards, end chest (rare)"
+enhancement_bonus = 15
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 37
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Legendary"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Secrets of the Red Wizards"

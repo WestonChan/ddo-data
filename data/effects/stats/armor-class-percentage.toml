@@ -1,0 +1,4 @@
+name = "Armor Class Percentage"
+category = "defensive"
+set_bonus_line_template = "+{1}% %b1 Bonus to Armor Class"
+verbose_name_template = "%b1 Armor Class Percentage +{1}"

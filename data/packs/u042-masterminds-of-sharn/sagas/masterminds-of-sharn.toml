@@ -1,0 +1,19 @@
+name = "Masterminds of Sharn"
+pack = "Masterminds of Sharn"
+wiki_url = "https://ddowiki.com/page/Masterminds_of_Sharn_(Legendary)"
+quests = [
+    "A Sharn Welcome",
+    "Best Laid Plans",
+    "Blown Deadline",
+    "House of Pain",
+    "Just Business",
+    "Lost at Sea",
+    "No Refunds",
+    "Reach for the Sky",
+    "Red Rain",
+    "The Same Old Song",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Masterminds_of_Sharn_(Legendary)"
+read = "2026-10-02"

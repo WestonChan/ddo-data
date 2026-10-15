@@ -1,0 +1,32 @@
+name = "Eye of the Beholder"
+description = "Cholthulzz eye never blinks, having been mounted on this platinum band."
+drop_location = "Litany of the Dead, Cholthulzz 's chest"
+icon = "Ring_2"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Ring"
+
+[[clickie]]
+name = "Absorb Doomsphere Spells"
+clickie = "Absorb Doomsphere Spells"
+
+[[effect]]
+name = "Deathblock"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    8,
+    8,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Absorb Doomsphere Spells"]
+
+[[source]]
+chest = "cholthulzz 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

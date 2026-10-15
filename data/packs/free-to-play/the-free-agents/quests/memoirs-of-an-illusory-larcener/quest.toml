@@ -1,0 +1,26 @@
+name = "Memoirs of an Illusory Larcener"
+bestowed_by = "Callumnie"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Free Agents"
+zone = "Memoirs of an Illusory Larcener"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Memoirs_of_an_Illusory_Larcener"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 31

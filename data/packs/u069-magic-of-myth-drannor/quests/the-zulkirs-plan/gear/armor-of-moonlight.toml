@@ -1,0 +1,48 @@
+name = "Armor of Moonlight"
+description = "Moonlight brings guidance those who walk in the dark."
+drop_location = "The Zulkir's Plan, end chest"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 13
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Zulkir's Plan"

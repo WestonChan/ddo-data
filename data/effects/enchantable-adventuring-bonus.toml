@@ -1,0 +1,3 @@
+name = "Enchantable: Adventuring Bonus"
+description_template = "Adventuring Bonus: This hat can be enchanted to bestow one of various benefits useful in general adventuring. Adventuring effects may change the minimum level of this item."
+verbose_name_template = "Enchantable"

@@ -1,0 +1,43 @@
+name = "Solar Gem of Intelligence (Legendary)"
+description = """
++4 Artifact Bonus to Intelligence
+Drops in: Oghma's Song, end chest
+Dinosaur Crisis, optional chest
+Snowfall and Sunlight, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Artifact"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oghma's Song"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

@@ -1,0 +1,18 @@
+name = "Black Wolfskin Cloak"
+description = "This cloak is fashioned from the pelt of a dark wolf-like beast."
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Back"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

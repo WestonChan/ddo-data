@@ -1,0 +1,58 @@
+name = "Ruby of Negative Spell Power"
+choose_level = true
+description = "Your negative/poison based spells have better effect"
+family = "Ruby"
+icon = "Ruby"
+level_values = [
+    38,
+    55,
+    70,
+    84,
+    97,
+    111,
+    125,
+    139,
+    153,
+    166,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+]
+
+[[effect]]
+name = "Negative Spell Power"
+bonus_type = "Equipment"
+value = 138
+
+[[effect]]
+name = "Poison Spell Power"
+bonus_type = "Equipment"
+value = 138
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [138]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

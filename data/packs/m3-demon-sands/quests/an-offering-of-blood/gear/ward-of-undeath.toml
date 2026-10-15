@@ -1,0 +1,64 @@
+name = "Ward of Undeath"
+description = """
+A large shield made from flame-touched iron. This shield is particularly effective
+when bashing the Undead."""
+drop_location = "An Offering of Blood, chest in any of the three rooms after the 2nd Aspect."
+enhancement_bonus = 5
+icon = "Shield_4c"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Flametouched Iron"
+minimum_level = 10
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 9
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Flaming Blast III"
+
+[[effect]]
+name = "Undead Bane 3"
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "chest in any of the three rooms after the 2nd aspect"
+kind = "quest"
+loot_type = "chest"
+name = "An Offering of Blood"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

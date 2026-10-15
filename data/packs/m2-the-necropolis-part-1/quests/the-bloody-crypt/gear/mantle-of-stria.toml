@@ -1,0 +1,22 @@
+name = "Mantle of Stria"
+description = """
+This cloak made up from multiple layers of various types of cloth and leather
+is able to repel most slashing attacks."""
+drop_location = "The Bloody Crypt, End chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Back"
+
+[[effect]]
+name = "Axeblock III"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bloody Crypt"

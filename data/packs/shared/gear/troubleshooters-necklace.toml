@@ -1,0 +1,22 @@
+name = "Troubleshooter's Necklace"
+description = "This necklace is infused with the spirit of a clever cutpurse."
+drop_location = "The Salvation of Korthos, End reward"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 1
+slot = "Neck"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 1
+
+[[source]]
+kind = "quest_chain"
+name = "The Salvation of Korthos"

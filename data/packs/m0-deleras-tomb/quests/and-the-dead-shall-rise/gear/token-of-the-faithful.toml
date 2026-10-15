@@ -1,0 +1,23 @@
+name = "Token of the Faithful"
+description = """
+This symbol of the faithful is said to assist a devout person from driving undead
+creatures from his sight."""
+drop_location = "And the Dead Shall Rise..., End Chest"
+icon = "Trinket_98"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 9
+slot = "Trinket"
+
+[[effect]]
+name = "Lesser Turning"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Eternal Faith"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "And the Dead Shall Rise..."

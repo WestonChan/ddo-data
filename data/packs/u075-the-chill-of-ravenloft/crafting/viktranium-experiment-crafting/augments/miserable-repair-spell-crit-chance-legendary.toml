@@ -1,0 +1,21 @@
+name = "Miserable Repair Spell Crit Chance (Legendary)"
+description = "Your Repair spells have a +23% Equipment Bonus to their chance to Critical Hit."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Repair Spell Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+effect_type = "SpellLore"
+targets = ["Repair"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

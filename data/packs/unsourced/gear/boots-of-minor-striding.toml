@@ -1,0 +1,13 @@
+name = "Boots of Minor Striding"
+description = "Leather boots that increase movement speed."
+drop_location = "Special event items, DDO Stormreach: Collector's Edition Bonus Item"
+icon = "Boots_17a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Feet"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 5

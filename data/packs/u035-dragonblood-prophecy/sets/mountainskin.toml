@@ -1,0 +1,67 @@
+name = "Mountainskin"
+icon = "Mountainskin"
+
+[[item]]
+name = "Bracers of the Mountain"
+
+[[item]]
+name = "Cloak of the Mountain"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Exceptional"
+reason = "The wiki types Acid Spell Power as Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Acid Spell Power / Exceptional"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Exceptional"
+reason = "The wiki types Acid Spell Lore as Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Acid Spell Lore / Exceptional"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 15
+reason = "The wiki gives Acid Spell Lore +6 Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Acid Spell Lore / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Lore"
+value = 6
+
+[[tier.effect]]
+effect = "Stoneskin Guard"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Exceptional"
+effect = "Acid Spell Lore"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Exceptional"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]

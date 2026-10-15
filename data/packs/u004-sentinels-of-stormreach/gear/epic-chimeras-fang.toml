@@ -1,0 +1,75 @@
+name = "Epic Chimera's Fang"
+accepts_sentience = true
+description = """
+This fine bastard sword was forged for the dragonmarked of House Deneith. It
+it rumored to have powers that can only be used by those that bear the Mark
+of Sentinel."""
+drop_location = "Epic version of Chimera's Fang"
+enhancement_bonus = 6
+icon = "BastardSword_6a"
+item_category = "Weapon"
+item_type = "Bastard Sword"
+material = "Silver"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Destruction"
+
+[[effect]]
+name = "Shocking Blast IV"
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Disintegration"
+
+[[effect]]
+name = "Greater Chimera's Ferocity"
+
+[[effect]]
+name = "Chimera's Fangs - Mark of Storm (Electric Absorption)"
+
+[[effect]]
+name = "Chimera's Fangs - Mark of Healing (Heal Amplification)"
+
+[[effect]]
+name = "Chimera's Fangs - Mark of Making (Repair Amplification)"
+
+[[effect]]
+name = "Chimera's Fangs - Mark of Warding (Spell Resistance)"
+
+[[effect]]
+name = "Chimera's Fangs - Mark of Sentinel (Hate Magnet)"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Bastard Sword"

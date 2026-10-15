@@ -1,0 +1,25 @@
+name = "Cloak of Curses"
+description = "This cloak is made from the tattered remnants of Maldetto's robe."
+drop_location = "The Cursed Crypt, End chest"
+icon = "Cloak_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Back"
+
+[[effect]]
+name = "Chaotic Curse"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Cursed Crypt"

@@ -1,0 +1,39 @@
+name = "Legendary Shard of Vollun"
+description = """
+A shard of the ancient Vollun gemstone. Even this fragment stores fantastic
+amounts of arcane energy."""
+drop_location = "Legendary version of Epic Shard of Vollun"
+icon = "Trinket_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 30
+slot = "Trinket"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Insight"
+value = 73
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Insight"
+value = 73
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Insight"
+value = 73
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 277
+
+[[effect]]
+name = "Hidden Effect - Radiance Guard"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"

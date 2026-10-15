@@ -1,0 +1,52 @@
+name = "Docent of the Artblade's Reflection"
+description = """
+This armor took the power of the deathly ritual and turned it to the Artblade's
+purposes."""
+drop_location = "Ritual Table, Turn in \nLegendary Docent of the Artblade \n120 Barrier Fragments \nSigil of the Artblade"
+enhancement_bonus = 15
+icon = "Docent_1e"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 33
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Ritual Table"

@@ -1,0 +1,3 @@
+name = "Enervation"
+description_template = "This weapon stores a menacing, ravenous power deep within. When this weapon is used, this power occasionally comes to the surface, draining the life force of the enemy and giving negative levels."
+verbose_name_template = "Enervation"

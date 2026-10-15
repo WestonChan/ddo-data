@@ -1,0 +1,37 @@
+name = "Purple Dragon Armor"
+description = """
+This exquisite platemail armor is of the same make as that worn by the famed
+Purple Dragon Knights of Cormyr. The smithies of Cormyr are renowned for the
+quality of their work, and equipment intended for use in service to the kingdom
+is layered with powerful enchantments by the War Wizards."""
+drop_location = "Eveningstar, Turn in 10 Commendations: Purple Dragon Knights Commendation: Purple Dragon Knights : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Purple Dragon Knights. You can exchange it in Eveningstar for powerful equipment."
+enhancement_bonus = 6
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Superior False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "DR 5/-"
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

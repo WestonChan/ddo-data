@@ -1,0 +1,38 @@
+name = "Legendary Beachcombers"
+description = "Light, airy, and full of black sand."
+drop_location = "Whispers of Return, end chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 31
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[socket]]
+slot = "isle of dread: scale (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Whispers of Return"

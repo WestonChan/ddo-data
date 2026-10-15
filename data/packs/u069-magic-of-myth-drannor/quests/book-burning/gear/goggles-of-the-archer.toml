@@ -1,0 +1,37 @@
+name = "Goggles of the Archer"
+description = "Archers of ages past used these goggles to improve their accuracy."
+drop_location = "Book Burning, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 13
+slot = "Goggles"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Sight Beyond Sight"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Marksmanship"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Book Burning"

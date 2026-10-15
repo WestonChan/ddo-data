@@ -1,0 +1,43 @@
+name = "Ethereal Light Mace"
+description = """
+A subtle mist surrounds this weapon. It is likely quite useful against certain
+Undead foes that other weapons have a hard time connecting with."""
+drop_location = "Morten Edgewright, Turn in 1 Ethereal Ingot"
+enhancement_bonus = 1
+icon = "LightMace_1h"
+item_category = "Weapon"
+item_type = "Light Mace"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Morten Edgewright"
+
+[[source.price]]
+ingredient = "Ethereal Ingot"
+quantity = 1
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Light Mace"

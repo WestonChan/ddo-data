@@ -1,0 +1,44 @@
+name = "Glacial Assault"
+icon = "AngerOfTheAvalanche"
+
+[[augment]]
+name = "Sovereign Rune of Glacial Assault"
+family = "Dragontouched_SovereignRune"
+
+[[item]]
+name = "Bracers of the Glacier"
+
+[[item]]
+name = "Gloves of the Glacier"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 72
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [72]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 78
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]

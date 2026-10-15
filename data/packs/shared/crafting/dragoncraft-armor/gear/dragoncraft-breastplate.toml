@@ -1,0 +1,38 @@
+name = "Dragoncraft Breastplate"
+description = """
+A breastplate imbued with ancient draconic magic, for the rare few humanoids
+that they favored."""
+drop_location = "Dragoncraft Armor, Turn in 10 Ancient Dragon Relics"
+enhancement_bonus = 4
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Magesteel"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 8
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 75
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 4
+
+[[source]]
+kind = "crafting_system"
+name = "Dragoncraft Armor"

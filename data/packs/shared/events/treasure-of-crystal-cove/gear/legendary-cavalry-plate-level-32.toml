@@ -1,0 +1,43 @@
+name = "Legendary Cavalry Plate (level 32)"
+description = """
+High-seas pirates plundered this richly-decorated plate mail from naval cavalry
+officers. Although it did not suit the pirates well, a fighter looking for
+better protection may benefit from it."""
+drop_location = "Treasure of Crystal Cove, Turn in 1500 Silver Doubloon 700 Golden Doubloon 45 Stolen Jasper 900 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 15
+icon = "HeavyArmor_1d"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Mithral"
+minimum_level = 32
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 28
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Improved Demonic Shield"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 54
+
+[[effect]]
+name = "DR 30/Chaotic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

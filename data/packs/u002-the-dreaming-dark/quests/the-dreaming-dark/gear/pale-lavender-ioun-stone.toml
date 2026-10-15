@@ -1,0 +1,33 @@
+name = "Pale Lavender Ioun Stone"
+description = """
+A pale lavender gem about 1 inch in diameter. The Stone will burn out and become
+useless when all the charges are expended."""
+drop_location = "Random, Highest drop rate from The Dreaming Dark"
+icon = "Trinket_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 2
+slot = "Trinket"
+
+[[clickie]]
+name = "Spell Absorption"
+clickie = "Spell Absorption"
+
+[[effect]]
+name = "Suppressed Power"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    20,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Spell Absorption"]
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Dreaming Dark"

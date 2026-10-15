@@ -1,0 +1,26 @@
+name = "The Claw of Vulkoor"
+bestowed_by = "Croaker"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Red Fens"
+patron = "House Kundarak"
+zone = "Claw Canyon"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Claw_of_Vulkoor"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9
+
+[[run]]
+tier = "epic"
+level = 21

@@ -1,0 +1,51 @@
+name = "Armor of Sunset"
+description = """
+The color and brilliance of a sunset brings a stable certainty to those standing
+strong."""
+drop_location = "Death Hosts This Banquet, end chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 69
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Death Hosts This Banquet"

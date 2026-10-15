@@ -1,0 +1,30 @@
+name = "Back to the Abyss"
+bestowed_by = "Kleve"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+zone = "Evacuated Duergar Forge"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Back_to_the_Abyss"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 37
+
+[[run]]
+tier = "legendary"
+level = 37

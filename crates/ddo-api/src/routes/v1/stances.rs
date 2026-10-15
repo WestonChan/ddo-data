@@ -15,6 +15,7 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
 
 const STANCES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "name"),
+    ("slug", "name"),
     ("id", "id"),
     ("group_name", "group_name"),
     ("auto_controlled", "auto_controlled"),

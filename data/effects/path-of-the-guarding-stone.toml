@@ -1,0 +1,3 @@
+name = "Path of the Guarding Stone"
+description_template = "While wearing this item and in mountain stance, there is a chance you will be protected by a Stoneskin spell when enemies strike you."
+verbose_name_template = "Path of the Guarding Stone"

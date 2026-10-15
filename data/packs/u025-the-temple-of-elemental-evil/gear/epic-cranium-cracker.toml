@@ -1,0 +1,66 @@
+name = "Epic Cranium Cracker"
+accepts_sentience = true
+drop_location = "ToEE: Fire Node, Periron chest (Confirmed), ToEE: Air Node, dragon's hoard chests, ToEE: Water Node, Jotun Rimeblade chest, and ToEE: Earth Node, Hyrelgas chest"
+enhancement_bonus = 7
+icon = "Club_5"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Greater Elemental Bane"
+
+[[effect]]
+name = "Vampirism"
+
+[[effect]]
+name = "Hardened Spikes"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "dragon's hoard chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"
+
+[[source]]
+chest = "hyrelgas chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "periron chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"
+
+[[source]]
+chest = "jotun rimeblade chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.2
+handedness = "One-handed"
+weapon_type = "Club"

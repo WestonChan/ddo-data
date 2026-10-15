@@ -1,0 +1,34 @@
+name = "Ember Longbow"
+description = "This longbow is carved with symbols and is warm to the touch."
+drop_location = "The Grotto"
+icon = "Longbow_11"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Masterwork Weapon"
+
+[[effect]]
+name = "Fire Touch"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Grotto"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

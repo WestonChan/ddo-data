@@ -1,0 +1,73 @@
+name = "Insightful Enchantment Focus"
+choose_level = true
+description = "Insight bonus to Enchantment DC"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+]
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Insight"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[slot]]
+slot = "crafting: cannith goggles suffix"
+
+[[slot]]
+slot = "crafting: cannith orb suffix"
+
+[[slot]]
+slot = "crafting: random goggles suffix"
+
+[[slot]]
+slot = "crafting: cannith rune arm suffix"

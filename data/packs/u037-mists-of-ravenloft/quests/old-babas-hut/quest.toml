@@ -1,0 +1,27 @@
+name = "Old Baba's Hut"
+bestowed_by = "Adrian Martikov"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+flagging = "Must complete Into the Mists once on the current life to reach the entrance"
+is_raid = true
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "Baba Lysaga's Hut"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Old_Baba%27s_Hut"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

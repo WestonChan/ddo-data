@@ -1,0 +1,38 @@
+name = "Dragoncraft Robe"
+description = """
+A fine silk robe imbued with ancient draconic magic, for the rare humanoids
+that they favor favored."""
+drop_location = "Dragoncraft Armor, Turn in 10 Ancient Dragon Relics"
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 5
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 75
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 4
+
+[[source]]
+kind = "crafting_system"
+name = "Dragoncraft Armor"

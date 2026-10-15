@@ -1,0 +1,225 @@
+name = "Legendary Might of the Abishai"
+icon = "MightOfTheAbishai"
+
+[[item]]
+name = "Legendary Belt of the Black Abishai"
+
+[[item]]
+name = "Legendary Belt of the Blue Abishai"
+
+[[item]]
+name = "Legendary Belt of the Green Abishai"
+
+[[item]]
+name = "Legendary Belt of the Red Abishai"
+
+[[item]]
+name = "Legendary Belt of the White Abishai"
+
+[[item]]
+name = "Legendary Boots of Corrosion"
+
+[[item]]
+name = "Legendary Charged Gauntlets"
+
+[[item]]
+name = "Legendary Envenomed Cloak"
+
+[[item]]
+name = "Legendary Helm of Frost"
+
+[[item]]
+name = "Legendary Pendant of the Black Abishai"
+
+[[item]]
+name = "Legendary Pendant of the Blue Abishai"
+
+[[item]]
+name = "Legendary Pendant of the Green Abishai"
+
+[[item]]
+name = "Legendary Pendant of the Red Abishai"
+
+[[item]]
+name = "Legendary Pendant of the White Abishai"
+
+[[item]]
+name = "Legendary Ring of the Black Abishai"
+
+[[item]]
+name = "Legendary Ring of the Blue Abishai"
+
+[[item]]
+name = "Legendary Ring of the Green Abishai"
+
+[[item]]
+name = "Legendary Ring of the Red Abishai"
+
+[[item]]
+name = "Legendary Ring of the White Abishai"
+
+[[item]]
+name = "Legendary Scorched Bracers"
+
+[[item]]
+name = "Perfected Charged Gauntlets"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Sheltering"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Natural Armor"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Spell DCs"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Healing Amplification"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Repair Amplification"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Negative Healing Amplification"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "NaturalArmor"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]
+targets = ["All"]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Sheltering"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Natural Armor"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Spell DCs"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Repair Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Negative Healing Amplification"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "NaturalArmor"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Profane"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]
+targets = ["All"]

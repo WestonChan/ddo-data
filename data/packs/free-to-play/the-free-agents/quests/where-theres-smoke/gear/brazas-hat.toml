@@ -1,0 +1,26 @@
+name = "Braza's Hat"
+description = """
+An inch of dust lies atop this battered and weather worn hat, perhaps suggesting
+that Nash was not always a simple farmer."""
+drop_location = "Where There's Smoke..., Gazmul 's chest"
+icon = "Helmet_46"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 2
+slot = "Head"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 3
+
+[[source]]
+chest = "gazmul 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Where There's Smoke..."

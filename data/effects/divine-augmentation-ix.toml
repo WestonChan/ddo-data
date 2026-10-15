@@ -1,0 +1,3 @@
+name = "Divine Augmentation IX"
+description_template = "Increases the wearer's caster level when casting ninth level or lower Divine spells by two."
+verbose_name_template = "Divine Augmentation IX"

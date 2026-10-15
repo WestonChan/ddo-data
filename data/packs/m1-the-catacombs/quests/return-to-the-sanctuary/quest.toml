@@ -1,0 +1,26 @@
+name = "Return to the Sanctuary"
+bestowed_by = "Archbishop Dryden"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "The Catacombs"
+patron = "The Silver Flame"
+zone = "The Sanctuary"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Return_to_the_Sanctuary"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 23

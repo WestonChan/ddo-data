@@ -1,0 +1,3 @@
+name = "Regeneration"
+description_template = "Causes the wearer to regenerate 1 hit point a minute using positive energy."
+verbose_name_template = "Regeneration"

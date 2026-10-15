@@ -1,0 +1,39 @@
+name = "Buckle of Transformation"
+description = """
+When spun, this buckle releases its power into its bearer, granting them strength
+and power."""
+drop_location = "Law and Order, End chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 18
+slot = "Waist"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Law and Order"

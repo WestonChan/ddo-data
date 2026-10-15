@@ -1,0 +1,5 @@
+name = "Will Save"
+category = "defensive"
+description_template = "This item gives a {1} %b1 bonus to your Will save."
+home_bonus_type = "Resistance"
+verbose_name_template = "%b1 Will Save +{1}"

@@ -1,0 +1,42 @@
+name = "Memoriam"
+description = """
+This piece was carved by an Archon lieutenant in memory of all those who have
+fallen on the Battlefield. A small part of their power resides within."""
+drop_location = "Defiler of the Just, Warded chest"
+icon = "Trinket_49"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 26
+slot = "Trinket"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 4
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 75
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

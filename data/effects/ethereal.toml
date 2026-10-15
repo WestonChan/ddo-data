@@ -1,0 +1,3 @@
+name = "Ethereal"
+description_template = "Equipping this item causes your hands and weapons to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets."
+verbose_name_template = "Ethereal"

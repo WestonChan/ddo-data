@@ -1,0 +1,32 @@
+name = "Bellow's Ring"
+description = """
+This humongous ring appears to have once been placed in Bellow's nose. After
+a thorough cleaning, you think that you might be able to fit it around your
+neck."""
+drop_location = "Come Out and Slay, Bellow's Chest"
+icon = "Necklace_23"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 2
+slot = "Neck"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 38
+
+[[source]]
+chest = "bellow's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Come Out and Slay"

@@ -1,0 +1,23 @@
+name = "The Church and the Cult"
+bestowed_by = "Inquisitor Lightbringer"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Silver Flame"
+zone = "Temple of Vol"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Church_and_the_Cult"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

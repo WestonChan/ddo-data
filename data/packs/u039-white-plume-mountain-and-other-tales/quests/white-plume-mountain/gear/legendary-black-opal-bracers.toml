@@ -1,0 +1,35 @@
+name = "Legendary Black Opal Bracers"
+description = """
+These clasps feature a stunning black opal set prominently within them, surrounded
+by a decorative silver lattice."""
+drop_location = "White Plume Mountain, Bluto chest"
+icon = "Bracers_6"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Greater Heroism"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Ethereal"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "bluto chest"
+kind = "quest"
+loot_type = "chest"
+name = "White Plume Mountain"

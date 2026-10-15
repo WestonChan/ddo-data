@@ -1,0 +1,47 @@
+name = "Nightforge Spike"
+description = """
+Weighted darts of forged adamantine. A skilled thrower can hurl them with surprising
+force and accuracy."""
+drop_location = "A Relic of a Sovereign Past, Turn in 10 Adamantine Ore"
+enhancement_bonus = 5
+icon = "Dart_1"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Adamantine"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "turn in 10 adamantine ore"
+kind = "quest"
+loot_type = "chest"
+name = "A Relic of a Sovereign Past"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Thrown"
+weapon_type = "Dart"

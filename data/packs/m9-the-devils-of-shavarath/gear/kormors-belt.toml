@@ -1,0 +1,65 @@
+name = "Kormor's Belt"
+description = """
+This fine leather belt vibrates with strange magical energy. It once belonged
+to the eccentric Wild Mage, Kormor."""
+drop_location = "Sins of Attrition, Any chest ; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[clickie]]
+name = "Wild Mage Surge"
+clickie = "Wild Mage Surge"
+
+[[effect]]
+name = "Archmagi"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Confounding Enchantment"
+
+[[effect]]
+name = "Wild Mage"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Wild Mage Surge"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Wild Mage - 2 Piece bonus"
+effect_type = "SpellPenetrationBonus"
+extra_types = ["SpellPenetrationBonus"]
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sins of Attrition"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

@@ -1,0 +1,36 @@
+name = "Solar Gem of Repair and Use Magic Device (Heroic)"
+description = """
++2 Artifact bonus to Repair and Use Magic Device
+Drops in: Land of Lamordia, Experiment Y's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Repair"
+bonus_type = "Artifact"
+value = 2
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Repair",
+    "Use Magic Device",
+]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "experiment y's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

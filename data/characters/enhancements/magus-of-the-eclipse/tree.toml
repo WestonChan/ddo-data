@@ -1,0 +1,1522 @@
+name = "Magus of the Eclipse"
+background = "DestinyArcane"
+icon = "MagusOfTheEclipse"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Magus of the Eclipse: Touched by the Moon"
+cost_per_rank = [1]
+description = """
+Each Core ability in this tree, including this one, grants the following:
+
++1 Epic bonus to all Spell DCs
++1 Spell Penetration
++50 Maximum Spell Points
++5 Cold, Negative, Force, and +5 Universal Spell Power"""
+icon = "TouchedByTheMoon"
+internal_name = "U51MagusOfTheEclipseCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Magus of the Eclipse: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Negative",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Magus of the Eclipse: Deepening Arcana"
+cost_per_rank = [1]
+description = """
+You gain a +10% Destiny bonus to Maximum Spell Points, and your Echoes of Power now
+restores up to 30 Spell Points. This ability does not stack with any other Epic
+Destiny ability that modify your Echoes of Power."""
+icon = "DeepeningArcana"
+internal_name = "U51MagusOfTheEclipseCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Magus of the Eclipse: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Negative",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+percent = true
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51MagusOfTheEclipseCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Nullmagic Aura"
+cost_per_rank = [1]
+description = """
+Your comprehension of the arcane allows you to unravel spells at the base level,
+before they do any harm. When activated, for 20 seconds, you and allies near
+you are immune to harmful spells.
+Cooldown: 2 minutes"""
+icon = "MoENullmagicAura"
+internal_name = "U51MagusOfTheEclipseCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Magus of the Eclipse: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Negative",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51MagusOfTheEclipseCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Nightwind"
+cost_per_rank = [1]
+description = """
++3 Spell Penetration. Enemies who take damage inside your Cold or Dark Light zone
+have a 5% chance to be Frozen for 10 seconds with no saving throw."""
+icon = "Nightwind"
+internal_name = "U51MagusOfTheEclipseCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Magus of the Eclipse: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Negative",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51MagusOfTheEclipseCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Imperceptible Casting"
+cost_per_rank = [1]
+description = """
+-[10/20/30]% Spell threat.
+Rank 3: if you have the Discipline feat, double these bonuses."""
+icon = "MoEImperceptableCasting"
+internal_name = "MoEImperceptableCasting"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -10,
+    -20,
+    -30,
+    0,
+    -20,
+    -40,
+    -60,
+]
+bonus_type = "Destiny"
+display_name = "Magus of the Eclipse: Imperceptible Casting"
+effect_type = "ThreatBonusSpell"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Magus of the Eclipse: Moonbeams"
+cost_per_rank = [2]
+description = "Select an Epic Strike."
+icon = "Moonbeams"
+internal_name = "U51MagusMoonLance"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Gloomspear"
+cost_per_rank = [2]
+description = """
+Epic Strike: Conjure a beam of eclipse energy at a single target, dealing 1d8+8
+Negative Damage per caster level (up to a Maximum Caster Level of 20) and applying
+3 stacks of Shattermantle.
+Cooldown: 6 seconds
+Cost: 5 Spell Points
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "Gloomspear"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    20,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Gloomspear",
+    "None",
+]
+
+[[enhancement.selection]]
+name = "Moon Lance"
+cost_per_rank = [2]
+description = """
+Epic Strike: Fire a spear of lunar energy at a single target, dealing 1d8+8 Cold
+Damage per caster level (up to a Maximum Caster Level of 20) and applying
+3 stacks of Shattermantle.
+Cooldown: 6 seconds
+Cost: 5 Spell Points
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "Moonbeams"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    20,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Moon Lance",
+    "None",
+]
+
+[[enhancement]]
+name = "Magus of the Eclipse: Cloak of Silver"
+cost_per_rank = [1]
+description = """
++[2/4/6] Magical Resistance rating.
+Rank 3: +5 Cold, Negative, Force, and Universal Spell Power."""
+icon = "MagusMoontouched"
+internal_name = "U51MagusCloakOfSilver"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Negative",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Magus of the Eclipse: Frostlight"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Magus of the Eclipse Destiny Mantle: You take half damage from Cold and, if you are
+not Undead, take half from Negative. If you are Undead, you take half damage from
+Light instead. This does not stack with Fire Shield: Cold or Cold Energy Sheathe."""
+icon = "Frostlight"
+internal_name = "U51MagusFrostlight"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Frostlight"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Frostlight"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = ["Light"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Frostlight"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Frostlight"
+description = """
+Magus of the Eclipse Destiny Mantle: You take half damage from Cold and, if you are
+not Undead, take half from Negative. If you are Undead, you take half damage from
+Light instead. This does not stack with Fire Shield: Cold or Cold Energy Sheathe."""
+group_name = "Mantle"
+icon = "Frostlight"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Self or Summons"
+cost_per_rank = [1]
+description = "Augment yourself or your Summons."
+icon = "MoEImpregnableMind"
+internal_name = "U51MagusSelfOrSummons"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Great Summoner"
+cost_per_rank = [1]
+description = """
+Your summons, pets, and hirelings gain +4 to all ability scores, increased health,
+100% Fortification, and a 40% increase to movement speed."""
+icon = "GreatSummoner"
+ranks = 1
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Destiny"
+effect_type = "HirelingAbilityBonus"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Destiny"
+effect_type = "HirelingHitpoints"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Destiny"
+effect_type = "HirelingFortification"
+
+[[enhancement.selection]]
+name = "Impregnable Mind"
+cost_per_rank = [1]
+description = """
++[2/4/6] Will Saving Throws and Concentration.
+Rank 3: You no longer fail Will saves on a natural 1."""
+icon = "MoEImpregnableMind"
+ranks = 3
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SaveNoFailOn1"
+rank = 3
+targets = ["Will"]
+
+[[enhancement]]
+name = "Magus of the Eclipse: Moontouched"
+cost_per_rank = [1]
+description = "+[1/2/3] to the DCs of Fear-based spells."
+icon = "Moontouched"
+internal_name = "U51MagusMoontouched"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Fear"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Magus of the Eclipse: Call Upon"
+cost_per_rank = [2]
+description = "Select a magical creature to summon."
+icon = "AnimatedArmor"
+internal_name = "U51MagusCallUpon"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Animated Armor"
+cost_per_rank = [2]
+description = "Summons an Animated Armor to aid you"
+icon = "AnimatedArmor"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Dream Reaver"
+cost_per_rank = [2]
+description = "Summons a Dream Reaver to aid you"
+icon = "DreamReaver"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Gargoyle"
+cost_per_rank = [2]
+description = "Summons a Gargoyle to aid you"
+icon = "Gargoyle"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Golem"
+cost_per_rank = [2]
+description = "Summons a Golem to aid you"
+icon = "Golem"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Lich"
+cost_per_rank = [2]
+description = "Summons a Lich to aid you"
+icon = "Lich"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Living Meteor Swarm"
+cost_per_rank = [2]
+description = "Summons a Living Meteor Swarm to aid you"
+icon = "LivingMeteorSwarm"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Succubus"
+cost_per_rank = [2]
+description = "Summons a Succubus to aid you"
+icon = "Succubus"
+is_clickie = true
+
+[[enhancement]]
+name = "Magus of the Eclipse: Moonlight"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Select Cold or Dark Light zone to cast"
+icon = "ColdLightOfTheMoon"
+internal_name = "U51MagusMoonlight"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Cold Light of the Moon"
+cost_per_rank = [2]
+description = """
+Creates a lingering AOE of moonlight. Deals 3d6 Cold Damage plus 2 per Caster
+Level (no Maximum caster Level) to enemies inside the zone every 2 seconds.
+The zone lasts for 10 seconds. While creating this zone is considered a spell,
+the zone itself is not - It is not affected by Metamagics or things that enhance
+Spells beyond Spell Power, but also cannot be dispelled.
+25 second cooldown."""
+icon = "ColdLightOfTheMoon"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cold Light of the Moon",
+    "None",
+]
+
+[[enhancement.selection]]
+name = "Dark Light of the Moon"
+cost_per_rank = [2]
+description = """
+Creates a lingering AOE of moonlight. Deals 3d6 Negative Damage plus 2 per Caster
+Level (no Maximum caster level) to non-undead enemies inside the zone every 2
+seconds. The zone lasts for 10 seconds. While creating this zone is considered
+a spell, the zone itself is not - It is not affected by Metamagics or things
+that enhance Spells beyond Spell Power, but also cannot be dispelled.
+25 second cooldown."""
+icon = "DarkLightOfTheMoon"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    0,
+    25,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Dark Light of the Moon",
+    "None",
+]
+
+[[enhancement]]
+name = "Magus of the Eclipse: Frostlight Improvement I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Improves your Magus of the Eclipse Destiny Mantle."
+icon = "FrostlightImprovementI"
+internal_name = "U51MagusFrostlightImprovementI"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["U51MagusFrostlight"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Chill Aura"
+cost_per_rank = [2]
+description = """
+While in your Magus of the Eclipse Destiny Mantle, enemies within melee range take
+1d6+6 Cold damage per caster level and 1d6+6 Negative damage per caster level
+every 6 seconds. If an enemy would heal from either of these effects, they do
+not take the damage."""
+icon = "ChillAura"
+
+[[enhancement.selection]]
+name = "Flash of the Eclipse"
+cost_per_rank = [1]
+description = """
+While in your Magus of the Eclipse Destiny Mantle, your Cold and Negative spells
+have a chance to blast your target for an additional 1d6+6 damage per character
+level of the same type as the spell used, as well as applying one stack of
+Shattermantle. Each element and the Shattermantle application can only strike
+once every 5 seconds, tracked separately."""
+icon = "FlashOfTheEclipse"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Lunar Insight"
+cost_per_rank = [1]
+description = "Select an Ability Score to boost Arcane Insight with."
+icon = "LunarInsight"
+internal_name = "U51MagusLunarInsight"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["Arcane Insight"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [1]
+description = """
+When you use the Arcane Insight Epic Feat, the cooldowns of your Words of Power
+spell reset, and you gain 200% of your Charisma in Temporary Spell Points that
+last 60 seconds."""
+icon = "LunarInsightCharisma"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection.requirement]]
+items = ["Arcane Insight"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [1]
+description = """
+When you use the Arcane Insight Epic Feat, the cooldowns of your Words of Power
+spell reset, and you gain 200% of your Intelligence in Temporary Spell Points that
+last 60 seconds."""
+icon = "LunarInsight"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection.requirement]]
+items = ["Arcane Insight"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [1]
+description = """
+When you use the Arcane Insight Epic Feat, the cooldowns of your Words of Power
+spell reset, and you gain 200% of your Wisdom in Temporary Spell Points that
+last 60 seconds."""
+icon = "LunarInsightWisdom"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection.requirement]]
+items = ["Arcane Insight"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Magus Spell Focus"
+cost_per_rank = [1]
+description = "Choose a spell school to enhance."
+icon = "MagusSpellFocus"
+internal_name = "U51MagusPartialEclipse"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Enchantment"
+cost_per_rank = [1]
+description = "+[1/2/3] Enchantment DC"
+icon = "PartialEclipse"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51MagusPartialEclipse",
+    "Destiny Enchantment",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51MagusPartialEclipse",
+    "Destiny Enchantment",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Evocation"
+cost_per_rank = [1]
+description = "+[1/2/3] Evocation DC"
+icon = "MagusSpellFocus"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51MagusPartialEclipse",
+    "Destiny Evocation",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51MagusPartialEclipse",
+    "Destiny Evocation",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Illusion"
+cost_per_rank = [1]
+description = "+[1/2/3] Illusion DC"
+icon = "PartialEclipseIllusion"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51MagusPartialEclipse",
+    "Destiny Illusion",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51MagusPartialEclipse",
+    "Destiny Illusion",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Necromancy"
+cost_per_rank = [1]
+description = "+[1/2/3] Necromancy DC"
+icon = "PartialEclipseNecromancy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51MagusPartialEclipse",
+    "Destiny Necromancy",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51MagusPartialEclipse",
+    "Destiny Necromancy",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Lunar Imbuement"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+When you hit an enemy with Moon Lance or Gloom Spear Epic Strike, you gain +5 Cold,
+Negative, Force, and Universal for 12 seconds. These spells also now apply 5 stacks
+of Vulnerable.
+
+Vulnerable: You take 1% more damage for 3 seconds. This effect stacks up to 20
+times, and loses one stack on expiration."""
+icon = "LunarImbuement"
+internal_name = "U51MagusLunarImbuement"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51MagusMoonLance"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Starlight"
+cost_per_rank = [1]
+description = """
+Your Cold or Dark Light zone now has the following attributes:
+Rank 1: Slows the movement of non-boss enemies that enter it by 20%
+Rank 2: Adds 5% Incorporeality to all allies inside the zone
+Rank 3: On expiration, the zone explodes, dealing 3d20 + 6 per Caster Level of
+the relevant kind of damage to enemies within."""
+icon = "Starlight"
+internal_name = "U51MagusStarlight"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51MagusMoonlight"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Frostlight Improvement II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Improve you Magus of the Eclipse Destiny Mantle."
+icon = "FrostlightImprovementII"
+internal_name = "U51MagusFrostlightImprovementII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51MagusFrostlightImprovementI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Nullmagic Strike"
+cost_per_rank = [1]
+description = """
+While in your Magus of the Eclipse Destiny Mantle, attacks you make and offensive
+spells you cast have a 15% chance to subject the target to a Dispel Magic effect,
+which may strip them of their magical protections, and will render them unable to
+cast spells and lose 4 Spell Resistance for 30 seconds."""
+icon = "MagusNullmagicStrike"
+
+[[enhancement.selection]]
+name = "Share the Light"
+cost_per_rank = [1]
+description = """
+While in your Magus of the Eclipse Destiny Mantle, your summons now also benefit
+from it. For the purpose of this skill, these summons have your Cold and Negative
+Spell Power."""
+icon = "ShareTheLight"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Piercing Spellcraft"
+cost_per_rank = [1]
+description = "+[1/2/3] Spell Penetration."
+icon = "MoEPiercingSpellcraft"
+internal_name = "U51MagusPiercingSpellcraft"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Magus of the Eclipse: Nullmagic Protection"
+cost_per_rank = [2]
+description = """
+When you are hit or missed by an enemy, there is a 6% chance that a burst of
+antimagic energy expands from your body. Nearby enemies are subject to a Dispel
+Magic effect, which may strip them of their magical protections, and will be
+rendered unable to cast spells and lose 4 Spell Resistance for 30 seconds."""
+icon = "NullmagicProtection"
+internal_name = "U51MagusNullmagicProtection"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Magus of the Eclipse: Greater Beams"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+When you use Moon Lance, the target must make a Will save (DC 20 + highest of
+Int/Wis/Cha modifier + the highest of your Evocation and Conjuration bonuses)
+or be Frozen for 12 seconds. When you use Gloomspear, the target must make a Will
+save (DC 20 + highest of Int/Wis/Cha modifier + Necromancy bonuses) or be Paralyzed
+for 12 seconds."""
+icon = "GreaterBeams"
+internal_name = "U51MagusGreaterBeams"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51MagusLunarImbuement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Unholy Pulse"
+cost_per_rank = [1]
+description = """
+The effect of the Arcane Pulse feat now stacks up to 7 times.
+
++15 Negative Healing Amplification"""
+icon = "ImprovedArcanePulse"
+internal_name = "U51MagusImprovedArcanePulse"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Magus of the Eclipse: Lunar Studies"
+cost_per_rank = [1]
+description = """
+While in your Magus of the Eclipse Destiny Mantle, you gain Spell Resistance, Magic
+Resistance Rating, and Magic Resistance Rating Cap equal to 3 times the number
+of Metamagic feats you've acquired. This includes Metamagic Feats that are
+permanently enabled without costing additional Spell Points."""
+icon = "LunarStudies"
+internal_name = "U51MagusNullmagicStrike"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+    0,
+    6,
+    0,
+    9,
+    0,
+    12,
+    0,
+    15,
+    0,
+    18,
+    0,
+    21,
+    0,
+    24,
+    0,
+    27,
+    0,
+    30,
+    0,
+    33,
+]
+bonus_type = "Destiny"
+display_name = "Magus of the Eclipse: Lunar Studies"
+effect_type = "SpellResistance"
+extra_types = [
+    "MRR",
+    "MRRCap",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51MagusFrostlightImprovementII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Enhanced Metamagics"
+cost_per_rank = [1]
+description = "Pick a metamagic to improve."
+icon = "EnhancedMetamagics"
+internal_name = "U51MagusEnhancedMetamagics"
+min_spent = 20
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Empower"
+cost_per_rank = [1]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EnhancedMetamagicsEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Maximize"
+cost_per_rank = [1]
+description = "Maximize: Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points"
+icon = "EnhancedMetamagics"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Total Eclipse"
+cost_per_rank = [1]
+description = "+[1/2/3] spell DCs."
+icon = "TotalEclipse"
+internal_name = "U51MagusTotalEclipse"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Magus of the Eclipse: Lunar Power"
+cost_per_rank = [1]
+description = """
++10 Negative, Cold, Force, and Universal Spell Power. Your Moon Lance and Gloom
+Spear Epic Strike spells now deal 1d12+16 damage to enemies with 0 or less Spell
+Resistance."""
+icon = "LunarPower"
+internal_name = "U51MagusLunarPower"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Cold",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.requirement]]
+items = ["U51MagusGreaterBeams"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Magus of the Eclipse: Time Stop"
+cost_per_rank = [1]
+description = """
+Epic Moment: Enemies in a small area are Paralyzed and Helpless with no save for 10
+seconds. They cannot die in this state, but if they are below 0 HP when they
+leave this state, they die quickly after the effect expires. Bosses and Raid
+Bosses in the area are instead made vulnerable, taking +100% more damage from
+all sources except bane for 10 seconds.
+Cooldown: 5 minutes."""
+icon = "TimeStop"
+internal_name = "U51MagusTimeStop"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Magus of the Eclipse: Full Moon's Magic"
+cost_per_rank = [1]
+description = "Select a unique SLA."
+icon = "Cosmos"
+internal_name = "U51MagusCosmos"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.selection]]
+name = "Moon's Shadow"
+cost_per_rank = [1]
+description = """
+Necromancy SLA. Hit target enemy with a miniature black hole for 1d6+28 Negative
+damage per caster level (up to a Maximum Caster Level of 20). A successful Reflex
+save reduces the damage by half.
+Cooldown: 18 seconds
+Cost: 40 Spell Points."""
+icon = "MoonsShadow"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    20,
+    18,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Moon's Shadow",
+    "None",
+]
+
+[[enhancement.selection]]
+name = "Zero Degree Comet"
+cost_per_rank = [1]
+description = """
+Evocation SLA. Hit target enemy with a falling chunk of ice for 1d6+28 Cold damage
+per caster level (up to a Maximum Caster Level of 20). A successful Reflex save
+reduces the damage by half.
+Cooldown: 18 seconds
+Cost: 40 Spell Points."""
+icon = "ZeroDegreeComet"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    40,
+    20,
+    18,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Zero Degree Comet",
+    "None",
+]
+
+[[enhancement]]
+name = "Magus of the Eclipse: Enhanced Metamagics: Intensify"
+cost_per_rank = [1]
+description = "Using the Intensify Metamagic no longer costs Spell Points."
+icon = "EnhancedMetamagicsIntensify"
+internal_name = "U51MagusEpicMetamagicFeatsIntensify"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.requirement]]
+items = ["Intensify Spell"]
+req_type = "Feat"
+
+[[requirement]]
+items = ["Magus of the Eclipse"]
+req_type = "Feat"

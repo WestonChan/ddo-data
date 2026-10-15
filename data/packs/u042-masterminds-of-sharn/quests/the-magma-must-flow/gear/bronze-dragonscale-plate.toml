@@ -1,0 +1,48 @@
+name = "Bronze Dragonscale Plate"
+description = """
+This gorgeous Bronze Dragonscale armor is magically attuned and brilliantly
+reflective."""
+drop_location = "The Magma Must Flow, End Chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_14"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Blue Dragonscale"
+minimum_level = 15
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 15
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 94
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 19
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 30
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 29
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Magma Must Flow"

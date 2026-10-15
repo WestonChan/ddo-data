@@ -1,0 +1,56 @@
+name = "Legendary Perfected Scimitar of the Weapon Master"
+accepts_sentience = true
+description = """
+Though no longer as apt for critical strikes, these weapons have other ways
+of leaving their mark."""
+drop_location = "Catalyst Crafting, Turn in Drow Scimitar of the Weapon Master, the Legendary Weapon Master Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 16
+icon = "Scimitar_1"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Rippling Energy"
+
+[[effect]]
+name = "Maiming 7"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Fetters of Unreality"
+
+[[effect]]
+name = "Vulnerable"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"
+
+[[weapon]]
+attack_modifier = "Strength, Dexterity"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength, Dexterity"
+damage_multiplier = 6.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

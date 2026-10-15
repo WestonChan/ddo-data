@@ -1,0 +1,2472 @@
+name = "Dragon Lord"
+background = "FighterBackground"
+icon = "Fighter"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Dragon Lord: Draconic Soul"
+cost_per_rank = [1]
+description = "Select a Draconic Soul, whose element will determine your power in the rest of this tree."
+icon = "DLDraconicSoul"
+internal_name = "DragonLordCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement.selection]]
+name = "Soul of the Black Dragon"
+cost_per_rank = [1]
+description = """
+You have chosen to commune with a Black Dragon's soul, granting the power of Acid
+to abilities in this tree. Passive: +1 to Tactical Feat DCs."""
+icon = "DLBlackDragon"
+
+[[enhancement.selection]]
+name = "Soul of the Blue Dragon"
+cost_per_rank = [1]
+description = """
+You have chosen to commune with a Blue Dragon's soul, granting the power of Electricity
+to abilities in this tree. Passive: +1 to Tactical Feat DCs."""
+icon = "DLBlueDragon"
+
+[[enhancement.selection]]
+name = "Soul of the Green Dragon"
+cost_per_rank = [1]
+description = """
+You have chosen to commune with a Green Dragon's soul, granting the power of Poison
+to abilities in this tree. Passive: +1 to Tactical Feat DCs."""
+icon = "DLGreenDragon"
+
+[[enhancement.selection]]
+name = "Soul of the Red Dragon"
+cost_per_rank = [1]
+description = """
+You have chosen to commune with a Red Dragon's soul, granting the power of Fire
+to abilities in this tree. Passive: +1 to Tactical Feat DCs."""
+icon = "DLRedDragon"
+
+[[enhancement.selection]]
+name = "Soul of the White Dragon"
+cost_per_rank = [1]
+description = """
+You have chosen to commune with a White Dragon's soul, granting the power of Cold
+to abilities in this tree. Passive: +1 to Tactical Feat DCs."""
+icon = "DLWhiteDragon"
+
+[[enhancement]]
+name = "Dragon Lord: Draconic Arms"
+cost_per_rank = [1]
+description = """
+Imbue Toggle: Your Draconic Soul emboldens your weapon strikes, which deal 1d6
+damage on each hit in the element of your Draconic Soul. This damage scales with
+200% of the higher of Melee or Ranged Power.
+
+Passive: The bonus of each of your Draconic Auras is increased by 1."""
+icon = "DLDraconicArms"
+internal_name = "DragonLordCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aussircaex's Defiance"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Nevalarich's Hunger"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_Attack"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Thraxata's Instinct"
+effect_type = "TacticalDC"
+extra_types = ["TacticalDC"]
+targets = [
+    "Trip",
+    "Stun",
+    "Sunder",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Velah's Fury"
+effect_type = "Weapon_Damage"
+extra_types = ["Weapon_Damage"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Sinvala's Toughness"
+effect_type = "PRR"
+extra_types = ["PRR"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Eternity's Ward"
+effect_type = "MRR"
+extra_types = ["MRR"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "The Truthful One's Might"
+effect_type = "MeleePower"
+extra_types = ["MeleePower"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aurgloroasa's Ascendend Wrath"
+effect_type = "RangedPower"
+extra_types = ["RangedPower"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Kor Kaza's Forbidden Power"
+effect_type = "UniversalSpellPower"
+extra_types = ["UniversalSpellPower"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["DragonLordCore1"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Soul of the Dragon: [Selected Dragon Type]"
+description = """
+Imbue Toggle: Your Draconic Soul emboldens your weapon strikes, which deal 1d6
+damage on each hit in the element of your Draconic Soul. This damage scales with
+200% of the higher of Melee or Ranged Power."""
+group_name = "Imbue"
+icon = "DLDraconicArms"
+
+[[enhancement]]
+name = "Dragon Lord: Reckless Devotion"
+cost_per_rank = [1]
+description = """
+Activate: Target Ally gains a Morale bonus to Critical Confirmation and Critical
+Hit Damage equal to 1 + a quarter of your Dragon Lord level for 20 seconds.
+Cooldown: 20 seconds.
+
+Passive: +1 Imbue Die, +5 Melee and Ranged Power, +3 to Critical Confirmation
+and Critical Hit Damage. The bonus of each of your Draconic Auras is increased
+by 1."""
+icon = "DLRecklessDevotion"
+internal_name = "DragonLordCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aussircaex's Defiance"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Nevalarich's Hunger"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_Attack"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Thraxata's Instinct"
+effect_type = "TacticalDC"
+extra_types = ["TacticalDC"]
+targets = [
+    "Trip",
+    "Stun",
+    "Sunder",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Velah's Fury"
+effect_type = "Weapon_Damage"
+extra_types = ["Weapon_Damage"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Sinvala's Toughness"
+effect_type = "PRR"
+extra_types = ["PRR"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Eternity's Ward"
+effect_type = "MRR"
+extra_types = ["MRR"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "The Truthful One's Might"
+effect_type = "MeleePower"
+extra_types = ["MeleePower"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aurgloroasa's Ascendend Wrath"
+effect_type = "RangedPower"
+extra_types = ["RangedPower"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Kor Kaza's Forbidden Power"
+effect_type = "UniversalSpellPower"
+extra_types = ["UniversalSpellPower"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+extra_types = ["RangedPower"]
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 6
+
+[[enhancement.requirement]]
+items = ["DragonLordCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Conqueror's Command"
+cost_per_rank = [1]
+description = """
+When you use Reckless Devotion, the power of your Draconic command grants that
+ally the effects of the Panacea spell, curing many afflictions and healing that
+ally for 1d6+2 Hit Points plus 1 per Dragon Lord level. This healing scales with
+200% of Melee Power.
+
+Passive: +1 Imbue Die. The bonus of each of your Draconic Auras is increased by 1."""
+icon = "DLConquerorsCommand"
+internal_name = "DragonLordCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aussircaex's Defiance"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Nevalarich's Hunger"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_Attack"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Thraxata's Instinct"
+effect_type = "TacticalDC"
+extra_types = ["TacticalDC"]
+targets = [
+    "Trip",
+    "Stun",
+    "Sunder",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Velah's Fury"
+effect_type = "Weapon_Damage"
+extra_types = ["Weapon_Damage"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Sinvala's Toughness"
+effect_type = "PRR"
+extra_types = ["PRR"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Eternity's Ward"
+effect_type = "MRR"
+extra_types = ["MRR"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "The Truthful One's Might"
+effect_type = "MeleePower"
+extra_types = ["MeleePower"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aurgloroasa's Ascendend Wrath"
+effect_type = "RangedPower"
+extra_types = ["RangedPower"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Kor Kaza's Forbidden Power"
+effect_type = "UniversalSpellPower"
+extra_types = ["UniversalSpellPower"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 12
+
+[[enhancement.requirement]]
+items = ["DragonLordCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Dragon's Defense"
+cost_per_rank = [1]
+description = """
+While you have any Draconic Aura active, you and nearby allies gain a +3 Morale
+Bonus to Elemental Resistance and +5% Morale Bonus to Elemental Absorption of
+the element of your Draconic Soul.
+
+Passive: +1 Imbue Dice. +10 Melee and Ranged Power."""
+icon = "DLDragonsDefense"
+internal_name = "DragonLordCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "EnergyResistance"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Black Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Blue Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "EnergyAbsorbance"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Green Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Red Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the White Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 18
+
+[[enhancement.requirement]]
+items = ["DragonLordCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Sunder Soul"
+cost_per_rank = [1]
+description = """
+Deals +50% Damage
+Cooldown: 20 seconds
+Sundered enemies in a small area in front of you must make a Will saving throw
+(DC 10 + Highest of STR and CHA mod + Sunder bonuses) or have their Soul
+sundered, killing them instantly.
+
+Passive: +2 Strength, +2 Charisma, +10 Melee and Ranged Power, +2 Imbue Die.
+The bonus of all of your Draconic Auras increases by 2."""
+icon = "DLSunderSoul"
+internal_name = "DragonLordCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DragonLordCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aussircaex's Defiance"
+effect_type = "SaveBonus"
+extra_types = ["SaveBonus"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Nevalarich's Hunger"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_Attack"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Thraxata's Instinct"
+effect_type = "TacticalDC"
+extra_types = ["TacticalDC"]
+targets = [
+    "Trip",
+    "Stun",
+    "Sunder",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Velah's Fury"
+effect_type = "Weapon_Damage"
+extra_types = ["Weapon_Damage"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Sinvala's Toughness"
+effect_type = "PRR"
+extra_types = ["PRR"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Eternity's Ward"
+effect_type = "MRR"
+extra_types = ["MRR"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "The Truthful One's Might"
+effect_type = "MeleePower"
+extra_types = ["MeleePower"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aurgloroasa's Ascendend Wrath"
+effect_type = "RangedPower"
+extra_types = ["RangedPower"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Kor Kaza's Forbidden Power"
+effect_type = "UniversalSpellPower"
+extra_types = ["UniversalSpellPower"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Charisma",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 20
+
+[[enhancement.requirement]]
+items = ["DragonLordCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "DragonLordCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Dragon Lord: Dragon's Protection I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "You gain +3 Resistance to the element of your Draconic Soul."
+icon = "DLDragonsProtectionI"
+internal_name = "DragonLordDragonsProtectionI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Black Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Blue Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Green Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Red Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the White Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dragon Lord: Battlefield Tactician I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Tactical Feat DCs"
+icon = "DLBattlefieldTacticianI"
+internal_name = "DragonLordBattlefieldTacticianI"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dragon Lord: Unbreakable Will"
+cost_per_rank = [1]
+description = "+[1/2/3] to Will Saving Throws."
+icon = "DLUnbreakableWill"
+internal_name = "DragonLordUnbreakableWill"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dragon Lord: Field Skills"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Intimidate, Jump, and Haggle.
+Rank 3: You gain +2 to Attack."""
+icon = "DLFieldSkills"
+internal_name = "DragonLordFieldSkills"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Intimidate",
+    "Jump",
+    "Haggle",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dragon Lord: Martial Superiority"
+cost_per_rank = [1]
+description = "Select an advantage with weapons."
+icon = "DLMartialSuperiority"
+internal_name = "DragonLordMartialSuperioirity"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 1
+
+[[enhancement.selection]]
+name = "Dragon Lord: Martial Superiority: Deft Strikes"
+cost_per_rank = [1]
+description = "+[3/6/10]% Offhand Strike Chance"
+icon = "SFDeftStrikes"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.selection]]
+name = "Dragon Lord: Martial Superiority: Improved Second Strikes"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "HalfOrcGreatWeaponAptitude"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection]]
+name = "Dragon Lord: Martial Superiority: Shoot Twice"
+cost_per_rank = [1]
+description = "+[1/2/3]% Doubleshot"
+icon = "DLMartialSuperiority"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Doubleshot"
+
+[[enhancement.selection]]
+name = "Dragon Lord: Martial Superiority: Strike Twice"
+cost_per_rank = [1]
+description = "+[1/2/3]% Doublestrike"
+icon = "DLStrikeTwice"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement]]
+name = "Dragon Lord: Dragon's Protection II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "You gain an additional +3 Resistance to the element of your Draconic Soul."
+icon = "DLDragonsProtectionII"
+internal_name = "DragonLordDragonsProtectionII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Black Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Blue Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Green Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Red Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the White Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DragonLordDragonsProtectionI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Battlefield Tactician II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Tactical Feat DCs"
+icon = "DLBattlefieldTacticianII"
+internal_name = "DragonLordBattlefieldTacticianII"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DragonLordBattlefieldTacticianI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Draconic Resilience"
+cost_per_rank = [1]
+description = "+[2/4/6] Natural Armor"
+icon = "DLDraconicResilience"
+internal_name = "DragonLordDraconicResilience"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "NaturalArmor"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Dragon Lord: Action Boost"
+cost_per_rank = [2]
+description = "Select Haste or Tactics Boost"
+icon = "DragonLordABTactics"
+internal_name = "DragonLordActionBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement.selection]]
+name = "Action Boost: Haste"
+cost_per_rank = [2]
+description = """
+Activate to gain a +30% Action Boost bonus to attack speed for 20 seconds.
+Cooldown: 30 seconds."""
+icon = "KenseiHasteBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Action Boost: Tactics"
+cost_per_rank = [2]
+description = """
+Activate to gain a +9 Action Boost bonus to Tactical DCs for 20 seconds.
+Cooldown: 30 seconds."""
+icon = "DragonLordABTactics"
+is_clickie = true
+
+[[enhancement]]
+name = "Dragon Lord: Dragonslayer"
+cost_per_rank = [1]
+description = """
+You have chosen to assert dominance over Dragons, despite sharing in their power.
+You gain Favored Enemy: Dragon.
+
+When fighting a Favored Enemy, you gain +2 Damage for each Favored Enemy feat
+you have. If you have more than one Favored Enemy feat that applies to a particular
+Enemy, the damage applies for each type that matches your Favored Enemy feat you
+have."""
+icon = "DragonLordDragonslayer"
+internal_name = "DragonLordDragonslayer"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Dragon"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Dragon Lord: Dragon's Protection III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+You gain an additional +3 Resistance and +5% Absorption to the element of your
+Draconic Soul."""
+icon = "DLDragonsProtectionIII"
+internal_name = "DragonLordDragonsProtectionIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Black Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Blue Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Green Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Red Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the White Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Black Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Blue Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Green Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Red Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the White Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["DragonLordDragonsProtectionII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Battlefield Tactician III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++1 to Tactical Feat DCs and Breath Weapon DCs. When you attack with Trip or Sunder
+(or their Improved variants), you deal 1d4 additional damage per Character Level
+of the Element of you Draconic Soul. This damage scales with 200% Melee or Ranged
+Power."""
+icon = "DLBattlefieldTacticianIII"
+internal_name = "DragonLordBattlefieldTacticianIII"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+    "Breath Weapon",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["DragonLordBattlefieldTacticianII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Dragon's Roar"
+cost_per_rank = [2]
+description = """
+Tactical Feat: Enemies in a cone ahead of you must make a Will Saving Throw
+(DC 10 + Highest of STR and CHA mod + Stunning bonuses + Breath Weapon DC bonuses)
+or be Dazed. Affected enemies have a 25% chance to be broken out of Daze on damage.
+Cooldown: 20 seconds"""
+icon = "DLDragonsRoar"
+internal_name = "DragonLordDragonsRoar"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.dc]]
+name = "Dragon's Roar"
+amount = [10]
+dc_type = "Daze"
+dc_versus = "Will"
+description = """
+Enemies in a cone ahead of you must make a Will Saving Throw
+(DC 10 + Highest of STR and CHA mod + Stunning bonuses + Breath Weapon DC bonuses)
+or be Dazed. Affected enemies have a 25% chance to be broken out of Daze on damage."""
+icon = "DLDragonsRoar"
+mod_ability = [
+    "Strength",
+    "Charisma",
+]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Dragon Lord: Might or Outburst"
+cost_per_rank = [2]
+description = "Select a Trance."
+icon = "DLMightOrOutburst"
+internal_name = "DragonLordMightOrOutburst"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DragonLordMightOrOutburst",
+    "Battle Trance",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = [
+    "DragonLordMightOrOutburst",
+    "Battle Trance",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Draconic Conviction"
+cost_per_rank = [2]
+description = """
+Battle Trance: You gain an Insight bonuses to Attack, Damage and the DC of
+tactical feats equal to 1/2 of your Charisma modifier for 120 seconds.
+When you use Dragon's Roar, you have a chance to restore 1 charge.
+Cooldown: 20 seconds"""
+icon = "DLDraconicConviction"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Dragon Lord: Draconic Conviction (Cha Mod / 2)"
+effect_type = "TacticalDC"
+stack_source = "SnapshotCharisma"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Draconic Conviction"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Dragon Lord: Draconic Conviction (Cha Mod / 2)"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "SnapshotCharisma"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Draconic Conviction"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Draconic Conviction"
+description = """
+Battle Trance: You gain an Insight bonuses to Attack, Damage and the DC of
+tactical feats equal to 1/2 of your Charisma modifier for 120 seconds.
+When you use Dragon's Roar, you have a chance to restore 1 charge.
+Cooldown: 20 seconds"""
+group_name = "Battle Trance"
+icon = "DLDraconicConviction"
+
+[[enhancement.selection]]
+name = "Might in Order"
+cost_per_rank = [2]
+description = """
+Cooldown: 20 seconds
+Battle Trance: You gain an Insight bonuses to attack, Damage and the DC of
+tactical feats equal to 1/2 of your Strength modifier for 120 seconds.
+Each time you successfully use Trip, Sunder, Stunning Blow, or Dragon's Roar
+(or their Improved variants), you have a chance to restore 1 charge."""
+icon = "DLMightOrOutburst"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Dragon Lord: Might in Order (Str Mod / 2)"
+effect_type = "TacticalDC"
+stack_source = "SnapshotStrength"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Might in Order"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Dragon Lord: Might in Order (Str Mod / 2)"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "SnapshotStrength"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Might in Order"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Might in Order"
+description = """
+Battle Trance: You gain an Insight bonuses to attack, Damage and the DC of
+tactical feats equal to 1/2 of your Strength modifier for 120 seconds.
+When you use Dragon's Roar, you have a chance to restore 1 charge."""
+group_name = "Battle Trance"
+icon = "DLMightOrOutburst"
+
+[[enhancement]]
+name = "Dragon Lord: Ability Score I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Select between Strength or Charisma."
+icon = "StrCha"
+internal_name = "DragonLordAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Dragon Lord: Dragon's Protection IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+You gain an additional +3 Resistance and +5% Absorption to the element of your
+Draconic Soul."""
+icon = "DLDragonsProtectionIV"
+internal_name = "DragonLordDragonsProtectionIV"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Black Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Blue Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Green Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Red Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the White Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Black Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Blue Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Green Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the Red Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "DragonLordCore1",
+    "Soul of the White Dragon",
+]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DragonLordDragonsProtectionIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Battlefield Tactician IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++1 to Tactical Feat DCs and Breath Weapon DCs. When you Sunder enemies, it makes them
+vulnerable to the element of your Draconic Soul for 10 seconds.
+
+Additionally, if you successfully Sunder (or Improved Sunder) a target under the
+effects of Trip (or Improved Trip), that target takes an additional 1d6 damage per
+Character Level of the Element of you Draconic Soul. This damage scales with 200%
+Melee or Ranged Power."""
+icon = "DLBattlefieldTacticianIV"
+internal_name = "DragonLordBattlefieldTacticianIV"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+    "Breath Weapon",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DragonLordBattlefieldTacticianIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Untouchable Soul"
+cost_per_rank = [2]
+description = """
+You have Displacement, giving opponents a 50% chance to miss you due to concealment.
+This cannot be dispelled."""
+icon = "DLUntouchableSoul"
+internal_name = "DragonLordUntouchableSoul"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Dragon Lord: Lead the Charge"
+cost_per_rank = [2]
+description = """
+Deals +50% Damage
+Cooldown: 12 seconds
+Melee Rush Attack: Rush forward up to 30 feet to your selected opponent and
+deliver a mighty strike. Shares a cooldown with Shield Charge.
+Note: Also greatly slows the movement speed of enemy struck for ~2 seconds."""
+icon = "DLLeadTheCharge"
+internal_name = "DragonLordLeadTheCharge"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Dragon Lord: Ability Score II"
+cost_per_rank = [2]
+description = "Select between Strength or Charisma."
+icon = "StrCha"
+internal_name = "DragonLordAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DragonLordAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Dragon Lord: Soul Scales"
+cost_per_rank = [1]
+description = """
+You gain +15 Magical Resistance Rating. +25% Competence Bonus to Maximum HP,
+and you have a 5% chance to ignore damage of the element of your Draconic Soul."""
+icon = "DLSoulScales"
+internal_name = "DragonLordSoulScales"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["DragonLordDragonsProtectionIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Tactical Commander"
+cost_per_rank = [1]
+description = """
+The cooldowns of your Trip, Sunder, Stunning Blow, and Dragon's Roar (and their
+Improved variants) are reduced by 33%. +2 to Breath Weapon DCs."""
+icon = "DLTacticalCommander"
+internal_name = "DragonLordTacticalCommander"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Breath Weapon"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["DragonLordBattlefieldTacticianIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Lord: Improved Dragon's Roar"
+cost_per_rank = [1]
+description = """
+Your Dragon's Roar now Cowers enemies instead of Dazing them. In addition, when you
+use Dragon's Roar, you gain a +20% Morale bonus to damage vs. Helpless targets
+for 20 seconds."""
+icon = "DLImprovedDragonsRoar"
+internal_name = "DragonLordImprovedDragonsRoar"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Dragon Lord: Flight of Kings"
+cost_per_rank = [1]
+description = """
+Memories of flight lie within you. You are able to leap through the air to bring
+the fight to your enemies or traverse chasms that make normal adventure's balk.
+Cooldown: 15 seconds
+
+When you use Flight of Kings, you gain a +20% Action Boost bonus to Movement
+Speed for 6 seconds."""
+icon = "DragonbornMemoryOfFlight"
+internal_name = "DragonLordFlightOfKings"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Dragon Lord: Conqueror"
+cost_per_rank = [1]
+description = "+[1/2] Competence Bonus to Critical Multiplier with All Weapons."
+icon = "DLConqueror"
+internal_name = "DragonLordConqueror"
+is_tier5 = true
+min_spent = 30
+ranks = 2
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Dragon Lord"]
+req_type = "Class"

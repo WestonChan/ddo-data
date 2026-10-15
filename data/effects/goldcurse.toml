@@ -1,0 +1,3 @@
+name = "Goldcurse"
+description_template = "This weapon applies a dangerous, golden curse to enemies struck! They must succeed on a DC17 Fortitude save on each Critical hit or be Paralyzed by solid gold."
+verbose_name_template = "Goldcurse"

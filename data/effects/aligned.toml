@@ -1,0 +1,3 @@
+name = "Aligned"
+description_template = "This weapon transmutes into a form that is able to bypass any alignment based Damage Reduction. (Chaotic, Good, Evil, Lawful)"
+verbose_name_template = "Aligned"

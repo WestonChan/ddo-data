@@ -1,0 +1,53 @@
+name = "Drowned Priest's Torch"
+accepts_sentience = true
+description = "The holy man marched into the sea. Only his torch returned."
+drop_location = "A Legend Revisited, Jack Jibbers ' chest, Three-Barrel Cove (epic), rare encounters"
+enhancement_bonus = 7
+icon = "Club_4"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 21
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 114
+
+[[effect]]
+name = "Insightful Faith"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "rare encounters"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Three-Barrel Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.8
+handedness = "One-handed"
+weapon_type = "Club"

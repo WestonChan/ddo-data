@@ -1,0 +1,53 @@
+name = "Legendary Maiming Cleaver"
+accepts_sentience = true
+description = """
+This falchion, infused with the power to draw a living enemy's blood, can now
+deal extra damage on critical hits as it maims enemies."""
+drop_location = "Cauldron of Sora Katra, upgraded version of Legendary Bloody Cleaver"
+enhancement_bonus = 15
+icon = "Falchion_1"
+item_category = "Weapon"
+item_type = "Falchion"
+material = "Steel"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Bleeding 6"
+
+[[effect]]
+name = "Humanoid Bane 6"
+
+[[effect]]
+name = "Feeding 30"
+
+[[effect]]
+name = "Maiming 6"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Two-handed"
+weapon_type = "Falchion"

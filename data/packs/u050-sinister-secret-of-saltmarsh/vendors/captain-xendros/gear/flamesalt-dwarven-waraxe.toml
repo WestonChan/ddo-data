@@ -1,0 +1,57 @@
+name = "Flamesalt Dwarven Waraxe"
+description = """
+This weapon's steel has partially corroded due to the salt in the air, which
+interfered with the forging process. It seems to have enhanced the weapon's
+with a subtle magic, making it equivalent to Flametouched Iron, at the cost
+of some of the steel's natural durability."""
+drop_location = "Captain Xendros, Turn in 5 Quartermaster's Chits"
+enhancement_bonus = 1
+icon = "DwarvenWaraxe_2i"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Flametouched Iron"
+minimum_level = 5
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Chilling 2"
+
+[[effect]]
+name = "Monstrous Humanoid Bane 2"
+
+[[effect]]
+name = "Weakening 1"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Captain Xendros"
+
+[[source.price]]
+ingredient = "Quartermaster's Chit"
+quantity = 5
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

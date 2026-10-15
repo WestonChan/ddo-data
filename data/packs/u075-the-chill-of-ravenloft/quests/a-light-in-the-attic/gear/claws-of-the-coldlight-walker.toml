@@ -1,0 +1,38 @@
+name = "Claws of the Coldlight Walker"
+description = """
+Sharper than they appear, these gloves fell from the form of a fallen Coldlight
+Walker."""
+drop_location = "A Light in the Attic, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Hands"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"

@@ -1,0 +1,3 @@
+name = "Poisonous 2"
+description_template = "This effect causes the edges of this weapon to drip with a vile venom, dealing 2d6 poison damage on each hit."
+verbose_name_template = "Poisonous 2"

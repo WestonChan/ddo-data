@@ -1,0 +1,19 @@
+name = "Quivering Quiver"
+description = """
+This quiver is completely organic, and is rough and slimy to the touch. It shivers
+periodically, and when provoked it will sometimes disgorge arrows of a random
+type. Try not to think about where they've been. The quiver will also hold
+10 different types of arrow or bolt and can store each type in a stack of up
+to 300. Total capacity: 3000."""
+drop_location = "Harbinger of Madness, End reward"
+icon = "Quiver_3"
+item_category = "Clothing"
+minimum_level = 1
+slot = "Quiver"
+
+[[effect]]
+name = "Arrow Spitting"
+
+[[source]]
+kind = "quest_chain"
+name = "Harbinger of Madness"

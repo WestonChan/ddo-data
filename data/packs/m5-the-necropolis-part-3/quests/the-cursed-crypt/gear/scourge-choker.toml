@@ -1,0 +1,22 @@
+name = "Scourge Choker"
+description = "This necklace is made from the teeth of several dozen carcass eaters."
+drop_location = "The Cursed Crypt, end chest"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Bone"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Blood Rage"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Cursed Crypt"

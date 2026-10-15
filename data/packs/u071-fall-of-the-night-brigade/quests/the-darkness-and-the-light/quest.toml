@@ -1,0 +1,30 @@
+name = "The Darkness and the Light"
+bestowed_by = "Garmor the Grim"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Fall of the Night Brigade"
+patron = "The Harpers"
+zone = "Temple of Shar"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Darkness_and_the_Light"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 35

@@ -1,0 +1,3 @@
+name = "Alchemical Water Attunement"
+description_template = "Attacks and offensive spells have a chance to inflict ten stacks of cold damage over time, fading one stack at a time. This effect has an internal cooldown."
+verbose_name_template = "Alchemical Water Attunement"

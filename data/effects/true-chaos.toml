@@ -1,0 +1,3 @@
+name = "True Chaos"
+description_template = "This weapon is infused with the power of True Chaos. It does an additional 1 to 6 damage to non-chaotic targets and can only be wielded by Chaotic-aligned characters."
+verbose_name_template = "True Chaos"

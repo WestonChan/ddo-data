@@ -1,0 +1,26 @@
+name = "Tower of Frost"
+bestowed_by = "Crawben Bix"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Free Agents"
+zone = "Theobald's Tower"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tower_of_Frost"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 28

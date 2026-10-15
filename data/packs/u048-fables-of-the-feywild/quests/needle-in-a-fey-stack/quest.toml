@@ -1,0 +1,30 @@
+name = "Needle in a Fey Stack"
+bestowed_by = "Farrunner"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Fables of the Feywild"
+patron = "The Summer Court"
+zone = "The Treasure Grove"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Needle_in_a_Fey_Stack"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

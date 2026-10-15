@@ -1,0 +1,3 @@
+name = "Orcus' Magic"
+description_template = "Nightmares: The tremendous power of the Wand sits within this Echo. When you hit an enemy with an offensive spell, there is a small chance this power rises to the surface. When it does, if your target has fewer than 3,420 Hit Points, a burst of pure terror emanates from this weapon, snuffing out its life as if it were the subject of a Phantasmal Killer spell if it fails a DC 122 Will saving throw. If your target has above 3,420 Hit Points, they take 15d20 Force damage."
+verbose_name_template = "Orcus' Magic"

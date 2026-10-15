@@ -1,0 +1,35 @@
+name = "Dawn's Herald-Charm"
+description = "With this around your neck, you can finally rest in peace."
+drop_location = "Death House, end chest"
+icon = "Necklace_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 10
+slot = "Neck"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Insightful Faith"
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 2
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Death House"

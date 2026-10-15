@@ -1,0 +1,70 @@
+name = "Legendary Fimbric, Lost Longsword"
+accepts_sentience = true
+description = """
+This sword's name is spelled in Dwarvish Runes carefully etched into its silver
+blade."""
+drop_location = "Bullywugs and Booby Traps, end chest"
+enhancement_bonus = 15
+icon = "Longsword_1m"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Silver"
+minimum_level = 31
+slot = "Main Hand"
+
+[[clickie]]
+name = "Feather Fall"
+clickie = "Feather Fall"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Axiomatic Blast 6"
+
+[[effect]]
+name = "Holy 6"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Feather Fall"]
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bullywugs and Booby Traps"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "One-handed"
+weapon_type = "Longsword"

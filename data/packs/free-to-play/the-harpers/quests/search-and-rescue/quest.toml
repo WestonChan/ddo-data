@@ -1,0 +1,30 @@
+name = "Search and Rescue"
+bestowed_by = "Popkin 'The Shiv' Shortshanks"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Harpers"
+zone = "Stonelands Crevasse"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Search_and_Rescue"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

@@ -1,0 +1,24 @@
+name = "+7 Reflex Save (Insightful)"
+description = "Ethereal/Opposition: +7 Insightful bonus to Reflex saves."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Opposition"""
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[slot]]
+slot = "crafting: equipment tier 2"

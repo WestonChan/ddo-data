@@ -1,0 +1,69 @@
+name = "The Abiding Path"
+icon = "TheAbidingPath"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating Cap"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Stun DC"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Melee and Ranged Power"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Dodge"
+value = 1
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Dodge Cap"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]

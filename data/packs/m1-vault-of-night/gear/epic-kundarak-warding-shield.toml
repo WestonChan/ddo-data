@@ -1,0 +1,61 @@
+name = "Epic Kundarak Warding Shield"
+description = "Very few non-dwarves have ever possessed a Kundarak Warding Shield."
+drop_location = "Epic version of Kundarak Warding Shield"
+enhancement_bonus = 6
+icon = "Shield_4p"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 12
+max_dex_bonus = 0
+shield_bonus = 13
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 28
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 32
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

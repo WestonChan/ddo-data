@@ -1,0 +1,29 @@
+name = "Aasimar Scourge"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Aasimar Scourge are imbued with a divine energy that blazes intensely within them.
+It feeds a powerful desire to destroy evil-a desire that is, at its best,
+unflinching and, at its worst, all-consuming.
+
+Starts with 1 level of: Ranger"""
+iconic_class = "Ranger"
+short_name = "Scourge"
+starting_world = "Forgotten Realms"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Wisdom"
+
+[[granted_feat]]
+feat_name = "Favored Enemy: Undead"
+
+[[granted_feat]]
+feat_name = "Aasimar Racial Traits"
+
+[[granted_feat]]
+feat = "Aasimar: Scourge Bond"

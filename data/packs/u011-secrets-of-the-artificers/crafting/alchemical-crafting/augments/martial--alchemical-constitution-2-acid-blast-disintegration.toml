@@ -1,0 +1,52 @@
+name = "Martial: Alchemical Constitution +2, Acid Blast, Disintegration"
+description = """
++2 Alchemical bonus to Constitution
+Acid Blast: An acid blast weapon is sheathed in corrosive acid. Critical hits
+with this weapon deal an additional 1 to 10 acid damage for weapons with a x2
+critical multiplier, 2 to 20 for a x3 critical multiplier, and 3 to 30 for a
+x4 multiplier. Additionally, if you roll a 20 when attacking and confirm the
+critical hit, the weapon blasts your target, doing 4 to 24 more acid damage.
+Disintegration: This weapon has a dark, insidious power deep within.
+Occasionally, this power lashes out violently at enemies and attempts to
+disintegrate them."""
+family = "Alchemical"
+min_level = 18
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Alchemical"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Acid"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: alchemical tier 2"

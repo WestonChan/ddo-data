@@ -1,0 +1,3 @@
+name = "Construct Bane 4"
+description_template = "This weapon is attuned specifically to disrupt creations, dealing an additional 4d10 bane damage vs. Constructs."
+verbose_name_template = "Construct Bane 4"

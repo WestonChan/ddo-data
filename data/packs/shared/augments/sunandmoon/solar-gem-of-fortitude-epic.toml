@@ -1,0 +1,21 @@
+name = "Solar Gem of Fortitude (Epic)"
+description = "+2 Artifact Bonus to Fortitude Save."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[slot]]
+slot = "sun"

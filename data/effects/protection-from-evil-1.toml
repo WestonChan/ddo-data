@@ -1,0 +1,19 @@
+name = "Protection from Evil +1"
+description_template = "You have a +1 Deflection bonus to AC, and a +1 Resistance bonus to Saves vs Evil Monsters."
+verbose_name_template = "Protection from Evil +1"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Deflection"
+constant = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Resistance"
+constant = 1
+rounding = "down"
+scale = 1.0
+target = "Saving Throws"

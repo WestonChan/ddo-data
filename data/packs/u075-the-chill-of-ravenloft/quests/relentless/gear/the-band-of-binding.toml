@@ -1,0 +1,35 @@
+name = "The Band of Binding"
+drop_location = "Relentless, end chest"
+icon = "Ring_16e"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 34
+slot = "Ring"
+
+[[effect]]
+name = "Memory of Binding"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Relentless"

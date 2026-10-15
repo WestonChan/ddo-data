@@ -1,0 +1,39 @@
+name = "Legendary Fancy Flayer's Cape"
+description = "The perfect touch for the fanciest flayer."
+drop_location = "Fred's First Date, end chest"
+icon = "Cloak_6"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 32
+slot = "Back"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 294
+
+[[effect]]
+name = "Charisma Skills - Exceptional Bonus"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fred's First Date"

@@ -1,0 +1,23 @@
+name = "Graskitch's Skullcap"
+description = """
+This helmet was prized by its original owner, a foul tempered kobold Guard.
+Though it is of simple design, it is thick enough to provide a significant
+defense against mind affecting spells."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Helmet_30b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Head"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

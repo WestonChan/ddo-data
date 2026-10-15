@@ -1,0 +1,54 @@
+name = "Cloth of the Faithful"
+description = """
+This layered robe provides greater protection than most robes. A layer of semi-stiff
+metal-like material, not unlike chainmail is inserted between the two layers
+of fabric. Despite the metallic feel of the mysterious material, spells are
+not disrupted when wearing this robe. The colors of the Silver Flame trim and
+adorn the visible portions of fabric, and silver loops have been added in places,
+producing random bright flashes."""
+drop_location = "Silver Flame Nugget, End reward"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 7
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

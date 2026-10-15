@@ -1,0 +1,3 @@
+name = "Swim like a Fish"
+description_template = "While this item is equipped and you are swimming, you gain the Evasion feat. Evasion causes you to take no damage on a successful Reflex saving throw against an effect which would normally allow half damage on a successful Reflex save."
+verbose_name_template = "Swim like a Fish"

@@ -1,0 +1,35 @@
+name = "Eternal Scorching Light"
+description = "Eternal Scorching Light: On Light / Fire Spell Damage: +50 temp SP 30 seconds (triggers once per 45 seconds)."
+family = "Thunderforged"
+min_level = 28
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: thunderforged tier 3"

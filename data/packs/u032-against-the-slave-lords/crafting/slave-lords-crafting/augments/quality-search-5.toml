@@ -1,0 +1,21 @@
+name = "Quality Search +5"
+description = "Legendary quality bonus to Search"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Search"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Search"
+effect_type = "SkillBonus"
+targets = ["Search"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

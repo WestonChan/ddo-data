@@ -1,0 +1,3 @@
+name = "Shield of Lesser Sunburst"
+description_template = "This item blazes with the eternal fury at the heart of a sun. Occasionally, this power comes to the surface, unleashing a nova of light which will blind the struck enemy, dealing severe light damage to it and any other nearby foes."
+verbose_name_template = "Shield of Lesser Sunburst"

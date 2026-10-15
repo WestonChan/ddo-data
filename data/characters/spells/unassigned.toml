@@ -1,0 +1,2266 @@
+[[row]]
+name = "Abundant Step"
+description = """
+You are able to leap through the air to bring the fight to your enemies or traverse
+chasms that make normal adventurers balk."""
+icon = "AbundantStep"
+
+[[row]]
+name = "Acid Storm: Black Dragon Breath"
+description = """
+Like a black dragon, you can breathe a powerful stream of Acid that
+deals 1d15 + 15 Acid damage per caster level (Reflex save for half) to enemies
+within its area of effect. You can use this ability 5 times per rest.
+(Text says 5 times, charge bar says 3 / 3 Charges) caster level: 30"""
+icon = "AcidStormBlackDragonBreath"
+max_caster_level = 40
+
+[[row.damage]]
+bonus_dice_bonus = 15
+bonus_dice_number = 1
+bonus_dice_sides = 15
+damage = "Acid"
+spell_power = "Acid"
+
+[[row]]
+name = "Ameliorate"
+description = """
+Attempt to obliterate an Undead, or severely weaken any non-Undead foe. Undead must
+succeed on a Will save vs DC(15 + Warlock level + Charisma Mod) or be destroyed.
+Undead who fail this save, or enemies who are not undead, instead are terrorized
+and have their Magical resistance Rating reduced by 10 for 15 seconds."""
+icon = "Ameliorate"
+
+[[row]]
+name = "Arcane Blast"
+description = """
+Spell Like Ability: Arcane Blast.
+You Fire a ball of raw energy from your hand that explodes on contact with its
+target, dealing 1d6+4 hit points of Force damage per caster level to all
+within its radius. A successful Reflex save reduces the damage by half.
+This ability counts as a level 4 Wizard spell, and benefits from the highest of
+your spell schools to determine its DC. Further points spent in this Enhancement
+will reduce the cooldown and Spell Point cost of this Spell-Like Ability.
+Scale with 100% Spell Power.
+Activation Cost: [12/8/6] Spell Points.
+Cooldown: [18/12/6] seconds."""
+icon = "ArcaneBlast"
+max_caster_level = 100
+metamagics = [
+    "Empower",
+    "Maximize",
+    "Quicken",
+    "Heighten",
+    "Intensify",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Force"
+spell_power = "Force"
+
+[[row]]
+name = "Arcane Bolt"
+description = """
+Spell Like Ability: Arcane Bolt
+You Fire a bolt of raw energy from your finger that deals 1d6+2 hit points of
+Force damage per caster level to a single target. A successful Reflex save
+reduces the damage by half. This ability counts as a level 2 Wizard spell, and
+benefits from the highest of your spell schools to determine its DC. Further
+points spent in this Enhancement will reduce the cooldown and Spell Point cost
+of this Spell-Like Ability.
+Activation Cost: [8/6/4] Spell Points.
+Cooldown: [15/10/5] seconds)
+Scale with 100% Spell Power."""
+icon = "ArcaneBolt"
+max_caster_level = 100
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Force"
+spell_power = "Force"
+
+[[row]]
+name = "Arcane Pulse"
+description = """
+Spell: A magical pulse of force reverberates through the target's body, dealing
+3d6+6 force damage every 2 seconds for a duration of 16 seconds. This spell can
+stack on the target up to 5 times, increasing the damage with each stack.
+Cooldown: 3 Seconds"""
+icon = "ArcanePulse"
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 3
+base_dice_sides = 6
+damage = "Force"
+spell_power = "Force"
+
+[[row]]
+name = "Autumn Decay"
+description = """
+Target: Foe, Directional
+Sends out a wind of acidic decay from the caster striking nearby enemies for 1d6+2
+Acid damage for every caster level. If targets are immune to Acid damage they
+become vulnerable to it for 15 seconds. Max caster level 20. Evocation DC using
+the highest of Intelligence, Charisma or Wisdom.
+Can only be used if you have Autumn Affinity Active."""
+icon = "AutumnDecay"
+schools = ["Evocation"]
+
+[[row]]
+name = "Avenging Light"
+description = """
+You can call down the wrath of your former deity, producing an Avenging Light effect
+ten times per rest. (Activate this favored soul ability to cause a searing orb
+of radiant light to smite your target, dealing 1 to 8 hit points of light damage
+plus an additional 1 to 8 for every three caster levels past level 1.)
+D&D Dice: Deals 1d8 damage plus 1d8 additional per three caster levels."""
+icon = "AvengingLight"
+max_caster_level = 20
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 8
+bonus_dice_number = 1
+bonus_dice_sides = 8
+damage = "Light"
+per_caster_levels = 3
+spell_power = "Light/Alignment"
+
+[[row]]
+name = "Beacon of Grace"
+description = """
+You and allies ahead of you heal for 1 point of Positive Energy per Favored Soul level.
+Undead enemies ahead of you take the same amount of damage (Will save for half).
+Both scale with your Positive Spell Power. 6 second cooldown.
+This ability is considered a 1st Level Favored Soul spell of the Conjuration school.
+Spell Point Cost: 6 Spell points
+Cooldown: 6 seconds"""
+icon = "BoHBeaconOfGrace"
+
+[[row]]
+name = "Binding Shadows"
+description = """
+Dark shadows wrap around an enemy, slowing it and draining its life force, applying
+2d4 negative levels."""
+icon = "BindingShadows"
+
+[[row]]
+name = "Blessing of Amaunator"
+description = """
+Amaunator blesses those in the area of effect with the following for 1 minute per
+caster level (3 uses per rest):
+Tier 1: Aid
+Tier 2: Aid and Spell Resistance
+Tier 3: Aid, Spell Resistance, and Death Ward"""
+icon = "BlessingOfAmaunator"
+
+[[row]]
+name = "Bring Out the Leeches"
+description = """
+Lesser Dragonmark Spell: Positive Energy Leeches.
+Removes one negative level, one poison, and one disease from your living target once every 3 seconds.
+Duration is equal to your Heal skill.
+This ability shares a counter with Lesser Dragonmark of Healing."""
+icon = "BreakOutTheLeeches"
+
+[[row]]
+name = "Call Wolf Companion"
+description = "Activate this ability to summon your Wolf Companion."
+icon = "CallWolf"
+
+[[row]]
+name = "Caustic Bolt"
+description = """
+Fires a small orb of Acid at a target, doing 1d6+2 Acid damage for every caster level
+(up to a maximum of 10d6+20 at caster level 10). This spell shares a cooldown
+with Freezing Bolt, Shocking Bolt and Flaming Bolt."""
+icon = "CausticBolt"
+max_caster_level = 10
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row]]
+name = "Caustic Obliteration"
+description = """
+Primer Element: Crimsonite
+Throw a vial that explodes with Acid on impact, dealing 1d6+3 Acid damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)"""
+icon = "BomCausticObliteration"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Empower",
+    "Quicken",
+    "Maximize",
+    "Heighten",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row]]
+name = "Chain Cure"
+description = """
+A powerful discharge of Positive energy strikes a primary Ally or Undead
+Foe for 1d6+3 Positive Healing per Caster Level and then arcs to other nearby
+Allies and Undead Foes hitting each of them with a similar bolt of Positive energy.
+(Max Caster Level: 20). This is considered a Cure Wounds spell.
+Cooldown 9 seconds"""
+icon = "ChainCure"
+max_caster_level = 20
+metamagics = [
+    "Enlarge",
+    "Empower",
+    "EmpowerHealing",
+    "Quicken",
+    "Maximize",
+    "Intensify",
+]
+
+[[row]]
+name = "Channel Entropy"
+description = """
+A field of chaotic energy strikes the target and nearby enemies, dealing 19 to 24
+Chaos damage per caster level (max 380 to 480 at caster level 20). A successful
+Will save reduces the damage by half."""
+icon = "ChannelEntropy"
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row]]
+name = "Cold Light of the Moon"
+description = """
+Creates a lingering Area of Effect of moonlight.
+Deals 3d6 Cold Damage plus 2 per Caster Level to enemies inside the zone every
+2 seconds. The zone lasts for 10 seconds. 25 second cooldown."""
+icon = "ColdLightOfTheMoon"
+
+[[row]]
+name = "Confusion"
+description = """
+Activate for [3/2/1] Depravity: Target non-boss monster becomes Confused on
+a failed Will Saving throw.
+Confused monsters attack and are attacked by both monster characters and player characters.
+Spell-Like Ability: This ability benefits from your Metamagic Feats (such as Quicken Spell)
+without paying the normal additional spell point cost. This is an Enchantment SLA."""
+icon = "Confusion"
+
+[[row]]
+name = "Converter"
+description = """
+Target player, hireling, or pet takes 100% base healing from Repair spells for the
+next three minutes, or until the target dies. Has no effect on Constructs or NPC
+allies. This overrides their innate base healing from Repair spells for the duration."""
+icon = "RMConverter"
+
+[[row]]
+name = "Dark Light of the Moon"
+description = """
+Creates a lingering Area of Effect of moonlight.
+Deals 3d6 Negative Damage plus 2 per Caster Level. to non-undead enemies inside
+the zone every 2 seconds The zone lasts for 10 seconds. 25 second cooldown."""
+icon = "DarkLightOfTheMoon"
+
+[[row]]
+name = "Death Salve"
+description = """
+Target player, hireling, or pet takes 100% base healing from Negative spells for the
+next 3 minutes (or until target dies.) Has no effect on NPC allies or allies
+that already take 100% base Negative healing. This overrides their innate base
+healing from Positive spells for the duration."""
+icon = "LifeSalve"
+
+[[row]]
+name = "Devour the Soul"
+description = """
+You consume the soul of your targeted enemy, killing it instantly unless it makes a
+Will saving throw with a DC of 18 + Warlock level + Charisma bonus. This ability
+is considered a Necromancy spell. This ability works on undead, but not
+constructs and other creatures with no lifeforce. If the target survives then
+it loses 20 PRR and MRR for 6 seconds.
+Cooldown: 15 seconds."""
+icon = "DevourTheSoul"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Dismiss Charm"
+description = """
+Activate this short-ranged ability while targeting a charmed,
+commanded, controlled, or dominated enemy that is under your control to dispel
+the controlling effect."""
+icon = "DismissCharm"
+
+[[row]]
+name = "Dismiss Rage"
+description = "Activate this Barbarian ability to prematurely end your rage."
+icon = "DismissRage"
+
+[[row]]
+name = "Divine Energy Resistance"
+description = """
+This SLA grants 35 resistance to Acid, Cold, Fire, Sonic, Electric for 1 min per
+character level [225/150/75] spell points to all allies in the standard area of
+effect; centered on the caster. You can apply metamagic feats to this SLA for
+free (extend, quicken). The effect does not stack with Resist Energy spell."""
+icon = "DivineEnergyResistance"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+
+[[row]]
+name = "Dread Mist"
+description = """
+Target: Foe, Positional, Breakable
+Cooldown: 20 seconds
+Create a small area of Mist that lasts for 20 seconds. Enemies inside the mist
+have their movement slowed by 20%, -2 to Will Saving Throws, and take 1d2 Evil
+Damage per caster level every 2 seconds."""
+icon = "DreadMist"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Maximize",
+    "Quicken",
+    "Intensify",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 2
+damage = "Evil"
+spell_power = "Negative"
+
+[[row]]
+name = "Drow Dark Fire"
+description = """
+Spell-like Ability: Fires a bolt of darkness that deals 1d12 damage per character
+level, Reflex DC (10 + Half Character Level + Charisma Modifier) Half Damage.
+At levels 11 and 21 an additional bolt is fired. Effects that grant Action Boost
+uses give you additional uses per rest of this ability."""
+icon = "DrowDarkfire"
+
+[[row]]
+name = "Dust to Dust"
+description = """
+Target: Foe, Positional, Breakable
+Cooldown: 5 seconds
+A sickly green ray emanates forth, doing 8 to 12 damage per caster level to the
+target (up to a max of 160 to 240 damage at caster level 20). Anything reduced
+to 0 hit points is disintegrated. A successful Fortitude save reduces this damage
+to 18 to 30. As a ray this spell has double normal range."""
+icon = "Disintegrate"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 2
+bonus_dice_sides = 3
+damage = "Untyped"
+spell_power = "Untyped"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Reduced Damage"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Earth Grab"
+description = "Target corporeal creature is grabbed by earthen hands and rendered helpless.\n(10 + Character Level + Constitution modifier + Transmutation Bonuses Negates). \nNote: Shares charges with Greater Dragonmark of Warding"
+icon = "EarthGrab"
+
+[[row]]
+name = "Elemental Damage"
+description = """
+Activate this sorcerer ability to blast a target with a ray of combined elements,
+doing 1 to 12 damage of a random elemental type plus an additional 1 to 12 per
+three caster levels on impact. A successful Reflex save reduces the damage by half.
+D&D Dice: Deals 1d12 damage plus 1d12 damage additional per three caster levels."""
+icon = "ElementalDamage"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Empathic Healing"
+description = """
+Spell-like ability: You may expend a use of Wild Empathy to produce a Lesser Vigor/Mass
+Lesser Vigor effect.
+Metamagic: Empower, Empower Heal, Maximize, Quicken, Enlarge, Intensify."""
+icon = "EmpathicHealing"
+
+[[row]]
+name = "Enchant Weapon"
+description = """
+Activate this artificer ability to increase the Enhancement Bonus of your target's
+currently equipped weapons or shields by 1, or to increase the Enhancement Bonus
+of your target's currently equipped armor by 1. An item can have only one
+temporary item enchantment at a time."""
+icon = "EnchantWeapon"
+
+[[row]]
+name = "Epic Mage Armor"
+description = "+20 Armor bonus to AC. Spell Point Cost: 5. Target: Friend, Self."
+icon = "EpicMageArmor"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+
+[[row]]
+name = "Evasive Trance"
+description = """
+You recall more about your past life as a Monk. You have +2 to your Concentration
+skill, deal increased unarmed damage (one step higher than normal on the unarmed
+combat chart) and can enter an evasive trance once per rest, granting the Evasion
+feat for a short period of time. (When you make a successful Reflex save to
+avoid damage, you suffer no damage instead of half damage.)"""
+icon = "EvasiveTrance"
+
+[[row]]
+name = "Fascinate"
+description = """
+Activate this bard ability to make your foes stop what they're doing and listen to
+your soothing notes. Requires 3 trained ranks (not total mod) of the Perform
+skill to use. Has a save DC of your perform skill plus the roll of a twenty-sided
+die."""
+icon = "Fascinate"
+
+[[row]]
+name = "Fey Energy Tap"
+description = """
+Activate: A drop of blood lets you tap into the endless energy of the realm of the fey,
+giving yourself or an ally temporary spell points, 10% incorporeality, and a
+-2 penalty to Will saving throws while they last. This ability can be used
+[1/3/5] times per rest.
+(Activation Cost: 1 HP. Cooldown: 2 minutes) (24 Spell points +6 per level)"""
+icon = "FeyEnergyTap"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Incorporeality"
+
+[[row]]
+name = "Fiendish Arpeggio"
+description = """
+Enchant your fiddle to cast this spell, dealing 1d6 Fire damage, plus 1 Fire
+damage per 2 caster levels (max 1d6+10) and 1d6 Sonic damage, plus 1 Sonic damage per 2
+caster levels (max 1d6+10), to a target. The damage repeats itself every 2 seconds for
+12 seconds. Cost: 6 spell points."""
+icon = "FiendishArpeggio"
+max_caster_level = 10
+
+[[row.damage]]
+base_dice_number = 2
+base_dice_sides = 4
+bonus_dice_bonus = 1
+damage = "Fire"
+per_caster_levels = 2
+spell_power = "Fire"
+
+[[row.damage]]
+base_dice_number = 2
+base_dice_sides = 4
+bonus_dice_bonus = 1
+damage = "Sonic"
+per_caster_levels = 2
+spell_power = "Sonic"
+
+[[row]]
+name = "Fiery Obliteration"
+description = """
+Primer Element: Crimsonite
+Throw a vial that explodes with Fire on impact, dealing 1d6+3 Fire damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)"""
+icon = "BomFieryObliteration"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Empower",
+    "Quicken",
+    "Maximize",
+    "Heighten",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row]]
+name = "Fire Shield (Fire)"
+description = """
+Wreaths the caster in hot flames. Any creature striking you in melee takes 1d3+3
+plus 1 per caster level (Maximum caster level 15.) damage. The Fire version of
+this spell deals Fire damage and reduces damage the caster takes from Cold by
+half. The flames from the Fire will burn away any webs that attempt to entangle
+you."""
+icon = "FireShield"
+max_caster_level = 15
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+base_dice_bonus = 3
+base_dice_number = 1
+base_dice_sides = 3
+bonus_dice_bonus = 1
+damage = "Fire"
+per_caster_levels = 1
+spell_power = "Fire"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+display_name = "Fire Shield: Fire"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row]]
+name = "Fire Storm: Red Dragon Breath"
+description = """
+Like a red dragon, you can breathe a powerful cone of intense flames that
+deals 1d15 + 15 Fire damage per caster level (Reflex save for half) to enemies
+within its area of effect. You can use this ability 5 times per rest.
+(Text says 5 times, charge bar says 3 / 3 Charges) caster level: 30"""
+icon = "FireStormRedDragonBreath"
+max_caster_level = 40
+
+[[row.damage]]
+bonus_dice_bonus = 15
+bonus_dice_number = 1
+bonus_dice_sides = 15
+damage = "Fire"
+spell_power = "Fire"
+
+[[row]]
+name = "Flame Pillar"
+description = """
+Epic Strike: Bring a pillar of Fire down on a single enemy, dealing 1d6+6 Fire
+damage per caster level. Cooldown 6 seconds, cost 5 Spell Points
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "FlamePillar"
+
+[[row]]
+name = "Flaming Bolt"
+description = """
+Fires a small orb of Fire at a target, doing 1d6+2 Fire damage for every caster level
+(up to a maximum of 10d6+20 at caster level 10). This spell shares a cooldown
+with Freezing Bolt, Shocking Bolt and Caustic Bolt."""
+icon = "FlamingBolt"
+max_caster_level = 10
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row]]
+name = "Flash Bang"
+description = """
+Throws a fragile eggshell imbued with ninja magic that explodes into light, blinding
+opponents for 6 seconds on a failed Reflex save and momentarily dazing opponents
+on a failed Fortitude save. Both saving throws have DC equal to
+(10/14/18 + Monk Level + Wisdom Modifier)."""
+icon = "FlashBang"
+
+[[row]]
+name = "Flyby Attack"
+description = """
+Executes an abundant step which passes through enemies and deals 2d6
+[Fire/Cold/Acid/Electric] damage per character level to any enemy struck
+during the attack. Each enemy is also knocked down (Reflex save DC 20 + 1/2
+character level + INT/CHA modifier for half damage; STR/DEX save DC 20 + 1/2
+character level + INT/CHA modifier negates knockdown). (Cooldown 1min)"""
+icon = "FlybyAttack"
+
+[[row]]
+name = "For Cormyr"
+description = """
+Once per rest, you can heal to full.
+You and all nearby allies gain a Morale bonus to weapon damage equal to half your
+Charisma modifier for twenty seconds."""
+icon = "ForCormyr"
+
+[[row]]
+name = "Freezing Bolt"
+description = """
+Fires a small orb of frost at a target, doing 1d6+2 Cold damage for every caster level
+(up to a maximum of 10d6+20 at caster level 10). This spell shares a cooldown
+with Caustic Bolt, Shocking Bolt and Flaming Bolt."""
+icon = "FreezingBolt"
+max_caster_level = 10
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row]]
+name = "Frost Obliteration"
+description = """
+Primer Element: Crimsonite
+Throw a vial that explodes with frost on impact, dealing 1d6+3 Cold damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)"""
+icon = "BomFrostObliteration"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Empower",
+    "Quicken",
+    "Maximize",
+    "Heighten",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row]]
+name = "Gloomspear"
+description = """
+Epic Strike: Single-target SLA, 1d6+6 Negative Damage per caster level and applies
+3 stacks of Shattermantle. Cooldown 6 seconds, cost 5 Spell Points
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "Gloomspear"
+
+[[row]]
+name = "Greater Death Aura"
+description = """
+Target: Self
+Cooldown: ??? seconds
+Envelops the caster in a sickly aura of negative energy. Living enemies stepping
+inside the aura take 3 to 12 negative energy damage plus 1 additional point per
+caster level (max 10) every three seconds as long as they remain within it.
+A successful Fortitude save reduces the damage by half.
+Undead are instead healed by the aura.
+
+This can be cast simultaneously with Lesser Death Aura and Death Aura.
+Effects that increase caster or maximum caster level only increase duration.
+
+This spell is supposed to receive +10 maximum caster level from the Master of
+the Dead epic feat, but is currently bugged and is not receiving a bonus."""
+icon = "GreaterDeathAura"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 3
+bonus_dice_sides = 4
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+mod_abilities = ["Intelligence"]
+schools = ["Necromancy"]
+
+[[row]]
+name = "Greater Ruin"
+cost = 150
+description = "Deal 1000 untyped damage to a single enemy. Spell Point Cost: 150, No saving throw."
+icon = "GreaterRuin"
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+base_dice_bonus = 1000
+damage = "Untyped"
+spell_power = "Untyped"
+
+[[row]]
+name = "Greater Wave of Poison"
+description = """
+Primer Element: Ceruleite
+You infect enemies in a short cone with a deadly poison that eats away at them.
+Affected enemies take 2d6 Poison damage plus 1 Poison damage per Caster Level
+every 2 seconds for 16 seconds. This poison will leave enemies Contaminated.
+(Max Caster Level: 20)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds."""
+icon = "VileGreaterWaveOfPoison"
+max_caster_level = 20
+metamagics = [
+    "Primer",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+base_dice_number = 2
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Poison"
+per_caster_levels = 1
+spell_power = "Poison"
+
+[[row]]
+name = "Healing Hands"
+description = """
+Start with one charge per rest, gain more in Enhancement tree.
+Can only be used while your Bond Feat is active.
+10 + Character Level (max 20) * WIS Mod = HP gained."""
+icon = "HealingHands"
+
+[[row]]
+name = "Healing Pillar"
+description = """
+Epic Strike: Bring a pillar of positive energy down on a single ally, healing
+them for 3d6+6 Hit Points, plus an additional 1 per Caster Level (Max Caster Level: 15).
+This is a Conjuration spell, and counts as both a Positive and Cure Wounds spell.
+Can be used on Undead enemies, who take that Positive healing as damage.
+Cooldown 6 seconds, cost 5 Spell Points
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "HealingPillar"
+
+[[row]]
+name = "Healing Word"
+description = """
+You recall more about your past life as a cleric. You have +2 to your Heal skill and
+can produce a Healing Word effect five times per rest. Positive energy is
+channeled to heal light wounds of your target or damage undead for 1 to 4 hit
+points plus an additional 1 to 4 per two caster levels. Undead who make a
+successful Will save reduce the damage by half. D&D Dice: Deals 1d4 damage plus
+1d4 additional damage per two caster levels."""
+icon = "HealingWord"
+max_caster_level = 20
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Positive"
+per_caster_levels = 2
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Heat Death"
+description = """
+You raise the internal temperature of a living target to lethal levels.
+The target must succeed on a Fortitude save (DC: 10 + Constitution Modifier + Sorcerer Level)
+or take 2,000 points of Fire damage as its blood (or other internal fluid) boils in a horrific
+manner. Fire creatures are immune to this effect.
+(Activation Cost: 50 Spell Points. Cooldown: 1 minute.)"""
+icon = "HeatDeath"
+
+[[row.damage]]
+base_dice_bonus = 2000
+damage = "Fire"
+spell_power = "Fire"
+
+[[row]]
+name = "Hellball"
+description = """
+Deal 10d6 Acid, Electric, Fire, and Sonic damage to enemies in an area. Successful
+Reflex saving throws may negate each type of damage. Taking this feat provides
+two versions, one based on Charisma and another based on Intelligence.
+Spell Point Cost: 50"""
+icon = "Hellball"
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+base_dice_number = 10
+base_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row.damage]]
+base_dice_number = 10
+base_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.damage]]
+base_dice_number = 10
+base_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.damage]]
+base_dice_number = 10
+base_dice_sides = 6
+damage = "Sonic"
+spell_power = "Sonic"
+
+[[row]]
+name = "Holy Fireball"
+description = """
+Creates a ball of Fire that detonates on impact, causing an explosion of light
+and flame that deals 1d3+9 Light damage and 1d3+9 Fire damage per caster level
+to targets in its path. A successful Reflex save reduces the damage by half.
+This counts as both a Fire and Light spell. (Max Caster Level: 20).
+Cooldown 9 seconds"""
+icon = "HolyFireball"
+max_caster_level = 20
+metamagics = [
+    "Enlarge",
+    "Empower",
+    "Quicken",
+    "Maximize",
+    "Intensify",
+    "Embolden",
+]
+
+[[row]]
+name = "Horn of Thunder"
+description = """
+Spell-Like Ability: Horn of Thunder.
+Does 1d6+3 Sonic and Electric damage per caster level.
+Activation cost: [30/25/20] SP. Cooldown: [20/16/12] seconds."""
+icon = "HornOfThunder"
+max_caster_level = 25
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Sonic"
+spell_power = "Sonic"
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row]]
+name = "Hurl Through Hell"
+description = """
+Cooldown: 25 seconds. Exile one target enemy from this existence. An enemy succeeding
+on a Will save vs DC(10 + Warlock level + Charisma Modifier) is instead paralyzed
+and helpless with fear for 6 seconds."""
+icon = "HurlThroughHell"
+
+[[row.dc]]
+amount = [15]
+casting_stat_mod = true
+dc_type = "Remove from existence"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Ice Storm: White Dragon Breath"
+description = """
+Like a white dragon, you can breathe a powerful cone of intense Cold that
+deals 1d15 + 15 Cold damage per caster level (Reflex save for half) to enemies
+within its area of effect. You can use this ability 5 times per rest.
+(Text says 5 times, charge bar says 3 / 3 Charges) caster level: 30"""
+icon = "IceStormWhiteDragonBreath"
+max_caster_level = 40
+
+[[row.damage]]
+bonus_dice_bonus = 15
+bonus_dice_number = 1
+bonus_dice_sides = 15
+damage = "Cold"
+spell_power = "Cold"
+
+[[row]]
+name = "Icy Prison"
+description = """
+You deal 500 Cold damage to your opponent, with a Fortitude save
+(DC: 10 + Constitution Modifier + Sorcerer Level) for half damage, and an additional
+Reflex save or be encased in ice. Ice creatures are immune to this effect, and the
+targets gets occasional saves to attempt to escape.
+(Activation Cost: 25 Spell Points. Cooldown: 1 minute.)"""
+icon = "IcyPrison"
+
+[[row.damage]]
+base_dice_bonus = 500
+damage = "Cold"
+spell_power = "Cold"
+
+[[row]]
+name = "Illusory Mark of Flame"
+description = """
+You scribe a potent rune of power in the air, and it's activated by an enemy who
+comes into range of it dealing 5d3+15 Fire damage to that target. A successful
+Reflex save reduces damage by half. The symbol dissolves 20 seconds after being
+triggered, or in 5 minutes otherwise."""
+icon = "IllusoryMarkOfFlame"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row.damage]]
+base_dice_bonus = 15
+base_dice_number = 5
+base_dice_sides = 3
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Illusion"]
+
+[[row]]
+name = "Illusory Symbol of Stunning"
+description = """
+You create a symbol of power in the air, and it's activated by a target approaching.
+All targets entering the area of effect are Dazed (effect may be called stunned,
+but unlike a real stun this effect does not make the targets helpless) for 6d6
+seconds. A successful Will save negates this condition. The symbol dissolves 20
+seconds after being triggered, or in 5 minutes otherwise."""
+icon = "IllusoryMarkOfStunning"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Illusion"]
+
+[[row]]
+name = "Improved Harm"
+description = """
+Charges the target with a massive amount of negative energy,
+dealing 15 points of damage per caster level (up to a maximum of 225 at caster level 15).
+A successful Will save reduces the damage by half.
+Against undead targets, this spell acts as Heal."""
+icon = "ImprovedHarm"
+max_caster_level = 15
+
+[[row.damage]]
+bonus_dice_bonus = 10
+damage = "Negative"
+spell_power = "Negative"
+
+[[row]]
+name = "Inner Focus"
+description = "Activate to gain 20d10 Ki. Cooldown: [180/160/120] seconds"
+icon = "InnerFocus"
+
+[[row]]
+name = "Inspire Competence"
+description = """
+Activate this bard ability to grant an ally a +2 competence bonus to their skill checks.
+Requires 6 trained ranks (not total mod) of the perform skill to use."""
+icon = "InspireCompetence"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[row]]
+name = "Inspire Courage"
+description = """
+Activate this bard ability to rally your companions, giving them a +1 Morale bonus
+to saves against fear effects and a +1 Morale bonus on attack and weapon damage
+rolls before enhancements. At 8th level and every six bard levels thereafter,
+this bonus increases by 1. Requires 3 trained ranks (not total mod) of the
+Perform skill to use."""
+icon = "InspireCourage"
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+]
+bonus_type = "Morale"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "Unknown"
+targets = ["All"]
+
+[[row]]
+name = "Inspire Greatness"
+description = """
+A bard can use his music or poetics to help an ally excel in combat. Ally must be
+within 30 feet and able to see and hear the bard. The ally gets +2 attack bonus,
++1 Fortitude save bonus and temporary hit points."""
+icon = "InspireCourage"
+
+[[row]]
+name = "Inspire Heroics"
+description = """
+Activate this bard ability to grant an ally a +4 Morale bonus to their saves and a
++4% dodge. Requires 18 trained ranks (not total mod) of the Perform skill to use."""
+icon = "InspireHeroics"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Morale"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Morale"
+effect_type = "DodgeBonus"
+
+[[row]]
+name = "Lay on Hands"
+description = """
+The Paladin ability Lay on Hands heals a friendly target for (10 + Paladin level) x
+Charisma modifier amount of hit points, or deals that much damage to an undead
+target. The amount healed does not suffer a penalty when used on Warforged.
+This ability does not require the paladin to be within melee (touch) range of
+the friend or foe being targeted, but line of sight is required."""
+icon = "LayOnHands"
+
+[[row]]
+name = "Leap Of Faith"
+description = """
+You are able to leap through the air to bring the fight to your enemies or traverse
+chasms that make normal adventurers balk. Using this ability costs 10 spell
+points. Uses of this ability recharge at a rate of one every 15 seconds.
+(5 uses, 3 second cooldown.)"""
+icon = "LeapOfFaith"
+
+[[row]]
+name = "Life Salve"
+description = """
+Target player, hireling, or pet takes 100% base healing from Positive spells for the
+next 3 minutes (or until target dies.) Has no effect on NPC allies or allies
+that already take 100% base Positive healing. This overrides their innate base
+healing from Positive spells for the duration."""
+icon = "LifeSalve"
+
+[[row]]
+name = "Light the Dark"
+description = """
+Expend one use of Lay on Hands: Heals 150HP to allies around you,
+and deals that much damage to nearby undead enemies. This benefits from Positive
+Spell Power, 50% more than most spells."""
+icon = "LightTheDark"
+metamagics = ["Quicken"]
+
+[[row]]
+name = "Lightning Storm: Blue Dragon Breath"
+description = """
+Like a blue dragon, you can breathe a powerful bolt of lightning that
+deals 1d15 + 15 Electric damage per caster level (Reflex save for half) to enemies
+within its area of effect. You can use this ability 5 times per rest.
+(Text says 5 times, charge bar says 3 / 3 Charges) caster level: 30"""
+icon = "LightningStormBlueDragonBreath"
+max_caster_level = 40
+
+[[row.damage]]
+bonus_dice_bonus = 15
+bonus_dice_number = 1
+bonus_dice_sides = 15
+damage = "Electric"
+spell_power = "Electric"
+
+[[row]]
+name = "Locate Objects"
+description = """
+Three times per rest create one random temporary item when cast on a destroyable object
+(vase, barrel, etc.) Item drops on leaving adventure. Cannot be sold or auctioned."""
+icon = "LocateObjects"
+
+[[row]]
+name = "Major Mnemonic Aid"
+description = "Major Mnemonic Aid: Restores 105-600 spell points. Charges: 3 (3/day)"
+icon = "MajorMnemonicAid"
+
+[[row]]
+name = "Martial Prowess"
+description = """
+You recall more about your past life as a fighter. You have +2 to your Intimidate
+skill, +1 to the Maximum Dexterity Bonus of armor and shields and can remember
+your martial prowess three times per rest, increasing your base attack bonus to
+your level and granting +4 to hit."""
+icon = "MartialProwess"
+
+[[row]]
+name = "Mass Confusion"
+description = """
+Activate for [12/8/4] Depravity: A group of non-boss monsters each become
+confused on a failed Will saving throw.
+Spell-Like Ability: This ability benefits from your Metamagic feats (such as Quicken Spell)
+without paying the normal additional spell point cost. Cooldown: 30 seconds"""
+icon = "MassConfusion"
+
+[[row]]
+name = "Mass Frog"
+description = """
+Up to six nearby enemies are turned into frogs. Each may avoid ribbiting on
+a successful Fortitude saving throw vs. DC (20+ Wisdom modifier)."""
+icon = "MassFrog"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+
+[[row]]
+name = "Mass Unbreakable Forcefield"
+description = """
+For 6 seconds, your party takes -95% damage from all sources (except untyped damage).
+Only works inside dungeons."""
+icon = "RMMassUnbreakableForcefield"
+
+[[row]]
+name = "Meld Into Darkness"
+description = """
+Activate to gain: +100% Enhancement bonus to dodge for [9/12/15] seconds.
+(Cooldown: 2 minutes)"""
+icon = "MeldIntoDarkness"
+
+[[row]]
+name = "Memory of Flight"
+description = """
+Memories of flight lie within you. You are able to leap through the air to bring the
+fight to your enemies or traverse chasms that make normal adventure balk."""
+icon = "DragonbornMemoryOfFlight"
+
+[[row]]
+name = "Misty Step"
+description = """
+You are able to leap through the air to bring the fight to your enemies or
+traverse chasms that make normal adventurers balk, but you disappear."""
+icon = "MistyEscape"
+
+[[row]]
+name = "Misty escape"
+description = """
+You become invisible and charge forward. During your escape, you move through monsters
+as if you were ethereal. These effects last for six seconds"""
+icon = "MistyEscape"
+
+[[row]]
+name = "Moon Lance"
+description = """
+Epic Strike: Single-target SLA, 1d6+6 Cold Damage per caster level and applies
+3 stacks of Shattermantle. Cooldown 6 seconds, cost 5 Spell Points
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "MoonLance"
+
+[[row]]
+name = "Moon's Shadow"
+description = """
+Necromancy SLA. Hit target enemy with a miniature black hole for 1d6+28 Negative
+damage per caster level. A successful Reflex save reduces the damage by half.
+Cooldown 18 seconds, cost 40 Spell Points."""
+icon = "MoonsShadow"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Necrotic Blast"
+description = """
+Using a small amount of your life force, you Fire a black ball or energy
+from your hand that explodes on contact with its target, dealing 6 to 11 (1d6+5) negative
+energy damage per caster level to all creatures within its radius.
+A successful Fortitude save reduces the damage by half.
+This ability counts as a level 5 Wizard spell.
+Players are immune to this effect.
+Activation Cost: 10 Hit Points. Cooldown: 18/12/6 seconds."""
+icon = "NecroticBlast"
+max_caster_level = 100
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 5
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row]]
+name = "Necrotic Bolt"
+description = """
+You Fire a black bolt of energy from your finger that deals 4 to 10 hit points of
+negative energy damage per caster level to a creature. A successful Fortitude save
+reduces the damage by half. This ability counts as a level 3 Wizard spell.
+Players are immune to this effect. Further points spent in this Enhancement will reduce
+the cooldown of this Spell-Like Ability.
+Activation Cost: 5 Hit Points. Cooldown: 15/10/5 seconds."""
+icon = "NecroticBolt"
+max_caster_level = 100
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row]]
+name = "Necrotic Touch"
+description = """
+You sheath your hand in crackling black flames, dealing 2 to 7 (1d6+1) hit points
+of negative energy damage per caster level to a living creature.
+A successful Fortitude save reduces the damage by half.
+Players are immune to this effect.
+Activation Cost: 2 Hit Points. Cooldown: 12/8/4 seconds."""
+icon = "NecroticTouch"
+max_caster_level = 100
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row]]
+name = "No spell trained"
+description = """
+This spell slot is available for a spell to be trained.
+Left click to choose a spell."""
+icon = "Unknown"
+schools = ["Unknown"]
+
+[[row]]
+name = "Obscuring Darkness"
+description = """
+You can channel your fiendish nature to manifest a zone of Obscuring Darkness
+at will. Foes inside the darkness suffer a 20% chance of missing any attack
+they make due to concealment. This does not apply to attacking misted targets
+from outside. Further Enhancements can modify how Obscuring Darkness can
+affect both you and your enemies."""
+icon = "ObscuringDarkness"
+metamagics = ["Quicken"]
+
+[[row]]
+name = "Palliative Admixture"
+description = """
+Creating an infused potion of magical energy, you hurl it towards your target in an arc.
+The potion explodes in a small area that provides nearby allies with 20 + 1 per
+Artificer level Temporary Hit Point and 10 +1 per two Artificer levels Temporary
+Spell Points. These last one minute, or until affected creatures rest.
+Cooldown: 30 seconds."""
+icon = "ATPalliativeAdmixture"
+
+[[row]]
+name = "Poison Obliteration"
+description = """
+Primer Element: Crimsonite
+Throw a vial that explodes with poison on impact, dealing 1d6+3 Poison damage
+per Caster Level to all enemies nearby. (Max Caster Level 10)"""
+icon = "BomPoisonObliteration"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Empower",
+    "Quicken",
+    "Maximize",
+    "Heighten",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row]]
+name = "Power of the Storm"
+description = """
+Your attacks gain Shocking, +25 Electrical Spell Power, and you gain 10 temporary
+spell points any time you take Electrical damage from a spell. You also gain
++2 bonus to Reflex save, but suffer a -2 penalty to Caster Levels of Earth
+spells and -2 to your Fortitude Saves. This effect lasts for 2 seconds per point
+of Concentration skill you have. (Cooldown: 1 minute)"""
+icon = "PowerOfTheStorm"
+
+[[row]]
+name = "Prey on Fear"
+description = """
+Target enemy at touch range takes 1d6+2 Evil Damage per Caster Level.
+Additionally, if the target is inside a Dread Mist zone it deals 1d4 Evil Damage
+for each stack of Growing Dread that creature has. Will save for damage on each effect.
+Cooldown: 6 seconds"""
+icon = "PreyOnFear"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Evil"
+spell_power = "Negative"
+
+[[row]]
+name = "Reborn in Fire"
+description = """
+A swirl of Fire surrounds you dealing 1d6 Fire damage per character level to enemies
+and healing allies for 1d3 per character level. This consumes all Primal Charges,
+and both the damage and healing are increased by 25% per Primal Charge. If 3 or
+more Primal Charges are consumed, the bonus damage and healing are doubled and
+you gain Dancing Flame for 6 seconds."""
+icon = "RebornInFire"
+metamagics = [
+    "Empower",
+    "Quicken",
+    "Maximize",
+]
+
+[[row]]
+name = "Regenerating Construct"
+description = """
+You are surrounded by arcane energy capable of repairing damage. Allies (equal to
+your Artificer level) are Repaired for 1 hit point per 3 Artificer levels as
+long as they are near you. This lasts for 30 minutes, but is dispelled death
+and antimagic."""
+icon = "RMRegenerationConstruct"
+
+[[row]]
+name = "Rejuvenation Cocoon"
+description = """
+Protect target ally with a shield of [90/120/150] temporary HP for 9 seconds.
+Heals 5d6 HP every 2 seconds while the shield persists.
+Costs 12sp to activate. 12 second cooldown.
+Affected by: Empower Heal, Quicken and Enlarge"""
+icon = "RejuvenationCocoon"
+
+[[row.damage]]
+base_dice_number = 5
+base_dice_sides = 6
+damage = "Positive"
+spell_power = "Positive"
+
+[[row]]
+name = "Rejuvenation of Dawn"
+description = """
+Heals 10,000 hit point damage, and removes all ability damage, death penalty effects,
+negative levels, and the conditions blinded, dazed, deafened, diseased, exhausted,
+fatigued, feebleminded, insanity, nauseated, poisoned, and stunned.
+This ability can be used once per rest.
+Tier 2: This ability can be used on yourself or an ally, and you get an
+additional use per rest.
+(Cooldown: 3 minutes)"""
+icon = "RejuvinationOfDawn"
+
+[[row]]
+name = "Remove Exhaustion"
+description = "Removes Exhaustion and Fatigue effects."
+icon = "RemoveExhaustion"
+
+[[row]]
+name = "Renewal"
+description = """
+Heals 1d2 Hp per 2 character levels every 2 seconds for 8 seconds.
+As a Spell-like ability it benefits from metamagic feats at no additional cost.
+Metamagics: Empower Heal, Quicken and Enlarge.
+Cost: 5 Spell Points
+Cooldown: 8 seconds."""
+icon = "Renewal"
+metamagics = [
+    "EmpowerHealing",
+    "Enlarge",
+    "Quicken",
+]
+
+[[row]]
+name = "Resist Energies"
+description = """
+Gives an ally an Enhancement bonus against Fire, Cold, Electric, Acid, and Sonic damage,
+reducing that type of damage taken by 10. The bonus increases to 20 at caster
+level 7 and 30 at caster level 11.
+Activation Cost: 60/50/40 Spell Points.
+Cooldown: 2 seconds.
+Metamagic: Extend, Quicken, Enlarge. Spell Resistance: No."""
+icon = "ResistEnergies"
+
+[[row]]
+name = "Reverberate"
+description = """
+Wrack the target's body with internal Sonic booms, dealing 1 to 10 Sonic damage +1
+per three caster levels (up to caster level 18) every 2 seconds for a duration
+of 16 seconds. This spell can stack on the target up to three times, increasing
+the damage with each stack."""
+icon = "Reverberate"
+max_caster_level = 18
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 10
+bonus_dice_bonus = 1
+damage = "Sonic"
+per_caster_levels = 3
+spell_power = "Sonic"
+
+[[row]]
+name = "Roc's Strength"
+description = "You temporarily gain strength and power, giving a +6 Enhancement bonus to Strength."
+icon = "RocsStrength"
+
+[[row]]
+name = "Ruin"
+cost = 75
+description = "Deal 500 untyped damage to a single enemy. Spell Point Cost: 75, No saving throw."
+icon = "Ruin"
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+base_dice_bonus = 500
+damage = "Untyped"
+spell_power = "Untyped"
+
+[[row]]
+name = "Scorching Summer"
+description = """
+Target: Foe, Directional
+Sends out a blast of Fire from the caster striking nearby enemies for 1d6+2 Fire
+damage for every caster level. If targets are immune to Fire damage they become
+vulnerable to it for 15 seconds. Max caster level 20. Evocation DC using the
+highest of Intelligence, Charisma or Wisdom.
+Can only be used if you have Summer Affinity Active."""
+icon = "ScorchingSummer"
+schools = ["Evocation"]
+
+[[row]]
+name = "Shadow Phase"
+description = """
+You become invisible and are able to move through monsters as if you were ethereal
+for 20 seconds."""
+icon = "ShadowPhase"
+max_caster_level = 30
+
+[[row]]
+name = "Shard Storm"
+description = """
+Summons a cloud of acidic poisonous shards that randomly strikes enemies
+within 15 meters. 6 strikes over 6 seconds. Each shard deals 1d3 poison and Acid
+damage per character level. This consumes all Primal Charges, and the damage of
+each shard is increased by 25% per Primal Charge. If 3 or more Primal Charges
+are consumed, the bonus damage is doubled, and you gain Shard Deflection for 12
+seconds."""
+icon = "ShardStorm"
+metamagics = [
+    "Empower",
+    "Quicken",
+    "Maximize",
+]
+
+[[row]]
+name = "Shielding Construct"
+description = """
+You create a drone set to shield your allies. When activated, you and your allies
+nearby (at the time of activation) gain the effects of the shield spell for 2
+minutes, granting a +4 Shield bonus to Armor Class and protection from Magic
+Missiles. The force shield created by this reduces grazing hits by 10%, as if it
+were a small shield. This effect is dispelled by death and antimagic."""
+icon = "RMShieldingConstruct"
+
+[[row]]
+name = "Shocking Bolt"
+description = """
+Fires a small bolt of Electricity at a target, doing 1d6+2 Electric damage for every
+caster level (up to a maximum of 10d6+20 at caster level 10). This spell shares
+a cooldown with Freezing Bolt, Flaming Bolt and Caustic Bolt."""
+icon = "ShockingBolt"
+max_caster_level = 10
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row]]
+name = "Smoke Trap"
+description = """
+Toss a Smoke Grenade at a single enemy. If they fail a Fortitude save
+(DC20 + Dex/Int/Wis Mod + Assassinate DCs + Trap DCs) they lose their immunity
+to sneak attack and 25% of their fortification for 25 seconds.
+Cooldown: 12 seconds"""
+icon = "SmokeTrap"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Snap Trap"
+description = """
+Toss a snapping trap at the targeted enemy. If they don't make a Fortitude Save
+(DC20 + Dex/Int/Wis Mod + Assassinate DCs + Bonus Trap DCs) they are rooted in
+place by the trap's jaws for 12 seconds."""
+icon = "SnapTrap"
+schools = ["Evocation"]
+
+[[row]]
+name = "Song of Freedom"
+description = """
+Activate this bard ability to create an effect equivalent to the break enchantment
+spell on one of your allies. Requires 15 ranks of the Perform skill."""
+icon = "SongOfFreedom"
+
+[[row]]
+name = "Soundburst SLA"
+description = """
+Casts Soundburst as a Spell-Like Ability (benefits from metamagic feats
+at no additional cost).
+A tremendous cacophony creates a burst area of effect dealing to every creature 1d6
+points of Sonic damage per caster level (Max Caster Level 15), and each creature must
+succeed on a Fortitude save to avoid being stunned for 6 seconds.
+Fortitude (DC 10 + character level + charisma or wisdom mod) or Spell Resistance save
+negates stun.
+(Cooldown 15/11/7 seconds, Costs 12/9/6sp)"""
+icon = "Soundburst"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Sonic"
+spell_power = "Sonic"
+
+[[row]]
+name = "Spill the Bad Stuff"
+description = """
+Primer Element: Gildleaf
+Deals 1d6+4 per Caster Level of a random type of damage to enemies in a short cone.
+The damage all scales with Positive Spell Power. Affected enemies have a chance
+to be Blinded, Dazed, Silenced, Tripped, Stunned, or Paralyzed.
+(Fortitude save negates)."""
+icon = "ApothSpillTheBadStuff"
+metamagics = [
+    "Primer",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row]]
+name = "Spirit Blades"
+description = """
+Create a series of spectral blades which fly at a nearby opponent. Each of the five
+blades does 2d20 Piercing and 1d20 Force damage."""
+icon = "SpiritBlades"
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+]
+
+[[row]]
+name = "Spring Storm"
+description = """
+Target: Foe, Directional
+Creates a dark storm cloud over the target which blasts it and nearby enemies
+with lightning for 1d6+2 Electric damage for every caster level. If targets are
+immune to Electric damage they become vulnerable to it for 15 seconds.
+Max caster level 20. Evocation DC using the highest of Intelligence, Charisma
+or Wisdom.
+Can only be used if you have Spring Affinity Active."""
+icon = "SpringStorm"
+schools = ["Evocation"]
+
+[[row]]
+name = "Summon Archon"
+description = """
+Toggle: Spell like ability: A small lantern archon hovers over your shoulder and
+attacks nearby enemies. This archon is indestructible, deals 1 to 3 + caster
+level light damage every 2 seconds, and uses half of your Light Spell Power and
+Spell Critical effects for its light beam attacks. The archon will only attack
+enemies that have already been damaged, and will not attack fascinated or
+mesmerized foes, and always attacks the enemy with the fewest hit points in range.
+All threat generated by the archon is applied to you.
+Cost: 20 spell points. Cooldown: 6 second."""
+icon = "SummonArchon"
+max_caster_level = 20
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 3
+bonus_dice_bonus = 1
+damage = "Light"
+spell_power = "Light/Alignment"
+
+[[row]]
+name = "Sun Bolt"
+description = """
+Casts Sun Bolt as a Spell-Like Ability doing 1d6+3 damage per caster level (benefits
+from metamagic feats at no additional cost). Reflex save DC(10 + character level
++ charisma or wisdom mod) for half damage. (Cooldown 12 seconds, 12sp)"""
+icon = "SunBolt"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Light"
+per_caster_levels = 1
+spell_power = "Light/Alignment"
+
+[[row]]
+name = "Sun Pillar"
+description = """
+Epic Strike: Bring a beam of light down on a single enemy, dealing 1d6+6 Light
+damage per caster level. Cooldown 6 seconds, cost 5 Spell Points.
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "SunPillar"
+
+[[row]]
+name = "Throat Dagger"
+description = """
+Damages an enemy from afar for 1d4+4 Piercing damage per character level.
+Damaged non-boss enemies cannot cast spells for 6 seconds.
+Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No"""
+icon = "ThroatDagger"
+max_caster_level = 40
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Pierce"
+
+[[row]]
+name = "Thunder Snow"
+description = """
+Sends forth a wide wave of freezing hail before you with
+a narrow blast of lightning at its center directly in front of the caster.
+The hail deals 1d6 Cold damage per character level, Fortitude save for half
+(DC: 20 + Evocation Bonuses + Highest Mental Ability Score Modifier).
+The bolt of lightning strikes for 1d6 per character level. Reflex save for half.
+This consumes all Primal Charges, and damage of both the hail and lightning are
+increased by 25% per Primal Charge. If 3 or more Primal Charges are consumed,
+enemies caught within are slowed by 70%."""
+icon = "ThunderSnow"
+metamagics = [
+    "Empower",
+    "Quicken",
+    "Maximize",
+]
+
+[[row]]
+name = "Treasure Finding"
+description = """
+Activate this ability to harness the bloodline of House Tharashk to cast Treasure
+Finding once per rest. Also allows you to use your Least and Lesser Marks of
+Finding an extra time per rest. Treasure Finding lets you target an unopened
+chest and twist fate for a chance at better rewards for the entire party.
+Chests can only be improved in this way one time, and there is a chance of
+failure based on your Charisma."""
+icon = "TreasureFinding"
+
+[[row]]
+name = "Unbreakable Forcefield"
+description = """
+For 6 seconds, your target takes -95% damage from all sources (except Untyped damage).
+(This is a separate cooldown from the Mass version)."""
+icon = "RMUnbreakableForcefield"
+
+[[row]]
+name = "Unleash Iron Defender"
+description = "Activate this ability to summon your Iron Defender companion."
+icon = "IronCompanion"
+
+[[row]]
+name = "Unyielding Sovereignty"
+description = """
+Fully heals all hit point damage done to a targeted ally, and removes ability damage,
+death penalty effects, negative levels, and the conditions blinded, dazed,
+deafened, diseased, exhausted, fatigued, feebleminded, insanity, nauseated,
+poisoned, and stunned. (Cooldown: 5 minutes)"""
+icon = "UnyieldingSovereignty"
+
+[[row]]
+name = "Vault"
+description = """
+Use your quarterstaff to propel yourself forward at great speed.
+Requires you to have a quarterstaff equipped. (Cooldown: 15 seconds)"""
+icon = "Vault"
+
+[[row]]
+name = "Venom Vial"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of magical poison, you throw a projectile at a single foe
+that deals 3 to 8 Poison damage per caster level, max caster level 10.
+This poison will leave the enemy Contaminated.
+DND Dice: Deals 1d6+2 Poison damage per caster level, max 10d6+20"""
+icon = "BomVenomVial"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Accelerate",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row]]
+name = "Vial Smash: Acid"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of caustic liquid, you throw it at your feet dealing 2 to 7
+Acid damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Acid damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half."""
+icon = "VialSmashAcid"
+max_caster_level = 5
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+per_caster_levels = 1
+spell_power = "Acid"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial Smash: Cold"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of freezing liquid, you throw it at your feet dealing 2 to 7
+Cold damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Cold damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half."""
+icon = "VialSmashCold"
+max_caster_level = 5
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+per_caster_levels = 1
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial Smash: Electric"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of shocking liquid, you throw it at your feet dealing 2 to 7
+Electric damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Electric damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half."""
+icon = "VialSmashElectric"
+max_caster_level = 5
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+per_caster_levels = 1
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial Smash: Fire"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of burning liquid, you throw it at your feet dealing 2 to 7
+Fire damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Fire damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half."""
+icon = "VialSmashFire"
+max_caster_level = 5
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+per_caster_levels = 1
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Vial Smash: Poison"
+description = """
+Primer Element: Crimsonite
+Conjuring a bottle of toxic liquid, you throw it at your feet dealing 2 to 7
+Poison damage per caster level to nearby enemies, max caster level 5.
+
+DND Dice: Deals 1d6+1 Poison damage per caster level, max 10d6+10. A successful
+Reflex saves reduces the damage by half."""
+icon = "VialSmashPoison"
+max_caster_level = 5
+metamagics = [
+    "Primer",
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+per_caster_levels = 1
+spell_power = "Poison"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Voltaic Obliteration"
+description = """
+Primer Element: Crimsonite
+Throw a vial that explodes with Electricity on impact, dealing 1d6+3 Electric
+damage per Caster Level to all enemies nearby. (Max Caster Level 10)"""
+icon = "BomVoltaicObliteration"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Empower",
+    "Quicken",
+    "Maximize",
+    "Heighten",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row]]
+name = "Wall of Healing"
+description = """
+Create a wall that persists for 30 seconds.
+Allies and Undead in the wall take 1 Cure Moderate Wounds spell every few seconds.
+Spell Point Cost: 30 Spell points
+Cooldown: 1 Minute cooldown."""
+icon = "BoHWallOfHealing"
+max_caster_level = 20
+
+[[row.damage]]
+base_dice_bonus = 4
+base_dice_number = 2
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row]]
+name = "Warding Construct"
+description = """
+You create a drone set to counter magical spells. Every 10 seconds, you and nearby
+allies gain a +3 Alchemical bonus to Saving Throws vs. Magic and +3 Alchemical
+bonus to Saving Throws vs. Traps that lasts for 10 seconds. This effect is
+dispelled by death and antimagic."""
+icon = "RMWardingConstruct"
+
+[[row]]
+name = "Wave of Poison"
+description = """
+Primer Element: Ceruleite
+You infect enemies in a short cone with a deadly poison that eats away at them.
+Affected enemies take 2d4 Poison damage plus 1 Poison damage per 2 Caster
+Levels every 2 seconds for 12 seconds. This poison will leave enemies
+Contaminated. (Max Caster Level: 10)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds."""
+icon = "VileWaveOfPoison"
+max_caster_level = 10
+metamagics = [
+    "Primer",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+base_dice_number = 2
+base_dice_sides = 4
+bonus_dice_bonus = 1
+damage = "Poison"
+per_caster_levels = 1
+spell_power = "Poison"
+
+[[row]]
+name = "Weird"
+description = """
+A targeted foe and all nearby enemies are subject to a Phantasmal Killer effect,
+with a DC20 + highest of INT/WIS/CHA modifier + Illusion spell bonuses to prevent
+the death."""
+icon = "PhantasmalKiller"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+
+[[row.dc]]
+amount = [20]
+dc_type = "Negate"
+dc_versus = "Will"
+mod_abilities = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+schools = ["Illusion"]
+
+[[row]]
+name = "Wholeness of Spirit"
+description = """
+Casts a Heal spell on you, cures all ability damage, negative levels
+and other adverse conditions affecting you. Cost 30ki."""
+icon = "WholenessOfSpirit"
+
+[[row]]
+name = "Wild Empathy"
+description = """
+Activate this ability to lower an animal's or beast's aggression, effectively
+mesmerizing them."""
+icon = "WildEmpathy"
+
+[[row]]
+name = "Wind Dance"
+description = """
+You leap through the air, propelled by a gust of wind. Uses of this ability recharge
+at a rate of one every 15 seconds in private areas, and 3 seconds in town.
+(Activation Cost: 10 Spell Points. Cooldown: 3 seconds.)"""
+icon = "WindDance"
+
+[[row]]
+name = "Winter Hail"
+description = """
+Target: Foe, Directional
+Pounds a location with hail causing 1d6+2 Cold damage for every caster level.
+If targets are immune to Cold damage they become vulnerable to it for 15 seconds.
+Max caster level 20. Evocation DC using the highest of Intelligence, Charisma or
+Wisdom.
+Can only be used if you have Winter Affinity Active."""
+icon = "WinterHail"
+schools = ["Evocation"]
+
+[[row]]
+name = "Zero Degree Comet"
+description = """
+Evocation SLA. Hit target enemy with a falling chunk of ice for 1d6+28 Cold damage
+per caster level. A successful Reflex save reduces the damage by half.
+Cooldown 18 seconds, costs 40 Spell Points."""
+icon = "ZeroDegreeComet"
+schools = ["Evocation"]

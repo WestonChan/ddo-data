@@ -1,0 +1,258 @@
+[[row]]
+name = "Abyssal Resistance"
+acquire = "Train"
+description = "+1 to Fire, Cold, Acid, Electric and Sonic Resistance"
+icon = "AbyssalResistance"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fire Resistance"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Resistance"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Acid Resistance"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Electric Resistance"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sonic Resistance"
+value = 1
+
+[[row.group]]
+group_name = "Warlock Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+targets = [
+    "Fire",
+    "Cold",
+    "Acid",
+    "Electric",
+    "Sonic",
+]
+
+[[row.requirement]]
+items = ["Pact: The Abyss"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 10
+
+[[row]]
+name = "Carceri Resistance"
+acquire = "Train"
+description = "+5 Cold Resistance"
+icon = "CarceriResistance"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Resistance"
+value = 5
+
+[[row.group]]
+group_name = "Warlock Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[row.requirement]]
+items = ["Pact: The Carceri Storm"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 10
+
+[[row]]
+name = "Celestial Resistance"
+acquire = "Train"
+description = "+5 Electric Resistance"
+icon = "CelestialResistance"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Electric Resistance"
+value = 5
+
+[[row.group]]
+group_name = "Warlock Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[row.requirement]]
+items = ["Pact: Celestial"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 10
+
+[[row]]
+name = "Fey Resistance"
+acquire = "Train"
+description = "+5 Sonic Resistance"
+icon = "FeyResistance"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sonic Resistance"
+value = 5
+
+[[row.group]]
+group_name = "Warlock Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Sonic Resistance"
+effect_type = "EnergyResistance"
+targets = ["Sonic"]
+
+[[row.requirement]]
+items = ["Pact: Fey"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 10
+
+[[row]]
+name = "Fiendish Resistance"
+acquire = "Train"
+description = "+5 Fire Resistance"
+icon = "FiendishResistance"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fire Resistance"
+value = 5
+
+[[row.group]]
+group_name = "Warlock Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Pact: Fiend"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["True Patron: Fiend"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Warlock"]
+req_type = "BaseClass"
+value = 10
+
+[[row]]
+name = "Resistance of the Dark Powers"
+acquire = "Train"
+description = "+5 Sonic Resistance"
+icon = "TheDarkPowersResistance"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sonic Resistance"
+value = 5
+
+[[row.group]]
+group_name = "Warlock Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Sonic Resistance"
+effect_type = "EnergyResistance"
+targets = ["Sonic"]
+
+[[row.requirement]]
+items = ["Pact: The Dark Powers"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 10
+
+[[row]]
+name = "Resistance of the Great Old One"
+acquire = "Train"
+description = "+5 Acid Resistance"
+icon = "ResistanceOfTheGreatOldOne"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Acid Resistance"
+value = 5
+
+[[row.group]]
+group_name = "Warlock Resistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Acid Resistance"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[row.requirement]]
+items = ["Pact: Great Old One"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 10

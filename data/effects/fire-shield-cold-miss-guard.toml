@@ -1,0 +1,3 @@
+name = "Fire Shield (Cold) Miss-Guard"
+description_template = "When you are missed, there is a 10% chance that a Fire Shield (Cold) will be cast on you. If this effect activates while you have an active Fire Shield (Hot) from another source, they will nullify each other."
+verbose_name_template = "Fire Shield (Cold) Miss-Guard"

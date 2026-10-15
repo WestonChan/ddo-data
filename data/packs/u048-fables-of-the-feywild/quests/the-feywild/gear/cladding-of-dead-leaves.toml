@@ -1,0 +1,53 @@
+name = "Cladding of Dead Leaves"
+description = """
+FEYTWISTED Armor
+
+This medium armor is speckled with gold and other precious metals. It carries
+warmth despite the thin cloth material. Some part of its construction brings
+memories of industry, of silt and rain and the bustle of civilization. It smells
+of ozone and smoke and broken dreams. Was this made by a Sharn artificer, someone
+you've met on your travels? Or is this a memory of travels yet to come?"""
+drop_location = "The Feywild, Feytwisted chests"
+enhancement_bonus = 15
+icon = "MediumArmor_6"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 29
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 18
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"

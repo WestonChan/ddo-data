@@ -1,0 +1,35 @@
+name = "Warforged"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = "Warforged are a race of sentient constructs built to battle in the Last War.\nThe Warforged body is covered by plating, giving it an inherent AC bonus, but\npreventing the wearing of other armor. Healing spells have their benefits\nreduced by half when cast on Warforged. Only the arcane repair spells heal\nWarforged without any reduction. Warforged can improve their armor class using \nhe Adamantine Body and Mithral Body feats. Warforged can also gain additional\nabilities and customize their appearance by using docents."
+is_construct = true
+short_name = "Warforged"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Constitution"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Wisdom"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Charisma"
+
+[[auto_buy_skill]]
+skill = "Repair"
+
+[[granted_feat]]
+feat = "Composite Plating"
+
+[[granted_feat]]
+feat = "Light Fortification"
+
+[[granted_feat]]
+feat = "Warforged Traits"

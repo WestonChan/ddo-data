@@ -1,0 +1,30 @@
+name = "Trials of the Triceratops"
+bestowed_by = "Kaya of Mantru"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Isle of Dread"
+patron = "The Gatekeepers"
+zone = "Maurauder Cavern"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Trials_of_the_Triceratops"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

@@ -1,0 +1,16 @@
+name = "Woeful Quality Seeker (Legendary)"
+description = "+3 Quality bonus to confirm critical hits, and damage (before multiplier) on critical hits."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect_type = "Weapon_AttackCritical"
+extra_types = ["Weapon_DamageCritical"]
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: woeful (accessory)"

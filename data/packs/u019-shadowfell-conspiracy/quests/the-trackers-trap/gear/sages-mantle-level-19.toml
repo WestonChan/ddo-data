@@ -1,0 +1,23 @@
+name = "Sage's Mantle (Level 19)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "The Tracker's Trap, End reward"
+icon = "Cloak_8"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 19
+slot = "Back"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Tracker's Trap"

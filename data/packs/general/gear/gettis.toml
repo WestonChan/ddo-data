@@ -1,0 +1,42 @@
+name = "Gettis"
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 3
+icon = "HandAxe_1"
+item_category = "Weapon"
+item_type = "Hand Axe"
+material = "Steel"
+minimum_level = 15
+race_required = "Duergar Mindcleaver"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 9
+
+[[effect]]
+name = "Piercing 3"
+
+[[effect]]
+name = "Shockwave"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"
+
+[[weapon]]
+attack_modifier = "Strength, Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength, Dexterity"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Hand Axe"

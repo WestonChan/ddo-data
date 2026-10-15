@@ -1,0 +1,51 @@
+name = "Legendary Gravekeeper's Docent"
+description = "Sturdy, yet fashionable, clothing suitable for working six feet down."
+drop_location = "Land of Lamordia, red-named rare encounter chests"
+enhancement_bonus = 15
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 34
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 15
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "red-named rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

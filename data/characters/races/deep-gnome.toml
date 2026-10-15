@@ -1,0 +1,42 @@
+name = "Deep Gnome"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Also called deep gnomes, svirfneblin are said to dwell in great cities deep
+underground. A svirfneblin has wiry, rock-colored skin usually medium brown to
+brownish gray. Only males are bald; females have stringy gray hair. The average
+svirfneblin lifespan is 250 years.
+
+Starts with 1 level of: Wizard"""
+iconic_class = "Wizard"
+short_name = "Deep Gnome"
+starting_world = "Forgotten Realms"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Strength"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Intelligence"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Wisdom"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Charisma"
+
+[[granted_feat]]
+feat = "Gnomish Proficiencies"
+
+[[granted_feat]]
+feat = "Small Size Bonus"
+
+[[granted_feat]]
+feat = "Racial Spell Resistance"

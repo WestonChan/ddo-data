@@ -1,0 +1,192 @@
+[[row]]
+name = "The Long Shadow: +1 Attack and Damage"
+description = """
++1 to hit and Damage
+Rare: +2 PRR"""
+icon = "TheLongShadow"
+menu = "Ravenloft"
+set = "The Long Shadow"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Long Shadow: Attack and Damage: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Long Shadow: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "TheLongShadow"
+menu = "Ravenloft"
+set = "The Long Shadow"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Long Shadow: Charisma: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "The Long Shadow: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "TheLongShadow"
+menu = "Ravenloft"
+set = "The Long Shadow"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Long Shadow: Dexterity: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Long Shadow: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "TheLongShadow"
+menu = "Ravenloft"
+set = "The Long Shadow"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Long Shadow: Intelligence: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "The Long Shadow: +2 Reflex Saves"
+description = """
++2 Reflex saving throws
+Rare: +2 MRR"""
+icon = "TheLongShadow"
+menu = "Ravenloft"
+set = "The Long Shadow"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Long Shadow: Reflex: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "The Long Shadow: +2 to Hide and Move Silently"
+description = """
++2 to Hide and Move Silently
+Rare: +2 PRR"""
+icon = "TheLongShadow"
+menu = "Ravenloft"
+set = "The Long Shadow"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Long Shadow: Stealth: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Long Shadow: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "TheLongShadow"
+menu = "Ravenloft"
+set = "The Long Shadow"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Long Shadow: Melee Power: Rare +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "The Long Shadow: +3 Ranged Power"
+description = """
++3 Ranged Power
+Rare: +2 Ranged Power"""
+icon = "TheLongShadow"
+menu = "Ravenloft"
+set = "The Long Shadow"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Long Shadow: Ranged Power: Rare +2 Ranged Power"
+effect_type = "RangedPower"
+is_rare = true

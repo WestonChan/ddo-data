@@ -1,0 +1,32 @@
+name = "Omniscience"
+description = """
+This ring seems to be calmly aware of all that happens around you. It will warn
+you telepathically of danger, allowing you to dodge attacks more easily and
+avoid critical damage."""
+drop_location = "A Vision of Destruction, End chest"
+icon = "Ring_10a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Exceptional"
+value = 2
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Exceptional"
+value = 25
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "A Vision of Destruction"

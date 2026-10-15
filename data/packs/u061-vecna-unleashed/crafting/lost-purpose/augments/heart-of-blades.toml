@@ -1,0 +1,9 @@
+name = "Heart of Blades"
+description = "Adds the Legendary Heart of Blades set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 18
+set_bonus = "Heart of Blades"
+
+[[slot]]
+slot = "crafting: lost purpose"

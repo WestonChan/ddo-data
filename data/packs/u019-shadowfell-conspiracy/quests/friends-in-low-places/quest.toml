@@ -1,0 +1,25 @@
+name = "Friends in Low Places"
+bestowed_by = "Faline Abbot"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Shadowfell Conspiracy"
+patron = "Purple Dragon Knights"
+zone = "Drainage Culverts"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Friends_in_Low_Places"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 26

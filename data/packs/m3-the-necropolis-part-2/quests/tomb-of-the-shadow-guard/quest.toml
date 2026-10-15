@@ -1,0 +1,22 @@
+name = "Tomb of the Shadow Guard"
+bestowed_by = "Bragdii Wyvernborne"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Necropolis, Part 2"
+patron = "The Silver Flame"
+zone = "Tomb of the Shadow Guard"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tomb_of_the_Shadow_Guard"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8

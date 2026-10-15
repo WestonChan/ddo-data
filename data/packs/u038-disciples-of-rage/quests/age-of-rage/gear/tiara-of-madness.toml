@@ -1,0 +1,40 @@
+name = "Tiara of Madness"
+description = "The intelligent truly have more mind to bring to the madness."
+drop_location = "The Age of Rage, end chest"
+icon = "Helmet_18"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 14
+slot = "Head"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 145
+
+[[effect]]
+name = "Astute Skills Bonus"
+bonus_type = "Exceptional"
+value = 7
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Age of Rage"

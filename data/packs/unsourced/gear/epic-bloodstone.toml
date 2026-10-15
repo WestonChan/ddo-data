@@ -1,0 +1,37 @@
+name = "Epic Bloodstone"
+description = """
+A featureless blood red stone. Visions of murder and mayhem possess you the
+first time you pick up the Bloodstone."""
+drop_location = "Epic version of The Blood Stone"
+icon = "Trinket_5b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 20
+slot = "Trinket"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 7
+value2 = 11
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"

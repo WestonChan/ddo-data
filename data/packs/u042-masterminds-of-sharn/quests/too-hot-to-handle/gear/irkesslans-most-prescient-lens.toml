@@ -1,0 +1,51 @@
+name = "Ir'Kesslan's Most Prescient Lens"
+description = """
+This lens was crafted for King Sebastes ir'Kesslan, but has fallen into disrepair
+after its sudden disappearance."""
+drop_location = "Too Hot to Handle, End chest; Masterminds of Sharn (Epic) end reward; also rare drop in any Sharn quest"
+icon = "Goggles_17"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 29
+slot = "Goggles"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 37
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"
+
+[[source]]
+kind = "saga"
+name = "Masterminds of Sharn"
+tier = "epic"

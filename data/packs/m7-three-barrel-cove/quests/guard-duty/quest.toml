@@ -1,0 +1,22 @@
+name = "Guard Duty"
+bestowed_by = "Lars Riflee"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Three-Barrel Cove"
+patron = "The Free Agents"
+zone = "Aboard the Sea Witch"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Guard_Duty"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5

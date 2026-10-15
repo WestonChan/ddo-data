@@ -1,0 +1,42 @@
+name = "The Diadem of Rot"
+description = "Flailing remnants of Zuggtmoy's mark on the world as she retreats."
+drop_location = "Terror of the Demon Lords, end chest"
+icon = "Helmet_71a"
+item_category = "Clothing"
+material = "Flesh"
+minimum_level = 35
+slot = "Head"
+
+[[effect]]
+name = "Lifeblood of the Undead Prince"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 61
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 16
+
+[[effect]]
+name = "Legendary Demonic Curse"
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"

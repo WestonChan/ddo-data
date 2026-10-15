@@ -1,0 +1,64 @@
+name = "Morgana's Belt"
+description = """
+The dreaded Warpriest Morgana wore this belt in battle. Morgana is believed
+to have left Stormreach to assist the Devil's forces in Shavarath."""
+drop_location = "Bastion of Power, End chest ; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[effect]]
+name = "Warpriest"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Warpriest - 2 Piece bonus"
+effect_type = "ExtraTurns"
+extra_types = ["ExtraTurns"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Warpriest - 2 Piece bonus"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_Attack"]
+targets = ["All"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bastion of Power"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

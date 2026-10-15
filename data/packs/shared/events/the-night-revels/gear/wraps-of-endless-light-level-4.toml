@@ -1,0 +1,37 @@
+name = "Wraps of Endless Light (level 4)"
+description = "These silken wraps blaze with an aura of light."
+drop_location = "The Night Revels, Turn in various ingredients to Joe Candymaker"
+enhancement_bonus = 2
+icon = "HandWraps_1f"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Lesser Undead Bane"
+
+[[effect]]
+name = "Incandescence"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

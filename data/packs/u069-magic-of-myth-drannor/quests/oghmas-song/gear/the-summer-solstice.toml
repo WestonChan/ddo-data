@@ -1,0 +1,53 @@
+name = "The Summer Solstice"
+description = """
+The sun's might at its most prominent, the power of Summer at its fullest is
+channeled here."""
+drop_location = "Oghma's Song, end chest (rare)"
+icon = "Ring_21g"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Ring"
+
+[[effect]]
+name = "Alchemical Fire Attunement"
+
+[[effect]]
+name = "Soul of the Elements"
+
+[[effect]]
+name = "Beyond the Soul of Storm"
+
+[[effect]]
+name = "Beyond the Soul of Stone"
+
+[[effect]]
+name = "Beyond the Soul of Flame"
+
+[[effect]]
+name = "Beyond the Soul of Tide"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Brazen Brilliance"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Oghma's Song"

@@ -1,0 +1,78 @@
+name = "+11 Charisma Skills / +3 UMD, +151 Spell Points"
+description = """
+Ethereal/Escalation: +11/+3 (UMD) Insight bonus to Charisma based skills.
++151 Insight spell points"""
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Escalation"""
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Perform"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Insight"
+value = 151
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Intimidate",
+    "Perform",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [151]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: equipment tier 2"

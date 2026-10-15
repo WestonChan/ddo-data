@@ -1,0 +1,3 @@
+name = "Overwhelming Shockwave"
+description_template = "This legendary weapon resonates with incredible power. On a Vorpal strike that is confirmed as a critical hit, it releases a Shockwave that does tremendous Sonic damage to all foes. Furthermore, the enemy that the shockwave is released on is Dazed from the force of the blast."
+verbose_name_template = "Overwhelming Shockwave"

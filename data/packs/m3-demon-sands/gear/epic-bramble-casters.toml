@@ -1,0 +1,32 @@
+name = "Epic Bramble-Casters"
+description = """
+Created by some wizard to aid in outdoor pursuits, these gloves seem to deflect
+oncoming barbs, thorns and other sharp objects."""
+drop_location = "Epic version of Bramble-Casters"
+icon = "Gloves_5a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Hands"
+
+[[effect]]
+name = "Blighted Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Power of the Blight"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Spearblock V"
+
+[[effect]]
+name = "Greater Thorn Guard"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"

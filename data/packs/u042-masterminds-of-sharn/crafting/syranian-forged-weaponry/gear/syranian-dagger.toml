@@ -1,0 +1,52 @@
+name = "Syranian Dagger"
+description = "This tempered Adamantine weapon emanates subtle electrical power."
+drop_location = "Syranian Forged Weaponry, Turn in 1 Dampening Alloy, 1 Energizing Alloy, 1 Caustic Compound, 1 Stabilizing Compound"
+enhancement_bonus = 5
+icon = "Dagger_1m"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Adamantine"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Electrifying 4"
+
+[[effect]]
+name = "Holy 4"
+
+[[effect]]
+name = "Construct Bane 4"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Syranian Forged Weaponry"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Dagger"

@@ -1,0 +1,21 @@
+name = "Quality Perform +5"
+description = "Legendary quality bonus to Perform"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Perform"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Perform"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

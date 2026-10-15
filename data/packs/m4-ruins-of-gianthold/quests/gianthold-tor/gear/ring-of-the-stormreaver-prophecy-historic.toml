@@ -1,0 +1,28 @@
+name = "Ring of the Stormreaver Prophecy (historic)"
+description = """
+This ring is inscribed with runes that comprise a small fragment of the Stormreaver
+Prophecy. It is of recent manufacture, yet the skill used in its crafting suggests
+familiarity with lost giantcraft."""
+drop_location = "Gianthold Tor, Black Dragon 's chest"
+icon = "Ring_14b"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[source]]
+chest = "black dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

@@ -1,0 +1,3 @@
+name = "Giant Slayer"
+description_template = "This weapon has a small chance to force a target Giant to make a Difficulty Check 25 Fortitude save or die instantly."
+verbose_name_template = "Giant Slayer"

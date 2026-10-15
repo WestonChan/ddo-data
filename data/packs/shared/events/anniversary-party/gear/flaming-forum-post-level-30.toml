@@ -1,0 +1,62 @@
+name = "Flaming Forum Post (level 30)"
+accepts_sentience = true
+description = """
+This post, once part of a fence around an old speaking forum in Stormreach,
+contains some sick burns."""
+drop_location = "Anniversary Party, Turn in 100"
+enhancement_bonus = 14
+icon = "Club_1f"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 277
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "One-handed"
+weapon_type = "Club"

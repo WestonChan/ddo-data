@@ -1,0 +1,11 @@
+name = "Sealed in Gloom"
+description = """
+Sealed in Gloom: This item's true nature is hard to determine through all this gloom.
+It can have its power unsealed at the Augmentation Altar, adding one effect.
+Attempting to add another will remove the original."""
+family = "SealedInUndeath"
+icon = "Gloom"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in gloom"

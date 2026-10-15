@@ -1,0 +1,11 @@
+name = "Legendary Incineration"
+description = """
+Requires Fire Fire Fire
+Attacks have a chance [around ~1%] to deal massive Fire damage
+[around 2,000 (melee no buff)/around 10,000 (spell with spell amplifier),
+single target]."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

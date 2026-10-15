@@ -1,0 +1,2015 @@
+name = "Henshin Mystic V1"
+background = "MonkBackground"
+icon = "Monk"
+is_legacy = true
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Henshin Mystic: Riddle of Fire"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Each Core Enhancement in the Henshin Mystic tree, including this one,\ngrants you the following passive effects:\n+3 Melee Power \n+2 Fire Resistance \n+3 PRR\n+1 Imbue Dice\nEnemies have -2 Fire Resistance against your spells."
+variant = "v1"
+icon = "HMRiddleOfFire"
+internal_name = "HMCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Henshin Mystic: Ki Bolt"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Ki Spell-Like Ability: Ki Bolt
+Activation Cost: 5 Ki
+Cooldown: 3 seconds
+Ki Spell-Like Ability: You fir a Ki blast that deals 1d6 Fire and 1d4 Force damage
+per Caster Level to an opponent. This damage scales with 3x Melee power.
+The target also gains a stack of Weakened Will, Feeble Fortitude, and Reduced
+Reflexes. (-1 Saving Throws, 6 second duration. Can stack up to 5 times.)
+This ability has double normal spell range."""
+variant = "v1"
+icon = "HMKiBolt"
+internal_name = "HMCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["HMCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Henshin Mystic: Sounding Staff"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain the Quick Draw feat, which reduces the time between using Spell-Like
+Abilities and attacking. In addition, while you are centered and wielding a
+Quarterstaff, you gain +2 Ki each time you hit a creature.
+This stacks with all other sources of Ki generation."""
+variant = "v1"
+icon = "HMSoundingStaff"
+internal_name = "HMCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "KiHit"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Quick Draw"]
+
+[[enhancement.requirement]]
+items = ["HMCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Henshin Mystic: Incinerating Wave"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Fire Ki Spell-Like Ability: Incinerating Wave
+Activation Cost: 20 Ki
+Cooldown: 9 seconds
+Fire Ki Spell-Like Ability: You produce a wall of Ki flame that travels away
+from you, dealing 1d6+3 Fire and Force damage per Caster Level every 2 seconds
+to all opponents near it. This damage scales with 3x Melee Power. A successful
+Reflex save (DC 10 + Monk Level + Wisdom Mod + Stunning Bonuses) reduces
+damage by half."""
+variant = "v1"
+icon = "HMIncineratingWave"
+internal_name = "HMCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["HMCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Henshin Mystic: Cauldron Of Flame"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Fire Ki Spell-Like Ability: Cauldron of Flame
+Activation Cost: 30 Ki
+Cooldown: 1 minute
+Fire Ki Spell-Like Ability: You will flame into the world around you. Enemies
+around you take 1d2 Fire damage per Monk level every 2 seconds, increasing by
+an additional 1d2 Fire damage per Monk level every 2 seconds that you remain
+standing in the flames. This damage scales with 2x Melee Power. If you leave the
+area of the flames, this effect ends. A successful Reflex save (DC 10 + Monk Level
++ Wisdom Mod + Stunning Bonuses) reduces damage by half. While you remain
+inside your Cauldron of Flames, you personally gain +20 PRR, +10 MRR, and +15%
+Dodge that ignores Dodge Cap."""
+variant = "v1"
+icon = "HMCauldronOfFlame"
+internal_name = "HMCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enchantment"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Cauldron Of Flame"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enchantment"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Cauldron Of Flame"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enchantment"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Cauldron Of Flame"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["HMCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.stance]]
+name = "Cauldron Of Flame"
+description = "You are fighting within your Cauldron of Flame"
+icon = "HMCauldronOfFlame"
+
+[[enhancement]]
+name = "Henshin Mystic: Serenity"
+cost_per_rank = [1]
+description = "Your understanding of things has evolved to a level that defies description.\nPassive:\n+4 Wisdom \n+10 Concentration \n+1 Passive Ki Generation \n+12 Melee Power (in addition to the +3 you get for each Core, for a total of +15)\n+15% attack speed with Quarterstaves.\nWhile inside your Cauldron of Flame and wielding a Quarterstaff, +5 to Hit and\nDamage, +1 Critical Multiplier."
+variant = "v1"
+icon = "HMSerenity"
+internal_name = "HMCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "HMCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "KiPassive"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enchantment"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier.requirement]]
+items = ["Cauldron Of Flame"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enchantment"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier.requirement]]
+items = ["Cauldron Of Flame"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enchantment"
+effect_type = "Weapon_Alacrity"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier.requirement]]
+items = ["Cauldron Of Flame"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["HMCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "HMCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Henshin Mystic: Elemental Words I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Select one of four attacks that increase elemental damage taken by your opponent:
+(Activation Cost: 10 Ki. Cooldown: 15 seconds)"""
+icon = "HMElementalWords"
+internal_name = "HMElementalWordsI"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "All-Consuming Flame"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Fire Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to light up like tinder. On Hit: Target takes 10% more fire damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMAllConsumingFlame"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Porous Soul"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMPorousSoul"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Static Charge"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
+sonic damage for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMStaticCharge"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Winter's Touch"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Water Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMWintersTouch"
+is_clickie = true
+
+[[enhancement]]
+name = "Henshin Mystic: Henshin Staff Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and damage with quarterstaves."
+icon = "HMHenshinStaffTraining"
+internal_name = "HMHenshinStaffTrainingI"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Henshin Mystic: Mystic Training"
+cost_per_rank = [1]
+description = "+[1/2/3] to the DC's of your monk finishing moves"
+icon = "HMMysticTraining"
+internal_name = "HMMysticTraining"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Henshin Mystic: Negotiator"
+cost_per_rank = [1]
+description = """
++[1/2/3] Bluff, Diplomacy, and Haggle.
+Rank 3: The cooldown for your Bluff, Diplomacy, and Intimidate are reduced by 10%."""
+icon = "HMNegotiator"
+internal_name = "HMNegotiator"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Henshin Mystic: Animal Forms"
+cost_per_rank = [2]
+description = "You emulate a creature of nature in your training."
+variant = "v1"
+icon = "HMAnimalForms"
+internal_name = "HMAnimalForms"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Way of the Clever Monkey"
+cost_per_rank = [2]
+description = """
+Like a monkey, no trap in the world can catch you.
+You gain +1 to your haggle skill and all saves against traps, as well as energy
+resistance 2. At monk levels 3, 9, and 15, the skill and save bonuses increase
+by 1 and energy resistance increases by 2."""
+icon = "HMWayOfTheCleverMonkey"
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Monk"
+targets = ["Haggle"]
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+stack_source = "Monk"
+targets = ["Traps"]
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    2,
+    2,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+stack_source = "Monk"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Sonic",
+]
+
+[[enhancement.selection]]
+name = "Way of the Elegant Crane"
+cost_per_rank = [2]
+description = """
+Like a crane, you strike with precision and elegance.
+You gain +1 to your Diplomacy skill, and generate 1 additional Ki on critical hits.
+Your training has left you more fragile than normal, however, and have a -1
+penalty to Fortitude saves. At monk levels 3, 9, and 15, these bonuses and penalties
+increase by 1."""
+icon = "HMWayOfTheElegantCrane"
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Monk"
+targets = ["Diplomacy"]
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    -1,
+    -1,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -2,
+    -3,
+    -3,
+    -3,
+    -3,
+    -3,
+    -3,
+    -4,
+    -4,
+    -4,
+    -4,
+    -4,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+stack_source = "Monk"
+targets = ["Fortitude"]
+
+[[enhancement.selection]]
+name = "Way of the Faithful Hound"
+cost_per_rank = [2]
+description = """
+Like a hound, you are ever vigilant and at home amidst the pack.
+You gain +1 to your Listen skill and a +2 bonus to hit flanked opponents.
+At monk levels 3, 9, and 15, the bonuses increase by 1."""
+icon = "HMWayOfTheFaithfulHound"
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Monk"
+targets = ["Listen"]
+
+[[enhancement.selection]]
+name = "Way of the Patient Tortoise"
+cost_per_rank = [2]
+description = """
+Like a tortoise, you are calm at heart and worries wash over you.
+You gain +1 to your Concentration skill and 5 additional hit points.
+At monk levels 3, 9, and 15, the skill bonus increases by 1 and hit point bonus
+increases by 5."""
+icon = "HMWayOfThePatientTortoise"
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Monk"
+targets = ["Concentration"]
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    20,
+    20,
+    20,
+    20,
+    20,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+stack_source = "Monk"
+
+[[enhancement.selection]]
+name = "Way of the Tenacious Badger"
+cost_per_rank = [2]
+description = """
+Like a badger, you are most dangerous when grievously injured.
+You gain +1 to your Intimidate skill, and whenever you are below 50% health,
+your passive Ki regeneration is increased by 1 and you deal +0.25[W] additional
+damage. Your patience has suffered, however, and you generate Ki slower when
+meditating. At monk levels 3, 9, and 15, the skill bonus increases by 1 and the
+damage bonus increases by +0.25[W]."""
+icon = "HMWayOfTheTenaciousBadger"
+
+[[enhancement.selection.modifier]]
+amount_type = "Slider"
+amounts = [
+    100,
+    0,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Hitpoints"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "KiPassive"
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Monk"
+targets = ["Intimidate"]
+
+[[enhancement.selection.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0.25,
+    0.25,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.5,
+    0.75,
+    0.75,
+    0.75,
+    0.75,
+    0.75,
+    0.75,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+stack_source = "Monk"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["-50% Hitpoints"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Henshin Mystic: Elemental Words II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Select one of four attacks (not previously selected) that increase elemental damage taken by your opponent:"
+icon = "HMElementalWords"
+internal_name = "HMElementalWordsII"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["HMElementalWordsI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "All-Consuming Flame"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Fire Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to light up like tinder. On Hit: Target takes 10% more fire damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMAllConsumingFlame"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Porous Soul"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMPorousSoul"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Static Charge"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
+sonic damage for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMStaticCharge"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Winter's Touch"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Water Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMWintersTouch"
+is_clickie = true
+
+[[enhancement.selector_exclusion]]
+internal_name = "HMElementalWordsI"
+
+[[enhancement]]
+name = "Henshin Mystic: Henshin Staff Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and +2 to damage with quarterstaves."
+icon = "HMHenshinStaffTraining"
+internal_name = "HMHenshinStaffTrainingII"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["HMHenshinStaffTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Henshin Mystic: Quick Strike"
+cost_per_rank = [1]
+description = """
+Deals +[10/20/30]% Damage
+Cooldown: [18/15/12] seconds
+Melee Quarterstaff Attack: You gain a [5/15/25]% Morale bonus to melee doublestrike
+for 10 seconds."""
+icon = "HMQuickStrike"
+internal_name = "HMQuickStrike"
+is_clickie = true
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    15,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier.requirement]]
+items = ["Quick Strike"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Henshin Mystic: Elemental Ki Strikes"
+cost_per_rank = [2]
+description = """
+Select one of four attacks that have secondary after effects:
+(Activation Cost: 5 Ki. Cooldown: 3 seconds)"""
+variant = "v1"
+icon = "HMElementalKiStrikes"
+internal_name = "HMElementalKiStrikes"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Eagle Claw Attack"
+cost_per_rank = [2]
+description = """
+Deals +20% Damage
+Activation Cost: 5 Ki
+Cooldown: 3 seconds
+Fire Ki Melee Attack: Your attacks can shatter objects. You strike at weak points
+in your opponents armor or hide, applying four stacks of Armor Destruction.
+(Each stack reduces Armor Class by 1 and Fortification by 1% for 20 seconds.
+This effect can stack up to 15 times.)"""
+icon = "HMEagleClawAttack"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Fists of Iron"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Activation Cost: 5 Ki
++1 Critical Multiplier
++1 Critical Threat Range
+Cooldown: 3 seconds
+Earth Ki Melee Attack: You have imbued your attacks with extra force."""
+icon = "HMFistsOfIron"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "HMFIstsOfIron"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image HMFistsOfIron.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection]]
+name = "Knock on the Sky"
+cost_per_rank = [2]
+description = """
+Deals +10% Damage
+Activation Cost: 5 Ki
+Cooldown: 3 seconds
+Air Ki Melee Attack: You strike your opponent, deflecting their momentum.
+Your enemy deals 4% less physical damage for 30 seconds. This effect can stack up
+to 5 times."""
+icon = "HMKnockOnTheSky"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Unbalancing Strike"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Activation Cost: 5 Ki
+Cooldown: 3 seconds
+Water Ki Melee Attack: You have learned several joint strikes. You can attack
+these weak points of your opponent, throwing them off balance for a short period
+of time. This reduces their armor class by 2, applies a -10 penalty to their
+Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
+save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
+The target receives periodic saves to attempt to break free of this effect."""
+icon = "HMUnbalancingStrike"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Henshin Mystic: Unbalancing Strike"
+amount = [10]
+dc_type = "Sneak Attack Vulnerability"
+dc_versus = "Reflex"
+description = """
+Deals +30% Damage
+Cooldown: 3 seconds
+Water Ki Melee Attack: You have learned several joint strikes. You can attack
+these weak points of your opponent, throwing them off balance for a short period
+of time. This reduces their armor class by 2, applies a -10 penalty to their
+Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
+save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
+The target receives periodic saves to attempt to break free of this effect."""
+icon = "HMUnbalancingStrike"
+mod_ability = ["Wisdom"]
+tactical = "Trip"
+
+[[enhancement]]
+name = "Henshin Mystic: Contemplation"
+cost_per_rank = [1]
+description = """
++[1/2/3] Concentration and Will Saves.
+Rank 3: Your passive Ki regeneration is increased by 1."""
+variant = "v1"
+icon = "HMContemplation"
+internal_name = "HMContemplation"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "KiPassive"
+rank = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Henshin Mystic: Elemental Words III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Select one of four attacks (not previously selected) that increase elemental damage taken by your opponent:"
+icon = "HMElementalWords"
+internal_name = "HMElementalWordsIII"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["HMElementalWordsII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "All-Consuming Flame"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Fire Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to light up like tinder. On Hit: Target takes 10% more fire damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMAllConsumingFlame"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Porous Soul"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMPorousSoul"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Static Charge"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
+sonic damage for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMStaticCharge"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Winter's Touch"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Water Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMWintersTouch"
+is_clickie = true
+
+[[enhancement.selector_exclusion]]
+internal_name = "HMElementalWordsI"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HMElementalWordsII"
+
+[[enhancement]]
+name = "Henshin Mystic: Henshin Staff Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and damage with quarterstaves."
+icon = "HMHenshinStaffTraining"
+internal_name = "HMHenshinStaffTrainingIII"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["HMHenshinStaffTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Henshin Mystic: Lighting the Candle"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: While you are centered, you enhance your attacks with Ki flame.
+dealing +1d6 Fire damage on hit, and an additional 1d6 Force damage on critical.
+Your Ki spells also apply the Fire portion of this damage. The Fire and Force
+damage scale with Melee Power. Your Ki generation on hit is reduced by 1."""
+icon = "HMLightingTheCandle"
+internal_name = "HMLightingTheCandle"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-1]
+bonus_type = "Enhancement"
+effect_type = "KiHit"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Henshin Mystic: Lighting the Candle"
+description = """
+Imbue Toggle: While you are centered, you enhance your attacks with Ki flame.
+dealing +1d6 Fire damage on hit, and an additional 1d6 Force damage on critical."""
+group_name = "Imbue"
+icon = "HMLightingTheCandle"
+
+[[enhancement]]
+name = "Henshin Mystic: Embrace the Void"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Gain +[1/2/3] Meditation use per rest, +[1/2/3] to Dodge Cap, and regenerate Ki
+faster while meditating. While you are meditating, you generate a
+protective shield which can absorb up to [25/50/100] damage, and is refreshed
+every 3 seconds."""
+variant = "v1"
+icon = "HMEmbraceTheVoid"
+internal_name = "HMEmbraceTheVoid"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Henshin Mystic: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to any Ability score"
+variant = "v1"
+icon = "HMAbilityScore"
+internal_name = "HMAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Henshin Mystic: Elemental Words IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Select one of four attacks (not previously selected) that increase elemental damage taken by your opponent:"
+icon = "HMElementalWords"
+internal_name = "HMElementalWordsIV"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["HMElementalWordsIII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "All-Consuming Flame"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Fire Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to light up like tinder. On Hit: Target takes 10% more fire damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMAllConsumingFlame"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Porous Soul"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Earth Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to draw acid in like a sponge. On Hit: Target takes 10% more acid damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMPorousSoul"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Static Charge"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Air Ki Melee Attack: You strike your opponent and speak the secret words that cause
+them to feel the fury of the sky. On Hit: Target takes 10% more electrical and
+sonic damage for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMStaticCharge"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Winter's Touch"
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Activation Cost: 10 Ki
+Cooldown: 15 seconds
+Water Ki Melee Attack: You strike your opponent and speak the secret words that
+cause them to feel the chill of death. On Hit: Target takes 10% more cold damage
+for 30 seconds, and gains 2 stacks of Vulnerable."""
+icon = "HMWintersTouch"
+is_clickie = true
+
+[[enhancement.selector_exclusion]]
+internal_name = "HMElementalWordsI"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HMElementalWordsII"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HMElementalWordsIII"
+
+[[enhancement]]
+name = "Henshin Mystic: Henshin Staff Training IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and +2 to damage with quarterstaves."
+icon = "HMHenshinStaffTraining"
+internal_name = "HMHenshinStaffTrainingIV"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["HMHenshinStaffTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Henshin Mystic: Focus"
+cost_per_rank = [2]
+description = """
+While centered, you and nearby party members gain a +10 Exceptional bonus to
+Universal Spell Power, a +5 Exceptional Bonus to hit, and a +5 Exceptional bonus
+to Melee and Ranged Power."""
+variant = "v1"
+icon = "HMFocus"
+internal_name = "HMFocus"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Exceptional"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Exceptional"
+effect_type = "MeleePower"
+extra_types = [
+    "RangedPower",
+    "Weapon_Attack",
+]
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["HMEmbraceTheVoid"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Henshin Mystic: Ability II"
+cost_per_rank = [2]
+description = "+1 to an Ability of your choice:"
+variant = "v1"
+icon = "HMAbilityScore"
+internal_name = "HMAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["HMAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Henshin Mystic: Void Strike"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Activation Cost: 10 Ki
++1 Critical Multiplier
++1 Critical Threat Range
+Cooldown: 3 seconds
+Void Ki Melee Attack: You have learned to make attacks backed by pure Ki energy.
+On Hit: +30% damage, +1 to Critical Threat Range and Multiplier, and 10d6 Force
+damage that scales with Melee Power. On Vorpal: Your enemy is erased from
+existence."""
+variant = "v1"
+icon = "HMVoidStrike"
+internal_name = "HMVoidStrike"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["HMElementalWordsIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Henshin Mystic: Henshin Staff Training V"
+cost_per_rank = [2]
+description = "+3 to hit and damage with quarterstaves."
+icon = "HMHenshinStaffTraining"
+internal_name = "HMHenshinStaffTrainingV"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+items = ["HMHenshinStaffTrainingIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Henshin Mystic: Staff Specialization"
+cost_per_rank = [2]
+description = """
+You gain a +1 Competence bonus to Critical Damage Multiplier and Threat Range
+with quarterstaves."""
+icon = "HMStaffSpecialization"
+internal_name = "HMStaffSpecialization"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalMultiplier"]
+targets = ["Quarterstaff"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Henshin Mystic: Self Defense"
+cost_per_rank = [2]
+description = """
+Grants +5 MRR and MRR Cap.
+You gain a +25% Competence bonus to Max Hit Points"""
+variant = "v1"
+icon = "SelfDefense"
+internal_name = "HMSelfDefense"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+extra_types = ["MRRCap"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Henshin Mystic: Balance in Dawn"
+cost_per_rank = [2]
+description = "Select a melee attack that opposes your philosophy."
+variant = "v1"
+icon = "HMBalanceInDawn"
+internal_name = "HMBalanceInDawn"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Henshin Mystic: Every Light Casts a Shadow"
+cost_per_rank = [2]
+description = """
+Deals +20% Damage
+Activation Cost: 15 Ki
+Cooldown: 12 seconds
+Dark Ki Melee Attack: On Damage: Target suffers 1d4 Negative Levels.
+All nearby enemies suffer 1d2 Negative Levels."""
+icon = "HMEveryLightCastsAShadow"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = ["Path of Harmonious Balance: Fists of Light"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Henshin Mystic: Shadows Cannot Exist Without Light"
+cost_per_rank = [2]
+description = """
+Deals +20% Damage
+Activation Cost: 15 Ki
+Cooldown: 6 seconds
+Light Ki Melee Attack: On Damage: Target suffers 1d6 Light damage every 2 seconds
+for 10 seconds. This can stack up to 10 times. All allies around you receive 100
+Positive Energy healing. (This healing effect is unaffected by Spell Power.)"""
+icon = "HMShadowsCannotExistWithoutLight"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = ["Path of Inevitable Dominion: Fists of Darkness"]
+req_type = "Feat"
+
+[[requirement]]
+items = ["Monk"]
+req_type = "Class"

@@ -1,0 +1,21 @@
+name = "Legendary Green Steel Helm"
+description = "A helmet crafted from green steel."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+icon = "Helmet_7b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Head"
+
+[[socket]]
+slot = "crafting: equipment tier 1"
+
+[[socket]]
+slot = "crafting: equipment tier 2"
+
+[[socket]]
+slot = "crafting: equipment tier 3"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Green Steel items"

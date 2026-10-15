@@ -1,0 +1,279 @@
+name = "Dragon Lord"
+alignments = ["Any"]
+bab = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+base_class = "Fighter"
+class_specific_feat_types = [
+    "Minor Draconic Aura",
+    "Major Draconic Aura",
+    "Superior Draconic Aura",
+]
+description = """
+Like regular Fighters, Dragon Lords receive more feats than other classes, but unlike
+a standard Fighter, some of those feats are Draconic Auras, which channel power
+of Dragons to aid them and their allies.
+
+Dragon Lords are able to use a wide variety of weapons, armor, and some shields.
+Dragon Lords may select a Draconic Soul from their enhancements, granting them
+damage in that color Dragon's element."""
+fortitude = "good"
+hit_points = 10
+large_icon = "Fighter"
+reflex = "poor"
+skill_points = 2
+small_icon = "Fighter_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+will = "good"
+
+[[auto_buy_skill]]
+skill = "Intimidate"
+
+[[auto_buy_skill]]
+skill = "Heal"
+
+[[auto_feat]]
+level = 1
+feat = "Heavy Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Light Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Battle Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Falchion"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Great Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Great Club"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Great Sword"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Hand Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Heavy Pick"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Kukri"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Light Hammer"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Light Pick"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Longbow"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Longsword"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Maul"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Rapier"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Scimitar"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Shortbow"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Shortsword"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Throwing Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Throwing Hammer"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Warhammer"
+
+[[auto_feat]]
+level = 1
+feat = "Medium Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Club"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dart"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Morningstar"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Quarterstaff"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Sickle"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Throwing Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Unarmed"
+
+[[auto_feat]]
+feat_name = "Second Wind"
+level = 2
+
+[[feat_slot]]
+feat_type = "Minor Draconic Aura"
+level = 1
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 2
+update_list = [
+    "Shield Proficiency (General)",
+    "Tower Shield Proficiency",
+]
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 4
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 6
+
+[[feat_slot]]
+feat_type = "Major Draconic Aura"
+level = 8
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 10
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 12
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 14
+
+[[feat_slot]]
+feat_type = "Superior Draconic Aura"
+level = 16
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 18
+
+[[feat_slot]]
+feat_type = "Fighter Bonus Feat"
+level = 20
+
+[[skill]]
+skill = "Intimidate"
+
+[[skill]]
+skill = "Jump"
+
+[[skill]]
+skill = "Repair"
+
+[[skill]]
+skill = "Swim"

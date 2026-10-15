@@ -1,0 +1,25 @@
+name = "Ring of the Stalker (Level 3)"
+description = """
+A bound Invisible Stalker makes this ring a dangerous asset for anyone striking
+their enemies from the shadows."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+icon = "Ring_24"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 3
+slot = "Ring"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 2
+value2 = 3
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 3
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

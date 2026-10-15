@@ -1,0 +1,3 @@
+name = "Feeding 10"
+description_template = "On Vorpal Hit: Your target incurs one Negative Level, and you gain +10 Temporary Hit Points. (These Temporary Hit Points last for one minute, or until used to negate incoming damage.)"
+verbose_name_template = "Feeding 10"

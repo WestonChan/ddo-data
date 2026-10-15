@@ -1,0 +1,51 @@
+name = "Epic Sacred Helm"
+description = """
+Though used primarily by drow ascetics, this helm will protect any healer from
+death magic and the undead."""
+drop_location = "Epic version of Sacred Helm"
+icon = "Helmet_10b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Head"
+
+[[clickie]]
+name = "Not needed!"
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Radiance Guard"
+
+[[effect]]
+name = "Negative Energy Absorption"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    10,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Not needed!"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

@@ -1,0 +1,34 @@
+name = "Torc of Prince Raiyum-de II"
+description = """
+An enterprising young lad with a gift from enchanting, Prince Raiyum-de created
+this golden torc to aid in his studies."""
+drop_location = "Zawabi's Revenge, warded chest"
+icon = "Necklace_18"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Transform Kinetic Energy"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 121
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"

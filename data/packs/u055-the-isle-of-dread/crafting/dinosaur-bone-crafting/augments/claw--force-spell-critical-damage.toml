@@ -1,0 +1,28 @@
+name = "Claw: Force Spell Critical Damage"
+description = "+5% Quality bonus to Force spell critical damage"
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Force Spell Critical Damage"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Force Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[slot]]
+slot = "isle of dread: claw (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact claw (accessory)"

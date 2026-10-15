@@ -1,0 +1,51 @@
+name = "Scorpion Staff"
+description = """
+Intricate Carvings of insects and scorpions decorate the length of this staff.
+When struck on the ground, it will summon a scorpion to fight for its wielder."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+enhancement_bonus = 2
+icon = "Quarterstaff_1"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 2
+slot = "Main Hand"
+
+[[clickie]]
+name = "Summon Monster II"
+clickie = "Summon Monster II"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Monster II"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

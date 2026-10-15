@@ -1,0 +1,3 @@
+name = "Unraveling Enchantments"
+description_template = "The enchantments on this item have become unstable and weakened with time, but those serving House Deneith may be able to restore it. Combine this item in Visbane's Folly atop Sentinel's Tower in House Deneith Enclave with a Sigil of the Goat, a Sigil of the Lion, and a Sigil of the Dragon to restore its original enchantments."
+verbose_name_template = "Unraveling Enchantments"

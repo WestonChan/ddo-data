@@ -1,0 +1,50 @@
+name = "Rusted Shamshir"
+description = """
+An elegant weapon with a curved, single-edged blade. The metal is marred by
+small flecks of rust. Scraping them off only causes more to appear."""
+drop_location = "The Tear of Dhakaan, Champion Prantag 's Chest"
+enhancement_bonus = 3
+icon = "Scimitar_6g"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Cold Iron"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Lesser Aberration Bane"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Cold Iron"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "champion prantag 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tear of Dhakaan"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.25
+handedness = "One-handed"
+weapon_type = "Scimitar"

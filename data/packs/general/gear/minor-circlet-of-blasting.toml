@@ -1,0 +1,23 @@
+name = "Minor Circlet of Blasting"
+description = "A slim golden circlet with an inscribed sun symbol."
+drop_location = "Random, Level ~5 chests/rewards"
+icon = "Helmet_5"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 5
+slot = "Head"
+
+[[clickie]]
+name = "Searing Light"
+clickie = "Searing Light"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Searing Light"]

@@ -1,0 +1,3 @@
+name = "The Dragging of the Depths 4"
+description_template = "Attuned to the dark depths of the waves below, this weapon is cold to the touch and unholy. Each hit drains life from your enemies, dealing 4d6 Evil damage, and when striking Good enemies, it also deals an additional 4d6 Cold damage."
+verbose_name_template = "The Dragging of the Depths 4"

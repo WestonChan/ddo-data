@@ -1,0 +1,20 @@
+name = "Lunar Gem of Ranged Power (Epic)"
+description = "+10 Profane Bonus to Ranged Power."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Profane"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Ranged Power"
+effect_type = "RangedPower"
+
+[[slot]]
+slot = "moon"

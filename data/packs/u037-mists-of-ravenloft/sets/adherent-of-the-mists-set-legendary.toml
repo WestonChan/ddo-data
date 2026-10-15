@@ -1,0 +1,191 @@
+name = "Adherent of the Mists Set (Legendary)"
+icon = "AdherentOfTheMists"
+
+[[item]]
+name = "Bell of Warding"
+
+[[item]]
+name = "Echo of Ravenkind"
+
+[[item]]
+name = "Echo of the Icon"
+
+[[item]]
+name = "Fleetfoot Necklace"
+
+[[item]]
+name = "Hands of the Dawn Healer"
+
+[[item]]
+name = "Legendary Adversion"
+
+[[item]]
+name = "Legendary Blight Inferno"
+
+[[item]]
+name = "Legendary Bracers of the Fallen Hero"
+
+[[item]]
+name = "Legendary Crumbling Gloves"
+
+[[item]]
+name = "Legendary Cursebane Ring"
+
+[[item]]
+name = "Legendary Dawn's Herald-Charm"
+
+[[item]]
+name = "Legendary Deathwarden"
+
+[[item]]
+name = "Legendary Flightfoot Greaves"
+
+[[item]]
+name = "Legendary Garstone's Lenses"
+
+[[item]]
+name = "Legendary Gauntlets of Innate Arcanum"
+
+[[item]]
+name = "Legendary Keylock Ring"
+
+[[item]]
+name = "Legendary Kindred Pendant"
+
+[[item]]
+name = "Legendary Knifepalm"
+
+[[item]]
+name = "Legendary Lore-Fueled Packbanner"
+
+[[item]]
+name = "Legendary Mantle of Fury"
+
+[[item]]
+name = "Legendary Mirrorplate Tower"
+
+[[item]]
+name = "Legendary Negotiator's Spectacles"
+
+[[item]]
+name = "Legendary Perfect Pinnacle"
+
+[[item]]
+name = "Legendary Phasecloak"
+
+[[item]]
+name = "Legendary Reflective Bloodstone"
+
+[[item]]
+name = "Legendary Ring of Nightfall"
+
+[[item]]
+name = "Legendary Scarlet Scale Cloak"
+
+[[item]]
+name = "Legendary Shadow's Footsteps"
+
+[[item]]
+name = "Legendary Silverthread Cloak"
+
+[[item]]
+name = "Legendary Skulled Ring"
+
+[[item]]
+name = "Legendary Softsole Slippers"
+
+[[item]]
+name = "Legendary Summoner's Spectacles"
+
+[[item]]
+name = "Legendary Suppressive Fire"
+
+[[item]]
+name = "Legendary Symphonic Lenses"
+
+[[item]]
+name = "Legendary Twisthallow Cloak"
+
+[[item]]
+name = "Legendary Vistani Fighter's Sash"
+
+[[item]]
+name = "Legendary Warsword Shield"
+
+[[item]]
+name = "Molten Silver Gauntlets"
+
+[[item]]
+name = "The Legendary Mistfallen"
+
+[[item]]
+name = "Van Richten's Legendary Cane"
+
+[[item]]
+name = "Van Richten's Spectacles"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Negative Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Repair Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "PRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"

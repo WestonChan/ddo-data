@@ -1,0 +1,44 @@
+name = "The Skull of the Horned King"
+description = """
+The skull of Baphomet, taken as his form faded away. He may regenerate in the
+Abyss, but this will be a lasting reminder of his defeat."""
+drop_location = "Terror of the Demon Lords, end chest"
+icon = "Helmet_71a"
+item_category = "Clothing"
+material = "Flesh"
+minimum_level = 35
+slot = "Head"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 18
+
+[[effect]]
+name = "Enhanced Bloodrage"
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"

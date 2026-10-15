@@ -1,0 +1,46 @@
+name = "Legendary Green Steel Heavy Mace"
+description = "A simple weapon comprised of a solid blunt head attached to a haft"
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+enhancement_bonus = 14
+icon = "HeavyMace_2"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 1"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 2"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 3"
+
+[[socket]]
+slot = "crafting: greensteel weapon active"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Green Steel items"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.2
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

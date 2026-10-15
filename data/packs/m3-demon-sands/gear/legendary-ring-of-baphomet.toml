@@ -1,0 +1,57 @@
+name = "Legendary Ring of Baphomet"
+description = """
+A large brass ring bearing demonic script. The metal is warm to the touch and
+appears to shrink to fit your finger."""
+drop_location = "Legendary version of Epic Ring of Baphomet"
+icon = "Ring_5a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 30
+slot = "Ring"
+
+[[clickie]]
+name = "Bestow Curse"
+clickie = "Bestow Curse"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Alignment Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Improved Demonic Shield"
+
+[[effect]]
+name = "Curse of Foolishness"
+bonus_type = "Penalty"
+
+[[effect]]
+name = "Curse of Repulsiveness"
+bonus_type = "Penalty"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Bestow Curse"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"

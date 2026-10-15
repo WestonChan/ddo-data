@@ -1,0 +1,36 @@
+name = "Legendary Mroranon's Might"
+icon = "Kundarak"
+
+[[item]]
+name = "Legendary Belt of the Mroranon"
+
+[[item]]
+name = "Legendary Helm of the Mroranon"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Strength"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

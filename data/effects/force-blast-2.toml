@@ -1,0 +1,3 @@
+name = "Force Blast 2"
+description_template = "This weapon ripples with intense force, dealing 2d6 Force damage on a successful hit, and an additional 2d6 Force damage on a critical hit."
+verbose_name_template = "Force Blast 2"

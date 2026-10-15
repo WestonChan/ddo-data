@@ -1,0 +1,59 @@
+name = "Frozen Wanderer"
+icon = "FrozenWanderer"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+5% Cold Spell Critical Damage"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "SpellCriticalDamage"
+targets = ["Cold"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Magical Resistance Rating Cap"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Spell Power"
+value = 50
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"

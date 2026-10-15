@@ -1,0 +1,24 @@
+name = "+1 Starter Breastplate"
+description = """
+A breastplate covers your front and back. A light suit of studded leather beneath
+the breastplate protects your limbs without restricting movement much."""
+drop_location = "The Voyage, End reward"
+enhancement_bonus = 1
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 5
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Voyage"

@@ -1,0 +1,32 @@
+name = "Aquatic Bracers (Level 13)"
+description = """
+These bracers are crafted from a very lightweight metal, and sport fin-like
+protrusions on their sides."""
+drop_location = "The Crucible, Underwater chest (Heroic Hard)"
+icon = "Bracers_3e"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 13
+slot = "Wrists"
+
+[[effect]]
+name = "Underwater Action"
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "underwater chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crucible"

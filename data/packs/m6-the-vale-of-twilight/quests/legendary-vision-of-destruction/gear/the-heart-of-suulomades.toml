@@ -1,0 +1,42 @@
+name = "The Heart of Suulomades"
+description = "The ultimate prize from besting the Devil General himself."
+drop_location = "Legendary Vision of Destruction, end chest"
+icon = "Trinket_53"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Trinket"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Devil's Blood"
+
+[[effect]]
+name = "Devil's Bones"
+bonus_type = "Enhancement"
+value = 23
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"

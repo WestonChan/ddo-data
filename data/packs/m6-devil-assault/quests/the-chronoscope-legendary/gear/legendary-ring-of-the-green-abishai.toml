@@ -1,0 +1,39 @@
+name = "Legendary Ring of the Green Abishai"
+description = "This ring seems to be attuned to elemental power."
+drop_location = "The Chronoscope (Legendary), End Chest or Legendary version of Epic Ring of the Green Abishai"
+icon = "Ring_7m"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 30
+slot = "Ring"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Insight"
+value = 75
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Quality"
+value = 37
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Improved Metamagic"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest or legendary version of epic ring of the green abishai"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

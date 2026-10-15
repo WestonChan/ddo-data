@@ -1,0 +1,27 @@
+name = "Bronze Figurine"
+description = "This simple bronze figurine is somewhat tranished."
+drop_location = "Rosemary's Ballad, End chest"
+icon = "Trinket_8"
+item_category = "Jewelry"
+material = "Copper"
+minimum_level = 3
+slot = "Trinket"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 31
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rosemary's Ballad"

@@ -1,0 +1,53 @@
+name = "The Gavel of Daanvi"
+description = "Bring the law to your battlefield!"
+drop_location = "Order in the Court!, end chest"
+enhancement_bonus = 5
+icon = "HeavyMace_1j"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Axiomatic 4"
+
+[[effect]]
+name = "Chaotic Outsider Bane 4"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Favored Weapon"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Order in the Court!"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

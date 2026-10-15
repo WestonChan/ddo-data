@@ -1,0 +1,42 @@
+name = "University Champion's Helm"
+description = """
+This helm was clearly used by some past adventurer, but that hasn't diminished
+its potential."""
+drop_location = "Party 101, End chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 18
+slot = "Head"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 14
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 9
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Party 101"

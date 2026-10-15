@@ -1,0 +1,111 @@
+name = "Mournlode Breastplate (level 16)"
+description = """
+Metal armor constructed from valuable purple Mournlode crystal is imbued with
+a protective, almost holy power. Undead are seared by it, and it protects the
+wearer from evil."""
+drop_location = "Vaults of the Artificers, Turn in Various Cannith challenge ingredients"
+enhancement_bonus = 4
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Magesteel"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 15
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 5
+
+[[clickie]]
+name = "Negative Energy Absorption"
+clickie = "Negative Energy Absorption"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Protection from Evil"
+bonus_type = "Deflection"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    10,
+    10,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Negative Energy Absorption"]
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+5 Enhancement Bonus and Undead Guard 3"
+description = """
++5 Enhancement Bonus: +5 Enhancement bonus to Armor Class.
+Protection +7: Passive: +7 Deflection bonus to Armor Class.
+Resistance +7: Passive: +7 Resistance bonus to Fortitude, Reflex, and Will Saving Throws."""
+icon = "Upgrade"
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Deflection"
+effect = "Armor Class"
+value = 7
+
+[[socket.option.effect]]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Green Augment Slot"
+description = "Adds a Green augment slot to this item"
+icon = "Upgrade"
+min_level = 16
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

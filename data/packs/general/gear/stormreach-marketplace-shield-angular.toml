@@ -1,0 +1,37 @@
+name = "Stormreach Marketplace Shield (Angular)"
+description = """
+This shield depicts the market place tent, center of Stormreach commerce and
+trade and beating heart of the city."""
+drop_location = "DDO Store"
+enhancement_bonus = 3
+icon = "Shield_41"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 1
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 6
+max_dex_bonus = 0
+shield_bonus = 6
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

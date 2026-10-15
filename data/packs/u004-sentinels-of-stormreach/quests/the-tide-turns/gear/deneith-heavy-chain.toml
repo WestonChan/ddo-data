@@ -1,0 +1,41 @@
+name = "Deneith Heavy Chain"
+description = """
+This armor is made of doubled layers of heavy chainmail that rival the protection
+of plate. It is typically worn by elite mercenaries serving House Deneith that
+prefer strength of protection over mobility, but still wish to wear medium
+armor."""
+drop_location = "The Tide Turns, End chest"
+enhancement_bonus = 2
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 5
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 8
+armor_check_penalty = -5
+armor_type = "Medium"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "Invulnerability"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tide Turns"

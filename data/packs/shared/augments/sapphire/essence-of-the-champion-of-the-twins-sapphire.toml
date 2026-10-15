@@ -1,0 +1,18 @@
+name = "Essence of the Champion of the Twins"
+variant = "sapphire"
+description = """
+Healer's Bounty: This item has a small percentage chance to cast a heal spell
+on you when you take damage.
+Requires: 50 Threads of Fate, Empty Soul Vessel and Champion of the Twins (Legendary Vision of Destruction)"""
+family = "Sapphire"
+icon = "BlueRaidItemEssence"
+min_level = 30
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "green"

@@ -1,0 +1,3 @@
+name = "Fiery Detonation"
+description_template = "This weapon is imbued with a fiery wrath. On an attack roll of 20 which is confirmed as a critical hit this burning power will be released, dealing damage to the target and all enemies near it for 15d6 fire damage.A successful Fortitude save (DC 39) reduces this by half."
+verbose_name_template = "Fiery Detonation"

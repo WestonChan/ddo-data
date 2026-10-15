@@ -1,0 +1,15 @@
+name = "Dolorous Seeker (Legendary)"
+description = "+15 Enhancement bonus to Critical Confirmation and Critical Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: dolorous (accessory)"

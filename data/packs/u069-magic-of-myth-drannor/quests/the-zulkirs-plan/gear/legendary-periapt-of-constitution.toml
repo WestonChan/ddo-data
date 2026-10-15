@@ -1,0 +1,45 @@
+name = "Legendary Periapt of Constitution"
+description = """
+A mark of constitution, recognizing the bearer's toughness while making them
+even tougher."""
+drop_location = "The Zulkir's Plan, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Trinket"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 78
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Zulkir's Plan"

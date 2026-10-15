@@ -1,0 +1,23 @@
+name = "Fingerless Gloves"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Gloves_3b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Razorclaw Shifter"
+slot = "Hands"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

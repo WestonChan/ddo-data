@@ -1,0 +1,36 @@
+name = "Legendary Brightbane Emerald"
+description = """
+Command +7. This armor or shield always appears brilliant and gleaming, no matter
+what he conditions and despite all attempts to paint over or obscure it.
+Coveted by military leaders of all sorts, it carries a powerful aura that
+grants a +7 Insight bonus on Charisma-based skill checks. Command armor and
+command shields make their owners very noticeable, imposing a -6 penalty on
+Hide checks."""
+family = "Emerald"
+icon = "Emerald"
+min_level = 30
+
+[[effect]]
+name = "Command"
+value = 7
+value2 = -6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Charisma"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-6]
+bonus_type = "Penalty"
+effect = "Hide"
+effect_type = "SkillBonus"
+targets = ["Hide"]
+
+[[slot]]
+slot = "green"

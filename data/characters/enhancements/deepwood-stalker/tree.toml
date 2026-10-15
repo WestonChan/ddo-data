@@ -1,0 +1,1516 @@
+name = "Deepwood Stalker"
+background = "RangerBackground"
+icon = "Ranger"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Deepwood Stalker: Far Shot"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++1 Sneak Attack Die. +10 Positive Spell Power. Your Point Blank Shot and Ranged
+Sneak Attack range is increased by 5 meters for each Deepwood Stalker Core
+Ability you possess."""
+icon = "DSFarShot"
+internal_name = "DSCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["SneakAttackRange"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Deepwood Stalker: Sneak Attack"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++1 Sneak Attack Die. +10 Positive Spell Power. +1 Use of Wild Empathy.
+Each Deepwood Stalker Core Ability you acquire after this one also grants +1 use."""
+icon = "DSSneakAttack"
+internal_name = "DSCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ExtraWildEmpathy"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["SneakAttackRange"]
+
+[[enhancement.requirement]]
+items = ["DSCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Deepwood Stalker: Called Shot"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Select a melee or ranged attack that deals extra damage and renders a target
+vulnerable to sneak attacks.
+Passive: +10 Positive Spell Power."""
+icon = "DSCalledShot"
+internal_name = "DSCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ExtraWildEmpathy"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["SneakAttackRange"]
+
+[[enhancement.requirement]]
+items = ["DSCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement.selection]]
+name = "Exposing Strike"
+cost_per_rank = [1]
+description = """
+Deals +20% Damage
++1 Critical Multiplier
++1 Critical Threat Range
+Cooldown: 6 seconds
+Melee Attack: Performs a melee attack with a +4 bonus to-hit.
+On Damage: The target will become momentarily confused and rendered vulnerable
+to sneak attacks for four seconds as if affected by the bluff skill.
+
+Passive: +10 Positive Spell Power
+The effect propagates on strikethrough, and thus can affect multiple targets."""
+icon = "DSExposingStrike"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Sniper Shot"
+cost_per_rank = [1]
+description = """
+Deals +20% Damage
++2 Critical Multiplier
++2 Critical Threat Range
+Cooldown: 6 seconds
+Ranged Attack: Performs a ranged attack with a +4 bonus to-hit.
+On Damage: The target will become momentarily confused and rendered vulnerable
+to sneak attacks for four seconds as if affected by the bluff skill.
+
+Passive: +10 Positive Spell Power"""
+icon = "DSSniperShot"
+is_clickie = true
+
+[[enhancement]]
+name = "Deepwood Stalker: Advanced Sneak Attack"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++1 Sneak Attack Die. +10 Positive Spell Power.
+You gain a +1 Competence Bonus to Critical Threat Range with your equipped weapons.
+(This does not apply to Shields or Unarmed).
+Your attacks now bypass 10% fortification."""
+icon = "DSSneakAttack"
+internal_name = "DSCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "FortificationBypass"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ExtraWildEmpathy"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["SneakAttackRange"]
+
+[[enhancement.requirement]]
+items = ["DSCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Deepwood Stalker: Mark of the Hunted"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Activate: Expend a use of Wild Empathy. Your currently selected enemy receives
+-25% Fortification, -10 Armor Class, -10 Spell Resistance, and suffers a -4
+penalty to all ability scores for 3 minutes. This effect also works on bosses
+and Raid bosses.
+
+Passive: Your attacks bypass an additional 10% Fortification. You also gain
++2 Damage when attacking Favored Enemies.
+
+Passive: +10 Positive Spell Power"""
+icon = "DSMarkOfTheHunted"
+internal_name = "DSCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "FortificationBypass"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ExtraWildEmpathy"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["SneakAttackRange"]
+
+[[enhancement.requirement]]
+items = ["DSCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Deepwood Stalker: Horizon Shot"
+cost_per_rank = [1]
+description = """
+You gain +4 Dexterity and +3 Sneak Attack Dice. You are always considered to be
+in Point Blank Shot and Ranged Sneak Attack range.
++20 Positive Spell Power
++20 Melee Power
++20 Ranged Power"""
+icon = "DSHorizonShot"
+internal_name = "DSCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DSCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ExtraWildEmpathy"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+extra_types = ["SneakAttackRange"]
+
+[[enhancement.requirement]]
+items = ["DSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "DSCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Deepwood Stalker: Favored Defense"
+cost_per_rank = [1]
+description = """
+You gain +[2/4/6] Armor Class when attacked by Favored Enemies.
+You gain +[1/2/3] to Saving Throws against spells or effects from Favored Enemies."""
+icon = "DSFavoredDefense"
+internal_name = "DSFavoredDefense"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Deepwood Stalker: Stealthy"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] Hide and Move silently.
+Rank 3: You gain +1 additional Sneak Attack Die."""
+icon = "DSStealthy"
+internal_name = "DSStealthy"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+rank = 3
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Deepwood Stalker: Increased Empathy"
+arrows = [
+    "ArrowRight",
+    "ArrowUp",
+]
+cost_per_rank = [1]
+description = """
++[1/2/3] Diplomacy and Wild Empathy uses per rest.
++[4/8/12] Positive Spell Power."""
+icon = "DSIncreasedEmpathy"
+internal_name = "DSIncreasedEmpathy"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Diplomacy"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraWildEmpathy"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Deepwood Stalker: Versatile Empathy"
+cost_per_rank = [1]
+description = """
+Your Wild Empathy ability now also pacifies Vermin
+Rank 2: Your Wild Empathy ability now also pacifies Elementals and Vermin.
++[4/8] Positive Spell Power."""
+icon = "DSVersatileEmpathy"
+internal_name = "DSVersatileEmpathy"
+min_spent = 1
+ranks = 2
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+items = ["DSIncreasedEmpathy"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Deepwood Stalker: Tendon Cut"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+Cooldown: 15 seconds
+Melee Attack: On Sneak Attack: Slow your enemy's movement by 50% for 10 seconds."""
+icon = "DSTendonCut"
+internal_name = "DSTendonCut"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Deepwood Stalker: Survivalist I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain 10 hit points. While wearing Light Armor you gain 3 Physical Resistance Rating."
+icon = "DSSurvivalist"
+internal_name = "DSSurvivalistI"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Deepwood Stalker: Faster Sneaking"
+cost_per_rank = [1]
+description = "+[20/35/50]% movement speed while sneaking."
+icon = "DSFasterSneaking"
+internal_name = "DSFasterSneaking"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DSStealthy"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deepwood Stalker: Empathic Healing"
+cost_per_rank = [2]
+description = """
+Spell-like ability: You may expend a use of Wild Empathy to produce a Mass Lesser Vigor effect.
+Cooldown: 6 seconds"""
+icon = "DSEmpathicHealing"
+internal_name = "DSEmpathicHealing"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+rank = 2
+targets = [
+    "Lesser Vigor, Mass",
+    "Ranger",
+]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DSIncreasedEmpathy"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deepwood Stalker: Improved Weapon Finesse"
+cost_per_rank = [1]
+description = "You gain +3 To Hit and +15% Fortification Bypass."
+icon = "DSImprovedWeaponFinesse"
+internal_name = "DSImprovedWeaponFinesse"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "FortificationBypass"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Deepwood Stalker: Action Boost"
+cost_per_rank = [2]
+description = "Select Damage or Skill Boost"
+icon = "DSActionBoost"
+internal_name = "DSActionBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Action Boost: Melee/Ranged Power Boost"
+cost_per_rank = [2]
+description = "Activate to gain a +30 Action Boost bonus to Melee/Ranged Power for 20 seconds."
+icon = "DSMeleeRangedPowerBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Action Boost: Skill Boost"
+cost_per_rank = [2]
+description = "Activate to gain a +6 Action Boost bonus to all skills for 20 seconds."
+icon = "DSSkillBoost"
+is_clickie = true
+
+[[enhancement]]
+name = "Deepwood Stalker: Survivalist II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain an additional 20 hit points. While wearing Light Armor you gain an
+additional 4 Physical Resistance Rating."""
+icon = "DSSurvivalistII"
+internal_name = "DSSurvivalistII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["DSSurvivalistI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deepwood Stalker: Thrill of the Hunt"
+cost_per_rank = [1]
+description = """
+You gain +[1/2/3] damage for 6 seconds after damaging an opponent beneath 50% health.
+Note: This buff is also applied on attacks that would bring the target below
+50% health, and on killing blows."""
+icon = "DSThrillOfTheHunt"
+internal_name = "DSThrillOfTheHunt"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Deepwood Stalker: Favored Hunter"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] to hit and damage when attacking a Favored Enemy."
+icon = "DSFavoredHunter"
+internal_name = "DSFavoredHunter"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Enemy"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Deepwood Stalker: Aimed Shot"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Ranged Attack: Performs a ranged attack with +10 to hit and +1 Critical Damage
+Multiplier. On Damage: If you are in the Archer's Focus stance and Manyshot is
+not active, gain three stacks of Archer's Focus.
+Cooldown: 10 seconds"""
+icon = "DSAimedShot"
+internal_name = "DSAimedShot"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Deepwood Stalker: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Dexterity or Wisdom"
+icon = "DexWis"
+internal_name = "DSAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Deepwood Stalker: Survivalist III"
+cost_per_rank = [2]
+description = """
+You gain an additional 30 hit points. While wearing Light Armor you gain an
+additional 5 Physical Resistance Rating."""
+icon = "DSSurvivalistIII"
+internal_name = "DSSurvivalistIII"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DSSurvivalistII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deepwood Stalker: Killer"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+When you kill a target, you gain a 5% Morale bonus to Doublestrike and Doubleshot
+for 15 seconds. Weak enemies will not always produce this effect.
+The Killer buff can stack up to [2/3/4] times.
+(Repeating Crossbows have a reduced chance to produce Extra Shots.)"""
+icon = "DSKiller"
+internal_name = "DSKiller"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement]]
+name = "Deepwood Stalker: Merciful Shot"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 15 seconds
+Ranged attack: On Sneak Attack: If the target is below 50% health, deal 500 damage.
+This damage scales with 100% Ranged Power.
+
+Taking this enhancement also grants Merciful Strike, a Melee version of
+the exact same ability."""
+icon = "DSMercifulShot"
+internal_name = "DSMercifulShot"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DSKiller"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deepwood Stalker: Leg Shot"
+cost_per_rank = [2]
+description = """
+Deals +20% Damage
+Cooldown: 10 seconds
+Ranged Attack: On Damage: Slow your enemy's movement by 50% for 10 seconds."""
+icon = "DSLegShot"
+internal_name = "DSLegShot"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DSAimedShot"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Deepwood Stalker: Ability II"
+cost_per_rank = [2]
+description = "Choose either Dexterity or Wisdom"
+icon = "DexWis"
+internal_name = "DSAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DSAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Deepwood Stalker: Extra Favored Enemy"
+cost_per_rank = [2]
+description = """
+A new forest-dwelling creature type is added to your list of favored enemies.
+
+You gain +2 damage against all of your favored enemies for each favored enemy
+on your list. For example, if you have 4 favored enemies, you gain +8 damage
+against each of those 4 types of enemies."""
+icon = "DSExtraFavoredEnemy"
+internal_name = "DSExtraFavoredEnemy"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Favored Enemy: Animal"
+cost_per_rank = [2]
+description = "You deal extra damage to animals"
+icon = "FavoredEnemyAnimal"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Animal"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Animal"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Dragon"
+cost_per_rank = [2]
+description = "You deal extra damage to dragons"
+icon = "FavoredEnemyDragon"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Dragon"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Dragon"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Dwarf"
+cost_per_rank = [2]
+description = "You deal extra damage to dwarves"
+icon = "FavoredEnemyDwarf"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Dwarf"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Dwarf"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Elf"
+cost_per_rank = [2]
+description = "You deal extra damage to elves"
+icon = "FavoredEnemyElf"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Elf"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Elf"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Giant"
+cost_per_rank = [2]
+description = "You deal extra damage to giants"
+icon = "FavoredEnemyGiant"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Giant"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Giant"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Gnoll"
+cost_per_rank = [2]
+description = "You deal extra damage to gnolls"
+icon = "FavoredEnemyGnoll"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Gnoll"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Gnoll"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Goblinoid"
+cost_per_rank = [2]
+description = "You deal extra damage to goblinoids"
+icon = "FavoredEnemyGoblinoid"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Goblinoid"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Goblinoid"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Halfling"
+cost_per_rank = [2]
+description = "You deal extra damage to halflings"
+icon = "FavoredEnemyHalfling"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Halfling"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Halfling"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Human"
+cost_per_rank = [2]
+description = "You deal extra damage to humans"
+icon = "FavoredEnemyHuman"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Human"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Human"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Magical Beast"
+cost_per_rank = [2]
+description = "You deal extra damage to magical beasts"
+icon = "FavoredEnemyMagicalBeast"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Magical Beast"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Magical Beast"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Monstrous Humanoid"
+cost_per_rank = [2]
+description = "You deal extra damage to monstrous humanoids"
+icon = "FavoredEnemyMonstrousHumanoid"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Monstrous Humanoid"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Monstrous Humanoid"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Orc"
+cost_per_rank = [2]
+description = "You deal extra damage to orcs"
+icon = "FavoredEnemyOrc"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Orc"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Orc"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Plant"
+cost_per_rank = [2]
+description = "You deal extra damage to plants"
+icon = "FavoredEnemyPlant"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Plant"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Plant"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Reptilian"
+cost_per_rank = [2]
+description = "You deal extra damage to reptiles"
+icon = "FavoredEnemyReptilian"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Reptilian"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Reptilian"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Vermin"
+cost_per_rank = [2]
+description = "You deal extra damage to vermin"
+icon = "FavoredEnemyVermin"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Vermin"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Vermin"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Deepwood Stalker: Heavy Draw"
+cost_per_rank = [2]
+description = """
+Toggle: While Heavy Draw is active, you deal +5 damage with archery and thrown
+attacks. Effects that modify the attack penalty and damage bonus of the Power
+Attack feat also modify this ability (but other effects related to Power Attack
+do not). You also gain +1 Competence Bonus to Critical Multiplier to Longbows
+and Shortbows when toggled on. This ability has o effect when using a crossbow.
+Can be used simultaneously with precision and (improved) precise shot stances."""
+icon = "DSHeavyDraw"
+internal_name = "DSHeavyDraw"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+targets = ["Thrown"]
+
+[[enhancement.modifier.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+targets = ["Bows"]
+
+[[enhancement.modifier.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = [
+    "Shortbow",
+    "Longbow",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.stance]]
+name = "Heavy Draw"
+description = """
+While Heavy Draw is active, you deal +5 damage with archery and thrown
+attacks. Effects that modify the attack penalty and damage bonus of the Power
+Attack feat also modify this ability (but other effects related to Power Attack
+do not). You also gain +1 Competence Bonus to Critical Multiplier to Longbows
+and Shortbows when toggled on."""
+icon = "DSHeavyDraw"
+
+[[enhancement]]
+name = "Deepwood Stalker: Strikes Like Lightning"
+cost_per_rank = [2]
+description = "You gain +10% Doublestrike and +20% Doubleshot"
+icon = "DSStrikesLikeLightning"
+internal_name = "DSStrikesLikeLightning"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "Doubleshot"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Deepwood Stalker: Devastating Shot"
+cost_per_rank = [2]
+description = """
+Deals +25% Damage
++20 Critical Threat Range
+Cooldown: 12 seconds
+AOE Ranged Attack: Fire a single shot with +25% damage, hitting every enemy in
+an area around where the shot hits. Every hit is automatically considered a critical
+threat. On hit, blinds the opponent for 6 seconds.
+(Fortitude save negates, 14 + Ranger level + Dexterity Mod + Sunder DCs)
+
+Taking this ability also grants Critical Strike, a Melee version of the exact same
+ability."""
+icon = "DSHeadshot"
+internal_name = "DSHeadShot"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.dc]]
+name = "Devastating Shot"
+amount = [14]
+base_class_level = "Ranger"
+dc_type = "Blind"
+dc_versus = "Fortitude"
+description = """
+Deals +25% Damage
++20 Critical Threat Range
+Cooldown: 12 seconds
+AOE Ranged Attack: Fire a single shot with +25% damage, hitting every enemy in
+an area around where the shot hits. Every hit is automatically considered a critical
+threat. On hit, blinds the opponent for 6 seconds."""
+icon = "DSHeadshot"
+mod_ability = ["Dexterity"]
+tactical = "Sunder"
+
+[[enhancement.dc.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "DSHeadShot"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image DSHeadshot.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "DSHeadShot"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image DSHeadshot.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Deepwood Stalker: Improved Archer's Focus"
+cost_per_rank = [2]
+description = """
+Your Archer's Focus Stance can now stack up to 25 times instead of 15.
+Passive: +10 Melee Power and Ranged Power"""
+icon = "DSImprovedArchersFocus"
+internal_name = "DSImprovedArchersFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Ranger"]
+req_type = "BaseClass"

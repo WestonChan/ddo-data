@@ -1,0 +1,21 @@
+name = "Strength +5"
+description = "Enhancement bonus to Strength"
+family = "Slavelords_Heroic"
+icon = "SlavelordsPrefix"
+min_level = 8
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: slavelords prefix"

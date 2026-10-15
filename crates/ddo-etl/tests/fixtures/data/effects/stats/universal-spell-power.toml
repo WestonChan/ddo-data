@@ -1,0 +1,4 @@
+name = "Universal Spell Power"
+category = "magical"
+home_bonus_type = "Implement"
+verbose_name_template = "%b1 Universal Spell Power +{1}"

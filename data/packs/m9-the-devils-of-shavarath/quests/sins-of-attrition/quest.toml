@@ -1,0 +1,21 @@
+name = "Sins of Attrition"
+bestowed_by = "Wakhakwi"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The Devils of Shavarath"
+patron = "The Yugoloth"
+zone = "Citadel of the Devils' Spine"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Sins_of_Attrition"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

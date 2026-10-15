@@ -1,0 +1,11 @@
+name = "Miserable Destruction (Heroic)"
+description = """
+Your attacks apply a stack of Armor Destruction.
+-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration.
+Stacks up to 15 times. This effect may trigger once every three seconds."""
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

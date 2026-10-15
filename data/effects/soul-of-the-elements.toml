@@ -1,0 +1,3 @@
+name = "Soul of the Elements"
+description_template = "While you are centered, this item grants you a bonus depending on your current Monk stance."
+verbose_name_template = "Soul of the Elements"

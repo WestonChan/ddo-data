@@ -1,0 +1,64 @@
+name = "Wreckage of the Tabernack"
+description = """
+This piece of wreckage longs to return to whence it cames - the whelming waves
+just off the coast of the Isle of Dread."""
+drop_location = "Bullywugs and Booby Traps, End chest"
+enhancement_bonus = 3
+icon = "Shield_5"
+item_category = "Shield"
+item_type = "Buckler"
+material = "Wood"
+minimum_level = 7
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 7
+max_dex_bonus = 0
+shield_bonus = 8
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bullywugs and Booby Traps"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Buckler"

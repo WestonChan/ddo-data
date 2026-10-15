@@ -1,0 +1,20 @@
+name = "Cold Spell Power - +37 Quality"
+description = "Dominion/Water: +37 Quality bonus increase to Cold spell power."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Cold Spell Power"
+bonus_type = "Quality"
+value = 37
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [37]
+bonus_type = "Quality"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

@@ -1,0 +1,24 @@
+name = "Claw: Trip"
+description = "+15 Trip"
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Trip DC"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[slot]]
+slot = "isle of dread: claw (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact claw (accessory)"

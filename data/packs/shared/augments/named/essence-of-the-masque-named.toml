@@ -1,0 +1,16 @@
+name = "Essence of The Masque"
+variant = "named"
+description = """
+This sapphire carries the soul of The Masque.
+Slotted Effect: Soundproof
+Requires: 50 Thread of Fate, 1 Empty Soul Vessel and 1 The Masque (The Curse of Strahd), at the Soulforge in the Hall of Heroes"""
+effect_description = "Soundproof: Protects against stunning, dazing and disorientation from sound-based spells such as Soundburst and Greater Shout."
+family = "Named"
+min_level = 30
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Essence_of_The_Masque"
+read = "2026-10-02"
+
+[[slot]]
+slot = "blue"

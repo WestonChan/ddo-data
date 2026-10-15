@@ -1,0 +1,2135 @@
+name = "Human"
+background = "HumanBackground"
+icon = "Human"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Human: Versatility I"
+cost_per_rank = [1]
+description = """
+Humans can select racial boosts that share a number of uses per rest,
+but are not linked with class action boost cooldowns."""
+icon = "HumanVersatility"
+internal_name = "HumanCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.selection]]
+name = "Attack Boost"
+cost_per_rank = [1]
+description = "Active to gain a +6 Action Boost bonus to hit for 20 seconds."
+icon = "AttackBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Defense Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating
+for 20 seconds."""
+icon = "DefenseBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Melee and Ranged Power"
+cost_per_rank = [1]
+description = "Activate to gain a +20 Action Boost bonus to Melee and Ranged Power for 20 seconds."
+icon = "DamageBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Saves Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds.
+While under this effect you do not automatically fail Saving Throws on a roll
+of a Natural 1."""
+icon = "SavesBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Skill Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +4 Action Boost to all skills for 20 seconds."
+icon = "SkillBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Spell Power Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds."
+icon = "SpellPowerBoost"
+is_clickie = true
+
+[[enhancement]]
+name = "Human: Adaptability"
+cost_per_rank = [2]
+description = "Select +1 to an ability score of your choice."
+icon = "HumanAdaptabilityAbility"
+internal_name = "HumanCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+items = ["HumanCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Human: Versatility II"
+cost_per_rank = [1]
+description = """
+Humans can select racial boosts that share a number of uses per rest,
+but are not linked with class action boost cooldowns.
+Note: Choose another Action Boost that is not the same as the previous one."""
+icon = "HumanVersatility"
+internal_name = "HumanCore3"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.requirement]]
+items = ["HumanCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.selection]]
+name = "Attack Boost"
+cost_per_rank = [1]
+description = "Active ato gain a +6 Action Boost bonus to hit for 20 seconds."
+icon = "AttackBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Defense Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +10 Action Boost to Armor Class and Physical Resistance
+Rating for 20 seconds."""
+icon = "DefenseBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Melee and Ranged Power"
+cost_per_rank = [1]
+description = "Activate to gain a +20 Action Boost bonus to Melee and Ranged Power for 20 seconds."
+icon = "DamageBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Saves Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds.
+While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1."""
+icon = "SavesBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Skill Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +4 Action Boost to all skills for 20 seconds."
+icon = "SkillBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Spell Power Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds."
+icon = "SpellPowerBoost"
+is_clickie = true
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanCore1"
+
+[[enhancement]]
+name = "Human: Greater Adaptability"
+cost_per_rank = [2]
+description = """
+Select +1 to another ability score of your choice.
+(You may not select the same ability score as Human Adaptability.)"""
+icon = "HumanAdaptabilityAbility"
+internal_name = "HumanCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+items = ["HumanCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanCore2"
+
+[[enhancement]]
+name = "Human: Versatility III"
+cost_per_rank = [1]
+description = """
+Humans can select racial boosts that share a number of uses per rest, but are not
+linked with class action boost cooldowns.
+Note: Choose another Action Boost that is not the same as either of the previous two."""
+icon = "HumanVersatility"
+internal_name = "HumanCore5"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.requirement]]
+items = ["HumanCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.selection]]
+name = "Attack Boost"
+cost_per_rank = [1]
+description = "Active ato gain a +6 Action Boost bonus to hit for 20 seconds."
+icon = "AttackBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Defense Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +10 Action Boost to Armor Class and Physical Resistance
+Rating for 20 seconds."""
+icon = "DefenseBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Melee and Ranged Power"
+cost_per_rank = [1]
+description = "Activate to gain a +20 Action Boost bonus to Melee and Ranged Power for 20 seconds."
+icon = "DamageBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Saves Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds.
+While under this effect you do not automatically fail Saving Throws on a roll of a Natural 1."""
+icon = "SavesBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Skill Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +4 Action Boost to all skills for 20 seconds."
+icon = "SkillBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Spell Power Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds."
+icon = "SpellPowerBoost"
+is_clickie = true
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanCore1"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanCore3"
+
+[[enhancement]]
+name = "Human: Dragonmark Focus"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Grants additional uses of dragonmarks and a bonus to the associated skill."
+icon = "DragonmarkFocus"
+internal_name = "HumanDragonmarkFocus"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DragonmarkUse"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Least Dragonmark of Finding"]
+req_type = "Feat"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Least Dragonmark of Making"]
+req_type = "Feat"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Least Dragonmark of Passage"]
+req_type = "Feat"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Least Dragonmark of Sentinel"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Tharashk Dragonmark Focus"
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark use per day +[1/2/3] Search."
+icon = "DragonmarkFocus1"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Search"]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Finding"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Cannith Dragonmark Focus"
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark use per day +[1/2/3] Repair."
+icon = "DragonmarkFocus2"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Repair"]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Making"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Orien Dragonmark Focus"
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark use per day +[1/2/3] Balance."
+icon = "DragonmarkFocus3"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Passage"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Deneith Dragonmark Focus"
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark use per day +[1/2/3] Intimidate."
+icon = "DragonmarkFocus4"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Sentinel"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Human: Skill Focus I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Humans are versatile and can excel at virtually any skill"
+icon = "EnhancementSkillFocus"
+internal_name = "HumanSkillFocus1"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.selection]]
+name = "Athletic"
+cost_per_rank = [1]
+description = "+[1/2/3] Balance, Jump, Swim, and Tumble."
+icon = "SkillFocusAthletic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Swim",
+    "Tumble",
+]
+
+[[enhancement.selection]]
+name = "Awareness"
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, and Spot."
+icon = "Awareness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement.selection]]
+name = "Focused"
+cost_per_rank = [1]
+description = "+[1/2/3] Concentration and Intimidate."
+icon = "SkillFocusFocused"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Intimidate",
+]
+
+[[enhancement.selection]]
+name = "Negotiator"
+cost_per_rank = [1]
+description = "+[1/2/3] Bluff, Diplomacy, Haggle and Perform."
+icon = "SkillFocusNegotiator"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Perform",
+]
+
+[[enhancement.selection]]
+name = "Nimble Fingers"
+cost_per_rank = [1]
+description = "+[1/2/3] Disable Device and Open Lock."
+icon = "SkillFocusNimbleFingers"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[enhancement.selection]]
+name = "Self Sufficient"
+cost_per_rank = [1]
+description = "+[1/2/3] Heal and Repair."
+icon = "SkillFocusSelfSufficient"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Repair",
+]
+
+[[enhancement.selection]]
+name = "Stealthy"
+cost_per_rank = [1]
+description = "+[1/2/3] Hide and Move Silently."
+icon = "SkillFocusStealthy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement]]
+name = "Human: Action Surge I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Action Boosts also increase an ability score of your choice."
+icon = "ActionSurge"
+internal_name = "HumanActionSurge1"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Strength."""
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Dexterity."""
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Constitution."""
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Intelligence."""
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Wisdom."""
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Charisma."""
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Human: Improved Recovery I"
+arrows = ["LongArrowUp"]
+cost_per_rank = [2]
+description = "+20 Positive Healing Amplification."
+icon = "HumanImprovedRecovery"
+internal_name = "HumanImprovedRecovery1"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement]]
+name = "Human: Don't Count Me Out"
+cost_per_rank = [1]
+description = """
+Your range of unconsciousness extends by [5/10/20] hitpoints, and you gain
+a +[3/6/10] bonus to Physical Resistance Rating while you are under 50% health."""
+icon = "DontCountMeOut"
+internal_name = "HumanDontCountMeOut"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    100,
+    0,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Hitpoints"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -20,
+]
+bonus_type = "Enhancement"
+effect_type = "UnconsciousRange"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["-50% Hitpoints"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Human: Lesser Dragonmarks"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Humans have access to the Dragonmarks of Finding, Making, Passage and Sentinel.
+Also allows you to use your Least Dragonmark an extra time per rest."""
+icon = "DragonmarkFocus"
+internal_name = "HumanLesserDragonmark"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DragonmarkUse"
+
+[[enhancement.requirement]]
+items = ["HumanDragonmarkFocus"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Lesser Dragonmark Spell: Knock"
+cost_per_rank = [2]
+description = "Lesser Dragonmark Spell: Knock (Skill = Character Level + Charisma Modifier)"
+icon = "DragonmarkFocus1c"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Knock",
+    "None",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Finding"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Lesser Dragonmark Spell: Repair Serious Damage"
+cost_per_rank = [2]
+description = """
+Lesser Dragonmark Spell: Repair Serious Damage
+Also grants +3 to all Crafting skills."""
+icon = "DragonmarkFocus2c"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Repair Serious Damage",
+    "None",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Making"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Lesser Dragonmark Spell: Dimension Door"
+cost_per_rank = [2]
+description = "Lesser Dragonmark Spell: Dimension Door."
+icon = "DragonmarkFocus3c"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Dimension Door",
+    "None",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Passage"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Lesser Dragonmark Spell: Protection from Elements"
+cost_per_rank = [2]
+description = "Lesser Dragonmark Spell: Protection from Elements"
+icon = "DragonmarkFocus4c"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Protection from Elements",
+    "None",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Sentinel"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Human: Skill Focus II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Humans are versatile and can excel at virtually any skill"
+icon = "EnhancementSkillFocus"
+internal_name = "HumanSkillFocus2"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["HumanSkillFocus1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Athletic"
+cost_per_rank = [1]
+description = "+[1/2/3] Balance, Jump, Swim, and Tumble."
+icon = "SkillFocusAthletic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Swim",
+    "Tumble",
+]
+
+[[enhancement.selection]]
+name = "Awareness"
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, and Spot."
+icon = "Awareness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement.selection]]
+name = "Focused"
+cost_per_rank = [1]
+description = "+[1/2/3] Concentration and Intimidate."
+icon = "SkillFocusFocused"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Intimidate",
+]
+
+[[enhancement.selection]]
+name = "Negotiator"
+cost_per_rank = [1]
+description = "+[1/2/3] Bluff, Diplomacy, Haggle and Perform."
+icon = "SkillFocusNegotiator"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Perform",
+]
+
+[[enhancement.selection]]
+name = "Nimble Fingers"
+cost_per_rank = [1]
+description = "+[1/2/3] Disable Device and Open Lock."
+icon = "SkillFocusNimbleFingers"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[enhancement.selection]]
+name = "Self Sufficient"
+cost_per_rank = [1]
+description = "+[1/2/3] Heal and Repair."
+icon = "SkillFocusSelfSufficient"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Repair",
+]
+
+[[enhancement.selection]]
+name = "Stealthy"
+cost_per_rank = [1]
+description = "+[1/2/3] Hide and Move Silently."
+icon = "SkillFocusStealthy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanSkillFocus1"
+
+[[enhancement]]
+name = "Human: Action Surge II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Action Boosts also increase an ability score of your choice."
+icon = "ActionSurge"
+internal_name = "HumanActionSurge2"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["HumanActionSurge1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Strength."""
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Dexterity."""
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Constitution."""
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Intelligence."""
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Wisdom."""
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Charisma."""
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanActionSurge1"
+
+[[enhancement]]
+name = "Human: Fighting Style"
+cost_per_rank = [1]
+description = "Humans are adept at many different fighting styles."
+icon = "FightingStyle"
+internal_name = "HumanFightingStyle"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.selection]]
+name = "Ambidexterity"
+cost_per_rank = [1]
+description = """
+You gain +1 to hit when dual-wielding or fighting unarmed.
+Rank 2: Also gains +1% Dodge.
+Rank 3: Also gains +1 damage."""
+icon = "Ambidexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+rank = 1
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Handwraps"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+rank = 2
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Handwraps"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+rank = 3
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Handwraps"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Great Weapon Aptitude"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "FightingStyleTwoHanded"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Natural Fighting"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Shield Mastery"
+cost_per_rank = [1]
+description = "+[5/10/15]% Shield Armor Class and +[1/2/3] Tower Shield Maximum Dexterity Bonus."
+icon = "FightingStyleShieldMastery"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonusShield"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonusTowerShield"
+
+[[enhancement.selection]]
+name = "Sniper"
+cost_per_rank = [1]
+description = """
+You gain +[1/2/3]d6 Ranged Sneak Attack.
+Your Point Blank Shot and Ranged Sneak Attack range is increased by [2/4/6] meters."""
+icon = "FightingStyleSniper"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Ranged"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.selection]]
+name = "Traditional caster"
+cost_per_rank = [1]
+description = "+[3/6/10] Universal Spell Power when wielding an Orb or Staff."
+icon = "TraditionalCaster"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Human: Greater Dragonmarks"
+cost_per_rank = [2]
+description = """
+Humans have access to the Dragonmarks of Finding, Making, Passage and Sentinel.
+Also allows you to use your Least and Lesser Marks an extra time per rest."""
+icon = "DragonmarkFocus"
+internal_name = "HumanGreaterDragonmark"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DragonmarkUse"
+
+[[enhancement.requirement]]
+items = ["HumanLesserDragonmark"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Greater Dragonmark Spell: Treasure Finding"
+cost_per_rank = [2]
+description = "Greater Dragonmark Spell: Treasure Finding"
+icon = "DragonmarkFocus1"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Treasure Finding",
+    "None",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Finding"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Greater Dragonmark Spell: Reconstruct"
+cost_per_rank = [2]
+description = """
+Greater Dragonmark Spell: Reconstruct
+Also grants +4 to all Crafting skills"""
+icon = "DragonmarkFocus2"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Reconstruct",
+    "None",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Making"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Greater Dragonmark Spell: Teleport"
+cost_per_rank = [2]
+description = "Greater Dragonmark Spell: Teleport."
+icon = "DragonmarkFocus3"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Teleport",
+    "None",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Passage"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Greater Dragonmark Spell: Globe of Invulnerability"
+cost_per_rank = [2]
+description = "Greater Dragonmark Spell: Globe of Invulnerability"
+icon = "DragonmarkFocus4"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Globe of Invulnerability",
+    "None",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Least Dragonmark of Sentinel"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Human: Skill Mastery"
+cost_per_rank = [2]
+description = "+1 to all skills."
+icon = "HumanSkillMastery"
+internal_name = "HumanSkillMastery"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["HumanSkillFocus2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Human: Action Surge III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Action Boosts also increase an ability score of your choice."
+icon = "ActionSurge"
+internal_name = "HumanActionSurge3"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["HumanActionSurge2"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Strength."""
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Dexterity."""
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Constitution."""
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Intelligence."""
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Wisdom."""
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Charisma."""
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanActionSurge1"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanActionSurge2"
+
+[[enhancement]]
+name = "Human: Improved Recovery II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+20 Positive Healing Amplification."
+icon = "HumanImprovedRecovery"
+internal_name = "HumanImprovedRecovery2"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["HumanImprovedRecovery1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Human: Heroism"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Cast the Heroism spell.
+Effects that grant extra Action Boost uses give you additional uses per rest of this ability"""
+icon = "HumanHeroism"
+internal_name = "HumanHeroism1"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Heroism",
+    "None",
+]
+
+[[enhancement]]
+name = "Human: Action Surge IV"
+cost_per_rank = [1]
+description = "Action Boosts also increase an ability score of your choice."
+icon = "ActionSurge"
+internal_name = "HumanActionSurge4"
+min_spent = 15
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["HumanActionSurge3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Strength."""
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Dexterity."""
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Constitution."""
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Intelligence."""
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Wisdom."""
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [1]
+description = """
+While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost
+bonus to Charisma."""
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanActionSurge1"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanActionSurge2"
+
+[[enhancement.selector_exclusion]]
+internal_name = "HumanActionSurge3"
+
+[[enhancement]]
+name = "Human: Improved Recovery III"
+cost_per_rank = [2]
+description = "+20 Positive Healing Amplification."
+icon = "HumanImprovedRecovery"
+internal_name = "HumanImprovedRecovery3"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["HumanImprovedRecovery2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Human: Greater Heroism"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Greater Heroism.
+This ability shares a common pool of uses per rest with the Heroism ability.
+Effects that grant extra Action Boost uses give you additional uses per rest
+of this ability."""
+icon = "HumanGreaterHeroism"
+internal_name = "HumanHeroism2"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Heroism",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["HumanHeroism1"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Human"]
+req_type = "Race"

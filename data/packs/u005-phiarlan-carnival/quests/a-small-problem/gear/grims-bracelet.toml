@@ -1,0 +1,31 @@
+name = "Grim's Bracelet"
+description = """
+It seems one of Grim brothers (you're not sure which one) wore this bracelet
+around his wrist. Due to its size it will probably only fit around your neck."""
+drop_location = "A Small Problem, Brothers Grim survive chest"
+icon = "Necklace_23"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 4
+slot = "Neck"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 3
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 4
+
+[[source]]
+chest = "brothers grim survive chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Small Problem"

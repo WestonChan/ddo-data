@@ -1,0 +1,22 @@
+name = "Tempest Rune of Healing Amplification"
+description = """
+Healing Amplification: This effect amplifies all incoming positive energy healing by
++40 (Equipment bonus). Includes spells, potions, and other effects."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Equipment"
+value = 40
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Equipment"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "crafting: tempest rune"

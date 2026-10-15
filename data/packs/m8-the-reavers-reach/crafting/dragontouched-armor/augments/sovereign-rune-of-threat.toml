@@ -1,0 +1,20 @@
+name = "Sovereign Rune of Threat"
+description = "Incite +20: +20% Enhancement bonus to increased threat generation from melee damage."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Melee Threat Generation"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[slot]]
+slot = "crafting: sovereign rune"

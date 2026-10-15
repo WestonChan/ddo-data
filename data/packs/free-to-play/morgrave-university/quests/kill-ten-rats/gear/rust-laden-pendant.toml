@@ -1,0 +1,54 @@
+name = "Rust-Laden Pendant"
+description = """
+Recently recovered from the sewers' putrid waters, this necklace has spent a
+long time breaking down into its current state."""
+drop_location = "Kill Ten Rats, End Chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 18
+slot = "Neck"
+
+[[clickie]]
+name = "Longstrider"
+clickie = "Longstrider"
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Quality"
+value = 15
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Quality"
+value = 25
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 8
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Longstrider"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Kill Ten Rats"

@@ -1,0 +1,28 @@
+name = "Spell Power Negative +142"
+description = "Legendary Equipment bonus to spell power"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Negative Spell Power"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Poison Spell Power"
+bonus_type = "Equipment"
+value = 142
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [142]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

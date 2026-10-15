@@ -1,0 +1,42 @@
+name = "Lunar Gem of Ranged Power (Legendary)"
+description = """
++15 Profane Bonus to Ranged Power.
+Drops in: Times Long Past, end chest
+Sleeping with the Fishes, end chest
+Snowfall and Sunlight, Potion Paw's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Profane"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Profane"
+effect = "Ranged Power"
+effect_type = "RangedPower"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"
+
+[[source]]
+chest = "potion paw's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Times Long Past"

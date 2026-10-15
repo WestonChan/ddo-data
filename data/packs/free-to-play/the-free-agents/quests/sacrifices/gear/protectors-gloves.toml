@@ -1,0 +1,21 @@
+name = "Protector's Gloves"
+description = "This pair of gloves is said to protect those who would protect others."
+drop_location = "Sacrifices, End reward"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Hands"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "DR 1/-"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Sacrifices"

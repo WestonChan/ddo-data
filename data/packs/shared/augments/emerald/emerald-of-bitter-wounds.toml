@@ -1,0 +1,11 @@
+name = "Emerald of Bitter Wounds"
+description = """
+Upgrades an item to provide a Greater Boon of Undeath.
+Every time a character wearing a Greater Boon of Undeath item is struck in
+combat, an Inflict Moderate Wounds spell will be cast on the character."""
+family = "Emerald"
+icon = "GreenAugment"
+min_level = 28
+
+[[slot]]
+slot = "green"

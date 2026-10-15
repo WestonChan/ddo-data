@@ -1,0 +1,25 @@
+name = "Lesser Pendant of Travel"
+description = """
+This intricate pendant has semi-precious stones around the border that remind
+you of the face of a fine clock."""
+drop_location = "DDO Store, or end reward of the Cannith Crafting Tutorial"
+icon = "Necklace_40"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 1
+slot = "Neck"
+
+[[clickie]]
+name = "Warp Time"
+clickie = "Warp Time"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    20,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Warp Time"]

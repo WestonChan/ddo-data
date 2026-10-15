@@ -1,0 +1,21 @@
+name = "+7 Charisma (Insight)"
+description = "Escalation/Air or Positive: +7 Insight bonus to Charisma"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

@@ -1,0 +1,35 @@
+name = "Legendary Silver Concord's Subtlety"
+icon = "Kundarak"
+
+[[item]]
+name = "Legendary Cloak of the Silver Concord"
+
+[[item]]
+name = "Legendary Ring of the Silver Concord"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

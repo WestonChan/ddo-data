@@ -1,0 +1,44 @@
+name = "Duelist's Leathers (level 12)"
+description = """
+When pirates who prefer light blades in battle need armor, this is the kind
+of item they will put their money on- a lightweight vest of leather or hide
+that allows plenty of stylish movement in combat."""
+drop_location = "Treasure of Crystal Cove, Turn in 500 Silver Doubloon 200 Golden Doubloon 25 Stolen Amethyst 500 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 4
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 12
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 14
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

@@ -1,0 +1,29 @@
+name = "Solar Gem of Pact Dice (Legendary)"
+description = """
+Artifact Power in Pact +3
+Drops in: A Light in the Attic, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Eldritch Blast Dice"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Eldritch Blast Dice"
+effect_type = "EldritchBlastD6"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"

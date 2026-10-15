@@ -1,0 +1,64 @@
+name = "The Turmoil Within (Level 25)"
+description = "Draconic runes line this rune arm."
+drop_location = "Return to Gianthold Tor, Black Dragon chest (Epic Elite)"
+icon = "RuneArm_1c"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 25
+slot = "Runearm"
+
+[[clickie]]
+name = "Acid Shot"
+clickie = "Acid Shot"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 4
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Inherent"
+value = 10
+
+[[effect]]
+name = "Rune Arm Imbue - Acid V"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Acid Shot",
+    "Unknown",
+]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "black dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

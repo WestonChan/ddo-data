@@ -1,0 +1,64 @@
+name = "Slave Master's Cloak"
+description = """
+Ripped from the back of a Slave Master, this cloak once instilled terror among
+the ranks."""
+drop_location = "Secret of the Slavers' Stockade, End chest"
+icon = "Cloak_21a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Back"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Spearblock II"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "crafting: against the slave lords set bonus"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Might Set bonus"
+icon = "SlavelordsMight"
+min_level = 8
+
+[[socket.option.set]]
+set = "Slavelords Might"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Sorcery Set bonus"
+icon = "SlavelordsSorcery"
+min_level = 8
+
+[[socket.option.set]]
+set = "Slavelords Sorcery"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Endurance Set bonus"
+icon = "SlavelordsEndurance"
+min_level = 8
+
+[[socket.option.set]]
+set = "Slavelords Endurance"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secret of the Slavers' Stockade"

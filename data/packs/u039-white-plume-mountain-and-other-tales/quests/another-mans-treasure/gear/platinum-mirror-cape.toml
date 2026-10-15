@@ -1,0 +1,37 @@
+name = "Platinum Mirror Cape"
+description = """
+This platinum coated cape is ostentatious and incredible. It's probably worth
+quite a bit, but it'd be a shame to sell something so unique."""
+drop_location = "Another Man's Treasure, End chest"
+icon = "Cloak_4"
+item_category = "Clothing"
+material = "Platinum"
+minimum_level = 6
+slot = "Back"
+
+[[effect]]
+name = "Transmuted Platinum"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Another Man's Treasure"

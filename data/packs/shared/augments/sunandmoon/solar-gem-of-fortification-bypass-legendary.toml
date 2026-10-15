@@ -1,0 +1,59 @@
+name = "Solar Gem of Fortification Bypass (Legendary)"
+description = """
++30% Artifact Bonus to Fortification Bypass.
+Drops in: Magic of Myth Drannor (Heroic), Elite and True Elite
+Ruins of Myth Drannor, Goranathanil rare encounter chest (rare)
+The Knife's Edge, end chest (rare)
+Dinosaur Crisis, end chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Fortification Bypass"
+bonus_type = "Artifact"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"
+
+[[source]]
+chest = "goranathanil rare encounter chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "zarazurthu's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Knife's Edge"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

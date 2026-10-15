@@ -1,0 +1,73 @@
+name = "Singed Belt"
+description = "This singed belt belonged to Kyrian, a dangerous Fire Savant."
+drop_location = "Genesis Point, Any End Chest; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[clickie]]
+name = "Greater Inferno"
+clickie = "Greater Inferno"
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Fire Savant"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Inferno"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+    5,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Fire Savant - 2 Piece bonus"
+effect_type = "SpellLore"
+extra_types = ["SpellLore"]
+targets = ["Fire"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    50,
+    50,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Fire Savant - 2 Piece bonus"
+effect_type = "SpellCriticalDamage"
+extra_types = ["SpellCriticalDamage"]
+targets = ["Fire"]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Genesis Point"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

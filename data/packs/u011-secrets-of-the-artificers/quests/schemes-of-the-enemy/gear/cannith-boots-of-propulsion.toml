@@ -1,0 +1,51 @@
+name = "Cannith Boots of Propulsion"
+description = """
+Footwear manufactured by House Cannith. Marvels of technology, these boots cause
+their wearer to run faster and fall more slowly. They can even provide a powerful
+boost to propel the wearer through the air, though it takes a while for them
+to recharge."""
+drop_location = "Schemes of the Enemy, Dackle's chest, some end chests (hard or elite difficulty only)"
+icon = "Boots_13b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Feet"
+
+[[clickie]]
+name = "Jet Propulsion"
+clickie = "Jet Propulsion"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Jump"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Jet Propulsion"]
+
+[[source]]
+chest = "dackle's chest, some end chests"
+kind = "quest"
+loot_type = "chest"
+name = "Schemes of the Enemy"

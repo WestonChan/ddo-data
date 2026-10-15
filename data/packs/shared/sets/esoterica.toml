@@ -1,0 +1,22 @@
+name = "Esoterica"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Esoterica"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]

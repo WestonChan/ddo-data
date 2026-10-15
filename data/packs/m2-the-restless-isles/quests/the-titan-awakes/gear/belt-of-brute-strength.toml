@@ -1,0 +1,25 @@
+name = "Belt of Brute Strength"
+description = """
+This leather strap cinches tight around the waist with a pair of thick straps.
+It helps the wearer to perform feats of strength."""
+drop_location = "The Titan Awakes, Raid Warded Chest"
+icon = "Belt_5c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Waist"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

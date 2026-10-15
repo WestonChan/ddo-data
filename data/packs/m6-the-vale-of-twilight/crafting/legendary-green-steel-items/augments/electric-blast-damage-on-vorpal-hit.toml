@@ -1,0 +1,18 @@
+name = "Electric Blast damage on Vorpal hit"
+description = "Dominion/Air: This weapon does an additional 11d120 Electric damage on a Vorpal hit."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Electric"
+dice_number = [11]
+dice_sides = [120]
+display_name = "Electric Burst"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

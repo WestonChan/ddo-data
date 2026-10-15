@@ -1,0 +1,25 @@
+name = "Lockup Property Log: Razorclaw Shifter"
+description = """
+A list of the effects that were taken from you after the brawl. Looks like everything's
+accounted for."""
+drop_location = "Advance to level 15, End reward"
+icon = "Trinket_32a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+race_required = "Razorclaw Shifter"
+slot = "Trinket"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 2
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

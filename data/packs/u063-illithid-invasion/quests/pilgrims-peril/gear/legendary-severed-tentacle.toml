@@ -1,0 +1,51 @@
+name = "Legendary Severed Tentacle"
+description = """
+This tentacle, fitted with a chain, radiates with a Psionic power that makes
+its holder impossibly mighty."""
+drop_location = "Pilgrims' Peril, end chest"
+icon = "Trinket_106"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 32
+slot = "Trinket"
+
+[[clickie]]
+name = "Titan's Grip"
+clickie = "Titan's Grip"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Raging Strength"
+value = 3
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    18,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Titan's Grip"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Pilgrims' Peril"

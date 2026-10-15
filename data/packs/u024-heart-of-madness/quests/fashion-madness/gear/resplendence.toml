@@ -1,0 +1,55 @@
+name = "Resplendence"
+description = "Polished so finely, this runearm appears to magnify even the dimmest of lights to a brilliant glare."
+drop_location = "Fashion Madness, End chest"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 18
+slot = "Runearm"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Resplendence"
+read = "2026-09-30"
+
+[[citation]]
+field = "sources"
+url = "https://ddowiki.com/page/Item:Resplendence"
+read = "2026-09-30"
+
+[[effect]]
+name = "Light Spell Power"
+bonus_type = "Equipment"
+value = 90
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Light Spirals"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4"
+
+[[effect]]
+name = "Rune Arm Imbue - Light IV"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Fashion Madness"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

@@ -1573,11 +1573,7 @@ fn reuses_maetrims_effect_whose_name_differs_only_by_colons_commas_periods_and_a
                ORDER BY ie.sort_order"
         ),
     );
-    assert_eq!(
-        effect_names[2..],
-        ["Maximum Charge Tier III", "Rune Arm Imbue - Acid II", "Rune Arm Imbue - Acid II"],
-        "{effect_names:?}"
-    );
+    assert_eq!(effect_names[2..], ["Maximum Charge Tier III", "Rune Arm Imbue - Acid II"], "{effect_names:?}");
     let effect_count = |db: &Connection| -> i64 {
         db.query_row("SELECT COUNT(*) FROM effects e WHERE e.is_stat = 0 AND NOT EXISTS (SELECT 1 FROM effect_bonuses es WHERE es.effect_id = e.id)", [], |r| r.get(0)).unwrap()
     };

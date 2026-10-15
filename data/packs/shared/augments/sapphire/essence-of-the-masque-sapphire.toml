@@ -1,0 +1,24 @@
+name = "Essence of The Masque"
+variant = "sapphire"
+description = """
+Soundproof: Protects against stunning, dazing and disorientation from
+sound-based spells such as Soundburst and Greater Shout.
+Requires: 50 Threads of Fate, Empty Soul Vessel and The Masque (The Curse of Strahd)"""
+family = "Sapphire"
+icon = "BlueRaidItemEssence"
+min_level = 30
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Stunning, dazing and disorientation from sound based spells"]
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "green"

@@ -1,0 +1,4 @@
+name = "Enlarge Cost Reduction"
+category = "magical"
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Enlarge Cost Reduction +{1}"

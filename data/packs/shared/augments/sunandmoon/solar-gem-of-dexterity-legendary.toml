@@ -1,0 +1,43 @@
+name = "Solar Gem of Dexterity (Legendary)"
+description = """
++4 Artifact Bonus to Dexterity
+Drops in: Portal to Below, end chest
+Dinosaur Crisis, optional chest
+Locked Away (Part One), Asylum Otyugh's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Artifact"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"
+
+[[source]]
+chest = "asylum otyugh's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part One)"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Portal to Below"

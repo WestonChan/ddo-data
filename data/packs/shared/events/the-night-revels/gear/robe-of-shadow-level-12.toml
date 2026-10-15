@@ -1,0 +1,53 @@
+name = "Robe of Shadow (level 12)"
+description = """
+This robe is as dark as the night sky and almost seems to crawl visibly with
+moving shadows. It boosts the power of the wearer's negative energy magic,
+and grants a measure of necromantic protection against enemy attacks."""
+drop_location = "The Night Revels, Turn in Upgrade of Robe of Shadow (level 8)"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 12
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Enhancement"
+value = 66
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Improved False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    8,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

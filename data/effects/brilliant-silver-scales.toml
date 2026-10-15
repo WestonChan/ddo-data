@@ -1,0 +1,10 @@
+name = "Brilliant Silver Scales"
+description_template = "This helmet is fashioned from brilliant silver Dragonscale, and is warded against the cold. {1} Enhancement bonus to Resist Cold."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Brilliant Silver Scales"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Cold Resistance"

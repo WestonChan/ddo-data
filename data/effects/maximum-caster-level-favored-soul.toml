@@ -1,0 +1,2 @@
+name = "Maximum Caster Level (Favored Soul)"
+verbose_name_template = "Maximum Caster Level +{1} (Favored Soul)"

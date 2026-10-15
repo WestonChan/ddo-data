@@ -1,0 +1,83 @@
+name = "Legendary Echo of Wave"
+accepts_sentience = true
+description = """
+The crash of the waves echoes in your ears. Seize the moment, and swim for the surface.
+
+There is something missing from this legendary weapon... something that makes
+it feel... incomplete."""
+drop_location = "White Plume Mountain, End chest"
+enhancement_bonus = 15
+icon = "Quarterstaff_12a"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Bone"
+minimum_level = 29
+slot = "Main Hand"
+
+[[clickie]]
+name = "Swirling Icy Shield"
+clickie = "Swirling Icy Shield"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Legendary Cerulean Wave"
+
+[[effect]]
+name = "Frozen Storm Lore"
+value = 21
+
+[[effect]]
+name = "Power of the Frozen Storm"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Underwater Action"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Swirling Icy Shield"]
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "White Plume Mountain"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

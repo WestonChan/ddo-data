@@ -1,0 +1,21 @@
+name = "Solar Gem of Spell Critical Damage (Epic)"
+description = "+10% Legendary Bonus to Spell Critical Damage."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Universal Spell Critical Damage"
+bonus_type = "Legendary"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[slot]]
+slot = "sun"

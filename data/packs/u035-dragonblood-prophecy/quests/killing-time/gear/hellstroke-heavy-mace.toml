@@ -1,0 +1,61 @@
+name = "Hellstroke Heavy Mace"
+accepts_sentience = true
+description = """
+A fearsome heavy mace that resembles the cruel implements orthon warriors use
+to rend their enemies. It occasionally allows the user to attack twice consecutively,
+much like an orthon."""
+drop_location = "Killing Time, end chest"
+enhancement_bonus = 15
+icon = "HeavyMace_1"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Cold Iron"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Maiming 6"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Cold Iron"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

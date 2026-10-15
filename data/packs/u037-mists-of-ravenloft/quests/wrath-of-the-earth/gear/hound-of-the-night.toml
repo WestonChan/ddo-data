@@ -1,0 +1,66 @@
+name = "Hound of the Night"
+description = """
+Guard dogs have been used throughout Barovia over the years, grim reminders
+that none are welcome."""
+drop_location = "Wrath of the Earth, end chest"
+enhancement_bonus = 5
+icon = "Collar1"
+item_category = "Weapon"
+item_type = "Collar"
+material = "Silver"
+minimum_level = 10
+race_required = "Pet"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Frostbite"
+
+[[effect]]
+name = "Vorpal Lethargy"
+
+[[effect]]
+name = "Speed"
+value = 20
+value2 = 7
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wrath of the Earth"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Collar"

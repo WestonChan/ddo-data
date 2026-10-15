@@ -1,0 +1,21 @@
+name = "Quality Tumble +5"
+description = "Legendary quality bonus to Tumble"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Tumble"
+effect_type = "SkillBonus"
+targets = ["Tumble"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

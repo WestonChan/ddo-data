@@ -1,0 +1,13 @@
+name = "Boots of Anchoring"
+description = """
+Crafted by Liella d'Orien, these boots ward against time and planar displacement
+effects."""
+drop_location = "Crafted, Crafted in Amrath by Liella d'Orien"
+icon = "Boots_13b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Feet"
+
+[[effect]]
+name = "Anchoring"

@@ -1,0 +1,32 @@
+name = "Silver Flame"
+description = "You are blessed by the Silver Fame and Turns now affect +6 Hit Dice"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 6
+
+[[effect]]
+name = "Turn Undead Dice"
+bonus_type = "Silver Flame"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Silver Flame"
+effect = "Turn Undead Dice"
+effect_type = "TurnDiceBonus"
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith melee prefix"
+
+[[slot]]
+slot = "crafting: cannith ranged prefix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

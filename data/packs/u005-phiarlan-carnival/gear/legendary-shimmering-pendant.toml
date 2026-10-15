@@ -1,0 +1,48 @@
+name = "Legendary Shimmering Pendant"
+description = """
+This beautiful necklace immediately makes the wearer appear more attractive
+and confident."""
+drop_location = "Legendary version of Epic Shimmering Pendant"
+icon = "Necklace_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 30
+slot = "Neck"
+
+[[clickie]]
+name = "Charm Person"
+clickie = "Charm Person"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Charm Person"]
+
+[[socket]]
+slot = "yellow"

@@ -1,0 +1,47 @@
+name = "Epic Ethereal Ring"
+description = "Light enough to forget you're even wearing it, sometimes."
+drop_location = "Epic version of Ethereal Ring"
+icon = "Ring_26c"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 20
+slot = "Ring"
+
+[[clickie]]
+name = "Invisibility"
+clickie = "Invisibility"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Invisibility"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

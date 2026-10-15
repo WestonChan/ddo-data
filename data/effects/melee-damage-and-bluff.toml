@@ -1,0 +1,3 @@
+name = "Melee Damage and Bluff"
+description_template = "Melee attacks deal +0.5[W] and have a 5% chance to Bluff the target for 4 seconds."
+verbose_name_template = "Melee Damage and Bluff"

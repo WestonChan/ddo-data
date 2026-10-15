@@ -1,0 +1,30 @@
+name = "The Curse and the Captive Crustacean"
+bestowed_by = "Quamak"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Isle of Dread"
+patron = "The Gatekeepers"
+zone = "Crab Island"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Curse_and_the_Captive_Crustacean"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

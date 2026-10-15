@@ -1,0 +1,83 @@
+name = "Natural Armor"
+choose_level = true
+description = "Natural Armor bonus to AC"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    2,
+    3,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    14,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Natural Armor"
+effect_type = "NaturalArmor"
+
+[[slot]]
+slot = "crafting: cannith belt suffix"
+
+[[slot]]
+slot = "crafting: cannith cloak suffix"
+
+[[slot]]
+slot = "crafting: cannith necklace suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random belt suffix"
+
+[[slot]]
+slot = "crafting: random cloak suffix"
+
+[[slot]]
+slot = "crafting: random necklace suffix"
+
+[[slot]]
+slot = "crafting: cannith rune arm suffix"

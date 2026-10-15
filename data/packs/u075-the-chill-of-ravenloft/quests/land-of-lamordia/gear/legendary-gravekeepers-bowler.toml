@@ -1,0 +1,39 @@
+name = "Legendary Gravekeeper's Bowler"
+description = "This once belonged to the owner of a sprawling cemetery."
+drop_location = "Land of Lamordia, Vornir Frosthelm 's chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 34
+slot = "Head"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 57
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "vornir frosthelm 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

@@ -1,0 +1,371 @@
+[[row]]
+name = "Aid"
+description = """
+This spell grants the target (An ally creature.) 8 plus 1 per caster level (Maximum
+caster level 10.) temporary Hit points, and a +1 Morale bonus to attack rolls
+and saves versus fear. Aid will not stack with Bless."""
+icon = "Aid"
+max_caster_level = 10
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row]]
+name = "Bless"
+description = """
+You and any allies near you are filled with courage and gain +1 Morale bonuses to attack
+rolls and saving throws against fear, with an additional +1 per 5 caster levels,
+max 5 at caster level 20. Bless counters and dispels Bane."""
+icon = "Bless"
+max_caster_level = 20
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+]
+bonus_type = "Morale"
+effect_type = "Weapon_Attack"
+stack_source = "Unknown"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+]
+bonus_type = "Morale"
+effect_type = "SaveBonus"
+stack_source = "Unknown"
+targets = ["Fear"]
+
+[[row]]
+name = "Bull's Strength"
+description = "An ally gains a +4 Enhancement bonus to Strength for 1 minute per caster level."
+icon = "BullsStrength"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row]]
+name = "Cure Light Wounds"
+description = """
+Positive energy heals an ally for 1d6+2 plus 1 per caster level (Maximum caster level 5.)
+hit points, or deals the same amount of damage to an Undead creature.
+A successful Will save takes half damage (undead only)."""
+icon = "CureLightWounds"
+max_caster_level = 5
+metamagics = [
+    "Empower",
+    "EmpowerHealing",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+base_dice_bonus = 2
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Positive"
+per_caster_levels = 1
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Divine Favor"
+description = """
+Calling upon the strength and wisdom of a deity, you gain a +1 luck bonus on attack
+and weapon damage rolls. This bonus is increased by +1 for every 3 caster
+levels beyond level 3. (Maximum bonus +3 at caster level 9.)"""
+icon = "DivineFavor"
+max_caster_level = 9
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Luck"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "Unknown"
+targets = ["All"]
+
+[[row]]
+name = "Lesser Restoration"
+description = """
+Dispels magical effects reducing 1 of an allies Ability scores, it also eliminates
+the condition Fatigued suffered by the creature, and improves the Exhausted
+condition to Fatigued."""
+icon = "LesserRestoration"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Protection from Evil"
+description = """
+Creates a magical barrier that wards a target from attacks by Evil creatures.
+It grants a +2 Deflection bonus to Armor Class, and a +2 Resistance bonus to
+saves versus attacks from Evil creatures. The target is also warded from Evil
+magical controls and compulsions."""
+icon = "ProtectionFromEvil"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Deflection"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magical Controls and Compulsion"]
+
+[[row]]
+name = "Resist Energy"
+description = """
+Gives an ally limited resistance from one chosen energy type, reducing damage or
+attack by 10. (20 at caster level 7th, 30 at 11th.)
+Energy types available are: Acid, Cold, Electricity, Fire, or Sonic."""
+icon = "ResistEnergy"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    20,
+    20,
+    20,
+    20,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+stack_source = "Unknown"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Sonic",
+]
+
+[[row]]
+name = "Seek Eternal Rest"
+description = "Grants the caster +4 to Sacred level for the purpose of turning Undead."
+icon = "SeekEternalRest"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Sacred"
+effect_type = "TurnLevelBonus"

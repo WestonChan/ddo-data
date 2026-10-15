@@ -1,0 +1,39 @@
+name = "Lindal's Mighty Belt"
+description = "The silver shields on this belt seem to imbue you with magical strength"
+drop_location = "Skeletons in the Closet, Free Yarrow optional chest"
+icon = "Belt_4"
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 31
+slot = "Waist"
+
+[[effect]]
+name = "Lay on Hands Uses"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Extra Smites"
+value = 3
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 19
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "free yarrow optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Skeletons in the Closet"

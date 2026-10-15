@@ -1,0 +1,37 @@
+name = "Black Dragonscale Armor"
+description = "Breastplate and scale armor forged from the scales of a black dragon."
+drop_location = "Black Dragonscale Armor, Turn in 20 Black Dragon Scales"
+enhancement_bonus = 5
+icon = "MediumArmor_13"
+item_category = "Armor"
+item_type = "Medium"
+material = "Black Dragonscale"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 12
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

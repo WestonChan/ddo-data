@@ -1,0 +1,40 @@
+name = "Waistwrap of Wild Wisdom"
+description = "A light cloth waistwrap for those headed out into the woods."
+drop_location = "Death Hosts This Banquet, end chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Waist"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Death Hosts This Banquet"

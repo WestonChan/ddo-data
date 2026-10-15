@@ -1,0 +1,41 @@
+name = "Legendary Robes of the Eternal Flame"
+description = "A robe from deep within the Temple of Elemental Evil."
+drop_location = "ToEE: Fire Node, end chest and random locked chest"
+enhancement_bonus = 15
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 149
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest and random locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"

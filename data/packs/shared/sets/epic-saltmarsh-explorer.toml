@@ -1,0 +1,174 @@
+name = "Epic Saltmarsh Explorer"
+icon = "SaltmarshExplorer"
+
+[[item]]
+name = "Epic Amethyst Loupe"
+
+[[item]]
+name = "Epic Anchorchain"
+
+[[item]]
+name = "Epic Belt of Myriad Pockets"
+
+[[item]]
+name = "Epic Cinderfingers"
+
+[[item]]
+name = "Epic Corroded Iron Lenses"
+
+[[item]]
+name = "Epic Crocodile Skin Boots"
+
+[[item]]
+name = "Epic Crocodile Tooth"
+
+[[item]]
+name = "Epic Dockworker's Outfit"
+
+[[item]]
+name = "Epic Driftwood Bracers"
+
+[[item]]
+name = "Epic Ethereal Ring"
+
+[[item]]
+name = "Epic Gloves of the Tinkerer"
+
+[[item]]
+name = "Epic Immaculate Globe"
+
+[[item]]
+name = "Epic Lizardfolk Tooth Necklace"
+
+[[item]]
+name = "Epic Marshreed Cloak"
+
+[[item]]
+name = "Epic Privateer's Leathers"
+
+[[item]]
+name = "Epic Sailcloth Cloak"
+
+[[item]]
+name = "Epic Salt-Pearl Ring"
+
+[[item]]
+name = "Epic Saltiron Bracer"
+
+[[item]]
+name = "Epic Saltiron Docent"
+
+[[item]]
+name = "Epic Saltiron Plate"
+
+[[item]]
+name = "Epic Saltiron Targe"
+
+[[item]]
+name = "Epic Ship-Mage's Attire"
+
+[[item]]
+name = "Epic Silver Pocketwatch"
+
+[[item]]
+name = "Epic Skull of the Sea"
+
+[[item]]
+name = "Epic Skullduggery Cap"
+
+[[item]]
+name = "Epic Smash 'n Grabber"
+
+[[item]]
+name = "Epic Smuggler's Cap"
+
+[[item]]
+name = "Epic Smuggler's Gear"
+
+[[item]]
+name = "Epic Snakeskin Belt"
+
+[[item]]
+name = "Epic Sparksoles"
+
+[[item]]
+name = "Epic Wind-Swept Buckler"
+
+[[item]]
+name = "Sir Squilliam IV, Esq."
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sheltering"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+effect_type = "MeleePower"
+extra_types = [
+    "RangedPower",
+    "UniversalSpellPower",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]
+targets = ["All"]

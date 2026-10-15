@@ -1,0 +1,39 @@
+name = "Legendary Downcast Mystic Cloak"
+description = "A lingering warmth permeates the threads of this magical cloak."
+drop_location = "The Wish, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 34
+slot = "Back"
+
+[[effect]]
+name = "Sonic Absorption"
+bonus_type = "Quality"
+value = 7
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wish"

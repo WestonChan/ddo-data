@@ -1,0 +1,86 @@
+name = "Elocator's Habiliment"
+description = """
+A fine suit of splint mail cut for ease of movement on as well as between the
+planes, this is the garb favored by some Sarlonan psychic warriors."""
+drop_location = "The Mindsunder, Disc locked optional end chest ; \n Chance on every 3rd completion of The Mindsunder"
+enhancement_bonus = 5
+icon = "MediumArmor_21"
+item_category = "Armor"
+item_type = "Medium"
+material = "Magesteel"
+minimum_level = 18
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 17
+armor_type = "Medium"
+max_dex_bonus = 5
+
+[[clickie]]
+name = "Displacement"
+clickie = "Displacement"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    5,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Displacement"]
+
+[[socket]]
+slot = "crafting: suppressed power"
+
+[[socket.option]]
+name = "Adds Greater Nimbleness"
+description = """
+Greater Nimbleness: This suit of armor looks much less restrictive than others
+of its type. A suit of armor that has this property has a maximum Dexterity
+bonus 2 higher than normal, and its armor check penalty is reduced by 4."""
+icon = "Upgrade"
+min_level = 18
+
+[[socket.option.effect]]
+bonus_type = "Stacking"
+effect = "Armor Check Penalty"
+value = -4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [-4]
+bonus_type = "Stacking"
+effect = "Armor Check Penalty"
+effect_type = "ArmorCheckPenalty"
+
+[[source]]
+chest = "disc locked optional end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mindsunder"

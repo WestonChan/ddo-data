@@ -1,0 +1,49 @@
+name = "Redemption"
+description = """
+The kama of a repentant soul, his pleadings of forgiveness sharpened and focused
+the blade."""
+drop_location = "Inferno of the Damned, End Chest"
+enhancement_bonus = 5
+icon = "Kama_4"
+item_category = "Weapon"
+item_type = "Kama"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Holy"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Inferno of the Damned"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Kama"

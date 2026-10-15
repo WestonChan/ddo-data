@@ -1,0 +1,43 @@
+name = "Lunar Gem of Wisdom (Heroic)"
+description = """
++2 Profane Bonus to Wisdom
+Drops in: Ettercap Incursion, end chest
+The Darkness and the Light, end chest
+Land of Lamordia, Vornir Frosthelm's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ettercap Incursion"
+
+[[source]]
+chest = "vornir frosthelm's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darkness and the Light"

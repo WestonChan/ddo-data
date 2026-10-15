@@ -1,0 +1,23 @@
+name = "Skirmisher's Boots (Level 19)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Lines of Supply, End reward"
+icon = "Boots_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 19
+slot = "Feet"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 25
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Lines of Supply"

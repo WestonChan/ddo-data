@@ -1,0 +1,48 @@
+name = "Curse of Weapon's Touch"
+description = """
++5% Fortune Bonus to Strikethrough
++2% Fortune Bonus to Offhand Strike Chance
++2% Fortune Bonus to Doublestrike and Doubleshot"""
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Strikethrough"
+bonus_type = "Fortune"
+value = 5
+
+[[effect]]
+name = "Offhand Strike Chance"
+bonus_type = "Fortune"
+value = 2
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Fortune"
+value = 2
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Fortune"
+effect = "Strikethrough"
+effect_type = "Strikethrough"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect_type = "OffHandAttackBonus"
+extra_types = [
+    "Doublestrike",
+    "Doubleshot",
+]
+
+[[slot]]
+slot = "crafting: deck curse"

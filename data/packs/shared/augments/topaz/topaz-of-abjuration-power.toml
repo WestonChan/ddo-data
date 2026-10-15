@@ -1,0 +1,27 @@
+name = "Topaz of Abjuration Power"
+description = "+8 Equipment bonus to Abjuration DCs."
+family = "Topaz"
+icon = "TopazBlueBorder"
+min_level = 30
+
+[[effect]]
+name = "Abjuration Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Equipment"
+effect = "Abjuration Focus"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

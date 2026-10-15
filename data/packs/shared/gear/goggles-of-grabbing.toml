@@ -1,0 +1,32 @@
+name = "Goggles of Grabbing"
+description = """
+The Clan Tunnelworm Warden would sometimes use these goggles to halt a potential
+prisoner in their tracks, simply by staring them down."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 3
+slot = "Goggles"
+
+[[clickie]]
+name = "Hold Person"
+clickie = "Hold Person"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Hold Person"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

@@ -1,0 +1,62 @@
+name = "Nightmother's Sceptre"
+accepts_sentience = true
+description = """
+Forged in the Demiplane of Dread, this weapon has been hallowed in the name
+of Mother Night. It holds ineffable power... and something else?"""
+drop_location = "Blue Water Inn, Turn in 80 Vistani Totems"
+enhancement_bonus = 15
+icon = "Club_2a"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "vendor"
+name = "Osah Lukresh"
+
+[[source.price]]
+ingredient = "Vistani Totem"
+quantity = 80
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Club"

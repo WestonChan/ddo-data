@@ -1,0 +1,3 @@
+name = "Blinding Fear"
+description_template = "On Hit: Blinds and Shaken's foe for 6 seconds, 12 second cool down."
+verbose_name_template = "Blinding Fear"

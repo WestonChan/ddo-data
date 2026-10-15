@@ -1,0 +1,33 @@
+name = "Torn Chitin Bracers"
+description = """
+These bracers appear to be made from insect chitin, and were not originally
+made for humanoid arms."""
+drop_location = "The Tide Turns, End chest; Sentinels of Stormreach, quest chain end reward"
+icon = "Bracers_15c"
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 5
+slot = "Wrists"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 4
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 1
+
+[[effect]]
+name = "Unraveling Enchantments"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tide Turns"
+
+[[source]]
+kind = "quest_chain"
+name = "Sentinels of Stormreach"

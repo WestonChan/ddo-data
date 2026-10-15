@@ -1,0 +1,22 @@
+name = "Misery's Peak"
+bestowed_by = "Amalgam"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Free Agents"
+zone = "Misery's Peak"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Misery%27s_Peak"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 2

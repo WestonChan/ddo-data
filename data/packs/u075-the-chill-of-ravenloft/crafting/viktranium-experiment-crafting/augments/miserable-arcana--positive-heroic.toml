@@ -1,0 +1,21 @@
+name = "Miserable Arcana: Positive (Heroic)"
+description = "+70 Equipment bonus to Positive Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Positive Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

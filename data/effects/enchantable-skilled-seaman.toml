@@ -1,0 +1,3 @@
+name = "Enchantable: Skilled Seaman"
+description_template = "Skilled Seaman: This hat can be enchanted to grant a bonus to one skill. You can have one skill bonus on a hat at a time, but can replace it with a different choice. Skill effects may change the minimum level of this item."
+verbose_name_template = "Enchantable"

@@ -1,0 +1,26 @@
+name = "Gianthold Tor"
+bestowed_by = "Crag"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Return to Gianthold Tor"
+favor = 7
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "Gianthold Tor"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Gianthold_Tor"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 24

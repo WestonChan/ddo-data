@@ -1,0 +1,3 @@
+name = "Feybane 2"
+description_template = "This weapon is attuned specifically to hunt those born of the Feywild, dealing an additional 2d10 bane damage vs. Fey."
+verbose_name_template = "Feybane 2"

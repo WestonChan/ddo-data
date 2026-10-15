@@ -1,0 +1,59 @@
+name = "Legendary Bolt Sphere"
+description = "The elements beckon."
+drop_location = "Black and Blue, end chest"
+icon = "Orb_1c"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 28
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 28
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 13
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Insight"
+value = 9
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Insight"
+value = 71
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Black and Blue"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

@@ -1,0 +1,40 @@
+name = "Dark Bargainer's Armor"
+description = "This armor was fashionable in your homeland... where ever that was."
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 4
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 15
+race_required = "Dhampir Dark Bargainer"
+slot = "Body"
+wiki_url = "https://ddowiki.com/page/Item:Dark_Bargainer%27s_Armor"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 11
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Dark_Bargainer%27s_Armor"
+read = "2026-09-30"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Insight"
+value = 2
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

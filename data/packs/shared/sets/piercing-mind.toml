@@ -1,0 +1,22 @@
+name = "Piercing Mind"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Piercing Mind"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Intelligence"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]

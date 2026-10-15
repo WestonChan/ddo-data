@@ -1,0 +1,56 @@
+name = "Wave of Sorrow"
+description = """
+Transformed by Graz'zt 's influence, this once mundane blade now resembles his
+greatsword. The longer you stare at it, the brighter the edges seem to glow."""
+drop_location = "Desire in the Dark, End chest"
+enhancement_bonus = 5
+icon = "Greatsword_3"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Echoes of Angdrelve 4"
+
+[[effect]]
+name = "Wounding 2"
+
+[[effect]]
+name = "Anarchic 4"
+
+[[effect]]
+name = "Penalty Lawful"
+
+[[effect]]
+name = "Slay Living"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desire in the Dark"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

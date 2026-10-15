@@ -1,0 +1,27 @@
+name = "Zawabi's Revenge"
+bestowed_by = "Zawabi the Elder Djinni"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+flagging = "You need to finish the quest Against the Demon Queen, which has its own flagging mechanism."
+is_raid = true
+pack = "Demon Sands"
+patron = "The Free Agents"
+zone = "The Circle of Eternity"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Zawabi%27s_Revenge"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12
+
+[[run]]
+tier = "epic"
+level = 22

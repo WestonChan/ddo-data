@@ -1,0 +1,67 @@
+name = "Angelic Wings"
+icon = "AngelicWings"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Turn Undead Uses"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect = "Turn Undead Uses"
+effect_type = "ExtraTurns"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Spell Points"
+value = 200
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [200]
+bonus_type = "Stacking"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+effect = "Light Spell Critical Damage Boost"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]

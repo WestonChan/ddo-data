@@ -1,0 +1,21 @@
+name = "Dolorous Quality Accuracy (Legendary)"
+description = "+5 Quality bonus to Attack."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: dolorous (accessory)"

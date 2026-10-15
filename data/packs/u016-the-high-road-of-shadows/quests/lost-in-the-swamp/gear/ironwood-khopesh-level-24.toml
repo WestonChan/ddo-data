@@ -1,0 +1,46 @@
+name = "Ironwood Khopesh (Level 24)"
+description = """
+This extremely heavy, single-edged sword appears to be made from some kind of
+petrified wood that holds an edge as strong and sharp as adamantine. It is
+reinforced with a field of magical force that will deal punishing blows to
+any enemy it strikes."""
+drop_location = "Lost in the Swamp, End chest (Epic Hard)"
+enhancement_bonus = 7
+icon = "Khopesh_1l"
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Wood"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Greater Stone Prison"
+
+[[effect]]
+name = "Impellent"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Lost in the Swamp"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Khopesh"

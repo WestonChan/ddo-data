@@ -1,0 +1,43 @@
+name = "Legendary Demonic Rush"
+description = "Powerful boots that use arcane magic to propel the wearer."
+drop_location = "Catalyst Crafting, Turn in Cannith Boots of Propulsion, its Legendary Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+icon = "Boots_13b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 41
+
+[[effect]]
+name = "Jet Propulsion"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

@@ -1,0 +1,36 @@
+name = "Bloodbark Bracers"
+description = "FEYTWISTED form of Vinelash Bracers \n\nLiving, sharp, and bloody vines are wound around the wrists of these wooden\nbracers."
+drop_location = "The Feywild, Feytwisted chests"
+icon = "Bracers_5b"
+item_category = "Clothing"
+material = "Darkwood"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Raging Strength"
+value = 3
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"

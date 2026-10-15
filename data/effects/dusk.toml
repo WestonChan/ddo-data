@@ -1,0 +1,11 @@
+name = "Dusk"
+description_template = "Equipping this item engulfs you in twilight shadows. Attacks from enemies have a 10% chance to miss you due to concealment."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Dusk +10"
+
+[[bonus]]
+amount_from = 0
+constant = 10
+rounding = "down"
+scale = 1.0
+target = "Displacement"

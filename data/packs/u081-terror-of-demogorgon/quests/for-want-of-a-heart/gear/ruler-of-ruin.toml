@@ -1,0 +1,35 @@
+name = "Ruler of Ruin"
+description = "Yeenoghu's personal ring. It changes its size to fit the wearer."
+drop_location = "For Want of a Heart, end chest"
+icon = "Ring_26a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Ring"
+
+[[effect]]
+name = "Kinetic Intensity"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 12
+
+[[socket]]
+slot = "crafting: nearly complete: spell focus (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "For Want of a Heart"

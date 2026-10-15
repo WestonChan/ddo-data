@@ -1,0 +1,1023 @@
+name = "Dread Adversary"
+background = "Reaper"
+icon = "ReaperTree"
+kind = "reaper"
+version = 1
+
+[[enhancement]]
+name = "Reaper's Offense I"
+cost_per_rank = [1]
+description = """
++1 to hit and damage with all weapons while in Reaper Difficulty.
+Every ability you take in this tree grants +4 Maximum Hit Points in Reaper Difficulty."""
+icon = "ReapersOffense"
+internal_name = "DreadAdversaryCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [4]
+bonus_type = "Reaper"
+display_name = "Dread Adversary: HP per action point"
+effect_type = "HitpointsReaper"
+stack_source = "Dread Adversary"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Offense II"
+cost_per_rank = [1]
+description = "+1 to hit and damage"
+icon = "ReapersOffense"
+internal_name = "DreadAdversaryCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["DreadAdversaryCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 9
+
+[[enhancement]]
+name = "Reaper's Offense III"
+cost_per_rank = [1]
+description = "+1 Strength or Dexterity"
+icon = "StrDex"
+internal_name = "DreadAdversaryCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.requirement]]
+items = ["DreadAdversaryCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 15
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [1]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 15
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [1]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 15
+
+[[enhancement]]
+name = "Reaper's Offense IV"
+cost_per_rank = [1]
+description = "+2 to hit and damage"
+icon = "ReapersOffense"
+internal_name = "DreadAdversaryCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Reaper"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["DreadAdversaryCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Offense V"
+cost_per_rank = [1]
+description = "+1 Melee and Ranged Power"
+icon = "ReapersOffense"
+internal_name = "DreadAdversaryCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+
+[[enhancement.requirement]]
+items = ["DreadAdversaryCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 25
+
+[[enhancement]]
+name = "Reaper's Offense VI"
+cost_per_rank = [1]
+description = "+2 Melee and Ranged Power"
+icon = "ReapersOffense"
+internal_name = "DreadAdversaryCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Reaper"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+
+[[enhancement.requirement]]
+items = ["DreadAdversaryCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Reaper's Blade I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Melee Power while in Reaper Difficulty"
+icon = "ReapersBlade"
+internal_name = "DAReapersBladeI"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Tactics I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Tactics DCs while in Reaper Difficulty"
+icon = "ReapersTactics"
+internal_name = "DAReapersTacticsI"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Strike"
+cost_per_rank = [1]
+description = """
+While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +30% Bonus to Doublestrike and Doubleshot for 30 seconds."""
+icon = "ReapersStrike"
+internal_name = "DAReapersStrike"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Strength or Dexterity I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 Strength or Dexterity while in Reaper difficulty."
+icon = "StrDex"
+internal_name = "DAReapersAbilityI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [1]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [1]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Shot I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Ranged Power while in Reaper Difficulty"
+icon = "ReapersShot"
+internal_name = "DAReapersShotI"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "RangedPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Blade II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Melee Power while in Reaper Difficulty"
+icon = "ReapersBlade"
+internal_name = "DAReapersBladeII"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersBladeI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Tactics II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Tactics DCs while in Reaper Difficulty"
+icon = "ReapersTactics"
+internal_name = "DAReapersTacticsII"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersTacticsI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Strength or Dexterity II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 Strength or Dexterity while in Reaper difficulty."
+icon = "StrDex"
+internal_name = "DAReapersAbilityII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["DAReapersAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [1]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection.requirement]]
+items = [
+    "DAReapersAbilityI",
+    "+1 Strength",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [1]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection.requirement]]
+items = [
+    "DAReapersAbilityI",
+    "+1 Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Reaper's Shot II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Ranged Power while in Reaper Difficulty"
+icon = "ReapersShot"
+internal_name = "DAReapersShotII"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "RangedPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersShotI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Blade III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Melee Power while in Reaper Difficulty"
+icon = "ReapersBlade"
+internal_name = "DAReapersBladeIII"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersBladeII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Tactics III"
+cost_per_rank = [1]
+description = "+1 to Tactics DCs while in Reaper Difficulty"
+icon = "ReapersTactics"
+internal_name = "DAReapersTacticsIII"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersTacticsII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Strength or Dexterity III"
+cost_per_rank = [1]
+description = "+1 Strength or Dexterity while in Reaper difficulty."
+icon = "StrDex"
+internal_name = "DAReapersAbilityIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["DAReapersAbilityII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [1]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection.requirement]]
+items = [
+    "DAReapersAbilityI",
+    "+1 Strength",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [1]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection.requirement]]
+items = [
+    "DAReapersAbilityI",
+    "+1 Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Reaper's Shot III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Ranged Power while in Reaper Difficulty"
+icon = "ReapersShot"
+internal_name = "DAReapersShotIII"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Reaper"
+effect_type = "RangedPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersShotII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Blade IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[2/4/6] Melee Power while in Reaper Difficulty"
+icon = "ReapersBlade"
+internal_name = "DAReapersBladeIV"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersBladeIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Imbuement"
+cost_per_rank = [2]
+description = """
+While in Reaper Difficulty, activate to expend one Reaper Charge to
+gain Ghost Touch, bypass 15% of enemies' Fortification, and bypass 3% of their
+Dodge. This lasts for 30 seconds."""
+icon = "ReapersImbuement"
+internal_name = "DAReapersImbuement"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Deadly Strikes"
+cost_per_rank = [2]
+description = """
+While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +6 Reaper Bonus to confirm critical hits and critical hit damage for 30
+seconds."""
+icon = "ReapersDeadlyStrikes"
+internal_name = "DAReapersDeadlyStrikes"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Shot IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[2/4/6] Ranged Power while in Reaper Difficulty"
+icon = "ReapersShot"
+internal_name = "DAReapersShotIV"
+min_spent = 20
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "RangedPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersShotIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Blade V"
+cost_per_rank = [1]
+description = "+[2/4/6] Melee Power while in Reaper Difficulty"
+icon = "ReapersBlade"
+internal_name = "DAReapersBladeV"
+min_spent = 30
+ranks = 3
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersBladeIV"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Tactics IV"
+cost_per_rank = [1]
+description = "+1 to Tactics DCs while in Reaper Difficulty"
+icon = "ReapersTactics"
+internal_name = "DAReapersTacticsIV"
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Charge"
+cost_per_rank = [1]
+description = "+1 Maximum Reaper Charge"
+icon = "ReapersCharge"
+internal_name = "DAReapersCharge"
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Strength or Dexterity IV"
+cost_per_rank = [1]
+description = "+1 Strength or Dexterity while in Reaper difficulty."
+icon = "StrDex"
+internal_name = "DAReapersAbilityIV"
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [1]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection.requirement]]
+items = [
+    "DAReapersAbilityI",
+    "+1 Strength",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [1]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection.requirement]]
+items = [
+    "DAReapersAbilityI",
+    "+1 Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Reaper's Shot V"
+cost_per_rank = [1]
+description = "+[2/4/6] Ranged Power while in Reaper Difficulty"
+icon = "ReapersShot"
+internal_name = "DAReapersShotV"
+min_spent = 30
+ranks = 3
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "RangedPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DAReapersShotIV"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27

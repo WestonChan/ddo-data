@@ -1,0 +1,92 @@
+name = "The Legendary Shattered Onyx"
+description = "This onyx was shattered by some unknown force."
+drop_location = "Reach for the Sky, end chest"
+icon = "Ring_19"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Insightful Intelligence +6"
+description = "Insightful Intelligence +6: This item focuses the power of the wearer's mind, granting a +6 insight bonus to Intelligence."
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Insightful Wisdom +6"
+description = "Insightful Wisdom +6: This item makes the wearer more in tune with her surroundings, granting a +6 insight bonus to Wisdom."
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Insightful Charisma +6"
+description = "Insightful Charisma +6: This item makes the wearer have more flair, granting a +6 insight bonus to Charisma."
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Reach for the Sky"

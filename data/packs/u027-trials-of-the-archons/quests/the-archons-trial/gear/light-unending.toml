@@ -1,0 +1,73 @@
+name = "Light Unending"
+description = """
+May the days never end, and your torch never extinguish. May Light follow you
+on every blessed step."""
+drop_location = "The Archons' Trial, End chest"
+enhancement_bonus = 5
+icon = "Quarterstaff_9"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Flametouched Iron"
+minimum_level = 13
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Solar III"
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Banishing"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Archons' Trial"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.6
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

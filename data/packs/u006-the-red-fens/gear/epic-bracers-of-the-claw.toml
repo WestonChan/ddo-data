@@ -1,0 +1,36 @@
+name = "Epic Bracers of the Claw"
+description = """
+Drow warriors don these bracers before combat and are granted great power in
+battle. They claim the bracers are infused with Vulkoor's wrath."""
+drop_location = "Epic version of Bracers of the Claw"
+icon = "Bracers_3a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Wrists"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

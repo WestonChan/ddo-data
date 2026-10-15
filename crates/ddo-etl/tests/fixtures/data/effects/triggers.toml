@@ -1,0 +1,17 @@
+[[row]]
+name = "On Critical Hit"
+
+[[row]]
+name = "On Hit"
+
+[[row]]
+name = "On Kill"
+
+[[row]]
+name = "On Vorpal"
+
+[[row]]
+name = "When Hit"
+
+[[row]]
+name = "When Missed in Melee"

@@ -1,0 +1,37 @@
+name = "Epic Trapsmith's Toolbelt"
+description = "Various implements hang from this heavy leather belt."
+drop_location = "Free Delera, End Chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 25
+slot = "Waist"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Repair"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 19
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 128
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Free Delera"

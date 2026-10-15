@@ -1,0 +1,22 @@
+name = "The Grey Moon's Den: The Trollish Scourge"
+bestowed_by = "Bruku"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Sorrowdusk Isle"
+patron = "House Deneith"
+zone = "Grey Moon's Den"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Grey_Moon%27s_Den:_The_Trollish_Scourge"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7

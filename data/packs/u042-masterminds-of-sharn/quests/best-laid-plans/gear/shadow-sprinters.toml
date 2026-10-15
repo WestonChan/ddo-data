@@ -1,0 +1,37 @@
+name = "Shadow Sprinters"
+description = "Take a step into the ethereal."
+drop_location = "Best Laid Plans, End chest"
+icon = "Boots_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 15
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 25
+value2 = 11
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 16
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 16
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Best Laid Plans"

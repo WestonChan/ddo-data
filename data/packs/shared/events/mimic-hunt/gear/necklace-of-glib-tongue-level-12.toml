@@ -1,0 +1,35 @@
+name = "Necklace of Glib Tongue (Level 12)"
+description = """
+An ancient Wizard constructed a series of these necklaces in an attempt to make
+it easier to listen to the populace surrounding his tower."""
+drop_location = "Mimic Hunt, Turn in 80 Mimic Tokens"
+icon = "Necklace_2"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 12
+slot = "Neck"
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 7
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Linguistics 10%"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "event"
+name = "Mimic Hunt"

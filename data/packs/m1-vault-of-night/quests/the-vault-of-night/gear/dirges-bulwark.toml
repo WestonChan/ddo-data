@@ -1,0 +1,47 @@
+name = "Dirge's Bulwark"
+description = """
+This large metal shield hums quietly. Small electrical sparks strike any metal
+objects placed near the shield."""
+drop_location = "The Vault of Night"
+enhancement_bonus = 2
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 1
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 5
+max_dex_bonus = 0
+shield_bonus = 5
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Vault of Night"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

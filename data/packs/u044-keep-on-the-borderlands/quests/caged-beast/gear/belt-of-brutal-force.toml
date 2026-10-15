@@ -1,0 +1,37 @@
+name = "Belt of Brutal Force"
+description = "Brandish your brutality."
+drop_location = "Caged Beast, End Chest"
+icon = "Belt_5c"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 21
+slot = "Waist"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 38
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Caged Beast"

@@ -1,0 +1,3 @@
+name = "Greater Good"
+description_template = "This weapon is infused with the ultimate power of Good. It does an additional 2 to 12 damage to non-good targets and can only be wielded by Good-aligned characters."
+verbose_name_template = "Greater Good"

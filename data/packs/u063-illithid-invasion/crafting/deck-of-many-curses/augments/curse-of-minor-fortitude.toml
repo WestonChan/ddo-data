@@ -1,0 +1,21 @@
+name = "Curse of Minor Fortitude"
+description = "+1 Fortune Bonus to Fortitude Saving Throws"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[slot]]
+slot = "crafting: deck curse"

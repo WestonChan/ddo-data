@@ -1,0 +1,45 @@
+name = "Spectral Warhammer (level 4)"
+description = """
+The residual power left behind as thousands of Spectral Dragon Scales crumbled
+to dust formed this ethereal weapon."""
+drop_location = "The Night Revels, Turn in 60 Piece of Darkest Chocolate, obtained in the Crypt, in any challenge, and via Draught of Midnight 10 Shadowy Caramel, obtained in Getting Ahead in Lordsmarch Palace and Resurrection Chamber 20 Black Apple, obtained in Grave Work and The Kobolds' Newest Ringleader to Joe Candymaker"
+enhancement_bonus = 2
+icon = "Warhammer_1"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Force"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Ghostbane 2"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Evil Outsider Bane 2"
+
+[[effect]]
+name = "Crushing 4"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Warhammer"

@@ -1,0 +1,3 @@
+name = "Whirlwind Ward"
+description_template = "This effect renders you immune to being knocked down by an Air Elemental's whirlwind. However, it does not prevent you from being knocked back or away from touching the Air Elemental."
+verbose_name_template = "Whirlwind Ward"

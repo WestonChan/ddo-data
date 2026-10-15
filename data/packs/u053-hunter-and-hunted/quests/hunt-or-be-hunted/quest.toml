@@ -1,0 +1,26 @@
+name = "Hunt or Be Hunted"
+bestowed_by = "Maes Toben"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 10
+is_raid = true
+pack = "Hunter and Hunted"
+patron = "The Summer Court"
+zone = "Hunt Tournament Zone"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Hunt_or_Be_Hunted"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

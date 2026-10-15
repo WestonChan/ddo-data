@@ -1,0 +1,39 @@
+name = "Legendary Bracelets of Flourishing Fauna"
+description = """
+Elven Druids of old wore these as a symbol of their connection to the world
+around them."""
+drop_location = "Ettercap Incursion, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 33
+slot = "Wrists"
+
+[[effect]]
+name = "Bone Paws"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Druidic Survival Mastery"
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ettercap Incursion"

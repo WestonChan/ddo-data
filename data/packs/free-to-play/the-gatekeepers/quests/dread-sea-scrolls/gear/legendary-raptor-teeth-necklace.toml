@@ -1,0 +1,34 @@
+name = "Legendary Raptor Teeth Necklace"
+description = "The teeth on this necklace are razor sharp, and of quite the unusual size."
+drop_location = "Dread Sea Scrolls, end chest"
+icon = "Necklace_36"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Enhanced Bloodrage"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 10
+value2 = 16
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dread Sea Scrolls"

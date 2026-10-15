@@ -1,0 +1,44 @@
+name = "Giantcrafted Chain Armor"
+description = "Chain armor imbued with the power of the ancient giants."
+drop_location = "Giantcraft Armor, Turn in 10 Ancient Giant Relics"
+enhancement_bonus = 5
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Medium"
+material = "Adamantine"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 8
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 4
+
+[[clickie]]
+name = "Shield"
+clickie = "Shield"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 25
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shield"]
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

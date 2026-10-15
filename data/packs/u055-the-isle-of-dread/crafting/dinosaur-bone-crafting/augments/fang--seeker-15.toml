@@ -1,0 +1,15 @@
+name = "Fang: Seeker +15"
+description = "Seeker +15"
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "isle of dread: artifact fang (accessory)"

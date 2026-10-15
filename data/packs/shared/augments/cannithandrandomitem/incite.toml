@@ -1,0 +1,74 @@
+name = "Incite"
+choose_level = true
+description = "You gain a bonus to threat generation"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    22,
+    27,
+    31,
+    38,
+    43,
+    46,
+    49,
+    52,
+    56,
+    59,
+    62,
+    65,
+    69,
+    72,
+    75,
+    78,
+    81,
+    85,
+    88,
+    91,
+    94,
+    98,
+    101,
+    104,
+    107,
+    111,
+    114,
+    117,
+    120,
+    124,
+    127,
+    130,
+    133,
+    137,
+    140,
+    143,
+    143,
+    143,
+    143,
+    143,
+]
+
+[[effect]]
+name = "Melee Threat Generation"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[slot]]
+slot = "crafting: cannith helmet prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: random helmet extra"
+
+[[slot]]
+slot = "crafting: random gloves extra"
+
+[[slot]]
+slot = "crafting: random weapon suffix"

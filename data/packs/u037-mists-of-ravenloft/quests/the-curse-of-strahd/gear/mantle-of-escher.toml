@@ -1,0 +1,41 @@
+name = "Mantle of Escher"
+description = "Once worn by Escher in life, this robe confers surprisingly strong magical properties."
+drop_location = "The Curse of Strahd, Raid Warded Chest"
+enhancement_bonus = 15
+icon = "Cloth_1f"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"

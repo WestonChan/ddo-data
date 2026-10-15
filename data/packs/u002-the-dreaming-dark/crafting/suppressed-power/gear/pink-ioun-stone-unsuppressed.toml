@@ -1,0 +1,22 @@
+name = "Pink Ioun Stone (unsuppressed)"
+description = "A pink gem about 1 inch in diameter"
+drop_location = "Dreamforge, Suppressed Power Crafting"
+icon = "Trinket_6a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Constitution Skills - Exceptional Bonus"
+bonus_type = "Exceptional"
+value = 2
+
+[[source]]
+kind = "crafting_system"
+name = "Suppressed Power"

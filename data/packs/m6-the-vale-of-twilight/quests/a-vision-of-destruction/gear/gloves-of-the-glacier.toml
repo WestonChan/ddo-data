@@ -1,0 +1,18 @@
+name = "Gloves of the Glacier"
+description = """
+Crafted by the great wizard Telios, these gloves are said to have been crafted
+from the flesh of Frost Giants. Telios disappeared recently, after being asked
+by members of the twelve to investigate the ruins beneath Stormreach. There
+is said to be a matching pair of bracers to these gloves."""
+drop_location = "A Vision of Destruction, End chest"
+icon = "Gloves_1a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Hands"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "A Vision of Destruction"

@@ -1,0 +1,38 @@
+name = "Cobalt Guard"
+description = """
+The scales on these boots have the strange effect of nullifying magics that
+would harm their owners."""
+drop_location = "Riding the Storm Out, Warded chest"
+icon = "Boots_7a"
+item_category = "Clothing"
+material = "Blue Dragonscale"
+minimum_level = 27
+slot = "Feet"
+
+[[effect]]
+name = "Improved Quelling Strikes"
+
+[[effect]]
+name = "Greater Dispelling"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Riding the Storm Out"

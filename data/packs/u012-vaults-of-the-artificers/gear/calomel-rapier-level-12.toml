@@ -1,0 +1,79 @@
+name = "Calomel Rapier (level 12)"
+description = """
+A weapon crafted from durable white Calomel ore is always sheathed in condensed
+water droplets. It is particularly effective against dragons and fiery creatures."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 3
+icon = "Rapier_6"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Dragon Bane 3"
+
+[[effect]]
+name = "Tidal Burst"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+4 Enhancement Bonus"
+description = "+4 Enhancement Bonus: +4 enhancement bonus to attack and damage rolls."
+min_level = 12
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Dragon Bane 4  and adds a Purple augment slot"
+description = """
+Dragon Bane 4: This weapon is attuned specifically to disrupt those with draconic blood, dealing an additional 4d10 bane damage vs. Dragons.
+Adds a Purple augment slot to this item"""
+min_level = 12
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [10]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Dragon"]
+req_type = "EnemyType"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Rapier"

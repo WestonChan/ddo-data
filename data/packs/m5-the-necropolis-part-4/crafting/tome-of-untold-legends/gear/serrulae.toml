@@ -1,0 +1,62 @@
+name = "Serrulae"
+description = """
+This simple looking axe is thousands of years old. Its history includes slaying
+a giant commander during the elf uprising."""
+drop_location = "Tome of Untold Legends, Turn in completed Tome: Binding"
+enhancement_bonus = 5
+icon = "BattleAxe_9"
+item_category = "Weapon"
+item_type = "Battle Axe"
+material = "Steel"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Metalline"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Tome of Untold Legends"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "One-handed"
+weapon_type = "Battle Axe"

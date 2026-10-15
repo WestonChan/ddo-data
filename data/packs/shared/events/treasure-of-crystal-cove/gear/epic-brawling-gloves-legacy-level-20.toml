@@ -1,0 +1,68 @@
+name = "Epic Brawling Gloves (legacy) (level 20)"
+description = """
+Some pirates prefer to brawl with their bare hands. These strength-enhancing
+gloves are perfect for their fighting style."""
+drop_location = "Treasure of Crystal Cove, Turn in at Dusty Old Treasure of Crystal Cove"
+icon = "Gloves_6"
+is_legacy = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Hands"
+
+[[effect]]
+name = "Spike-Studded"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Glass Jaw Strike"
+
+[[effect]]
+name = "Sneak Attack Bonus"
+bonus_type = "Enhancement"
+value = 4
+value2 = 6
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Strength +7"
+description = """
+Strength +7: This item gives the wearer the power of Ogre Strength, granting a
++7 Enhancement bonus to Strength."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Yellow augment slot"
+description = "Adds a Yellow augment slot to this item"
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

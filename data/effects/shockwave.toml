@@ -1,0 +1,3 @@
+name = "Shockwave"
+description_template = "On Vorpal, this weapon triggers a Shockwave, striking its target with bludgeoning damage and dealing damage to surrounding enemies."
+verbose_name_template = "Shockwave"

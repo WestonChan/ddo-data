@@ -1,0 +1,20 @@
+name = "Helm of the Black Dragon (Level 23)"
+description = "This helm is crafted in the likeness of a fearsome black dragon."
+drop_location = "Return to Gianthold Tor, Black Dragon 's chest (Epic Normal)"
+icon = "Helmet_26a"
+item_category = "Clothing"
+material = "Black Dragonscale"
+minimum_level = 23
+slot = "Head"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "black dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

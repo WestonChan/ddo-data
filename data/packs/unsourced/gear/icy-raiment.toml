@@ -1,0 +1,34 @@
+name = "Icy Raiment"
+description = """
+Like a winter morning, this outfit imbues the wearer with keen clarity of mind,
+allowing one to react quickly to danger."""
+drop_location = "The Subterrane - Central, Garamol 's chest"
+icon = "Cloth_16b"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 3

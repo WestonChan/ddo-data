@@ -1,0 +1,30 @@
+name = "+4 Insight bonus against Disease and Blindness immunity"
+description = "Material/Opposition: +4 Insight bonus against Disease and Blindness immunity"
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Disease Save"
+bonus_type = "Insight"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Disease Save"
+effect_type = "SaveBonus"
+targets = ["Disease"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Blindness"]
+
+[[slot]]
+slot = "crafting: equipment tier 1"

@@ -1,0 +1,52 @@
+name = "Battered Marketplace Shield"
+description = """
+A depiction of a large tent is just barely visible on the surface of this rusted,
+battle-worn shield. Perhaps there is some way to make the image clear again
+by combining this shield with another Marketplace shield that is in better
+shape."""
+drop_location = "The Chronoscope, End reward"
+enhancement_bonus = 3
+icon = "Shield_28"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 1
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 6
+max_dex_bonus = 0
+shield_bonus = 6
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Regeneration"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

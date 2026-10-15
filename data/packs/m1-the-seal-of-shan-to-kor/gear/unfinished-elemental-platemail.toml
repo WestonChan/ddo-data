@@ -1,0 +1,37 @@
+name = "Unfinished Elemental Platemail"
+description = """
+This suit of half-plate was discovered in an unfinished state during the raid
+on Shaagh Caverns. Presumably, had it been completed, it would have protected
+its wearer from all elemental energy."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+enhancement_bonus = 2
+icon = "HeavyArmor_6"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 40
+armor_bonus = 7
+armor_check_penalty = -6
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

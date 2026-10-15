@@ -8,19 +8,19 @@
   ],
   "automatic_feats": [
     {
-      "feat_id": 260,
+      "feat_id": 5111557867215043,
       "level": 1,
       "name": "Arcane Lore"
     },
     {
-      "feat_id": 23,
+      "feat_id": 3051112799359561,
       "level": 1,
-      "name": "Dismiss Charm"
+      "name": "Cantrip: Acid Splash"
     },
     {
-      "feat_id": 1020,
+      "feat_id": 8458379249923042,
       "level": 1,
-      "name": "Inscribe Wizard Scroll"
+      "name": "Cantrip: Cut"
     }
   ],
   "bab": [
@@ -74,35 +74,39 @@
       "acquire": "Automatic",
       "description": "You are able to inscribe wizard spells from scrolls into your spell book.\nThis action will destroy the scroll.",
       "icon": "InscribeWizardScroll",
-      "id": 1020,
+      "id": 8380695964939684,
       "max_times_acquire": null,
-      "name": "Inscribe Wizard Scroll"
+      "name": "Inscribe Wizard Scroll",
+      "slug": "inscribe-wizard-scroll"
     },
     {
       "acquire": "Train",
       "description": "You recall more about your past life as a wizard.\nYou have +1 to the DC's of spells you cast and can cast the magic missile spell\nten times per rest, creating a missile of magical energy that darts forth and\nunerringly strikes its target inflicting 1d4+1 force damage.\nFor every 2 caster levels beyond first you gain an additional missile,\nmaximum 10 missiles.\nD&D Dice: Deals 1d4+1 force damage per missile (max 10 missiles)",
       "icon": "PastLifeWizard",
-      "id": 1022,
+      "id": 3790461981245730,
       "max_times_acquire": null,
-      "name": "Past Life: Arcane Initiate"
+      "name": "Past Life: Arcane Initiate",
+      "slug": "past-life-arcane-initiate"
     },
     {
       "acquire": "HeroicPastLife",
       "description": "You were a Wizard in a past life.\nYou occasionally find yourself desiring a good book.\nEach time you acquire this feat you gain +2 to spell penetration checks and the\nDC's of Wands you use.\nThis feat can be stacked up to three times.",
       "icon": "PastLifeWizard",
-      "id": 1021,
+      "id": 4216350192905886,
       "max_times_acquire": 3,
-      "name": "Past Life: Wizard"
+      "name": "Past Life: Wizard",
+      "slug": "past-life-wizard"
     }
   ],
   "fortitude": "poor",
   "hit_points": 6,
-  "id": 28,
+  "id": 6277508460285931,
   "large_icon": "Wizard",
   "name": "Wizard",
   "not_heroic": false,
   "reflex": "poor",
   "skill_points": 2,
+  "slug": "wizard",
   "small_icon": "Wizard_Small",
   "spell_points_per_level": [
     0,
@@ -216,21 +220,21 @@
       "cost": 4,
       "max_caster_level": 5,
       "name": "Acid Spray",
-      "spell_id": 331,
+      "spell_id": 7671686107472815,
       "spell_level": 1
     },
     {
       "cost": 4,
       "max_caster_level": 5,
       "name": "Burning Hands",
-      "spell_id": 332,
+      "spell_id": 8125240749217451,
       "spell_level": 1
     },
     {
       "cost": 6,
       "max_caster_level": null,
       "name": "Cause Fear",
-      "spell_id": 90,
+      "spell_id": 181304561892498,
       "spell_level": 1
     }
   ],

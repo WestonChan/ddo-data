@@ -1,0 +1,27 @@
+name = "Martial: Alchemical Wisdom +2, Crushing Wave, Corrosive Salt"
+description = """
++2 Alchemical bonus to Wisdom
+Crushing Wave: This weapon stores the unstoppable force of the ocean's fury deep
+within. When this weapon is used, this power occasionally comes to the surface,
+crushing enemies beneath a torrent of frigid water.
+Corrosive Salt: This weapon stores a caustic, insatiable power deep within.
+When this weapon is used, this power can come to the surface in the form of a
+noxious, corrosive salt that dissolves all substances."""
+family = "Alchemical"
+min_level = 18
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Alchemical"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: alchemical tier 2"

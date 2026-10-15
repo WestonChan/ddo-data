@@ -4,27 +4,30 @@
   "total": 13,
   "vendors": [
     {
-      "id": 12,
+      "id": 6282501597749984,
       "item_count": 6,
       "location": "Necropolis, Upper",
       "name": "Balkar Aislin",
       "pack": "The Necropolis, Part 4",
+      "slug": "balkar-aislin",
       "wiki_url": "https://ddowiki.com/page/Balkar_Aislin"
     },
     {
-      "id": 4,
+      "id": 4883768010778096,
       "item_count": 0,
       "location": "Hall of Heroes, Eberron",
       "name": "Barston Gelminedes",
       "pack": null,
+      "slug": "barston-gelminedes",
       "wiki_url": "https://ddowiki.com/page/Barston_Gelminedes"
     },
     {
-      "id": 2,
+      "id": 6871069916304344,
       "item_count": 80,
       "location": "Saltmarsh, alongside the building and around the corner when you zone in to the wilderness",
       "name": "Captain Xendros",
       "pack": "Sinister Secret of Saltmarsh",
+      "slug": "captain-xendros",
       "wiki_url": "https://ddowiki.com/page/Captain_Xendros"
     }
   ]

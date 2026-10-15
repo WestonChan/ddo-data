@@ -1,0 +1,22 @@
+name = "Ruby of Chaos DR Bypass"
+description = "Your weapons now bypass Chaos damage reduction type"
+family = "Ruby"
+icon = "Ruby"
+min_level = 8
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Chaotic"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

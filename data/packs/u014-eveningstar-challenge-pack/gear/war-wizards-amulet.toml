@@ -1,0 +1,28 @@
+name = "War Wizard's Amulet"
+description = """
+This amulet has been layered with powerful enchantments to help a War Wizard
+in battle."""
+drop_location = "Eveningstar, Turn in 5 Commendations: War Wizards Commendation: War Wizards : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the War Wizards. You can exchange it in Eveningstar for powerful equipment."
+icon = "Necklace_4"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[effect]]
+name = "Spell Focus I"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Greater Elemental Spell Power"
+bonus_type = "Greater Elemental Spell Power"
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

@@ -1,0 +1,10 @@
+name = "Shield"
+description_template = "While this item is equipped, you are partially protected by a field of magical force which can deflect enemy attacks. This item provides a {1} Shield bonus to Armor Class. It does not stack with an equipped shield."
+home_bonus_type = "Shield"
+verbose_name_template = "Shield +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"

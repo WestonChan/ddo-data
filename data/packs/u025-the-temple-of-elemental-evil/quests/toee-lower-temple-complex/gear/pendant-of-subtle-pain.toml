@@ -1,0 +1,49 @@
+name = "Pendant of Subtle Pain"
+description = """
+Deep in the halls of the Temple, in the corners forgotten, grows a quiet torment
+made manifest."""
+drop_location = "ToEE: Lower Temple Complex, end chest"
+icon = "Necklace_29"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 8
+slot = "Neck"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Lower Temple Complex"

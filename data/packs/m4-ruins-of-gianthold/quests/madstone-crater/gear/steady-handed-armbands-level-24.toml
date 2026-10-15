@@ -1,0 +1,32 @@
+name = "Steady Handed Armbands (Level 24)"
+description = """
+These leather bands aren't too spectacular looking, but when you put them on,
+it is almost as if your arms are weightless."""
+drop_location = "Return to Madstone Crater, End chest (Epic Hard)"
+icon = "Bracers_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 24
+slot = "Wrists"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 4
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Exceptional"
+value = 4
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"

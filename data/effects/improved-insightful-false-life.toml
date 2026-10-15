@@ -1,0 +1,11 @@
+name = "Improved Insightful False Life"
+default_value = 20
+description_template = "Passive {1} Insight bonus to Hit Points."
+home_bonus_type = "Insight"
+verbose_name_template = "Improved Insightful False Life"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Hit Points"

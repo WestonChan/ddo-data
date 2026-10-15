@@ -1,0 +1,23 @@
+name = "Hiding in Plain Sight"
+bestowed_by = "Inquisitive Ingaram"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Free Agents"
+zone = "Cartamon's Shipping Warehouse"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Hiding_in_Plain_Sight"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10

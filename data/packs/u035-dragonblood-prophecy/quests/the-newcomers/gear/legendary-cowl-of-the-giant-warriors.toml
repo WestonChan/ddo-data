@@ -1,0 +1,39 @@
+name = "Legendary Cowl of the Giant Warriors"
+description = """
+This strip of cloth was once used by the Giants that inhabited this place. Some
+of their tenacity still resides within its fibers."""
+drop_location = "The Newcomers, End chest"
+icon = "Cloak_2"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 28
+slot = "Back"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Newcomers"

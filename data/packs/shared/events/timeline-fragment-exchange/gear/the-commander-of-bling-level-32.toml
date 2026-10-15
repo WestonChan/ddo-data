@@ -1,0 +1,39 @@
+name = "The Commander of Bling (level 32)"
+description = "Time-Twisted version of The Admiral of Bling and The Captain of Bling"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+icon = "Helmet_61"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 32
+slot = "Head"
+
+[[effect]]
+name = "Psychic Ward"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 4
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Quality"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

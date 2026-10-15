@@ -1,0 +1,42 @@
+name = "Strap of Savviness"
+description = """
+This belt has notes filled with formulae, diagrams, and other magical secrets
+secured in its many hidden pockets."""
+drop_location = "Oghma's Song, end chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Waist"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oghma's Song"

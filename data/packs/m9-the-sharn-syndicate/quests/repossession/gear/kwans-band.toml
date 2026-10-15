@@ -1,0 +1,28 @@
+name = "Kwan's Band"
+description = "This simple ring has a faded snowflake engraved on it."
+drop_location = "Repossession, End reward"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 2
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 60
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Repossession"

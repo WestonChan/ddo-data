@@ -1,0 +1,23 @@
+name = "Surefoot Boots"
+description = """
+Made from a soft, yet sturdy leather, these boots were used by stealthy hobgoblin
+raiders to help maintain their footing on slick underground stone."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Boots_4"
+item_category = "Clothing"
+minimum_level = 1
+slot = "Feet"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

@@ -1,0 +1,30 @@
+name = "The Stone Crypt Chronicle"
+bestowed_by = "Petra of Tanaroa"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Isle of Dread"
+patron = "The Gatekeepers"
+zone = "The Canyon Ruins"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Stone_Crypt_Chronicle"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

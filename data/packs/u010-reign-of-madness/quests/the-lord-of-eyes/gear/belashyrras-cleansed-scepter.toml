@@ -1,0 +1,241 @@
+name = "Belashyrra's Cleansed Scepter"
+description = """
+Though this is but a simple scepter, you feel as though you're holding an instrument
+of great power and destruction in your hand as you grip its handle. You find
+you cannot weave your spells quite as craftily, but they have become much more
+explosive."""
+drop_location = "The Lord of Eyes, end chest"
+enhancement_bonus = 5
+icon = "LightHammer_5"
+item_category = "Weapon"
+item_type = "Light Hammer"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Single-Mindedness"
+bonus_type = "Penalty"
+
+[[effect]]
+name = "Efficient Metamagic - Empower II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Spellcasting Implement +15, Radiance +84, Greater Regeneration"
+description = """
+Spellcasting Implement +15: Passive: +15 Implement bonus to Universal spell power.
+Radiance +84: +84 Equipment bonus to Light and Alignment spell power."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Light Spell Power"
+value = 84
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Light Spell Power"
+effect_type = "SpellPower"
+targets = ["Light/Alignment"]
+
+[[socket.option]]
+name = "Spellcasting Implement +15, Combustion +84, Fire Lore V"
+description = """
+Spellcasting Implement +15: Passive: +15 Implement bonus to Universal spell power.
+Combustion +84: +84 Equipment bonus to Fire spell power.
+Fire Lore V: Passive: Your Fire spells gain a 15% Equipment bonus to their chance to critical hit."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 84
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[socket.option]]
+name = "Spellcasting Implement +15, Glaciation +84, Ice Lore V"
+description = """
+Spellcasting Implement +15: Passive: +15 Implement bonus to Universal spell power.
+Glaciation +84: +84 Equipment bonus to Cold spell power.
+Ice Lore V: Passive: Your Cold spells gain a 15% Equipment bonus to their chance to critical hit."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 84
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[socket.option]]
+name = "Evocation Focus +2, Kinetic Lore V"
+description = """
+Evocation Focus +2: +2 Equipment bonus to the DC of Evocation spells.
+Kinetic Lore V: Passive: Your Force, Physical and Untyped spells gain a +15%
+Equipment bonus to their chance to critical hit."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+value = 2
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Force Spell Lore"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Force Spell Lore"
+effect_type = "SpellLore"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[socket.option]]
+name = "Necromancy Focus +2, Kinetic Lore V"
+description = """
+Necromancy Focus +2: +2 Equipment bonus to the DC of Necromancy spells.
+Void Lore V: Passive: Your Negative Energy and Poison spells gain a +15% Equipment
+bonus to their chance to critical hit."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "poison",
+]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Lord of Eyes"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Light Hammer"

@@ -1,0 +1,39 @@
+name = "Epic Diabolist's Ring"
+description = """
+Professor Tremas' ring, taken off the battlefield from within the Market Tent.
+It still retains some of his diabolical power."""
+drop_location = "Epic version of Diabolist's Ring"
+icon = "Ring_26c"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 97
+
+[[effect]]
+name = "Improved Demonic Shield"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

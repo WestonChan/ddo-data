@@ -1,0 +1,49 @@
+name = "Robe of the Crownblade's Reflection"
+description = "This armor took the power of the deathly ritual and turned it to the Crownblade's purposes."
+drop_location = "Ritual Table, Turn in \nLegendary Robe of the Crownblade \n 120 Barrier Fragments \nSigil of the Crownblade"
+enhancement_bonus = 15
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Robe_of_the_Crownblade%27s_Reflection"
+read = "2026-09-29"
+
+[[effect]]
+name = "Equipped Healing Amplification"
+bonus_type = "Equipment"
+value = 31
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 16
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Temperance of Spirit"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Ritual Table"

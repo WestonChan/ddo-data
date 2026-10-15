@@ -1,0 +1,19 @@
+name = "Trapblast Goggles"
+description = """
+The Hobgoblins of Cloven Jaw often used these goggles when setting their deadly
+traps to pre-emptively protect themselves from misfire."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 1
+slot = "Goggles"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 4
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

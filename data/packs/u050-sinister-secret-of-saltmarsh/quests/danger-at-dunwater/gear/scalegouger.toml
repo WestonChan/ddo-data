@@ -1,0 +1,45 @@
+name = "Scalegouger"
+description = "This Heavy Pick is a quick and efficient way to pry scales from large fish."
+drop_location = "Danger at Dunwater, End Chest"
+enhancement_bonus = 2
+icon = "HeavyPick_1m"
+item_category = "Weapon"
+item_type = "Heavy Pick"
+material = "Flametouched Iron"
+minimum_level = 3
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Reptilian Bane 2"
+
+[[effect]]
+name = "Unholy 2"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Danger at Dunwater"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Heavy Pick"

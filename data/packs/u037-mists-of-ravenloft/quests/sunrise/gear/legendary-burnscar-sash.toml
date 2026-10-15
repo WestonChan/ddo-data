@@ -1,0 +1,37 @@
+name = "Legendary Burnscar Sash"
+description = "This belt is leather and has been branded with some unknown symbol."
+drop_location = "Sunrise, End chest, Abbot chest"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, abbot chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sunrise"

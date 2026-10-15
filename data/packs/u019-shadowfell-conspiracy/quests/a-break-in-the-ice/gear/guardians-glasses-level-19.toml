@@ -1,0 +1,21 @@
+name = "Guardian's Glasses (Level 19)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "A Break In the Ice, End reward"
+icon = "Goggles_9a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 19
+slot = "Goggles"
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 35
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "A Break in the Ice"

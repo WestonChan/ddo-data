@@ -1,0 +1,57 @@
+name = "The Fury's Rage"
+icon = "WrathOfSoraKell"
+
+[[augment]]
+name = "The Fury's Rage"
+family = "LostPurpose"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = 50
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "PRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "ThreatBonusMelee"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

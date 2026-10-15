@@ -1,0 +1,23 @@
+name = "Razorclaw's Lenses"
+description = "Knocked a little loose in the brawl, but they still work well enough."
+drop_location = "Advance to level 15, End reward"
+icon = "Goggles_9a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 15
+race_required = "Razorclaw Shifter"
+slot = "Goggles"
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 3
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

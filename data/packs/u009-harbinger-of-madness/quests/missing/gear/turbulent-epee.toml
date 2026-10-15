@@ -1,0 +1,77 @@
+name = "Turbulent Epee"
+description = """
+A rapier, once well-kept by its original Elven owner, which has become twisted
+and warped by the plane of Madness. Xoriat has granted this sword the ability
+to unleash the elements upon its foes, but it never seems to settle on one
+type..."""
+drop_location = "Missing, Swiftfoot HQ chest"
+enhancement_bonus = 5
+icon = "Rapier_7a"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Turbulent Burst"
+
+[[effect]]
+name = "Treason"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Aligned"
+
+[[source]]
+chest = "swiftfoot hq chest"
+kind = "quest"
+loot_type = "chest"
+name = "Missing"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Rapier"

@@ -1,0 +1,19 @@
+name = "Neecha's Bead"
+description = "A faint whispering sound surrounds this glowing yellow gem."
+drop_location = "Stealthy Repossession, Witch Doctor Neecha 's chest"
+icon = "trinket_86"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 2
+
+[[source]]
+chest = "witch doctor neecha 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stealthy Repossession"

@@ -1,0 +1,36 @@
+name = "Dwarven Thrower"
+description = "This throwing axe is of obviously dwarven make."
+drop_location = "The Subterrane - Central, Garamol 's chest"
+enhancement_bonus = 3
+icon = "ThrowingAxe_4"
+item_category = "Weapon"
+item_type = "Throwing Axe"
+material = "Steel"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Extra damage vs Giants"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Extra damage vs non-Giants"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Throwing Axe"

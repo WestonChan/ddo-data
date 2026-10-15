@@ -1,0 +1,30 @@
+name = "Witch Hunt"
+bestowed_by = "Huntress Joranda"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Fables of the Feywild"
+patron = "The Summer Court"
+zone = "Fallmire Woods"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Witch_Hunt"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

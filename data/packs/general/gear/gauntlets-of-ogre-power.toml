@@ -1,0 +1,13 @@
+name = "Gauntlets of Ogre Power"
+description = "Steel reinforced gauntlets."
+drop_location = "Random, Any chest with loot level ~11-17"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 4

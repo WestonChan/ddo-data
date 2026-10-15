@@ -1,0 +1,26 @@
+name = "Skeletons in the Closet"
+bestowed_by = "Miya of Mantru"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 10
+is_raid = true
+pack = "The Isle of Dread"
+patron = "The Gatekeepers"
+zone = "The Firemouth"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Skeletons_in_the_Closet"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

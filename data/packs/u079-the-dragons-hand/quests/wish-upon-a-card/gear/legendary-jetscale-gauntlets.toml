@@ -1,0 +1,45 @@
+name = "Legendary Jetscale Gauntlets"
+description = """
+The dragonscales along the back of these gauntlets protect the hands from both
+magical and mundane corrosion."""
+drop_location = "Wish Upon a Card, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Black Dragonscale"
+minimum_level = 34
+slot = "Hands"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 159
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 13
+
+[[effect]]
+name = "False Life"
+bonus_type = "Insight"
+value = 28
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wish Upon a Card"

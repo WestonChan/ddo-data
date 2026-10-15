@@ -1,0 +1,79 @@
+name = "Cavalry Plate (legacy) (level 4)"
+description = """
+High-seas pirates plundered this richly-decorated plate mail from naval cavalry
+officers. Although it did not suit the pirates well, a fighter looking for
+better protection may benefit from it."""
+drop_location = "Treasure of Crystal Cove, Turn in 500 Copper Doubloon 250 Silver Doubloon 15 Stolen Alabaster at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 1
+icon = "HeavyArmor_1a"
+is_legacy = true
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 8
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "Lesser False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 1
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+2 Enhancement Bonus"
+description = "+2 Enhancement Bonus: +2 enhancement bonus to Armor Class."
+icon = "Upgrade"
+min_level = 4
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds False Life"
+description = "False Life: This item grants the wearer +10 maximum health."
+icon = "Upgrade"
+min_level = 4
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "False Life"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

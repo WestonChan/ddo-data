@@ -1,0 +1,37 @@
+name = "Empowered Dragonscale"
+description = "A glowing red dragonscale from a large red dragon."
+drop_location = "Search and Rescue, End chest"
+icon = "Trinket_45"
+item_category = "Jewelry"
+material = "Red Dragonscale"
+minimum_level = 15
+slot = "Trinket"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 32
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 32
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Search and Rescue"

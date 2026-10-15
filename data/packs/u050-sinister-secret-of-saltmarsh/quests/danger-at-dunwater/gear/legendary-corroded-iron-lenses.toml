@@ -1,0 +1,40 @@
+name = "Legendary Corroded Iron Lenses"
+description = "Salt and sea have done their work on these old frames."
+drop_location = "Danger at Dunwater, end chest, or Legendary version of Epic Corroded Iron Lenses"
+icon = "Goggles_2c"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 30
+slot = "Goggles"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic corroded iron lenses"
+kind = "quest"
+loot_type = "chest"
+name = "Danger at Dunwater"

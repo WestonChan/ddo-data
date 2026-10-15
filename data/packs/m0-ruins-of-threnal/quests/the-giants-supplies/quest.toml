@@ -1,0 +1,21 @@
+name = "The Giants' Supplies"
+bestowed_by = "Walk-up"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 0
+pack = "Ruins of Threnal"
+zone = "The Flame Lord's Haven"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Giants%27_Supplies"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10

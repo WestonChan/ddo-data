@@ -1,0 +1,50 @@
+name = "Ring of the Dread Seas"
+description = """
+The necromantic energies of this ring are subtle, but strong. You can almost
+taste the briny salt in the air when its on your finger."""
+drop_location = "Dread Sea Scrolls, End chest"
+icon = "Ring_26"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 6
+slot = "Ring"
+
+[[clickie]]
+name = "Solid Fog"
+clickie = "Solid Fog"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Frozen Depths Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Power of the Frozen Depths"
+bonus_type = "Equipment"
+value = 63
+
+[[effect]]
+name = "Crushing Wave Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Solid Fog"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dread Sea Scrolls"

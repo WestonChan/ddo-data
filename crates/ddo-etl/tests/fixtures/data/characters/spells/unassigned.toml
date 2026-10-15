@@ -1,0 +1,426 @@
+[[row]]
+name = "Dominate Person"
+description = """
+You can control the actions of any humanoid creature that fails its Will save through
+a telepathic link that you establish with the subjects mind. Dominate acts
+like Charm Person, with additional Will saves every 15 to 30 seconds, but the
+creature will follow you throughout the dungeon."""
+icon = "DominatePerson"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Evolution"
+description = """
+Primer Element: Ceruleite
+Choose something to mutate into, giving +2 Alchemical bonus to the chosen Ability score.
+You may only have one Mutation active at a time. This lasts for 5 minutes.
+At Caster Level 6 and higher, this add +1 minute per
+Caster Level."""
+icon = "Evolution"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["StrEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier.requirement]]
+items = ["IntEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["WisEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier.requirement]]
+items = ["DexEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["ConEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["SChaEvolution"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "StrEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Strength"
+group_name = "Evolution Option"
+icon = "Strength"
+
+[[row.stance]]
+name = "IntEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Intelligence"
+group_name = "Evolution Option"
+icon = "intelligence"
+
+[[row.stance]]
+name = "WisEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Wisdom"
+group_name = "Evolution Option"
+icon = "Wisdom"
+
+[[row.stance]]
+name = "DexEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Dexterity"
+group_name = "Evolution Option"
+icon = "Dexterity"
+
+[[row.stance]]
+name = "ConEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Constitution"
+group_name = "Evolution Option"
+icon = "Constitution"
+
+[[row.stance]]
+name = "ChaEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Charisma"
+group_name = "Evolution Option"
+icon = "Charisma"
+
+[[row]]
+name = "Greater Evolution"
+description = """
+Primer Element: Ceruleite
+Choose something to mutate into and gain a +4 Alchemical bonus to the chosen Ability Score.
+You may only have one Mutation active at a time. This lasts for 1 minute per
+caster level."""
+icon = "GreaterEvolution"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["StrEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier.requirement]]
+items = ["IntEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["WisEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier.requirement]]
+items = ["DexEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["ConEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["SChaEvolution"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "StrEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Strength"
+group_name = "Evolution Option"
+icon = "Strength"
+
+[[row.stance]]
+name = "IntEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Intelligence"
+group_name = "Evolution Option"
+icon = "intelligence"
+
+[[row.stance]]
+name = "WisEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Wisdom"
+group_name = "Evolution Option"
+icon = "Wisdom"
+
+[[row.stance]]
+name = "DexEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Dexterity"
+group_name = "Evolution Option"
+icon = "Dexterity"
+
+[[row.stance]]
+name = "ConEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Constitution"
+group_name = "Evolution Option"
+icon = "Constitution"
+
+[[row.stance]]
+name = "ChaEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Charisma"
+group_name = "Evolution Option"
+icon = "Charisma"
+
+[[row]]
+name = "Lesser Evolution"
+description = """
+Primer Element: Ceruleite
+Choose something to mutate into, giving +1 Alchemical bonus to the chosen Ability score.
+You may only have one Alchemical Mutation active at a time. Duration: 1 Minute"""
+icon = "AlchemistLesserEvolution"
+metamagics = [
+    "Primer",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["StrEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier.requirement]]
+items = ["IntEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["WisEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier.requirement]]
+items = ["DexEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["ConEvolution"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["SChaEvolution"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "StrEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Strength"
+group_name = "Evolution Option"
+icon = "Strength"
+
+[[row.stance]]
+name = "IntEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Intelligence"
+group_name = "Evolution Option"
+icon = "intelligence"
+
+[[row.stance]]
+name = "WisEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Wisdom"
+group_name = "Evolution Option"
+icon = "Wisdom"
+
+[[row.stance]]
+name = "DexEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Dexterity"
+group_name = "Evolution Option"
+icon = "Dexterity"
+
+[[row.stance]]
+name = "ConEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Constitution"
+group_name = "Evolution Option"
+icon = "Constitution"
+
+[[row.stance]]
+name = "ChaEvolution"
+description = "Your Lesser/Standard/Greater Evolution spell applies to Charisma"
+group_name = "Evolution Option"
+icon = "Charisma"
+
+[[row]]
+name = "Ruin"
+cost = 75
+description = "Deal 500 untyped damage to a single enemy. Spell Point Cost: 75, No saving throw."
+icon = "Ruin"
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+base_dice_bonus = 500
+damage = "Untyped"
+spell_power = "Untyped"
+
+[[row]]
+name = "Static Shock"
+description = """
+An Electrical discharge strikes one target for 1d6 Electricity damage plus 1d6 Electricity
+damage per two caster levels up to a maximum damage of 6d6 at caster level 10.
+A successful Reflex save reduces this damage by half.
+On a failed save, the target must make a successful Will save or be dazed for
+a short period of time or until they take damage."""
+icon = "StaticShock"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+per_caster_levels = 2
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]

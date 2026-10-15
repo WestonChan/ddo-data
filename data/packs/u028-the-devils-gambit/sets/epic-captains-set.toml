@@ -1,0 +1,24 @@
+name = "Epic Captain's Set"
+icon = "CaptainsSet"
+
+[[item]]
+name = "Epic Barbette's Bracer"
+
+[[item]]
+name = "Epic Ship Kickers"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "Strength"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]

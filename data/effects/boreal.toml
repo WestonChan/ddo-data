@@ -1,0 +1,3 @@
+name = "Boreal"
+description_template = "This weapon is sheathed in frigid cold. A boreal weapon deals an extra 2 to 12 points of cold damage on a successful hit."
+verbose_name_template = "Boreal"

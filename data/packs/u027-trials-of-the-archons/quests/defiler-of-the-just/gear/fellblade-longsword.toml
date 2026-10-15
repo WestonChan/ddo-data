@@ -1,0 +1,71 @@
+name = "Fellblade (longsword)"
+accepts_sentience = true
+description = """
+The sharp blade was once used by the Archons to drive Devils out of holy places;
+since finding its way into the hands of the Erinyes, it's been put to darker
+purposes."""
+drop_location = "Defiler of the Just, Warded chest"
+enhancement_bonus = 13
+icon = "Longsword_1f"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Cold Iron"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Improved Banishing"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Axiomatic 6"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Cold Iron"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 4.7
+handedness = "One-handed"
+weapon_type = "Longsword"

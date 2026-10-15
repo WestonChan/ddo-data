@@ -1,0 +1,24 @@
+name = "Kaelth's Touch"
+description = """
+This symbol once belonged to a Kaelth, a young warrior of the silver flame.
+This item is said to ward the bearer against harm."""
+drop_location = "Necropolis, Turn in Eerie Scarab Powder"
+icon = "Trinket_60"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 9
+slot = "Trinket"
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Faith"
+
+[[source]]
+kind = "vendor"
+name = "Squire Rale"
+
+[[source.price]]
+ingredient = "Eerie Scarab Powder"
+quantity = 1

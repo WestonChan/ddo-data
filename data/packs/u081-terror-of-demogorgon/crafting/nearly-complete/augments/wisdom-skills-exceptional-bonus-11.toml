@@ -1,0 +1,21 @@
+name = "Wisdom Skills - Exceptional Bonus +11"
+description = "Exceptional Bonus +11 to the Wisdom based skills of: Heal, Listen and Spot."
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Wisdom Skills"
+bonus_type = "Exceptional"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Exceptional"
+effect = "Wisdom Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: nearly complete: exceptional skills (legendary)"

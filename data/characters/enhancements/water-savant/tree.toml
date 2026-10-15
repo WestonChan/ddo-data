@@ -1,0 +1,1757 @@
+name = "Water Savant"
+background = "SorcererBackground"
+icon = "Sorcerer"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Water Savant"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Every point you spend in the Water Savant enhancement tree provides +0.75 Universal Spell Power.\nPassive: +10 Cold Spell Power \n+1 Caster Level when casting Cold or Water spells.\nSelecting this enhancement will prevent you from spending points in the Fire\nSavant enhancement tree."
+icon = "WSWaterSavant"
+internal_name = "WSCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [0.75]
+bonus_type = "Enhancement"
+display_name = "Water Savant: Spell power per action point"
+effect_type = "UniversalSpellPower"
+stack_source = "Water Savant"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+targets = [
+    "Creeping Cold",
+    "Ice Storm",
+    "Cold Breath",
+    "Fire Shield (Cold)",
+    "Greater Creeping Cold",
+    "Ice Flowers",
+    "Niac's Cold Ray",
+    "Freezing Bolt",
+    "Snowball Swarm",
+    "Frost Lance",
+    "Cone of Cold",
+    "Niac's Biting Cold",
+    "Niac's Cold Ray",
+    "Otiluke's Freezing Sphere",
+    "Polar Ray",
+    "Iceberg",
+    "Tsunami",
+    "Ice Storm: White Dragon Breath",
+    "Vial of Frost",
+    "Vial Smash: Cold",
+    "Cold Spike",
+    "Bitter Frost Burst",
+    "Frost Concentration",
+    "Vein Freeze",
+    "Multivial of Frost",
+    "Frost Obliteration",
+]
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["FSCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Water Savant: Water Affinity"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Passive: +10 Cold Spell Power \n+1 Caster Level when casting Cold or Water spells."
+icon = "WSWaterAffinity"
+internal_name = "WSCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+targets = [
+    "Creeping Cold",
+    "Ice Storm",
+    "Cold Breath",
+    "Fire Shield (Cold)",
+    "Greater Creeping Cold",
+    "Ice Flowers",
+    "Niac's Cold Ray",
+    "Freezing Bolt",
+    "Snowball Swarm",
+    "Frost Lance",
+    "Cone of Cold",
+    "Niac's Biting Cold",
+    "Niac's Cold Ray",
+    "Otiluke's Freezing Sphere",
+    "Polar Ray",
+    "Iceberg",
+    "Tsunami",
+    "Ice Storm: White Dragon Breath",
+    "Vial of Frost",
+    "Vial Smash: Cold",
+    "Cold Spike",
+    "Bitter Frost Burst",
+    "Frost Concentration",
+    "Vein Freeze",
+    "Multivial of Frost",
+    "Frost Obliteration",
+]
+
+[[enhancement.requirement]]
+items = ["WSCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Water Savant: Greater Water Affinity"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Passive: +10 Cold Spell Power \n+1 Caster Level when casting Cold or Water spells. \n+1 Maximum Caster Level when casting Cold or Water spells."
+icon = "WSGreaterWaterAffinity"
+internal_name = "WSCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Creeping Cold",
+    "Ice Storm",
+    "Cold Breath",
+    "Fire Shield (Cold)",
+    "Greater Creeping Cold",
+    "Ice Flowers",
+    "Niac's Cold Ray",
+    "Freezing Bolt",
+    "Snowball Swarm",
+    "Frost Lance",
+    "Cone of Cold",
+    "Niac's Biting Cold",
+    "Niac's Cold Ray",
+    "Otiluke's Freezing Sphere",
+    "Polar Ray",
+    "Iceberg",
+    "Tsunami",
+    "Ice Storm: White Dragon Breath",
+    "Vial of Frost",
+    "Vial Smash: Cold",
+    "Cold Spike",
+    "Bitter Frost Burst",
+    "Frost Concentration",
+    "Vein Freeze",
+    "Multivial of Frost",
+    "Frost Obliteration",
+]
+
+[[enhancement.requirement]]
+items = ["WSCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Water Savant: Hypothermia"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Passive: 50% Chance On Cold Spell Cast: Your target gains one stack of Lethargy\n(-1 to all Saving Throws. Non-bosses also move and attack 5% slower.\nThis effect stacks up to 5 times.)\n+10 Cold Spell Power \n+1 Caster Level when casting Cold or Water spells. \n+1 Maximum Caster Level when casting Cold or Water spells."
+icon = "WSHypothermia"
+internal_name = "WSCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Creeping Cold",
+    "Ice Storm",
+    "Cold Breath",
+    "Fire Shield (Cold)",
+    "Greater Creeping Cold",
+    "Ice Flowers",
+    "Niac's Cold Ray",
+    "Freezing Bolt",
+    "Snowball Swarm",
+    "Frost Lance",
+    "Cone of Cold",
+    "Niac's Biting Cold",
+    "Niac's Cold Ray",
+    "Otiluke's Freezing Sphere",
+    "Polar Ray",
+    "Iceberg",
+    "Tsunami",
+    "Ice Storm: White Dragon Breath",
+    "Vial of Frost",
+    "Vial Smash: Cold",
+    "Cold Spike",
+    "Bitter Frost Burst",
+    "Frost Concentration",
+    "Vein Freeze",
+    "Multivial of Frost",
+    "Frost Obliteration",
+]
+
+[[enhancement.requirement]]
+items = ["WSCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Water Savant: Elemental Persistence"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Passive: Immunity to Paralysis \n+10 Cold Spell Power \n+1 Caster Level when casting Cold or Water spells. \n+1 Maximum Caster Level when casting Cold or Water spells."
+icon = "WSElementalPersistence"
+internal_name = "WSCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Paralysis"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Creeping Cold",
+    "Ice Storm",
+    "Cold Breath",
+    "Fire Shield (Cold)",
+    "Greater Creeping Cold",
+    "Ice Flowers",
+    "Niac's Cold Ray",
+    "Freezing Bolt",
+    "Snowball Swarm",
+    "Frost Lance",
+    "Cone of Cold",
+    "Niac's Biting Cold",
+    "Niac's Cold Ray",
+    "Otiluke's Freezing Sphere",
+    "Polar Ray",
+    "Iceberg",
+    "Tsunami",
+    "Ice Storm: White Dragon Breath",
+    "Vial of Frost",
+    "Vial Smash: Cold",
+    "Cold Spike",
+    "Bitter Frost Burst",
+    "Frost Concentration",
+    "Vein Freeze",
+    "Multivial of Frost",
+    "Frost Obliteration",
+]
+
+[[enhancement.requirement]]
+items = ["WSCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Water Savant: Elemental Apotheosis: Water"
+cost_per_rank = [1]
+description = "Activate this ability to transform into a Water Elemental.\nWhile in elemental form, you gain +100% fortification. If you are a Warforged,\nyou are no longer considered a Living Construct, and so are immune to Repair\nspells, but can be healed normally by Positive Energy spells. \n\nWhile in Water Elemental form, you also gain an additional +20 Cold Spell Power,\n+2% Cold Spell Critical Chance, and a +1 bonus to caster level and max caster\nlevel for Cold and Water spells, but your air, earth and fire spells have a -3\npenalty to caster level and max caster level. You also gain a +10 racial bonus\nto Cold resistance, +20 Physical Resistance Rating, +20 Swim, and a -10 penalty\nto Fire resistance.\nWhile in Elemental Form, your spells also cost an additional 10% Spell Points to cast.\n\nYou also gain the following passive benefits, even while not in elemental form: \n+2 Charisma \n+10 Cold Spell Power \n+1 Caster Level when casting Cold or Water spells. \n+1 Maximum Caster Level when casting Cold or Water spells."
+icon = "WSElementalApotheosisWater"
+internal_name = "WSCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Water Elemental Form"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Creeping Cold",
+    "Ice Storm",
+    "Cold Breath",
+    "Fire Shield (Cold)",
+    "Greater Creeping Cold",
+    "Ice Flowers",
+    "Niac's Cold Ray",
+    "Freezing Bolt",
+    "Snowball Swarm",
+    "Frost Lance",
+    "Cone of Cold",
+    "Niac's Biting Cold",
+    "Niac's Cold Ray",
+    "Otiluke's Freezing Sphere",
+    "Polar Ray",
+    "Iceberg",
+    "Tsunami",
+    "Ice Storm: White Dragon Breath",
+    "Vial of Frost",
+    "Vial Smash: Cold",
+    "Cold Spike",
+    "Bitter Frost Burst",
+    "Frost Concentration",
+    "Vein Freeze",
+    "Multivial of Frost",
+    "Frost Obliteration",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-3]
+bonus_type = "Enhancement"
+display_name = "Water Elemental Form"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Enveloping Swarm",
+    "Creeping Doom",
+    "Storm of Vengeance",
+    "Acid Spray",
+    "Caustic Bolt",
+    "Melf's Acid Arrow",
+    "Acid Blast",
+    "Acid Rain",
+    "Burning Blood",
+    "Cloudkill",
+    "Acid Fog",
+    "Black Dragon Bolt",
+    "Acid Well",
+    "Hellball",
+    "Acid Storm: Black Dragon Breath",
+    "Vial of Acid",
+    "Vial Smash: Acid",
+    "Corrode Weapons",
+    "Acid Concentration",
+    "Caustic Solvent",
+    "Caustic Overload",
+    "Multivial of Acid",
+    "Caustic Obliteration",
+    "Blighted Breath",
+    "Autumn Decay",
+    "Static Shock",
+    "Lightning Sphere",
+    "Blast Rod",
+    "Lightning Bolt",
+    "Lightning Motes",
+    "Glyph of Warding",
+    "Call Lightning",
+    "Call Lightning Storm",
+    "Storm of Vengeance",
+    "Shocking Bolt",
+    "Shocking Grasp",
+    "Electric Loop",
+    "Ball Lightning",
+    "Eladar's Electric Surge",
+    "Chain Lightning",
+    "Thunderstroke",
+    "Hellball",
+    "Horn of Thunder",
+    "Lightning Storm: Blue Dragon Breath",
+    "Vial of Sparks",
+    "Vial Smash: Electric",
+    "Voltaic Backlash",
+    "Sparks Concentration",
+    "Voltaic Induction",
+    "Voltaic Burst",
+    "Multivial of Sparks",
+    "Voltaic Obliteration",
+    "Fire Trap",
+    "Flame Arrow",
+    "Tactical Detonation",
+    "Symbol of Flame",
+    "Flame Strike",
+    "Fire Storm",
+    "Produce Flame",
+    "Flaming Sphere",
+    "Wall of Fire",
+    "Fire Seeds",
+    "Fire Shield",
+    "Body of the Sun",
+    "Burning Hands",
+    "Flaming Bolt",
+    "Scorch",
+    "Scorching Ray",
+    "Fireball",
+    "Burning Blood",
+    "Delayed Blast Fireball",
+    "Incendiary Cloud",
+    "Meteor Swarm",
+    "Illusory Mark of Flame",
+    "Hellball",
+    "Fire Shield (Fire)",
+    "Celestial Bombardment",
+    "Fire Storm: Red Dragon Breath",
+    "Fiendish Arpeggio",
+    "Vial of Flame",
+    "Vial Smash: Fire",
+    "Melt Armor",
+    "Flame Concentration",
+    "Molotov Cocktail",
+    "Cindersmoke",
+    "Multivial of Flame",
+    "Fiery Obliteration",
+    "Flame Pillar",
+    "Holy Fireball",
+    "Incinerating Wave",
+    "Ki Explosion",
+    "Scorching Summer",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-3]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Racial"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Racial"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Swim"]
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Racial"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["Water Elemental "]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Creeping Cold",
+    "Ice Storm",
+    "Cold Breath",
+    "Fire Shield (Cold)",
+    "Greater Creeping Cold",
+    "Ice Flowers",
+    "Niac's Cold Ray",
+    "Freezing Bolt",
+    "Snowball Swarm",
+    "Frost Lance",
+    "Cone of Cold",
+    "Niac's Biting Cold",
+    "Niac's Cold Ray",
+    "Otiluke's Freezing Sphere",
+    "Polar Ray",
+    "Iceberg",
+    "Tsunami",
+    "Ice Storm: White Dragon Breath",
+    "Vial of Frost",
+    "Vial Smash: Cold",
+    "Cold Spike",
+    "Bitter Frost Burst",
+    "Frost Concentration",
+    "Vein Freeze",
+    "Multivial of Frost",
+    "Frost Obliteration",
+]
+
+[[enhancement.requirement]]
+items = ["WSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "WSCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement.stance]]
+name = "Water Elemental"
+description = "While in elemental form, you gain +100% fortification. If you are a Warforged,\nyou are no longer considered a Living Construct, and so are immune to Repair\nspells, but can be healed normally by Positive Energy spells. \nWhile in Water Elemental form, you also gain an additional +20 Cold Spell Power,\n+2% Cold Spell Critical Chance, and a +1 bonus to caster level and max caster\nlevel for Cold and Water spells, but your air, earth and fire spells have a -3\npenalty to caster level and max caster level. You also gain a +10 racial bonus\nto Cold resistance, +20 Physical Resistance Rating, +20 Swim, and a -10 penalty\nto Fire resistance."
+group_name = "Major Form"
+icon = "WSElementalApotheosisWater"
+
+[[enhancement]]
+name = "Water Savant: Niac's Cold Ray"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Niac's Cold Ray
+Activation Cost: 2 Spell Points.
+Cooldown: 4 seconds.
+You may cast the spell Niac's Cold Ray at will as a Spell-Like Ability. You may use
+Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
+spent in this enhancement will reduce the cooldown and Spell Point Cost of this
+Spell-Like Ability."""
+icon = "WSColdRay"
+internal_name = "WSColdRay"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    12,
+    0,
+    3,
+    0,
+    8,
+    0,
+    2,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Niac's Cold Ray",
+    "Sorcerer",
+]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Water Savant: Fluidity"
+cost_per_rank = [1]
+description = """
+You gain +[2/4/6] to your Tumble and Swim skills.
+Rank 3: as well as +1 to your Reflex Saving Throw."""
+icon = "WSFluidity"
+internal_name = "WSFluidity"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Swim",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Water Savant: One with the Waves"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "You gain a +[3/6/10] bonus to your Cold Resistance."
+icon = "WSOneWithTheWaves"
+internal_name = "WSOneWithTheWaves"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Water Savant: Spell Critical: Cold I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Cold damage spells have an additional 2% chance to critically hit."
+icon = "SpellCriticalCold"
+internal_name = "WSSpellCriticalColdI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Water Savant: Hoarfrost"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Whenever you cast a Cold damage spell, you gain +5 to your Cold Spell
+Power for 6 seconds. This stacks up to [1/3/5] times."""
+icon = "WSHoarfrost"
+internal_name = "WSHoarFrost"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "WSHoarFrost"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image WSHoarfrost.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Hoarfrost"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+stack_source = "Hoarfrost"
+targets = ["Cold"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Water Savant: Efficient Metamagic I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose one of the following Metamagic feats. Reduce the spell point cost of using that Metamagic."
+icon = "EfficientMetamagic"
+internal_name = "WSEfficientMetamagicI"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "WSEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [2]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSEfficientMetamagicI",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "WSEfficientMetamagicI",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "WSEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "WSEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Water Savant: Pierce Cold Resistance"
+cost_per_rank = [2]
+description = "Your Cold damage spells now bypass [5/10/15] points of your target's resistance to those damage types, if any."
+icon = "WSPierceColdResistance"
+internal_name = "WSPierceColdResistance"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["WSOneWithTheWaves"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Water Savant: Spell Critical: Cold II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Cold damage spells have an additional 2% chance to critically hit."
+icon = "SpellCriticalCold"
+internal_name = "WSSpellCriticalColdII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["WSSpellCriticalColdI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Water Savant: Absolute Zero"
+cost_per_rank = [1]
+description = """
+Whenever you cast a Cold damage spell, you have a [10/20/30]% chance to gain 3
+Temporary Spell Points."""
+icon = "WSAbsoluteZero"
+internal_name = "WSAbsoluteZero"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["WSHoarFrost"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Water Savant: Efficient Metamagic II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic."
+icon = "EfficientMetamagic"
+internal_name = "WSEfficientMetamagicII"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["WSEfficientMetamagicI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "WSEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [2]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSEfficientMetamagicII",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "WSEfficientMetamagicII",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "WSEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "WSEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Water Savant: Spell Penetration"
+cost_per_rank = [2]
+description = "You add +1 to your Caster Level check to overcome an enemy's Spell Resistance."
+icon = "SpellPenetration"
+internal_name = "WSSpellPenetration"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Water Savant: Spell Critical: Cold III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Cold damage spells have an additional 2% chance to critically hit."
+icon = "SpellCriticalCold"
+internal_name = "WSSpellCriticalColdIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["WSSpellCriticalColdII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Water Savant: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Charisma or Wisdom"
+icon = "ChaWis"
+internal_name = "WSAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Water Savant: Snowball Swarm"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Snowball Swarm.
+Activation Cost: 4 Spell Points.
+Cooldown: 5 seconds.
+You may cast the spell Snowball Swarm at will as a Spell-Like Ability. You may use
+Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
+spent in this enhancement will reduce the cooldown and Spell Point Cost of this
+Spell-Like Ability."""
+icon = "WSSnowballSwarm"
+internal_name = "WSSnowballSwarm"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Snowball Swarm",
+    "Sorcerer",
+]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Water Savant: Efficient Heighten"
+cost_per_rank = [2]
+description = "Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Points per heightened level."
+icon = "EfficientHeighten"
+internal_name = "WSEfficientHeighten"
+min_spent = 20
+ranks = 2
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostHeighten"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = [
+    "WSEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.requirement]]
+items = ["WSEfficientMetamagicII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Heighten Spell"]
+req_type = "FeatAnySource"
+
+[[enhancement]]
+name = "Water Savant: Water Breathing"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You are no longer able to drown."
+icon = "WSWaterBreathing"
+internal_name = "WSWaterBreathing"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Drowning"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Water Savant: Spell Critical: Cold IV"
+cost_per_rank = [2]
+description = "Your Cold damage spells have an additional 2% chance to critically hit."
+icon = "SpellCriticalCold"
+internal_name = "WSSpellCriticalColdIV"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["WSSpellCriticalColdIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Water Savant: Ability II"
+cost_per_rank = [2]
+description = "Choose either Charisma or Wisdom"
+icon = "ChaWis"
+internal_name = "WSAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["WSAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Water Savant: Frost Lance"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Frost Lance.
+Activation Cost: 6 Spell Points.
+Cooldown: 6 seconds.
+You may cast the spell Frost Lance at will as a Spell-Like Ability. You may use
+Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
+spent in this enhancement will reduce the cooldown and Spell Point Cost of this
+Spell-Like Ability."""
+icon = "WSFrostLance"
+internal_name = "WSFrostLance"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Frost Lance",
+    "Sorcerer",
+]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Water Savant: Awaken Elemental Weakness: Cold"
+cost_per_rank = [2]
+description = """
+You are able to curse an enemy, increasing Cold damage they take by 15%.
+When cast on a creature that is immune to that tree's Element, it makes them
+vulnerable to that element for a short period of time.
+Activation Cost: 5 Spell Points.
+Cooldown: 2 seconds."""
+icon = "WSAwakenElementalWeaknessCold"
+internal_name = "WSAwakaenElementalWeaknessCold"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Water Savant: Icy Prison"
+cost_per_rank = [2]
+description = """
+You deal 500 cold damage to your opponent, with a Fortitude save
+(DC: 10 + Max[Con/Cha] Modifier + Sorcerer Level + evocation bonuses) for half
+damage, and an additional Reflex save or be encased in ice. Ice creatures are
+immune to this effect, and the targets gets occasional saves to attempt to escape.
+Activation Cost: 25 Spell Points.
+Cooldown: 1 minute."""
+icon = "WSIcyPrison"
+internal_name = "WSIcyPrison"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.dc]]
+name = "Water Savant: Icy Prison"
+amount = [10]
+base_class_level = "Sorcerer"
+dc_type = "Half Damage/Frozen"
+dc_versus = "Fortitude/Reflex"
+description = """
+You deal 500 cold damage to your opponent, with a Fortitude save
+for half damage, and an additional Reflex save or be encased in ice."""
+icon = "WSIcyPrison"
+mod_ability = [
+    "Constitution",
+    "Charisma",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    25,
+    0,
+    60,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Icy Prison",
+    "Sorcerer",
+]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["WSWaterBreathing"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Water Savant: Evocation Focus"
+cost_per_rank = [2]
+description = "You have trained extensively in Evocation magic, granting a +1 bonus to your spell DCs of that school."
+icon = "WSEvocationFocus"
+internal_name = "WSEvocationFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Water Savant: Elemental Diversification"
+cost_per_rank = [2]
+description = "Choose one:"
+icon = "FSElementalDiversification"
+internal_name = "WSElementalDiversification"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Power of Acid"
+cost_per_rank = [2]
+description = "You have extensively practiced with Acid magic, granting an additional +15 Acid Spell Power."
+icon = "FSPowerOfAcid"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[enhancement.selection]]
+name = "Power of Force"
+cost_per_rank = [2]
+description = "You have extensively practiced with Force magic, granting an additional +10 Force Spell Power."
+icon = "FSPowerOfForce"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.selection]]
+name = "Power of Lightning"
+cost_per_rank = [2]
+description = "You have extensively practiced with Electric magic, granting an additional +15 Electric and Sonic Spell Power."
+icon = "FSPowerOfLightning"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClass"

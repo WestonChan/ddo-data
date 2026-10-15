@@ -1,0 +1,2920 @@
+name = "Archmage"
+background = "WizardBackground"
+icon = "Wizard"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Archmage: Specialization I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Choose a school to specialize in, gaining a Spell Like Ability from that school.
+In addition, each enhancement point spent in the Archmage tree grants +1 Spell
+Power to all spells and +2 to your Maximum Spell points.
+Each core in this tree also grants +5 Universal Spell Power"""
+icon = "AMArchMageSpecialization"
+internal_name = "AMCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Archmage spell power per action point"
+effect_type = "UniversalSpellPower"
+stack_source = "Archmage"
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [2]
+bonus_type = "Enhancement"
+display_name = "Archmage spell points per action point"
+effect_type = "SpellPoints"
+stack_source = "Archmage"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Abjuration I: Shield"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Shield
+Activation Cost: 1 SP.
+Cooldown: 6 seconds
+In addition, each enhancement point spent in the Archmage tree grants +1 Spell
+Power to all spells and +2 to your Maximum Spell points."""
+icon = "AMAbjurationIShield"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shield",
+    "Wizard",
+]
+
+[[enhancement.selection]]
+name = "Conjuration I: Grease"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Grease
+Activation Cost: 1 SP.
+Cooldown: 6 seconds
+In addition, each enhancement point spent in the Archmage tree grants +1 Spell
+Power to all spells and +2 to your Maximum Spell points."""
+icon = "AMConjurationIGrease"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Grease",
+    "Wizard",
+]
+
+[[enhancement.selection]]
+name = "Enchantment I: Hypnotism"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Hypnotism
+Activation Cost: 1 SP.
+Cooldown: 6 seconds
+In addition, each enhancement point spent in the Archmage tree grants +1 Spell
+Power to all spells and +2 to your Maximum Spell points."""
+icon = "AMEnchantmentIHyponotism"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Hypnotism",
+    "Wizard",
+]
+
+[[enhancement.selection]]
+name = "Evocation I: Magic Missile"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Magic Missile
+Activation Cost: 2 SP.
+Cooldown: 6 seconds
+In addition, each enhancement point spent in the Archmage tree grants +1 Spell
+Power to all spells and +2 to your Maximum Spell points."""
+icon = "AMEvocationIMagicMissile"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Magic Missile",
+    "Wizard",
+]
+
+[[enhancement.selection]]
+name = "Illusion I: Invisibility"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Invisibility
+Activation Cost: 1 SP.
+Cooldown: 6 seconds
+In addition, each enhancement point spent in the Archmage tree grants +1 Spell
+Power to all spells and +2 to your Maximum Spell points."""
+icon = "AMIllusionIInvisibility"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Invisibility",
+    "Wizard",
+]
+
+[[enhancement.selection]]
+name = "Necromancy I: Chill Touch"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Chill Touch
+Activation Cost: 2 SP.
+Cooldown: 6 seconds
+In addition, each enhancement point spent in the Archmage tree grants +1 Spell
+Power to all spells and +2 to your Maximum Spell points."""
+icon = "AMNecromancyIChillTouch"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Chill Touch",
+    "Wizard",
+]
+
+[[enhancement.selection]]
+name = "Transmutation I: Jump"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Jump
+Activation Cost: 1 SP.
+Cooldown: 6 seconds
+In addition, each enhancement point spent in the Archmage tree grants +1 Spell
+Power to all spells and +2 to your Maximum Spell points."""
+icon = "AMTransmutationIJump"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Jump",
+    "Wizard",
+]
+
+[[enhancement]]
+name = "Archmage: Specialization II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Gain a more powerful Spell-Like Ability from the school you have specialized in."
+icon = "AMArchMageSpecialization"
+internal_name = "AMCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["AMCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Abjuration II: Resist Energy"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Resist Energy
+Activation Cost: 3 SP.
+Cooldown: 6 seconds"""
+icon = "AMAbjurationIIResistEnergy"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Resist Energy",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Abjuration I: Shield",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Conjuration II: Web"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Web
+Activation Cost: 3 SP.
+Cooldown: 6 seconds"""
+icon = "AMConjurationIIWeb"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Web",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Conjuration I: Grease",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Enchantment II: Otto's Resistible Dance"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Otto's Resistible Dance
+Activation Cost: 3 SP.
+Cooldown: 6 seconds"""
+icon = "AMEnchantmentIIOttosResistableDance"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Otto's Resistible Dance",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Enchantment I: Hypnotism",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Evocation II: Gust of Wind"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Gust of Wind
+Activation Cost: 3 SP.
+Cooldown: 6 seconds"""
+icon = "AMEvocationIIGustOfWind"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Gust of Wind",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Evocation I: Magic Missile",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Illusion II: Blur"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Blur
+Activation Cost: 3 SP.
+Cooldown: 6 seconds"""
+icon = "AMIllusionIIBlur"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Blur",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Illusion I: Invisibility",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Necromancy II: Command Undead"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Command Undead
+Activation Cost: 3 SP.
+Cooldown: 6 seconds"""
+icon = "AMNecromancyIICommandUndead"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Command Undead",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Necromancy I: Chill Touch",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Transmutation II: Knock"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Knock
+Activation Cost: 3 SP.
+Cooldown: 6 seconds"""
+icon = "AMTransmutationIIKnock"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Knock",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Transmutation I: Jump",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Specialization III"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Gain a more powerful Spell-Like Ability from the school you have specialized in."
+icon = "AMArchMageSpecialization"
+internal_name = "AMCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["AMCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.selection]]
+name = "Abjuration III: Protection from Energy"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Protection from Energy
+Activation Cost: 6 SP.
+Cooldown: 6 seconds"""
+icon = "AMAbjurationIIIProtectionFromEnergy"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Protection From Energy",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Abjuration I: Shield",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Conjuration III: Stinking Cloud"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Stinking Cloud
+Activation Cost: 6 SP.
+Cooldown: 15 seconds"""
+icon = "AMConjurationIIIStinkingCloud"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Stinking Cloud",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Conjuration I: Grease",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Enchantment III: Hold Person"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Hold Person
+Activation Cost: 6 SP.
+Cooldown: 6 seconds"""
+icon = "AMEnchantmentIIIHoldPerson"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Hold Person",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Enchantment I: Hypnotism",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Evocation III: Chain Missile"
+cost_per_rank = [1]
+description = """
+Like Ability: Chain Missile
+Activation Cost: 8 SP.
+Cooldown: 10 seconds"""
+icon = "AMEvocationIIIChainMissile"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Chain Missiles",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Evocation I: Magic Missile",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Illusion III: Displacement"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Displacement
+Activation Cost: 6 SP.
+Cooldown: 6 seconds"""
+icon = "AMIllusionIIIDisplacement"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Displacement",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Illusion I: Invisibility",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Necromancy III: Halt Undead"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Halt Undead
+Activation Cost: 6 SP.
+Cooldown: 6 seconds"""
+icon = "AMNecromancyIIIHaltUndead"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Halt Undead",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Necromancy I: Chill Touch",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Transmutation III: Haste"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Haste
+Activation Cost: 6 SP.
+Cooldown: 6 seconds"""
+icon = "AMTransmutationIIIHaste"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Haste",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Transmutation I: Jump",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Specialization IV"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Gain a more powerful Spell-Like Ability from the school you have specialized in.
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMArchMageSpecialization"
+internal_name = "AMCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = ["Wizard"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["AMCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.selection]]
+name = "Abjuration IV: Stoneskin"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Stoneskin
+Activation Cost: 10 SP.
+Cooldown: 15 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMAbjurationIVStoneskin"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Stoneskin",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Abjuration I: Shield",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Conjuration IV: Dimension Door"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Dimension Door
+Activation Cost: 10 SP.
+Cooldown: 15 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMConjurationIVDimensionDoor"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Dimension Door",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Conjuration I: Grease",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Enchantment IV: Charm Monster"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Charm Monster
+Activation Cost: 10 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMEnchantmentIVCharmMonster"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Charm Monster",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Enchantment I: Hypnotism",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Evocation IV: Fire Shield"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Fire Shield
+Activation Cost: 6 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMEvocationIVFireShield"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fire Shield",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Evocation I: Magic Missile",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Illusion IV: Phantasmal Killer"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Phantasmal Killer
+Activation Cost: 10 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMIllusionIVPhantasmalKiller"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Phantasmal Killer",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Illusion I: Invisibility",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Necromancy IV: Enervation"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Enervation
+Activation Cost: 10 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMNecromancyIVEnervation"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Enervation",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Necromancy I: Chill Touch",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Transmutation IV: Stone to Flesh"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Stone to Flesh
+Activation Cost: 10 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMTransmutationIVStoneToFlesh"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Stone to Flesh",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Transmutation I: Jump",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Specialization V"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Gain a more powerful Spell-Like Ability from the school you have specialized in.
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMArchMageSpecialization"
+internal_name = "AMCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = ["Wizard"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["AMCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.selection]]
+name = "Abjuration V: Dismissal"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Dismissal
+Activation Cost: 15 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMAbjurationVDismissal"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Dismissal",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Abjuration I: Shield",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Conjuration V: Cloudkill"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Cloudkill
+Activation Cost: 15 SP.
+Cooldown: 15 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMConjurationVCloudkill"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cloudkill",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Conjuration I: Grease",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Enchantment V: Hold Monster"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Hold Monster
+Activation Cost: 15 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMEnchantmentVHoldMonster"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Hold Monster",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Enchantment I: Hypnotism",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Evocation V: Cyclonic Blast"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Cyclonic Blast
+Activation Cost: 15 SP.
+Cooldown: 8 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMEvocationVCyclonicBlast"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cyclonic Blast",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Evocation I: Magic Missile",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Illusion V: Shadow Walk"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Shadow Walk
+Activation Cost: 15 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMIllusionVShadowWalk"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shadow Walk",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Illusion I: Invisibility",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Necromancy V: Waves of Fatigue"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Waves of Fatigue
+Activation Cost: 15 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMNecromancyVWavesOfFatigue"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Waves of Fatigue",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Necromancy I: Chill Touch",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Transmutation V: Flesh to Stone"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Flesh to Stone
+Activation Cost: 15 SP.
+Cooldown: 6 seconds
+Passive: +1 Caster Level and Max Caster Level with all spells."""
+icon = "AMTransmutationVFleshToStone"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Flesh to Stone",
+    "Wizard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Transmutation I: Jump",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Master of Magic"
+cost_per_rank = [1]
+description = """
+Through extensive training and countless hours of study, you have mastered the
+application of metamagic feats to your spells. You gain +4 Intelligence,
++20 Universal Spell Power, +5 Spellcraft, +3 Spell Penetration and all metamagic
+feats cost 1 fewer spell point to use.
+(Heighten Spell costs 1 fewer spell point per level of heightening.)"""
+icon = "AMMasterOfMagic"
+internal_name = "AMCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "AMMAsterOfMagic"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image AMMasterOfMagic.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-1]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+extra_types = [
+    "MetamagicCostMaximize",
+    "MetamagicCostExtend",
+    "MetamagicCostQuicken",
+    "MetamagicCostHeighten",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["AMCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "AMCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Archmage: Subtle Spellcasting"
+cost_per_rank = [1]
+description = """
+Your damaging spells generate [10/20/30]% less hate than they normally would,
+making enemies less likely to attack you."""
+icon = "AMSubtleSpellcasting"
+internal_name = "AMSubtleSpellcasting"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMSubtleSpellcasting",
+    "Magical Subtlety",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -10,
+    -20,
+    -30,
+]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusSpell"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "AMSubtleSpellcasting",
+    "Magical Subtlety",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Archmage: Energy of the Scholar"
+cost_per_rank = [1]
+description = "Your studies have increased your maximum Spell Points by an additional [30/60/100]."
+icon = "AMEnergyOfTheScholar"
+internal_name = "AMEnergyOfTheScholar"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Archmage: Traditionalist Caster"
+cost_per_rank = [1]
+description = "+[3/6/10] Universal Spell Power when wielding an Orb or Staff."
+icon = "AMTraditionalistCaster"
+internal_name = "AMTraditionalistCaster"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Archmage: Spell Critical: Elemental and Force I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an additional
+1% chance to critically hit."""
+icon = "AMSpellCriticalElementalAndForce"
+internal_name = "AMSpellCriticalElementalAndForceI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Archmage: Wand and Scroll Mastery"
+cost_per_rank = [1]
+description = """
++[25/50/75]% effectiveness from your wands, scrolls, and other items that cast
+spells, and +[1/3/6] to the save DC of your offensive wands.
+Taking Wand and Scroll Mastery in one enhancement tree will block its
+availability in other enhancement trees."""
+icon = "AMWandAndScrollMastery"
+internal_name = "AMWandAndScrollMastery"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    3,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Wands"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "AMWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Archmage: Efficient Metamagic"
+cost_per_rank = [1]
+description = "Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic."
+icon = "EfficientMetamagic"
+internal_name = "AMEfficientMetamagicLeft"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["AMEfficientMetamagicI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [1]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicLeft",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicLeft",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [1]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicLeft",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicLeft",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [1]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicLeft",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicLeft",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [1]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicLeft",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicLeft",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Archmage: Efficient Metamagic"
+arrows = [
+    "ArrowLeft",
+    "ArrowRight",
+    "LongArrowUp",
+]
+cost_per_rank = [1]
+description = """
+Choose one of the following Metamagic feats. Reduce the spell point cost of
+using that Metamagic."""
+icon = "EfficientMetamagic"
+internal_name = "AMEfficientMetamagicI"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [1]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [1]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicI",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicI",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [1]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [1]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Archmage: Efficient Metamagic"
+cost_per_rank = [1]
+description = "Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic."
+icon = "EfficientMetamagic"
+internal_name = "AMEfficientMetamagicRight"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["AMEfficientMetamagicI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [1]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicRight",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicRight",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [1]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicRight",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicRight",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [1]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicRight",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicRight",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [1]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientMetamagicRight",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMEfficientMetamagicRight",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Archmage: Spell Critical: Elemental and Force II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an
+additional 1% chance to critically hit. Actually 3% Force."""
+icon = "AMSpellCriticalElementalAndForce"
+internal_name = "AMSpellCriticalElementalAndForceII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["AMSpellCriticalElementalAndForceI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Spellcraft"
+cost_per_rank = [1]
+description = "+[5/10/20] Spellcraft"
+icon = "DeepGnomeSpellcraft"
+internal_name = "AMSpellCraft"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DeepGnomeSpellcraft"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Arcane Bolt"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Arcane Bolt
+You fire a bolt of raw energy from your finger that deals 1d6+2 hit points of
+Force damage per caster level to a single target. A successful Reflex save
+reduces the damage by half. This ability counts as a level 2 Wizard spell, and
+benefits from the highest of your spell schools to determine its DC. Further
+points spent in this enhancement will reduce the cooldown and Spell Point cost
+of this Spell-Like Ability.
+Activation Cost: 4 Spell Points.
+Cooldown: 5 seconds
+Scale with 100% Spell Power."""
+icon = "AMArcaneBolt"
+internal_name = "AMArcaneBolt"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Arcane Bolt",
+    "Wizard",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Archmage: Spell Penetration"
+cost_per_rank = [1]
+description = "You add +[1/2/3] to your Caster Level check to overcome an enemy's Spell Resistance."
+icon = "SpellPenetration"
+internal_name = "AMSpellPenetration"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Archmage: Spell Critical: Elemental and Force III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an
+additional 2% chance to critically hit."""
+icon = "AMSpellCriticalElementalAndForce"
+internal_name = "AMSpellCriticalElementalAndForceIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["AMSpellCriticalElementalAndForceII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Intelligence I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+internal_name = "AMIntelligenceI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Archmage: Mixed Magics"
+cost_per_rank = [2]
+description = """
+Your Caster Level with spells is now equal to your Character Level instead of
+individual class levels (max 20). This does not change the caster level of Rune
+Arms, Wands, Scrolls, or other Items."""
+icon = "WMMixedMagics"
+internal_name = "AMMixedMagics"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Archmage: Efficient Heighten"
+cost_per_rank = [1]
+description = """
+Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Points per heightened
+level."""
+icon = "EfficientHeighten"
+internal_name = "AMEfficientHeighten"
+min_spent = 20
+ranks = 2
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AMEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostHeighten"
+
+[[enhancement.requirement]]
+items = ["AMEfficientMetamagicI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "AMEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["Heighten Spell"]
+req_type = "FeatAnySource"
+
+[[enhancement]]
+name = "Archmage: School Mastery"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You have attained mastery in the school of magic that you specialize in.
+The DC of spells you cast from that school are increased by 1."""
+icon = "AMSchoolMastery"
+internal_name = "AMSchoolMastery"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Abjuration"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Abjuration magic, granting a +1 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusAbjuration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Abjuration I: Shield",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Conjuration"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Conjuration magic, granting a +1 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusConjuration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Conjuration I: Grease",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Enchantment"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Enchantment magic, granting a +1 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusEnchantment"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Enchantment I: Hypnotism",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Evocation"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Evocation magic, granting a +1 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusEvocation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Evocation I: Magic Missile",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Illusion"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Illusion magic, granting a +1 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusillusion"
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "AMPrimarySpellFocusIllusion"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image AMPrimarySpellFocusillusion.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Illusion I: Invisibility",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Necromancy"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Necromancy magic, granting a +1 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusNecromancy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Necromancy I: Chill Touch",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Transmutation"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Transmutation magic, granting a +1 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusTransmutation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Transmutation I: Jump",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Spell Critical: Elemental and Force IV"
+cost_per_rank = [2]
+description = """
+Your Acid, Cold, Electric, Fire, Force and Untyped damage spells have an
+additional 2% chance to critically hit."""
+icon = "AMSpellCriticalElementalAndForce"
+internal_name = "AMSpellCriticalElementalAndForceIV"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AMSpellCriticalElementalAndForceIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Intelligence II"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+internal_name = "AMIntelligenceII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AMIntelligenceI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Arcane Blast"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Arcane Blast.
+You fire a ball of raw energy from your hand that explodes on contact with its
+target, dealing 1d6+4 hit points of Force damage per caster level to all
+within its radius. A successful Reflex save reduces the damage by half.
+This ability counts as a level 4 Wizard spell, and benefits from the highest of
+your spell schools to determine its DC. Further points spent in this enhancement
+will reduce the cooldown and Spell Point cost of this Spell-Like Ability.
+Scale with 100% Spell Power.
+Activation Cost: 6 Spell Points.
+Cooldown: 6 seconds."""
+icon = "AMArcaneBlast"
+internal_name = "AMArcaneBlast"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Arcane Blast",
+    "Wizard",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Archmage: Arcane Supremacy"
+cost_per_rank = [2]
+description = """
+Activate to gain a +25% Spell Critical Chance, +100% Spell Critical Damage. 12 seconds duration.
+Cooldown: 60 seconds."""
+icon = "AMArcaneSupremacy"
+internal_name = "AMArcaneSupremacy"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Archmage: School Mastery II"
+cost_per_rank = [2]
+description = """
+You have attained new levels of mastery in the school of magic that you specialize in.
+The DC of spells you cast from that school are increased by an additional 2."""
+icon = "AMSchoolMasteryII"
+internal_name = "AMSchoolMasteryII"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["AMSchoolMastery"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Abjuration"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Abjuration magic, granting a +2 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusAbjuration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Abjuration I: Shield",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Conjuration"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Conjuration magic, granting a +2 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusConjuration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Conjuration I: Grease",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Enchantment"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Enchantment magic, granting a +2 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusEnchantment"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Enchantment I: Hypnotism",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Evocation"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Evocation magic, granting a +2 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusEvocation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Evocation I: Magic Missile",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Illusion"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Illusion magic, granting a +2 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusillusion"
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "AMPrimarySpellFocusIllusion"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image AMPrimarySpellFocusillusion.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Illusion I: Invisibility",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Necromancy"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Necromancy magic, granting a +2 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusNecromancy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Necromancy I: Chill Touch",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Primary Spell Focus: Transmutation"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Transmutation magic, granting a +2 bonus to
+your spell DCs of that school."""
+icon = "AMPrimarySpellFocusTransmutation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "AMCore1",
+    "Transmutation I: Jump",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Archmage: Spell Mastery"
+cost_per_rank = [2]
+description = "+1 to all spell DCs"
+icon = "AMSecondarySchoolMastery"
+internal_name = "AMSecondarySchoolMastery"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Archmage: Metamagic Mastery"
+cost_per_rank = [2]
+description = "+2% Spell Critical Damage per Metamagic feat you own."
+icon = "Intensify"
+internal_name = "AMMetamagicMastery"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    0,
+    4,
+    0,
+    6,
+    0,
+    8,
+    0,
+    10,
+    0,
+    12,
+    0,
+    14,
+    0,
+    16,
+    0,
+    18,
+    0,
+    20,
+    0,
+    22,
+    0,
+    24,
+]
+bonus_type = "Enhancement"
+display_name = "Archmage: Metamagic Mastery"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Wizard"]
+req_type = "Class"

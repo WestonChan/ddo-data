@@ -1,0 +1,18 @@
+name = "Astute Skills Bonus"
+default_value = 3
+description_template = "{1} %b1 bonus to  Disable Device, Repair and Search."
+verbose_name_template = "%b1 Astute Skills Bonus +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Astute"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "%b1 Alluring Skills Bonus +{1}"
+reason = "The wiki line uses this effect title; Maetrim copied an unrelated title into the template."
+url = "https://ddowiki.com/page/Item:Legendary_Treasure_Hunter's_Spyglass_(level_32)"
+read = "2026-10-05"

@@ -1,0 +1,39 @@
+name = "Snowstar"
+description = """
+A perfectly formed icy crystal, razor-sharp and well-suited for throwing. Strange,
+it doesn't seem to melt."""
+drop_location = "Cult of the Six, End reward"
+enhancement_bonus = 4
+icon = "Shuriken_1i"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Icy Burst"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 5
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Thrown"
+weapon_type = "Shuriken"

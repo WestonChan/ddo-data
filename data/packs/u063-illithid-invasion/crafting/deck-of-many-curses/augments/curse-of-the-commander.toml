@@ -1,0 +1,20 @@
+name = "Curse of the Commander"
+description = "Your pets and summoned creatures gain a +1 Fortune Bonus to all Ability Scores."
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Hireling Abilities"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect = "Hireling Abilities"
+effect_type = "HirelingAbilityBonus"
+
+[[slot]]
+slot = "crafting: deck curse"

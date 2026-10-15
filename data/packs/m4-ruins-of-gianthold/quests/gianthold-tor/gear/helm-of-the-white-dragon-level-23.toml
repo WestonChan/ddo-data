@@ -1,0 +1,20 @@
+name = "Helm of the White Dragon (Level 23)"
+description = "This helm is crafted in the likeness of a ferocious white dragon."
+drop_location = "Return to Gianthold Tor, White Dragon 's chest (Epic Normal)"
+icon = "Helmet_45a"
+item_category = "Clothing"
+material = "White Dragonscale"
+minimum_level = 23
+slot = "Head"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "white dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

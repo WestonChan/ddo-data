@@ -1,0 +1,140 @@
+[[row]]
+name = "Splendid Cacophony: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "SplendidCacophony"
+menu = "Masterminds of Sharn"
+set = "Splendid Cacophony"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Splendid Cacophony: Charisma: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Splendid Cacophony: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "SplendidCacophony"
+menu = "Masterminds of Sharn"
+set = "Splendid Cacophony"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Splendid Cacophony: Constitution: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Splendid Cacophony: +12 Positive Spell Power"
+description = """
++12 Positive Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "SplendidCacophony"
+menu = "Masterminds of Sharn"
+set = "Splendid Cacophony"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Splendid Cacophony: Positive Spell Power: +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Splendid Cacophony: +2 Bard Songs"
+description = """
++2 Additional Bard Songs per rest
+Rare: +2 MRR"""
+icon = "SplendidCacophony"
+menu = "Masterminds of Sharn"
+set = "Splendid Cacophony"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SongCount"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Splendid Cacophony: Bard Songs: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Splendid Cacophony: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "SplendidCacophony"
+menu = "Masterminds of Sharn"
+set = "Splendid Cacophony"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Splendid Cacophony: MRR: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Splendid Cacophony: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "SplendidCacophony"
+menu = "Masterminds of Sharn"
+set = "Splendid Cacophony"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Splendid Cacophony: PRR: +2 MRR"
+effect_type = "MRR"
+is_rare = true

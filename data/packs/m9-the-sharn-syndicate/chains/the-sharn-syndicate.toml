@@ -1,0 +1,14 @@
+name = "The Sharn Syndicate"
+pack = "The Sharn Syndicate"
+quests = [
+    "Stand Your Ground",
+    "Dirty Laundry",
+    "The Stormreaver Fresco",
+    "The Bookbinder Rescue",
+    "Repossession",
+    "Come Out and Slay",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Sharn_Syndicate"
+read = "2026-10-02"

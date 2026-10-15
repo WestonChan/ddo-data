@@ -1,0 +1,20 @@
+name = "Miserable Armor-Piercing (Heroic)"
+description = "Adds Armor-Piercing. +8% Enhancement bonus to bypass enemy Fortification."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Fortification Bypass"
+bonus_type = "Enhancement"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

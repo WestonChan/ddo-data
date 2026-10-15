@@ -1,0 +1,61 @@
+name = "Epic Brigand's Cutlass (level 20)"
+accepts_sentience = true
+description = """
+A curved sword with an elegant hilt. popular amongst pirates for its intimidating
+and yet sophisticated appearance. This particular blade is infused with the
+rowdiness and anarchy of a high-seas brigand, and is impeccably useful against
+lawful opponents."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Silver Doubloon 400 Golden Doubloon 35 Stolen Emerald 700 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 6
+icon = "Scimitar_4"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Anarchic 4"
+
+[[effect]]
+name = "Penalty Lawful"
+
+[[effect]]
+name = "Improved Vorpal"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 91
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 17
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 3.5
+handedness = "One-handed"
+weapon_type = "Scimitar"

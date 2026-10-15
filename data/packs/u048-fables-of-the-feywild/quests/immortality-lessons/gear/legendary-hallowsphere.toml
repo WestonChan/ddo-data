@@ -1,0 +1,62 @@
+name = "Legendary Hallowsphere"
+description = """
+This is a hole in the multiverse itself - something so incredibly powerful that
+only the most powerful of mages should risk wielding it."""
+drop_location = "Immortality Lessons, End Chest, 'Granny' Optional Chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 29
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Illusory Death 3"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest, 'granny' optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Immortality Lessons"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

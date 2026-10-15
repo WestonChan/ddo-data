@@ -1,0 +1,42 @@
+name = "Robe of the Locus"
+description = "This enchanted robe protects you from the magical elements of the Isle of Dread."
+drop_location = "Trials of the Triceratops, end chest"
+enhancement_bonus = 3
+icon = "Cloth_15b"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 7
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 33
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Trials of the Triceratops"

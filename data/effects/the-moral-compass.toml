@@ -1,0 +1,9 @@
+name = "The Moral Compass"
+description_template = """
+An oft repeated mantra of the Shintao is written on these sacred handwraps:
+"True strength comes from within, and true power comes from rising above." While wearing these handwraps, Monks will gain additional power and bonuses based on their Philosophy.
+With at least 3 Monk levels you gain:
+Axiomatic 6: This weapon is righteous and wielded by those who stand against chaos, dealing an additional 6d6 law damage on each hit. This effect makes the weapon lawfully aligned. Chaotic characters wielding this weapon will suffer one negative level.
+Holy 6: This weapon is wielded by the pure to smite the wicked, dealing an additional 6d6 good damage on each hit. This effect makes the weapon good aligned. Evil characters wielding this weapon will suffer one negative level. Requires Feat: Path of Inevitable Dominion
+Unholy 6: Unholy 6: On Hit: 6 to 36 Evil damage. Requires Feat: Path of Harmonious Balance"""
+verbose_name_template = "The Moral Compass"

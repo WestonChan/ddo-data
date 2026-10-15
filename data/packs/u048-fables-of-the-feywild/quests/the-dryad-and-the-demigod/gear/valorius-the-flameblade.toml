@@ -1,0 +1,68 @@
+name = "Valorius, the Flameblade"
+accepts_sentience = true
+description = """
+A blazing beam of red hot fire that sprang forth from your hands... Although
+it's not quite clear what has conjured it. The flames respond to the willpower
+and intuition of the wielder. As the Flame Blade is not physical, monks may
+use it without becoming uncentered."""
+drop_location = "The Dryad and the Demigod, End chest and optional chest"
+enhancement_bonus = 15
+icon = "Scimitar_3"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Fire"
+minimum_level = 29
+slot = "Main Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Flameblade"
+
+[[effect]]
+name = "Fiery 6"
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Overwhelming Incineration"
+
+[[effect]]
+name = "Legendary Blinding Embers"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Scimitar",
+]
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+attack_modifier = "Wisdom"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Wisdom"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Scimitar"

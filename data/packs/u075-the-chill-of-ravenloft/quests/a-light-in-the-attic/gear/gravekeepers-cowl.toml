@@ -1,0 +1,36 @@
+name = "Gravekeeper's Cowl"
+description = "For the gravekeeper that knows where all the good treasures are buried."
+drop_location = "A Light in the Attic, secret area chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 8
+slot = "Head"
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 18
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "secret area chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"

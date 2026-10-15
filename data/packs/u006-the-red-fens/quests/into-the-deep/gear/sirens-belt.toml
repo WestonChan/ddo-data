@@ -1,0 +1,15 @@
+name = "Siren's Belt"
+description = """
+This rare belt is enchanted with the protective magic of a water spirit and
+is capable of defending the wearer from harm."""
+drop_location = "Into the Deep, End reward"
+icon = "Belt_11c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Waist"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Into the Deep"

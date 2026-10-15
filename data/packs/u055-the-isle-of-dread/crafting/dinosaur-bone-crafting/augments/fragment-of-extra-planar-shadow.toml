@@ -1,0 +1,55 @@
+name = "Fragment of Extra-planar Shadow"
+description = """
++3% Profane Doublestrike and Doubleshot, +15% Enhancement bonus to Melee Alacrity,
++20% Enhancement bonus to Ranged Alacrity."""
+family = "DinosaurBone"
+icon = "ScaleLightOrange"
+min_level = 31
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Ranged Alacrity"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Melee Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Melee"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Ranged Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Ranged"]
+
+[[slot]]
+slot = "isle of dread: scale (armor)"

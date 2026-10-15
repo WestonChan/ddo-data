@@ -1,0 +1,33 @@
+name = "Nether Grasps (Level 18)"
+description = "Somehow, the smoky leather of these gloves is never lit by direct sunlight."
+drop_location = "The End of the Road, End chest (Heroic Elite)"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Spiritcraft Leather"
+minimum_level = 18
+slot = "Hands"
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Lesser Arcane Casting Dexterity"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 8
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The End of the Road"

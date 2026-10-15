@@ -1,0 +1,77 @@
+name = "Legendary Echo of the Crownblade"
+accepts_sentience = true
+description = """
+An echo of the legendary elven longsword Ruler's Blade, also known as the Crownblade.
+This echo broke off of the Crownblade's mind in defiance of the Blade-rite's
+draconian tendencies, and is open to being wielded by anyone."""
+drop_location = "The Zulkir's Plan, end chest (rare)"
+enhancement_bonus = 15
+icon = "Longsword_1"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 33
+slot = "Main Hand"
+
+[[clickie]]
+name = "Heal"
+clickie = "Heal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 11
+
+[[effect]]
+name = "Felling the Oak"
+
+[[effect]]
+name = "Coruscating 7"
+
+[[effect]]
+name = "Electrifying 7"
+
+[[effect]]
+name = "Blazing 16"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Heal"]
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Zulkir's Plan"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.6
+handedness = "One-handed"
+weapon_type = "Longsword"

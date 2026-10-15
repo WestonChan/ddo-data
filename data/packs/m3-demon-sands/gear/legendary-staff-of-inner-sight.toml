@@ -1,0 +1,75 @@
+name = "Legendary Staff of Inner Sight"
+accepts_sentience = true
+description = """
+This staff is made from a slender willow branch. As you hold it, you feel the
+weight and knowledge of many centuries wash over your senses."""
+drop_location = "Legendary version of Epic Staff of Inner Sight"
+enhancement_bonus = 15
+icon = "Quarterstaff_5c"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 100
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 50
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength, Intelligence"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength, Charisma"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

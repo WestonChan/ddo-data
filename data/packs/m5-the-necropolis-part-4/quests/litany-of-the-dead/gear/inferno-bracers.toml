@@ -1,0 +1,24 @@
+name = "Inferno Bracers"
+description = """
+These dark charcoal bracers were made of metal infused with the ashes of Cinnis'
+mortal elemental body."""
+drop_location = "Litany of the Dead, Cinnis ' chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Wrists"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "cinnis ' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

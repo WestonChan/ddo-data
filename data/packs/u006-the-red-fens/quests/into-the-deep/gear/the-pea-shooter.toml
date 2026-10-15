@@ -1,0 +1,58 @@
+name = "The Pea Shooter"
+description = "Inlaid with livewood, this rune arm pulses with life energy."
+drop_location = "Into the Deep, End reward"
+icon = "RuneArm_1c"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 7
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier III"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 28
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Inherent"
+value = 5
+
+[[effect]]
+name = "Rune Arm Imbue - Acid II"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Acid Shot",
+    "None",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Into the Deep"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

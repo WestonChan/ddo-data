@@ -1,0 +1,22 @@
+name = "+2 Insightful Charisma"
+description = "+2 Insightful bonus to Charisma"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: nearly complete: insightful ability score (heroic)"

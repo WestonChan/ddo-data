@@ -1,0 +1,40 @@
+name = "Legendary Band of Seasons' Warding"
+description = "A silver ring, blessed by the power of the four seasons."
+drop_location = "Ruins of Myth Drannor, Yegora 's chest"
+icon = "Ring_16a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 33
+slot = "Ring"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 56
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 56
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 56
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 56
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "yegora 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

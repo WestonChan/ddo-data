@@ -1,0 +1,31 @@
+name = "Sage's Spectacles (Level 27)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "A Break In the Ice, End reward"
+icon = "Goggles_7a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 27
+slot = "Goggles"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 18
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 132
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "A Break in the Ice"

@@ -1,0 +1,12 @@
+name = "Aspect of Negative Energy II"
+description = """
+Slay Living Guard: This item stores a dark and sinister power deep within. When the
+wearer of this is successfully attacked in melee, this power occasionally comes
+to the surface, attempting to instantly snuff out the life force of the enemy.
+Negative:Negative:Negative"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

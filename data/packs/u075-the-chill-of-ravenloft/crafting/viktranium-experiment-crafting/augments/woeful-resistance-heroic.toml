@@ -1,0 +1,21 @@
+name = "Woeful Resistance (Heroic)"
+description = "+4 Resistance bonus to all Saving Throws."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Resistance"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: woeful (accessory)"

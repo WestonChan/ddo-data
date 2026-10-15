@@ -1,0 +1,3 @@
+name = "Ooze Bane 5"
+description_template = "This weapon is attuned specifically to disrupt Oozes, dealing an additional 5d10 bane damage vs. Oozes."
+verbose_name_template = "Ooze Bane 5"

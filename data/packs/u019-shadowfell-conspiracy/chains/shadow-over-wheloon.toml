@@ -1,0 +1,13 @@
+name = "Shadow Over Wheloon"
+pack = "Shadowfell Conspiracy"
+quests = [
+    "A Lesson in Deception",
+    "Army of Shadow",
+    "Friends in Low Places",
+    "The Thrill of the Hunt",
+    "Through a Mirror Darkly",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Shadow_Over_Wheloon"
+read = "2026-10-02"

@@ -30,6 +30,7 @@ pub struct ChallengeAlias {
     pub text: String,
     pub pack: String,
     pub reason: String,
+    #[serde(alias = "url")]
     pub source: Option<String>,
     pub read: Option<String>,
 }
@@ -48,7 +49,10 @@ pub struct VendorAlias {
 pub struct AdventurePackAlias {
     pub text: String,
     pub pack: String,
+    #[serde(default)]
+    pub placement_only: bool,
     pub reason: String,
+    #[serde(alias = "url")]
     pub source: String,
     pub read: String,
 }
@@ -152,7 +156,10 @@ impl SourceAliases {
     }
 
     pub fn pack_name<'name>(&'name self, name: &'name str) -> &'name str {
-        self.adventure_packs.iter().find(|alias| alias.text == name).map_or(name, |alias| alias.pack.as_str())
+        self.adventure_packs
+            .iter()
+            .find(|alias| !alias.placement_only && alias.text == name)
+            .map_or(name, |alias| alias.pack.as_str())
     }
 }
 
@@ -174,5 +181,6 @@ mod tests {
         let aliases = SourceAliases::embedded().unwrap();
         assert_eq!(aliases.pack_name("Isle of Dread"), "The Isle of Dread");
         assert_eq!(aliases.pack_name("The Isle of Dread"), "The Isle of Dread");
+        assert_eq!(aliases.pack_name("Temple of Elemental Evil Part One"), "Temple of Elemental Evil Part One");
     }
 }

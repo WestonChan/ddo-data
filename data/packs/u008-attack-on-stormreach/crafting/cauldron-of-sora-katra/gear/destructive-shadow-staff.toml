@@ -1,0 +1,48 @@
+name = "Destructive Shadow Staff"
+description = """
+This withered staff, said to be infused with the Shadow's arcane power, can
+now weaken the defenses of the wielder's foes."""
+drop_location = "Cauldron of Sora Katra, Upgrade of Staff of the Shadow + Rocksplitter + Mark of Tzaryan Rrac"
+enhancement_bonus = 5
+icon = "Quarterstaff_5d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Vampirism 1"
+
+[[effect]]
+name = "Life Stealing"
+
+[[effect]]
+name = "Entropic 3"
+
+[[effect]]
+name = "Destruction"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

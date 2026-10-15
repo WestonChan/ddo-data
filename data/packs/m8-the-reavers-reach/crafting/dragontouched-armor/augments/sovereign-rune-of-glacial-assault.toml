@@ -1,0 +1,9 @@
+name = "Sovereign Rune of Glacial Assault"
+description = "Adds the Glacial Assault set bonus."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+set_bonus = "Glacial Assault"
+
+[[slot]]
+slot = "crafting: sovereign rune"

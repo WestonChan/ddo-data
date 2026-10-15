@@ -1,0 +1,45 @@
+name = "University Bulwark's Outfit"
+description = """
+Despite the lack of proper sleeves, this outfit protects its wearer from physical
+harm."""
+drop_location = "The Evil We Know, End chest"
+enhancement_bonus = 5
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 18
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 104
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Evil We Know"

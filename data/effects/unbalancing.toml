@@ -1,0 +1,3 @@
+name = "Unbalancing"
+description_template = "Anything that melee attacks a character with an Unbalancing item has a chance to be pulled off balance giving them a -2 penalty to their AC."
+verbose_name_template = "Unbalancing"

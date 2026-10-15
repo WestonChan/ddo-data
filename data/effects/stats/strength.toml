@@ -1,0 +1,5 @@
+name = "Strength"
+category = "ability"
+description_template = "Passive: {1} %b1 bonus to Strength."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Strength +{1}"

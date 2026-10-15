@@ -1,0 +1,22 @@
+name = "The Iron Mines: Freeing Achka"
+bestowed_by = "Bruku"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Sorrowdusk Isle"
+patron = "House Deneith"
+zone = "The Iron Mines"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Iron_Mines:_Freeing_Achka"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6

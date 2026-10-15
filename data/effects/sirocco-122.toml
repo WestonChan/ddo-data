@@ -1,0 +1,3 @@
+name = "Sirocco +122"
+description_template = "On a critical hit, a creature struck by this weapon must succeed on a DC 122 Reflex save or be Blinded for 6 seconds."
+verbose_name_template = "Sirocco +122"

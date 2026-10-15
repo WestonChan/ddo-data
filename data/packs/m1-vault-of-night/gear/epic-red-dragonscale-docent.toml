@@ -1,0 +1,58 @@
+name = "Epic Red Dragonscale Docent"
+description = """
+This docent was forged from the scales of the Red Dragon, Velah. This suit of
+armor can be repaired by a smith knowledgable in blue dragonscale repair techniques."""
+drop_location = "Vault of Night"
+enhancement_bonus = 6
+icon = "Docent_4"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 20
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 21
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 10
+
+[[effect]]
+name = "Eternal Fire"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Fire Guard II"
+
+[[effect]]
+name = "Incineration Guard"
+
+[[effect]]
+name = "Construct Fortification (10%)"
+bonus_type = "Insight"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Vault of Night"

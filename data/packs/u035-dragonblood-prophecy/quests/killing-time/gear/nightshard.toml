@@ -1,0 +1,56 @@
+name = "Nightshard"
+accepts_sentience = true
+description = "This large, curved sword is a scimitar."
+drop_location = "Killing Time, end chest"
+enhancement_bonus = 15
+icon = "Scimitar_1c"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Byeshk"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Identity Crisis"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Utter Disintegration"
+
+[[effect]]
+name = "Byeshk"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "One-handed"
+weapon_type = "Scimitar"

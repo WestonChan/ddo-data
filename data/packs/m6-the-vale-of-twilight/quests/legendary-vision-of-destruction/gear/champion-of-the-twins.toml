@@ -1,0 +1,78 @@
+name = "Champion of the Twins"
+description = """
+Lorrik and his brother Levik disappeared many years ago while investigating
+tales of an ancient creature residing beneath Stormreach. This shield is a
+fusion of their will and devotion."""
+drop_location = "Legendary Vision of Destruction, End chest"
+enhancement_bonus = 15
+icon = "Shield_11"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Mithral"
+minimum_level = 29
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 20
+max_dex_bonus = 0
+shield_bonus = 20
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Healers Bounty"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 8
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Off-hand"
+weapon_type = "Large Shield"

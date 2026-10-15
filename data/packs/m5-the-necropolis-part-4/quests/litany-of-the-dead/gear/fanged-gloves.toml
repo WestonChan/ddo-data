@@ -1,0 +1,26 @@
+name = "Fanged Gloves"
+description = "Vampire fangs are imbedded between the knuckles of these gloves."
+drop_location = "Litany of the Dead, High Priest of Vol 's chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Hands"
+
+[[effect]]
+name = "Lesser Arcane Casting Dexterity"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "high priest of vol 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

@@ -1,0 +1,3 @@
+name = "Harnessed Lightning"
+description_template = "The fearsome magical prowess of Suulomades still surrounds this weapon. It contains a near-limitless amount of deadly electricity, dealing 6d6 Electric damage on a successful hit, and an additional 6d6 Electric damage on a critical hit."
+verbose_name_template = "Harnessed Lightning"

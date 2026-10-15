@@ -1,0 +1,22 @@
+name = "Hound of Xoriat"
+bestowed_by = "Brunaccio Patroclus"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+is_raid = true
+pack = "The Vale of Twilight"
+patron = "The Twelve"
+zone = "Beneath the House Jorasco Enclave"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Hound_of_Xoriat"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18

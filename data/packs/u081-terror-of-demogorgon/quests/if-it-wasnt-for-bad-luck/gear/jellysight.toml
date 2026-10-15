@@ -1,0 +1,39 @@
+name = "Jellysight"
+description = "The thick slime coating these lenses cannot be removed."
+drop_location = "If It Wasn't For Bad Luck, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 11
+slot = "Goggles"
+
+[[effect]]
+name = "Acid Intensity"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Eversight"
+
+[[effect]]
+name = "Sticky Goo Guard"
+
+[[socket]]
+slot = "crafting: nearly complete: spell focus (heroic)"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "If It Wasn't For Bad Luck"

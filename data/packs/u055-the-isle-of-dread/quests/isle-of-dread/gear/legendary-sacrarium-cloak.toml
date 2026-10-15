@@ -1,0 +1,41 @@
+name = "Legendary Sacrarium Cloak"
+description = """
+The Aricular Sacrarium is a cabal of evil Kopru that have found refuge on the
+Isle of Dread."""
+drop_location = "Isle of Dread (wilderness), Any chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 31
+slot = "Back"
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 103
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 51
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

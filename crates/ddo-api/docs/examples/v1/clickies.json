@@ -3,26 +3,29 @@
     {
       "description": "This effect absorbs most spells cast by beholder eye stalks. Only a few such\nspells can be absorbed before the item ceases to function and must have time to\ndissipate the absorbed energy.",
       "icon": "Beholder",
-      "id": 2,
+      "id": 6341889625345593,
       "modifiers": [],
       "name": "Absorb Beholder Spells",
-      "school": "Evocation"
+      "school": "Evocation",
+      "slug": "absorb-beholder-spells"
     },
     {
       "description": "This effect absorbs the standard spells, spells from beholder and doomsphere eye beams.\nA charge is expended for each eye beam absorbed.",
       "icon": "AntiBeholderCrystal",
-      "id": 1,
+      "id": 2421698440053651,
       "modifiers": [],
       "name": "Absorb Beholder and Doomsphere Spells",
-      "school": null
+      "school": null,
+      "slug": "absorb-beholder-and-doomsphere-spells"
     },
     {
       "description": "This effect absorbs most spells cast by doomsphere eye stalks. Only a few such\nspells can be absorbed before the item ceases to function and must have time to\ndissipate the absorbed energy.",
       "icon": "Beholder",
-      "id": 3,
+      "id": 5004188438808110,
       "modifiers": [],
       "name": "Absorb Doomsphere Spells",
-      "school": "Evocation"
+      "school": "Evocation",
+      "slug": "absorb-doomsphere-spells"
     }
   ],
   "limit": 100,

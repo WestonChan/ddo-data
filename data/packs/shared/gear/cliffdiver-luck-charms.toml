@@ -1,0 +1,32 @@
+name = "Cliffdiver Luck Charms"
+description = """
+Intertwined strands of brightly-colored seaweed make for a simple yet beautiful
+adornments."""
+drop_location = "Cult of the Six, End reward"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 9
+slot = "Wrists"
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

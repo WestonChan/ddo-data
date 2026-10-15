@@ -1,0 +1,1281 @@
+name = "Tempest"
+background = "RangerBackground"
+icon = "Ranger"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Tempest: Shield of Whirling Steel"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While you are dual wielding weapons, you gain a +2 Shield bonus to Armor Class,
+Physical Resistance Rating, and Magical Resistance Rating. This increases by +1
+for each additional Tempest Core Ability you acquire.
+
+In addition, if you are a level 1 character, you gain the Two Weapon Fighting
+Feat until you reach Ranger level 2. (Two Weapon Fighting is granted permanently
+when you take a second Ranger level).
+
+Two Weapon Fighting: Reduces the penalty for fighting with two weapons, and
+increases the chance to produce off hand attacks when fighting with two weapons
+(or as an unarmed Monk) by 20% to 40%."""
+icon = "TempestShieldOfWhirlingSteel"
+internal_name = "TempestCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Shield"
+effect_type = "ACBonus"
+extra_types = [
+    "PRR",
+    "MRR",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Two Weapon Fighting"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Tempest: Tempest"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++10% Offhand Strike Chance (the chance to make off-hand attacks when Dual Wielding
+Melee weapons). You can use your Dexterity modifier to hit with all One Handed melee weapons.
+Antirequisite: This enhancement cannot be taken at the same time as Tempest
+in the Half-Elf tree."""
+icon = "Tempest"
+internal_name = "TempestCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackAbilityClass"
+targets = [
+    "Dexterity",
+    "One Handed",
+]
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement_group.requirement]]
+items = ["TempestCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = [
+    "HalfElfDilettanteSpecialAbilityII",
+    "Tempest",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Graceful Death"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You can use your Dexterity modifier on One Handed melee weapons."
+icon = "TempestGracefulDeath"
+internal_name = "TempestCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageAbilityClass"
+targets = [
+    "Dexterity",
+    "One Handed",
+]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["TempestCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Deflect Arrows"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain the benefits of the Deflect Arrows feat while Dual Wielding Melee weapons,
+knocking aside one incoming projectile that would have struck you every 6 seconds.
+
++1 Competence Bonus to Critical Damage Multiplier while Dual Wielding Melee weapons."""
+icon = "TempestDeflectArrows"
+internal_name = "TempestCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TempestCore4",
+    "Deflect Arrows",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Shield"
+effect_type = "ACBonus"
+extra_types = [
+    "PRR",
+    "MRR",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["TempestCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "TempestCore4",
+    "Deflect Arrows",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Tempest: Whirlwind"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++5%  Doublestrike when Dual Wielding Melee weapons.
++5% Incorporeality (stacking), +10% Offhand Strike Chance."""
+icon = "TempestWhirlwind"
+internal_name = "TempestCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Shield"
+effect_type = "ACBonus"
+extra_types = [
+    "PRR",
+    "MRR",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "Incorporeality"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["TempestCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Dervish"
+cost_per_rank = [1]
+description = """
++4 Dexterity. +10% Doublestrike.
+
+While wearing Medium, Light or No Armor:
++10 Melee Power
++10 Physical Resistance Rating
++10 Magical Resistance Rating"""
+icon = "TempestDervish"
+internal_name = "TempestCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TempestCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Shield"
+effect_type = "ACBonus"
+extra_types = [
+    "PRR",
+    "MRR",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = [
+    "PRR",
+    "MRR",
+]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Tempest Set - 3 Piece bonus"
+effect_type = "Weapon_Attack"
+extra_types = [
+    "Weapon_Attack",
+    "Weapon_Attack",
+]
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["TempestCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "TempestCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Tempest: Item Defense"
+cost_per_rank = [1]
+description = "You have a [25/50/75]% chance to negate potential item wear."
+icon = "TempestItemDefense"
+internal_name = "TempestItemDefense"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement]]
+name = "Tempest: Improved Reaction"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Reflex Saves and an additional +[1/2/3] saves against traps."
+icon = "TempestImprovedReaction"
+internal_name = "TempestImprovedReaction"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Reflex",
+    "Traps",
+]
+
+[[enhancement]]
+name = "Tempest: Improved Defense"
+cost_per_rank = [1]
+description = """
+Your Shield of Whirling Steel Grants +[1/2/3] additional Armor Class,
+Physical Resistance and Magical Resistance.
+If you possess Deflect Arrows it can trigger once every [4/3/2] seconds."""
+icon = "TempestImprovedDefense"
+internal_name = "TempestImprovedDefense"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Shield"
+effect_type = "ACBonus"
+extra_types = [
+    "PRR",
+    "MRR",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Tempest: Whirling Blades I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and damage while dual wielding."
+icon = "TempestWhirlingBlades"
+internal_name = "TempestWhirlingBladesI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Tempest: Acrobatic"
+cost_per_rank = [1]
+description = """
++[1/2/3] Balance, Jump, and Tumble.
+Rank 3: +1 to Reflex Saving Throws."""
+icon = "TempestAcrobatic"
+internal_name = "TempestAcrobatic"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement]]
+name = "Tempest: Improved Parry"
+cost_per_rank = [1]
+description = "Gain +[3/6/10] Physical Resistance Rating when dual wielding."
+icon = "TempestImprovedParry"
+internal_name = "TempestImprovedParry"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Tempest: Improved Dodge"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3]% dodge when wearing light or no armor."
+icon = "TempestImprovedDodge"
+internal_name = "TempestImprovedDodge"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["Dodge"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+items = ["TempestImprovedReaction"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Bleed Them Out"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 6 seconds.
+Melee attack: On successful damage causes your opponent to bleed. The bleed
+effect can stack up to 5 times.
+
+(Bleed deals 1d6 damage every 2 seconds for 14 seconds.)"""
+icon = "TempestBleedThemOut"
+internal_name = "TempestBleedThemOut"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Tempest: Whirling Blades II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and damage while dual wielding."
+icon = "TempestWhirlingBlades"
+internal_name = "TempestWhirlingBladesII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["TempestWhirlingBladesI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Action Boost"
+cost_per_rank = [2]
+description = "Select Haste or Sprint Boost"
+icon = "TempestActionBoost"
+internal_name = "TempestActionBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Haste Boost"
+cooldown_seconds = 30
+cost_per_rank = [2]
+description = "Activate to gain a +30% Action Boost bonus to attack speed for 20 seconds."
+duration_seconds = 20
+icon = "TempestHasteboost"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "TempestHasteBoost"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image TempestHasteboost.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.attack]]
+name = "Tempest: Haste Boost"
+cooldown_seconds = 30
+description = "Activate to gain +30% Action Boost bonus to attack speed for 20 seconds."
+duration_seconds = 20
+icon = "KenseiHasteBoost"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+effect_type = "BonusAlacrity"
+phase = "follow_on"
+
+[[enhancement.selection]]
+name = "Sprint Boost"
+cost_per_rank = [2]
+description = "Activate to gain a +50% Action Boost bonus to movement speed for 20 seconds."
+icon = "TempestSprintBoost"
+is_clickie = true
+
+[[enhancement]]
+name = "Tempest: Storm Dancer"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
+This damage scales with 100% Melee Power."""
+icon = "TempestStormDancer"
+internal_name = "TempestStormDancer"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Electric"
+dice_number = [1]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonusCritical"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Storm Dancer"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Storm Dancer"
+description = """
+Imbue Toggle: Your melee attacks deal +1d8 Electrical damage per Imbue Dice.
+This damage scales with 100% Melee Power."""
+group_name = "Imbue"
+icon = "TempestStormDancer"
+
+[[enhancement]]
+name = "Tempest: Improved Mobility"
+cost_per_rank = [1]
+description = """
++[1/2/3] Maximum Dexterity bonus and Dodge cap while wearing light or no armor.
+-[1/2/3] Armor Check Penalty in light armor."""
+icon = "TempestImprovedMobility"
+internal_name = "TempestImprovedMobility"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ArmorCheckPenalty"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["Mobility"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+items = ["TempestImprovedDodge"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Critical Mastery"
+cost_per_rank = [1]
+description = """
++[1/2/3] to confirm critical hits and to critical hit damage
+(before weapon multipliers)"""
+icon = "TempestCriticalMastery"
+internal_name = "TempestCriticalMastery"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TempestCriticalMastery",
+    "Critical Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = [
+    "TempestCriticalMastery",
+    "Critical Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Tempest: Whirling Blades III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and damage while dual wielding."
+icon = "TempestWhirlingBlades"
+internal_name = "TempestWhirlingBladesIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["TempestWhirlingBladesII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Strength or Dexterity, choose one:"
+icon = "StrDex"
+internal_name = "TempestAbilityScore"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Tempest: Storm Tempest"
+cost_per_rank = [2]
+description = "Upgrades Storm Dancer Imbue Toggle to grant +30% Electrical Absorption."
+icon = "TempestStormTempest"
+internal_name = "TempestStormTempest"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = ["Storm Dancer"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TempestStormDancer"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Elaborate Parry"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Elaborate Parry: For the next 18 seconds, you gain Dodge, Maximum Dodge,
+and Maximum Dexterity Bonus to light and medium armor, equal to your Dexterity Modifier.
+Cooldown: 90 seconds."""
+icon = "TempestElaborateParry"
+internal_name = "TempestElaborateParry"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Tempest: The Growing Storm"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Melee Dual Wielding Attack: Attacks an opponent. For the next [5/10/15] seconds,
+each time you damage an opponent you gain +1 damage for 5 seconds. This effect
+can stack up to 10 times.
+Cooldown: 30 seconds"""
+icon = "TempestTheGrowingStorm"
+internal_name = "TempestTheGrowingStorm"
+is_clickie = true
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Tempest: Whirling Blades IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and damage while dual wielding."
+icon = "TempestWhirlingBlades"
+internal_name = "TempestWhirlingBladesIV"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["TempestWhirlingBladesIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Tempest: Ability II"
+cost_per_rank = [2]
+description = "Strength or Dexterity, Choose one:"
+icon = "StrDex"
+internal_name = "TempestAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["TempestAbilityScore"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Tempest: Dual Perfection"
+cost_per_rank = [2]
+description = """
+Your off hand weapon now adds your full attribute damage modifier.
+
+(For instance, if you have 30 Strength, you gain +10 damage with your offhand
+weapon, like your main hand weapon).
+
+Passive: +25% Competence bonus to Maximum Hit Points."""
+icon = "TempestDualPerfection"
+internal_name = "TempestDualPerfection"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "DamageAbilityMultiplierOffhand"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Tempest: Evasive Dance"
+cost_per_rank = [1]
+description = """
+Improves your Evasion ability so on a failed Reflex saving throw against an
+attack that normally deals half damage on a successful save, you only take
+[85/70/50]% damage."""
+icon = "TempestEvasiveDance"
+internal_name = "TempestEvasiveDance"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["Evasion"]
+req_type = "FeatAnySource"
+
+[[enhancement.requirement]]
+items = ["TempestElaborateParry"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Cuts"
+cost_per_rank = [2]
+description = "Choose a method of inflicting additional cuts."
+icon = "TempestCuts"
+internal_name = "TempestCuts"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["TempestTheGrowingStorm"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Tempest: A Thousand Cuts"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 60 seconds.
+Melee Dual Wielding Attack: You gain +30 Melee Doublestrike and +30 Melee Power for 15 seconds."""
+icon = "TempestAThousandCuts"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Tempest: Many Cuts"
+cost_per_rank = [2]
+description = "Passive: +4% Doublestrike, +4 Melee Power."
+icon = "TempestManyCuts"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["MeleePower"]
+
+[[enhancement]]
+name = "Tempest: Whirling Blades V"
+cost_per_rank = [2]
+description = "+3 to hit and damage while dual wielding."
+icon = "TempestWhirlingBlades"
+internal_name = "TempestWhirlingBladesV"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["TempestWhirlingBladesIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tempest: Dance of Death"
+cost_per_rank = [2]
+description = """
+Deals +50% Damage
+Strikethrough: +200%
+Cooldown: 15 seconds
+Melee Dual Wielding Attack: On Hit: For 10 seconds, you gain the ability to
+Strikethrough regardless of Combat Style for the duration.
+
+Note: the initial attack only works if dual wielding weapons. However, the
+Strikethrough ability and bonus persist through weapon swaps to other styles,
+such as Sword and Board or SWF with weapons like longsword or dagger, as
+described. The bonus appears to apply whether or not the attack hits anything.
+However, once buff fades strike through on your character will be turned off,
+even for THF, until activated again or until you swap weapons."""
+icon = "TempestDanceOfDeath"
+internal_name = "TempestDanceOfDeath"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [200]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Dance of Death"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Ranger"]
+req_type = "BaseClass"

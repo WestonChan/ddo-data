@@ -1,0 +1,21 @@
+name = "Acute Delirium"
+bestowed_by = "Rorry Malcanus"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Reign of Madness"
+patron = "The Twelve"
+zone = "The Sleeping Spell Inn"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Acute_Delirium"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

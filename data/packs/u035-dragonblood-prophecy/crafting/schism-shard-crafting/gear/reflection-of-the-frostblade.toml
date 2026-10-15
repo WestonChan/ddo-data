@@ -1,0 +1,54 @@
+name = "Reflection of The Frostblade"
+accepts_sentience = true
+description = "I alone control the storm."
+drop_location = "Schism Shard Crafting, Turn in 5 Schism Shards and an Epic Leopard's Chill"
+enhancement_bonus = 15
+icon = "Scimitar_11"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Silver"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Legendary Freezing Ice"
+
+[[effect]]
+name = "Chilling 6"
+
+[[effect]]
+name = "Evil Outsider Bane 6"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "crafting_system"
+name = "Schism Shard Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Scimitar"

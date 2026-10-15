@@ -1,0 +1,10 @@
+name = "Quality Nimble Skills Bonus"
+description_template = "{1} Quality bonus to Balance, Hide, Move Silently, Open Lock and Tumble."
+home_bonus_type = "Quality"
+verbose_name_template = "Quality Nimble Skills Bonus +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Nimble"

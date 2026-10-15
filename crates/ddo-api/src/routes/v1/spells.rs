@@ -21,10 +21,13 @@ declare_query_parameters! {
     }
 }
 
-const SPELL_COLUMNS: &str = "s.id, s.name, s.description, s.icon, s.schools, s.max_caster_level, s.cost, s.metamagics";
+const SPELL_COLUMNS: &str = "s.id, s.name, s.description,
+                             s.icon,
+                             s.schools, s.max_caster_level, s.cost, s.metamagics";
 
 const SPELLS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "s.name"),
+    ("slug", "s.name"),
     ("id", "s.id"),
     ("school", "s.schools"),
     ("cost", "cost"),
@@ -130,6 +133,7 @@ async fn spell_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Res
 
 const CLICKIES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("school", "listed.school"),
     ("description", "description"),

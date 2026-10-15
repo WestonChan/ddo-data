@@ -1,0 +1,25 @@
+name = "Foundation of Discord"
+bestowed_by = "Walk-up"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "Aurum Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Foundation_of_Discord"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 24

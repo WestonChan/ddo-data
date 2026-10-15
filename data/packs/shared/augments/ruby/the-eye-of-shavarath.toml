@@ -1,0 +1,20 @@
+name = "The Eye of Shavarath"
+description = "You are immune to Fear. On a Critical Hit, this weapon applies the Shaken debuff."
+family = "Ruby"
+icon = "RubyEye"
+min_level = 30
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

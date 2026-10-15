@@ -1,0 +1,9 @@
+name = "Devotion of the Firemouth"
+description = "Adds Devotion of the Firemouth set bonus"
+family = "DinosaurBone"
+icon = "DinosaurSetBonus"
+min_level = 31
+set_bonus = "Devotion of the Firemouth"
+
+[[slot]]
+slot = "isle of dread: set bonus"

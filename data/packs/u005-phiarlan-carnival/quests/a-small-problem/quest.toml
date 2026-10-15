@@ -1,0 +1,26 @@
+name = "A Small Problem"
+bestowed_by = "Glitter Underhill"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Phiarlan Carnival"
+patron = "House Phiarlan"
+zone = "Mammoth Valley"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/A_Small_Problem"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5
+
+[[run]]
+tier = "epic"
+level = 20

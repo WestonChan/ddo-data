@@ -1,0 +1,187 @@
+[[row]]
+name = "Otto's Irrevocable Power: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "OttosIrrevocablePower"
+menu = "Ravenloft"
+set = "Otto's Irrevocable Power"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Otto's Irrevocable Power: Charisma: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Otto's Irrevocable Power: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "OttosIrrevocablePower"
+menu = "Ravenloft"
+set = "Otto's Irrevocable Power"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Otto's Irrevocable Power: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Otto's Irrevocable Power: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "OttosIrrevocablePower"
+menu = "Ravenloft"
+set = "Otto's Irrevocable Power"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Otto's Irrevocable Power: Intelligence: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Otto's Irrevocable Power: +2 Will Saves"
+description = """
++1 Will saves
+Rare: +2 MRR"""
+icon = "OttosIrrevocablePower"
+menu = "Ravenloft"
+set = "Otto's Irrevocable Power"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Otto's Irrevocable Power: Will: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Otto's Irrevocable Power: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "OttosIrrevocablePower"
+menu = "Ravenloft"
+set = "Otto's Irrevocable Power"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Otto's Irrevocable Power: MRR: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Otto's Irrevocable Power: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "OttosIrrevocablePower"
+menu = "Ravenloft"
+set = "Otto's Irrevocable Power"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Otto's Irrevocable Power: PRR: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Otto's Irrevocable Power: +6 Universal Spell Power"
+description = """
++6 Universal Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "OttosIrrevocablePower"
+menu = "Ravenloft"
+set = "Otto's Irrevocable Power"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Otto's Irrevocable Power: Universal Spell Power: Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Otto's Irrevocable Power: -10% Arcane Spell Failure"
+description = """
+-10% Arcane Spell Failure
+Rare: +2 MRR"""
+icon = "OttosIrrevocablePower"
+menu = "Ravenloft"
+set = "Otto's Irrevocable Power"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Stacking"
+effect_type = "ArcaneSpellFailure"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Otto's Irrevocable Power: Spell Failure Reduction: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true

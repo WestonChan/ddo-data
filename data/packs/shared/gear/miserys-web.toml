@@ -1,0 +1,32 @@
+name = "Misery's Web"
+description = """
+Created from fine silk of the great Black Widow queen, Misery . This trinket
+projects thick strands of spider silk at a target."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Trinket_78"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 3
+slot = "Trinket"
+
+[[clickie]]
+name = "Web"
+clickie = "Web"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Web"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

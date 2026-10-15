@@ -1,0 +1,10 @@
+name = "Dr. Rushmore's Mansion - Behind the Door"
+difficulties = []
+is_challenge = true
+max_level = 15
+pack = "Free to Play"
+patron = "House Cannith"
+
+[[run]]
+tier = "heroic"
+level = 4

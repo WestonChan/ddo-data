@@ -1,0 +1,3 @@
+name = "Blunted Ammunition"
+description_template = "The ammunition fired by this weapon deals blunt damage in addition to its other damage types."
+verbose_name_template = "Blunted Ammunition"

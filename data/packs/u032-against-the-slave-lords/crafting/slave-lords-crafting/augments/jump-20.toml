@@ -1,0 +1,21 @@
+name = "Jump +20"
+description = "Legendary Competence bonus to Jump"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Jump"
+effect_type = "SkillBonus"
+targets = ["Jump"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

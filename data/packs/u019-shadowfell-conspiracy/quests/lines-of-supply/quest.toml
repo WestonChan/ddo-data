@@ -1,0 +1,25 @@
+name = "Lines of Supply"
+bestowed_by = "Rina the Keen-Blade"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Shadowfell Conspiracy"
+patron = "The Harpers"
+zone = "Tumblerock Pass"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Lines_of_Supply"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19
+
+[[run]]
+tier = "epic"
+level = 27

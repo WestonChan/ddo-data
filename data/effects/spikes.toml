@@ -1,0 +1,3 @@
+name = "Spikes"
+description_template = "The sharp spikes on this item deal an additional 1 to 6 Piercing damage when used to strike an enemy."
+verbose_name_template = "Spikes"

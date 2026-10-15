@@ -1,0 +1,3 @@
+name = "Corrosive Salt"
+description_template = "This weapon stores a caustic, insatiable power deep within. When this weapon is used, this power can come to the surface in the form of a noxious, corrosive salt that dissolves all substances."
+verbose_name_template = "Corrosive Salt"

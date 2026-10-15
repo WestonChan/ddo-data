@@ -1,0 +1,109 @@
+name = "Hruit's Influence"
+icon = "HruitsInfluence"
+
+[[item]]
+name = "Bronze Dragonscale Plate"
+
+[[item]]
+name = "Pendant of the Azure Sea"
+
+[[item]]
+name = "Pendant of the Azure Sky"
+
+[[item]]
+name = "Sunstone Gauntlets"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Lore"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Lore"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Lore"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Lore"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Wisdom"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Cold",
+    "Electric",
+    "Positive",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellLore"
+targets = [
+    "Fire",
+    "Cold",
+    "Electric",
+    "Positive",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]

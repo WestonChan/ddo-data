@@ -1,0 +1,23 @@
+name = "Ornate Goggles"
+description = "These goggles are fitted with magnifying lenses, aiding the wearer's perception."
+drop_location = "Necromancer's Doom, End reward"
+icon = "Goggles_20"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 1
+slot = "Goggles"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 1
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Necromancer's Doom"

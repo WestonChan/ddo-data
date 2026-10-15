@@ -1,0 +1,87 @@
+name = "Legendary Cloak of Balance"
+description = "Split in half vertically, and extremely well made."
+drop_location = "The Offshore Account, End Chest"
+icon = "Cloak_10"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+3 Quality Strength"
+description = "+3 Quality bonus to Strength"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Strength"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+3 Quality Dexterity"
+description = "+3 Quality bonus to Dexterity"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Dexterity"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+3 Quality Constitution"
+description = "+3 Quality bonus to Constitution"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Constitution"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Offshore Account"

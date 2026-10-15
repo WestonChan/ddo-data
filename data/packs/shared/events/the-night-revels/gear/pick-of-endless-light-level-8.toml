@@ -1,0 +1,37 @@
+name = "Pick of Endless Light (level 8)"
+description = "This pick is light upon light; both brilliant and lacking in weight."
+drop_location = "The Night Revels, Turn in Pick of Endless Light (Level 4), 80 Darkest Chocolate, 30 Cinnamon, 10 Spooky Almonds at Joe Candymaker"
+enhancement_bonus = 3
+icon = "LightPick_1h"
+item_category = "Weapon"
+item_type = "Light Pick"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Undead Bane"
+
+[[effect]]
+name = "Incandescence"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Light Pick"

@@ -1,0 +1,41 @@
+name = "Vestments of Light"
+description = "This simple outfit has been imbued with lesser healing magics."
+drop_location = "The Smuggler's Warehouse, Witch Doctor Chiku 's Chest"
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Cure Light Wounds"
+clickie = "Cure Light Wounds"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 3
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cure Light Wounds"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "witch doctor chiku 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Smuggler's Warehouse"

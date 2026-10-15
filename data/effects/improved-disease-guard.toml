@@ -1,0 +1,3 @@
+name = "Improved Disease Guard"
+description_template = "This item carries a virulent disease that may be contracted by enemies that hit you, dealing 2 to 8 Constitution damage. A successful Fortitude save (DC 24) will negate this effect."
+verbose_name_template = "Improved Disease Guard"

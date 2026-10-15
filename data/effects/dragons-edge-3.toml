@@ -1,0 +1,11 @@
+name = "Dragon's Edge 3"
+description_template = "+9% Enhancement bonus to bypass enemy Fortification . On hit: 3d8 Bleeding Damage to those that are vulnerable to it."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Dragon's Edge 3"
+
+[[bonus]]
+amount_from = 0
+constant = 9
+rounding = "down"
+scale = 1.0
+target = "Fortification Bypass"

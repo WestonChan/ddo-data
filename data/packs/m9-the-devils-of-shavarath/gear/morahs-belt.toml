@@ -1,0 +1,65 @@
+name = "Morah's Belt"
+description = """
+This thin leather belt is braided with scarves of many different colors. It
+was worn by the famous street performer Morah when she disappeared through
+a portal to Shavarath."""
+drop_location = "Bastion of Power, Any end chest ; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[clickie]]
+name = "Jump"
+spell = "Jump"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Thief Acrobat"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Jump"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+    15,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Thief Acrobat - 2 Piece bonus"
+effect_type = "SkillBonus"
+targets = ["Jump"]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bastion of Power"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

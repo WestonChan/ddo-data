@@ -1,0 +1,3573 @@
+name = "Pale Master"
+background = "WizardBackground"
+icon = "Wizard"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Pale Master: Dark Reaping"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+For each Core Ability in this tree, including this one, you gain +5 Negative Spell
+Power, +5 Universal Spell Power and +3 Negative Healing Amplification."""
+icon = "PMDarkReaping"
+internal_name = "PMCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Pale Master: Pale Shroud"
+cost_per_rank = [1]
+description = """
+Multi-selector: Choose an Undead Shroud.
+All forms grant 100% critical hit resistance and allow you to be healed by
+Negative Energy. You take 50% healing from Positive, and double damage from
+Light. You are considered undead rather than your original type for the
+purposes of most effects."""
+icon = "PMShroudOfTheZombie"
+internal_name = "PMCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Negative/Poison Spell Power per Core"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Universal Spell Power per Core"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +3 Negative Healing Amplification per Core"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+items = ["PMCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Shroud of the Zombie"
+cost_per_rank = [1]
+description = """
+Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
+traits of a Zombie. While in this form, you hunger for brains and gain +4
+Constitution, +2 to Strength, +10 Melee Power, 3 Physical and Magical Resistance
+Rating, and attack 10% slower. You have +100% critical hit resistance, are
+healed by Negative Energy, take 50% healing from Positive Energy, and take
+double damage from Light. You are considered Undead rather than your original
+type for the purposes of most effects."""
+icon = "PMShroudOfTheZombie"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Shroud of the Zombie"
+description = """
+Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
+traits of a Zombie. While in this form, you hunger for brains and gain +4
+Constitution, +2 to Strength, +10 Melee Power, 3 Physical and Magical Resistance
+Rating, and attack 10% slower. You have +100% critical hit resistance, are
+healed by Negative Energy, take 50% healing from Positive Energy, and take
+double damage from Light. You are considered Undead rather than your original
+type for the purposes of most effects."""
+group_name = "Major Form"
+icon = "PMShroudOfTheZombie"
+
+[[enhancement.selection]]
+name = "Shroud of the Vampire"
+cost_per_rank = [1]
+description = """
+While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom and +3 Perform.
+Your melee and unarmed attacks have a chance to heal you for 1d3 Negative
+Energy damage per Wizard Level."""
+icon = "PMShroudOfTheVampire"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Charisma",
+    "Intelligence",
+    "Wisdom",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Shroud of the Vampire"
+description = """
+While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom and +3 Perform.
+Your melee and unarmed attacks have a chance to heal you for 1d3 Negative
+Energy damage per Wizard Level."""
+group_name = "Major Form"
+icon = "PMShroudOfTheVampire"
+
+[[enhancement.selection]]
+name = "Pale Master: Shroud of the Wraith"
+cost_per_rank = [1]
+description = """
+While in this form, +2 Dexterity, +2 Intelligence, enemy attacks have a 10%
+chance to miss you due to incorporeality, you float as if affected by
+feather fall and you gain +1 Sneak Attack Dice"""
+icon = "PMShroudOfTheWraith"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Dexterity",
+    "Intelligence",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shroud of the Wraith"
+effect_type = "Incorporeality"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Shroud of the Wraith"
+description = """
+While in this form, +2 Dexterity, +2 Intelligence, enemy attacks have a 10%
+chance to miss you due to incorporeality, you float as if affected by
+feather fall and you gain +1 Sneak Attack Dice"""
+group_name = "Major Form"
+icon = "PMShroudOfTheWraith"
+
+[[enhancement.selection]]
+name = "Shroud of the Lich"
+cost_per_rank = [1]
+description = """
+While in this form, +2 Constitution, +2 Intelligence, +10 Negative Healing
+Amplification, +10 Negative Spell Power, and +15 Magical Resistance Rating."""
+icon = "PMShroudOfTheLich"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Constitution",
+    "Intelligence",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Shroud of the Lich"
+description = """
+While in this form, +2 Constitution, +2 Intelligence, +10 Negative Healing
+Amplification, +10 Negative Spell Power, and +15 Magical Resistance Rating."""
+group_name = "Major Form"
+icon = "PMShroudOfTheLich"
+
+[[enhancement.selector_exclusion]]
+internal_name = "PaleDeathlyVersatile"
+
+[[enhancement]]
+name = "Pale Master: Undead Augmentation I"
+cost_per_rank = [1]
+description = """
+Enhance you Undead Forms.
+Pick one of the following abilities that applies while in a Pale Shroud.
+Passive: While in a Shroud, you can breathe underwater. +1 Spell Penetration."""
+icon = "PMUndeadAugmentation"
+internal_name = "PMCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Negative/Poison Spell Power per Core"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Universal Spell Power per Core"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +3 Negative Healing Amplification per Core"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    60,
+    60,
+    60,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Pale Master - 3 Piece bonus"
+effect_type = "SpellCriticalDamage"
+extra_types = [
+    "SpellCriticalDamage",
+    "SpellCriticalDamage",
+]
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["PMCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.selection]]
+name = "Deathly Tough"
+cost_per_rank = [1]
+description = "+25 Maximum Hit Points, +5 PRR"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Deathly Resistance"
+cost_per_rank = [1]
+description = "+15 Magical Resistance Rating, +2 to all Saves"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Inflict Weariness"
+cost_per_rank = [1]
+description = """
+Your attacks inflict 2-9 points of Negative Energy damage to a living target.
+This scales with 100% Spell Power. Your Vorpal Melee Hits cause Energy Drain,
+inflicting 1 Negative Level on victims."""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection]]
+name = "Haunting in the Dark"
+cost_per_rank = [1]
+description = "+2 Assassinate DCs, +1 Sneak Attack Dice"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ghost in the Wind"
+cost_per_rank = [1]
+description = """
++10% Incorporeal Miss Chance.
+If you are in Wraith Form, this increases your total to 20%."""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Ghost in the Wind: Base Incorporeality"
+effect_type = "Incorporeality"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shroud of the Wraith"
+effect_type = "Incorporeality"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Deathly Power"
+cost_per_rank = [1]
+description = "+10 to Negative/Poison Energy Spell Power."
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "+2 Necromancy DC"
+cost_per_rank = [1]
+description = "+2 Necromancy DC"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "+2 Enchantment DC"
+cost_per_rank = [1]
+description = "+2 Enchantment DC"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Undead Chill"
+cost_per_rank = [1]
+description = """
++15% bonus to Cold Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)"""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Undead Shock"
+cost_per_rank = [1]
+description = """
++15% bonus to Electric Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)"""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Unhallowed Touch"
+cost_per_rank = [1]
+description = "You gain Ghost Touch on all attacks, +5 Hide and Move Silently"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement]]
+name = "Pale Master: Undead Augmentation II"
+cost_per_rank = [1]
+description = """
+Pick a different ability that applies while in a Pale Shroud.
+Passive: +1 Spell Penetration."""
+icon = "PMUndeadAugmentation"
+internal_name = "PMCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Negative/Poison Spell Power per Core"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Universal Spell Power per Core"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +3 Negative Healing Amplification per Core"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+items = ["PMCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.selection]]
+name = "Deathly Tough"
+cost_per_rank = [1]
+description = "+25 Maximum Hit Points, +5 PRR"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Deathly Resistance"
+cost_per_rank = [1]
+description = "+15 Magical Resistance Rating, +2 to all Saves"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Inflict Weariness"
+cost_per_rank = [1]
+description = """
+Your attacks inflict 2-9 points of Negative Energy damage to a living target.
+This scales with 100% Spell Power. Your Vorpal Melee Hits cause Energy Drain,
+inflicting 1 Negative Level on victims."""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection]]
+name = "Haunting in the Dark"
+cost_per_rank = [1]
+description = "+2 Assassinate DCs."
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ghost in the Wind"
+cost_per_rank = [1]
+description = """
++15% Incorporeal Miss Chance.
+If you are in Wraith Form, this increases your total to 25%."""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Ghost in the Wind: Base incorporeality"
+effect_type = "Incorporeality"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shroud of the Wraith"
+effect_type = "Incorporeality"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Deathly Power"
+cost_per_rank = [1]
+description = "+10 to Negative/Poison Energy Spell Power."
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "+2 Necromancy DC"
+cost_per_rank = [1]
+description = "+2 Necromancy DC"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "+2 Enchantment DC"
+cost_per_rank = [1]
+description = "+2 Enchantment DC"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Undead Chill"
+cost_per_rank = [1]
+description = """
++15% bonus to Cold Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)"""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Undead Shock"
+cost_per_rank = [1]
+description = """
++15% bonus to Electric Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)"""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Unhallowed Touch"
+cost_per_rank = [1]
+description = "You gain Ghost Touch on all attacks, +5 Hide and Move Silently"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.selector_exclusion]]
+internal_name = "PMCore3"
+
+[[enhancement]]
+name = "Pale Master: Undead Augmentation III"
+cost_per_rank = [1]
+description = """
+Pick a different ability that applies while in a Pale Shroud.
+Passive: +1 Spell Penetration, +50 Spell Points"""
+icon = "PMUndeadAugmentation"
+internal_name = "PMCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Negative/Poison Spell Power per Core"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Universal Spell Power per Core"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +3 Negative Healing Amplification per Core"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+items = ["PMCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.selection]]
+name = "Deathly Tough"
+cost_per_rank = [1]
+description = "+25 Maximum Hit Points, +5 PRR"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Deathly Resistance"
+cost_per_rank = [1]
+description = "+15 Magical Resistance Rating, +2 to all Saves"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Inflict Weariness"
+cost_per_rank = [1]
+description = """
+Your attacks inflict 2-9 points of Negative Energy damage to a living target.
+This scales with 100% Spell Power. Your Vorpal Melee Hits cause Energy Drain,
+inflicting 1 Negative Level on victims."""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection]]
+name = "Haunting in the Dark"
+cost_per_rank = [1]
+description = "+2 Assassinate DCs."
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ghost in the Wind"
+cost_per_rank = [1]
+description = """
++15% Incorporeal Miss Chance.
+If you are in Wraith Form, this increases your total to 25%."""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Ghost in the Wind: Base Incorporeality"
+effect_type = "Incorporeality"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Incorporeality"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Deathly Power"
+cost_per_rank = [1]
+description = "+10 to Negative/Poison Energy Spell Power."
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "+2 Necromancy DC"
+cost_per_rank = [1]
+description = "+2 Necromancy DC"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "+2 Enchantment DC"
+cost_per_rank = [1]
+description = "+2 Enchantment DC"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Undead Chill"
+cost_per_rank = [1]
+description = """
++15% bonus to Cold Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)"""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Undead Shock"
+cost_per_rank = [1]
+description = """
++15% bonus to Electric Absorption. You no longer take extra damage from Light.
+(Note you will still take double damage from Sunburst.)"""
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Unhallowed Touch"
+cost_per_rank = [1]
+description = "You gain Ghost Touch on all attacks, +5 Hide and Move Silently"
+icon = "PMUndeadAugmentation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.selector_exclusion]]
+internal_name = "PMCore3"
+
+[[enhancement.selector_exclusion]]
+internal_name = "PMCore4"
+
+[[enhancement]]
+name = "Pale Master: Embraced the Void"
+cost_per_rank = [1]
+description = """
+Active: Greater Death Aura SLA.
+Envelops the caster in a sickly aura of negative energy. Living enemies stepping
+inside the aura take 3 to 12 negative energy damage plus 1 additional point per
+caster level every two seconds as long as they remain within it. A successful
+Fortitude save reduces the damage by half. Undead are instead healed by the aura.
+This aura can affect up to one target per caster level. D&D Dice: Deals 3d4
+negative energy damage plus 1 per caster level every two seconds.
+This can be cast simultaneously with Lesser Death Aura and Death Aura.
+Passive: You gain +4 Intelligence and Deathblock. +10 Negative Healing
+Amplification. +2 Spell Penetration."""
+icon = "PMEmbraceTheVoid"
+internal_name = "PMCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "PaleCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Deathblock"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Negative/Poison Spell Power per Core"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +5 Universal Spell Power per Core"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+display_name = "Pale Master: +3 Negative Healing Amplification per Core"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    12,
+    0,
+    2,
+    0,
+    8,
+    0,
+    2,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Death Aura",
+    "Wizard",
+]
+
+[[enhancement.requirement]]
+items = ["PMCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "PaleCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Pale Master: Necrotic Touch"
+arrows = ["LongArrowUp"]
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Necrotic Touch
+Activation Cost: 2 SP
+Cooldown: 4 seconds."""
+icon = "PMNecroticTouch"
+internal_name = "PMNecroticTouch"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Necrotic Touch",
+    "Wizard",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Pale Master: Negative Energy Conduit"
+cost_per_rank = [1]
+description = """
++[6/12/20] Negative Healing Amplification.
+This increases the amount by which you are healed from Negative Energy while
+you have a Shroud toggle active."""
+icon = "PMNegativeEnergyConduit"
+internal_name = "PaleNegativeEnergyConduit"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    6,
+    12,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Pale Master: Spell Critical: Negative Energy I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Negative/Poison Energy damage spells have an additional 2% chance to critically hit."
+icon = "PMSpellCriticalNegativeEnergy"
+internal_name = "PMSpellCriticalNegativeEnergyI"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Pale Master: Skeletal Knight"
+cost_per_rank = [1]
+description = """
+Summon the reanimated body of an ancient knight to do your bidding once per rest.
+Cooldown: 20 seconds
+The Skeletal Knight is a very strong Fighter with a level equal to your current
+Wizard level plus any Epic levels. You can summon it in addition to any Summon
+Monster spell you might be using."""
+icon = "PMSkeletalKnight"
+internal_name = "PMSkeletalKnight"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Pale Master: Deathless Vigor"
+cost_per_rank = [2]
+description = """
+The power of undeath has toughened your flesh, providing you with an additional
++[10/20/30] Hit Points."""
+icon = "PMDeathlessVigor"
+internal_name = "PaleDeathlessVigor"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Pale Master: Cloak of Night"
+cost_per_rank = [1]
+description = """
+While blocking in a Pale Shroud, you gain invisibility, displacement, and do not
+take extra damage from Light. Passive: +5 Hide.
+Note: Works with Channel the Abyss (Abyss Pact) as well."""
+icon = "PaleCloakOfNight"
+internal_name = "PaleCloakOfNight"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Hide"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Pale Master: Spell Critical: Negative Energy II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Negative/Poison Energy damage spells have an additional 2% chance to critically hit."
+icon = "PMSpellCriticalNegativeEnergyII"
+internal_name = "PaleSpellCriticalNegativeEnergyII"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["PMSpellCriticalNegativeEnergyI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Pale Master: Corpsecrafter"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Your Skeletal Knight gains a +[2/4/6] Profane Bonus to Strength, Dexterity, and
+Constitution.
+Rank 3: You gain +1 Strength, Dexterity, and Constitution."""
+icon = "PMCorpsecrafter"
+internal_name = "PaleCorpsecrafter"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+rank = 3
+targets = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Pale Master: Efficient Metamagic"
+cost_per_rank = [2]
+description = """
+Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic."""
+icon = "EfficientMetamagic"
+internal_name = "PaleEfficientMetamagic"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "PaleEfficientMetamagic",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "PaleEfficientMetamagic",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [2]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "PaleEfficientMetamagic",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "PaleEfficientMetamagic",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "PaleEfficientMetamagic",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "PaleEfficientMetamagic",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "PaleEfficientMetamagic",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "PaleEfficientMetamagic",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Pale Master: Necrotic Bolt"
+arrows = ["LongArrowUp"]
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Necrotic Bolt
+Accepts Metamagics. Scales with full Spell Power.
+Cost: 5 SP
+Cooldown: 5 seconds."""
+icon = "PMNecroticBolt"
+internal_name = "PaleNecroticBolt"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Necrotic Bolt",
+    "Wizard",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["PMNecroticTouch"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Pale Master: Negative Energy Adept"
+cost_per_rank = [1]
+description = """
++[10/20/30] Negative Healing Amplification.
+Hidden effect: Dark Furor: The Skeletal Knight benefits from Dark Furor,
+granting it +[15/30/45]% chance to Doublestrike, and causing its attacks to
+bypass [5/10/15]% of enemy Fortification."""
+icon = "PMNegativeEnergyAdept"
+internal_name = "PaleNegativeEnergyAdept"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Pale Master: Spell Critical: Negative Energy III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Negative/Poison Energy damage spells have an additional 2% chance to critically hit."
+icon = "PMSpellCriticalNegativeEnergyIII"
+internal_name = "PaleSpellCriticalNegativeEnergyIII"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["PaleSpellCriticalNegativeEnergyII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Pale Master: Eternal Furor"
+cost_per_rank = [1]
+description = """
+You (while in a Shroud) AND your Skeleton Knight gain +[5/10/15] Profane Bonus
+to PRR. Your Skeletal Knight gains +[3/6/10] to hit and damage, +[2/4/6] Profane
+Bonus to AC, and its attacks bypass [10/20/50]% of enemy Fortification.
+Note: PRR bonus works with Channel the Abyss (Abyss Pact) as well."""
+icon = "PMEternalServitude"
+internal_name = "PaleEternalFuror"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Channel the Abyss"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+items = ["PaleCorpsecrafter"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Pale Master: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Constitution or Intelligence"
+icon = "ConInt"
+internal_name = "PaleAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Pale Master: Unholy Avatar"
+cost_per_rank = [1]
+description = """
+You are cloaked in the darkness itself, and can reach out with your Negative
+Energy Spells to taint the Undead with mortality. When you strike an Undead
+with a damage-dealing Negative Energy Spell, it leaves a lingering weakness
+to Negative Energy that bypasses an Undead's natural resistance to Negative
+Energy. Only works while in a Shroud form."""
+icon = "PMUnholyAvatar"
+internal_name = "PaleUnholyAvatar"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Pale Master: Spell Critical: Negative Energy IV"
+cost_per_rank = [2]
+description = "Your Negative/Poison Energy damage spells have an additional 2% chance to critically hit."
+icon = "PMSpellCriticalNegativeEnergyIV"
+internal_name = "PaleSpellCriticalNegativeEnergyIV"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["PaleSpellCriticalNegativeEnergyIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Pale Master: Deathly Versatile"
+cost_per_rank = [1]
+description = "Pick a second Shroud Toggle. You may only have one active at a time."
+icon = "PMShroudOfTheZombie"
+internal_name = "PaleDeathlyVersatile"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Shroud of the Zombie"
+cost_per_rank = [1]
+description = """
+Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
+traits of a Zombie. While in this form, you hunger for brains and gain +4
+Constitution, +2 to Strength, +10 Melee Power, 3 Physical and Magical Resistance
+Rating, and attack 10% slower. You have +100% critical hit resistance, are
+healed by Negative Energy, take 50% healing from Positive Energy, and take
+double damage from Light. You are considered Undead rather than your original
+type for the purposes of most effects."""
+icon = "PMShroudOfTheZombie"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Shroud of the Zombie"
+description = """
+Shroud Toggle: You shroud yourself with Negative Energy and assume many of the
+traits of a Zombie. While in this form, you hunger for brains and gain +4
+Constitution, +2 to Strength, +10 Melee Power, 3 Physical and Magical Resistance
+Rating, and attack 10% slower. You have +100% critical hit resistance, are
+healed by Negative Energy, take 50% healing from Positive Energy, and take
+double damage from Light. You are considered Undead rather than your original
+type for the purposes of most effects."""
+group_name = "Major Form"
+icon = "PMShroudOfTheZombie"
+
+[[enhancement.selection]]
+name = "Shroud of the Vampire"
+cost_per_rank = [1]
+description = """
+While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom and +3 Perform.
+Your melee and unarmed attacks have a chance to heal you for 1d3 Negative
+Energy damage per Wizard Level."""
+icon = "PMShroudOfTheVampire"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Charisma",
+    "Intelligence",
+    "Wisdom",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Shroud of the Vampire"
+description = """
+While in this form, +2 Charisma, +2 Intelligence, +2 Wisdom and +3 Perform.
+Your melee and unarmed attacks have a chance to heal you for 1d3 Negative
+Energy damage per Wizard Level."""
+group_name = "Major Form"
+icon = "PMShroudOfTheVampire"
+
+[[enhancement.selection]]
+name = "Pale Master: Shroud of the Wraith"
+cost_per_rank = [1]
+description = """
+While in this form, +2 Dexterity, +2 Intelligence, enemy attacks have a 10%
+chance to miss you due to incorporeality, you float as if affected by
+feather fall and you gain +1 Sneak Attack Dice"""
+icon = "PMShroudOfTheWraith"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Dexterity",
+    "Intelligence",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Incorporeality"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Shroud of the Wraith"
+description = """
+While in this form, +2 Dexterity, +2 Intelligence, enemy attacks have a 10%
+chance to miss you due to incorporeality, you float as if affected by
+feather fall and you gain +1 Sneak Attack Dice"""
+group_name = "Major Form"
+icon = "PMShroudOfTheWraith"
+
+[[enhancement.selection]]
+name = "Shroud of the Lich"
+cost_per_rank = [1]
+description = """
+While in this form, +2 Constitution, +2 Intelligence, +10 Negative Healing
+Amplification, +10 Negative Spell Power, and +15 Magical Resistance Rating."""
+icon = "PMShroudOfTheLich"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Constitution",
+    "Intelligence",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Shroud of the Lich"
+description = """
+While in this form, +2 Constitution, +2 Intelligence, +10 Negative Healing
+Amplification, +10 Negative Spell Power, and +15 Magical Resistance Rating."""
+group_name = "Major Form"
+icon = "PMShroudOfTheLich"
+
+[[enhancement.selector_exclusion]]
+internal_name = "PMCore2"
+
+[[enhancement]]
+name = "Pale Master: Ability II"
+cost_per_rank = [2]
+description = "Choose either Constitution or Intelligence"
+icon = "ConInt"
+internal_name = "PaleAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["PaleAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Pale Master: Necrotic Blast"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Necrotic Blast
+Accepts Metamagics. Scales with full Spell Power
+Cost: 10 SP
+Cooldown: 6 seconds.."""
+icon = "PMNecroticBlast"
+internal_name = "PaleNecroticBlast"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Necrotic Blast",
+    "Wizard",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["PaleNecroticBolt"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Pale Master: Animate Ally"
+cost_per_rank = [2]
+description = """
+Activate to Animate a dead ally, restoring 100% of the target's hit points.
+Your ally is considered an undead zombie gaining the benefits and drawbacks of
+Shroud of the Zombie. Zombie Form is removed on Rest or Death.
+Cooldown: 18 seconds.
+Metamagic: Quicken, Enlarge. Spell Resistance: No"""
+icon = "PMAnimateAlly"
+internal_name = "PaleAnimateAlly"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Pale Master: Necromantic Focus"
+cost_per_rank = [2]
+description = """
+You benefit from dark knowledge, granting you a +1 DC to spells from the Necromancy
+school."""
+icon = "PMNecromanticFocus"
+internal_name = "PaleNecromanticFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Pale Master: Dark Discorporation"
+cost_per_rank = [1]
+description = "Select your Bat Form!"
+icon = "PMDarkDiscorporation"
+internal_name = "PaleDarkDiscorporation"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Dark Discorporation"
+cost_per_rank = [1]
+description = """
+(as per the Warlock spell... Because Pale Masters should get to turn into bats
+and float away)."""
+icon = "PMDarkDiscorporation"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Dark Discorporation",
+    "Wizard",
+]
+
+[[enhancement.selection]]
+name = "Reactive Discorporation"
+cost_per_rank = [1]
+description = """
+When your HP drops below 50% o your maximum, you automatically cast Dark Discorporation
+on yourself, turning into a swarm of dark fluttering bats for 20 seconds.
+This spell will still end if you attack as per the original version of the
+spell. This may only trigger once every 60 seconds."""
+icon = "PMReactiveDiscorporation"
+
+[[enhancement]]
+name = "Pale Master: Ascendant Shroud"
+cost_per_rank = [2]
+description = """
+Your Undead Shrouds gain the following additional benefits:
+While in Zombie Form:
+    +30 Melee Power
+    Attacks deal 10% more damage
+    +10 PRR
+    +10% Profane Bonus to maximum Hit Points.
+    Bug: Unlisted penalty to ranged attack speed for a total of-20% (melee
+    attack speed penalty remains at 10%).
+While in Vampire Form:
+    +1 Enchantment DC.
+    Your melee attacks have a chance to dominate your adversaries.
+    On Hit: Target has a chance to be Paralyzed
+        (Will save vs. DC 20 + INT Mod + Enchantment Spell Bonuses).
+    On Save: -10% Movement and Attack Speed.
+While in Wraith Form:
+    +5% Incorporeality (bringing your total to 20%, or 25% if you have Ghost in the Wind),
+    +2 Sneak Attack Dice.
+    +3% Dodge and Dodge Cap.
+    +10 to Hide and Move Silently.
+While in Lich Form:
+    +15 to MRR cap
+    +10 Negative/Poison Spell Power
+    +10 Cold and Electric Resistance
+    5% spell point cost reduction on all spells"""
+icon = "PMImprovedShrouding"
+internal_name = "PaleAscendantShroud"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect_type = "Weapon_Damage"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Profane"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Zombie"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shroud of the Vampire"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Embrace Death"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shroud of the Wraith"
+effect_type = "Incorporeality"
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Wraith"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MRRCap"
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = [
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPointCostPercent"
+
+[[enhancement.modifier.requirement]]
+items = ["Shroud of the Lich"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Wizard"]
+req_type = "Class"

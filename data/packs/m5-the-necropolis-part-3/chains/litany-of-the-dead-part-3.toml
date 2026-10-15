@@ -1,0 +1,13 @@
+name = "Litany of the Dead Part 3"
+pack = "The Necropolis, Part 3"
+quests = [
+    "Tomb of the Blighted",
+    "Tomb of the Forbidden",
+    "Tomb of the Tormented",
+    "Tomb of the Unhallowed",
+    "The Cursed Crypt",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Litany_of_the_Dead_Part_3"
+read = "2026-10-02"

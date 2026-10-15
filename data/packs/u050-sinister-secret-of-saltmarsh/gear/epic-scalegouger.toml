@@ -1,0 +1,51 @@
+name = "Epic Scalegouger"
+accepts_sentience = true
+description = "This Heavy Pick is a quick and efficient way to pry scales from large fish."
+drop_location = "Epic version of Scalegouger"
+enhancement_bonus = 6
+icon = "HeavyPick_1f"
+item_category = "Weapon"
+item_type = "Heavy Pick"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Reptilian Bane 4"
+
+[[effect]]
+name = "Evil Blast 4"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Crippling"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "colorless"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Heavy Pick"

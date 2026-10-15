@@ -1,0 +1,42 @@
+name = "Spiked Mace of the Elements"
+description = """
+A large Morningstar used to when carving out the Hobgoblin caves to smash Earth
+Elementals into bits and pieces."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+enhancement_bonus = 2
+icon = "Morningstar_7"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Lesser Elemental Bane"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Morningstar"

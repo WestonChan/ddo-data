@@ -1,0 +1,3 @@
+name = "Destructive Acid +7"
+description_template = "Strikes with this weapon have a small chance to call forth a surge of incredibly corrosive acid, dealing 7d20+75 Acid damage."
+verbose_name_template = "Destructive Acid +7"

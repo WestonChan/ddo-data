@@ -1,0 +1,53 @@
+name = "Legendary Windlasher's Ferocity"
+icon = "Menechtarun"
+
+[[item]]
+name = "Legendary Cape of the Roc"
+
+[[item]]
+name = "Legendary Chaosblade"
+
+[[item]]
+name = "Legendary Dustless Boots"
+
+[[item]]
+name = "Legendary Hyena Claw Necklace"
+
+[[item]]
+name = "Legendary Marilith Chain"
+
+[[item]]
+name = "Legendary Mirage"
+
+[[item]]
+name = "Legendary Unkor's Cleaver"
+
+[[item]]
+name = "Legendary Wolf Whistle"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

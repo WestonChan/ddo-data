@@ -1,0 +1,20 @@
+name = "Berserker Bracers"
+description = "Imposing steel bands worn around the forearms of formidable Minotaur Berserkers."
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 1
+slot = "Wrists"
+
+[[effect]]
+name = "DR 1/-"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

@@ -1,0 +1,49 @@
+name = "Legendary Packrat's Rat Pack"
+description = """
+The pack of a rat, a rat that belongs to a pack of rats, specifically a pack
+of packrats who each have their own pack."""
+drop_location = "The Knife's Edge, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 33
+slot = "Back"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 14
+
+[[effect]]
+name = "Carrying Capacity"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Knife's Edge"

@@ -1,0 +1,78 @@
+name = "Ranged Alacrity"
+choose_level = true
+description = "You can attack in ranged faster than normal."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    7,
+    8,
+    9,
+    9,
+    10,
+    11,
+    12,
+    12,
+    13,
+    14,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+
+[[effect]]
+name = "Ranged Alacrity"
+bonus_type = "Equipment"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Ranged Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Ranged"]
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith goggles suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: cannith ranged prefix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

@@ -1,0 +1,68 @@
+name = "The Legendary Compass Rose"
+accepts_sentience = true
+description = "This centerpoint of a great compass makes a great improvised weapon."
+drop_location = "The Stone Crypt Chronicle, end chest"
+enhancement_bonus = 15
+icon = "Shuriken_1h"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Steel"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Bleeding 6"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Spiked"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Stone Crypt Chronicle"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Thrown"
+weapon_type = "Shuriken"

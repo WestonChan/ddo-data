@@ -1,0 +1,46 @@
+name = "Spell Power Light +142"
+description = "Legendary Equipment bonus to spell power"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Light Spell Power"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Chaos Spell Power"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Evil Spell Power"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Good Spell Power"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Law Spell Power"
+bonus_type = "Equipment"
+value = 142
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [142]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

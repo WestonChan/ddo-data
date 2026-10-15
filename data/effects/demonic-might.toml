@@ -1,0 +1,11 @@
+name = "Demonic Might"
+description_template = "This item gives the wearer the power of a demon, granting a +2 Profane bonus to Strength."
+home_bonus_type = "Profane"
+verbose_name_template = "Demonic Might +2"
+
+[[bonus]]
+amount_from = 0
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Strength"

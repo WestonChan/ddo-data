@@ -1,0 +1,43 @@
+name = "Greater Vial of Seafog"
+description = """
+A glass vial filled with water and thick mist. When it breaks on impact, a bank
+of Solid Fog is created on the enemy it struck."""
+drop_location = "Treasure of Crystal Cove, Turn in 25 gold doubloons at Euphonia's Barter Box"
+icon = "Dart_9d"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Glass"
+minimum_level = 5
+slot = "Main Hand"
+
+[[clickie]]
+name = "Solid Fog"
+clickie = "Solid Fog"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    0,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Solid Fog"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 1
+critical_threat_range = 1
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Dart"

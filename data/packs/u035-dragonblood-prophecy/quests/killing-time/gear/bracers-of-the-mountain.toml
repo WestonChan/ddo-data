@@ -1,0 +1,45 @@
+name = "Bracers of the Mountain"
+description = "Strong like Stone, but they don't seem to weigh anything."
+drop_location = "Killing Time, Raid Warded Chest"
+icon = "Bracers_14"
+item_category = "Clothing"
+material = "Stone"
+minimum_level = 28
+slot = "Wrists"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Petrification Immunity"
+
+[[note]]
+kind = "item"
+field = "set_bonus"
+reason = "The wiki lists the Mountainskin Set among the bracers' enchantments; his item names no set."
+url = "https://ddowiki.com/page/Item:Bracers_of_the_Mountain"
+read = "2026-10-02"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"

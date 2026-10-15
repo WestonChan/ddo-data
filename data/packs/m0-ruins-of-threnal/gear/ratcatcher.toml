@@ -1,0 +1,36 @@
+name = "Ratcatcher"
+description = "A small crossbow custom-made for a halfling."
+drop_location = "The Abandoned Excavation, End reward"
+enhancement_bonus = 4
+icon = "LightCrossbow_1k"
+item_category = "Weapon"
+item_type = "Light Crossbow"
+material = "Wood"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Vermin Bane"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 3
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Light Crossbow"

@@ -1,0 +1,52 @@
+name = "Sigil of the Triumvirate"
+description = """
+The Triumvirate is the ruling body of Zilargo, and this sigil marks you as their
+emissary."""
+drop_location = "Too Hot to Handle, end chest; Masterminds of Sharn saga: Epic, end reward; rare drop in any Sharn quest"
+icon = "Ring_37"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Sonic Absorption"
+bonus_type = "Enhancement"
+value = 37
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"
+
+[[source]]
+kind = "saga"
+name = "Masterminds of Sharn"
+tier = "epic"

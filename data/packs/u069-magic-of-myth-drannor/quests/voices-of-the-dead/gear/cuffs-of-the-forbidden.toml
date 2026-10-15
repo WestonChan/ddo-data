@@ -1,0 +1,38 @@
+name = "Cuffs of the Forbidden"
+description = "Those trusted with secret knowledge wore these as a mark of their trusted position."
+drop_location = "Voices of the Dead, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Wrists"
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 27
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Quality"
+value = 7
+
+[[effect]]
+name = "Sinister Chill"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Quality"
+value = 21
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

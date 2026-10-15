@@ -1,0 +1,23 @@
+name = "Gwylan's Stand"
+bestowed_by = "Coralay d'Phiarlan"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Phiarlan"
+zone = "Gwylan's Stand"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Gwylan%27s_Stand"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7

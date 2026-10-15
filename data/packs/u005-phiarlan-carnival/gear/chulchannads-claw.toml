@@ -1,0 +1,62 @@
+name = "Chulchannad's Claw"
+description = """
+Chulchannad, Herald of Winter, was an Ice Devil humbled by Malicia's plans.
+Part of his essence was used to power this Rune Arm."""
+drop_location = "The Maleficent Cabal, End reward"
+icon = "RuneArm_1e"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 5
+slot = "Runearm"
+
+[[clickie]]
+name = "Cold Bolts"
+clickie = "Cold Bolts"
+
+[[effect]]
+name = "Maximum Charge Tier II"
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Rune Arm Imbue - Cold I"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Cold Bolts",
+    "Unknown",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+kind = "quest_chain"
+name = "The Maleficent Cabal"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

@@ -1,0 +1,3 @@
+name = "Diehard"
+description_template = "If you are incapacitated while this item is equipped, it will automatically stabilize you as if you had the Diehard feat."
+verbose_name_template = "Diehard"

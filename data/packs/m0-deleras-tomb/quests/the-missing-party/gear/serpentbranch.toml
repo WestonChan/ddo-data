@@ -1,0 +1,49 @@
+name = "Serpentbranch"
+description = """
+A crude longbow fashioned from jungle vines, it exudes a sticky sap that adheres
+well to the tips of arrows."""
+drop_location = "The Missing Party, End chest"
+enhancement_bonus = 3
+icon = "Longbow_11b"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Poisonous 2"
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Missing Party"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

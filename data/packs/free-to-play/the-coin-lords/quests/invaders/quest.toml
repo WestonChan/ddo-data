@@ -1,0 +1,22 @@
+name = "Invaders!"
+bestowed_by = "Guard Branson"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "Waterworks - Side Entrance"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Invaders!"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12

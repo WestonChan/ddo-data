@@ -1,0 +1,61 @@
+name = "Blood's Bellows"
+description = """
+This shield is dominated by the visage of the Blood of Vol, a large roaring
+mouth."""
+drop_location = "Emerald Claw Nugget, End reward"
+enhancement_bonus = 5
+icon = "Shield_32"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Adamantine"
+minimum_level = 16
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[clickie]]
+name = "Greater Shout"
+spell = "Greater Shout"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Adamantine"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Shout"]
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "Off-hand"
+weapon_type = "Large Shield"

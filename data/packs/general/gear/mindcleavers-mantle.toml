@@ -1,0 +1,23 @@
+name = "Mindcleaver's Mantle"
+description = "Fine work, made by master craftsmen"
+drop_location = "Advance to level 15, End reward"
+icon = "Cloak_75"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 15
+race_required = "Duergar Mindcleaver"
+slot = "Back"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

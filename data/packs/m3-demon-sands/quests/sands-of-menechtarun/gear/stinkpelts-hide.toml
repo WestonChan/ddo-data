@@ -1,0 +1,59 @@
+name = "Stinkpelt's Hide"
+description = """
+The sturdy hide of the hyena Stinkpelt, can be fashioned into a suit of armor
+that is easier to move around in than most hide armor, though little can be
+done about the stench."""
+drop_location = "Sands of Menechtarun, Firebrand Area: Stinkpelt 's Chest (Rare Encounter); \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 5
+armor_type = "Light"
+max_dex_bonus = 7
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Poison Resistance"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Curse of Repulsiveness"
+bonus_type = "Penalty"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "firebrand area: stinkpelt 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

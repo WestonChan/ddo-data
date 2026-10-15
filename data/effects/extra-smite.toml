@@ -1,0 +1,3 @@
+name = "Extra Smite"
+description_template = "You have one additional Smite Evil use per rest. You must rest to gain your initial charge."
+verbose_name_template = "Extra Smite"

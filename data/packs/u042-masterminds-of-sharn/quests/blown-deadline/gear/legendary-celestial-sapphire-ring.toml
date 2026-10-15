@@ -1,0 +1,89 @@
+name = "Legendary Celestial Sapphire Ring"
+description = "A blazing sapphire is embedded into the ring."
+drop_location = "Blown Deadline, End Chest"
+icon = "Ring_9"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+13 Constitution"
+description = "+13 Enhancement bonus to Constitution"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "+13 Dexterity"
+description = "+13 Enhancement bonus to Dexterity"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+13 Intelligence"
+description = "+13 Enhancement bonus to Intelligence"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Blown Deadline"

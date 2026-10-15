@@ -1,0 +1,32 @@
+name = "The Lost Thread"
+bestowed_by = "Cormul Haythorne"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "Menace of the Underdark"
+patron = "Purple Dragon Knights"
+zone = "Abandoned Temple"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Lost_Thread"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "epic_level"
+reason = "The wiki's quest index gives an epic level of 21; his Quests.xml gives none."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 21
+
+[[run]]
+tier = "epic"
+level = 21

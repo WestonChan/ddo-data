@@ -1,0 +1,57 @@
+name = "Gauntlets of Immortality"
+description = """
+After their forging, each plate in these complex gauntlets was quenched in a
+fountain of life-giving elixir. Perhaps this helped preserve the gauntlets
+themselves, long after most of the Lost Empire's handiwork crumbled to dust."""
+drop_location = "The Fall of Truth, Raid warded chest (Epic Normal)"
+icon = "Gloves_13"
+item_category = "Clothing"
+material = "Adamantine"
+minimum_level = 25
+slot = "Hands"
+
+[[effect]]
+name = "Touch of Immortality"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 120
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Eternal Faith"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Adds a Yellow Augment Slot"
+description = "Adds a Yellow augment slot."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Adds a Colorless Augment Slot"
+description = "Adds a Colorless augment slot."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Fall of Truth"

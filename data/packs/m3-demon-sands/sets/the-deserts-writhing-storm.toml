@@ -1,0 +1,70 @@
+name = "The Desert's Writhing Storm"
+icon = "Menechtarun"
+
+[[item]]
+name = "Bow of the Elements (Air)"
+
+[[item]]
+name = "Cloak of the Zephyr"
+
+[[item]]
+name = "Flint"
+
+[[item]]
+name = "Gloves of the Falcon"
+
+[[item]]
+name = "Golden Greaves"
+
+[[item]]
+name = "Spiked Turban"
+
+[[item]]
+name = "Storm"
+
+[[item]]
+name = "Whirlwind"
+
+[[item]]
+name = "Zephyr"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Lore"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"

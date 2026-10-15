@@ -1,0 +1,37 @@
+name = "Legendary Raven's Talons"
+description = """
+Gloves like these make the wearer's attacks more precise and are often employed
+by drow scouts and spies."""
+drop_location = "Legendary version of Epic Raven's Talons"
+icon = "Gloves_8c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Hands"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

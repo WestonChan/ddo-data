@@ -1,0 +1,35 @@
+name = "Ember Shortbow"
+description = "This shortbow is carved with symbols and is warm to the touch."
+drop_location = "The Grotto, Sahuagin High Priestess 's chest, Barbarians, Bards, Fighters, Rangers, and Rogues"
+icon = "Shortbow_1f"
+item_category = "Weapon"
+item_type = "Shortbow"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Masterwork Weapon"
+
+[[effect]]
+name = "Fire Touch"
+
+[[source]]
+chest = "sahuagin high priestess 's chest, barbarians, bards, fighters, rangers, and rogues"
+kind = "quest"
+loot_type = "chest"
+name = "The Grotto"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Shortbow"

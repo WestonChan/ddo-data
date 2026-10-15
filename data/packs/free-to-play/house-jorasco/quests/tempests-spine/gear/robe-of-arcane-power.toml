@@ -1,0 +1,48 @@
+name = "Robe of Arcane Power"
+description = "A fine cloth robe that provides covering but no protection."
+drop_location = "Tempest's Spine, Unknown Chest"
+icon = "Cloth_1f"
+is_legacy = true
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Potency for Low-Level Spells"
+value = 20
+
+[[note]]
+kind = "item"
+field = "is_legacy"
+upstream = false
+reason = "The wiki says it no longer drops; replaced by Robe of Arcane Puissance."
+url = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
+read = "2026-10-01"
+
+[[note]]
+kind = "item_effect"
+field = "remove"
+upstream = 0
+reason = "The wiki describes this old Potency as spell damage only, so its mapped Spell Powers group is absent."
+url = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
+read = "2026-10-04"
+qualifier = 'effect "Potency"'
+
+[[note]]
+kind = "item_effect"
+field = "add"
+reason = "The wiki describes +20% damage to 4th level and lower spells."
+url = "https://ddowiki.com/page/Item:Robe_of_Arcane_Power"
+read = "2026-10-04"
+qualifier = "Potency for Low-Level Spells"
+
+[[source]]
+chest = "unknown chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

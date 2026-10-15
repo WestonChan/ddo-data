@@ -1,0 +1,57 @@
+name = "Epic Marshwalker"
+icon = "Marshwalker"
+
+[[item]]
+name = "Epic Boots of the Mire"
+
+[[item]]
+name = "Epic Ring of the Mire"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Jump"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Tumble"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Saving Throws"
+effect_type = "MovementSpeed"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Jump",
+    "Tumble",
+]

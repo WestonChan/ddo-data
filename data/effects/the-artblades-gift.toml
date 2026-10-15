@@ -1,0 +1,3 @@
+name = "The Artblade's Gift"
+description_template = "You gain Legendary Concordant Opposition: Being struck in melee has a small chance to return some lost Hit Points and Spell Points to you. Offensive spells have a chance to grant 100 Temporary Spell Points. This has a one minute cooldown, which is shared with effects that grant Legendary Concordant Opposition."
+verbose_name_template = "The Artblade's Gift"

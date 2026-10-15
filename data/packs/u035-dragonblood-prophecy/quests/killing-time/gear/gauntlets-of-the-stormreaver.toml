@@ -1,0 +1,40 @@
+name = "Gauntlets of the Stormreaver"
+description = """
+These heavy gauntlets are inscribed with lightning, and seem to resonate while
+in your hands."""
+drop_location = "Killing Time, warded chest"
+icon = "Gloves_17"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 28
+slot = "Hands"
+
+[[effect]]
+name = "Stormreaver's Thunderclap"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"

@@ -1,0 +1,39 @@
+name = "Legendary Scientist's Sights"
+description = """
+These lenses slightly magnify small details, a fine bit of magic for the aspiring
+tinkerer."""
+drop_location = "Locked Away (Part One), end chest"
+icon = "Goggles_24"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 34
+slot = "Goggles"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 27
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part One)"

@@ -1,0 +1,704 @@
+name = "Aasimar: Scourge of the Undead"
+background = "HumanBackground"
+icon = "ScourgeAasimar"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Aasimar Scourge: Stronger Bonds I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1 use of Healing Hands per rest."
+icon = "StrongerBondsI"
+internal_name = "ScourgeAasimarCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Aasimar Scourge: Ability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose either Strength, Wisdom or Charisma"
+icon = "StrWisCha"
+internal_name = "ScourgeAasimarCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ScourgeAasimarCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Aasimar Scourge: Stronger Bonds II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Bond of the Scourge now grants you Ghost Touch on all weapon attacks."
+icon = "StrongerBondsII"
+internal_name = "ScourgeAasimarCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["ScourgeAasimarCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar Scourge: Ability II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose either Strength, Wisdom or Charisma"
+icon = "StrWisCha"
+internal_name = "ScourgeAasimarCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["ScourgeAasimarCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Aasimar Scourge: Stronger Bonds III"
+cost_per_rank = [1]
+description = "+2 more uses of Healing Hands per rest."
+icon = "StrongerBondsIII"
+internal_name = "ScourgeAasimarCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["ScourgeAasimarCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar Scourge: Scourge Weapons"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+You gain proficiency with Clubs, Light Maces, Heavy Maces, and Morningstars.
+If you are Good, any of these four weapons you wield are considered Good."""
+icon = "ScourgeWeapons"
+internal_name = "SAScourgeWeapons"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Club",
+    "Light Mace",
+    "Heavy Mace",
+    "Morningstar",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = [
+    "Club",
+    "Light Mace",
+    "Heavy Mace",
+    "Morningstar",
+]
+value = "Good"
+
+[[enhancement.modifier.requirement]]
+items = ["Good"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Aasimar Scourge: Counsel"
+cost_per_rank = [1]
+description = "+[1/2/3] to the Heal, Listen, and Spot skills"
+icon = "Counsel"
+internal_name = "SACounsel"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Listen",
+    "Spot",
+]
+
+[[enhancement]]
+name = "Aasimar Scourge: True Resilience"
+cost_per_rank = [1]
+description = "+[1/2/3] to your Fortitude Saving Throws"
+icon = "TrueResilience"
+internal_name = "SATrueResilience"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement]]
+name = "Aasimar Scourge: Bold"
+cost_per_rank = [1]
+description = """
+You overcome fear quickly.
+Fear and shaken effects are removed from you after [12/6/3] seconds."""
+icon = "Bold"
+internal_name = "SABold"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement]]
+name = "Aasimar Scourge: Improved Recovery I"
+arrows = ["LongArrowUp"]
+cost_per_rank = [2]
+description = "+20 Healing Amplification"
+icon = "HumanImprovedRecovery"
+internal_name = "SAImprovedRecoveryI"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement]]
+name = "Aasimar Scourge: Improved Scourge Weapons"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+You gain 5% Doublestrike.
+If you have the Two Weapon Fighting feat, this grants the Oversized Two Weapon Fighting feat."""
+icon = "ImprovedScourgeWeapons"
+internal_name = "SAImprovedScourgeWeapons"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Oversized Two Weapon Fighting"]
+
+[[enhancement.modifier.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+items = ["SAScourgeWeapons"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar Scourge: Arcanum"
+cost_per_rank = [2]
+description = "+[25/50/100] spell points and +[1/2/3] spell penetration."
+icon = "Arcanum"
+internal_name = "SAAasimarArcanum"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Aasimar Scourge: Divine Purpose"
+cost_per_rank = [1]
+description = """
+Gain an active ability with one charge per rest.
+Must have your Bond Feat active to use.
+Scourge: You gain the furious aura of the Scourge of the Undead.
+For one minute, your weapon attacks deal 3d6 extra Light damage that scales with
+the higher of your Melee or Ranged Power. On Vorpal, enemies are Blinded."""
+icon = "DivinePurposeScourge"
+internal_name = "SADivinePurpose"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Light"
+dice_number = [3]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Aasimar: Scourge"]
+req_type = "Stance"
+
+[[enhancement.stance]]
+name = "Divine Purpose"
+description = """
+Scourge: You gain the furious aura of the Scourge of the Undead.
+For one minute, your weapon attacks deal 3d6 extra Light damage that scales with
+the higher of your Melee or Ranged Power. On Vorpal, enemies are Blinded."""
+icon = "DivinePurposeScourge"
+
+[[enhancement]]
+name = "Aasimar Scourge: Divine Resolve"
+cost_per_rank = [1]
+description = "Scourge: +[1/2/3] Constitution while your Divine Purpose is active."
+icon = "DivineResolveScourge"
+internal_name = "SADivineResolve"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier.requirement]]
+items = ["Divine Purpose"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Aasimar Scourge: Greater Scourge Weapons"
+cost_per_rank = [1]
+description = """
+While dual-wielding Clubs, Light Maces, Heavy Maces, and Morningstars, you gain
+5% chance to make off-hand attacks.
+Passive: +2 Melee and Ranged power."""
+icon = "GreaterScourgeWeapons"
+internal_name = "SAGreaterScourgeWeapons"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Club"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Mace"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Mace"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Morningstar"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bastard Sword"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Battle Axe"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dagger"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Hand Axe"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Pick"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Kama"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Khopesh"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Kukri"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Hammer"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Pick"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Longsword"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rapier"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Scimitar"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shortsword"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Sickle"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Warhammer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.requirement]]
+items = ["SAImprovedScourgeWeapons"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar Scourge: Strike Down the Dead"
+cost_per_rank = [2]
+description = """
++3[W] melee attack with +3 Critical Threat Range. 15 second cooldown.
+On hit: Deals 1d4+4 per Character Level (scales with 100% Melee Power) in Positive
+Damage to Undead creatures."""
+icon = "StrikeDownTheDead"
+internal_name = "SAStrikeDowntheDead"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement]]
+name = "Aasimar Scourge: Divine Charge"
+cost_per_rank = [1]
+description = "+[1/2/3] Purpose Charges"
+icon = "DivineCharge"
+internal_name = "SADivineCharge"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement]]
+name = "Aasimar Scourge: Blessing"
+cost_per_rank = [1]
+description = "+[10/20/30] Positive Spellpower"
+icon = "Blessing"
+internal_name = "SABlessing"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement]]
+name = "Aasimar Scourge: Improved Recovery II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+20 Healing Amplification"
+icon = "HumanImprovedRecovery"
+internal_name = "SAImprovedRecoveryII"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["SAImprovedRecoveryI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar Scourge: Destroyer of the Dead"
+cost_per_rank = [2]
+description = """
+Clubs, Light Maces, Heavy Maces, and Morningstars you wield gain a +1 Sacred
+Bonus to  Critical Multiplier. Passive: Grants +4 Melee and Ranged power."""
+icon = "DestroyerOfTheDead"
+internal_name = "SADestroyerOfTheDead"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Sacred"
+effect_type = "Weapon_CriticalMultiplier"
+targets = [
+    "Club",
+    "Light Mace",
+    "Heavy Mace",
+    "Morningstar",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement]]
+name = "Aasimar Scourge: Divine Form"
+cost_per_rank = [1]
+description = "Toggle: 30sp, toggles off on rest.\nMust have your Bond Feat active to use. Mutually exclusive with Form feats (PM, Druid, etc).\nStage 1: When this stance is enabled, you gain +1 to Hit and Damage, 1% Doubleshot, and 1% Doublestrike.\nStage 2: After 20 seconds of this stance being active, these bonuses double.\nStage 3: After 40 seconds of this stance being active, you also gain a 10% Action Boost Bonus to Attack \n         Speed, 10% Action Boost bonus to Melee Power, and 5% Action Boost bonus to Ranged Power, but\n         you take your  Character Level in Light damage every second until the stance is toggled off.\nStage 4: After 60 seconds of this stance being active, all of your bonuses from this stance double once \n         more, but you take one stack of Vulnerability every second.\nStage 5: After 70 seconds of this stance being active, your movement speed will drop dramatically.\nStage 6: After 75 seconds of this stance being active, you can no longer contain the radiance within,\n         and it will consume you."
+icon = "DivineFormScourge"
+internal_name = "SADivineForm"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement]]
+name = "Aasimar Scourge: Improved Recovery III"
+cost_per_rank = [2]
+description = "+20 Healing Amplification"
+icon = "HumanImprovedRecovery"
+internal_name = "SAImprovedRecoveryIII"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["SAImprovedRecoveryII"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Aasimar Scourge"]
+req_type = "Race"

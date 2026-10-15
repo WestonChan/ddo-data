@@ -1,0 +1,51 @@
+name = "Legendary Cloak of the Crownblade"
+description = """
+When the Echo broke off from the Crownblade, the force of its defiance manifested
+this cloak, and shares its clarity of purpose."""
+drop_location = "Ruins of Myth Drannor, Goranathanil 's chest (rare)"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 33
+slot = "Back"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 133
+
+[[effect]]
+name = "Distant Incite"
+bonus_type = "Enhancement"
+value = 44
+
+[[effect]]
+name = "Mystic Incite"
+bonus_type = "Enhancement"
+value = 44
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 14
+
+[[effect]]
+name = "Legendary Conditioning"
+bonus_type = "Legendary"
+value = 15
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "goranathanil 's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

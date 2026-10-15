@@ -1,0 +1,344 @@
+[[row]]
+name = "Favored Soul of Amaunator Damage Reduction: Silver"
+acquire = "Train"
+description = """
+Favored Souls of the Amaunator fear not the weapons of most opponents.
+You gain damage reduction 10/Silver, or improve your existing damage reduction
+by 10/Silver."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Silver"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Favored by Amaunator"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of Aureon Damage Reduction: Cold Iron"
+acquire = "Train"
+description = """
+Favored Souls of Aureon can turn aside most weapons.
+You gain damage reduction 10/Cold Iron."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Cold Iron"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Follower of Aureon"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of Helm Damage Reduction: Adamantine"
+acquire = "Train"
+description = """
+Favored Souls of Helm can turn aside most weapons.
+You gain damage reduction 10/Adamantine."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Adamantine"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Favored by Helm"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of Olladra Damage Reduction: Cold Iron"
+acquire = "Train"
+description = """
+Favored Souls of Olladra can turn aside most weapons.
+You gain damage reduction 10/Cold Iron."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Cold Iron"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of Onatar Damage Reduction: Cold Iron"
+acquire = "Train"
+description = """
+Favored Souls of Onatar can turn aside most weapons.
+You gain damage reduction 10/Cold Iron."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Cold Iron"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of Silvanus Damage Reduction: Silver"
+acquire = "Train"
+description = """
+Favored Souls of Silvanus can turn aside most weapons.
+You gain damage reduction 10/Silver."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Silver"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Favored by Silvanus"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of Vulkoor the Hunter Damage Reduction: Good"
+acquire = "Train"
+description = """
+Favored Souls of the Vulkoor the Hunter can ward themselves against all but the light.
+You gain damage reduction 10/Good."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Good"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Drow"]
+req_type = "Race"
+
+[[row.requirement]]
+items = ["Follower of Vulkoor"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of the Blood of Vol Damage Reduction: Good"
+acquire = "Train"
+description = """
+Favored Souls of the Blood of Vol can turn aside most weapons.
+You gain damage reduction 10/Good."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Good"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of the Lord of Blades Damage Reduction: Adamantine"
+acquire = "Train"
+description = """
+Favored Souls of the Lord of Blades fear not the weapons of most opponents.
+You gain damage reduction 10/adamantine, or improve your existing damage reduction
+by 10/adamantine."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Adamantine"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Follower of the Lord of Blades"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of the Silver Flame Damage Reduction: Silver"
+acquire = "Train"
+description = """
+Favored Souls of the Silver Flame can turn aside most weapons.
+You gain damage reduction 10/Silver."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Silver"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of the Sovereign Host Damage Reduction: Cold Iron, Silver"
+acquire = "Train"
+description = """
+Favored Souls of the Sovereign Host can turn aside most weapons.
+You gain damage reduction 10/Cold Iron, Silver."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = [
+    "Cold Iron",
+    "Silver",
+]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Follower of the Sovereign Host"]
+req_type = "Feat"
+
+[[row]]
+name = "Favored Soul of the Undying Court Damage Reduction: Cold Iron"
+acquire = "Train"
+description = """
+Favored Souls of the Undying Court can turn aside most weapons.
+You gain damage reduction 10/Cold Iron."""
+icon = "EnergyResistance"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Damage Reduction"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "DR"
+targets = ["Cold Iron"]
+
+[[row.requirement]]
+items = ["Favored Soul"]
+req_type = "Class"
+value = 20
+
+[[row.requirement]]
+items = ["Follower of the Undying Court"]
+req_type = "Feat"

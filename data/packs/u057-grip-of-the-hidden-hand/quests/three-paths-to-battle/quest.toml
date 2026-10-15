@@ -1,0 +1,29 @@
+name = "Three Paths to Battle"
+bestowed_by = "O'loria"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Grip of the Hidden Hand"
+patron = "Morgrave University"
+zone = "Repository of the Eye of Shavarath"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Three_Paths_to_Battle"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

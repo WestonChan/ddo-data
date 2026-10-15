@@ -130,20 +130,25 @@ pub const DAMAGE_TYPES: &[DamageType] = &[
 pub fn insert_all(db: &Connection) -> rusqlite::Result<()> {
     for stat in STATS {
         db.execute(
-            "INSERT OR REPLACE INTO effects (id, name, is_stat, category) VALUES (?1, ?2, 1, ?3)",
-            params![stat.id, stat.name, stat.category.as_str()],
+            "INSERT OR REPLACE INTO effects (id, name, is_stat, category, slug) VALUES (?1, ?2, 1, ?3, ?4)",
+            params![stat.id, stat.name, stat.category.as_str(), crate::identity::slug(stat.name)],
         )?;
     }
     for bonus_type in BonusType::ALL {
         db.execute(
-            "INSERT OR REPLACE INTO bonus_types (id, name, stacks_with_self) VALUES (?1, ?2, ?3)",
-            params![bonus_type.id(), bonus_type.name(), bonus_type.stacks_with_self()],
+            "INSERT OR REPLACE INTO bonus_types (id, name, stacks_with_self, slug) VALUES (?1, ?2, ?3, ?4)",
+            params![
+                bonus_type.id(),
+                bonus_type.name(),
+                bonus_type.stacks_with_self(),
+                crate::identity::slug(bonus_type.name())
+            ],
         )?;
     }
     for slot in EquipmentSlot::ALL {
         db.execute(
-            "INSERT OR REPLACE INTO equipment_slots (id, name, sort_order, category) VALUES (?1, ?2, ?1, ?3)",
-            params![slot.id(), slot.name(), slot.category().as_str()],
+            "INSERT OR REPLACE INTO equipment_slots (id, name, sort_order, category, slug) VALUES (?1, ?2, ?1, ?3, ?4)",
+            params![slot.id(), slot.name(), slot.category().as_str(), crate::identity::slug(slot.name())],
         )?;
     }
     for proficiency in WeaponProficiency::ALL {
@@ -154,19 +159,19 @@ pub fn insert_all(db: &Connection) -> rusqlite::Result<()> {
     }
     for weapon_type in WEAPON_TYPES {
         db.execute(
-            "INSERT OR REPLACE INTO weapon_types (id, name, proficiency_id, is_shield) VALUES (?1, ?2, ?3, ?4)",
-            params![
-                weapon_type.id,
-                weapon_type.name,
-                weapon_type.proficiency.map(WeaponProficiency::id),
-                weapon_type.is_shield
-            ],
+            "INSERT OR REPLACE INTO weapon_types (id, name, proficiency_id, is_shield, slug) VALUES (?1, ?2, ?3, ?4, ?5)",
+            params![weapon_type.id, weapon_type.name, weapon_type.proficiency.map(WeaponProficiency::id), weapon_type.is_shield, crate::identity::slug(weapon_type.name)],
         )?;
     }
     for damage_type in DAMAGE_TYPES {
         db.execute(
-            "INSERT OR REPLACE INTO damage_types (id, name, category) VALUES (?1, ?2, ?3)",
-            params![damage_type.id, damage_type.name, damage_type.category.as_str()],
+            "INSERT OR REPLACE INTO damage_types (id, name, category, slug) VALUES (?1, ?2, ?3, ?4)",
+            params![
+                damage_type.id,
+                damage_type.name,
+                damage_type.category.as_str(),
+                crate::identity::slug(damage_type.name)
+            ],
         )?;
     }
     Ok(())

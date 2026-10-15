@@ -1,0 +1,23 @@
+name = "Mask of the Scourge"
+description = "Shaped by the Celestial you share a Bond with, this mask represents your calling."
+drop_location = "Advance to level 15, End reward"
+icon = "Helmet_67"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Aasimar Scourge"
+slot = "Head"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 20
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

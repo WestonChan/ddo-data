@@ -1,0 +1,4 @@
+name = "Universal Spell Critical Damage"
+category = "magical"
+set_bonus_line_template = "+{1}% %b1 Bonus to Spell Critical Damage"
+verbose_name_template = "%b1 Universal Spell Critical Damage +{1}"

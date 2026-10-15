@@ -1,0 +1,26 @@
+name = "Minos Legens"
+description = """
+The horns on this helm were taken from the ancient minotaur champion Scarfur
+Deathhoof. The gemstone is said to contain several drops of his blood."""
+drop_location = "Tattered Tapestries, Turn in 20 Tattered Tapestries"
+icon = "Helmet_35"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "vendor"
+name = "Balkar Aislin"
+
+[[source.price]]
+ingredient = "Shred of Tapestry"
+quantity = 20

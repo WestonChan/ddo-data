@@ -1,0 +1,52 @@
+name = "Legendary University Bulwark's Docent"
+description = """
+A docent of physical protection, not dissimilar from those used in the Last
+War."""
+drop_location = "The Bark and the Blade, End chest"
+enhancement_bonus = 15
+icon = "Docent_1"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 32
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 153
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bark and the Blade"

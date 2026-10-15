@@ -1,0 +1,51 @@
+name = "Legendary Calamitous Morningstar"
+accepts_sentience = true
+description = "Small slots in this weapon could easily fit small augmentation devices."
+drop_location = "Viktranium Experiment crafting, Turn in 25 Legendary Bleak Alternators, Conductors, Insulators and Resistors at Legendary Viktranium Experiment Crafting in Ludendorf City Hall"
+enhancement_bonus = 15
+icon = "Morningstar_1"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Steel"
+minimum_level = 34
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[socket]]
+slot = "lamordia: melancholic (weapon)"
+
+[[socket]]
+slot = "lamordia: dolorous (weapon)"
+
+[[socket]]
+slot = "lamordia: miserable (weapon)"
+
+[[socket]]
+slot = "lamordia: woeful (weapon)"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Viktranium Experiment Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.8
+handedness = "One-handed"
+weapon_type = "Morningstar"

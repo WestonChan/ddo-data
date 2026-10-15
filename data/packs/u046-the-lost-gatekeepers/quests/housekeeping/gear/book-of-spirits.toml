@@ -1,0 +1,22 @@
+name = "Book of Spirits"
+description = """
+This worn tome is entitled "The After," and the author's name has been worn
+off."""
+drop_location = "Housekeeping, End chest"
+icon = "Trinket_32"
+item_category = "Jewelry"
+material = "Paper"
+minimum_level = 3
+slot = "Trinket"
+
+[[effect]]
+name = "Ethereal"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Housekeeping"

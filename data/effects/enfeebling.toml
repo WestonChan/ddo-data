@@ -1,0 +1,3 @@
+name = "Enfeebling"
+description_template = "Critical hits by this weapon deal an extra 1 to 6 points of Strength damage."
+verbose_name_template = "Enfeebling"

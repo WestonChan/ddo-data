@@ -1,0 +1,23 @@
+name = "Where There's Smoke..."
+bestowed_by = "Nash Braza"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Free Agents"
+zone = "Nash Braza's Farmstead"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Where_There%27s_Smoke..."
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3

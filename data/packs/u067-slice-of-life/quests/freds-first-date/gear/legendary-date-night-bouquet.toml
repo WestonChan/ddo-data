@@ -1,0 +1,66 @@
+name = "Legendary Date Night Bouquet"
+accepts_sentience = true
+description = "Simply charming, charmingly simple."
+drop_location = "Fred's First Date, end chest"
+enhancement_bonus = 15
+icon = "Club_2e"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 32
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Quality"
+value = 37
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Insight"
+value = 76
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fred's First Date"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "One-handed"
+weapon_type = "Club"

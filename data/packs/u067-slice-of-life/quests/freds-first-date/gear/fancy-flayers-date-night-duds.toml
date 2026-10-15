@@ -1,0 +1,42 @@
+name = "Fancy Flayer's Date Night Duds"
+description = "Mind flayers have... interesting taste."
+drop_location = "Fred's First Date, End chest"
+enhancement_bonus = 5
+icon = "Cloth_1"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 18
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 68
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fred's First Date"

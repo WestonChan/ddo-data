@@ -1,0 +1,67 @@
+name = "Legendary Envenomed Craft"
+description = "Potent poison mixed by Duergar alchemists seeps out at the seams."
+drop_location = "Hideous to Behold, end chest"
+icon = "RuneArm_1i"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 35
+slot = "Runearm"
+
+[[clickie]]
+name = "Acid Shot"
+clickie = "Acid Shot"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Acid Intensity"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Spell Lore V"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Rune Arm Imbue - Acid VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Acid Shot",
+    "Unknown",
+]
+
+[[socket]]
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Hideous to Behold"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

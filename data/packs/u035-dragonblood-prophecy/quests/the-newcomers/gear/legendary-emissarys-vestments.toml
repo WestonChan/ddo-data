@@ -1,0 +1,42 @@
+name = "Legendary Emissary's Vestments"
+description = "This garment was lost by a long-past emissary of Argonessen."
+drop_location = "The Newcomers, end chest"
+enhancement_bonus = 14
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Newcomers"

@@ -1,0 +1,45 @@
+name = "Legendary Karissa's Goggles"
+description = """
+The goggles of Karissa the Knife, Master Thief of the Night Brigade, house a
+small switch that allows the user to darken the lenses."""
+drop_location = "The Knife's Edge, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 33
+slot = "Goggles"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Insight"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Knife's Edge"

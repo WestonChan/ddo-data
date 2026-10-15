@@ -1,0 +1,162 @@
+[[row]]
+name = "Through the Mists: +1 Attack and Damage"
+description = """
++1 Attack and Damage
+Rare: +2 PRR"""
+icon = "ThroughTheMists"
+menu = "Masterminds of Sharn"
+set = "Through the Mists"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Through the Mists: Attack and Damage: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Through the Mists: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "ThroughTheMists"
+menu = "Masterminds of Sharn"
+set = "Through the Mists"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Through the Mists: Dexterity: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Through the Mists: +1% Dodge"
+description = """
++1% Dodge
+Rare: +2 PRR"""
+icon = "ThroughTheMists"
+menu = "Masterminds of Sharn"
+set = "Through the Mists"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "DodgeBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Through the Mists: Dodge: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Through the Mists: +3 MRR"
+description = """
++3 Magical Resistance Rating
+Rare: +2 PRR"""
+icon = "ThroughTheMists"
+menu = "Masterminds of Sharn"
+set = "Through the Mists"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Through the Mists: MRR: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Through the Mists: +3 PRR"
+description = """
++3 Physical Resistance Rating
+Rare: +2 MRR"""
+icon = "ThroughTheMists"
+menu = "Masterminds of Sharn"
+set = "Through the Mists"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Through the Mists: PRR: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Through the Mists: +3 Ranged Power"
+description = """
++3 Ranged Power
+Rare: +2 Ranged Power"""
+icon = "ThroughTheMists"
+menu = "Masterminds of Sharn"
+set = "Through the Mists"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Through the Mists: Ranged Power: +2 Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "Through the Mists: +5% Armor Piercing"
+description = """
++5% Fortification Bypass
+Rare: +2 PRR"""
+icon = "ThroughTheMists"
+menu = "Masterminds of Sharn"
+set = "Through the Mists"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "FortificationBypass"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Through the Mists: Armor Piercing: PRR"
+effect_type = "PRR"
+is_rare = true

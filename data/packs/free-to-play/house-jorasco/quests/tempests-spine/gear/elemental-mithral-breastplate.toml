@@ -1,0 +1,31 @@
+name = "Elemental Mithral Breastplate"
+description = "A mithral breastplate enchanted to protect its wearer from elemental damage."
+drop_location = "Tempest's Spine, End Chest"
+enhancement_bonus = 5
+icon = "MediumArmor_1c"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

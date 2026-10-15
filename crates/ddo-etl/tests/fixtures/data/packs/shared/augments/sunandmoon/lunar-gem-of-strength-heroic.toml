@@ -1,0 +1,25 @@
+name = "Lunar Gem of Strength (Heroic)"
+description = """
++2 Profane Bonus to Strength
+Drops in: Seeds of Decay, end chest
+Rats in a Cage, end chest
+The Proper Authorities, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Strength"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "moon"

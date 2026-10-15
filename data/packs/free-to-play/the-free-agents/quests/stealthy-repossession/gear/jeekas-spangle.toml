@@ -1,0 +1,19 @@
+name = "Jeeka's Spangle"
+description = "A faint whispering sound surrounds this glowing golden loop."
+drop_location = "Stealthy Repossession, Witch Doctor Jeeka 's chest"
+icon = "Trinket_69"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 2
+
+[[source]]
+chest = "witch doctor jeeka 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stealthy Repossession"

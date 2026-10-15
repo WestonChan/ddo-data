@@ -1,0 +1,23 @@
+name = "Sage's Gloves (Level 26)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "The Thrill of the Hunt, End reward"
+icon = "Gloves_11b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Hands"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 19
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 18
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Thrill of the Hunt"

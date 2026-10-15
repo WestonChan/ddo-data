@@ -1,0 +1,35 @@
+name = "Legendary Wards of House Kundarak"
+icon = "Kundarak"
+
+[[item]]
+name = "Legendary Kundarak Warding Bracers"
+
+[[item]]
+name = "Legendary Kundarak Warding Shield"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "ACPercent"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

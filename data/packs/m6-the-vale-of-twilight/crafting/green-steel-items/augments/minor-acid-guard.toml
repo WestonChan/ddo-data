@@ -1,0 +1,11 @@
+name = "Minor Acid Guard"
+adds_augment = "Accessory Subjugation"
+description = """
+50% chance to do 1d4 Acid damage on being hit
+Earth:Dominion:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory invasion"

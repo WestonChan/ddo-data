@@ -1,0 +1,25 @@
+name = "+5 Reaper Bonus to PRR/MRR"
+description = "+5 Reaper Bonus to PRR/MRR"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Reaper"
+value = 5
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Reaper"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Reaper"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[slot]]
+slot = "crafting: reaper boot"

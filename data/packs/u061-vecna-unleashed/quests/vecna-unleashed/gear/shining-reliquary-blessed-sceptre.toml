@@ -1,0 +1,65 @@
+name = "Shining Reliquary Blessed Sceptre"
+description = "This shining weapon is a relic of a bygone age."
+drop_location = "Vecna Unleashed, any chest or trade with Steps Obliss"
+enhancement_bonus = 5
+icon = "Club_2e"
+item_category = "Weapon"
+item_type = "Club"
+material = "Adamantine"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 104
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Quality"
+value = 44
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "any chest or trade with steps obliss"
+kind = "quest"
+loot_type = "chest"
+name = "Vecna Unleashed"
+
+[[source]]
+kind = "vendor"
+name = "Steps Obliss"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "One-handed"
+weapon_type = "Club"

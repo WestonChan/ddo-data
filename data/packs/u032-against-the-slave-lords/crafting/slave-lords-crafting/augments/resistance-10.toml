@@ -1,0 +1,21 @@
+name = "Resistance +10"
+description = "Legendary Resistance bonus to Saves"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Resistance"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

@@ -1,0 +1,3 @@
+name = "Spell Threat Generation"
+category = "other"
+verbose_name_template = "%b1 Spell Threat Generation +{1}"

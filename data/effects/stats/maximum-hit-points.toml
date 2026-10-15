@@ -1,0 +1,5 @@
+name = "Maximum Hit Points"
+category = "defensive"
+home_bonus_type = "Legendary"
+set_bonus_line_template = "+{1}% %b1 Bonus to Maximum Hit Points"
+verbose_name_template = "%b1 Maximum Hit Points +{1}"

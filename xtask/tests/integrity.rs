@@ -7,10 +7,18 @@ use std::sync::OnceLock;
 use xtask::dataset::build_database_file;
 use xtask::integrity::{integrity_report, CheckStatus, IntegrityOptions, Severity, INTEGRITY_CHECKS};
 
-const TABLES_EMPTY_IN_FIXTURES: [&str; 3] = ["corrections", "effect_damage", "race_feat_slots"];
+const TABLES_EMPTY_IN_FIXTURES: [&str; 7] = [
+    "citations",
+    "corrections",
+    "effect_damage",
+    "entity_notes",
+    "pack_exceptions",
+    "race_feat_slots",
+    "removed_entities",
+];
 const PACK_QUEST_OVERLAP_SQL: &str =
-    "INSERT INTO sources (kind, pack_id, item_id, augment_id, loot_type, chest, is_rare)
-     SELECT 'adventure_pack', q.pack_id, s.item_id, s.augment_id, s.loot_type, s.chest, s.is_rare
+    "INSERT INTO pack_drops (owner_kind, pack_id, owner_id, loot_type, chest, is_rare)
+     SELECT CASE WHEN s.item_id IS NOT NULL THEN 'item' ELSE 'augment' END, q.pack_id, COALESCE(s.item_id, s.augment_id), s.loot_type, s.chest, s.is_rare
      FROM sources s JOIN quests q ON q.id = s.quest_id
      WHERE s.kind = 'quest' AND s.loot_type <> 'reward' AND q.pack_id IS NOT NULL
        AND NOT EXISTS (SELECT 1 FROM sources p WHERE p.kind = 'adventure_pack'
@@ -52,7 +60,7 @@ fn fixture_options() -> IntegrityOptions {
     IntegrityOptions {
         corrections: Corrections::default(),
         allowed_empty_tables: TABLES_EMPTY_IN_FIXTURES.iter().map(|table| table.to_string()).collect(),
-        data_files_dir: fixtures_dir().join("DataFiles"),
+        data_files_dir: Some(fixtures_dir().join("DataFiles")),
     }
 }
 
@@ -74,6 +82,18 @@ fn check_db_output(db_path: &Path) -> Output {
 
 fn stdout_of(output: &Output) -> String {
     String::from_utf8(output.stdout.clone()).unwrap()
+}
+
+#[test]
+fn database_checks_need_no_xml_or_data_files() {
+    let db = Connection::open(fixture_db_built_once()).unwrap();
+    let options = IntegrityOptions { data_files_dir: None, ..fixture_options() };
+    let report = integrity_report(&db, &options).unwrap();
+    assert!(report.failed_hard_check_names().is_empty(), "{report}");
+    assert_ne!(report.outcome("effect_types_not_classified").unwrap().status, CheckStatus::Skipped);
+    for check in ["buff_types_not_classified", "effect_definitions_with_partially_mapped_targets"] {
+        assert_eq!(report.outcome(check).unwrap().status, CheckStatus::Skipped);
+    }
 }
 
 #[test]
@@ -104,7 +124,7 @@ fn clean_fixture_database_exits_zero_and_prints_every_check() {
 fn duplicate_pack_names_after_normalization_fail() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(work_dir.path(),
-        "INSERT INTO adventure_packs(name) SELECT 'The ' || name FROM adventure_packs WHERE name NOT LIKE 'The %' LIMIT 1;");
+        "INSERT INTO adventure_packs(name,slug) SELECT 'The ' || name, 'the-' || slug FROM adventure_packs WHERE name NOT LIKE 'The %' LIMIT 1;");
     let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
     assert_eq!(report.outcome("adventure_pack_names_distinct").unwrap().status, CheckStatus::Failed);
 }
@@ -113,8 +133,8 @@ fn duplicate_pack_names_after_normalization_fail() {
 fn a_source_named_only_inside_a_prerequisite_clause_fails() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(work_dir.path(),
-        "UPDATE sources SET drop_text_segment = 'Stealing from Sorcere (requires completion of Sleeping with the Fishes)',
-         source_match = 'Sleeping with the Fishes' WHERE id = (SELECT MIN(id) FROM sources);");
+        "UPDATE quest_drops SET drop_text_segment = 'Stealing from Sorcere (requires completion of Sleeping with the Fishes)',
+         source_match = 'Sleeping with the Fishes' WHERE id = (SELECT MIN(id) FROM quest_drops);");
     let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
     assert_eq!(report.outcome("sources_not_from_prerequisite_clauses").unwrap().status, CheckStatus::Failed);
 }
@@ -123,7 +143,7 @@ fn a_source_named_only_inside_a_prerequisite_clause_fails() {
 fn a_crafting_station_in_quests_fails() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(work_dir.path(),
-        "INSERT INTO crafting_systems(name,page) SELECT name, 'https://ddowiki.com/page/Ritual_Table' FROM quests LIMIT 1;");
+        "INSERT INTO crafting_systems(name,page,slug) SELECT name, 'https://ddowiki.com/page/Ritual_Table', slug FROM quests LIMIT 1;");
     let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
     assert_eq!(report.outcome("quests_not_crafting_systems").unwrap().status, CheckStatus::Failed);
 }
@@ -133,12 +153,16 @@ fn pending_quest_version_difference_warns_without_failing_the_hard_rule() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT OR IGNORE INTO adventure_packs (name) VALUES ('Integrity Heroic Pack'), ('Integrity Epic Pack');
-         INSERT INTO quests (name, pack_id, level) VALUES
+        "INSERT OR IGNORE INTO adventure_packs (name, slug) VALUES ('Integrity Heroic Pack', 'integrity-heroic-pack'), ('Integrity Epic Pack', 'integrity-epic-pack');
+         INSERT INTO quests (name, pack_id, level, slug) VALUES
            ('Dr. Rushmore''s Mansion - Picture Portals',
-            (SELECT id FROM adventure_packs WHERE name = 'Integrity Heroic Pack'), 15),
+            (SELECT id FROM adventure_packs WHERE name = 'Integrity Heroic Pack'), 15, 'dr-rushmores-mansion-picture-portals'),
            ('Dr. Rushmore''s Mansion - Picture Portals - EPIC',
-            (SELECT id FROM adventure_packs WHERE name = 'Integrity Epic Pack'), 25);",
+            (SELECT id FROM adventure_packs WHERE name = 'Integrity Epic Pack'), 25, 'dr-rushmores-mansion-picture-portals-epic');
+         INSERT INTO pack_exceptions (pack_name, rule, row_index, entity_kind, entity_name, reason, url, read) VALUES
+           ('Integrity Epic Pack', 'quest', 0, 'quest', 'Dr. Rushmore''s Mansion - Picture Portals - EPIC',
+            'Heroic Integrity Heroic Pack and epic Integrity Epic Pack require a wiki pack comparison.',
+            'https://ddowiki.com/page/Vaults_of_the_Artificers', '2026-10-07');",
     );
     let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
     assert_eq!(report.outcome("quest_versions_match_heroic_pack_and_patron").unwrap().status, CheckStatus::Passed);
@@ -150,11 +174,11 @@ fn legendary_quest_version_matches_a_heroic_name_with_an_article() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT OR IGNORE INTO adventure_packs (name) VALUES ('Integrity Heroic Pack'), ('Integrity Legendary Pack');
-         INSERT INTO quests (name, pack_id, level) VALUES
-           ('The Integrity Article Quest', (SELECT id FROM adventure_packs WHERE name = 'Integrity Heroic Pack'), 10),
+        "INSERT OR IGNORE INTO adventure_packs (name, slug) VALUES ('Integrity Heroic Pack', 'integrity-heroic-pack'), ('Integrity Legendary Pack', 'integrity-legendary-pack');
+         INSERT INTO quests (name, pack_id, level, slug) VALUES
+           ('The Integrity Article Quest', (SELECT id FROM adventure_packs WHERE name = 'Integrity Heroic Pack'), 10, 'the-integrity-article-quest'),
            ('Legendary Integrity Article Quest',
-            (SELECT id FROM adventure_packs WHERE name = 'Integrity Legendary Pack'), 32);",
+            (SELECT id FROM adventure_packs WHERE name = 'Integrity Legendary Pack'), 32, 'legendary-integrity-article-quest');",
     );
     let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
     assert_eq!(report.outcome("quest_versions_match_heroic_pack_and_patron").unwrap().status, CheckStatus::Failed);
@@ -165,12 +189,12 @@ fn cross_pack_drop_and_multi_patron_pack_are_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO adventure_packs(name) VALUES ('Unreviewed Second Pack');
-         INSERT INTO sources(kind,pack_id,item_id,loot_type,is_rare)
-           SELECT 'adventure_pack', last_insert_rowid(), MIN(id), 'chest', 0 FROM items;
-         INSERT INTO patrons(name) VALUES ('Unreviewed Patron');
-         INSERT INTO quests(name,pack_id,patron_id)
-           SELECT 'Unreviewed Quest', pack_id, last_insert_rowid() FROM quests WHERE pack_id IS NOT NULL LIMIT 1;",
+        "INSERT INTO adventure_packs(name,slug) VALUES ('Unreviewed Second Pack','unreviewed-second-pack');
+         INSERT INTO pack_drops(owner_kind,pack_id,owner_id,loot_type,is_rare)
+           SELECT 'item', last_insert_rowid(), MIN(id), 'chest', 0 FROM items;
+         INSERT INTO patrons(name,slug) VALUES ('Unreviewed Patron','unreviewed-patron');
+         INSERT INTO quests(name,pack_id,patron_id,slug)
+           SELECT 'Unreviewed Quest', pack_id, last_insert_rowid(), 'unreviewed-quest' FROM quests WHERE pack_id IS NOT NULL LIMIT 1;",
     );
     let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
     assert_eq!(report.outcome("items_spanning_packs").unwrap().status, CheckStatus::Warned);
@@ -181,9 +205,9 @@ fn cross_pack_drop_and_multi_patron_pack_are_warned() {
 fn a_drop_text_quest_missing_from_a_wiki_loot_read_is_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(work_dir.path(),
-        "INSERT INTO quests(name) VALUES ('The Proper Authorities');
-         INSERT INTO sources(kind,quest_id,item_id,loot_type,is_rare,drop_text_segment,source_match)
-           SELECT 'quest', last_insert_rowid(), MIN(id), 'chest', 0, 'The Proper Authorities chest', 'The Proper Authorities' FROM items;");
+        "INSERT INTO quests(name,slug) VALUES ('The Proper Authorities','the-proper-authorities');
+         INSERT INTO quest_drops(owner_kind,quest_id,owner_id,loot_type,is_rare,drop_text_segment,source_match)
+           SELECT 'item', last_insert_rowid(), MIN(id), 'chest', 0, 'The Proper Authorities chest', 'The Proper Authorities' FROM items;");
     let report = integrity_report(&Connection::open(db_path).unwrap(), &fixture_options()).unwrap();
     assert_eq!(report.outcome("drop_text_disagrees_with_quest_loot").unwrap().status, CheckStatus::Warned);
 }
@@ -206,7 +230,7 @@ fn text_only_effect_named_after_a_stat_is_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO effects (name, verbose_name_template) VALUES ('hitpoints', 'hitpoints');
+        "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('hitpoints', 'hitpoints', 'hitpoints');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);",
     );
@@ -258,9 +282,9 @@ fn an_unclassified_effect_type_reports_its_family_and_item_count() {
     )
     .unwrap();
     let db = Connection::open(fixture_db_built_once()).unwrap();
-    let options = IntegrityOptions { data_files_dir: source_dir.path().to_path_buf(), ..fixture_options() };
+    let options = IntegrityOptions { data_files_dir: Some(source_dir.path().to_path_buf()), ..fixture_options() };
     let report = integrity_report(&db, &options).unwrap();
-    let outcome = report.outcome("effect_types_not_classified").unwrap();
+    let outcome = report.outcome("buff_types_not_classified").unwrap();
     assert!(outcome
         .offenders
         .iter()
@@ -272,17 +296,17 @@ fn identifier_like_effect_names_are_warned() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO effects (name, verbose_name_template) VALUES ('CamelCase', 'Camel Case');
+        "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('CamelCase', 'Camel Case', 'camelcase');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);
-         INSERT INTO effects (name, verbose_name_template) VALUES ('Telekinetic117', 'Telekinetic 117');
+         INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Telekinetic117', 'Telekinetic 117', 'telekinetic117');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);
-         INSERT INTO effects (name, verbose_name_template) VALUES ('Parrying Number', 'Parrying');
-         INSERT INTO effects (name, verbose_name_template) VALUES ('Riposte Riposte', 'Riposte');
-         INSERT INTO effects (name, verbose_name_template) VALUES ('Feat Elusive Target', 'Elusive Target');
-         INSERT INTO effects (name, verbose_name_template) VALUES ('Penalty Good', 'Penalty');
-         INSERT INTO effects (name, verbose_name_template) VALUES ('Energy Absorption Negative', 'Absorption');",
+         INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Parrying Number', 'Parrying', 'parrying-number');
+         INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Riposte Riposte', 'Riposte', 'riposte-riposte');
+         INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Feat Elusive Target', 'Elusive Target', 'feat-elusive-target');
+         INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Penalty Good', 'Penalty', 'penalty-good');
+         INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Energy Absorption Negative', 'Absorption', 'energy-absorption-negative');",
     );
     let db = Connection::open(&db_path).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
@@ -326,10 +350,10 @@ fn a_warning_never_fails_the_command() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO effects (name, verbose_name_template) VALUES ('hitpoints', 'hitpoints');
-         INSERT INTO items (name, slot_id, item_category, wiki_url, drop_location, minimum_level)
+        "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('hitpoints', 'hitpoints', 'hitpoints');
+         INSERT INTO items (name, slot_id, item_category, wiki_url, drop_location, minimum_level, slug)
          VALUES ('Integrity Probe Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
-                 'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest', 1);
+                 'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest', 1, 'integrity-probe-ring');
          INSERT INTO item_effects (item_id, effect_id, sort_order)
          VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'hitpoints'), 999);",
     );
@@ -349,10 +373,10 @@ fn items_with_a_source_but_no_pack_counts_items_by_kind_and_excludes_unrelated_i
         work_dir.path(),
         "UPDATE vendors SET pack_id = NULL;
          UPDATE crafting_systems SET pack_id = NULL;
-         INSERT INTO sources (kind, vendor_id, item_id)
-         SELECT 'vendor', v.id, i.id FROM vendors v JOIN items i ON i.name = 'Thunder-Forged Orb';
-         INSERT INTO sources (kind, vendor_id, item_id)
-         SELECT 'vendor', v.id, i.id FROM vendors v JOIN items i ON i.name = 'Ratkiller (legacy) (level 4)';",
+         INSERT INTO vendor_offers (vendor_id, item_id)
+         SELECT v.id, i.id FROM vendors v JOIN items i ON i.name = 'Thunder-Forged Orb';
+         INSERT INTO vendor_offers (vendor_id, item_id)
+         SELECT v.id, i.id FROM vendors v JOIN items i ON i.name = 'Ratkiller (legacy) (level 4)';",
     );
     let db = Connection::open(&db_path).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
@@ -373,13 +397,13 @@ fn items_with_a_source_but_no_pack_counts_items_by_kind_and_excludes_unrelated_i
 }
 
 fn integrity_pair_effects_sql() -> &'static str {
-    "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Pair', '%b1 Integrity Pair +{1}');
+    "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Pair', '%b1 Integrity Pair +{1}', 'integrity-pair');
      INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
      VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'), 1, 0);
      INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
      VALUES ((SELECT id FROM effects WHERE name = 'Integrity Pair'),
              (SELECT id FROM effects WHERE name = 'Dexterity'), 1, 1);
-     INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Overlap', '%b1 Integrity Overlap +{1}');
+     INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Overlap', '%b1 Integrity Overlap +{1}', 'integrity-overlap');
      INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
      VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'), 1, 0);
      INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
@@ -445,59 +469,83 @@ fn violation(check_name: &'static str, injected_sql: &str, offender_name: &'stat
 
 fn probe_ring_insert(name: &str) -> String {
     format!(
-        "INSERT INTO items (name, slot_id, item_category, wiki_url, minimum_level, description)
-         VALUES ('{name}', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
-                 'https://ddowiki.com/page/Item:Integrity_Probe', 1, 'A probe.');"
+        "INSERT INTO items (slug, name, slot_id, item_category, wiki_url, minimum_level, description)
+         VALUES ('{identity}', '{name}', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
+                 'https://ddowiki.com/page/Item:Integrity_Probe', 1, 'A probe.');",
+        identity = ddo_model::identity::slug(name)
     )
 }
 
-const PROBE_QUEST_INSERT: &str = "INSERT INTO quests (name, pack_id, is_raid)
-     VALUES ('Integrity Probe Quest', (SELECT MIN(id) FROM adventure_packs), 0);";
+fn probe_quest_insert(is_raid: bool) -> String {
+    format!(
+        "INSERT INTO quests (name, pack_id, is_raid, slug)
+     VALUES ('Integrity Probe Quest', (SELECT MIN(id) FROM adventure_packs), {}, 'integrity-probe-quest');",
+        i64::from(is_raid)
+    )
+}
 
 fn probe_quest_source_insert(loot_type: &str, chest: &str) -> String {
     format!(
-        "{PROBE_QUEST_INSERT}
-         INSERT INTO sources (kind, quest_id, item_id, loot_type, chest)
-         VALUES ('quest', last_insert_rowid(), (SELECT MIN(id) FROM items), '{loot_type}', {chest});"
+        "{}
+         INSERT INTO quest_drops (owner_kind, quest_id, owner_id, loot_type, chest)
+         VALUES ('item', last_insert_rowid(), (SELECT MIN(id) FROM items), '{loot_type}', {chest});",
+        probe_quest_insert(false)
     )
 }
 
 fn injected_violations() -> Vec<InjectedViolation> {
     vec![
         violation(
+            "source_references_exist",
+            "UPDATE quest_drops SET owner_id = -1 WHERE id = (SELECT MIN(id) FROM quest_drops);",
+            "quest source",
+        ),
+        violation(
+            "source_references_exist",
+            "UPDATE vendor_offer_costs SET ingredient_id = -1 WHERE offer_id = (SELECT MIN(offer_id) FROM vendor_offer_costs);",
+            "Morten Edgewright: Alabaster of the Twelve",
+        ),
+        violation(
+            "augment_recipes_not_duplicated",
+            "INSERT INTO augments (name, family, min_level, description, variant, slug) VALUES
+               ('Integrity Duplicate Recipe', 'Integrity Family', 11, 'Earth:Opposition:Ethereal', 'first', 'integrity-duplicate-recipe-first'),
+               ('Integrity Duplicate Recipe', 'Integrity Family', 11, 'Earth:Opposition:Ethereal', 'second', 'integrity-duplicate-recipe-second');",
+            "Integrity Duplicate Recipe",
+        ),
+        violation(
             "quest_versions_match_heroic_pack_and_patron",
-            "INSERT OR IGNORE INTO adventure_packs (name) VALUES ('Integrity Heroic Pack'), ('Integrity Epic Pack');
-             INSERT INTO quests (name, pack_id, level) VALUES
-               ('Integrity Version Quest', (SELECT id FROM adventure_packs WHERE name = 'Integrity Heroic Pack'), 10),
-               ('Epic Integrity Version Quest', (SELECT id FROM adventure_packs WHERE name = 'Integrity Epic Pack'), 20);",
+            "INSERT OR IGNORE INTO adventure_packs (name, slug) VALUES ('Integrity Heroic Pack', 'integrity-heroic-pack'), ('Integrity Epic Pack', 'integrity-epic-pack');
+             INSERT INTO quests (name, pack_id, level, slug) VALUES
+               ('Integrity Version Quest', (SELECT id FROM adventure_packs WHERE name = 'Integrity Heroic Pack'), 10, 'integrity-version-quest'),
+               ('Epic Integrity Version Quest', (SELECT id FROM adventure_packs WHERE name = 'Integrity Epic Pack'), 20, 'epic-integrity-version-quest');",
             "Epic Integrity Version Quest",
         ),
         violation(
             "effect_templates_disagree_with_names",
-            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Title Probe', 'Wrong Title');
+            "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Title Probe', 'Wrong Title', 'integrity-title-probe');
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 996);",
             "Integrity Title Probe",
         ),
         violation(
             "effect_template_numbers_match_names",
-            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Solar IX', 'Integrity Solar VI');
+            "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Solar IX', 'Integrity Solar VI', 'integrity-solar-ix');
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 997);",
             "Integrity Solar IX",
         ),
         violation(
             "effect_descriptions_with_fewer_critical_dice_than_hit_dice",
-            "INSERT INTO effects (name, verbose_name_template, description_template)
+            "INSERT INTO effects (name, verbose_name_template, description_template, slug)
              VALUES ('Integrity Burst 7', 'Integrity Burst 7',
-                     'This weapon deals 7d6 Good damage on a successful hit, and 1d6 Good damage on a critical hit.');
+                     'This weapon deals 7d6 Good damage on a successful hit, and 1d6 Good damage on a critical hit.', 'integrity-burst-7');
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 995);",
             "Integrity Burst 7",
         ),
         violation(
             "owner_names_disagree_with_linked_effects",
-            "INSERT INTO augments (name, family) VALUES ('Integrity Combat Mastery', 'probe');
+            "INSERT INTO augments (name, family, slug) VALUES ('Integrity Combat Mastery', 'probe', 'integrity-combat-mastery');
              INSERT INTO augment_effects (augment_id, effect_id, bonus_type_id, value, sort_order)
              VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'),
                      (SELECT id FROM bonus_types WHERE name = 'Insight'), 1, 0);",
@@ -513,8 +561,8 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "skill_groups_share_home_bonus_type",
-            "INSERT INTO effects (name, verbose_name_template, is_group)
-             VALUES ('Strength Skills', '%b1 Strength Skills +{1}', 1);
+            "INSERT INTO effects (name, verbose_name_template, is_group, slug)
+             VALUES ('Strength Skills', '%b1 Strength Skills +{1}', 1, 'strength-skills');
              INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
              VALUES ((SELECT id FROM effects WHERE name = 'Strength Skills'),
                      (SELECT id FROM effects WHERE name = 'Jump'), 1, 0);
@@ -528,7 +576,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effects_with_tied_home_bonus_types",
-            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Tied Type', '%b1 Integrity Tied Type +{1}');
+            "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Tied Type', '%b1 Integrity Tied Type +{1}', 'integrity-tied-type');
              INSERT INTO item_effects (item_id, effect_id, bonus_type_id, value, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(),
                      (SELECT id FROM bonus_types WHERE name = 'Insight'), 1, 994);
@@ -541,7 +589,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "owner_bonuses_have_one_stat_type_per_source_line",
-            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Double Bonus', '%b1 Integrity Double Bonus +{1}');
+            "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Double Bonus', '%b1 Integrity Double Bonus +{1}', 'integrity-double-bonus');
              INSERT INTO effect_bonuses (effect_id, target_effect_id, bonus_type_id, amount_from, sort_order)
              VALUES ((SELECT id FROM effects WHERE name = 'Integrity Double Bonus'),
                      (SELECT id FROM effects WHERE name = 'Strength'), NULL, 1, 0);
@@ -567,10 +615,10 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "owner_bonuses_repeated_across_links",
-            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Link A', '%b1 Integrity Link A +{1}');
+            "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Link A', '%b1 Integrity Link A +{1}', 'integrity-link-a');
              INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
              VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'), 1, 0);
-             INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Link B', '%b1 Integrity Link B +{1}');
+             INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Link B', '%b1 Integrity Link B +{1}', 'integrity-link-b');
              INSERT INTO effect_bonuses (effect_id, target_effect_id, amount_from, sort_order)
              VALUES (last_insert_rowid(), (SELECT id FROM effects WHERE name = 'Strength'), 1, 0);
              INSERT INTO item_effects (item_id, effect_id, value, bonus_type_id, sort_order)
@@ -596,45 +644,45 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effects_named_after_stats",
-            "INSERT INTO effects (name, verbose_name_template) VALUES ('hitpoints', 'hitpoints'); \
+            "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('hitpoints', 'hitpoints', 'hitpoints'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 999);",
             "hitpoints",
         ),
         violation(
             "effect_templates_with_digits_without_amounts",
-            "INSERT INTO effects (name, verbose_name_template) VALUES ('Integrity Probe Glow', 'Glow 7'); \
+            "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('Integrity Probe Glow', 'Glow 7', 'integrity-probe-glow'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "Integrity Probe Glow",
         ),
         violation(
             "effects_with_amounts_named_with_digits",
-            "INSERT INTO effects (name, verbose_name_template)
-             VALUES ('Integrity 12 Power', 'Power {1}');
+            "INSERT INTO effects (name, verbose_name_template, slug)
+             VALUES ('Integrity 12 Power', 'Power {1}', 'integrity-12-power');
              INSERT INTO item_effects (item_id, effect_id, value, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 12, 998);",
             "Integrity 12 Power",
         ),
         violation(
             "effects_with_values_in_names",
-            "INSERT INTO effects (name, verbose_name_template) VALUES ('+7 Integrity Probe', '+7 Integrity Probe'); \
+            "INSERT INTO effects (name, verbose_name_template, slug) VALUES ('+7 Integrity Probe', '+7 Integrity Probe', '7-integrity-probe'); \
              INSERT INTO item_effects (item_id, effect_id, sort_order) \
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "+7 Integrity Probe",
         ),
         violation(
             "effects_with_unused_default",
-            "INSERT INTO effects (name, verbose_name_template, default_value)
-             VALUES ('Integrity Default', 'Default {1}', 7);
+            "INSERT INTO effects (name, verbose_name_template, default_value, slug)
+             VALUES ('Integrity Default', 'Default {1}', 7, 'integrity-default');
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 998);",
             "Integrity Default",
         ),
         violation(
             "effect_link_amount_counts",
-            "INSERT INTO effects (name, verbose_name_template)
-             VALUES ('Integrity Excess Amount', 'No amount');
+            "INSERT INTO effects (name, verbose_name_template, slug)
+             VALUES ('Integrity Excess Amount', 'No amount', 'integrity-excess-amount');
              INSERT INTO item_effects (item_id, effect_id, value, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 1, 998);",
             "Integrity Excess Amount",
@@ -698,13 +746,13 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effect_families_have_owners",
-            "INSERT INTO effects (name, verbose_name_template)
-             VALUES ('Integrity Orphan Effect', 'Integrity Orphan Effect');",
+            "INSERT INTO effects (name, verbose_name_template, slug)
+             VALUES ('Integrity Orphan Effect', 'Integrity Orphan Effect', 'integrity-orphan-effect');",
             "Integrity Orphan Effect",
         ),
         violation(
             "effect_groups_have_flat_members",
-            "INSERT INTO effects (name, verbose_name_template, is_group) VALUES ('Integrity Empty Group', 'Integrity Empty Group +{1}', 1);",
+            "INSERT INTO effects (name, verbose_name_template, is_group, slug) VALUES ('Integrity Empty Group', 'Integrity Empty Group +{1}', 1, 'integrity-empty-group');",
             "Integrity Empty Group",
         ),
         violation(
@@ -714,16 +762,16 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "effect_names_have_no_em_dash",
-            "INSERT INTO effects (name, verbose_name_template)
-             VALUES ('Integrity — Prose', 'Integrity prose');
+            "INSERT INTO effects (name, verbose_name_template, slug)
+             VALUES ('Integrity — Prose', 'Integrity prose', 'integrity-prose');
              INSERT INTO item_effects (item_id, effect_id, sort_order)
              VALUES ((SELECT MIN(id) FROM items), last_insert_rowid(), 997);",
             "Integrity — Prose",
         ),
         violation(
             "set_tier_lines_do_not_repeat_structured_facts",
-            "INSERT INTO effects (name, verbose_name_template)
-             SELECT 'Integrity Duplicate Tier Fact',
+            "INSERT INTO effects (slug, name, verbose_name_template)
+             SELECT 'integrity-duplicate-tier-fact', 'Integrity Duplicate Tier Fact',
                     REPLACE(REPLACE(REPLACE(REPLACE(REPLACE(e.verbose_name_template,
                     '+{1}', '{1}'), '+{2}', '{2}'),
                     '{1}', printf('%+d', COALESCE(te.value, e.default_value))),
@@ -756,7 +804,7 @@ fn injected_violations() -> Vec<InjectedViolation> {
         violation("pack_wide_drops_repeat_quest_drops", PACK_QUEST_OVERLAP_SQL, ""),
         violation(
             "item_sockets_use_known_labels",
-            "INSERT INTO augment_slot_types (label, family, variant) VALUES ('mystery: probe', 'mystery', 'probe');
+            "INSERT INTO augment_slot_types (label, family, variant, slug) VALUES ('mystery: probe', 'mystery', 'probe', 'mystery-probe');
              INSERT INTO item_augment_slots (item_id, sort_order, slot_id)
              VALUES ((SELECT MIN(id) FROM items), 900, last_insert_rowid());",
             "",
@@ -783,13 +831,13 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "augments_have_slot_and_family",
-            "INSERT INTO augments (name, family) VALUES ('Integrity Probe Augment', 'Ruby');",
+            "INSERT INTO augments (name, family, slug) VALUES ('Integrity Probe Augment', 'Ruby', 'integrity-probe-augment');",
             "Integrity Probe Augment",
         ),
         violation(
             "chains_and_sagas_have_quests",
-            "INSERT INTO quest_chains (name, provenance, wiki_url)
-             VALUES ('Integrity Probe Chain', 'wiki', 'https://ddowiki.com/page/Integrity_Probe_Chain');",
+            "INSERT INTO quest_chains (name, provenance, wiki_url, slug)
+             VALUES ('Integrity Probe Chain', 'wiki', 'https://ddowiki.com/page/Integrity_Probe_Chain', 'integrity-probe-chain');",
             "Integrity Probe Chain",
         ),
         violation("items_without_effects", &probe_ring_insert("Integrity Probe Ring"), "Integrity Probe Ring"),
@@ -800,29 +848,29 @@ fn injected_violations() -> Vec<InjectedViolation> {
         ),
         violation(
             "near_duplicate_item_names",
-            &format!("{} {}", probe_ring_insert("Integrity Probe Ring"), probe_ring_insert("integrity-probe ring")),
-            "integrity-probe ring",
+            &format!("{} {}", probe_ring_insert("Integrity Probe Ring"), probe_ring_insert("IntegrityProbeRing")),
+            "IntegrityProbeRing",
         ),
         violation(
             "raids_without_raid_loot",
-            &PROBE_QUEST_INSERT.replace("adventure_packs), 0)", "adventure_packs), 1)"),
+            &probe_quest_insert(true),
             "Integrity Probe Quest",
         ),
-        violation("quests_without_loot", PROBE_QUEST_INSERT, "Integrity Probe Quest"),
+        violation("quests_without_loot", &probe_quest_insert(false), "Integrity Probe Quest"),
         violation(
             "unreferenced_stats",
-            "INSERT INTO effects (name, is_stat, category) VALUES ('Integrity Probe Stat', 1, 'probe');",
+            "INSERT INTO effects (name, is_stat, category, slug) VALUES ('Integrity Probe Stat', 1, 'probe', 'integrity-probe-stat');",
             "Integrity Probe Stat",
         ),
         violation(
             "slot_types_no_augment_fits",
-            "INSERT INTO augment_slot_types (label, family, variant)
-             VALUES ('crafting: integrity probe', 'crafting', 'integrity probe');",
+            "INSERT INTO augment_slot_types (label, family, variant, slug)
+             VALUES ('crafting: integrity probe', 'crafting', 'integrity probe', 'crafting-integrity-probe');",
             "crafting: integrity probe",
         ),
         violation(
             "sets_without_members",
-            "INSERT INTO set_bonuses (name) VALUES ('Integrity Probe Set');",
+            "INSERT INTO set_bonuses (name, slug) VALUES ('Integrity Probe Set', 'integrity-probe-set');",
             "Integrity Probe Set",
         ),
     ]
@@ -921,11 +969,11 @@ fn items_without_a_source_ranks_the_heads_of_their_drop_locations() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO items (name, slot_id, item_category, wiki_url, drop_location) VALUES
+        "INSERT INTO items (name, slot_id, item_category, wiki_url, drop_location, slug) VALUES
          ('Integrity Probe Ring', (SELECT id FROM equipment_slots WHERE name = 'Ring'), 'Jewelry',
-          'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest'),
+          'https://ddowiki.com/page/Item:Integrity_Probe_Ring', 'Nowhere Keep, chest', 'integrity-probe-ring'),
          ('Integrity Probe Belt', (SELECT id FROM equipment_slots WHERE name = 'Waist'), 'Clothing',
-          'https://ddowiki.com/page/Item:Integrity_Probe_Belt', 'Nowhere Keep');",
+          'https://ddowiki.com/page/Item:Integrity_Probe_Belt', 'Nowhere Keep', 'integrity-probe-belt');",
     );
     let db = Connection::open(&db_path).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
@@ -989,7 +1037,7 @@ fn tables_not_empty_prints_the_tables_allowed_to_be_empty() {
 
     assert_eq!(outcome.status, CheckStatus::Passed, "{report}");
     assert!(
-        outcome.notes.iter().any(|note| note == "allowed empty: corrections, effect_damage, race_feat_slots"),
+        outcome.notes.iter().any(|note| note == &format!("allowed empty: {}", TABLES_EMPTY_IN_FIXTURES.join(", "))),
         "{report}"
     );
 
@@ -1023,9 +1071,9 @@ fn the_unknown_placeholder_class_needs_no_progression() {
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(
         work_dir.path(),
-        "INSERT INTO classes (name, skill_points, hit_points, fortitude, reflex, will, bab, spell_points_per_level)
+        "INSERT INTO classes (name, skill_points, hit_points, fortitude, reflex, will, bab, spell_points_per_level, slug)
          VALUES ('Unknown', 2, 0, 'none', 'none', 'none',
-                 '[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]');",
+                 '[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', '[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]', 'unknown');",
     );
     let db = Connection::open(&db_path).unwrap();
     let report = integrity_report(&db, &fixture_options()).unwrap();
@@ -1035,10 +1083,11 @@ fn the_unknown_placeholder_class_needs_no_progression() {
 
 #[test]
 fn a_set_only_an_augment_slot_option_joins_has_members() {
-    let injected_sql = "INSERT INTO set_bonuses (name) VALUES ('Integrity Probe Option Set');
+    let injected_sql =
+        "INSERT INTO set_bonuses (name, slug) VALUES ('Integrity Probe Option Set', 'integrity-probe-option-set');
          INSERT INTO item_augment_slot_option_sets (option_id, set_id)
          VALUES ((SELECT MIN(id) FROM item_augment_slot_options), last_insert_rowid());
-         INSERT INTO set_bonuses (name) VALUES ('Integrity Probe Bare Set');";
+         INSERT INTO set_bonuses (name, slug) VALUES ('Integrity Probe Bare Set', 'integrity-probe-bare-set');";
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(work_dir.path(), injected_sql);
     let db = Connection::open(&db_path).unwrap();
@@ -1060,18 +1109,18 @@ fn a_set_only_an_augment_slot_option_joins_has_members() {
 
 #[test]
 fn a_socket_type_an_option_grants_or_holds_options_needs_no_augment() {
-    let injected_sql = "INSERT INTO augment_slot_types (label, family, variant)
-         VALUES ('crafting: integrity probe granted', 'crafting', 'integrity probe granted');
+    let injected_sql = "INSERT INTO augment_slot_types (label, family, variant, slug)
+         VALUES ('crafting: integrity probe granted', 'crafting', 'integrity probe granted', 'crafting-integrity-probe-granted');
          INSERT INTO item_augment_slot_option_grants (option_id, sort_order, slot_id)
          VALUES ((SELECT MIN(id) FROM item_augment_slot_options), 99, last_insert_rowid());
-         INSERT INTO augment_slot_types (label, family, variant)
-         VALUES ('crafting: integrity probe upgrade', 'crafting', 'integrity probe upgrade');
+         INSERT INTO augment_slot_types (label, family, variant, slug)
+         VALUES ('crafting: integrity probe upgrade', 'crafting', 'integrity probe upgrade', 'crafting-integrity-probe-upgrade');
          INSERT INTO item_augment_slots (item_id, sort_order, slot_id)
          VALUES ((SELECT MIN(id) FROM items), 99, last_insert_rowid());
          INSERT INTO item_augment_slot_options (item_id, slot_order, option_order, name)
          VALUES ((SELECT MIN(id) FROM items), 99, 0, 'Integrity Probe Upgrade');
-         INSERT INTO augment_slot_types (label, family, variant)
-         VALUES ('crafting: integrity probe bare', 'crafting', 'integrity probe bare');";
+         INSERT INTO augment_slot_types (label, family, variant, slug)
+         VALUES ('crafting: integrity probe bare', 'crafting', 'integrity probe bare', 'crafting-integrity-probe-bare');";
     let work_dir = tempfile::tempdir().unwrap();
     let db_path = fixture_db_copy_with(work_dir.path(), injected_sql);
     let db = Connection::open(&db_path).unwrap();

@@ -1,0 +1,38 @@
+name = "Legendary Firemouth's Cloak"
+description = "The Firemouth is the largest volcano on the Isle of Dread."
+drop_location = "Isle of Dread (wilderness), rare encounter chest"
+icon = "Cloak_6"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 31
+slot = "Back"
+
+[[effect]]
+name = "Legendary Magma Surge Guard"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 53
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

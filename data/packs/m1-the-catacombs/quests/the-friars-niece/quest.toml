@@ -1,0 +1,26 @@
+name = "The Friar's Niece"
+bestowed_by = "Friar Renau"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "The Catacombs"
+patron = "The Silver Flame"
+zone = "The Sanctuary"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Friar%27s_Niece"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 23

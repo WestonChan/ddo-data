@@ -1,0 +1,54 @@
+name = "Forgotten Light (Level 17)"
+description = "This ancient mace radiates a feeling of peace and safety."
+drop_location = "Rest Stop, End chest (Heroic Hard)"
+enhancement_bonus = 5
+icon = "HeavyMace_1d"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Dwarven Iron"
+minimum_level = 17
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Holy"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 84
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 84
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rest Stop"
+
+[[weapon]]
+attack_modifier = "Strength, Wisdom"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength, Wisdom"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

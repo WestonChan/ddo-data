@@ -1,0 +1,29 @@
+name = "Epic Charged Gauntlets"
+description = "These gloves channel powerful electric energy into enemies that you strike."
+drop_location = "Epic version of Charged Gauntlets"
+icon = "Gloves_9c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Hands"
+
+[[effect]]
+name = "Greater Shocking Blow"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "yellow"

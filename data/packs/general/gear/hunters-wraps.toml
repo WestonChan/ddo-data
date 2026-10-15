@@ -1,0 +1,44 @@
+name = "Hunter's Wraps"
+description = "Wrap this around your hands to strike at the heart of Undead."
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 3
+icon = "HandWraps_1"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 15
+race_required = "Razorclaw Shifter"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Piercing 3"
+
+[[effect]]
+name = "Slashing 3"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

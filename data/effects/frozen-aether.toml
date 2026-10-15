@@ -1,0 +1,3 @@
+name = "Frozen Aether"
+description_template = "This weapon was forged of malevolent ice, and enemies struck with it are afflicted by its curse. This weapon can inflict ten stacks of Cold damage over time, with one stack expiring at a time."
+verbose_name_template = "Frozen Aether"

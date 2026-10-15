@@ -1,0 +1,30 @@
+name = "Special Delivery"
+bestowed_by = "Annika von Dolchberg"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Chill of Ravenloft"
+patron = "Keepers of Lamordia"
+zone = "Ludendorf University"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Special_Delivery"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

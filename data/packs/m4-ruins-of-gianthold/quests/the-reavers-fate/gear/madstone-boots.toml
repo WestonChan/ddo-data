@@ -1,0 +1,100 @@
+name = "Madstone Boots"
+description = """
+Madstone was formed when a draconic counterspell aborted the casting of the
+Reaver's Bane, almost 40,000 years ago. Polished orbs of madstone have been
+carefully worked into these boots, imbuing them with chaotic and dangerous
+effects."""
+drop_location = "The Reaver's Fate, Raid Warded chest"
+icon = "Boots_16c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Feet"
+
+[[clickie]]
+name = "Madstone Rage"
+clickie = "Madstone Rage"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 48
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Hidden Effect - Madstone Reaction"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Madstone Rage"]
+
+[[socket]]
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[socket.option]]
+name = "Dexterity +6, Potency +52, Striding 30%"
+description = """
+Dexterity +6: This item makes the wearer more nimble and dexterous, granting a +6 enhancement bonus to Dexterity.
+Potency +52: Passive: +52 Equipment bonus to each Spell Power.
+Striding +30%: Makes the wearer more fleet of foot, giving a 30% bonus to run speed."""
+icon = "Stormreaver"
+min_level = 13
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 52
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+value = 30
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [52]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "UniversalSpellPower"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"

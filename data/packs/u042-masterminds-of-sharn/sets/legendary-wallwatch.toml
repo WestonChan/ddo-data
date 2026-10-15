@@ -1,0 +1,71 @@
+name = "Legendary Wallwatch"
+icon = "Wallwatch"
+
+[[item]]
+name = "Helm of the Final Watcher"
+
+[[item]]
+name = "Legendary Wallwatch Circlet"
+
+[[item]]
+name = "Legendary Wildheart"
+
+[[item]]
+name = "Legendary Wildwood Gauntlets"
+
+[[item]]
+name = "Legendary Wildwood Outfit"
+
+[[item]]
+name = "Legendary Wildwood Vest"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doubleshot"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Power"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Ranged Power"
+effect_type = "SneakAttackDice"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Ranged Power"
+effect_type = "FortificationBypass"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Ranged Power"
+effect_type = "Doubleshot"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Ranged Power"
+effect_type = "RangedPower"

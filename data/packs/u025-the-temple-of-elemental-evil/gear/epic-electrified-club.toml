@@ -1,0 +1,101 @@
+name = "Epic Electrified Club"
+description = "A weapon found deep within the Temple of Elemental Evil."
+drop_location = "Temple of Elemental Evil Part One, and Temple of Elemental Evil Part Two any chest"
+enhancement_bonus = 7
+icon = "Club_1i"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 21
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 156
+
+[[socket]]
+slot = "upgrade: tier 1"
+
+[[socket.option]]
+name = "Spell Penetration VI and Riposte XII"
+description = """
++6 Equipment bonus to Spell Penetration.
+Riposte XII: When Missed by an attack: Deals 12 to 48 damage to your attacker.
+Passive: +6 Insight bonus to Armor Class."""
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Adds Lightning Lore XIII, a Purple Augment slot and set bonus."
+description = "Lightning Lore XIII: Passive: Your Electric spells gain a 23% Equipment bonus to their chance to critical hit."
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 23
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[socket.option.set]]
+set = "Epic Elemental Evil Set"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.2
+handedness = "One-handed"
+weapon_type = "Club"

@@ -1,0 +1,312 @@
+name = "Material"
+icon = "Material"
+
+[[augment]]
+name = "Electric damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Evil damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Good damage on being hit - 8d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Dexterity Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Constitution Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Strength Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+50 Electric Resistance"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+50 Acid Resistance"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+50 Fire Resistance"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+50 Cold Resistance"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+4 Insight bonus against Disease and Blindness immunity"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+128 Unconsciousness Range, 16 healing every 10 seconds (Enhancement)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Electric damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Evil damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Good damage on being hit - 10d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Dexterity Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Constitution Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Strength Skills, +28 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Electric Resistance (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Acid Resistance (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Fire Resistance (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Cold Resistance (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+4 Insight bonus against Poison and Fear immunity"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+64 Unconsciousness Range (Insightful), 8 healing every 10 seconds (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Electric damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Evil damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Good damage on being hit - 15d6"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Dexterity Skills, +14 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Constitution Skills, +14 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Strength Skills, +14 Hit Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+17 Electric Resistance (Competence)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+17 Acid Resistance (Competence)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+17 Fire Resistance (Competence)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+17 Cold Resistance (Competence)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Negative Resistance (Enhancement) and Deathblock"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+32 Unconsciousness Range (Quality), 4 healing every 10 seconds (Quality)"
+family = "Greensteel_Legendary"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "1% Physical Damage, +1% per additional augment"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "With 2–6 augments, gain 3%–7% Melee and Ranged critical damage and 9%–17% Spell critical damage."
+
+[[tier.effect]]
+effect = "Critical Damage Augment Scaling"
+
+[[tier.effect]]
+effect = "5% Spell critical damage, +2% per additional augment"
+
+[[tier.modifier]]
+amount_type = "SetBonusCount"
+amounts = [
+    0,
+    0,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+    10.5,
+    11,
+    11.5,
+    12,
+    12.5,
+    13,
+    13.5,
+    14,
+    14.5,
+    15,
+    15.5,
+    16,
+    16.5,
+    17,
+    17.5,
+    18,
+    18.5,
+    19,
+    20,
+    20.5,
+]
+apply_as_item_effect = true
+bonus_type = "Legendary"
+effect_type = "Weapon_Damage"
+percent = true
+stack_source = "Material"
+targets = ["All"]
+
+[[tier.modifier.requirement]]
+items = ["Material"]
+req_type = "Stance"
+
+[[tier.modifier]]
+amount_type = "SetBonusCount"
+amounts = [
+    0,
+    0,
+    5,
+    7,
+    9,
+    11,
+    13,
+    15,
+    17,
+    19,
+    21,
+    23,
+    25,
+    27,
+    29,
+    31,
+    33,
+    35,
+    37,
+    39,
+    41,
+    43,
+    45,
+    47,
+    49,
+    51,
+    53,
+    55,
+    57,
+    59,
+    61,
+    63,
+    65,
+    67,
+    69,
+    71,
+    73,
+    75,
+    77,
+    79,
+    81,
+]
+apply_as_item_effect = true
+bonus_type = "Legendary"
+effect_type = "SpellCriticalDamage"
+stack_source = "Material"
+targets = ["All"]
+
+[[tier.modifier.requirement]]
+items = ["Material"]
+req_type = "Stance"

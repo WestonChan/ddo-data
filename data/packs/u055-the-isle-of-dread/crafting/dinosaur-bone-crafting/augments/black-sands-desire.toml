@@ -1,0 +1,8 @@
+name = "Black Sands' Desire"
+description = "Your attacks and offensive spells have a chance to significantly slow your enemies."
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[slot]]
+slot = "isle of dread: horn (weapon)"

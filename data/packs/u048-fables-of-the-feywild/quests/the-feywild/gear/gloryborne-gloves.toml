@@ -1,0 +1,35 @@
+name = "Gloryborne Gloves"
+description = "FEYTWISTED form of Legendary Deadringers \n\nThese gloves smell of vibrant autumn leaves."
+drop_location = "The Feywild, Feytwisted chests"
+icon = "Gloves_7"
+item_category = "Clothing"
+material = "Paper"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Sacred"
+value = 2
+
+[[effect]]
+name = "Power of the Silver Flame"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Temperance of Spirit"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"

@@ -1,0 +1,42 @@
+name = "Van Richten's Spectacles"
+description = """
+Lost in an earlier age, these enchanted spectacles hone one's eyes to see the
+most minor of details."""
+drop_location = "Old Baba's Hut, Raid Chest"
+icon = "Goggles_3a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 28
+slot = "Goggles"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"

@@ -1,0 +1,21 @@
+name = "Pink Ioun Stone"
+description = "A pink gem about 1 inch in diameter."
+drop_location = "Random, Highest drop rate from The Dreaming Dark"
+icon = "Trinket_6a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 2
+slot = "Trinket"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Suppressed Power"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Dreaming Dark"

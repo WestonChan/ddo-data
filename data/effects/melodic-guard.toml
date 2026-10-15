@@ -1,0 +1,3 @@
+name = "Melodic Guard"
+description_template = "When being hit there is a chance for the opponent to dance."
+verbose_name_template = "Melodic Guard"

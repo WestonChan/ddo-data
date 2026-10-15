@@ -1,0 +1,40 @@
+name = "Legendary Wormwrithe Ring"
+description = """
+You would swear that this ring, made from the desiccated tendrils of a Purple
+Worm, moves on its own once in a great while."""
+drop_location = "The Price of an Egg, end chest"
+icon = "Ring_24"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 35
+slot = "Ring"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 13
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 14
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 16
+
+[[socket]]
+slot = "crafting: nearly complete: healing amplification (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Price of an Egg"

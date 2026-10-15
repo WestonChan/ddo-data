@@ -5,28 +5,31 @@
     {
       "augment_count": 0,
       "icon": "AdherentOfTheMists",
-      "id": 93,
+      "id": 1922255051898126,
       "is_filigree_set": false,
       "item_count": 34,
       "name": "Adherent of the Mists Set (Heroic)",
+      "slug": "adherent-of-the-mists-set-heroic",
       "tier_count": 1
     },
     {
       "augment_count": 0,
       "icon": "AdherentOfTheMists",
-      "id": 98,
+      "id": 2680707707720338,
       "is_filigree_set": false,
       "item_count": 41,
       "name": "Adherent of the Mists Set (Legendary)",
+      "slug": "adherent-of-the-mists-set-legendary",
       "tier_count": 1
     },
     {
       "augment_count": 0,
       "icon": "AlchemistsLore",
-      "id": 66,
+      "id": 8160397061105115,
       "is_filigree_set": false,
       "item_count": 2,
       "name": "Alchemist's Lore",
+      "slug": "alchemists-lore",
       "tier_count": 1
     }
   ],

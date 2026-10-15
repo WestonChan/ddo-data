@@ -1,0 +1,51 @@
+name = "Legendary Hooves of Orcus"
+description = "Stomping feet and racing beats of heats that don't ever slow."
+drop_location = "Catalyst Crafting, Turn in Expeditious Boots, its Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Feet"
+
+[[clickie]]
+name = "Shadow Walk"
+clickie = "Shadow Walk"
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 13
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 41
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shadow Walk"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

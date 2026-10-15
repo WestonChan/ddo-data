@@ -1,0 +1,39 @@
+name = "Battlerager's Harness"
+description = """
+"If it moves, kill it."
+- Maxim of the Kuldjargh"""
+drop_location = "Temple of the Deathwyrm, Raid chest"
+icon = "Belt_1b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Waist"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Spiked"
+
+[[effect]]
+name = "Raging Focus"
+
+[[effect]]
+name = "Vengeful Fury"
+
+[[effect]]
+name = "Spike Guard"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Temple of the Deathwyrm"

@@ -1,0 +1,91 @@
+name = "Staff of the Petitioner"
+description = "The favored implement of the Black Abbot."
+drop_location = "Ascension Chamber, Raid Warded chest"
+enhancement_bonus = 5
+icon = "Quarterstaff_14"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Power Store"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[socket]]
+slot = "crafting: upgradeable item (black abbot)"
+
+[[socket.option]]
+name = "Adds Potency +48 and Spellcasting Implement +15"
+description = """
+Potency +48: Passive: +48 Equipment bonus to each Spell Power.
+Spellcasting Implement +15: Passive: +15 Implement bonus to Universal Spell Power."""
+icon = "BlackAbbot"
+min_level = 14
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 48
+
+[[socket.option.effect]]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [48]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "UniversalSpellPower"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,66 @@
+name = "Legendary Duergarcraft Large Shield"
+description = "An extremely high-quality shield."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+enhancement_bonus = 16
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Wood"
+minimum_level = 35
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 20
+max_dex_bonus = 0
+shield_bonus = 38
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Legendary Conditioning"
+bonus_type = "Legendary"
+value = 15
+
+[[effect]]
+name = "Guardbreaking"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Quality"
+value = 31
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "any end chest, most optional chests"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Terror of Demogorgon"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

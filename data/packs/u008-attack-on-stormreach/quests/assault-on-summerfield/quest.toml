@@ -1,0 +1,29 @@
+name = "Assault on Summerfield"
+bestowed_by = "Yorrick Amanatu"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Attack on Stormreach"
+patron = "The Coin Lords"
+zone = "Summerfield District"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Assault_on_Summerfield"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

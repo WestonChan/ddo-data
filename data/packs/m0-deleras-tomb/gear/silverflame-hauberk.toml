@@ -1,0 +1,34 @@
+name = "Silverflame Hauberk"
+description = """
+Heroes from the Silver Flame were buried in their armor. How fortunate that
+such a beautiful suit fell into your hands."""
+drop_location = "Delera's Tomb, End reward"
+enhancement_bonus = 3
+icon = "HeavyArmor_6"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 10
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 48
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Delera's Tomb"

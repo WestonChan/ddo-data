@@ -1,0 +1,32 @@
+name = "Sailcloth Cloak"
+description = "This cloak appears to have been fashioned from the sail of a seaworthy vessel."
+drop_location = "Under the Cover of Darkness, end chest"
+icon = "Cloak_24b"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 3
+slot = "Back"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Cover of Darkness"

@@ -1,0 +1,46 @@
+name = "Ring of the Ravager"
+description = """
+Many small hamlets shudder at the mention of the name Colethenis, the crazed
+Ravager who once wore this scratched and tarnished ring."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Strength"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Ravager"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Ravager - 2 Piece bonus"
+effect_type = "NotModeled"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

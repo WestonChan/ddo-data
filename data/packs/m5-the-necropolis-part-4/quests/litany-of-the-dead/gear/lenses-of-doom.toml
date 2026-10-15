@@ -1,0 +1,41 @@
+name = "Lenses of Doom"
+description = """
+The lenses of these goggles where made from the retinas of a pair of Cholthulzz's
+eyes"""
+drop_location = "Litany of the Dead, Cholthulzz 's chest"
+icon = "Goggles_14a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 13
+slot = "Goggles"
+
+[[clickie]]
+name = "Boneshatter"
+clickie = "Boneshatter"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 11
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Boneshatter"]
+
+[[source]]
+chest = "cholthulzz 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

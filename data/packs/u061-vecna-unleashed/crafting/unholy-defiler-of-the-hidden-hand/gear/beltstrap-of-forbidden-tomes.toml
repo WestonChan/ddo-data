@@ -1,0 +1,43 @@
+name = "Beltstrap of Forbidden Tomes"
+description = """
+Were the covers of the books that make up the strap truly too worn? Or were
+they simply books too wreched for the weak to weather?"""
+drop_location = "Unholy Defiler of the Hidden Hand, defiled version of Legendary Book-Cover Beltstrap"
+icon = "Belt_14d"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 32
+slot = "Waist"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Cannith Combat Infusion"
+
+[[effect]]
+name = "Utter Disintegration"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Unholy Defiler of the Hidden Hand"

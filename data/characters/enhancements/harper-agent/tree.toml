@@ -1,0 +1,1394 @@
+name = "Harper Agent"
+background = "Universal"
+icon = "Harper"
+kind = "universal"
+version = 1
+
+[[enhancement]]
+name = "Harper Agent: Agent of Good I"
+cost_per_rank = [1]
+description = "+1 to hit and damage, +1 to hit versus evil, +1 Universal Spell Power."
+icon = "AgentOfGood"
+internal_name = "HarperCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Opponent"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement]]
+name = "Harper Agent: Harper Training I"
+cost_per_rank = [2]
+description = "Select +1 to an ability score of your choice."
+icon = "HarperTraining"
+internal_name = "HarperCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.requirement]]
+items = ["HarperCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Harper Agent: Agent of Good II"
+cost_per_rank = [1]
+description = "+1 to hit and damage, +2 to hit and damage versus evil, and +5 Universal Spell Power."
+icon = "AgentOfGood"
+internal_name = "HarperCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Opponent"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 6
+
+[[enhancement.requirement]]
+items = ["HarperCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Harper Agent: Harper Training II"
+cost_per_rank = [2]
+description = "Select +1 to an ability score of your choice."
+icon = "HarperTraining"
+internal_name = "HarperCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["HarperCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Harper Agent: Agent of Good III"
+cost_per_rank = [1]
+description = "+1 to hit and damage, +3 to hit and damage vs. Evil. +10 Universal Spell Power."
+icon = "AgentOfGood"
+internal_name = "HarperCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Opponent"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 18
+
+[[enhancement.requirement]]
+items = ["HarperCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Harper Agent: Harper's Freedom"
+cost_per_rank = [1]
+description = """
+Dispel most detrimental effects from you and add +10 to all saving throws for 20
+seconds. Cooldown: 5 minutes.
+Passive: +2 to all Ability scores, +1 hit and damage, +5 hit and damage vs evil,
+and +20 Universal spell power."""
+icon = "HarpersFreedom"
+internal_name = "HarperCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "HarperCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Opponent"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["HarperCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "HarperCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Harper Agent: Harper Enchantment"
+cost_per_rank = [2]
+description = """
+Your main and off-hand weapons gains an additional +1 to their Enhancement bonus.
+(This does not affect shields). You gain +20 to your maximum Spell Points."""
+icon = "HarperEnchantment"
+internal_name = "HarperEnchantment"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement]]
+name = "Harper Agent: Weathered Traveler"
+cost_per_rank = [1]
+description = "+[2/4/6] Energy resistance."
+icon = "WeatheredTraveler"
+internal_name = "WeatheredTraveler"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Sonic",
+]
+
+[[enhancement]]
+name = "Harper Agent: Traveller's Toughness"
+cost_per_rank = [1]
+description = "+[5/10/15] maximum hit points."
+icon = "Toughness"
+internal_name = "TravelersToughness"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement]]
+name = "Harper Agent: Strategic Combat I"
+cost_per_rank = [2]
+description = """
+You can use your Intelligence modifier to hit with Melee and Missile weapons.
+Note: This does not function with shields."""
+icon = "StrategicCombatI"
+internal_name = "StrategicCombatI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Intelligence",
+    "All",
+]
+
+[[enhancement]]
+name = "Harper Agent: Awareness"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Listen, Search, and Spot.
+Rank 3: +1 save vs. traps."""
+icon = "Awareness"
+internal_name = "HarperAwareness"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Traps"]
+
+[[enhancement]]
+name = "Harper Agent: Harper Lore I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Pick between weapon training, magic training, and leadership."
+icon = "HarperLoreI"
+internal_name = "HarperHarperLoreI"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement.selection]]
+name = "Harper Leadership I"
+cost_per_rank = [1]
+description = "Your hirelings, summoned, and charmed creatures gain +3 to all ability scores."
+icon = "HarperLeadershipI"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "HirelingAbilityBonus"
+
+[[enhancement.selection]]
+name = "Harper Spell Training I"
+cost_per_rank = [1]
+description = "+2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells."
+icon = "HarperSpellTrainingI"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Force",
+    "Physical",
+    "Sonic",
+    "Light",
+    "Good",
+]
+
+[[enhancement.selection]]
+name = "Harper Weapon Training I"
+cost_per_rank = [1]
+description = "+1 to Attack and Damage while Single Weapon Fighting."
+icon = "HarperWeaponTrainingI"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Harper Agent: Magical Endurance"
+cost_per_rank = [1]
+description = "+[30/60/100] maximum Spell Points."
+icon = "MagicalEndurance"
+internal_name = "HarperMagicalEndurance"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Harper Agent: Versatile Adept I"
+cost_per_rank = [1]
+description = "+[1/2/3] Melee Power, Ranged Power, and +[3/6/9] Universal Spell Power"
+icon = "VersatileAdept"
+internal_name = "HarperVersatileAdeptI"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Harper Agent: Know the Angles"
+cost_per_rank = [2]
+description = """
+Activation cost: 15 spell points. Cooldown: 20 seconds.
+You gain an Insight bonus to damage and the DC of tactical feats equal to 1/2
+of your Intelligence modifier for 120 seconds"""
+icon = "KnowTheAngles"
+internal_name = "HarperKnowTheAngles"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "HarperKnowTheAngles",
+    "Battle Trance",
+]
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Harper Agent: Know the Angles (Int Mod / 2)"
+effect_type = "TacticalDC"
+stack_source = "SnapshotIntelligence"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Know the Angles"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Harper Agent: Know the Angles (Int Mod / 2)"
+effect_type = "Weapon_Damage"
+stack_source = "SnapshotIntelligence"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Know the Angles"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement.requirement]]
+items = [
+    "HarperKnowTheAngles",
+    "Battle Trance",
+]
+req_type = "Exclusive"
+
+[[enhancement.stance]]
+name = "Know the Angles"
+description = """
+You gain an Insight bonus to damage and the DC of tactical feats equal
+to 1/2 of your Intelligence modifier for 120 seconds"""
+group_name = "Battle Trance"
+icon = "KnowTheAngles"
+
+[[enhancement]]
+name = "Harper Agent: Lead or Leadership"
+cost_per_rank = [1]
+description = "Choose between a melee attack and empowering your followers."
+icon = "HarperLeadOrLeadership"
+internal_name = "HarperSeizeTheMoment"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement.selection]]
+name = "Heroic Companion"
+cost_per_rank = [1]
+description = """
+Action Boost: Grants an ally +1[W], +6 to hit and saving throws, +4% Dodge,
+and +10 Physical Resistance rating. Usable five times per rest.
+Cooldown: 12 seconds
+
+Antireq: Cannot be taken with the halfling Heroic Companion racial enhancement."""
+icon = "HalflingHeroicCompanion"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["HalflingHeroicCompanion"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Seize the Moment"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Attack: On Hit: You gain a 25% Morale bonus to Doublestrike for 10 seconds.
+Shares a cooldown with Monk and Rogue Quick Strike.
+Cooldown: 12 seconds."""
+icon = "HarperLeadOrLeadership"
+is_clickie = true
+
+[[enhancement]]
+name = "Harper Agent: Harper Lore II"
+cost_per_rank = [2]
+description = "Pick between weapon training, magic training, and leadership."
+icon = "HarperLoreI"
+internal_name = "HarperHarperLoreII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.requirement]]
+items = ["HarperHarperLoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Harper Leadership II"
+cost_per_rank = [1]
+description = "Your hirelings, summoned, and charmed creatures gain an additional +4 to all ability scores."
+icon = "HarperLeadershipI"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "HirelingAbilityBonus"
+
+[[enhancement.selection]]
+name = "Harper Spell Training II"
+cost_per_rank = [1]
+description = "+2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells."
+icon = "HarperSpellTrainingII"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Force",
+    "Physical",
+    "Sonic",
+    "Light",
+    "Good",
+]
+
+[[enhancement.selection]]
+name = "Harper Weapon Training II"
+cost_per_rank = [1]
+description = "+2 to Attack and Damage while Single Weapon Fighting."
+icon = "HarperWeaponTrainingI"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Harper Agent: Know Your Foe"
+cost_per_rank = [2]
+description = """
+You gain a new Favored Enemy feat, dealing extra damage against those enemies.
+Hidden effect: +20 Spell Points"""
+icon = "KnowYourFoe"
+internal_name = "HarperKnowYourFoe"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.selection]]
+name = "Favored Enemy: Aberration"
+cost_per_rank = [2]
+description = "You deal extra damage to aberrations"
+icon = "FavoredEnemyAberration"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Aberration"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Construct"
+cost_per_rank = [2]
+description = "You deal extra damage to constructs"
+icon = "FavoredEnemyConstruct"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Construct"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Dragon"
+cost_per_rank = [2]
+description = "You deal extra damage to dragons"
+icon = "FavoredEnemyDragon"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Dragon"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Evil Outsider"
+cost_per_rank = [2]
+description = "You deal extra damage to evil outsiders"
+icon = "FavoredEnemyEvilOutsider"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Evil Outsider"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Giant"
+cost_per_rank = [2]
+description = "You deal extra damage to giants"
+icon = "FavoredEnemyGiant"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Giant"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Monstrous Humanoid"
+cost_per_rank = [2]
+description = "You deal extra damage to monstrous humanoids"
+icon = "FavoredEnemyMonstrousHumanoid"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Monstrous Humanoid"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Undead"
+cost_per_rank = [2]
+description = "You deal extra damage to undead"
+icon = "FavoredEnemyUndead"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Undead"]
+
+[[enhancement]]
+name = "Harper Agent: Versatile Adept II"
+cost_per_rank = [1]
+description = "+[1/2/3] Melee Power, Ranged Power, and +[3/6/9] Universal Spell Power"
+icon = "VersatileAdept"
+internal_name = "HarperVersatileAdeptII"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Harper Agent: Strategic Combat II"
+cost_per_rank = [2]
+description = """
+You can use your Intelligence modifier for damage with Melee and Missile weapons.
+Note: This does not function with shields."""
+icon = "StrategicCombatI"
+internal_name = "StrategicCombatII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Intelligence",
+    "All",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Harper Agent: Ability I"
+cost_per_rank = [2]
+description = "Select +1 to an ability score of your choice."
+icon = "DexInt"
+internal_name = "HarperAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Harper Agent: Throat Dagger"
+cost_per_rank = [2]
+description = """
+Activation cost: 1 spell points. Cooldown: 12 seconds.
+SLA: Damages an enemy from afar for 1d4+4 Piercing damage per character level.
+Damaged non-boss enemies cannot cast spells for 6 seconds.
+Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No"""
+icon = "ThroatDagger"
+internal_name = "HarperThroatDagger"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "Throat Dagger"
+cost_per_rank = [2]
+description = """
+Activation cost: 1 spell points. Cooldown: 12 seconds.
+SLA: Damages an enemy from afar for 1d4+4 Piercing damage per character level.
+Damaged non-boss enemies cannot cast spells for 6 seconds.
+Metamagic: Quicken, Enlarge (no extra cost). Spell resistance: No"""
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Throat Dagger",
+    "None",
+]
+
+[[enhancement.selection]]
+name = "Silencing Strike"
+cost_per_rank = [2]
+description = """
+Melee Attack: +50% Damage
+Damaged non-boss enemies cannot cast spells for 6 seconds.
+Cooldown: 12 seconds."""
+icon = "Intelligence"
+
+[[enhancement]]
+name = "Harper Agent: Vigor of Life I"
+cost_per_rank = [2]
+description = "+20 positive healing amplification. 10% less damage from negative energy"
+icon = "VigorOfLifeI"
+internal_name = "HarperVigorOfLifeI"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Harper Agent: Versatile Adept III"
+cost_per_rank = [1]
+description = "+[1/2/3] Melee Power, Ranged Power, and +[3/6/9] Universal Spell Power"
+icon = "VersatileAdept"
+internal_name = "HarperVersatileAdeptIII"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Harper Agent: Music of Austerity"
+cost_per_rank = [2]
+description = """
+Like Eschew Materials, your spells no longer need common material components.
+This does not increase their Spell Point cost."""
+icon = "MusicOfAusterity"
+internal_name = "HarperMusicOfAusterity"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Harper Agent: Ability II"
+cost_per_rank = [2]
+description = "Select +1 to an ability score of your choice."
+icon = "DexInt"
+internal_name = "HarperAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Harper Agent: The Resolute Blade"
+cost_per_rank = [1]
+description = """
+Multiselector:
+The Resolute Blade: +1 Competence Bonus to Critical Threat Range while Single Weapon Fighting. Rank 2: +1 Competence Bonus to Critical Multiplier while Single Weapon Fighting.
+The Harp's Magic: +2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells. Rank 2: An additional +2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells"""
+icon = "HarperResoluteBlade"
+internal_name = "HarperResoluteBlade"
+is_tier5 = true
+min_spent = 30
+ranks = 2
+x = 0
+y = 5
+
+[[enhancement.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Update_81_Patch_4_Release_Notes"
+read = "2026-10-07"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "The Harp's Magic"
+cost_per_rank = [1]
+description = """
++2% Spell Crit Damage with Force/Physical, Sonic, Light, and Good spells.
+Rank 2: An additional +2% Spell Crit Damage with Force/Physical, Sonic, Light,
+and Good spells"""
+icon = "HarperHarpsMagic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Force",
+    "Physical",
+    "Sonic",
+    "Light",
+    "Good",
+]
+
+[[enhancement.selection]]
+name = "The Resolute Blade"
+cost_per_rank = [1]
+description = """
++1 Competence Bonus to Critical Threat Range while Single Weapon Fighting.
+Rank 2: +1 Competence Bonus to Critical Multiplier while Single Weapon Fighting."""
+icon = "HarperResoluteBlade"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_CriticalRange"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_CriticalMultiplier"
+rank = 2
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Harper Agent: Enchant your weapon"
+cost_per_rank = [2]
+description = """
+Choose how you would like to enchant your weapon:
++1 and Improved deception
++10 Universal spell power
++3 to hit and damage, +2 vs evil, weapon bypasses Good damage reduction"""
+icon = "HarperEnchantWeapon"
+internal_name = "HarperWeaponEnchantment"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Harper Enchantment of Deception"
+cost_per_rank = [2]
+description = "Your weapon gains an additional +1 to its Enhancement bonus and Improved Deception."
+icon = "HarperEnchantWeapon"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[enhancement.selection]]
+name = "Harper Enchantment of Magic"
+cost_per_rank = [2]
+description = "Your weapon gains a +10 Harper bonus to Universal Spell Power."
+icon = "HarperEnchantmentOfMagic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection]]
+name = "Harper Enchantment of Righteousness"
+cost_per_rank = [2]
+description = """
+Your weapon gains stacking +3 Enhancement bonus to attack and damage, an
+additional +2 to attack bonus and damage against evil creatures, and your weapon
+is considered Good-aligned."""
+icon = "HarperRighteousness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Evil Opponent"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[enhancement]]
+name = "Harper Agent: Versatile Adept IV"
+cost_per_rank = [1]
+description = "+[2/4/6] Melee Power, Ranged Power, and Universal Spell Power"
+icon = "VersatileAdept"
+internal_name = "HarperVersatileAdeptIV"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = [
+    "RangedPower",
+    "UniversalSpellPower",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Harper Agent: Magic of Patience"
+cost_per_rank = [2]
+description = """
+Your spells benefit from the Extend Spell metamagic feat.
+This does not increase their Spell Point cost.
+(This does not stack with the actual Extend metamagic feat.)"""
+icon = "MagicOfPatience"
+internal_name = "HarperMagicOfPatience"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Harper Agent: Moment of Clarity"
+cost_per_rank = [2]
+description = """
+Activate: For the next 10 seconds the DC of your spells and your tactical feats
+is increased by +10.
+Cooldown: 5 minutes.
+Passive: +1 DC for your spells"""
+icon = "HarperMomentOfClarity"
+internal_name = "HarperMomentOfClarity"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement_group]]
+kind = "one_of"
+
+[[requirement_group.requirement]]
+items = ["Harper Agent Tree"]
+req_type = "Feat"
+
+[[requirement_group.requirement]]
+items = ["The Harpers Favor Rewards"]
+req_type = "Feat"
+value = 3

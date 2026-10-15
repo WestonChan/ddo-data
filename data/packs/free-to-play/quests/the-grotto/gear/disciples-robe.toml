@@ -1,0 +1,43 @@
+name = "Disciple's Robe"
+description = """
+This simple outfit has been handed down from master to disciple for generations.
+It is said to increase your inner calm and focus."""
+drop_location = "The Grotto, Sahuagin High Priestess 's chest, non-Warforged monks"
+icon = "Cloth_2e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Mage Armor"
+clickie = "Mage Armor"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 1
+
+[[effect]]
+name = "Starter"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Mage Armor"]
+
+[[source]]
+chest = "sahuagin high priestess 's chest, non-warforged monks"
+kind = "quest"
+loot_type = "chest"
+name = "The Grotto"

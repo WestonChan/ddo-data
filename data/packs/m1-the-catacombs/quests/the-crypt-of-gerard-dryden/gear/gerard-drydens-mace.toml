@@ -1,0 +1,36 @@
+name = "Gerard Dryden's Mace"
+description = "This mace once belonged to Gerard Dryden ."
+drop_location = "The Crypt of Gerard Dryden, Locked Room chest"
+enhancement_bonus = 1
+icon = "HeavyMace_3f"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Bone"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Undead Bane"
+
+[[source]]
+chest = "locked room chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crypt of Gerard Dryden"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

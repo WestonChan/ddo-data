@@ -1,0 +1,23 @@
+name = "Fire II: Alchemical Strength"
+adds_augment = "Legendary Alchemical T3"
+description = "Combine T1 item with 100 threads and stabilizing compound."
+effect_description = "Alchemical Strength +2: Passive: +2 Alchemical Bonus to Strength."
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[effect]]
+name = "Strength"
+bonus_type = "Alchemical"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 2"

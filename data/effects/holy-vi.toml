@@ -1,0 +1,3 @@
+name = "Holy VI"
+description_template = "Holy VI: On Hit: 6 to 24 Good damage. Good-aligned creatures are immune to this effect. Penalty: If equipped by a Evil user, they receive 1 Negative Level for as long as this item is equipped."
+verbose_name_template = "Holy VI"

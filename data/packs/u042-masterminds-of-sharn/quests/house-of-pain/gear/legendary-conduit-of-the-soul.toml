@@ -1,0 +1,35 @@
+name = "Legendary Conduit of the Soul"
+description = "Tap directly into your heart."
+drop_location = "House of Pain, end chest"
+icon = "Necklace_12"
+item_category = "Jewelry"
+material = "Crystal"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Divine Augmentation IX"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 269
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Quality"
+value = 35
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "House of Pain"

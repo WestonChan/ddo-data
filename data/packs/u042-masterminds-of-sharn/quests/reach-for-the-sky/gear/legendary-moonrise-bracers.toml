@@ -1,0 +1,33 @@
+name = "Legendary Moonrise Bracers"
+description = "Balance in all things."
+drop_location = "Reach for the Sky, End Chest"
+icon = "Bracers_6"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Balanced Ki Strike"
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Greater Reinforced Fists"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 20
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Reach for the Sky"

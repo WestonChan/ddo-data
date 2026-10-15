@@ -1,0 +1,11 @@
+name = "Sight Beyond Sight"
+description_template = "You can see through all veils, piercing magical and mundane defenses alike. +5% Enhancement bonus to Dodge bypass."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Sight Beyond Sight +5"
+
+[[bonus]]
+amount_from = 0
+constant = 5
+rounding = "down"
+scale = 1.0
+target = "Dodge Bypass"

@@ -1,0 +1,20 @@
+name = "Claw: +38 Physical Resistance Rating"
+description = "+38 Physical Resistance Rating"
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Enhancement"
+value = 38
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [38]
+bonus_type = "Enhancement"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[slot]]
+slot = "isle of dread: artifact claw (accessory)"

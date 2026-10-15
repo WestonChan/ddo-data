@@ -1,0 +1,54 @@
+name = "The Prince of Demons"
+drop_location = "Terror of the Demon Lords, end chest"
+enhancement_bonus = 16
+icon = "MediumArmor_23a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 35
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 39
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Legendary"
+value = 6
+
+[[effect]]
+name = "Legendary Conditioning"
+bonus_type = "Legendary"
+value = 5
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 3
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"

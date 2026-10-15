@@ -1,0 +1,35 @@
+name = "Wraith's Skin"
+description = "This amazingly thin, yet strong leather is designed for stealth."
+drop_location = "Caverns of Korromar, Horus Hammercrush 's chest"
+enhancement_bonus = 3
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "horus hammercrush 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Caverns of Korromar"

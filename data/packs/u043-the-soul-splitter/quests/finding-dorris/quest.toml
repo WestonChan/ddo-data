@@ -1,0 +1,29 @@
+name = "Finding Dorris"
+bestowed_by = "Quigley Tangleford"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The Soul Splitter"
+patron = "Sharn City Council"
+zone = "Finding Dorris"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Finding_Dorris"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

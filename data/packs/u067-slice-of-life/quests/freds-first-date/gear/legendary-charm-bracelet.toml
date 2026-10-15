@@ -1,0 +1,38 @@
+name = "Legendary Charm Bracelet"
+description = "Charming in its own way, it takes the allure of other charms away."
+drop_location = "Fred's First Date, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 32
+slot = "Wrists"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Enchantment Save"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fred's First Date"

@@ -1,0 +1,35 @@
+name = "Legendary Duskbone Ring"
+description = "This bone ring reeks of death."
+drop_location = "Combatting Corruption, End Chest"
+icon = "Ring_21"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 44
+
+[[effect]]
+name = "Hardened Exterior"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Combatting Corruption"

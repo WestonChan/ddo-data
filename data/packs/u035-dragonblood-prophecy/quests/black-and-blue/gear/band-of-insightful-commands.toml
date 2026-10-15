@@ -1,0 +1,37 @@
+name = "Band of Insightful Commands"
+description = "The ring is set with a single scale from the late Urgnoth."
+drop_location = "Black and Blue, end chest"
+icon = "Ring_20a"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 10
+slot = "Ring"
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 12
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Black and Blue"

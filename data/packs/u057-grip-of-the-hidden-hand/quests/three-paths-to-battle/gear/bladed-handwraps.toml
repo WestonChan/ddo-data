@@ -1,0 +1,57 @@
+name = "Bladed Handwraps"
+description = """
+The whirling blades of the plane of Shavarath have influenced these Handwraps
+with their magic."""
+drop_location = "Three Paths to Battle, end chest"
+enhancement_bonus = 5
+icon = "HandWraps_1"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Maiming 4"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Three Paths to Battle"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "Two-handed"
+weapon_type = "Handwraps"

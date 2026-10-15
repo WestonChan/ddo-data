@@ -1,0 +1,22 @@
+name = "The Missing Expedition"
+bestowed_by = "Zaveera Halfspear"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Ruins of Threnal"
+patron = "House Phiarlan"
+zone = "The Southern Ruins"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Missing_Expedition"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

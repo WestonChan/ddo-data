@@ -1,0 +1,21 @@
+name = "+20% Negative Absorption"
+description = "Negative Absorption +20%: Passive: +20% Equipment Bonus to Negative Absorption."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Negative Absorption"
+bonus_type = "Equipment"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Equipment"
+effect = "Negative Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[slot]]
+slot = "crafting: incredible potential"

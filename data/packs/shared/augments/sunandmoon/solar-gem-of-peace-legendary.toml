@@ -1,0 +1,42 @@
+name = "Solar Gem of Peace (Legendary)"
+description = """
++6 Artifact bonus to Heal, Listen and Concentration
+Drops in: Land of Lamordia, Experiment Y's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Heal"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Listen"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Artifact"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Listen",
+    "Concentration",
+]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "experiment y's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

@@ -1,0 +1,21 @@
+name = "Miserable Force Absorption (Legendary)"
+description = "+17% Enhancement Bonus to Force Absorption."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Enhancement"
+effect = "Force Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Force"]
+
+[[slot]]
+slot = "lamordia: miserable (accessory)"

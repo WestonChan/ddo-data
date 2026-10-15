@@ -1,0 +1,21 @@
+name = "The City's Beacon"
+icon = "TheCitysBeacon"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "Magical Resistance on Hit"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+effect = "Physical Resistance on Hit"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "Displacement on Hit"

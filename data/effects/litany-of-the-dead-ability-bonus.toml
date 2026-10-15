@@ -1,0 +1,3 @@
+name = "Litany of the Dead - Ability Bonus"
+description_template = "The Litany of the Dead enhances the physical and mental abilities of its owner. Grants a +1 Profane bonus to all Abilities."
+verbose_name_template = "Litany of the Dead - Ability Bonus"

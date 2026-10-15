@@ -1,0 +1,73 @@
+name = "The Epic Desert's Burning Sun"
+icon = "Menechtarun"
+
+[[item]]
+name = "Epic Bracers of the Hunter"
+
+[[item]]
+name = "Epic Firestorm Greaves"
+
+[[item]]
+name = "Epic Lion-headed Belt Buckle"
+
+[[item]]
+name = "Epic Robe of Fire"
+
+[[item]]
+name = "Epic Shard of Vollun"
+
+[[item]]
+name = "Epic Tinder"
+
+[[item]]
+name = "Epic Xuum"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Legendary"
+reason = "The wiki types Physical Resistance Rating as Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Physical Resistance Rating / Legendary"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Legendary"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

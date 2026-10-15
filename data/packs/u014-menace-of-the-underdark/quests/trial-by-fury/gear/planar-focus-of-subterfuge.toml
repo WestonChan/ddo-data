@@ -1,0 +1,133 @@
+name = "Planar Focus of Subterfuge"
+description = "This strange yellow Crystal hums with power."
+drop_location = "Trial by Fury, bottom chest or end chest; Menace of the Underdark: The Queen of the Demonweb, quest chain end reward"
+icon = "Trinket_11"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 22
+slot = "Trinket"
+
+[[socket]]
+slot = "crafting: random effect"
+
+[[socket.option]]
+name = "+8 Intelligence"
+description = "+8 Intelligence"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "+8 Dexterity"
+description = "+8 Dexterity"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+8 Wisdom"
+description = "+8 Wisdom"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Insightful Intelligence +3"
+description = "+3 Insightful Intelligence"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Insightful Wisdom +3"
+description = "+3 Insightful Wisdom"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Insightful Dexterity +3"
+description = "+3 Insightful Dexterity"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[source]]
+chest = "bottom chest or end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Trial by Fury"
+
+[[source]]
+kind = "saga"
+name = "Menace of the Underdark"
+tier = "any"

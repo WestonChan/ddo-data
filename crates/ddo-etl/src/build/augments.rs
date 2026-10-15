@@ -6,7 +6,7 @@ use super::{joined_non_empty, json_number_array, trimmed_non_empty, BuildReport,
 use crate::map::drop_location::drop_text_in_description;
 use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::augments::parse_augments_file;
-use anyhow::{ensure, Result};
+use anyhow::{ensure, Context, Result};
 use ddo_model::enums::{BonusType, ModifierSource};
 use rusqlite::params;
 use std::path::Path;
@@ -15,11 +15,17 @@ impl TableWriter<'_> {
     pub(super) fn write_augments_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
         let (family, augments) = parse_augments_file(path)?;
         for augment in &augments {
+            let slug = self.reserve_augment_slug(
+                &augment.name,
+                augment.description.as_deref(),
+                augment.minimum_level,
+                &family,
+            )?;
             self.transaction.execute(
                 "INSERT INTO augments (name, family, description, effect_description, min_level, icon, choose_level, levels,
                                        level_values, level_values2, dual_values, enter_value, suppress_set_bonus, set_bonus,
-                                       adds_augment, grants_augment, weapon_class)
-                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17)",
+                                       adds_augment, grants_augment, weapon_class, slug)
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)",
                 params![
                     augment.name,
                     family,
@@ -38,6 +44,7 @@ impl TableWriter<'_> {
                     joined_non_empty(&augment.added_augments, "\n"),
                     trimmed_non_empty(augment.granted_augment.as_deref()),
                     trimmed_non_empty(augment.weapon_class.as_deref()),
+                    slug,
                 ],
             )?;
             let augment_id = self.transaction.last_insert_rowid();
@@ -74,6 +81,24 @@ impl TableWriter<'_> {
         }
         report.augment_count += augments.len();
         Ok(())
+    }
+
+    pub(super) fn reserve_augment_slug(
+        &mut self,
+        name: &str,
+        description: Option<&str>,
+        level: Option<i64>,
+        family: &str,
+    ) -> Result<String> {
+        let preferred = crate::tree::xml_entity_slug("augments", None, name, description);
+        std::iter::once(preferred)
+            .chain(
+                crate::tree::augment_slug_candidates(name, description.unwrap_or_default(), level, family)
+                    .into_iter()
+                    .map(|(identity, _)| identity),
+            )
+            .find(|identity| self.written.augment_slugs.insert(identity.clone()))
+            .with_context(|| format!("augment {name:?} has no unique name variant"))
     }
 
     fn collapse_source_backed_augment_lines(

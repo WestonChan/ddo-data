@@ -1,0 +1,46 @@
+name = "Legendary Red Dragonscale Robe"
+description = """
+A finely crafted silk robe that includes many scales from the Red Dragon, Velah.
+This suit of armor can be repaired by a smith knowledgable in white dragonscale
+repair techniques."""
+drop_location = "Legendary version of Epic Red Dragonscale Robe"
+enhancement_bonus = 15
+icon = "Cloth_7c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Red Dragonscale"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Dripping with Magma"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 54
+
+[[effect]]
+name = "Fire Guard X"
+
+[[effect]]
+name = "Incineration Guard"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

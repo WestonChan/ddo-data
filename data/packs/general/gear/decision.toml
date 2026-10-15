@@ -1,0 +1,23 @@
+name = "Decision"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Helmet_59"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Sun Elf"
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

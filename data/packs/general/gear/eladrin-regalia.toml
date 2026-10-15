@@ -1,0 +1,28 @@
+name = "Eladrin Regalia"
+description = "This elegant robe belies the chaos inside."
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 5
+icon = "Cloth_19"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 15
+race_required = "Eladrin Chaosmancer"
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

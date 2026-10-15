@@ -1,0 +1,37 @@
+name = "Green Steel Hand Axe"
+description = "A smaller version of the Battleaxe, favored as a offhand weapon by the dwarves."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+enhancement_bonus = 5
+icon = "HandAxe_1l"
+item_category = "Weapon"
+item_type = "Hand Axe"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[socket]]
+slot = "crafting: weapon invasion"
+
+[[source]]
+kind = "crafting_system"
+name = "Green Steel items"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Hand Axe"

@@ -1,0 +1,75 @@
+name = "+22 Charisma Skills / +6 UMD, +151 Spell Points"
+description = """
+Ethereal/Escalation: +22/+6 (UMD) Competence bonus to Charisma based skills.
++151 Profane spell points"""
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Escalation"""
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Profane"
+value = 151
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Intimidate",
+    "Perform",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Competence"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [151]
+bonus_type = "Profane"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: equipment tier 1"

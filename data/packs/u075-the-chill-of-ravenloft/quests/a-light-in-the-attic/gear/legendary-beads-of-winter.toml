@@ -1,0 +1,39 @@
+name = "Legendary Beads of Winter"
+description = "Each bead on this necklace is chilling to the touch."
+drop_location = "A Light in the Attic, end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 34
+slot = "Neck"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Insight"
+value = 11
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"

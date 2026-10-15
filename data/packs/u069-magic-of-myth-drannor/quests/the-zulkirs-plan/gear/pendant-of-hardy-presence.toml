@@ -1,0 +1,42 @@
+name = "Pendant of Hardy Presence"
+description = """
+A gaudier piece more reminiscent of Dwarven craftsmanship, this pendant has
+not been taken care of, but certainly makes its presence known."""
+drop_location = "The Zulkir's Plan, end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Neck"
+
+[[effect]]
+name = "Strength of Purpose"
+bonus_type = "Enhancement"
+value = 128
+
+[[effect]]
+name = "Incite"
+bonus_type = "Quality"
+value = 13
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 23
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Zulkir's Plan"

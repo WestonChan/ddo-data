@@ -1,0 +1,53 @@
+name = "Woeful Shadow (Legendary)"
+description = """
++3% Profane Doublestrike and Doubleshot, +15% Enhancement Bonus to Melee Alacrity,
++20% Enhancement Bonus to Ranged Alacrity."""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Ranged Alacrity"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Melee Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Melee"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Ranged Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Ranged"]
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

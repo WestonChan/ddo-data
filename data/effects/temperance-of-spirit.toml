@@ -1,0 +1,3 @@
+name = "Temperance of Spirit"
+description_template = "You have a +1 Quality Bonus to Physical Resistance Rating per Religious Lore Feat."
+verbose_name_template = "Temperance of Spirit"

@@ -1,0 +1,11 @@
+name = "Legendary Air Strike"
+description = """
+Requires Air Air Air
+Attacks and spells have a chance [around ~1%] to deal massive
+electrical damage [around 2,000 (melee no buff)/around 10,000
+(spell with spell amplifier), single target]."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

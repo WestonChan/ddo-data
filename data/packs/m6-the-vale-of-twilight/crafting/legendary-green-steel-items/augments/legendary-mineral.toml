@@ -1,0 +1,11 @@
+name = "Legendary Mineral"
+description = """
+Requires Earth and Positive only
+This weapon bypasses Adamantine, Byeshk, Cold Iron, Mithral,
+and Silver DR. This weapon is considerably strengthened,
+gaining +150 maximum Durability."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

@@ -1,0 +1,41 @@
+name = "Sapphire of Spell Agility"
+choose_level = true
+description = "Decreases your Arcane Spell Failure due to Armor Only."
+family = "Sapphire"
+icon = "Sapphire"
+level_values = [
+    -5,
+    -10,
+    -15,
+]
+levels = [
+    12,
+    16,
+    20,
+]
+
+[[effect]]
+name = "Arcane Spell Failure"
+bonus_type = "Enhancement"
+value = -10
+
+[[effect]]
+name = "Arcane Spell Failure (Shield)"
+bonus_type = "Enhancement"
+value = -10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+extra_types = ["ArcaneSpellFailureShields"]
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "green"

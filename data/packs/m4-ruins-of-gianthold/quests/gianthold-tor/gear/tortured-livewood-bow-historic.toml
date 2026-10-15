@@ -1,0 +1,38 @@
+name = "Tortured Livewood Bow (historic)"
+description = """
+This livewood bow has been charred, scarred and blackened by acid and fire.
+Yet the bow still draws true, the wood somehow enduring in timeless agony."""
+drop_location = "Gianthold Tor, Black Dragon Chest"
+enhancement_bonus = 5
+icon = "Longbow_6b"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Acid Arrow"
+
+[[source]]
+chest = "black dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

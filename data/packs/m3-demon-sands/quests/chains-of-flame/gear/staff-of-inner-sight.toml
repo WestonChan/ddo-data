@@ -1,0 +1,64 @@
+name = "Staff of Inner Sight"
+description = """
+This staff is made from a slender willow branch. As you hold it, you feel the
+weight and knowledge of many centuries wash over your senses."""
+drop_location = "Chains of Flame, Library Chest"
+enhancement_bonus = 5
+icon = "Quarterstaff_5d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "library chest"
+kind = "quest"
+loot_type = "chest"
+name = "Chains of Flame"
+
+[[weapon]]
+attack_modifier = "Intelligence, Wisdom, Charisma"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Wisdom, Charisma"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

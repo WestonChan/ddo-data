@@ -1,0 +1,3 @@
+name = "Paragon Light Guard"
+description_template = "When hit or missed in combat, the attacking creature takes 4d8 Light damage."
+verbose_name_template = "Paragon Light Guard"

@@ -1,0 +1,43 @@
+name = "Bereavement"
+description = """
+A battle axe created in the Twilight Forge itself. This weapon was forged using
+some of the same processes as creating Warforged."""
+drop_location = "The Titan Awakes, Raid Warded chest"
+enhancement_bonus = 5
+icon = "BattleAxe_7"
+item_category = "Weapon"
+item_type = "Battle Axe"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Keen"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Battle Axe"

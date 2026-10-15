@@ -1,0 +1,29 @@
+name = "Lunar Gem of Conjuration (Heroic)"
+description = """
++2 Profane Bonus to Conjuration DCs
+Drops in: The Wish, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wish"

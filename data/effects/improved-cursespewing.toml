@@ -1,0 +1,3 @@
+name = "Improved Cursespewing"
+description_template = "On Vorpal Hit: Your enemy is cursed with a -4 Morale penalty on attack rolls, saving throws, and skill checks. This painful curse also causes the victim to take 2d6 damage every two seconds for a duration of twelve seconds. Additional vorpal strikes while the curse is active will extend the duration by another twelve seconds."
+verbose_name_template = "Improved Cursespewing"

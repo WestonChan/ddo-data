@@ -1,0 +1,38 @@
+name = "Legendary Charged Gauntlets"
+description = "These gloves channel powerful electric energy into enemies that you strike."
+drop_location = "The Chronoscope (Legendary), end chest, or Legendary version of Epic Charged Gauntlets"
+icon = "Gloves_9c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Hands"
+
+[[effect]]
+name = "Sovereign Lightning Strike"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 54
+
+[[effect]]
+name = "Legendary Lightningstorm Guard"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic charged gauntlets"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

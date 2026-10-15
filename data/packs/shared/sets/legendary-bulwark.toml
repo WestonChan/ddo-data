@@ -1,0 +1,21 @@
+name = "Legendary Bulwark"
+icon = "ColorlessSpecialtemEssence"
+
+[[augment]]
+name = "Legendary Bulwark"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+effect_type = "HitpointsPercent"

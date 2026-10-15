@@ -1,0 +1,31 @@
+name = "Lunar Gem of Magical Protection (Heroic)"
+description = """
++10 Profane Bonus to Magical Resistance Rating.
+Drops in: Book Burning, end chest
+Toil and Trouble, end chest
+A Light in the Attic, secret area chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Profane"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Book Burning"

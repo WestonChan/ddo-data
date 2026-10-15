@@ -1,0 +1,22 @@
+name = "Quality Intelligence +3"
+variant = "slave-lords-crafting"
+description = "Legendary quality bonus to Intelligence"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

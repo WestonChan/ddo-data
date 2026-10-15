@@ -1,0 +1,44 @@
+name = "Epic Templar's Leather"
+description = "This leather is the lightest armor worn by the Templars of the Silver Flame."
+drop_location = "Return to the Sanctuary, Fitzwood's chest"
+enhancement_bonus = 6
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 16
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Superior Undead Guard"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 43
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 24
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "fitzwood's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Return to the Sanctuary"

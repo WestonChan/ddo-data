@@ -1,0 +1,40 @@
+name = "Cerulean Guard"
+description = "These scale boots can help their bearers to endure many physical attacks."
+drop_location = "Riding the Storm Out, warded chest"
+icon = "Boots_3a"
+item_category = "Clothing"
+material = "Blue Dragonscale"
+minimum_level = 27
+slot = "Feet"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 10
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Riding the Storm Out"

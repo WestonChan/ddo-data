@@ -1,0 +1,21 @@
+name = "Arcane Spell Failure"
+description = "Arcane spell failure due to shield."
+enter_value = true
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Arcane Spell Failure (Shield)"
+bonus_type = "Equipment"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Arcane Spell Failure (Shield)"
+effect_type = "ArcaneSpellFailureShields"
+
+[[slot]]
+slot = "crafting: cannith shield arcane spell failure"

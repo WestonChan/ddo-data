@@ -1,0 +1,18 @@
+name = "Acid Blast damage on Vorpal hit."
+description = "Dominion/Earth: This weapon does an additional 11d120  Acid damage on a Vorpal hit."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Acid"
+dice_number = [11]
+dice_sides = [120]
+display_name = "Acid Blast"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

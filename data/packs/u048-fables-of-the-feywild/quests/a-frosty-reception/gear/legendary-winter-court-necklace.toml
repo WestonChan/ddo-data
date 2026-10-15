@@ -1,0 +1,35 @@
+name = "Legendary Winter Court Necklace"
+description = "The Prince of Frost himself would grant this favor to those who impressed him."
+drop_location = "A Frosty Reception, End chest, Frost Giant chest"
+icon = "Necklace_30"
+item_category = "Jewelry"
+material = "Cold Iron"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Greater Boon of Undeath"
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 53
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 44
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, frost giant chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Frosty Reception"

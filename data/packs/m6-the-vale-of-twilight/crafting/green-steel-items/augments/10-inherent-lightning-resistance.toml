@@ -1,0 +1,24 @@
+name = "+10 Inherent Lightning Resistance"
+adds_augment = "Accessory Aspect II"
+description = """
+Inherent Lightning Resistance +10: +10 Inherent bonus to resist Electrical damage.
+Air:Opposition:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Inherent"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Inherent"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[slot]]
+slot = "crafting: accessory devastation"

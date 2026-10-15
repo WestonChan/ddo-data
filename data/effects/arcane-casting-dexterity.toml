@@ -1,0 +1,11 @@
+name = "Arcane Casting Dexterity"
+description_template = "This ability reduces the arcane spell failure chance by -10%."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Arcane Casting Dexterity -10"
+
+[[bonus]]
+amount_from = 0
+constant = -10
+rounding = "down"
+scale = 1.0
+target = "Arcane Spell Failure"

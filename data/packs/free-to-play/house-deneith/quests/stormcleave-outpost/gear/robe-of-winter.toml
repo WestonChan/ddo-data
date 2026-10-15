@@ -1,0 +1,31 @@
+name = "Robe of Winter"
+description = "This thin robe is chill to the touch."
+drop_location = "Stormcleave Outpost, Pious Grew'el 's Chest"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 5
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "pious grew'el 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stormcleave Outpost"

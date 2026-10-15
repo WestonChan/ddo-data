@@ -1,0 +1,37 @@
+name = "Legendary Stone-forged Gauntlet"
+description = "A large, simple stone appears to be central to the contruction of this gauntlet."
+drop_location = "Housekeeping, End chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Stone"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 71
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Housekeeping"

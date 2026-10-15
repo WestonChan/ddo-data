@@ -1,0 +1,12 @@
+name = "Aspect of Salt II"
+description = """
+Corrosive Salt Guard: This item stores a caustic, insatiable power deep within. When the
+wearer of this item is successfully attacked in melee, this power can come to
+the surface in the form of a noxious, corrosive salt that dissolves all substances.
+Water:Negative:Water+Negative"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

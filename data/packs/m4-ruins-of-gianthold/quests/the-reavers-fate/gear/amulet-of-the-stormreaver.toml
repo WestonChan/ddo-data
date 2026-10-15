@@ -1,0 +1,62 @@
+name = "Amulet of the Stormreaver"
+description = """
+This amulet once hung around the neck of the Stormreaver, messiah of the Xen'drik
+giants. Every inch is covered with cryptic glyphs that presumably describe
+the Stormreaver Prophecy in great detail."""
+drop_location = "The Reaver's Fate, Raid Warded chest"
+icon = "Necklace_10"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Neck"
+
+[[clickie]]
+name = "Chain Lightning"
+clickie = "Chain Lightning"
+
+[[effect]]
+name = "Greater Lightning Resistance"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Chain Lightning"]
+
+[[socket]]
+slot = "crafting: upgradeable item"
+
+[[socket.option]]
+name = "Superior Lightning Resistance"
+description = "Superior Lightning Resistance: This property absorbs the first 40 points of Electric damage per attack that the wearer would normally take."
+min_level = 13
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+value = 40
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"

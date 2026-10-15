@@ -1,0 +1,43 @@
+name = "Lesser Vial of Seafog"
+description = """
+A glass vial filled with water and thick mist. When it breaks on impact, a bank
+of Obscuring Mist is created on the enemy it struck."""
+drop_location = "Treasure of Crystal Cove, Turn in 50 copper doubloons at Euphonia's Barter Box"
+icon = "Dart_9e"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Glass"
+minimum_level = 5
+slot = "Main Hand"
+
+[[clickie]]
+name = "Obscuring Mist"
+clickie = "Obscuring Mist"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    1,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Obscuring Mist"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 1
+critical_threat_range = 1
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Dart"

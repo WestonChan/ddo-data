@@ -1,0 +1,22 @@
+name = "Litany of the Dead"
+bestowed_by = "Sir Rohine Stiedra"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+flagging = "This quest requires per-character flagging; you need to collect and complete a Sigil consisting of eight parts for Sir Rohine."
+pack = "The Necropolis, Part 4"
+patron = "The Silver Flame"
+zone = "The Black Mausoleum"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Litany_of_the_Dead"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15

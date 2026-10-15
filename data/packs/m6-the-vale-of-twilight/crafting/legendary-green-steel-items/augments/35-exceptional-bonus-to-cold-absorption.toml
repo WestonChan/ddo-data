@@ -1,0 +1,20 @@
+name = "+35 Exceptional bonus to Cold Absorption"
+description = "Opposition/Water: +35 Exceptional bonus to Cold Absorption"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Exceptional"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Exceptional"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

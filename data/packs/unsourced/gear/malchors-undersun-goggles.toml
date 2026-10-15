@@ -1,0 +1,14 @@
+name = "Malchor's Undersun Goggles"
+description = """
+Created by the brilliant wizard Malchor Harpell, these goggles have been enchanted
+to allow the wearer an approximation of sight while venturing into the Underdark
+. Unfortunately, this magical vision is imperfect, and can be somewhat jarring."""
+drop_location = "The Underdark"
+icon = "Goggles_4"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 1
+slot = "Goggles"
+
+[[effect]]
+name = "Undersun"

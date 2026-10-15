@@ -1,0 +1,3 @@
+name = "Favored Weapon"
+description_template = "This weapon has a divine attunement and gains bonuses as if it were a Favored Weapon regardless of your Deity."
+verbose_name_template = "Favored Weapon"

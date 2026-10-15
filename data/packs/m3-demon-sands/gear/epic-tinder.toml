@@ -1,0 +1,63 @@
+name = "Epic Tinder"
+accepts_sentience = true
+description = """
+This long staff is imbued with the burning power of the desert sun. Fire Spells
+cast using this staff to focus them ate much more powerful."""
+drop_location = "Epic version of Tinder"
+enhancement_bonus = 6
+icon = "Quarterstaff_5e"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 20
+
+[[effect]]
+name = "Magma Surge"
+
+[[effect]]
+name = "Flaming Blast IV"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Incineration Guard"
+
+[[effect]]
+name = "Greater Incineration"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

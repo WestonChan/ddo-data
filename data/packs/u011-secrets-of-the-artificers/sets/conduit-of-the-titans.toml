@@ -1,0 +1,118 @@
+name = "Conduit of the Titans"
+
+[[item]]
+name = "Legendary Toven's Hammer"
+
+[[item]]
+name = "Titan Control Matrix"
+
+[[note]]
+kind = "set_bonus"
+field = "icon"
+upstream = "ConduitOfTheTitans"
+reason = "DDOBuilderV2's SetBonusImages folder has no ConduitOfTheTitans.png."
+url = "Output/DataFiles/SetBonusImages"
+read = "2026-10-07"
+
+[[note]]
+kind = "set_tier"
+field = "remove"
+upstream = 0
+reason = "The wiki places this tier’s bonuses at two pieces and lists no 3-piece tier."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "+3 Artifact bonus to Rune Arm DCs"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Electric Spell Power +30 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Electric Spell Power / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Repair Spell Power +30 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Repair Spell Power / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Force Spell Power +30 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Force Spell Power / Artifact"
+
+[[tier]]
+equipped_count = 2
+description = "+3 Artifact Rune Arm DC; +6% Artifact Electric, Repair and Force spell critical chance; +30 Artifact Electric, Repair and Force spell power."
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Rune Arm Spell Focus"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Force Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Force Spell Power"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Rune Arm Spell Focus"
+effect_type = "SpellDC"
+targets = ["Rune Arm"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect_type = "SpellLore"
+targets = [
+    "Electric",
+    "Repair",
+    "Rust",
+    "Force",
+    "Physical",
+    "Untyped",
+]

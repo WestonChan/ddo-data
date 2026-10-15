@@ -1,0 +1,12 @@
+name = "Dismagicka"
+description = """
+Adds Shattermantle to weapon attacks.
+When a Shattermantle weapon strikes a foe that has spell resistance, the value of that
+spell resistance is reduced by 3 for 9 seconds. A foe can only have its SR reduced by
+one Shattermantle effect at a time."""
+family = "Other"
+icon = "MeridianFragment"
+min_level = 30
+
+[[slot]]
+slot = "orange"

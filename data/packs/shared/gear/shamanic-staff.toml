@@ -1,0 +1,55 @@
+name = "Shamanic Staff"
+description = """
+Holding this staff, you feel the power of ancient and wild magic course through
+your body."""
+drop_location = "Cult of the Six, End reward"
+enhancement_bonus = 4
+icon = "Quarterstaff_1n"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 12
+
+[[effect]]
+name = "True Chaos"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 42
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.25
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

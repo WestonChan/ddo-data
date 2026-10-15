@@ -1,0 +1,18 @@
+name = "Skirmisher's Gloves (Level 15)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "The Thrill of the Hunt, End reward"
+icon = "Gloves_6"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 15
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 8
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Thrill of the Hunt"

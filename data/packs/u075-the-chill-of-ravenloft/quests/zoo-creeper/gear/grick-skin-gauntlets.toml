@@ -1,0 +1,36 @@
+name = "Grick-skin Gauntlets"
+description = "The skin forming these gauntlets looks like rock - Tiny barbs line the knuckles."
+drop_location = "Zoo Creeper, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Hands"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 5
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

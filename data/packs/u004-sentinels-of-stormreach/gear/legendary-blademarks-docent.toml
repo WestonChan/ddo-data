@@ -1,0 +1,47 @@
+name = "Legendary Blademark's Docent"
+description = """
+This docent was specially crafted for the warforged that serve as mercenaries
+for House Deneith."""
+drop_location = "Legendary version of Epic Blademark's Docent"
+enhancement_bonus = 15
+icon = "Docent_1h"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 30
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 28
+armor_bonus = -10
+armor_type = "Docent"
+mithral_body = 14
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Angelic Grace"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Construct Fortification (10%)"
+bonus_type = "Insight"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

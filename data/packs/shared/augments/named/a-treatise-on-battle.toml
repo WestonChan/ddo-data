@@ -1,0 +1,43 @@
+name = "A Treatise on Battle"
+description = """
++11 Enhancement bonus to Tactics DCs and immunity to Fear.
+Authored by Sir Kingleigh Diallos, this well-worn book contains a fair few
+diagrams for troop formations."""
+family = "Named"
+icon = "HistoryBookOrange"
+min_level = 32
+
+[[effect]]
+name = "Stun DC"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Sunder DC"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Trip DC"
+bonus_type = "Enhancement"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Stun",
+    "Sunder",
+    "Vertigo",
+]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[slot]]
+slot = "orange"

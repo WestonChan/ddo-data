@@ -1,0 +1,53 @@
+name = "Spear of the Hunter"
+accepts_sentience = true
+description = "The Master of the Hunt has graciously granted you this as a token of his respect."
+drop_location = "Hunt or Be Hunted, end chest"
+enhancement_bonus = 15
+icon = "Quarterstaff_1d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "The Falling Star"
+
+[[effect]]
+name = "Thrill of the Hunt"
+
+[[effect]]
+name = "Bleeding 6"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hunt or Be Hunted"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.3
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

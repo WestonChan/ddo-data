@@ -1,0 +1,20 @@
+name = "Spooky Festival Mask"
+description = """
+Wear this to spook your friends! This mask has a human-like skull face and gives
+you a +5 bonus to both the Intimidate skill and the Haggle skill when worn."""
+drop_location = "DDO Store, Trivia Contest reward for Correct Answer"
+icon = "Helmet_34c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 5

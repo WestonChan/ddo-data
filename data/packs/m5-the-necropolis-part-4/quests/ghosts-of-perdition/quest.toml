@@ -1,0 +1,26 @@
+name = "Ghosts of Perdition"
+bestowed_by = "Bittany Devile"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Ghosts of Perdition (epic)"
+favor = 6
+pack = "The Necropolis, Part 4"
+patron = "The Silver Flame"
+zone = "Glacial Abyss"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Ghosts_of_Perdition"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 29

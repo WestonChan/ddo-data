@@ -1,0 +1,29 @@
+name = "Ancient Band (Level 24)"
+description = """
+This metallic band has suffered through thousands of years of wear. The scratches
+on its surface are so numerous that any shine the metal once had is gone forever."""
+drop_location = "Return to Madstone Crater, end chest (Epic Hard)"
+icon = "Ring_12"
+item_category = "Jewelry"
+material = "Adamantine"
+minimum_level = 24
+slot = "Ring"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 7
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"

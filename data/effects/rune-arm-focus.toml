@@ -1,0 +1,10 @@
+name = "Rune Arm Focus"
+description_template = "{1} %b1 bonus to the DC of Rune Arm spells."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Rune Arm Focus +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Rune Arm Spell Focus"

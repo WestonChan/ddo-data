@@ -1,0 +1,20 @@
+name = "Topaz of Feather Fall"
+description = "You fall at the same speed as a feather"
+family = "Topaz"
+icon = "Topaz"
+min_level = 4
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling damage"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

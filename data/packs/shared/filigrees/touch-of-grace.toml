@@ -1,0 +1,94 @@
+[[row]]
+name = "Touch of Grace: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "TouchOfGrace"
+menu = "Ravenloft"
+set = "Touch of Grace"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Touch of Grace: Charisma: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Touch of Grace: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "TouchOfGrace"
+menu = "Ravenloft"
+set = "Touch of Grace"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Touch of Grace: Wisdom: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Touch of Grace: +10 Healing Amplification"
+description = """
++10 Healing Amplification
+Rare: +2 MRR"""
+icon = "TouchOfGrace"
+menu = "Ravenloft"
+set = "Touch of Grace"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Touch of Grace: Healing Amplification: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Touch of Grace: +12 Positive Spell Power"
+description = """
++12 Positive spell power
+Rare: +4 Universal Spell power"""
+icon = "TouchOfGrace"
+menu = "Ravenloft"
+set = "Touch of Grace"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Touch of Grace: Positive Spell Power: Rare +4 Universal Spell power"
+effect_type = "UniversalSpellPower"
+is_rare = true

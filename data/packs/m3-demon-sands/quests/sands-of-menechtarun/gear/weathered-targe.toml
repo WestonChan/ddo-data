@@ -1,0 +1,73 @@
+name = "Weathered Targe"
+description = """
+This ancient, worn shield is crafted from densewood. Despite its age and exposure
+to the elements, it still provides excellent protection."""
+drop_location = "Sands of Menechtarun, Undead Area: Whirling Ozann 's Chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+enhancement_bonus = 5
+icon = "Shield_8"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Darkwood"
+minimum_level = 10
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 8
+max_dex_bonus = 0
+shield_bonus = 8
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 6
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Densewood"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "undead area: whirling ozann 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Small Shield"

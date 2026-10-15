@@ -1,0 +1,23 @@
+name = "Trailblazer's Footwraps"
+description = "Subtle, but effective."
+drop_location = "Advance to level 15, End reward"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Tabaxi Trailblazer"
+slot = "Feet"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Speed V"
+value = 25
+value2 = 5
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

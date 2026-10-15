@@ -1,0 +1,36 @@
+name = "Mournlode Docent (Level 4)"
+description = """
+Metal armor constructed from valuable purple Mournlode crystal is imbued with
+a protective, almost holy power. Undead are seared by it, and it protects the
+wearer from evil."""
+drop_location = "Vaults of the Artificers, Turn in 400 Antique Coins; 400 Crude Talismans"
+enhancement_bonus = 1
+icon = "Docent_1k"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 4
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 3
+
+[[effect]]
+name = "Undead Guard"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

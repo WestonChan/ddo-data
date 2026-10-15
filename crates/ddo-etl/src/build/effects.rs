@@ -1,7 +1,7 @@
 use crate::map::buff::split_display_title;
 use crate::map::effect_map::EFFECT_MAP;
 use crate::xml::item_buffs::ItemBuffDefinition;
-use anyhow::{ensure, Result};
+use anyhow::{ensure, Context, Result};
 use ddo_model::enums::BonusType;
 use ddo_model::stats::{Stat, STATS};
 use rusqlite::{params, Transaction};
@@ -228,7 +228,7 @@ impl<'a> EffectCache<'a> {
                             .get(name)
                             .and_then(|name| BonusType::parse(name))
                             .map(BonusType::id),
-                        EFFECT_MAP.set_bonus_line_templates.get(name)
+                        EFFECT_MAP.set_bonus_line_templates.get(name),
                     ],
                 )?;
                 let family = self.families_by_id.get_mut(&stat_id).expect("seed stat cached");
@@ -298,19 +298,32 @@ impl<'a> EffectCache<'a> {
         }
         ensure!(!name.contains(" — "), "effect family {name:?} contains an em dash; add a [names] entry");
         validate_templates(name, verbose_name_template, description_template, count)?;
-        self.transaction.execute(
-            "INSERT INTO effects (id, name, verbose_name_template, description_template, home_bonus_type_id,
-                                  set_bonus_line_template)
-                 VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
-            params![
-                EFFECT_MAP.named_effect_ids.get(name),
-                name,
-                verbose_name_template,
-                description_template,
-                EFFECT_MAP.home_bonus_types.get(name).and_then(|name| BonusType::parse(name)).map(BonusType::id),
-                EFFECT_MAP.set_bonus_line_templates.get(name)
-            ],
-        )?;
+        let identity =
+            crate::tree::xml_entity_slug("effects", EFFECT_MAP.named_effect_ids.get(name).copied(), name, None);
+        self.transaction
+            .execute(
+                "INSERT INTO effects (id, name, verbose_name_template, description_template, home_bonus_type_id,
+                                  set_bonus_line_template, slug)
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+                params![
+                    EFFECT_MAP.named_effect_ids.get(name),
+                    name,
+                    verbose_name_template,
+                    description_template,
+                    EFFECT_MAP.home_bonus_types.get(name).and_then(|name| BonusType::parse(name)).map(BonusType::id),
+                    EFFECT_MAP.set_bonus_line_templates.get(name),
+                    identity
+                ],
+            )
+            .with_context(|| {
+                match self
+                    .transaction
+                    .query_row("SELECT name FROM effects WHERE slug = ?1", [&identity], |row| row.get::<_, String>(0))
+                {
+                    Ok(existing_name) => format!("effects slug collision {identity:?}: {existing_name:?} and {name:?}"),
+                    Err(_) => format!("inserting effect {name:?}"),
+                }
+            })?;
         let id = self.transaction.last_insert_rowid();
         self.families_by_name.insert(name.to_string(), id);
         self.families_by_id.insert(
@@ -940,9 +953,9 @@ mod tests {
         db.execute_batch(ddo_model::ddl()).unwrap();
         ddo_model::seeds::insert_all(&db).unwrap();
         db.execute(
-            "INSERT INTO items (name, slot_id, item_category, wiki_url) VALUES ('First Amount Only',
+            "INSERT INTO items (name, slot_id, item_category, wiki_url, slug) VALUES ('First Amount Only',
              (SELECT id FROM equipment_slots WHERE name = 'Feet'), 'Clothing',
-             'https://ddowiki.com/page/First_Amount_Only')",
+             'https://ddowiki.com/page/First_Amount_Only', 'first-amount-only')",
             [],
         )
         .unwrap();
@@ -986,9 +999,9 @@ mod tests {
         db.execute_batch(ddo_model::ddl()).unwrap();
         ddo_model::seeds::insert_all(&db).unwrap();
         db.execute(
-            "INSERT INTO items (name, slot_id, item_category, wiki_url) VALUES ('Shared Text Probe',
+            "INSERT INTO items (name, slot_id, item_category, wiki_url, slug) VALUES ('Shared Text Probe',
              (SELECT id FROM equipment_slots WHERE name = 'Feet'), 'Clothing',
-             'https://ddowiki.com/page/Shared_Text_Probe')",
+             'https://ddowiki.com/page/Shared_Text_Probe', 'shared-text-probe')",
             [],
         )
         .unwrap();
@@ -1014,9 +1027,9 @@ mod tests {
         db.execute_batch(ddo_model::ddl()).unwrap();
         ddo_model::seeds::insert_all(&db).unwrap();
         db.execute(
-            "INSERT INTO items (name, slot_id, item_category, wiki_url) VALUES ('Stat Slot Check',
+            "INSERT INTO items (name, slot_id, item_category, wiki_url, slug) VALUES ('Stat Slot Check',
              (SELECT id FROM equipment_slots WHERE name = 'Feet'), 'Clothing',
-             'https://ddowiki.com/page/Stat_Slot_Check')",
+             'https://ddowiki.com/page/Stat_Slot_Check', 'stat-slot-check')",
             [],
         )
         .unwrap();

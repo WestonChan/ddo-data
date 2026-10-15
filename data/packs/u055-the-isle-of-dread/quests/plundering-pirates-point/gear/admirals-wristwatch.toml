@@ -1,0 +1,39 @@
+name = "Admiral's Wristwatch"
+description = """
+This bracer features a small watch and an intricate compass sewn into the lining.
+It's perfect for finding your way in the storms."""
+drop_location = "Plundering Pirates' Point, End chest"
+icon = "Bracers_19"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 7
+slot = "Wrists"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Plundering Pirates' Point"

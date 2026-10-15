@@ -1,0 +1,23 @@
+name = "Silver Flame Pendant"
+description = """
+This pendant of the Silver Flame has been transformed by the altars of blood
+and darkness."""
+drop_location = "The Shadow Crypt, altar; upgraded from Silver Flame Amulet"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Neck"
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 5
+
+[[effect]]
+name = "Deathblock"
+
+[[source]]
+chest = "altar"
+kind = "quest"
+loot_type = "chest"
+name = "The Shadow Crypt"

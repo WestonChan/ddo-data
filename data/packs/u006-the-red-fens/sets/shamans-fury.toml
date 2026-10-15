@@ -1,0 +1,167 @@
+name = "Shaman's Fury"
+icon = "ShamansFury"
+
+[[item]]
+name = "Shaman's Band"
+
+[[item]]
+name = "Shaman's Beads"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Equipment"
+reason = "The wiki types Acid Spell Power as Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Acid Spell Power / Equipment"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 55
+reason = "The wiki gives Acid Spell Power +10 Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Acid Spell Power / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Equipment"
+reason = "The wiki types Cold Spell Power as Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Cold Spell Power / Equipment"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 55
+reason = "The wiki gives Cold Spell Power +10 Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Cold Spell Power / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Equipment"
+reason = "The wiki types Electric Spell Power as Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Electric Spell Power / Equipment"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 55
+reason = "The wiki gives Electric Spell Power +10 Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Electric Spell Power / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Equipment"
+reason = "The wiki types Fire Spell Power as Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Fire Spell Power / Equipment"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 55
+reason = "The wiki gives Fire Spell Power +10 Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Fire Spell Power / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Acid Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Acid Spell Lore / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Cold Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Cold Spell Lore / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Electric Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Electric Spell Lore / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Fire Spell Lore +2 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Fire Spell Lore / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Lore"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Lore"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Lore"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Lore"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [55]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+]

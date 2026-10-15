@@ -1,0 +1,40 @@
+name = "Jetscale Belt"
+description = "The dark scales on this belt clatter as you walk."
+drop_location = "Wish Upon a Card, end chest"
+icon = "Belt_14"
+item_category = "Clothing"
+material = "Black Dragonscale"
+minimum_level = 10
+slot = "Waist"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Quality"
+value = 18
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 23
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 21
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wish Upon a Card"

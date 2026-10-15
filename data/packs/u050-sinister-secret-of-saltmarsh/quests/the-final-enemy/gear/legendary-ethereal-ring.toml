@@ -1,0 +1,53 @@
+name = "Legendary Ethereal Ring"
+description = "Light enough to forget you're even wearing it, sometimes."
+drop_location = "The Final Enemy, end chest, or Legendary version of Epic Ethereal Ring"
+icon = "Ring_26d"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 30
+slot = "Ring"
+
+[[clickie]]
+name = "Invisibility"
+clickie = "Invisibility"
+
+[[effect]]
+name = "Enhanced Ghostly"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Invisibility"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic ethereal ring"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Enemy"

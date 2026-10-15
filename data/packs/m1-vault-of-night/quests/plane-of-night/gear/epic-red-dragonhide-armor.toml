@@ -1,0 +1,55 @@
+name = "Epic Red Dragonhide Armor"
+description = """
+Leather armor forged from the scales of the Red Dragon, Velah . This suit of
+armor can be repaired by a smith knowledgeable in black dragonscale repair
+techniques."""
+drop_location = "Plane of Night"
+enhancement_bonus = 6
+icon = "LightArmor_12"
+item_category = "Armor"
+item_type = "Light"
+material = "Red Dragonscale"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 8
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 15
+
+[[effect]]
+name = "Eternal Fire"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Fire Guard II"
+
+[[effect]]
+name = "Incineration Guard"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

@@ -1,0 +1,10 @@
+name = "Legendary Steam"
+description = """
+Requires Water and Positive only
+Attacks and offensive spells have a [15%] chance to deal untyped
+damage. [70-120, ~86 average]"""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

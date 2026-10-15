@@ -1,0 +1,31 @@
+name = "Cunning Trinket"
+description = """
+Pirates have keen minds that allow them to outsmart their foes. This trinket
+gives you boosts to the effectiveness of your spells."""
+drop_location = "Treasure of Crystal Cove, Turn in Lesser Cunning Trinket (and other ingredients) at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_69"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 4
+slot = "Trinket"
+
+[[effect]]
+name = "Upgradeable - Tier 2"
+
+[[effect]]
+name = "Pirate Cleverness"
+bonus_type = "Pirate"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

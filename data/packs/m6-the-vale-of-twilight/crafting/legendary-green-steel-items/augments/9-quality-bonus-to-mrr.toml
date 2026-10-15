@@ -1,0 +1,19 @@
+name = "+9 Quality bonus to MRR"
+description = "Opposition/Any: +9 Quality bonus to MRR."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Quality"
+value = 9
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Quality"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

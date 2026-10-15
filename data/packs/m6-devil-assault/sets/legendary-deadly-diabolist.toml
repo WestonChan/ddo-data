@@ -1,0 +1,26 @@
+name = "Legendary Deadly Diabolist"
+icon = "DeadlyDiabolist"
+
+[[item]]
+name = "Legendary Diabolist's Docent"
+
+[[item]]
+name = "Legendary Diabolist's Ring"
+
+[[item]]
+name = "Legendary Diabolist's Robe"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Hireling Abilities"
+value = 12
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Hireling Abilities"
+effect_type = "HirelingAbilityBonus"

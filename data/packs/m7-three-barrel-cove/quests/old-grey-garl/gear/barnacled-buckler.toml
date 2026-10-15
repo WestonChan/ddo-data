@@ -1,0 +1,67 @@
+name = "Barnacled Buckler"
+description = """
+What strange odyssey in the Thunder Sea granted this buckler its remarkable
+powers may ever be secrets of the ocean's angry waves."""
+drop_location = "Old Tomb, New Tenants, End chest"
+enhancement_bonus = 7
+icon = "Shield_21"
+item_category = "Shield"
+item_type = "Buckler"
+material = "Densewood"
+minimum_level = 24
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 11
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Corrosive Salt"
+
+[[effect]]
+name = "Vulnerability Guard"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 12
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Old Grey Garl"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.8
+handedness = "Off-hand"
+weapon_type = "Buckler"

@@ -1,0 +1,10 @@
+name = "Vertigo"
+description_template = "This effect gives a {1} %b1 bonus to the DC to resist the character's Trip and Improved Trip attempts."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Vertigo +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Trip DC"

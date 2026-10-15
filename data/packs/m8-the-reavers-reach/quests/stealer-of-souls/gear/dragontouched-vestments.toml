@@ -1,0 +1,41 @@
+name = "Dragontouched Vestments"
+description = """
+This outfit is embroidered with several ancient draconic runes that appear to
+be dormant. Perhaps untold powers could be awakened if a power source could
+be found."""
+drop_location = "Dragontouched Armor, Turn in 50 Draconic Runes &amp; Complete the quest Stealer of Souls"
+icon = "Cloth_16"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Dragontouched"
+
+[[socket]]
+slot = "crafting: eldritch rune"
+
+[[socket]]
+slot = "crafting: tempest rune"
+
+[[socket]]
+slot = "crafting: sovereign rune"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragontouched Armor"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Stealer of Souls"

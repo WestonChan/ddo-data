@@ -1,0 +1,46 @@
+name = "University Bulwark's Reinforced Shirt"
+description = "While still light, this shirt offers an astounding amount of protection."
+drop_location = "Grand Theft Aureon, End chest"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 18
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 104
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Grand Theft Aureon"

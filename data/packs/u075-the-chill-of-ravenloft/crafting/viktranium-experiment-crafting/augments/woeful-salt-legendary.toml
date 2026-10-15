@@ -1,0 +1,11 @@
+name = "Woeful Salt (Legendary)"
+description = """
+Your attacks and offensive spells have a chance to significantly slow your enemies.
+This inflicts 8 stacks, which fade over time. This effect has a short internal
+cooldown. Doesn't affect bosses."""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

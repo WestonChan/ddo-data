@@ -1,0 +1,25 @@
+name = "+5 Will Save"
+adds_augment = "Accessory Subjugation"
+variant = "Water:Opposition:Ethereal"
+description = """
+Will Save +5: +5 Resistance bonus to your Will save.
+Water:Opposition:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Resistance"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[slot]]
+slot = "crafting: accessory invasion"

@@ -1,0 +1,28 @@
+name = "Skirmisher's Bracers (Level 26)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Army of Shadow, End reward"
+icon = "Bracers_13"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Wrists"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 8
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Army of Shadow"

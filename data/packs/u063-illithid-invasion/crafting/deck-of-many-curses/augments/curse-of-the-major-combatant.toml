@@ -1,0 +1,28 @@
+name = "Curse of the Major Combatant"
+description = "+5 Fortune Bonus to Melee Power"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Fortune"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Fortune"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Curse of Major Combatant"
+reason = "The wiki names the curse Curse of the Major Combatant."
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[slot]]
+slot = "crafting: deck curse"

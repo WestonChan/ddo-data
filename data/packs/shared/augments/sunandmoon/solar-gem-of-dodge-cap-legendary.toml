@@ -1,0 +1,31 @@
+name = "Solar Gem of Dodge Cap (Legendary)"
+description = """
++3% Legendary Bonus to Dodge Cap.
+Drops in: Special Delivery, end chest (rare)
+The Chill of Ravenloft (Legendary), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Dodge Cap"
+bonus_type = "Legendary"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Legendary"
+effect = "Dodge Cap"
+effect_type = "DodgeCapBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"

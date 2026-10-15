@@ -1,0 +1,25 @@
+name = "The Lava Caves - Epic Time is Money"
+difficulties = []
+is_challenge = true
+max_level = 20
+pack = "Vaults of the Artificers"
+patron = "House Cannith"
+
+[[note]]
+kind = "quest"
+field = "pack"
+upstream = "Free to Play"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+url = "https://ddowiki.com/page/Lava_Caves:_Time_is_Money_-_EPIC"
+read = "2026-10-05"
+
+[[note]]
+kind = "quest"
+field = "patron"
+reason = "The Cannith challenge awards House Cannith favor."
+url = "https://ddowiki.com/page/Lava_Caves:_Time_is_Money_-_EPIC"
+read = "2026-10-05"
+
+[[run]]
+tier = "heroic"
+level = 15

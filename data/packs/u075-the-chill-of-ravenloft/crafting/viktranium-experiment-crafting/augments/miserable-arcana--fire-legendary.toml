@@ -1,0 +1,21 @@
+name = "Miserable Arcana: Fire (Legendary)"
+description = "+159 Equipment bonus to Fire Spellpower."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Fire Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [159]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

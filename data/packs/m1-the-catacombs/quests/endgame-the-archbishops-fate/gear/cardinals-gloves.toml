@@ -1,0 +1,29 @@
+name = "Cardinal's Gloves"
+description = """
+These fine gloves are incredibly soft to the touch. Unfortunately, they do not
+appear particularly resistant to harm."""
+drop_location = "Endgame: The Archbishop's Fate, End chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Hands"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Endgame: The Archbishop's Fate"

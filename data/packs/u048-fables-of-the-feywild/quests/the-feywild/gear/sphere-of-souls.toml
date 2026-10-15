@@ -1,0 +1,54 @@
+name = "Sphere of Souls"
+description = """
+FEYTWISTED Docent
+
+This is a coalesced orb of the Mists of Ravenloft... Somehow yours for the
+taking. It reminds you of adventures you've had... Or were those adventures
+yet to come?"""
+drop_location = "The Feywild, Feytwisted chests"
+enhancement_bonus = 15
+icon = "Docent_3e"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 29
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"

@@ -1,0 +1,1321 @@
+name = "Assassin"
+background = "RogueBackground"
+icon = "Rogue"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Assassin: Knife in the Darkness"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain proficiency with Kukris."
+icon = "AssKnifeInTheDarkness"
+internal_name = "AssCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Kukri",
+]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Assassin: Dagger in the Back"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain +1 damage and +10% Fortification Bypass."
+icon = "AssDaggerInTheBack"
+internal_name = "AssCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "FortificationBypass"
+
+[[enhancement.requirement]]
+items = ["AssCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Assassin: Assassin's Trick"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Activate: Target opponent loses their immunity to sneak attack and 25% of their
+fortification for 15 seconds.
+Cooldown: 6 seconds"""
+icon = "AssAssassinsTrick"
+internal_name = "AssCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.requirement]]
+items = ["AssCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Assassin: Nimbleness"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+On Hit: Up to once every 2 seconds, you gain 1% dodge for 6 seconds.
+This effect can stack up to 10 times. +5 Melee Power."""
+icon = "AssNimbleness"
+internal_name = "AssCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.requirement]]
+items = ["AssCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Assassin: Lethality"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While in light or cloth armor you gain +1 Insight bonus to Critical Damage
+Multiplier for any one-handed weapon you are wielding.
+Note: Also works with Orbs, Shields and offhand weapons when Two Weapon Fighting."""
+icon = "AssLethality"
+internal_name = "AssCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "Weapon_CriticalMultiplier"
+targets = [
+    "Bastard Sword",
+    "Battle Axe",
+    "Club",
+    "Dagger",
+    "Dwarven Axe",
+    "Hand Axe",
+    "Heavy Mace",
+    "Heavy Pick",
+    "Kama",
+    "Khopesh",
+    "Kukri",
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Longsword",
+    "Morningstar",
+    "Rapier",
+    "Scimitar",
+    "Shortsword",
+    "Sickle",
+    "Warhammer",
+]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["AssCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Assassin: Deadly Shadow"
+cost_per_rank = [1]
+description = """
+You gain +2 Dexterity and +2 Intelligence.
+You gain 10 Melee Power and +4 Sneak Attack dice.
+You gain +4 to Reflex Saving Throws.
+You gain +2 to the DC of your Assassinate."""
+icon = "AssDeadlyShadow"
+internal_name = "AssCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AssCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Dexterity",
+    "Intelligence",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.requirement]]
+items = ["AssCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "AssCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Assassin: Poison Strikes I"
+cost_per_rank = [2]
+description = """
+Select one of three poisonous attacks. These attacks deal +30% damage and apply
+an "Assassin's Mark" to an opponent for 10 seconds on hit, enabling Weakening
+Strikes and Deadly Strikes to affect that opponent.
+Cooldown: 6 seconds"""
+icon = "AssPoisonStrikes"
+internal_name = "AssPoisonStrikesI"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Heartseeker Poison"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Poison Attack: On damage: The target gains the Assassin's Mark state,
+-1 Fortitude save (stacks 5 times), and if it is an Elemental, becomes vulnerable
+to Poison. On Critical: 1d6 Constitution damage.
+On Vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue
+level + INT modifier)"""
+icon = "AssHeartseekersPoison"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Assassin: Heartseeker Poison"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Fortitude"
+description = "Melee Poison Attack: On vorpal: Heartseeker"
+icon = "AssHeartseekersPoison"
+mod_ability = ["Intelligence"]
+tactical = "Poison"
+
+[[enhancement.selection]]
+name = "Ice Chill Poison"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Poison Attack: On damage: The target gains the Assassin's Mark state,
+-1 Reflex save (stacks 5 times) and if it is an Undead, becomes vulnerable to
+Poison. On Critical: 1d6 Dexterity damage.
+On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
+25% chance for additional save when the affected creature is damaged."""
+icon = "AssIceChillPoison"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Assassin: Ice Chill Poison"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Fortitude"
+description = "Melee Poison Attack: On vorpal: Paralysis"
+icon = "AssIceChillPoison"
+mod_ability = ["Intelligence"]
+tactical = "Poison"
+
+[[enhancement.selection]]
+name = "Soulshatter Poison"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Poison Attack: On damage: The target gains the Assassin's Mark state,
+-1 Will save (stacks 5 times) and if it is an Outside, becomes vulnerable to Poison.
+On Critical: 1d6 Wisdom damage,
+On Vorpal: Shattermantle (-100 Spell Resistance for 10 seconds;
+Will save to negate, DC 10 + half Rogue level + INT modifier)"""
+icon = "AssSoulshatterPoison"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Assassin: Soulshatter Poison"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Will"
+description = "Melee Poison Attack: On Vorpal: Shattermantle"
+icon = "AssSoulshatterPoison"
+mod_ability = ["Intelligence"]
+tactical = "Poison"
+
+[[enhancement]]
+name = "Assassin: Venomed Blades"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Imbue Toggle: On hit: 1d[4/6/8] poison damage with weapon attacks, scaling with 200%
+of highest of Melee or Ranged power."""
+icon = "AssVenomedBlades"
+internal_name = "AssVenomedBlades"
+is_clickie = true
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.stance]]
+name = "Venomed Blades"
+description = "On hit: 1d8 poison damage per Imbue Dice scaling with Melee or Ranged power."
+group_name = "Imbue"
+icon = "AssVenomedBlades"
+
+[[enhancement]]
+name = "Assassin: Shiv"
+cost_per_rank = [1]
+description = """
+Deals: +[10/20/30]% Damage
+Melee Attack: On hit causes your target to become Bluffed.
+On Sneak Attack: Target also gains a -2 Fortitude Save against Poisons for 20 seconds.
+(Stacks 5 times.) (Cooldown: 12 seconds)
+Bluff duration is 1 second plus 1 second per four Rogue levels."""
+icon = "AssShiv"
+internal_name = "AssShiv"
+is_clickie = true
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Assassin: Sneak Attack Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants +1 Sneak Attack die and +1 to hit when performing sneak attacks."
+icon = "AssSneakAttackTraining"
+internal_name = "AssSneakAttackTrainingI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+extra_types = ["SneakAttackAttack"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Assassin: Stealthy"
+cost_per_rank = [1]
+description = """
++[1/2/3] Hide and Move Silently. +[25/50/75]%  enhancement bonus to movement speed
+while sneaking."""
+icon = "AssStealthy"
+internal_name = "AssStealthy"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Assassin: Poison Strikes II"
+cost_per_rank = [2]
+description = """
+Select one of three poisonous attacks. These attacks deal +30% damage and apply
+an "Assassin's Mark" to an opponent for 10 seconds on hit, enabling Weakening
+Strikes and Deadly Strikes to affect that opponent.
+Cooldown: 6 seconds"""
+icon = "AssPoisonStrikes"
+internal_name = "AssPoisonStrikesII"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Heartseeker Poison"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Poison Attack: On damage: The target gains the Assassin's Mark state,
+-1 Fortitude save (stacks 5 times), and if it is an Elemental, becomes vulnerable
+to Poison. On Critical: 1d6 Constitution damage.
+On Vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue
+level + INT modifier)"""
+icon = "AssHeartseekersPoison"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Assassin: Heartseeker Poison"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Fortitude"
+description = "Melee Poison Attack: On vorpal: Heartseeker"
+icon = "AssHeartseekersPoison"
+mod_ability = ["Intelligence"]
+tactical = "Poison"
+
+[[enhancement.selection]]
+name = "Ice Chill Poison"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Poison Attack: On damage: The target gains the Assassin's Mark state,
+-1 Reflex save (stacks 5 times) and if it is an Undead, becomes vulnerable to
+Poison. On Critical: 1d6 Dexterity damage.
+On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
+25% chance for additional save when the affected creature is damaged."""
+icon = "AssIceChillPoison"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Assassin: Ice Chill Poison"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Fortitude"
+description = "Melee Poison Attack: On vorpal: Paralysis"
+icon = "AssIceChillPoison"
+mod_ability = ["Intelligence"]
+tactical = "Poison"
+
+[[enhancement.selection]]
+name = "Soulshatter Poison"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Poison Attack: On damage: The target gains the Assassin's Mark state,
+-1 Will save (stacks 5 times) and if it is an Outside, becomes vulnerable to Poison.
+On Critical: 1d6 Wisdom damage,
+On Vorpal: Shattermantle (-100 Spell Resistance for 10 seconds;
+Will save to negate, DC 10 + half Rogue level + INT modifier)"""
+icon = "AssSoulshatterPoison"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Assassin: Soulshatter Poison"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Will"
+description = "Melee Poison Attack: On Vorpal: Shattermantle"
+icon = "AssSoulshatterPoison"
+mod_ability = ["Intelligence"]
+tactical = "Poison"
+
+[[enhancement.selector_exclusion]]
+internal_name = "AssPoisonStrikesI"
+
+[[enhancement]]
+name = "Assassin: Toxin Affinity"
+cost_per_rank = [1]
+description = """
++[1/2/3] Imbue Dice.
++[1/2/3] Fortitude saves vs. Poisons and to the save DC of your Poison attacks"""
+icon = "AssToxinAffinity"
+internal_name = "AssToxinAffinity"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Poison"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["AssVenomedBlades"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Assassin: Bleed Them Out"
+cost_per_rank = [1]
+description = """
+Deals: +[10/20/30]% Damage
+Melee Attack: On successful damage causes your opponent to bleed.
+The bleed effect can stack up to 5 times. (Cooldown: 6 seconds)
+Bleed deals 1d6 damage every 2 seconds for 14 seconds.
+This damage scales with 200% Melee Power."""
+icon = "AssBleedThemOut"
+internal_name = "AssBleedThemOut"
+is_clickie = true
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Assassin: Sneak Attack Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks."
+icon = "AssSneakAttackTraining"
+internal_name = "AssSneakAttackTrainingII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+extra_types = ["SneakAttackAttack"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["AssSneakAttackTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Assassin: Action Boost: Power"
+cost_per_rank = [1]
+description = """
+Activate to gain a +[10/20/30] Action Boost bonus to Melee Power and
+Ranged Power for 20 seconds. (Cooldown: 30 seconds)"""
+icon = "AssDamageBoost"
+internal_name = "AssDamageBoost"
+is_clickie = true
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Assassin: Poison Strikes III"
+cost_per_rank = [2]
+description = """
+Select one of three poisonous attacks. These attacks deal +30% damage and apply
+an "Assassin's Mark" to an opponent for 10 seconds on hit, enabling Weakening
+Strikes and Deadly Strikes to affect that opponent.
+Cooldown: 6 seconds"""
+icon = "AssPoisonStrikes"
+internal_name = "AssPoisonStrikesIII"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Heartseeker Poison"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Poison Attack: On damage: The target gains the Assassin's Mark state,
+-1 Fortitude save (stacks 5 times), and if it is an Elemental, becomes vulnerable
+to Poison. On Critical: 1d6 Constitution damage.
+On Vorpal: Heartseeker (-5% hit points, Fort save to negate DC 10 + half Rogue
+level + INT modifier)"""
+icon = "AssHeartseekersPoison"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Assassin: Heartseeker Poison"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Fortitude"
+description = "Melee Poison Attack: On vorpal: Heartseeker"
+icon = "AssHeartseekersPoison"
+mod_ability = ["Intelligence"]
+tactical = "Poison"
+
+[[enhancement.selection]]
+name = "Ice Chill Poison"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Poison Attack: On damage: The target gains the Assassin's Mark state,
+-1 Reflex save (stacks 5 times) and if it is an Undead, becomes vulnerable to
+Poison. On Critical: 1d6 Dexterity damage.
+On vorpal: Paralysis (Fort DC 10 + half Rogue level + INT modifier negates)
+25% chance for additional save when the affected creature is damaged."""
+icon = "AssIceChillPoison"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Assassin: Ice Chill Poison"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Fortitude"
+description = "Melee Poison Attack: On vorpal: Paralysis"
+icon = "AssIceChillPoison"
+mod_ability = ["Intelligence"]
+tactical = "Poison"
+
+[[enhancement.selection]]
+name = "Soulshatter Poison"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Poison Attack: On damage: The target gains the Assassin's Mark state,
+-1 Will save (stacks 5 times) and if it is an Outside, becomes vulnerable to Poison.
+On Critical: 1d6 Wisdom damage,
+On Vorpal: Shattermantle (-100 Spell Resistance for 10 seconds;
+Will save to negate, DC 10 + half Rogue level + INT modifier)"""
+icon = "AssSoulshatterPoison"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Assassin: Soulshatter Poison"
+amount = [10]
+dc_type = "Negate"
+dc_versus = "Will"
+description = "Melee Poison Attack: On Vorpal: Shattermantle"
+icon = "AssSoulshatterPoison"
+mod_ability = ["Intelligence"]
+tactical = "Poison"
+
+[[enhancement.selector_exclusion]]
+internal_name = "AssPoisonStrikesI"
+
+[[enhancement.selector_exclusion]]
+internal_name = "AssPoisonStrikesII"
+
+[[enhancement]]
+name = "Assassin: Critical Mastery"
+cost_per_rank = [1]
+description = "+[1/2/3] bonus to critical damage and to confirm critical hits."
+icon = "AssCriticalMastery"
+internal_name = "AssCriticalMastery"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AssCriticalMastery",
+    "Critical Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = [
+    "AssCriticalMastery",
+    "Critical Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Assassin: Shadow Dagger"
+cost_per_rank = [1]
+description = """
+Throws a dagger made of solidified shadows at your enemy.
+Deals [4/6/8]d8 unholy damage and blinds the target
+Fortitude DC [10/14/18] + Rogue Level + [Int/Dex] Mod + Assassinate Negates blindness.
+This damage scales with 400% Melee Power.
+Cooldown: [30/20/10] seconds"""
+icon = "AssShadowDagger"
+internal_name = "AssShadowDagger"
+is_clickie = true
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.dc]]
+name = "Assassin: Shadow Dagger"
+amount = [
+    10,
+    14,
+    18,
+]
+class_level = "Rogue"
+dc_type = "Blindness"
+dc_versus = "Fortitude"
+description = """
+Throws a dagger made of solidified shadows at your enemy.
+Deals [4/6/8]d8 unholy damage and blinds the target."""
+icon = "AssShadowDagger"
+mod_ability = [
+    "Intelligence",
+    "Dexterity",
+]
+tactical = "Assassinate"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Assassin: Sneak Attack Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants +1 Sneak Attack die and +1 to hit when performing sneak attacks"
+icon = "AssSneakAttackTraining"
+internal_name = "AssSneakAttackTrainingIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+extra_types = ["SneakAttackAttack"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["AssSneakAttackTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Assassin: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Dexterity or Intelligence"
+icon = "DexInt"
+internal_name = "AssAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Assassin: Execute"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Assassinate attack: If the target is below 30% health, deal 500 damage.
+This damage scales with 400% Melee Power. (Cooldown: 15 seconds)
+Shares a cooldown with A Good Death and Merciful Strike (melee/ranged versions)."""
+icon = "AssExecute"
+internal_name = "AssExecute"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Assassin: Killer"
+cost_per_rank = [1]
+description = """
+When you kill a target, gain +5% Morale bonus to Doublestrike and Doubleshot for 15 seconds.
+Weak enemies will not always produce this effect. The killer buff can stack up
+to [2/3/4] times.
+Doublestrike: Your main hand melee attacks gain a percentage chance to strike twice.
+Doubleshot: Your ranged attacks including thrown attacks, gain a percent chance
+to attack with an extra projectile. Repeating Crossbows have a reduced chance to
+produce extra shots."""
+icon = "AssKiller"
+internal_name = "AssKiller"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    20,
+]
+bonus_type = "Morale"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Killer"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Assassin: Weakening Strikes"
+cost_per_rank = [2]
+description = """
+Your attacks reduce the Melee and Ranged Power of opponents by (10 + Rogue Level/2)
+for 10 seconds if you attack an enemy with an "Assassin's Mark."
+(Applied by Poison Strikes.)"""
+icon = "AssWeakeningStrikes"
+internal_name = "AssWeakeningStrikes"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Assassin: Sneak Attack Training IV"
+cost_per_rank = [2]
+description = "Grants +1 Sneak Attack die and +1 to hit when performing sneak attacks"
+icon = "AssSneakAttackTraining"
+internal_name = "AssSneakAttackTrainingIV"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+extra_types = ["SneakAttackAttack"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AssSneakAttackTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Assassin: Ability II"
+cost_per_rank = [2]
+description = "Choose either Dexterity or Intelligence"
+icon = "DexInt"
+internal_name = "AssAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AssAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Assassin: Assassinate"
+cost_per_rank = [1]
+description = """
+Stealth Melee Assassinate Attack: On Sneak Attack: +10 Sneak Attack dice.
+Kills a target instantly, Fortitude save DC:
+10 + Rogue level + [Int/Dex] Mod + Assassinate bonuses negates.
+Cooldown: 12 seconds."""
+icon = "AssAssassinate"
+internal_name = "AssAssassinate"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.dc]]
+name = "Assassinate"
+amount = [10]
+class_level = "Rogue"
+dc_type = "Death"
+dc_versus = "Fortitude"
+description = """
+Stealth Melee Assassinate Attack:
+On Sneak Attack: Kills a target instantly, Fortitude save negates."""
+icon = "AssAssassinate"
+mod_ability = [
+    "Intelligence",
+    "Dexterity",
+]
+tactical = "Assassinate"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Assassin: Measure the Foe"
+cost_per_rank = [1]
+description = """
+Gain +6 Melee Power, +2 Dodge, +2 Maximum Dodge, +1 to hit and +1 to the DC's
+of your Assassinate abilities for every [4/2/1] seconds you remain stealthed.
+This effect stacks up to five times, and lasts 10 seconds after you come out of stealth."""
+icon = "AssMeasureTheFoe"
+internal_name = "AssMeasureTheFoe"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    30,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Measure the Foe"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    10,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sneak"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    5,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sneak"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    5,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sneak"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Assassin: Deadly Strikes"
+cost_per_rank = [2]
+description = """
+Your attacks against enemies with an "Assassin's Mark".
+(Applied by Poison Strikes) do +10 damage."""
+icon = "AssDeadlyStrikes"
+internal_name = "AssDeadlyStrikes"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Assassin: Knife Specialization"
+cost_per_rank = [2]
+description = """
+You gain a +1 Competence bonus to Critical Damage Multiplier with Daggers and Kukris.
+Daggers also gain a +1 Competence bonus to Critical Threat Range. If you have
+Improved Critical: Piercing, this bonus to Threat Range is doubled."""
+icon = "AssKnifeSpecialization"
+internal_name = "AssKnifeSpecialization"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = [
+    "Dagger",
+    "Kukri",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Assassin: Knife Specialization"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Dagger"]
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Assassin: Light Armor Mastery"
+cost_per_rank = [1]
+description = """
+Gain [2/4/6] to the maximum dexterity bonus of light armor and [2/4/6] PRR.
+Rank 3: +25% Competence bonus to Maximum Hit Points."""
+icon = "AssLightArmorMastery"
+internal_name = "AssLightArmorMastery"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+extra_types = ["PRR"]
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+rank = 3
+
+[[enhancement.requirement]]
+items = ["Rogue"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Rogue"]
+req_type = "Class"

@@ -1,0 +1,35 @@
+name = "Legendary Rune-Sigiled Belt"
+description = "The reflective sigils sewn into this belt absorb and redirect harmful curses."
+drop_location = "Fresh-baked Dreams, End chest, Mill chest"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 10
+
+[[effect]]
+name = "Protection from Evil +6"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, mill chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fresh-baked Dreams"

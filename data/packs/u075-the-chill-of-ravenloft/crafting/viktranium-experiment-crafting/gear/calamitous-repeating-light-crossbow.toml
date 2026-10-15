@@ -1,0 +1,45 @@
+name = "Calamitous Repeating Light Crossbow"
+description = "Small slots in this weapon could easily fit small augmentation devices."
+drop_location = "Viktranium Experiment crafting, Turn in 5 Bleak Alternators, Conductors, Insulators and Resistors at Heroic Viktranium Experiment Crafting in Ludendorf City Hall"
+enhancement_bonus = 4
+icon = "RepeatingLightCrossbow_1"
+item_category = "Weapon"
+item_type = "Repeating Light Crossbow"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Vampirism 1"
+
+[[socket]]
+slot = "lamordia: melancholic (weapon)"
+
+[[socket]]
+slot = "lamordia: dolorous (weapon)"
+
+[[socket]]
+slot = "lamordia: miserable (weapon)"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Viktranium Experiment Crafting"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Repeating Light Crossbow"

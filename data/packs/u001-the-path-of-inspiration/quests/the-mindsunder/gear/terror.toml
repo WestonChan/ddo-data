@@ -1,0 +1,97 @@
+name = "Terror"
+description = "This crystal greatsword terrorizes your enemies with psionic power."
+drop_location = "The Mindsunder, Optional End Chest (unlocked with 4 colored discs)"
+enhancement_bonus = 5
+icon = "Greatsword_17"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Gem"
+minimum_level = 18
+slot = "Main Hand"
+
+[[clickie]]
+name = "Phantasmal Killer"
+clickie = "Phantasmal Killer"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Fearsome"
+
+[[effect]]
+name = "Nightmares"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Phantasmal Killer"]
+
+[[socket]]
+slot = "crafting: suppressed power"
+
+[[socket.option]]
+name = "Adds intimidate +15 and Deception"
+description = """
+Intimidate +15: Passive: +15 Competence bonus to the Intimidate skill.
+Deception: This weapon is hard to focus upon and thus provides a +3 Enhancement
+bonus to Bluff checks. In addition, Deception weapons have a small chance to
+envelop the target in darkness, making them vulnerable to sneak attacks for a
+short time."""
+icon = "Upgrade"
+min_level = 18
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Intimidate"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Bluff"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Competence"
+effect = "Intimidate"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Bluff"
+effect_type = "SkillBonus"
+targets = ["Bluff"]
+
+[[source]]
+chest = "optional end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mindsunder"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 7
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "Two-handed"
+weapon_type = "Great Sword"

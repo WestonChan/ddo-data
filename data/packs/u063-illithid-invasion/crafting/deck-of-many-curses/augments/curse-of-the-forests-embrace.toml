@@ -1,0 +1,14 @@
+name = "Curse of the Forest's Embrace"
+description = "Fear Immunity, Cosmetic Fireflies"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[slot]]
+slot = "crafting: deck curse"

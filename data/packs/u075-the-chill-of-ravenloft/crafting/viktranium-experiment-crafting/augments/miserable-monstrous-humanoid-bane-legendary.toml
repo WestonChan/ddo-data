@@ -1,0 +1,24 @@
+name = "Miserable Monstrous Humanoid Bane (Legendary)"
+description = """
+This weapon is attuned specifically to hunt those who are descended from monsters
+dealing an additional 7d10 bane damage vs. Monstrous Humanoids."""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus = "Not Set"
+dice_damage = "Bane"
+dice_number = [7]
+dice_sides = [10]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Monstrous Humanoid"]
+req_type = "EnemyType"
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

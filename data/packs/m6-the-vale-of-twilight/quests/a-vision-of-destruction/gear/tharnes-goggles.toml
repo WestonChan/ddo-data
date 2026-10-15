@@ -1,0 +1,18 @@
+name = "Tharne's Goggles"
+description = """
+This pair of goggles was discovered by an infamous dungeon delver by the name
+of Tharne, during one of adventures in the ruins beneath Stormreach. Apparently
+his latest adventure did not go as well as previous exploits. There is said
+to be a matching set of bracers."""
+drop_location = "A Vision of Destruction, End chest"
+icon = "Goggles_1b"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 13
+slot = "Goggles"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "A Vision of Destruction"

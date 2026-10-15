@@ -1,0 +1,67 @@
+name = "Legendary Aegis of Aosu'riel"
+description = """
+This Large Shield bears the visage of the Undying Court, and was raised against
+you by the Archon Aosu'riel. Bear it with pride."""
+drop_location = "Seizing the Dawn, End chest"
+enhancement_bonus = 15
+icon = "Shield_2"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Mithral"
+minimum_level = 29
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 23
+max_dex_bonus = 2
+shield_bonus = 30
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Alignment Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 10
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Seizing the Dawn"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 8
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

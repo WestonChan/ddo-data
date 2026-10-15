@@ -1,0 +1,26 @@
+name = "Flesh Maker's Laboratory"
+bestowed_by = "Lowan Nilmani"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Flesh Maker's Laboratory (epic)"
+favor = 6
+pack = "The Necropolis, Part 4"
+patron = "The Silver Flame"
+zone = "Flesh Maker's Laboratory"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Flesh_Maker%27s_Laboratory"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 29

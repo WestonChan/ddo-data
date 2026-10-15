@@ -1,0 +1,11 @@
+name = "Woeful Acid (Legendary)"
+description = """
+Your attacks and offensive spells have a chance to reduce enemy Physical Resistance
+Rating and Positive Healing Amplification.
+(Undocumented: Grants Legendary Dust)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

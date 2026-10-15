@@ -1,0 +1,60 @@
+name = "Elemental Victory"
+description = """
+You have delved deep into the Temple of Elemental Evil, and conquered all four
+of its nodes; where will your journey take you next, weathered traveller?"""
+drop_location = "ToEE: Depths of the Temple, end chest (confirmed), ToEE: Air Node, dragon's hoard chests, ToEE: Fire Node, Periron chest, ToEE: Water Node, Jotun Rimeblade chest, and ToEE: Earth Node, Hyrelgas chest"
+icon = "Helmet_31"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 7
+slot = "Head"
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 10
+
+[[source]]
+chest = "dragon's hoard chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"
+
+[[source]]
+chest = "hyrelgas chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "periron chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"
+
+[[source]]
+chest = "jotun rimeblade chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"

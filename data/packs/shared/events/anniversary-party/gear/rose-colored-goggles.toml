@@ -1,0 +1,17 @@
+name = "Rose Colored Goggles"
+description = """
+Feeling nostalgic? Put these on to bring yourself back to 2006, where things
+were so much simpler."""
+drop_location = "Anniversary Party, Turn in 10"
+icon = "Goggles_3a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 30
+slot = "Goggles"
+
+[[effect]]
+name = "Echoes of 2006"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"

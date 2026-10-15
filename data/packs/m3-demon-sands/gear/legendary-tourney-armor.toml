@@ -1,0 +1,49 @@
+name = "Legendary Tourney Armor"
+description = """
+Full Plate armor designed for wear in Tourneys. Some sturdiness and protection
+has been sacrificed for ease of movement."""
+drop_location = "Legendary version of Epic Tourney Armor"
+enhancement_bonus = 15
+icon = "LightArmor_19a"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 25
+armor_type = "Light"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "DR 30/Adamantine"
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Greater Nimbleness"
+bonus_type = "Stacking"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

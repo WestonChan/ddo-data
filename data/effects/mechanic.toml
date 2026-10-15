@@ -1,0 +1,3 @@
+name = "Mechanic"
+description_template = "This item in one of two pieces of the Mechanic set. When both items are equipped you will gain a +15 Competence to Open Lock and Disable Device, and a +2 Exceptional bonus to all Dexterity based skills."
+verbose_name_template = "Mechanic"

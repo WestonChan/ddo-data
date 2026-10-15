@@ -47,6 +47,16 @@ git -C upstream sparse-checkout set Output/DataFiles
 cargo run -p ddo-etl -- build --source upstream/Output/DataFiles --out ddo.db
 ```
 
+The editable dataset is also checked in under [`data/`](data/README.md), one TOML file per entity or existing rules group. Build it without an upstream checkout:
+
+```bash
+cargo run -p ddo-etl -- build --data data --out ddo.db
+cargo run -p ddo-etl -- icons --data data --out icons
+cargo xtask round-trip --data data
+```
+
+`ddo-etl export --db ddo.db --out DIR` exports the data files from the database; PNGs are copied separately. See [data editing](data/README.md) and [image layout](docs/data-icons.md). Deployment continues to build from XML until V9 chunk 2.
+
 ### Available Commands
 
 | Command | Description |
@@ -87,7 +97,7 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 | `/v1/equipment-slots`, `/v1/weapon-types`, `/v1/damage-types`, `/v1/augment-slot-types` | Item vocabularies, and the valid values for the item and augment filters |
 | `/v1/quests`, `/v1/adventure-packs`, `/v1/patrons` | Quests and packs items and augments drop in (each item's `sources`); `/v1/quests` includes challenges (`is_challenge`, `max_level`) |
 | `/v1/dump.sqlite` | The whole database |
-| `/icons/{family}/{Name}.png` | Icons; `family` is `items`, `augments`, `feats`, `enhancements`, `spells`, `classes`, `filigrees`, `sets`, `sentient-gems` or `ui`, and `Name` is the row's `icon` column |
+| `/icons/{kind}/{Name}.png` | Icons; `kind` is the image category, such as `items`, `augments`, `feats`, `enhancements`, `stances`, or `sets`, and `Name` is the row's `icon` column |
 | `/v1/docs`, `/v1/openapi.json` | Interactive documentation and the OpenAPI 3.1 spec for that version; `/docs` and `/openapi.json` redirect to the latest |
 
 ## Deployment

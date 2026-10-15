@@ -1,0 +1,16 @@
+name = "Facet of Condensed Power"
+description = """
+Slotted Effect: Power Store: -10% Enhancement bonus to Spell
+Points cost reduction."""
+family = "Facets"
+icon = "Emerald"
+min_level = 32
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellCostReduction"
+
+[[slot]]
+slot = "green"

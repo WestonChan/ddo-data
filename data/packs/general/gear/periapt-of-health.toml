@@ -1,0 +1,13 @@
+name = "Periapt of Health"
+description = "A blue gem on a silver chain."
+drop_location = "Random, level ~2 chests/rewards"
+icon = "Necklace_2"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Neck"
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6

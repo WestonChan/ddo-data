@@ -1,0 +1,169 @@
+[[row]]
+name = "Purity of Spirit"
+acquire = "Train"
+description = "You gain 20 Spell Points per Favored Soul level and 30 Spell Points per Epic level."
+icon = "PurityOfHeart"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Heart Feat"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    20,
+    40,
+    60,
+    80,
+    100,
+    120,
+    140,
+    160,
+    180,
+    200,
+    220,
+    240,
+    260,
+    280,
+    300,
+    320,
+    340,
+    360,
+    380,
+    400,
+]
+bonus_type = "Feat"
+display_name = "Purity of Spirit: Favored Soul Levels"
+effect_type = "SpellPoints"
+stack_source = "Favored Soul"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330,
+    360,
+    390,
+    420,
+    450,
+    480,
+    510,
+    540,
+    570,
+    600,
+]
+bonus_type = "Feat"
+display_name = "Purity of Spirit: Epic Levels"
+effect_type = "SpellPoints"
+stack_source = "Epic"
+
+[[row]]
+name = "Stout of Heart"
+acquire = "Train"
+description = "You gain 4 Hit Points per Favored Soul level and 2 Hit Points per Epic/Legendary level."
+icon = "StoutOfHeart"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Heart Feat"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+    40,
+    44,
+    48,
+    52,
+    56,
+    60,
+    64,
+    68,
+    72,
+    76,
+    80,
+]
+bonus_type = "Feat"
+display_name = "Stout of Heart: Favored Soul Levels"
+effect_type = "Hitpoints"
+stack_source = "Favored Soul"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Stout of Heart: Epic Levels"
+effect_type = "Hitpoints"
+stack_source = "Epic"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Stout of Heart: Legendary Levels"
+effect_type = "Hitpoints"
+stack_source = "Legendary"

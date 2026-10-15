@@ -1,0 +1,21 @@
+name = "Wisdom +13"
+description = "Legendary enhancement bonus to Wisdom"
+family = "Slavelords_Legendary"
+icon = "SlavelordsPrefix"
+min_level = 28
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: legendary slavelords prefix"

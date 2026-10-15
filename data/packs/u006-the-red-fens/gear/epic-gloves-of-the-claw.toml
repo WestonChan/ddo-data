@@ -1,0 +1,36 @@
+name = "Epic Gloves of the Claw"
+description = """
+Drow warriors don these gloves before combat and are granted great power in
+battle. They claim the gloves are infused with Vulkoor's wrath."""
+drop_location = "Epic version of Gloves of the Claw"
+icon = "Gloves_2b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 20
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 38
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 9
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

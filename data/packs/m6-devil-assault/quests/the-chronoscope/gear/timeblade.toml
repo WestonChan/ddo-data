@@ -1,0 +1,49 @@
+name = "Timeblade"
+description = """
+A sword gifted with the power to bend time. Powerful blows against your enemies
+will slow their actions, and if you are falling and in danger it will slow
+your descent so that you land safely."""
+drop_location = "The Chronoscope, End reward"
+enhancement_bonus = 2
+icon = "Longsword_3a"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Paralyzing"
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Slowburst"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 4
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Longsword"

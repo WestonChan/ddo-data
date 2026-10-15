@@ -1,0 +1,36 @@
+name = "Legendary Deathwarden"
+description = """
+"Ward yourself from the unknown, steel yourself from the below." - The Ring's
+Inscription"""
+drop_location = "Sealed in Amber, End chest &amp; optional draw Strahd's attention chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Efficient Metamagic - Empower Healing II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Exceptional"
+value = 15
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sealed in Amber"

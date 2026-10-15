@@ -1,0 +1,64 @@
+name = "Tower Shield of the Fallen Age"
+description = "Wild magic has imbued entropy into this shield over the years."
+drop_location = "Portal to Below, end chest"
+enhancement_bonus = 5
+icon = "Shield_2"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Steel"
+minimum_level = 13
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 13
+max_dex_bonus = 2
+shield_bonus = 17
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Insight"
+value = 27
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 7
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 23
+
+[[effect]]
+name = "Legendary Conditioning"
+bonus_type = "Legendary"
+value = 20
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Portal to Below"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.6
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

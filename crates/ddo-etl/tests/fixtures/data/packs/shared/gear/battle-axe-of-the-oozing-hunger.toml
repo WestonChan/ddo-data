@@ -1,0 +1,71 @@
+name = "Battle Axe of the Oozing Hunger"
+description = "Test description: an axe that drips."
+drop_location = "Test source: The Grotto, end chest"
+enhancement_bonus = 15
+item_category = "Weapon"
+item_type = "Battle Axe"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger"
+read = "2026-09-29"
+
+[[citation]]
+field = "sources"
+url = "https://ddowiki.com/page/Item:Battle_Axe_of_the_Oozing_Hunger"
+read = "2026-09-29"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 49
+
+[[effect]]
+name = "Test Oozing Hunger"
+
+[[effect]]
+name = "Ethereal"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Ghosts of Perdition"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Grotto"
+
+[[weapon]]
+base_dice_bonus = 0
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Battle Axe"

@@ -1,0 +1,54 @@
+name = "The Hedge Trimmer"
+description = "A handy implement for cutting the hedges."
+drop_location = "Through the Tulgey Wood, locked chest, end chest"
+enhancement_bonus = 2
+icon = "Sickle_1"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Crystal"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Plant Bane 2"
+
+[[effect]]
+name = "Piercing 2"
+
+[[effect]]
+name = "Bleeding 2"
+
+[[effect]]
+name = "Maiming 2"
+
+[[effect]]
+name = "Crystal"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "locked chest, end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Through the Tulgey Wood"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Sickle"

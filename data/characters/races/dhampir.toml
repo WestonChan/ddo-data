@@ -1,0 +1,25 @@
+name = "Dhampir"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = "Dhampir are characters with innate connections to death and undeath. Many are half-Vampires one way or another, and have a life-draining bite."
+short_name = "Dhampir"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Strength"
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Dhampir"
+read = "2026-09-29"
+
+[[granted_feat]]
+feat = "Dhampir Traits"
+
+[[granted_feat]]
+feat = "Vampiric Bite"

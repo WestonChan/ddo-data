@@ -1,0 +1,432 @@
+[[row]]
+name = "Pact: Celestial"
+acquire = "Train"
+description = """
+Your patron is a divine Celestial, patron of those who wish to devote
+themselves to an unconventional method of worship. You will learn to channel
+the light and air around you into a righteous weapon, and utilize holy abilities
+to help your friends and pass judgment upon your enemies.
+
+Toggle on: Your Eldritch Blast deals +1 Electric damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Reflex saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)
+Adds Spells to your spell book at level
+1 - Bless
+5 - Soundburst
+9 - Magic Circle Against Evil
+14 - Prayer
+17 - Holy Aura
+19 - Freedom of Movement"""
+icon = "PactCelestial"
+source_name = "Warlock"
+
+[[row.dc]]
+name = "Pact: Celestial"
+amount = [19]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+description = """
+Toggle on: Your Eldritch Blast deals +1 Electric damage, plus 1d6 per bonus Pact Dice
+This damage is halved on a successful Reflex saving throw."""
+icon = "EpicEldritchBlast"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Warlock Pact"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    10,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Bless",
+    "Warlock",
+]
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Chaotic"]
+req_type = "AlignmentType"
+
+[[row.stance]]
+name = "Eldritch Blast: Focused"
+description = """
+Your Eldritch Blast deals +1 Electric damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Reflex saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)"""
+group_name = "Blast Shape"
+icon = "EpicEldritchBlast"
+
+[[row]]
+name = "Pact: Fey"
+acquire = "Train"
+description = """
+Your patron is a lord or lady of the fey, a creature of legend who holds
+secrets that were forgotten before the mortal races were born. This being's
+motivations are often inscrutable and sometimes whimsical and might involve
+a striving for greater magical power or the settling of age-old grudges.
+Toggle on: Your Eldritch Blast deals +1 Sonic damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Reflex saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)
+Adds Spells to your spell book at level
+1 - Obscuring Mist
+5 - Blindness
+9 - Slow
+14 - Greater Dispel Magic
+17 - Otto's Sphere of Dancing
+19 - Otto's Irresistible Dance"""
+icon = "PactFey"
+source_name = "Warlock"
+
+[[row.dc]]
+name = "Pact: Fey"
+amount = [19]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+description = """
+Toggle on: Your Eldritch Blast deals +1 Sonic damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Reflex saving throw."""
+icon = "EpicEldritchBlast"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Warlock Pact"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    10,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Obscuring Mist",
+    "Warlock",
+]
+
+[[row.stance]]
+name = "Eldritch Blast: Focused"
+description = """
+Your Eldritch Blast deals +1 Sonic damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Reflex saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)"""
+group_name = "Blast Shape"
+icon = "EpicEldritchBlast"
+
+[[row]]
+name = "Pact: Fiend"
+acquire = "Train"
+description = """
+You have made a pact with a fiend from the lower planes of existence,
+a being whose aims are evil, even if you strive against those aims. Such beings
+desire the corruption or destruction of all things, ultimately including you.
+Toggle on: Your Eldritch Blast deals +1 Fire damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses). Cannot be activated if Good.
+Adds Spells to your spell book at level
+1 - Command
+5 - Rage
+9 - Fire Shield
+14 - Binding Chain
+17 - Power Word: Blind
+19 - Howl of Terror"""
+icon = "PactFiend"
+source_name = "Warlock"
+
+[[row.dc]]
+name = "Pact: Fiend"
+amount = [19]
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+description = """
+Toggle on: Your Eldritch Blast deals +1 Fire damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw."""
+icon = "EpicEldritchBlast"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Warlock Pact"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    6,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Command",
+    "Warlock",
+]
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Good"]
+req_type = "AlignmentType"
+
+[[row.stance]]
+name = "Eldritch Blast: Focused"
+description = """
+Your Eldritch Blast deals +1 Fire damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)"""
+group_name = "Blast Shape"
+icon = "EpicEldritchBlast"
+
+[[row]]
+name = "Pact: Great Old One"
+acquire = "Train"
+description = """
+Toggle on: Your Eldritch Blast deals +1 Acid damage, plus 1d4 per two
+Warlock levels. This damage is halved on a successful Will saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses). Can not be activated if Lawful.
+Adds Spells to your spell book at level 1, 5, 9, 14, 17, 19:
+1 - Entangle
+5 - Knock
+9 - Phantasmal Killer
+14 - Dominate Person
+17 - Mass Suggestion
+19 - Power Word: Kill"""
+icon = "PactGreatOldOne"
+source_name = "Warlock"
+
+[[row.dc]]
+name = "Pact: Great Old One"
+amount = [19]
+dc_type = "Half Damage"
+dc_versus = "Will"
+description = """
+Toggle on: Your Eldritch Blast deals +1 Acid damage, plus 1d4 per two
+Warlock levels. This damage is halved on a successful Will saving throw."""
+icon = "EpicEldritchBlast"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Warlock Pact"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    10,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Entangle",
+    "Warlock",
+]
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Lawful"]
+req_type = "AlignmentType"
+
+[[row.stance]]
+name = "Eldritch Blast: Focused"
+description = """
+Your Eldritch Blast deals +1 Acid damage, plus 1d4 per two
+Warlock levels. This damage is halved on a successful Will saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)"""
+group_name = "Blast Shape"
+icon = "EpicEldritchBlast"
+
+[[row]]
+name = "Pact: The Abyss"
+acquire = "Train"
+description = """
+Your patron is of the Abyss - a pit of darkness beyond comprehension, a desire and a
+hunger beyond meaning itself. Tread carefully.
+
+Toggle on: Your Eldritch Blast deals +1 Negative damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)
+Adds Spells to your spell book at level
+1 - Mage Armor
+5 - Spawn Screen
+9 - Halt Undead
+14 - Death Aura
+17 - Symbol of Pain
+19 - Rend the Soul"""
+icon = "PactTheAbyss"
+source_name = "Warlock"
+
+[[row.dc]]
+name = "Pact: The Abyss"
+amount = [19]
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+description = """
+Toggle on: Your Eldritch Blast deals +1 Negative damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw."""
+icon = "EpicEldritchBlast"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Warlock Pact"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    10,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Mage Armor",
+    "Warlock",
+]
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Good"]
+req_type = "AlignmentType"
+
+[[row.stance]]
+name = "Eldritch Blast: Focused"
+description = """
+Your Eldritch Blast deals +1 Negative damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)"""
+group_name = "Blast Shape"
+icon = "EpicEldritchBlast"
+
+[[row]]
+name = "Pact: The Carceri Storm"
+acquire = "Train"
+description = """
+Your patron is a demonic entity from the realm of Carceri, otherwise known as Tarterus.
+The bitter cold and freezing winds will chill you to your bones, but if you can
+master the power granted to you, great things will surely come your way...
+
+Toggle on: Your Eldritch Blast deals +1 Cold damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Will saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)
+Adds Spells to your spell book at level
+1 - Merfolk's Blessing
+5 - Gust of Wind
+9 - Creeping Cold
+14 - Ice Storm
+17 - Niac's Biting Cold
+19 - Greater Creeping Cold"""
+icon = "PactTheCarceriStorm"
+source_name = "Warlock"
+
+[[row.dc]]
+name = "Pact: The Carceri Storm"
+amount = [19]
+dc_type = "Half Damage"
+dc_versus = "Will"
+description = """
+Toggle on: Your Eldritch Blast deals +1 Cold damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Fortitude saving throw."""
+icon = "EpicEldritchBlast"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Warlock Pact"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    10,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Merfolk's Blessing",
+    "Warlock",
+]
+
+[[row.stance]]
+name = "Eldritch Blast: Focused"
+description = """
+Your Eldritch Blast deals +1 Cold damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Will saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)"""
+group_name = "Blast Shape"
+icon = "EpicEldritchBlast"
+
+[[row]]
+name = "Pact: The Dark Powers"
+acquire = "Train"
+description = """
+Your patron is among the Dark Powers of Ravenloft, calling to you from the Mists.
+If you can remain within their favor, they will allow you to manipulate the Mists,
+bringing power and death.
+
+Toggle on: Your Eldritch Blast deals +1 Evil damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Will saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)
+Adds Spells to your spell book at level
+1 - Dread Mist
+5 - Lesser Death Aura
+9 - Ray of Exhaustion
+14 - Death Aura
+17 - Dust to Dust
+19 - Greater Death Aura"""
+icon = "PactTheDarkPowers"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.dc]]
+name = "Pact: The Dark Powers"
+amount = [19]
+dc_type = "Half Damage"
+dc_versus = "Will"
+description = """
+Toggle on: Your Eldritch Blast deals +1 Evil damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Will saving throw."""
+icon = "PactTheDarkPowers"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Warlock Pact"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    10,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Dread Mist",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Dhampir Dark Bargainer"]
+req_type = "Race"
+
+[[row.stance]]
+name = "Eldritch Blast: Focused"
+description = """
+Your Eldritch Blast deals +1 Evil damage, plus 1d6 per bonus Pact Dice.
+This damage is halved on a successful Will saving throw vs
+DC(19 + Charisma Mod + Evocation Bonuses)"""
+group_name = "Blast Shape"
+icon = "EpicEldritchBlast"

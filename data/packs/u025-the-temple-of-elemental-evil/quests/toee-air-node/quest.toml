@@ -1,0 +1,30 @@
+name = "ToEE: Air Node"
+bestowed_by = "Burne the Magic-user"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Temple of Elemental Evil"
+patron = "The Gatekeepers"
+zone = "Lower Temple of Elemental Evil, Node of Air"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/ToEE:_Air_Node"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

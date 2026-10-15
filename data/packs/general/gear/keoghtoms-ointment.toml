@@ -1,0 +1,25 @@
+name = "Keoghtom's Ointment"
+description = """
+A jar of unguent 3 inches in diameter and 1 inch deep. The jar disappears when
+all charges are expended."""
+drop_location = "Random, Any chest with low loot level ~1"
+icon = "Trinket_80"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Keoghtom's Ointment"
+clickie = "Keoghtom's Ointment"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Keoghtom's Ointment"]

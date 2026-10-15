@@ -1,0 +1,21 @@
+name = "Ritual Sacrifice"
+bestowed_by = "Walk-up"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "The Vale of Twilight"
+patron = "The Twelve"
+zone = "Twilight Canyon"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Ritual_Sacrifice"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16

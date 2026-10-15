@@ -1,0 +1,27 @@
+name = "Relentless"
+bestowed_by = "Arno Kauss"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 12
+flagging = "Must complete The Body Snatchers this life to reach the entrance"
+is_raid = true
+pack = "The Chill of Ravenloft"
+patron = "Keepers of Lamordia"
+zone = "Moloch's Edifying Waxworks"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Relentless"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

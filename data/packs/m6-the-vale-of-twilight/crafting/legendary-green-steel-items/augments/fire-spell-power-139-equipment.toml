@@ -1,0 +1,47 @@
+name = "Fire Spell Power - +139 Equipment"
+description = "Dominion/Fire: +139 Equipment bonus increase to Fire spell power."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Fire Spell Power"
+bonus_type = "Equipment"
+value = 139
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[note]]
+kind = "augment"
+original_name = "Fire Spell Power - +150 Equipment"
+field = "description"
+upstream = "Dominion/Fire: +150 Equipment bonus increase to Fire spell power."
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Combustion 139."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Fire Spell Power - +150 Equipment"
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Combustion 139."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment_bonus"
+original_name = "Fire Spell Power - +150 Equipment"
+field = "value"
+upstream = 150
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Combustion 139."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+qualifier = "Fire Spell Power / Equipment"
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

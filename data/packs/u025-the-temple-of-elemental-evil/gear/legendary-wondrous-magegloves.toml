@@ -1,0 +1,45 @@
+name = "Legendary Wondrous Magegloves"
+description = """
+The temple's leaders favor these types of gloves, as they focus their twisted
+magic as it slithers from their outstretched fingers."""
+drop_location = """
+ToEE: Lower Temple Complex, end chest
+ToEE: Earth Node, end chest"""
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 31
+slot = "Hands"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Quality"
+value = 10
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Lower Temple Complex"

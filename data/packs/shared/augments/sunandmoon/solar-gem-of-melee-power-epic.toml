@@ -1,0 +1,20 @@
+name = "Solar Gem of Melee Power (Epic)"
+description = "+10 Artifact Bonus to Melee Power."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Artifact"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[slot]]
+slot = "sun"

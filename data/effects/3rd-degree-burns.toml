@@ -1,0 +1,3 @@
+name = "3rd Degree Burns"
+description_template = "On Vorpal: 85 to 195 Fire Damage every 2 seconds for 10 seconds, and adds 1-5 stacks of Vulnerability."
+verbose_name_template = "3rd Degree Burns"

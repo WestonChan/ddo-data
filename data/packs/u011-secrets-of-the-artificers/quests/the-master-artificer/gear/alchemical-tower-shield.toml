@@ -1,0 +1,55 @@
+name = "Alchemical Tower Shield"
+description = """
+This very large metal shield is strapped to your forearm and gripped with your
+hand."""
+drop_location = "The Master Artificer, Either End chest"
+enhancement_bonus = 5
+icon = "Shield_3c"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Dwarven Iron"
+minimum_level = 12
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 12
+max_dex_bonus = 2
+shield_bonus = 15
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[socket]]
+slot = "crafting: alchemical material type"
+
+[[socket]]
+slot = "crafting: alchemical tier 1"
+
+[[socket]]
+slot = "crafting: alchemical tier 2"
+
+[[socket]]
+slot = "crafting: alchemical tier 3"
+
+[[source]]
+chest = "either end chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Master Artificer"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

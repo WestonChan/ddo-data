@@ -1,0 +1,29 @@
+name = "Protective Gloves"
+description = "These gloves will cast a protective shield when their magic is called upon."
+drop_location = "Necromancer's Doom, Chest behind locked door"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Hands"
+
+[[clickie]]
+name = "Shield"
+clickie = "Shield"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shield"]
+
+[[source]]
+chest = "chest behind locked door"
+kind = "quest"
+loot_type = "chest"
+name = "Necromancer's Doom"

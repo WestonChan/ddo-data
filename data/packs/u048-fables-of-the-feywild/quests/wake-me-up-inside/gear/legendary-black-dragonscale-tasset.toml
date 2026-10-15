@@ -1,0 +1,35 @@
+name = "Legendary Black Dragonscale Tasset"
+description = """
+This belt is crafted out of Black Dragonscale, and carries an incredible ferocity
+within."""
+drop_location = "Wake Me Up Inside, End chest"
+icon = "Belt_14"
+item_category = "Clothing"
+material = "Black Dragonscale"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Blackscale Ferocity"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wake Me Up Inside"

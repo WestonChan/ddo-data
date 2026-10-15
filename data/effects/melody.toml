@@ -1,0 +1,3 @@
+name = "Melody"
+description_template = "Imperial Resonance: This powerful item is attuned to your ability to perform musical magic. If you have 15 or more bonus effective Bard levels from Feats, additional Bard songs, or enhancements, it provides 30 Exceptional Sonic Spell Power and 15% Exceptional Sonic Spell Lore."
+verbose_name_template = "Melody"

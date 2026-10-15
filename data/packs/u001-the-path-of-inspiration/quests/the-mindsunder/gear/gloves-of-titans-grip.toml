@@ -1,0 +1,53 @@
+name = "Gloves of Titan's Grip"
+description = "A pair of rough, oversized leather gloves."
+drop_location = "The Mindsunder, Disc locked optional end chest, End reward"
+icon = "Gloves_8"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 18
+slot = "Hands"
+
+[[clickie]]
+name = "Titan's Grip"
+clickie = "Titan's Grip"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Suppressed Power"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    18,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Titan's Grip"]
+
+[[note]]
+kind = "item_socket"
+field = "add"
+reason = "The wiki's Gloves of Titan's Grip carry a Suppressed Power; his item has no Suppressed Power socket."
+url = "https://ddowiki.com/page/Dreamforge"
+read = "2026-09-30"
+qualifier = "crafting: suppressed power"
+
+[[socket]]
+slot = "crafting: suppressed power"
+
+[[source]]
+chest = "disc locked optional end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mindsunder"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Mindsunder"

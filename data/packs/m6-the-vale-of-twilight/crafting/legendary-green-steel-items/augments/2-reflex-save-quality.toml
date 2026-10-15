@@ -1,0 +1,23 @@
+name = "+2 Reflex Save (Quality)"
+description = "Ethereal/Opposition: +2 Quality bonus to Reflex saves."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Opposition"""
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Quality"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[slot]]
+slot = "crafting: equipment tier 3"

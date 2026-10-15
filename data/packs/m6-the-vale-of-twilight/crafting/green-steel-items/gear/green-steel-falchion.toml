@@ -1,0 +1,39 @@
+name = "Green Steel Falchion"
+description = """
+This large, curved sword is essentially a scimitar designed to be used with
+two hands."""
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+enhancement_bonus = 5
+icon = "Falchion_2"
+item_category = "Weapon"
+item_type = "Falchion"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[socket]]
+slot = "crafting: weapon invasion"
+
+[[source]]
+kind = "crafting_system"
+name = "Green Steel items"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Falchion"

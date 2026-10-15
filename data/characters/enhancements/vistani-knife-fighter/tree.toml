@@ -1,0 +1,1335 @@
+name = "Vistani Knife Fighter"
+background = "Universal"
+icon = "Vistani"
+kind = "universal"
+version = 1
+
+[[enhancement]]
+name = "Vistani: Knife Expertise"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain +1 to hit and damage with Daggers, Kukris, and throwing Daggers."
+icon = "KnifeExpertise"
+internal_name = "VistaniCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement]]
+name = "Vistani: Knife Juggler"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain +5% to speed with throwing Daggers.
+You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+projectile that would have struck you every 6 seconds."""
+icon = "KnifeJuggler"
+internal_name = "VistaniCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = ["Throwing Dagger"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.requirement]]
+items = ["VistaniCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vistani: Quick Reflexes"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain Quickdraw as a bonus feat.
+You gain +5% Doublestrike and Doubleshot."""
+icon = "KnifeSpecialist"
+internal_name = "VistaniCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Quick Draw"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 6
+
+[[enhancement.requirement]]
+items = ["VistaniCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vistani: One With Blades"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain a +1 Competence bonus to Critical Damage Multiplier with Daggers, Kukris
+and Throwing Daggers. Daggers and Throwing Daggers also gain a +1 Competence
+bonus to Critical Threat Range."""
+icon = "OneWithBlades"
+internal_name = "VistaniCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = [
+    "Dagger",
+    "Throwing Dagger",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["VistaniCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vistani: Vistani Fortune"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Passive: You gain +10 Physical Resistance Rating and Magical Resistance Rating.
+Activate to gain one random Vistani fortune. Cooldown 60 seconds.
+Coins:  You gain 10% Doublestrike and 10% Doubleshot for 60 seconds.
+Glyphs: You gain 10 PRR and 20 MRR for 60 seconds.
+Stars:  You gain +2 to all ability scores for 60 seconds.
+Swords: You gain 15 Melee Power and Ranged Power for 60 seconds."""
+icon = "VistaniFortune"
+internal_name = "VistaniCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Vistani: Coins"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Vistani: Glyphs"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Vistani: Glyphs"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+extra_types = ["Doubleshot"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Vistani: Stars"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier.requirement]]
+items = ["Vistani: Swords"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 18
+
+[[enhancement.requirement]]
+items = ["VistaniCore4"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Vistani: Coins"
+description = "You gain 10% Doublestrike and 10% Doubleshot for 60 seconds."
+group_name = "Vistani Fortune"
+icon = "VistaniFortune"
+
+[[enhancement.stance]]
+name = "Vistani: Glyphs"
+description = "You gain 10 PRR and 20 MRR for 60 seconds."
+group_name = "Vistani Fortune"
+icon = "VistaniFortune"
+
+[[enhancement.stance]]
+name = "Vistani: Stars"
+description = "You gain +2 to all ability scores for 60 seconds."
+group_name = "Vistani Fortune"
+icon = "VistaniFortune"
+
+[[enhancement.stance]]
+name = "Vistani: Swords"
+description = "You gain 15 Melee Power and Ranged Power for 60 seconds."
+group_name = "Vistani Fortune"
+icon = "VistaniFortune"
+
+[[enhancement]]
+name = "Vistani: Blade Master"
+cost_per_rank = [1]
+description = """
+You gain +2 to all ability scores.
+You gain +5% attack speed when using a Dagger or Kukri.
+You gain 20 Melee Power and 20 Ranged Power."""
+icon = "KnifeMaster"
+internal_name = "VistaniCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "VistaniCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = [
+    "Dagger",
+    "Kukri",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["VistaniCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "VistaniCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Vistani: Vistani Knife Training I"
+cost_per_rank = [1]
+description = """
+When using a Dagger in each hand, you now fight in melee using the Vistani style,
+with both Daggers held point down.
+You gain +1 to hit and damage with Daggers, Kukris,  and throwing Daggers."""
+icon = "VistaniKnifeTrainingI"
+internal_name = "VistaniKnifeTrainingI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement]]
+name = "Vistani: Undead Hunter"
+cost_per_rank = [1]
+description = """
+You resist evil influences particularly well, gaining a +2 bonus to
+saves against spells and effects produced by evil creatures.
+Undead are automatically considered as a Favored Enemy for you."""
+icon = "UndeadHunter"
+internal_name = "UndeadHunter"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Undead"]
+
+[[enhancement]]
+name = "Vistani: Mist Stalker I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain +25% negative energy absorption.
+You gain +3 Physical Resistance Rating and Magical Resistance Rating."""
+icon = "MistStalkerI"
+internal_name = "MistStalkerI"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement]]
+name = "Vistani: Acrobatic"
+cost_per_rank = [1]
+description = """
++[1/2/3] Balance, Jump, and Tumble.
+Rank 3: +1 to Reflex Saving Throws."""
+icon = "VistaniAcrobatic"
+internal_name = "VistaniAcrobatic"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement]]
+name = "Vistani: Rapid Attack"
+cost_per_rank = [2]
+description = "You gain both of the following:\nRapid Slash: Requires dagger or kukri. Melee Attack: Deals +30% Damage.\n   You gain a 20% Morale bonus to (main hand) doublestrike for 10 seconds.\n   Cooldown: 10 seconds. \nRapid Throw: Requires throwing knife. Missile Attack: Deals +30% Damage. \n   You gain a 20% Morale bonus to doubleshot for 10 seconds.\n   Cooldown: 10 seconds.\nThis puts Ten Thousand Stars and Manyshot on a 10 second cooldown."
+icon = "RapidAttack"
+internal_name = "RapidAttack"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Vistani: Rapid Attack - Can be kept up 100%"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dagger"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Kukri"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Vistani: Rapid Throw - Can be kept up 100%"
+effect_type = "Doubleshot"
+
+[[enhancement.modifier.requirement]]
+items = ["Throwing Dagger"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Vistani: Vistani Knife Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain +1 to hit and +2 damage with Daggers, Kukris, and throwing Daggers."
+icon = "VistaniKnifeTrainingII"
+internal_name = "VistaniKnifeTrainingII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Vistani: Bleeding Cuts"
+cost_per_rank = [2]
+description = """
+When you score a Vorpal hit with a Dagger or throwing knife you add a
+stack of Blood of Vengeance to your opponent.
+Blood of Vengeance: You deal 1d6 damage per two seconds for 30 seconds.
+This damage scales with 200% Melee Power. This stacks up to 10 times, with new
+stacks refreshing the duration."""
+icon = "BleedingCuts"
+internal_name = "BleedingCuts"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Vistani: Mist Stalker II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain +2 to Will saving throws.
+You gain +3 Physical Resistance Rating and Magical Resistance Rating."""
+icon = "MistStalkerII"
+internal_name = "MistStalkerII"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.requirement]]
+items = ["MistStalkerI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Vistani: Weapon Versatility"
+cost_per_rank = [1]
+description = """
+Your Dagger, Kukri, and throwing Dagger attacks use the higher of Melee Power or
+Ranged Power."""
+icon = "WeaponVersatility"
+internal_name = "WeaponVersatility"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Vistani: Haste Boost"
+cooldown_seconds = 30
+cost_per_rank = [2]
+description = """
+Activate to gain a +30% Action Boost bonus to attack speed for 20 seconds.
+Cooldown: 30 seconds"""
+duration_seconds = 20
+icon = "HasteBoost"
+internal_name = "VistaniHasteBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.attack]]
+name = "Vistani: Haste Boost"
+cooldown_seconds = 30
+description = "Activate to gain +30% Action Boost bonus to attack speed for 20 seconds."
+duration_seconds = 20
+icon = "KenseiHasteBoost"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+effect_type = "BonusAlacrity"
+phase = "follow_on"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Vistani: Vistani Knife Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain +1 to hit and +1 damage with Daggers, Kukris, and throwing knives."
+icon = "VistaniKnifeTrainingIII"
+internal_name = "VistaniKnifeTrainingIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement.requirement]]
+items = ["VistaniKnifeTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Vistani: Fan of Knives"
+cost_per_rank = [2]
+description = """
+On activation: You throw a hail of throwing knives in a cone in front of you.
+Enemies caught in the cone take 1d8 damage per character level of damage and take
+one stack of Blood of Vengeance. This damage scales with 200% Ranged Power.
+Cooldown: 15 seconds"""
+icon = "FanOfKnives"
+internal_name = "FanOfKnives"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Vistani: Mist Stalker III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You are immune to Fear effects.
+You gain +3 Physical Resistance Rating and Magical Resistance Rating."""
+icon = "MistStalkerIII"
+internal_name = "MistStalkerIII"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.requirement]]
+items = ["MistStalkerII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Vistani: Deadly Blades"
+cost_per_rank = [2]
+description = """
+Your Daggers, Kukris,  and throwing Daggers do an additional +1[W] of damage.
+You are centered when fighting with Daggers and Kukris.
+(Note: not centered with throwing Daggers)."""
+icon = "DeadlyBlades"
+internal_name = "DeadlyBlades"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Dagger",
+    "Kukri",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Vistani: Gifted I"
+cost_per_rank = [2]
+description = "Choose an ability to increase."
+icon = "Gifted"
+internal_name = "GiftedI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Vistani: Vistani Knife Training IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain +1 to hit and +2 damage with Daggers, Kukris, and throwing knives."
+icon = "VistaniKnifeTrainingIV"
+internal_name = "VistaniKnifeTrainingIV"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement.requirement]]
+items = ["VistaniKnifeTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Vistani: Celerity"
+cost_per_rank = [1]
+description = "You gain +5% Doublestrike and Doubleshot."
+icon = "VistaniCelerity"
+internal_name = "Celerity"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Vistani: Mist Stalker IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain immunity to Energy Drain.
+You gain +3 Physical Resistance Rating and Magical Resistance Rating."""
+icon = "MistStalkerIV"
+internal_name = "MistStalkerIV"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Level Drain"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.requirement]]
+items = ["MistStalkerIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Vistani: Double Daggers"
+cost_per_rank = [2]
+description = "Choose one"
+icon = "DoubleDaggers"
+internal_name = "DoubleDaggers"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "Single Dagger"
+cost_per_rank = [2]
+description = "When fighting single weapon style with a Dagger or Kukri: +20 Melee Power"
+icon = "SingleDagger"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dagger"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Kukri"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Double Daggers"
+cost_per_rank = [2]
+description = """
+When fighting with a Dagger or Kukri in each hand:
++20% stacking chance to make off-hand attacks when dual wielding weapons."""
+icon = "DoubleDaggers"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = [
+    "Dagger",
+    "Dagger",
+]
+req_type = "WeaponTypesEquipped"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = [
+    "Kukri",
+    "Kukri",
+]
+req_type = "WeaponTypesEquipped"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = [
+    "Dagger",
+    "Kukri",
+]
+req_type = "WeaponTypesEquipped"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = [
+    "Kukri",
+    "Dagger",
+]
+req_type = "WeaponTypesEquipped"
+
+[[enhancement]]
+name = "Vistani: Gifted II"
+cost_per_rank = [2]
+description = "Choose an ability of your choice."
+icon = "Gifted"
+internal_name = "GiftedII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Vistani: Vistani Knife Training V"
+cost_per_rank = [2]
+description = "You gain +3 to hit and damage with Daggers, Kukris,  and throwing knives."
+icon = "VistaniKnifeTrainingV"
+internal_name = "VistaniKnifeTrainingV"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["VistaniKnifeTrainingIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vistani: Throw or Hold the Grudge"
+cost_per_rank = [2]
+description = "Gain a powerful throw ability or increase your hit points by holding a grudge."
+icon = "WhirlingBlades"
+internal_name = "WhirlingBlades"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Grudge Bearer"
+cost_per_rank = [2]
+description = "You gain a +25% Competence bonus to Maximum Hitpoints"
+icon = "GrudgeBearer"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection]]
+name = "Whirling Blades"
+cost_per_rank = [2]
+description = """
+Deals: +50% Damage
+Throwing Dagger Missile Attack: Your throwing knife gains 100 doubleshot for
+15 seconds. Cooldown one minute."""
+icon = "WhirlingBlades"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Stacking"
+effect_type = "Doubleshot"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Vistani: Whirling Blades"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Vistani: Whirling Blades"
+description = "Your throwing knife gains +100% doubleshot for 15 seconds."
+icon = "WhirlingBlades"
+
+[[enhancement]]
+name = "Vistani: Mist Stalker V"
+cost_per_rank = [2]
+description = """
+Activate to gain +20% Dodge and Maximum Dodge, +30 PRR, and +30 MRR for 20 seconds.
+Cooldown: 60 seconds."""
+icon = "MistStalkerV"
+internal_name = "MistStalkerV"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Mist Stalker"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier.requirement]]
+items = ["Mist Stalker"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["MistStalkerIV"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Vistani: Mist Stalker"
+description = """
+Activate to gain +20% Dodge and Maximum Dodge, +30 PRR, and +30 MRR for 20 seconds.
+Cooldown: 60 seconds."""
+icon = "MistStalkerV"
+
+[[enhancement]]
+name = "Vistani: Blessed Blades"
+cost_per_rank = [2]
+description = "Deals: +50% Damage\nDagger or Kukri Melee attack. Applies one stack of Blood of Vengeance.\nYour equipped Daggers gain a +10 Enhancement bonus for 10 seconds.\nThey also gain Silver, Good, and Ghost Touch. 10 second cooldown. \n\n(Taking this ability also gives you Blessed Knives, the ranged version that\nrequires a throwing Dagger.)"
+icon = "VistaniBlessedBlades"
+internal_name = "VistaniBlessedBlades"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Vistani: Vendetta"
+cost_per_rank = [2]
+description = """
+Activate to gain a unique +1 Critical Threat Range and +1 to Critical damage
+multiplier to your equipped Daggers, Kukris, or throwing knife for 15 seconds.
+60 second cooldown."""
+icon = "Vendetta"
+internal_name = "Vendetta"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Unique"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalMultiplier"]
+targets = [
+    "Dagger",
+    "Kukri",
+    "Throwing Dagger",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Vendetta"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.stance]]
+name = "Vendetta"
+description = """
+Activate to gain a unique +1 Critical Threat Range and +1 to Critical damage
+multiplier to your equipped Daggers, Kukris,  or throwing knife for 15 seconds.
+60 second cooldown."""
+icon = "Vendetta"
+
+[[requirement_group]]
+kind = "one_of"
+
+[[requirement_group.requirement]]
+items = ["Vistani Knife Fighter Tree"]
+req_type = "Feat"
+
+[[requirement_group.requirement]]
+items = ["Keepers of a Feather Favor Rewards"]
+req_type = "Feat"
+value = 3

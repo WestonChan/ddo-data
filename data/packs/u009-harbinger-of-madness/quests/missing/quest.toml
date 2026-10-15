@@ -1,0 +1,21 @@
+name = "Missing"
+bestowed_by = "Godwick Spurge"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Harbinger of Madness"
+patron = "The Free Agents"
+zone = "The Saltire District"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Missing"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15

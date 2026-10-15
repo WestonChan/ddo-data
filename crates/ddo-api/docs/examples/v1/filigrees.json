@@ -3,7 +3,7 @@
     {
       "description": "+2 Wisdom\nRare: +4 MRR",
       "icon": "AbidingPathElementalAvatar",
-      "id": 216,
+      "id": 8622658768299481,
       "menu": "Raid Filigrees",
       "modifiers": [
         {
@@ -23,7 +23,6 @@
           "display_name": null,
           "effect_type": "AbilityBonus",
           "extra_types": null,
-          "id": 16809,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -53,7 +52,6 @@
           "display_name": "Abiding Path/Elemental Avatar: +4 MRR",
           "effect_type": "MRR",
           "extra_types": null,
-          "id": 16810,
           "is_item_specific": false,
           "is_rare": true,
           "percent": false,
@@ -67,12 +65,13 @@
       ],
       "name": "Abiding Path/Elemental Avatar +2 Wisdom",
       "set_id": null,
-      "set_name": null
+      "set_name": null,
+      "slug": "abiding-path-elemental-avatar-2-wisdom"
     },
     {
       "description": "+1 Charisma\nRare: +2 MRR",
       "icon": "AngelicWings",
-      "id": 1,
+      "id": 6041444803916745,
       "menu": "Sinister Secret of Saltmarsh",
       "modifiers": [
         {
@@ -92,7 +91,6 @@
           "display_name": null,
           "effect_type": "AbilityBonus",
           "extra_types": null,
-          "id": 16288,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -122,7 +120,6 @@
           "display_name": "Angelic Wings: Charisma: MRR",
           "effect_type": "MRR",
           "extra_types": null,
-          "id": 16289,
           "is_item_specific": false,
           "is_rare": true,
           "percent": false,
@@ -135,13 +132,14 @@
         }
       ],
       "name": "Angelic Wings: +1 Charisma",
-      "set_id": 264,
-      "set_name": "Angelic Wings"
+      "set_id": 888754620385453,
+      "set_name": "Angelic Wings",
+      "slug": "angelic-wings-1-charisma"
     },
     {
       "description": "+1 Wisdom\nRare: +2 MRR",
       "icon": "AngelicWings",
-      "id": 7,
+      "id": 8486049343670126,
       "menu": "Sinister Secret of Saltmarsh",
       "modifiers": [
         {
@@ -161,7 +159,6 @@
           "display_name": null,
           "effect_type": "AbilityBonus",
           "extra_types": null,
-          "id": 16300,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -191,7 +188,6 @@
           "display_name": "Angelic Wings: Wisdom: MRR",
           "effect_type": "MRR",
           "extra_types": null,
-          "id": 16301,
           "is_item_specific": false,
           "is_rare": true,
           "percent": false,
@@ -204,8 +200,9 @@
         }
       ],
       "name": "Angelic Wings: +1 Wisdom",
-      "set_id": 264,
-      "set_name": "Angelic Wings"
+      "set_id": 888754620385453,
+      "set_name": "Angelic Wings",
+      "slug": "angelic-wings-1-wisdom"
     }
   ],
   "limit": 100,

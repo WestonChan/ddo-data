@@ -1,0 +1,63 @@
+name = "+2 Melee/Ranged and Spell Power"
+description = "+2 Reaper bonus to Melee, Ranged and Spell Power"
+family = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Reaper"
+value = 2
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Reaper"
+value = 2
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Reaper"
+value = 2
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Reaper"
+value = 2
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Reaper"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Reaper"
+effect = "Universal Spell Power"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[note]]
+kind = "augment_bonus"
+field = "add"
+reason = "The wiki's Reaper necklace enchantment also gives +2 Reaper Physical Resistance Rating."
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-09-30"
+qualifier = "Physical Resistance Rating / Reaper"
+
+[[note]]
+kind = "augment_bonus"
+field = "add"
+reason = "The wiki's Reaper necklace enchantment also gives +2 Reaper Magical Resistance Rating."
+url = "https://ddowiki.com/page/Reaper_Forge"
+read = "2026-09-30"
+qualifier = "Magical Resistance Rating / Reaper"
+
+[[slot]]
+slot = "crafting: reaper necklace"

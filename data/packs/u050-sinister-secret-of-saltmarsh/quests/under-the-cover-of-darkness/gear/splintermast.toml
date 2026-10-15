@@ -1,0 +1,45 @@
+name = "Splintermast"
+description = "This broken shard of a wrecked ship seeks out enemies to take its revenge."
+drop_location = "Under the Cover of Darkness, end chest"
+enhancement_bonus = 2
+icon = "Dart_1"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Flametouched Iron"
+minimum_level = 3
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Bleeding 2"
+
+[[effect]]
+name = "Tidal 2"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Cover of Darkness"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Dart"

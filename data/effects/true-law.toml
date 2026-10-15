@@ -1,0 +1,3 @@
+name = "True Law"
+description_template = "This weapon is infused with the power of True Law. It does an additional 1 to 6 damage to non-lawful targets and can only be wielded by Lawful-aligned characters."
+verbose_name_template = "True Law"

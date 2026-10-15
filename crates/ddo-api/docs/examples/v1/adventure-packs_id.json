@@ -1,7 +1,10 @@
 {
   "augments": [],
-  "id": 2,
+  "id": 8047184616297311,
   "is_free_to_play": false,
   "items": [],
-  "name": "The Chill of Ravenloft"
+  "name": "The Chill of Ravenloft",
+  "released": "2025-08-20",
+  "slug": "the-chill-of-ravenloft",
+  "update": "Update 75"
 }

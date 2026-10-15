@@ -1,0 +1,37 @@
+name = "Legendary Corroded Iron Figurine"
+description = "This simple figurine is showing its age."
+drop_location = "The Sacred Bounty, End chest"
+icon = "Trinket_8b"
+item_category = "Jewelry"
+material = "Flametouched Iron"
+minimum_level = 29
+slot = "Trinket"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 10
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Sacred Bounty"

@@ -1,0 +1,3 @@
+name = "Inspiring Echoes"
+description_template = "When a bard wields this item, Anthem abilities that restore Bard songs over time restore them 40% faster (for example, an ability that restores a Song every 5 minutes would restore one song per 3 minutes instead)."
+verbose_name_template = "Inspiring Echoes"

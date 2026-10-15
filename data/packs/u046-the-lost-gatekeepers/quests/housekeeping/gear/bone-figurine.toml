@@ -1,0 +1,27 @@
+name = "Bone Figurine"
+description = "This simple figurine is carved of solid bone."
+drop_location = "Housekeeping, End chest"
+icon = "Trinket_8b"
+item_category = "Jewelry"
+material = "Bone"
+minimum_level = 3
+slot = "Trinket"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Evil Absorption"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Housekeeping"

@@ -1,0 +1,32 @@
+name = "Urthullz Petrified Stalk"
+description = """
+The Beholder who once owned the eye stalk took great sport in hunting elementals.
+He had this stalk magically enhanced and altered so he could deal with the
+dead kind as well."""
+drop_location = "Litany of the Dead, Black dragon chamber work table"
+icon = "Trinket_16a"
+item_category = "Jewelry"
+material = "Stone"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Bane of the Undead Flame"
+clickie = "Bane of the Undead Flame"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    3,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Bane of the Undead Flame"]
+
+[[source]]
+chest = "black dragon chamber work table"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

@@ -1,0 +1,52 @@
+name = "Perfected Golden Guile"
+description = """
+A necklace worn by a Rakshasa with links and a charm made of pure gold. It seems
+to increases the wearer's ability to convince others of what he or she wants
+them to believe, even making it possible to distract enemies in the midst of
+a battle."""
+drop_location = "Lahar, Turn in Nebula Fragment"
+icon = "Necklace_1c"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Enhanced Ghostly"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Exceptional Nimble Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[effect]]
+name = "Psychic Ward"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Nebula Fragment Crafting"

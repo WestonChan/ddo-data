@@ -1,0 +1,3007 @@
+name = "Syranian Forged Weaponry"
+npc = "Rayne Cloud, City of Sharn Docks district; Cannith Melting Station in the Lower Docks of Sharn (stage 1: 4 Reforged Metallic, 4 Reforged Dense, 3 Reforged Pliable, 3 Reforged Glowing Ingot; stage 2: 2 Energizing Alloy, 2 Dampening Alloy; stage 3: 1 Caustic Compound, 1 Stabilizing Compound; stage 4: choose the item)"
+pack = "Masterminds of Sharn"
+
+[[ingredient]]
+name = "Iron Defender Claws"
+drop_location = "Cannith crafting part, total cost after Update 42 Patch 1"
+tier = "any"
+
+[[ingredient]]
+name = "Iron Defender Rivets"
+drop_location = "Cannith crafting part, total cost after Update 42 Patch 1"
+tier = "any"
+
+[[ingredient]]
+name = "Magefire Cannon Cores"
+drop_location = "Cannith crafting part, total cost after Update 42 Patch 1"
+tier = "any"
+
+[[ingredient]]
+name = "Magefire Cannon Parts"
+drop_location = "Cannith crafting part, total cost after Update 42 Patch 1"
+tier = "any"
+
+[[ingredient]]
+name = "Shield Guardian Cores"
+drop_location = "Cannith crafting part, total cost after Update 42 Patch 1"
+tier = "any"
+
+[[ingredient]]
+name = "Shield Guardian Gyroscopes"
+drop_location = "Cannith crafting part, total cost after Update 42 Patch 1"
+tier = "any"
+
+[[ingredient]]
+name = "Worker Drone Actuators"
+drop_location = "Cannith crafting part, total cost after Update 42 Patch 1"
+tier = "any"
+
+[[ingredient]]
+name = "Worker Drone Platings"
+drop_location = "Cannith crafting part, total cost after Update 42 Patch 1"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Syranian_Forged_Weaponry"
+read = "2026-10-02"
+
+[[recipe]]
+note = "produces Syranian Bastard Sword (ML15); bound to account on acquire"
+option = "Syranian Bastard Sword"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Battle Axe (ML15); bound to account on acquire"
+option = "Syranian Battle Axe"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Club (ML15); bound to account on acquire"
+option = "Syranian Club"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Dagger (ML15); bound to account on acquire"
+option = "Syranian Dagger"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Dart (ML15); bound to account on acquire"
+option = "Syranian Dart"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Dwarven Waraxe (ML15); bound to account on acquire"
+option = "Syranian Dwarven Waraxe"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Falchion (ML15); bound to account on acquire"
+option = "Syranian Falchion"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Great Crossbow (ML15); bound to account on acquire"
+option = "Syranian Great Crossbow"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Greataxe (ML15); bound to account on acquire"
+option = "Syranian Greataxe"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Greatclub (ML15); bound to account on acquire"
+option = "Syranian Greatclub"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Greatsword (ML15); bound to account on acquire"
+option = "Syranian Greatsword"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Hand Axe (ML15); bound to account on acquire"
+option = "Syranian Hand Axe"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Handwraps (ML15); bound to account on acquire"
+option = "Syranian Handwraps"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Heavy Crossbow (ML15); bound to account on acquire"
+option = "Syranian Heavy Crossbow"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Heavy Mace (ML15); bound to account on acquire"
+option = "Syranian Heavy Mace"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Heavy Pick (ML15); bound to account on acquire"
+option = "Syranian Heavy Pick"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Kama (ML15); bound to account on acquire"
+option = "Syranian Kama"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Khopesh (ML15); bound to account on acquire"
+option = "Syranian Khopesh"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Kukri (ML15); bound to account on acquire"
+option = "Syranian Kukri"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Light Crossbow (ML15); bound to account on acquire"
+option = "Syranian Light Crossbow"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Light Hammer (ML15); bound to account on acquire"
+option = "Syranian Light Hammer"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Light Mace (ML15); bound to account on acquire"
+option = "Syranian Light Mace"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Light Pick (ML15); bound to account on acquire"
+option = "Syranian Light Pick"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Longbow (ML15); bound to account on acquire"
+option = "Syranian Longbow"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Longsword (ML15); bound to account on acquire"
+option = "Syranian Longsword"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Maul (ML15); bound to account on acquire"
+option = "Syranian Maul"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Morningstar (ML15); bound to account on acquire"
+option = "Syranian Morningstar"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Quarterstaff (ML15); bound to account on acquire"
+option = "Syranian Quarterstaff"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Rapier (ML15); bound to account on acquire"
+option = "Syranian Rapier"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Repeating Heavy Crossbow (ML15); bound to account on acquire"
+option = "Syranian Repeating Heavy Crossbow"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Repeating Light Crossbow (ML15); bound to account on acquire"
+option = "Syranian Repeating Light Crossbow"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Scimitar (ML15); bound to account on acquire"
+option = "Syranian Scimitar"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Shortbow (ML15); bound to account on acquire"
+option = "Syranian Shortbow"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Shortsword (ML15); bound to account on acquire"
+option = "Syranian Shortsword"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Shuriken (ML15); bound to account on acquire"
+option = "Syranian Shuriken"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Sickle (ML15); bound to account on acquire"
+option = "Syranian Sickle"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Throwing Axe (ML15); bound to account on acquire"
+option = "Syranian Throwing Axe"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Throwing Dagger (ML15); bound to account on acquire"
+option = "Syranian Throwing Dagger"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Throwing Hammer (ML15); bound to account on acquire"
+option = "Syranian Throwing Hammer"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Syranian Warhammer (ML15); bound to account on acquire"
+option = "Syranian Warhammer"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Bastard Sword (ML29); bound to account on acquire"
+option = "Legendary Syranian Bastard Sword"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Battle Axe (ML29); bound to account on acquire"
+option = "Legendary Syranian Battle Axe"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Club (ML29); bound to account on acquire"
+option = "Legendary Syranian Club"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Dagger (ML29); bound to account on acquire"
+option = "Legendary Syranian Dagger"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Dart (ML29); bound to account on acquire"
+option = "Legendary Syranian Dart"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Dwarven Waraxe (ML29); bound to account on acquire"
+option = "Legendary Syranian Dwarven Waraxe"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Falchion (ML29); bound to account on acquire"
+option = "Legendary Syranian Falchion"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Great Crossbow (ML29); bound to account on acquire"
+option = "Legendary Syranian Great Crossbow"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Greataxe (ML29); bound to account on acquire"
+option = "Legendary Syranian Greataxe"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Greatclub (ML29); bound to account on acquire"
+option = "Legendary Syranian Greatclub"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Greatsword (ML29); bound to account on acquire"
+option = "Legendary Syranian Greatsword"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Hand Axe (ML29); bound to account on acquire"
+option = "Legendary Syranian Hand Axe"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Handwraps (ML29); bound to account on acquire"
+option = "Legendary Syranian Handwraps"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Heavy Crossbow (ML29); bound to account on acquire"
+option = "Legendary Syranian Heavy Crossbow"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Heavy Mace (ML29); bound to account on acquire"
+option = "Legendary Syranian Heavy Mace"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Heavy Pick (ML29); bound to account on acquire"
+option = "Legendary Syranian Heavy Pick"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Kama (ML29); bound to account on acquire"
+option = "Legendary Syranian Kama"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Khopesh (ML29); bound to account on acquire"
+option = "Legendary Syranian Khopesh"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Kukri (ML29); bound to account on acquire"
+option = "Legendary Syranian Kukri"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Light Crossbow (ML29); bound to account on acquire"
+option = "Legendary Syranian Light Crossbow"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Light Hammer (ML29); bound to account on acquire"
+option = "Legendary Syranian Light Hammer"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Light Mace (ML29); bound to account on acquire"
+option = "Legendary Syranian Light Mace"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Light Pick (ML29); bound to account on acquire"
+option = "Legendary Syranian Light Pick"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Longbow (ML29); bound to account on acquire"
+option = "Legendary Syranian Longbow"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Longsword (ML29); bound to account on acquire"
+option = "Legendary Syranian Longsword"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Maul (ML29); bound to account on acquire"
+option = "Legendary Syranian Maul"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Morningstar (ML29); bound to account on acquire"
+option = "Legendary Syranian Morningstar"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Quarterstaff (ML29); bound to account on acquire"
+option = "Legendary Syranian Quarterstaff"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Rapier (ML29); bound to account on acquire"
+option = "Legendary Syranian Rapier"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Repeating Heavy Crossbow (ML29); bound to account on acquire"
+option = "Legendary Syranian Repeating Heavy Crossbow"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Repeating Light Crossbow (ML29); bound to account on acquire"
+option = "Legendary Syranian Repeating Light Crossbow"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Scimitar (ML29); bound to account on acquire"
+option = "Legendary Syranian Scimitar"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Shortbow (ML29); bound to account on acquire"
+option = "Legendary Syranian Shortbow"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Shortsword (ML29); bound to account on acquire"
+option = "Legendary Syranian Shortsword"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Shuriken (ML29); bound to account on acquire"
+option = "Legendary Syranian Shuriken"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Sickle (ML29); bound to account on acquire"
+option = "Legendary Syranian Sickle"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Throwing Axe (ML29); bound to account on acquire"
+option = "Legendary Syranian Throwing Axe"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Throwing Dagger (ML29); bound to account on acquire"
+option = "Legendary Syranian Throwing Dagger"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Throwing Hammer (ML29); bound to account on acquire"
+option = "Legendary Syranian Throwing Hammer"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45
+
+[[recipe]]
+note = "produces Legendary Syranian Warhammer (ML29); bound to account on acquire"
+option = "Legendary Syranian Warhammer"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Claws"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Iron Defender Rivets"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Cores"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Magefire Cannon Parts"
+quantity = 40
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Cores"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Shield Guardian Gyroscopes"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Actuators"
+quantity = 45
+
+[[recipe.ingredient]]
+ingredient = "Worker Drone Platings"
+quantity = 45

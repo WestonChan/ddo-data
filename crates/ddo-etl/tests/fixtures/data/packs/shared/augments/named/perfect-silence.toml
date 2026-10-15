@@ -1,0 +1,32 @@
+name = "Perfect Silence"
+description = """
+3-Piece Set Bonus: +3 Artifact Bonus to Sneak Attack Dice.
+Requires: 50 Threads of Fate, Empty Soul Vessel and Vestments of Ravenloft
+(Old Baba's Hut)"""
+effect_description = "This augment will suppress any set bonus this item may have."
+family = "Named"
+icon = "ColorlessRaidItemEssence"
+min_level = 30
+set_bonus = "Perfect Silence"
+suppress_set_bonus = true
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "colorless"

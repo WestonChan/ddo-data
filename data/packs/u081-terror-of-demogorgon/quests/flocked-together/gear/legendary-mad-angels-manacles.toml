@@ -1,0 +1,43 @@
+name = "Legendary Mad Angels' Manacles"
+description = """
+Broken by an angel whose madness finally grew too profound to contain, their
+divine magic left its mark, and the metallic remnants now fit on mortal wrists."""
+drop_location = "Flocked Together, end chest"
+icon = "Bracers_24"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 35
+slot = "Wrists"
+
+[[effect]]
+name = "Radiance Intensity"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 9
+
+[[socket]]
+slot = "crafting: nearly complete: spell focus (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flocked Together"

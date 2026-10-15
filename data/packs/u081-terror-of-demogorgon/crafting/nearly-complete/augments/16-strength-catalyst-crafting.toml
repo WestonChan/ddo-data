@@ -1,0 +1,21 @@
+name = "+16 Strength (Catalyst Crafting)"
+description = "+16 Enhancement bonus to Strength"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 16
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: nearly complete: ability score (legendary)"

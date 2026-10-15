@@ -1,0 +1,33 @@
+name = "Death's Locket (Level 23)"
+description = """
+This locket consists of the bones of several small mammals strung together with
+a small skull weighing them down. The side of the skull is hinged and opens
+to reveal some unknown thing's ashes."""
+drop_location = "Return to Prison of the Planes, Dolurrh room's chest (Epic Normal); Return to Gianthold, quest chain end reward"
+icon = "Necklace_21a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 23
+slot = "Neck"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 7
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 10
+
+[[source]]
+chest = "dolurrh room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"
+
+[[source]]
+kind = "quest_chain"
+name = "Return to Gianthold"

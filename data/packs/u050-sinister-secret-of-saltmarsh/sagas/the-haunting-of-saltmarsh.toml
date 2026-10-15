@@ -1,0 +1,19 @@
+name = "The Haunting of Saltmarsh"
+pack = "Sinister Secret of Saltmarsh"
+wiki_url = "https://ddowiki.com/page/Sinister_Secret_of_Saltmarsh_(Legendary)"
+quests = [
+    "Back to Basics",
+    "Danger at Dunwater",
+    "Down You Go",
+    "Rest for the Night",
+    "Swim at Your Own Risk",
+    "The Final Enemy",
+    "The Haunting of Saltmarsh",
+    "The Hijacked Haul",
+    "Under the Cover of Darkness",
+    "What Sleeps Below",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Sinister_Secret_of_Saltmarsh_(Legendary)"
+read = "2026-10-02"

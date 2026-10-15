@@ -1,0 +1,39 @@
+name = "Ring of Nightfall"
+description = """
+Glitters of the night sky are reflected in the smokey grey gem set into this
+ring."""
+drop_location = "Fresh-baked Dreams, End chest, Mill chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 10
+slot = "Ring"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, mill chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fresh-baked Dreams"

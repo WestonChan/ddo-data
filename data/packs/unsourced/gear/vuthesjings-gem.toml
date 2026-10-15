@@ -1,0 +1,10 @@
+name = "Vuthesjing's Gem"
+description = """
+This black gem is infused with a great deal of power from an ancient source.
+It may be able to be used as a component for a ritual."""
+drop_location = "Orchard of the Macabre, possible drop from Rare Encounter chest"
+icon = "Trinket_78"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Trinket"

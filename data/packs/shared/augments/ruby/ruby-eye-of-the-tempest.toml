@@ -1,0 +1,16 @@
+name = "Ruby Eye of the Tempest"
+description = """
+2% Chance On-Hit to cause a bolt of lightning that deals 1 to 20 points of electrical
+damage per minimum level of the upgraded weapon to all nearby enemies."""
+family = "Ruby"
+icon = "RubyEye"
+min_level = 1
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

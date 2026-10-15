@@ -1,0 +1,3 @@
+name = "Improved Cold Augmentation IX"
+description_template = "Increases the wearer's caster level when casting ninth level or lower Cold spells by three."
+verbose_name_template = "Improved Cold Augmentation IX"

@@ -1,0 +1,20 @@
+name = "Cooking By the Book"
+icon = "CookingByTheBook"
+
+[[item]]
+name = "Fried Sword Fish"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"

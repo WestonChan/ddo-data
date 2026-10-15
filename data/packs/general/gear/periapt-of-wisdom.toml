@@ -1,0 +1,13 @@
+name = "Periapt of Wisdom"
+description = "A pearl pendent on a light golden chain."
+drop_location = "Random, level ~4 chests/rewards"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Neck"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 2

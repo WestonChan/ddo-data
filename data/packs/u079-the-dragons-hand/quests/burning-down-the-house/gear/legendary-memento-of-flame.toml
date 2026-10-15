@@ -1,0 +1,44 @@
+name = "Legendary Memento of Flame"
+description = """
+Estellar formed the gem at the end of this chain to remind particular patrons
+of how hot a fire can truly burn."""
+drop_location = "Burning Down the House, end chest"
+icon = "Necklace_4"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 34
+slot = "Neck"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Quality"
+value = 39
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Enhancement"
+value = 23
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Burning Down the House"

@@ -1,0 +1,62 @@
+name = "Legendary Inferno Sniper"
+accepts_sentience = true
+description = "Blazing vengeance from above."
+drop_location = "White Plume Mountain, Burket and Snarla chest"
+enhancement_bonus = 15
+icon = "Longbow_1l"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Legendary Blinding Embers"
+
+[[effect]]
+name = "Fiery 6"
+
+[[effect]]
+name = "Fire Vulnerability"
+
+[[effect]]
+name = "Aligned"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "burket and snarla chest"
+kind = "quest"
+loot_type = "chest"
+name = "White Plume Mountain"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Longbow"

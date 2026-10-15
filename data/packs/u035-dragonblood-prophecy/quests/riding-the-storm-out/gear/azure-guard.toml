@@ -1,0 +1,41 @@
+name = "Azure Guard"
+description = """
+Made of lighter scale than one would expect, these boots help their bearers
+avoid detection and harm."""
+drop_location = "Riding the Storm Out, Warded chest"
+icon = "Boots_2a"
+item_category = "Clothing"
+material = "Blue Dragonscale"
+minimum_level = 27
+slot = "Feet"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Riding the Storm Out"

@@ -1,0 +1,1433 @@
+[[row]]
+name = "Arcane Sanctum"
+description = """
++1 Guild bonus to Saves vs. Enchantments
++25 Guild bonus to Maximum Spell Points
++1 Spell Penetration"""
+guild_level = 28
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "SaveBonus"
+targets = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Guild"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "SpellPenetrationBonus"
+
+[[row]]
+name = "Archery Range"
+description = "Seasoned Archer: +2% Guild bonus to Doubleshot"
+guild_level = 24
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "Doubleshot"
+
+[[row]]
+name = "Archwizard"
+description = "+1 Guild bonus to Difficulty Checks of your spells."
+guild_level = 39
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row]]
+name = "Armory"
+description = """
++[2/4/6] Guild bonus to Armor Class
++[5%/10%/15%] Fortification"""
+guild_level = 25
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    4,
+    4,
+    4,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+]
+bonus_type = "Guild"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "Fortification"
+
+[[row]]
+name = "Bath House"
+description = """
++20 Healing Amplification
+Range of Unconsciousness +[5/10/15]
+-10% damage while helpless"""
+guild_level = 14
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Guild"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -5,
+    -10,
+    -10,
+    -10,
+    -10,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+    -15,
+]
+bonus_type = "Guild"
+effect_type = "UnconsciousRange"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamageReduction"
+
+[[row]]
+name = "Black Abbot's Shadow"
+description = """
++1 use per rest of Turn Undead, Lay on Hands, and Smite Evil Against Evil Creatures:
++4 Deflection bonus, +1 Resistance bonus to Saving Throws (Does not stack with
+Protection from Evil)."""
+guild_level = 33
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "TurnBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "ExtraLayOnHands"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "ExtraSmite"
+
+[[row]]
+name = "Chronoscope"
+description = """
++[1/2/3] Guild bonus to Reflex saving throws
++40% Enhancement bonus to movement speed while in public areas"""
+guild_level = 12
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Guild"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row]]
+name = "Concert Hall"
+description = """
++1 Guild bonus to save vs. Enchantments
++1 Extra Bard Song per day
++1 Extra Action Boost per day"""
+guild_level = 38
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "SaveBonus"
+targets = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "SongCount"
+extra_types = ["ExtraActionBoost"]
+
+[[row]]
+name = "Crusader's Chapel"
+description = "+[5/10/15] Guild bonus to Positive and Negative Spell Power"
+guild_level = 27
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[row]]
+name = "Danger Room"
+description = "+[1/2/3] to Disable Device, Hide, Open Lock, Search, Spot"
+guild_level = 22
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Guild"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Hide",
+    "Open Lock",
+    "Search",
+    "Spot",
+]
+
+[[row]]
+name = "Fencing Master"
+description = """
++2% Guild bonus to Character Maximum Dodge
++2 Guild bonus to Maximum dexterity bonus to armor."""
+guild_level = 43
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "DodgeCapBonus"
+extra_types = ["MaxDexBonus"]
+
+[[row]]
+name = "Floating Rock Garden"
+description = "+2 Strength and +2 Wisdom"
+guild_level = 15
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Wisdom",
+]
+
+[[row]]
+name = "Forbidden Library"
+description = "+[1/2/3] to Concentration, Heal, Repair, Spellcraft, Use Magic Device"
+guild_level = 23
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Guild"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Heal",
+    "Repair",
+    "Spellcraft",
+    "Use Magic Device",
+]
+
+[[row]]
+name = "Game Hunter"
+description = """
++[1/2/3] Fortitude Saves
++5% damage to helpless enemies"""
+guild_level = 42
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Guild"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Guild"
+effect_type = "HelplessDamage"
+
+[[row]]
+name = "Grandmaster's Dojo"
+description = """
++2 Will Save
++1 DC to Stunning, Sap, and Hamstring"""
+guild_level = 32
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[row]]
+name = "Hag Apothecary"
+description = """
++20 Maximum HP
++1 Fortitude Saves vs. Poison
++1 Fortitude Saves vs. Disease"""
+guild_level = 45
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Guild"
+effect_type = "Hitpoints"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "SaveBonus"
+targets = [
+    "Poison",
+    "Disease",
+]
+
+[[row]]
+name = "Ninja Assassin"
+description = """
++0.25[W] Weapon Damage
++6 To-Hit bonus when Flanking"""
+guild_level = 44
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.25]
+bonus_type = "Guild"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[row]]
+name = "Old Sully's Grog Cellar"
+description = "+2 Charisma and +2 Constitution"
+guild_level = 17
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "AbilityBonus"
+targets = [
+    "Constitution",
+    "Charisma",
+]
+
+[[row]]
+name = "Otto's Irresistible Dancehall"
+description = "+[1/2/3] to Balance, Jump, Move Silently, Perform, Swim, Tumble"
+guild_level = 26
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Guild"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Move Silently",
+    "Perform",
+    "Swim",
+    "Tumble",
+]
+
+[[row]]
+name = "Paradoxical Puzzle Box"
+description = "+2 Dexterity and +2 Intelligence"
+guild_level = 16
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "AbilityBonus"
+targets = [
+    "Dexterity",
+    "Intelligence",
+]
+
+[[row]]
+name = "Sellswords' Tavern"
+description = "+[4/8/12] Guild bonus to all PRR and MRR for hirelings"
+guild_level = 13
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    8,
+    8,
+    8,
+    8,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+]
+bonus_type = "Guild"
+effect_type = "HirelingPRR"
+extra_types = ["HirelingMRR"]
+
+[[row]]
+name = "Shrine of the Devourer I"
+description = "+[5/10/15] Guild bonus to Acid/Cold Resistances and Spell Power at levels [1/7/11]"
+guild_level = 10
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "EnergyResistance"
+targets = [
+    "Acid",
+    "Cold",
+]
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Cold",
+]
+
+[[row]]
+name = "Shrine to the Devourer II"
+description = "+5% Guild bonus to Acid/Cold Absorption"
+guild_level = 70
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Guild"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Acid",
+    "Cold",
+]
+
+[[row]]
+name = "Shrine to the Devourer III"
+description = "+10% Guild bonus to Acid/Cold Absorption"
+guild_level = 95
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Guild"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Acid",
+    "Cold",
+]
+
+[[row]]
+name = "Shrine to the Devourer IV"
+description = "+15% Guild bonus to Acid/Cold Absorption"
+guild_level = 130
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Guild"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Acid",
+    "Cold",
+]
+
+[[row]]
+name = "Sign of the Silver Flame I"
+description = "+[5/10/15] Guild bonus to Fire Resistance, and Fire/Light Spell Power at levels [1/7/11]"
+guild_level = 10
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+]
+
+[[row]]
+name = "Sign of the Silver Flame II"
+description = "+5% Guild bonus to Fire Absorption"
+guild_level = 65
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Guild"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row]]
+name = "Sign of the Silver Flame III"
+description = "+10% Guild bonus to Fire Absorption"
+guild_level = 90
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Guild"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row]]
+name = "Sign of the Silver Flame IV"
+description = "+15% Guild bonus to Fire Absorption"
+guild_level = 125
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Guild"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row]]
+name = "Stormreaver Memorial I"
+description = "+[5/10/15] Guild bonus to Sonic/Electricity Resistances and Spell Power at levels [1/7/11]"
+guild_level = 10
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "EnergyResistance"
+targets = [
+    "Electric",
+    "Sonic",
+]
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Sonic",
+]
+
+[[row]]
+name = "Stormreaver Memorial II"
+description = "+5% Guild bonus to Sonic/Electricity Absorption"
+guild_level = 80
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Guild"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Sonic",
+    "Electric",
+]
+
+[[row]]
+name = "Stormreaver Memorial III"
+description = "+10% Guild bonus to Sonic/Electricity Absorption"
+guild_level = 110
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Guild"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Sonic",
+    "Electric",
+]
+
+[[row]]
+name = "Stormreaver Memorial IV"
+description = "+15% Guild bonus to Sonic/Electricity Absorption"
+guild_level = 140
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Guild"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Sonic",
+    "Electric",
+]
+
+[[row]]
+name = "Tactical Training Room"
+description = """
++[2/4/6] Damage on critical hits (before multiplier)
++1 bonus to the DC of Trip, Sunder, and Slicing blow feats
++2 To-Hit with physical attacks."""
+guild_level = 21
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    4,
+    4,
+    4,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+]
+bonus_type = "Guild"
+effect_type = "Weapon_DamageCritical"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row]]
+name = "Throne Room"
+description = "+[1/2/3] to Bluff, Diplomacy, Haggle, Intimidate, Listen"
+guild_level = 18
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Guild"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Intimidate",
+    "Listen",
+]
+
+[[row]]
+name = "Trapsmith's Workshop"
+description = "+5% Fortification Bypass"
+guild_level = 29
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Guild"
+effect_type = "FortificationBypass"
+
+[[row]]
+name = "Wild Grove"
+description = """
++2 Extra Wild Empathy per rest
++[1/2/3] to all ability scores for summoned/charmed creatures."""
+guild_level = 31
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "ExtraWildEmpathy"
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Guild"
+effect_type = "HirelingAbilityBonus"

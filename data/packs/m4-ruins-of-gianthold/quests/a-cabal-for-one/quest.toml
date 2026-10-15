@@ -1,0 +1,26 @@
+name = "A Cabal for One"
+bestowed_by = "Jorgundal ar'Grund"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Return to Cabal for One"
+favor = 6
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "Hobgoblin Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/A_Cabal_for_One"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 24

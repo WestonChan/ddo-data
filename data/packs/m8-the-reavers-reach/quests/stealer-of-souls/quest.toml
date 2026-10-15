@@ -1,0 +1,22 @@
+name = "Stealer of Souls"
+bestowed_by = "Thear"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "The Reaver's Reach"
+patron = "Agents of Argonnessen"
+zone = "Sorjek's Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Stealer_of_Souls"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

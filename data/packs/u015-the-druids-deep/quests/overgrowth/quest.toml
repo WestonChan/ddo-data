@@ -1,0 +1,25 @@
+name = "Overgrowth"
+bestowed_by = "Eolynn Arva"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Druid's Deep"
+patron = "The Harpers"
+zone = "Uthe Lodge"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Overgrowth"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17
+
+[[run]]
+tier = "epic"
+level = 23

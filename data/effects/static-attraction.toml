@@ -1,0 +1,3 @@
+name = "Static Attraction"
+description_template = "This weapon attracts the static electricity in the air, and over time will charge with magic while held in your main hand. Every five seconds, this weapon gains a charge of Static Electricity, up to a maximum of 3, providing a +10 Exceptional bonus to Electric Spell Power and a +5% Exceptional bonus to Electric Spell Lore. When you cast an Electric spell, all stacks are consumed."
+verbose_name_template = "Static Attraction"

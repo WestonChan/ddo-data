@@ -1,0 +1,25 @@
+name = "+5 Reflex Save"
+adds_augment = "Accessory Subjugation"
+variant = "Fire:Opposition:Ethereal"
+description = """
+Reflex Save +5: +5 Resistance bonus to your Reflex save.
+Fire:Opposition:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Resistance"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[slot]]
+slot = "crafting: accessory invasion"

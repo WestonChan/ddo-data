@@ -1,0 +1,50 @@
+name = "Epic Souleater"
+accepts_sentience = true
+description = """
+This is the staff used by the sahuagin High Priestess Slikir to commune with
+and channel a demon. It took on many of the demon's aspects and is now a dangerous
+and corrupted implement."""
+drop_location = "Epic version of Souleater"
+enhancement_bonus = 6
+icon = "Quarterstaff_10a"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Epic Trap the Soul"
+
+[[effect]]
+name = "Demonic Might"
+bonus_type = "Profane"
+
+[[effect]]
+name = "Feeding 20"
+
+[[effect]]
+name = "Vampirism 2"
+
+[[effect]]
+name = "Negativity 4"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,36 @@
+name = "Alabaster of the Twelve"
+description = "This fragment of a gemstone is infused with the power of The Twelve."
+drop_location = "The Marketplace, Turn in 10 Planar Shards"
+icon = "Trinket_3"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Trinket"
+
+[[clickie]]
+name = "Cure Serious Wounds, Mass"
+clickie = "Cure Serious Wounds, Mass"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    3,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cure Serious Wounds, Mass"]
+
+[[source]]
+kind = "saga"
+name = "Masterminds of Sharn"
+tier = "any"
+
+[[source]]
+kind = "vendor"
+name = "Morten Edgewright"
+
+[[source.price]]
+ingredient = "Planar Shard"
+quantity = 10

@@ -1,0 +1,30 @@
+name = "Bullywugs and Booby Traps"
+bestowed_by = "Rimta"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Isle of Dread"
+patron = "The Gatekeepers"
+zone = "Bullywug Bastion"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Bullywugs_and_Booby_Traps"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

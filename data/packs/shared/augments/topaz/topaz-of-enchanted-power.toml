@@ -1,0 +1,27 @@
+name = "Topaz of Enchanted Power"
+description = "+8 Equipment bonus to Enchantment DCs."
+family = "Topaz"
+icon = "TopazBlueBorder"
+min_level = 30
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

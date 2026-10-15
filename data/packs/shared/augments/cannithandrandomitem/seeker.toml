@@ -1,0 +1,84 @@
+name = "Seeker"
+choose_level = true
+description = "Enhancement bonus to critical attack rolls and damage"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    2,
+    3,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    14,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: cannith boots prefix"
+
+[[slot]]
+slot = "crafting: cannith goggles prefix"
+
+[[slot]]
+slot = "crafting: cannith handwraps prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith melee prefix"
+
+[[slot]]
+slot = "crafting: cannith ranged prefix"
+
+[[slot]]
+slot = "crafting: cannith thrown prefix"
+
+[[slot]]
+slot = "crafting: random boots prefix"
+
+[[slot]]
+slot = "crafting: random goggles prefix"
+
+[[slot]]
+slot = "crafting: random weapon prefix"

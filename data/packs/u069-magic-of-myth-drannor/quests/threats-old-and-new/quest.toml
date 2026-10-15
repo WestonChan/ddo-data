@@ -1,0 +1,26 @@
+name = "Threats Old and New"
+bestowed_by = "Phathroi"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+is_raid = true
+pack = "Magic of Myth Drannor"
+patron = "Cormanthor Elves"
+zone = "Former Cult of the Dragon Base"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Threats_Old_and_New"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 35

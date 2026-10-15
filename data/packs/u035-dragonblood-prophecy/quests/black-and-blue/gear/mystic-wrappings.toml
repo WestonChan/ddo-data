@@ -1,0 +1,39 @@
+name = "Mystic Wrappings"
+description = """
+Found in the Giantish ruins and imbued with dragonscales, these scraps of cloth
+imbue great arcane power when wrapped around the forearms."""
+drop_location = "Black and Blue, end chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 10
+slot = "Wrists"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 46
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 11
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Black and Blue"

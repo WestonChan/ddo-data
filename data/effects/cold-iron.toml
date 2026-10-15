@@ -1,0 +1,3 @@
+name = "Cold Iron"
+description_template = "This iron mined deep underground, known for its effectiveness against Fey creatures, is forged at a lower temperature to preserve its delicate properties."
+verbose_name_template = "Cold Iron"

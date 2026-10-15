@@ -1,0 +1,23 @@
+name = "+2 Fortitude Save (Quality)"
+description = "Ethereal/Opposition: +2 Quality bonus to Fortitude saves."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Opposition"""
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[slot]]
+slot = "crafting: equipment tier 3"

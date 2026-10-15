@@ -1,0 +1,28 @@
+name = "Corsair's Galoshes"
+description = "These boots are thigh-high and waterproof. Good for keeping your feet dry."
+drop_location = "Three-Barrel Cove (heroic), End reward"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Feet"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 15
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "reward"
+name = "Three-Barrel Cove"

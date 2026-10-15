@@ -1,0 +1,38 @@
+name = "Resonation"
+description = "Even the slightest noises cause this small pendant to shudder."
+drop_location = "Defiler of the Just, warded chest"
+icon = "Necklace_1a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 26
+slot = "Neck"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Sounding"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

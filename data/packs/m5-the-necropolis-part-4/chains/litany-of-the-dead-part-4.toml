@@ -1,0 +1,15 @@
+name = "Litany of the Dead Part 4"
+pack = "The Necropolis, Part 4"
+quests = [
+    "Desecrated Temple of Vol",
+    "Flesh Maker's Laboratory",
+    "Ghosts of Perdition",
+    "Inferno of the Damned",
+    "Litany of the Dead",
+    "Ascension Chamber",
+    "The Mark of Death",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Litany_of_the_Dead_Part_4"
+read = "2026-10-02"

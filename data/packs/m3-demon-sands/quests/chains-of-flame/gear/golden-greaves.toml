@@ -1,0 +1,35 @@
+name = "Golden Greaves"
+description = "These gold-plated greaves are embossed with a boar's head sigil."
+drop_location = "Chains of Flame, Valgrim Forge-Bound 's Chest"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 21
+value2 = 8
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "DR 15/-"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "valgrim forge-bound 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Chains of Flame"

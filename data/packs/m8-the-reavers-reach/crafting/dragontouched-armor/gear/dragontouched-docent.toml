@@ -1,0 +1,39 @@
+name = "Dragontouched Docent"
+description = """
+This docent is etched with several ancient draconic runes that appear to be
+dormant. Perhaps untold powers can be awakened if a power source could be found."""
+drop_location = "Dragontouched Armor, End reward"
+enhancement_bonus = 5
+icon = "Docent_1i"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 16
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 16
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 7
+
+[[effect]]
+name = "Construct Fortification (10%)"
+bonus_type = "Insight"
+
+[[effect]]
+name = "Dragontouched"
+
+[[socket]]
+slot = "crafting: eldritch rune"
+
+[[socket]]
+slot = "crafting: tempest rune"
+
+[[socket]]
+slot = "crafting: sovereign rune"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragontouched Armor"

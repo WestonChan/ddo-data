@@ -1,0 +1,3 @@
+name = "Hit Point Augment Scaling"
+description_template = "With 2–6 augments, gain +5% to +9% Legendary maximum Hit Points."
+verbose_name_template = "Hit Point Augment Scaling"

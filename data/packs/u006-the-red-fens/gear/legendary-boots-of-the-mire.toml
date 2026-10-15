@@ -1,0 +1,37 @@
+name = "Legendary Boots of the Mire"
+description = "These boots were designed to ease travel through swampy, water-logged regions."
+drop_location = "Legendary version of Epic Boots of the Mire"
+icon = "Boots_13a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 30
+slot = "Feet"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 45
+
+[[effect]]
+name = "Underwater Action"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

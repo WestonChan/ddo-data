@@ -1,0 +1,207 @@
+[[row]]
+family = "standard"
+label = "blue"
+variant = "blue"
+
+[[row]]
+family = "standard"
+label = "colorless"
+variant = "colorless"
+
+[[row]]
+family = "crafting"
+label = "crafting: accessory invasion"
+variant = "accessory invasion"
+
+[[row]]
+family = "crafting"
+label = "crafting: almost there"
+variant = "almost there"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned to heroism 1"
+variant = "attuned to heroism 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned to heroism 2"
+variant = "attuned to heroism 2"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned to heroism 3"
+variant = "attuned to heroism 3"
+
+[[row]]
+family = "crafting"
+label = "crafting: attuned to heroism 4"
+variant = "attuned to heroism 4"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith rune arm prefix"
+variant = "cannith rune arm prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: cannith rune arm suffix"
+variant = "cannith rune arm suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: finishing touch"
+variant = "finishing touch"
+
+[[row]]
+family = "crafting"
+label = "crafting: legendary alchemical tier 1"
+variant = "legendary alchemical tier 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: nearly finished"
+variant = "nearly finished"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords bonus"
+variant = "slavelords bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords extra"
+variant = "slavelords extra"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords prefix"
+variant = "slavelords prefix"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords set bonus"
+variant = "slavelords set bonus"
+
+[[row]]
+family = "crafting"
+label = "crafting: slavelords suffix"
+variant = "slavelords suffix"
+
+[[row]]
+family = "crafting"
+label = "crafting: thunderforged tier 1"
+variant = "thunderforged tier 1"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable - primary augment"
+variant = "upgradeable - primary augment"
+
+[[row]]
+family = "crafting"
+label = "crafting: upgradeable - secondary augment"
+variant = "upgradeable - secondary augment"
+
+[[row]]
+family = "crafting"
+label = "crafting: variant"
+variant = "variant"
+
+[[row]]
+family = "standard"
+label = "green"
+variant = "green"
+
+[[row]]
+family = "dino"
+label = "isle of dread: claw (weapon)"
+qualifier = "weapon"
+variant = "claw"
+
+[[row]]
+family = "dino"
+label = "isle of dread: fang (weapon)"
+qualifier = "weapon"
+variant = "fang"
+
+[[row]]
+family = "dino"
+label = "isle of dread: horn (weapon)"
+qualifier = "weapon"
+variant = "horn"
+
+[[row]]
+family = "dino"
+label = "isle of dread: scale (armor)"
+qualifier = "armor"
+variant = "scale"
+
+[[row]]
+family = "dino"
+label = "isle of dread: scale (weapon)"
+qualifier = "weapon"
+variant = "scale"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: dolorous (armor)"
+qualifier = "armor"
+variant = "dolorous"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: melancholic (armor)"
+qualifier = "armor"
+variant = "melancholic"
+
+[[row]]
+family = "lamordia"
+label = "lamordia: miserable (accessory)"
+qualifier = "accessory"
+variant = "miserable"
+
+[[row]]
+family = "standard"
+label = "moon"
+variant = "moon"
+
+[[row]]
+family = "standard"
+label = "orange"
+variant = "orange"
+
+[[row]]
+family = "standard"
+label = "purple"
+variant = "purple"
+
+[[row]]
+family = "standard"
+label = "red"
+variant = "red"
+
+[[row]]
+family = "standard"
+label = "sun"
+variant = "sun"
+
+[[row]]
+family = "upgrade"
+label = "upgrade: tier 1"
+variant = "tier 1"
+
+[[row]]
+family = "upgrade"
+label = "upgrade: tier 2"
+variant = "tier 2"
+
+[[row]]
+family = "upgrade"
+label = "upgrade: tier 3"
+variant = "tier 3"
+
+[[row]]
+family = "standard"
+label = "yellow"
+variant = "yellow"

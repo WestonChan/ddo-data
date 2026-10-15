@@ -1,0 +1,47 @@
+name = "Marilith Chain"
+description = """
+A suit of Chain Mail created from the melted down weapons of a Marilith demon.
+A taint of evil still lingers, but some will ignore that for the protection
+this armor gives, especially as the armor does not seem to affect the use of
+skills."""
+drop_location = "Zawabi's Revenge, Raid Warded chest"
+enhancement_bonus = 5
+icon = "LightArmor_9a"
+item_category = "Armor"
+item_type = "Light"
+material = "Magesteel"
+minimum_level = 12
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 9
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "DR 5/Good"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"

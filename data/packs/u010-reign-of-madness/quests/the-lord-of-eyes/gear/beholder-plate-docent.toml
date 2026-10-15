@@ -1,0 +1,44 @@
+name = "Beholder Plate Docent"
+description = """
+Some beholders of Xoriat are fitted with resilient metal plates to bolster their
+weak physical defenses. Metal from those same plates was used in crafting this
+docent, granting it wondrous Antimagic properties."""
+drop_location = """
+The Lord of Eyes, Opuloxx chest;
+Harbinger of Madness, Quest chain end reward"""
+enhancement_bonus = 5
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 14
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 16
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 7
+
+[[effect]]
+name = "Antimagic Spike"
+
+[[effect]]
+name = "Telekinesis Guard"
+
+[[effect]]
+name = "Metal Fatigue"
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[source]]
+chest = "opuloxx chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Lord of Eyes"
+
+[[source]]
+kind = "quest_chain"
+name = "Harbinger of Madness"

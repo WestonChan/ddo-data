@@ -1,0 +1,22 @@
+name = "Topaz of Quick Movements"
+description = """
+Grants the feat "Quick Draw"
+Drops in U48: Any Feywild rare encounter chest."""
+family = "Named"
+icon = "Topaz"
+min_level = 6
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Quick Draw"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

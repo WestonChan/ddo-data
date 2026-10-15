@@ -1,0 +1,28 @@
+name = "Gerard's Mail"
+description = "This chain shirt was taken from the sarcophagus of Gerard Dryden ."
+drop_location = "The Crypt of Gerard Dryden, old End Chest"
+enhancement_bonus = 1
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 7
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "old end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crypt of Gerard Dryden"

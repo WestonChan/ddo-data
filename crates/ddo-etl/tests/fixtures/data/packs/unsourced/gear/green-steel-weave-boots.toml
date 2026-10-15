@@ -1,0 +1,8 @@
+name = "Green Steel Weave Boots"
+description = "Boots lined with cloth woven with threads of green steel."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+icon = "Boots_21"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Feet"

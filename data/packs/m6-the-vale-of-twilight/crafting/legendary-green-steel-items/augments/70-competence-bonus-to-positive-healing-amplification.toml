@@ -1,0 +1,19 @@
+name = "+70 Competence bonus to Positive Healing Amplification"
+description = "Opposition/Positive: +70 Competence bonus to positive healing amplification"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Competence"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

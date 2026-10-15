@@ -1,0 +1,73 @@
+name = "Breastplate of the Celestial Avenger"
+description = """
+This piece of Armor, once belonging to the Archons, was scattered through time
+and space by Arraetrikos."""
+drop_location = "Legendary Hound of Xoriat, Raid chest, Legendary Tempest's Spine, Raid chest"
+enhancement_bonus = 14
+icon = "MediumArmor_1c"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 27
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 15
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 141
+
+[[effect]]
+name = "Speed XV"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Deathblock IX"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Angelic Grace"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Hound of Xoriat"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Tempest's Spine"

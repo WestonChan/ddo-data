@@ -1,0 +1,60 @@
+name = "Legendary Echo of Blackrazor"
+accepts_sentience = true
+description = """
+It delights in your voracity.
+
+There is something missing from this legendary sword... something that makes
+it feel... incomplete."""
+drop_location = "White Plume Mountain, End chest"
+enhancement_bonus = 15
+icon = "Greatsword_7a"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Crystal"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Legendary Stealer of Souls"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Entropic 6"
+
+[[effect]]
+name = "Psychic Ward"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "White Plume Mountain"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Great Sword"

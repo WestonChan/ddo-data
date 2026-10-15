@@ -1,0 +1,12 @@
+name = "Cold I: Fire Shield (Cold) + Ice Shards Guard"
+adds_augment = "Legendary Alchemical Tier 2"
+description = "Combine T0 item with 50 threads and stabilizing compound."
+effect_description = """
+Fire Shield(Cold): When you are successfully attacked, there is a 10% chance that a Fire Shield(Cold) will be cast on you. If this effect activates while you have an active Fire Shield(Hot) from another source, they will nullify each other.
+Ice Shards Guard: No effects"""
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 1"

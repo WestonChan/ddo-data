@@ -1,0 +1,35 @@
+name = "Icon of Mielikki"
+drop_location = "Toil and Trouble, optional chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Neck"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Thorn Guard"
+
+[[effect]]
+name = "Protection from Evil +1"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

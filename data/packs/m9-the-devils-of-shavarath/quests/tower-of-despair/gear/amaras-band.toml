@@ -1,0 +1,46 @@
+name = "Amara's Band"
+description = """
+This burnt ring of red gold is etched with images of stylized flame. It was
+worn by Amara, a powerful Exorcist of the Silverflame."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Exorcist of the Silver Flame"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Exorcist of the Silver Flame - 2 Piece bonus"
+effect_type = "ExtraTurns"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

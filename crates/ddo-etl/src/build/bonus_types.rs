@@ -102,7 +102,7 @@ impl<'a> UntypedBonusCorrections<'a> {
         }
         let remedy = match correction_kind {
             Some(correction_kind) => format!(
-                "type it with a {} bonus_type correction from \"null\" (data/corrections/README.md) or in {}",
+                "type it with a cited {} bonus_type correction note in the data files or in {}",
                 correction_kind.as_str(),
                 "data/effect_map.toml"
             ),

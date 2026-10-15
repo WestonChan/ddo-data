@@ -1,0 +1,27 @@
+name = "Topaz of Necromantic Power"
+description = "+8 Equipment bonus to Necromancy DCs."
+family = "Topaz"
+icon = "TopazBlueBorder"
+min_level = 30
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

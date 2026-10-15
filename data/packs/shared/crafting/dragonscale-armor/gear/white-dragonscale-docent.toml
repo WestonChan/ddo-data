@@ -1,0 +1,41 @@
+name = "White Dragonscale Docent"
+description = "This docent was crafted with the scales of a white dragon."
+drop_location = "White Dragonscale Armor, Turn in 20 White Dragon Scales"
+enhancement_bonus = 5
+icon = "Docent_7"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 14
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 17
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 4
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

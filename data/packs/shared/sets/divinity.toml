@@ -1,0 +1,54 @@
+name = "Divinity"
+icon = "Divinity"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "Smite Evil Charges"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Healing Amplification"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Melee and Ranged Power"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

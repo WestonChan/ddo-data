@@ -1,0 +1,2 @@
+name = "Ranged Power on Action Boost"
+verbose_name_template = "When you use an action boost, gain +20 Ranged power for 20 seconds"

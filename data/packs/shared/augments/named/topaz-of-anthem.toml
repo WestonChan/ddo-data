@@ -1,0 +1,14 @@
+name = "Topaz of Anthem"
+description = "You regenerate bard songs over time"
+family = "Named"
+icon = "Topaz"
+min_level = 1
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

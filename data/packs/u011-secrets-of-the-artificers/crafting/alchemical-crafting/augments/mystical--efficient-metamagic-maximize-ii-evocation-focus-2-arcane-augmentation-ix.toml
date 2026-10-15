@@ -1,0 +1,37 @@
+name = "Mystical: Efficient Metamagic - Maximize II, Evocation Focus +2, Arcane Augmentation IX"
+description = """
+Efficient Metamagic - Maximize II: The additional spell point cost for using the Maximize
+Metamagic feat is reduced by 2 SP.
+Evocation Focus +2: +2 Equipment bonus to the DC of Evocation spells.
+Arcane Augmentation IX: Increases the wearer's caster level when casting ninth
+level or lower sorcerer or wizard spells by two."""
+family = "Alchemical"
+min_level = 20
+
+[[effect]]
+name = "Maximize Cost Reduction"
+bonus_type = "Equipment"
+value = -2
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Equipment"
+effect = "Maximize Cost Reduction"
+effect_type = "MetamagicCostMaximize"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[slot]]
+slot = "crafting: alchemical tier 3"

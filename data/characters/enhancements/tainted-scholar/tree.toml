@@ -1,0 +1,1325 @@
+name = "Tainted Scholar"
+background = "WarlockBackground"
+icon = "Warlock"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Tainted Scholar: Tainted Spellcasting"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Activate for 10 Depravity: +25 Universal Spell Power, +2 bonus to all Spell DCs.
+Lasts 20 seconds. Cooldown: 60 seconds..
+
+You gain 1 Depravity each time you damage enemies with Eldritch Blast or spells
+(except with Positive Energy). You can gain 1 Depravity every 6.5 seconds.
+Each additional trained tainted Scholar Core enhancement reduces this cooldown
+by 1 second, to a minimum of 1.5 seconds. You can have up to 10 Depravity,
+which disappears on rest, death or entering public spaces.
+
+Passive: Each point spent in Tainted Scholar provides +0.75 Universal Spell Power.
+Feather Fall is added to your known Warlock Spells at level 1."""
+icon = "TSTaintedSpellcasting"
+internal_name = "TSCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [0.75]
+bonus_type = "Enhancement"
+display_name = "Tainted Scholar: Spell power per action point"
+effect_type = "UniversalSpellPower"
+stack_source = "Tainted Scholar"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    10,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Feather Fall",
+    "Warlock",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    10,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Feather Fall",
+    "Acolyte of the Skin",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Tainted Scholar: Tainted Lore"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++10% Spell Critical Damage
++1 Spell Penetration
++10 maximum Depravity
+(Spell Critical Damage also applies to criticals with Eldritch Blast.)
+
+Web is added to your known Warlock Spells at level 2 (Warlock level 4)"""
+icon = "TSTaintedLore"
+internal_name = "TSCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    15,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Web",
+    "Warlock",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    15,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Web",
+    "Acolyte of the Skin",
+]
+
+[[enhancement.requirement]]
+items = ["TSCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Tainted Scholar: Stanch"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Activate for 7 Depravity: Gain temporary hit points equal to 50% of your maximum
+hitpoints. These last for 1 minute. You have -3% maximum hit points until you
+rest, which stacks up to 33 times. Cooldown: 12 seconds
++10 Maximum Depravity.
+
+Crushing Despair is added to your known Warlock level 3 Spells (Warlock level 7)."""
+icon = "TSStanch"
+internal_name = "TSCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    20,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Crushing Despair",
+    "Warlock",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    20,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Crushing Despair",
+    "Acolyte of the Skin",
+]
+
+[[enhancement.requirement]]
+items = ["TSCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Tainted Scholar: Tainted Lore"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++20% Spell Critical Damage
++1 Spell Penetration
++10 Maximum Depravity
+(Spell Critical Damage also applies to criticals with Eldritch Blast.)
+
+Death Ward is added to your known Warlock Spells at level 4. (Warlock level 10)"""
+icon = "TSTaintedLore"
+internal_name = "TSCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    25,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Death Ward",
+    "Warlock",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    25,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Death Ward",
+    "Acolyte of the Skin",
+]
+
+[[enhancement.requirement]]
+items = ["TSCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Tainted Scholar: Blood Component"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain 1 Eldritch Blast dice.
++10 Maximum Depravity
+-25 Maximum HP
+
+Greater Heroism is added to your known Warlock Spells at level 5.
+(Warlock level 13)"""
+icon = "TSBloodComponent"
+internal_name = "TSCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-25]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    30,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Greater Heroism",
+    "Warlock",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    30,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Greater Heroism",
+    "Acolyte of the Skin",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD8"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["TSCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tainted Scholar: Heretical Lore"
+cost_per_rank = [1]
+description = """
+Your Eldritch Blast deals +1d8 damage
++30% Spell Critical Damage
++4 Charisma
++1 Spell Penetration
++10 Maximum Depravity
+(Spell Critical Damage also applies to criticals with Eldritch Blast.)
+
+Energy Drain is added to your known Warlock Spells at level 6. (Warlock level 16)"""
+icon = "TSHereticalLore"
+internal_name = "TSCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TSCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD8"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    50,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Energy Drain",
+    "Warlock",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    50,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Energy Drain",
+    "Acolyte of the Skin",
+]
+
+[[enhancement.requirement]]
+items = ["TSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "TSCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Tainted Scholar: Planar Power"
+cost_per_rank = [1]
+description = "+[30/60/90] Spell Points."
+icon = "TSPlanarPower"
+internal_name = "TSPlanarPower"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    90,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Tainted Scholar: Feigned Health"
+cost_per_rank = [1]
+description = """
+When you cast spells on yourself or allies, you grant temporary hitpoints
+equal to [33/66/100]% of your Charisma. These last for three minutes."""
+icon = "TSFeignedHealth"
+internal_name = "TSFeignedHealth"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Tainted Scholar: Command"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Command
+Activate for 1 Depravity
+Cooldown: 5 seconds
+
+An enemy is commanded to fall to the ground and lie prone. A successful Will
+save negates this effect."""
+icon = "TSCommand"
+internal_name = "TSCommand"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Command",
+    "Warlock",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Tainted Scholar: Strong Pact I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 bonus Pact Dice"
+icon = "TSStrongPact"
+internal_name = "TSStrongPactI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD6"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Tainted Scholar: Eldritch Focus"
+cost_per_rank = [1]
+description = "+[1/2/3] Spellcraft and Concentration"
+icon = "TSEldritchFocus"
+internal_name = "TSEldritchFocus"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Spellcraft",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Tainted Scholar: Utterdark Blast"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Eldritch Essence Stance: Your Eldritch Blast base damage is now Evil instead of
+Force. (Evil Damage from spells is usually boosted by alignment-based Spell
+power, and normally deals full damage to enemies regardless of enemy alignment,
+though particular enemies may have special defenses)."""
+icon = "TSUtterdarkBlast"
+internal_name = "TSUtterdarkBlast"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.stance]]
+name = "Utterdark Blast"
+description = """
+Eldritch Essence Stance: Your Eldritch Blast base damage is now Evil instead of Force.
+(Evil Damage from spells is usually boosted by alignment-based Spell power,
+and normally deals full damage to enemies regardless of enemy alignment,
+though particular enemies may have special defenses)."""
+group_name = "Eldritch Essence Stance"
+icon = "TSUtterdarkBlast"
+
+[[enhancement]]
+name = "Tainted Scholar: Eldritch Blast Shape: Chain"
+cost_per_rank = [2]
+description = """
+Eldritch Blast Shape: Your Eldritch Blast takes the form of a ranged magical bolt
+that jumps to two more nearby enemies upon impact.
+While active you have -1 Eldritch Blast Pact damage die."""
+icon = "TSEldritchBlastShapeChain"
+internal_name = "TSEldritchBlastShapeChain"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD8"
+
+[[enhancement.modifier.requirement]]
+items = ["Chain"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.stance]]
+name = "Chain"
+description = """
+Eldritch Blast Shape: Your Eldritch Blast takes the form of a ranged magical bolt
+that jumps to two more nearby enemies upon impact.
+While active you have -1 Eldritch Blast Pact damage die."""
+group_name = "Blast Shape"
+icon = "TSEldritchBlastShapeChain"
+
+[[enhancement]]
+name = "Tainted Scholar: Stunning Blast"
+cost_per_rank = [2]
+description = """
+Activate for 2 Depravity: Attacks an enemy with an Eldritch Blast that
+stuns your target into helplessness for 12 seconds on a failed Fortitude saving
+throw vs. DC (10 + Warlock Level + Charisma Modifier). Cooldown: 6 seconds.
+
+This damage scales with 150% spell power.
+
+Spell-Like Ability: This ability benefits from your Metamagic Feats (such as
+Quicken Spell) without paying the normal additional spell point cost.
+This is a level 4 Evocation SLA."""
+icon = "TSStunningBlast"
+internal_name = "TSStunningBlast"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.dc]]
+name = "Tainted Scholar: Stunning Blast"
+amount = [10]
+base_class_level = "Warlock"
+dc_type = "Stun"
+dc_versus = "Fortitude"
+description = """
+Activate for 2 Depravity: Attacks an enemy with an Eldritch Blast that
+stuns your target into helplessness for 12 seconds on a failed Fortitude saving
+throw."""
+icon = "TSStunningBlast"
+mod_ability = ["Charisma"]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Tainted Scholar: Strong Pact II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 bonus Pact Dice"
+icon = "TSStrongPact"
+internal_name = "TSStrongPactII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD6"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["TSStrongPactI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tainted Scholar: Wand and Scroll Mastery"
+cost_per_rank = [1]
+description = """
++[25/50/75]% to the effectiveness of your wands, scrolls, and other items that
+cast spells, and +[1/3/6] to the DCs of your offensive wands.
+Taking Wand and Scroll Mastery in one enhancement tree will block its
+availability in other enhancement trees."""
+icon = "TSWandAndScrollMastery"
+internal_name = "TSWandAndScrollMastery"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TSWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    3,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Wands"]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = [
+    "TSWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Tainted Scholar: Faltering Blast"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Eldritch Essence Stance: Your Eldritch Blast attacks have a 10% chance to slow
+enemy movement speed by 50% for 6 seconds. This does not affect bosses.
+Cooldown: 6 seconds"""
+icon = "TSFalteringBlast"
+internal_name = "TSFalteringBlast"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["TSUtterdarkBlast"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Faltering Blast"
+description = """
+Eldritch Essence Stance: Your Eldritch Blast attacks have a 10% chance to slow
+enemy movement speed by 50% for 6 seconds. This does not affect bosses."""
+group_name = "Eldritch Essence Stance"
+icon = "TSFalteringBlast"
+
+[[enhancement]]
+name = "Tainted Scholar: Efficient Heighten"
+cost_per_rank = [2]
+description = """
+Using the Heighten Spell Metamagic costs you [1/2] less Spell Points per
+heightened level."""
+icon = "EfficientHeighten"
+internal_name = "TSEfficientHeighten"
+min_spent = 10
+ranks = 2
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TSEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostHeighten"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = [
+    "TSEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.requirement]]
+items = ["Heighten Spell"]
+req_type = "FeatAnySource"
+
+[[enhancement]]
+name = "Tainted Scholar: Confusion"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Confusion
+Activate for 1 Depravity: Target non-boss monster becomes Confused on
+a failed Will Saving throw.
+
+Confused monsters attack and are attacked by both monster characters and
+player characters.
+
+Spell-Like Ability: This ability benefits from your Metamagic Feats (such as
+Quicken Spell) without paying the normal additional spell point cost.
+This is an Enchantment SLA."""
+icon = "TSConfusion"
+internal_name = "TSConfusion"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Confusion",
+    "Warlock",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Tainted Scholar: Strong Pact III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 bonus Pact Dice"
+icon = "TSStrongPact"
+internal_name = "TSStrongPactIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD6"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["TSStrongPactII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tainted Scholar: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Intelligence or Charisma"
+icon = "IntCha"
+internal_name = "TSAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Tainted Scholar: Penetrating Blast"
+cost_per_rank = [2]
+description = """
+Eldritch Essence Stance: While active, your Eldritch Blast base damage is now
+Pierce instead of Force. You gain +1d8 base Eldritch Blast damage."""
+icon = "TSPenetratingBlast"
+internal_name = "TSPenetratingBlast"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD8"
+
+[[enhancement.modifier.requirement]]
+items = ["Penetrating Blast"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TSFalteringBlast"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Penetrating Blast"
+description = """
+Eldritch Essence Stance: While active, your Eldritch Blast base damage is now
+Pierce instead of Force. You gain +1d8 base Eldritch Blast damage."""
+group_name = "Eldritch Essence Stance"
+icon = "TSPenetratingBlast"
+
+[[enhancement]]
+name = "Tainted Scholar: Enervating Shadow"
+cost_per_rank = [2]
+description = """
+Eldritch Blast Shape: This makes your basic attack seek out enemies, and inflicts
+a negative level 10% of the time. Your Eldritch Blast damage scales with 150%
+of your Spell Power."""
+icon = "TSEnervatingShadow"
+internal_name = "TSEnervatingShadow"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.stance]]
+name = "Enervating Shadow"
+description = """
+Eldritch Blast Shape: This makes your basic attack seek out enemies, and inflicts
+a negative level 10% of the time. Your Eldritch Blast damage scales with 150%
+of your Spell Power."""
+group_name = "Blast Shape"
+icon = "TSEnervatingShadow"
+
+[[enhancement]]
+name = "Tainted Scholar: Bewitching Blast"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Your Eldritch Blast has a [3/6/10]% chance to confuse non-boss monsters for 6 seconds.
+
+Confused monsters attack and are attacked by both monster and player characters."""
+icon = "TSBewitchingBlast"
+internal_name = "TSBewitchingBlast"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TSConfusion"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tainted Scholar: Strong Pact IV"
+cost_per_rank = [2]
+description = "+1 bonus Pact Dice"
+icon = "TSStrongPact"
+internal_name = "TSStrongPactIV"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD6"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TSStrongPactIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tainted Scholar: Ability II"
+cost_per_rank = [2]
+description = "Choose either Intelligence or Charisma"
+icon = "IntCha"
+internal_name = "TSAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TSAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Tainted Scholar: Eldritch Power"
+cost_per_rank = [1]
+description = "Your Eldritch Blast deals +2d8 damage."
+icon = "TSEldritchPower"
+internal_name = "TSEldritchPower"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD8"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Tainted Scholar: Eldritch Ball"
+cost_per_rank = [2]
+description = """
+Activate for 4 Depravity: Project your terror at a distance, exploding in
+an area, dealing Eldritch Blast damage and effects to nearby enemies.
+The damage scales with 150% spell power. Cooldown: 6 seconds."""
+icon = "TSEldritchBall"
+internal_name = "TSEldritchBall"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Tainted Scholar: Mass Confusion"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Mass Confusion
+Activate for 4 Depravity: A group of non-boss monsters each become
+confused on a failed Will saving throw. Cooldown: 30 seconds.
+
+Confused monsters attack and are attacked by both monster and player characters.
+
+Spell-Like Ability: This ability benefits from your Metamagic feats (such as
+Quicken Spell) without paying the normal additional spell point cost.
+This is an Enchantment SLA."""
+icon = "TSMassConfusion"
+internal_name = "TSMassConfusion"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Mass Confusion",
+    "Warlock",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["TSBewitchingBlast"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tainted Scholar: Spell Focus"
+cost_per_rank = [2]
+description = "Choose a spell focus."
+icon = "TSSpellFocus"
+internal_name = "TSSpellFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Spell Focus: Conjuration"
+cost_per_rank = [2]
+description = "You gain +2 bonus to your spell DCs of the Conjuration spell school."
+icon = "TSSpellFocusConjuration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[enhancement.selection]]
+name = "Spell Focus: Enchantment"
+cost_per_rank = [2]
+description = "You gain +2 bonus to your spell DCs of the Enchantment spell school."
+icon = "TSSpellFocusEnchantment"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection]]
+name = "Spell Focus: Evocation"
+cost_per_rank = [2]
+description = "You gain +2 bonus to your spell DCs of the Evocation spell school."
+icon = "TSSpellFocusEvocation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection]]
+name = "Spell Focus: Illusion"
+cost_per_rank = [2]
+description = "You gain +2 bonus to your spell DCs of the Illusion spell school."
+icon = "TSSpellFocusIllusion"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.selection]]
+name = "Spell Focus: Transmutation"
+cost_per_rank = [2]
+description = "You gain +2 bonus to your spell DCs of the Transmutation spell school."
+icon = "TSSpellFocusTransmutation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[enhancement]]
+name = "Tainted Scholar: Planar Focus"
+cost_per_rank = [1]
+description = "+1 to all Spell DCs"
+icon = "TSPlanarFocus"
+internal_name = "TSPlanarFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Warlock"]
+req_type = "BaseClass"

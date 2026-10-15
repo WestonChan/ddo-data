@@ -1,0 +1,52 @@
+name = "Syranian Scimitar"
+description = "This tempered Adamantine weapon emanates subtle electrical power."
+drop_location = "Syranian Forged Weaponry, Turn in 1 Dampening Alloy, 1 Energizing Alloy, 1 Caustic Compound, 1 Stabilizing Compound"
+enhancement_bonus = 5
+icon = "Scimitar_15a"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Adamantine"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Electrifying 4"
+
+[[effect]]
+name = "Holy 4"
+
+[[effect]]
+name = "Construct Bane 4"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Syranian Forged Weaponry"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

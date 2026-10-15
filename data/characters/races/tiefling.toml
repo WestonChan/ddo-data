@@ -1,0 +1,21 @@
+name = "Tiefling"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Burn your foes with Infernal flames as a charismatic Tiefling!
+Tieflings are touched with the power of Infernals. They excel in a variety of
+roles, including Warlocks, Favored Souls, and Sorcerers, and start with a bonus
+to Charisma."""
+short_name = "Tiefling"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Charisma"
+
+[[granted_feat]]
+feat = "Infernal Ancestry"

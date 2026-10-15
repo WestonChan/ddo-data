@@ -1,0 +1,26 @@
+name = "Flame's Gift"
+description = """
+This symbol was once owned by a dreaded pyromancer, and was rumored to be the
+source of his power."""
+drop_location = "And the Dead Shall Rise..., End Chest"
+icon = "Trinket_28b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 9
+slot = "Trinket"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 54
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "And the Dead Shall Rise..."

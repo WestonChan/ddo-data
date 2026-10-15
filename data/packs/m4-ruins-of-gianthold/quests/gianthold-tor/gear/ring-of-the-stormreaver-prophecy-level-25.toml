@@ -1,0 +1,28 @@
+name = "Ring of the Stormreaver Prophecy (Level 25)"
+description = """
+This ring is inscribed with runes that comprise a small fragment of the Stormreaver
+Prophecy. It is of recent manufacture, yet the skill used in its crafting suggests
+familiarity with lost giantcraft."""
+drop_location = "Return to Gianthold Tor, Black Dragon 's chest (Epic Elite)"
+icon = "Ring_14b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 25
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "black dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

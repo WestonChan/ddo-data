@@ -1,0 +1,58 @@
+name = "The Dragon Keeper"
+description = "This arcane device can release a torrent of dragonfire to assault your enemies."
+drop_location = "Morten Edgewright, Turn in 1 Ethereal, 1 Arcane, and 1 Silver Ingot"
+icon = "RuneArm_3a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 1
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier II"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 30
+
+[[effect]]
+name = "Rune Arm Imbue - Fire I"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fire Blast",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "vendor"
+name = "Morten Edgewright"
+
+[[source.price]]
+ingredient = "Ethereal Ingot"
+quantity = 1
+
+[[source.price]]
+ingredient = "Arcane Ingot"
+quantity = 1
+
+[[source.price]]
+ingredient = "Silver Ingot"
+quantity = 1
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

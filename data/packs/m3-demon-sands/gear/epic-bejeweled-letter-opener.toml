@@ -1,0 +1,58 @@
+name = "Epic Bejeweled Letter Opener"
+accepts_sentience = true
+description = """
+This small knife is bears several gems known to be easily enchanted with healing
+properties. A low buzzing sound comes from the knife whenever it is drawn."""
+drop_location = "Epic version of Bejeweled Letter Opener"
+enhancement_bonus = 6
+icon = "Dagger_17a"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 20
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Sonic Blast 4"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Efficient Metamagic - Empower Healing II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Dagger"

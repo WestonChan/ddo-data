@@ -1,0 +1,99 @@
+name = "Acid Resistance"
+choose_level = true
+description = "You have an Enhancement bonus to resist Acid"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    4,
+    7,
+    8,
+    12,
+    14,
+    15,
+    17,
+    18,
+    20,
+    21,
+    23,
+    24,
+    26,
+    27,
+    29,
+    30,
+    32,
+    33,
+    35,
+    36,
+    38,
+    39,
+    41,
+    42,
+    44,
+    45,
+    47,
+    48,
+    50,
+    51,
+    53,
+    54,
+    56,
+    57,
+    59,
+    60,
+    60,
+    60,
+    60,
+    60,
+]
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 57
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [57]
+bonus_type = "Enhancement"
+effect = "Acid Resistance"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: cannith armor suffix"
+
+[[slot]]
+slot = "crafting: cannith cloak prefix"
+
+[[slot]]
+slot = "crafting: cannith helmet extra"
+
+[[slot]]
+slot = "crafting: cannith ring suffix"
+
+[[slot]]
+slot = "crafting: cannith shield suffix"
+
+[[slot]]
+slot = "crafting: cannith orb suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random armor suffix"
+
+[[slot]]
+slot = "crafting: random bracers prefix"
+
+[[slot]]
+slot = "crafting: random cloak prefix"
+
+[[slot]]
+slot = "crafting: random ring suffix"
+
+[[slot]]
+slot = "crafting: random shield suffix"

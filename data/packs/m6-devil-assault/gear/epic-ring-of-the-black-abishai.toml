@@ -1,0 +1,33 @@
+name = "Epic Ring of the Black Abishai"
+description = "This ring seems to be attuned to elemental power."
+drop_location = "Epic version of Ring of the Black Abishai"
+icon = "Ring_7f"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Quality"
+value = 27
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Efficient Metamagic - Extend II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

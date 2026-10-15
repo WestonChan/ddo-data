@@ -1,0 +1,47 @@
+name = "Epic Silver Flame Bracers"
+description = "These golden bracers are emblazoned with flame-shaped symbols."
+drop_location = "Setting the Wards: The Lower Cathedral, End Chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 23
+slot = "Wrists"
+
+[[clickie]]
+name = "Restoration"
+clickie = "Restoration"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 9
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 18
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 122
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Restoration"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Setting the Wards: The Lower Cathedral"

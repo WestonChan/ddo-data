@@ -1,0 +1,22 @@
+name = "Escape Plan"
+bestowed_by = "Barthold Moncrief"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "Purple Dragon Knights"
+zone = "Riverside Camp"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Escape_Plan"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15

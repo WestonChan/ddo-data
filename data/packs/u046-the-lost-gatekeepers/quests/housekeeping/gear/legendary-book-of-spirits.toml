@@ -1,0 +1,33 @@
+name = "Legendary Book of Spirits"
+description = """
+This worn tome is entitled "The After," and the author's name has been worn
+off."""
+drop_location = "Housekeeping, End chest"
+icon = "Trinket_32"
+item_category = "Jewelry"
+material = "Paper"
+minimum_level = 29
+slot = "Trinket"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Protection from Evil +6"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Housekeeping"

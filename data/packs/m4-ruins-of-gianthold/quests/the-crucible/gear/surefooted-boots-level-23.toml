@@ -1,0 +1,32 @@
+name = "Surefooted Boots (Level 23)"
+description = """
+Crafted by dwarves, these boots have a very sturdy look about them. They were
+most recently worn by Gorn Gut-Chewer of the Wyrm-Cult Orcs."""
+drop_location = "The Crucible, Gorn Gut-Chewer 's chest (epic normal)"
+icon = "Boots_13b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 23
+slot = "Feet"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "gorn gut-chewer 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crucible"

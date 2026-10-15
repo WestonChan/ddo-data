@@ -1,0 +1,23 @@
+name = "Vineweave Ring"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Ring_3"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 15
+race_required = "Tabaxi Trailblazer"
+slot = "Ring"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 20
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

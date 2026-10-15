@@ -1,0 +1,23 @@
+name = "Silvertongue Sapphire"
+description = """
+Linguistics 10%. This item reduces the cooldowns of your Social skills
+(Diplomacy, Bluff, Intimidate) by 10%
+Drops in: Any Isle of Dread chest"""
+family = "Sapphire"
+icon = "SapphireBlueBorder"
+min_level = 8
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"
+
+[[source]]
+chest = "chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

@@ -1,0 +1,56 @@
+name = "Dawnbringer (level 13)"
+description = "The first star shines the brightest."
+drop_location = "The Devil's Details, End chest"
+enhancement_bonus = 5
+icon = "Shuriken_1"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Flametouched Iron"
+minimum_level = 13
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Bloodletter III"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Devil's Details"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.1
+handedness = "Thrown"
+weapon_type = "Shuriken"

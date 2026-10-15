@@ -1,0 +1,51 @@
+name = "Legendary Maul of the Oozing Hunger"
+accepts_sentience = true
+description = "An aspect of the Unspeakable."
+drop_location = "Sealed Altar, Turn in Legendary Duergarcraft Maul and 50 Legendary Abyssal Gems"
+enhancement_bonus = 16
+icon = "Maul_1j"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Lingering Acidic Burn"
+
+[[effect]]
+name = "Legendary Slime"
+
+[[effect]]
+name = "Acidic 7"
+
+[[effect]]
+name = "Destructive Acid +7"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Sealed Altar"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "Two-handed"
+weapon_type = "Maul"

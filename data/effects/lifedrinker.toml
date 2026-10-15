@@ -1,0 +1,3 @@
+name = "Lifedrinker"
+description_template = "This weapon uses the power of water to draw out the life essence of its targets. On an attack roll of 20 which is confirmed as a critical hit, this power comes to the surface, granting 25 temporary hit points to the wielder and dealing 25 to 45 damage to the target. Creatures with the Fire trait take double this damage instead."
+verbose_name_template = "Lifedrinker"

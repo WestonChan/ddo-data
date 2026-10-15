@@ -1,0 +1,50 @@
+name = "Sapphire of Negative Healing Amplification"
+choose_level = true
+description = "Competence bonus to Negative Healing Amplification"
+family = "Sapphire"
+icon = "GolemsHeart"
+level_values = [
+    3,
+    11,
+    18,
+    24,
+    31,
+    37,
+    44,
+    50,
+    57,
+    63,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+]
+
+[[effect]]
+name = "Negative Healing Amplification"
+bonus_type = "Competence"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Competence"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

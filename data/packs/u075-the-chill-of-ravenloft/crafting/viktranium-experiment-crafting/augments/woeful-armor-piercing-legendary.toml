@@ -1,0 +1,29 @@
+name = "Woeful Armor Piercing (Legendary)"
+description = "+23% Enhancement bonus to Fortification bypass."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Fortification Bypass"
+bonus_type = "Enhancement"
+value = 23
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Woeful Armor-Piercing (Legendary)"
+reason = "The wiki spells it Woeful Armor Piercing (Legendary), where Maetrim spells it Armor-Piercing."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-10-02"
+qualifier = 'family "Lamordia_Legendary"'
+
+[[slot]]
+slot = "lamordia: woeful (accessory)"

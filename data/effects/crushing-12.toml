@@ -1,0 +1,3 @@
+name = "Crushing 12"
+description_template = "This effect causes the edges of this weapon to ripple with force, dealing 12d6 force damage on each critical hit."
+verbose_name_template = "Crushing 12"

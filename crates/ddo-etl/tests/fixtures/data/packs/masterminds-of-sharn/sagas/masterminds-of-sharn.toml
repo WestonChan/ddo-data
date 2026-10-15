@@ -1,0 +1,11 @@
+name = "Masterminds of Sharn"
+pack = "Masterminds of Sharn"
+wiki_url = "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)"
+quests = [
+    "Project Nemesis",
+    "Ghosts of Perdition",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)"
+read = "2026-10-02"

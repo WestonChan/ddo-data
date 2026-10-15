@@ -1,0 +1,102 @@
+name = "Echoes of the Walking Ancestors"
+icon = "EchoesOfTheWalkingAncestors"
+
+[[augment]]
+name = "Echoes of the Walking Ancestors"
+family = "DinosaurBone"
+
+[[item]]
+name = "Legendary Docent of the Locus"
+primary = true
+
+[[item]]
+name = "Legendary Manaweave Armor"
+primary = true
+
+[[item]]
+name = "Legendary Robe of the Locus"
+primary = true
+
+[[item]]
+name = "Legendary Walking Ancestor's Helmet"
+
+[[item]]
+name = "Legendary Walking Ancestor's Shroud"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Assassinate"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Trip DC"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sunder DC"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Stun DC"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+display_name = "Echoes of the Walking Ancestors: +3 Spell DCs"
+effect = "Imbue Dice"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+display_name = "Echoes of the Walking Ancestors: +3 Tactical DCs"
+effect = "Imbue Dice"
+effect_type = "TacticalDC"
+targets = [
+    "Assassinate",
+    "Trip",
+    "Sunder",
+    "Stun",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+display_name = "Echoes of the Walking Ancestors: +3 Ability Scores"
+effect = "Imbue Dice"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+display_name = "Echoes of the Walking Ancestors: +3 Imbue Dice"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"

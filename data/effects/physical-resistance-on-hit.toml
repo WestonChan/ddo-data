@@ -1,0 +1,3 @@
+name = "Physical Resistance on Hit"
+description_template = "Your melee strikes have a chance to give you +20 PRR for 10 seconds."
+verbose_name_template = "Physical Resistance on Hit"

@@ -1,0 +1,51 @@
+name = "Legendary Longsword of the Oozing Hunger"
+accepts_sentience = true
+description = "An aspect of the Unspeakable."
+drop_location = "Sealed Altar, Turn in Legendary Duergarcraft Longsword and 50 Legendary Abyssal Gems"
+enhancement_bonus = 16
+icon = "Longsword_1k"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Lingering Acidic Burn"
+
+[[effect]]
+name = "Legendary Slime"
+
+[[effect]]
+name = "Acidic 7"
+
+[[effect]]
+name = "Destructive Acid +7"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Sealed Altar"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "One-handed"
+weapon_type = "Longsword"

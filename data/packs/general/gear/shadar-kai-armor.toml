@@ -1,0 +1,30 @@
+name = "Shadar-kai Armor"
+description = """
+The pieces of this leather armor fit together perfectly, preventing the wearer
+from making noise."""
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 4
+icon = "LightArmor_23a"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 15
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 5
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 11
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Spearblock III"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

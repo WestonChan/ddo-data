@@ -1,0 +1,15 @@
+name = "Green Steel Goggles"
+description = "Green steel forms the frame of these goggles."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+icon = "Goggles_13"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 11
+slot = "Goggles"
+
+[[socket]]
+slot = "crafting: accessory invasion"
+
+[[source]]
+kind = "crafting_system"
+name = "Green Steel items"

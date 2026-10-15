@@ -1,0 +1,35 @@
+name = "Nightforge Docent"
+description = """
+Duergar engineers have fashioned several docents to reward those Warforged that
+have gained their favor."""
+drop_location = "A Relic of a Sovereign Past, Turn in 12 Adamantine Ore"
+enhancement_bonus = 5
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Adamantine"
+minimum_level = 8
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = -4
+armor_type = "Docent"
+mithral_body = 5
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "turn in 12 adamantine ore"
+kind = "quest"
+loot_type = "chest"
+name = "A Relic of a Sovereign Past"

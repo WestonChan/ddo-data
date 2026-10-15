@@ -1,0 +1,30 @@
+name = "Runic Trinket"
+description = """
+This small trinket has an intricate rune carved into it that radiates magical
+power."""
+drop_location = "Repossession, End reward"
+icon = "Trinket_90"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 2
+slot = "Trinket"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 60
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 14
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Repossession"

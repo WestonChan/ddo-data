@@ -1,0 +1,1759 @@
+name = "Arcane Archer"
+background = "RangerBackground"
+icon = "Ranger"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Arcane Archer"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Equipped bows gain a +1 Enhancement bonus for each Arcane Archer core ability
+you possess (stacks with everything). All bows are treated as Implements in
+your hands, granting Spell Power."""
+icon = "AAArcaneArcher"
+internal_name = "AACore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AAArcaneArcher",
+    "Arcane Archer tree",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_EnchantmentClass"
+targets = ["Bows"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shortbow"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Longbow"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "AAArcaneArcher",
+    "Arcane Archer tree",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Arcane Archer: Morphic Arrows"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Arcane Archer Secondary Imbue Toggle: Your arrows deal bludgeoning, piercing,
+and slashing damage. Activation Cost: 20 spell points. Cooldown: 10 seconds."""
+icon = "AAMorphicArrows"
+internal_name = "AACore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_EnchantmentClass"
+targets = ["Bows"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Bludgeon"
+
+[[enhancement.modifier.requirement]]
+items = ["Morphic Arrows"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Bow"]
+req_type = "GroupMember"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Pierce"
+
+[[enhancement.modifier.requirement]]
+items = ["Morphic Arrows"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Bow"]
+req_type = "GroupMember"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Slash"
+
+[[enhancement.modifier.requirement]]
+items = ["Morphic Arrows"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Bow"]
+req_type = "GroupMember"
+
+[[enhancement.requirement]]
+items = ["AACore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Morphic Arrows"
+description = "Your arrows deal bludgeoning, piercing and slashing damage."
+group_name = "Secondary Imbue"
+icon = "AAMorphicArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Metalline Arrows"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Arcane Archer Secondary Imbue Toggle: Your arrows bypass all metallic damage reduction.
+Activation Cost: 20 spell points. Cooldown: 10 seconds."""
+icon = "AAMetallineArrows"
+internal_name = "AACore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_EnchantmentClass"
+targets = ["Bows"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Metalline"
+
+[[enhancement.modifier.requirement]]
+items = ["Metalline Arrows"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Bow"]
+req_type = "GroupMember"
+
+[[enhancement.requirement]]
+items = ["AACore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.stance]]
+name = "Metalline Arrows"
+description = "Your arrows bypass all metallic damage reduction"
+group_name = "Secondary Imbue"
+icon = "AAMetallineArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Aligned Arrows"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Arcane Archer Secondary Imbue Toggle: Your arrows bypass all alignment based
+damage reduction. Activation Cost: 20 spell points. Cooldown: 10 seconds."""
+icon = "AAAlignedArrows"
+internal_name = "AACore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_EnchantmentClass"
+targets = ["Bows"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Alignment"
+
+[[enhancement.modifier.requirement]]
+items = ["Aligned Arrows"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Bow"]
+req_type = "GroupMember"
+
+[[enhancement.requirement]]
+items = ["AACore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.stance]]
+name = "Aligned Arrows"
+description = "Your arrows bypass all alignment based damage reduction."
+group_name = "Secondary Imbue"
+icon = "AAAlignedArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Shadow Arrows"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Secondary Imbue Toggle: +5% Doubleshot chance with bows.
+Activation Cost: 20 spell points. Cooldown: 10 seconds.
+
+Doubleshot: Your ranged attacks gain a percent chance to attack with an extra
+projectile. Repeating Crossbows have a reduced chance to produce extra shots.
+
+Passive: Equipped bows gains a +1 Competence bonus to Critical Damage Multiplier."""
+icon = "AAShadowArrows"
+internal_name = "AACore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_EnchantmentClass"
+targets = ["Bows"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doubleshot"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Arrows"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "WeaponCriticalMultiplierClass"
+targets = ["Bows"]
+
+[[enhancement.requirement]]
+items = ["AACore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.stance]]
+name = "Shadow Arrows"
+description = "+5% Doubleshot chance with bows"
+group_name = "Secondary Imbue"
+icon = "AAShadowArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Mystical Archer"
+cost_per_rank = [1]
+description = """
++4 Dexterity, +20% Doubleshot.
+
+Doubleshot: Your ranged attacks gain a percent chance to attack with an extra
+projectile. Repeating Crossbows have a reduced chance to produce extra shots."""
+icon = "AAMasterOfImbuement"
+internal_name = "AACore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AACore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_EnchantmentClass"
+targets = ["Bows"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "Doubleshot"
+
+[[enhancement.requirement]]
+items = ["AACore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "AACore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Arcane Archer: Conjure Arrows"
+cost_per_rank = [2]
+description = """
+Activate to create a stack of returning +1 arrows.
+These arrows are destroyed when you log out for an extended period of time."""
+icon = "AAConjureArrows"
+internal_name = "AAConjureArrows"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AAConjureArrows",
+    "Conjure Arrows",
+]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "AAConjureArrows",
+    "Conjure Arrows",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Arcane Archer: True strike"
+cost_per_rank = [1]
+description = """
+Ranged Archery Attack: Perform a ranged attack with +20 to hit.
+You receive a +4 Insight bonus to hit for 12 seconds.
+Activation cost: 2 spell points. Cooldown: 3 seconds"""
+icon = "AATrueStrike"
+internal_name = "AATrueStrike"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Arcane Archer: Energy of the Wild"
+cost_per_rank = [1]
+description = """
++[30/60/100] maximum spell points. (Do not stack with Magical Training)
+Rank 3: You gain the Magical Training feat.
+Anti-requisite: Cannot take Rank 3 if you already have the Magical Training feat."""
+icon = "AAEnergyOfTheWild"
+internal_name = "AAEnergyOfTheWild"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+rank = 3
+targets = ["Magical Training"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Magical Training"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Arcane Archer: Elemental Arrows I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Select one of four elemental arrow imbues.
+(Activation Cost: 20 SP. Cooldown: 10 Seconds)
+Passive: +5 Universal Spell Power"""
+icon = "AAElementalArrows"
+internal_name = "AAElementalArrowsI"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Corrosive Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+icon = "AACorrosiveArrows"
+is_clickie = true
+
+[[enhancement.selection.stance]]
+name = "Corrosive Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AACorrosiveArrows"
+
+[[enhancement.selection]]
+name = "Flaming Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+icon = "AAFlamingArrows"
+is_clickie = true
+
+[[enhancement.selection.stance]]
+name = "Flaming Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAFlamingArrows"
+
+[[enhancement.selection]]
+name = "Frost Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+icon = "AAFrostArrows"
+is_clickie = true
+
+[[enhancement.selection.stance]]
+name = "Frost Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAFrostArrows"
+
+[[enhancement.selection]]
+name = "Shock Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+icon = "AAShockArrows"
+is_clickie = true
+
+[[enhancement.selection.stance]]
+name = "Shock Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAShockArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Awareness"
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, Spot and to-hit."
+icon = "Awareness"
+internal_name = "AAAwareness"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Arcane Archer: Dispelling Shot"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage.
+Activation Cost: 5 SP.
+Cooldown: 3 seconds
+Ranged Archery Attack: Performs a ranged attack that dispels 3 beneficial effects
+from your target."""
+icon = "AADispellingShot"
+internal_name = "AADispellingShot"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Arcane Archer: Force Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: You imbue your arrows with magical force.
+Your arrows gain On Hit: 1d6 force damage and the Ghost Touch ability.
+This damage scales with Spell Power.
+Activation Cost: 20 spell points. Cooldown: 10 seconds"""
+icon = "AAForceArrows"
+internal_name = "AAForceArrows"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = [
+    "Shortbow",
+    "Longbow",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Force Arrows"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.stance]]
+name = "Force Arrows"
+description = """
+Imbue Toggle: You imbue your arrows with magical force.
+Your arrows gain On Hit: 1d6 force damage and the Ghost Touch ability.
+This damage scales with Spell Power.
+Activation Cost: 20 spell points. Cooldown: 10 seconds"""
+group_name = "Imbue"
+icon = "AAForceArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Elemental Inferno"
+cost_per_rank = [1]
+description = """
+Elemental Inferno: AOE Ranged Archery Attack: Fire a single shot with +10% Damage,
+hitting every enemy in an area around where the shot hits with magical flames
+that can change their element. Affected enemies take 1 stack of Elemental Inferno.
+(Target takes 1d6 damage every 2 second for 6 seconds. This is Fire damage,
+unless you have Corrosive, Frost, Shock or Force Arrows active, in which case
+the damage type is the type of your Imbue. Elemental Inferno's damage scales with
+the relevant Spell Power. This effect can stack 20 times, and loses one stack on
+expiration.)
+Activation cost: 6 SP. Cooldown 3 seconds"""
+icon = "AAInfernoShot"
+internal_name = "AAInfernoShot"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Arcane Archer: Elemental Arrows II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Select one of four elemental arrow imbues or Deal +2 Imbue dice
+Passive: +5 Universal Spell Power"""
+icon = "AAElementalArrows"
+internal_name = "AAElementalArrowsII"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["AAElementalArrowsI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Corrosive Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AACorrosiveArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Corrosive Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AACorrosiveArrows"
+
+[[enhancement.selection]]
+name = "Flaming Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AAFlamingArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Flaming Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAFlamingArrows"
+
+[[enhancement.selection]]
+name = "Frost Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AAFrostArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Frost Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAFrostArrows"
+
+[[enhancement.selection]]
+name = "Shock Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AAShockArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Shock Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAShockArrows"
+
+[[enhancement.selection]]
+name = "Elemental Damage"
+cost_per_rank = [2]
+description = """
+Passive: +5 Universal Spell Power
++2 bonus Imbue Dice"""
+icon = "AAImprovedElementalArrows"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selector_exclusion]]
+internal_name = "AAElementalArrowsI"
+
+[[enhancement]]
+name = "Arcane Archer: Action Boost"
+cost_per_rank = [2]
+description = "Select Attack or Energy Resistance boost."
+icon = "AAActionBoost"
+internal_name = "AAActionBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Attack Boost"
+cost_per_rank = [2]
+description = "Activate to gain a +8 action boost bonus to hit for 20 seconds."
+icon = "AAAttackBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Energy Resistance Boost"
+cost_per_rank = [2]
+description = "Activate to gain a +15 action boost bonus to Energy Resistance for 20 seconds."
+icon = "AAEnergyResistanceBoost"
+is_clickie = true
+
+[[enhancement]]
+name = "Arcane Archer: Shattermantle Shot"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+Activation Cost: 4 SP.
+Cooldown: 3 seconds
+Ranged Archery Attack: On hit: Target gains 3 stacks of Reduced Spell Resistance
+(-1 Spell Resistance. This effect can stack 100 times).
+On Vorpal Hit: Shattermantle (-100 spell Resistance for 10 seconds.
+Will DC 18 + Half Ranger Level + Wisdom Modifier negates.)"""
+icon = "AAShattermantleShot"
+internal_name = "AAShattermantleShot"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.dc]]
+name = "Arcane Archer: Shattermantle Shot"
+amount = [18]
+dc_type = "Shattermantle"
+dc_versus = "Will"
+description = """
+Deals +30% Damage
+Activation Cost: 4 SP.
+Cooldown: 3 seconds
+Ranged Archery Attack: On hit: Target gains 3 stacks of Reduced Spell Resistance
+(-1 Spell Resistance. This effect can stack 100 times).
+On Vorpal Hit: Shattermantle (-100 spell Resistance for 10 seconds.
+Will DC 18 + Half Ranger Level + Wisdom Modifier negates.)"""
+icon = "AAShattermantleShot"
+mod_ability = ["Wisdom"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Arcane Archer: Terror Arrows"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Imbue Toggle: You imbue your arrows with negative energy.
+Activation Cost: 20 SP.
+Cooldown: 10 seconds
+
+On Hit: Target is feared. (Will save vs. DC: 20 + Wisdom Modifier + Enchantment Spell Bonuses)
+On Vorpal: Target is subject to a Phantasmal Killer effect.
+Passive: +1 bonus to DC of Enchantment Spells"""
+icon = "AATerrorArrows"
+internal_name = "AATerrorArrows"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.dc]]
+name = "Arcane Archer: Terror Arrows"
+amount = [20]
+dc_type = "Fear/Phantasmal Killer"
+dc_versus = "Will"
+description = """
+Imbue Toggle: You imbue your arrows with negative energy.
+On Hit: Target is feared.
+On Vorpal: Target is subject to a Phantasmal Killer effect."""
+icon = "AATerrorArrows"
+mod_ability = ["Wisdom"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Terror Arrows"
+description = """
+Imbue Toggle: You imbue your arrows with negative energy.
+On Hit: Target is feared. (Will save vs. DC: 20 + Wisdom Modifier + Enchantment Spell Bonuses)
+On Vorpal: Target is subject to a Phantasmal Killer effect."""
+group_name = "Imbue"
+icon = "AATerrorArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Soul Magic"
+cost_per_rank = [1]
+description = """
+Every time you strike an enemy with your bow, you have a 15% chance to gain 10
+temporary spell points that last for 1 minute.
++10 Universal Spell Power."""
+icon = "AASoulMagic"
+internal_name = "AASoulMagic"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Arcane Archer: Elemental Arrows III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Select one of four elemental arrow imbues (Can't choose the same type again),
+or +1 Imbue Dice. Passive: +5 Universal Spell Power"""
+icon = "AAElementalArrows"
+internal_name = "AAElementalArrowsIII"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["AAElementalArrowsII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Corrosive Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AACorrosiveArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Corrosive Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AACorrosiveArrows"
+
+[[enhancement.selection]]
+name = "Flaming Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AAFlamingArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Flaming Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAFlamingArrows"
+
+[[enhancement.selection]]
+name = "Frost Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AAFrostArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Frost Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAFrostArrows"
+
+[[enhancement.selection]]
+name = "Shock Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AAShockArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Shock Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAShockArrows"
+
+[[enhancement.selection]]
+name = "Elemental Damage"
+cost_per_rank = [2]
+description = """
+Passive: +5 Universal Spell Power
++2 bonus Imbue Dice"""
+icon = "AAImprovedElementalArrows"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selector_exclusion]]
+internal_name = "AAElementalArrowsI"
+
+[[enhancement.selector_exclusion]]
+internal_name = "AAElementalArrowsII"
+
+[[enhancement]]
+name = "Arcane Archer: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Dexterity or Wisdom"
+icon = "DexWis"
+internal_name = "AAAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Arcane Archer: Banishing Arrows"
+cost_per_rank = [1]
+description = """
+Imbue Toggle: Your arrows gain On Vorpal: Banish an extra-planar creature back
+to their home plane. (Will save vs. DC 20 + Wisdom modifier + Enchantment Spell
+bonuses)
+On hit: Inflict Pull of Reality (-1 PRR/MRR, stacks up to 25 times. 5 stacks
+fade away every 3 seconds).
+Instant kill does not affect bosses.
+Activation Cost: 20 SP.
+Cooldown: 10 seconds"""
+icon = "AABanishingArrows"
+internal_name = "AABanishingArrows"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.dc]]
+name = "Arcane Archer: Banishing Arrows"
+amount = [20]
+dc_type = "Banish"
+dc_versus = "Will"
+description = """
+Arcane Archer Imbue Toggle:
+Your arrows gain On Vorpal: Banish an extra-planar creature back to their home plane.
+On hit: Inflict Pull of Reality (-1 PRR/MRR, stacks up to 25 times. 5 stacks
+fade away every 3 seconds)."""
+icon = "AABanishingArrows"
+mod_ability = ["Wisdom"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.stance]]
+name = "Banishing Arrows"
+description = """
+Your arrows gain On Vorpal: Banish an extra-planar creature back to their home plane.
+On hit: Inflict Pull of Reality (-1 PRR/MRR, stacks up to 25 times. 5 stacks
+fade away every 3 seconds)."""
+group_name = "Imbue"
+icon = "AABanishingArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Paralyzing Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: You imbue your arrows with paralyzing force.
+On Hit: Target is paralyzed. (Will save vs. DC 20 + Wisdom modifier + Enchantment
+Spell Bonuses)
+On Save: -10% Movement and Attack speed.
+Passive: +1 bonus to DC of Enchantment Spells.
+Activation Cost: 20 SP.
+Cooldown: 10 seconds"""
+icon = "AAParalyzingArrows"
+internal_name = "AAParalyzingArrows"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.dc]]
+name = "Arcane Archer: Paralyzing Arrows"
+amount = [20]
+dc_type = "Paralyze"
+dc_versus = "Will"
+description = """
+Imbue Toggle: You imbue your arrows with paralyzing force.
+On Hit: Target is paralyzed. (Will save vs. DC 20 + Wisdom modifier + Enchantment
+Spell Bonuses)
+On Save: -10% Movement and Attack speed."""
+icon = "AAParalyzingArrows"
+mod_ability = ["Wisdom"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AATerrorArrows"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Paralyzing Arrows"
+description = """
+Imbue Toggle: You imbue your arrows with paralyzing force.
+On Hit: Target is paralyzed. (Will save vs. DC 20 + Wisdom modifier + Enchantment
+Spell Bonuses)
+On Save: -10% Movement and Attack speed."""
+group_name = "Imbue"
+icon = "AAParalyzingArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Smiting Arrows"
+cost_per_rank = [1]
+description = """
+Imbue Toggle: Your arrows gain On Vorpal: Destroy a construct.
+(Will save vs. DC 20 + Wisdom modifier + Enchantment Spell Bonuses).
+Passive: +1 bonus to DC of Enchantment Spells.
+On Hit: Inflicts Deconstructed (Reduced attack speed, -25% Fortification, -25%
+healing from Repair)
+Instant kill does not affect bosses.
+Activation Cost: 20 SP.
+Cooldown: 10 seconds"""
+icon = "AASmitingArrows"
+internal_name = "AASmitingArrows"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.dc]]
+name = "Arcane Archer: Smiting Arrows"
+amount = [20]
+dc_type = "Smite"
+dc_versus = "Will"
+description = """
+Imbue Toggle: Your arrows gain On Vorpal: Destroy a construct.
+(Will save vs. DC 20 + Wisdom modifier + Enchantment Spell Bonuses).
+Passive: +1 bonus to DC of Enchantment Spells.
+On Hit: Inflicts Deconstructed (Reduced attack speed, -25% Fortification, -25%
+healing from Repair)"""
+icon = "AASmitingArrows"
+mod_ability = ["Wisdom"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.stance]]
+name = "Smiting Arrows"
+description = """
+Imbue Toggle: Your arrows gain On Vorpal: Destroy a construct.
+(Will save vs. DC 20 + Wisdom modifier + Enchantment Spell Bonuses).
+Passive: +1 bonus to DC of Enchantment Spells.
+On Hit: Inflicts Deconstructed (Reduced attack speed, -25% Fortification, -25%
+healing from Repair)"""
+group_name = "Imbue"
+icon = "AASmitingArrows"
+
+[[enhancement]]
+name = "Arcane Archer: Elemental Arrows IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Select one of four elemental arrow imbues (Can't choose the same type again),
+or +1 imbue Dice. Passive: +5 Universal Spell Power"""
+icon = "AAElementalArrows"
+internal_name = "AAElementalArrowsIV"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AAElementalArrowsIII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Corrosive Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AACorrosiveArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Corrosive Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Corrosive, dealing 1d6 acid damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AACorrosiveArrows"
+
+[[enhancement.selection]]
+name = "Flaming Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AAFlamingArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Flaming Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Flaming, dealing 1d6 fire damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAFlamingArrows"
+
+[[enhancement.selection]]
+name = "Frost Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AAFrostArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Frost Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Frost, dealing 1d6 cold damage on hit,
+scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAFrostArrows"
+
+[[enhancement.selection]]
+name = "Shock Arrows"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power
++1 bonus Imbue Dice"""
+icon = "AAShockArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.stance]]
+name = "Shock Arrows"
+description = """
+Imbue Toggle: Your arrows gain the Shock, dealing 1d6 electrical damage on
+hit, scaling with Spell Power.
+Passive: +5 Universal Spell Power"""
+group_name = "Imbue"
+icon = "AAShockArrows"
+
+[[enhancement.selection]]
+name = "Elemental Damage"
+cost_per_rank = [2]
+description = """
+Passive: +5 Universal Spell Power
++2 bonus Imbue Dice"""
+icon = "AAImprovedElementalArrows"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selector_exclusion]]
+internal_name = "AAElementalArrowsI"
+
+[[enhancement.selector_exclusion]]
+internal_name = "AAElementalArrowsII"
+
+[[enhancement.selector_exclusion]]
+internal_name = "AAElementalArrowsIII"
+
+[[enhancement]]
+name = "Arcane Archer: Ability II"
+cost_per_rank = [2]
+description = "Choose either Dexterity or Wisdom"
+icon = "DexWis"
+internal_name = "AAAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AAAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Arcane Archer: Moonbow"
+cost_per_rank = [2]
+description = """
+While wielding a bow, once every 30 seconds you gain 20 temporary spell points
+for 10 seconds.
++10 Universal Spell Power"""
+icon = "AAMoonbow"
+internal_name = "AAMoonbow"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Arcane Archer: Arrow of Slaying"
+cost_per_rank = [2]
+description = """
+Ranged Archery Attack: Performs a ranged attack with +250% damage and +25 flat damage.
+(This damage can be multiplied by critical hits.)
+Cost: 20 spell points.
+Cooldown: 20 seconds."""
+icon = "AAArrowOfSlaying"
+internal_name = "AAArrowOfSlaying"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Arcane Archer: Opening Volley"
+cost_per_rank = [2]
+description = """
+AOE Ranged Archery Attack: Fire a single shot with +20% Damage, hitting every
+enemy in an area around where this shot hits. Enemies hit take 7 stacks of
+Vulnerability.
+Cost: 5 spell points. Cooldown: 18 seconds."""
+icon = "AAFinalStrike"
+internal_name = "AAFinalStrike"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Arcane Archer: Improved Elemental Arrows"
+cost_per_rank = [1]
+description = "Choose one"
+icon = "AAImprovedElementalArrows"
+internal_name = "AAImprovedElementalArrows"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["AAElementalArrowsIV"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Improved Elemental Arrows"
+cost_per_rank = [1]
+description = """
+Your elemental arrow imbues gain On Critical: 1d10-3d10 elemental damage
+based on critical multiplier and an additional effect:
+
+Corrosive Arrows: Your arrows gain the Destruction ability. (On Damage: target
+receives a -1 AC and -1% Fortification for the next 20 seconds. If the effect is
+reapplied before it wears off, the effect will stack and the duration will reset.
+This effect can be stacked up to 15 times.)
+
+Flaming Arrows: Your arrows gain On Critical Hit: Target gains 1 stack of Burning
+(Target takes 1d6 fire damage every 2 seconds for 6 second. This effect can
+stack 20 times and loses one stack on expiration.)
+
+Frost Arrows: Your arrows gain On Critical Hit: Target gains 1 stack of Lethargy
+(You have -1 to all Saving throws. Non-bosses also move and attack 5% slower.
+This effect stacks up to 5 times.)
+
+Shock Arrows: Your arrows gain On Critical Hit: Vulnerable
+(Target takes 1% more damage for 3 seconds. This effect stacks up to 20 times
+and loses one stack on expiration.)
+
+Force Arrows: On Critical Hit: Target gains 1 stack of Blunted Mind
+(Target has -1 Melee, Ranged, and Universal Spell Power. This effect stacks
+10 times, and loses one stack on expiration.)"""
+icon = "AAImprovedElementalArrows"
+
+[[enhancement.selection]]
+name = "Elemental Damage"
+cost_per_rank = [2]
+description = """
++2 bonus Imbue Dice
++5 Universal Spell Power"""
+icon = "AAImprovedElementalArrows"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement]]
+name = "Arcane Archer: Runebow"
+cost_per_rank = [2]
+description = """
+Bows you wield gain an additional +2 Enhancement bonus.
+This is considered a Magic Weapon effect. (Does not stack with the spell Enchant Weapons.)"""
+icon = "AARunebow"
+internal_name = "AARunebow"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_EnchantmentClass"
+targets = ["Bows"]
+
+[[enhancement.requirement]]
+items = ["Ranger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Ranger"]
+req_type = "Class"

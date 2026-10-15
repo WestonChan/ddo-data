@@ -1,0 +1,22 @@
+name = "Dirty Laundry"
+bestowed_by = "Guard Kayd"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "The Sharn Syndicate"
+patron = "The Coin Lords"
+zone = "The Shiny Shilling"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Dirty_Laundry"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

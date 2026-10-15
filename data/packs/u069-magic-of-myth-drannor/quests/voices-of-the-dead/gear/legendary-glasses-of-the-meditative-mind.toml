@@ -1,0 +1,39 @@
+name = "Legendary Glasses of the Meditative Mind"
+description = "A deeply soothing sense sweeps over the wearer of these glasses."
+drop_location = "Voices of the Dead, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 33
+slot = "Goggles"
+
+[[effect]]
+name = "Superior Reinforced Fists"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

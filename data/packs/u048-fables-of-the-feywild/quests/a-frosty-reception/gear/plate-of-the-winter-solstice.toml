@@ -1,0 +1,46 @@
+name = "Plate of the Winter Solstice"
+description = "The mark of the Pale Prince adorns this regal armor."
+drop_location = "A Frosty Reception, End chest, Frost Giant chest"
+enhancement_bonus = 2
+icon = "HeavyArmor_4"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Cold Iron"
+minimum_level = 5
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 15
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 59
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 14
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, frost giant chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Frosty Reception"

@@ -1,0 +1,33 @@
+name = "Valen's Mace"
+description = """
+This mace once belonged to Valen, a cleric of the Silver Flame. It is said to
+be quite potent against the Sahuagin."""
+drop_location = "The Collaborator, End reward"
+icon = "HeavyMace_7a"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Lesser Monstrous Humanoid Bane"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Collaborator"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

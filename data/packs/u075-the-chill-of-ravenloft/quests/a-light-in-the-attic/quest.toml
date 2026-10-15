@@ -1,0 +1,30 @@
+name = "A Light in the Attic"
+bestowed_by = "Othmar Aderhold"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Chill of Ravenloft"
+patron = "Keepers of Lamordia"
+zone = "On the Trail of the Mysterious Light"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/A_Light_in_the_Attic"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

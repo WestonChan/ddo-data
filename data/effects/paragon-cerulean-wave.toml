@@ -1,0 +1,3 @@
+name = "Paragon Cerulean Wave"
+description_template = "This powerful magical implement hums in your hands and resonates with icy magic. Spells you cast have a chance of freezing your targets in a block of solid ice. DC: 100"
+verbose_name_template = "Paragon Cerulean Wave"

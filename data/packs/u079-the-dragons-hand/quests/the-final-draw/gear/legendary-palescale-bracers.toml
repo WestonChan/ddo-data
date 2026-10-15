@@ -1,0 +1,43 @@
+name = "Legendary Palescale Bracers"
+description = "Almost opalescent, the scales along these bracers feel freezing to the touch."
+drop_location = "The Final Draw, end chest"
+icon = "Bracers_19d"
+item_category = "Clothing"
+material = "White Dragonscale"
+minimum_level = 34
+slot = "Wrists"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 159
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 13
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 159
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 111
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Draw"

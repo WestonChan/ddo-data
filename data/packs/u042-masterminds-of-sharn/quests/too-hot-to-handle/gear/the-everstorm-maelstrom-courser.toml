@@ -1,0 +1,80 @@
+name = "The Everstorm, Maelstrom Courser"
+accepts_sentience = true
+description = "You are the eye of the storm."
+drop_location = "Too Hot to Handle, end chest"
+enhancement_bonus = 15
+icon = "HeavyMace_1f"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Overwhelming Shockwave"
+
+[[effect]]
+name = "Screeching 14"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Purple Augment Slot"
+description = "Adds a Purple Augment Slot"
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket]]
+slot = "crafting: almost there"
+
+[[socket.option]]
+name = "Utter Disintegration"
+description = """
+Utter Disintegration: This weapon has a dark, insidious power deep within.
+Occasionally, this power lashes out violently at enemies and attempts to
+disintegrate them. This disintegrate is incredibly powerful, and will utterly
+destroy weaker foes."""
+
+[[socket]]
+slot = "crafting: finishing touch"
+
+[[socket.option]]
+name = "Completed Weapon"
+description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
+min_level = 1
+
+[[socket.option.modifier]]
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

@@ -1,0 +1,37 @@
+name = "Bracers of the Fallen Hero"
+description = "These must have belonged to someone else before you."
+drop_location = "A Raven at the Door, End chest, Rescue Yesper from the Dungeons optional chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 10
+slot = "Wrists"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, rescue yesper from the dungeons optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Raven at the Door"

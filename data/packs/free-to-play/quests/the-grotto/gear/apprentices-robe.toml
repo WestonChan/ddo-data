@@ -1,0 +1,28 @@
+name = "Apprentice's Robe"
+description = """
+This slightly tattered cloth robe is said to provide assistance to those studying
+the arcane."""
+drop_location = "The Grotto, Sahuagin High Priestess 's chest, Non-Warforged Sorcerers, Warlocks, and Wizards"
+icon = "Cloth_1g"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 1
+
+[[effect]]
+name = "Lesser Arcane Augmentation I"
+
+[[source]]
+chest = "sahuagin high priestess 's chest, non-warforged sorcerers, warlocks, and wizards"
+kind = "quest"
+loot_type = "chest"
+name = "The Grotto"

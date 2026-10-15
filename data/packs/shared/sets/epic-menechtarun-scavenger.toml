@@ -1,0 +1,63 @@
+name = "Epic Menechtarun Scavenger"
+icon = "Menechtarun"
+
+[[item]]
+name = "Epic Demon Scale Armor"
+
+[[item]]
+name = "Epic Dynastic Falcata"
+
+[[item]]
+name = "Epic Sandstorm Glasses"
+
+[[item]]
+name = "Epic Stinkpelt's Hide"
+
+[[item]]
+name = "Epic Thornlord"
+
+[[item]]
+name = "Epic Tourney Armor"
+
+[[item]]
+name = "Epic Weathered Targe"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sheltering"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]

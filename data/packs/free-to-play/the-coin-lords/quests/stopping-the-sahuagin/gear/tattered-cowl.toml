@@ -1,0 +1,23 @@
+name = "Tattered Cowl"
+description = "This cloth cowl glows slightly with magical energy."
+drop_location = "Stopping the Sahuagin, End reward"
+icon = "Helmet_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Stopping the Sahuagin"

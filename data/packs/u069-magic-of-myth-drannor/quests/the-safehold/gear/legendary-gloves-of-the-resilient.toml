@@ -1,0 +1,45 @@
+name = "Legendary Gloves of the Resilient"
+description = """
+Light enough to not impede movement, but somehow sturdy enough to stop a blade,
+these gloves have seen their share of conflict."""
+drop_location = "The Safehold, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 33
+slot = "Hands"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 37
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Safehold"

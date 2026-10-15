@@ -1,0 +1,14 @@
+name = "The Soul Splitter"
+pack = "The Soul Splitter"
+quests = [
+    "Soul Survivor",
+    "The Offshore Account",
+    "Members Only",
+    "The Underlane Assignment",
+    "Safety in Numbers",
+    "Finding Dorris",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Soul_Splitter"
+read = "2026-10-02"

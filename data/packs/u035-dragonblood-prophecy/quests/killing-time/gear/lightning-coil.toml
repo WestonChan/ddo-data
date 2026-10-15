@@ -1,0 +1,66 @@
+name = "Lightning Coil"
+accepts_sentience = true
+description = """
+A curious implement of wrought iron that can be used as a weapon. The Lightning
+Coil crackles with electricity and arcane power."""
+drop_location = "Killing Time, end chest"
+enhancement_bonus = 15
+icon = "LightMace_1a"
+item_category = "Weapon"
+item_type = "Light Mace"
+material = "Steel"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 28
+
+[[effect]]
+name = "Static Attraction"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 145
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "One-handed"
+weapon_type = "Light Mace"

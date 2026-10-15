@@ -1,0 +1,35 @@
+name = "Epic Pendant of the Black Abishai"
+description = "This necklace seems to be attuned to elemental power."
+drop_location = "Epic version of Pendant of the Black Abishai"
+icon = "Necklace_13d"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 7
+value2 = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

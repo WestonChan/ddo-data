@@ -1,0 +1,3 @@
+name = "Metal Fatigue"
+description_template = "The metal plates of this armor sometimes tire you out. When you are damaged there is a small chance that you will become Exhausted."
+verbose_name_template = "Metal Fatigue"

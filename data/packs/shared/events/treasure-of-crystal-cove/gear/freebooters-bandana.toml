@@ -1,0 +1,39 @@
+name = "Freebooter's Bandana"
+description = "You're no mere swabby. Yarr!"
+drop_location = "Treasure of Crystal Cove, Turn in at Euphonia's Hat Box"
+icon = "Helmet_56"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Scallywag's Luck II"
+
+[[socket]]
+slot = "crafting: enchantable: crystal rush"
+
+[[socket.option]]
+name = "No Info in the Wiki"
+description = "No info in the wiki on what options for this item"
+min_level = 1
+
+[[socket]]
+slot = "crafting: enchantable: adventuring bonus"
+
+[[socket.option]]
+name = "No Info in the Wiki"
+description = "No info in the wiki on what options for this item"
+min_level = 1
+
+[[socket]]
+slot = "crafting: enchantable: skilled seaman"
+
+[[socket.option]]
+name = "No Info in the Wiki"
+description = "No info in the wiki on what options for this item"
+min_level = 1
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

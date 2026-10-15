@@ -1,0 +1,3 @@
+name = "Nightmare Guard"
+description_template = "This item has a chance to terrorizing foes that hit you, applying a Mind Thrust effect, when you are hit by them (dealing 5d8 force damage, Will save vs. Enchantments negates). It may also expose your foes to their greatest fears, acting as a Phantasmal Killer spell."
+verbose_name_template = "Nightmare Guard"

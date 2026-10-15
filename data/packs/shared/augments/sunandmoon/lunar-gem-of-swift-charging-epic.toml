@@ -1,0 +1,20 @@
+name = "Lunar Gem of Swift Charging (Epic)"
+description = "+10% Profane Bonus to Rune Arm Charge Speed."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Profane"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Rune Arm Charge Rate"
+effect_type = "RuneArmChargeRate"
+
+[[slot]]
+slot = "moon"

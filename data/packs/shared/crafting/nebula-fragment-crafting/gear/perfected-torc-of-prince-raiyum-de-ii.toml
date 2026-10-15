@@ -1,0 +1,57 @@
+name = "Perfected Torc of Prince Raiyum-de II"
+description = """
+An enterprising young lad with a gift for enchanting, Prince Raiyum-de created
+this golden torc to aid in his studies."""
+drop_location = "Lahar, Turn in Nebula Fragment"
+icon = "Necklace_18b"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Neck"
+
+[[clickie]]
+name = "Control Undead"
+clickie = "Control Undead"
+
+[[effect]]
+name = "The Mummy's Gift"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 305
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Control Undead"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Nebula Fragment Crafting"

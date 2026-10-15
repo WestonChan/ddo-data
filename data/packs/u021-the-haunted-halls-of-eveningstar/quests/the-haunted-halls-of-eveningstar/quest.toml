@@ -1,0 +1,32 @@
+name = "The Haunted Halls of Eveningstar"
+bestowed_by = "Alyn Farrago"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+pack = "The Haunted Halls of Eveningstar"
+patron = "The Harpers"
+zone = "The Haunted Halls of Eveningstar"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Haunted_Halls_of_Eveningstar"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "epic_level"
+reason = "The wiki's quest index gives an epic level of 28; his Quests.xml gives none."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 28
+
+[[run]]
+tier = "epic"
+level = 28

@@ -1,0 +1,43 @@
+name = "Legendary Firemouth's Diving Helmet"
+description = "This sturdy metal helmet allows you to breathe underwater."
+drop_location = "Isle of Dread (wilderness), rare encounter chest"
+icon = "Helmet_8a"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 31
+slot = "Head"
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Underwater Action"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

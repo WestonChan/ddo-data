@@ -1,0 +1,34 @@
+name = "Iron Cloak of the Dragon"
+description = """
+This cloak has threads of magically-conductive enchanted iron wire woven into
+it."""
+drop_location = "Eveningstar Challenge Pack, Turn in various ingredients"
+icon = "Cloak_12"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 16
+slot = "Back"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 12
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 52
+
+[[effect]]
+name = "Spell Focus I"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Stealth Strike"
+
+[[source]]
+chest = "turn in various ingredients"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

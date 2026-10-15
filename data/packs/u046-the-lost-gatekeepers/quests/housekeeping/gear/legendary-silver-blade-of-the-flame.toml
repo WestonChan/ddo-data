@@ -1,0 +1,53 @@
+name = "Legendary Silver Blade of the Flame"
+accepts_sentience = true
+description = "This Silver weapons seems to call to you..."
+drop_location = "Housekeeping, End chest"
+enhancement_bonus = 15
+icon = "Longsword_1"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Silver"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Favored Weapon"
+
+[[effect]]
+name = "Coruscating 6"
+
+[[effect]]
+name = "Evil Outsider Bane 6"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Housekeeping"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Longsword"

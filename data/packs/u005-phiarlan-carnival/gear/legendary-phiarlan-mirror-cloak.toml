@@ -1,0 +1,50 @@
+name = "Legendary Phiarlan Mirror Cloak"
+description = """
+House Phiarlan spies keep many tools to help them in their trade. This cloak
+is a prime example of such a tool, and reflects light in such a way that the
+wearer is made partially invisible. This effect also wards it against certain
+harmful spells."""
+drop_location = "Legendary version of Epic Phiarlan Mirror Cloak"
+icon = "Cloak_4c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Back"
+
+[[clickie]]
+name = "Spell Absorption"
+clickie = "Spell Absorption"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Light Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    20,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Spell Absorption"]
+
+[[socket]]
+slot = "colorless"

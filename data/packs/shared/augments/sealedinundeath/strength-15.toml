@@ -1,0 +1,26 @@
+name = "Strength +15"
+description = """
+Strength +15: This item gives the wearer the power of Ogre Strength, granting
+a +15 enhancement bonus to Strength."""
+family = "SealedInUndeath"
+icon = "Strength"
+min_level = 32
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: sealed in undeath"
+
+[[slot]]
+slot = "crafting: sealed in gloom"

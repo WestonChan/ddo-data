@@ -1,0 +1,38 @@
+name = "Pendant of the Red Abishai"
+description = "This necklace seems to be attuned to elemental power."
+drop_location = "The Chronoscope, and The Chronoscope (Legendary), optional chests"
+icon = "Necklace_13q"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 5
+slot = "Neck"
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

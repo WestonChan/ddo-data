@@ -1,0 +1,10 @@
+name = "Magical Efficiency"
+description_template = "You take a {1}% %b1 discount to the Spell Point cost of your spells."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Magical Efficiency {1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Spell Point Cost Reduction"

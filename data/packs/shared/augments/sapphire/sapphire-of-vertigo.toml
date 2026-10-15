@@ -1,0 +1,51 @@
+name = "Sapphire of Vertigo"
+choose_level = true
+description = "Grants an Enhancement bonus to your Trip DCs"
+family = "Sapphire"
+icon = "Sapphire"
+level_values = [
+    2,
+    4,
+    6,
+    7,
+    9,
+    11,
+    12,
+    14,
+    16,
+    18,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+]
+
+[[effect]]
+name = "Trip DC"
+bonus_type = "Enhancement"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "green"

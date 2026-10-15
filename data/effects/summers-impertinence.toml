@@ -1,0 +1,20 @@
+name = "Summer's Impertinence"
+description_template = "The heat of Summer surrounds you. +20% Enhancement bonus to critical damage with fire and light spells."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Summer's Impertinence +20"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Enhancement"
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Fire Spell Critical Damage"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Enhancement"
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Light Spell Critical Damage"

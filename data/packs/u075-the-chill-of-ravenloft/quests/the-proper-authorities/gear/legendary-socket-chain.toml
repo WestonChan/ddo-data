@@ -1,0 +1,41 @@
+name = "Legendary Socket Chain"
+description = """
+This chain has sockets linked into it - Many are filled with small blue stones,
+housing ardcane energy."""
+drop_location = ", end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 34
+slot = "Neck"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 155
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 310
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Proper Authorities"

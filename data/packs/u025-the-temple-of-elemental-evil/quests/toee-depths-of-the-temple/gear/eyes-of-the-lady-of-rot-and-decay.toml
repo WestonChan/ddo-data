@@ -1,0 +1,36 @@
+name = "Eyes of the Lady of Rot and Decay"
+drop_location = "ToEE: Depths of the Temple, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 8
+slot = "Goggles"
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 96
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"

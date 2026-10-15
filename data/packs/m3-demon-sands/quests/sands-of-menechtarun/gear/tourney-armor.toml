@@ -1,0 +1,59 @@
+name = "Tourney Armor"
+description = """
+Full plate armor designed for wear in tourneys. Some sturdiness and protection
+has been sacrificed for ease of movement."""
+drop_location = "Sands of Menechtarun, Firebrand Area: Commander Errulf 's Chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+enhancement_bonus = 5
+icon = "LightArmor_19b"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 20
+armor_bonus = 11
+armor_type = "Light"
+max_dex_bonus = 9
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "DR 5/Adamantine"
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Superior Nimbleness"
+bonus_type = "Stacking"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "firebrand area: commander errulf 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

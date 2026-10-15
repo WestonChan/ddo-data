@@ -1,0 +1,37 @@
+name = "Legendary Aosu'riel's Bracers"
+description = "The Archon Aosu'riel wore these into battle. Treat them with care."
+drop_location = "Seizing the Dawn, End chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 53
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Seizing the Dawn"

@@ -1,0 +1,36 @@
+name = "Lamordian Cowl"
+description = "A hood to keep those moving about the streets at night warm."
+drop_location = "The Wish, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 8
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wish"

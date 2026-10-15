@@ -1,0 +1,150 @@
+name = "Wizard's Ward (Level 16)"
+description = """
+This incomparable crystal orb is imbued with a myriad of enchantments to help
+a wielder better focus and direct arcane energies."""
+drop_location = "Detour, Song 's chest (Heroic Normal)"
+icon = "Orb_11"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 16
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 4
+
+[[effect]]
+name = "Spell Focus I"
+bonus_type = "Equipment"
+value = 25
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Elemental Absorption"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Combustion +78"
+description = "Combustion +78: Passive: +78 Equipment bonus to Fire Spell Power."
+icon = "Variant"
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 78
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option]]
+name = "Corrosion +78"
+description = "Corrosion +78: Passive: +78 Equipment bonus to Acid Spell Power."
+icon = "Variant"
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 78
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[socket.option]]
+name = "Glaciation +78"
+description = "Glaciation +78: Passive: +78 Equipment bonus to Cold Spell Power."
+icon = "Variant"
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 78
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[socket.option]]
+name = "Impulse +78"
+description = "Impulse +78: Passive: +78 Equipment bonus to Force, Untyped, Slashing, Piercing, and Bludgeoning Spell Power."
+icon = "Variant"
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Force Spell Power"
+value = 78
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Force Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[socket.option]]
+name = "Magnetism +78"
+description = "Magnetism +78: Passive: +78 Equipment bonus to Electric Spell Power."
+icon = "Variant"
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 78
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[source]]
+chest = "song 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Detour"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

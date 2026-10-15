@@ -1,0 +1,30 @@
+name = "The Fetid Wedding"
+bestowed_by = "Mobopho"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+zone = "Araumycos's Domain"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Fetid_Wedding"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 37
+
+[[run]]
+tier = "legendary"
+level = 37

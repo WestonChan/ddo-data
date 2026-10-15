@@ -1,0 +1,47 @@
+name = "Treachery"
+icon = "Treachery"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+5 Melee and Ranged Power"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Sneak Attack Dice"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Assassinate"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect = "Assassinate"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]

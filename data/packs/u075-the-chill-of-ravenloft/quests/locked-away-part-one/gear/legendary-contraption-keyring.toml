@@ -1,0 +1,35 @@
+name = "Legendary Contraption Keyring"
+description = "Turning this ring's face grants the bearer a boost in energy."
+drop_location = "Locked Away (Part One), end chest (rare)"
+icon = "Ring_26b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 34
+slot = "Ring"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part One)"

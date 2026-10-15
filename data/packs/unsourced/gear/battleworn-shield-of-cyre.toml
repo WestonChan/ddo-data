@@ -1,0 +1,43 @@
+name = "Battleworn Shield of Cyre"
+description = """
+Very few items survived the destruction of Cyre but this battered shield was
+recovered by an expedition into the Mournlands."""
+drop_location = "Special event items, DM unique prize"
+enhancement_bonus = 1
+icon = "Shield_29"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Wood"
+minimum_level = 1
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 3
+max_dex_bonus = 0
+shield_bonus = 3
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Darkwood"
+
+[[effect]]
+name = "Twilight"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

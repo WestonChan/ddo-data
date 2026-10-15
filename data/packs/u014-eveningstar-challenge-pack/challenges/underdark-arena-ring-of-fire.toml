@@ -1,0 +1,10 @@
+name = "Underdark Arena: Ring of Fire"
+difficulties = []
+is_challenge = true
+max_level = 30
+pack = "Eveningstar Challenge Pack"
+patron = "Purple Dragon Knights"
+
+[[run]]
+tier = "heroic"
+level = 15

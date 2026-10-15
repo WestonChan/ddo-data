@@ -1,0 +1,57 @@
+name = "Blood Machete"
+description = """
+The spirits haunting this cursed blade compel the wielder to acts of pure savagery.
+Even now, blood still drips from its cutting edge."""
+drop_location = "Cult of the Six, End reward"
+enhancement_bonus = 4
+icon = "Kukri_1"
+item_category = "Weapon"
+item_type = "Kukri"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[clickie]]
+name = "Rage"
+clickie = "Rage"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Slicing"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Rage"]
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Kukri"

@@ -1,0 +1,39 @@
+name = "+11 Dexterity Skills, +28 Hit Points"
+description = """
+Material/Escalation: +11 Competence bonus to Dexterity based skills.
++28 Insight Hit Points"""
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Escalation"""
+
+[[effect]]
+name = "Dexterity Skills"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Insight"
+value = 28
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Dexterity"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [28]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[slot]]
+slot = "crafting: equipment tier 2"

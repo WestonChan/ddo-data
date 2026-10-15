@@ -1,0 +1,25 @@
+name = "+5 Polished Cormyrian Chain Shirt"
+description = """
+This exquisite chainmail shirt is a prime example of quality Cormyrian craftmanship,
+and equipment intended for use in service to the kingdom is layered with powerful
+enchantments by the War Wizards."""
+drop_location = "Eveningstar Challenge Pack"
+enhancement_bonus = 5
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritforged Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 9
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 11
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

@@ -1,0 +1,21 @@
+name = "Tomb of the Tormented"
+bestowed_by = "Kyriel Kallistae"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Necropolis, Part 3"
+patron = "The Silver Flame"
+zone = "Tomb of the Tormented"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tomb_of_the_Tormented"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11

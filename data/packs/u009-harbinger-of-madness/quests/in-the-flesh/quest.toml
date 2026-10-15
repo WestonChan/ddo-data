@@ -1,0 +1,21 @@
+name = "In The Flesh"
+bestowed_by = "Hector Hyssop"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Harbinger of Madness"
+patron = "The Free Agents"
+zone = "Harborview Lofts"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/In_The_Flesh"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15

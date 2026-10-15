@@ -1,0 +1,37 @@
+name = "Legendary Silverthread Belt"
+description = "These silver threads, woven together, amplify aligned magic."
+drop_location = "Ravens' Bane, End chest"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ravens' Bane"

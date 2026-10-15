@@ -1,0 +1,35 @@
+name = "Furyform Gauntlets"
+description = "Rage against the tide."
+drop_location = "The Hobgoblin Horde, End chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 21
+slot = "Hands"
+
+[[effect]]
+name = "Anger"
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 38
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 33
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hobgoblin Horde"

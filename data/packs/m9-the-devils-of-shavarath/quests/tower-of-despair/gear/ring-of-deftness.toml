@@ -1,0 +1,69 @@
+name = "Ring of Deftness"
+description = """
+Master Mechanic Rotas wore this matte black Ring. He claimed there was no lock
+or trap he could not pass."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Mechanic"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+    15,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Mechanic - 2 Piece bonus"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Mechanic - 2 Piece bonus"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Hide",
+    "Move Silently",
+    "Open Lock",
+    "Tumble",
+]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

@@ -1,0 +1,23 @@
+name = "Cloak of the Dawn"
+description = "As the sun rises at dawn, so is hope renewed."
+drop_location = "Advance to level 15, End reward"
+icon = "Cloak_1"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 15
+race_required = "Sun Elf"
+slot = "Back"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

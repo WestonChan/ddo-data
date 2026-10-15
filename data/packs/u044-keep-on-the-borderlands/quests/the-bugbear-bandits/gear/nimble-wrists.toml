@@ -1,0 +1,19 @@
+name = "Nimble Wrists"
+description = "These are light and have some subtle magic to them."
+drop_location = "The Bugbear Bandits, End chest"
+icon = "Bracers_11"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 1
+slot = "Wrists"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 1
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bugbear Bandits"

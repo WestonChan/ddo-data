@@ -1,0 +1,3 @@
+name = "Enhanced Bloodrage"
+description_template = "This weapon is enhanced by blood - your blood! Each time you take damage or kill an enemy, there is a small chance that you will fall into an unholy bloodrage, greatly increasing your Melee Power (+10), Constitution (+8), and Damage (+5). However, this rage will leave you more vulnerable to Physical attacks, slightly reducing your Armor Class (-4)."
+verbose_name_template = "Enhanced Bloodrage"

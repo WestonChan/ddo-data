@@ -1,0 +1,39 @@
+name = "Cloak of Summer"
+description = """
+This cloak appears to be made of still-living foliage, in the form of deep green
+leaves."""
+drop_location = "Wake Me Up Inside, End chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 5
+slot = "Back"
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wake Me Up Inside"

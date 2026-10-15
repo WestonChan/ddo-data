@@ -1,0 +1,3 @@
+name = "Thunderstruck"
+description_template = "On Melee Vorpal Hit: 35-60 Electric and 35-60 Sonic damage to your target."
+verbose_name_template = "Thunderstruck"

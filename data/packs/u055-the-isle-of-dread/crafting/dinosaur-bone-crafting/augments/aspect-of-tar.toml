@@ -1,0 +1,10 @@
+name = "Aspect of Tar"
+description = """
+Your attacks and offensive spells have a chance to reduce enemy Physical and Magical
+Resistance Rating and summon Tar oozes to your aid."""
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[slot]]
+slot = "isle of dread: horn (weapon)"

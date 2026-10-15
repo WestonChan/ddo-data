@@ -1,0 +1,3 @@
+name = "Mirror Shield"
+description_template = "This highly polished shield has highly reflective qualities. While actively blocking, you gain +50 Insight bonus to Magical Resistance Rating."
+verbose_name_template = "Mirror Shield"

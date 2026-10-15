@@ -1,0 +1,3 @@
+name = "Touch of the Mournlands"
+description_template = "This staff, once wielded by the Lord of Blades himself, taints each wound with the power of the Mournlands. Prolonged exposure will make the target more and more difficult to heal and repair, cutting their Healing and Repair Amplification, and also interferes with their ability to use magic by occasionally Quelling enemies on a Vorpal strike."
+verbose_name_template = "Touch of the Mournlands"

@@ -1,0 +1,32 @@
+name = "Legendary Bracers of Deftness"
+description = "These bracers feature a cresting wave on the side of them."
+drop_location = "Legendary version of Epic Bracers of Deftness"
+icon = "Bracers_1b"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 30
+slot = "Wrists"
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 13
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 20
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"

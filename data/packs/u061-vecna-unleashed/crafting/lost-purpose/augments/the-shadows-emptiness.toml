@@ -1,0 +1,9 @@
+name = "The Shadow's Emptiness"
+description = "Adds The Shadow's Emptiness set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 18
+set_bonus = "The Shadow's Emptiness"
+
+[[slot]]
+slot = "crafting: lost purpose"

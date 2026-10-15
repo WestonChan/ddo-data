@@ -1,0 +1,3 @@
+name = "Occasional Overcooling"
+description_template = "Your shots from this Rune Arm have a 15% chance of freezing your target solid for six seconds. (Fortitude Save negates, DC is equal to your Rune Arm shots, +2 per Charge Tier the shot was fired at)."
+verbose_name_template = "Occasional Overcooling"

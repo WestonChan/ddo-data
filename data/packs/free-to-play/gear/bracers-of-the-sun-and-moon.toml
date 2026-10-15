@@ -1,0 +1,37 @@
+name = "Bracers of the Sun and Moon"
+description = """
+A set of bracers: One glowing faintly with a white light and one seemingly sucking
+in all light around it into darkness."""
+drop_location = "Memoirs of an Illusory Larcener, End chest"
+icon = "Bracers_6"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Wrists"
+
+[[effect]]
+name = "Paragon Evil Guard"
+
+[[effect]]
+name = "Paragon Good Guard"
+
+[[effect]]
+name = "Paragon Light Guard"
+
+[[effect]]
+name = "Paragon Negative Guard"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Memoirs of an Illusory Larcener"
+
+[[source]]
+chest = "left end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mask of Deception"

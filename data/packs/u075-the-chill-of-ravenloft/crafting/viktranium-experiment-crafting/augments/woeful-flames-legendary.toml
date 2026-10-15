@@ -1,0 +1,11 @@
+name = "Woeful Flames (Legendary)"
+description = """
+Your attacks and offensive spells have a chance to reduce enemy Magical Resistance
+Rating and Universal Spell Power.
+(Undocumented: Grants Legendary Ash)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

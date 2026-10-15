@@ -1,0 +1,4 @@
+name = "Good Spell Power"
+category = "magical"
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Good Spell Power +{1}"

@@ -1,0 +1,57 @@
+name = "Martial: Flaming Burst, Flaming Blast, Seeker +10"
+description = """
+Flaming Burst: This weapon is sheathed in fire, and deals 1 to 6 fire damage each hit.
+Critical hits deal an additional 1 to 10 fire damage for weapons with a x2
+critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4
+multiplier.
+Flaming Blast: A flaming blast weapon is sheathed in fire. Critical hits with
+this weapon deal an additional 1 to 10 fire damage for weapons with a x2
+critical multiplier, 2 to 20 for a x3 critical multiplier, and 3 to 30 for a
+x4 multiplier. Additionally, if you roll a 20 when attacking and confirm the
+critical hit, the weapon blasts your target, doing 4 to 24 more fire damage.
+Seeker +10: Provides a +10 Enhancement bonus to confirm critical hits, and a
++10 Enhancement bonus to critical hit damage (before multipliers are applied)."""
+family = "Alchemical"
+min_level = 16
+
+[[modifier]]
+amount_type = "Dice"
+bonus_type = "Stacking"
+dice_damage = "Fire"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Fire"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: alchemical tier 1"

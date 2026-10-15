@@ -1,0 +1,23 @@
+name = "Stromvauld's Mine"
+bestowed_by = "Laird Stromvauld"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Kundarak"
+zone = "Stromvauld's Mine"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Stromvauld%27s_Mine"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8

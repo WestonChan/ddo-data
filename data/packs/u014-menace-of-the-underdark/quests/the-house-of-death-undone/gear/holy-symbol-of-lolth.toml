@@ -1,0 +1,50 @@
+name = "Holy Symbol of Lolth"
+description = """
+The holy symbol of Lolth is an eight-pointed metal star, with the points connected
+by intricate webbing. It radiates a frightful power."""
+drop_location = "The House of Death Undone, Undead Priestess Silan 's chest"
+icon = "Trinket_62"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 21
+slot = "Trinket"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 102
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 102
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 102
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Embrace of the Spider Queen"
+bonus_type = "Penalty"
+
+[[source]]
+chest = "undead priestess silan 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Death Undone"

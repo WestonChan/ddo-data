@@ -1,0 +1,49 @@
+name = "Legendary Robe of the Warblade"
+description = """
+When the Echo broke off from the Warblade, the force of its defiance manifested
+this robe, and shares its clarity of purpose."""
+drop_location = "Book Burning, end chest (rare)"
+enhancement_bonus = 15
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 23
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Legendary Demonic Shield"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Legendary"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Book Burning"

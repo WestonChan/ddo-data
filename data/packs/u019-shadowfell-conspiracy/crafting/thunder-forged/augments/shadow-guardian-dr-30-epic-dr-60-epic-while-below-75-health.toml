@@ -1,0 +1,43 @@
+name = "Shadow Guardian - DR 30/Epic, DR 60/Epic while below 75% health"
+description = """
+DR 30/Epic
+DR 60/Epic while below 75% health"""
+family = "Thunderforged"
+min_level = 26
+
+[[modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Hitpoints"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+display_name = "Shadow Guardian - DR 30/Epic"
+effect_type = "DR"
+targets = ["Epic"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [60]
+bonus_type = "Enhancement"
+display_name = "Shadow Guardian - DR 60/Epic while below 75% health"
+effect_type = "DR"
+targets = ["Epic"]
+
+[[modifier.requirement]]
+items = ["-75% Hitpoints"]
+req_type = "Stance"
+
+[[slot]]
+slot = "crafting: shadow heavy variant"
+
+[[slot]]
+slot = "crafting: shadow docent variant"

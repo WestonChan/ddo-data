@@ -1,0 +1,21 @@
+name = "Constitution +13"
+description = "Legendary enhancement bonus to Constitution"
+family = "Slavelords_Legendary"
+icon = "SlavelordsPrefix"
+min_level = 28
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: legendary slavelords prefix"

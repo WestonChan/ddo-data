@@ -1,0 +1,49 @@
+name = "Docent of Moonlight"
+description = "The moon's beams embolden those who seek them."
+drop_location = "Book Burning, end chest"
+enhancement_bonus = 5
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 13
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 15
+armor_bonus = 1
+armor_type = "Docent"
+mithral_body = 8
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 55
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Book Burning"

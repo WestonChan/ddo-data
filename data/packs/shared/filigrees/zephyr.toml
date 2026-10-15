@@ -1,0 +1,211 @@
+[[row]]
+name = "Zephyr: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "Zephyr"
+menu = "Ravenloft"
+set = "Zephyr"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zephyr: Charisma : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Zephyr: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "Zephyr"
+menu = "Ravenloft"
+set = "Zephyr"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zephyr: Dexterity : Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Zephyr: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "Zephyr"
+menu = "Ravenloft"
+set = "Zephyr"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zephyr: Intelligence : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Zephyr: +1% Dodge and Maximum Dodge"
+description = """
++1% Dodge and Maximum Dodge
+Rare: +2 PRR"""
+icon = "Zephyr"
+menu = "Ravenloft"
+set = "Zephyr"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zephyr: Dodge: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Zephyr: +1% Doublestrike"
+description = """
++1% Doublestrike
+Rare: +2 Melee Power"""
+icon = "Zephyr"
+menu = "Ravenloft"
+set = "Zephyr"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Doublestrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zephyr: Doublestrike: Rare +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Zephyr: +2 Reflex saves"
+description = """
++2 Reflex saves
+Rare: +2 MRR"""
+icon = "Zephyr"
+menu = "Ravenloft"
+set = "Zephyr"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zephyr: Reflex Save: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Zephyr: +2% Doubleshot"
+description = """
++2% Doubleshot
+Rare: +2 Ranged Power"""
+icon = "Zephyr"
+menu = "Ravenloft"
+set = "Zephyr"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Doubleshot"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zephyr: Doubleshot: Rare +2 Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "Zephyr: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "Zephyr"
+menu = "Ravenloft"
+set = "Zephyr"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zephyr: MRR: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Zephyr: Feather Fall"
+description = """
+Permanent Feather Fall
+Rare: +2 MRR"""
+icon = "Zephyr"
+menu = "Ravenloft"
+set = "Zephyr"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zephyr: Feather Fall: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true

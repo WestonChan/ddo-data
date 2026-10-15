@@ -1,0 +1,21 @@
+name = "Battle-Plated Cloak"
+drop_location = "Advance to level 15, End reward"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Bladeforged"
+slot = "Back"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

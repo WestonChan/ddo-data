@@ -1,0 +1,32 @@
+name = "Dolorous Deception (Legendary)"
+description = "+12 Enhancement bonus to Sneak Attacks, +18 Enhancement bonus to Sneak Attack Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Sneak Attack Hit"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Sneak Attack Damage"
+bonus_type = "Enhancement"
+value = 18
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [18]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[slot]]
+slot = "lamordia: dolorous (accessory)"

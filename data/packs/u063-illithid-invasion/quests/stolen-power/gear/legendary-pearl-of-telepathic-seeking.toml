@@ -1,0 +1,42 @@
+name = "Legendary Pearl of Telepathic Seeking"
+description = """
+A sphere that whispers slight secrets to its bearer, allowing them to gain the
+upper hand."""
+drop_location = "Stolen Power, end chest"
+icon = "Trinket_105"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 32
+slot = "Trinket"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Deception"
+bonus_type = "Quality"
+value = 2
+value2 = 4
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Sight Beyond Sight"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stolen Power"

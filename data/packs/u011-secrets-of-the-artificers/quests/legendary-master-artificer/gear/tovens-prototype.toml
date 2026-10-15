@@ -1,0 +1,46 @@
+name = "Toven's Prototype"
+description = "This arcane device clicks and whirs and hums with invention"
+drop_location = "Legendary Master Artificer, End and Optional Chest"
+icon = "RuneArm_1g"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Rust"
+minimum_level = 29
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Rune Arm Imbue - Force VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Force Shot",
+    "None",
+]
+
+[[socket]]
+slot = "crafting: legendary alchemical material"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Master Artificer"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

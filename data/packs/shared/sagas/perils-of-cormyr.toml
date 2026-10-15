@@ -1,0 +1,33 @@
+name = "Perils of Cormyr"
+wiki_url = "https://ddowiki.com/page/Perils_of_Cormyr_(Epic)"
+quests = [
+    "A Break in the Ice",
+    "A Lesson in Deception",
+    "A Stay at the Inn",
+    "Army of Shadow",
+    "Breaking the Ranks",
+    "Detour",
+    "Friends in Low Places",
+    "Lines of Supply",
+    "Lost in the Swamp",
+    "Outbreak",
+    "Overgrowth",
+    "Rest Stop",
+    "The Druid's Curse",
+    "The End of the Road",
+    "The Thrill of the Hunt",
+    "The Tracker's Trap",
+    "Thorn and Paw",
+    "Through a Mirror Darkly",
+    "What Goes Up",
+    "Don't Drink the Water",
+    "Impossible Demands",
+    "In the Belly of the Beast",
+    "The Battle for Eveningstar",
+    "The Lost Thread",
+    "The Unquiet Graves",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Perils_of_Cormyr_(Epic)"
+read = "2026-10-02"

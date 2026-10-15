@@ -1,0 +1,38 @@
+name = "Legendary Bronzed Bracers"
+description = "Heavy bronze makes a mighty defensive tool."
+drop_location = "Fall of the Forbidden Temple, end chest"
+icon = "Bracers_17"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 31
+slot = "Wrists"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 149
+
+[[socket]]
+slot = "isle of dread: scale (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fall of the Forbidden Temple"

@@ -1,0 +1,52 @@
+name = "Iridiscent Scale"
+description = """
++102 Equipment bonus to all Spell powers.
+IF this is slotted in a Quarterstaff, also grants a +2 Exceptional bonus to Spell DCs."""
+family = "DinosaurBone"
+icon = "ScaleOrange"
+min_level = 31
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 102
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [102]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = [
+    "Weapon1",
+    "Quarterstaff",
+]
+req_type = "ItemTypeInSlot"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Iridescent Scale"
+reason = "The wiki spells it Iridiscent Scale, where Maetrim spells it Iridescent."
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-10-02"
+qualifier = 'family "DinosaurBone"'
+
+[[slot]]
+slot = "isle of dread: scale (weapon)"

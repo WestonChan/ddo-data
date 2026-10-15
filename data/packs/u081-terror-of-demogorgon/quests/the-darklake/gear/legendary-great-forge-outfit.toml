@@ -1,0 +1,49 @@
+name = "Legendary Great Forge Outfit"
+description = "Protective gear made by Dwarven craftspeople."
+drop_location = "The Darklake, red-named rare encounter chests"
+enhancement_bonus = 16
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 35
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 62
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 15
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 3
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "red-named rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

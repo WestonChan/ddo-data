@@ -1,0 +1,21 @@
+name = "Scale: +15 Wisdom"
+description = "+15 Enhancement bonus to Wisdom"
+family = "DinosaurBone"
+icon = "ScalePurple"
+min_level = 31
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "isle of dread: artifact scale (accessory)"

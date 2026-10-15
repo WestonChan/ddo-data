@@ -1,0 +1,40 @@
+name = "Bracers of Twisting Shade (Level 17)"
+description = """
+These leather bracers will slightly dim any source of light they are brought
+close to."""
+drop_location = "A Stay at the Inn, End chest (Heroic Hard)"
+icon = "Bracers_2"
+item_category = "Clothing"
+material = "Spiritcraft Leather"
+minimum_level = 17
+slot = "Wrists"
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Stay at the Inn"

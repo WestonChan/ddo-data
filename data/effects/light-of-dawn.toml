@@ -1,0 +1,3 @@
+name = "Light of Dawn"
+description_template = "Chance on being hit or missed in combat to deal 10 to 60 points of light damage to attacker."
+verbose_name_template = "Light of Dawn"

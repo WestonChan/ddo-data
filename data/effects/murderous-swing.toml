@@ -1,0 +1,3 @@
+name = "Murderous Swing"
+description_template = "On hit: 16d6 Bludgeoning Damage. This item is considered Metalline, bypassing all kinds of material damage resistance."
+verbose_name_template = "Murderous Swing"

@@ -1,0 +1,82 @@
+name = "Legendary Scepter of the Fleshweaver"
+accepts_sentience = true
+description = """
+Said to be a creation of Mordain the Fleshweaver, master transmuter of Droaam,
+this scepter boosts the wielder's intellect and improves his or her skill with
+transmutation magic."""
+drop_location = "Frame Work, End chests, Dorris ' chests"
+enhancement_bonus = 15
+icon = "Club_21"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 31
+slot = "Main Hand"
+
+[[clickie]]
+name = "Stone to Flesh"
+clickie = "Stone to Flesh"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 31
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Fragmented"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Stone to Flesh"]
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chests, dorris ' chests"
+kind = "quest"
+loot_type = "chest"
+name = "Frame Work"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "One-handed"
+weapon_type = "Club"

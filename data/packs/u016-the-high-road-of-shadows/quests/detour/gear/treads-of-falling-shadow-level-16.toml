@@ -1,0 +1,34 @@
+name = "Treads of Falling Shadow (Level 16)"
+description = """
+These black leather boots seem to cause your shadow to warp and twist, almost
+as if it were alive."""
+drop_location = "Detour, end chest (Heroic Normal)"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Spiritcraft Leather"
+minimum_level = 16
+slot = "Feet"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Exceptional"
+value = 1
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Detour"

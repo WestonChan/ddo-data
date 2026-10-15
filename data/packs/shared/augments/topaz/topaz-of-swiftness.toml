@@ -1,0 +1,61 @@
+name = "Topaz of Swiftness"
+choose_level = true
+description = "Enhancement bonus to your base movement speed and an Enhancement bonus to your attack speed"
+dual_values = true
+family = "Topaz"
+icon = "Topaz"
+level_values = [
+    30,
+    30,
+    30,
+]
+level_values2 = [
+    5,
+    10,
+    15,
+]
+levels = [
+    12,
+    16,
+    20,
+]
+
+[[effect]]
+name = "Movement Speed"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Melee Attack Speed"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Ranged Attack Speed"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

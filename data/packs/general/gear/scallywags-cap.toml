@@ -1,0 +1,13 @@
+name = "Scallywag's Cap"
+description = "This cap is said to have been awarded to the sailor who told the best story."
+drop_location = "DDO Store"
+icon = "Helmet_56a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 10

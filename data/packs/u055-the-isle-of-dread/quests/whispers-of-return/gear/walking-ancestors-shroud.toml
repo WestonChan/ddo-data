@@ -1,0 +1,35 @@
+name = "Walking Ancestor's Shroud"
+description = "This burial shroud befits one of the Isle of Dread's Walking Ancestors."
+drop_location = "Whispers of Return, end chest"
+icon = "Cloak_21a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 7
+slot = "Back"
+
+[[effect]]
+name = "Nightmare Guard"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Whispers of Return"

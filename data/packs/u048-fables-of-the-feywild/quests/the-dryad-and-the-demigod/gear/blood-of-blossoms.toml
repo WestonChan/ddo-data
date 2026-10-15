@@ -1,0 +1,40 @@
+name = "Blood of Blossoms"
+description = "This is a simple glass orb containing a light, lavender liquid."
+drop_location = "The Dryad and the Demigod, End chest and optional chest"
+icon = "Trinket_18"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 29
+slot = "Trinket"
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"

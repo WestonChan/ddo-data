@@ -1,0 +1,21 @@
+name = "Quality Jump +5"
+description = "Legendary quality bonus to Jump"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Jump"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Jump"
+effect_type = "SkillBonus"
+targets = ["Jump"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

@@ -1,0 +1,51 @@
+name = "Legendary Green Steel Dart"
+description = """
+A small weapon the size of an arrow, with a weighted head. You're quite surprised
+that the devils of Shavarath would bother having a recipe for darts."""
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+enhancement_bonus = 14
+icon = "Dart_3"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Steel"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 1"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 2"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 3"
+
+[[socket]]
+slot = "crafting: greensteel weapon active"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Green Steel items"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.2
+handedness = "Thrown"
+weapon_type = "Dart"

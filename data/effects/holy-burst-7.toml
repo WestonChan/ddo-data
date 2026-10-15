@@ -1,0 +1,3 @@
+name = "Holy Burst 7"
+description_template = "This weapon sings of virtue, dealing 7d6 Good damage on a successful hit to Evil enemies, and 14d6 Good damage on a critical hit to Evil enemies. This effect makes the weapon good aligned."
+verbose_name_template = "Holy Burst 7"

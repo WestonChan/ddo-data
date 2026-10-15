@@ -1,0 +1,51 @@
+name = "Inevitable Balance"
+
+[[item]]
+name = "Sunken Blasphemy"
+
+[[item]]
+name = "Sunken Obscurity"
+
+[[item]]
+name = "Sunken Radiance"
+
+[[item]]
+name = "Sunken Virtue"
+
+[[note]]
+kind = "set_bonus"
+field = "icon"
+upstream = "InevitableBalance"
+reason = "DDOBuilderV2's SetBonusImages folder has no InevitableBalance.png."
+url = "Output/DataFiles/SetBonusImages"
+read = "2026-10-07"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "+5 Melee Power, 5% Doublestrike, Your Sneak Attacks do additional Bane damage"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "5% Melee Power, 5% Doublestrike, and extra Bane damage on sneak attacks."
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Melee Power"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Doublestrike"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+extra_types = ["Doublestrike"]

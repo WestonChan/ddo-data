@@ -1,0 +1,20 @@
+name = "Bottled Heart"
+description_template = "+33% Legendary Bonus to Melee Threat Generation and +10 Legendary Bonus to Intimidate."
+home_bonus_type = "Legendary"
+verbose_name_template = "Bottled Heart"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Legendary"
+constant = 33
+rounding = "down"
+scale = 1.0
+target = "Melee Threat Generation"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Legendary"
+constant = 10
+rounding = "down"
+scale = 1.0
+target = "Intimidate"

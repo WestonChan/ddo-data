@@ -1,0 +1,11 @@
+name = "Legendary Lightning"
+description = """
+Requires Positive and Air only
+Attacks and offensive spells have a [5~10%] chance to create
+Lightning traps. ~160-360 damage, doesn't scale with spell power.
+Additional 12d6 lightning damage on hit."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

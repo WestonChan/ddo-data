@@ -1,0 +1,22 @@
+name = "Duskpalm"
+description = "These gloves only cover the palms, not your fingers."
+drop_location = "Violent Delights, end chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 1
+slot = "Hands"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Violent Delights"

@@ -1,0 +1,98 @@
+name = "Mournlode Chain (level 12)"
+description = """
+Metal armor constructed from valuable purple Mournlode crystal is imbued with
+a protective, almost holy power. Undead are seared by it, and it protects the
+wearer from evil."""
+drop_location = "Vaults of the Artificers, Turn in Various Cannith challenge ingredients"
+enhancement_bonus = 3
+icon = "LightArmor_9c"
+item_category = "Armor"
+item_type = "Light"
+material = "Steel"
+minimum_level = 12
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 8
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 7
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Protection from Evil"
+bonus_type = "Deflection"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+4 Enhancement Bonus and Undead Guard 3"
+description = """
++4 Enhancement Bonus: +4 Enhancement bonus to Armor Class.
+Protection +6: Passive: +6 Deflection bonus to Armor Class.
+Resistance +6: Passive: +6 Resistance bonus to Fortitude, Reflex, and Will Saving Throws."""
+icon = "Upgrade"
+min_level = 12
+
+[[socket.option.effect]]
+bonus_type = "Deflection"
+effect = "Armor Class"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Undead Guard 4 and a Green Augment Slot"
+description = """
+Undead Guard +4: Chance to deal 4d8 Good damage to undead when hit.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 12
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

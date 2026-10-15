@@ -1,0 +1,3 @@
+name = "Avalanche"
+description_template = "This magical item contains the destructive power of an avalanche within, and when you are damaged below 50% HP, its power is unleashed in the form of a massive explosion of Cold damage."
+verbose_name_template = "Avalanche"

@@ -1,0 +1,3 @@
+name = "Vermin Bane 5"
+description_template = "This weapon is ideal for cleaning out rats and other annoying beasts. It deals an additional 5d10 bane damage vs. Vermin."
+verbose_name_template = "Vermin Bane 5"

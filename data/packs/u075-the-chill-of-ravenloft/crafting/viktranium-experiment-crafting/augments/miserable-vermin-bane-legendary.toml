@@ -1,0 +1,24 @@
+name = "Miserable Vermin Bane (Legendary)"
+description = """
+This weapon is ideal for cleaning out rats and other annoying beasts. It deals an
+additional 7d10 bane damage vs. Vermin."""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus = "Not Set"
+dice_damage = "Bane"
+dice_number = [7]
+dice_sides = [10]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Vermin"]
+req_type = "EnemyType"
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

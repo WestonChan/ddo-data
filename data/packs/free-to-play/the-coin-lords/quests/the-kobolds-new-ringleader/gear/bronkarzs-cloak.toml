@@ -1,0 +1,22 @@
+name = "Bronkarz's Cloak"
+description = "This magical cloak was taken from the chest of the bugbear Bronkarz."
+drop_location = "The Kobolds' New Ringleader, Bronkarz 's chest"
+icon = "Cloak_19a"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 1
+slot = "Back"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "bronkarz 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Kobolds' New Ringleader"

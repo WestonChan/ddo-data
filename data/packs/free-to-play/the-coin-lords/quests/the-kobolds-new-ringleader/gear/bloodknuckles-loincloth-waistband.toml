@@ -1,0 +1,24 @@
+name = "Bloodknuckle's Loincloth Waistband"
+description = """
+This belt was once used to hold up the loincloth of the ogre Bloodknuckle. It
+stinks of ogre."""
+drop_location = "The Kobolds' New Ringleader, Bloodknuckle 's Chest"
+icon = "Belt_19"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 1
+slot = "Waist"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 25
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "bloodknuckle 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Kobolds' New Ringleader"

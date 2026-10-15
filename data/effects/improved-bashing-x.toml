@@ -1,0 +1,3 @@
+name = "Improved Bashing X"
+description_template = "On Shield Bash: +5d4 Bludgeoning damage. On Melee Hit: +20% Chance to automatically hit your enemy with a Shield Bash attack."
+verbose_name_template = "Improved Bashing X"

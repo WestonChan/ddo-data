@@ -1,0 +1,46 @@
+name = "The Legendary Blackmail"
+description = "Blackened steel plating that oozes unholy energies."
+drop_location = "Safety in Numbers, End Chest"
+enhancement_bonus = 15
+icon = "MediumArmor_8"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 29
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 18
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 53
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 50
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Safety in Numbers"

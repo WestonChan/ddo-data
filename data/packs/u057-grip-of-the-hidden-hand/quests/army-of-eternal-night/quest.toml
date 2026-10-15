@@ -1,0 +1,29 @@
+name = "Army of Eternal Night"
+bestowed_by = "Joslyn D'Sivis"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Grip of the Hidden Hand"
+patron = "Morgrave University"
+zone = "Brelish Border"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Army_of_Eternal_Night"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

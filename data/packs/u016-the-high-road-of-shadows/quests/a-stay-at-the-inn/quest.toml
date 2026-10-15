@@ -1,0 +1,25 @@
+name = "A Stay at the Inn"
+bestowed_by = "Kordo Sweetspire"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The High Road of Shadows"
+patron = "The Harpers"
+zone = "The Old Man's Face Inn"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/A_Stay_at_the_Inn"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 24

@@ -1,0 +1,43 @@
+name = "Duergar Mindcleaver"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = "Duergar are..."
+iconic_class = "Fighter"
+short_name = "Duergar Mindcleaver"
+starting_world = "Forgotten Realms"
+
+[[ability_modifier]]
+modifier = 1
+stat = "Strength"
+
+[[ability_modifier]]
+modifier = 1
+stat = "Intelligence"
+
+[[granted_feat]]
+feat = "Spell Save Bonus"
+
+[[granted_feat]]
+feat_name = "Dwarven Stability"
+
+[[granted_feat]]
+feat_name = "Dwarven Stonecutting"
+
+[[granted_feat]]
+feat_name = "Orc and Goblin Bonus"
+
+[[granted_feat]]
+feat_name = "Poison Save Bonus"
+
+[[granted_feat]]
+feat_name = "Enlarge Self"
+
+[[granted_feat]]
+feat_name = "Reduce Self"
+
+[[granted_feat]]
+feat_name = "Dispel Size Change"

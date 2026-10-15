@@ -1,0 +1,43 @@
+name = "Solar Gem of Fortitude (Legendary)"
+description = """
++3 Artifact Bonus to Fortitude Save.
+Drops in: Times Long Past, end chest
+Sleeping with the Fishes, House Lyrandar uprising optional chest
+The Wish, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "house lyrandar uprising optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wish"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Times Long Past"

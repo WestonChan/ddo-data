@@ -1,0 +1,64 @@
+name = "Fusible Sceptre of Magnetism"
+description = "This magical sceptre is attuned to Electric spells."
+drop_location = "Eye Know Whodunnit, End chest"
+enhancement_bonus = 6
+icon = "Club_2"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 12
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 84
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Insight"
+value = 42
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Fusible"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Eye Know Whodunnit"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Club"

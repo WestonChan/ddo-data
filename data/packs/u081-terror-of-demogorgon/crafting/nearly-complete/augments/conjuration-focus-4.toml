@@ -1,0 +1,21 @@
+name = "Conjuration Focus +4"
+description = "+4 Equipment bonus to the DCs of Conjuration spells."
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[slot]]
+slot = "crafting: nearly complete: spell focus (heroic)"

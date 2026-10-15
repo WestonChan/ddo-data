@@ -1,0 +1,3 @@
+name = "Acid Guard +2"
+description_template = "Chance to deal 2d8 Acid damage when hit."
+verbose_name_template = "Acid Guard +2"

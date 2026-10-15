@@ -1,0 +1,10 @@
+name = "Lucky Hat"
+description = """
+This jaunty hat, originally worn by Three Toed Tobias is said to imbue its wearer
+with incredible luck."""
+drop_location = "Special event items, New Theater Event for correct answer."
+icon = "Helmet_66"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Head"

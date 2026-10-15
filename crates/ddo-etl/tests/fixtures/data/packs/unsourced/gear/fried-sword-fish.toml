@@ -1,0 +1,26 @@
+name = "Fried Sword Fish"
+description = "This sword seems pretty fishy... or does this fish seemy swordy?"
+enhancement_bonus = 5
+icon = "Longsword_1"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Flesh"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "One-handed"
+weapon_type = "Longsword"

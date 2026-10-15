@@ -1,0 +1,30 @@
+name = "Housekeeping"
+bestowed_by = "Millik Dar"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "The Lost Gatekeepers"
+patron = "The Gatekeepers"
+zone = "The Hut from Beyond"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Housekeeping"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

@@ -1,0 +1,37 @@
+name = "Sworn Silver Helm"
+description = """
+Exquisite and enchanted, this holy helm will help those with Paladin levels
+channel their energies into their foes."""
+drop_location = "Obstructing the Orcs, end chest"
+icon = "Helmet_49"
+item_category = "Clothing"
+material = "Silver"
+minimum_level = 21
+slot = "Head"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Protection from Evil +4"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Obstructing the Orcs"

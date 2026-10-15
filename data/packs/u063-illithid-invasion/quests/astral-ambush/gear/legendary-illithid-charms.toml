@@ -1,0 +1,40 @@
+name = "Legendary Illithid Charms"
+description = """
+Taken from the regalia of a Mind Flayer, these charms were used to bolster their
+uncanny power."""
+drop_location = "Astral Ambush, end chest"
+icon = "Trinket_104"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 32
+slot = "Trinket"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 54
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Astral Ambush"

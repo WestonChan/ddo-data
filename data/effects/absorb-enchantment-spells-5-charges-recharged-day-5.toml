@@ -1,0 +1,3 @@
+name = "Absorb Enchantment Spells - 5 Charges (Recharged/Day: 5)"
+description_template = "This effect absorbs most enchantment-based spells. Only a few such spells can be absorbed before the item ceases to function and must have time to dissipate the absorbed energy."
+verbose_name_template = "Absorb Enchantment Spells - 5 Charges (Recharged/Day: 5)"

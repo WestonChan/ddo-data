@@ -3,27 +3,30 @@
   "offset": 0,
   "sagas": [
     {
-      "id": 10,
+      "id": 2041659837671351,
       "name": "Cogs Explorer Dungeons",
       "pack": "Masterminds of Sharn",
       "quest_count": 8,
       "reward_count": 0,
+      "slug": "cogs-explorer-dungeons",
       "wiki_url": "https://ddowiki.com/page/Cogs_Explorer_Dungeons_(Epic)"
     },
     {
-      "id": 4,
+      "id": 5881090439892688,
       "name": "Dread",
       "pack": "The Isle of Dread",
       "quest_count": 12,
       "reward_count": 6,
+      "slug": "dread",
       "wiki_url": "https://ddowiki.com/page/Isle_of_Dread_(Legendary)"
     },
     {
-      "id": 3,
+      "id": 4452579578801608,
       "name": "Fables of the Feywild",
       "pack": "Fables of the Feywild",
       "quest_count": 13,
       "reward_count": 0,
+      "slug": "fables-of-the-feywild",
       "wiki_url": "https://ddowiki.com/page/Fables_of_the_Feywild_(Legendary)"
     }
   ],

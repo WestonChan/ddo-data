@@ -1,0 +1,59 @@
+name = "Belt of Braided Beards"
+description = "Many devils were harmed in the making of this belt."
+drop_location = "Defiler of the Just, Warded chest"
+icon = "Belt_3a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Waist"
+
+[[clickie]]
+name = "Teleport"
+clickie = "Teleport"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Teleport"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

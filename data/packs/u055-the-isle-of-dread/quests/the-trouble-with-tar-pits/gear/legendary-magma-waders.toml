@@ -1,0 +1,38 @@
+name = "Legendary Magma Waders"
+description = "Stone boots that seem to absorb the heat."
+drop_location = "The Trouble with Tar Pits, end chest"
+icon = "Boots_16a"
+item_category = "Clothing"
+material = "Stone"
+minimum_level = 31
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 53
+
+[[socket]]
+slot = "isle of dread: scale (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Trouble with Tar Pits"

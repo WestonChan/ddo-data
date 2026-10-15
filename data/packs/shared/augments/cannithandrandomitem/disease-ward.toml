@@ -1,0 +1,78 @@
+name = "Disease Ward"
+choose_level = true
+description = "You have a Resistance bonus to saves versus Disease."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+]
+
+[[effect]]
+name = "Disease Save"
+bonus_type = "Resistance"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Resistance"
+effect = "Disease Save"
+effect_type = "SaveBonus"
+targets = ["Disease"]
+
+[[slot]]
+slot = "crafting: cannith armor prefix"
+
+[[slot]]
+slot = "crafting: cannith bracers prefix"
+
+[[slot]]
+slot = "crafting: cannith cloak prefix"
+
+[[slot]]
+slot = "crafting: cannith necklace prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

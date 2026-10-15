@@ -1,0 +1,42 @@
+name = "Resonant Guard Suit"
+description = """
+The studs of this leather armor are chiseled from the resonant crystals found
+in the Shrieking Mines. At rest they give off a low humming sound, but when
+struck, they deal damage back upon the attacker in a blast of focused sonic
+energy."""
+drop_location = "Slavers of the Shrieking Mines, Lord Villixill 's chest"
+enhancement_bonus = 5
+icon = "LightArmor_21"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Sonic Guard"
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = -10
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "lord villixill 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Slavers of the Shrieking Mines"

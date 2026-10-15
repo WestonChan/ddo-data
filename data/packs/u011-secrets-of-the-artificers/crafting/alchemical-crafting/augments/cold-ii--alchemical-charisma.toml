@@ -1,0 +1,23 @@
+name = "Cold II: Alchemical Charisma"
+adds_augment = "Legendary Alchemical T3"
+description = "Combine T1 item with 100 threads and stabilizing compound."
+effect_description = "Alchemical Charisma +2: Passive: +2 Alchemical Bonus to Charisma."
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Alchemical"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 2"

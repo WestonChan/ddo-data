@@ -1,0 +1,3 @@
+name = "Metalline"
+description_template = 'Metalline bypasses any metal based damage reduction. (Adamantine, "Alchemical, Silver", Byeshk, Cold Iron, Mithral)'
+verbose_name_template = "Metalline"

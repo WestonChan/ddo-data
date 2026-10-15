@@ -1,0 +1,49 @@
+name = "Cormyrian Green Dragonhide Armor"
+description = "Mastercraft leather armor forged from the scales of a green dragon."
+drop_location = "Mikrom Sum: Purple Dragon Knight Patron Vendor"
+enhancement_bonus = 6
+icon = "LightArmor_17"
+item_category = "Armor"
+item_type = "Light"
+material = "Green Dragonscale"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 15
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Power Store"
+
+[[source]]
+kind = "crafting_system"
+name = "Mikrom Sum"

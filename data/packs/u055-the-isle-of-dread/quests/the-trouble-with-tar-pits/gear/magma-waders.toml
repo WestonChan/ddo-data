@@ -1,0 +1,37 @@
+name = "Magma Waders"
+description = "Stone boots that seem to absorb the heat."
+drop_location = "The Trouble with Tar Pits, end chest"
+icon = "Boots_16a"
+item_category = "Clothing"
+material = "Stone"
+minimum_level = 7
+slot = "Feet"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Speed"
+value = 17
+value2 = 5
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 18
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 17
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Trouble with Tar Pits"

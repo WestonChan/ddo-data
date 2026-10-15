@@ -1,0 +1,26 @@
+name = "Fire Over Morgrave"
+bestowed_by = "Geth"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+is_raid = true
+pack = "Vecna Unleashed"
+patron = "Morgrave University"
+zone = "Morgrave Reception Terrace"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Fire_Over_Morgrave"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

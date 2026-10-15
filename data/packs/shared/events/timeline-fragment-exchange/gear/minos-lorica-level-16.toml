@@ -1,0 +1,38 @@
+name = "Minos Lorica (level 16)"
+description = "Time-Twisted version of Minos Legens"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+icon = "Helmet_35"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 16
+slot = "Head"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 97
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 7
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

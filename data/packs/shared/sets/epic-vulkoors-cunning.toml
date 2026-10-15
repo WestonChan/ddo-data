@@ -1,0 +1,38 @@
+name = "Epic Vulkoor's Cunning"
+icon = "VulkoorsCunning"
+
+[[item]]
+name = "Epic Necklace of Venom"
+
+[[item]]
+name = "Epic Ring of Venom"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = -20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 10
+
+[[tier.effect]]
+effect = "Vulkoorim Constitution Poison"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [-20]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

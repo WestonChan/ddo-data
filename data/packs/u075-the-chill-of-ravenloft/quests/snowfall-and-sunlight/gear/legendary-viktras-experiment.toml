@@ -1,0 +1,41 @@
+name = "Legendary Viktra's Experiment"
+description = """
+Crafted by Viktra, these goggles did not prove out a hypothesis and were immediately
+discard. In the right hands, though, they may find new purpose."""
+drop_location = "Snowfall and Sunlight, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 34
+slot = "Goggles"
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 10
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

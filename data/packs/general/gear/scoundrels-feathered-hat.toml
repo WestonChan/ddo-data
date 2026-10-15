@@ -1,0 +1,25 @@
+name = "Scoundrel's Feathered Hat"
+description = """
+This fanciful hat sits delicately atop your horns. Somehow, the feather wasn't
+damaged in the brawl."""
+drop_location = "Advance to level 15, End reward"
+icon = "Helmet_54"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Tiefling Scoundrel"
+slot = "Head"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 20
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

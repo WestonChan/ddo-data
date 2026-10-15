@@ -1,0 +1,68 @@
+name = "Epic Leverage"
+accepts_sentience = true
+drop_location = "ToEE: Air Node, dragon's hoard chests (Confirmed), ToEE: Fire Node, Periron chest, ToEE: Water Node, Jotun Rimeblade chest, and ToEE: Earth Node, Hyrelgas chest"
+enhancement_bonus = 7
+icon = "GreatCrossbow_1"
+item_category = "Weapon"
+item_type = "Great Crossbow"
+material = "Steel"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Greater Human Bane"
+
+[[effect]]
+name = "Heartseeker VI"
+
+[[effect]]
+name = "Frostbite"
+
+[[effect]]
+name = "Sneak Attack Bonus"
+bonus_type = "Insight"
+value = 6
+value2 = 9
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "dragon's hoard chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"
+
+[[source]]
+chest = "hyrelgas chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "periron chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"
+
+[[source]]
+chest = "jotun rimeblade chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_multiplier = 4.2
+handedness = "Two-handed"
+weapon_type = "Great Crossbow"

@@ -1,0 +1,310 @@
+name = "Magistrate's Scepter (Level 28)"
+description = "The weight of justice."
+drop_location = "The Tracker's Trap, End chest (Epic Elite)"
+enhancement_bonus = 7
+icon = "HeavyMace_3"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Axiomatic V"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Dazing VIII"
+description = """
+Dazing VIII: On Hit: Your target suffers a -1 Penalty to Will Saving Throws
+for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Stunning Blow and Stunning
+Fist combat feats is increased by 13."""
+icon = "Variant"
+min_level = 26
+
+[[socket.option]]
+name = "Deception VIII"
+description = """
+Deception VIII: 5% Chance on Hit: Your target becomes Bluffed for four seconds.
+(Bluffed enemies can be affected by Sneak Attacks even while targeting you.)
+On sneak attack: +8 to Attack Rolls, +16 to Damage."""
+icon = "Variant"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sneak Attack Hit"
+value = 8
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sneak Attack Damage"
+value = 16
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Equipment"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Equipment"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[socket.option]]
+name = "Doublestrike 8%"
+description = """
+Doublestrike 8%: Passive: 8% Enhancement bonus to Doublestrike.
+(Doublestrike is a chance to score an additional hit with a melee attack.)"""
+icon = "Variant"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[socket.option]]
+name = "Draining VIII"
+description = """
+Draining VIII: On Vorpal Hit: Your target incurs one Negative Level, and you
+gain +16 Temporary Spell Points. (These Temporary Spell Points last for one minute,
+or until used to reduce the cost of your next spell.)"""
+icon = "Variant"
+min_level = 26
+
+[[socket.option]]
+name = "Feeding VIII"
+description = """
+Feeding VIII: On Vorpal Hit: Your target incurs one Negative Level, and you
+gain +40 Temporary Hit Points. (These Temporary Hit Points last for one minute,
+or until used to negate incoming damage.)"""
+icon = "Variant"
+min_level = 26
+
+[[socket.option]]
+name = "Ghostbane VIII"
+description = """
+Ghostbane VIII: On Hit: 8 to 32 Bane Damage vs Undead. (Bane damage cannot be resisted.)
+Passive: Attacks from this weapon bypass the miss chance of incorporeal creatures,
+such as ghosts, shadows, and wraiths."""
+icon = "Variant"
+min_level = 26
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [8]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Humanoid Bane VIII"
+description = """
+Humanoid Bane VIII: On Hit: 8 to 32 Bane Damage vs Humanoids and Giants.
+(Bane damage cannot be resisted.)"""
+icon = "Variant"
+min_level = 26
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [8]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Humanoid"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Greater Disruption"
+description = """
+Greater Disruption: On Hit: 4 to 24 Bane damage to Undead.
+On Vorpal Hit: If an undead struck by this weapon has fewer than 2000 Hit Points,
+it is instantly slain. If the undead has above 2000 Hit Points, it takes 200 damage."""
+icon = "Variant"
+min_level = 26
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Greater Smiting"
+description = """
+Greater Smiting: On Hit: 4 to 24 Bane damage to Constructs.
+On Vorpal Hit: If a construct struck by this weapon has fewer than 2000 Hit Points,
+it is instantly slain. If the construct has above 2000 Hit Points, it takes 200 damage."""
+icon = "Variant"
+min_level = 26
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Construct"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Ribcracker VIII"
+description = """
+Ribcracker VIII: On Critical Hit: 17 to 102 Bludgeoning damage from weapons with
+a x2 Critical Multiplier, 17 to 136 Bludgeoning damage from weapons with
+a x3 Critical Multiplier, and 17 to 170 Bludgeoning damage from weapons with
+a x4 or greater Critical Multiplier."""
+icon = "Variant"
+min_level = 26
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bludgeon"
+dice_number = [17]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Riposte VIII"
+description = """
+Riposte VIII: When Missed by an attack: Deals 8 to 32 damage to your attacker.
+Passive: +4 Insight bonus to Armor Class, +4 Insight bonus to Fortitude, Reflex,
+and Will Saving Throws."""
+icon = "Variant"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 4
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option]]
+name = "Stumbling VIII"
+description = """
+Stumbling VIII: On Hit: Your target suffers a -1 Penalty to Reflex Saving Throws
+for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Trip combat feats is increased by 13."""
+icon = "Variant"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Trip DC"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[socket.option]]
+name = "Sundering VIII"
+description = """
+Sundering VIII: On Hit: Your target suffers a -1 Penalty to Fortitude Saving
+Throws for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Sunder combat feats is increased by 13."""
+icon = "Variant"
+min_level = 26
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tracker's Trap"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

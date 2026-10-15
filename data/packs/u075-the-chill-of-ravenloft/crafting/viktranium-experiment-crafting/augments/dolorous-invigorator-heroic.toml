@@ -1,0 +1,76 @@
+name = "Dolorous Invigorator (Heroic)"
+description = "+1 Profane bonus to Spell DCs, Tactical DCs, and Assassinate."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Profane"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "Spell Focus Mastery"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus = "Not Set"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+    "Assassinate",
+]
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+reason = "The wiki's Dolorous Invigorator gives +1 Profane bonus to Tactical DCs (Profane Combat Mastery +1); his TacticalDC effect is Not Set."
+url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(heroic)"
+read = "2026-10-02"
+qualifier = "Trip DC / null"
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+reason = "The wiki's Dolorous Invigorator gives +1 Profane bonus to Tactical DCs (Profane Combat Mastery +1); his TacticalDC effect is Not Set."
+url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(heroic)"
+read = "2026-10-02"
+qualifier = "Sunder DC / null"
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+reason = "The wiki's Dolorous Invigorator gives +1 Profane bonus to Tactical DCs (Profane Combat Mastery +1); his TacticalDC effect is Not Set."
+url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(heroic)"
+read = "2026-10-02"
+qualifier = "Stun DC / null"
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+reason = "The wiki's Dolorous Invigorator gives +1 Profane bonus to Tactical DCs (Profane Combat Mastery +1); his TacticalDC effect is Not Set."
+url = "https://ddowiki.com/page/Item:Dolorous_Invigorator_(heroic)"
+read = "2026-10-02"
+qualifier = "Assassinate DC / null"
+
+[[slot]]
+slot = "lamordia: dolorous (armor)"

@@ -1,0 +1,9 @@
+name = "Legendary Forbidden Knowledge"
+description = "Adds the Legendary Forbidden Knowledge set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 32
+set_bonus = "Legendary Forbidden Knowledge"
+
+[[slot]]
+slot = "crafting: lost purpose"

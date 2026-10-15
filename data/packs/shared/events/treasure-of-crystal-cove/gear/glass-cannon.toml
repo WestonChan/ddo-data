@@ -1,0 +1,66 @@
+name = "Glass Cannon"
+description = """
+Made of hardened volcanic glass, this rune arm fires conjured stones which explode
+violently upon impact."""
+drop_location = "Treasure of Crystal Cove, Turn in 1250 Silver Doubloon 500 Golden Doubloon 40 Stolen Opal 800 Green Dragonshard at Euphonia's Barter Box"
+icon = "RuneArm_3a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Glass"
+minimum_level = 24
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 125
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 18
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Penalty"
+value = -25
+
+[[effect]]
+name = "Rune Arm Imbue - Bludgeon V"
+
+[[effect]]
+name = "Rune Arm Imbue - Fire V"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Exploding Cannon Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

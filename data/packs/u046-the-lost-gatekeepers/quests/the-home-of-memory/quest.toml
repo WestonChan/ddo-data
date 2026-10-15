@@ -1,0 +1,30 @@
+name = "The Home of Memory"
+bestowed_by = "Thel Shattertusk"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "The Lost Gatekeepers"
+patron = "The Gatekeepers"
+zone = "Sepulchre of the Ancients"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Home_of_Memory"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

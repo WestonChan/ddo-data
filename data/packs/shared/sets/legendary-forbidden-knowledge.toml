@@ -1,0 +1,313 @@
+name = "Legendary Forbidden Knowledge"
+icon = "ForbiddenKnowledge"
+
+[[augment]]
+name = "Legendary Forbidden Knowledge"
+family = "LostPurpose"
+
+[[item]]
+name = "Beltstrap of Forbidden Tomes"
+
+[[item]]
+name = "Blade-Barbed Bandolier"
+
+[[item]]
+name = "Buckle of Assimilation"
+
+[[item]]
+name = "Char, the Hellstorm's Edge"
+
+[[item]]
+name = "Collapse, the Crusher of Souls"
+
+[[item]]
+name = "Colossus, the Breaking Wall"
+
+[[item]]
+name = "Demise, the Beginning of the Fall"
+
+[[item]]
+name = "Desolation Spectacles"
+
+[[item]]
+name = "Eyes of Defilement"
+
+[[item]]
+name = "Ignition, the Fear and Flame"
+
+[[item]]
+name = "Legendary Absorption Gauntlet"
+
+[[item]]
+name = "Legendary Azure Buckler"
+
+[[item]]
+name = "Legendary Azure Rotella"
+
+[[item]]
+name = "Legendary Azure Targe"
+
+[[item]]
+name = "Legendary Azure Tower"
+
+[[item]]
+name = "Legendary Blademark Amulet"
+
+[[item]]
+name = "Legendary Bladesworn Bandolier"
+
+[[item]]
+name = "Legendary Book-Cover Beltstrap"
+
+[[item]]
+name = "Legendary Buckle of Transformation"
+
+[[item]]
+name = "Legendary Control Gauntlet"
+
+[[item]]
+name = "Legendary Core of a War Machine"
+
+[[item]]
+name = "Legendary Crystalline Wristlet"
+
+[[item]]
+name = "Legendary Defiled Azure Buckler"
+
+[[item]]
+name = "Legendary Defiled Azure Rotella"
+
+[[item]]
+name = "Legendary Defiled Azure Targe"
+
+[[item]]
+name = "Legendary Defiled Azure Tower"
+
+[[item]]
+name = "Legendary Eyes of Enlightenment"
+
+[[item]]
+name = "Legendary Forgotten Tome"
+
+[[item]]
+name = "Legendary Library Card"
+
+[[item]]
+name = "Legendary Lightning Railworker's Boots"
+
+[[item]]
+name = "Legendary Liturgy of the Dark Six"
+
+[[item]]
+name = "Legendary Morgrave Skeleton Key"
+
+[[item]]
+name = "Legendary Mystic Monocle"
+
+[[item]]
+name = "Legendary Prototype I: Siren Test"
+
+[[item]]
+name = "Legendary Prototype II: Cooling Mechanism"
+
+[[item]]
+name = "Legendary Prototype III: Propulsion Module"
+
+[[item]]
+name = "Legendary Prototype IV: Discharge System"
+
+[[item]]
+name = "Legendary Prototype V: Byproduct Disposal"
+
+[[item]]
+name = "Legendary Prototype VI: Impact Redistributor"
+
+[[item]]
+name = "Legendary Prototype VII: Flash Transferal"
+
+[[item]]
+name = "Legendary Skymage's Shoes"
+
+[[item]]
+name = "Legendary Song-Chime Locket"
+
+[[item]]
+name = "Legendary Steel-Toed Steps"
+
+[[item]]
+name = "Legendary Study Spectacles"
+
+[[item]]
+name = "Legendary The Binding of the Blood"
+
+[[item]]
+name = "Legendary The Dark Six-Fingered Glove"
+
+[[item]]
+name = "Legendary War-Rune Pendant"
+
+[[item]]
+name = "Legendary World-Weary Wrappings"
+
+[[item]]
+name = "Legendary Wristbound Register"
+
+[[item]]
+name = "Marro, the Bone of Demons"
+
+[[item]]
+name = "Masterwork Gauntlet"
+
+[[item]]
+name = "Misery Monocle"
+
+[[item]]
+name = "Outburst, the Electric End"
+
+[[item]]
+name = "Pestle, the Crucible of Bones"
+
+[[item]]
+name = "Snare, the Chained Band"
+
+[[item]]
+name = "Steps' Lenses of Seein' Hidden Hand Secrets"
+
+[[item]]
+name = "The Anarchist's Crossbow (Abridged)"
+
+[[item]]
+name = "The Anarchist's Crossbow"
+
+[[item]]
+name = "The Claws of the Balor"
+
+[[item]]
+name = "The Demon Engine"
+
+[[item]]
+name = "The Devouring Way"
+
+[[item]]
+name = "The Furious Voyage"
+
+[[item]]
+name = "The Kept Descent"
+
+[[item]]
+name = "The Mocking Passage"
+
+[[item]]
+name = "The Shadow Flight"
+
+[[item]]
+name = "The Traveling Flow"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Attack Bonus +4 Profane at 4 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 4, Attack Bonus / Profane"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Damage Bonus +4 Profane at 4 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 4, Damage Bonus / Profane"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+value = 3
+
+[[tier.effect]]
+effect = "+4 Profane bonus to Attack and Damage"
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Attack Bonus"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Damage Bonus"
+value = 4
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Spell DCs"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]

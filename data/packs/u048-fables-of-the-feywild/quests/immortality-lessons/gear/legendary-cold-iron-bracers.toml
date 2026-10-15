@@ -1,0 +1,35 @@
+name = "Legendary Cold Iron Bracers"
+description = "These heavy bracers are made of Cold Iron and can withstand heavy blows."
+drop_location = "Immortality Lessons, End chest, 'Granny' Optional Chest"
+icon = "Bracers_17"
+item_category = "Clothing"
+material = "Cold Iron"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 10
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, 'granny' optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Immortality Lessons"

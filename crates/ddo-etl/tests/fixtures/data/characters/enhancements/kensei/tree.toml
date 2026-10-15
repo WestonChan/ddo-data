@@ -1,0 +1,314 @@
+name = "Kensei"
+background = "FighterBackground"
+icon = "Fighter"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Kensei: Power Surge"
+cooldown_seconds = 60
+cost_per_rank = [1]
+description = """
+Action Boost: You gain +8 Psionic bonus to all attributes for 60 seconds.
+If you possess the ability to generate Ki, you gain On Hit: +2 Ki.
+You may use this 5 times per rest."""
+duration_seconds = 60
+icon = "KenseiPowerSurge"
+internal_name = "KenseiCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.attack]]
+name = "Kensei: Power Surge"
+cooldown_seconds = 60
+description = "Action Boost: You gain +8 Psionic bonus to all attributes for 60 seconds."
+duration_seconds = 60
+icon = "KenseiPowerSurge"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "KiHit"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Focus Weapon"]
+req_type = "GroupMember"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+apply_as_item_effect = true
+bonus_type = "Psionic"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Kensei: Power Surge"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+effect_type = "BonusAttackBonus"
+phase = "follow_on"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+effect_type = "BonusDamage"
+phase = "follow_on"
+
+[[enhancement.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["KenseiCore3"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Kensei: Power Surge"
+description = "You gain +8 Psionic bonus to all attributes for 60 seconds"
+icon = "KenseiPowerSurge"
+
+[[enhancement]]
+name = "Kensei: Action Boost"
+cost_per_rank = [1]
+description = "Choose an action boost, cooldown 30 seconds."
+icon = "KenseiActionBoost"
+internal_name = "KenseiActionBoostI"
+is_clickie = true
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Attack Boost"
+cooldown_seconds = 30
+cost_per_rank = [1]
+description = "Activate to gain +[4/6/8] Action Boost bonus to hit and damage for 20 seconds."
+duration_seconds = 20
+icon = "KenseiAttackBoost"
+is_clickie = true
+
+[[enhancement.selection.attack]]
+name = "Kensei: Attack Boost"
+cooldown_seconds = 30
+description = "Activate to gain +[4/6/8] Action Boost bonus to hit and damage for 20 seconds."
+duration_seconds = 20
+icon = "KenseiAttackBoost"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    6,
+    8,
+]
+effect_type = "BonusAttack"
+phase = "follow_on"
+
+[[enhancement.selection]]
+name = "Haste Boost"
+cooldown_seconds = 30
+cost_per_rank = [1]
+description = "Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds."
+duration_seconds = 20
+icon = "KenseiHasteBoost"
+is_clickie = true
+
+[[enhancement.selection.attack]]
+name = "Kensei: Haste Boost"
+cooldown_seconds = 30
+description = "Activate to gain +[10/20/30]% Action Boost bonus to attack speed for 20 seconds."
+duration_seconds = 20
+icon = "KenseiHasteBoost"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+effect_type = "BonusAlacrity"
+phase = "follow_on"
+
+[[enhancement]]
+name = "Kensei: Reed In The Wind"
+cooldown_seconds = 8
+cost_per_rank = [1]
+description = """
+Deals +[20/40/60]% Damage
+Gain a stack of Battle Guard per target hit.
+Cooldown: 8 seconds.
+
+Battle Guard: +10 PRR/MRR per stack, lasts 12 seconds, effect ends early if
+you block for more than 3 seconds continuously. Hitting multiple enemies via
+Strikethrough or Two Weapon Fighting will lead to multiple stacks of Battle
+Guard being applied."""
+icon = "KenseiReedInTheWind"
+internal_name = "KenseiReedInTheWind"
+is_clickie = true
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.attack]]
+name = "Kensei: Reed In The Wind"
+cooldown_seconds = 8
+description = "Deals +[20/40/60]% Damage"
+icon = "KenseiReedInTheWind"
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Battle Guard"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+stack_source = "Battle Guard"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    20,
+    40,
+    60,
+]
+effect_type = "BonusDamagePercent"
+phase = "this_attack"
+
+[[enhancement.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Kensei: Shattering Strike"
+cost_per_rank = [1]
+description = """
+Select a melee or ranged special attack that deals extra damage and reduces an
+opponent's fortification."""
+icon = "KenseiShatteringStrike"
+internal_name = "KenseiShatteringStrike"
+is_clickie = true
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Fighter"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Shattering Shot"
+cooldown_seconds = 10
+cost_per_rank = [1]
+description = """
+Deals +[25/50/100]% Damage
+Focus Ranged Attack: On Damage: Target loses 15% fortification for 10 seconds. (no save)"""
+icon = "KenseiShatteringShot"
+is_clickie = true
+
+[[enhancement.selection.attack]]
+name = "Shattering Shot"
+cooldown_seconds = 10
+description = """
+Deals +[25/50/100]% Damage
+Focus Ranged Attack: On Damage: Target loses 15% fortification for 10 seconds."""
+icon = "KenseiShatteringShot"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    15,
+    15,
+]
+effect_type = "FortificationLoss"
+phase = "follow_on"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+effect_type = "BonusDamagePercent"
+phase = "this_attack"
+
+[[enhancement.selection]]
+name = "Shattering Strike"
+cooldown_seconds = 10
+cost_per_rank = [1]
+description = """
+Deals +[25/50/100]% Damage
+Focus Melee Attack: On Damage: Target loses 15% fortification for 10 seconds. (no save)"""
+icon = "KenseiShatteringStrike"
+is_clickie = true
+
+[[enhancement.selection.attack]]
+name = "Shattering Strike"
+cooldown_seconds = 10
+description = """
+Deals +[25/50/100]% Damage
+Focus Melee Attack: On Damage: Target loses 15% fortification for 10 seconds."""
+icon = "KenseiShatteringStrike"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    15,
+    15,
+]
+effect_type = "FortificationLoss"
+phase = "follow_on"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+effect_type = "BonusDamagePercent"
+phase = "this_attack"
+
+[[requirement]]
+items = ["Fighter"]
+req_type = "Class"

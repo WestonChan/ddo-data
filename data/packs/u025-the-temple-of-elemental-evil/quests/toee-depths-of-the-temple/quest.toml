@@ -1,0 +1,30 @@
+name = "ToEE: Depths of the Temple"
+bestowed_by = "The Temple of Elemental Evil"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Temple of Elemental Evil"
+patron = "The Gatekeepers"
+zone = "Temple Depths"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/ToEE:_Depths_of_the_Temple"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

@@ -1,0 +1,29 @@
+name = "Subversion"
+bestowed_by = "Genna Tesamarides"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Devil's Gambit"
+patron = "The Gatekeepers"
+zone = "Secure Storage Facility"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Subversion"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 30
+
+[[run]]
+tier = "legendary"
+level = 30

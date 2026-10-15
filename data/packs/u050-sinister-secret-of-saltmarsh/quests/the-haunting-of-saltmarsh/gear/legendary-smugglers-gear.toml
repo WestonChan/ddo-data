@@ -1,0 +1,58 @@
+name = "Legendary Smuggler's Gear"
+description = "A good smuggler dresses light to stay quick on their feet."
+drop_location = "The Haunting of Saltmarsh, end chest, or Legendary version of Epic Smuggler's Gear"
+enhancement_bonus = 15
+icon = "LightArmor_8c"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 10
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[clickie]]
+name = "Displacement"
+clickie = "Displacement"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 146
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    25,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Displacement"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, or legendary version of epic smuggler's gear"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunting of Saltmarsh"

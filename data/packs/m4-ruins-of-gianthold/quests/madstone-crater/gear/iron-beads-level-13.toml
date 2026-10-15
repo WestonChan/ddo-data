@@ -1,0 +1,29 @@
+name = "Iron Beads (Level 13)"
+description = """
+These beads are forged from iron and weigh bizarrely heavy in your hand. Obviously
+these were meant to be worn by a giant."""
+drop_location = "Madstone Crater, end chest (Heroic Hard)"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Dwarven Iron"
+minimum_level = 13
+slot = "Neck"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 72
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"

@@ -1,0 +1,40 @@
+name = "Corsair's Cap"
+description = """
+It is rumored that this dyed bandana belonged to Ugly Pete, a pirate that scuttled
+many a ship on the Thunder Sea."""
+drop_location = "Dirty Laundry, End reward"
+icon = "Helmet_56a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 2
+slot = "Head"
+
+[[clickie]]
+name = "Water Breathing"
+clickie = "Water Breathing"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 6
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Water Breathing"]
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Dirty Laundry"

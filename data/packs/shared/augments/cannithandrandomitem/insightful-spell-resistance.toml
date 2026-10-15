@@ -1,0 +1,90 @@
+name = "Insightful Spell Resistance"
+choose_level = true
+description = "Insight bonus to Spell Resistance"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    2,
+    3,
+    3,
+    5,
+    5,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    13,
+    14,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    19,
+    19,
+    20,
+    20,
+    21,
+    21,
+    22,
+    23,
+    23,
+    23,
+    23,
+    23,
+    23,
+]
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 25
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Spell Resistance"
+effect_type = "SpellResistance"
+
+[[slot]]
+slot = "crafting: cannith belt suffix"
+
+[[slot]]
+slot = "crafting: cannith bracers prefix"
+
+[[slot]]
+slot = "crafting: cannith cloak extra"
+
+[[slot]]
+slot = "crafting: cannith necklace prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random bracers prefix"
+
+[[slot]]
+slot = "crafting: random belt suffix"
+
+[[slot]]
+slot = "crafting: random cloak extra"
+
+[[slot]]
+slot = "crafting: random necklace prefix"
+
+[[slot]]
+slot = "crafting: random ring extra"

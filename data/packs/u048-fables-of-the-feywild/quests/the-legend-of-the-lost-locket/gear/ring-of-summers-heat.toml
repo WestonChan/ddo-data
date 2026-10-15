@@ -1,0 +1,37 @@
+name = "Ring of Summer's Heat"
+description = "The heat beckons you."
+drop_location = "The Legend of the Lost Locket, End chest"
+icon = "Ring_21b"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 5
+slot = "Ring"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 59
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Legend of the Lost Locket"

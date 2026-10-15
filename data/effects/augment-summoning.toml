@@ -1,0 +1,3 @@
+name = "Augment Summoning"
+description_template = "This item grants you the Augment Summoning feat, which gives your summoned creatures +4 to all ability scores, increased health, and increased fortification."
+verbose_name_template = "Augment Summoning"

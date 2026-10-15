@@ -1,0 +1,29 @@
+name = "Toxic Treatment"
+bestowed_by = "D'naria L'roshal"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Disciples of Rage"
+patron = "House Jorasco"
+zone = "Vulkoori Drow Village"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Toxic_Treatment"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

@@ -1,0 +1,30 @@
+name = "The Newcomers"
+bestowed_by = "Yoldorim"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Dragonblood Prophecy"
+patron = "Agents of Argonnessen"
+zone = "Dragonborn Settlement"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Newcomers"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

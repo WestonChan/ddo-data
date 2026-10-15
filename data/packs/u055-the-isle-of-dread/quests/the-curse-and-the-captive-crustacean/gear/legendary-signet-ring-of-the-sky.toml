@@ -1,0 +1,38 @@
+name = "Legendary Signet Ring of the Sky"
+description = "This weighty ring carries energy from the sky."
+drop_location = "The Curse and the Captive Crustacean, end chest"
+icon = "Ring_21a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 31
+slot = "Ring"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 149
+
+[[socket]]
+slot = "isle of dread: claw (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Curse and the Captive Crustacean"

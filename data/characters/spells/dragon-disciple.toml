@@ -1,0 +1,900 @@
+[[row]]
+name = "Acolyte's Breath: Black"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth Draconic power in
+a small burst, hitting all enemies very close to you. Deals 1d6+3 Acid Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "AcolytesBreathBlack"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row.dc]]
+amount = [12]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Acolyte's Breath: Blue"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth Draconic power in
+a small burst, hitting all enemies very close to you. Deals 1d6+3 Electric Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "AcolytesBreathBlue"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Evocation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+amount = [12]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Acolyte's Breath: Green"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth Draconic power in
+a small burst, hitting all enemies very close to you. Deals 1d6+3 Poison Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "AcolytesBreathGreen"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Transmutation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+amount = [12]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Acolyte's Breath: Red"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth Draconic power in
+a small burst, hitting all enemies very close to you. Deals 1d6+3 Fire Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "AcolytesBreathRed"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Evocation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+amount = [12]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Acolyte's Breath: White"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth Draconic power in
+a small burst, hitting all enemies very close to you. Deals 1d6+3 Cold Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "AcolytesBreathWhite"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Evocation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+amount = [12]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Cone of Cold"
+description = """
+Creates an area of extreme Cold, originating at your hand and extending outward in a
+cone. It drains heat, dealing 1d6+5 points of Cold damage per caster level.
+(Maximum damage 15d6+75.) A successful Reflex save reduces the damage by half."""
+icon = "ConeOfCold"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 5
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Cyclonic Blast"
+description = """
+You send a twisting torrent of wind toward your enemies that deals 1d3+3 bludgeon
+damage per caster level (Maximum damage 80 to 120 at caster level 20) to targets
+in its path. A successful Reflex save reduces the damage by half. If the target
+fails its Reflex save, it must make a Strength check or Dexterity check to negate
+or be knocked Prone. The spell also clears away all lingering effects in its path,
+such as clouds and Wall of Fire of both friends and foes."""
+icon = "CyclonicBlast"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 3
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Knocked Prone"
+dc_versus = "Str/Dex Check"
+schools = ["Evocation"]
+
+[[row]]
+name = "Delayed Blast Fireball"
+description = """
+Creates a ball of Fire that detonates on impact, causing an explosion of flame that
+does 1d6+7 Fire damage per caster level (Maximum damage 20d6+140.) to targets
+around it. A successful Reflex save reduces the damage by half."""
+icon = "DelayedBlastFireball"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 7
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Draconic Burst: Acid"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 6 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+3 Acid Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "DraconicBurstAcid"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row.dc]]
+amount = [13]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Draconic Burst: Cold"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 6 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+3 Cold Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "DraconicBurstCold"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Evocation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+amount = [13]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Draconic Burst: Electric"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 6 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+3 Electric Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "DraconicBurstElectric"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Evocation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+amount = [13]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Draconic Burst: Fire"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 6 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+3 Fire Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "DraconicBurstFire"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Evocation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+amount = [13]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Draconic Burst: Poison"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 6 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+3 Poison Damage
+per caster level (max 30d6+90 at caster level 30). A successful Reflex save
+reduces the damage by half."""
+icon = "DraconicBurstPoison"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Transmutation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+amount = [13]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Draconic Devastation: Black"
+description = """
+Target: Foe, Directional, Breakable
+Cooldown: 12 seconds
+Centered Ki Breath Attack SLA: Cone that deals 1d6+6 Acid Damage per caster
+level (max 30d6+180 at caster level 30). A successful Reflex save reduces the
+damage by half. Affected enemies who are Shaken become Afraid and have their
+movement speed reduced by 90% for 6 seconds."""
+icon = "DraconicDevastationBlack"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row.dc]]
+amount = [14]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Draconic Devastation: Blue"
+description = """
+Target: Foe, Directional, Breakable
+Cooldown: 12 seconds
+Centered Ki Breath Attack SLA: Cone that deals 1d6+6 Electric Damage per caster
+level (max 30d6+180 at caster level 30). A successful Reflex save reduces the
+damage by half. Affected enemies who are Shaken become Afraid and have their
+movement speed reduced by 90% for 6 seconds."""
+icon = "DraconicDevastationBlue"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+amount = [14]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Draconic Devastation: Green"
+description = """
+Target: Foe, Directional, Breakable
+Cooldown: 12 seconds
+Centered Ki Breath Attack SLA: Cone that deals 1d6+6 Poison Damage per caster
+level (max 30d6+180 at caster level 30). A successful Reflex save reduces the
+damage by half. Affected enemies who are Shaken become Afraid and have their
+movement speed reduced by 90% for 6 seconds."""
+icon = "DraconicDevastationGreen"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+amount = [14]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Draconic Devastation: Red"
+description = """
+Target: Foe, Directional, Breakable
+Cooldown: 12 seconds
+Centered Ki Breath Attack SLA: Cone that deals 1d6+6 Fire Damage per caster
+level (max 30d6+180 at caster level 30). A successful Reflex save reduces the
+damage by half. Affected enemies who are Shaken become Afraid and have their
+movement speed reduced by 90% for 6 seconds."""
+icon = "DraconicDevastationRed"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+amount = [14]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Draconic Devastation: White"
+description = """
+Target: Foe, Directional, Breakable
+Cooldown: 12 seconds
+Centered Ki Breath Attack SLA: Cone that deals 1d6+6 Cold Damage per caster
+level (max 30d6+180 at caster level 30). A successful Reflex save reduces the
+damage by half. Affected enemies who are Shaken become Afraid and have their
+movement speed reduced by 90% for 6 seconds."""
+icon = "DraconicDevastationWhite"
+max_caster_level = 30
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+amount = [14]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Lesser Draconic Burst: Acid"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+1 Acid Damage
+per caster level (max 10d6+10 at caster level 10). A successful Reflex save
+reduces the damage by half."""
+icon = "LesserDraconicBurstAcid"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Acid"
+spell_power = "Acid"
+
+[[row.dc]]
+amount = [11]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Lesser Draconic Burst: Cold"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+1 Cold Damage
+per caster level (max 10d6+10 at caster level 10). A successful Reflex save
+reduces the damage by half."""
+icon = "LesserDraconicBurstCold"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Evocation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+amount = [11]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Lesser Draconic Burst: Electric"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+1 Electric Damage
+per caster level (max 10d6+10 at caster level 10). A successful Reflex save
+reduces the damage by half."""
+icon = "LesserDraconicBurstElectric"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Evocation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+amount = [11]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Lesser Draconic Burst: Fire"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+1 Fie Damage
+per caster level (max 10d6+10 at caster level 10). A successful Reflex save
+reduces the damage by half."""
+icon = "LesserDraconicBurstFire"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Evocation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+amount = [11]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]
+
+[[row]]
+name = "Lesser Draconic Burst: Poison"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 3 seconds
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's element
+in a small burst, hitting all enemies very close to you. Deals 1d6+1 Poison Damage
+per caster level (max 10d6+10 at caster level 10). A successful Reflex save
+reduces the damage by half."""
+icon = "LesserDraconicBurstPoison"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = [
+    "Transmutation",
+    "Breath Weapon",
+]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Poison"
+spell_power = "Poison"
+
+[[row.dc]]
+amount = [11]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+mod_abilities = ["Wisdom"]
+schools = [
+    "Conjuration",
+    "Breath Weapon",
+]

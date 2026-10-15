@@ -1,0 +1,55 @@
+name = "Iridiscent Claw: Light"
+description = "+149 Light Spell Power."
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Light Spell Power"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Chaos Spell Power"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Evil Spell Power"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Good Spell Power"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Law Spell Power"
+bonus_type = "Equipment"
+value = 149
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [149]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Iridescent Claw: Light"
+reason = "The wiki spells it Iridiscent Claw: Light, where Maetrim spells it Iridescent."
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-10-02"
+qualifier = 'family "DinosaurBone"'
+
+[[slot]]
+slot = "isle of dread: claw (weapon)"

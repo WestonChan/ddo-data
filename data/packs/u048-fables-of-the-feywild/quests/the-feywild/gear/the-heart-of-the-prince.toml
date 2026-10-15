@@ -1,0 +1,49 @@
+name = "The Heart of the Prince"
+description = "FEYTWISTED form of The Prince's Gauntlet \n\nThis curious orb radiates cold, its thin barbs made of bone and steel. Was\nthis owned by the Archfey you've been sent here to confront? Or is this something\nmore..."
+drop_location = "The Feywild, Feytwisted chests"
+icon = "Orb_1h"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Wood"
+minimum_level = 29
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[effect]]
+name = "Lifeblood of the Undead Prince"
+value = 53
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Energy Siphon X"
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

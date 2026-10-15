@@ -1,0 +1,138 @@
+name = "Purple Dragon Shield"
+description = """
+With his group of eleven other Purple Dragon knights, the former owner of this
+shield raided the Haunted Halls and was never seen again. Hopefully the same
+fate shall not befall you."""
+drop_location = "The Haunted Halls of Eveningstar, Skeleton or Dragon chest"
+enhancement_bonus = 8
+icon = "Shield_3"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Planeforged Steel"
+minimum_level = 26
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 16
+max_dex_bonus = 2
+shield_bonus = 20
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Improved Bashing X"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Block Elements"
+
+[[socket]]
+slot = "crafting: zhentarim attuned"
+
+[[socket.option]]
+name = "Adds +8 Orb Bonus and a Purple Augment slot"
+description = """
++8 Orb Bonus: While this orb is equipped and you are actively blocking, you gain
+a +8 orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and
+Sonic resistances.
+Adds a Purple Augment slot"""
+icon = "Upgrade"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Orb"
+effect = "Saving Throws"
+value = 8
+
+[[socket.option.effect]]
+bonus_type = "Orb"
+effect = "Acid Resistance"
+value = 8
+
+[[socket.option.effect]]
+bonus_type = "Orb"
+effect = "Cold Resistance"
+value = 8
+
+[[socket.option.effect]]
+bonus_type = "Orb"
+effect = "Fire Resistance"
+value = 8
+
+[[socket.option.effect]]
+bonus_type = "Orb"
+effect = "Electric Resistance"
+value = 8
+
+[[socket.option.effect]]
+bonus_type = "Orb"
+effect = "Sonic Resistance"
+value = 8
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Orb"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Orb"
+effect_type = "EnergyResistance"
+targets = [
+    "Acid",
+    "Cold",
+    "Fire",
+    "Electric",
+    "Sonic",
+]
+
+[[socket.option.modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[source]]
+chest = "skeleton or dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunted Halls of Eveningstar"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.7
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

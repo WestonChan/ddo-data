@@ -1,0 +1,22 @@
+name = "Legendary Smoke"
+description = """
+Requires Air and Fire only
+27% Blurry, Enhancement bonus"""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Displacement"
+bonus_type = "Enhancement"
+value = 27
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [27]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Displacement"
+effect_type = "Displacement"
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

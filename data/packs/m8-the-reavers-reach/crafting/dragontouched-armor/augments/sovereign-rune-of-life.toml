@@ -1,0 +1,21 @@
+name = "Sovereign Rune of Life"
+description = "Devotion +84: Passive: +84 Equipment bonus to Positive (Healing) Spell Power."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Positive Spell Power"
+bonus_type = "Equipment"
+value = 84
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[slot]]
+slot = "crafting: sovereign rune"

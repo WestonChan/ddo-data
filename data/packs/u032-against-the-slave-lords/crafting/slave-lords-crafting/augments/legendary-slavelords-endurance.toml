@@ -1,0 +1,9 @@
+name = "Legendary Slavelords Endurance"
+description = "Adds the Legendary Slavelords Endurance set bonus to this item"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSetBonusEndurance"
+min_level = 28
+set_bonus = "Legendary Slavelords Endurance"
+
+[[slot]]
+slot = "crafting: legendary slavelords set bonus"

@@ -1,0 +1,24 @@
+name = "Anger's Wrath"
+icon = "AngersWrath"
+
+[[item]]
+name = "Anger's Gift"
+
+[[item]]
+name = "Anger's Step"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Attack Bonus"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]

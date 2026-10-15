@@ -1,0 +1,26 @@
+name = "The Mark of Death"
+bestowed_by = "Hamond Byre"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+is_raid = true
+pack = "The Necropolis, Part 4"
+patron = "The Silver Flame"
+zone = "Ascension Chamber"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Mark_of_Death"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 30
+
+[[run]]
+tier = "legendary"
+level = 30

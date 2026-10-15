@@ -1,0 +1,23 @@
+name = "Efficient Metamagic: Enlarge"
+description = "The additional spell point cost for using the Enlarge Metamagic feat is reduced by 1 SP."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Enlarge Cost Reduction"
+bonus_type = "Equipment"
+value = -2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Equipment"
+effect = "Enlarge Cost Reduction"
+effect_type = "MetamagicCostEnlarge"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: cannith rune arm extra"

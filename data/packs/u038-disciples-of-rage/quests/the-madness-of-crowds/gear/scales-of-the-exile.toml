@@ -1,0 +1,48 @@
+name = "Scales of the Exile"
+description = """
+Put together over the course of several years, this armor is formed from scales
+shed near the lair of a dragon."""
+drop_location = "The Madness of Crowds, End Chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_3"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Green Dragonscale"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 15
+armor_check_penalty = -3
+armor_type = "Heavy"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 90
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Madness of Crowds"

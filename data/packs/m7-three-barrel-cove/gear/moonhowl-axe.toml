@@ -1,0 +1,47 @@
+name = "Moonhowl Axe"
+description = """
+This large, stringed instrument is named after its former owner, the bugbear
+bard Hafgrim Moonhowler. Local tales have it that Hafgrim partied hard, and
+drunk harder. When inebriated, Hafgrim would often start tavern brawls with
+this lute, swinging it about wildly. One pirate started referring to it as
+'Moonhowl's Axe', and the name stuck."""
+drop_location = "Three-Barrel Cove (heroic), Hafgrim Moonhowler 's Chest (Rare Encounter)"
+enhancement_bonus = 2
+icon = "GreatClub_1g"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Darkwood"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Proficiency - Greatclub"
+
+[[effect]]
+name = "Screaming"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "hafgrim moonhowler 's chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Three-Barrel Cove"
+
+[[weapon]]
+attack_modifier = "Strength, Charisma"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength, Charisma"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Club"

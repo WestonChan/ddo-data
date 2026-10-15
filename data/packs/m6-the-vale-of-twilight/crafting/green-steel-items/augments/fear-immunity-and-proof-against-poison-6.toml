@@ -1,0 +1,32 @@
+name = "Fear Immunity and Proof against Poison +6"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+description = """
+You are immune to Fear and gain a +6 Resistance bonus vs Poison
+Negative:Opposition:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Poison Save"
+bonus_type = "Exceptional"
+value = 6
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Exceptional"
+effect = "Poison Save"
+effect_type = "SaveBonus"
+targets = ["Poison"]
+
+[[slot]]
+slot = "crafting: accessory subjugation"

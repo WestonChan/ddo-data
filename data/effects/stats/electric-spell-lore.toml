@@ -1,0 +1,4 @@
+name = "Electric Spell Lore"
+category = "magical"
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Electric Spell Lore +{1}%"

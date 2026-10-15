@@ -1,0 +1,35 @@
+name = "Legendary Cloak of Winter"
+description = "This cloak appears to be made of once-living foliage."
+drop_location = "Combatting Corruption, End Chest"
+icon = "Cloak_9"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 50
+
+[[effect]]
+name = "Legendary Ice Barrier"
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 34
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Combatting Corruption"

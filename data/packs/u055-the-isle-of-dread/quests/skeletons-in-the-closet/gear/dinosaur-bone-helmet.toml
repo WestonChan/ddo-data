@@ -1,0 +1,35 @@
+name = "Dinosaur Bone Helmet"
+description = "Fashioned of intricately carved bones of long-forgotten Dinosaurs."
+drop_location = "Skeletons in the Closet, The Mountain Keeper chest, end chest"
+icon = "Helmet_60"
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 31
+slot = "Head"
+
+[[socket]]
+slot = "isle of dread: scale (accessory)"
+
+[[socket]]
+slot = "isle of dread: fang (accessory)"
+
+[[socket]]
+slot = "isle of dread: claw (accessory)"
+
+[[socket]]
+slot = "isle of dread: horn (accessory)"
+
+[[socket]]
+slot = "isle of dread: set bonus"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "the mountain keeper chest, end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Skeletons in the Closet"

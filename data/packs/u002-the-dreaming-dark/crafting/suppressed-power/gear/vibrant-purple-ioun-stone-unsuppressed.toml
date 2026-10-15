@@ -1,0 +1,21 @@
+name = "Vibrant Purple Ioun Stone (unsuppressed)"
+description = "A vibrant purple gem about 1 inch in diameter."
+drop_location = "Dreamforge, Suppressed Power Crafting"
+icon = "Trinket_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Archmagi"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[source]]
+kind = "crafting_system"
+name = "Suppressed Power"

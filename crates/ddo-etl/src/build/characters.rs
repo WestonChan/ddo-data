@@ -25,11 +25,18 @@ impl TableWriter<'_> {
             Some(acquisition) => (Some(&acquisition.requirements), acquisition.ignores_requirements),
             None => (None, false),
         };
+        self.written.feat_count += 1;
+        let identity = crate::tree::xml_entity_slug(
+            "feats",
+            Some(self.written.feat_count),
+            &feat.name,
+            feat.description.as_deref(),
+        );
         self.transaction
             .execute(
                 "INSERT INTO feats (name, source_kind, source_id, description, icon, acquire, max_times_acquire, sphere,
-                                auto_acquire_ignores_requirements)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+                                auto_acquire_ignores_requirements, slug)
+             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)",
                 params![
                     feat.name,
                     source.as_str(),
@@ -40,6 +47,7 @@ impl TableWriter<'_> {
                     feat.maximum_times_acquired,
                     trimmed_non_empty(feat.sphere.as_deref()),
                     ignores_requirements,
+                    identity,
                 ],
             )
             .with_context(|| format!("feat {:?} from {:?} {:?}", feat.name, source, source_id))?;
@@ -80,7 +88,7 @@ impl TableWriter<'_> {
         if let Some(requirements) = auto_acquire_requirements {
             self.write_requirements(RequirementOwner::FeatAutoAcquire, feat_id, requirements)?;
         }
-        self.write_abilities(AbilityOwner::Feat, feat_id, &feat.stances, &feat.dcs, feat.attack.as_ref())?;
+        self.write_abilities(AbilityOwner::Feat, feat_id, &identity, &feat.stances, &feat.dcs, feat.attack.as_ref())?;
         self.write_modifiers(ModifierSource::Feat, feat_id, &feat.effects)?;
         self.write_attack_bonuses(AbilityOwner::Feat, feat_id, feat.attack.as_ref())?;
         self.pending_derived_effects.push(super::PendingDerivedEffects {
@@ -98,16 +106,22 @@ impl TableWriter<'_> {
             return Ok(());
         }
         let standalone_stances = stances::parse(path)?;
-        self.write_stances(AbilityOwner::Standalone, 0, &standalone_stances)?;
+        self.write_stances(AbilityOwner::Standalone, 0, "", &standalone_stances)?;
         report.standalone_stance_count = standalone_stances.len();
         Ok(())
     }
 
-    fn write_stances(&mut self, owner: AbilityOwner, owner_id: i64, stances: &[feats::Stance]) -> Result<()> {
+    fn write_stances(
+        &mut self,
+        owner: AbilityOwner,
+        owner_id: i64,
+        owner_slug: &str,
+        stances: &[feats::Stance],
+    ) -> Result<()> {
         for (sort_order, stance) in stances.iter().enumerate() {
             self.transaction.execute(
-                "INSERT INTO stances (owner_kind, owner_id, sort_order, name, description, icon, group_name, auto_controlled, incompatible)
-                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
+                "INSERT INTO stances (owner_kind, owner_id, sort_order, name, description, icon, group_name, auto_controlled, incompatible, slug)
+                 VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)",
                 params![
                     owner.as_str(),
                     owner_id,
@@ -118,6 +132,7 @@ impl TableWriter<'_> {
                     trimmed_non_empty(stance.group.as_deref()),
                     stance.auto_controlled.is_some(),
                     json_string_array(&stance.incompatible_stances),
+                    ddo_model::identity::nested_slug(owner_slug, &stance.name),
                 ],
             )?;
             let stance_id = self.transaction.last_insert_rowid();
@@ -133,11 +148,12 @@ impl TableWriter<'_> {
         &mut self,
         owner: AbilityOwner,
         owner_id: i64,
+        owner_slug: &str,
         stances: &[feats::Stance],
         dcs: &[feats::Dc],
         attack: Option<&feats::Attack>,
     ) -> Result<()> {
-        self.write_stances(owner, owner_id, stances)?;
+        self.write_stances(owner, owner_id, owner_slug, stances)?;
         for (sort_order, dc) in dcs.iter().enumerate() {
             let amounts = dc.amount.as_ref().map(|v| v.numbers()).transpose().map_err(anyhow::Error::msg)?;
             self.transaction.execute(
@@ -220,28 +236,17 @@ impl TableWriter<'_> {
     pub(super) fn write_race_file(&mut self, path: &Path, report: &mut BuildReport) -> Result<()> {
         let race = races::parse(path)?;
         self.transaction.execute(
-            "INSERT INTO races (name, short_name, description, starting_world, build_points, iconic_class, is_construct, no_past_life, skill_points)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
-            params![
-                race.name,
-                trimmed_non_empty(race.short_name.as_deref()),
-                trimmed_non_empty(race.description.as_deref()),
-                trimmed_non_empty(race.starting_world.as_deref()),
-                json_number_array(&race.build_points.iter().map(|v| *v as f64).collect::<Vec<_>>()),
-                trimmed_non_empty(race.iconic_class.as_deref()),
-                race.is_construct,
-                race.lacks_past_life,
-                race.skill_points,
-            ],
+            "INSERT INTO races (name, short_name, description, starting_world, build_points, iconic_class, is_construct, no_past_life, skill_points, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10)",
+            params![race.name, trimmed_non_empty(race.short_name.as_deref()), trimmed_non_empty(race.description.as_deref()), trimmed_non_empty(race.starting_world.as_deref()), json_number_array(&race.build_points.iter().map(|v| *v as f64).collect::<Vec<_>>()), trimmed_non_empty(race.iconic_class.as_deref()), race.is_construct, race.lacks_past_life, race.skill_points, crate::tree::xml_entity_slug("races", None, &race.name, None)],
         )?;
         let race_id = self.transaction.last_insert_rowid();
-        for (ability, modifier) in &race.ability_modifiers {
+        for (sort_order, (ability, modifier)) in race.ability_modifiers.iter().enumerate() {
             let Some(stat) = Stat::by_name(ability) else {
                 bail!("{}: unknown ability {ability:?}", race.name);
             };
             self.transaction.execute(
-                "INSERT OR REPLACE INTO race_ability_modifiers (race_id, stat_id, modifier) VALUES (?1, ?2, ?3)",
-                params![race_id, stat.id, modifier],
+                "INSERT OR REPLACE INTO race_ability_modifiers (race_id, stat_id, modifier, sort_order) VALUES (?1, ?2, ?3, ?4)",
+                params![race_id, stat.id, modifier, sort_order as i64],
             )?;
         }
         for feat in &race.feats {
@@ -284,26 +289,8 @@ impl TableWriter<'_> {
         };
         self.transaction.execute(
             "INSERT INTO classes (name, base_class, not_heroic, description, small_icon, large_icon, skill_points, hit_points, alignments,
-                                  fortitude, reflex, will, bab, spell_points_per_level, casting_stats, class_specific_feat_types)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16)",
-            params![
-                class.name,
-                trimmed_non_empty(class.base_class.as_deref()),
-                class.is_non_heroic,
-                trimmed_non_empty(class.description.as_deref()),
-                trimmed_non_empty(class.small_icon.as_deref()),
-                trimmed_non_empty(class.large_icon.as_deref()),
-                class.skill_points,
-                class.hit_points,
-                json_string_array(&class.alignments),
-                save_progression(&class.fortitude)?,
-                save_progression(&class.reflex)?,
-                save_progression(&class.will)?,
-                json_number_array(&class.bab),
-                json_number_array(&class.spell_points_per_level),
-                json_string_array(&class.casting_stats),
-                json_string_array(&class.class_specific_feat_types),
-            ],
+                                  fortitude, reflex, will, bab, spell_points_per_level, casting_stats, class_specific_feat_types, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17)",
+            params![class.name, trimmed_non_empty(class.base_class.as_deref()), class.is_non_heroic, trimmed_non_empty(class.description.as_deref()), trimmed_non_empty(class.small_icon.as_deref()), trimmed_non_empty(class.large_icon.as_deref()), class.skill_points, class.hit_points, json_string_array(&class.alignments), save_progression(&class.fortitude)?, save_progression(&class.reflex)?, save_progression(&class.will)?, json_number_array(&class.bab), json_number_array(&class.spell_points_per_level), json_string_array(&class.casting_stats), json_string_array(&class.class_specific_feat_types), crate::tree::xml_entity_slug("classes", None, &class.name, None)],
         )?;
         let class_id = self.transaction.last_insert_rowid();
         for skill in &class.class_skills {
@@ -338,8 +325,8 @@ impl TableWriter<'_> {
                 ],
             )?;
         }
-        for feat_slot in &class.feat_slots {
-            self.write_class_feat_slot(class_id, feat_slot)?;
+        for (sort_order, feat_slot) in class.feat_slots.iter().enumerate() {
+            self.write_class_feat_slot(class_id, sort_order, feat_slot)?;
         }
         for feat in &class.feats {
             self.write_feat(feat, FeatSource::Class, Some(class_id))?;
@@ -358,11 +345,12 @@ impl TableWriter<'_> {
         Ok(())
     }
 
-    fn write_class_feat_slot(&mut self, class_id: i64, feat_slot: &FeatSlot) -> Result<()> {
+    fn write_class_feat_slot(&mut self, class_id: i64, sort_order: usize, feat_slot: &FeatSlot) -> Result<()> {
         self.transaction.execute(
-            "INSERT INTO class_feat_slots (class_id, level, feat_type, auto_populate, singular, update_list) VALUES (?1, ?2, ?3, ?4, ?5, ?6)",
+            "INSERT INTO class_feat_slots (class_id, sort_order, level, feat_type, auto_populate, singular, update_list) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
             params![
                 class_id,
+                sort_order as i64,
                 feat_slot.level,
                 feat_slot.feat_type.trim(),
                 feat_slot.auto_populate.is_some(),

@@ -1,0 +1,75 @@
+name = "Insightful Dodge"
+choose_level = true
+description = "Insightful bonus to Dodge"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+]
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[slot]]
+slot = "crafting: cannith belt extra"
+
+[[slot]]
+slot = "crafting: cannith boots extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random belt extra"
+
+[[slot]]
+slot = "crafting: random boots extra"

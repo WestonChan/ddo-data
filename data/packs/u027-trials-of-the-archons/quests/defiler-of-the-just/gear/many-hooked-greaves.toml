@@ -1,0 +1,42 @@
+name = "Many-Hooked Greaves"
+description = """
+These wicked boots allow you to snare the legs of your opponents and pin them
+to the ground."""
+drop_location = "Defiler of the Just, Warded chest"
+icon = "Boots_3a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Feet"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

@@ -1,0 +1,11 @@
+name = "Chitinous Covering"
+default_value = 6
+description_template = "This shield is made of the scavenged chitinous shell of a giant crab, and is magically warded against fire. {1}% %b1 bonus to Fire absorption."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Chitinous Covering +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fire Absorption"

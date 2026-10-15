@@ -1,0 +1,27 @@
+name = "Cloak of the Asylum"
+description = "This cloak is worn by the attendants of the bleakest ward in the asylum."
+drop_location = "Setting the Wards: The Patriarchs' Crypt, Marguerite chest (where talk to Marguerite before chase)"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Back"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 3
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "marguerite chest"
+kind = "quest"
+loot_type = "chest"
+name = "Setting the Wards: The Patriarchs' Crypt"

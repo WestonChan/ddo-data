@@ -1,0 +1,3 @@
+name = "Purple Dragon Knight"
+description_template = "This item in one of two pieces of the Purple Dragon Knight set. When both items are equipped you gain a 10% additional threat generation, and a +1 Exceptional bonus to hit."
+verbose_name_template = "Purple Dragon Knight"

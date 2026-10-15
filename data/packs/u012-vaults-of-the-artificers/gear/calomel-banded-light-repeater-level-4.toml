@@ -1,0 +1,39 @@
+name = "Calomel Banded Light Repeater (level 4)"
+description = """
+The white Calomel ore bands on the lath of this crossbow are always sheathed
+in condensed water droplets. It is particularly effective against dragons and
+fiery creatures."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 1
+icon = "RepeatingLightCrossbow_4"
+item_category = "Weapon"
+item_type = "Repeating Light Crossbow"
+material = "Wood"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Dragon Bane 2"
+
+[[effect]]
+name = "Tidal"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Repeating Light Crossbow"

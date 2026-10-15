@@ -1,0 +1,51 @@
+name = "Epic Marshreed Cloak"
+description = """
+Patterned with the Saltmarsh's reeds and sewn together with fine cotton thread,
+this cloak provides fine camoflage in the right environments."""
+drop_location = "Epic version of Marshreed Cloak"
+icon = "Cloak_23"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 20
+slot = "Back"
+
+[[clickie]]
+name = "Camouflage"
+clickie = "Camouflage"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Exceptional Nimble Skills Bonus"
+bonus_type = "Exceptional"
+value = 8
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 11
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Camouflage"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

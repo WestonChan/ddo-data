@@ -1,0 +1,46 @@
+name = "Duelist's Epee"
+description = "This Rapier is ideal for any who fancy themselves a duelist."
+drop_location = "The Haunting of Saltmarsh, end chest"
+enhancement_bonus = 2
+icon = "Rapier_1"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 3
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Humanoid Bane 2"
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunting of Saltmarsh"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Rapier"

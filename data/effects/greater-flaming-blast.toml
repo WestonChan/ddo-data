@@ -1,0 +1,3 @@
+name = "Greater Flaming Blast"
+description_template = "A flaming blast weapon is sheathed in fire. Critical hits with this weapon deal an additional 4 to 40 fire damage for weapons with a x2 critical multiplier, 6 to 60 for a x3 critical multiplier, and 8 to 80 for a x4 multiplier. Additionally, if you roll a 20 when attacking and confirm the critical hit, the weapon blasts your target, doing 6 to 36 more fire damage."
+verbose_name_template = "Greater Flaming Blast"

@@ -1,0 +1,38 @@
+name = "Signet of Thelanis"
+description = "This signet ring bears the sigil of the plane of Thelanis."
+drop_location = "The Hand and the Eyes, end chest"
+icon = "Ring_21a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 16
+slot = "Ring"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 6
+value2 = 9
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hand and the Eyes"

@@ -1,0 +1,162 @@
+[[row]]
+name = "Shattered Device: +1 Attack and Damage"
+description = """
++1 to Attack and Damage
+Rare: +2 PRR"""
+icon = "ShatteredDevice"
+menu = "Masterminds of Sharn"
+set = "Shattered Device"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shattered Device: Attack and Damage : Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Shattered Device: +1 Strength"
+description = """
++1 Strength
+Rare: +2 PRR"""
+icon = "ShatteredDevice"
+menu = "Masterminds of Sharn"
+set = "Shattered Device"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shattered Device: Strength : Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Shattered Device: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "ShatteredDevice"
+menu = "Masterminds of Sharn"
+set = "Shattered Device"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shattered Device: MRR : Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Shattered Device: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "ShatteredDevice"
+menu = "Masterminds of Sharn"
+set = "Shattered Device"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shattered Device: Melee Power: Rare +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Shattered Device: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "ShatteredDevice"
+menu = "Masterminds of Sharn"
+set = "Shattered Device"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shattered Device: PRR : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Shattered Device: +3 Ranged Power"
+description = """
++3 Ranged Power
+Rare: +2 Ranged Power"""
+icon = "ShatteredDevice"
+menu = "Masterminds of Sharn"
+set = "Shattered Device"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shattered Device: Ranged Power: Rare +2 Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "Shattered Device: +5% Armor Piercing"
+description = """
++5% Fortification Bypass
+Rare: +2 PRR"""
+icon = "ShatteredDevice"
+menu = "Masterminds of Sharn"
+set = "Shattered Device"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "FortificationBypass"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Shattered Device: Armor Piercing : Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true

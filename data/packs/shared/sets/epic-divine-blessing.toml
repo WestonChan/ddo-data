@@ -1,0 +1,79 @@
+name = "Epic Divine Blessing"
+icon = "DivineBlessing"
+
+[[item]]
+name = "Epic Sacred Band"
+
+[[item]]
+name = "Epic Sacred Helm"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Light Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Chaos Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Evil Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Good Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Law Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Light and Alignment Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Power"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect_type = "SpellLore"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+]

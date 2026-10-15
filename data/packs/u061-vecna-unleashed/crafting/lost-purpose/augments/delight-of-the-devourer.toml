@@ -1,0 +1,9 @@
+name = "Delight of the Devourer"
+description = "Adds the Delight of the Devourer set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 18
+set_bonus = "Delight of the Devourer"
+
+[[slot]]
+slot = "crafting: lost purpose"

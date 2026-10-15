@@ -1,0 +1,22 @@
+name = "Helm of the Black Dragon (Level 12)"
+description = "This helm is crafted in the likeness of a fearsome black dragon."
+drop_location = "Gianthold Tor, Black Dragon 's chest (Heroic Normal)"
+icon = "Helmet_26a"
+item_category = "Clothing"
+material = "Black Dragonscale"
+minimum_level = 12
+slot = "Head"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "black dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

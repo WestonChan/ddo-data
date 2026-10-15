@@ -1,0 +1,49 @@
+name = "The Kept Descent"
+description = "Walk the way of Death and Decay."
+drop_location = "Vecna Unleashed, any legendary end chest or Vecna Unleashed (epic) saga end reward (Epic Hard or above)"
+icon = "Boots_11e"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 32
+slot = "Feet"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 63
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Quality"
+value = 16
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "any legendary end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Vecna Unleashed"
+
+[[source]]
+kind = "saga"
+name = "Vecna Unleashed"
+tier = "epic"

@@ -1,0 +1,93 @@
+name = "Legendary Fabricator's Bracers"
+description = """
+Fabricators of House Cannith wear sturdy bracers like these to protect them
+from the dangerous machinery they work with."""
+drop_location = "Legendary Lord of Blades, End and Optional Chest"
+icon = "Bracers_4a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Cannith Combat Infusion"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 126
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+13 Constitution"
+description = "+13 Enhancement bonus to Constitution"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "+6 Insightful Constitution"
+description = "+6 Insight bonus to Constitution"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "+3 Quality Constitution"
+description = "+3 Quality bonus to Constitution"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Constitution"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Lord of Blades"

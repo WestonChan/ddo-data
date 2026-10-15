@@ -1,0 +1,13 @@
+name = "The Dragons' Hand"
+wiki_url = "https://ddowiki.com/page/The_Dragons%27_Hand"
+quests = [
+    "Going Rogue",
+    "Wish Upon a Card",
+    "Burning Down the House",
+    "Thrall of Duty",
+    "The Final Draw",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Dragons%27_Hand"
+read = "2026-10-02"

@@ -1,0 +1,46 @@
+name = "Nicked Kama"
+description = """
+A weapon with a straight inside edge attached perpendicularly to a thin wooden
+haft and wielded with one hand. The wooden haft appears to have been sanded
+down to remove a series of marks that would have made this item identifiable."""
+drop_location = "The Sharn Syndicate, End reward"
+enhancement_bonus = 2
+icon = "Kama_1j"
+item_category = "Weapon"
+item_type = "Kama"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Electrifying 2"
+
+[[effect]]
+name = "Tendon Slice"
+value = 3
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest_chain"
+name = "The Sharn Syndicate"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Kama"

@@ -1,0 +1,42 @@
+name = "Legendary World-Weary Wrappings"
+description = """
+No one is sure what these wrappings once held. But their power is immediately
+evident."""
+drop_location = "The Evil We Know, End chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 32
+slot = "Wrists"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 147
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Curse Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Evil We Know"

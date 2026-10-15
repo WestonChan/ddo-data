@@ -1,0 +1,43 @@
+name = "Acid Rune Arm"
+description = "None"
+drop_location = "DDO Store, Not available anywhere else"
+icon = "RuneArm_1c"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 5
+slot = "Runearm"
+
+[[clickie]]
+name = "Acid Shot"
+clickie = "Acid Shot"
+
+[[effect]]
+name = "Maximum Charge Tier III"
+
+[[effect]]
+name = "Rune Arm Imbue - Acid II"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Acid Shot",
+    "Unknown",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

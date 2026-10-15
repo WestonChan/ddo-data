@@ -1,0 +1,71 @@
+name = "Knost's Belt"
+description = """
+This tattered leather belt belonged to Knost, a deadly Frenzied Berserker, and
+has been gouged and pitted through heavy use."""
+drop_location = "Genesis Point, Any end chest ; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Frenzied Berserker"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Frenzied Berserker - 2 Piece bonus"
+effect_type = "ExtraRage"
+extra_types = ["ExtraRage"]
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Frenzied Berserker - 3 Piece bonus"
+effect_type = "AbilityBonus"
+extra_types = ["AbilityBonus"]
+targets = [
+    "Strength",
+    "Constitution",
+]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Genesis Point"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

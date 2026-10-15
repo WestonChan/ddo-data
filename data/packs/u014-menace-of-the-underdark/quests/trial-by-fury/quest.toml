@@ -1,0 +1,33 @@
+name = "Trial by Fury"
+bestowed_by = "Walak"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+flagging = "All characters must complete the quest The Portal Opens to access the Demonweb."
+pack = "Menace of the Underdark"
+patron = "Purple Dragon Knights"
+zone = "The Domain of Lord Grulemith"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Trial_by_Fury"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "epic_level"
+reason = "The wiki's quest index gives an epic level of 23; his Quests.xml gives none."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 23
+
+[[run]]
+tier = "epic"
+level = 23

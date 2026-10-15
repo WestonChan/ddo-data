@@ -1,0 +1,46 @@
+name = "Magestar"
+description = """
+These devices appear as many-spined, silvery metal globes. When touched, they
+glow and levitate, floating beside the creature touching them, looking very
+much like will-o'-wisps."""
+drop_location = "The Haunted Halls of Eveningstar, Ancient Mummy 's, Dragon 's or Whisper 's chest"
+icon = "Trinket_48"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 26
+slot = "Trinket"
+
+[[clickie]]
+name = "Magestar Absorption"
+clickie = "Magestar Absorption"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Magestar Absorption"]
+
+[[socket]]
+slot = "crafting: zhentarim attuned"
+
+[[socket.option]]
+name = "Magestar Absorption increases to 10 charges and adds a Green augment slot"
+description = """
+Magestar Absorption: This effect absorbs harmful spells targeted at the wearer.
+Adds a Green augment slot"""
+icon = "Upgrade"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "ancient mummy 's, dragon 's or whisper 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunted Halls of Eveningstar"

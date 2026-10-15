@@ -1,0 +1,12 @@
+name = "Sovereign Rune of Ash"
+description = """
+Enervation Guard: This item stores a menacing, ravenous power deep within.
+When the wearer of this item is successfully attacked in melee, this power
+occasionally comes to the surface, draining the life force of the enemy and
+giving negative levels."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

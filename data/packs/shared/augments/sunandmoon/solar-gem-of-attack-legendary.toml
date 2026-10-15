@@ -1,0 +1,30 @@
+name = "Solar Gem of Attack (Legendary)"
+description = """
+Artifact Accuracy +4
+Drops in: Zoo Creeper, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Artifact"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

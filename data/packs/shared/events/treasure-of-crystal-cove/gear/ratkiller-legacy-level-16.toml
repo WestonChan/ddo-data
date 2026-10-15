@@ -1,0 +1,76 @@
+name = "Ratkiller (legacy) (level 16)"
+description = """
+This hammer is well-worn and appears to have been used in the past to exterminate
+pests aboard pirate vessels. It's a surprisingly strong weapon for such a mundane
+task and would probably be useful in battle as well."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Copper Doubloon 500 Silver Doubloon 30 Stolen Ruby at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 4
+icon = "Maul_3"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Greater Animal Bane"
+
+[[effect]]
+name = "Unbalancing"
+
+[[effect]]
+name = "Staggering Blow"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+5 Enhancement Bonus"
+description = "+5 Enhancement Bonus: +5 Enhancement bonus to attack and damage rolls."
+icon = "Upgrade"
+min_level = 16
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Earthgrab"
+description = """
+Earthgrab: This weapon stores the implacable strength of the earth deep within.
+When this weapon is used, this power occasionally comes to the surface, calling
+on the earth to erupt from the ground and hold an enemy in place."""
+icon = "Upgrade"
+min_level = 16
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.75
+handedness = "Two-handed"
+weapon_type = "Maul"

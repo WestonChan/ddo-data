@@ -1,0 +1,23 @@
+name = "Nimble Grasp"
+description = "These gloves are said to allow the wielder to move more swiftly."
+drop_location = "Sacrifices, End reward"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Hands"
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 5
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Sacrifices"

@@ -1,0 +1,70 @@
+name = "The Desert's Starless Nights"
+icon = "Menechtarun"
+
+[[item]]
+name = "Bracers of the Demon's Consort"
+
+[[item]]
+name = "Bramble-Casters"
+
+[[item]]
+name = "Dusk Heart"
+
+[[item]]
+name = "Hruvayah's Medallion"
+
+[[item]]
+name = "Mummy Wrappings"
+
+[[item]]
+name = "Ring of Baphomet"
+
+[[item]]
+name = "Spectacles of Spirit Sight"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative and Poison Spell Lore"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative and Poison Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

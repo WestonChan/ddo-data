@@ -1,0 +1,39 @@
+name = "Legendary Vistani Fighter's Sash"
+description = """
+This long cloth, worn at the waist, marks a member of the Vistani when they
+go to war."""
+drop_location = "Into the Mists, End chest"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Into the Mists"

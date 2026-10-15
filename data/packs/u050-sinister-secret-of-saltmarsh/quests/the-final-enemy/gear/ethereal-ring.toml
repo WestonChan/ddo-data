@@ -1,0 +1,40 @@
+name = "Ethereal Ring"
+description = "Light enough to forget you're even wearing it, sometimes."
+drop_location = "The Final Enemy, end chest"
+icon = "Ring_26"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 3
+slot = "Ring"
+
+[[clickie]]
+name = "Invisibility"
+clickie = "Invisibility"
+
+[[effect]]
+name = "Ethereal"
+
+[[effect]]
+name = "Speed"
+value = 15
+value2 = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Invisibility"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Enemy"

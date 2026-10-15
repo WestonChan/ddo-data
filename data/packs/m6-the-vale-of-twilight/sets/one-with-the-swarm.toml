@@ -1,0 +1,14 @@
+name = "One with the Swarm"
+icon = "OneWithTheSwarm"
+
+[[item]]
+name = "Handwraps of the Hound"
+
+[[item]]
+name = "The Fang of Xyzzy"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "Hostile Swarm Guard"

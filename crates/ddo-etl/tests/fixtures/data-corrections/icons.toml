@@ -1,0 +1,39 @@
+[[correction]]
+kind = "optional_buff"
+name = "Barkskin"
+field = "icon"
+from = "Barkskin"
+to = "spells/Barkskin"
+reason = "Optional buffs use qualified image references; this image is spells/Barkskin.png."
+source = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[correction]]
+kind = "optional_buff"
+name = "Bless"
+field = "icon"
+from = "Bless"
+to = "spells/Bless"
+reason = "Optional buffs use qualified image references; this image is spells/Bless.png."
+source = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[correction]]
+kind = "optional_buff"
+name = "Deadly Weapons"
+field = "icon"
+from = "DeadlyWeapons"
+to = "spells/DeadlyWeapons"
+reason = "Optional buffs use qualified image references; this image is spells/DeadlyWeapons.png."
+source = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[correction]]
+kind = "optional_buff"
+name = "Stone of Change: Alchemical Shield Eldritch Ritual"
+field = "icon"
+from = "StoneOfChange"
+to = "spells/StoneOfChange"
+reason = "Optional buffs use qualified image references; this image is spells/StoneOfChange.png."
+source = "Output/DataFiles/SpellImages"
+read = "2026-10-08"

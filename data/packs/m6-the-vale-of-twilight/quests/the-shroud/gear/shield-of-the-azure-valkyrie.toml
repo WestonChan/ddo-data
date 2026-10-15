@@ -1,0 +1,65 @@
+name = "Shield of the Azure Valkyrie"
+description = """
+This shield was taken from the body of the Azure Valkyrie, a great heroine of
+legend."""
+drop_location = "The Shroud, phase 1"
+enhancement_bonus = 5
+icon = "Shield_26a"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Dwarven Iron"
+minimum_level = 1
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 15
+max_dex_bonus = 2
+shield_bonus = 15
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Armor Mastery"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Shield Proficiency"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Regeneration"
+
+[[effect]]
+name = "True Seeing"
+
+[[source]]
+chest = "phase 1"
+kind = "quest"
+loot_type = "raid"
+name = "The Shroud"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

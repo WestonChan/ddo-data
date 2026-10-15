@@ -1,0 +1,35 @@
+name = "Chain Shirt of Crippling"
+description = """
+Forged in mithral, this chain shirt appears to have been crafted by a master
+smith using unknown techniques."""
+drop_location = "Hound of Xoriat, Raid Warded chest"
+enhancement_bonus = 5
+icon = "LightArmor_9a"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 13
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Crippling"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hound of Xoriat"

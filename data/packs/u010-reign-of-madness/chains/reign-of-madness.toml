@@ -1,0 +1,12 @@
+name = "Reign of Madness"
+pack = "Reign of Madness"
+quests = [
+    "Acute Delirium",
+    "The Sane Asylum",
+    "The Lord of Stone",
+    "The Lord of Eyes",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Reign_of_Madness"
+read = "2026-10-02"

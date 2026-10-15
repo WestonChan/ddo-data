@@ -1,0 +1,13 @@
+name = "Stone of Good Luck"
+description = "A bit of rough, polished agate."
+drop_location = "Random, Chests with loot level ~7"
+icon = "Trinket_95"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 7
+slot = "Trinket"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 1

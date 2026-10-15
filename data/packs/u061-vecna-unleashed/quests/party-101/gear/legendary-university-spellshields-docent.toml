@@ -1,0 +1,52 @@
+name = "Legendary University Spellshield's Docent"
+description = "A docent of magical protection, for Warforged attempting to elude spells."
+drop_location = "Party 101, End chest"
+enhancement_bonus = 15
+icon = "Docent_1"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 32
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 153
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Party 101"

@@ -1,0 +1,58 @@
+name = "Sir Squilliam IV, Esq."
+description = "The son of the most distinguished of the Runearms."
+drop_location = "Epic version of Sir Squilliam III, Esq."
+icon = "RuneArm_5c"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 20
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 9
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 28
+
+[[effect]]
+name = "Crushing Wave"
+
+[[effect]]
+name = "Rune Arm Imbue - Tidal Shot VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Salt Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

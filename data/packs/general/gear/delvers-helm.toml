@@ -1,0 +1,22 @@
+name = "Delver's Helm"
+drop_location = "Advance to level 15, End reward"
+icon = "Helmet_59"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Deep Gnome"
+slot = "Head"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 20
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

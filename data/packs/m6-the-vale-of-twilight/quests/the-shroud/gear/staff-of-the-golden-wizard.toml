@@ -1,0 +1,80 @@
+name = "Staff of the Golden Wizard"
+description = """
+This staff was taken from the body of the famed pyromancer of the old times,
+the Golden Wizard."""
+drop_location = "The Shroud, available at start of the first phase"
+enhancement_bonus = 5
+icon = "Quarterstaff_15j"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[clickie]]
+name = "Fireball"
+spell = "Fireball"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 60
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    50,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Fireball"]
+
+[[source]]
+chest = "available at start of the first phase"
+kind = "quest"
+loot_type = "raid"
+name = "The Shroud"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

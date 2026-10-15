@@ -1,0 +1,27 @@
+name = "Martial: Alchemical Strength +2, Incineration, Righteous"
+description = """
++2 Alchemical bonus to Strength
+Incineration: This weapon stores the power of a raging inferno deep within.
+Occasionally, this destructive power comes to the surface, devastating enemies
+with massive fire damage.
+Righteous: This weapon is imbued with holy power, giving it an additional +2 to
+attack bonus and damage against any evil creature. This power makes the weapon
+good-aligned."""
+family = "Alchemical"
+min_level = 18
+
+[[effect]]
+name = "Strength"
+bonus_type = "Alchemical"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: alchemical tier 2"

@@ -1,0 +1,20 @@
+name = "Lunar Gem of Negative Amplification (Epic)"
+description = "+20 Enhancement Bonus to Negative Healing Amplification."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Negative Healing Amplification"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[slot]]
+slot = "moon"

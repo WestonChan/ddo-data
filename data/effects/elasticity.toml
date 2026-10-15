@@ -1,0 +1,11 @@
+name = "Elasticity"
+description_template = "This bow is strung with special fibers that cause it to occasionally launch arrows with shocking force. When rolling a 19 or 20 on a ranged attack, your critical multiplier is increased by +1."
+home_bonus_type = "Base"
+verbose_name_template = "Elasticity +1"
+
+[[bonus]]
+amount_from = 0
+constant = 1
+rounding = "down"
+scale = 1.0
+target = "Critical Multiplier (19-20)"

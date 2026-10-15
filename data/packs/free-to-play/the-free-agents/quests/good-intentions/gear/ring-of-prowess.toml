@@ -1,0 +1,37 @@
+name = "Ring of Prowess"
+description = "A simple band of durable steel. Wearing it gives you the impression of capability."
+drop_location = "Good Intentions, end chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 17
+slot = "Ring"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 14
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Enhancement"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Good Intentions"

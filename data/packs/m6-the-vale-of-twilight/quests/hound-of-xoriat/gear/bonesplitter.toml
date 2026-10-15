@@ -1,0 +1,53 @@
+name = "Bonesplitter"
+description = """
+A grim weapon in its original purpose, the Bonesplitter was made more brutal
+still when the influence of Xoriat seeped into it. It deals grievous damage
+to most enemies with a skeleton, even severely crippling them on particularly
+strong blows."""
+drop_location = "Hound of Xoriat, Side chest (Heroic Hard or Elite)"
+enhancement_bonus = 5
+icon = "GreatClub_2a"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Wood"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Fracturing"
+
+[[effect]]
+name = "Bonesplitter"
+
+[[effect]]
+name = "Blunt Trauma"
+bonus_type = "Destiny"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Maiming"
+
+[[source]]
+chest = "side chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hound of Xoriat"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "Two-handed"
+weapon_type = "Great Club"

@@ -30,6 +30,7 @@ const FILIGREE_SELECT: &str = "SELECT f.id, f.name, f.description, f.icon, f.men
 
 const SETS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("item_count", "listed.item_count"),
     ("augment_count", "listed.augment_count"),
@@ -93,6 +94,7 @@ async fn set_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resul
                 let tier_id = tier["id"].as_i64().unwrap_or(0);
                 tier["effects"] = Value::Array(effects_by_tier.remove(&tier_id).unwrap_or_default());
                 tier["modifiers"] = Value::Array(modifiers_for(db, "set_bonus_tier", tier_id)?);
+                tier.as_object_mut().expect("set tier").remove("id");
             }
             set["tiers"] = Value::Array(tiers);
             set["items"] = Value::Array(json_rows(
@@ -125,6 +127,7 @@ fn filigrees_matching_set(db: &rusqlite::Connection, set_id: Option<i64>) -> Res
 
 const FILIGREES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("menu", "listed.menu"),
     ("set_name", "listed.set_name"),
@@ -161,8 +164,13 @@ async fn filigrees(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) 
         .await
 }
 
-const SENTIENT_GEMS_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("description", "description"), ("icon", "icon")];
+const SENTIENT_GEMS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("slug", "listed.name"),
+    ("id", "listed.id"),
+    ("description", "description"),
+    ("icon", "icon"),
+];
 
 declare_list_parameters!(SentientGemsParameters, SENTIENT_GEMS_SORT_FIELDS, "");
 

@@ -1,0 +1,126 @@
+name = "Eminence of Winter"
+icon = "EminenceOfWinter"
+
+[[augment]]
+name = "Test Gem of Oozing Resistance"
+family = "Named"
+
+[[item]]
+name = "Legendary Cloak of Winter"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+effect_type = "HitpointsPercent"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = 100
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Threat Generation"
+value = 100
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell Threat Generation"
+value = 100
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Artifact"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]
+
+[[tier]]
+equipped_count = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Constitution"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[tier]]
+equipped_count = 7
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"

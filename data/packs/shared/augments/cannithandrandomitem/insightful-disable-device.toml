@@ -1,0 +1,79 @@
+name = "Insightful Disable Device"
+choose_level = true
+description = "Insight bonus to Disable Device"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10,
+    10,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+    11,
+]
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Insight"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Disable Device"
+effect_type = "SkillBonus"
+targets = ["Disable Device"]
+
+[[slot]]
+slot = "crafting: cannith gloves suffix"
+
+[[slot]]
+slot = "crafting: cannith goggles extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random gloves suffix"
+
+[[slot]]
+slot = "crafting: random goggles extra"
+
+[[slot]]
+slot = "crafting: cannith rune arm extra"

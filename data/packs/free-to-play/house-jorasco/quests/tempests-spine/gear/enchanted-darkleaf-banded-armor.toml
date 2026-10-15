@@ -1,0 +1,34 @@
+name = "Enchanted Darkleaf Banded Armor"
+description = """
+This armor is a combination of chainmail and metal plates, which cover vital
+areas. Buckles and straps hold the whole suit together and distribute the weight,
+but the armor still hangs more loosely than full plate."""
+drop_location = "Tempest's Spine, Right End Chest"
+enhancement_bonus = 4
+icon = "HeavyArmor_6a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 40
+armor_bonus = 11
+armor_check_penalty = -6
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "right end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

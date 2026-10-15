@@ -1,0 +1,25 @@
+name = "+5 Reaper Bonus to Melee / Ranged Power"
+description = "+5 Reaper Bonus to Melee / Ranged Power"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Reaper"
+value = 5
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Reaper"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[slot]]
+slot = "crafting: reaper ring"

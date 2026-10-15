@@ -1,0 +1,53 @@
+name = "Macabre Longbow"
+description = "Something about this weapon makes dread seem a little more present."
+drop_location = "Blue Water Inn, Turn in 40 Vistani Talismans"
+enhancement_bonus = 5
+icon = "Longbow_1b"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Mother Night's Embrace"
+
+[[effect]]
+name = "Human Bane 3"
+
+[[effect]]
+name = "Vampirism 1"
+
+[[effect]]
+name = "Chilling 3"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "vendor"
+name = "Raam Lukresh"
+
+[[source.price]]
+ingredient = "Vistani Talisman"
+quantity = 40
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

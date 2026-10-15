@@ -1,0 +1,24 @@
+name = "Book of Amaunator"
+description = """
+To those of good heart, be as the morning, bringing calm and rejuvenation. To
+your enemies, be a visage of searing doom, bearing the wrath of the sun."""
+drop_location = "Advance to level 15, End reward"
+icon = "Trinket_32a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+race_required = "Sun Elf"
+slot = "Trinket"
+
+[[effect]]
+name = "Efficient Metamagic - Empower Healing II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 20
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

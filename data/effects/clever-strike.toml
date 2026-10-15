@@ -1,0 +1,3 @@
+name = "Clever Strike"
+description_template = "This item changes its enhancement bonus if your Intelligence is high enough. The enhancement bonus will be equal to your Intelligence modifier while the item is equipped (minimum 6, maximum 10). (NOT MODELLED)"
+verbose_name_template = "Clever Strike"

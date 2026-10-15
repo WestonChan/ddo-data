@@ -1,0 +1,43 @@
+name = "Fabricator's Gauntlets"
+description = """
+Fabricators of House Cannith wear bulky gauntlets like these to increase their
+manual strength and their ability to work with raw materials."""
+drop_location = "House Cannith Manufactury, Wrack 's chest (Rare encounter)"
+icon = "Gloves_3b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[note]]
+kind = "item"
+field = "set_bonus"
+reason = "The wiki lists this item as a member of Fabricator's Ingenuity."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Fabricator's Ingenuity"
+description = "Adds the Fabricator's Ingenuity set bonus to this item."
+min_level = 18
+
+[[socket.option.set]]
+set = "Fabricator's Ingenuity"

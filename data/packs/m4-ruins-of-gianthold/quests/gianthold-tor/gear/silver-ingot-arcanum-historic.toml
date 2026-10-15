@@ -1,0 +1,52 @@
+name = "Silver Ingot Arcanum (historic)"
+description = """
+Once used as a wand by the giants of the Lost Empire, this five-foot rod makes
+a heavy fighting staff for a human-sized wielder. It is inscribed with runes
+that would fascinate and befuddle the greatest scholars of Xen'drik."""
+drop_location = "Gianthold Tor, Blue Dragon Chest"
+enhancement_bonus = 2
+icon = "Quarterstaff_11"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 6
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 66
+
+[[source]]
+chest = "blue dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

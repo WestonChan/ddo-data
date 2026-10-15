@@ -1,0 +1,21 @@
+name = "Transmutation Focus +13"
+description = "+13 Equipment bonus to the DCs of Transmutation spells."
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Equipment"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Transmutation Focus"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[slot]]
+slot = "crafting: nearly complete: spell focus (legendary)"

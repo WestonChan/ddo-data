@@ -1,0 +1,42 @@
+name = "The Golden Idol"
+description = "It's mine, all mine!"
+drop_location = "The Promise of Fire, any epic chest"
+icon = "Necklace_33"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "The Golden Curse"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 131
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "any epic chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Promise of Fire"

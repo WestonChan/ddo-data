@@ -1,0 +1,13 @@
+name = "Saltmarsh"
+difficulties = []
+favor = 0
+pack = "Sinister Secret of Saltmarsh"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Saltmarsh"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 1

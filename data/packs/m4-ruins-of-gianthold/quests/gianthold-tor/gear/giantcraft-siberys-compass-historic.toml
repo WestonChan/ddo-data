@@ -1,0 +1,32 @@
+name = "Giantcraft Siberys Compass (historic)"
+description = """
+This compass has been enchanted beyond the limits of what is now possible. Its
+wavering dragonshard needle all but points the way to your destiny."""
+drop_location = "Gianthold Tor, Blue Dragon 's chest"
+icon = "Trinket_14a"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Trinket"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 4
+
+[[source]]
+chest = "blue dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

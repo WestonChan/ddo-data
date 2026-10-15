@@ -1,0 +1,20 @@
+name = "Martial: +6 Enhancement Bonus, Fiery Detonation, Red Augment Slot"
+description = """
++6 Enhancement Bonus: +6 Enhancement bonus to attack and damage rolls.
+Fiery Detonation: This weapon is imbued with a fiery wrath. On an attack roll of
+20 which is confirmed as a critical hit this burning power will be released,
+dealing damage to the target and all enemies near it for 15d6 fire damage.
+A successful Fortitude save (DC 39) reduces this by half."""
+family = "Alchemical"
+grants_augment = "Red"
+min_level = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: alchemical tier 3"

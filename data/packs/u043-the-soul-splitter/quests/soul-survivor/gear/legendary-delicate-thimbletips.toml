@@ -1,0 +1,37 @@
+name = "Legendary Delicate Thimbletips"
+description = "Enchanted and very fragile, these thimbles are made of delicate glass."
+drop_location = "Soul Survivor, end chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Soul Survivor"

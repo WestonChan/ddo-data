@@ -1,0 +1,19 @@
+name = "+35 Enhancement bonus to MRR"
+description = "Opposition/Any: +35 Enhancement bonus to MRR."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Enhancement"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Enhancement"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

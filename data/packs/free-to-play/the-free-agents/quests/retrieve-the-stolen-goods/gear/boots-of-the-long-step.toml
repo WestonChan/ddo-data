@@ -1,0 +1,19 @@
+name = "Boots of the Long Step"
+description = "Supple leather boots with worn soles."
+drop_location = "Retrieve the Stolen Goods, Kharnos ' chest"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Feet"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 5
+
+[[source]]
+chest = "kharnos ' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Retrieve the Stolen Goods"

@@ -1,0 +1,34 @@
+name = "+1 Attack and Spell Penetration"
+description = "+1 Reaper bonus to Attack and Spell Penetration"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Reaper"
+value = 1
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Reaper"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: reaper goggles"

@@ -1,0 +1,38 @@
+name = "Legendary Envenomed Cloak"
+description = """
+A cloak with spikes that have been steeped in a dangerous poison. Enemies that
+attack the wearer may be subject to the effects of the venom that coats the
+cloak's barbs."""
+drop_location = "The Chronoscope (Legendary), end chest, or Legendary version of Epic Envenomed Cloak"
+icon = "Cloak_7b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Back"
+
+[[effect]]
+name = "Greater Poison Guard"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, or legendary version of epic envenomed cloak"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

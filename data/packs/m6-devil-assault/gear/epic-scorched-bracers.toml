@@ -1,0 +1,48 @@
+name = "Epic Scorched Bracers"
+description = """
+A pair of bracers that guards the wearer against magic flames. They seem to
+have been tested vigorously until the protection was perfected."""
+drop_location = "Epic version of Scorched Bracers"
+icon = "Bracers_4b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Wrists"
+
+[[clickie]]
+name = "Fire Storm"
+clickie = "Fire Storm"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 9
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    17,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Fire Storm"]
+
+[[socket]]
+slot = "green"

@@ -1,0 +1,26 @@
+name = "The Spinner of Shadows"
+bestowed_by = "Orrex"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Silver Flame"
+zone = "The Spinner's Prison"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Spinner_of_Shadows"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 21

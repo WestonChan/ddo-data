@@ -1,0 +1,10 @@
+name = "Aspect of Magma"
+description = """
+Meteor Swarm (2/day)
+Earth:Fire or Fire:Earth"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect i"

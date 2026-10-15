@@ -1,0 +1,35 @@
+name = "Lunar Gem of Melee Power (Heroic)"
+description = """
++5 Profane Bonus to Melee Power.
+Drops in: The Zulkir's Plan, end chest
+Cold Snap, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Profane"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Profane"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Zulkir's Plan"

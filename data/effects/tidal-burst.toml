@@ -1,0 +1,3 @@
+name = "Tidal Burst"
+description_template = "This weapon is sheathed in water. The weapon deals an additional 1 to 4 damage each hit. In addition, critical hits deal an additional 1 to 8 damage for weapons with a x2 critical multiplier, 2 to 16 for a x3 critical multiplier and 3 to 24 for a x4 multiplier. Creatures with the Fire trait take double this damage instead."
+verbose_name_template = "Tidal Burst"

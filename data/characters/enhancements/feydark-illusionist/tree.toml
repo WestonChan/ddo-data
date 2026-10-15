@@ -1,0 +1,1234 @@
+name = "Feydark Illusionist"
+background = "Universal"
+icon = "FeydarkIllusionist"
+kind = "universal"
+version = 1
+
+[[enhancement]]
+name = "Feydark Illusionist: Find Familiar"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Select a Familiar to accompany you on your adventures. For each Core Ability you
+take in this tree, your Familiar will level up."""
+icon = "FeydarkFindFamiliar"
+internal_name = "FeydarkCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Universal"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Magical Training"]
+req_type = "FeatAnySource"
+
+[[enhancement.selection]]
+name = "Fox"
+cost_per_rank = [1]
+description = """
+Familiar Toggle: Summons your chosen familiar, a fox, to your side. Familiars will follow
+you and can assist in your magical endeavors. For each Core ability spent in this
+tree, including this one, your Familiar grants you +5 Force and +5 Universal Spellpower."""
+icon = "FamiliarFox"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Illusory Sprite"
+cost_per_rank = [1]
+description = """
+Familiar Toggle: Summons your chosen familiar, an Illusory Sprite, to your side. Familiars will
+follow you and can assist in your magical endeavors. For each Core ability spent in this
+tree, including this one, your Familiar grants you +5 Force and +5 Universal Spellpower."""
+icon = "FamiliarIllusorySprite"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Pseudodragon"
+cost_per_rank = [1]
+description = """
+Familiar Toggle: Summons your chosen familiar, a Pseudodragon, to your side. Familiars will
+follow you and can assist in your magical endeavors. For each Core ability spent in this
+tree, including this one, your Familiar grants you +5 Force and +5 Universal Spellpower."""
+icon = "FamiliarPseudodragon"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "White Cat"
+cost_per_rank = [1]
+description = """
+Familiar Toggle: Summons your chosen familiar, a white cat, to your side. Familiars will
+follow you and can assist in your magical endeavors. For each Core ability spent in this
+tree, including this one, your Familiar grants you +5 Force and +5 Universal Spellpower."""
+icon = "FamiliarWhiteCat"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "White Tressym"
+cost_per_rank = [1]
+description = """
+Familiar Toggle: Summons your chosen familiar, a white tressym, to your side. Familiars will
+follow you and can assist in your magical endeavors. For each Core ability spent in this
+tree, including this one, your Familiar grants you +5 Force and +5 Universal Spellpower."""
+icon = "FamiliarWhiteTressym"
+is_clickie = true
+
+[[enhancement]]
+name = "Feydark Illusionist: Ability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose between Intelligence, Wisdom or Charisma"
+icon = "IntWisCha"
+internal_name = "FeydarkCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Universal"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.requirement]]
+items = ["FeydarkCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Feydark Illusionist: Greater Color Spray"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You may cast the spell Greater Color Spray as a Spell-Like Ability.
+Activation Cost: 4sp
+Cooldown: 8 seconds"""
+icon = "FeydarkGreaterColorSpray"
+internal_name = "FeydarkCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Color Spray",
+    "None",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Universal"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 6
+
+[[enhancement.requirement]]
+items = ["FeydarkCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Feydark Illusionist: Ability II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose between Intelligence, Wisdom or Charisma"
+icon = "IntWisCha"
+internal_name = "FeydarkCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Universal"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.requirement]]
+items = ["FeydarkCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Feydark Illusionist: Familiar's Reach"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++1 Illusion DCs. Your familiar carries spells further than you would normally
+be able to cast them. Your spells benefit from the Enlarge Metamagic at no
+additional cost."""
+icon = "FeydarkFamiliarsReach"
+internal_name = "FeydarkCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Universal"
+effect_type = "UniversalSpellPower"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 18
+
+[[enhancement.requirement]]
+items = ["FeydarkCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Feydark Illusionist: Master Illusionist"
+cost_per_rank = [1]
+description = """
+Active: Shroud you and your party members, regardless of location, in illusory
+magic that disguises their location. They gain 95% Concealment for 15 seconds.
+Cooldown: 3 minutes
+
+Passive: +2 Intelligence, Wisdom and Charisma. +2 Illusion DCs."""
+icon = "FeydarkMasterIllusionist"
+internal_name = "FeydarkCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FeydarkCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Universal"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["FeydarkCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "FeydarkCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Feydark Illusionist: Feydark Explorer"
+cost_per_rank = [1]
+description = """
++[1/2/3] Spellcraft, Move Silently and Concentration.
+Rank 3: +1 Use Magic Device"""
+icon = "FeydarkExplorer"
+internal_name = "FeydarkExplorer"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spellcraft",
+    "Move Silently",
+    "Concentration",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+rank = 3
+targets = ["Use Magic Device"]
+
+[[enhancement]]
+name = "Feydark Illusionist: Familiar's Flourish I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "While your Familiar is by your side, you may use Charisma as your weapon's to-hit modifier."
+icon = "FeydarkFamiliarsFlourish"
+internal_name = "FeydarkFamiliarsFlourishI"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Charisma",
+    "All",
+]
+
+[[enhancement]]
+name = "Feydark Illusionist: Twist Reality"
+cost_per_rank = [2]
+description = """
+Offensive Illusion spells reduce enemies' Will saves by 1 for 10 seconds.
+This stacks 3 times."""
+icon = "FeydarkTwistReality"
+internal_name = "FeydarkTwistReality"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement]]
+name = "Feydark Illusionist: Study the Arcane"
+cost_per_rank = [1]
+description = "+[30/60/100] Maximum Spellpoints"
+icon = "FeydarkStudyTheArcane"
+internal_name = "FeydarkStudyTheArcane"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement]]
+name = "Feydark Illusionist: Illusory Weaponry"
+cost_per_rank = [2]
+description = """
+You have studied Illusion to the point where you can craft more permanent manifestations
+of Shadow. This grants both the ability to conjure physical Shadowblades to wield as
+weapons as well as the ability to enchant your current weapons to be more powerful.
+
+Shadowblades are Shorswords made of Force and may use your Charisma modifier for
+their attack and damage. As you level up, they will become more powerful. If you
+unequip your Shadowblades, they will dissapate into nothingness and must be summoned
+again.
+
+Enchanting your weapons to become Shadowblades will change their material type to
+Force and grant them additional bonuses. This is considered an Item Enchantment."""
+icon = "FeydarkIllusoryWeaponryI"
+internal_name = "FeydarkIllusoryWeaponry"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement]]
+name = "Feydark Illusionist: Reality Bulwark"
+cost_per_rank = [1]
+description = """
++[1/2/3] to all Saving Throws
+Rank 3: You are immune to Fear"""
+icon = "FeydarkRealityBulwark"
+internal_name = "FeydarkRealityBulwark"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 3
+targets = ["Fear"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Feydark Illusionist: Familiar's Flourish II"
+cost_per_rank = [2]
+description = """
+While your Familiar is by your side, you may use Charisma as your weapon's damage
+modifier."""
+icon = "FeydarkFamiliarsFlourishII"
+internal_name = "FeydarkFamiliarsFlourishII"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Charisma",
+    "All",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement.requirement]]
+items = ["FeydarkFamiliarsFlourishI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Feydark Illusionist: Bend Light"
+cost_per_rank = [2]
+description = """
+Your studies of the Illusion school have manifested to protect you, making you
+slightly harder to see. You gain the benefits of the Blur spell.
+
+When you cast the Blur spell on yourself or an ally, it now also briefly grants
+Invisibility and a +3 bonus to Armor Class. The AC bonus will linger as long as
+the Invisibility does."""
+icon = "FeydarkBendLight"
+internal_name = "FeydarkBendLight"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Feydark Illusionist: You've Got My Back"
+cost_per_rank = [2]
+description = """
+Your familiar draws ambient and offensive magics to it, protecting you from
+Magic Missiles as if you had the benefits of the Shield spell. In addition the
+Shield spell now provides +10 Physical Resistance Rating, and the Nightshield
+spell now provides +10 Magical Resistance Rating."""
+icon = "FeydarkYouveGotMyBack"
+internal_name = "FeydarkYouveGotMyBack"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magic Missiles"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    10,
+    10,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "You've Got My Back + Shield"
+effect_type = "PRR"
+extra_types = ["PRR"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    10,
+    10,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "You've Got My Back + Nightshield"
+effect_type = "MRR"
+extra_types = ["MRR"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Feydark Illusionist: Shadowblade"
+cost_per_rank = [2]
+description = """
+Conjure an illusory blade of shadow that flies forward at a single target.
+The enemy struck takes 1d6+2 Force damage per caster level up to a maximum Caster
+Level of 20, with a Will save vs (DC17 + Illusion bonuses + Highest of Int/Wis/Cha)
+for half damage.
+Cost: 6 Spell Points
+Cooldown: 4 seconds"""
+icon = "FeydarkShadowblade"
+internal_name = "FeydarkShadowblade"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Feydark Illusionist: Spell Penetration"
+cost_per_rank = [1]
+description = "+[1/2/3] Spell Penetration"
+icon = "FeydarkSpellPenetration"
+internal_name = "FeydarkSpellPenetration"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Feydark Illusionist: Distract"
+cost_per_rank = [2]
+description = """
+Your familiar appears at a targeted location, acting as a distraction and attracting
+the attention of monsters who may be searching for you in the area. This will only
+successfully distract monsters who are not actively attacking. This ability may
+be used without breaking Stealth or Invisibility.
+Cooldown: 30 seconds"""
+icon = "FeydarkDistract"
+internal_name = "FeydarkDistract"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Feydark Illusionist: Magical Attunement I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% Force Spell Critical Chance, +1% Universal Spell Critical Chance."
+icon = "FeydarkMagicalAttunement"
+internal_name = "FeydarkMagicalAttunementI"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellLore"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Feydark Illusionist: Refraction"
+cost_per_rank = [2]
+description = """
+When hit or missed in combat, there is a small chance you will reactively turn
+Invisible for a short duration. In addition, while under the effects of any source
+of Invisibility, you gain +15% Missile Deflection"""
+icon = "FeydarkRefraction"
+internal_name = "FeydarkRefraction"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MissileDeflection"
+
+[[enhancement.modifier.requirement]]
+items = ["Invisibility"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Feydark Illusionist: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose between Intelligence, Wisdom or Charisma"
+icon = "IntWisCha"
+internal_name = "FeydarkAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Feydark Illusionist: Be My Eyes"
+cost_per_rank = [2]
+description = """
+Your familiar grants you the benefits of the True Seeing spell, and will
+automatically find Spell Wards for you."""
+icon = "FeydarkBeMyEyes"
+internal_name = "FeydarkBeMyEyes"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Feydark Illusionist: Fan of Shadowblades"
+cost_per_rank = [2]
+description = """
+Fan a series of Shadowblades outwards into a wide cone. The enemies struck take
+1d6+2 Force damage per caster level up to a maximum of Caster Level of 20, with
+a Will save vs (DC17 + Illusion bonuses + Highest of Int/Wis/Cha) for half damage.
+Cost: 12 Spell Points
+Cooldown: 8 seconds"""
+icon = "FeydarkFanOfShadowblades"
+internal_name = "FeydarkFanOfShadowblades"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Feydark Illusionist: Magical Attunement II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% Force Spell Critical Chance, +1% Universal Spell Critical Chance."
+icon = "FeydarkMagicalAttunementII"
+internal_name = "FeydarkMagicalAttunementII"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellLore"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["FeydarkMagicalAttunementI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Feydark Illusionist: Improved Shadowblades"
+cost_per_rank = [1]
+description = """
+All of your Shadowblades spells, attacks with weapons that have been imbued with
+Shadow, and attacks with conjured Shadowblades apply [1/2/3] stacks of Shattermantle
+when they damage an enemy, adding 1 stack of Shattermantle for subsequent attacks."""
+icon = "FeydarkImprovedShadowblades"
+internal_name = "FeydarkImprovedShadowblades"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Feydark Illusionist: Ability II"
+cost_per_rank = [2]
+description = "Choose between Intelligence, Wisdom or Charisma"
+icon = "IntWisCha"
+internal_name = "FeydarkAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["FeydarkAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Feydark Illusionist: Illusory Augmentation"
+cost_per_rank = [2]
+description = """
++1 Illusion DCs. The feats Augment Summoning and Improved Augment Summoning now
+each empower your familiar as well, and will each grant you +5 Force Spell Power
+and an additional +1 Illusion DCs."""
+icon = "FeydarkIllusoryAugmentation"
+internal_name = "FeydarkIllusoryAugmentation"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+display_name = "Illusory Augmentation: Augment Summoning"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+display_name = "Illusory Augmentation: Improved Augment Summoning"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+]
+bonus_type = "Enhancement"
+display_name = "Illusory Augmentation: Augment Summoning"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+]
+bonus_type = "Enhancement"
+display_name = "Illusory Augmentation: Improved Augment Summoning"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Feydark Illusionist: Permanent Displacement"
+cost_per_rank = [2]
+description = "You are Displaced, as if you had cast the spell Displacement"
+icon = "FeydarkDispacement"
+internal_name = "FeydarkDispacement"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Feydark Illusionist: Magical Attunement III"
+cost_per_rank = [2]
+description = "+2% Force Spell Critical Chance, +2% Universal Spell Critical Chance."
+icon = "FeydarkMagicalAttunementIII"
+internal_name = "FeydarkMagicalAttunementIII"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellLore"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["FeydarkMagicalAttunementII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Feydark Illusionist: Ring of Shadowblades"
+cost_per_rank = [2]
+description = """
+Conjure a large ring of interlocking illusory Shadowblades that damage enemies
+passing through them. Enemies take 1d6+2 Force damage per caster level up to a
+maximum Caster Level of 20, with a Will save vs (DC17 + Illusory bonuses +
+Highest of Int/Wis/Cha) for half damage.
+Cost: 25 Spell Points
+Cooldown: 25 seconds"""
+icon = "FeydarkRingOfShadowblades"
+internal_name = "FeydarkRingOfShadowblades"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Feydark Illusionist: Force in Tandem"
+cost_per_rank = [2]
+description = """
+Your familiar grants you +10 Force spellpower, 10 Universal spellpower, and 5%
+Force absorption. These bonuses are temporarily double if you cross the barrier
+of a ring of Shadowblades."""
+icon = "FeydarkForceInTandem"
+internal_name = "FeydarkForceInTandem"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Force"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement_group]]
+kind = "one_of"
+
+[[requirement_group.requirement]]
+items = ["Feydark Illusionist Tree"]
+req_type = "Feat"
+
+[[requirement_group.requirement]]
+items = ["Summer Court Favor Rewards"]
+req_type = "Feat"
+value = 3

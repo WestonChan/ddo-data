@@ -1,0 +1,27 @@
+name = "Alchemist's Lore"
+icon = "AlchemistsLore"
+
+[[item]]
+name = "Alchemist's Crown"
+
+[[item]]
+name = "Alchemist's Pendant"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "Reduces the cost of Empower, Empower Heal, and Maximize by 2 SP."
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "Empower, Empower Heal and Maximize cost 2 fewer SP; spells cost 10%/20%/30% less below 50%/25%/10% HP."
+
+[[tier.effect]]
+effect = "Metamagic Spell Cost Reduction"
+
+[[tier.effect]]
+effect = "Low Health Spell Cost Reduction"

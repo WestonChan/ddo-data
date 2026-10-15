@@ -1,0 +1,26 @@
+name = "Essence of Pomura's Memento"
+description = """
+This emerald carries the soul of Pomura's Memento.
++5% Insightful Spell Critical Chance
+Requires: 50 Threads of Fate, Empty Soul Vessel and Pomura's Memento
+(Hunt or be Hunted)"""
+family = "Named"
+icon = "GreenRaidItemEssence"
+min_level = 30
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Insight"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[slot]]
+slot = "green"

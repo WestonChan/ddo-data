@@ -1,0 +1,700 @@
+[[row]]
+name = "Two Weapon Fighting"
+auto_controlled = true
+description = "You are fighting with a weapon in each hand or with handwraps"
+group_name = "Auto"
+icon = "TwoWeaponFighting"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["One Handed"]
+req_type = "GroupMember"
+
+[[row.requirement_group.requirement]]
+items = ["One Handed"]
+req_type = "GroupMember2"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Blight Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Water Elemental"]
+req_type = "Stance"
+
+[[row]]
+name = "Two Handed Fighting"
+auto_controlled = true
+description = "You are fighting with a single weapon in both hands"
+group_name = "Auto"
+icon = "TwoHandedFighting"
+
+[[row.requirement]]
+items = ["Two Handed"]
+req_type = "GroupMember"
+
+[[row]]
+name = "Ranged Combat"
+auto_controlled = true
+description = "You are fighting with a ranged weapon"
+group_name = "Auto"
+icon = "RangedCombat"
+
+[[row.requirement]]
+items = ["All Ranged"]
+req_type = "GroupMember"
+
+[[row]]
+name = "Single Weapon Fighting"
+auto_controlled = true
+description = "You are fighting with a single weapon"
+group_name = "Auto"
+icon = "SingleWeaponFighting"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Single Weapon"]
+req_type = "GroupMember"
+
+[[row.requirement_group.requirement]]
+items = ["Thrown"]
+req_type = "GroupMember"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon2",
+    "Empty",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon2",
+    "Buckler",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon2",
+    "Orb",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon2",
+    "Rune Arm",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Blight Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Water Elemental"]
+req_type = "Stance"
+
+[[row]]
+name = "Unarmed"
+auto_controlled = true
+description = "You are fighting in Animal form or with handwraps / fists"
+group_name = "Auto"
+icon = "ADanceOfFlowers"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon1",
+    "Handwraps",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Blight Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Water Elemental"]
+req_type = "Stance"
+
+[[row]]
+name = "Axe"
+auto_controlled = true
+description = "You are fighting with an Axe"
+group_name = "Auto"
+icon = "BEReconstructedEdges"
+
+[[row.requirement]]
+items = ["Axe"]
+req_type = "GroupMember"
+
+[[row]]
+name = "Sword and Board"
+auto_controlled = true
+description = "You are fighting with a weapon and shield"
+group_name = "Auto"
+icon = "SDLastStand"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon1",
+    "Empty",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Staff"
+auto_controlled = true
+description = "You are fighting with a staff"
+group_name = "Auto"
+icon = "HMSoundingStaff"
+
+[[row.requirement]]
+items = [
+    "Weapon1",
+    "Quarterstaff",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Orb"
+auto_controlled = true
+description = "You are fighting with an Orb in your off hand"
+group_name = "Auto"
+icon = "EfficientMetamagic"
+
+[[row.requirement]]
+items = [
+    "Weapon2",
+    "Orb",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Rune Arm"
+auto_controlled = true
+description = "You are fighting with a Rune-Arm in your off hand"
+group_name = "Auto"
+icon = "BEBattleEngineer"
+
+[[row.requirement]]
+items = [
+    "Weapon2",
+    "Rune Arm",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Swashbuckling"
+auto_controlled = true
+description = "You are Swashbuckling"
+group_name = "Auto"
+icon = "SBEvasiveManeuvers"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Swashbuckling"]
+req_type = "GroupMember"
+
+[[row.requirement_group.requirement]]
+items = ["SwashbucklingOffhand"]
+req_type = "GroupMember2"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Blight Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Water Elemental"]
+req_type = "Stance"
+
+[[row]]
+name = "Thrown Weapon"
+auto_controlled = true
+description = "You are wielding a thrown weapon"
+group_name = "Auto"
+icon = "AMEvocationIMagicMissile"
+
+[[row.requirement]]
+items = ["Thrown"]
+req_type = "GroupMember"
+
+[[row]]
+name = "Cloth Armor"
+auto_controlled = true
+description = """
+You are wearing cloth or no armor.
+If you are a construct you have the Composite Plating feat."""
+group_name = "Auto"
+icon = "ClothArmorProficiency"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Armor",
+    "Cloth",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Armor",
+    "Empty",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Armor",
+    "Docent",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Mithral Body"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Adamantine Body"]
+req_type = "Feat"
+
+[[row]]
+name = "Light Armor"
+auto_controlled = true
+description = """
+You are wearing light armor.
+If you are a construct you have the Mithral Body feat."""
+group_name = "Auto"
+icon = "LightArmorProficiency"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Armor",
+    "Light",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = ["Mithral Body"]
+req_type = "Feat"
+
+[[row]]
+name = "Medium Armor"
+auto_controlled = true
+description = "You are wearing medium armor."
+group_name = "Auto"
+icon = "MediumArmorProficiency"
+
+[[row.requirement]]
+items = [
+    "Armor",
+    "Medium",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Heavy Armor"
+auto_controlled = true
+description = """
+You are wearing heavy armor.
+If you are a construct you have the Adamantine Body feat."""
+group_name = "Auto"
+icon = "HeavyArmorProficiency"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Armor",
+    "Heavy",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = ["Adamantine Body"]
+req_type = "Feat"
+
+[[row]]
+name = "Centered"
+auto_controlled = true
+description = """
+Enabled if you are in a centered state of:
+In cloth/no armor (or composite plating only),
+You have light encumbrance or less weight,
+Wielding weapons that are centering such as a staff."""
+group_name = "Auto"
+icon = "Centered"
+
+[[row.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Centered"]
+req_type = "GroupMember"
+
+[[row.requirement]]
+items = ["Centered"]
+req_type = "GroupMember2"
+
+[[row]]
+name = "Good"
+auto_controlled = true
+description = "You are Good"
+group_name = "Auto"
+icon = "Good"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Lawful Good"]
+req_type = "Alignment"
+
+[[row.requirement_group.requirement]]
+items = ["Neutral Good"]
+req_type = "Alignment"
+
+[[row.requirement_group.requirement]]
+items = ["Chaotic Good"]
+req_type = "Alignment"
+
+[[row]]
+name = "Lawful"
+auto_controlled = true
+description = "You are Lawful"
+group_name = "Auto"
+icon = "Lawful"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Lawful Good"]
+req_type = "Alignment"
+
+[[row.requirement_group.requirement]]
+items = ["Lawful Neutral"]
+req_type = "Alignment"
+
+[[row]]
+name = "Chaotic"
+auto_controlled = true
+description = "You are Chaotic"
+group_name = "Auto"
+icon = "Chaotic"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Chaotic Good"]
+req_type = "Alignment"
+
+[[row.requirement_group.requirement]]
+items = ["Chaotic Neutral"]
+req_type = "Alignment"
+
+[[row]]
+name = "True Neutral"
+auto_controlled = true
+description = "You are True Neutral"
+group_name = "Auto"
+icon = "TrueNeutral"
+
+[[row.requirement]]
+items = ["True Neutral"]
+req_type = "Alignment"
+
+[[row]]
+name = "Shield"
+auto_controlled = true
+description = "You are using a shield."
+group_name = "Auto"
+icon = "ShieldStance"
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon2",
+    "Buckler",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon2",
+    "Small Shield",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon2",
+    "Large Shield",
+]
+req_type = "ItemTypeInSlot"
+
+[[row.requirement_group.requirement]]
+items = [
+    "Weapon2",
+    "Tower Shield",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Buckler"
+auto_controlled = true
+description = "You have a buckler in your off hand."
+group_name = "Auto"
+icon = "Buckler"
+
+[[row.requirement]]
+items = [
+    "Weapon2",
+    "Buckler",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Small Shield"
+auto_controlled = true
+description = "You have a small shield in your off hand."
+group_name = "Auto"
+icon = "SmallShield"
+
+[[row.requirement]]
+items = [
+    "Weapon2",
+    "Small Shield",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Large Shield"
+auto_controlled = true
+description = "You have a large shield in your off hand."
+group_name = "Auto"
+icon = "LargeShield"
+
+[[row.requirement]]
+items = [
+    "Weapon2",
+    "Large Shield",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Tower Shield"
+auto_controlled = true
+description = "You have a tower shield in your off hand."
+group_name = "Auto"
+icon = "TowerShield"
+
+[[row.requirement]]
+items = [
+    "Weapon2",
+    "Tower Shield",
+]
+req_type = "ItemTypeInSlot"
+
+[[row]]
+name = "Aura of Good"
+auto_controlled = true
+description = """
+An aura of holiness surrounds you while near a Paladin, granting a bonus
+to saves and Armor Class against evil creatures."""
+group_name = "Auto"
+icon = "AuraOfGood"
+
+[[row.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[row]]
+name = "Aura of Courage"
+auto_controlled = true
+description = """
+A feeling of confidence and fearlessness surrounds you while near a
+Paladin, granting a bonus to saves against fear."""
+group_name = "Auto"
+icon = "AuraOfCourage"
+
+[[row.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[row]]
+name = "Favored Weapon"
+auto_controlled = true
+description = "You are wielding a Favored Weapon."
+group_name = "Auto"
+icon = "TurnTheTide"
+
+[[row.requirement]]
+items = ["Favored Weapon"]
+req_type = "WeaponClassMainHand"
+
+[[row]]
+name = "Favored Weapon (Shield)"
+auto_controlled = true
+description = "You are wielding a shield considered as a Favored Weapon."
+group_name = "Auto"
+icon = "ShieldMasterySpecialty"
+
+[[row.requirement]]
+items = ["Favored Weapon"]
+req_type = "WeaponClassOffHand"
+
+[[row.requirement]]
+items = ["Shield"]
+req_type = "Stance"

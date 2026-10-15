@@ -1,0 +1,38 @@
+name = "+1 Reaper Bonus to Spell, Tactical, and Assassinate DCs"
+description = "+1 Reaper Bonus to Spell, Tactical, and Assassinate DCs"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Reaper"
+value = 1
+
+[[effect]]
+name = "Tactics"
+bonus_type = "Reaper"
+value = 1
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Reaper"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "TacticalDC"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: reaper ring"

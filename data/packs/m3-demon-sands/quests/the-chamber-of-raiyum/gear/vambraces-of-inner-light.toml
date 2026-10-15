@@ -1,0 +1,46 @@
+name = "Vambraces of Inner Light"
+description = "This Full Plate armor glows with an eerie golden light."
+drop_location = "The Chamber of Raiyum, One of the 3 chests in the Treasure chamber"
+enhancement_bonus = 5
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 12
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Command"
+value = 4
+value2 = -6
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 77
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "one of the 3 chests in the treasure chamber"
+kind = "quest"
+loot_type = "chest"
+name = "The Chamber of Raiyum"

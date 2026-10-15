@@ -1,0 +1,36 @@
+name = "Experimental Rocket Boots"
+description = """
+A tinkerer built these, but unfortunately forgot to build in a way to stop.
+They then built the brakes with a broken arm."""
+drop_location = "Zoo Creeper, Lacheln 's chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Feet"
+
+[[effect]]
+name = "Jet Propulsion"
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "lacheln 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

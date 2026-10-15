@@ -1,0 +1,48 @@
+name = "Seasons of Change (Legendary)"
+icon = "SeasonsOfChange"
+
+[[item]]
+name = "Legendary Giant's Platter"
+
+[[item]]
+name = "Legendary Wild Flame"
+
+[[item]]
+name = "Legendary Wild Frost"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Evocation Focus"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Evocation Focus"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Fire",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]

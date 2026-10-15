@@ -1,0 +1,34 @@
+name = "Templar's Mail"
+description = "This banded mail is the heaviest armor worn by the Templars of the Silver Flame."
+drop_location = "The Old Archives, chest at the third fragment"
+enhancement_bonus = 2
+icon = "HeavyArmor_6"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 7
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Lesser Undead Guard"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "chest at the third fragment"
+kind = "quest"
+loot_type = "chest"
+name = "The Old Archives"

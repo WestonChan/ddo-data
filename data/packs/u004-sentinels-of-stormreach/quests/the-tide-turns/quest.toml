@@ -1,0 +1,26 @@
+name = "The Tide Turns"
+bestowed_by = "Greigur d'Deneith"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Sentinels of Stormreach"
+patron = "House Deneith"
+zone = "Sentinels Tower"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Tide_Turns"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 20

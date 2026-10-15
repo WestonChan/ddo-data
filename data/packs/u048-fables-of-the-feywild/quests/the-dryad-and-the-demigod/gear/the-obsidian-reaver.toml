@@ -1,0 +1,55 @@
+name = "The Obsidian Reaver"
+accepts_sentience = true
+description = "FEYTWISTED form of The Magmatic Reaver \n\nThis Dwarven War Axe is born of pure obsidian, and commands the fires of\nthe earth."
+drop_location = "The Dryad and the Demigod, Greater feytwisted chest"
+enhancement_bonus = 15
+icon = "DwarvenWaraxe_2d"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Stone"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Dripping with Magma"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Flamebitten"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "greater feytwisted chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

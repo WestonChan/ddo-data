@@ -1,0 +1,23 @@
+name = "An Explosive Situation"
+bestowed_by = "Philver Sharpwood"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "Sharpwood's Warehouse"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/An_Explosive_Situation"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

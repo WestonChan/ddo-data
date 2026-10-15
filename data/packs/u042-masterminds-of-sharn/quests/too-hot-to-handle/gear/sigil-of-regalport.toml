@@ -1,0 +1,52 @@
+name = "Sigil of Regalport"
+description = """
+Regalport, the capital city of the Lhazaar Principalities, bears this sigil
+upon its banners."""
+drop_location = "Too Hot to Handle, end chest; Masterminds of Sharn saga: Epic end reward; rare drop in any legendary Sharn quest"
+icon = "Necklace_32"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Mithral"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 297
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 37
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"
+
+[[source]]
+kind = "saga"
+name = "Masterminds of Sharn"
+tier = "epic"

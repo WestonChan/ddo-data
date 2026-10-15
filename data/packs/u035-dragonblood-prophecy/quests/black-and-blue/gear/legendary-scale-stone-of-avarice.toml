@@ -1,0 +1,48 @@
+name = "Legendary Scale-Stone of Avarice"
+description = """
+Assembled from scales shed during Kor Kaza's imprisonment, this stone was meant
+for one of the loyal followers that would free her."""
+drop_location = "Black and Blue, End chest"
+enhancement_bonus = 14
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Blue Dragonscale"
+minimum_level = 28
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -8
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Black and Blue"

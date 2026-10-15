@@ -1,0 +1,36 @@
+name = "Efficient Metamagic - Maximize I"
+description_template = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP."
+home_bonus_type = "Equipment"
+verbose_name_template = "Efficient Metamagic - Maximize I"
+
+[[bonus]]
+amount_from = 0
+constant = -2
+rounding = "down"
+scale = 1.0
+target = "Maximize Cost Reduction"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "Efficient Metamagic - Maximize I -1"
+reason = "The wiki shows the tier name without the spell-point reduction."
+url = "https://ddowiki.com/page/Item:Vizeran's_Band"
+read = "2026-10-05"
+
+[[note]]
+kind = "effect"
+field = "description_template"
+upstream = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 1 SP."
+reason = "The wiki and the Maximize magnitude rule give a 2 SP reduction for tier I."
+url = "https://ddowiki.com/page/Item:Vizeran's_Band"
+read = "2026-10-05"
+
+[[note]]
+kind = "effect"
+field = "constant"
+upstream = -1
+reason = "The wiki and the Maximize magnitude rule give a 2 SP reduction for tier I."
+url = "https://ddowiki.com/page/Item:Vizeran's_Band"
+read = "2026-10-05"
+qualifier = 'stat "Maximize Cost Reduction"'

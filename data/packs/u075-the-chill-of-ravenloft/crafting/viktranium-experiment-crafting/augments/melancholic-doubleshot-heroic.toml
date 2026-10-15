@@ -1,0 +1,20 @@
+name = "Melancholic Doubleshot (Heroic)"
+description = "+3% Enhancement bonus to Doubleshot."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Doubleshot"
+effect_type = "Doubleshot"
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

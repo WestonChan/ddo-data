@@ -1,0 +1,90 @@
+[[row]]
+name = "Barkskin"
+description = "You have a Natural Armor bonus to AC."
+icon = "spells/Barkskin"
+
+[[row.note]]
+kind = "optional_buff"
+field = "icon"
+upstream = "Barkskin"
+reason = "Optional buffs use qualified image references; this image is spells/Barkskin.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "NaturalArmor"
+
+[[row]]
+name = "Bless"
+description = """
+Multiple targets are filled with courage, granting a +1 Morale bonus on to-hit rolls
+and saves versus fear. Bless counters and dispels Bane."""
+icon = "spells/Bless"
+
+[[row.note]]
+kind = "optional_buff"
+field = "icon"
+upstream = "Bless"
+reason = "Optional buffs use qualified image references; this image is spells/Bless.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Morale"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Morale"
+effect_type = "SaveBonus"
+targets = ["Fear"]
+
+[[row]]
+name = "Deadly Weapons"
+description = "Your currently equipped weapons deal +1[W]."
+icon = "spells/DeadlyWeapons"
+
+[[row.note]]
+kind = "optional_buff"
+field = "icon"
+upstream = "DeadlyWeapons"
+reason = "Optional buffs use qualified image references; this image is spells/DeadlyWeapons.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[row]]
+name = "Stone of Change: Alchemical Shield Eldritch Ritual"
+description = "+1 Stacking Bonus to AC"
+icon = "spells/StoneOfChange"
+
+[[row.note]]
+kind = "optional_buff"
+field = "icon"
+upstream = "StoneOfChange"
+reason = "Optional buffs use qualified image references; this image is spells/StoneOfChange.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "ACBonus"
+
+[[row.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"

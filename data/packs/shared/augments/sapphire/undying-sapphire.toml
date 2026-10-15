@@ -1,0 +1,35 @@
+name = "Undying Sapphire"
+description = """
+Bound to service beyond death, you gain a +65 enhancement bonus to your
+Incapacitation range.
+Drops in: Any Isle of Dread chest"""
+family = "Sapphire"
+icon = "SapphireBlueBorder"
+min_level = 8
+
+[[effect]]
+name = "Unconsciousness Range"
+bonus_type = "Enhancement"
+value = -65
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-65]
+bonus_type = "Enhancement"
+effect = "Unconsciousness Range"
+effect_type = "UnconsciousRange"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"
+
+[[source]]
+chest = "chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

@@ -1,0 +1,62 @@
+name = "Epic Sworn Silver Dart"
+accepts_sentience = true
+description = """
+This is a fine weapon, crafted of exquisite Silver. It's likely quite useful
+against the Undead or certain, powerful Devils."""
+drop_location = "Morten Edgewright, Turn in 1 Epic Silver Ingot"
+enhancement_bonus = 6
+icon = "Dart_1"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Silver"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[effect]]
+name = "Unnatural Bane 4"
+
+[[effect]]
+name = "Destruction"
+
+[[effect]]
+name = "Righteous"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Morten Edgewright"
+
+[[source.price]]
+ingredient = "Epic Silver Ingot"
+quantity = 1
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Thrown"
+weapon_type = "Dart"

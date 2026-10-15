@@ -1,0 +1,37 @@
+name = "Epic Lizardfolk Tooth Necklace"
+description = "A warning to Lizardfolk to watch their mouths around you."
+drop_location = "Epic version of Lizardfolk Tooth Necklace"
+icon = "Necklace_35"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Relentless Fury"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

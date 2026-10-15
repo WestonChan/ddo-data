@@ -1,0 +1,61 @@
+name = "Luminous Truth"
+description = """
+This tool was crafted for divine priests of the Silver Flame, as well as those
+who would wield a quarterstaff as a weapon in the Silver Flame's name. It deals
+fire and light damage to its targets and enhances the power of magical light
+and flames."""
+drop_location = "The Spinner of Shadows, End chest"
+enhancement_bonus = 5
+icon = "Quarterstaff_5g"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Power of the Flames of Purity"
+bonus_type = "Equipment"
+value = 97
+
+[[effect]]
+name = "Purifying Flame Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Flaming Blast IV"
+
+[[effect]]
+name = "Coruscating 4"
+
+[[effect]]
+name = "Incineration"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Spinner of Shadows"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

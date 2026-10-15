@@ -1,0 +1,47 @@
+name = "Coat of the Wanderer (level 8)"
+description = "Time-Twisted version of Coat of the Traveler"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+enhancement_bonus = 4
+icon = "MediumArmor_3"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 16
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Speed"
+value = 18
+value2 = 6
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

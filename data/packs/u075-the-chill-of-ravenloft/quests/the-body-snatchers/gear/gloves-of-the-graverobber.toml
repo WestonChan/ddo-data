@@ -1,0 +1,37 @@
+name = "Gloves of the Graverobber"
+description = "These grant a good grip, whether that be on shovel, coffin, or cadaver."
+drop_location = "The Body Snatchers, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Hands"
+
+[[effect]]
+name = "Speed"
+value = 18
+value2 = 6
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 3
+value2 = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"

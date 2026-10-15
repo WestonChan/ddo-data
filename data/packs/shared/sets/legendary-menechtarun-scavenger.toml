@@ -1,0 +1,66 @@
+name = "Legendary Menechtarun Scavenger"
+icon = "Menechtarun"
+
+[[item]]
+name = "Legendary Demon Scale Armor"
+
+[[item]]
+name = "Legendary Dynastic Falcata"
+
+[[item]]
+name = "Legendary Sandstorm Glasses"
+
+[[item]]
+name = "Legendary Seal of the Earth"
+
+[[item]]
+name = "Legendary Stinkpelt's Hide"
+
+[[item]]
+name = "Legendary Thornlord"
+
+[[item]]
+name = "Legendary Tourney Armor"
+
+[[item]]
+name = "Legendary Weathered Targe"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sheltering"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]

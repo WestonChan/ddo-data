@@ -1,0 +1,42 @@
+name = "Tunneler's Toolkit"
+description = """
+The aspiring tunnel rat or sneaky scamp need look no further than the tools
+on this belt."""
+drop_location = "The Knife's Edge, end chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 4
+slot = "Waist"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Knife's Edge"

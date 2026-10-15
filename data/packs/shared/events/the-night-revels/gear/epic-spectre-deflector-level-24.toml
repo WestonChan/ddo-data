@@ -1,0 +1,60 @@
+name = "Epic Spectre Deflector (level 24)"
+description = "Deflects all spectres."
+drop_location = "The Night Revels, Turn in various ingredients at Joe Candymaker"
+enhancement_bonus = 7
+icon = "Shield_18b"
+item_category = "Shield"
+item_type = "Buckler"
+material = "Steel"
+minimum_level = 24
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 11
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Protection from Evil"
+bonus_type = "Deflection"
+
+[[effect]]
+name = "Ghostbane 5"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 30
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.8
+handedness = "Off-hand"
+weapon_type = "Buckler"

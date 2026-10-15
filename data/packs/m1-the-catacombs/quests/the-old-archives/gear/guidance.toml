@@ -1,0 +1,47 @@
+name = "Guidance"
+description = "The crossbow Guidance is loathed by the enemies of the Silver Flame."
+drop_location = "The Old Archives, End chest (by the third Fragment)"
+enhancement_bonus = 2
+icon = "LightCrossbow_1k"
+item_category = "Weapon"
+item_type = "Light Crossbow"
+material = "Wood"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Ghostbane 1"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Old Archives"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Light Crossbow"

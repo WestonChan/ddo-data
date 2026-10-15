@@ -1,0 +1,161 @@
+{
+  "$defs": {
+    "AdventurePackAlias": {
+      "additionalProperties": false,
+      "properties": {
+        "pack": {
+          "type": "string"
+        },
+        "placement_only": {
+          "type": "boolean"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "pack",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "source_aliases"
+    },
+    "ChallengeAlias": {
+      "additionalProperties": false,
+      "properties": {
+        "pack": {
+          "type": "string"
+        },
+        "read": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "text",
+        "pack",
+        "reason"
+      ],
+      "type": "object",
+      "x-table": "source_aliases"
+    },
+    "CraftingSystemAlias": {
+      "additionalProperties": false,
+      "properties": {
+        "max_minimum_level": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "min_minimum_level": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "system": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "system",
+        "reason"
+      ],
+      "type": "object",
+      "x-table": "source_aliases"
+    },
+    "VendorAlias": {
+      "additionalProperties": false,
+      "properties": {
+        "contains": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        },
+        "vendor": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "text",
+        "vendor",
+        "reason"
+      ],
+      "type": "object",
+      "x-table": "source_aliases"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adventure_pack": {
+      "items": {
+        "$ref": "#/$defs/AdventurePackAlias"
+      },
+      "type": "array"
+    },
+    "challenge": {
+      "items": {
+        "$ref": "#/$defs/ChallengeAlias"
+      },
+      "type": "array"
+    },
+    "crafting_system": {
+      "items": {
+        "$ref": "#/$defs/CraftingSystemAlias"
+      },
+      "type": "array"
+    },
+    "vendor": {
+      "items": {
+        "$ref": "#/$defs/VendorAlias"
+      },
+      "type": "array"
+    }
+  },
+  "title": "SourceAliasesFile",
+  "type": "object"
+}

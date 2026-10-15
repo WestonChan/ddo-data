@@ -1,0 +1,27 @@
+name = "Skull Fetish Mask"
+description = """
+This horrid mask is fashioned from the skull fragments of various races. Red
+silk cords hold this gruesome artifacts together. The mask seems to compel
+obedience in all who view it."""
+drop_location = "The Titan Awakes, Raid Warded chest"
+icon = "Helmet_72a"
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 9
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

@@ -1,0 +1,15 @@
+name = "Legendary Ash"
+variant = "sealedinfire"
+description = """
+Attacks and offensive spells have a 50% chance to reduce enemy MRR and Universal
+Spell Power. This penalty stacks 3 times, -7 MRR and -20 Universal Spell Power
+each time, 12 seconds duration. Can make MRR negative."""
+family = "SealedInFire"
+icon = "GreenAugment"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in fire"
+
+[[slot]]
+slot = "crafting: sealed in mist"

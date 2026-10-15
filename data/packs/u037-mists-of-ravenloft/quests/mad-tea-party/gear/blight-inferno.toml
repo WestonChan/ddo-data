@@ -1,0 +1,66 @@
+name = "Blight Inferno"
+description = """
+A strange item crafted by an eccentric arcane. Useful for clearing the area
+of noxious weeds (ambulatory or otherwise.)"""
+drop_location = "Mad Tea Party, End Chest"
+icon = "RuneArm_1b"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 10
+slot = "Runearm"
+
+[[clickie]]
+name = "Corrupted Fire Blast"
+clickie = "Corrupted Fire Blast"
+
+[[effect]]
+name = "Maximum Charge Tier III"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Enhancement"
+value = 77
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Quality"
+value = 18
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Tira's Splendor"
+
+[[effect]]
+name = "Rune Arm Imbue - Fire III"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Corrupted Fire Blast",
+    "Unknown",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Mad Tea Party"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

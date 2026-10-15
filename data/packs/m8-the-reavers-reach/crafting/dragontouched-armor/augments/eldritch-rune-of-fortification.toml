@@ -1,0 +1,24 @@
+name = "Eldritch Rune of Fortification"
+description = """
+Fortification +100%: This suit of armor or shield produces a magical force that
+protects vital areas of the wearer much more effectively. When a critical hit
+or sneak attack is scored on the wearer, there is a 100% chance that the
+critical hit or sneak attack is negated and damage is instead rolled normally."""
+family = "Dragontouched_EldritchRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Equipment"
+value = 100
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Equipment"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[slot]]
+slot = "crafting: eldritch rune"

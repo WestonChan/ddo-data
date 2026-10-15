@@ -1,0 +1,4 @@
+name = "Enchanting Death"
+default_value = 3
+description_template = "Increases your caster level when casting Enchantment and Necromancy spells by {1}."
+verbose_name_template = "Enchanting Death +{1}"

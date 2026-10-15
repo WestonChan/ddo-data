@@ -1,0 +1,20 @@
+name = "Acid Spell Power - +37 Exceptional"
+description = "Dominion/Earth: +37 Exceptional bonus increase to Acid spell power."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Acid Spell Power"
+bonus_type = "Exceptional"
+value = 37
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [37]
+bonus_type = "Exceptional"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

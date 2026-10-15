@@ -1,0 +1,30 @@
+name = "Solar Gem of Rune Arm DCs (Legendary)"
+description = """
++3 Artifact bonus to Rune Arm DCs.
+Drops in: Ends and Means, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Rune Arm Spell Focus"
+effect_type = "SpellDC"
+targets = ["Rune Arm"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"

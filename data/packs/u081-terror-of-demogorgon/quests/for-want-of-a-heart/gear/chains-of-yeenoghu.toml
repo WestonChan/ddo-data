@@ -1,0 +1,38 @@
+name = "Chains of Yeenoghu"
+description = "Once used to bind the mighty Demon Lord, these chains retain his rage."
+drop_location = "For Want of a Heart, end chest"
+icon = "Necklace_15"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Blood Rage"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 62
+
+[[effect]]
+name = "Legendary Conditioning"
+bonus_type = "Legendary"
+value = 10
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "For Want of a Heart"

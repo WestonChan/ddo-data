@@ -1,0 +1,42 @@
+name = "Legendary Ruined Glory"
+description = """
+This tattered cloth was once a shining gold before being lost to the sewers,
+but its defensive magic still lingers in it."""
+drop_location = "Kill Ten Rats, End Chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 31
+slot = "Back"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Kill Ten Rats"

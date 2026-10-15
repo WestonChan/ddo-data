@@ -1,0 +1,2265 @@
+name = "Nature's Protector"
+background = "DruidBackground"
+icon = "Druid"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Nature's Protector"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Gain +8 hit points and 3 Magical Resistance Rating. For every additional core
+in the tree gain 16 hit points and 3 more Magical Resistance Rating."""
+icon = "NPNaturesProtector"
+internal_name = "NPCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Nature's Protector: Nature's Defense"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Defensive Combat Stance: +8 Physical and Magical Resistance Rating.
+Cannot be used with other defensive stances, but can be used while raging.
+Cooldown: 6 seconds."""
+icon = "NPNaturesDefense"
+internal_name = "NPCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+display_name = "Nature's Defense Stance"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+display_name = "Nature's Defense Stance"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["NPCore1"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Nature's Defense"
+description = """
+Defensive Combat Stance: +8 PRR and MRR.
+Cannot be used with other defensive stances, but can be used while raging.
+Cooldown: 6 seconds."""
+group_name = "Defensive Combat Stance"
+icon = "NPNaturesDefense"
+
+[[enhancement]]
+name = "Nature's Protector: Magical Beast"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While in animal form the penalty on your spell cooldowns is reduced from 2.5 to 2.0.
+This benefit does not stack with the Nature's Warrior versions of this ability.
+
+Grants Heavy Armor Proficiency"""
+icon = "NPMagicalBeast"
+internal_name = "NPCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Heavy Armor Proficiency"]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["NPCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Protector: Big Claws"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Adds Great Maul to your spell book: Requires Bear form: Activate to do an Innate
+Attack: Deals 3[W] with +1 bonus to critical threat and damage, and the target
+you strike must make a Fortitude save or be stunned for 6 seconds,
+DC: 13 + Max(Str, Wis) mod + Tactical bonuses.
+SP Cost: 3 Cooldown: 12 seconds. Shares a cooldown with Maul."""
+icon = "NPBigClaws"
+internal_name = "NPCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.dc]]
+name = "Nature's Protector: Big Claws"
+amount = [13]
+dc_type = "Stun"
+dc_versus = "Fortitude"
+description = """
+Innate Attack: Deals 3[W] with +1 bonus to critical threat
+and damage, and the target you strike must make a Fortitude save or be stunned for 6 seconds"""
+icon = "NPBigClaws"
+mod_ability = [
+    "Strength",
+    "Wisdom",
+]
+tactical = "Stun"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    3,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Great Maul",
+    "Druid",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["NPCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Protector: Big Bear"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+The Tremor spell now has a 20% chance to restore 1 charge of Barbarian Rage.
+Grants a 5% combat style attack speed bonus in Bear forms."""
+icon = "NPBigBear"
+internal_name = "NPCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["NPCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Protector: The Great Bear"
+cost_per_rank = [1]
+description = """
+Grants a 10% combat style attack speed bonus in Bear forms.
++2 Strength and Constitution.
+While in animal form your spell cooldowns are only increased by 1.5 down from 2.
+This effect does not stack with Nature's Warrior's Cores."""
+icon = "NPTheGreatBear"
+internal_name = "NPCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "NPCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["NPCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "NPCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Nature's Protector: Rage of the Beast"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Grants you the ability to Rage like a Barbarian. Activate to Rage, gaining +4
+Strength and Constitution, +2 Will Saves and -2 Armor Class.
+Lasts 30 + (6 x Con Modifier) seconds.
+You are fatigued when this effect ends. You cannot cast spells while raging.
+3 Charges per rest. Effects that modify Barbarian rage apply to this enhancement.
+Also grants the Dismiss Rage Feat."""
+icon = "NPRageOfTheBeast"
+internal_name = "NPRageOfTheBeast"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Dismiss Rage"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.stance]]
+name = "Rage"
+description = """
+Grants you the ability to rage like a Barbarian.
+Activate to rage, gaining +4 Strength and Constitution, +2 Will Saves and
+-2 Armor Class. Lasts 30 + (6 x Con Modifier) seconds.
+You are fatigued when this effect ends. You cannot cast spells while raging.
+3 Charges per rest. Effects that modify Barbarian rage apply to this enhancement.
+Also grants the Dismiss Rage Feat."""
+icon = "NPRageOfTheBeast"
+incompatible = [
+    "Combat Expertise",
+    "Defensive Fighting",
+    "Precision",
+]
+
+[[enhancement]]
+name = "Nature's Protector: Bloody Claws"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Every time you use Maul you gain one stack of Killer Instincts:
++1 to damage for 15 seconds. Max stack size: [1/2/3]"""
+icon = "NPBloodyClawsI"
+internal_name = "NPBloodyClawsI"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Nature's Protector: Improved Nature's Defense I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Choose between: Enchanted Defense, Fierce Defense and Grizzled Defense."
+icon = "NPFierceDefense"
+internal_name = "NPImprovedNaturesDefenseI"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Enchanted Defense"
+cost_per_rank = [1]
+description = """
+While in the Nature's Defense stance you gain a +[4/8/12] Competence
+bonus to PRR and MRR."""
+icon = "NPEnchantedDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+    12,
+]
+bonus_type = "Competence"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Fierce Defense"
+cost_per_rank = [1]
+description = """
+While in Nature's Defense stance you gain a +[150/300/450]% Competence
+bonus to melee threat."""
+icon = "NPFierceDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    150,
+    300,
+    450,
+]
+bonus_type = "Competence"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Grizzled Defense"
+cost_per_rank = [1]
+description = """
+While in Nature's Defense stance you gain a +[1/2/3] Sacred bonus to
+all saving throws."""
+icon = "NPGrizzledDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Nature's Protector: Fey's Blessing"
+cost_per_rank = [1]
+description = "Gain a +[2/4/6] bonus to Magical Resistance Rating."
+icon = "NPFeysBlessing"
+internal_name = "NPFeysBlessing"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Nature's Protector: Animal Brutality"
+cost_per_rank = [1]
+description = """
+Gain a +[1/2/3] skill bonus to Intimidate, Swim and Jump.
+Rank 3: +1 to hit and damage."""
+icon = "NPAnimalBrutality"
+internal_name = "NPAnimalBrutality"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Intimidate",
+    "Swim",
+    "Jump",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+rank = 3
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Nature's Protector: Primal Beast"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "While using Barbarian Rage in animal form you gain +[5/10/15] Melee Power."
+icon = "NPPrimalBeast"
+internal_name = "NPPrimalBeast"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["NPRageOfTheBeast"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Protector: Sharp Claws"
+cost_per_rank = [1]
+description = """
+Your Shred attack now grants you one stack of Killer Instinct:
++1 to damage for 15 seconds."""
+icon = "NPBloodyClawsII"
+internal_name = "NPBloodyClawsII"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["NPBloodyClawsI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Protector: Improved Nature's Defense II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Choose a different stance to that chosen in tier1, between:
+Enchanted Defense, Fierce Defense and Grizzled Defense."""
+icon = "NPFierceDefense"
+internal_name = "NPImprovedNaturesDefenseII"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["NPImprovedNaturesDefenseI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Enchanted Defense"
+cost_per_rank = [1]
+description = """
+While in the Nature's Defense stance you gain a +[4/8/12] Competence
+bonus to PRR and MRR."""
+icon = "NPEnchantedDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+    12,
+]
+bonus_type = "Competence"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+    12,
+]
+bonus_type = "Competence"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Fierce Defense"
+cost_per_rank = [1]
+description = """
+While in Nature's Defense stance you gain a +[150/300/450]% Competence
+bonus to melee threat."""
+icon = "NPFierceDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    150,
+    300,
+    450,
+]
+bonus_type = "Competence"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Grizzled Defense"
+cost_per_rank = [1]
+description = """
+While in Nature's Defense stance you gain a +[1/2/3] Sacred bonus to
+all saving throws."""
+icon = "NPGrizzledDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selector_exclusion]]
+internal_name = "NPImprovedNaturesDefenseI"
+
+[[enhancement]]
+name = "Nature's Protector: Thick Hide"
+cost_per_rank = [1]
+description = "+[2/4/6] Natural Armor Bonus"
+icon = "NPThickHide"
+internal_name = "NPThickHide"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "NaturalArmor"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Nature's Protector: Action Boost: Beast at Bay"
+cost_per_rank = [2]
+description = """
+Activate to gain an action boost for 15 Armor Class and 21 Magical
+Resistance Rating for 20 seconds. Consumes one action boost."""
+icon = "NPBeastAtBay"
+internal_name = "NPBeastAtBay"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Nature's Protector: Enduring Beast"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While using Barbarian Rage in animal form, you gain +[10/20/30] Positive Healing
+Amplification and +[1/2/3] Strength.
+
+Grants [1/2/3] additional uses of Rage per rest."""
+icon = "NPEnduringBeast"
+internal_name = "NPEnduringBeast"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["NPPrimalBeast"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Protector: Savage Roar"
+cost_per_rank = [1]
+description = """
+Using the Roar spell with 1 stack of Killer Instincts active now triggers
+a burst of 1..3 Sonic damage per Druid level you have. Scales with Melee Power.
+If you have 2 stacks it also stuns. At 3 stacks the damage is increased to 5..10
+per Druid level and also applies the stun. Fortitude save negates stun.
+
+DC: 10 + 1/2 Druid Level + Max(Str, Wis) mod + Stun bonuses.
+
+Casting Roar clears all stacks of Killer Instinct."""
+icon = "NPSavageRoar"
+internal_name = "NPSavageRoar"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.dc]]
+name = "Nature's Protector: Savage Roar"
+amount = [10]
+dc_type = "Half Damage/Stun"
+dc_versus = "Fortitude"
+description = """
+Using the Roar spell with 1 stack of Killer Instincts active now triggers
+a burst of 1..3 Sonic damage per Druid level you have. Scales with melee power.
+If you have 2 stacks it also stuns. At 3 stacks the damage is increased to 5..10
+per Druid level and also applies the stun."""
+icon = "NPSavageRoar"
+mod_ability = [
+    "Strength",
+    "Wisdom",
+]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Nature's Protector: Improved Nature's Defense III"
+cost_per_rank = [1]
+description = """
+Choose the final stance not chosen at tiers 1 and 2, between:
+Enchanted Defense, Fierce Defense and Grizzled Defense."""
+icon = "NPFierceDefense"
+internal_name = "NPImprovedNaturesDefenseIII"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["NPImprovedNaturesDefenseII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Enchanted Defense"
+cost_per_rank = [1]
+description = """
+While in the Nature's Defense stance you gain a +[4/8/12] Competence
+bonus to PRR and MRR."""
+icon = "NPEnchantedDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+    12,
+]
+bonus_type = "Competence"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+    12,
+]
+bonus_type = "Competence"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Fierce Defense"
+cost_per_rank = [1]
+description = """
+While in Nature's Defense stance you gain a +[150/300%/450]% Competence
+bonus to melee threat."""
+icon = "NPFierceDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    150,
+    300,
+    450,
+]
+bonus_type = "Competence"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Grizzled Defense"
+cost_per_rank = [1]
+description = """
+While in Nature's Defense stance you gain a +[1/2/3] Sacred bonus to
+all saving throws."""
+icon = "NPGrizzledDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selector_exclusion]]
+internal_name = "NPImprovedNaturesDefenseI"
+
+[[enhancement.selector_exclusion]]
+internal_name = "NPImprovedNaturesDefenseII"
+
+[[enhancement]]
+name = "Nature's Protector: Ursa's Protector I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Choose between: Ursa's Heart, Ursa's Spirit and Ursa's Will."
+icon = "NPUrsasHeart"
+internal_name = "NPGreaterNaturesDefenseI"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Ursa's Heart"
+cost_per_rank = [1]
+description = """
+Requires bear form and a shield equipped:
+Nature's Defense now grants you a +[15/20/25]% Competence bonus to max hit points."""
+icon = "NPUrsasHeart"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ursa's Spirit"
+cost_per_rank = [1]
+description = """
+Requires bear form, AND shield OR medium/heavy armor equipped:
+Nature's Defense now grants you a +[2/4/6] Competence bonus to Constitution."""
+icon = "NPUrsasSpirit"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Competence"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ursa's Will"
+cost_per_rank = [1]
+description = """
+Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[3/6/9] Sacred bonus to MRR."""
+icon = "NPUrsasWill"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Sacred"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Nature's Protector: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose between Constitution and Strength"
+icon = "StrCon"
+internal_name = "NPAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Nature's Protector: Undying Beast"
+arrows = [
+    "ArrowRight",
+    "ArrowUp",
+]
+cost_per_rank = [1]
+description = """
+While using Barbarian Rage in animal form you gain immunity to energy drain and
+death effects."""
+icon = "NPUndyingBeast"
+internal_name = "NPUndyingBeast"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Energy Drain"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Death Effects"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NPEnduringBeast"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Protector: Beast Awakened"
+cost_per_rank = [2]
+description = "You can now cast Druidic magic while raging."
+icon = "NPBeastAwakened"
+internal_name = "NPBeastAwakened"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NPUndyingBeast"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Protector: Ursa's Protector II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Choose a different stance to that chosen in tier1, between:
+Ursa's Heart, Ursa's Spirit and Ursa's Will."""
+icon = "NPUrsasHeart"
+internal_name = "NPGreaterNaturesDefenseII"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NPGreaterNaturesDefenseI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Ursa's Heart"
+cost_per_rank = [1]
+description = """
+Requires bear form and a shield equipped:
+Nature's Defense now grants you a +[15/20/25]% Competence bonus to max hit points."""
+icon = "NPUrsasHeart"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ursa's Spirit"
+cost_per_rank = [1]
+description = """
+Requires bear form, AND shield OR medium/heavy armor equipped:
+Nature's Defense now grants you a +[2/4/6] Competence bonus to Constitution."""
+icon = "NPUrsasSpirit"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Competence"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ursa's Will"
+cost_per_rank = [1]
+description = """
+Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[3/6/9] Sacred bonus to MRR."""
+icon = "NPUrsasWill"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Sacred"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.selector_exclusion]]
+internal_name = "NPGreaterNaturesDefenseI"
+
+[[enhancement]]
+name = "Nature's Protector: Ability II"
+cost_per_rank = [2]
+description = "Choose between wither Constitution or Strength."
+icon = "StrCon"
+internal_name = "NPAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NPAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Nature's Protector: Beast Unleashed"
+cost_per_rank = [1]
+description = """
+While using Barbarian Rage in animal form, you gain an additional +25 Melee Power.
+In addition, if the Druid is in Bear form they gain a +15% bonus to Armor Class
+and 50% increase to Melee Threat."""
+icon = "NPBeastUnleashed"
+internal_name = "NPBeastUnleashed"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "ACPercent"
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["NPUndyingBeast"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Protector: Bear Charge"
+cost_per_rank = [1]
+description = """
+Deals +20% Damage
++1 Critical Multiplier
++1 Critical Threat Range
+Cooldown: 15 seconds
+Bear Form Melee Attack: Charge forward and attack, knocking enemies down.
+A successful Balance check negates the knockdown.
+Trip DC vs Balance: 10 + Druid Level + Max(Str, Wis) mod + Trip bonuses."""
+icon = "NPBearCharge"
+internal_name = "NPBearCharge"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.dc]]
+name = "Nature's Protector: Bear Charge"
+amount = [10]
+class_level = "Druid"
+dc_type = "Knockdown"
+dc_versus = "Balance"
+description = """
+Bear Form Melee Attack: Charge forward and attack, knocking enemies down.
+A successful Balance check negates the knockdown."""
+icon = "NPBearCharge"
+mod_ability = [
+    "Strength",
+    "Wisdom",
+]
+tactical = "Trip"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Nature's Protector: Lightning Strikes the Mountain"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+Cooldown: 30 seconds
+Bear form Melee Attack: Activate to call down a bolt of lightning.
+On Hit: Lightning strikes, dealing 5 - 8 Electric damage per character level,
+scales with melee power. You are also granted a 100% bonus to melee threat
+and 20 Magical Resistance Rating for 15 seconds. Bonuses are doubled if Nature's
+Protector stance is active."""
+icon = "NPLightningStrikesTheMountain"
+internal_name = "NPLightningStrikesTheMountain"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.modifier.requirement]]
+items = ["Lightning Strikes the Mountain"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Lightning Strikes the Mountain"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+display_name = "Nature's Protector: Lightning Strikes the Mountain (with Nature's Defense)"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.modifier.requirement]]
+items = ["Lightning Strikes the Mountain"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+display_name = "Nature's Protector: Lightning Strikes the Mountain (with Nature's Defense)"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Lightning Strikes the Mountain"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.stance]]
+name = "Lightning Strikes the Mountain"
+description = """
+You are also granted a 100% bonus to melee threat and 20 MRR for 15 seconds.
+Bonuses are doubled if Nature's Protector stance is active."""
+icon = "NPLightningStrikesTheMountain"
+
+[[enhancement]]
+name = "Nature's Protector: Ursa's Protector III"
+cost_per_rank = [1]
+description = """
+Choose the final stance not chosen at tiers 1 and 2, between:
+Ursa's Heart, Ursa's Spirit and Ursa's Will."""
+icon = "NPUrsasHeart"
+internal_name = "NPGreaterNaturesDefenseIII"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["NPGreaterNaturesDefenseII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Ursa's Heart"
+cost_per_rank = [1]
+description = """
+Requires bear form and a shield equipped:
+Nature's Defense now grants you a +[15/20/25]% Competence bonus to max hit points."""
+icon = "NPUrsasHeart"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    20,
+    25,
+]
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ursa's Spirit"
+cost_per_rank = [1]
+description = """
+Requires bear form, AND shield OR medium/heavy armor equipped:
+Nature's Defense now grants you a +[2/4/6] Competence bonus to Constitution."""
+icon = "NPUrsasSpirit"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Competence"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ursa's Will"
+cost_per_rank = [1]
+description = """
+Requires bear form and a shield/medium/heavy armor equipped:
+Nature's Defense now grants you a +[3/6/9] Sacred bonus to MRR."""
+icon = "NPUrsasWill"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Sacred"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Nature's Defense"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.selector_exclusion]]
+internal_name = "NPGreaterNaturesDefenseI"
+
+[[enhancement.selector_exclusion]]
+internal_name = "NPGreaterNaturesDefenseII"
+
+[[enhancement]]
+name = "Nature's Protector: Force of Nature"
+cost_per_rank = [1]
+description = """
+You gain [10/15/20]% resistance against Force damage and +[1/2/3] Constitution.
+Your attunement to Nature is emboldened - Your Druidic Oath is no longer broken
+by wearing metal armor or shields."""
+icon = "NPForceOfNature"
+internal_name = "NPForceOfNature"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Force"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Druid"]
+req_type = "Class"

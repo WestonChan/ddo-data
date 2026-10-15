@@ -1,0 +1,26 @@
+name = "Too Hot to Handle"
+bestowed_by = "Grem Alcorin"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 10
+is_raid = true
+pack = "Masterminds of Sharn"
+patron = "Sharn City Council"
+zone = "Alcorin's Forge - Arcsteel Foundry"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Too_Hot_to_Handle"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

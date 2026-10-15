@@ -1,0 +1,37 @@
+name = "Trapmaker's Mark"
+drop_location = "The Covered Culvert, optional chest"
+icon = "Ring_21"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 4
+slot = "Ring"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 7
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 5
+value2 = 8
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"

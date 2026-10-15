@@ -1,0 +1,48 @@
+name = "Oremi's Necklace"
+description = "This simple twin necklace belonged to the renowned Henshin Mystic, Oremi."
+drop_location = "Bastion of Power, Any End chest; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Henshin Mystic"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    4,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Henshin Mystic - 2 Piece bonus"
+effect_type = "NotModeled"
+extra_types = ["NotModeled"]
+targets = ["All"]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bastion of Power"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

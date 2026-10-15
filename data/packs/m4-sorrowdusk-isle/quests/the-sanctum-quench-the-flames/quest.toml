@@ -1,0 +1,22 @@
+name = "The Sanctum: Quench the Flames"
+bestowed_by = "Lord Hragg of Grey Moon"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Sorrowdusk Isle"
+patron = "House Deneith"
+zone = "Fane of the Six"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Sanctum:_Quench_the_Flames"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10

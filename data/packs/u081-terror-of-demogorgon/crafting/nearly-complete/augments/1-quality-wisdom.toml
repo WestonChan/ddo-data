@@ -1,0 +1,21 @@
+name = "+1 Quality Wisdom"
+description = "+1 Quality bonus to Wisdom"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: nearly complete: quality ability score (heroic)"

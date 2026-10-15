@@ -1,0 +1,32 @@
+name = "Gnashtooth Piecemail Chain"
+description = """
+This chainmail shirt is pieced together from several suits of chain. One of
+those suits happened to be magical and protected its kobold owner from the
+harsh acidic sewer water."""
+drop_location = "The Lost Seekers, End reward"
+enhancement_bonus = 2
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Light"
+material = "Steel"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 4
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

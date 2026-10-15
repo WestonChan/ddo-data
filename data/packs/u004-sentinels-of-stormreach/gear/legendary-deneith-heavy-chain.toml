@@ -1,0 +1,45 @@
+name = "Legendary Deneith Heavy Chain"
+description = """
+This armor is made made of doubled layers of heavy chainmail that rival the
+protection of plate. It is typically worn by elite mercenaries serving House
+Deneith that prefer strength of protection over mobility, but still wish to
+wear medium armor."""
+drop_location = "Legendary version of Epic Deneith Heavy Chain"
+enhancement_bonus = 15
+icon = "MediumArmor_10b"
+item_category = "Armor"
+item_type = "Medium"
+material = "Dwarven Iron"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -5
+armor_type = "Medium"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Angelic Grace"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

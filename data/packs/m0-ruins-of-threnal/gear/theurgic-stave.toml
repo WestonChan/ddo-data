@@ -1,0 +1,51 @@
+name = "Theurgic Stave"
+description = "A Quarterstaff of polished wood bound in bands of adamantine."
+drop_location = "The Abandoned Excavation, End reward"
+enhancement_bonus = 4
+icon = "Quarterstaff_10d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Adamantine"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Elemental Bane"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

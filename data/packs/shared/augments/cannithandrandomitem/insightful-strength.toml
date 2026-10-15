@@ -1,0 +1,82 @@
+name = "Insightful Strength"
+choose_level = true
+description = "Insight bonus to Strength"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+]
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: cannith belt extra"
+
+[[slot]]
+slot = "crafting: cannith bracers extra"
+
+[[slot]]
+slot = "crafting: cannith gloves extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random belt extra"
+
+[[slot]]
+slot = "crafting: random bracers extra"
+
+[[slot]]
+slot = "crafting: random gloves extra"

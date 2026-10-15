@@ -1,0 +1,62 @@
+name = "Legendary Necronomicannon"
+description = """
+This Runearm seems to generate terrible and forbidden knowledge at a moment's
+notice. Thankfully, these accursed books are used for little else other than
+blunt force trauma."""
+drop_location = "The Feywild, rare encounters"
+icon = "RuneArm_7a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 29
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Legendary Trap the Soul"
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 44
+
+[[effect]]
+name = "Rune Arm Imbue - Evil Shot VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Book Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "rare encounters"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

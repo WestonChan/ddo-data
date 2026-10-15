@@ -1,0 +1,89 @@
+name = "Legendary Corrosive Reconstructed Quarterstaff"
+accepts_sentience = true
+description = "This quarterstaff is fused from two separate sceptres."
+drop_location = "Cauldron of Sora Katra, Legendary Fusible Sceptre of Corrosion + Legendary Malleable Sceptre of Reconstruction"
+enhancement_bonus = 15
+icon = "Quarterstaff_1d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 50
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

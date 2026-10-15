@@ -1,0 +1,27 @@
+name = "Surefooted Boots (historic)"
+description = """
+Crafted by dwarves, these boots have a very sturdy look about them. They were
+most recently worn by Gorn Gut-Chewer of the Wyrm-Cult Orcs."""
+drop_location = "The Crucible, Gorn Gut-Chewer 's chest"
+icon = "Boots_13b"
+is_legacy = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Feet"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 20
+
+[[source]]
+chest = "gorn gut-chewer 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crucible"

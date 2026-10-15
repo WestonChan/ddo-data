@@ -1,0 +1,111 @@
+name = "Epic Brigand's Cutlass (level 20)(pre-U39)"
+description = """
+A curved sword with an elegant hilt, popular amongst pirates for its intimidating
+and yet sophisticated appearance. This particular blade is infused with the
+rowdiness and anarchy of a high-seas brigand, and is impeccably useful against
+lawful opponents."""
+drop_location = "Treasure of Crystal Cove, Turn in 1200 Copper Doubloon 600 Silver Doubloon 35 Stolen Emerald at Dusty Old Treasure of Crystal Cove "
+enhancement_bonus = 5
+icon = "Scimitar_4"
+item_category = "Weapon"
+item_type = "Scimitar"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Anarchic Burst"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+6 Enhancement Bonus and Incite 30"
+description = """
++6 Enhancement Bonus: +6 enhancement bonus to attack and damage rolls.
+Incite +30: +30% Enhancement bonus to increased threat generation from melee damage"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Absolute Chaos and a Red augment slot"
+description = """
+Absolute Chaos: This weapon is infused with the ultimate power of Chaos.
+It does an additional 2 to 12 damage to non-chaotic targets and can only be
+wielded by Chaotic-aligned characters.
+Adds a Red augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.grant]]
+slot = "red"
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Lawful"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Non-Chaotic"]
+req_type = "EnemyType"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.5
+handedness = "One-handed"
+weapon_type = "Scimitar"

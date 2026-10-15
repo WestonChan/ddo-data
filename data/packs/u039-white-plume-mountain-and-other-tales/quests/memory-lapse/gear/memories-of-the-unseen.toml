@@ -1,0 +1,37 @@
+name = "Memories of the Unseen"
+description = """
+A fragment of misplaced thought, a brilliant light you once remembered. This
+tattered memory was once the face of someone you never knew"""
+drop_location = "Memory Lapse, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 6
+slot = "Head"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 8
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 8
+
+[[effect]]
+name = "Noxious Venom Spike"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Memory Lapse"

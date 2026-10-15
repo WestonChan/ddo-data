@@ -1,0 +1,3 @@
+name = "You have Intercession Ward, and are immune to being Quelled"
+description_template = "You have Intercession Ward, and are immune to being Quelled."
+verbose_name_template = "You have Intercession Ward, and are immune to being Quelled"

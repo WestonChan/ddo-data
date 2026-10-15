@@ -1,0 +1,86 @@
+name = "Mutilator of Minds"
+description = "If they resist, destroy their will."
+drop_location = "Secret of the Slavers' Stockade, End chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 8
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 8
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 3
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Quality"
+value = 17
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "crafting: against the slave lords set bonus"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Might Set bonus"
+icon = "SlavelordsMight"
+min_level = 8
+
+[[socket.option.set]]
+set = "Slavelords Might"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Sorcery Set bonus"
+icon = "SlavelordsSorcery"
+min_level = 8
+
+[[socket.option.set]]
+set = "Slavelords Sorcery"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Endurance Set bonus"
+icon = "SlavelordsEndurance"
+min_level = 8
+
+[[socket.option.set]]
+set = "Slavelords Endurance"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secret of the Slavers' Stockade"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

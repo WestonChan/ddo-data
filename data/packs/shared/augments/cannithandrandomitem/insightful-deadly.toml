@@ -1,0 +1,67 @@
+name = "Insightful Deadly"
+choose_level = true
+description = "Your physical attacks gain a insight bonus to weapon damage"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+]
+
+[[effect]]
+name = "Damage Bonus"
+bonus_type = "Insight"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: random weapon extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"

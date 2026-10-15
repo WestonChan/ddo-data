@@ -1,0 +1,35 @@
+name = "Solar Gem of Repair Amplification (Legendary)"
+description = """
++30 Artifact Bonus to Repair Amplification.
+Drops in: Voices of the Dead, end chest
+The Body Snatchers, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Artifact"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

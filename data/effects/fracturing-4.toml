@@ -1,0 +1,3 @@
+name = "Fracturing 4"
+description_template = "This weapon is ideal for breaking bones and does 4d8 damage to targets that have skeletons or are made of bone."
+verbose_name_template = "Fracturing 4"

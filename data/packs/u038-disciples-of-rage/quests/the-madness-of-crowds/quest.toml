@@ -1,0 +1,29 @@
+name = "The Madness of Crowds"
+bestowed_by = "Dabny d'Jorasco"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Disciples of Rage"
+patron = "House Jorasco"
+zone = "Outskirts of Stormreach"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Madness_of_Crowds"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

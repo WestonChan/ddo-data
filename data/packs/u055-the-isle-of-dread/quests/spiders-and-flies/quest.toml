@@ -1,0 +1,30 @@
+name = "Spiders and Flies"
+bestowed_by = "Aster"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Isle of Dread"
+patron = "The Gatekeepers"
+zone = "Ettercap Tree"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Spiders_and_Flies"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

@@ -1,0 +1,4 @@
+name = "Ranged Attack Speed"
+category = "martial"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Ranged Attack Speed +{1}"

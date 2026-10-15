@@ -1,0 +1,37 @@
+name = "Intricate Magegloves"
+description = """
+The temple's leaders favor these types of gloves, as they focus their twisted
+magic as it slithers from their outstretched fingers."""
+drop_location = "ToEE: First Level and Earth Temple, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Hands"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Quality"
+value = 4
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: First Level and Earth Temple"

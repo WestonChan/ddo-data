@@ -1,0 +1,196 @@
+[[row]]
+name = "Lunar Magic/Serpent +2 Intelligence"
+description = """
++2 Intelligence
+Rare: +4 MRR"""
+icon = "LunarMagicSerpent"
+menu = "Raid Filigrees"
+set = "Lunar Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Lunar Magic/Serpent Fate: +4 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Lunar Magic: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "LunarMagic"
+menu = "Sinister Secret of Saltmarsh"
+set = "Lunar Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Lunar Magic: Charisma: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Lunar Magic: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "LunarMagic"
+menu = "Sinister Secret of Saltmarsh"
+set = "Lunar Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Lunar Magic: Intelligence: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Lunar Magic: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "LunarMagic"
+menu = "Sinister Secret of Saltmarsh"
+set = "Lunar Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Lunar Magic: Wisdom: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Lunar Magic: +3 MRR"
+description = """
++3 Magical Resistance Rating
+Rare: +2 PRR"""
+icon = "LunarMagic"
+menu = "Sinister Secret of Saltmarsh"
+set = "Lunar Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Lunar Magic: MRR: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Lunar Magic: +3 Spell Resistance"
+description = """
++3 Spell Resistance
+Rare: +2 MRR"""
+icon = "LunarMagic"
+menu = "Sinister Secret of Saltmarsh"
+set = "Lunar Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "SpellResistance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Lunar Magic: Spell Resistance: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Lunar Magic: +6 Universal Spell Power"
+description = """
++6 Universal Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "LunarMagic"
+menu = "Sinister Secret of Saltmarsh"
+set = "Lunar Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Lunar Magic: Universal Spell Power: Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Lunar Magic: +9 Force Spell Power"
+description = """
++9 Force Spell Power
+Rare: +2 Force Spell Power"""
+icon = "LunarMagic"
+menu = "Sinister Secret of Saltmarsh"
+set = "Lunar Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+is_rare = true
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]

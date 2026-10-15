@@ -1,0 +1,47 @@
+name = "Atonement"
+description = """
+The sword of a repentant soul, his pleadings of forgiveness sharpened and focused
+the blade."""
+drop_location = "Inferno of the Damned, End Chest"
+enhancement_bonus = 5
+icon = "Greatsword_8a"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Holy"
+
+[[effect]]
+name = "Intercession Ward"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Inferno of the Damned"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Great Sword"

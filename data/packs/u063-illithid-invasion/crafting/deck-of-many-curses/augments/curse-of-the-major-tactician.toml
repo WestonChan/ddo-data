@@ -1,0 +1,34 @@
+name = "Curse of the Major Tactician"
+description = "+2 Fortune Bonus to Tactical Feat DCs"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Tactics"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Tactics"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Curse of Major Tactician"
+reason = "The wiki names the curse Curse of the Major Tactician."
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[slot]]
+slot = "crafting: deck curse"

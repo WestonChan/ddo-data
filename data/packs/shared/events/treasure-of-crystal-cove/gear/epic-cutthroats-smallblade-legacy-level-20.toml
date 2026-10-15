@@ -1,0 +1,102 @@
+name = "Epic Cutthroat's Smallblade (legacy) (level 20)"
+description = """
+When a cutlass is simply too big for the job, a pirate will turn instead to
+a trusty smallblade. This one is serrated and quite adept at inflicting painful
+wounds on living creatures."""
+drop_location = "Treasure of Crystal Cove, Turn in 1200 Copper Doubloon 600 Silver Doubloon 35 Stolen Emerald at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 5
+icon = "Shortsword_3"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Slicing"
+
+[[effect]]
+name = "Bleed"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+6 Enhancement Bonus and Doublestrike 6%"
+description = """
++6 Enhancement Bonus: +6 Enhancement bonus to attack and damage rolls.
+Doublestrike 6%: Passive: 6% Enhancement bonus to Doublestrike. (Doublestrike is
+a chance to score an additional hit with a melee attack.)"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Corrosive Salt and a Red Augment Slot"
+description = """
+Corrosive Salt: This weapon stores a caustic, insatiable power deep within. When
+this weapon is used, this power can come to the surface in the form of a noxious,
+corrosive salt that dissolves all substances.
+Adds a Red Augment Slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.grant]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Shortsword"

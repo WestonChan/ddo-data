@@ -1,0 +1,21 @@
+name = "Sage's Sash (Level 26)"
+drop_location = "A Lesson in Deception, End reward"
+icon = "Belt_10b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Waist"
+
+[[effect]]
+name = "Wizardry X"
+bonus_type = "Enhancement"
+value = 250
+
+[[effect]]
+name = "Hit Points +35"
+bonus_type = "Enhancement"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "A Lesson in Deception"

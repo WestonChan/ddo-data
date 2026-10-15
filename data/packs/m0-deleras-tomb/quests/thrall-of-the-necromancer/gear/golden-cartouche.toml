@@ -1,0 +1,29 @@
+name = "Golden Cartouche"
+description = """
+A simple golden chain from which an arcane symbol hangs. It looks to be a very
+old, perhaps an ancient relic brought to Xen'drik centuries ago?"""
+drop_location = "Thrall of the Necromancer, End chest"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 7
+slot = "Neck"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thrall of the Necromancer"

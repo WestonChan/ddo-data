@@ -1,0 +1,49 @@
+name = "Downcast Gambeson"
+description = """
+Experimental socketry is integrated well into this garment, allowing it to push
+past its normal limits."""
+drop_location = "Special Delivery, end chest (rare)"
+enhancement_bonus = 4
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 16
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "lamordia: woeful (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"

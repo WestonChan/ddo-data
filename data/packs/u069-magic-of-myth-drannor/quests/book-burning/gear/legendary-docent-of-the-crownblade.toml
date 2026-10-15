@@ -1,0 +1,53 @@
+name = "Legendary Docent of the Crownblade"
+description = """
+When the Echo broke off from the Crownblade, the force of its defiance manifested
+this docent, and shares its clarity of purpose."""
+drop_location = "Book Burning, end chest (rare)"
+enhancement_bonus = 15
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 33
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Equipment"
+value = 30
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Linguistics 15%"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Book Burning"

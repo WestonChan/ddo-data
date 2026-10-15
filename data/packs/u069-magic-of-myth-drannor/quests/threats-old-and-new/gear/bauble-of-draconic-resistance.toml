@@ -1,0 +1,41 @@
+name = "Bauble of Draconic Resistance"
+description = "This small orb grants its bearer the toughness and mobility of a Dragon."
+drop_location = "Threats Old and New, Raid Warded chest"
+icon = "Trinket_101a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Trinket"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 15
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 9
+
+[[socket]]
+slot = "crafting: sealed in undeath"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Threats Old and New"

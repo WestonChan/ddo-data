@@ -1,0 +1,21 @@
+name = "Glaciation +78"
+description = "Glaciation +78: +78 Equipment bonus to Cold spell power."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Cold Spell Power"
+bonus_type = "Equipment"
+value = 78
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: incredible potential"

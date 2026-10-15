@@ -1,0 +1,23 @@
+name = "Tempest Rune of Charisma"
+description = """
+Charisma +6: This item makes the wearer have more flair, granting a
++6 enhancement bonus to Charisma."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: tempest rune"

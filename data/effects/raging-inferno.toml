@@ -1,0 +1,3 @@
+name = "Raging Inferno"
+description_template = "Your True Rage effects (such as Barbarian or Bestial Rage) light you on fire, as if you were under the effects of a Fire Shield. This ability also protects you from Energy Drain for the duration."
+verbose_name_template = "Raging Inferno"

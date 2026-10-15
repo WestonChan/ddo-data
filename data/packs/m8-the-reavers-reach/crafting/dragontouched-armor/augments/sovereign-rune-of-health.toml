@@ -1,0 +1,23 @@
+name = "Sovereign Rune of Health"
+description = """
+Harnessing a small amount of the power and potential of the raw elements, this items
+gives you a +20 bonus to your maximum hit points. This stacks with all bonuses
+except Greater Elemental Energy."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Greater Elemental Energy"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Greater Elemental Energy"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[slot]]
+slot = "crafting: sovereign rune"

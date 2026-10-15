@@ -1,0 +1,17 @@
+name = "Assault on Splinterskull"
+quests = [
+    "First Strike",
+    "The Hobgoblins' Captives",
+    "Yarkuch's War-plans",
+    "Whisperdoom's Spawn",
+    "The Deadly Package: The Stronghold Key",
+    "The Deadly Package: Agent of the Darguul",
+    "Doom of the Witch-doctor: The Way to Zulkash",
+    "Doom of the Witch-doctor: Zulkash, Herald of Woe",
+    "The Last Move: The Way to Yarkuch",
+    "The Last Move: Yarkuch's Last Stand",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Assault_on_Splinterskull"
+read = "2026-10-02"

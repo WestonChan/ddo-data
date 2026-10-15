@@ -1,0 +1,1251 @@
+name = "Dark Apostate"
+background = "ClericBackground"
+icon = "Cleric"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Dark Apostate: Dark Apostate"
+cost_per_rank = [1]
+description = """
+Each Core Ability you take in this tree, including this one, grants you
++5 Negative Healing Amplification and +5 Negative, Light, and Alignment Spell Power."""
+icon = "DarkApostate"
+internal_name = "DACore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dark Apostate: Shadow Shrouding"
+cost_per_rank = [1]
+description = """
+Alternate Form: Shroud yourself in Necromantic Energies and assume the form of a Shadow.
+While in Shadow form, you are considered an Undead, gain a base 100% Fortification,
+and may heal from Negative Energies. This healing comes at a cost - Undead naturally
+only take 50% healing from Positive Energy and take 100% more damage from Light.
+You gain +2 Wisdom and +2 Constitution, as well as +5% Incorporeality and Concealment
+as your form is partially obscured and intangible."""
+icon = "ShadowShrouding"
+internal_name = "DACore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Wisdom",
+    "Constitution",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Incorporeality"
+effect_type = "Incorporeality"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Concealment"
+effect_type = "Displacement"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["DACore1"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Shadow Shrouding"
+description = """
+Shroud yourself in Necromantic Energies and assume the form of a Shadow.
+While in Shadow form, you are considered an Undead, gain a base 100% Fortification,
+and may heal from Negative Energies. This healing comes at a cost - Undead naturally
+only take 50% healing from Positive Energy and take 100% more damage from Light."""
+group_name = "Major Form"
+icon = "ShadowShrouding"
+
+[[enhancement]]
+name = "Dark Apostate: Enhanced Shadowform I"
+cost_per_rank = [1]
+description = """
+Your Shadow Shrouding gains an additional +5% Incorporeality and Concealment
+(for a total of 10% each).
+Passive: +1 Imbue Dice."""
+icon = "EnhancedShadowformI"
+internal_name = "DACore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Incorporeality"
+effect_type = "Incorporeality"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Concealment"
+effect_type = "Displacement"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 6
+
+[[enhancement.requirement]]
+items = ["DACore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Enhanced Shadowform II"
+cost_per_rank = [1]
+description = """
+Your Shadow Shrouding gains an additional +5% Incorporeality and Concealment
+(for a total of 15% each).
+
+Passive: Your Bestow Curse, Doom, and Bane spells no longer have a saving throw."""
+icon = "EnhancedShadowformII"
+internal_name = "DACore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Incorporeality"
+effect_type = "Incorporeality"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Concealment"
+effect_type = "Displacement"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 12
+
+[[enhancement.requirement]]
+items = ["DACore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Enhanced Shadowform III"
+cost_per_rank = [1]
+description = """
+Your Shadow Shrouding gains an additional +5% Incorporeality and Concealment
+(for a total of 20% each).
+
+Passive: +1 Necromancy DC, +1 Imbue Dice."""
+icon = "EnhancedShadowformIII"
+internal_name = "DACore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Incorporeality"
+effect_type = "Incorporeality"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Concealment"
+effect_type = "Displacement"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 18
+
+[[enhancement.requirement]]
+items = ["DACore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Master of Shadows"
+cost_per_rank = [1]
+description = """
+Your Shadow Shrouding gains an additional +5% Incorporeality and Concealment
+(for a total of 25% each).
+
+Passive: +4 Wisdom, +1 Imbue Dice."""
+icon = "MasterOfShadows"
+internal_name = "DACore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "DACore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Incorporeality"
+effect_type = "Incorporeality"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+    20,
+    25,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Shadow Shrouding - Concealment"
+effect_type = "Displacement"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Shrouding"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 20
+
+[[enhancement.requirement]]
+items = ["DACore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "DACore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Dark Apostate: Bane"
+cost_per_rank = [2]
+description = """
+Enemies are filled with fear and doubt, giving a -1 Penalty to attack
+rolls and saves against fear on all affected targets. A successful Will save negates
+this effect. Bane counters and dispels Bless. Cooldown 10 seconds."""
+icon = "DABane"
+internal_name = "DABane"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Bane",
+    "Dark Apostate",
+]
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dark Apostate: Apostate's Skills"
+cost_per_rank = [1]
+description = """
++[1/2/3] Heal, Hide, and Bluff.
+Rank 3: +1 Will saving throws."""
+icon = "ApostatesSkills"
+internal_name = "DAApostatesSkills"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Heal",
+    "Hide",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Will"]
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dark Apostate: Shadowy Bulwark"
+cost_per_rank = [1]
+description = "+[5/10/15] Maximum Hit Points"
+icon = "ShadowyBulwark"
+internal_name = "DAShadowyBulwark"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dark Apostate: Apostate's Curse"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your Favored Weapons channel the dark energies within you,
+twisting them into evil versions of themselves - they deal an additional 1d6 Evil
+Damage per Imbue dice on hit (scaling with 100% evil spell power)."""
+icon = "DAApostatesCurse"
+internal_name = "DAApostatesCurse"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 1
+
+[[enhancement.stance]]
+name = "Apostate's Curse"
+description = """
+Your Favored Weapons channel the dark energies within you,
+twisting them into evil versions of themselves - they deal an additional 1d6 Evil
+Damage on hit (scaling with 100% evil spell power)."""
+group_name = "Imbue"
+icon = "DAApostatesCurse"
+
+[[enhancement]]
+name = "Dark Apostate: Traditionalist Caster"
+cost_per_rank = [1]
+description = "+[3/6/10] Universal Spell Power when wielding an Orb or Staff."
+icon = "DATraditionalistCaster"
+internal_name = "DATraditionalistCaster"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dark Apostate: Prayer"
+cost_per_rank = [2]
+description = """
+Gives special favor to you and any allies near you, giving a +1 Luck bonus
+to allies and a -1 penalty to enemies attack rolls, weapon damage, saves, and skill
+checks, with this buff and debuff increasing in magnitude by 1 every 5 caster levels
+- max total of 5 at caster level 20. Cooldown: 10 seconds."""
+icon = "DAPrayer"
+internal_name = "DAPrayer"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    12,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Prayer",
+    "Dark Apostate",
+]
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Dark Apostate: Enhanced Turning"
+arrows = [
+    "ArrowUp",
+    "ArrowRight",
+]
+cost_per_rank = [1]
+description = "+[2/4/6] uses of Turn Undead per rest."
+icon = "EnhancedTurning"
+internal_name = "DAEnhancedTurning"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraTurns"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Dark Apostate: Mighty Turning"
+cost_per_rank = [1]
+description = "Undead that you successfully turn are instead destroyed."
+icon = "DAMightyTurning"
+internal_name = "DAMightyTurning"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DAEnhancedTurning"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Enhanced Curse I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain +1 Imbue Dice and grants your Favored Weapons Ghost Touch."
+icon = "EnhancedCurse"
+internal_name = "DAEnhancedCurseI"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["DAApostatesCurse"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Dark Rewards"
+cost_per_rank = [1]
+description = """
+When you critically hit with a Negative Energy or Alignment spell, you
+gain +[3/6/10] Sacred Temporary Spell Points."""
+icon = "DADarkRewards"
+internal_name = "DADarkRewards"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Dark Apostate: Pray for Mercy"
+cost_per_rank = [2]
+description = """
+Your Prayer-like spells (Bless, Bane, Prayer) now resonate with Evil
+energies, dealing 1d4 Evil damage per Caster Level to all enemies. This damage
+is doubled against enemies that are Cursed."""
+icon = "PrayForMercy"
+internal_name = "DAPrayForMercy"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Dark Apostate: Endless Turning"
+cost_per_rank = [1]
+description = """
+Turn Undead uses regenerate at a rate of one every 120 seconds, or
+[10/20/30]% faster if it already regenerates."""
+icon = "DAEndlessTurning"
+internal_name = "DAEndlessTurning"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["DAEnhancedTurning"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Cursed Words"
+cost_per_rank = [2]
+description = """
+Cast the Bestow Curse spell without spending any Spell Points,
+and the spell Bestow Curse now deals 6d6 Bane damage to Undead per bonus Imbue Dice."""
+icon = "DACursedWords"
+internal_name = "DACursedWords"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Bestow Curse",
+    "Dark Apostate",
+]
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Dark Apostate: Enhanced Curse II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain +1 Imbue Dice.
+Your Deity's Favored Weapon is now an Implement in your hands."""
+icon = "EnhancedCurse"
+internal_name = "DAEnhancedCurseII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["DAEnhancedCurseI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Wisdom I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+internal_name = "DAAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Dark Apostate: Blessing of the Shadow"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+[50/100/150] Incapacitation range."
+icon = "BlessingOfTheShadow"
+internal_name = "DABlessingsOfTheShadow"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -50,
+    -100,
+    -150,
+]
+bonus_type = "Enhancement"
+effect_type = "UnconsciousRange"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Dark Apostate: Return to Dusk"
+cost_per_rank = [2]
+description = """
+While you are in any Undead form, when you are knocked unconscious,
+you dissolve into shadows, granting you Invisibility and Displacement.
+After 5 seconds, your body reforms, and you are healed for 1d6 Negative
+Energy per Character Level. This ability costs one usage of Turn Undead,
+and may only happen once every 3 minutes."""
+icon = "ReturnToDusk"
+internal_name = "DAReturnToDusk"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DABlessingsOfTheShadow"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Dark Judgment"
+cost_per_rank = [1]
+description = """
+When you use Turn Undead, you and allies you control gain +[3/6/10] Temporary
+HP per Apostate's Curse bonus dice."""
+icon = "DADarkJudgement"
+internal_name = "DADarkJudgement"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Dark Apostate: Enhanced Curse III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain +1 Imbue Dice.
+On critical, you apply the effects of the Curse spell."""
+icon = "EnhancedCurse"
+internal_name = "DAEnhancedCurseIII"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DAEnhancedCurseII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Wisdom II"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+internal_name = "DAAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DAAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Benediction"
+cost_per_rank = [2]
+description = "The Harm spell now benefits from 200% Spell power scaling and may now kill enemies."
+icon = "Benediction"
+internal_name = "DABenediction"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Dark Apostate: Ward of Shadow"
+cost_per_rank = [2]
+description = """
+Grants temporary immunity to multiple targets to all forms of alignment-based
+energy (good, evil, law, chaos, and light) for 1 minute per caster level or
+until 12 points of energy per caster level (max 120) for each energy type has
+been absorbed."""
+icon = "WardOfShadow"
+internal_name = "DAWardOfShadow"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Dark Apostate: Necromantic Devotion"
+cost_per_rank = [2]
+description = "+1 DCs with Necromancy spells."
+icon = "DANecromanticDevotion"
+internal_name = "DANecromanticDevotion"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Dark Apostate: Ultimate Heresy"
+cost_per_rank = [2]
+description = """
+You gain +2 Imbue Dice.
+Your Apostate's Curse gains: On critical, you apply 1d3 stacks of Vulnerability."""
+icon = "UltimateHeresy"
+internal_name = "DAUltimateHeresy"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["DAEnhancedCurseIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dark Apostate: Shadows of Death"
+cost_per_rank = [2]
+description = """
+You gain +5% Negative, Light, and Alignment Spell Critical Chance.
+Pray for Mercy is upgraded to dealing 1d6 Evil damage per caster level."""
+icon = "ShadowsOfDeath"
+internal_name = "DAShadowsOfDeath"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Dark Apostate"]
+req_type = "Class"

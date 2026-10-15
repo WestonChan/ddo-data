@@ -1,0 +1,4 @@
+name = "Critical Multiplier (19-20)"
+category = "martial"
+home_bonus_type = "Destiny"
+verbose_name_template = "%b1 Critical Multiplier (19-20) +{1}"

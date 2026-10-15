@@ -1,0 +1,34 @@
+name = "Malicia's Crown (level 12)"
+description = "Time-Twisted version of The Big Top"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+icon = "Helmet_14"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 12
+slot = "Head"
+
+[[effect]]
+name = "Fascination Guard"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Sonic Absorption"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

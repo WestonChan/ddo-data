@@ -1,0 +1,9 @@
+name = "Negative Amplification"
+description_template = "This effect amplifies all incoming negative energy healing by {1} (%b1 bonus ). Includes spells, potions, and other effects."
+verbose_name_template = "%b1 Negative Amplification +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Negative Healing Amplification"

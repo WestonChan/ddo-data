@@ -1,0 +1,37 @@
+name = "Iridiscent Claw: Negative"
+description = "+149 Negative and Poison Spell Power."
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Negative Spell Power"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Poison Spell Power"
+bonus_type = "Equipment"
+value = 149
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [149]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Iridescent Claw: Negative"
+reason = "The wiki spells it Iridiscent Claw: Negative, where Maetrim spells it Iridescent."
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-10-02"
+qualifier = 'family "DinosaurBone"'
+
+[[slot]]
+slot = "isle of dread: claw (weapon)"

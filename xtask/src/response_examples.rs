@@ -3,6 +3,7 @@ use axum::body::Body;
 use axum::http::{Request, StatusCode};
 use ddo_api::{app, AppState};
 use http_body_util::BodyExt;
+use rusqlite::OptionalExtension;
 use serde_json::{Map, Value};
 use std::collections::BTreeSet;
 use std::io::{BufWriter, Write};
@@ -84,12 +85,15 @@ pub fn write_response_examples(
     examples_dir: &Path,
 ) -> Result<Vec<WrittenExample>> {
     reject_unmatched_requests(requests)?;
+    std::fs::create_dir_all(examples_dir)?;
     let state = AppState::open(db_path)?;
+    let db = rusqlite::Connection::open_with_flags(db_path, rusqlite::OpenFlags::SQLITE_OPEN_READ_ONLY)?;
     let runtime = tokio::runtime::Builder::new_current_thread().enable_all().build()?;
     let mut example_texts = Vec::with_capacity(requests.len());
     for request in requests {
         let example_path = examples_dir.join(example_file_name(request.example_name));
-        let sampled_response = runtime.block_on(sampled_response(&state, request.path))?;
+        let request_path = resolved_detail_example_path(&db, request, &example_path)?;
+        let sampled_response = runtime.block_on(sampled_response(&state, &request_path))?;
         if let Some(committed_text) = committed_example_to_keep(request.example_name, &sampled_response, &example_path)
         {
             example_texts.push((example_file_name(request.example_name), committed_text));
@@ -97,7 +101,7 @@ pub fn write_response_examples(
         }
         let mut example = sampled_response
             .into_json()
-            .with_context(|| format!("example {}: GET {}", request.example_name, request.path))?;
+            .with_context(|| format!("example {}: GET {request_path}", request.example_name))?;
         if request.example_name == VERSION_EXAMPLE_NAME {
             keep_committed_api_commit(&mut example, &example_path)?;
         }
@@ -113,6 +117,57 @@ pub fn write_response_examples(
             Ok(WrittenExample { file_name, size_bytes: example_text.len() })
         })
         .collect()
+}
+
+fn resolved_detail_example_path(
+    db: &rusqlite::Connection,
+    request: &ExampleRequest,
+    example_path: &Path,
+) -> Result<String> {
+    let Some((prefix, old_id)) = request.path.rsplit_once('/') else { return Ok(request.path.to_string()) };
+    if !request.example_name.ends_with("_id") || old_id.parse::<i64>().is_err() {
+        return Ok(request.path.to_string());
+    }
+    let table = match prefix {
+        "/v1/adventure-packs" => "adventure_packs",
+        "/v1/augments" => "augments",
+        "/v1/classes" => "classes",
+        "/v1/crafting-systems" => "crafting_systems",
+        "/v1/effects" => "effects",
+        "/v1/enhancement-trees" => "enhancement_trees",
+        "/v1/events" => "events",
+        "/v1/feats" => "feats",
+        "/v1/items" => "items",
+        "/v1/quest-chains" => "quest_chains",
+        "/v1/quests" => "quests",
+        "/v1/races" => "races",
+        "/v1/sagas" => "sagas",
+        "/v1/sets" => "set_bonuses",
+        "/v1/spells" => "spells",
+        "/v1/vendors" => "vendors",
+        _ => return Ok(request.path.to_string()),
+    };
+    let committed_path = if example_path.is_file() {
+        example_path.to_path_buf()
+    } else {
+        Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("../crates/ddo-api/docs/examples/v1")
+            .join(example_file_name(request.example_name))
+    };
+    let committed = committed_path
+        .is_file()
+        .then(|| std::fs::read_to_string(&committed_path))
+        .transpose()?
+        .map(|text| serde_json::from_str::<Value>(&text))
+        .transpose()?;
+    let name = committed.as_ref().and_then(|value| value.get("name")).and_then(Value::as_str);
+    let id: Option<i64> = if let Some(name) = name {
+        db.query_row(&format!("SELECT id FROM {table} WHERE name = ?1 ORDER BY id LIMIT 1"), [name], |row| row.get(0))
+            .optional()?
+    } else {
+        db.query_row(&format!("SELECT id FROM {table} ORDER BY id LIMIT 1"), [], |row| row.get(0)).optional()?
+    };
+    Ok(id.map_or_else(|| request.path.to_string(), |id| format!("{prefix}/{id}")))
 }
 
 pub fn write_v1_detail_snapshot(db_path: &Path, out_path: &Path) -> Result<usize> {
@@ -233,5 +288,23 @@ fn trimmed_example(example: Value) -> Value {
             )
         }
         scalar => scalar,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn fresh_example_directory_resolves_a_named_detail_after_ids_change() {
+        let db = rusqlite::Connection::open_in_memory().unwrap();
+        db.execute_batch("CREATE TABLE effects (id INTEGER PRIMARY KEY, name TEXT NOT NULL); INSERT INTO effects VALUES (42, 'Strength')")
+            .unwrap();
+        let directory = tempfile::tempdir().unwrap();
+        let request = ExampleRequest { example_name: "effects_id", path: "/v1/effects/1" };
+        assert_eq!(
+            resolved_detail_example_path(&db, &request, &directory.path().join("effects_id.json")).unwrap(),
+            "/v1/effects/42"
+        );
     }
 }

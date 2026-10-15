@@ -1,0 +1,103 @@
+name = "Treason"
+description = """
+This weapon was a trophy of the giants' last victory, taken from the fallen
+captain of the rebel elves. When the dragons intervened and obliterated the
+Lost Empire, Treason was lost in the ashes."""
+drop_location = "The Reaver's Fate, Raid Warded chest"
+enhancement_bonus = 5
+icon = "Shortsword_16"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Sneak Attack Bonus"
+bonus_type = "Enhancement"
+value = 3
+value2 = 5
+
+[[effect]]
+name = "Treason"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[socket.option]]
+name = "Adds Sneak Attack Bonus +4 and Armor Piercing 15%"
+description = """
+Sneak Attack Bonus +4: Provides a +4 to attack bonus and a +6 to damage for any
+attack that would qualify as a Sneak Attack, even if the wielder is not a Rogue.
+Armor-Piercing - 15%: Passive: +15% Enhancement bonus to Fortification Bypass."""
+icon = "Stormreaver"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+value = 4
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"
+
+[[weapon]]
+attack_modifier = "Strength, Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength, Dexterity"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Shortsword"

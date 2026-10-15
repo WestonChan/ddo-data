@@ -1,0 +1,33 @@
+name = "Infused Chaosrobe"
+description = """
+This robe, imbued with powerful and unpredictable magic, seems to have come
+from Kythri originally. The denizens of Xoriat likely found its wild enchantments
+intriguing, so they seized it and brought it back with them to their own realm."""
+drop_location = "Fear Factory, End chest"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Spell Turmoil"
+
+[[effect]]
+name = "Lesser Evocation Augmentation IX"
+
+[[effect]]
+name = "Power Drain"
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fear Factory"

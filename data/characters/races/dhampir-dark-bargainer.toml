@@ -1,0 +1,37 @@
+name = "Dhampir Dark Bargainer"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = '"For better or worse, this Dark Gift is part of me. But I alone choose my way forward."'
+iconic_class = "Warlock"
+short_name = "Dhampir Dark Bargainer"
+starting_world = "Forgotten Realms"
+
+[[ability_modifier]]
+modifier = 1
+stat = "Intelligence"
+
+[[ability_modifier]]
+modifier = 1
+stat = "Charisma"
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Dhampir_Dark_Bargainer"
+read = "2026-09-29"
+
+[[feat_slot]]
+feat_type = "Dark Gift"
+level = 1
+
+[[granted_feat]]
+feat_name = "Dhampir Traits"
+
+[[granted_feat]]
+feat = "Dhampir Dark Bargainer"
+
+[[granted_feat]]
+feat_name = "Vampiric Bite"

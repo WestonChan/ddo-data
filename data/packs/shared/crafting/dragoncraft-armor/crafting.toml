@@ -1,0 +1,55 @@
+name = "Dragoncraft Armor"
+npc = "Sangefar, Gianthold"
+
+[[ingredient]]
+name = "Ancient Dragon Relic"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Dragoncraft_Armor"
+read = "2026-10-02"
+
+[[recipe]]
+note = "produces Dragoncraft Robe; bound to character; shared properties: +4 Enhancement Bonus, Fortification +75%, Protection +4, Shield +4"
+option = "Dragoncraft Robe"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Dragon Relic"
+quantity = 10
+
+[[recipe]]
+note = "produces Dragoncraft Leather Armor; bound to character; shared properties: +4 Enhancement Bonus, Fortification +75%, Protection +4, Shield +4"
+option = "Dragoncraft Leather Armor"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Dragon Relic"
+quantity = 10
+
+[[recipe]]
+note = "produces Dragoncraft Breastplate; bound to character; shared properties: +4 Enhancement Bonus, Fortification +75%, Protection +4, Shield +4"
+option = "Dragoncraft Breastplate"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Dragon Relic"
+quantity = 10
+
+[[recipe]]
+note = "produces Dragoncraft Plate Armor; bound to character; shared properties: +4 Enhancement Bonus, Fortification +75%, Protection +4, Shield +4"
+option = "Dragoncraft Plate Armor"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Dragon Relic"
+quantity = 10
+
+[[recipe]]
+note = "produces Dragoncraft Docent; bound to character; shared properties: +4 Enhancement Bonus, Fortification +75%, Protection +4, Shield +4"
+option = "Dragoncraft Docent"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Dragon Relic"
+quantity = 10

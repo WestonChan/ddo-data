@@ -1,0 +1,18 @@
+name = "Dolorous Flames (Legendary)"
+description = """
+Adds Good alignment bypass. Your attacks and spells have a small chance to deal a large
+amount of Fire damage.
+(Undocumented: Grants Alchemical Fire Attunement)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

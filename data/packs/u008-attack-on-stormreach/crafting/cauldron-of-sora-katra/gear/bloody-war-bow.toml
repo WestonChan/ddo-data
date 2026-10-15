@@ -1,0 +1,48 @@
+name = "Bloody War Bow"
+description = """
+This powerful gnoll bow can now grant life to its wielder as it draws blood
+from his or her foes."""
+drop_location = "Cauldron of Sora Katra, upgraded version of Gnollish War Bow + Bloody Cleaver + Mark of Rhesh Turakbar"
+enhancement_bonus = 5
+icon = "Longbow_8"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Feat - Bow Strength"
+
+[[effect]]
+name = "Monstrous Humanoid Bane 3"
+
+[[effect]]
+name = "Life Shield"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Longbow"

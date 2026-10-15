@@ -1,0 +1,33 @@
+name = "Mythic Shield Boost"
+description = "Mythic bonus to PRR and MRR"
+enter_value = true
+family = "Mythic"
+icon = "Mythic"
+min_level = 1
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Mythic"
+value = 1
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Mythic"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Mythic"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Mythic"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "crafting: mythic"

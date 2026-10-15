@@ -1,0 +1,36 @@
+name = "Coldlight Runners"
+description = """
+You don't need to be swift - you just need to be swifter than the Coldlight
+Walkers."""
+drop_location = "A Light in the Attic, end chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Feet"
+
+[[effect]]
+name = "Marksmanship"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"

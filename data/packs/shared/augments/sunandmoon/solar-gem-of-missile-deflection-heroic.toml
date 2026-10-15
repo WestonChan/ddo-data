@@ -1,0 +1,28 @@
+name = "Solar Gem of Missile Deflection (Heroic)"
+description = """
++3% Artifact Bonus to Missile Deflection
+Drops in: The Price of an Egg, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Missile Deflection"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "MissileDeflection"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Price of an Egg"

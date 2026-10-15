@@ -1,0 +1,40 @@
+name = "Helm of Eternal Day"
+description = "A dream of everlasting day was forged into this fine elven helm."
+drop_location = "The Key to the Mythal, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 13
+slot = "Head"
+
+[[effect]]
+name = "Undying"
+bonus_type = "Enhancement"
+value = 90
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Quality"
+value = 21
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 23
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Key to the Mythal"

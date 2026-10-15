@@ -1,0 +1,11 @@
+name = "Symbiotic Flexibility"
+description_template = "Because this suit of armor has merged with your body, the flexibility it affords you is practically unparalleled. A suit of armor that has this property has a maximum Dexterity bonus 4 higher than normal, and its armor check penalty is reduced by 4."
+home_bonus_type = "Stacking"
+verbose_name_template = "Symbiotic Flexibility +4"
+
+[[bonus]]
+amount_from = 0
+constant = 4
+rounding = "down"
+scale = 1.0
+target = "Armor Check Penalty"

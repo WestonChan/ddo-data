@@ -1,0 +1,80 @@
+name = "Ventilated Bracers"
+description = """
+These bracers have the unique feature of having air vents cut into their sides
+to allow your arms to breathe. This makes nerve wracking procedures (such as
+disarming a bomb) much less sweat inducing."""
+drop_location = "The Reaver's Fate, Raid Warded chest"
+icon = "Bracers_11a"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 13
+slot = "Wrists"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Air Guard"
+
+[[socket]]
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[socket.option]]
+name = "Armor Bonus +7, Enhance Disable Device +5 and Enhanced Open Lock +5"
+description = """
+Armor Bonus +7: This item surrounds the wearer with an invisible but tangible field
+of force, granting +7 armor bonus to AC, just as though he were wearing armor.
+Enhanced Disable Device +5: Passive: +5 Enhancement bonus to the Disable Device skill.
+Enhanced Open Lock +5: Passive: +5 Enhancement bonus to the Open Lock skill."""
+icon = "Stormreaver"
+min_level = 13
+
+[[socket.option.effect]]
+bonus_type = "Armor"
+effect = "Armor Class"
+value = 7
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Disable Device"
+value = 5
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Open Lock"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Armor"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"

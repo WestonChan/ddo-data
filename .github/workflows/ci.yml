@@ -15,6 +15,27 @@ jobs:
       - run: cargo fmt --all --check
       - run: cargo lint
       - run: cargo test --workspace
+      - name: Find an entity directly in the data files
+        run: cargo run -p ddo-etl -- find "Death House" --data data
+      - name: Verify the full data round trip
+        run: cargo run --release -p xtask -- round-trip --data data
+      - name: Check out the data files' recorded upstream revision
+        run: |
+          sha=$(sed -n 's/^sha = "\(.*\)"/\1/p' data/upstream/commit.toml)
+          git clone --filter=blob:none --no-checkout https://github.com/Maetrim/DDOBuilderV2.git target/upstream-source
+          git -C target/upstream-source sparse-checkout set Output/DataFiles
+          git -C target/upstream-source checkout "$sha"
+      - name: Compare XML and data databases by slug
+        run: |
+          cargo run --release -p ddo-etl -- build --source target/upstream-source/Output/DataFiles --out target/xml-source.db
+          cargo run --release -p ddo-etl -- build --data data --out target/data-source.db
+          cargo run --release -p xtask -- diff-db target/xml-source.db target/data-source.db --by-slug --allow-list xtask/data/data_diff.allow
+      - name: Validate both databases and the served data
+        run: |
+          cargo xtask check-db target/xml-source.db
+          cargo xtask check-db target/data-source.db
+          cargo xtask validate-api --db target/data-source.db --all-details
+          cargo xtask wiki-tooltips --db target/data-source.db
       - name: Check the fixture database's integrity
         run: |
           mkdir -p target/no-corrections
@@ -22,4 +43,5 @@ jobs:
           cargo run -q -p ddo-etl -- build --source crates/ddo-etl/tests/fixtures/DataFiles \
             --wiki crates/ddo-etl/tests/fixtures/wiki --corrections target/no-corrections --out target/fixture.db
           cargo xtask check-db target/fixture.db --source crates/ddo-etl/tests/fixtures/DataFiles --corrections target/no-corrections \
-            --allow-empty-table corrections --allow-empty-table effect_damage --allow-empty-table race_feat_slots
+            --allow-empty-table corrections --allow-empty-table effect_damage --allow-empty-table race_feat_slots \
+            --allow-empty-table entity_notes --allow-empty-table removed_entities

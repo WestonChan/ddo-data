@@ -1,0 +1,68 @@
+name = "Tail of Suulomades"
+accepts_sentience = true
+description = """
+Forged from the hardened steel scales of the Devil General Suulomades, this
+wicked Falchion retains both the cruelty of its namesake and its affinity for
+destruction."""
+drop_location = "Legendary Vision of Destruction, End chest"
+enhancement_bonus = 15
+icon = "Falchion_1i"
+item_category = "Weapon"
+item_type = "Falchion"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Harnessed Lightning"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Aligned"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 6
+damage_modifier = "Strength"
+damage_multiplier = 5.3
+handedness = "Two-handed"
+weapon_type = "Falchion"

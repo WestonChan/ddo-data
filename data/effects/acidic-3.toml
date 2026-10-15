@@ -1,0 +1,3 @@
+name = "Acidic 3"
+description_template = "This effect causes the edges of this weapon to drip with acid, dealing 3d6 Acid damage on each hit."
+verbose_name_template = "Acidic 3"

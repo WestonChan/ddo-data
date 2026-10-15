@@ -1,0 +1,70 @@
+name = "The Epic Desert's Starless Nights"
+icon = "Menechtarun"
+
+[[item]]
+name = "Epic Bracers of the Demon's Consort"
+
+[[item]]
+name = "Epic Bramble-Casters"
+
+[[item]]
+name = "Epic Dusk Heart"
+
+[[item]]
+name = "Epic Hruvayah's Medallion"
+
+[[item]]
+name = "Epic Mummy Wrappings"
+
+[[item]]
+name = "Epic Ring of Baphomet"
+
+[[item]]
+name = "Epic Spectacles of Spirit Sight"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative and Poison Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative and Poison Spell Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

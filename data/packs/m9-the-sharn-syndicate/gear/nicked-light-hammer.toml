@@ -1,0 +1,44 @@
+name = "Nicked Light Hammer"
+description = "A small sledge with a blunt, square head."
+drop_location = "The Sharn Syndicate, End reward"
+enhancement_bonus = 2
+icon = "LightHammer_1c"
+item_category = "Weapon"
+item_type = "Light Hammer"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Electrifying 2"
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest_chain"
+name = "The Sharn Syndicate"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Light Hammer"

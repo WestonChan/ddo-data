@@ -1,0 +1,60 @@
+name = "Templar's Justice"
+description = """
+A sanctified axe that shines brightly with the power of the Silver Flame. It
+is said to deliver the wrath of Tira Miron again and again upon those that
+it strikes."""
+drop_location = "The Spinner of Shadows, end chest"
+enhancement_bonus = 4
+icon = "DwarvenWaraxe_5c"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Cold Iron"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Cold Iron"
+
+[[effect]]
+name = "Holy Burst 4"
+
+[[effect]]
+name = "Evil Characters"
+
+[[effect]]
+name = "Good Blast 4"
+
+[[effect]]
+name = "Coruscating 4"
+
+[[effect]]
+name = "Godly Wrath"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Spinner of Shadows"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

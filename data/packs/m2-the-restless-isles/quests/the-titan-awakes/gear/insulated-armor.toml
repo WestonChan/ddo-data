@@ -1,0 +1,36 @@
+name = "Insulated Armor"
+description = """
+Plate armor lined with a non-conductive material and specially constructed to
+not interfere with spellcasting."""
+drop_location = "The Titan Awakes, Raid Warded Chest"
+enhancement_bonus = 4
+icon = "HeavyArmor_6a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 13
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 7
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Lightning Bolt Ward"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

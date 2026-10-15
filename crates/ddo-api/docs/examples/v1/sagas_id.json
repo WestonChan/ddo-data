@@ -1,51 +1,58 @@
 {
-  "id": 1,
+  "id": 112881627247766,
   "name": "The Haunting of Saltmarsh",
   "pack": "Sinister Secret of Saltmarsh",
   "quest_count": 10,
   "quests": [
     {
-      "id": 60,
+      "id": 8333688581611483,
       "level": 3,
-      "name": "Back to Basics"
+      "name": "Back to Basics",
+      "slug": "back-to-basics"
     },
     {
-      "id": 54,
+      "id": 1944531197864562,
       "level": 3,
-      "name": "Danger at Dunwater"
+      "name": "Danger at Dunwater",
+      "slug": "danger-at-dunwater"
     },
     {
-      "id": 53,
+      "id": 2617826377984418,
       "level": 3,
-      "name": "Down You Go"
+      "name": "Down You Go",
+      "slug": "down-you-go"
     }
   ],
   "reward_count": 6,
   "rewards": [
     {
-      "id": 891,
+      "id": 2868862764906475,
       "is_rare": false,
       "minimum_level": 29,
       "name": "Black Pearl Ring",
       "slot": "Ring",
+      "slug": "black-pearl-ring",
       "tier": "epic"
     },
     {
-      "id": 2933,
+      "id": 2234305602286956,
       "is_rare": false,
       "minimum_level": 29,
       "name": "Explorer of the Depths",
       "slot": "Head",
+      "slug": "explorer-of-the-depths",
       "tier": "epic"
     },
     {
-      "id": 6868,
+      "id": 5369597803180133,
       "is_rare": false,
       "minimum_level": 29,
       "name": "Ring of the Kraken",
       "slot": "Ring",
+      "slug": "ring-of-the-kraken",
       "tier": "epic"
     }
   ],
+  "slug": "the-haunting-of-saltmarsh",
   "wiki_url": "https://ddowiki.com/page/Sinister_Secret_of_Saltmarsh_(Legendary)"
 }

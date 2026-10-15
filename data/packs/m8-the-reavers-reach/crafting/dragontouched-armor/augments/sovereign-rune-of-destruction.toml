@@ -1,0 +1,12 @@
+name = "Sovereign Rune of Destruction"
+description = """
+Adds Destruction to any equipped Melee weapon.
+On Hit: Your target gains a stack of Armor Destruction. (-1 penalty to Armor Class,
+-1% of its Fortification. 20 second duration. Stacks up to 15 times.)
+This effect may trigger once every three seconds."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

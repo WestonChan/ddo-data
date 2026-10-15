@@ -1,0 +1,61 @@
+name = "Smedgar's Ring"
+description = """
+This jewel encrusted ring belonged to the Virtuoso Smedgar, whose voice was
+the sound of emotion. With a song he moved the devil Ssharv, to yield in battle."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Virtuoso"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Virtuoso - 2 Piece bonus"
+effect_type = "SongCount"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    -2,
+    -2,
+]
+bonus_type = "Equipment"
+display_name = "Virtuoso - 2 Piece bonus"
+effect_type = "MetamagicCostExtend"
+
+[[modifier.requirement]]
+items = ["Extend"]
+req_type = "Stance"
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

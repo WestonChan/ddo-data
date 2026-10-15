@@ -1,0 +1,33 @@
+name = "Ring of the Ancestors"
+description = """
+Wildman lore dictates that this ancient ring was created by an incredibly intelligent
+elder. They say it has the power to bring one back from the dead. Fearing it
+could be used by their quori slavers, he forged the ring such that only one
+pure of heart could utilize its power."""
+drop_location = "Slavers of the Shrieking Mines, Lord Ythrixid 's chest"
+icon = "Ring_3"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 11
+slot = "Ring"
+
+[[clickie]]
+name = "Raise Dead"
+clickie = "Raise Dead"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Raise Dead"]
+
+[[source]]
+chest = "lord ythrixid 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Slavers of the Shrieking Mines"

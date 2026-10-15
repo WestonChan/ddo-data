@@ -1,0 +1,36 @@
+name = "Emerald Claw Amulet"
+description = """
+This Amulet of the Emerald Claw has been transformed by the Brother Salasso's
+bloody altar."""
+drop_location = "The Bloody Crypt, altar"
+icon = "Necklace_4"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 5
+slot = "Neck"
+
+[[clickie]]
+name = "Cause Fear"
+clickie = "Cause Fear"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 3
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cause Fear"]
+
+[[source]]
+chest = "altar"
+kind = "quest"
+loot_type = "chest"
+name = "The Bloody Crypt"

@@ -1,0 +1,43 @@
+name = "Brimstone Boulder Warden's Robe"
+description = """
+You managed to scavenge this from an armory in the 'Glamer Slammer' during your
+daring escape."""
+drop_location = "The Price of Freedom, End Chest (2 chests)"
+enhancement_bonus = 3
+icon = "Cloth_6"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Price of Freedom"

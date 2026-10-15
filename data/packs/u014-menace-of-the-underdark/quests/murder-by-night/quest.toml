@@ -1,0 +1,21 @@
+name = "Murder by Night"
+bestowed_by = "Delethir Mistveil"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Menace of the Underdark"
+patron = "Purple Dragon Knights"
+zone = "Eveningstar War Hospital"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Murder_by_Night"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

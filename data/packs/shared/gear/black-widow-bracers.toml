@@ -1,0 +1,22 @@
+name = "Black Widow Bracers"
+description = """
+Crafted from the chitinous shell of giant black widow spiders, these bracers
+provide excellent defense versus physical attacks."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 3
+slot = "Wrists"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 4
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

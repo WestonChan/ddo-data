@@ -1,0 +1,63 @@
+name = "Legendary Ruby of Implement's Flame"
+description = """
+Provides a +146 Equipment bonus to Fire spell power and turns this item into a
+spellcasting implement.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 30
+
+[[effect]]
+name = "Fire Spell Power"
+bonus_type = "Equipment"
+value = 146
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [146]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Legendary Ruby of Implements's Flame"
+reason = "The Temple of Elemental Evil quest loot tables spell it Implement's; Implements's is a typo."
+url = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-02"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+chest = "any rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"
+
+[[source]]
+chest = "rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: First Level and Earth Temple"
+
+[[source]]
+chest = "rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Lower Temple Complex"

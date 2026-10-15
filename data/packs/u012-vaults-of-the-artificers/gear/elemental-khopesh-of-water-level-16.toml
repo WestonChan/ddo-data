@@ -1,0 +1,106 @@
+name = "Elemental Khopesh of Water (level 16)"
+description = """
+This khopesh is part of a mass-produced line of the House Cannith weapons with
+elementals bound to them. This one is infused with water and deals cold damage
+as a result."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 4
+icon = "Khopesh_9"
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Icy Burst"
+
+[[effect]]
+name = "Paralyzing"
+
+[[effect]]
+name = "Crushing Wave"
+
+[[effect]]
+name = "Slowburst"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+5 Enhancement Bonus and Fire Resistance 32"
+description = """
++5 Enhancement Bonus: +5 Enhancement bonus to attack and damage rolls.
+Fire Resistance +32: Passive: +32 Enhancement bonus to your Fire Resistance."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+value = 32
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [32]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Purple augment slot and Fire Resistance 35"
+description = """
+Adds a Purple augment slot to this item
+Fire Resistance +35: Passive: +35 Enhancement bonus to your Fire Resistance."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+value = 35
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Khopesh"

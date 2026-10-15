@@ -1,0 +1,26 @@
+name = "Fathom the Depths"
+bestowed_by = "Craneclaw"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Red Fens"
+patron = "House Kundarak"
+zone = "Ancient Ziggurat"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Fathom_the_Depths"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9
+
+[[run]]
+tier = "epic"
+level = 21

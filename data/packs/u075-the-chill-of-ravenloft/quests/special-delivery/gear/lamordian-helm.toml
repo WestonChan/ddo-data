@@ -1,0 +1,38 @@
+name = "Lamordian Helm"
+description = """
+Once worn by private guards of aristocracy, these helms are often left by the
+side of the road. This one appears to have been modified."""
+drop_location = "Special Delivery, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 8
+slot = "Head"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"

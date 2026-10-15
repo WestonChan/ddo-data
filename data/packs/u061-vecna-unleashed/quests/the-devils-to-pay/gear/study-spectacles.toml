@@ -1,0 +1,37 @@
+name = "Study Spectacles"
+description = """
+A pair of spectacles that fell behind a heavy shelf in the library. Years of
+exposure to the library's knowledge have permanently changed them."""
+drop_location = "The Devils to Pay, End chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Goggles"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 16
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Eversight"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Devils to Pay"

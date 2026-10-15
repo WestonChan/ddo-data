@@ -1,0 +1,46 @@
+name = "Robe of Resonance (level 20)"
+description = "Time-Twisted version of Robe of Dissonance"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+enhancement_bonus = 6
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 9
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 55
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

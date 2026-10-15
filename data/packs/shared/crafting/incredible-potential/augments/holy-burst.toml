@@ -1,0 +1,52 @@
+name = "Holy Burst"
+description = """
+Holy Burst: A holy weapon is imbued with holy power. This power makes the weapon
+good-aligned and thus bypasses the corresponding damage reduction. It deals an
+extra 2 to 12 points of damage against all of evil alignment and an extra 3 to 18
+on a critical for weapons with a x2 critical multiplier, 4 to 24 for a x3 multiplier,
+and 5 to 30 for a x4 multiplier."""
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[modifier]]
+amount_type = "Dice"
+bonus_type = "Equipment"
+dice_damage = "Cold"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Dice"
+bonus_type = "Equipment"
+dice_damage = "Good"
+dice_number = [
+    0,
+    0,
+    2,
+    3,
+    4,
+    5,
+]
+dice_sides = [
+    0,
+    0,
+    6,
+    6,
+    6,
+    6,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[slot]]
+slot = "crafting: incredible potential"

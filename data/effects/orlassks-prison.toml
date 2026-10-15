@@ -1,0 +1,3 @@
+name = "Orlassk's Prison"
+description_template = "This shield radiates with the power of the Lord of Stone. A shield bash will turn the target to stone. This effect can trigger once ever 90 seconds. A successful Fortitude save (DC 65) negates this effect."
+verbose_name_template = "Orlassk's Prison"

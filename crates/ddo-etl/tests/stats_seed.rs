@@ -220,6 +220,11 @@ fn record_fixture_build_bonuses(sources_by_stat: &mut BTreeMap<String, String>) 
 fn stat_names_under_key(toml_value: &toml::Value, stat_names: &mut Vec<String>) {
     match toml_value {
         toml::Value::Table(table) => {
+            if table.contains_key("amount_from") {
+                if let Some(toml::Value::String(stat_name)) = table.get("target") {
+                    stat_names.push(stat_name.clone());
+                }
+            }
             for (key, nested_value) in table {
                 match (key.as_str(), nested_value) {
                     ("stat", toml::Value::String(stat_name)) => stat_names.push(stat_name.clone()),
@@ -237,14 +242,16 @@ fn stat_names_under_key(toml_value: &toml::Value, stat_names: &mut Vec<String>) 
 }
 
 fn record_override_bonuses(sources_by_stat: &mut BTreeMap<String, String>) {
-    for dir in [data_dir().join("wiki"), data_dir().join("corrections")] {
+    let workspace_root = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../..");
+    for (dir, prefix) in [(data_dir().join("wiki"), data_dir()), (workspace_root.join("data"), workspace_root.clone())]
+    {
         for path in files_under(&dir).into_iter().filter(|path| path.extension().is_some_and(|ext| ext == "toml")) {
             let file_text = std::fs::read_to_string(&path).unwrap();
             let toml_value: toml::Value =
                 toml::from_str(&file_text).unwrap_or_else(|error| panic!("{}: {error}", path.display()));
             let mut stat_names = Vec::new();
             stat_names_under_key(&toml_value, &mut stat_names);
-            let file_name = path.strip_prefix(data_dir()).unwrap().display().to_string();
+            let file_name = path.strip_prefix(&prefix).unwrap().display().to_string();
             for stat_name in stat_names {
                 record_source(sources_by_stat, &stat_name, format!("a bonus in data/{file_name}"));
             }

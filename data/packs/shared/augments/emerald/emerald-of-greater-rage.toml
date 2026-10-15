@@ -1,0 +1,8 @@
+name = "Emerald of Greater Rage"
+description = "Upgrade an item to grant +3 Rage Charges."
+family = "Emerald"
+icon = "Emerald"
+min_level = 28
+
+[[slot]]
+slot = "green"

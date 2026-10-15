@@ -1,0 +1,113 @@
+name = "Epic Treasure Hunter's Spyglass (legacy) (level 20)"
+description = """
+A tool such as this is a great aid to the treasure-seeking pirate, for it allows
+him or her to locate small details, find secret passages and notice any traps
+that might be lurking along the way."""
+drop_location = "Treasure of Crystal Cove, Turn in 1200 Copper Doubloon 600 Silver Doubloon 35 Stolen Diamond at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_17"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 20
+slot = "Trinket"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Exceptional"
+value = 1
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Spot +20, Search +20, Insightful Intelligence +2"
+description = """
+Spot +20: Passive: +20 Competence bonus to the Spot skill.
+Search +20: Passive: +20 Competence bonus to the Search skill.
+Insightful Intelligence +2: This item focuses the power of the wearer's mind,
+granting a +2 insight bonus to Intelligence."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Search"
+value = 20
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Spot"
+value = 20
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Search",
+    "Spot",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Enhanced Use Magic Device +3 and a Green Augment Slot"
+description = """
+Enhanced Use Magic Device +3: Passive: +3 Enhancement bonus to the Use Magic Device skill.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Use Magic Device"
+value = 3
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

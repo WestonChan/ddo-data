@@ -1,0 +1,40 @@
+name = "Splendid Cacophony"
+icon = "SplendidCacophony"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Doublestrike and Doubleshot"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Positive Spell Power"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "Inspire Courage Amplification"

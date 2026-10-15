@@ -1,0 +1,55 @@
+name = "Ruby of Force/Untyped Spell Power"
+choose_level = true
+description = "Your force/Untyped based spells have better effect"
+family = "Ruby"
+icon = "Ruby"
+level_values = [
+    38,
+    55,
+    70,
+    84,
+    97,
+    111,
+    125,
+    139,
+    153,
+    166,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+]
+
+[[effect]]
+name = "Force Spell Power"
+bonus_type = "Equipment"
+value = 138
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [138]
+bonus_type = "Equipment"
+effect = "Force Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

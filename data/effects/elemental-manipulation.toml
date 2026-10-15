@@ -1,0 +1,36 @@
+name = "Elemental Manipulation"
+description_template = "This item provides a +90 Equipment bonus to your Acid, Cold, Electric, and Fire Spell Power."
+home_bonus_type = "Equipment"
+verbose_name_template = "Elemental Manipulation +90"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Equipment"
+constant = 90
+rounding = "down"
+scale = 1.0
+target = "Acid Spell Power"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Equipment"
+constant = 90
+rounding = "down"
+scale = 1.0
+target = "Cold Spell Power"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Equipment"
+constant = 90
+rounding = "down"
+scale = 1.0
+target = "Electric Spell Power"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Equipment"
+constant = 90
+rounding = "down"
+scale = 1.0
+target = "Fire Spell Power"

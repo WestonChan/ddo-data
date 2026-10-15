@@ -1,0 +1,51 @@
+name = "Cormyrian Red Dragonplate Armor"
+description = "Mastercraft plate armor forged from the scales of a red dragon."
+drop_location = "Mikrom Sum: Purple Dragon Knight Patron Vendor"
+enhancement_bonus = 6
+icon = "HeavyArmor_8"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Red Dragonscale"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 22
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 10
+
+[[source]]
+kind = "crafting_system"
+name = "Mikrom Sum"

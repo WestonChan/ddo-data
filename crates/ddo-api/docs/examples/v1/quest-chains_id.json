@@ -1,48 +1,55 @@
 {
-  "id": 1,
+  "id": 4406248643734309,
   "name": "The Lost Seekers",
   "pack": null,
   "quest_count": 4,
   "quests": [
     {
-      "id": 47,
+      "id": 4225676338393914,
       "level": 3,
-      "name": "The Kobold's Den: Clan Gnashtooth"
+      "name": "The Kobold's Den: Clan Gnashtooth",
+      "slug": "the-kobolds-den-clan-gnashtooth"
     },
     {
-      "id": 46,
+      "id": 5472371392362563,
       "level": 3,
-      "name": "The Kobold's Den: Rescuing Arlos"
+      "name": "The Kobold's Den: Rescuing Arlos",
+      "slug": "the-kobolds-den-rescuing-arlos"
     },
     {
-      "id": 82,
+      "id": 2080898036146517,
       "level": 4,
-      "name": "Venn's Trail: Clan Tunnelworm"
+      "name": "Venn's Trail: Clan Tunnelworm",
+      "slug": "venns-trail-clan-tunnelworm"
     }
   ],
   "reward_count": 22,
   "rewards": [
     {
-      "id": 468,
+      "id": 769546985018979,
       "is_rare": false,
       "minimum_level": 3,
       "name": "Acrobat's Ring",
-      "slot": "Ring"
+      "slot": "Ring",
+      "slug": "acrobats-ring"
     },
     {
-      "id": 637,
+      "id": 1857588764442854,
       "is_rare": false,
       "minimum_level": 2,
       "name": "Armor of the Unknown Hero",
-      "slot": "Body"
+      "slot": "Body",
+      "slug": "armor-of-the-unknown-hero"
     },
     {
-      "id": 894,
+      "id": 6382308845356696,
       "is_rare": false,
       "minimum_level": 3,
       "name": "Black Widow Bracers",
-      "slot": "Wrists"
+      "slot": "Wrists",
+      "slug": "black-widow-bracers"
     }
   ],
+  "slug": "the-lost-seekers",
   "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
 }

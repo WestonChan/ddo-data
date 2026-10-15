@@ -1,0 +1,48 @@
+name = "Draconic Soul Gem"
+description = """
+This gem pulses with the stolen life force of several slain dragons.
++30 Enhancement bonus to Acid, Cold, Electric and Fire Resistance"""
+family = "Named"
+icon = "DraconicSoulGem"
+min_level = 25
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+]
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "orange"

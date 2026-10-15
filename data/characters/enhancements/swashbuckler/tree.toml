@@ -1,0 +1,1850 @@
+name = "Swashbuckler"
+background = "BardBackground"
+icon = "Bard"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Swashbuckler: Confidence"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Passive: +1% Dodge, +1 Reflex Save, +5 Sonic Spell Power and +1 to the Max Dex
+Bonus of your Armor per Swashbuckler Core Ability you have."""
+icon = "SBConfidence"
+internal_name = "SBCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Swashbuckler: Swashbuckling"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Swashbuckling: Stance: You gain 1% Doublestrike and Doubleshot as well as\n+1 to the Enhancement Bonus of the weapon in your main hand. Swashbuckling\nrequires wielding a Light or Thrown weapon in your main hand, wielding\na Buckler or nothing in your off hand, and wearing Light Armor or no armor.\n(Druids cannot Swashbuckle while in animal forms.) (For Warforged and Bladeforged,\nyou must be using either the Composite Plating or Mithral Body feats).\n\nPassive: While Swashbuckling, the following weapons receive Competence bonuses\nto their critical profiles (critical threat range bonuses doubled with the\nappropriate Improved Critical feat, but not with keen or impact): \n\nDagger, Shortsword, Throwing Dagger: +1 Threat Range, +1 Multiplier\nLight Mace, Light Hammer, Kama, Sickle, Dart, Shuriken, Throwing Axe,\n    Throwing Hammer: +2 Threat Range, +1 Multiplier\nKukri, Rapier: +1 Multiplier\nHandaxe: +2 Range\nLight Pick: +1 Range"
+icon = "SBSwashbuckling"
+internal_name = "SBCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Dagger"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Shortsword"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Throwing Dagger"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalMultiplier"
+targets = [
+    "Dagger",
+    "Shortsword",
+    "Throwing Dagger",
+    "Kukri",
+    "Rapier",
+    "Light Mace",
+    "Light Hammer",
+    "Kama",
+    "Sickle",
+    "Dart",
+    "Shuriken",
+    "Throwing Axe",
+    "Throwing Hammer",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Light Mace"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Light Hammer"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Hand Axe"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Kama"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Sickle"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Dart"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Shuriken"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Throwing Axe"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalRange"]
+targets = ["Throwing Hammer"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+targets = ["Light Pick"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Swashbuckler: Swashbuckling"
+effect_type = "Weapon_CriticalRange"
+targets = [
+    "Light Mace",
+    "Light Hammer",
+    "Hand Axe",
+    "Kama",
+    "Sickle",
+    "Dart",
+    "Shuriken",
+    "Throwing Axe",
+    "Throwing Hammer",
+]
+
+[[enhancement.requirement]]
+items = ["SBCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Swashbuckler: Uncanny Dodge"
+cost_per_rank = [1]
+description = """
+Uncanny Dodge: You gain the Uncanny Dodge feat.
+Passive: Swashbuckling grants an additional 1% Doublestrike, 1% Doubleshot, and
++1 Damage."""
+icon = "SBUncannyDodge"
+internal_name = "SBCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Uncanny Dodge"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["SBCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Swashbuckler: Panache"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Panache: While Swashbuckling, you have an additional 1% Doublestrike,
+1% Doubleshot, +1 Damage, and the weapon in your main hand gains an additional
++1 to its Enhancement bonus."""
+icon = "SBPanache"
+internal_name = "SBCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["SBCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Swashbuckler: Roll with the Punches"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While Swashbuckling, gain an additional +5 Melee and Ranged Power, +2 Imbue Dice,
++5% Doublestrike, 5% Doubleshot, +1 Damage, +5 Dodge Cap, and the Slippery Mind feat."""
+icon = "SBRollWithThePunches"
+internal_name = "SBCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Slippery Mind"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["SBCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Swashbuckler: Evasive Maneuvers"
+cost_per_rank = [1]
+description = """
++2 Charisma, +2 Dexterity.
+While Swashbuckling, you gain the Improved Evasion feat, +10 Melee and Ranged
+Power, +2 Imbue Dice, an additional +5% Doublestrike, 5% Doubleshot, +1 Damage,
+and the weapon in your main hand gains an additional +1 to its Enhancement bonus."""
+icon = "SBEvasiveManeuvers"
+internal_name = "SBCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SBCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Charisma",
+    "Dexterity",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Improved Evasion"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["SBCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "SBCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Swashbuckler: On Your Toes"
+cost_per_rank = [1]
+description = "+[1/2/3]% Dodge"
+icon = "SBOnYourToes"
+internal_name = "SBOnYourToes"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Swashbuckler: Blow By Blow"
+cost_per_rank = [1]
+description = "Choose either a Melee or Ranged attack:"
+icon = "SBBlowByBlow"
+internal_name = "SBBlowByBlow"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Blow By Blow"
+cost_per_rank = [1]
+description = """
++3 Critical Threat Range
+Melee attack: On Damage: 3d6 extra Sonic damage, and reduces your threat with
+nearby enemies by 300. This Sonic damage scales with spell power.
+Cooldown: 12 seconds"""
+icon = "SBBlowByBlow"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Blow By Blow (Ranged)"
+cost_per_rank = [1]
+description = """
++3 Critical Threat Range
+Ranged attack: On Damage: 3d6 extra Sonic damage, and reduces your threat with
+nearby enemies by 300. This Sonic damage scales with spell power.
+Cooldown: 12 seconds"""
+icon = "SBBlowByBlowRanged"
+is_clickie = true
+
+[[enhancement]]
+name = "Swashbuckler: Insults"
+cost_per_rank = [1]
+description = "Select an Insult that debuffs the saves of nearby enemies."
+icon = "SBInsults"
+internal_name = "SBInsults"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Appalling Diatribe"
+cost_per_rank = [1]
+description = """
+Activate to reduce the Reflex saves of nearby enemies by 3.
+Costs: 8 SP
+Cooldown: 10 seconds"""
+icon = "SBAppallingDiatribe"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Cutting Jibes"
+cost_per_rank = [1]
+description = """
+Activate to reduce the Will saves of nearby enemies by 3.
+Costs: 8 SP
+Cooldown: 10 seconds"""
+icon = "SBCuttingJibes"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Scathing Words"
+cost_per_rank = [1]
+description = """
+Activate to reduce the Fortitude saves of nearby enemies by 3.
+Costs: 8 SP
+Cooldown: 10 seconds"""
+icon = "SBScathingWords"
+is_clickie = true
+
+[[enhancement]]
+name = "Swashbuckler: Tavern Shanties"
+cost_per_rank = [1]
+description = "+[1/2/3] Bard Songs"
+icon = "SBTavernShanties"
+internal_name = "SBTavernShanties"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SongCount"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Swashbuckler: Limber Up"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Balance, Swim, and Tumble.
+Rank 3: When you Tumble, you gain +3 to saves against traps for 6 seconds.
+12 second cooldown."""
+icon = "SBLimberUp"
+internal_name = "SBLimberUp"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Swim",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Traps"]
+
+[[enhancement.modifier.requirement]]
+items = ["Tumble"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Swashbuckler: En Pointe"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Melee Attack: Make two attacks with +12 Critical Threat Range, but -1 Critical
+Multiplier. Costs 10 Spell Points to activate.
+Cooldown: 12 seconds"""
+icon = "SBEnPointe"
+internal_name = "SBEnPointe"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Swashbuckler: Deflect Arrows"
+cost_per_rank = [2]
+description = """
+You gain the benefits of the Deflect Arrows feat, knocking aside one
+incoming projectile that would have struck you every 6 seconds.
+(Anti-requisite Deflect Arrows)"""
+icon = "SBDeflectArrows"
+internal_name = "SBDeflectArrows"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SBDeflectArrows",
+    "Deflect Arrows",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = [
+    "SBDeflectArrows",
+    "Deflect Arrows",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Swashbuckler: Fast Movement"
+cost_per_rank = [2]
+description = "You run 1% faster for each of your Bard levels."
+icon = "SBFastMovement"
+internal_name = "SBFastMovement"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+bonus_type = "Class"
+effect_type = "MovementSpeed"
+stack_source = "Bard"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Swashbuckler: Sword Dance"
+cost_per_rank = [2]
+description = """
+While Swashbuckling, when enemies miss you in combat, you deal 1d[10/12/20]
+Sonic Damage. This Sonic damage scales with spell power."""
+icon = "SBSwordDance"
+internal_name = "SBSwordDance"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Swashbuckler: Action Boost"
+cost_per_rank = [2]
+description = "Choose between a Doubleshot or a Doublestrike action boost bonus: (Cooldown: 30 Seconds)"
+icon = "SBActionBoost"
+internal_name = "SBActionBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Doubleshot"
+cost_per_rank = [2]
+description = """
+Activate to gain +30% Action Boost bonus to Doubleshot for 20 seconds.
+Usable 5 times per rest."""
+icon = "SBDoubleShotBoost"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "SBDoubleshotboost"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image SBDoubleShotBoost.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection]]
+name = "Doublestrike"
+cost_per_rank = [2]
+description = """
+Activate to gain +30% Action Boost bonus to Doublestrike for 20 seconds.
+Usable 5 times per rest."""
+icon = "SBDoublestrikeBoost"
+is_clickie = true
+
+[[enhancement]]
+name = "Swashbuckler: Elegant Footwork"
+cost_per_rank = [2]
+description = """
+When enemies miss you while Swashbuckling, they have a 20% chance to be knocked
+down with no save. Cooldown: 12 seconds."""
+icon = "SBElegantFootwork"
+internal_name = "SBElegantFootwork"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Swashbuckler: Swashbuckling Style"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Select your Swashbuckling style: Open Hand, Buckler, Orb or Rune Arm."
+icon = "SBSwashbucklingStyle"
+internal_name = "SBSwashbucklingStyle"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Arcane Marauder"
+cost_per_rank = [1]
+description = """
+Passive: You can now Swashbuckle with an Orb in your off hand.
+(Does not count as a Buckler for Buckler-specific abilities)."""
+icon = "SBArcaneMarauder"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "SwashbucklingOffhand",
+    "Orb",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Magical Training"]
+req_type = "FeatAnySource"
+
+[[enhancement.selection]]
+name = "Cannoneer"
+cost_per_rank = [1]
+description = """
+Passive: You can now Swashbuckle with a Rune Arm in your off hand.
+(Does not count as a Buckler for Buckler-specific abilities)."""
+icon = "SBCannoneer"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "SwashbucklingOffhand",
+    "Rune Arm",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Artificer Rune Arm Use"]
+req_type = "FeatAnySource"
+
+[[enhancement.selection]]
+name = "Dashing Scoundrel"
+cost_per_rank = [1]
+description = """
+Passive: While Swashbuckling with nothing in your off hand, you gain
++1 Attack Damage per 5 Character levels and 10% Doublestrike/Doubleshot."""
+icon = "SBDashingScoundrel"
+
+[[enhancement.selection.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Skirmisher"
+cost_per_rank = [1]
+description = """
+Passive: While Swashbuckling with a Buckler in your off hand, you gain
+10% Dodge, and you may use a Buckler and still benefit from the Single Weapon
+Fighting line of feats."""
+icon = "SBSkirmisher"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Buckler"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Swashbuckler: Resonant Arms"
+cost_per_rank = [1]
+description = "Imbue Toggle: While Swashbuckling, gain imbue: 1d6 Sonic damage that scales with Spell Power."
+icon = "SBResonantArms"
+internal_name = "SBResonantArms"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Swashbuckler: Resonant Arms"
+description = "Imbue Toggle: While Swashbuckling, gain imbue: 1d6 Sonic damage that scales with Spell Power."
+group_name = "Imbue"
+icon = "SBResonantArms"
+
+[[enhancement]]
+name = "Swashbuckler: Different Tack"
+cost_per_rank = [2]
+description = """
+Choose to use either Charisma, Dexterity or Intelligence modifier for damage
+with weapon attacks."""
+icon = "SBDifferentTack"
+internal_name = "SBDifferentTack"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Smooth Flourishes"
+cost_per_rank = [2]
+description = "You get Charisma to Damage with weapon attacks while Swashbuckling."
+icon = "SBSmoothFlourishes"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Charisma",
+    "All",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Swift Strikes"
+cost_per_rank = [2]
+description = "You get Dexterity to Damage with weapon attacks while Swashbuckling."
+icon = "SBSwiftStrikes"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Dexterity",
+    "All",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Two Steps Ahead"
+cost_per_rank = [2]
+description = "You get Intelligence to Damage with weapon attacks Swashbuckling."
+icon = "SBTwoStepsAhead"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Intelligence",
+    "All",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Swashbuckler: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Charisma or Dexterity"
+icon = "ChaDex"
+internal_name = "SBAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Swashbuckler: On the Mark"
+cost_per_rank = [1]
+description = """
+Passive +[1/2/3] to attack rolls to confirm critical hits and damage on
+critical hits (before weapon multipliers)"""
+icon = "SBOnTheMark"
+internal_name = "SBOnTheMark"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Swashbuckler: Swashbuckling Style II"
+cost_per_rank = [1]
+description = "Improve your Swashbuckling Style"
+icon = "SBSwashbucklingStyleII"
+internal_name = "SBSwashbucklingStyleII"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SBSwashbucklingStyle"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Loud and Clear"
+cost_per_rank = [1]
+description = "Passive: While Swashbuckling with an Orb in your off hand, +20 Sonic Spell Power"
+icon = "SBLoudAndClear"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Low Blow"
+cost_per_rank = [1]
+description = """
+While Swashbuckling and wielding a Buckler in your off hand, activate to
+perform a shield bash with +2 Critical Threat Range and Multiplier. On hit,
+knock down affected enemy for three seconds (Perform + d20 saves for the
+Knockdown). Costs 10 Spell Points."""
+icon = "SBLowBlow"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Music Box"
+cost_per_rank = [1]
+description = "Passive: While Swashbuckling with a Rune Arm in your off hand, gain +1 Imbue Dice."
+icon = "SBMusicBox"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Slap in the Face"
+cost_per_rank = [1]
+description = """
+While Swashbuckling and wielding nothing in your off hand, activate to
+deal 1 Bludgeon damage. Damaged enemies can't cast spells for 6 seconds and are
+stunned for three seconds (Perform + d20 saves for the Stun).
+18 second cooldown. Costs 10 Spell Points."""
+icon = "SBSlapInTheFace"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "SBSlapIntheFace"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image SBSlapInTheFace.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement]]
+name = "Swashbuckler: Battering Barrage"
+cost_per_rank = [1]
+description = "While Swashbuckling, hits inflict Destruction/Improved Destruction."
+icon = "SBBatteringBarrage"
+internal_name = "SBBatteringBarrage"
+min_spent = 20
+ranks = 2
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Swashbuckler: Wind at my Back"
+cost_per_rank = [2]
+description = """
++1 to the Enhancement Bonus of your equipped Throwing Weapons, plus an
+additional +1 for every five Bard levels."""
+icon = "SBWindAtMyBack"
+internal_name = "SBWindAtMyBack"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_EnchantmentClass"
+stack_source = "Bard"
+targets = ["Thrown"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Swashbuckler: Ability II"
+cost_per_rank = [2]
+description = "Choose either Charisma or Dexterity"
+icon = "ChaDex"
+internal_name = "SBAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SBAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Swashbuckler: Thread the Needle"
+cost_per_rank = [2]
+description = "While Swashbuckling, +5 Damage and +5% to hit while the Precision feat is active."
+icon = "SBThreadTheNeedle"
+internal_name = "SBThreadTheNeedle"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Precision"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Precision"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["Precision"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Swashbuckler: Coup de Grace"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+Multi-selector, Melee or Ranged Attack: Make an attack with +30% damage.
+This instantly kills enemies that are Dancing, Dazed, Fascinated, Mesmerized,
+Paralyzed, Petrified, Sleeping, Stunned, or Tripped, unless they succeed a
+Fortitude save (d20 + your Perform skill).
+Cooldown: 12 seconds"""
+icon = "SBCoupDeGrace"
+internal_name = "SBCoupDeGrace"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Swashbuckler: Second Skin"
+cost_per_rank = [1]
+description = """
+While Swashbuckling, +[2/4/6] to your Reflex Saves and +[2/4/6] to the Max Dex Bonus of your Armor.
+Rank 3: +20% competence bonus to hit points."""
+icon = "SBSecondSkin"
+internal_name = "SBSecondSkin"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Swashbuckling"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+rank = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Swashbuckler: Improved Uncanny Dodge"
+cost_per_rank = [1]
+description = """
+Activate this ability to gain a temporary 50% Dodge bonus and a +6 Reflex save bonus.
+This feat also grants you a 1% passive bonus to Dodge at levels 4, 6, 8, 12, 16 and 20.
+This shares a cooldown with the Improved Uncanny Dodge feat."""
+icon = "UncannyDodge"
+internal_name = "SwashbucklerImprovedUncannyDodge"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Improved Uncanny Dodge"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Swashbuckler: Exploit Weaknesses"
+cost_per_rank = [2]
+description = """
+While Swashbuckling, every time you damage an enemy but do not critically hit,
+you gain a stacking +1 Insight Bonus to Critical Threat Range until you
+successfully critically hit."""
+icon = "SBExploitWeaknesses"
+internal_name = "SBExploitWeaknesses"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Bard"]
+req_type = "Class"

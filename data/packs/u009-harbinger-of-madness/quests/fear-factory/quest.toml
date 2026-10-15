@@ -1,0 +1,21 @@
+name = "Fear Factory"
+bestowed_by = "Felicity Mallow"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Harbinger of Madness"
+patron = "The Free Agents"
+zone = "Blode's Curio Shop"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Fear_Factory"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15

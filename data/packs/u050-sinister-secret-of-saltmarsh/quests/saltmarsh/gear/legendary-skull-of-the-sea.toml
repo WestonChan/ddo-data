@@ -1,0 +1,61 @@
+name = "Legendary Skull of the Sea"
+description = """
+Pulled from the prow of a sunken wreck, may it protect you better than it did
+the ship."""
+drop_location = "Saltmarsh, rare encounter chests, or Legendary version of Epic Skull of the Sea"
+enhancement_bonus = 15
+icon = "Shield_2d"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Mithral"
+minimum_level = 30
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 23
+max_dex_bonus = 2
+shield_bonus = 25
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield Spikes"
+
+[[effect]]
+name = "Spike Guard"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Greater Heroism"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "rare encounter chests, or legendary version of epic skull of the sea"
+kind = "quest"
+loot_type = "chest"
+name = "Saltmarsh"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 8
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

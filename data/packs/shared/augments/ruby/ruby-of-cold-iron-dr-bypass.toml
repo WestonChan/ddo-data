@@ -1,0 +1,22 @@
+name = "Ruby of Cold Iron DR Bypass"
+description = "Your weapons now bypass Cold Iron damage reduction type"
+family = "Ruby"
+icon = "Ruby"
+min_level = 16
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Cold Iron"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

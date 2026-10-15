@@ -1,0 +1,92 @@
+name = "Combat Mastery"
+choose_level = true
+description = "Grants an Enhancement bonus to all tactical feat attempts"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+]
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Combat Mastery"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[slot]]
+slot = "crafting: cannith armor prefix"
+
+[[slot]]
+slot = "crafting: cannith boots prefix"
+
+[[slot]]
+slot = "crafting: cannith shield prefix"
+
+[[slot]]
+slot = "crafting: cannith orb prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random armor prefix"
+
+[[slot]]
+slot = "crafting: random boots prefix"
+
+[[slot]]
+slot = "crafting: random shield prefix"

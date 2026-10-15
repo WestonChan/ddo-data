@@ -1,0 +1,70 @@
+name = "Masterful Magewright"
+icon = "Cannith"
+
+[[item]]
+name = "Legendary Magewright's Cloak"
+
+[[item]]
+name = "Legendary Magewright's Spectacles"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Intelligence"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Wisdom"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Charisma"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Concentration"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Perform"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Perform",
+]

@@ -1,0 +1,17 @@
+name = "Cogs Explorer Dungeons"
+pack = "Masterminds of Sharn"
+wiki_url = "https://ddowiki.com/page/Cogs_Explorer_Dungeons_(Epic)"
+quests = [
+    "Roll Call",
+    "Ruinous Schemes",
+    "Scavenger Hunt",
+    "Security Detail",
+    "Smash and Burn",
+    "The Magma Must Flow",
+    "The Wraithcallers",
+    "Thralls of the Fungus Lord",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Cogs_Explorer_Dungeons_(Epic)"
+read = "2026-10-02"

@@ -1,0 +1,50 @@
+name = "Legendary Gravekeeper's Vest"
+description = "Sturdy, yet fashionable, clothing suitable for working six feet down."
+drop_location = "Land of Lamordia, red-named rare encounter chests"
+enhancement_bonus = 15
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 34
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 34
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 15
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "red-named rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

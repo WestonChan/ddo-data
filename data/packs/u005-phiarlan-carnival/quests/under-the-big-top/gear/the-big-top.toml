@@ -1,0 +1,41 @@
+name = "The Big Top"
+description = """
+This is the strange, formal hat that Malicia was wearing when she was defeated.
+Placing it atop one's head confers a greater understanding of all things magical."""
+drop_location = "Under the Big Top, end chest"
+icon = "Helmet_14"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 4
+slot = "Head"
+
+[[clickie]]
+name = "Otto's Resistible Dance"
+spell = "Otto's Resistible Dance"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 1
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 6
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Otto's Resistible Dance"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Big Top"

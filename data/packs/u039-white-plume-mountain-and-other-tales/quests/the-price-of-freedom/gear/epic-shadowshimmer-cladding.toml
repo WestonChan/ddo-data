@@ -1,0 +1,39 @@
+name = "Epic Shadowshimmer Cladding"
+description = "You're pretty sure the guards confiscated this outfit for a reason."
+drop_location = "The Price of Freedom, End chest, the other chest"
+enhancement_bonus = 10
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 25
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Banishing Fists"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 33
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, the other chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Price of Freedom"

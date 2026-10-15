@@ -1,0 +1,28 @@
+name = "Crude Bauble"
+description = "This filthy, crudely carved statue depicts a creature of unknown origin."
+drop_location = "Where There's Smoke..., Armnok 's Chest"
+icon = "Trinket_67"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 2
+slot = "Trinket"
+
+[[effect]]
+name = "Lesser False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+chest = "armnok 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Where There's Smoke..."

@@ -1,0 +1,42 @@
+name = "Legendary Vishral's Signet"
+description = """
+This signet ring bears the sigil of the plane of Mabar, but it has been scratched
+away with a burning scar."""
+drop_location = "Army of Eternal Night, end chest"
+icon = "Ring_21b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Ring"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Army of Eternal Night"

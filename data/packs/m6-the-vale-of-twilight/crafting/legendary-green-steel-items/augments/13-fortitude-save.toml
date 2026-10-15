@@ -1,0 +1,23 @@
+name = "+13 Fortitude Save"
+description = "Ethereal/Opposition: +13 Resistance bonus to Fortitude saves."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Opposition"""
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Resistance"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[slot]]
+slot = "crafting: equipment tier 1"

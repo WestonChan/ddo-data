@@ -1,0 +1,11 @@
+name = "Lesser Regeneration"
+adds_augment = "Accessory Subjugation"
+description = """
+Lesser Regeneration: Causes the wearer to regenerate 1 hit point a minute using positive energy.
+Positive:Opposition:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory invasion"

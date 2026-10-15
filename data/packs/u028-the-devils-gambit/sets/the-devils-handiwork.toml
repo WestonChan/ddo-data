@@ -1,0 +1,42 @@
+name = "The Devil's Handiwork"
+icon = "TheDevilsHandiwork"
+
+[[item]]
+name = "Barbette's Bracers"
+
+[[item]]
+name = "Dice"
+
+[[item]]
+name = "Eagle's Eye"
+
+[[item]]
+name = "Ivy Helix"
+
+[[item]]
+name = "Laurel Helix"
+
+[[item]]
+name = "Lion's Mane"
+
+[[item]]
+name = "Ship Kickers"
+
+[[item]]
+name = "Slice"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "All Ability Scores"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]

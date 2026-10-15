@@ -1,0 +1,3 @@
+name = "Polycurse"
+description_template = "This weapon is enchanted with many diverse curses. On a critical hit an enemy may be hit with one of these effects at random: Blindness, Exhaustion, Bestow Curse, or Enervation."
+verbose_name_template = "Polycurse"

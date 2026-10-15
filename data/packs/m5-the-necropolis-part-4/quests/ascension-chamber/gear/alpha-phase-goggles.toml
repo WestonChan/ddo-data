@@ -1,0 +1,14 @@
+name = "Alpha Phase Goggles"
+description = "These goggles reveal certain things hidden on the ethereal plane."
+drop_location = "Ascension Chamber, Phase Tile Puzzle"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 1
+slot = "Goggles"
+
+[[source]]
+chest = "phase tile puzzle"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"

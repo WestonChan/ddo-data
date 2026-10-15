@@ -1,0 +1,29 @@
+name = "The Final Vintage"
+bestowed_by = "Davian Martikov"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "The Wizard of Wines"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Final_Vintage"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 31

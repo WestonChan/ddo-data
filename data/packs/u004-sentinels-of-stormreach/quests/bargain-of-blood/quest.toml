@@ -1,0 +1,26 @@
+name = "Bargain of Blood"
+bestowed_by = "Lille d'Deneith"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Sentinels of Stormreach"
+patron = "House Deneith"
+zone = "The Bargain Bazaar"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Bargain_of_Blood"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 20

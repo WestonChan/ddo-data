@@ -1,0 +1,42 @@
+name = "Boots of the Battlemaster"
+description = """
+The boots of the Night Brigade Battlemaster, Agarta the Breaker. These provide
+unparalleled agility."""
+drop_location = "Rats in a Cage, end chest"
+icon = "Boots_24"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 4
+slot = "Feet"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Speed"
+value = 15
+value2 = 5
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rats in a Cage"

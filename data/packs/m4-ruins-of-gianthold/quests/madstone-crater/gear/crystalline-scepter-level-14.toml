@@ -1,0 +1,59 @@
+name = "Crystalline Scepter (Level 14)"
+description = """
+This scepter must have been held by the ancient giant warlock when the draconic
+spell hit and annihilated the giants. The spell seems to have warped the very
+metal of the scepter into a crystalline form."""
+drop_location = "Madstone Crater, End chest (Heroic Elite)"
+enhancement_bonus = 5
+icon = "Club_3"
+item_category = "Weapon"
+item_type = "Club"
+material = "Crystal"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 72
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

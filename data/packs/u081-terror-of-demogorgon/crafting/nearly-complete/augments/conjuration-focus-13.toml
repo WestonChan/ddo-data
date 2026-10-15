@@ -1,0 +1,21 @@
+name = "Conjuration Focus +13"
+description = "+13 Equipment bonus to the DCs of Conjuration spells."
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[slot]]
+slot = "crafting: nearly complete: spell focus (legendary)"

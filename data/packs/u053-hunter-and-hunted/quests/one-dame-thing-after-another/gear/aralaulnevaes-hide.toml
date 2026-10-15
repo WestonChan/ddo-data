@@ -1,0 +1,42 @@
+name = "Aral'Aul'Nevae's Hide"
+description = """
+Displacer Beast hide is heavy and cold, but its defensive capabilities are better
+than almost any alternative."""
+drop_location = "One Dame Thing After Another, end chest"
+icon = "Cloak_9"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 7
+slot = "Back"
+
+[[effect]]
+name = "Subtle Target"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Enhancement"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "One Dame Thing After Another"

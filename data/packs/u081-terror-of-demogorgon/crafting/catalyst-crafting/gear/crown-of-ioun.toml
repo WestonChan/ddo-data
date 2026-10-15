@@ -1,0 +1,37 @@
+name = "Crown of Ioun"
+description = """
+Scholarly wizards alims it's impossible to wield more than one Ioun Stone; whether
+this crown defies that wisdom, or simply employs illusion to make it look like
+more than one is unclear."""
+drop_location = "Catalyst Crafting, Turn in Elemental Victory, its Deep Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+icon = "Helmet_31"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Fire and Cold Absorption"
+value = 22
+
+[[effect]]
+name = "Electricity and Acid Absorption"
+value = 22
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 134
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

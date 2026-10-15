@@ -1,0 +1,58 @@
+name = "Shield Base Weapon Damage"
+choose_level = true
+description = "Base weapon damage of W[Dice]"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Base"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: cannith shield weapon base damage"

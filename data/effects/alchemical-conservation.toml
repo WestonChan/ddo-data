@@ -1,0 +1,11 @@
+name = "Alchemical Conservation"
+description_template = "This item modifies the user's energy expenditure in such a way that many abilities can be used more frequently than normal. You will gain +1 Ki on every successful attack, and you will increase the number of Action Boosts, Turn Undead attempts, and Bard Songs you can use per rest by 1 each."
+home_bonus_type = "Equipment"
+verbose_name_template = "Alchemical Conservation +1"
+
+[[bonus]]
+amount_from = 0
+constant = 1
+rounding = "down"
+scale = 1.0
+target = "Ki on Hit"

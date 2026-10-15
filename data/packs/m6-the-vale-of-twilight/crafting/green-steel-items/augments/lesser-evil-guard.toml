@@ -1,0 +1,13 @@
+name = "Lesser Evil Guard"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+description = """
+50% chance to do 1d4 Evil damage on being hit
+Negative:Dominion:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory subjugation"

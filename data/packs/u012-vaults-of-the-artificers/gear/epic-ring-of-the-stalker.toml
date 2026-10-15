@@ -1,0 +1,173 @@
+name = "Epic Ring of the Stalker"
+description = """
+A bound Invisible Stalker makes this ring a dangerous asset for anyone striking
+their enemies from the shadows."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Ring_24"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Manslayer"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 3
+value2 = 5
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Ethereal"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Ghostly, Insightful Deception +4, Seeker 10 and a Colorless augment slot"
+description = """
+Ghostly: Equipping this item causes you to become partially incorporeal.
+Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy
+attacks have a 10% chance to miss you due to incorporeality. You receive a +5
+Enhancement bonus to your Hide and Move Silently skills.
+Insightful Deception +4: +4 Insight bonus to hit and +6 to damage for any hit
+that would qualify as a sneak attack.
+Seeker +10: Provides a +10 Enhancement bonus to confirm critical hits, and a
++10 Enhancement bonus to critical hit damage (before multipliers are applied).
+Adds a Colorless augment slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Incorporeality"
+value = 10
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Hide"
+value = 5
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Move Silently"
+value = 5
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Hit"
+value = 4
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Damage"
+value = 6
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Equipment"
+effect = "Incorporeality"
+effect_type = "Incorporeality"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Seeker 11, Deception 8 and a Green augment slot"
+description = """
+Seeker +11: Provides a +11 Enhancement bonus to confirm critical hits, and a
++11 Enhancement bonus to critical hit damage (before multipliers are applied).
+Deception +8: +8 Enhancement bonus to hit and +12 to damage for any hit that
+would qualify as a sneak attack.
+Adds a Green augment slot."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+value = 12
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+value = 12
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

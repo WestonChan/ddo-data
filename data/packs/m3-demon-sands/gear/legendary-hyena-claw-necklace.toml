@@ -1,0 +1,35 @@
+name = "Legendary Hyena Claw Necklace"
+description = """
+Made from hyena claws, this necklace imparts some of the immense fortitude of
+the beast to its wearer."""
+drop_location = "Legendary version of Epic Hyena Claw Necklace"
+icon = "Necklace_1d"
+item_category = "Jewelry"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 45
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 124
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "yellow"

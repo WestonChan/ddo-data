@@ -1,0 +1,52 @@
+name = "Legendary Crochet Crusher"
+accepts_sentience = true
+description = "Hurts more than you'd think yarn would."
+drop_location = "Catastrophe, end chest"
+enhancement_bonus = 15
+icon = "HeavyMace_1h"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Cloth"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Legendary Slowburst"
+
+[[effect]]
+name = "Legendary Entangling Yarn"
+
+[[effect]]
+name = "Impactful 6"
+
+[[effect]]
+name = "Bludgeoning 6"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Catastrophe"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

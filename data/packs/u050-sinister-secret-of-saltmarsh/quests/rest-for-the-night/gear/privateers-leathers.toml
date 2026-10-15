@@ -1,0 +1,36 @@
+name = "Privateer's Leathers"
+description = "Light enough for sailing, heavy enough to take an impact."
+drop_location = "Rest for the Night, End Chest"
+enhancement_bonus = 2
+icon = "MediumArmor_11"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 3
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 10
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rest for the Night"

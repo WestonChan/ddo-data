@@ -1,0 +1,42 @@
+name = "Legendary Lamordian Brawler's Garb"
+description = "Timeless style, meant to protect from the bitter colds."
+drop_location = "Ends and Means, optional chest"
+enhancement_bonus = 15
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 34
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Enhanced Ghostly"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 159
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"

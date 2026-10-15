@@ -1,0 +1,23 @@
+name = "Purge the Heretics"
+bestowed_by = "Inquisitor Gnomon"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Phiarlan"
+zone = "Hidden Chapel"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Purge_the_Heretics"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6

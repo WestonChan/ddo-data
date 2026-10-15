@@ -87,6 +87,7 @@ fn quest_series_detail(db: &Connection, table: QuestSeriesTable, id: i64) -> Res
 
 const QUEST_SERIES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("pack", "listed.pack"),
     ("quest_count", "listed.quest_count"),

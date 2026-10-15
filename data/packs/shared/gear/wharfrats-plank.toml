@@ -1,0 +1,52 @@
+name = "Wharfrat's Plank"
+description = """
+A clever sailor in need of a shield made this item. Somewhere there is a sunken
+ship with a hole cut out of the starboard side."""
+drop_location = "Cult of the Six, End reward"
+enhancement_bonus = 4
+icon = "Shield_1a"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Darkwood"
+minimum_level = 8
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 8
+max_dex_bonus = 0
+shield_bonus = 8
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

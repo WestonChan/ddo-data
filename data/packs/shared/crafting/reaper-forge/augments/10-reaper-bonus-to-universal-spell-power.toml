@@ -1,0 +1,20 @@
+name = "+10 Reaper Bonus to Universal Spell Power"
+description = "+10 Reaper Bonus to Universal Spell Power"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Reaper"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Reaper"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[slot]]
+slot = "crafting: reaper ring"

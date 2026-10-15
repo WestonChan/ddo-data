@@ -1,0 +1,46 @@
+name = "Shadow Construct - +10 Profane Repair Amplification"
+description = "+10 Profane Repair Amplification"
+family = "Thunderforged"
+min_level = 26
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Profane"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[note]]
+kind = "augment"
+original_name = "Shadow Construct - Repair Amplification 10%"
+field = "description"
+upstream = "Repair Amplification 10%"
+reason = "The wiki's Shadow Construct is Profane Repair Amplification +10, a Profane bonus like its siblings, not a percentage."
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Shadow Construct - Repair Amplification 10%"
+reason = "The wiki's Shadow Construct is Profane Repair Amplification +10, a Profane bonus like its siblings, not a percentage."
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment_bonus"
+original_name = "Shadow Construct - Repair Amplification 10%"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = "The wiki's Shadow Construct is Profane Repair Amplification +10, a Profane bonus like its siblings, not a percentage."
+url = "https://ddowiki.com/page/Thunder-Forged"
+read = "2026-09-30"
+qualifier = "Repair Amplification / Enhancement"
+
+[[slot]]
+slot = "crafting: shadow docent variant"

@@ -1,0 +1,44 @@
+name = "Epic Demon Scale Armor"
+description = """
+Scale mail fashioned from the hide of a Marilith Demon. The flexible scales
+allow this armor to be classified as Light as well as granting some of the
+Marilith's protections to the wearer. The inherently magical nature of the
+scales also reduces the Arcane Spell Failure ."""
+drop_location = "Epic version of Demon Scale Armor"
+enhancement_bonus = 6
+icon = "LightArmor_8e"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 11
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 11
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[socket]]
+slot = "blue"

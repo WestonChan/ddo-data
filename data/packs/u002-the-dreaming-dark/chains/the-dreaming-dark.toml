@@ -1,0 +1,13 @@
+name = "The Dreaming Dark"
+pack = "The Dreaming Dark"
+quests = [
+    "Eye of the Titan",
+    "Reclaiming Memories",
+    "Raiding the Giants' Vault",
+    "Mining for Ancient Secrets",
+    "The Dreaming Dark",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Dreaming_Dark"
+read = "2026-10-02"

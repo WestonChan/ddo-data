@@ -1,0 +1,8 @@
+name = "Brightfang"
+description = "Attacks and spells have a chance to deal untyped damage."
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[slot]]
+slot = "isle of dread: fang (weapon)"

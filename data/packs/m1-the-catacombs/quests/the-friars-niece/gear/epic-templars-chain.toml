@@ -1,0 +1,44 @@
+name = "Epic Templar's Chain"
+description = "This chain mail is worn by distinguished Templars of the Silver Flame."
+drop_location = "The Friar's Niece, End chest"
+enhancement_bonus = 6
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 14
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Superior Undead Guard"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 43
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 24
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Friar's Niece"

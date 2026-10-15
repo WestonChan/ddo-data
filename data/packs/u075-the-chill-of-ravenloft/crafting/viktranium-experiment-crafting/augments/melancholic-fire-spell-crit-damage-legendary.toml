@@ -1,0 +1,30 @@
+name = "Melancholic Fire Spell Crit Damage (Legendary)"
+description = "+23% Enhancement bonus to Fire Spell Critical Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Fire Spell Critical Damage"
+bonus_type = "Enhancement"
+value = 23
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Enhancement"
+effect = "Fire Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Fire"]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Melancholic Fire Spell Critical Damage (Legendary)"
+reason = "The wiki names it Melancholic Fire Spell Crit Damage (Legendary), where Maetrim names it Spell Critical Damage."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-10-02"
+qualifier = 'family "Lamordia_Legendary"'
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

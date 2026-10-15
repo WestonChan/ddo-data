@@ -1,0 +1,29 @@
+name = "Creeping Death"
+bestowed_by = "Trull Knopper"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Vale of Twilight"
+patron = "The Twelve"
+zone = "Sewer Ambuscade"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Creeping_Death"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

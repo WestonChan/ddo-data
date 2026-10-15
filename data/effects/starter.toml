@@ -1,0 +1,3 @@
+name = "Starter"
+description_template = "Starter equipment cannot be traded, sold or crafted."
+verbose_name_template = "Starter"

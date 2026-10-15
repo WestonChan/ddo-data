@@ -1,0 +1,32 @@
+name = "Feather Fall"
+description = "You fall like a feather rather than a sack of potatoes"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling damage"]
+
+[[slot]]
+slot = "crafting: cannith boots prefix"
+
+[[slot]]
+slot = "crafting: cannith cloak prefix"
+
+[[slot]]
+slot = "crafting: cannith ring prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: random boots suffix"
+
+[[slot]]
+slot = "crafting: random cloak suffix"
+
+[[slot]]
+slot = "crafting: random ring suffix"

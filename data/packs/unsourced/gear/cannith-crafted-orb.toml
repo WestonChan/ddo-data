@@ -1,0 +1,148 @@
+name = "Cannith Crafted Orb"
+description = "This is a Cannith crafted Orb."
+icon = "Orb_1"
+item_category = "Weapon"
+item_type = "Orb"
+minimum_level = 0
+slot = "Off Hand"
+
+[[socket]]
+slot = "crafting: cannith orb enhancement"
+
+[[socket]]
+slot = "crafting: cannith orb spell casting implement"
+
+[[socket]]
+slot = "crafting: cannith orb prefix"
+
+[[socket]]
+slot = "crafting: cannith orb suffix"
+
+[[socket]]
+slot = "crafting: cannith orb extra"
+
+[[socket]]
+slot = "crafting: add augment 1"
+
+[[socket.option]]
+name = "Adds a Colorless augment slot"
+description = "Adds a Colorless augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option]]
+name = "Adds a Red augment slot"
+description = "Adds a Red augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "red"
+
+[[socket.option]]
+name = "Adds a Blue augment slot"
+description = "Adds a Blue augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Adds a Yellow augment slot"
+description = "Adds a Yellow augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket.option]]
+name = "Adds a Purple augment slot"
+description = "Adds a Purple augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option]]
+name = "Adds a Orange augment slot"
+description = "Adds a Orange augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "orange"
+
+[[socket.option]]
+name = "Adds a Green augment slot"
+description = "Adds a Green augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket]]
+slot = "crafting: add augment 2"
+
+[[socket.option]]
+name = "Adds a Colorless augment slot"
+description = "Adds a Colorless augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option]]
+name = "Adds a Red augment slot"
+description = "Adds a Red augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "red"
+
+[[socket.option]]
+name = "Adds a Blue augment slot"
+description = "Adds a Blue augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Adds a Yellow augment slot"
+description = "Adds a Yellow augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket.option]]
+name = "Adds a Purple augment slot"
+description = "Adds a Purple augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option]]
+name = "Adds a Orange augment slot"
+description = "Adds a Orange augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "orange"
+
+[[socket.option]]
+name = "Adds a Green augment slot"
+description = "Adds a Green augment slot to this item"
+min_level = 5
+
+[[socket.option.grant]]
+slot = "green"
+
+[[weapon]]
+attack_modifier = "Charisma"
+critical_multiplier = 1
+critical_threat_range = 1
+damage_modifier = "Intelligence"
+handedness = "Off-hand"
+weapon_type = "Orb"

@@ -1,0 +1,32 @@
+name = "Driftwood Bracers"
+description = "Occasionally, sea and time align to create something both functional and elegant."
+drop_location = "Rest for the Night, end chest"
+icon = "Bracers_19"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 3
+slot = "Wrists"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 53
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rest for the Night"

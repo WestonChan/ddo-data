@@ -1,0 +1,66 @@
+name = "Knight of the Shadows Set (Legendary)"
+icon = "KnightOfTheShadowsSet"
+
+[[item]]
+name = "Legendary Feargaze"
+
+[[item]]
+name = "Legendary Platemail of the Barovian Lord"
+
+[[item]]
+name = "Legendary Plateshard Belt"
+
+[[item]]
+name = "Legendary Rune-Sigiled Belt"
+
+[[item]]
+name = "Platemail of Strahd"
+
+[[item]]
+name = "The Masque"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sheltering"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = 50
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Threat Generation"
+value = 50
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusRanged"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"

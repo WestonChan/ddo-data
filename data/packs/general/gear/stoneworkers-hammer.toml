@@ -1,0 +1,47 @@
+name = "Stoneworker's Hammer"
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 3
+icon = "LightHammer_1j"
+item_category = "Weapon"
+item_type = "Light Hammer"
+material = "Steel"
+minimum_level = 15
+race_required = "Deep Gnome"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Acid II"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 4
+
+[[note]]
+kind = "item_bonus"
+field = "value"
+reason = "The wiki lists Deadly +4."
+url = "https://ddowiki.com/page/Item:Stoneworker%27s_Hammer"
+read = "2026-10-04"
+qualifier = "Deadly / Competence"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Light Hammer"

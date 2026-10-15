@@ -1,0 +1,20 @@
+name = "Lunar Gem of Physical Protection (Epic)"
+description = "+20 Profane Bonus to Physical Resistance Rating."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Profane"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[slot]]
+slot = "moon"

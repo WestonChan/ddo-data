@@ -1,0 +1,46 @@
+name = "Plate of the Summer Solstice"
+description = "The mark of the Summer Queen adorns this regal armor."
+drop_location = "The Endless Revels, End chest"
+enhancement_bonus = 2
+icon = "HeavyArmor_19"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Copper"
+minimum_level = 5
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 15
+armor_check_penalty = 5
+armor_type = "Heavy"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 59
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Endless Revels"

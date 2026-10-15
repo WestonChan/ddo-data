@@ -1,0 +1,36 @@
+name = "Adherent's Pendant"
+description = "A consecrated pendant sealed to the followers of some forgotten deity ."
+drop_location = "The Chamber of Raiyum, treasure chamber chest"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 80
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 121
+
+[[effect]]
+name = "Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "treasure chamber chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Chamber of Raiyum"

@@ -1,0 +1,43 @@
+name = "Epic Crocodile Maw"
+accepts_sentience = true
+description = "Crocodile Fangs stud these Handwraps."
+drop_location = "Epic version of Crocodile Maw"
+enhancement_bonus = 6
+icon = "HandWraps_4a"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Animal Bane 4"
+
+[[effect]]
+name = "Feeding 20"
+
+[[effect]]
+name = "Lifedrinker"
+
+[[effect]]
+name = "Vampirism 2"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

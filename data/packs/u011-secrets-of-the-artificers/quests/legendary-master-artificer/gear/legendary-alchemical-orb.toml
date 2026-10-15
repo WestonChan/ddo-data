@@ -1,0 +1,39 @@
+name = "Legendary Alchemical Orb"
+description = """
+Crafted of exquisite and delicate materials, an orb of this calibre is a true
+masterpiece of creation."""
+drop_location = "Legendary Master Artificer, Either End chest"
+icon = "Orb_12"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 29
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[socket]]
+slot = "crafting: legendary alchemical material"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "either end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Master Artificer"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

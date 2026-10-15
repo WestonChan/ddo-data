@@ -1,0 +1,213 @@
+[[row]]
+name = "Nystul's Mystical Defense/Electrocution +6 MRR"
+description = """
++6 MRR
+Rare: +4 MRR"""
+icon = "NystulsMysticalDefenseElectrocution"
+menu = "Raid Filigrees"
+set = "Nystul's Mystical Defense"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Nystul's Mystical Defense/Electrocution: +6 MRR: Rare +4 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Nystul's Mystical Defense: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "NystulsMysticalDefense"
+menu = "Ravenloft"
+set = "Nystul's Mystical Defense"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Nystul's Mystical Defense: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Nystul's Mystical Defense: +2 Will Saves"
+description = """
++2 Will saving throws
+Rare: +2 MRR"""
+icon = "NystulsMysticalDefense"
+menu = "Ravenloft"
+set = "Nystul's Mystical Defense"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Nystul's Mystical Defense: Will: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Nystul's Mystical Defense: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "NystulsMysticalDefense"
+menu = "Ravenloft"
+set = "Nystul's Mystical Defense"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Nystul's Mystical Defense: MRR: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Nystul's Mystical Defense: +5% Acid Absorption"
+description = """
++5% Acid Absorption
+Rare: +2 MRR"""
+icon = "NystulsMysticalDefense"
+menu = "Ravenloft"
+set = "Nystul's Mystical Defense"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Nystul's Mystical Defense: Acid Absorption: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Nystul's Mystical Defense: +5% Cold Absorption"
+description = """
++5% Cold Absorption
+Rare: +2 MRR"""
+icon = "NystulsMysticalDefense"
+menu = "Ravenloft"
+set = "Nystul's Mystical Defense"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Nystul's Mystical Defense: Cold Absorption: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Nystul's Mystical Defense: +5% Electric Absorption"
+description = """
++5% Electric Absorption
+Rare: +2 MRR"""
+icon = "NystulsMysticalDefense"
+menu = "Ravenloft"
+set = "Nystul's Mystical Defense"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Nystul's Mystical Defense: Electric Absorption: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Nystul's Mystical Defense: +5% Fire Absorption"
+description = """
++5% Fire Absorption
+Rare: +2 MRR"""
+icon = "NystulsMysticalDefense"
+menu = "Ravenloft"
+set = "Nystul's Mystical Defense"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Nystul's Mystical Defense: Fire Absorption: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Nystul's Mystical Defense: +5% Sonic Absorption"
+description = """
++5% Sonic Absorption
+Rare: +2 MRR"""
+icon = "NystulsMysticalDefense"
+menu = "Ravenloft"
+set = "Nystul's Mystical Defense"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Sonic"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Nystul's Mystical Defense: Sonic Absorption: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true

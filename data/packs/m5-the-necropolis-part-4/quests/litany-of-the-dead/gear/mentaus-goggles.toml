@@ -1,0 +1,29 @@
+name = "Mentau's Goggles"
+description = """
+These goggles allow the wearer to see deep within the flesh of nearby foes allowing
+blows to be targeted on the most vulnerable locations."""
+drop_location = "Litany of the Dead, Mentau 's chest"
+icon = "Goggles_6a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 13
+slot = "Goggles"
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "mentau 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

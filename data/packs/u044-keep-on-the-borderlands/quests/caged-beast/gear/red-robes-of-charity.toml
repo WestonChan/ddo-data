@@ -1,0 +1,31 @@
+name = "Red Robes of Charity"
+description = """
+These are previously used but still protective. Small healing implements are
+stowed in the deep pockets."""
+drop_location = "Caged Beast, End chest"
+enhancement_bonus = 1
+icon = "Cloth_3"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Caged Beast"

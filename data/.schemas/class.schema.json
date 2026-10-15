@@ -1,0 +1,291 @@
+{
+  "$defs": {
+    "ClassAutoFeat": {
+      "additionalProperties": false,
+      "properties": {
+        "feat": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "feats"
+        },
+        "feat_description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "feat_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "level": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "level"
+      ],
+      "type": "object",
+      "x-table": "class_auto_feats"
+    },
+    "ClassFeatSlot": {
+      "additionalProperties": false,
+      "properties": {
+        "auto_populate": {
+          "type": "boolean"
+        },
+        "feat_type": {
+          "type": "string"
+        },
+        "level": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "singular": {
+          "type": "boolean"
+        },
+        "update_list": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "feat_type",
+        "level"
+      ],
+      "type": "object",
+      "x-table": "class_feat_slots"
+    },
+    "ClassSpell": {
+      "additionalProperties": false,
+      "properties": {
+        "cost": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "max_caster_level": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "spell": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "spells"
+        },
+        "spell_level": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "spell_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "spell_level",
+        "spell_name"
+      ],
+      "type": "object",
+      "x-table": "class_spells"
+    },
+    "ClassSpellSlot": {
+      "additionalProperties": false,
+      "properties": {
+        "class_level": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "slots": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "spell_level": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "class_level",
+        "slots",
+        "spell_level"
+      ],
+      "type": "object",
+      "x-table": "class_spell_slots"
+    },
+    "FileNumber": {
+      "anyOf": [
+        {
+          "format": "int64",
+          "type": "integer"
+        },
+        {
+          "format": "double",
+          "type": "number"
+        }
+      ]
+    },
+    "SaveProgressionFile": {
+      "enum": [
+        "good",
+        "poor",
+        "none"
+      ],
+      "type": "string"
+    },
+    "Skill": {
+      "additionalProperties": false,
+      "properties": {
+        "skill": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "skill"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "alignments": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "auto_buy_skill": {
+      "items": {
+        "$ref": "#/$defs/Skill"
+      },
+      "type": "array"
+    },
+    "auto_feat": {
+      "items": {
+        "$ref": "#/$defs/ClassAutoFeat"
+      },
+      "type": "array"
+    },
+    "bab": {
+      "items": {
+        "$ref": "#/$defs/FileNumber"
+      },
+      "type": "array"
+    },
+    "base_class": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "casting_stats": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "class_specific_feat_types": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "description": {
+      "type": "string"
+    },
+    "feat_slot": {
+      "items": {
+        "$ref": "#/$defs/ClassFeatSlot"
+      },
+      "type": "array"
+    },
+    "fortitude": {
+      "$ref": "#/$defs/SaveProgressionFile"
+    },
+    "hit_points": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "large_icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-image-kind": "classes"
+    },
+    "name": {
+      "type": "string"
+    },
+    "not_heroic": {
+      "type": "boolean"
+    },
+    "reflex": {
+      "$ref": "#/$defs/SaveProgressionFile"
+    },
+    "skill": {
+      "items": {
+        "$ref": "#/$defs/Skill"
+      },
+      "type": "array"
+    },
+    "skill_points": {
+      "format": "int64",
+      "type": "integer"
+    },
+    "small_icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-image-kind": "classes"
+    },
+    "spell": {
+      "items": {
+        "$ref": "#/$defs/ClassSpell"
+      },
+      "type": "array"
+    },
+    "spell_points_per_level": {
+      "items": {
+        "format": "int64",
+        "type": "integer"
+      },
+      "type": "array"
+    },
+    "spell_slot": {
+      "items": {
+        "$ref": "#/$defs/ClassSpellSlot"
+      },
+      "type": "array"
+    },
+    "will": {
+      "$ref": "#/$defs/SaveProgressionFile"
+    }
+  },
+  "required": [
+    "name",
+    "description",
+    "fortitude",
+    "hit_points",
+    "reflex",
+    "skill_points",
+    "will"
+  ],
+  "title": "ClassFile",
+  "type": "object",
+  "x-table": "classes"
+}

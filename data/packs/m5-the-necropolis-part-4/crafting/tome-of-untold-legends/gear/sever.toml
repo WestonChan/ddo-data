@@ -1,0 +1,45 @@
+name = "Sever"
+description = """
+A ritualistic weapon of ancient barbaric dwarven tribes. This weapon was used
+to ceremoniously behead caught goblin and orc chieftans."""
+drop_location = "Tome of Untold Legends, Turn in completed Tome: Binding"
+enhancement_bonus = 5
+icon = "DwarvenWaraxe_4a"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Steel"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Limb Chopper"
+
+[[effect]]
+name = "Destruction"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Tome of Untold Legends"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 14
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

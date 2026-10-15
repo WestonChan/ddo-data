@@ -1,0 +1,37 @@
+name = "Bloodrage Chrism"
+description = "Power and fury incarnate."
+drop_location = "Old Baba's Hut, Raid Chest"
+icon = "Trinket_10"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 28
+slot = "Trinket"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 54
+
+[[effect]]
+name = "Calamitous Blows"
+
+[[effect]]
+name = "Bloodrage Defense"
+
+[[effect]]
+name = "Rune-fueled Warding"
+
+[[effect]]
+name = "Unnatural"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"

@@ -1,0 +1,30 @@
+name = "Miserable Cold Spell Crit Damage (Heroic)"
+description = "+2% Quality bonus to Cold Spell Critical Damage."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Cold Spell Critical Damage"
+bonus_type = "Quality"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Cold Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Cold"]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Miserable Cold Spell Critical Damage (Heroic)"
+reason = "The wiki names it Miserable Cold Spell Crit Damage (Heroic), where Maetrim names it Spell Critical Damage."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-10-02"
+qualifier = 'family "Lamordia_Heroic"'
+
+[[slot]]
+slot = "lamordia: miserable (accessory)"

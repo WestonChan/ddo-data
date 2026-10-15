@@ -1,0 +1,30 @@
+name = "The Knife's Edge"
+bestowed_by = "Neese the Burrower"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Fall of the Night Brigade"
+patron = "The Harpers"
+zone = "On the Trail of the Master Thief"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Knife%27s_Edge"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 34

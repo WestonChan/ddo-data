@@ -1,0 +1,3 @@
+name = "Guardbreaking"
+description_template = "This item enables you to break an enemy's guard in between your melee attacks. On critical hits with your melee weapons, enemies will become dazed as a result."
+verbose_name_template = "Guardbreaking"

@@ -1,0 +1,77 @@
+name = "Epic Light Unending"
+accepts_sentience = true
+description = """
+May the days never end, and your torch never extinguish. May Light follow you
+on every blessed step."""
+drop_location = "The Archons' Trial, End chest"
+enhancement_bonus = 12
+icon = "Quarterstaff_9"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Flametouched Iron"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Solar VI"
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Improved Banishing"
+
+[[effect]]
+name = "Holy VI"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Archons' Trial"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,38 @@
+name = "Legendary Admiral's Cummerbund"
+description = "This white cloth belt has many silver buttons to clasp."
+drop_location = "The Trouble with Tar Pits, end chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 31
+slot = "Waist"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Law Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[socket]]
+slot = "isle of dread: claw (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Trouble with Tar Pits"

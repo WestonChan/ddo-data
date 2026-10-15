@@ -1,0 +1,21 @@
+name = "Storm's Bulwark"
+description = """
+Wards against the Knockdowns and Slows of an Air Elemental.
+Drops in U48 Quest: The Knight who Cried Windmill"""
+family = "Named"
+icon = "Topaz"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Air Elemental Knockdown and Slow"]
+
+[[slot]]
+slot = "green"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Knight Who Cried Windmill"

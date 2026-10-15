@@ -1,0 +1,78 @@
+name = "Insightful Diversion"
+choose_level = true
+description = "Insight bonus to threat generation"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    -1,
+    -1,
+    -2,
+    -2,
+    -2,
+    -3,
+    -3,
+    -3,
+    -4,
+    -4,
+    -4,
+    -5,
+    -5,
+    -5,
+    -5,
+    -6,
+    -6,
+    -6,
+    -7,
+    -7,
+    -7,
+    -8,
+    -8,
+    -8,
+    -8,
+    -9,
+    -9,
+    -9,
+    -10,
+    -10,
+    -10,
+    -11,
+    -11,
+    -11,
+    -11,
+    -11,
+    -11,
+    -11,
+    -11,
+]
+
+[[effect]]
+name = "Melee Threat Generation"
+bonus_type = "Insight"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[slot]]
+slot = "crafting: cannith belt prefix"
+
+[[slot]]
+slot = "crafting: cannith boots suffix"
+
+[[slot]]
+slot = "crafting: cannith cloak extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random belt prefix"
+
+[[slot]]
+slot = "crafting: random cloak extra"

@@ -1,0 +1,17 @@
+[[row]]
+name = "Watchful Eye"
+acquire = "Train"
+variant = "fake-group-to-avoid-error-report"
+description = """
+If you pass withing 5 feet of a trap, you make a Search check to notice
+it as if actively Searching. (You still need the Trapfinding feat to successfully
+Search for difficult traps.)"""
+icon = "WatchfulEye"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Fake Group to Avoid Error Report"
+
+[[row.requirement]]
+req_type = "Level"
+value = 27

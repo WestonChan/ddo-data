@@ -1,0 +1,3 @@
+name = "Legendary Entangling Yarn"
+description_template = "Enemies struck by this weapon have a small chance to be tangled up in its enchanted yarn, becoming Entangled and preventing all movement for 9 seconds. A DC 110 Reflex Save negates this effect."
+verbose_name_template = "Legendary Entangling Yarn"

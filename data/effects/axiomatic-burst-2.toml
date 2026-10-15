@@ -1,0 +1,3 @@
+name = "Axiomatic Burst 2"
+description_template = "This weapon is an implement of law, dealing 2d6 Law damage on a successful hit to Chaotic enemies, and 1d6 Law damage on a critical hit to Chaotic enemies. This effect makes the weapon lawfully aligned."
+verbose_name_template = "Axiomatic Burst 2"

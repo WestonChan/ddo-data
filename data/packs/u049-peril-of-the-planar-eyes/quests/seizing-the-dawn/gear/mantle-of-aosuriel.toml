@@ -1,0 +1,40 @@
+name = "Mantle of Aosu'riel"
+description = "The Archon Aosu'riel wore this into battle. Treat it with care."
+drop_location = "Seizing the Dawn, End chest"
+icon = "Cloak_7"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 12
+slot = "Back"
+
+[[effect]]
+name = "Speed"
+value = 22
+value2 = 9
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Feather Falling"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Seizing the Dawn"

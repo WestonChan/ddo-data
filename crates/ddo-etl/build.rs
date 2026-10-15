@@ -2,7 +2,6 @@ use std::path::Path;
 
 fn main() {
     embed_toml_files("data/wiki", "wiki_files.rs");
-    embed_toml_files("data/corrections", "correction_files.rs");
 }
 
 fn embed_toml_files(data_dir: &str, generated_file_name: &str) {

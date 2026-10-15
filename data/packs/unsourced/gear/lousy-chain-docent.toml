@@ -1,0 +1,17 @@
+name = "Lousy Chain Docent?"
+description = "You participated in a Live Event, but all you got was this lousy chain docent."
+drop_location = "Special event items, New Theater Event for wrong answer"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 1
+race_required = "Warforged"
+slot = "Body"
+wiki_url = "https://ddowiki.com/page/Item:Lousy_Chain_Docent%3F"
+
+[[armor]]
+armor_type = "Docent"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Lousy_Chain_Docent%3F"
+read = "2026-09-30"

@@ -1,0 +1,21 @@
+name = "Perfect Silence"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Perfect Silence"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"

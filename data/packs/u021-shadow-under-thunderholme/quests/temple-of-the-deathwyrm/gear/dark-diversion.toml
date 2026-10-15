@@ -1,0 +1,38 @@
+name = "Dark Diversion"
+description = "Shh... close your eyes. There's nobody here. Nothing to fea-"
+drop_location = "Temple of the Deathwyrm, raid chest"
+icon = "Necklace_17"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Neck"
+
+[[effect]]
+name = "Occultation"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 20
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Temple of the Deathwyrm"

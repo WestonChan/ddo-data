@@ -1,0 +1,20 @@
+name = "Facet of Coalesced Impacts"
+description = """
+Slotted Effect: Greater Reinforced Fists: Your unarmed damage
+is increased by +1[W] damage dice."""
+family = "Facets"
+icon = "PurpleRuby"
+min_level = 32
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Implement"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Handwraps",
+    "Unarmed",
+]
+
+[[slot]]
+slot = "purple"

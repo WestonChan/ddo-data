@@ -1,0 +1,34 @@
+name = "Sun Flask"
+description = """
+This flask is packed with secret ingredients passed down from generation to
+generation of Festivult Jesters and bursts on impacting a monster or wall.
+Nearby creatures are momentarily blinded by the flash, and it's claimed that
+the liberal use of flash bangs drives away the darkness of Mabar."""
+drop_location = "Festivult, Three Copper Festival Coins will give you a chance at getting a stack of 20DDO Store, Ammo \nDaily Dice"
+icon = "Dart_15"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Glass"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Light"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "Thrown"
+weapon_type = "Dart"

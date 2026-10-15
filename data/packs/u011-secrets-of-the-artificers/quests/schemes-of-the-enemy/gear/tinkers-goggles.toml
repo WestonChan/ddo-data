@@ -1,0 +1,54 @@
+name = "Tinker's Goggles"
+description = """
+Goggles worn by House Cannith tinkers to enhance their vision, aiding them in
+working with small or intricate mechanisms."""
+drop_location = "House Cannith Manufactury, Bulat 's chest (Rare encounter) ; Schemes of the Enemy, Dackle's chest (only on Normal difficulty)"
+icon = "Goggles_4"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 18
+slot = "Goggles"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Treason"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Enhancement"
+value = 5
+
+[[note]]
+kind = "item"
+field = "set_bonus"
+reason = "The wiki lists this item as a member of Tinker's Finesse."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Tinker's Finesse"
+description = "Adds the Tinker's Finesse set bonus"
+icon = "Heroism"
+min_level = 18
+
+[[socket.option.set]]
+set = "Tinker's Finesse"
+
+[[source]]
+chest = "dackle's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Schemes of the Enemy"

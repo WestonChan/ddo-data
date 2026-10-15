@@ -1,0 +1,3 @@
+name = "Thorny Crown of Madness 7"
+description_template = "This legendary weapon resonates with cruel and delightful madness. Strikes with this weapon have a chance to confuse your target, allowing them to harm and be harmed by friend and foe alike. Furthermore, hits with this weapon against Confused targets deal an additional 7d6 Chaos damage."
+verbose_name_template = "Thorny Crown of Madness 7"

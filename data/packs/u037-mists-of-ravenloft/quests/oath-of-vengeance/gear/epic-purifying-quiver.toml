@@ -1,0 +1,19 @@
+name = "Epic Purifying Quiver"
+description = "While using this quiver, your ranged weapons will burn with enchanted flames."
+drop_location = "Oath of Vengeance, end chest (legendary)"
+icon = "Quiver_1"
+item_category = "Clothing"
+minimum_level = 29
+slot = "Quiver"
+
+[[effect]]
+name = "Burning Ammunition - 1d8"
+
+[[effect]]
+name = "Blunted Ammunition"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oath of Vengeance"

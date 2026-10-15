@@ -1,0 +1,16 @@
+name = "Power of the Moonlit Haunt"
+description_template = "Passive: {1} %b1 bonus to Negative, Force and Poison Spell Power."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Power of the Moonlit Haunt +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Negative and Poison Spell Power"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Force Spell Power"

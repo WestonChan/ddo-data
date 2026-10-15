@@ -1,0 +1,9 @@
+name = "Armaments of the Archons"
+description = "Adds the Armaments of the Archons set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 18
+set_bonus = "Armaments of the Archons"
+
+[[slot]]
+slot = "crafting: lost purpose"

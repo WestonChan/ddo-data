@@ -1,0 +1,99 @@
+name = "Epic Cutthroat's Smallblade (level 24)"
+accepts_sentience = true
+description = """
+When a cutlass is simply too big for the job, a pirate will turn instead to
+a trusty smallblade. This one is serrated and quite adept at inflicting painful
+wounds on living creatures."""
+drop_location = "Treasure of Crystal Cove, Turn in 1250 Silver Doubloon 500 Golden Doubloon 40 Stolen Opal 800 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 6
+icon = "Shortsword_3"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Slicing"
+
+[[effect]]
+name = "Bleed"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 17
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+7 Enhancement Bonus, Doublestrike 7%"
+description = "+7 Enhancement Bonus: +7 enhancement bonus to attack and damage rolls."
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Corrosive Salt and a Red augment slot"
+description = """
+Corrosive Salt: This weapon stores a caustic, insatiable power deep within.
+When this weapon is used, this power can come to the surface in the form of a
+noxious, corrosive salt that dissolves all substances.
+Adds a Red augment slot to this item"""
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.grant]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 3.8
+handedness = "One-handed"
+weapon_type = "Shortsword"

@@ -1,0 +1,30 @@
+name = "The Covered Culvert"
+bestowed_by = "Burton Furst"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Tavern Tales"
+patron = "The Free Agents"
+zone = "The Covered Culvert"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Covered_Culvert"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 35

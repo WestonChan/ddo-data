@@ -1,0 +1,72 @@
+name = "Legendary Slave Rags"
+description = "This outfit marked one as a slave. It now marks one as defying all odds."
+drop_location = "Secret of the Slavers' Stockade, End chest"
+enhancement_bonus = 13
+icon = "Cloth_8a"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 10
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "crafting: against the slave lords set bonus"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Might Set bonus"
+icon = "SlavelordsMight"
+min_level = 28
+
+[[socket.option.set]]
+set = "Legendary Slavelords Might"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Sorcery Set bonus"
+icon = "SlavelordsSorcery"
+min_level = 28
+
+[[socket.option.set]]
+set = "Legendary Slavelords Sorcery"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Endurance Set bonus"
+icon = "SlavelordsEndurance"
+min_level = 28
+
+[[socket.option.set]]
+set = "Legendary Slavelords Endurance"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secret of the Slavers' Stockade"

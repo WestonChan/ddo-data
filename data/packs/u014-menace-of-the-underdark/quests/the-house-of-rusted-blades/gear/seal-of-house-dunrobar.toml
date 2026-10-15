@@ -1,0 +1,185 @@
+name = "Seal of House Dun'Robar"
+description = """
+Atop this ring is a plain steel circle. Encompassed by the circle is a stylized
+blade, possibly a shortsword or stiletto."""
+drop_location = "The House of Rusted Blades, Jyr Dun'Robar Chest"
+icon = "Ring_4"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 21
+slot = "Ring"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "crafting: variant ability"
+
+[[socket.option]]
+name = "Constitution +7"
+description = "Constitution +7: This item gives the wearer improved health, granting a +7 enhancement bonus to Constitution."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "Insightful Constitution +2"
+description = "+2 Insight bonus to Constitution"
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "Strength +7"
+description = "Strength +7: This item gives the wearer the power of Ogre Strength, granting a +7 enhancement bonus to Strength."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "Insightful Strength +2"
+description = "+2 Insight bonus to Strength"
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket]]
+slot = "crafting: variant combat"
+
+[[socket.option]]
+name = "Insightful Combat Mastery +5"
+description = "Insightful Combat Mastery +5: +5 Insight bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Combat Mastery"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "TacticalDC"
+targets = [
+    "Shatter",
+    "Stun",
+    "Vertigo",
+]
+
+[[socket.option]]
+name = "Shatter +10"
+description = "Shatter +10: This effect gives a +10 Enhancement bonus to the DC to resist the character's Sunder and Improved Sunder attempts."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Shatter"]
+
+[[socket.option]]
+name = "Stunning +10"
+description = "Stunning +10: +10 Enhancement bonus to the DC of character's Stunning Blow and Stunning Fist attempts."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[socket.option]]
+name = "Vertigo +10"
+description = "Vertigo +10: This effect gives a +10 Enhancement bonus to the DC to resist the character's Trip and Improved Trip attempts."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Vertigo"]
+
+[[socket.option]]
+name = "Tendon Slice +10"
+description = "Tendon Slice +10: On Hit: 10% chance to slow target's movement by 50% for 6 seconds."
+icon = "Variant"
+min_level = 21
+
+[[source]]
+chest = "jyr dun'robar chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Rusted Blades"

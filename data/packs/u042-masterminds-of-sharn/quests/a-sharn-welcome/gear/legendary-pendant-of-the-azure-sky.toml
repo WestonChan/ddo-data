@@ -1,0 +1,35 @@
+name = "Legendary Pendant of the Azure Sky"
+description = "This amulet has a twin, and seems warm to the touch."
+drop_location = "A Sharn Welcome, end chest"
+icon = "Necklace_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Sky Attunement"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Sharn Welcome"

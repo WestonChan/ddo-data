@@ -1,0 +1,35 @@
+name = "Lhor-Tragu's Shadowed Armor"
+description = """
+Lhor-Tragu, infamous hobgoblin assassin, wore this armor during missions of
+stealth."""
+drop_location = "Assault on Splinterskull, End reward"
+enhancement_bonus = 2
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Shadow"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Silent Moves"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

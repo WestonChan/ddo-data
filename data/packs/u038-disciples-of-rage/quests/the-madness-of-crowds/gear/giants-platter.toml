@@ -1,0 +1,64 @@
+name = "Giant's Platter"
+description = "One Giant's plate is another adventurer's treasure"
+drop_location = "The Madness of Crowds, End chest"
+enhancement_bonus = 5
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Densewood"
+minimum_level = 14
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 9
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 18
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 7
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 24
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Madness of Crowds"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "Off-hand"
+weapon_type = "Large Shield"

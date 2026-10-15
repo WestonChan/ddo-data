@@ -1,0 +1,32 @@
+name = "Ice Lore V"
+adds_augment = "Accessory Aspect II"
+description = """
+Ice Lore V: Passive: Your Cold spells gain a 12% Equipment bonus
+to their chance to critical hit and a 0.25 spell critical damage bonus.
+Water:Dominion:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[effect]]
+name = "Cold Spell Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [0.25]
+bonus_type = "Equipment"
+effect_type = "SpellCriticalDamage"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: accessory devastation"

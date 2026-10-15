@@ -1,0 +1,3 @@
+name = "Freezing 10"
+description_template = "This effect causes the edges of this weapon to become frozen to the touch, dealing 10 to 60 Ice damage on each critical hit."
+verbose_name_template = "Freezing 10"

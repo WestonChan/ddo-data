@@ -1,0 +1,177 @@
+name = "Epic Spare Hand"
+description = """
+A belt with a remarkable augmentation: a clawed hand that extends from it and
+will help you attack your foes and make tasks easier to perform."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Belt_20"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Waist"
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Staggering Blow"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 17
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Disable Device +18, Open Lock +18, Use Magic Device +3 and a Colorless Augment Slot"
+description = """
+Disable Device +18: Passive: +18 Competence bonus to the Disable Device skill.
+Open Lock +18: Passive: +18 Competence bonus to the Open Lock skill.
+Use Magic Device +3: Passive: +3 Competence bonus to the Use Magic Device skill.
+Adds a Colorless Augment Slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Disable Device"
+value = 18
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
+value = 18
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Use Magic Device"
+value = 3
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [18]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Competence"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Riposte +5, Insightful Combat Mastery +5, UMD +4, Doublestrike 12% and a Green augment slot"
+description = """
+Riposte +5: This item enchants its user with incredible awareness and speed,
+granting a +5 Insight bonus to AC and to Saves.
+Insightful Combat Mastery +5: +5 Insight bonus to the DC to resist the character's Trip, Improved Trip,
+Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts.
+Use Magic Device +4: Passive: +4 Competence bonus to the Use Magic Device skill.
+Doublestrike 12%: Passive: 12% Enhancement bonus to Doublestrike.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 5
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 5
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Combat Mastery"
+value = 5
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Use Magic Device"
+value = 4
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 12
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Tactics"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+    "Quivering Palm",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Competence"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

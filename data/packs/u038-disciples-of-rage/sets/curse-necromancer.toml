@@ -1,0 +1,26 @@
+name = "Curse Necromancer"
+icon = "CurseNecromancer"
+
+[[item]]
+name = "Cursed Skull"
+
+[[item]]
+name = "Cursekeeper"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 5
+
+[[tier.effect]]
+effect = "Dreadful Curse"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"

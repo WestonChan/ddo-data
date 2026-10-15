@@ -1,0 +1,21 @@
+name = "Spell Focus Mastery +2"
+description = "Equipment bonus to SpellDC's"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Equipment"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: slavelords extra"

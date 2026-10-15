@@ -1,0 +1,3 @@
+name = "Nullmagic Guard"
+description_template = "On being hit with a spell: There is a small chance that you explode in arcane energies. Foes hit are subject to a silencing effect, preventing their spellcasts and dampening their magical protections for 10 seconds."
+verbose_name_template = "Nullmagic Guard"

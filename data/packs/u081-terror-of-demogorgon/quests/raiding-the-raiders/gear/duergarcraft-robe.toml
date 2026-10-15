@@ -1,0 +1,44 @@
+name = "Duergarcraft Robe"
+description = "Protective gear made by Duergar craftspeople."
+enhancement_bonus = 5
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 11
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 80
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 5
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Raiding the Raiders"

@@ -1,0 +1,61 @@
+name = "Icy Forum Post (level 15)"
+description = """
+This post, once part of a fence around an old speaking forum in Stormreach,
+is cold to everyone that sees it."""
+drop_location = "Anniversary Party, Turn in 40"
+enhancement_bonus = 5
+icon = "Club_1g"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 94
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 154
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Club"

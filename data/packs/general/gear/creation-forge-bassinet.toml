@@ -1,0 +1,23 @@
+name = "Creation Forge Bassinet"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Helmet_10"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Bladeforged"
+slot = "Head"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 75
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 72
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

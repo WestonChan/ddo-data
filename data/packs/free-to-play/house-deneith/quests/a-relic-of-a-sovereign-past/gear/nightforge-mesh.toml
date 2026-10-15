@@ -1,0 +1,32 @@
+name = "Nightforge Mesh"
+description = "Delicate threads 'woven' of adamantine lace comprise this regal chain shirt."
+drop_location = "A Relic of a Sovereign Past, Turn in 9 Adamantine Ore"
+enhancement_bonus = 5
+icon = "LightArmor_9f"
+item_category = "Armor"
+item_type = "Light"
+material = "Adamantine"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 5
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 7
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "turn in 9 adamantine ore"
+kind = "quest"
+loot_type = "chest"
+name = "A Relic of a Sovereign Past"

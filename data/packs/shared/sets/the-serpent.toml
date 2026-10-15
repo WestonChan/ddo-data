@@ -1,0 +1,67 @@
+name = "The Serpent"
+icon = "TheSerpent"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Poison Spell Power"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect = "Poison Spell Power"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+effect = "+5% Poison Spell Critical Damage"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "SpellCriticalDamage"
+targets = ["Poison"]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Conjuration Focus"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Transmutation Focus"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SpellDC"
+targets = [
+    "Conjuration",
+    "Transmutation",
+]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+effect = "You are Immune to Petrification"
+
+[[tier.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Petrification"]

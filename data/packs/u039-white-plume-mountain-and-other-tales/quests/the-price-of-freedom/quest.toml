@@ -1,0 +1,26 @@
+name = "The Price of Freedom"
+bestowed_by = "Dorris"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "White Plume Mountain and Other Tales"
+patron = "The Twelve"
+zone = "Brimstone Boulder Prison"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Price_of_Freedom"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 25

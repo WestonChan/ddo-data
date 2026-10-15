@@ -1,0 +1,70 @@
+name = "Ratkiller (legacy) (level 12)"
+description = """
+This hammer is well-worn and appears to have been used in the past to exterminate
+pests aboard pirate vessels. It's a surprisingly strong weapon for such a mundane
+task and would probably be useful in battle as well."""
+drop_location = "Treasure of Crystal Cove, Turn in 800 Copper Doubloon 400 Silver Doubloon 25 Stolen Amethyst at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 3
+icon = "Maul_3"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Animal Bane"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+4 Enhancement Bonus"
+description = "+4 Enhancement Bonus: +4 Enhancement bonus to attack and damage rolls."
+icon = "Upgrade"
+min_level = 12
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Staggering Blow"
+description = """
+Staggering Blow: This item is enchanted to make your attacks send enemies reeling.
+When you roll a 20 on an attack with a melee weapon you will knock the target
+down unless it makes a DC 17 Balance check."""
+icon = "Upgrade"
+min_level = 12
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Maul"

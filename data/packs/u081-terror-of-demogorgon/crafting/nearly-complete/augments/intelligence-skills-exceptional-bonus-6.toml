@@ -1,0 +1,23 @@
+name = "Intelligence Skills - Exceptional Bonus +6"
+description = """
+Exceptional Bonus +6 to the Intelligence based skills of: Disable Device, Repair,
+Search, and Spellcraft."""
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Intelligence Skills"
+bonus_type = "Exceptional"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Exceptional"
+effect = "Intelligence Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "crafting: nearly complete: exceptional skills (heroic)"

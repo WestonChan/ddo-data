@@ -1,0 +1,230 @@
+[[row]]
+name = "Action Boost"
+
+[[row]]
+name = "Alchemical"
+
+[[row]]
+name = "Armor"
+
+[[row]]
+name = "Armor Enhancement"
+stacks_with_self = true
+
+[[row]]
+name = "Artifact"
+
+[[row]]
+name = "Base"
+
+[[row]]
+name = "Centered"
+
+[[row]]
+name = "Circumstance"
+
+[[row]]
+name = "Class"
+
+[[row]]
+name = "Combat Style"
+
+[[row]]
+name = "Competence"
+
+[[row]]
+name = "Deflection"
+
+[[row]]
+name = "Destiny"
+stacks_with_self = true
+
+[[row]]
+name = "Determination"
+
+[[row]]
+name = "Divine"
+
+[[row]]
+name = "Dodge"
+stacks_with_self = true
+
+[[row]]
+name = "Elemental Energy"
+
+[[row]]
+name = "Elemental Spell Power"
+
+[[row]]
+name = "Enchantment"
+
+[[row]]
+name = "Enhancement"
+
+[[row]]
+name = "Epic"
+
+[[row]]
+name = "Equipment"
+
+[[row]]
+name = "Eternal Faith"
+
+[[row]]
+name = "Exceptional"
+
+[[row]]
+name = "False Life"
+
+[[row]]
+name = "Feat"
+
+[[row]]
+name = "Festive"
+
+[[row]]
+name = "Fortune"
+
+[[row]]
+name = "Greater Elemental Energy"
+
+[[row]]
+name = "Greater Elemental Spell Power"
+
+[[row]]
+name = "Guild"
+
+[[row]]
+name = "Implement"
+
+[[row]]
+name = "Improved Elemental Energy"
+
+[[row]]
+name = "Improved Elemental Spell Power"
+
+[[row]]
+name = "Inherent"
+
+[[row]]
+name = "Insight"
+
+[[row]]
+name = "Inspiration"
+
+[[row]]
+name = "Keen"
+
+[[row]]
+name = "Legendary"
+
+[[row]]
+name = "Legendary Elemental Energy"
+
+[[row]]
+name = "Legendary Elemental Spell Power"
+
+[[row]]
+name = "Level Up"
+
+[[row]]
+name = "Luck"
+
+[[row]]
+name = "Morale"
+
+[[row]]
+name = "Music"
+
+[[row]]
+name = "Mythic"
+stacks_with_self = true
+
+[[row]]
+name = "Natural Armor"
+
+[[row]]
+name = "Orb"
+
+[[row]]
+name = "Penalty"
+stacks_with_self = true
+
+[[row]]
+name = "Pirate"
+
+[[row]]
+name = "Primal"
+
+[[row]]
+name = "Profane"
+
+[[row]]
+name = "Psionic"
+
+[[row]]
+name = "Quality"
+
+[[row]]
+name = "Racial"
+
+[[row]]
+name = "Rage"
+
+[[row]]
+name = "Reaper"
+stacks_with_self = true
+
+[[row]]
+name = "Resistance"
+
+[[row]]
+name = "Sacred"
+
+[[row]]
+name = "Shield"
+
+[[row]]
+name = "Shield Enhancement"
+stacks_with_self = true
+
+[[row]]
+name = "Silver Flame"
+
+[[row]]
+name = "Size"
+
+[[row]]
+name = "Special"
+
+[[row]]
+name = "Spooky"
+
+[[row]]
+name = "Stacking"
+stacks_with_self = true
+
+[[row]]
+name = "Temporary"
+stacks_with_self = true
+
+[[row]]
+name = "Unique"
+stacks_with_self = true
+
+[[row]]
+name = "Universal"
+
+[[row]]
+name = "Untyped"
+stacks_with_self = true
+
+[[row]]
+name = "Vitality"
+
+[[row]]
+name = "Weapon DR"
+stacks_with_self = true
+
+[[row]]
+name = "Weapon Enchantment"

@@ -1,0 +1,31 @@
+name = "Signet of the Silver Flame"
+description = """
+This ring is enscribed with a series of arcane runes interwoven with symbols
+of the Silver Flame."""
+drop_location = "Necropolis, Turn in Dark Scarab Powder"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 7
+slot = "Ring"
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 4
+
+[[source]]
+kind = "vendor"
+name = "Squire Rale"
+
+[[source.price]]
+ingredient = "Dark Scarab Powder"
+quantity = 1

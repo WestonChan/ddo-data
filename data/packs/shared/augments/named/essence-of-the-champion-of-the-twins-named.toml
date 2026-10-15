@@ -1,0 +1,16 @@
+name = "Essence of the Champion of the Twins"
+variant = "named"
+description = """
+This sapphire carries the soul of the Champion of the Twins.
+Slotted Effect: Healer's Bounty
+Requires: 50 Thread of Fate, 1 Empty Soul Vessel and 1 Champion of the Twins (Legendary Vision of Destruction), at the Soulforge in the Hall of Heroes"""
+effect_description = "Healers Bounty: This shield has a small percentage chance to cast a Heal spell on you when you take damage."
+family = "Named"
+min_level = 30
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Essence_of_the_Champion_of_the_Twins"
+read = "2026-10-02"
+
+[[slot]]
+slot = "blue"

@@ -1,0 +1,9 @@
+name = "The Traveler's Guidance"
+description = "Adds The Traveler's Guidance set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 18
+set_bonus = "The Traveler's Guidance"
+
+[[slot]]
+slot = "crafting: lost purpose"

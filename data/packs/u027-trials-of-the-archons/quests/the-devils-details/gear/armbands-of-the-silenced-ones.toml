@@ -1,0 +1,39 @@
+name = "Armbands of the Silenced Ones"
+description = """
+On the plane of battle, quiet can be one's biggest asset. If your soldiers will
+not provide it willingly, take matters into your own hands."""
+drop_location = "The Devil's Details, End chest"
+icon = "Bracers_3e"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Wrists"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Devil's Details"

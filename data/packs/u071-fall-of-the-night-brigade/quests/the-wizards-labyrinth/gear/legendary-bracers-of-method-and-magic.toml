@@ -1,0 +1,43 @@
+name = "Legendary Bracers of Method and Magic"
+description = "Arcane runes flow along the edges of this finely-crafted item."
+drop_location = "The Wizard's Labyrinth, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 33
+slot = "Wrists"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Quality"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wizard's Labyrinth"

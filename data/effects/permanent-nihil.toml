@@ -1,0 +1,12 @@
+name = "Permanent Nihil"
+description_template = "Passive: +30 Alchemical bonus to your Negative and Poison Spell Power."
+home_bonus_type = "Alchemical"
+verbose_name_template = "Permanent Nihil +30"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Alchemical"
+constant = 30
+rounding = "down"
+scale = 1.0
+target = "Negative and Poison Spell Power"

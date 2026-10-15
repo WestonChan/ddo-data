@@ -1,0 +1,40 @@
+name = "Green Steel Throwing Axe"
+description = "A small, light axe design for throwing."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+enhancement_bonus = 5
+icon = "ThrowingAxe_1"
+item_category = "Weapon"
+item_type = "Throwing Axe"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "crafting: weapon invasion"
+
+[[source]]
+kind = "crafting_system"
+name = "Green Steel items"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Thrown"
+weapon_type = "Throwing Axe"

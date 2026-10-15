@@ -1,0 +1,50 @@
+name = "Shadow's Curve"
+description = "An evil sickle, perfect for those shrouded in darkness."
+drop_location = "Army of Eternal Night, end Chest"
+enhancement_bonus = 5
+icon = "Sickle_1o"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Unholy 4"
+
+[[effect]]
+name = "Negative Blast 4"
+
+[[effect]]
+name = "Human Bane 4"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 9
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Army of Eternal Night"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Sickle"

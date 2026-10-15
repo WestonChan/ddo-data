@@ -1,0 +1,48 @@
+name = "Epic Docent of Grace"
+description = """
+This docent was created by mad wizard for use in his clockwork ballet company.
+Installing this docent causes a warforged to move with exquisite grace and
+confidence."""
+drop_location = "Epic version of Docent of Grace"
+enhancement_bonus = 6
+icon = "Docent_1j"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 20
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 20
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 9
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Construct Fortification (10%)"
+bonus_type = "Insight"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

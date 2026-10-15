@@ -1,0 +1,26 @@
+name = "Spies in the House"
+bestowed_by = "Brysen d'Deneith"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Sentinels of Stormreach"
+patron = "House Deneith"
+zone = "The Blood Road"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Spies_in_the_House"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 21

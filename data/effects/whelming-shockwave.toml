@@ -1,0 +1,3 @@
+name = "Whelming Shockwave"
+description_template = "This weapon reverberates with incredible power. On Vorpal, this weapon triggers a Shockwave, striking its target with bludgeoning damage and dealing damage to surrounding enemies."
+verbose_name_template = "Whelming Shockwave"

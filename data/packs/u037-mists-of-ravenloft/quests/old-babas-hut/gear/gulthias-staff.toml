@@ -1,0 +1,56 @@
+name = "Gulthias Staff"
+accepts_sentience = true
+description = "Trust none who serve but the Mother Night."
+drop_location = "Old Baba's Hut, Raid Chest"
+enhancement_bonus = 15
+icon = "Quarterstaff_1m"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Densewood"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Choked by Mother Night"
+
+[[effect]]
+name = "Animal Bane 6"
+
+[[effect]]
+name = "Aberration Bane 6"
+
+[[effect]]
+name = "Vampirism 3"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

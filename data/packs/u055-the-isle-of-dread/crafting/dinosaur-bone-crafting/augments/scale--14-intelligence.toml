@@ -1,0 +1,21 @@
+name = "Scale: +14 Intelligence"
+description = "+14 Enhancement bonus to Intelligence"
+family = "DinosaurBone"
+icon = "ScalePurple"
+min_level = 31
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 14
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "isle of dread: scale (accessory)"

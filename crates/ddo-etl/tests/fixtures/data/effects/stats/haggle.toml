@@ -1,0 +1,4 @@
+name = "Haggle"
+category = "skill"
+home_bonus_type = "Insight"
+verbose_name_template = "%b1 Haggle +{1}"

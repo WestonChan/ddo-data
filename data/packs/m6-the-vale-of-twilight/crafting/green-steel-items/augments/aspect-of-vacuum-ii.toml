@@ -1,0 +1,13 @@
+name = "Aspect of Vacuum II"
+description = """
+Trap the Soul Guard: This item stores an overwhelming, merciless power deep within.
+When the wearer of this item is successfully attacked in melee, this power
+occasionally comes to the surface, sucking out the life force of an enemy and
+imprisoning the essence of their body and soul in a gem.
+Air:Negative:Air+Negative"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

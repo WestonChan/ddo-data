@@ -1,0 +1,3 @@
+name = "Haste Guard"
+description_template = "When you are hit by enemies, there is a chance you will be Hasted, quickening your attack and movement speed."
+verbose_name_template = "Haste Guard"

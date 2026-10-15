@@ -1,0 +1,23 @@
+name = "The Depths of Darkness"
+bestowed_by = "Giggs Elorreathi"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Deneith"
+zone = "The Depths of Darkness"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Depths_of_Darkness"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

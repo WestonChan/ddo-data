@@ -1,0 +1,30 @@
+name = "Pale Lavender Ioun Stone (unsuppressed)"
+description = """
+A pale lavender gem about 1 inch in diameter. The Stone has been upgraded and
+will no longer burn out and become useless when all the charges are expended.
+One charge is expended per spell level absorbed."""
+drop_location = "Dreamforge, Suppressed Power Crafting"
+icon = "Trinket_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[clickie]]
+name = "Spell Absorption"
+clickie = "Spell Absorption"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    50,
+    15,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Spell Absorption"]
+
+[[source]]
+kind = "crafting_system"
+name = "Suppressed Power"

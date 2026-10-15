@@ -1,0 +1,25 @@
+name = "Oathring"
+description = """
+A knight shall combat iniquity, avarice, and wickedness wherever they rear their
+ugly heads."""
+drop_location = "Advance to level 15, End reward"
+icon = "Ring_8"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+race_required = "Purple Dragon Knight"
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

@@ -1,0 +1,28 @@
+name = "Beacon of Tira"
+description = """
+This brightly polished pure silver helm radiates light. A blue flame that almost
+appears to burn is attached to the top."""
+drop_location = "Silver Flame Nugget, End reward"
+icon = "Helmet_12a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+slot = "Head"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 78
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 78
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 78
+
+[[socket]]
+slot = "green"

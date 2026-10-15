@@ -1,0 +1,468 @@
+name = "Fell Shiv (Level 26)"
+description = "The hidden knife is often the deadliest."
+drop_location = "The Thrill of the Hunt, Devouring Shadow chest (Epic Hard)"
+enhancement_bonus = 4
+icon = "Dagger_9"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Greater Vorpal"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Dazing VI"
+description = """
+Dazing VI: On Hit: Your target suffers a -1 Penalty to Will Saving Throws for 6
+seconds. This effect stacks up to 5 times. This effect may only occur on-hit
+once every three seconds.
+Passive: The DC of the saving throw to resist your Stunning Blow and Stunning
+Fist combat feats is increased by 11."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option]]
+name = "Deception VI"
+description = """
+Deception VI: 5% Chance on Hit: Your target becomes Bluffed for four seconds.
+Bluffed enemies can be affected by Sneak Attacks even while targeting you.
+On sneak attack: +6 to Attack Rolls, +12 to Damage."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sneak Attack Hit"
+value = 6
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sneak Attack Damage"
+value = 12
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Equipment"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Equipment"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[socket.option]]
+name = "Doublestrike 6%"
+description = """
+Doublestrike 6%: Passive: 6% Enhancement bonus to Doublestrike.
+Doublestrike is a chance to score an additional hit with a melee attack."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[socket.option]]
+name = "Draining VI"
+description = """
+Draining VI: On Vorpal Hit: Your target incurs one Negative Level, and you
+gain +12 Temporary Spell Points. (These Temporary Spell Points last for one
+minute, or until used to reduce the cost of your next spell.)"""
+icon = "Variant"
+min_level = 25
+
+[[socket.option]]
+name = "Feeding VI"
+description = """
+Feeding VI: On Vorpal Hit: Your target incurs one Negative Level, and you gain
++30 Temporary Hit Points. (These Temporary Hit Points last for one minute, or
+until used to negate incoming damage.)"""
+icon = "Variant"
+min_level = 25
+
+[[socket.option]]
+name = "Ghostbane VI"
+description = """
+Ghostbane VI: On Hit: 6 to 24 Bane Damage vs Undead. (Bane damage cannot be resisted.)
+Passive: Attacks from this weapon bypass the miss chance of incorporeal creatures,
+such as ghosts, shadows, and wraiths."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [6]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Heartseeker VI"
+description = """
+Heartseeker VI: On Critical Hit: 13 to 78 Piercing damage from weapons with a x2 Critical
+Multiplier, 13 to 104 Piercing damage from weapons with a x3 Critical Multiplier,
+and 13 to 130 Piercing damage from weapons with a x4 or greater Critical Multiplier."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Pierce"
+dice_number = [
+    0,
+    0,
+    13,
+    13,
+    13,
+    13,
+]
+dice_sides = [
+    0,
+    0,
+    7,
+    8,
+    9,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Humanoid Bane VI"
+description = """
+Humanoid Bane VI: On Hit: 6 to 24 Bane Damage vs Humanoids and Giants.
+(Bane damage cannot be resisted.)"""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [6]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Humanoid"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Improved Disruption"
+description = """
+Improved Disruption: On Hit: 4 to 24 Bane damage to Undead.
+On Vorpal Hit: If an undead struck by this weapon has fewer than 1500 Hit Points,
+it is instantly slain. If the undead has above 1500 Hit Points, it takes 150 damage."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Improved Smiting"
+description = """
+Improved Smiting: On Hit: 4 to 24 Bane damage to Constructs.
+On Vorpal Hit: If a construct struck by this weapon has fewer than 1500 Hit Points,
+it is instantly slain. If the construct has above 1500 Hit Points, it takes 150 damage."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Construct"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Natural Bane VI"
+description = """
+Natural Bane VI: On Hit: 6 to 24 Bane Damage vs Animals, Vermin, Magical Beasts,
+Plants and Fey. (Bane damage cannot be resisted.)"""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [6]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Natural"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Riposte VI"
+description = """
+Riposte VI: When Missed by an attack: Deals 6 to 24 damage to your attacker.
+Passive: +3 Insight bonus to Armor Class, +2 Insight bonus to Fortitude, Reflex,
+and Will Saving Throws."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option]]
+name = "Stumbling VI"
+description = """
+Stumbling VI: On Hit: Your target suffers a -1 Penalty to Reflex Saving Throws
+for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Trip combat feats is increased by 11."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option]]
+name = "Sundering VI"
+description = """
+Sundering VI: On Hit: Your target suffers a -1 Penalty to Fortitude Saving Throws
+for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Sunder combat feats is
+increased by 11."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option]]
+name = "Debilitating + Stunning"
+description = """
+Weakening: This weapon drains the enemies' melee power. -1 Strength on a successful hit.
+Enfeebling: Critical hits by this weapon deal an extra 1 to 6 points of Strength damage.
+Stunning +10: +10 Enhancement bonus to the DC of character's Stunning Blow and
+Stunning Fist attempts."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+value = 10
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_bonus = [1]
+dice_damage = "Strength"
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Strength"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[socket.option]]
+name = "Debilitating + Shatter"
+description = """
+Weakening: This weapon drains the enemies' melee power. -1 Strength on a successful hit.
+Enfeebling: Critical hits by this weapon deal an extra 1 to 6 points of Strength damage.
+Shatter +10: This effect gives a +10 enhancement bonus to the DC to resist the
+character's Sunder and Improved Sunder attempts."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sunder DC"
+value = 10
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_bonus = [1]
+dice_damage = "Strength"
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Strength"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Sunder DC"
+effect_type = "TacticalDC"
+targets = ["Sunder"]
+
+[[socket.option]]
+name = "Debilitating + Tendon Slice 10%"
+description = """
+Weakening: This weapon drains the enemies' melee power. -1 Strength on a successful hit.
+Enfeebling: Critical hits by this weapon deal an extra 1 to 6 points of Strength damage.
+Tendon Slice 10%: This effect gives a 10% chance to Hamstring the target for each
+attack that does damage."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_bonus = [1]
+dice_damage = "Strength"
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Strength"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Debilitating + Vertigo"
+description = """
+Weakening: This weapon drains the enemies' melee power. -1 Strength on a successful hit.
+Enfeebling: Critical hits by this weapon deal an extra 1 to 6 points of Strength damage.
+Vertigo +10: This effect gives a +10 Enhancement bonus to the DC to resist the
+character's Trip and Improved Trip attempts."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+value = 10
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_bonus = [1]
+dice_damage = "Strength"
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Strength"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "devouring shadow chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Thrill of the Hunt"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Dagger"

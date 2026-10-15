@@ -1,0 +1,22 @@
+name = "Cloak of Silence"
+description = "This dark cloak seems as if it absorbs the sound around it."
+drop_location = "Redwillow's Ruins, Ker'xxan T'korcha 's chest"
+icon = "Cloak_19c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Back"
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "ker'xxan t'korcha 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Redwillow's Ruins"

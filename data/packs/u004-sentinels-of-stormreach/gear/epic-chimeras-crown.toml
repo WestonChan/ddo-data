@@ -1,0 +1,33 @@
+name = "Epic Chimera's Crown"
+description = "A sturdy helm that is often a gift to the dragonmarked from House Deneith."
+drop_location = "Epic version of Chimera's Crown"
+icon = "Helmet_11a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Head"
+
+[[effect]]
+name = "Lesser Dragonmark Enhancement"
+
+[[effect]]
+name = "Minor Greater Dragonmark Enhancement"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 28
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 9
+
+[[effect]]
+name = "Chimera's Vitality"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "yellow"

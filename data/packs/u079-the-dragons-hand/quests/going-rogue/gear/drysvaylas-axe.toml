@@ -1,0 +1,51 @@
+name = "Drysvayla's Axe"
+description = """
+A fragment of the great Green Dragon's power made manifest, a sad reminder of
+a day where reason failed."""
+drop_location = "Going Rogue, end chest"
+enhancement_bonus = 5
+icon = "GreatAxe_1m"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Poisonous 3"
+
+[[effect]]
+name = "Toxic 7"
+
+[[effect]]
+name = "Limb Chopper"
+
+[[effect]]
+name = "Dragon's Edge 3"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Going Rogue"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Axe"

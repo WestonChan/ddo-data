@@ -1,0 +1,41 @@
+name = "+1 Vorpal Sickle of Haggling"
+description = """
+Useful for haggling, the Vorpal Sickle is a recognized tool used in trading
+caravans from the Dhakaani clans of Darguun."""
+drop_location = "Special event items, \nEmerald Claw Conspiracy, September 2008\nTrade or no Trade, March 30, 2007 - April 8, 2007"
+enhancement_bonus = 1
+icon = "Sickle_2"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Steel"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Vorpal"
+
+[[source]]
+kind = "event"
+name = "Trade or no Trade"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Sickle"

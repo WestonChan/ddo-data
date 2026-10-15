@@ -1,0 +1,3 @@
+name = "Vengeful Fury"
+description_template = "On Taking Damage: Gain a 12% Enhancement Bonus to Doublestrike and a +4 Rage Bonus to your Attack Bonus."
+verbose_name_template = "Vengeful Fury"

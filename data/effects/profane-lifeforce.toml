@@ -1,0 +1,10 @@
+name = "Profane Lifeforce"
+description_template = "{1} Profane bonus to Hit Points."
+home_bonus_type = "Profane"
+verbose_name_template = "Profane Lifeforce +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Hit Points"

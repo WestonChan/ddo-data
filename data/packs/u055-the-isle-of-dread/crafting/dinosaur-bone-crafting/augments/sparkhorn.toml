@@ -1,0 +1,8 @@
+name = "Sparkhorn"
+description = "Attacks and offensive spells can inflict multiple stacks of Vulnerability"
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[slot]]
+slot = "isle of dread: horn (weapon)"

@@ -1,0 +1,26 @@
+name = "Beyond the Rift"
+bestowed_by = "Tavnar Kronnak"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Silver Flame"
+zone = "The Rift Between Worlds"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Beyond_the_Rift"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 21

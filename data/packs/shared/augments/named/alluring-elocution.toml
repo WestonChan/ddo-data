@@ -1,0 +1,32 @@
+name = "Alluring Elocution"
+description = """
+3-Piece Set Bonus: +3 Artifact Bonus to Charisma
+Requires: 50 Threads of Fate, Empty Soul Vessel and Tattered Scrolls of the Broken One
+(Too Hot to Handle)"""
+effect_description = "This augment will suppress any set bonus this item may have."
+family = "Named"
+icon = "ColorlessRaidItemEssence"
+min_level = 30
+set_bonus = "Alluring Elocution"
+suppress_set_bonus = true
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

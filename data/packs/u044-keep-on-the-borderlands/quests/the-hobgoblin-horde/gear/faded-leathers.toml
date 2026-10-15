@@ -1,0 +1,33 @@
+name = "Faded Leathers"
+description = """
+Light and flexible, it won't do much to protect against heavy hits, but it's
+better than nothing."""
+drop_location = "The Hobgoblin Horde, End Chest"
+enhancement_bonus = 1
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 2
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 38
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hobgoblin Horde"

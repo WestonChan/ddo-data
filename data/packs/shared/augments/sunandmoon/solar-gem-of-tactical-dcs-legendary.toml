@@ -1,0 +1,56 @@
+name = "Solar Gem of Tactical DCs (Legendary)"
+description = """
++3 Artifact Bonus to Tactical DCs.
+Drops in: The Key to the Mythal, end chest
+Dinosaur Crisis, end chest
+The Body Snatchers, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Stun DC"
+bonus_type = "Artifact"
+value = 3
+
+[[effect]]
+name = "Sunder DC"
+bonus_type = "Artifact"
+value = 3
+
+[[effect]]
+name = "Trip DC"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect_type = "TacticalDC"
+targets = [
+    "Stun",
+    "Sunder",
+    "Trip",
+]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Key to the Mythal"

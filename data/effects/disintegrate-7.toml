@@ -1,0 +1,3 @@
+name = "Disintegrate 7"
+description_template = "Strikes with this weapon have a small chance to call forth a strike of entropic force, dealing 7d20+72 untyped damage."
+verbose_name_template = "Disintegrate 7"

@@ -1,0 +1,35 @@
+name = "Legendary Hammerfist"
+description = "Come for the hammer, stay for the fist."
+drop_location = "Blown Deadline, end chest"
+icon = "Gloves_6"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Cannith Combat Infusion"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Blown Deadline"

@@ -1,0 +1,2066 @@
+name = "Slave Lords Crafting"
+npc = "Garvon <Armorer and Outfitter>, in the Forsaken Temple just inside the Slave Pits of the Undercity entrance"
+pack = "Against the Slave Lords"
+
+[[family]]
+family = "Slavelords_Heroic"
+
+[[family]]
+family = "Slavelords_Legendary"
+
+[[ingredient]]
+name = "Broken Shackle"
+bind = "Unbound"
+drop_location = "Part 1, Slave Pits of the Undercity"
+tier = "heroic"
+
+[[ingredient]]
+name = "Chain Links"
+bind = "Unbound"
+drop_location = "Part 2, Secret of the Slavers' Stockade"
+tier = "heroic"
+
+[[ingredient]]
+name = "Broken Collar"
+bind = "Unbound"
+drop_location = "Part 3, Assault on the Aerie of the Slave Lords"
+tier = "heroic"
+
+[[ingredient]]
+name = "Shattered Symbol of the Slave Lords"
+bind = "BtA"
+drop_location = "Part 1, Slave Pits of the Undercity"
+tier = "heroic"
+
+[[ingredient]]
+name = "Frayed Leather"
+bind = "BtA"
+drop_location = "Part 2, Secret of the Slavers' Stockade"
+tier = "heroic"
+
+[[ingredient]]
+name = "Staff Splinter"
+bind = "BtA"
+drop_location = "Part 3, Assault on the Aerie of the Slave Lords"
+tier = "heroic"
+
+[[ingredient]]
+name = "Statuette of the Gods"
+bind = "BtA"
+drop_location = "All parts"
+tier = "heroic"
+
+[[ingredient]]
+name = "Slave Master's Bust"
+bind = "BtA"
+drop_location = "All parts"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Broken Shackle"
+bind = "Unbound"
+drop_location = "Part 1, Slave Pits of the Undercity"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Chain Links"
+bind = "Unbound"
+drop_location = "Part 2, Secret of the Slavers' Stockade"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Broken Collar"
+bind = "Unbound"
+drop_location = "Part 3, Assault on the Aerie of the Slave Lords"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Shattered Symbol of Slave Lords"
+bind = "BtA"
+drop_location = "Part 1, Slave Pits of the Undercity"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Frayed Leather"
+bind = "BtA"
+drop_location = "Part 2, Secret of the Slavers' Stockade"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Staff Splinter"
+bind = "BtA"
+drop_location = "Part 3, Assault on the Aerie of the Slave Lords"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Statuette of the Gods"
+bind = "BtA"
+drop_location = "All parts"
+tier = "legendary"
+
+[[ingredient]]
+name = "Legendary Slave Master's Bust"
+bind = "BtA"
+drop_location = "All parts"
+tier = "legendary"
+
+[[citation]]
+url = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-09-29"
+
+[[recipe]]
+option = "Attributes +5"
+slot = "crafting: slavelords prefix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Charisma +5"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Constitution +5"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Dexterity +5"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Intelligence +5"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Strength +5"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Wisdom +5"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 50
+
+[[recipe]]
+option = "Attributes +13"
+slot = "crafting: legendary slavelords prefix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Charisma +13"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Constitution +13"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Dexterity +13"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Intelligence +13"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Strength +13"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Wisdom +13"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 100
+
+[[recipe]]
+option = "False Life +18"
+slot = "crafting: slavelords prefix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "False Life +18"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 50
+
+[[recipe]]
+option = "False Life +50"
+slot = "crafting: legendary slavelords prefix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "False Life +50"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 100
+
+[[recipe]]
+option = "Fortification +70%"
+slot = "crafting: slavelords prefix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Fortification +70%"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 50
+
+[[recipe]]
+option = "Fortification +142%"
+slot = "crafting: legendary slavelords prefix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Fortification +142%"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 100
+
+[[recipe]]
+option = "Sheltering +12"
+slot = "crafting: slavelords prefix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sheltering +12"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 50
+
+[[recipe]]
+option = "Sheltering +33"
+slot = "crafting: legendary slavelords prefix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Sheltering +33"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 100
+
+[[recipe]]
+option = "Wizardry +96"
+slot = "crafting: slavelords prefix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Wizardry +96"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 50
+
+[[recipe]]
+option = "Wizardry +269"
+slot = "crafting: legendary slavelords prefix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Wizardry +269"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 100
+
+[[recipe]]
+option = "Accuracy +8"
+slot = "crafting: slavelords suffix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Accuracy +8"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 50
+
+[[recipe]]
+option = "Accuracy +20"
+slot = "crafting: legendary slavelords suffix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Accuracy +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 100
+
+[[recipe]]
+option = "Armor Piercing +8"
+slot = "crafting: slavelords suffix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Armor Piercing +8"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 50
+
+[[recipe]]
+option = "Armor Piercing +20"
+slot = "crafting: legendary slavelords suffix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Armor Piercing +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 100
+
+[[recipe]]
+note = "The page notes the damage guards don't stack with each other."
+option = "Damage Guards +2d8"
+slot = "crafting: slavelords suffix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Damage Guards 2d8"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 50
+
+[[recipe]]
+note = "The page notes the damage guards don't stack with each other."
+option = "Damage Guards +8d8"
+slot = "crafting: legendary slavelords suffix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Damage Guards 8d8"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 100
+
+[[recipe]]
+option = "Deadly +4"
+slot = "crafting: slavelords suffix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Deadly +4"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 50
+
+[[recipe]]
+option = "Deadly +10"
+slot = "crafting: legendary slavelords suffix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Deadly +10"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 100
+
+[[recipe]]
+note = "The page notes this has no Bluff effect."
+option = "Deception +3"
+slot = "crafting: slavelords suffix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Deception +3"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 50
+
+[[recipe]]
+note = "The page notes this has no Bluff effect."
+option = "Deception +10"
+slot = "crafting: legendary slavelords suffix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Deception +10"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 100
+
+[[recipe]]
+option = "Resistance +4"
+slot = "crafting: slavelords suffix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Resistance +4"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 50
+
+[[recipe]]
+option = "Resistance +10"
+slot = "crafting: legendary slavelords suffix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Resistance +10"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 100
+
+[[recipe]]
+option = "Seeker +5"
+slot = "crafting: slavelords suffix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Seeker +5"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 50
+
+[[recipe]]
+option = "Seeker +13"
+slot = "crafting: legendary slavelords suffix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Seeker +13"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 100
+
+[[recipe]]
+option = "Spell Lore (single type) (Equipment Bonus) +10"
+slot = "crafting: slavelords suffix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Spell Lore Acid +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Lore Cold +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Lore Electric +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Lore Fire +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Lore Force +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Lore Light +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Lore Negative +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Lore Positive +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Lore Repair +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Lore Sonic +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 50
+
+[[recipe]]
+option = "Spell Lore (single type) (Equipment Bonus) +21"
+slot = "crafting: legendary slavelords suffix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Spell Lore Acid +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Lore Cold +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Lore Electric +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Lore Fire +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Lore Force +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Lore Light +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Lore Negative +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Lore Positive +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Lore Repair +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Lore Sonic +21"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 100
+
+[[recipe]]
+option = "Spell Power (single type) (Equipment Bonus) +70"
+slot = "crafting: slavelords suffix"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Spell Power Acid +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Power Cold +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Power Electric +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Power Fire +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Power Force +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Power Light +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Power Negative +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Power Positive +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Power Repair +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spell Power Sonic +70"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 50
+
+[[recipe]]
+option = "Spell Power (single type) (Equipment Bonus) +142"
+slot = "crafting: legendary slavelords suffix"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Spell Power Acid +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Power Cold +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Power Electric +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Power Fire +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Power Force +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Power Light +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Power Negative +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Power Positive +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Power Repair +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spell Power Sonic +142"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 100
+
+[[recipe]]
+option = "Skills (except UMD) +10"
+slot = "crafting: slavelords extra"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Balance +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Bluff +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Concentration +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Diplomacy +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Disable Device +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Haggle +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Heal +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Hide +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Intimidate +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Jump +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Listen +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Move Silently +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Open Lock +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Perform +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Repair +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Search +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spellcraft +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Spot +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Swim +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Tumble +10"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Skills (except UMD) +20"
+slot = "crafting: legendary slavelords extra"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Balance +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Bluff +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Concentration +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Diplomacy +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Disable Device +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Haggle +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Heal +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Hide +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Intimidate +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Jump +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Listen +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Move Silently +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Open Lock +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Perform +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Repair +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Search +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spellcraft +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Spot +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Swim +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Tumble +20"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 100
+
+[[recipe]]
+note = "The page notes the barter window displays incorrect values."
+option = "UMD +1"
+slot = "crafting: slavelords extra"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Use Magic Device +1"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 50
+
+[[recipe]]
+note = "The page notes the barter window displays incorrect values."
+option = "UMD +5"
+slot = "crafting: legendary slavelords extra"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Use Magic Device +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 100
+
+[[recipe]]
+option = "Shatter +6"
+slot = "crafting: slavelords extra"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Shatter +6"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Shatter +15"
+slot = "crafting: legendary slavelords extra"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Shatter +15"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 100
+
+[[recipe]]
+option = "Spell Focus Mastery +2"
+slot = "crafting: slavelords extra"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Spell Focus Mastery +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Spell Focus Mastery +6"
+slot = "crafting: legendary slavelords extra"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Spell Focus Mastery +6"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 100
+
+[[recipe]]
+option = "Spell Penetration +3"
+slot = "crafting: slavelords extra"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Spell Penetration +3"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Spell Penetration +8"
+slot = "crafting: legendary slavelords extra"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Spell Penetration +8"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 100
+
+[[recipe]]
+option = "Stunning +6"
+slot = "crafting: slavelords extra"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Stunning +6"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Stunning +15"
+slot = "crafting: legendary slavelords extra"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Stunning +15"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 100
+
+[[recipe]]
+option = "Tendon Slice +4"
+slot = "crafting: slavelords extra"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tendon Slice +4"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Tendon Slice +10"
+slot = "crafting: legendary slavelords extra"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Tendon Slice +10"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 100
+
+[[recipe]]
+option = "Vertigo +6"
+slot = "crafting: slavelords extra"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Vertigo +6"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Vertigo +15"
+slot = "crafting: legendary slavelords extra"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Vertigo +15"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 100
+
+[[recipe]]
+note = "The page notes the heroic barter window displays incorrect values for this row; these are the page's corrected values."
+option = "Quality Attributes +1"
+slot = "crafting: slavelords bonus"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Quality Charisma +1"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Constitution +1"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Dexterity +1"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Intelligence +1"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Strength +1"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Wisdom +1"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Frayed Leather"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+option = "Quality Attributes +3"
+slot = "crafting: legendary slavelords bonus"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Quality Charisma +3"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Constitution +3"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Dexterity +3"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Intelligence +3"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Strength +3"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Wisdom +3"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Frayed Leather"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+note = "The page notes the heroic barter window displays incorrect values for this row; these are the page's corrected values."
+option = "Quality False Life +4"
+slot = "crafting: slavelords bonus"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Quality False Life +4"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Frayed Leather"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+option = "Quality False Life +12"
+slot = "crafting: legendary slavelords bonus"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Quality False Life +12"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Frayed Leather"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+note = "The page notes the heroic barter window displays incorrect values for this row; these are the page's corrected values."
+option = "Quality Fortification +17%"
+slot = "crafting: slavelords bonus"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Quality Fortification +17%"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Frayed Leather"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+option = "Quality Fortification +35%"
+slot = "crafting: legendary slavelords bonus"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Quality Fortification +35%"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Frayed Leather"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Quality MRR +2"
+slot = "crafting: slavelords bonus"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Quality MRR +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Frayed Leather"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+option = "Quality MRR +8"
+slot = "crafting: legendary slavelords bonus"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Quality MRR +8"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Frayed Leather"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Quality PRR +2"
+slot = "crafting: slavelords bonus"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Quality PRR +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Frayed Leather"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+option = "Quality PRR +8"
+slot = "crafting: legendary slavelords bonus"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Quality PRR +8"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Frayed Leather"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Quality Skills +2"
+slot = "crafting: slavelords bonus"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Quality Balance +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Bluff +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Concentration +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Diplomacy +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Disable Device +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Haggle +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Heal +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Hide +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Intimidate +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Jump +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality listen +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Move Silently +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Open Lock +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Perform +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Repair +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Search +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Spellcraft +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Spot +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Swim +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.augment]]
+name = "Quality Tumble +2"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Frayed Leather"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+option = "Quality Skills +5"
+slot = "crafting: legendary slavelords bonus"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Quality Balance +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Bluff +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Concentration +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Diplomacy +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Disable Device +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Haggle +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Heal +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Hide +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Intimidate +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Jump +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality listen +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Move Silently +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Open Lock +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Perform +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Repair +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Search +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Spellcraft +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Spot +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Swim +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.augment]]
+name = "Quality Tumble +5"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Frayed Leather"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+note = "Adds a Colorless augment slot to the item; no augment counterpart."
+option = "Colorless Augment Slot"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Staff Splinter"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+note = "Adds a Colorless augment slot to the item; no augment counterpart."
+option = "Colorless Augment Slot"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Staff Splinter"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+note = "Adds a Blue augment slot to the item; no augment counterpart."
+option = "Blue Augment Slot"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Staff Splinter"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+note = "Adds a Blue augment slot to the item; no augment counterpart."
+option = "Blue Augment Slot"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Staff Splinter"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+note = "Adds a Yellow augment slot to the item; no augment counterpart."
+option = "Yellow Augment Slot"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Staff Splinter"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+note = "Adds a Yellow augment slot to the item; no augment counterpart."
+option = "Yellow Augment Slot"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Staff Splinter"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+note = "Adds a Green augment slot to the item; no augment counterpart."
+option = "Green Augment Slot"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Staff Splinter"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+note = "Adds a Green augment slot to the item; no augment counterpart."
+option = "Green Augment Slot"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Staff Splinter"
+quantity = 100
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Slave Lord's Might"
+slot = "crafting: slavelords set bonus"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Slavelords Might"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Shattered Symbol of the Slave Lords"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+option = "Slave Lord's Might"
+slot = "crafting: legendary slavelords set bonus"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Slavelords Might"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Shattered Symbol of Slave Lords"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Slave Lord's Sorcery"
+slot = "crafting: slavelords set bonus"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Slavelords Sorcery"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Shattered Symbol of the Slave Lords"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+option = "Slave Lord's Sorcery"
+slot = "crafting: legendary slavelords set bonus"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Slavelords Sorcery"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Shattered Symbol of Slave Lords"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+option = "Slaver's Endurance"
+slot = "crafting: slavelords set bonus"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Slavelords Endurance"
+family = "Slavelords_Heroic"
+level = 8
+
+[[recipe.ingredient]]
+ingredient = "Shattered Symbol of the Slave Lords"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Shackle"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Chain Links"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Broken Collar"
+quantity = 20
+
+[[recipe]]
+option = "Slaver's Endurance"
+slot = "crafting: legendary slavelords set bonus"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Slavelords Endurance"
+family = "Slavelords_Legendary"
+level = 28
+
+[[recipe.ingredient]]
+ingredient = "Legendary Shattered Symbol of Slave Lords"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Shackle"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Chain Links"
+quantity = 50
+
+[[recipe.ingredient]]
+ingredient = "Legendary Broken Collar"
+quantity = 50
+
+[[recipe]]
+note = "Adds a +1 Mythic Boost to crafted or named Slave Lords gear; no augment counterpart."
+option = "Mythic Boost +1"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Statuette of the Gods"
+quantity = 1
+
+[[recipe]]
+note = "Adds a +1 Mythic Boost to crafted or named Slave Lords gear; no augment counterpart."
+option = "Mythic Boost +1"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Statuette of the Gods"
+quantity = 1
+
+[[recipe]]
+note = "Adds a +3 Mythic Boost to crafted or named Slave Lords gear; no augment counterpart."
+option = "Mythic Boost +3"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Slave Master's Bust"
+quantity = 1
+
+[[recipe]]
+note = "Adds a +3 Mythic Boost to crafted or named Slave Lords gear; no augment counterpart."
+option = "Mythic Boost +3"
+tier = "legendary"
+
+[[recipe.ingredient]]
+ingredient = "Legendary Slave Master's Bust"
+quantity = 1

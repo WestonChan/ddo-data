@@ -1,0 +1,3 @@
+name = "Absolute Law"
+description_template = "This weapon is infused with the ultimate power of Law. It does an additional 2 to 12 damage to non-lawful targets and can only be wielded by Lawful-aligned characters."
+verbose_name_template = "Absolute Law"

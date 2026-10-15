@@ -1,0 +1,48 @@
+name = "Epic Helm of the Red Dragon"
+description = "This helm is crafted in the likeness of a vicious red dragon."
+drop_location = "Plane of Night, warded chest (Epic)"
+icon = "Helmet_8"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Head"
+
+[[clickie]]
+name = "Fire Shield (Fire)"
+clickie = "Fire Shield (Fire)"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Magma Surge Guard"
+
+[[effect]]
+name = "Improved Fire Augmentation IX"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Fire Shield (Fire)"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

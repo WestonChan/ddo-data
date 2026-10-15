@@ -1,0 +1,21 @@
+name = "Spell Power Acid +142"
+description = "Legendary Equipment bonus to spell power"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Acid Spell Power"
+bonus_type = "Equipment"
+value = 142
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [142]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

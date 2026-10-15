@@ -1,0 +1,47 @@
+name = "Positive Spell Power - +139 Equipment"
+description = "Dominion/Positive: +139 Equipment bonus increase to Positive spell power."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Positive Spell Power"
+bonus_type = "Equipment"
+value = 139
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[note]]
+kind = "augment"
+original_name = "Positive Spell Power - +150 Equipment"
+field = "description"
+upstream = "Dominion/Positive: +150 Equipment bonus increase to Positive spell power."
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Devotion 139."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Positive Spell Power - +150 Equipment"
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Devotion 139."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment_bonus"
+original_name = "Positive Spell Power - +150 Equipment"
+field = "value"
+upstream = 150
+reason = "The wiki's Legendary Green Steel tier 1 equipment spell power is Devotion 139."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_1"
+read = "2026-09-30"
+qualifier = "Positive Spell Power / Equipment"
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

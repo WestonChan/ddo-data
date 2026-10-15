@@ -1,0 +1,45 @@
+name = "Dragonsoul Vestments (level 12)"
+description = "Time-Twisted version of Dragontouched Vestments"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+enhancement_bonus = 5
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 12
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Dragontouched"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Sight Beyond Sight"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Speed"
+value = 22
+value2 = 9
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

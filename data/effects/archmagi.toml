@@ -1,0 +1,11 @@
+name = "Archmagi"
+description_template = "This item grants the wearer +200 maximum spell points. Sorcerers and Favored Souls gain up to double spell points from items."
+home_bonus_type = "Equipment"
+verbose_name_template = "Archmagi +200"
+
+[[bonus]]
+amount_from = 0
+constant = 200
+rounding = "down"
+scale = 1.0
+target = "Spell Points"

@@ -1,0 +1,20 @@
+name = "Electric Spell Power - +37 Quality"
+description = "Dominion/Air: +37 Quality bonus increase to Electric spell power."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Electric Spell Power"
+bonus_type = "Quality"
+value = 37
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [37]
+bonus_type = "Quality"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

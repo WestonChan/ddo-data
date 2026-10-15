@@ -1,0 +1,25 @@
+name = "Tabaxi"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = "Tabaxi are dexterous cat-like warriors who run, leap and claw their way to victory"
+short_name = "Tabaxi"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Dexterity"
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Tabaxi"
+read = "2026-09-29"
+
+[[granted_feat]]
+feat = "Feline Agility"
+
+[[granted_feat]]
+feat = "Tabaxi Traits"

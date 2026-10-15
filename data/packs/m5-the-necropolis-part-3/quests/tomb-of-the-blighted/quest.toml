@@ -1,0 +1,21 @@
+name = "Tomb of the Blighted"
+bestowed_by = "Hallestrom"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Necropolis, Part 3"
+patron = "The Silver Flame"
+zone = "Tomb of the Blighted"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tomb_of_the_Blighted"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11

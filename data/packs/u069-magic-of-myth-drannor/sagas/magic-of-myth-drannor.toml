@@ -1,0 +1,22 @@
+name = "Magic of Myth Drannor"
+pack = "Magic of Myth Drannor"
+wiki_url = "https://ddowiki.com/page/Magic_of_Myth_Drannor_(Legendary)"
+quests = [
+    "Book Burning",
+    "Death Hosts This Banquet",
+    "Ettercap Incursion",
+    "Oghma's Song",
+    "Portal to Below",
+    "Secrets of the Red Wizards",
+    "Seeds of Decay",
+    "The House of Gems",
+    "The Key to the Mythal",
+    "The Safehold",
+    "The Zulkir's Plan",
+    "Times Long Past",
+    "Voices of the Dead",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Magic_of_Myth_Drannor_(Legendary)"
+read = "2026-10-02"

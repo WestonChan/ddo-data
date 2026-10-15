@@ -1,0 +1,105 @@
+name = "Epic Docent of Shadow (Level 24)"
+description = """
+This docent is as dark as the night sky and almost seems to crawl visibly with
+moving shadows. It boosts the power of its wearer's negative energy magic,
+and grants a measure of necromantic protection against enemy attacks."""
+drop_location = "The Night Revels, Turn in Docent of Shadow (level 20) \n and 200 Piece of Darkest Chocolate; obtained in the Graveyard mob slayer, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 100 Shadowy Caramel; obtained in The Kobolds' Newest Ringleader, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 60 Pinch of Sinister Cinnamon; obtained in The Snitch and the Lich, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace"
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 24
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 24
+armor_bonus = 4
+armor_type = "Docent"
+mithral_body = 12
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 114
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Superior False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Boon of Undeath"
+
+[[effect]]
+name = "Nightshield"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[note]]
+kind = "item"
+field = "name"
+upstream = "Docent of Shadow (level 24)"
+reason = "The wiki titles this epic variant with the Epic prefix."
+url = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+
+[[note]]
+kind = "item_bonus"
+original_name = "Docent of Shadow (level 24)"
+field = "value"
+reason = "The wiki Void Lore tier grants 16% Negative and Poison spell lore."
+url = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+qualifier = "Negative and Poison Spell Lore / Equipment"
+
+[[note]]
+kind = "item_bonus"
+original_name = "Docent of Shadow (level 24)"
+field = "value"
+upstream = 1
+reason = "The wiki item grants Necromancy Focus +3 rather than +1."
+url = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+qualifier = "Necromancy Focus / Equipment"
+
+[[note]]
+kind = "item_effect"
+original_name = "Docent of Shadow (level 24)"
+field = "add"
+reason = "The wiki item carries Nightshield with five charges."
+url = "https://ddowiki.com/page/Item:Epic_Docent_of_Shadow_%28level_24%29"
+read = "2026-09-29"
+qualifier = "Nightshield"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[source]]
+chest = "the lich, hayweird foundry, or getting ahead in lordsmarch palace"
+kind = "quest"
+loot_type = "chest"
+name = "The Snitch"

@@ -1,0 +1,3 @@
+name = "Axiomatic"
+description_template = "This weapon is righteous and wielded by those who stand against chaos, dealing an additional 1d6 law damage on each hit. This effect makes the weapon lawfully aligned. Chaotic characters wielding this weapon will suffer one negative level."
+verbose_name_template = "Axiomatic"

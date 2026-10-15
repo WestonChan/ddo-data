@@ -1,0 +1,3 @@
+name = "Humanoid Bane 3"
+description_template = "This weapon is attuned specifically to those that walk among us, dealing an additional 3d10 bane damage vs. Humanoids."
+verbose_name_template = "Humanoid Bane 3"

@@ -1,0 +1,50 @@
+name = "Shintao Cord"
+description = """
+This woven necklace was worn by the Shintao Monk, Kyosho. Its simple pattern
+aided her in her meditations and allowed her to find her inner focus more easily."""
+drop_location = "A New Invasion, Any chest ; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Shintao Monk"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Shintao Monk - 2 Piece bonus"
+effect_type = "Weapon_AttackAndDamage"
+extra_types = ["Weapon_AttackAndDamage"]
+targets = ["All"]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "A New Invasion"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

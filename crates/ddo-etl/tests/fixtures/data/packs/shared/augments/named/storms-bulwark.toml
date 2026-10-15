@@ -1,0 +1,47 @@
+name = "Storm's Bulwark"
+description = """
+Wards against the Knockdowns and Slows of an Air Elemental.
+Drops in U48 Quest: The Knight who Cried Windmill"""
+family = "Named"
+icon = "Topaz"
+min_level = 1
+
+[[effect]]
+name = "Charisma Skills"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Illusion Save"
+bonus_type = "Insight"
+value = 3
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Air Elemental Knockdown and Slow"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Insight"
+effect = "Charisma Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Charisma"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Insight"
+effect = "Illusion Save"
+effect_type = "SaveBonus"
+targets = ["Illusion"]
+
+[[slot]]
+slot = "green"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Knight Who Cried Windmill"

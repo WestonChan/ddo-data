@@ -1,0 +1,21 @@
+name = "Dread"
+pack = "The Isle of Dread"
+wiki_url = "https://ddowiki.com/page/Isle_of_Dread_(Legendary)"
+quests = [
+    "Captive of the Hidden God",
+    "Fall of the Forbidden Temple",
+    "The Curse and the Captive Crustacean",
+    "All Hail the King",
+    "Bullywugs and Booby Traps",
+    "Plundering Pirates' Point",
+    "Spiders and Flies",
+    "The Stone Crypt Chronicle",
+    "The Trouble with Tar Pits",
+    "Trials of the Triceratops",
+    "Whispers of Return",
+    "Wild Thing",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Isle_of_Dread_(Legendary)"
+read = "2026-10-02"

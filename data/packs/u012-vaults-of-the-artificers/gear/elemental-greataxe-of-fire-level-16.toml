@@ -1,0 +1,124 @@
+name = "Elemental Greataxe of Fire (level 16)"
+description = """
+This greataxe is part of a mass-produced line of House Cannith weapons with
+elementals bound to them. This one is infused with fire and burns enemies as
+a result."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 4
+icon = "GreatAxe_2d"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Flaming Burst"
+
+[[effect]]
+name = "Brilliance"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Incineration"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+5 Enhancement Bonus and Cold Resistance 32"
+description = """
++5 Enhancement Bonus: +5 Enhancement bonus to attack and damage rolls.
+Cold Resistance +32: Passive: +32 Enhancement bonus to your Cold Resistance."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+value = 32
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [32]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Purple augment slot and Cold Resistance 35"
+description = """
+Adds a Purple augment slot to this item
+Cold Resistance +35: Passive: +35 Enhancement bonus to your Cold Resistance."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+value = 35
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "Two-handed"
+weapon_type = "Great Axe"

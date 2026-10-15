@@ -1,0 +1,75 @@
+name = "Vengeful Protector"
+description = """
+A divine shield said to have been used by a paladin who ventured into the Subterrane
+to battle its denizens. It lashes out against those who attack you, almost
+with a mind of its own, and magnifies the power of positive energy directed
+at you."""
+drop_location = "A Vision of Destruction, End chest"
+enhancement_bonus = 5
+icon = "Shield_4b"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Mithral"
+minimum_level = 18
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 11
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 20
+
+[[effect]]
+name = "Holy Burst"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 20
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "A Vision of Destruction"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

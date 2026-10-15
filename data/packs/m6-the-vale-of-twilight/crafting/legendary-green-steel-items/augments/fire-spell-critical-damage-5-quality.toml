@@ -1,0 +1,23 @@
+name = "Fire Spell Critical Damage 5% (Quality)"
+description = "Ethereal/Dominion: 5% Quality bonus increase in Fire spell critical damage."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Dominion"""
+
+[[effect]]
+name = "Fire Spell Critical Damage"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Fire Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Fire"]
+
+[[slot]]
+slot = "crafting: equipment tier 3"

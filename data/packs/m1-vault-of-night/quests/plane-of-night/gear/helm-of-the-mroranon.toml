@@ -1,0 +1,39 @@
+name = "Helm of the Mroranon"
+description = """
+This powerful helm is an ancient keepsake of the Mroranon Clan of the Ironroot
+Mountains."""
+drop_location = "Plane of Night, Raid Warded chest"
+icon = "Helmet_7"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 9
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 56
+
+[[effect]]
+name = "Command"
+value = 4
+value2 = -6
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

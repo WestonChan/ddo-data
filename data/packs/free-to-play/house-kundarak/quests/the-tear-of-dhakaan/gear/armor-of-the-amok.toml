@@ -1,0 +1,43 @@
+name = "Armor of the Amok"
+description = """
+These animal skins are dyed a dull red and are stitched together in a mad patchwork
+of occult symbols."""
+drop_location = "The Tear of Dhakaan, Champion Guptrak 's Chest"
+enhancement_bonus = 3
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[clickie]]
+name = "Rage"
+clickie = "Rage"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Rage"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "champion guptrak 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tear of Dhakaan"

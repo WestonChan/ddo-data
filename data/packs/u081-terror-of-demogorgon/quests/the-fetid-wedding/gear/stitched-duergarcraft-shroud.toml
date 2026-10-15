@@ -1,0 +1,38 @@
+name = "Stitched Duergarcraft Shroud"
+description = "A sturdy cloak, combining Duergar metalwork with exceptional tailoring."
+drop_location = "The Fetid Wedding, end chest"
+icon = "Cloak_9"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 11
+slot = "Back"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Quality"
+value = 1
+value2 = 2
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Fetid Wedding"

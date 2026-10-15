@@ -1,0 +1,31 @@
+name = "Rattle Charm"
+description = """
+The tail of a deadly rattlesnake worn on a simple hemp cord. Some primitive
+cultures ascribe vast arcane powers to these charms."""
+drop_location = "The Titan Awakes, Warded Chest"
+icon = "Necklace_41"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Neck"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

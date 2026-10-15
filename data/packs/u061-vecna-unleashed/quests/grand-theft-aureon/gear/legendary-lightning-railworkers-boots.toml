@@ -1,0 +1,42 @@
+name = "Legendary Lightning Railworker's Boots"
+description = """
+The perfect boots for those who wish to work hard and expect to withstand a
+massive electric shock. Or ten. In one day."""
+drop_location = "Grand Theft Aureon, End chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 32
+slot = "Feet"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 130
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 45
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Grand Theft Aureon"

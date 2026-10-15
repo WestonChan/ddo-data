@@ -1,0 +1,34 @@
+name = "The Baron's Bandolier"
+description = "The bandolier of the Baron's fallen body."
+drop_location = "A Miner Sacrifice, end chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 8
+slot = "Waist"
+
+[[effect]]
+name = "Blood Rage"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Miner Sacrifice"

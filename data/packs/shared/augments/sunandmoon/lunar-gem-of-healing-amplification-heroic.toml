@@ -1,0 +1,42 @@
+name = "Lunar Gem of Healing Amplification (Heroic)"
+description = """
++10 Profane Bonus to Healing Amplification.
+Drops in: Ruins of Myth Drannor (Yegora's chest)
+Romira and Juvian's right chest (requires completion of Sleeping with the Fishes)
+The Darkness and the Light, end chest
+Special Delivery, Max Entsetzen's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Profane"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "max entsetzen's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darkness and the Light"

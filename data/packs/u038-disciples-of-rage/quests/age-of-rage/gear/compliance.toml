@@ -1,0 +1,40 @@
+name = "Compliance"
+description = "Of course. Whatever you say."
+drop_location = "The Age of Rage, end chest"
+icon = "Helmet_6"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 14
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 57
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 7
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 2
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Age of Rage"

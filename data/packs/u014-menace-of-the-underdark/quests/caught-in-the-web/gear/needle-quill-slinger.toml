@@ -1,0 +1,104 @@
+name = "Needle, Quill-slinger"
+accepts_sentience = true
+description = """
+This repeating crossbow has an enchanted bolt-feeding mechanism, increasing
+the rate at which it can fire, while maintaining precise accuracy."""
+drop_location = "Caught in the Web, End chest"
+enhancement_bonus = 7
+icon = "RepeatingLightCrossbow_1i"
+item_category = "Weapon"
+item_type = "Repeating Light Crossbow"
+material = "Wood"
+minimum_level = 23
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Ranged Alacrity"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Hemorrhaging"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 4
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Planar Conflux"
+description = """
+Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped."""
+icon = "Heroism"
+min_level = 23
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 3"
+
+[[socket.option]]
+name = "Phlebotomizing"
+description = "Phlebotomizing: This weapon is wickedly sharp and will do an additional 3 to 24 damage to targets that are vulnerable to bleeding."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Unknown"
+dice_number = [1]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 4"
+
+[[socket.option]]
+name = "Red Augment Slot"
+description = "Adds a Red augment slot to this weapon."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.grant]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Caught in the Web"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_multiplier = 3.6
+handedness = "Two-handed"
+weapon_type = "Repeating Light Crossbow"

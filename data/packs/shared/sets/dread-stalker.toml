@@ -1,0 +1,76 @@
+name = "Dread Stalker"
+icon = "DreadStalker"
+
+[[augment]]
+name = "Dread Stalker"
+family = "DinosaurBone"
+
+[[item]]
+name = "Legendary Dread Stalker's Cloak"
+
+[[item]]
+name = "Legendary Dread Stalker's Skullcap"
+
+[[item]]
+name = "Legendary Firestalker Docent"
+primary = true
+
+[[item]]
+name = "Legendary Stalker's Outfit"
+
+[[item]]
+name = "Legendary Tanaroa Sneaking Suit"
+primary = true
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SneakAttackDice"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

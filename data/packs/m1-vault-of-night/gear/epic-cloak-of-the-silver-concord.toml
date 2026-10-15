@@ -1,0 +1,31 @@
+name = "Epic Cloak of the Silver Concord"
+description = "This magical cloak is a gift to a very select few of the Aurum inner circles."
+drop_location = "Epic version of Cloak of the Silver Concord"
+icon = "Cloak_17b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Back"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 8
+
+[[socket]]
+slot = "yellow"

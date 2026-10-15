@@ -1,0 +1,53 @@
+name = "Epic Duelist's Epee"
+accepts_sentience = true
+description = "This Rapier is ideal for any who fancy themselves a duelist."
+drop_location = "Epic version of Duelist's Epee"
+enhancement_bonus = 6
+icon = "Rapier_1i"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Humanoid Bane 4"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Mortal Strike"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "colorless"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Rapier"

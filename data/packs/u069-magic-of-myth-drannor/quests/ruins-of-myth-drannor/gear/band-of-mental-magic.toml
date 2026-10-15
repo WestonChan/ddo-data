@@ -1,0 +1,37 @@
+name = "Band of Mental Magic"
+description = "A copper ring, blessed with Arcane knowledge."
+drop_location = "Ruins of Myth Drannor, Goranathanil 's chest"
+icon = "Ring_26"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 68
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "goranathanil 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

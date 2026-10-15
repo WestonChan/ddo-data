@@ -1,0 +1,21 @@
+name = "Dream Conspiracy"
+bestowed_by = "Graden Wylkes"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Path of Inspiration"
+patron = "The Coin Lords"
+zone = "Sunken Parish"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Dream_Conspiracy"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18

@@ -16,12 +16,13 @@
           "name": "Equipment"
         }
       ],
-      "detail_path": "/v1/effects/87",
-      "id": 87,
+      "detail_path": "/v1/effects/7052017135819808",
+      "id": 7052017135819808,
       "item_count": 50,
       "kind": "stat",
       "name": "Acid Absorption",
-      "set_count": 2
+      "set_count": 2,
+      "slug": "acid-absorption"
     },
     {
       "augment_count": 0,
@@ -31,12 +32,13 @@
           "name": "Enhancement"
         }
       ],
-      "detail_path": "/v1/effects/158",
-      "id": 158,
+      "detail_path": "/v1/effects/6046083909513009",
+      "id": 6046083909513009,
       "item_count": 6,
       "kind": "stat",
       "name": "Alignment Absorption",
-      "set_count": 0
+      "set_count": 0,
+      "slug": "alignment-absorption"
     },
     {
       "augment_count": 3,
@@ -50,12 +52,13 @@
           "name": "Enhancement"
         }
       ],
-      "detail_path": "/v1/effects/154",
-      "id": 154,
+      "detail_path": "/v1/effects/8523208263183366",
+      "id": 8523208263183366,
       "item_count": 24,
       "kind": "stat",
       "name": "Chaos Absorption",
-      "set_count": 0
+      "set_count": 0,
+      "slug": "chaos-absorption"
     }
   ],
   "limit": 100,

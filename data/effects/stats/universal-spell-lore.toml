@@ -1,0 +1,6 @@
+name = "Universal Spell Lore"
+category = "magical"
+description_template = "{1} %b1 bonus to Universal Spell Lore."
+home_bonus_type = "Equipment"
+set_bonus_line_template = "+{1}% %b1 Bonus to Spell Critical Chance"
+verbose_name_template = "%b1 Universal Spell Lore +{1}%"

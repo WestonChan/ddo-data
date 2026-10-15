@@ -1,0 +1,41 @@
+name = "Legendary Love at First Sight"
+drop_location = "Sleeping with the Fishes"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 33
+slot = "Goggles"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 59
+
+[[effect]]
+name = "Poison Resistance"
+bonus_type = "Enhancement"
+value = 56
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"

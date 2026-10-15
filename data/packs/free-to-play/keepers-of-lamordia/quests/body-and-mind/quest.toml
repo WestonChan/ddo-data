@@ -1,0 +1,31 @@
+name = "Body and Mind"
+bestowed_by = "Body and Mind (the gate object)"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "Keepers of Lamordia"
+zone = "Gloomy Warehouse"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Body_and_Mind"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

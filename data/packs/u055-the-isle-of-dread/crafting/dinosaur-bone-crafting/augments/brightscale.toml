@@ -1,0 +1,42 @@
+name = "Brightscale"
+description = """
++9 Equipment bonus to Spell Penetration.
+If this is slotted in a Quarterstaff, also grants a +2 Exceptional bonus to Spell DCs."""
+family = "DinosaurBone"
+icon = "ScaleYellow"
+min_level = 31
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = [
+    "Weapon1",
+    "Quarterstaff",
+]
+req_type = "ItemTypeInSlot"
+
+[[slot]]
+slot = "isle of dread: scale (weapon)"

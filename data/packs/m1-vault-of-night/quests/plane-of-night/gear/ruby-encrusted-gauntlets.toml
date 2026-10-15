@@ -1,0 +1,49 @@
+name = "Ruby Encrusted Gauntlets"
+description = "These ruby-encrusted gauntlets shine with a feverish glow."
+drop_location = "Plane of Night, Raid warded chest"
+icon = "Gloves_8a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Hands"
+
+[[clickie]]
+name = "Flame Strike"
+clickie = "Flame Strike"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 73
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 73
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Flame Strike"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

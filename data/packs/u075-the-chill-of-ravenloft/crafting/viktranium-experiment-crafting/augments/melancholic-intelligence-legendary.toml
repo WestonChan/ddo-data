@@ -1,0 +1,21 @@
+name = "Melancholic Intelligence (Legendary)"
+description = "+15 Enhancement bonus to Intelligence."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

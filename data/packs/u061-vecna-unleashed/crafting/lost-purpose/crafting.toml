@@ -1,0 +1,305 @@
+name = "Lost Purpose"
+npc = "Cannith Repurposing Station, Morgrave University - Upper Commons (introduced in Update 61)"
+pack = "Vecna Unleashed"
+
+[[family]]
+family = "LostPurpose"
+
+[[ingredient]]
+name = "Esoteric Relic"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Esoteric Relic"
+tier = "legendary"
+
+[[citation]]
+url = "https://ddowiki.com/page/Lost_Purpose"
+read = "2026-09-29"
+
+[[recipe]]
+note = "All recipes are on this page. Awakens one Vecna Unleashed set bonus on a Lost Purpose item (the page lists 44 such items); the item can be brought back to choose another set bonus, which erases the old one."
+option = "Awaken Set Bonus: Heart of Blades"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Heart of Blades"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: Vol's Influence"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Vol's Influence"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: The Fury's Rage"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "The Fury's Rage"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: Delight of the Devourer"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Delight of the Devourer"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: Minion of the Mockery"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Minion of the Mockery"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: The Keeper's Coffin"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "The Keeper's Coffin"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: The Shadow's Emptiness"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "The Shadow's Emptiness"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: The Traveler's Guidance"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "The Traveler's Guidance"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: Devils' Infernal Dance"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Devils' Infernal Dance"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: Armaments of the Archons"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Armaments of the Archons"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: Forbidden Knowledge"
+slot = "crafting: lost purpose"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Forbidden Knowledge"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Esoteric Relic"
+quantity = 10
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary Heart of Blades"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Heart of Blades"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary Vol's Influence"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Vol's Influence"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary The Fury's Rage"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary The Fury's Rage"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary Delight of the Devourer"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Delight of the Devourer"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary Minion of the Mockery"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Minion of the Mockery"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary The Keeper's Coffin"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary The Keeper's Coffin"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary The Shadow's Emptiness"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary The Shadow's Emptiness"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary The Traveler's Guidance"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary The Traveler's Guidance"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary Devils' Infernal Dance"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Devils' Infernal Dance"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary Armaments of the Archons"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Armaments of the Archons"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20
+
+[[recipe]]
+option = "Awaken Set Bonus: Legendary Forbidden Knowledge"
+slot = "crafting: lost purpose"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Forbidden Knowledge"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Legendary Esoteric Relic"
+quantity = 20

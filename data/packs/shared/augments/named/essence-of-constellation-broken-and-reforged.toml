@@ -1,0 +1,14 @@
+name = "Essence of Constellation, Broken and Reforged"
+description = """
+Improved Destruction: On Hit: Your target gains a stack of Armor Destruction.
+-1 penalty to Armor Class, -1% of its Fortification. 20 second duration.
+Stacks up to 15 times. This effect may trigger once every second.
+Requires: 50 Threads of Fate, Empty Soul Vessel and The Broken Blade of
+Constellation and Shattered Hilt of Constellation or Constellation, Cursed Blade
+(Too Hot to Handle)"""
+family = "Named"
+icon = "OrangeRaidItemEssence"
+min_level = 30
+
+[[slot]]
+slot = "orange"

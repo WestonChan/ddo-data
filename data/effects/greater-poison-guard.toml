@@ -1,0 +1,3 @@
+name = "Greater Poison Guard"
+description_template = "This item carries a potent venom that may be contracted by enemies that hit you, dealing 2d6 Strength damage. A successful Fortitude Save (DC 28) will negate this effect."
+verbose_name_template = "Greater Poison Guard"

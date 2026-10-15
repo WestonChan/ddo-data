@@ -1,0 +1,3 @@
+name = "Legendary Acid Torrent"
+description_template = "On an attack roll of 20 which is confirmed as a critical hit this power will be released, dealing damage to the target and all enemies near it for 30d6 + 90 acid damage."
+verbose_name_template = "Legendary Acid Torrent"

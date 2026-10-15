@@ -1,0 +1,29 @@
+name = "Fred's First Date"
+bestowed_by = "Fred"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Slice of Life"
+patron = "Morgrave University"
+zone = "Fred's First Date"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Fred%27s_First_Date"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

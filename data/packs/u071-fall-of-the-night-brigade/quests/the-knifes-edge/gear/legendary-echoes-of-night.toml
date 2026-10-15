@@ -1,0 +1,68 @@
+name = "Legendary Echoes of Night"
+description = """
+Prototype Notes I: This form of Rune Arm has not been attempted previously.
+If successful, it could be the model for some future development."""
+drop_location = "The Knife's Edge, end chest"
+icon = "RuneArm_3i"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 33
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 156
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Rune Arm Imbue - Sonic VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Sonic Blast",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Knife's Edge"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

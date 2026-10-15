@@ -1,0 +1,6 @@
+name = "Doubleshot"
+category = "martial"
+description_template = "Passive: {1}% %b1 bonus to Doubleshot. Doubleshot is a chance to score an additional hit with a ranged attack."
+home_bonus_type = "Enhancement"
+set_bonus_line_template = "+{1}% %b1 Bonus to Doubleshot"
+verbose_name_template = "%b1 Doubleshot {1}%"

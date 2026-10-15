@@ -1,0 +1,21 @@
+name = "Woeful Exceptional Spell Focus Mastery (Legendary)"
+description = "+2 Exceptional Bonus to Spell DCs."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

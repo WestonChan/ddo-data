@@ -1,0 +1,62 @@
+name = "Legendary Coronation Shield"
+description = """
+12 shields were crafted for the personal guard of a long forgotten drow chieftain
+to use during his coronation ceremony. Only this one remains."""
+drop_location = "Legendary version of Epic Coronation Shield"
+enhancement_bonus = 15
+icon = "Shield_4g"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Dwarven Iron"
+minimum_level = 30
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 21
+max_dex_bonus = 0
+shield_bonus = 22
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Holy Blast 6"
+
+[[effect]]
+name = "Blinding Fear"
+
+[[effect]]
+name = "Epic Paragon Light Guard"
+
+[[effect]]
+name = "Legendary Brilliance Guard"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

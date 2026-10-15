@@ -1,0 +1,21 @@
+name = "Quality Jump +2"
+description = "Quality bonus to Jump"
+family = "Slavelords_Heroic"
+icon = "SlavelordsBonus"
+min_level = 8
+
+[[effect]]
+name = "Jump"
+bonus_type = "Quality"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Jump"
+effect_type = "SkillBonus"
+targets = ["Jump"]
+
+[[slot]]
+slot = "crafting: slavelords bonus"

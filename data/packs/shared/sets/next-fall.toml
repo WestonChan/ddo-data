@@ -1,0 +1,48 @@
+name = "Next Fall"
+icon = "NextFall"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+2 To Attack and Damage"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Melee Power"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "You gain +5 to Attack and Damage vs Tripped Targets"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier.modifier.requirement]]
+items = ["Tripped"]
+req_type = "Stance"

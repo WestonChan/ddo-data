@@ -1,0 +1,70 @@
+name = "Sanctified Gages"
+description = """
+Maldetto's former gloves have holes in the center of the palms that radiate
+with Divine energy, a remnant of the sacrifice made to purge them of dark magic.
+The blade may be gone, but its conviction endures."""
+drop_location = "The Mark of Death, Warded chest"
+icon = "Gloves_10a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Hands"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Scorching Sun"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Greater Dispelling Guard"
+
+[[effect]]
+name = "Extra Smites"
+value = 2
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Mark of Death"

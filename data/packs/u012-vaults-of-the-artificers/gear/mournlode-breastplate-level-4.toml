@@ -1,0 +1,37 @@
+name = "Mournlode Breastplate (Level 4)"
+description = """
+Metal armor constructed from valuable purple Mournlode crystal is imbued with
+a protective, almost holy power. Undead are seared by it,and it protects the
+wearer from evil."""
+drop_location = "Vaults of the Artificers, Turn in Various Cannith challenge ingredients"
+enhancement_bonus = 1
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 6
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 3
+
+[[effect]]
+name = "Undead Guard"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

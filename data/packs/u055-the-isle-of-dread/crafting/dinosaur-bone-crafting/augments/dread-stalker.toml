@@ -1,0 +1,9 @@
+name = "Dread Stalker"
+description = "Adds the Dread Stalker set bonus"
+family = "DinosaurBone"
+icon = "DinosaurSetBonus"
+min_level = 31
+set_bonus = "Dread Stalker"
+
+[[slot]]
+slot = "isle of dread: set bonus"

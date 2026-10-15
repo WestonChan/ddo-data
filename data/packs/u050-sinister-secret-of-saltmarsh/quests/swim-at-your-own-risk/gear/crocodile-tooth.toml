@@ -1,0 +1,34 @@
+name = "Crocodile Tooth"
+description = """
+A chip is missing from this tooth, a memory of the battle involved in taking
+it from its owner."""
+drop_location = "Swim at Your Own Risk, end chest"
+icon = "Trinket_55b"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 3
+slot = "Trinket"
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 5
+
+[[note]]
+kind = "item"
+field = "set_bonus"
+reason = "The wiki lists this item as a member of Saltmarsh Explorer."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Swim at Your Own Risk"

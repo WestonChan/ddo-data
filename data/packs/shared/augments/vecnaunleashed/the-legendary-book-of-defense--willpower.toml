@@ -1,0 +1,27 @@
+name = "The Legendary Book of Defense: Willpower"
+description = "+12 Resistance bonus to Will Saving Throws."
+family = "VecnaUnleashed"
+icon = "HistoryBookBlue"
+min_level = 32
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Resistance"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

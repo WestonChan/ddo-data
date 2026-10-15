@@ -1,0 +1,48 @@
+name = "Crisis Scale"
+drop_location = "Dinosaur Crisis, end chest"
+enhancement_bonus = 5
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Bone"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 16
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 7
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Quality"
+value = 21
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 23
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"

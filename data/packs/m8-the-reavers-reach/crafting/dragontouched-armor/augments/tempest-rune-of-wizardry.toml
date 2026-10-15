@@ -1,0 +1,20 @@
+name = "Tempest Rune of Wizardry"
+description = "Wizardry +6: +6 Enhancement bonus to spell points."
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: tempest rune"

@@ -1,0 +1,39 @@
+name = "Legendary Eyes of the Lady of Rot and Decay"
+description = """
+All is entropy, all is destined for decay. Her last hope is that you might see
+everything as she does."""
+drop_location = "ToEE: Depths of the Temple, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 31
+slot = "Goggles"
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 286
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"

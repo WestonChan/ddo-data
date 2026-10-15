@@ -1,0 +1,3 @@
+name = "Hireling Hit Points"
+category = "other"
+verbose_name_template = "%b1 Hireling Hit Points +{1}"

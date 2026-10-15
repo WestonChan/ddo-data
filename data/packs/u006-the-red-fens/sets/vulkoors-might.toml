@@ -1,0 +1,63 @@
+name = "Vulkoor's Might"
+icon = "VulkoorsMight"
+
+[[item]]
+name = "Bracers of the Claw"
+
+[[item]]
+name = "Gloves of the Claw"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Threat Generation"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell Threat Generation"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Attack Bonus"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]

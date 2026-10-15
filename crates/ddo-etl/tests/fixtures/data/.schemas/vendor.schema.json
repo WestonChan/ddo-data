@@ -1,0 +1,61 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "citations"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "location": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "pack": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-reference-kind": "adventure_packs"
+    },
+    "wiki_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "location",
+    "citation"
+  ],
+  "title": "VendorFile",
+  "type": "object",
+  "x-table": "vendors"
+}

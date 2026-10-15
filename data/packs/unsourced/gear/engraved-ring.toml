@@ -1,0 +1,13 @@
+name = "Engraved Ring"
+description = "This silver band has a series of small runes engraved on it."
+drop_location = "Korthos Island, Any of the Rares"
+icon = "Ring_10"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Ring"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 1

@@ -1,0 +1,66 @@
+name = "The Lunar Eclipse"
+description = "Turn the tide against the beyond."
+drop_location = "Too Hot to Handle, End chest"
+enhancement_bonus = 15
+icon = "Shield_2a"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Planeforged Steel"
+minimum_level = 29
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 23
+max_dex_bonus = 2
+shield_bonus = 30
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Alignment Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "Mirror Shield"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 8
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

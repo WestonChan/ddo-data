@@ -1,0 +1,1412 @@
+[[row]]
+name = "Scion of Arborea"
+acquire = "Train"
+description = """
++20 Melee and Ranged Power
++20 Force Spell Power and +20 Universal Spell Power
++2 to the Enhancement Bonus of your weapon
++4 to Fortitude Saves
++1 Imbue dice"""
+icon = "ScionOfArborea"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Melee Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Ranged Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Force Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortitude Save"
+value = 4
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 1
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Force Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of Celestia"
+acquire = "Train"
+description = """
++4 to the DCs of Evocation spells, +2 to the DCs of other spells
++10 Positive, Light, and Alignment Spell Power, +30 Universal Spell Power
++15% Positive, Light, and Alignment Spell Critical Damage, +10% Universal spell critical damage
++150 Maximum Hit Points
++4 to Will Saves"""
+icon = "ScionOfCelestia"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 30
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Positive Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Light Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Chaos Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Evil Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Good Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Law Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hit Points"
+value = 150
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Will Save"
+value = 4
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Positive",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Feat"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of Elysium"
+acquire = "Train"
+description = """
+Summoned creatures gain +25 PRR and MRR
+Your summoned creatures, pets and hirelings gain +20 Melee Power, Ranged Power,
+and Universal Spell Power
+Your summoned creatures, pets and hirelings gain +100% Fortification
+Each time one of your summoned creatures, pets, or hirelings would be damaged,
+it has a +5% chance to completely ignore the damage.
+(Untyped/Bane damage bypass this defense)."""
+icon = "ScionOfElysium"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Physical Resistance Rating"
+value = 25
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Magical Resistance Rating"
+value = 25
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Melee Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Ranged Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hireling Fortification"
+value = 100
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Feat"
+effect = "Hireling Physical Resistance Rating"
+effect_type = "HirelingPRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Feat"
+effect = "Hireling Magical Resistance Rating"
+effect_type = "HirelingMRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Hireling Melee Power"
+effect_type = "HirelingMeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Hireling Ranged Power"
+effect_type = "HirelingRangedPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Hireling Spell Power"
+effect_type = "HirelingSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Feat"
+effect = "Hireling Fortification"
+effect_type = "HirelingFortification"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of Limbo"
+acquire = "Train"
+description = """
++2 Determination Bonus to all Saves. In addition, every minute, you will
+receive a powerful beneficial effect that lasts for one minute. There are several
+possibilities, determined via the chaos of Limbo.
+1: +40 Melee and Ranged Power, +80 Spell Power.
+2: +16% Doublestrike and Doubleshot, +20% Spell Critical Damage.
+3: +30 PRR and MRR.
+4: +20% Dodge and +40 Healing Amplification.
+5: +2- DR/Law
+6: Your weapon/unarmed strikes and spells deal 1d20 Chaos Damage.
+7: Each time you would be damaged, you have a +5% chance to completely ignore
+   the damage. Does not affect any incoming Positive, Negative, or Repair effects.
+8: Confetti explodes around your shoulders. Festive!"""
+icon = "ScionOfLimbo"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Determination"
+effect = "Saving Throws"
+value = 2
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Determination"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of Mechanus"
+acquire = "Train"
+description = """
++10 Repair and Rust Spell Power, +30 Universal Spell Power,
++15% Repair and Rust Spell Critical Damage, +10% Universal spell critical damage
++20 Repair Amplification (assuming you take healing from Repair)
++10% Fortification Bypass on weapon and unarmed attacks
+Gain: Master Reconstruction, shares cooldown with Communion of Scribing"""
+icon = "ScionOfMechanus"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Repair Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 30
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Repair Spell Critical Damage"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Repair Amplification"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortification Bypass"
+value = 10
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect = "Repair Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of the Astral Plane"
+acquire = "Train"
+description = """
++4 to Tactical Feat and Assassinate DCs, +4% Doublestrike and Doubleshot.
+An additional +4 (Doublestrike/Doubleshot) if you are centered.
++4% Dodge and Dodge Cap, +4 to Reflex Saves."""
+icon = "ScionOfTheAstralPlane"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Tactics"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Assassinate"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Doublestrike"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Doubleshot"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Dodge"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Dodge Cap"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Reflex Save"
+value = 4
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+    "Assassinate",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+display_name = "Scion of the Astral Plane (Centered)"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[row.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of the Ethereal Plane"
+acquire = "Train"
+description = """
+You have Lesser Displacement and Ghost Touch, along with +6d6 Sneak Attack Dice,
++5 Melee and Ranged Power, +4 to all Skills, and a permanent Invisible Guard
+as per the effect."""
+icon = "ScionOfTheEtherealPlane"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sneak Attack Dice"
+value = 6
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Melee Power"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Ranged Power"
+value = 5
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Displacement"
+value = 25
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Feat"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Displacement"
+effect_type = "Displacement"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of the Feywild"
+acquire = "Train"
+description = """
++4 to the DCs of Enchantment and Illusion spells, +2 to DCs of other spells
++10 Sonic Spell Power, +30 Universal Spell Power, +15% Sonic and Force Spell
+Critical Damage, +10% Universal spell critical damage
++20 Healing Amp
++3 Imbue Dice"""
+icon = "ScionOfTheFeywild"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sonic Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 30
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sonic Spell Critical Damage"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Force Spell Critical Damage"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Enchantment Focus"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Illusion Focus"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+value = 20
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 3
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Sonic",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect_type = "SpellDC"
+targets = [
+    "Enchantment",
+    "Illusion",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of the Plane of Air"
+acquire = "Train"
+description = """
++4 to the DCs of Evocation spells, +2 to the DCs of other spells
++4% Dodge, +4 to Dodge Cap
++10 Electric Spell Power, +30 Universal Spell Power
++15% Electric Spell Critical Damage, +10% Universal spell critical damage
++3 Imbue Dice"""
+icon = "ScionOfThePlaneOfAir"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Dodge"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Dodge Cap"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Electric Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 30
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Electric Spell Critical Damage"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 3
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect = "Electric Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of the Plane of Earth"
+acquire = "Train"
+description = """
++4 to the DCs of Conjuration and Transmutation spells, +2 to the DCs of other spells
++20 Physical Resistance Rating
++10 Acid and Poison Spell Power, +30 Universal Spell Power
++15% Acid and Poison Spell Critical Damage, +10% Universal spell critical damage
+Gain +3 Imbue Dice"""
+icon = "ScionOfThePlaneOfEarth"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Conjuration Focus"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Transmutation Focus"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Acid Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Poison Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 30
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 3
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect_type = "SpellDC"
+targets = [
+    "Conjuration",
+    "Transmutation",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Poison",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Acid",
+    "Poison",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of the Plane of Fire"
+acquire = "Train"
+description = """
++4 to the DCs of Evocation spells, +2 to the DCs of other spells
++10 Physical Resistance Rating, +10 Magical Resistance Rating
++10 Fire Spell Power, +30 Universal Spell Power, +15% Fire Spell Critical Damage,
++10% Universal spell critical damage
++3 Imbue Dice"""
+icon = "ScionOfThePlaneOfFire"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fire Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fire Spell Critical Damage"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 30
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 3
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect = "Fire Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of the Plane of Water"
+acquire = "Train"
+description = """
++4 to the DCs of Evocation spells, +2 to the DCs of other spells
++20 Magical Resistance Rating, +200 Maximum Spell Points
++10 Cold Spell Power, +30 Universal Spell Power
++15% Cold Spell Critical Damage, +10% Universal spell critical damage
++3 Imbue Dice"""
+icon = "ScionOfThePlaneOfWater"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Points"
+value = 200
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 30
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Spell Critical Damage"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 3
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [200]
+bonus_type = "Feat"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect = "Cold Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Cold"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30
+
+[[row]]
+name = "Scion of the Shadowfell"
+acquire = "Train"
+description = """
++4 to the DCs of Necromancy spells, +2 to DCs of other spells
++10 Negative Spell Power, +30 Universal Spell Power
++15% Negative Spell Critical Damage, +10% Universal spell critical damage.
++20 Negative Amp (assuming you take healing from Negative)
+Weapon and Unarmed attacks heal you for 1d6 Positive damage, or 1d6 Negative
+damage if you are Undead."""
+icon = "ScionOfTheShadowfell"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Necromancy Focus"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Negative Spell Power"
+value = 40
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+value = 30
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Negative Spell Critical Damage"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Negative Healing Amplification"
+value = 20
+
+[[row.group]]
+group_name = "Legendary Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Feat"
+effect = "Negative Spell Power"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect = "Negative Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Negative"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[row.requirement]]
+req_type = "Level"
+value = 30

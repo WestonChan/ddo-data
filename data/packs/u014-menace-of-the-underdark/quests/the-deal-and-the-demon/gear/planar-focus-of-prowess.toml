@@ -1,0 +1,133 @@
+name = "Planar Focus of Prowess"
+description = "This strange red crystal hums with power."
+drop_location = "The Deal and the Demon, end chest; Menace of the Underdark: The Queen of the Demonweb, quest chain end reward"
+icon = "Trinket_12a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 22
+slot = "Trinket"
+
+[[socket]]
+slot = "crafting: random effect"
+
+[[socket.option]]
+name = "+8 Strength"
+description = "+8 Strength"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+8 Dexterity"
+description = "+8 Dexterity"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+8 Constitution"
+description = "+8 Constitution"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "Insightful Constitution +3"
+description = "+3 Insightful Constitution"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "Insightful Dexterity +3"
+description = "+3 Insightful Dexterity"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "Insightful Strength +3"
+description = "+3 Insightful Strength"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Deal and the Demon"
+
+[[source]]
+kind = "saga"
+name = "Menace of the Underdark"
+tier = "any"

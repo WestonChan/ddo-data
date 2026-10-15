@@ -1,0 +1,61 @@
+name = "Solar Gem of Elemental Absorption (Heroic)"
+description = """
++3% Artifact Bonus to Fire, Cold, Electric, and Acid Absorption.
+Drops in: Land of Lamordia, Vornir Frosthelm's chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Artifact"
+value = 3
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Artifact"
+value = 3
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Artifact"
+value = 3
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "A Long Way to Mushrooms"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Burning Down the House"
+
+[[source]]
+chest = "vornir frosthelm's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

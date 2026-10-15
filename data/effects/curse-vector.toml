@@ -1,0 +1,3 @@
+name = "Curse Vector"
+description_template = "This item is a carrier of curses. It can apply them to your foes, but also to you- when you are damaged there is a small chance that you will have a Bestow Curse cast on you."
+verbose_name_template = "Curse Vector"

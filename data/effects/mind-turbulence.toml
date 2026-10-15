@@ -1,0 +1,11 @@
+name = "Mind Turbulence"
+description_template = "This item fills your mind with chaos, disrupting your thoughts and causing a -10 Concentration penalty."
+home_bonus_type = "Penalty"
+verbose_name_template = "Mind Turbulence -10"
+
+[[bonus]]
+amount_from = 0
+constant = -10
+rounding = "down"
+scale = 1.0
+target = "Spot"

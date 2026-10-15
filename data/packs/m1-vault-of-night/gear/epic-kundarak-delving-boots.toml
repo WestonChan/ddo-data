@@ -1,0 +1,31 @@
+name = "Epic Kundarak Delving Boots"
+description = """
+These boots are Kundarak-forged and useful for exploring (and infiltrating)
+secure spaces."""
+drop_location = "Epic version of Kundarak Delving Boots"
+icon = "Boots_6c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Feet"
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Exceptional Nimble Skills Bonus"
+bonus_type = "Exceptional"
+value = 8
+
+[[socket]]
+slot = "colorless"

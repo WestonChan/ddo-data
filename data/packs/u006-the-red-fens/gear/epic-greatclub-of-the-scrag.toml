@@ -1,0 +1,46 @@
+name = "Epic Greatclub of the Scrag"
+accepts_sentience = true
+description = """
+This particularly nasty weapon once belonged to one of the Scrag in High Priestess'
+Slikir's service. It seems that when the troll was killed, its blood seeped
+into this club, granting the weapon some of the creature's characteristics."""
+drop_location = "Epic version of Greatclub of the Scrag"
+enhancement_bonus = 6
+icon = "GreatClub_1j"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Wood"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Greater Regeneration"
+
+[[effect]]
+name = "Anarchic Burst 4"
+
+[[effect]]
+name = "Icy Blast 4"
+
+[[effect]]
+name = "Impact"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Great Club"

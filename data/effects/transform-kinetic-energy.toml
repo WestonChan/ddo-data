@@ -1,0 +1,3 @@
+name = "Transform Kinetic Energy"
+description_template = "Each time you are hit in melee combat there is a chance that the energy of the blow will be converted into Spell Points."
+verbose_name_template = "Transform Kinetic Energy"

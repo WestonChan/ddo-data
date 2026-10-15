@@ -1,0 +1,20 @@
+name = "Shrunken Head"
+description = "A gruesome artifact worn about the neck on a leather cord."
+drop_location = "Cult of the Six, End reward"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 9
+slot = "Neck"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

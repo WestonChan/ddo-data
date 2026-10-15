@@ -1,0 +1,76 @@
+name = "Telvi's Sash"
+description = """
+This ornate sash is frigid to the touch. With the aid of this sash, Telvi, a
+famous Water Savant, was able to create enough water to save several villages
+from drought."""
+drop_location = "Bastion of Power, Any end chest; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[clickie]]
+name = "Greater Freeze"
+clickie = "Greater Freeze"
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Water Savant"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Freeze"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+    5,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Water Savant - 2 Piece bonus"
+effect_type = "SpellLore"
+extra_types = ["SpellLore"]
+targets = ["Cold"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    50,
+    50,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Water Savant - 2 Piece bonus"
+effect_type = "SpellCriticalDamage"
+extra_types = ["SpellCriticalDamage"]
+targets = ["Cold"]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bastion of Power"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

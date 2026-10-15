@@ -1,0 +1,20 @@
+name = "+30 Equipment bonus to Negative Absorption"
+description = "Opposition/Negative: +30 Equipment bonus to Negative Absorption"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Negative Absorption"
+bonus_type = "Equipment"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Equipment"
+effect = "Negative Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

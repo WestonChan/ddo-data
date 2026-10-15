@@ -1,0 +1,60 @@
+name = "Knight of the Shadows Set (Heroic)"
+icon = "KnightOfTheShadowsSet"
+
+[[item]]
+name = "Feargaze"
+
+[[item]]
+name = "Platemail of the Barovian Lord"
+
+[[item]]
+name = "Plateshard Belt"
+
+[[item]]
+name = "Rune-Sigiled Belt"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sheltering"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = 50
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Threat Generation"
+value = 50
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusRanged"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"

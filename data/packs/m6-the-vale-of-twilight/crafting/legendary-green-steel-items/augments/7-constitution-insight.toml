@@ -1,0 +1,21 @@
+name = "+7 Constitution (Insight)"
+description = "Escalation/Earth or Positive: +7 Insight bonus to Constitution"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

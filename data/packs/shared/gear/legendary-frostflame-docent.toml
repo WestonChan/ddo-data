@@ -1,0 +1,47 @@
+name = "Legendary Frostflame Docent"
+description = """
+Droaam ogre magi have enchanted these docents to make the fire and cold magic
+of the wearer more deadly. The enchantments also protect the wearer from those
+same elemental forces."""
+drop_location = "Attack on Stormreach, End reward"
+enhancement_bonus = 15
+icon = "Docent_1"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 31
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 16
+armor_bonus = -13
+armor_type = "Docent"
+mithral_body = 7
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "Attack on Stormreach"

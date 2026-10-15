@@ -1,0 +1,25 @@
+name = "Necklace of Fireballs"
+description = """
+A golden Necklace with a number of fiery red gems. The necklace will crumble
+into dust when the last charge is expended."""
+drop_location = "Random, Level ~4 chests/rewards"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 5
+slot = "Neck"
+
+[[clickie]]
+name = "Fireball"
+spell = "Fireball"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    5,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Fireball"]

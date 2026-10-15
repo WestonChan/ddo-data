@@ -1,0 +1,163 @@
+[[row]]
+name = "Coalesced Magic: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "CoalescedMagic"
+menu = "Masterminds of Sharn"
+set = "Coalesced Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Coalesced Magic: Charisma : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Coalesced Magic: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "CoalescedMagic"
+menu = "Masterminds of Sharn"
+set = "Coalesced Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Coalesced Magic: Intelligence : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Coalesced Magic: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "CoalescedMagic"
+menu = "Masterminds of Sharn"
+set = "Coalesced Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Coalesced Magic: Wisdom : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Coalesced Magic: +1% Universal Spell Critical Damage"
+description = """
++1% Spell Critical Damage
+Rare: +4 Universal Spell Power"""
+icon = "CoalescedMagic"
+menu = "Masterminds of Sharn"
+set = "Coalesced Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellCriticalDamage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Coalesced Magic: Universal Spell Critical Damage : Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Coalesced Magic: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "CoalescedMagic"
+menu = "Masterminds of Sharn"
+set = "Coalesced Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Coalesced Magic: MRR : Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Coalesced Magic: +6 Universal Spell Power"
+description = """
++6 Universal Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "CoalescedMagic"
+menu = "Masterminds of Sharn"
+set = "Coalesced Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Coalesced Magic: Universal Spell Power : Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Coalesced Magic: -10% Arcane Spell failure"
+description = """
+-10% Arcane Spell failure
+Rare: +4 Universal Spell Power"""
+icon = "CoalescedMagic"
+menu = "Masterminds of Sharn"
+set = "Coalesced Magic"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Stacking"
+effect_type = "ArcaneSpellFailure"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Coalesced Magic: Arcane Spell Failure : Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

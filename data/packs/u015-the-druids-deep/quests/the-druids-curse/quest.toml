@@ -1,0 +1,25 @@
+name = "The Druid's Curse"
+bestowed_by = "Tarim Inavule"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The Druid's Deep"
+patron = "The Harpers"
+zone = "Druid's Deep"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Druid%27s_Curse"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17
+
+[[run]]
+tier = "epic"
+level = 23

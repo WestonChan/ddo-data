@@ -1,0 +1,46 @@
+name = "Nicked Quarterstaff"
+description = """
+A long, stout staff used as a simple weapon. Often favored by wizards or common
+folk."""
+drop_location = "The Sharn Syndicate, End reward"
+enhancement_bonus = 2
+icon = "Quarterstaff_15b"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impactful 2"
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest_chain"
+name = "The Sharn Syndicate"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

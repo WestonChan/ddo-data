@@ -1,0 +1,10 @@
+name = "Aspect of Vacuum"
+description = """
+Destruction (2/day)
+Air:Negative or Negative:Air"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect i"

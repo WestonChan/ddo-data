@@ -1,0 +1,42 @@
+name = "Epic Ship-Mage's Attire"
+description = """
+This purple robe is heavy, made for a caster to endure the elements, and also
+provides an unusual attunement to Necromantic energies."""
+drop_location = "Epic version of Ship-Mage's Attire"
+enhancement_bonus = 6
+icon = "Cloth_15a"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 195
+
+[[effect]]
+name = "Boon of Undeath"
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 32
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"

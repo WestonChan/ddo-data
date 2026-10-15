@@ -1,0 +1,26 @@
+name = "Battleworn Breastplate"
+description = "This breastplate appears to be of exceptional quality despite years of use."
+drop_location = "The Grotto, Sahuagin High Priestess 's chest, Non-Warforged Artificers, Clerics, Favored Souls, Fighters, and Paladins"
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 6
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Masterwork Armor"
+bonus_type = "Equipment"
+
+[[source]]
+chest = "sahuagin high priestess 's chest, non-warforged artificers, clerics, favored souls, fighters, and paladins"
+kind = "quest"
+loot_type = "chest"
+name = "The Grotto"

@@ -1,0 +1,61 @@
+name = "Ann Velsing's Belt"
+description = """
+Ann Velsing was a dedicated Hunter of the Dead. This plain leather belt granted
+her aid in times of need."""
+drop_location = "Bastion of Power, Any end chest ; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Hunter of the Dead"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Hunter of the Dead - 2 Piece bonus"
+effect_type = "ExtraRemoveDisease"
+extra_types = ["ExtraRemoveDisease"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Hunter of the Dead - 3 Piece bonus"
+effect_type = "NotModeled"
+extra_types = ["NotModeled"]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bastion of Power"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

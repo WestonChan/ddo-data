@@ -1,0 +1,74 @@
+name = "Forester's Brush Hook (Level 23)"
+description = """
+A hooked blade attached perpendicular to a wooden haft, this kind of weapon
+is used to clear thick brush or undergrowth when travelling in a dense forest.
+It is similar enough to a kama to be wielded expertly by someone who is proficient
+with one. This blade seems to have been enchanted to adapt to whatever material
+you are trying to cut with it, bypassing most forms of damage reduction."""
+drop_location = "Overgrowth, Wood Woad chest"
+enhancement_bonus = 6
+icon = "Kama_1"
+item_category = "Weapon"
+item_type = "Kama"
+material = "Steel"
+minimum_level = 23
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Phlebotomizing"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Aligned"
+
+[[source]]
+chest = "wood woad chest"
+kind = "quest"
+loot_type = "chest"
+name = "Overgrowth"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Kama"

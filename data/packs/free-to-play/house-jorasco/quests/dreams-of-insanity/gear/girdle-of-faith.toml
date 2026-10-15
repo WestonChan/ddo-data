@@ -1,0 +1,30 @@
+name = "Girdle of Faith"
+description = """
+This enchanted leather girdle is rumored to improve a devout cleric's spell
+casting ability."""
+drop_location = "Dreams of Insanity, End Chest"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Waist"
+
+[[effect]]
+name = "Minor Turning"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Wizardry II"
+bonus_type = "Enhancement"
+value = 50
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dreams of Insanity"

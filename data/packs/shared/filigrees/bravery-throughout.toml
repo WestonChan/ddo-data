@@ -1,0 +1,185 @@
+[[row]]
+name = "Bravery Throughout/Shattered Device +6 PRR"
+description = """
++6 PRR
+Rare: +4 MRR"""
+icon = "BraveryThroughoutShatteredDevice"
+menu = "Raid Filigrees"
+set = "Bravery Throughout"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Bravery Throughout/Shattered Device: +4 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Bravery Throughout: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "BraveryThroughout"
+menu = "Masterminds of Sharn"
+set = "Bravery Throughout"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Bravery Throughout: Constitution: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Bravery Throughout: +1 Extra Action Boost"
+description = """
++1 Extra Action Boost
+Rare: +2 PRR"""
+icon = "BraveryThroughout"
+menu = "Masterminds of Sharn"
+set = "Bravery Throughout"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "ExtraActionBoost"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Bravery Throughout: Extra Action Boost: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Bravery Throughout: +2 Extra Rage Uses"
+description = """
++2 Extra Rage Uses
+Rare: +2 PRR"""
+icon = "BraveryThroughout"
+menu = "Masterminds of Sharn"
+set = "Bravery Throughout"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "ExtraRage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Bravery Throughout: Extra Rage: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Bravery Throughout: +2 Intimidate"
+description = """
++2 Intimidate
+Rare: +2 PRR"""
+icon = "BraveryThroughout"
+menu = "Masterminds of Sharn"
+set = "Bravery Throughout"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Bravery Throughout: Intimidate: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Bravery Throughout: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "BraveryThroughout"
+menu = "Masterminds of Sharn"
+set = "Bravery Throughout"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Bravery Throughout: PRR: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Bravery Throughout: +4 Armor Class"
+description = """
++4 Armor Class
+Rare: +2 PRR"""
+icon = "BraveryThroughout"
+menu = "Masterminds of Sharn"
+set = "Bravery Throughout"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Bravery Throughout: Armor Class: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Bravery Throughout: +50% Melee Threat"
+description = """
++50% Melee Threat
+Rare: +2 PRR"""
+icon = "BraveryThroughout"
+menu = "Masterminds of Sharn"
+set = "Bravery Throughout"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Stacking"
+effect_type = "ThreatBonusMelee"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Bravery Throughout: Melee Threat: PRR"
+effect_type = "PRR"
+is_rare = true

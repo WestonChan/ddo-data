@@ -1,0 +1,55 @@
+name = "Earthshatter Warhammer"
+description = """
+A tremendous blunt weapon infused with the power of Orlassk, the daelkyr Lord
+of Stone. It can trap enemies in stone, then shatter that stone forcefully
+with adamantine-reinforced blows."""
+drop_location = "The Lord of Stone, End chest"
+enhancement_bonus = 5
+icon = "Warhammer_5"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Adamantine"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Greater Stone Prison"
+
+[[effect]]
+name = "Rock Shattering"
+
+[[effect]]
+name = "Maiming"
+
+[[effect]]
+name = "Unwieldy"
+bonus_type = "Penalty"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Lord of Stone"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Warhammer"

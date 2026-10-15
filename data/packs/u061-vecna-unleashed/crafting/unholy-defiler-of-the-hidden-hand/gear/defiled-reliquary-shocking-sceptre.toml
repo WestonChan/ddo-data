@@ -1,0 +1,56 @@
+name = "Defiled Reliquary Shocking Sceptre"
+description = "The shine of this weapon is gone; there is now only malice within it."
+drop_location = "Unholy Defiler of the Hidden Hand, defiled version of Shining Reliquary Shocking Sceptre"
+enhancement_bonus = 5
+icon = "Club_2e"
+item_category = "Weapon"
+item_type = "Club"
+material = "Adamantine"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 104
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Efficient Metamagic - Maximize I"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Hand Vile Grip of the Hidden Hand"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Unholy Defiler of the Hidden Hand"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "One-handed"
+weapon_type = "Club"

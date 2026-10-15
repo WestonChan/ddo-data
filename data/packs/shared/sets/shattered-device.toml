@@ -1,0 +1,43 @@
+name = "Shattered Device"
+icon = "ShatteredDevice"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+3 to Attack and Damage with weapons"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Doublestrike and Doubleshot"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "Armor Rating Reduction on Hit"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+effect = "Power Reduction on Hit"

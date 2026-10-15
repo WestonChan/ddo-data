@@ -1,0 +1,66 @@
+name = "Perfected Darkstorm Helm"
+description = """
+Helms such as this, forged from some dark and glittering metal, are worn by
+drow spellcasters both arcane and divine to heighten the power of their spells.
+This helm can channel enough energy to start a brief thunderstorm."""
+drop_location = "Lahar, Turn in Nebula Fragment"
+icon = "Helmet_11c"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 30
+slot = "Head"
+
+[[clickie]]
+name = "Call Lightning Storm"
+clickie = "Call Lightning Storm"
+
+[[effect]]
+name = "Alchemical Air Attunement"
+
+[[effect]]
+name = "Legendary Electric Storm"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 157
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 157
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Call Lightning Storm"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Nebula Fragment Crafting"

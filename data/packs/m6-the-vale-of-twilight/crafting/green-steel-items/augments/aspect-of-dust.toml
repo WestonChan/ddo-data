@@ -1,0 +1,10 @@
+name = "Aspect of Dust"
+description = """
+Disintegrate (2/day)
+Earth:Negative or Negative:Earth"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect i"

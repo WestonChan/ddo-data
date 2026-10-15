@@ -1,0 +1,52 @@
+name = "Madstone Skull (Level 13)"
+description = """
+Fashioned by the mad gnomish mage, Mereppi Tinkerspell, the dome of this skull
+has been replaced with a Madstone crystal. You can't shake the felling that
+it's watching you. If you wanted to, you could perhaps pry the smaller crystals
+out of the skull's eyes and replace them with gemstones of your own."""
+drop_location = "A Cabal for One, and Feast or Famine, End chest (Heroic Hard)"
+icon = "Orb_5"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 13
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 4
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 66
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Cabal for One"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Feast or Famine"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

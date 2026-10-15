@@ -1,0 +1,21 @@
+name = "Tower Shield max dexterity bonus"
+description = "Arcane spell failure due to shield."
+enter_value = true
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Max Dex Bonus (Tower Shield)"
+bonus_type = "Equipment"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Max Dex Bonus (Tower Shield)"
+effect_type = "MaxDexBonusTowerShield"
+
+[[slot]]
+slot = "crafting: cannith tower shield max dex bonus"

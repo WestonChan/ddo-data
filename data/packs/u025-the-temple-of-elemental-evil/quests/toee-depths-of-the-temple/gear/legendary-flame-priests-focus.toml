@@ -1,0 +1,39 @@
+name = "Legendary Flame Priest's Focus"
+description = """
+A long-dead leader of the Eternal Flame left their mark behind, in the hopes
+someone would take up their mantle."""
+drop_location = "ToEE: Depths of the Temple, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 31
+slot = "Head"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 103
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"

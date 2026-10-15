@@ -1,0 +1,28 @@
+name = "Stonedust Leather"
+description = """
+A layer of finely ground stone is infused onto the exterior of this suit of
+Studded leather, giving it a resistance to bladed weapons."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+enhancement_bonus = 2
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 3
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Axeblock II"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

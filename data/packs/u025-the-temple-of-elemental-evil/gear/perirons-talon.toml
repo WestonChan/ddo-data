@@ -1,0 +1,68 @@
+name = "Periron's Talon"
+drop_location = "ToEE: Air Node, dragon's hoard chests, ToEE: Fire Node, Periron chest, ToEE: Water Node, Jotun Rimeblade chest, and ToEE: Earth Node, Hyrelgas chest"
+enhancement_bonus = 3
+icon = "HeavyPick_4"
+item_category = "Weapon"
+item_type = "Heavy Pick"
+material = "Adamantine"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Lesser Construct Bane"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Telekinetic"
+
+[[effect]]
+name = "Flaming Blast"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "dragon's hoard chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"
+
+[[source]]
+chest = "hyrelgas chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "periron chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"
+
+[[source]]
+chest = "jotun rimeblade chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Heavy Pick"

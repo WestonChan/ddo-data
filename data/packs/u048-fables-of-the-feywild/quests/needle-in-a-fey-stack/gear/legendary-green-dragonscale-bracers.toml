@@ -1,0 +1,37 @@
+name = "Legendary Green Dragonscale Bracers"
+description = """
+These bracers are crafted out of Green Dragonscale, carry an incredible magical
+energy within."""
+drop_location = "Needle in a Fey Stack, End chest"
+icon = "Bracers_18"
+item_category = "Clothing"
+material = "Green Dragonscale"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Power Store"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Poison Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Needle in a Fey Stack"

@@ -1,0 +1,58 @@
+name = "Epic Coronation Shield"
+description = """
+12 shields were crafted for the personal guard of a long forgotten drow chieftain
+to use during his coronation ceremony. Only this one remains."""
+drop_location = "Epic version of Coronation Shield"
+enhancement_bonus = 6
+icon = "Shield_4o"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 12
+max_dex_bonus = 0
+shield_bonus = 13
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Holy Blast 4"
+
+[[effect]]
+name = "Greater Sirocco"
+
+[[effect]]
+name = "Epic Paragon Light Guard"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

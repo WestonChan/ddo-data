@@ -1,0 +1,51 @@
+name = "Pouch of Jerky"
+description = """
+This leather pouch contains many shreds of dried meat. It's probably best that
+you don't ask what kind of meat."""
+drop_location = "Zawabi's Revenge, Raid Warded Chest"
+icon = "Trinket_33"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 11
+slot = "Trinket"
+
+[[clickie]]
+name = "Jerky"
+clickie = "Jerky"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 24
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 13
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Jerky"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"

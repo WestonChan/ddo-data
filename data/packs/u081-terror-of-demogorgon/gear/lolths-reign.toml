@@ -1,0 +1,43 @@
+name = "Lolth's Reign"
+description = "A dream of a Demon Lord, ruling over everything."
+drop_location = "Terror of Demogorgon, any end chest; Terror of Demogorgon (Legendary) Elite/True Elite end reward"
+icon = "Gloves_7p"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Hands"
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 22
+
+[[effect]]
+name = "Alchemical Earth Attunement"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "any end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Terror of Demogorgon"
+
+[[source]]
+kind = "saga"
+name = "Terror of Demogorgon"
+tier = "legendary"

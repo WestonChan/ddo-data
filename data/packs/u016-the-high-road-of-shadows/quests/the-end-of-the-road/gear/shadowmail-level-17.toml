@@ -1,0 +1,134 @@
+name = "Shadowmail (Level 17)"
+description = """
+The lightweight, magical construction of this metal scale armor allows wearers
+the ease of movement for the arcane spellcasting with minimal chance of spell
+failure."""
+drop_location = "The End of the Road, Greenstalker Chest (Heroic Hard)"
+enhancement_bonus = 5
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritforged Iron"
+minimum_level = 17
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 8
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Twilight"
+
+[[effect]]
+name = "Archmagi"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 3
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Combustion +84"
+description = "Combustion +84: Passive: +84 Equipment bonus to Fire Spell Power."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 84
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option]]
+name = "Corrosion +84"
+description = "Corrosion +84: Passive: +84 Equipment bonus to Acid Spell Power."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 84
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[socket.option]]
+name = "Glaciation +84"
+description = "Glaciation +84: Passive: +84 Equipment bonus to Cold Spell Power."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 84
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[socket.option]]
+name = "Impulse +84"
+description = "Impulse +84: Passive: +84 Equipment bonus to Force, Untyped, Slashing, Piercing, and Bludgeoning Spell Power."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Force Spell Power"
+value = 84
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Force Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Untyped",
+]
+
+[[socket.option]]
+name = "Magnetism +84"
+description = "Magnetism +84: Passive: +84 Equipment bonus to Electric Spell Power."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 84
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [84]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[source]]
+chest = "greenstalker chest"
+kind = "quest"
+loot_type = "chest"
+name = "The End of the Road"

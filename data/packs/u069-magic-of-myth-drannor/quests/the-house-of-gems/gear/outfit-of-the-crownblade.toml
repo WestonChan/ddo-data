@@ -1,0 +1,46 @@
+name = "Outfit of the Crownblade"
+description = """
+When the Echo broke off from the Crownblade, the force of its defiance manifested
+this outfit, and shares its clarity of purpose."""
+drop_location = "The House of Gems, end chest (rare)"
+enhancement_bonus = 5
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 7
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Linguistics 15%"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The House of Gems"

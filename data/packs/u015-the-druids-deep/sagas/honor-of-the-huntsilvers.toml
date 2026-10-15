@@ -1,0 +1,25 @@
+name = "Honor of the Huntsilvers"
+pack = "The Druid's Deep"
+wiki_url = "https://ddowiki.com/page/Honor_of_the_Huntsilvers_(Epic)"
+quests = [
+    "A Break in the Ice",
+    "A Lesson in Deception",
+    "A Stay at the Inn",
+    "Army of Shadow",
+    "Breaking the Ranks",
+    "Detour",
+    "Friends in Low Places",
+    "Lines of Supply",
+    "Lost in the Swamp",
+    "Rest Stop",
+    "The Druid's Curse",
+    "The End of the Road",
+    "The Thrill of the Hunt",
+    "The Tracker's Trap",
+    "Through a Mirror Darkly",
+    "What Goes Up",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Honor_of_the_Huntsilvers_(Epic)"
+read = "2026-10-02"

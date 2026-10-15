@@ -1,0 +1,30 @@
+name = "Iridiscent Claw: Cold"
+description = "+149 Cold Spell Power."
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Cold Spell Power"
+bonus_type = "Equipment"
+value = 149
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [149]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Iridescent Claw: Cold"
+reason = "The wiki spells it Iridiscent Claw: Cold, where Maetrim spells it Iridescent."
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-10-02"
+qualifier = 'family "DinosaurBone"'
+
+[[slot]]
+slot = "isle of dread: claw (weapon)"

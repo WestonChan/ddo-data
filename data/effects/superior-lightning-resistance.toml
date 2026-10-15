@@ -1,0 +1,11 @@
+name = "Superior Lightning Resistance"
+description_template = "This property absorbs the first 40 points of Electric damage per attack that the wearer would normally take."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Superior Lightning Resistance +40"
+
+[[bonus]]
+amount_from = 0
+constant = 40
+rounding = "down"
+scale = 1.0
+target = "Electric Resistance"

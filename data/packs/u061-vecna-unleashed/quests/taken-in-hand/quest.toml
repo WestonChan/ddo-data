@@ -1,0 +1,29 @@
+name = "Taken in Hand"
+bestowed_by = "Burnorh Galmok"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Vecna Unleashed"
+patron = "Morgrave University"
+zone = "Secret Hidden Hand Base"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Taken_in_Hand"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

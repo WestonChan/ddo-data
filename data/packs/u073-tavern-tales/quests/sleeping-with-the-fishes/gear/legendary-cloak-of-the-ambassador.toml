@@ -1,0 +1,43 @@
+name = "Legendary Cloak of the Ambassador"
+drop_location = "Sleeping with the Fishes, House Lyrandar uprising optional chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 33
+slot = "Back"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 12
+value2 = 18
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 23
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "house lyrandar uprising optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"

@@ -1,0 +1,26 @@
+name = "Wayfinder's Armor"
+description = "The armor of some hapless wayfinder, who met his doom in these sewers."
+drop_location = "Halls of Shan-To-Kor, End Chest"
+enhancement_bonus = 2
+icon = "LightArmor_9f"
+item_category = "Armor"
+item_type = "Light"
+material = "Steel"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 4
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Halls of Shan-To-Kor"

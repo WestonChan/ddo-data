@@ -1,0 +1,10 @@
+name = "Everbright"
+description = """
+An everbright weapon will never take damage from rust or acid and can emit a Blinding
+Flash 3/rest.""""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[slot]]
+slot = "crafting: cannith weapon suffix"

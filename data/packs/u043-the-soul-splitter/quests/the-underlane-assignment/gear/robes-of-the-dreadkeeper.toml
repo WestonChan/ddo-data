@@ -1,0 +1,42 @@
+name = "Robes of the Dreadkeeper"
+description = "Probably cursed."
+drop_location = "The Underlane Assignment, end chest"
+enhancement_bonus = 5
+icon = "Cloth_3"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 17
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 101
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 8
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Underlane Assignment"

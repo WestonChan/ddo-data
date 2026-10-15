@@ -1,0 +1,972 @@
+name = "Nearly Complete"
+npc = "Duergar Completion Forge, Gravenhollow"
+pack = "Terror of Demogorgon"
+
+[[family]]
+family = "NearlyComplete"
+
+[[ingredient]]
+name = "Abyssal Gem"
+drop_location = "Terror of Demogorgon end chests"
+tier = "heroic"
+
+[[ingredient]]
+name = "Legendary Abyssal Gem"
+drop_location = "Terror of Demogorgon end chests"
+tier = "legendary"
+
+[[citation]]
+url = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-29"
+
+[[recipe]]
+note = "All recipe facts are on this page, one table of effect sets. An item's Nearly Complete enchantment names its effect set; the upgrade cannot be replaced once chosen, so a different effect needs a new copy of the item. Effect set: Ability Score."
+option = "Charisma +6"
+slot = "crafting: nearly complete: ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+6 Charisma"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Constitution +6"
+slot = "crafting: nearly complete: ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+6 Constitution"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Dexterity +6"
+slot = "crafting: nearly complete: ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+6 Dexterity"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Intelligence +6"
+slot = "crafting: nearly complete: ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+6 Intelligence"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Strength +6"
+slot = "crafting: nearly complete: ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+6 Strength"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Wisdom +6"
+slot = "crafting: nearly complete: ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+6 Wisdom"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Charisma +15"
+slot = "crafting: nearly complete: ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+15 Charisma"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Constitution +15"
+slot = "crafting: nearly complete: ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+15 Constitution"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Dexterity +15"
+slot = "crafting: nearly complete: ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+15 Dexterity"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Intelligence +15"
+slot = "crafting: nearly complete: ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+15 Intelligence"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Strength +15"
+slot = "crafting: nearly complete: ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+15 Strength"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Ability Score."
+option = "Wisdom +15"
+slot = "crafting: nearly complete: ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+15 Wisdom"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Healing Amplification."
+option = "Competence Healing Amplification +24"
+slot = "crafting: nearly complete: healing amplification (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+24 Competence Healing Amplification"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Healing Amplification."
+option = "Profane Negative Amplification +24"
+slot = "crafting: nearly complete: healing amplification (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+24 Negative Healing Amplification"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Healing Amplification. Maetrim's augment is +24 Enhancement Repair Amplification."
+option = "Repair Amplification +24"
+slot = "crafting: nearly complete: healing amplification (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+24 Enhancement Repair Amplification"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Healing Amplification."
+option = "Competence Healing Amplification +62"
+slot = "crafting: nearly complete: healing amplification (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+62 Competence Healing Amplification"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Healing Amplification."
+option = "Profane Negative Amplification +62"
+slot = "crafting: nearly complete: healing amplification (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+62 Negative Healing Amplification"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Healing Amplification. Maetrim's augment is +62 Enhancement Repair Amplification."
+option = "Repair Amplification +62"
+slot = "crafting: nearly complete: healing amplification (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+62 Enhancement Repair Amplification"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Charisma +2"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+2 Insightful Charisma"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Constitution +2"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+2 Insightful Constitution"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Dexterity +2"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+2 Insightful Dexterity"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Intelligence +2"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+2 Insightful Intelligence"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Strength +2"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+2 Insightful Strength"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Wisdom +2"
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+2 Insightful Wisdom"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Charisma +7"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+7 Insightful Charisma"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Constitution +7"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+7 Insightful Constitution"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Dexterity +7"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+7 Insightful Dexterity"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Intelligence +7"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+7 Insightful Intelligence"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Strength +7"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+7 Insightful Strength"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Insightful Ability Score."
+option = "Insightful Wisdom +7"
+slot = "crafting: nearly complete: insightful ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+7 Insightful Wisdom"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Charisma +1"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+1 Quality Charisma"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Constitution +1"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+1 Quality Constitution"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Dexterity +1"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+1 Quality Dexterity"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Intelligence +1"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+1 Quality Intelligence"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Strength +1"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+1 Quality Strength"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Wisdom +1"
+slot = "crafting: nearly complete: quality ability score (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+1 Quality Wisdom"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Charisma +3"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+3 Quality Charisma"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Constitution +3"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+3 Quality Constitution"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Dexterity +3"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+3 Quality Dexterity"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Intelligence +3"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+3 Quality Intelligence"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Strength +3"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+3 Quality Strength"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Quality Ability Score."
+option = "Quality Wisdom +3"
+slot = "crafting: nearly complete: quality ability score (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "+3 Quality Wisdom"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Charisma Skills - Exceptional Bonus +6"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Charisma Skills - Exceptional Bonus +6"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Constitution Skills - Exceptional Bonus +6"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Constitution Skills - Exceptional Bonus +6"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Dexterity Skills - Exceptional Bonus +6"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Dexterity Skills - Exceptional Bonus +6"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Intelligence Skills - Exceptional Bonus +6"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Intelligence Skills - Exceptional Bonus +6"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Strength Skills - Exceptional Bonus +6"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Strength Skills - Exceptional Bonus +6"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Wisdom Skills - Exceptional Bonus +6"
+slot = "crafting: nearly complete: exceptional skills (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Wisdom Skills - Exceptional Bonus +6"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Charisma Skills - Exceptional Bonus +11"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Charisma Skills - Exceptional Bonus +11"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Constitution Skills - Exceptional Bonus +11"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Constitution Skills - Exceptional Bonus +11"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Dexterity Skills - Exceptional Bonus +11"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Dexterity Skills - Exceptional Bonus +11"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Intelligence Skills - Exceptional Bonus +11"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Intelligence Skills - Exceptional Bonus +11"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Strength Skills - Exceptional Bonus +11"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Strength Skills - Exceptional Bonus +11"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Skill."
+option = "Wisdom Skills - Exceptional Bonus +11"
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Wisdom Skills - Exceptional Bonus +11"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Abjuration Focus +4"
+slot = "crafting: nearly complete: spell focus (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Abjuration Focus +4"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Conjuration Focus +4"
+slot = "crafting: nearly complete: spell focus (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Conjuration Focus +4"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Enchantment Focus +4"
+slot = "crafting: nearly complete: spell focus (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Enchantment Focus +4"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Evocation Focus +4"
+slot = "crafting: nearly complete: spell focus (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Evocation Focus +4"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Illusion Focus +4"
+slot = "crafting: nearly complete: spell focus (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Illusion Focus +4"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Necromancy Focus +4"
+slot = "crafting: nearly complete: spell focus (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Necromancy Focus +4"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Transmutation Focus +4"
+slot = "crafting: nearly complete: spell focus (heroic)"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Transmutation Focus +4"
+level = 1
+
+[[recipe.ingredient]]
+ingredient = "Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Abjuration Focus +13"
+slot = "crafting: nearly complete: spell focus (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Abjuration Focus +13"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Conjuration Focus +13"
+slot = "crafting: nearly complete: spell focus (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Conjuration Focus +13"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Enchantment Focus +13"
+slot = "crafting: nearly complete: spell focus (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Enchantment Focus +13"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Evocation Focus +13"
+slot = "crafting: nearly complete: spell focus (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Evocation Focus +13"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Illusion Focus +13"
+slot = "crafting: nearly complete: spell focus (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Illusion Focus +13"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Necromancy Focus +13"
+slot = "crafting: nearly complete: spell focus (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Necromancy Focus +13"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25
+
+[[recipe]]
+note = "Effect set: Spell Focus."
+option = "Transmutation Focus +13"
+slot = "crafting: nearly complete: spell focus (legendary)"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Transmutation Focus +13"
+level = 30
+
+[[recipe.ingredient]]
+ingredient = "Legendary Abyssal Gem"
+quantity = 25

@@ -1,0 +1,46 @@
+name = "Mortal Fear"
+description = "Mortal Fear: On Hit: 8 to 64 Force Damage. In addition, 5% chance to cut non-boss foe's current health in half."
+family = "Thunderforged"
+min_level = 28
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Force"
+dice_number = [8]
+dice_sides = [8]
+display_name = "Mortal Fear"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: thunderforged tier 3"

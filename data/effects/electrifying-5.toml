@@ -1,0 +1,3 @@
+name = "Electrifying 5"
+description_template = "This effect causes the edges of this weapon to arc with electricity, dealing 5d6 Lightning damage on each hit."
+verbose_name_template = "Electrifying 5"

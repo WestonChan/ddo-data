@@ -1,0 +1,42 @@
+name = "Frozen Plate"
+description = """
+A sturdy suit of armor covered in a thin layer of ice and infused with the power
+of cold. It seems to have been left on the ocean floor and taken on the properties
+of the freezing, forbidding depths."""
+drop_location = "Altar of Vulkoor, Cleansed version of Dampened Frozen Plate"
+enhancement_bonus = 4
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 12
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Ice Guard II"
+
+[[source]]
+kind = "crafting_system"
+name = "Dampened"

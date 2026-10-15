@@ -1,0 +1,3 @@
+name = "Shield of Snow"
+description_template = "This snow provides a powerful defense against physical attacks. While actively blocking, you gain +50 Insight bonus to Physical Resistance Rating."
+verbose_name_template = "Shield of Snow"

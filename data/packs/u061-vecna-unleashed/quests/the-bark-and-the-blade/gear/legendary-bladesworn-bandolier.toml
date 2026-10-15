@@ -1,0 +1,40 @@
+name = "Legendary Bladesworn Bandolier"
+description = "May the Lord of Blades' will be done."
+drop_location = "The Bark and the Blade, End chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 32
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Quality"
+value = 38
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 48
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bark and the Blade"

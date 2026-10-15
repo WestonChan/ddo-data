@@ -1,0 +1,45 @@
+name = "Whisperchain (Level 23)"
+description = """
+The mithral links of this otherworldly chainmail armor seem almost ethereal
+to the touch, and are completely weightless."""
+drop_location = "Lost in the Swamp, Underwater chest (Epic Normal), Netherese Legacy chain end reward"
+enhancement_bonus = 6
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 9
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 13
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Superior False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 4
+
+[[source]]
+chest = "underwater chest"
+kind = "quest"
+loot_type = "chest"
+name = "Lost in the Swamp"
+
+[[source]]
+kind = "quest_chain"
+name = "Netherese Legacy"

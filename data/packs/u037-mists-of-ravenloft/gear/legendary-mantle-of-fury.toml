@@ -1,0 +1,41 @@
+name = "Legendary Mantle of Fury"
+description = "This cloak is best borne on the shoulders of those seeking vengeance."
+drop_location = "Into the Mists, end chest, and Fresh-baked Dreams end chest, mill chest"
+icon = "Cloak_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Raging Resilience"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, mill chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fresh-baked Dreams"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Into the Mists"

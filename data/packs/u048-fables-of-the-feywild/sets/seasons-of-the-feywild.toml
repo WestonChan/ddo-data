@@ -1,0 +1,241 @@
+name = "Seasons of the Feywild"
+icon = "SeasonsOfTheFeywild"
+
+[[item]]
+name = "Amber Pendant"
+
+[[item]]
+name = "Belt of the Ram"
+
+[[item]]
+name = "Bittersnow"
+
+[[item]]
+name = "Black Dragonscale Tasset"
+
+[[item]]
+name = "Brightsun"
+
+[[item]]
+name = "Bulwark of Snow"
+
+[[item]]
+name = "Clearwater"
+
+[[item]]
+name = "Cloak of Autumn"
+
+[[item]]
+name = "Cloak of Spring"
+
+[[item]]
+name = "Cloak of Summer"
+
+[[item]]
+name = "Cloak of Winter"
+
+[[item]]
+name = "Cold Iron Bracers"
+
+[[item]]
+name = "Crown of Butterflies"
+
+[[item]]
+name = "Crown of Fireflies"
+
+[[item]]
+name = "Crown of Leaves"
+
+[[item]]
+name = "Crown of Snow"
+
+[[item]]
+name = "Darkmoss"
+
+[[item]]
+name = "Deadringers"
+
+[[item]]
+name = "Deepsnow Boots"
+
+[[item]]
+name = "Direbear Belt"
+
+[[item]]
+name = "Duskbone Ring"
+
+[[item]]
+name = "Ferrocrystal Shield"
+
+[[item]]
+name = "Garb of the Spring Winds"
+
+[[item]]
+name = "Gloves of Tranquility"
+
+[[item]]
+name = "Green Dragonscale Bracers"
+
+[[item]]
+name = "Hallowsphere"
+
+[[item]]
+name = "Hexbreaker"
+
+[[item]]
+name = "Lionheart Ring"
+
+[[item]]
+name = "Necklace of Bottled Sunlight"
+
+[[item]]
+name = "Necronomicannon"
+
+[[item]]
+name = "Nocturne Ring"
+
+[[item]]
+name = "Plate of the Summer Solstice"
+
+[[item]]
+name = "Plate of the Winter Solstice"
+
+[[item]]
+name = "Red Dragonscale Boots"
+
+[[item]]
+name = "Ring of Fall's Decay"
+
+[[item]]
+name = "Ring of Spring's Storms"
+
+[[item]]
+name = "Ring of Summer's Heat"
+
+[[item]]
+name = "Ring of Winter's Chill"
+
+[[item]]
+name = "Robe of the Autumn Winds"
+
+[[item]]
+name = "Rockslide Ring"
+
+[[item]]
+name = "Snowscale"
+
+[[item]]
+name = "Sunscale"
+
+[[item]]
+name = "The Leaf Mail"
+
+[[item]]
+name = "The Lotus Mail"
+
+[[item]]
+name = "Thorn Boots"
+
+[[item]]
+name = "Vambrace of the Summer Court"
+
+[[item]]
+name = "Vinelash Bracers"
+
+[[item]]
+name = "Windriders"
+
+[[item]]
+name = "Winter Court Necklace"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Hit Points"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell Points"
+value = 50
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Artifact"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Dodge"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[tier]]
+equipped_count = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 7
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sheltering"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "PRR"
+extra_types = ["MRR"]

@@ -1,0 +1,28 @@
+name = "Curse of Minor Renewal"
+description = "+1 Fortune Bonus to Heal and Repair"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Heal"
+bonus_type = "Fortune"
+value = 1
+
+[[effect]]
+name = "Repair"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Repair",
+]
+
+[[slot]]
+slot = "crafting: deck curse"

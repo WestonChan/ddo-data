@@ -1,0 +1,46 @@
+name = "Epic Docent of the Tomb"
+description = "This docent was designed for use in dark catacombs and other subterranean environs."
+drop_location = "Free Delera, End chest"
+enhancement_bonus = 7
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 25
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = -5
+armor_type = "Docent"
+mithral_body = 6
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 19
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Free Delera"

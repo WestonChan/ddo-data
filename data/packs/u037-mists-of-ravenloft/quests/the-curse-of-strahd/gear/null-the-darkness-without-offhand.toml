@@ -1,0 +1,66 @@
+name = "Null, the Darkness Without (offhand)"
+accepts_sentience = true
+description = """
+Those who know themselves may change their hearts as easily as moving this blade
+from one hand to the other."""
+drop_location = "The Curse of Strahd, Raid Warded Chest"
+enhancement_bonus = 15
+icon = "Sickle_1h"
+item_category = "Weapon"
+item_type = "Sickle"
+minimum_level = 28
+slot = "Off Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 145
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Efficient Metamagic - Empower Healing II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 28
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Off-hand"
+weapon_type = "Sickle"

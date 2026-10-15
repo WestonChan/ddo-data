@@ -1,0 +1,21 @@
+name = "Quality Disable Device +5"
+description = "Legendary quality bonus to Disable Device"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Disable Device"
+effect_type = "SkillBonus"
+targets = ["Disable Device"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

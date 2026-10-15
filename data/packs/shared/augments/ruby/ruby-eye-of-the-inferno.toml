@@ -1,0 +1,16 @@
+name = "Ruby Eye of the Inferno"
+description = """
+2% Chance On-Hit to cause a blast of flame that deals 4 to 16 points of fire damage
+per minimum level of the upgraded weapon to all nearby enemies."""
+family = "Ruby"
+icon = "RubyEye"
+min_level = 1
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

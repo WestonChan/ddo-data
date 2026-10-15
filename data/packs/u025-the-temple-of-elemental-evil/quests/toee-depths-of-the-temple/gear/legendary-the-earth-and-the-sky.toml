@@ -1,0 +1,35 @@
+name = "Legendary The Earth and the Sky"
+description = "Even still, something locked away can surely be found."
+drop_location = "ToEE: Depths of the Temple, end chest"
+icon = "Ring_26b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Ring"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 53
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 53
+
+[[effect]]
+name = "Improved Earthen Guard"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"

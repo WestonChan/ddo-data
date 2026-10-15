@@ -1,0 +1,38 @@
+name = "The Harrowing Remains"
+drop_location = "Relentless, end chest"
+icon = "Necklace_30a"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 34
+slot = "Neck"
+
+[[effect]]
+name = "Memory of Shattered Life"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Relentless"

@@ -1,29 +1,33 @@
 {
-  "id": 1,
+  "id": 8961972439086940,
   "item_count": 245,
   "items": [
     {
-      "id": 484,
+      "id": 6544891769940383,
       "is_rare": false,
       "minimum_level": 1,
       "name": "Admiral's Tricorne",
-      "slot": "Head"
+      "slot": "Head",
+      "slug": "admirals-tricorne"
     },
     {
-      "id": 957,
+      "id": 254916629310653,
       "is_rare": false,
       "minimum_level": 4,
       "name": "Bold Trinket",
-      "slot": "Trinket"
+      "slot": "Trinket",
+      "slug": "bold-trinket"
     },
     {
-      "id": 1059,
+      "id": 2665625202905077,
       "is_rare": false,
       "minimum_level": 12,
       "name": "Brawling Gloves (legacy) (level 12)",
-      "slot": "Hands"
+      "slot": "Hands",
+      "slug": "brawling-gloves-legacy-level-12"
     }
   ],
   "name": "Treasure of Crystal Cove",
+  "slug": "treasure-of-crystal-cove",
   "wiki_url": "https://ddowiki.com/page/Euphonia%27s_Barter_Box"
 }

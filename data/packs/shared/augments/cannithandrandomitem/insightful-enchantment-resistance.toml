@@ -1,0 +1,76 @@
+name = "Insightful Enchantment Resistance"
+choose_level = true
+description = "You have a insight bonus to saves versus Enchantment."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+]
+
+[[effect]]
+name = "Enchantment Save"
+bonus_type = "Insight"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Enchantment Save"
+effect_type = "SaveBonus"
+targets = ["Enchantment"]
+
+[[slot]]
+slot = "crafting: cannith necklace extra"
+
+[[slot]]
+slot = "crafting: cannith ring extra"
+
+[[slot]]
+slot = "crafting: random cloak extra"
+
+[[slot]]
+slot = "crafting: random necklace extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"

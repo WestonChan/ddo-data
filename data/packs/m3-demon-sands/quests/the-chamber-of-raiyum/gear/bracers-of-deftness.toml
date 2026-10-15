@@ -1,0 +1,35 @@
+name = "Bracers of Deftness"
+description = "These bracers feature a cresting wave on the side of them."
+drop_location = "The Chamber of Raiyum, chest in the treasure chamber in the center of the tomb's lowest floor"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 11
+slot = "Wrists"
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 13
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "chest in the treasure chamber in the center of the tomb's lowest floor"
+kind = "quest"
+loot_type = "chest"
+name = "The Chamber of Raiyum"

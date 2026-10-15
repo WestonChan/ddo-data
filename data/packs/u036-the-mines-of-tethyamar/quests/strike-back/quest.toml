@@ -1,0 +1,29 @@
+name = "Strike Back"
+bestowed_by = "Gunhild the Watchful"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Mines of Tethyamar"
+patron = "The Harpers"
+zone = "Drow Stronghold"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Strike_Back"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

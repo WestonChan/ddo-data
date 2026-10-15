@@ -1,0 +1,21 @@
+name = "+16 Constitution (Catalyst Crafting)"
+description = "+16 Enhancement bonus to Constitution"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 16
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: nearly complete: ability score (legendary)"

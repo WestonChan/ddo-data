@@ -1,0 +1,43 @@
+name = "Legendary Tumbleweed"
+description = """
+This silver ring has a series of small barbs engraved on the outside of the
+ring. It was said to have been worn by an infamous cutpurse that disappeared
+investigating the ruins beneath Stormreach."""
+drop_location = "Legendary Vision of Destruction, End chest"
+icon = "Ring_12e"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Exceptional Nimble Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"

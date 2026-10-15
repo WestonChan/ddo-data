@@ -1,0 +1,21 @@
+name = "Eye of the Titan"
+bestowed_by = "Lord Gerald Goodblade"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Dreaming Dark"
+patron = "The Coin Lords"
+zone = "Goodblade's Artifact"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Eye_of_the_Titan"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

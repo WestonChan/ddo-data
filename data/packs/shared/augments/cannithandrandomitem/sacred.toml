@@ -1,0 +1,47 @@
+name = "Sacred"
+description = "You Turn Undead as if you were 2 levels higher"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 2
+
+[[effect]]
+name = "Turn Undead Level"
+bonus_type = "Sacred"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Sacred"
+effect = "Turn Undead Level"
+effect_type = "TurnLevelBonus"
+
+[[slot]]
+slot = "crafting: cannith armor prefix"
+
+[[slot]]
+slot = "crafting: cannith helmet prefix"
+
+[[slot]]
+slot = "crafting: cannith necklace prefix"
+
+[[slot]]
+slot = "crafting: cannith ring prefix"
+
+[[slot]]
+slot = "crafting: cannith shield prefix"
+
+[[slot]]
+slot = "crafting: cannith orb prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith melee prefix"
+
+[[slot]]
+slot = "crafting: cannith ranged prefix"
+
+[[slot]]
+slot = "crafting: cannith thrown prefix"

@@ -1,0 +1,5 @@
+name = "Spot"
+category = "skill"
+description_template = "Passive: {1} %b1 bonus to the Spot skill."
+home_bonus_type = "Competence"
+verbose_name_template = "%b1 Spot +{1}"

@@ -1,0 +1,43 @@
+name = "Legendary War-Rune Pendant"
+description = """
+An old relic of The Last War. Runes are inscribed on nearly every available
+surface, a desperate hope for the power to win. While they brought power, there
+was no victory."""
+drop_location = "Law and Order, End chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 32
+slot = "Neck"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Law and Order"

@@ -1,0 +1,29 @@
+name = "The Hand and the Eyes"
+bestowed_by = "Borgo Makkan"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Grip of the Hidden Hand"
+patron = "Morgrave University"
+zone = "Hidden Hand Headquarters"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Hand_and_the_Eyes"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 33

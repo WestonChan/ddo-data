@@ -1,0 +1,50 @@
+name = "Repeating Heavy Crossbow of the Undying Age"
+accepts_sentience = true
+description = "The ritual's power has imbued this weapon with an immortal fire and unholy purpose."
+drop_location = "Ritual Table, Turn in \nLegendary Repeating Heavy Crossbow of the Golden Age \n120 Barrier Fragments"
+enhancement_bonus = 15
+icon = "RepeatingHeavyCrossbow_1c"
+item_category = "Weapon"
+item_type = "Repeating Heavy Crossbow"
+material = "Steel"
+minimum_level = 33
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Dripping with Magma"
+
+[[effect]]
+name = "3rd Degree Burns"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[socket]]
+slot = "crafting: sealed in fire"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Ritual Table"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 6.1
+handedness = "Two-handed"
+weapon_type = "Repeating Heavy Crossbow"

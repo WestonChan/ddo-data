@@ -1,0 +1,42 @@
+name = "Boots of Uncanny Mending"
+description = """
+Small tools kept in the sides of these boots aid their wearer in the repair
+of items."""
+drop_location = "Times Long Past, end chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Feet"
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 27
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Quality"
+value = 7
+
+[[effect]]
+name = "Repair"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Quality"
+value = 21
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Times Long Past"

@@ -1,0 +1,235 @@
+name = "Forbidden Knowledge"
+icon = "ForbiddenKnowledge"
+
+[[augment]]
+name = "Forbidden Knowledge"
+family = "LostPurpose"
+
+[[item]]
+name = "Absorption Gauntlet"
+
+[[item]]
+name = "Azure Buckler"
+
+[[item]]
+name = "Azure Rotella"
+
+[[item]]
+name = "Azure Targe"
+
+[[item]]
+name = "Azure Tower"
+
+[[item]]
+name = "Blademark Amulet"
+
+[[item]]
+name = "Bladesworn Bandolier"
+
+[[item]]
+name = "Book-Cover Beltstrap"
+
+[[item]]
+name = "Buckle of Transformation"
+
+[[item]]
+name = "Control Gauntlet"
+
+[[item]]
+name = "Core of a War Machine"
+
+[[item]]
+name = "Crystalline Wristlet"
+
+[[item]]
+name = "Defiled Azure Buckler"
+
+[[item]]
+name = "Defiled Azure Rotella"
+
+[[item]]
+name = "Defiled Azure Targe"
+
+[[item]]
+name = "Defiled Azure Tower"
+
+[[item]]
+name = "Eyes of Enlightenment"
+
+[[item]]
+name = "Forgotten Tome"
+
+[[item]]
+name = "Library Card"
+
+[[item]]
+name = "Lightning Railworker's Boots"
+
+[[item]]
+name = "Liturgy of the Dark Six"
+
+[[item]]
+name = "Morgrave Skeleton Key"
+
+[[item]]
+name = "Mystic Monocle"
+
+[[item]]
+name = "Prototype I: Siren Test"
+
+[[item]]
+name = "Prototype II: Cooling Mechanism"
+
+[[item]]
+name = "Prototype III: Propulsion Module"
+
+[[item]]
+name = "Prototype IV: Discharge System"
+
+[[item]]
+name = "Prototype V: Byproduct Disposal"
+
+[[item]]
+name = "Prototype VI: Impact Redistributor"
+
+[[item]]
+name = "Prototype VII: Flash Transferal"
+
+[[item]]
+name = "Skymage's Shoes"
+
+[[item]]
+name = "Song-Chime Locket"
+
+[[item]]
+name = "Steel-Toed Steps"
+
+[[item]]
+name = "Steps' Lenses of Seein' Hidden Hand Secrets"
+
+[[item]]
+name = "Study Spectacles"
+
+[[item]]
+name = "The Binding of the Blood"
+
+[[item]]
+name = "The Dark Six-Fingered Glove"
+
+[[item]]
+name = "War-Rune Pendant"
+
+[[item]]
+name = "World-Weary Wrappings"
+
+[[item]]
+name = "Wristbound Register"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Attack Bonus +1 Profane at 4 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 4, Attack Bonus / Profane"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Damage Bonus +1 Profane at 4 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 4, Damage Bonus / Profane"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+value = 1
+
+[[tier.effect]]
+effect = "+1 Profane bonus to Attack and Damage"
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Attack Bonus"
+value = 1
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Damage Bonus"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Melee and Ranged Power"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Spell DCs"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]

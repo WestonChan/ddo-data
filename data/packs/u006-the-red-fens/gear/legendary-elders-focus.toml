@@ -1,0 +1,39 @@
+name = "Legendary Elder's Focus"
+description = """
+Tribal drow elders use these charms to focus their minds and recall past events.
+They are passed down through the generations but few of them remain in existence."""
+drop_location = "Legendary version of Epic Elder's Focus"
+icon = "Necklace_1b"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 277
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Efficient Metamagic - Extend II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Efficient Metamagic - Enlarge II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

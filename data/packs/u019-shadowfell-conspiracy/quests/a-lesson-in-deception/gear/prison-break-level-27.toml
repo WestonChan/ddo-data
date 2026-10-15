@@ -1,0 +1,290 @@
+name = "Prison Break (Level 27)"
+description = "When brute force doesn't work... You didn't use enough brute force."
+drop_location = "A Lesson in Deception, End chest (Epic Elite)"
+enhancement_bonus = 7
+icon = "DwarvenWaraxe_3"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Steel"
+minimum_level = 27
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Sundering VIII"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Acid VI"
+description = "Acid VI: On Hit: 6 to 24 Acid Damage."
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Acid"
+dice_number = [6]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Anarchic V"
+description = """
+Anarchic V: On Hit: 5 to 20 Chaos damage. Chaos-aligned creatures are immune to this effect.
+Penalty: If equipped by a Lawful user, they receive 1 Negative Level for as long as this item is equipped."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Acid"
+dice_number = [5]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Penalty"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Lawful"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Axiomatic V"
+description = """
+Axiomatic V: On Hit: 5 to 20 Law damage. Law-aligned creatures are immune to this effect.
+Penalty: If equipped by a Chaotic user, they receive 1 Negative Level for as long as this item is equipped."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Unknown"
+dice_number = [5]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Penalty"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Chaotic"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Eldritch IV"
+description = "Eldritch IV: On Hit: 4 to 16 Force Damage."
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Force"
+dice_number = [4]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Flaming VI"
+description = "Flaming VI: On Hit: 6 to 24 Fire Damage."
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [6]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Frost VI"
+description = "Frost VI: On Hit: 6 to 24 Cold Damage."
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Cold"
+dice_number = [6]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Holy IV"
+description = """
+Holy IV: On Hit: 4 to 16 Good damage. Good-aligned creatures are immune to this effect.
+Penalty: If equipped by a Evil user, they receive 1 Negative Level for as long as this item is equipped."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Good"
+dice_number = [4]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Penalty"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Evil"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Improved Banishing"
+description = """
+Improved Banishing: On Hit: 4 to 24 Bane damage to Outsiders.
+On Vorpal Hit: If an outsider struck by this weapon has fewer than 1500 Hit Points,
+it is instantly slain. If the outsider has above 1500 Hit Points, it takes 150 damage."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Unknown"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Outsiders"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Improved Vorpal"
+description = """
+Improved Vorpal: Passive: +0.5[W] damage dice.
+On Vorpal Hit: If your target has fewer than 1500 Hit Points, they are instantly
+slain. If your target has above 1500 Hit Points, they take 150 damage."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+
+[[socket.option]]
+name = "Poison VI"
+description = """
+Poison VI: On Hit: 6 to 18 Poison Damage.
+On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage."""
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Poison"
+dice_number = [6]
+dice_sides = [3]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Constitution"
+dice_number = [1]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Shock VI"
+description = "Shock VI: On Hit: 6 to 24 Electric Damage."
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Electric"
+dice_number = [6]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Shrieking V"
+description = "Shrieking V: On Hit: 5 to 20 Sonic Damage."
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Sonic"
+dice_number = [5]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Solar IV"
+description = "Solar IV: On Hit: 4 to 16 Light Damage."
+icon = "Variant"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Light"
+dice_number = [4]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Lesson in Deception"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

@@ -1,0 +1,38 @@
+name = "Legendary Manacles of Justice"
+description = "In a pinch, they can function as handcuffs for any neer-do-wells you encounter."
+drop_location = "Order in the Court!, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 31
+slot = "Wrists"
+
+[[effect]]
+name = "High Spirits"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 74
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 47
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Order in the Court!"

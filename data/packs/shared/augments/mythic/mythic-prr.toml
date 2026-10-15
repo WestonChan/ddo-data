@@ -1,0 +1,21 @@
+name = "Mythic PRR"
+description = "Mythic PRR bonus"
+enter_value = true
+family = "Mythic"
+icon = "Mythic"
+min_level = 1
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Mythic"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Mythic"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[slot]]
+slot = "crafting: mythic"

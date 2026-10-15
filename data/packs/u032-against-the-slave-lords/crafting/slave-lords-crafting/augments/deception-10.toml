@@ -1,0 +1,32 @@
+name = "Deception +10"
+description = "Legendary Enhancement bonus to Deception"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Sneak Attack Hit"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Sneak Attack Damage"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

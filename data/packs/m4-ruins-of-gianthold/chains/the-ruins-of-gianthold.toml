@@ -1,0 +1,19 @@
+name = "The Ruins of Gianthold"
+pack = "Ruins of Gianthold"
+quests = [
+    "The Prison of the Planes",
+    "Madstone Crater",
+    "A Cabal for One",
+    "Gianthold Tor",
+    "The Reaver's Fate",
+    "A Cry for Help",
+    "Foundation of Discord",
+    "The Maze of Madness",
+    "Trial by Fire",
+    "The Crucible",
+    "Feast or Famine",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Ruins_of_Gianthold"
+read = "2026-10-02"

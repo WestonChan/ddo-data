@@ -1,0 +1,14 @@
+name = "Sovereign Rune of Smiting"
+description = """
+Adds Smiting to any equipped Melee/Ranged weapon.
+Smiting is a powerful weapon enchantment that may cause the death of a construct
+on a Vorpal Strike. Constructs suffer 4d6 additional damage per hit with a 100
+Bane damage bonus on confirmed vorpal strikes if the construct has 1,000 or more
+current HP (or is immune to instant death, such as the red-/purple-named bosses
+such as the Portals in The Shroud), else a vorpal strike will kill it outright."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

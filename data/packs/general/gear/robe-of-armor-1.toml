@@ -1,0 +1,21 @@
+name = "Robe of Armor +1"
+description = "This high quality robe is enchanted to protect the wearer like light armor."
+drop_location = "DDO Store"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+armor_bonus = 1
+armor_type = "Cloth"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Robe_of_Armor_%2B1"
+read = "2026-09-30"
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Armor"
+value = 1

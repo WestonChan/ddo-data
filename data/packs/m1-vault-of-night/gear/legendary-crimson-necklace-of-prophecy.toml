@@ -1,0 +1,33 @@
+name = "Legendary Crimson Necklace of Prophecy"
+description = """
+This glittering necklace is rumored to contain important hints of the draconic
+prophecy. They rarely fall in the hands of non-dragon kind."""
+drop_location = "Legendary version of Epic Crimson Necklace of Prophecy"
+icon = "Necklace_12b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 54
+
+[[socket]]
+slot = "green"

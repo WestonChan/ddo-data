@@ -1,0 +1,48 @@
+name = "Star of Endless Night (level 20)"
+description = "This Morningstar holds an aspect of the Endless Night deep within it."
+drop_location = "The Night Revels, Turn in various ingredients at Joe Candymaker"
+enhancement_bonus = 6
+icon = "Morningstar_4a"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Unholy 4"
+
+[[effect]]
+name = "Smashing 10"
+
+[[effect]]
+name = "Piercing 4"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 8
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Morningstar"

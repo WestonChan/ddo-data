@@ -1,0 +1,38 @@
+name = "Vambrace of the Summer Court"
+description = """
+These bracers are modeled after the patrons of Queen Titania herself, and bear
+a remnant of her magics."""
+drop_location = "The Endless Revels, End Chest"
+icon = "Bracers_19"
+item_category = "Clothing"
+material = "Copper"
+minimum_level = 5
+slot = "Wrists"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Extra Smites"
+value = 2
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Endless Revels"

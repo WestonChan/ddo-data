@@ -1,0 +1,11 @@
+name = "Lesser Displacement"
+description_template = "Equipping this item causes light to distort around you. Attacks from enemies have a 25% chance to miss you due to concealment."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Lesser Displacement +25"
+
+[[bonus]]
+amount_from = 0
+constant = 25
+rounding = "down"
+scale = 1.0
+target = "Displacement"

@@ -1,0 +1,20 @@
+name = "Solar Gem of Spell Penetration (Epic)"
+description = "+6 Artifact Bonus to Spell Penetration."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Artifact"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[slot]]
+slot = "sun"

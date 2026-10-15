@@ -1,0 +1,23 @@
+name = "+13 Will Save"
+description = "Ethereal/Opposition: +13 Resistance bonus to Will saves."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Opposition"""
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Resistance"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[slot]]
+slot = "crafting: equipment tier 1"

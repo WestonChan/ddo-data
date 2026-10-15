@@ -1,0 +1,34 @@
+name = "Epic Belt of the Red Abishai"
+description = "This belt seems to be attuned to elemental power."
+drop_location = "Epic version of Belt of the Red Abishai"
+icon = "Belt_4m"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 20
+slot = "Waist"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 32
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

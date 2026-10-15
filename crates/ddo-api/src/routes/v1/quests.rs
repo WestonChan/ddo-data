@@ -27,8 +27,16 @@ const QUEST_SELECT: &str =
    FROM quests q LEFT JOIN adventure_packs p ON p.id = q.pack_id LEFT JOIN patrons pt ON pt.id = q.patron_id";
 const QUEST_FLAG_COLUMNS: &[&str] = &["is_raid", "is_challenge", "is_free_to_play"];
 
-const ADVENTURE_PACKS_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("is_free_to_play", "is_free_to_play")];
+const ADVENTURE_PACKS_SELECT: &str = "SELECT id, name, is_free_to_play, [update], released FROM adventure_packs";
+
+const ADVENTURE_PACKS_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("slug", "listed.name"),
+    ("id", "listed.id"),
+    ("is_free_to_play", "is_free_to_play"),
+    ("update", "listed.[update]"),
+    ("released", "listed.released"),
+];
 
 declare_list_parameters!(AdventurePacksParameters, ADVENTURE_PACKS_SORT_FIELDS, "");
 
@@ -37,7 +45,7 @@ declare_list_parameters!(AdventurePacksParameters, ADVENTURE_PACKS_SORT_FIELDS, 
     path = "/v1/adventure-packs",
     tag = "quests",
     summary = "List adventure packs",
-    description = "Lists adventure packs and free-to-play status.",
+    description = "Lists adventure packs with release updates, dates and free-to-play status.",
     params(
         AdventurePacksParameters,
     ),
@@ -49,7 +57,7 @@ async fn adventure_packs(State(state): State<AppState>, ApiQuery(query, _): ApiQ
         state,
         query,
         TableListSource {
-            select_sql: "SELECT id, name, is_free_to_play FROM adventure_packs",
+            select_sql: ADVENTURE_PACKS_SELECT,
             rows_key: "adventure_packs",
             name_column: "listed.name",
             default_order: "listed.name",
@@ -75,7 +83,7 @@ async fn adventure_packs(State(state): State<AppState>, ApiQuery(query, _): ApiQ
 async fn adventure_pack_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Result<Json<Value>, ApiError> {
     state
         .read_db(move |db| {
-            let mut pack = json_row(db, "SELECT id, name, is_free_to_play FROM adventure_packs WHERE id = ?1", [id])?;
+            let mut pack = json_row(db, &format!("{ADVENTURE_PACKS_SELECT} WHERE id = ?1"), [id])?;
             convert_to_booleans(&mut pack, &["is_free_to_play"]);
             pack["items"] = Value::Array(loot_rows(
                 db,
@@ -97,7 +105,7 @@ async fn adventure_pack_detail(State(state): State<AppState>, Path(id): Path<i64
         .await
 }
 
-const PATRONS_SORT_FIELDS: &[(&str, &str)] = &[("name", "listed.name"), ("id", "listed.id")];
+const PATRONS_SORT_FIELDS: &[(&str, &str)] = &[("name", "listed.name"), ("slug", "listed.name"), ("id", "listed.id")];
 
 declare_list_parameters!(PatronsParameters, PATRONS_SORT_FIELDS, "");
 
@@ -131,6 +139,7 @@ async fn patrons(State(state): State<AppState>, ApiQuery(query, _): ApiQuery) ->
 
 const QUESTS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("level", "listed.level"),
     ("epic_level", "listed.epic_level"),
@@ -239,7 +248,7 @@ pub(super) fn quests_dropping_via_many(
         db,
         loot_ids,
         &format!(
-            "SELECT loot.{loot_id_column} AS owner_id, q.id, q.name, q.level, q.epic_level, q.is_raid,
+            "SELECT loot.{loot_id_column} AS owner_id, q.id, q.slug, q.name, q.level, q.epic_level, q.is_raid,
                 q.difficulties, q.is_free_to_play, ap.name AS pack, pt.name AS patron,
                 loot.loot_type, loot.is_rare, loot.chest
            FROM sources loot JOIN quests q ON q.id = loot.quest_id
@@ -272,7 +281,7 @@ pub(super) fn adventure_packs_dropping_via_many(
         db,
         loot_ids,
         &format!(
-            "SELECT loot.{loot_id_column} AS owner_id, p.id, p.name, loot.loot_type, loot.is_rare, loot.chest
+            "SELECT loot.{loot_id_column} AS owner_id, p.id, p.slug, p.name, loot.loot_type, loot.is_rare, loot.chest
            FROM sources loot JOIN adventure_packs p ON p.id = loot.pack_id
           WHERE loot.kind = 'adventure_pack' AND loot.{loot_id_column} IN ({{ids}})
           ORDER BY owner_id, p.name, loot.loot_type, loot.is_rare, loot.chest"
@@ -308,6 +317,7 @@ pub(super) fn sources_via_many(
         &format!(
             "SELECT loot.{loot_id_column} AS owner_id, loot.kind,
                 COALESCE(q.id, c.id, s.id, p.id, cs.id, v.id, e.id) AS id,
+                COALESCE(q.slug, c.slug, s.slug, p.slug, cs.slug, v.slug, e.slug) AS slug,
                 COALESCE(q.name, c.name, s.name, p.name, cs.name, v.name, e.name,
                          'Advance to level ' || loot.character_level) AS name,
                 loot.loot_type, loot.chest, loot.is_rare, loot.tier, loot.character_level, loot.cost,
@@ -327,8 +337,18 @@ pub(super) fn sources_via_many(
                    CASE loot.tier WHEN 'heroic' THEN 1 WHEN 'epic' THEN 2 WHEN 'legendary' THEN 3 ELSE 4 END"
         ),
     )?;
-    for rows in sources.values_mut() {
+    let mut prices = if loot_id_column == "item_id" {
+        super::vendors_and_events::vendor_prices(db, loot_ids)?
+    } else {
+        BTreeMap::new()
+    };
+    for (owner_id, rows) in &mut sources {
         for source in rows {
+            source["price"] = Value::Array(if source["kind"] == "vendor" {
+                prices.remove(&(*owner_id, source["name"].as_str().unwrap().to_owned())).unwrap_or_default()
+            } else {
+                Vec::new()
+            });
             convert_to_booleans(source, &["is_rare"]);
             if source["wiki_url"].is_null() && source["kind"] != "starter" {
                 if let Some(source_name) = source["name"].as_str() {

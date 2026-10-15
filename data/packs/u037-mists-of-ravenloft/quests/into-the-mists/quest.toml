@@ -1,0 +1,30 @@
+name = "Into the Mists"
+bestowed_by = "The Mists of Ravenloft (the gate object)"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "Old Svalich Road"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Into_the_Mists"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

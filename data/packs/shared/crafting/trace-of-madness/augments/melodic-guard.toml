@@ -1,0 +1,8 @@
+name = "Melodic Guard"
+description = "Melodic Guard: When being hit there is a chance for the opponent to dance."
+family = "Other"
+icon = "Mania"
+min_level = 1
+
+[[slot]]
+slot = "crafting: trace of madness"

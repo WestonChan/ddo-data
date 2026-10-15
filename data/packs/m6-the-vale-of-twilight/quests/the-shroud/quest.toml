@@ -1,0 +1,22 @@
+name = "The Shroud"
+bestowed_by = "Aaseamah Screven"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 11
+is_raid = true
+pack = "The Vale of Twilight"
+patron = "The Twelve"
+zone = "The Shroud"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Shroud"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

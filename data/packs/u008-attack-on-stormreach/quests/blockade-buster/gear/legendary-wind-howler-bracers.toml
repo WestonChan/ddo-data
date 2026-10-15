@@ -1,0 +1,57 @@
+name = "Legendary Wind Howler Bracers"
+description = """
+These bracers were once worn by a harpy of the dangerous and elite Wind Howler
+flight. They dramatically increase the wearer's aptitude with ranged weaponry."""
+drop_location = "Blockade Buster, engineers' chests"
+icon = "Bracers_4"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 31
+slot = "Wrists"
+
+[[clickie]]
+name = "Cyclonic Blast"
+clickie = "Cyclonic Blast"
+
+[[effect]]
+name = "Greater Marksmanship"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Feat - Wind through the Trees"
+
+[[effect]]
+name = "Greater Shrieking Bolt"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cyclonic Blast"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "engineers' chests"
+kind = "quest"
+loot_type = "chest"
+name = "Blockade Buster"

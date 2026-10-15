@@ -1,0 +1,56 @@
+name = "Diabolist's Docent"
+description = """
+This infernal docent is connected to the devils of Shavarath somehow, though
+the exact nature of the link is unclear. It can summon evil creatures to the
+wearer's aid, and facilitates the casting of conjuration-based magic."""
+drop_location = "The Chronoscope, End reward"
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 4
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[clickie]]
+name = "Summon Monster III"
+clickie = "Summon Monster III"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Monster III"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"

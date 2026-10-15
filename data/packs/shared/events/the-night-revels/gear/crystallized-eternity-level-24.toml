@@ -1,0 +1,49 @@
+name = "Crystallized Eternity (level 24)"
+description = "This Greatclub is a manifestation of Eternity's will, otherwise lost to time."
+drop_location = "The Night Revels, Turn in Joe Candymaker"
+enhancement_bonus = 7
+icon = "GreatClub_3"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Crystal"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Tendon Slice"
+value = 9
+
+[[effect]]
+name = "Electrifying 5"
+
+[[effect]]
+name = "Freezing 12"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 17
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.8
+handedness = "Two-handed"
+weapon_type = "Great Club"

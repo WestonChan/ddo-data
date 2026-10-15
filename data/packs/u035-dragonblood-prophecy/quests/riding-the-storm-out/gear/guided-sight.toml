@@ -1,0 +1,40 @@
+name = "Guided Sight"
+description = "Dragonborn scouts often used these scopes to examine the road ahead for danger."
+drop_location = "Riding the Storm Out, Warded chest"
+icon = "Trinket_17a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 27
+slot = "Trinket"
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Insight"
+value = 9
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Insight"
+value = 9
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Riding the Storm Out"

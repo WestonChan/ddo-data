@@ -1,0 +1,20 @@
+name = "Topaz of Fear Immunity"
+description = "You are immune to fear effects"
+family = "Topaz"
+icon = "Topaz"
+min_level = 8
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

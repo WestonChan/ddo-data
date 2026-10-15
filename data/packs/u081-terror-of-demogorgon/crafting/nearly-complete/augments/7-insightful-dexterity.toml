@@ -1,0 +1,22 @@
+name = "+7 Insightful Dexterity"
+description = "+7 Insightful bonus to Dexterity"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "crafting: nearly complete: insightful ability score (legendary)"

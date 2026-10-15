@@ -1,0 +1,10 @@
+name = "Legendary Balance of Land and Sky"
+description = """
+Requires Fire and Water only
+Attacks and offensive spells have a moderate chance to deal
+extra acid and/or electric damage."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

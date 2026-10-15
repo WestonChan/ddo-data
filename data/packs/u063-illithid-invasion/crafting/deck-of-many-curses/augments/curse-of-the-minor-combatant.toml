@@ -1,0 +1,28 @@
+name = "Curse of the Minor Combatant"
+description = "+2 Fortune Bonus to Melee Power"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Curse of Minor Combatant"
+reason = "The wiki names the curse Curse of the Minor Combatant."
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[slot]]
+slot = "crafting: deck curse"

@@ -1,0 +1,25 @@
+name = "Age of Rage"
+bestowed_by = "Urqhart Steadfast"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Disciples of Rage"
+patron = "House Jorasco"
+zone = "Dockside Cartwrights"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Age_of_Rage"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 31

@@ -1,0 +1,41 @@
+name = "Lunar Gem of Negative Amplification (Heroic)"
+description = """
++10 Enhancement Bonus to Negative Healing Amplification.
+Drops in: Ruins of Myth Drannor (Goranathanil's chest)
+Sleeping with the Fishes, end chest
+Zoo Creeper, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Negative Healing Amplification"
+bonus_type = "Enhancement"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

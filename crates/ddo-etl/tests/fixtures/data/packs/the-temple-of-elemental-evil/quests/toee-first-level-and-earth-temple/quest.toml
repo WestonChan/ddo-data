@@ -1,0 +1,19 @@
+name = "ToEE: First Level and Earth Temple"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Temple of Elemental Evil"
+patron = "The Gatekeepers"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 34

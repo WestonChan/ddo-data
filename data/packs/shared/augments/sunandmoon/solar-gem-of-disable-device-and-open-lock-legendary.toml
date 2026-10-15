@@ -1,0 +1,36 @@
+name = "Solar Gem of Disable Device and Open Lock (Legendary)"
+description = """
++6 Artifact bonus to Disable Device and open Lock
+Drops in: Land of Lamordia, Experiment Y's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Artifact"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "experiment y's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

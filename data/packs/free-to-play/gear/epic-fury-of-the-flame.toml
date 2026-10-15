@@ -1,0 +1,52 @@
+name = "Epic Fury of the Flame"
+accepts_sentience = true
+description = """
+A mighty weapon forged by request of the Silver Flame templars and imbued with
+the fiery wrath of the Silver Flame itself. It metes out judgement in the form
+of blinding light, burns, and broken bones."""
+drop_location = "Epic version of Fury of the Flame"
+enhancement_bonus = 6
+icon = "Maul_1h"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Adamantine"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Flaming Blast IV"
+
+[[effect]]
+name = "Coruscating 4"
+
+[[effect]]
+name = "Fracturing 4"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Maul"

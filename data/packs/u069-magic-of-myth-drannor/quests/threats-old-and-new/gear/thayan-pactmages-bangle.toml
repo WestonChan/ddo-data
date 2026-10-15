@@ -1,0 +1,41 @@
+name = "Thayan Pactmage's Bangle"
+description = "The mandatory mark of a Thayan Warlock."
+drop_location = "Threats Old and New, Raid Warded chest"
+icon = "Bracers_5c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 33
+slot = "Wrists"
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 162
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Power in Pact"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "crafting: sealed in undeath"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Threats Old and New"

@@ -1,0 +1,41 @@
+name = "Crystallized Drop of Tea"
+description = """
+Provides a -4 SP Cost to Empowered spells. Additionally, once every 3 seconds when
+you take physical damage, you get +8 Psionic Bonus to Universal Spell Power.
+This can stack up to 3 times and each stack lasts for 20 seconds."""
+family = "Named"
+icon = "DraconicSoulGem"
+min_level = 28
+
+[[modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Drop of Tea"]
+
+[[modifier]]
+amount_type = "SliderValue"
+amounts = [8]
+bonus_type = "Psionic"
+effect_type = "UniversalSpellPower"
+stack_source = "Drop of Tea"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [-4]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

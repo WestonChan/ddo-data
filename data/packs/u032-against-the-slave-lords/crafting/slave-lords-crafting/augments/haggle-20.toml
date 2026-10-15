@@ -1,0 +1,21 @@
+name = "Haggle +20"
+description = "Legendary Competence bonus to Haggle"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Haggle"
+effect_type = "SkillBonus"
+targets = ["Haggle"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

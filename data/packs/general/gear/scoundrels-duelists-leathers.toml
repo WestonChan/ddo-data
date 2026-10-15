@@ -1,0 +1,31 @@
+name = "Scoundrel's Duelist's Leathers"
+description = "Fanciful, flavorful, and high-quality stitching - a work of art in its own right."
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 4
+icon = "LightArmor_22"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 15
+race_required = "Tiefling Scoundrel"
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 5
+armor_type = "Light"
+max_dex_bonus = 11
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

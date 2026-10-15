@@ -1,0 +1,3 @@
+name = "Light Spirals"
+description_template = "Fires chaotic bolts of light the damage your enemies. At light charge levels multiple bolts are rapidly fired. Opponents struck by these bolts receive a Will save for half damage."
+verbose_name_template = "Light Spirals"

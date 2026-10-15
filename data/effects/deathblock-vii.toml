@@ -1,0 +1,11 @@
+name = "Deathblock VII"
+description_template = "Passive: 21% Enhancement Bonus to Negative Energy Absorption. In addition, you are immune to magical effects that can cause instant death."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Deathblock VII +21"
+
+[[bonus]]
+amount_from = 0
+constant = 21
+rounding = "down"
+scale = 1.0
+target = "Negative Absorption"

@@ -1,0 +1,23 @@
+name = "Murlynd's Spoon"
+description = "A simple metal spoon."
+drop_location = "Random, Level ~4 chests/rewards"
+icon = "Trinket_85"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 5
+slot = "Trinket"
+
+[[clickie]]
+name = "Murlynd's Spoon"
+clickie = "Murlynd's Spoon"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Murlynd's Spoon"]

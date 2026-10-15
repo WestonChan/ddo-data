@@ -1,0 +1,26 @@
+name = "Consuming Darkness (Level 27)"
+drop_location = "What Goes Up, jeweled key chest, end chest (Epic Hard)"
+icon = "Ring_19"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 27
+slot = "Ring"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "jeweled key chest, end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Goes Up"

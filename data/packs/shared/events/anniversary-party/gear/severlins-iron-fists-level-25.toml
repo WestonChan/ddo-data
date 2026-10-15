@@ -1,0 +1,35 @@
+name = "Severlin's Iron Fists (level 25)"
+description = "Respect the power and the might of the iron rule."
+drop_location = "Anniversary Party, Turn in 80"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 25
+slot = "Hands"
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 107
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"

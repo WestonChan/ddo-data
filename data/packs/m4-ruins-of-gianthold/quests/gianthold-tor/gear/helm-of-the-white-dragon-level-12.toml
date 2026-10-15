@@ -1,0 +1,22 @@
+name = "Helm of the White Dragon (Level 12)"
+description = "This helm is crafted in the likeness of a ferocious white dragon."
+drop_location = "Gianthold Tor, White Dragon 's chest (Heroic Normal)"
+icon = "Helmet_45a"
+item_category = "Clothing"
+material = "White Dragonscale"
+minimum_level = 12
+slot = "Head"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "white dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

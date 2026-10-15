@@ -1,0 +1,32 @@
+name = "Sewer Smock"
+description = """
+This robe is cold, clammy, and feels perpetually wet. Despite this, it is fashioned
+out of a strange cloth, and seems to be practically immune to the acidic slimes
+that infest the sewers."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Glass"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 3
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

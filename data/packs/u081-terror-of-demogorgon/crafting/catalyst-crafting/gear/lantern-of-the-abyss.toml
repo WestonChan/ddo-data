@@ -1,0 +1,31 @@
+name = "Lantern of the Abyss"
+description = "This plain, siler ring emits a burning energy."
+drop_location = "Catalyst Crafting, Turn in Lantern Ring, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+icon = "Ring_15"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Ring"
+
+[[effect]]
+name = "Power of the Firestorm"
+value = 86
+
+[[effect]]
+name = "Firestorm Lore"
+value = 13
+
+[[effect]]
+name = "Burning Glory 1"
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

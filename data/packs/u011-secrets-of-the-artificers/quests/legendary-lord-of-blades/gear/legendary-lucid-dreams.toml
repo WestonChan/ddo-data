@@ -1,0 +1,62 @@
+name = "Legendary Lucid Dreams"
+description = "Can't you hear them? Can't you? Please tell me you can hear them."
+drop_location = "Legendary Lord of Blades, End chest"
+icon = "RuneArm_1g"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Rust"
+minimum_level = 29
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 102
+
+[[effect]]
+name = "Sovereign Nightmares"
+
+[[effect]]
+name = "Legendary Nightmare Guard"
+
+[[effect]]
+name = "Mind Drain"
+
+[[effect]]
+name = "Rune Arm Imbue - Force VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Force Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Lord of Blades"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

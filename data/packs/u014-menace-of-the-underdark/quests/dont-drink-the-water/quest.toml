@@ -1,0 +1,33 @@
+name = "Don't Drink the Water"
+bestowed_by = "Unmar Halberg"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+flagging = "Completing the Battle for Eveningstar is a prerequisite for this quest to become active."
+pack = "Menace of the Underdark"
+patron = "Purple Dragon Knights"
+zone = "The Eveningstar Well"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Don%27t_Drink_the_Water"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "epic_level"
+reason = "The wiki's quest index gives an epic level of 22; his Quests.xml gives none."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 22
+
+[[run]]
+tier = "epic"
+level = 22

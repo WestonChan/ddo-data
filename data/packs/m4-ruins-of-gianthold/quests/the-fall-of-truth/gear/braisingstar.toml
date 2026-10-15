@@ -1,0 +1,91 @@
+name = "Braisingstar"
+description = """
+The hill giant shaman Brawnpits, renowned throughout Gianthold for his haute
+cuisine, has been wielding this morningstar to perfect his art. Not only is
+it excellent at the task of tenderizing meat, but the heat it gives off can
+also cook a carcass to perfection. From the distinctive smell, you suspect
+Brawnpits may also have been using it to stir a pot of his trademark stew."""
+drop_location = "The Fall of Truth, Raid Warded chest (Epic Normal)"
+enhancement_bonus = 7
+icon = "Morningstar_2"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Adamantine"
+minimum_level = 25
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Blazing"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Ribcracker VI"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Conflagrating"
+description = "Conflagrating: This weapon is sheathed in furious flame. A conflagrating weapon deals an extra 3 to 18 points of fire damage on a successful hit."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Fall of Truth"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "One-handed"
+weapon_type = "Morningstar"

@@ -1,0 +1,65 @@
+name = "Kilau's Band"
+description = """
+This dented and scuffed ring belonged to Kilau, an arrogant and deadly Tempest.
+He was last seen entering a portal to Shavarath, shouting challenges for a
+worthy fight."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Tempest"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    4,
+    4,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Tempest Set - 2 Piece bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Tempest Set - 3 Piece bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

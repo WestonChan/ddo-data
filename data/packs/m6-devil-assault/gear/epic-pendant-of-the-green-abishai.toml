@@ -1,0 +1,34 @@
+name = "Epic Pendant of the Green Abishai"
+description = "This necklace seems to be attuned to elemental power."
+drop_location = "Epic version of Pendant of the Green Abishai"
+icon = "Necklace_13f"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Poison Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

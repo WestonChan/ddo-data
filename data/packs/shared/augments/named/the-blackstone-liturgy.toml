@@ -1,0 +1,37 @@
+name = "The Blackstone Liturgy"
+description = """
+This weapon is considered an Implement. +153 Equipment bonus to Negative and Poison Spell Power.
+This scuffed and damaged tome is written in blood on ink-stained pages.
+It purports to be autobiographical in nature."""
+family = "Named"
+icon = "HistoryBookPurple"
+min_level = 32
+
+[[effect]]
+name = "Negative Spell Power"
+bonus_type = "Equipment"
+value = 153
+
+[[effect]]
+name = "Poison Spell Power"
+bonus_type = "Equipment"
+value = 153
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [153]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[slot]]
+slot = "purple"

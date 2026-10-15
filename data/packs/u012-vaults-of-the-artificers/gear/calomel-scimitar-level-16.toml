@@ -1,0 +1,67 @@
+name = "Calomel Scimitar (level 16)"
+description = """
+A weapon crafted from durable white Calomel ore is always sheathed in condensed
+water droplets. It is particularly effective against dragons and fiery creatures."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 4
+icon = "Scimitar_6c"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Dragon Bane 4"
+
+[[effect]]
+name = "Tidal Burst"
+
+[[effect]]
+name = "Crushing Wave"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+5 Enhancement Bonus"
+description = "+5 Enhancement Bonus: +5 enhancement bonus to attack and damage rolls."
+min_level = 16
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Purple augment slot"
+description = "Adds a Purple augment slot to this item"
+min_level = 16
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Scimitar"

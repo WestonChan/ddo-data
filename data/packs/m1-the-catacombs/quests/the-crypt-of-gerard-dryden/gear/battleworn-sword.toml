@@ -1,0 +1,36 @@
+name = "Battleworn Sword"
+description = "This sword once belonged to Gerard Dryden, and has seen much use."
+drop_location = "The Crypt of Gerard Dryden, old End Chest"
+enhancement_bonus = 1
+icon = "Greatsword_10"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[source]]
+chest = "old end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crypt of Gerard Dryden"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

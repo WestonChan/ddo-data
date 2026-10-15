@@ -1,0 +1,70 @@
+name = "Rod of Mythant"
+description = """
+This rod was taken from Mythant upon his imprisonment. It occasionally shakes
+in its wielder's hands, a side effect of the arcane power pent up inside of
+it."""
+drop_location = "Demon Assault, End chest"
+enhancement_bonus = 5
+icon = "Club_7"
+item_category = "Weapon"
+item_type = "Club"
+material = "Flametouched Iron"
+minimum_level = 13
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Wizardry III"
+bonus_type = "Enhancement"
+value = 75
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon Assault"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.6
+handedness = "One-handed"
+weapon_type = "Club"

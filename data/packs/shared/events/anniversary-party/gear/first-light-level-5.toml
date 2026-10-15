@@ -1,0 +1,49 @@
+name = "First Light (level 5)"
+description = "Patience is virtuous."
+drop_location = "Anniversary Party, Turn in 10"
+enhancement_bonus = 2
+icon = "LightHammer_2"
+item_category = "Weapon"
+item_type = "Light Hammer"
+material = "Steel"
+minimum_level = 5
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 16
+
+[[effect]]
+name = "Negative Resistance"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Blazing 5"
+
+[[effect]]
+name = "Coruscating 2"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Light Hammer"

@@ -1,0 +1,21 @@
+name = "Quality Diplomacy +5"
+description = "Legendary quality bonus to Diplomacy"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Diplomacy"
+effect_type = "SkillBonus"
+targets = ["Diplomacy"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

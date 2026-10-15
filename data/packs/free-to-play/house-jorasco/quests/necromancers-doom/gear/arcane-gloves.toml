@@ -1,0 +1,19 @@
+name = "Arcane Gloves"
+description = "These leather gloves have small arcane sigils burned into them."
+drop_location = "Necromancer's Doom, Chest behind locked door"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Hands"
+
+[[effect]]
+name = "Spell Penetration I"
+bonus_type = "Equipment"
+value = 1
+
+[[source]]
+chest = "chest behind locked door"
+kind = "quest"
+loot_type = "chest"
+name = "Necromancer's Doom"

@@ -1,0 +1,35 @@
+name = "Lunar Gem of Swift Charging (Legendary)"
+description = """
++15% Profane Bonus to Rune Arm Charge Speed.
+Drops in: Book Burning, end chest
+Beneath the City Streets, Dead Man's Wrath's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Profane"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Profane"
+effect = "Rune Arm Charge Rate"
+effect_type = "RuneArmChargeRate"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "dead man's wrath's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Book Burning"

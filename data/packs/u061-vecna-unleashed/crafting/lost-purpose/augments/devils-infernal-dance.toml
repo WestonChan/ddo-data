@@ -1,0 +1,17 @@
+name = "Devils' Infernal Dance"
+description = "Adds the Devil's Infernal Dance set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 18
+set_bonus = "Devils' Infernal Dance"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Devil's Infernal Dance"
+reason = "The wiki spells it Devils' Infernal Dance."
+url = "https://ddowiki.com/page/Lost_Purpose"
+read = "2026-09-30"
+
+[[slot]]
+slot = "crafting: lost purpose"

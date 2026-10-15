@@ -1,0 +1,20 @@
+name = "Melancholic Booster (Heroic)"
+description = "+3% Exceptional bonus to Universal Spell Lore."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Exceptional"
+effect = "Universal Spell Lore"
+effect_type = "UniversalSpellLore"
+
+[[slot]]
+slot = "lamordia: melancholic (armor)"

@@ -1,0 +1,36 @@
+name = "Downcast Cowl"
+description = "This discarded cowl has had extra experimental slots worked into its fabric."
+drop_location = "Snowfall and Sunlight, Potion Paw 's chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 8
+slot = "Head"
+
+[[effect]]
+name = "Sonic Absorption"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "potion paw 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

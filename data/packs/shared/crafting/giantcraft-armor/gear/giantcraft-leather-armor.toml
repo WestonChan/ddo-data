@@ -1,0 +1,29 @@
+name = "Giantcraft Leather Armor"
+description = "Leather armor imbued with the magic of the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Ancient Giant Relics"
+enhancement_bonus = 4
+icon = "LightArmor_1"
+item_category = "Armor"
+item_type = "Light"
+material = "Feyleather"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Vengeful"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

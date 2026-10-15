@@ -1,0 +1,16 @@
+name = "Ruby Eye of Force"
+description = """
+2% Chance On-Hit to cause a burst of magical force that deals 3 to 12 points of force
+damage per minimum level of the upgraded weapon to all nearby enemies."""
+family = "Ruby"
+icon = "RubyEye"
+min_level = 1
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

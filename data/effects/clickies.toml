@@ -1,0 +1,2893 @@
+[[row]]
+name = "Absorb Beholder Spells"
+description = """
+This effect absorbs most spells cast by beholder eye stalks. Only a few such
+spells can be absorbed before the item ceases to function and must have time to
+dissipate the absorbed energy."""
+icon = "Beholder"
+school = "Evocation"
+
+[[row]]
+name = "Absorb Beholder and Doomsphere Spells"
+description = """
+This effect absorbs the standard spells, spells from beholder and doomsphere eye beams.
+A charge is expended for each eye beam absorbed."""
+icon = "AntiBeholderCrystal"
+
+[[row]]
+name = "Absorb Doomsphere Spells"
+description = """
+This effect absorbs most spells cast by doomsphere eye stalks. Only a few such
+spells can be absorbed before the item ceases to function and must have time to
+dissipate the absorbed energy."""
+icon = "Beholder"
+school = "Evocation"
+
+[[row]]
+name = "Absorb Enchantment Spells"
+description = """
+This effect absorbs most enchantment-based spells. Only a few such spells can be
+absorbed before the item ceases to function and must have time to dissipate the
+absorbed energy."""
+icon = "BomPoisonObliteration"
+school = "Evocation"
+
+[[row]]
+name = "Absorb Petrification"
+description = """
+This effect absorbs most petrification spells. Only a few such spells can be absorbed
+before the item ceases to function and must have time to dissipate the absorbed
+energy."""
+icon = "StoneToFlesh"
+school = "Evocation"
+
+[[row]]
+name = "Absorbs Magic Missiles"
+description = "This effect absorbs magic missile spells targeted at the wearer."
+icon = "MagicMissile"
+
+[[row]]
+name = "Acid Breath"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 30 seconds
+School: Breath Weapon
+Spell Resistance: No
+You breath a cone of potent acidic energy. Enemies hit by the cone take acid
+damage and suffer additional acid damage over time."""
+icon = "AcidSpray"
+school = "Breath Weapon"
+
+[[row]]
+name = "Acid Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires a missile of acid that corrodes your enemies. At higher charge levels
+multiple projectiles are fired in a spray. Opponents struck by a projectile
+receive a Fortitude save for half damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "MelfsAcidArrow"
+school = "Evocation"
+
+[[row]]
+name = "Aid"
+description = """
+Target: Friend, Self
+Duration: 3 minutes
+School: Enchantment
+Spell Resistance: No
+Adds 8 + 1 per caster level (max level 10) temporary hit points, and grants a
++1 morale bonuses on attack rolls and saves against fear."""
+icon = "Aid"
+school = "Enchantment"
+
+[[row]]
+name = "Alaphon's Staff: Spell Selection"
+description = """
+Target: Self
+Duration: 2 minutes
+School: Conjuration
+Spell Resistance: Yes
+This staff may cast powerful versions of Lightning Bolt, Fireball, Cone of Cold,
+or Hold monster. Although it does not regain charges when you rest, it
+automatically regains charges over time."""
+icon = "AlaphonsStaff"
+school = "Conjuration"
+
+[[row]]
+name = "Bane of the Undead Flame"
+description = """
+Target: Foe, Directional
+Duration: 8 seconds
+School: Necromancy
+Spell Resistance: No
+Dispels Fire Shield (cold) and severely weakens Cinderspawns."""
+icon = "DispelMagic"
+school = "Necromancy"
+
+[[row]]
+name = "Bee Shot"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 6 seconds
+School: Evocation
+Spell Resistance: No
+Fires bees at enemies. At higher levels more bees are fired. Opponents struck by
+the bees receive a Fortitude save for half damage.
+
+Charge Tier 1: 4 to 14 + 1d2 per Artificer Level
+Charge Tier 2: 5 to 19 + 1d4 per Artificer Level
+Charge Tier 3: 6 to 24 + 1d6 per Artificer Level
+Charge Tier 4: 7 to 29 + 1d8  per Artificer Level
+Charge Tier 5: 8 to 34 + 1d10 per Artificer Level"""
+icon = "KnifeShot"
+school = "Evocation"
+
+[[row]]
+name = "Bestow Curse"
+description = """
+Target: Foe
+Duration: 2 minutes 40 seconds
+School: Necromancy
+Spell Resistance: Yes
+The target is cursed, giving a -4 penalty to attack rolls, skill rolls and saves.
+A successful Will save negates this effect."""
+icon = "BestowCurse"
+school = "Necromancy"
+
+[[row]]
+name = "Black Dragon Bolt"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 6 seconds
+School: Conjuration
+Deals 3 to 18 Acid damage to a target with a magical bolt of Acid. The bolt does
+an additional 2 to 12 damage every 2 seconds for 6 seconds."""
+icon = "BlackdragonBolt"
+school = "Conjuration"
+
+[[row.note]]
+kind = "clickie"
+field = "icon"
+upstream = "BlackDragonBolt"
+reason = "DDOBuilderV2's SpellImages folder spells the image BlackdragonBolt.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row]]
+name = "Blade Barrier"
+description = """
+Target: Self
+Duration: 30 seconds
+School: Evocation
+Spell Resistance: No
+Creates a circular wall of flying blades which damages enemies that pass through
+them. The wall is centered on the caster at the time casting finishes. Enemies
+passing through Blade Barriers suffer 1d6 slashing damage per caster level.
+(Maximum damage 15d6 at caster level 15.) Duration is fixed at 30 seconds."""
+icon = "BladeBarrier"
+school = "Evocation"
+
+[[row]]
+name = "Bless"
+description = """
+Target: Self
+Duration: 5 minutes
+School: Enchantment
+Spell Resistance: No
+You and any allies near you are filled with courage and gain +1 morale bonuses
+to attack rolls and saving throws against fear, with an additional +1 per 5
+caster levels, max 5 at caster level 20. Bless counters and dispels Bane."""
+icon = "Bless"
+school = "Enchantment"
+
+[[row]]
+name = "Blinding Flash"
+description = """
+Target: Foe, Direction, Breakable
+Duration: 6 seconds
+School: Evocation
+Blinds the target with a globe of searing radiance."""
+icon = "Sunburst"
+school = "Evocation"
+
+[[row]]
+name = "Blood Sacrifice"
+description = """
+Target: Self
+School: Abjuration
+Spell Resistance: No
+Exchange 25 hit points for 50 spell points"""
+icon = "Efficacy"
+school = "Abjuration"
+
+[[row]]
+name = "Boneshatter"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 12 seconds
+School: Transmutation
+Spell Resistance: Yes
+Deals 3 to 18 damage plus 1 to 8 damage every 2 seconds and cripples the target
+on a failed Fortitude save. Deals 2 to 12 damage on a successful Fortitude save."""
+icon = "Disintegrate"
+school = "Transmutation"
+
+[[row]]
+name = "Book Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Hurls book at enemies. At higher charge levels multiple books are rapidly fired.
+Opponents struck by the books receive a Reflex save for half damage.
+
+Charge Tier 1: 4 to 14 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 19 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 24 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 29 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 34 + 1 to 10 per Artificer Level"""
+icon = "MelfsAcidArrow"
+school = "Evocation"
+
+[[row]]
+name = "Break Enchantment"
+description = """
+Target: Friend, Self, Positional
+School: Abjuration
+Spell Resistance: Yes
+Affected allies in an area are freed from harmful enchantments, transmutations,
+and curses. You must make a caster level check of 1 to 20 + your caster level
+(maximum +15) versus 11 + the spell's caster level to remove the effect."""
+icon = "BreakEnchantment"
+school = "Abjuration"
+
+[[row]]
+name = "Burning Hands"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+A cone of searing flame shoots forth, damaging targets in the area of the flames
+for 2 to 7 Fire damage per caster level (up to a max of 10 to 35 at caster level
+5). A successful Reflex save reduces the damage by half."""
+icon = "BurningHands"
+school = "Evocation"
+
+[[row]]
+name = "Call Lightning Storm"
+description = """
+Target: Self
+Duration: 3 seconds per caster level
+School: Evocation
+Spell resistance: No
+Creates a storm cloud that persists for some time and randomly strikes nearby
+enemies with bolts of lightning for 7 to 12 electrical damage for every caster
+level. A successful Reflex save reduces the damage by half."""
+icon = "CallLightningStorm"
+school = "Evocation"
+
+[[row]]
+name = "Camouflage"
+description = """
+An ally becomes more able to blend in with its surroundings giving
+them a +10 Determination bonus to Hide."""
+icon = "Camouflage"
+school = "Transmutation"
+
+[[row]]
+name = "Cause Fear"
+description = """
+Target: Foe
+Duration: 6 to 24 seconds
+School: Necromancy
+Spell Resistance: Yes
+An enemy becomes frightened. A successful Will save cause the target to become
+shaken instead. Necrotic energy slows the target slightly."""
+icon = "CauseFear"
+school = "Necromancy"
+
+[[row]]
+name = "Chain Lightning"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+A powerful electrical discharge strikes a primary target for 7 to 12 electrical
+damage per caster level and then arcs to other nearby targets hitting each of
+them with a similar lightning bolt. A successful Reflex save reduces the damage
+by half."""
+icon = "ChainLightning"
+school = "Evocation"
+
+[[row]]
+name = "Charm Canine"
+description = """
+Target: Foe
+Duration: 10 minutes
+School: Enchantment
+Spell Resistance: No
+An enemy non-magical canine is charmed and will fight as a trusted friend and ally.
+Charmed monsters get additional saves every 15 to 20 seconds. A successful DC 22
+Will save negates this effect."""
+icon = "CharmMonster"
+school = "Enchantment"
+
+[[row]]
+name = "Charm Person"
+description = """
+Target: Foe
+Duration: 1 minute 6 seconds
+School: Enchantment
+Spell Resistance: Yes
+Charms an enemy humanoid, which will fight as a trusted friend and ally.
+Charmed humanoids get an additional saving throw every 3d6+12 seconds.
+A successful Will save negates this effect. Humanoids include kobolds, goblinoids,
+player races except for warforged, and more creatures."""
+icon = "CharmMonster"
+school = "Enchantment"
+
+[[row]]
+name = "Cloudkill"
+description = """
+Target: Foe, Positional, Breakable
+Duration: 1 minute 20 seconds
+School: Conjuration
+Spell Resistance: No
+A bank of heavy yellowish green, poisonous fog rises up, slaying weak targets
+within the cloud while inflicting stronger targets 1 to 4 Constitution damage
+and 2 to 12 acid damage plus an additional 1 acid damage for every caster level
+up to 20. Successful Fortitude saves reduces the Constitution and Acid damage
+by half. This fog obscures sight, giving all creatures in the fog concealment
+(attackers have 20% miss chance). Creatures immune to poison are undamaged by
+the spell."""
+icon = "Cloudkill"
+school = "Conjuration"
+
+[[row]]
+name = "Cold Bolts"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires ice crystals that damage your enemies. At higher charge levels multiple
+bolts are rapidly fired. Opponents struck by the crystals receive a Fortitude
+save for half damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "NiacsColdRay"
+school = "Evocation"
+
+[[row]]
+name = "Cold Fire"
+description = """
+Target: Foe, Directional
+Duration: 8 seconds
+School: Abjuration
+Spell Resistance: No
+This spell dispells Fire Shield (hot), Wall of Fire, Flaming Sphere and other
+magical flames."""
+icon = "FireShieldCold"
+school = "Abjuration"
+
+[[row]]
+name = "Concentrate Harder!"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activating the power of this item will calm your mind, granting a +5 Competence
+bonus to the Concentration skill. This lasts until you activate the special power
+of another cosmetic item, or log out."""
+icon = "ConcentrateHarder"
+school = "Conjuration"
+
+[[row]]
+name = "Cone of Cold"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Creates an area of extreme cold, originating at your hand and spreading outward
+in a cone. It drains heat, dealing 4 to 6 points of Cold damage per caster level
+(up to a maximum of 60 to 90 damage at caster level 15). A successful Reflex save
+reduces the damage by half."""
+icon = "ConeOfCold"
+school = "Evocation"
+
+[[row]]
+name = "Conjure Ice Arrow"
+description = """
+Target: Self
+School: Conjuration
+Spell Resistance: No
+Summons the bow's Icy Arrow, the Frozen Terror, which has a chance to conjure
+a frozen gale on a natural 20."""
+icon = "IceArrow"
+school = "Conjuration"
+
+[[row]]
+name = "Control Undead"
+description = """
+Target: Foe
+Duration: 2 minutes 24 seconds
+School: Necromancy
+Spell Resistance: Yes
+Control is granted over the enemy undead, forcing it to fight for you. Controlled
+undead get an additional save every 2 minutes. A successful Will save negates this
+effect."""
+icon = "ControlUndead"
+school = "Necromancy"
+
+[[row]]
+name = "Corrupted Exploding Fire Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires an explosive ball of flame that damage your enemies. Opponents struck by
+the fireball receive a Will save for half damage. At charge Tier 3 and higher,
+opponents within the blast have a 25% chance to have a Curse spell cast on them.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "Fireball"
+school = "Evocation"
+
+[[row]]
+name = "Corrupted Fire Blast"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Deals fire damage to a target with a cone shaped blast of fire. At higher charge
+tiers the blast is larger. Opponents within the blast receive a Will save for
+half damage. At charge Tier 3 and higher, opponents within the blast have a 25%
+chance to have a Curse spell cast on them.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "Scorch"
+school = "Evocation"
+
+[[row]]
+name = "Crushing Despair"
+description = """
+Target: Poe, Positional
+Duration: 2 minutes 24 seconds
+School: Enchantment
+Spell Resistance: No
+Causes great sadness in enemies, giving -2 penalties to attack, saves, skill checks,
+and weapon damage. A successful Will save negates this effect but regardless of the
+saves result the targets are left in vulnerable state to future mental attack.
+Applies weaken will effect."""
+icon = "CrushingDespair"
+school = "Enchantment"
+
+[[row]]
+name = "Cure Critical Wounds, Mass"
+description = """
+Target: Friend, Self, Undead Friend, Undead Foe
+School: Conjuration
+Spell Resistance: No
+Casts Cure Critical Wounds on multiple targets. Positive energy is channeled to
+heal critical wounds of allies for 4d6+8 plus 1 per caster level (Maximum caster
+level 40.) hit points, or deals the same amount of damage to an undead creature.
+(A Will save reduces this damage by half)."""
+icon = "CureCriticalWoundsMass"
+school = "Conjuration"
+
+[[row]]
+name = "Cure Light Wounds"
+description = """
+Target: Friend, Self, Undead Friend, Undead Foe
+School: Conjuration
+Spell Resistance: No
+Positive energy is channeled to heal light wounds of your target or damage undead
+for 3 to 8 hit points plus an additional 1 for every caster level up to caster
+level 5. Undead who make a successful Will save reduce the damage by half."""
+icon = "CureLightWounds"
+school = "Conjuration"
+
+[[row]]
+name = "Cure Serious Wounds"
+description = """
+Target: Friend, Self, Undead Foe
+School: Conjuration
+Spell Resistance: No
+Positive energy is channeled to heal serious wounds of your target or damage
+undead for 9 to 24 hit points plus an additional 1 for every caster level up to
+caster level 15. Undead who make a successful Will save reduce the damage by half."""
+icon = "CureSeriousWounds"
+school = "Conjuration"
+
+[[row]]
+name = "Cure Serious Wounds, Mass"
+description = """
+Target: Friend, Self, Undead Friend, Undead Foe
+School: Conjuration
+Spell Resistance: No
+Casts Cure Serious Wounds on multiple targets. Positive energy is channeled to
+heal serious wounds of allies for 3d6+6 plus 1 per caster level (Maximum caster
+level 35.) hit points, or deals the same amount of damage to an undead creature.
+(A Will save reduces this damage by half)."""
+icon = "CureSeriousWoundsMass"
+school = "Conjuration"
+
+[[row]]
+name = "Curse Absorption"
+description = "Curse Absorption: This effect absorbs curses targeted at the wearer."
+icon = "RemoveCurse"
+school = "Conjuration"
+
+[[row]]
+name = "Cyclonic Blast"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 6 seconds
+School: Evocation
+Spell Resistance: No
+You send a twisting torrent of wind toward your enemies that deals 4 to 6 damage
+per caster level (up to a max of 80 to 120 damage at caster level 20) to targets
+in its path. A successful Reflex save reduces the damage by half. If the target
+fails its Reflex save, it must make a Strength check or be knocked down. As a
+bolt this spell has double range. The spell also clears away all lingering
+effects in its path, such as clouds and walls of fire."""
+icon = "CyclonicBlast"
+school = "Evocation"
+
+[[row]]
+name = "Dark Discorporation"
+description = """
+Target: Self
+Duration: 20 seconds
+School: Transmutation
+Spell Resistance: No
+You turn yourself into a swarm of batlike shadows. In this form, you gain
+Invisibility, 25% Incorporeality, and damage from all sources (except for
+untyped/Bane) damage is reduced by 50%. Attacking enemies or interacting with
+objects will revert you to normal form."""
+icon = "DarkDiscorporation"
+school = "Transmutation"
+
+[[row]]
+name = "Death Ward"
+description = """
+Target: Friend, Self
+Duration: 7 minutes
+School: Transmutation
+Spell Resistance: No
+Grants an ally immunity to death spells and effects, Energy Drained, and negative
+energy effects."""
+icon = "DeathWard"
+school = "Transmutation"
+
+[[row]]
+name = "Deep Slumber"
+description = """
+Target: Foe, Positional
+Duration: 30 seconds
+School: Enchantment
+Spell Resistance: Yes
+Induces a magical slumber to a group of enemies, rendering them helpless until
+attacked or for a duration of 20 seconds plus 2 per caster level. Ineffective
+on undead or constructs. A successful Will save negates this effect."""
+icon = "Sleep"
+school = "Enchantment"
+
+[[row]]
+name = "Detect Secret Doors"
+description = """
+Target: Self
+Duration: 10 minutes
+School: Divination
+Spell Resistance: No
+Allows you to find secret doors with a DC of 5 or less. This increases by 3 for
+every two caster levels."""
+icon = "DetectSecretDoors"
+school = "Divination"
+
+[[row]]
+name = "Dimension Door"
+description = """
+Target: Friend, Self, Positional
+Duration: 30 seconds
+School: Conjuration
+Spell Resistance: No
+Creates a magical doorway that will return you to the entrance of the current zone."""
+icon = "DimensionDoor"
+school = "Conjuration"
+
+[[row]]
+name = "Disintegrate"
+description = """
+Target: Foe, Directional, Breakable
+School: Transmutation
+Spell Resistance: No
+A sickly green ray emanates forth, doing 2d3+6 damage per caster level to the
+target. (Maximum damage 40d3+120.) Anything reduced to 0 hit points is disintegrated.
+A successful Fortitude save reduces this damage to 6d3+12."""
+icon = "Disintegrate"
+school = "Transmutation"
+
+[[row]]
+name = "Dismissal"
+description = """
+Target: Foe
+School: Abjuration
+Spell Resistance: Yes
+Instantly forces an extraplanar enemy back to its proper plane. A successful Will
+save negates this effect. (DC = spells's save DC - creature's Hit Dice of Level
++ your caster level). Even on a successful save the target still suffers 4 to 6
+damage per caster level in damage."""
+icon = "Dismissal"
+school = "Abjuration"
+
+[[row]]
+name = "Dispel Madstone Effects"
+description = """
+Target: Friend, Self
+Spell Resistance: No
+Removes the deleterious effects of Madstone."""
+icon = "DispelMagic"
+school = "Enchantment"
+
+[[row]]
+name = "Dispel the Grip of Strahd"
+description = """
+Casting this on an ally afflicted by the Grip of Strahd will remove that condition
+before their untimely death."""
+icon = "DispelMagic"
+school = "Evocation"
+
+[[row]]
+name = "Displacement"
+description = """
+Target: Self
+Duration: 6 seconds per caster level
+School: Illusion
+Spell Resistance: No
+Your appearance becomes extremely blurred, giving enemies a 50% miss chance when
+attacking."""
+icon = "Displacement"
+school = "Illusion"
+
+[[row]]
+name = "Doom"
+description = """
+Target: Foe
+Duration: 30 seconds
+School: Necromancy
+Spell Resistance: Yes
+A single enemy is filled with a feeling of horrible dread that causes it to become
+shaken, penalizing all saves, attack rolls, and skill rolls by -2. A successful
+Will save negates this effect. This is a fear effect."""
+icon = "Doom"
+school = "Necromancy"
+
+[[row]]
+name = "Dressed for the Occasion"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activating the power of tis item will fill you with unholy power, granting a +5
+Competence bonus to Perform and Diplomacy skills. This lasts until you activate
+the special power of another cosmetic item, or log out."""
+icon = "Diplomacy"
+school = "Conjuration"
+
+[[row]]
+name = "Efficacy VI"
+description = """
+Target: Self
+Duration: 1 minute
+Spell Resistance: No
+Increases the damage of your 6th level and lower spells by 20% for 1 minute.
+This effect does not stack with other item effects or potions and does not
+affect spells you cast with wands and scrolls."""
+icon = "Efficacy"
+school = "Abjuration"
+
+[[row]]
+name = "Electrical Blast"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Deals electrical damage to a target with a cone shaped blast of lightning.
+At higher charge tiers the blast is larger. Opponents within the blast receive
+a Reflex save for half damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "LightningBolt"
+school = "Evocation"
+
+[[row]]
+name = "Electrical Lash"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires a slow moving ball of electricity that lashes nearby opponents. At higher
+charge tiers additional enemies are lashed, Opponents struck by this receive a
+Reflex save for half damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "LightningBolt"
+school = "Evocation"
+
+[[row]]
+name = "Electrical Storm"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires electrical bolts at enemies. At higher charge levels multiple bolts are
+rapidly fired. Opponents struck by the crystals receive a Reflex save for half
+damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "LightningBolt"
+school = "Evocation"
+
+[[row]]
+name = "Elite Spider Cult Mask"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activating the power of tis item will fill you with unholy power, granting a +1
+Profane bonus to all skills and a +4 Profane bonus to saves against poisons.
+This lasts until you activate the special power of another cosmetic item, or log
+out."""
+icon = "SpiderCultMask"
+school = "Conjuration"
+
+[[row]]
+name = "Enhanced Heal Critical Wounds"
+description = """
+Target: Friend, Self
+School: Conjuration
+Spell Resistance: No
+Heals 24 to 49 hit points for all characters including Warforged, who are resistant
+to other forms of healing.
+
+D&D Dice: Heals 5d6+10 plus 1 per caster level hp."""
+icon = "CureCriticalWounds"
+school = "Abjuration"
+
+[[row]]
+name = "Enhanced Jet Propulsion"
+description = """
+Use this item to activate the air elemental bound within, thus propelling you forward
+at great speeds. It takes five minutes to recharge between uses."""
+icon = "JetPropulsion"
+
+[[row]]
+name = "Expeditious Retreat"
+description = """
+Target: Self
+Duration: 5 minutes
+School: Transmutation
+Spell Resistance: No
+Increases base run speed by 25%."""
+icon = "ExpeditiousRetreat"
+school = "Transmutation"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "MovementSpeed"
+
+[[row]]
+name = "Exploding Cannon Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires a conjured stone projectile that explodes when it strikes an enemy or object.
+Opponents in the blast radius take both bludgeoning and fire damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "Fireball"
+school = "Evocation"
+
+[[row]]
+name = "Exploding Fire Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires and explosive ball of flame that damage your enemies. Opponents struck by
+the fireball receive a Reflex save for half damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "Fireball"
+school = "Evocation"
+
+[[row]]
+name = "Fear"
+description = """
+Target: Foe, Directional
+Duration: 42 seconds
+School: Necromancy
+Spell Resistance: Yes
+A cone of terror causes each living enemy in an area to become panicked. A
+successful Will save causes enemies to become shaken. Creatures that fail their
+save are also slowed by necrotic energy."""
+icon = "Fear"
+school = "Necromancy"
+
+[[row]]
+name = "Feather Fall"
+description = """
+Target: Self
+Duration: 30 seconds
+School: Transmutation
+Spell Resistance: No
+Causes an ally to fall slowly, although faster than feathers typically do."""
+icon = "FeatherFall"
+school = "Transmutation"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling Damage"]
+
+[[row]]
+name = "Fire Blast"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Deals fire damage to a target with a cone shaped blast of fire. At higher charge
+tiers the blast is larger. Opponents within the blast receive a Will save for
+half damage. At charge Tier 3 and higher, opponents within the blast have a 25%
+chance to have a Curse spell cast on them.
+
+Charge Tier 1: 1d6+1, plus 1 per Artificer Level
+Charge Tier 2: 2d8+3, plus 1d2 per Artificer Level
+Charge Tier 3: 3d10+6, plus 1d10 per Artificer Level
+Charge Tier 4: 4d12+10, plus 2d8 per Artificer Level
+Charge Tier 5: 5d14+15, plus 2d10 per Artificer Level"""
+icon = "Scorch"
+school = "Evocation"
+
+[[row]]
+name = "Fire Shield (Fire)"
+description = """
+Target: Self
+Duration: 1 minute 21 seconds
+School: Evocation
+Spell Resistance: No
+Wreaths the caster in hot flames. Any creature striking you in melee takes 1d3+3
+plus 1 per caster level (Maximum caster level 15.) Fire damage, and reduces
+damage the caster takes from cold by half. The flames from this spell will burn
+away any webs that attempt to entangle you."""
+icon = "FireShield"
+school = "Evocation"
+
+[[row]]
+name = "Fire Shield (Hot)"
+description = """
+When you are successfully attacked, there is a 10% chance that a Fire Shield (Hot)
+will be cast on you. If this effect activates while you have an active
+Fire Shield (Cold) from another item source, they will nullify each-other."""
+icon = "FireShield"
+school = "Evocation"
+
+[[row]]
+name = "Fire Storm"
+description = """
+Target: Foe, Positional, Breakable
+Duration: 8 seconds
+School: Evocation
+Spell Resistance: No
+An enormous column of fire roars downward, blasting an area with searing flame,
+causing 1d6+8 fire damage per caster level to targets in its area."""
+icon = "FireStorm"
+school = "Evocation"
+
+[[row]]
+name = "Flame Strike"
+description = """
+Target: Foe, Positional, Breakable
+Duration: 8 seconds
+School: Evocation
+Spell Resistance: No
+Produces a vertical column of divine fire roaring downward, dealing 6 to 11 damage
+per caster level (up to a max of 90 to 165 damage at caster level 15) to the
+target area. Half the damage is fire. Half s from pure divine power. A successful
+Reflex save reduces the damage by half."""
+icon = "FlameStrike"
+school = "Evocation"
+
+[[row]]
+name = "Flaming Sphere"
+description = """
+Target: Self, Positional
+Duration: 1 minute
+School: Evocation
+Spell Resistance: No
+Creates a ball of flame that rolls around slowly, burning enemies it encounters
+and doing 2 to 12 points of fire damage. A successful Reflex save negates this
+effect."""
+icon = "FlamingSphere"
+school = "Evocation"
+
+[[row]]
+name = "Flight of Kings"
+description = """
+Memories of flight lie within you. You are able to leap through the air to bring
+the fight to your enemies or traverse chasms that make normal adventure balk.
+Cooldown: 15 seconds.
+
+When you use Flight of Kings, you have a +20% Action Boost bonus to movement
+speed for 6 seconds."""
+icon = "FlightOfKings"
+
+[[row]]
+name = "Fog Cloud"
+description = """
+A glass vial filled with water and a thick mist. When it breaks on impact, a bank of
+Fog Cloud is created on the enemy it struck."""
+icon = "SolidFog"
+
+[[row]]
+name = "Force Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires a missile of force that damages your enemies. At higher charge levels
+multiple projectiles are fired in a spray. Opponents struck by these bolts
+receive a Will save for half damage.
+
+Charge Tier 1: 3 to 6 + 1 per Artificer Level
+Charge Tier 2: 5 to 11 + 1 to 2 per Artificer Level
+Charge Tier 3: 6 to 16 + 1 to 4 per Artificer Level
+Charge Tier 4: 7 to 21 + 1 to 6 per Artificer Level
+Charge Tier 5: 8 to 26 + 1 to 8 per Artificer Level"""
+icon = "MagicMissile"
+school = "Evocation"
+
+[[row]]
+name = "Frost Lance"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Shoots a target with a freezing energy spear, dealing 4d5+20 Cold damage on impact.
+The number of lances increases by 1 for every four levels beyond 3rd, to a maximum
+of three at 11th level. Ray spells have double range."""
+icon = "FrostLance"
+school = "Evocation"
+
+[[row]]
+name = "Ghost Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires a glob of molten gold at your enemies that sticks to your foes or the ground.
+At higher charge tiers additional enemies can be stuck. Opponents struck by this
+receive a Reflex save for half damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "GoldShot"
+school = "Evocation"
+
+[[row]]
+name = "Gold Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires a missile of acid that corrodes your enemies. At higher charge levels
+multiple projectiles are fired in a spray. Opponents struck by a projectile
+receive a Fortitude save for half damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "MelfsAcidArrow"
+school = "Evocation"
+
+[[row]]
+name = "Golem Figurine"
+description = """
+Target: Friend, Self, Positional
+School: Abjuration
+Spell Resistance: No
+this spell teleports Mentau's final Flesh Golem guardian to your location. The
+Golem may or may not do your bidding."""
+icon = "GolemGem"
+school = "Abjuration"
+
+[[row]]
+name = "Good Hope"
+description = """
+Target: Friend, Self
+Duration: 1 minute per caster level
+School: Enchantment
+Spell Resistance: No
+This area of effect spell instills powerful hope to the recipients, granting a
++2 morale bonus to attack rolls, saving throws, skill checks, and weapon damage
+rolls. Good hope counters and dispels Crushing Despair."""
+icon = "GoodHope"
+school = "Enchantment"
+
+[[row]]
+name = "Gorgon Breath"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 1 minute + 10 seconds per caster level
+School: Evocation
+Spell Resistance: No
+Releases a cone of petrifying dust and rock that is similar to the breath of a
+Gorgon. Enemies made of flesh in the area of the cone are turned to stone if
+they fail a DC 17 Fortitude save. This effect lasts 60 seconds + 10 seconds
+per caster level, but the target has a chance to remake its Fortitude save
+every 24 seconds."""
+icon = "FleshToStone"
+school = "Evocation"
+
+[[row]]
+name = "Greater Ardor"
+description = """
+Target: Self
+Duration: 3 minutes
+School: Abjuration
+Spell Resistance: No
+When activated, this effect provides a +20 Alchemical bonus to your Positive
+Spell Power for three minutes."""
+icon = "Heal"
+school = "Abjuration"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Alchemical"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[row]]
+name = "Greater Command"
+description = """
+Target: Foe
+Duration: 54 seconds
+School: Enchantment
+Spell Resistance: Yes
+Enemies are commanded to fall to the ground and lie prone. A successful Will save
+negates this effect."""
+icon = "Nightshield"
+school = "Abjuration"
+
+[[row]]
+name = "Greater Efficacy"
+description = """
+Target: Self
+Duration: 3 minutes
+School: Abjuration
+Spell Resistance: No
+When activated, this effect provides a +12 Alchemical bonus to your Universal
+Spell Power for three minutes."""
+icon = "Efficacy"
+school = "Abjuration"
+
+[[row]]
+name = "Greater Erosion"
+description = """
+Target: Self
+Duration: 3 minutes
+School: Abjuration
+Spell Resistance: No
+When Activated, this effect provides a +20 Alchemical bonus to your Acid
+Spell Power for three minutes."""
+icon = "BlackdragonBolt"
+school = "Abjuration"
+
+[[row.note]]
+kind = "clickie"
+field = "icon"
+upstream = "BlackDragonBolt"
+reason = "DDOBuilderV2's SpellImages folder spells the image BlackdragonBolt.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Alchemical"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[row]]
+name = "Greater Freeze"
+description = """
+Target: Self
+Duration: 3 minutes
+School: Abjuration
+Spell Resistance: No
+When Activated, this effect provides a +20 Alchemical bonus to your Cold
+Spell Power for three minutes."""
+icon = "IceStorm"
+school = "Abjuration"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Alchemical"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[row]]
+name = "Greater Heroism"
+description = """
+Target: Friend, Self
+Duration: 11 minutes
+School: Enchantment
+Spell Resistance: No
+Imbues a single ally creature with great bravery and morale in battle. The target
+gains a +4 morale bonus on attack rolls, saves, and skill checks. The target also
+receives temporary hit points equal to the caster level and immunity to fear."""
+icon = "GreaterHeroism"
+school = "Enchantment"
+
+[[row]]
+name = "Greater Inferno"
+description = """
+Target: Self
+Duration: 3 minutes
+School: Abjuration
+Spell Resistance: No
+When activated, this effect provides a +20 Alchemical bonus to your Fire Spell
+Power for three minutes."""
+icon = "FireStorm"
+school = "Abjuration"
+
+[[row.note]]
+kind = "clickie"
+field = "icon"
+upstream = "Firestorm"
+reason = "DDOBuilderV2's SpellImages folder spells the image FireStorm.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"
+
+[[row]]
+name = "Greater Restoration"
+description = """
+Target: Friend, Self
+School: Conjuration
+Spell Resistance: No
+Cures all ability damage, restores all negative levels suffered from energy drain,
+and eliminates fatigue or exhaustion suffered by the ally."""
+icon = "GreaterRestoration"
+
+[[row]]
+name = "Greater Spark"
+description = """
+Target: Self
+Duration: 3 minutes
+School: Abjuration
+Spell Resistance: No
+When Activated, this effect provides a +20 Alchemical bonus to your Electric
+Spell Power for three minutes."""
+icon = "GreaterSpark"
+school = "Abjuration"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Alchemical"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[row]]
+name = "Greater Teleport"
+description = """
+Target: Self
+Duration: 1 minute
+School: Conjuration
+Spell Resistance: No
+Teleports you and all nearby allies to one of a variety of locations."""
+icon = "GreaterTeleport"
+school = "Enchantment"
+
+[[row]]
+name = "Gust of Wind"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 10 seconds
+School: Evocation
+Spell Resistance: No
+This spell creates a severe blast of air that originates from you and passes
+through all creatures in its path. Small or smaller enemies are knocked prone,
+while Medium or smaller enemies are slowed by the winds. A Reflex save equal to
+12 + your casting stat's modifier negates these effects. Large or larger enemies
+are unaffected. The spell also clears away all lingering effects in its path,
+such as clouds and walls of fire."""
+icon = "GustOfWind"
+school = "Evocation"
+
+[[row]]
+name = "Harm"
+description = """
+Target: Foe, Undead Friend
+School: Necromancy
+Spell Resistance: No
+Charges the target with a massive amount of negative energy, dealing 10 points
+of damage per caster level. (Maximum damage 150.) Harm cannot reduce the target's
+hit points to less than 1. A successful Will save reduces the damage by half.
+Against Undead targets this spell heals like Heal."""
+icon = "Harm"
+school = "Necromancy"
+
+[[row]]
+name = "Haste"
+description = """
+Target: Foe
+Duration: 6 seconds per caster level
+School: Transmutation
+Spell Resistance: No
+Creatures in the area are quickened and gain a 32% enhancement bonus to run
+speed, and a 15% enhancement bonus to attack speed. In addition the recipient
+gains a +1 untyped bonus to attack rolls, plus a +1% dodge bonus and Reflex saves.
+Dispels and counters Slow."""
+icon = "Haste"
+school = "Transmutation"
+
+[[row]]
+name = "Heal"
+description = """
+Target: Friend, Self, Undead Friend, Undead Foe
+School: Conjuration
+Spell Resistance: No
+Casts Heal on multiple targets. Channels powerful positive energy into allies to
+wipe away injury and afflictions, restore 10 Hit Points per caster level
+(Maximum caster level 25.), removes the conditions or effects:
+Ability Damaged, Blinded, Confused, Dazed, Dazzled, Deafened, Diseased,
+Exhausted, Fatigued, Feebleminded, Insanity, Nauseated and Poisoned.
+Against Undead this spell acts as Harm. Undead who make a successful
+Will save reduce the damage by half."""
+icon = "HealMass"
+school = "Conjuration"
+
+[[row]]
+name = "Heal Light Wounds"
+description = """
+Target: Friend, Self
+School: Conjuration
+Spell Resistance: No
+Heals 6 to 11 hit points for all characters including Warforged, who are resistant
+to other forms of healing."""
+icon = "CureLightWounds"
+school = "Conjuration"
+
+[[row]]
+name = "Heal Moderate Wounds"
+description = """
+Target: Friend, Self
+School: Conjuration
+Spell Resistance: No
+Heals 11 to 21 hit points for all characters including Warforged, who are resistant
+to other forms of healing.
+
+D&D Dice: Heals 2d6+4 plus 1 per caster level hp."""
+icon = "CureModerateWounds"
+school = "Abjuration"
+
+[[row]]
+name = "Heal Serious Wounds"
+description = """
+Target: Friend, Self
+School: Conjuration
+Spell Resistance: No
+Heals 16 to 31 hit points for all characters including Warforged, who are resistant
+to other forms of healing.
+
+D&D Dice: Heals 3d6+6 plus 1 per caster level hp."""
+icon = "CureSeriousWounds"
+school = "Abjuration"
+
+[[row]]
+name = "Heal, Mass"
+description = """
+Target: Friend, Self, Undead Friend, Undead Foe
+School: Conjuration
+Spell Resistance: No
+Channels powerful positive energy into allies to wipe away injury
+and afflictions, restore 10 Hit Points per caster level
+(Maximum caster level 15.), removes the conditions or effects:
+Ability Damaged, Blinded, Confused, Dazed, Dazzled, Deafened, Diseased,
+Exhausted, Fatigued, Feebleminded, Insanity, Nauseated and Poisoned.
+Against Undead this spell acts as Harm. Undead who make a successful
+Will save reduce the damage by half."""
+icon = "Heal"
+school = "Conjuration"
+
+[[row]]
+name = "Heroism"
+description = """
+Target: Friend, Self
+Duration: 5 minutes
+School: Enchantment
+Spell Resistance: No
+Imbues a single ally creature with great bravery and morale in battle. The target
+gains a +2 morale bonus on attack rolls, saves, and skill checks. The target also
+receives temporary hit points equal to the caster level and immunity to fear."""
+icon = "Heroism"
+school = "Enchantment"
+
+[[row]]
+name = "Hippity-Hoppity"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activate this hat's power to enable you to leap through the air like a bunny,
+gaining a +5 Competence bonus to the Jump skill. This lasts until you activate
+the special power of another cosmetic item, or log out."""
+icon = "Jump"
+school = "Conjuration"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = ["Jump"]
+
+[[row]]
+name = "Hold Person"
+description = """
+Target: Foe
+Duration: 24 seconds
+School: Enchantment
+Spell Resistance: Yes
+The target enemy humanoid becomes paralyzed and freezes in place. It is aware,
+but can take no actions for a maximum of 6 seconds per caster level. The enemy
+may attempt to make a new Will save every 3 seconds. Humanoids include Kobolds,
+Goblinoids, player races except for Warforged, Troglodytes, and more, but do not
+include Monstrous Humanoids."""
+icon = "HoldPerson"
+school = "Enchantment"
+
+[[row]]
+name = "Hold Person, Mass"
+description = """
+Target: Foe, Positional
+Duration: 1 minute 36 seconds
+School: Enchantment
+Spell Resistance: Yes
+Casts Hold Person on multiple humanoids. Affected enemies become paralyzed and can
+take no actions for a maximum of 6 seconds per caster level. The enemy may make
+a new Will save every 3 seconds. Humanoids include Kobolds, Goblinoids, Player
+races except for Warforged, Troglodytes, and more, but do not include Monstrous
+Humanoids."""
+icon = "HoldPersonMass"
+school = "Enchantment"
+
+[[row]]
+name = "Horn of Thunder"
+description = """
+Target: Foe, Positional, Breakable
+School: Evocation
+Spell Resistance: No
+Horn of Thunder blasts your foes with 1d4 + 1 Sonic and 1d4 + 1 Electric damage
+per caster level (max caster level 25). Sonic damage is doubled vs. Oozes, as the
+thunderous pressure disrupts their amorphous structure. Creatures making a Reflex
+save take half damage."""
+icon = "HornOfThunder"
+school = "Evocation"
+
+[[row]]
+name = "Howl of Terror"
+description = """
+Target: Self
+Duration: 8 seconds to 24 seconds
+School: Enchantment
+Spell Resistance: Yes
+You utter a terrifying howl, filling your foes with a paralyzing fear. Foes around
+you are paralyzed for 6 to 24 seconds. Will save negates."""
+icon = "HowlOfTerror"
+school = "Enchantment"
+
+[[row]]
+name = "Hypnotic Pattern"
+description = """
+Target: Foe, Positional
+Duration: 30 seconds
+School: Illusion
+Spell Resistance: Yes
+A twisting pattern of subtle, shifting colors weaves through the air, fascinating
+targets within it. A successful Will save negates this effect. Creatures exposed
+to this effect have their Will save momentarily weakened by three."""
+icon = "HypnoticPattern"
+school = "Illusion"
+
+[[row]]
+name = "Improved Harm"
+description = """
+Target: Foe, Undead Friend
+School: Necromancy
+Spell Resistance: No
+Charges the target with a massive amount of negative energy, dealing 15 points
+of damage per caster level. (Maximum damage 225.) Harm cannot reduce the target's
+hit points to less than 1. A successful Will save reduces the damage by half.
+Against Undead targets this spell heals like Heal."""
+icon = "Harm"
+school = "Necromancy"
+
+[[row]]
+name = "Intimidation of the Skull"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activate the power of this item will help you menace your enemies, granting a +5
+Competence bonus to your Intimidate skill. This lasts until you activate the
+special power of another cosmetic item, or log out."""
+icon = "IntimidationOfTheSkull"
+school = "Conjuration"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[row]]
+name = "Invisibility"
+description = """
+Target: Fiend, Self
+Duration: 1 minute per caster level
+School: Illusion
+Spell Resistance: No
+An ally becomes invisible, vanishing from sight, even from darkvision. If he or
+she attacks a target, the effect is removed."""
+icon = "Invisibility"
+school = "Illusion"
+
+[[row]]
+name = "Jerky"
+description = """
+Target: Self
+Duration: 5 minutes
+School: Conjuration
+Spell Resistance: No
+Eating the jerky from the pouch causes a burning sensation of wellbeing to suffuse
+your body. Your wounds slowly close and all poisons and diseases are expelled.
+Additionally, you will be warded against poison for thirty seconds with the spell
+Neutralize Poison."""
+icon = "Jerky"
+
+[[row]]
+name = "Jet Propulsion"
+description = """
+Use this item to activate the air elemental bound within, thus propelling you forward
+at great speeds. It takes ten minutes to recharge between uses."""
+icon = "JetPropulsion"
+
+[[row]]
+name = "Keoghtom's Ointment"
+description = """
+Target: Friend, Self
+Duration: 30 seconds
+School: Conjuration
+Spell Resistance: No
+Neutralizes Poison, Cures Disease and Cures Light Wounds."""
+icon = "CureLightWounds"
+school = "Conjuration"
+
+[[row]]
+name = "Knife Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires knives at enemies. At higher charge levels multiple knives are rapidly fired.
+Opponents struck by the knives receive a Reflex save for half damage.
+
+Charge Tier I: 4 to 14 ​ + 1 to 2 per Artificer Level
+Charge Tier II: 5 to 19 ​ + 1 to 4 per Artificer Level
+Charge Tier III: 6 to 24 ​ + 1 to 6 per Artificer Level
+Charge Tier IV: 7 to 29 ​ + 1 to 8 per Artificer Level
+Charge Tier V: 8 to 34 ​ + 1 to 10 per Artificer Level"""
+icon = "KnifeShot"
+school = "Evocation"
+
+[[row]]
+name = "Lesser Absorption of Beholder and Doomsphere Spells"
+description = """
+This effect absorbs most deadly of the standard spells from
+    beholder and doomsphere eye beams. A charge is expended for each eye beam
+ absorbed."""
+icon = "AntiBeholderCrystal"
+school = "Evocation"
+
+[[row]]
+name = "Lesser Heighten"
+description = """
+Target: Self
+Duration: 20 seconds
+School: Abjuration
+Spell Resistance: No
+Lesser Heighten allows spell casters to use the Metamagic Heighten feat at no
+additional Spell Point cost. This effect lasts for 20 seconds."""
+icon = "Heighten"
+school = "Abjuration"
+
+[[row]]
+name = "Lesser Maximize"
+description = """
+Target: Self
+Duration: 20 seconds
+School: Abjuration
+Spell Resistance: No
+Lesser Maximize allows spell casters to use the Metamagic Maximize feat at no
+additional Spell Point cost. This effect lasts for 20 seconds."""
+icon = "MaximizeSpell"
+school = "Abjuration"
+
+[[row]]
+name = "Light Spirals"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires chaotic bolts of light that damage your enemies. At higher charge levels
+multiple bolts are rapidly fired. opponents struck by these bolts receive a Will
+save for half damage.
+
+Charge Tier 1: 3 to 6 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 11 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 16 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 21 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 26 + 1 to 10 per Artificer Level"""
+icon = "NimbusOfLight"
+school = "Evocation"
+
+[[row]]
+name = "Lightning Bolt"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+A powerful stroke of electrical energy deals 4 to 6 electricity damage per caster
+level (up to a max of 40 to 60 damage at caster level 10) to targets in its path.
+A successful Reflex save reduces the damage by half. For each enemy this spell
+strikes it has a 50% chance to fork, replicating the spell's effect on that target.
+This can only happen once. This spell is a bolt and has double range."""
+icon = "LightningBolt"
+school = "Evocation"
+
+[[row]]
+name = "Longstrider"
+description = """
+Target: Self
+Duration: 10 minutes
+School: Transmutation
+Spell Resistance: No
+increases your base run speed by 15% and shallow water no longer slows your movement."""
+icon = "Longstrider"
+school = "Transmutation"
+
+[[row]]
+name = "Luck of the Green Hat"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activating the power of this item will grant you a +1 Luck bonus to your Will
+Saving Throws. This lasts until you activate the special power of another cosmetic
+item, or log out."""
+icon = "GreenHat"
+school = "Conjuration"
+
+[[row]]
+name = "Madstone Rage"
+description = """
+Target: Self
+Duration: 2 minute2
+School: Enchantment
+Spell Resistance: No
+The chaotic effects of madstone drive you into a murderous rage. Madstone Rage
+grants +2 Strength, +4 Constitution, +4 natural Armor bonus and 20% Melee Haste,
+while prohibiting any spell casting."""
+icon = "Rage"
+school = "Enchantment"
+
+[[row]]
+name = "Mage Armor"
+description = """
+Target: Self
+Duration: 6 minutes
+School: Conjuration
+Spell Resistance: No
+An invisible, but tangible field of force surrounds an ally, providing a +4 Armor
+bonus to AC."""
+icon = "MageArmor"
+school = "Conjuration"
+
+[[row]]
+name = "Magestar Absorption"
+description = "This effect absorbs harmful spells targeted at the wearer."
+icon = "DispelMagic"
+school = "Enchantment"
+
+[[row]]
+name = "Major Mnemonic Aid"
+description = """
+Target: Self
+School: Abjuration
+Spell Resistance: No
+Restores 105-600 spell points."""
+icon = "MinorMnemonicAid"
+school = "Abjuration"
+
+[[row]]
+name = "Major Mnemonic Enhancer"
+description = """
+Target: Self
+School: Abjuration
+Spell Resistance: No
+Restores 105-600 spell points and dispels feeblemind."""
+icon = "MinorMnemonicAid"
+school = "Abjuration"
+
+[[row]]
+name = "Melf's Acid Arrow"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 12 seconds
+School: Conjuration
+Spell Resistance: No
+Deals 2 to 8 acid damage +1 per 2 caster levels to a target with a magical arrow
+of acid for a duration of 12 seconds. The arrow has double spell range.
+Max Caster Level: 10"""
+icon = "MelfsAcidArrow"
+school = "Conjuration"
+
+[[row]]
+name = "Meteor Swarm"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Causes four 2-foot-diameter chunks of rock to spring forth and streak in straight
+lines toward a target, leaving fiery trails of sparks. The meteors explode on
+impact, dealing 2 to 4 Fire damage per caster level (a successful Reflex save
+reduces the damage by half) and 2 to 3 bludgeoning damage per caster level (no
+save) to targets in the area. Unlike most other projectile spells, the caster can
+arc these meteors if they have no target selected. This spell has double range."""
+icon = "MeteorSwarm"
+school = "Evocation"
+
+[[row]]
+name = "Minor Mnemonic Aid"
+description = """
+Target: Self
+School: Abjuration
+Spell Resistance: No
+Restores 10-35 spell points."""
+icon = "MinorMnemonicAid"
+school = "Abjuration"
+
+[[row]]
+name = "Move like the Night"
+description = """
+Target: Friend, Self
+Duration: 25 seconds
+School: Transmutation
+Gain a 50% Festive bonus to Dodge that ignores your Dodge Cap."""
+icon = "MoveLikeTheNight"
+school = "Transmutation"
+
+[[row]]
+name = "Murlynd's Spoon"
+description = """
+Target: Self
+School: Conjuration
+Creates several servings of a tasteless, sticky mush that is nevertheless quite
+filling."""
+icon = "MurlyndsSpoon"
+school = "Conjuration"
+
+[[row]]
+name = "Negative Energy Absorption"
+description = "Negative Energy Absorption: This effect absorbs negative energy and energy drain effects."
+icon = "NegativeEnergyBurst"
+school = "Enchantment"
+
+[[row]]
+name = "Night Horrors"
+description = """
+Target: Friend, Self
+Duration: 1 minute 30 seconds
+School: Transmutation
+Spell Resistance: No
+Gain a 25% Festive Bonus to Spell Critical Damage that lasts for 90 seconds."""
+icon = "RejuvenationCocoon"
+school = "Transmutation"
+
+[[row]]
+name = "Nightshield"
+description = """
+Target: Self
+School: Abjuration
+Spell Resistance: No
+Grants a +1 resistance bonus to saves (+2 at 6th level, +3 at 9th) and protection
+from magic missiles."""
+icon = "Nightshield"
+school = "Abjuration"
+
+[[row]]
+name = "Obscuring Mist"
+description = """
+Target: Foe, Positional, Breakable
+A glass vial filled with water and thick mist. When it breaks on impact, a bank
+of Obscuring Mist is created on the enemy it struck."""
+icon = "ObscuringMist"
+school = "Conjuration"
+
+[[row]]
+name = "Order's Wrath"
+description = """
+Target: Foe, Positional, Breakable
+Duration: 8 seconds
+School: Evocation
+Spell Resistance: No
+Lawful power smites your targets. Only Chaotic and Neutral creatures are harmed
+by the spell. The spell deals 1d6+8 points of damage per caster level (Maximum
+damage 10d6+80) to a Chaotic creatures/Outsiders and causes it to be Dazed for
+6 seconds. A successful Will save reduces damage to half and negates the Dazed.
+The spell deals only half damage to creatures who are neither Lawful nor Chaotic,
+and they are not Dazed. This spell can only be cast by Lawful or Neutral casters,
+it has no effect when cast by a Chaotic caster."""
+icon = "OrdersWrath"
+school = "Evocation"
+
+[[row]]
+name = "Otto's Irresistible Dance"
+description = """
+Target: Foe
+Duration: 17 to 27 seconds
+School: Enchantment
+Spell Resistance: Yes
+At your touch, enemies feel an irresistible urge to dance and begin doing so,
+complete with foot shuffling and tapping. The spell makes it impossible for the
+enemy to do anything other than caper and prance in place."""
+icon = "OttosIrresistibleDance"
+school = "Enchantment"
+
+[[row]]
+name = "Otto's Rresistible Dance"
+description = """
+Target: Foe
+Duration: 9 seconds
+School: Enchantment
+Spell Resistance: Yes
+At your touch, enemies feel an undeniable urge to dance and begin doing so,
+complete with foot shuffling and tapping. The spell makes it impossible for the
+enemy to do anything other than caper and prance in place. A successful Will save
+negates this effect."""
+icon = "OttosResistibleDance"
+school = "Enchantment"
+
+[[row]]
+name = "Panacea"
+description = """
+Target: Friend, Self, Undead Foe
+School: Conjuration
+Spell Resistance: No
+Channels powerful positive energy into a target to wipe away afflictions, restores
+1d6+2 Hit Points plus 1 per caster level (Maximum caster level 20.), removes the
+conditions or effects: Ability Damaged, Blinded, Confused, Dazed, Dazzled,
+Deafened, Diseased, Exhausted, Fatigued, Feebleminded, Insanity, Nauseated and
+Poisoned.
+Against Undead this spell will damage 1d6+2 Hit Points plus 1 per caster level.
+Undead who make a successful Will save reduce the damage by half."""
+icon = "Panacea"
+school = "Conjuration"
+
+[[row]]
+name = "Party!"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activate the power of this item to be amazing at parties, granting a +7 Competence
+bonus to the Haggle skill and a +5 Competence bonus to the Perform and Diplomacy
+skills. This lasts until you activate the special power of another cosmetic item,
+or log out."""
+icon = "Party"
+school = "Conjuration"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = ["Haggle"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Perform",
+]
+
+[[row]]
+name = "Phantasmal Killer"
+description = """
+Target: Foe
+Duration: Instantaneous
+School: Illusion
+Spell Resistance: Yes
+You create a phantasmal image of the most fearsome creature imaginable to the
+subject simply by forming the fears of the subject's subconscious mind into
+something that its conscious mind can visualize: this most horrible beast.
+Only the spell's Foe can see the Phantasmal Killer. You see only a vague shape.
+The target first gets a Will save to recognize the image as unreal to disbelieve
+the spell and suffer no ill effects. If that save fails, the phantasm touches
+the subject, and the subject must succeed on a Fortitude save or die from fear.
+Even if the Fortitude save is successful, the subject takes 1d3+1 points of
+bane damage per caster level."""
+icon = "PhantasmalKiller"
+school = "Illusion"
+
+[[row]]
+name = "Polar Ray"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Deals 9 to 14 Cold damage per caster level (up to a max of 225 to 350 at caster
+level 25) to an enemy with a powerful ray of freezing ice and air. Rays have
+double range."""
+icon = "PolarRay"
+school = "Evocation"
+
+[[row]]
+name = "Power Drain"
+description = """
+Target: Self
+Duration: 1 minutes 6 seconds
+School: Necromancy
+Spell Resistance: No
+Power Drain draws magical power from nearby entities and slowly feeds it to the
+caster. Caster gains 2 to 12 SP every 6 seconds for 1 minute."""
+icon = "PowerDrain"
+school = "Necromancy"
+
+[[row]]
+name = "Prismatic Spray"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 4 seconds to 16 seconds
+School: Evocation
+Spell Resistance: No
+A brilliant cone of multicolored light projects from your finger, blinding weak
+targets and producing one or more random effects."""
+icon = "PrismaticSpray"
+school = "Evocation"
+
+[[row]]
+name = "Protection from Elements, Mass"
+description = """
+Target: Friend, Self
+Duration: 15 minutes
+School: Abjuration
+Spell Resistance: No
+Grants temporary immunity to multiple targets to all forms of energy for 1 minute
+per caster level or until 12 points of energy per caster level (max 120) for each
+energy type has been absorbed."""
+icon = "ProtectionFromElementsMass"
+school = "Abjuration"
+
+[[row]]
+name = "Protection from Evil"
+description = """
+Target: Friend, Self
+Duration: 5 minutes
+School: Abjuration
+Spell Resistance: No
+At your touch, a magical barrier is created that wards a target from attacks by
+Evil creatures, granting a +2 deflection bonus to Armor Class, and a +2
+resistance bonus to saves versus attacks from Evil creatures. The target
+is also warded from Evil magical controls and compulsions."""
+icon = "ProtectionFromEvil"
+school = "Abjuration"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Deflection"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magical Controls and Compulsion"]
+
+[[row]]
+name = "Purple Faerie Fire"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 10 seconds
+School: Evocation
+Spell Resistance: Yes
+Arcs a flare of faerie fire through the air, bursting outward to affect all enemies
+near it. Targets are dazzled and take a -1 penalty to attack, spot, and search.
+Targets are also illuminated by faerie fire, dispelling stealth, invisibility, blur,
+and displacement, for 30 seconds, and giving a -40 penalty to hide. Sightless
+enemies are immune to the dazzle effect."""
+icon = "PurpleFaerieFire"
+school = "Evocation"
+
+[[row]]
+name = "Quell"
+description = """
+Target: Foe, Directional
+Duration: 30 seconds
+School: Abjuration
+Spell Resistance: No
+Quell disrupts the targets connection to all Divine Power. All Divine casters
+become powerless while under the effects of Quell. Powerful beings with a close
+personal connection to their deities may not be Quelled."""
+icon = "Quell"
+school = "Abjuration"
+
+[[row]]
+name = "Quiet Like a Ninja"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activating the power of this item will make you quiet as a ninja, granting a +5
+Competence bonus to the Move Silently skill. This lasts until you activate the
+special power of another cosmetic item, or log out."""
+icon = "QuietLikeANinja"
+school = "Conjuration"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = ["Move Silently"]
+
+[[row]]
+name = "Rage"
+description = """
+Target: Friend, Self
+Duration: 1 minute 30 seconds
+School: Enchantment
+Spell Resistance: No
+Causes the target and all nearby allies to fly into a screaming blood frenzy,
+gaining phenomenal strength and durability but becoming reckless. Grants a +2
+Morale bonus to Strength, Constitution, and a +1 Morale bonus to Will saves,
+but also causes a -2 penalty to armor."""
+icon = "Rage"
+school = "Enchantment"
+
+[[row]]
+name = "Raise Dead"
+description = """
+Target: Friend
+School: Conjuration
+Spell Resistance: No
+Resurrects the target, restores 10% of the target's hit points, and preserves
+current spell points."""
+icon = "RaiseDead"
+school = "Conjuration"
+
+[[row]]
+name = "Reconstruct"
+description = """
+Target: Friend, Self
+Duration: 30 seconds
+School: Transmutation
+Spell Resistance: No
+Greatly repairs an ally construct, restoring 10 hit points per caster level
+(max 150hp), while simultaneously granting an increase in attack speed for a
+short time."""
+icon = "Reconstruct"
+school = "Transmutation"
+
+[[row]]
+name = "Regrowth"
+description = """
+Target: Self
+Duration: 2 minutes 6 seconds
+School: Conjuration
+Spell Resistance: No
+Your wounds slowly close over time healing 100 hit points over 2 minutes."""
+icon = "Regrowth"
+school = "Conjuration"
+
+[[row]]
+name = "Remove Exhaustion"
+description = """
+Target: Friend, Self
+Spell Resistance: No
+Removes any Exhaustion and Fatigue effects."""
+icon = "Restoration"
+
+[[row]]
+name = "Repair Light Damage"
+description = """
+Target: Friend, Self
+School: Transmutation
+Spell Resistance: No
+Transmutes the structure of a living construct ally to repair 3 to 8 damage
+plus an additional 1 for every caster level up to caster level 5."""
+icon = "RepairLightDamage"
+school = "Transmutation"
+
+[[row]]
+name = "Repair Moderate Damage"
+description = """
+Target: Friend, Self
+School: Transmutation
+Spell Resistance: No
+Transmutes the structure of a living construct ally to repair 6 to 16 damage
+plus an additional 1 for every caster level up to caster level 10."""
+icon = "RepairModerateDamage"
+school = "Transmutation"
+
+[[row]]
+name = "Resist Energy: Fire"
+description = """
+Target: Self
+Duration: 3 minutes
+School: Abjuration
+Spell Resistance: No
+Gives an ally limited protection from fire damage, reducing fire damage taken
+by 10. The damage reduction increases to 20 at caster level 7 and 30 at caster
+level 11."""
+icon = "ResistEnergyFire"
+school = "Abjuration"
+
+[[row]]
+name = "Restoration"
+description = """
+Target: Friend, Self
+School: Conjuration
+Spell Resistance: No
+Cures all temporary ability damage, restores a single negative level suffered
+from energy drain, and eliminates fatigue or exhaustion suffered by the ally."""
+icon = "Restoration"
+
+[[row]]
+name = "Roc's Strength"
+description = """
+Target: Self
+Duration: 30 seconds
+School: Transmutation
+Spell Resistance: No
+You temporarily gain strength and power, giving a +6 Quality bonus to strength."""
+icon = "BullsStrength"
+school = "Transmutation"
+
+[[row]]
+name = "Salt Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires a lance of Salt at enemies. At higher charge levels multiple knives are
+rapidly fired. Opponents struck by the knives receive a Reflex save for half damage.
+
+Charge Tier 1: 4 to 14 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 19 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 24 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 29 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 34 + 1 to 10 per Artificer Level"""
+icon = "SaltRay"
+school = "Evocation"
+
+[[row]]
+name = "Scarab of Protection Ward"
+description = "This effect absorbs negative energy, death and energy drain effects!"
+icon = "Scarab"
+school = "Necromancy"
+
+[[row]]
+name = "Scare"
+description = """
+Target: Foe, Positional
+Duration: 8 to 24 seconds
+School: Necromancy
+Spell Resistance: Yes
+Casts Cause Fear on multiple targets. Affected enemies become frightened. A
+successful Will save causes the target to become shaken instead. Targets subject
+to the fear effect will be slowed slightly by necrotic energy."""
+icon = "Scare"
+school = "Necromancy"
+
+[[row]]
+name = "Scorching Ray"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Blasts a target with fiery rays, each doing 4d3+12 Fire damage on impact. The
+number of rays increases by 1 ray for every four levels beyond 3rd, to a maximum
+of three rays at 11th level. Ray spells have double range."""
+icon = "ScorchingRay"
+school = "Evocation"
+
+[[row]]
+name = "Searing Light"
+description = """
+Target: Foe, Directional, Breakable
+Duration: 30 seconds
+School: Evocation
+Spell Resistance: No
+Focuses divine power like a ray of the sun, causing a blast of light to deal
+1d6+6 Light damage per caster level. (Maximum caster level 10). Undead creatures
+take 2d6+12 damage per caster level. Ray spells have double range."""
+icon = "SearingLight"
+school = "Evocation"
+
+[[row]]
+name = "Selection of Enchanted Chocolates"
+description = """
+Target: Self
+Duration: 10 minutes
+School: Conjuration
+Spell Resistance: No
+This small decorative box contains four types of delicious chocolate candies.
+Each type not only has its own unique flavor but also conveys a helpful enchantment.
+The flavors are as follows:
+Dark Chocolate 'Magma' Truffle (Haste)
+Nut-hull Toffee Surprise (Stoneskin)
+Choco-Bacon-Berry Dream Bar (Bear's Endurance)
+Glacial Mint Bon Bon (Cone of Cold)"""
+icon = "Chocolates"
+school = "Conjuration"
+
+[[row]]
+name = "Shadow Phase"
+description = """
+Target: Self
+Duration: 20 seconds
+School: Abjuration
+Spell Resistance: No
+You become invisible and are able to move through monsters as if you were ethereal
+for twenty seconds."""
+icon = "ShadowPhase"
+school = "Abjuration"
+
+[[row]]
+name = "Shadow Walk"
+description = """
+Target: Self
+School: Illusion
+Spell Resistance: No
+Transports you to the edge of the Material Plane where it borders the Plane of
+Shadow. While this spell is active, you receive a 50% Enhancement bonus to Run
+speed, and your outline appears faint and you are harder to hit (50% Concealment).
+Attacking another creature, or otherwise interacting with objects shunts you
+back to the Material Plane."""
+icon = "ShadowWalk"
+school = "Illusion"
+
+[[row]]
+name = "Shadow Weapons"
+description = """
+Target: Self
+Duration: 5 minutes
+School: Evocation
+Spell Resistance: No
+Your target's currently equipped weapons gain Hit Effect: 1 to 6 negative damage.
+An item can have only one temporary item enchantment at a time."""
+icon = "ShadowWeapons"
+school = "Evocation"
+
+[[row]]
+name = "Shield"
+description = """
+Target: Self
+Duration: 1 minute per caster level
+School: Abjuration
+Spell Resistance: No
+Grants a +4 Shield bonus to Armor Class and protection from magic missiles."""
+icon = "Shield"
+school = "Abjuration"
+
+[[row]]
+name = "Shield of Faith"
+description = """
+Target: Friend, Self
+Duration: 1 minute
+School: Abjuration
+Spell Resistance: No
+Creates a shimmering, magical field around an ally that averts attacks, giving a
++2 Deflection bonus to AC. This bonus is increased by 1 for every 6 caster levels."""
+icon = "ShieldOfFaith"
+school = "Abjuration"
+
+[[row]]
+name = "Shout"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Emits an ear-splitting yell that does 4 to 8 Sonic damage per caster level to
+all targets in its path. A successful Fortitude save halves the damage."""
+icon = "Shout"
+school = "Evocation"
+
+[[row]]
+name = "Sight of Vol"
+description = """
+Target: Friend, Self, Positional
+Duration: 2 minutes
+School: Abjuration
+Spell Resistance: No
+This spell grants all characters in the area of effect True Sight and allows all
+to negate the miss chance for Incorporeal creatures.
+This cannot be dispelled."""
+icon = "TrueSeeing"
+school = "Abjuration"
+
+[[row]]
+name = "Slay Living"
+description = """
+A glass filled with a dark gas. When it breaks on impact, nearby enemies are subjected
+to a Slay Living effect. (Slays any living enemy or deals 12 to 18 damage on a
+successful Fortitude save)."""
+icon = "SlayLiving"
+school = "Necromancy"
+
+[[row]]
+name = "Sleep"
+description = """
+Target: Foe, Positional
+Duration: 22 seconds
+School: Enchantment
+Spell Resistance: Yes
+Induces a magical slumber, rendering them helpless until attacked. Ineffective
+on undead or constructs. Lasts 20 seconds plus 2 seconds per caster level.
+A successful Will save negates this effect."""
+icon = "Sleep"
+school = "Enchantment"
+
+[[row]]
+name = "Slow"
+description = """
+Target: Foe, Positional
+Duration: 30 seconds
+School: Transmutation
+Spell Resistance: Yes
+Causes an enemy to move at 50% speed, attack at a 30% slowed rate, and have a
+-1 penalty on attack rolls, AC, and Reflex saves. A successful Will save negates
+this effect."""
+icon = "Slow"
+school = "Transmutation"
+
+[[row]]
+name = "Snap Trap"
+description = """
+Toss a snapping trap at the targeted enemy. If they don't make a Fortitude Save
+(DC20 + Dex/Int/Wis Mod + Assassinate DCs + Bonus Trap DCs) they are rooted in
+place by the trap's jaws for 12 seconds.
+Cooldown: 12 seconds."""
+icon = "SnapTrap"
+school = "Conjuration"
+
+[[row]]
+name = "Solid Fog"
+description = """
+A glass vial filled with water and a thick mist. When it breaks on impact, a bank of
+Solid Fog is created on the enemy it struck."""
+icon = "SolidFog"
+
+[[row]]
+name = "Sonic Blast"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Deals sonic damage to targets with a burst of sound. At higher charge tiers the
+blast is larger. Opponents within the blast receive a Will save for half damage.
+
+Charge Tier 1: 1d6+1, plus 1 per Artificer Level
+Charge Tier 2: 2d8+3, plus 1d2 per Artificer Level
+Charge Tier 3: 3d10+6, plus 1d10 per Artificer Level
+Charge Tier 4: 4d12+10, plus 2d8 per Artificer Level
+Charge Tier 5: 5d14+15, plus 2d10 per Artificer Level"""
+icon = "Shout"
+school = "Evocation"
+
+[[row]]
+name = "Spell Absorption"
+description = "Spell Absorption: This effect absorbs harmful spells targeted at the wearer."
+icon = "RejuvenationCocoon"
+
+[[row]]
+name = "Spell Store"
+description = """
+Target: Self
+School: Abjuration
+Spell Resistance: No
+restores 5sp +5sp per caster level of item."""
+icon = "Efficacy"
+school = "Abjuration"
+
+[[row]]
+name = "Spider Cult Mask"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activating the power of this item will fill you with unholy power, granting a +1
+Profane bonus to Charisma based skills and a +2 Profane bonus to saves against
+poisons. This lasts until you activate the special power of another cosmetic item,
+or log out."""
+icon = "SpiderCultMask"
+school = "Conjuration"
+
+[[row]]
+name = "Staff of Arcane Power: Spell Selection"
+description = """
+Target: Self
+Duration: 1 minute 36 seconds
+School: Conjuration
+Spell Resistance: Yes
+The staff may cast Magic Missile, Ray of Enfeeblement, Lightning Bolt, Fireball,
+Cone of Cold, Hold Monster or Globe of Invulnerability"""
+icon = "Shout"
+school = "Conjuration"
+
+[[row]]
+name = "Stone to Flesh"
+description = """
+Target: Friend
+School: Transmutation
+Spell Resistance: No
+Restores a petrified creature, such as one affected by the Flesh to Stone spell,
+to its normal state."""
+icon = "StoneToFlesh"
+school = "Transmutation"
+
+[[row]]
+name = "Stoneskin"
+description = """
+Target: Self
+Duration: 1 minute per caster level
+School: Abjuration
+Spell Resistance: No
+Wards an ally with damage reduction 10/adamantine. Once the spell has prevented
+a total of 10 points per caster level it is discharged. Otherwise it lasts 1
+minute per caster level."""
+icon = "Stoneskin"
+school = "Abjuration"
+
+[[row]]
+name = "Stormrage"
+description = """
+Target: Self
+Duration: 18 seconds
+School: Transmutation
+Spell Resistance: No
+You gain featherfall and gain the Deflect Arrows feat. When you damage an enemy
+with attacks or spells, they are also struck by lightning. For each enemy,
+lightning strikes only once."""
+icon = "StormRage"
+school = "Transmutation"
+
+[[row]]
+name = "Suggestion"
+description = """
+Target: Foe
+Duration: 40 seconds
+School: Enchantment
+Spell Resistance: Yes
+Influences the actions of an enemy, allowing you to suggest it to fight as your
+ally for 30 + 2 seconds per caster level. A successful Will save negates the effect."""
+icon = "Suggestion"
+school = "Enchantment"
+
+[[row]]
+name = "Summon Adventuring Party"
+description = """
+Target: Self
+Duration: 1 minute
+School: Conjuration
+Spell Resistance: No
+Summons you entire adventuring group to your location. Summoned party members
+may decline.
+
+Can only be  used in public areas. Cannot bring anyone to locations that they
+do not already have access to and cannot enable anyone to travel between realms
+(from Eberron to the Forgotten Realms or vice versa."""
+icon = "GreaterTeleport"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Epic Thaarak Hound"
+description = """
+Target: Friend, Self, positional
+Duration: 5 minutes
+School: Conjuration
+Spell Resistance: No
+This spell summons a tremendously powerful Thaarak hound to fight for you for a brief time."""
+icon = "ThaarakHound"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Legendary Dinosaur"
+description = """
+Target: Friend, Self, positional
+Duration: 3 minutes
+School: Conjuration
+Spell Resistance: No
+This spell summons a tremendously powerful Dinosaur to fight for you for a brief time."""
+icon = "BlightedCharge"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Legendary Werewolf"
+description = """
+Target: Friend, Self, positional
+Duration: 5 minutes
+School: Conjuration
+Spell Resistance: No
+This spell summons a tremendously powerful Werewolf to fight for you for a brief time."""
+icon = "BlightedCharge"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Monster II"
+description = """
+Target: Self, Positional
+Duration: 10 minutes
+School: Conjuration
+Spell Resistance: No
+This spell allows you to summon one of three different creatures: a fiendish
+monstrous scorpion, a fiendish bat, or a black widow. It will fight for you for
+a brief time, but you can only have one summoned creature serving you at a time.
+Summoning another creature will return this one to its home plane."""
+icon = "SummonMonsterII"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Monster III"
+description = """
+Target: Self, Positional
+Duration: 10 minutes
+School: Conjuration
+Spell Resistance: No
+This spell allows you to summon one of three different creatures: a hellhound,
+a winter wolf, or an air mephit. It will fight for you for a brief time, but
+you can only have one summoned creature serving you at a time. Summoning another
+creature will return this one to its home plane."""
+icon = "SummonMonsterIII"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Monster IV"
+description = """
+Target: Self, Positional
+Duration: 10 minutes
+School: Conjuration
+Spell Resistance: No
+This spell allows you to summon one of three different creatures: a fiendish
+monstrous spider, a greater ice mephit, or a lantern archon. It will fight for
+you for a brief time, but you can only have one summoned creature serving you
+at a time. Summoning another creature will return this one to its home plane."""
+icon = "SummonMonsterIV"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Monster IX"
+description = """
+Target: Self, Positional
+Duration: 10 minutes
+School: Conjuration
+Spell Resistance: No
+This spell allows you to summon one of three different creatures: a hezrou, an
+elder fire elemental, or an eladrin ghaele. It will fight for you for a brief
+time, but you can only have one summoned creature serving you at a time.
+Summoning another creature will return this one to its home plane."""
+icon = "SummonMonsterIX"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Monster VII"
+description = """
+Target: Self, Positional
+Duration: 10 minutes
+School: Conjuration
+Spell Resistance: No
+This spell allows you to summon one of three different creatures: an efreeti,
+a djinn, or a huge earth elemental. It will fight for you for a brief time,
+but you can only have one summoned creature serving you at a time. Summoning
+another creature will return this one to its home plane."""
+icon = "SummonMonsterVII"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Party Member"
+description = """
+Target: Self
+School: Conjuration
+Spell Resistance: No
+Summons a member of your adventuring group to your location. You choose which
+member. Summoned party members may decline.
+
+Can not bring anyone to locations that they do not already have access to and
+cannot enable anyone to travel between realms (from Eberron to the Forgotten
+Realms or vice versa."""
+icon = "GreaterTeleport"
+school = "Conjuration"
+
+[[row]]
+name = "Summon Xoriat Horror"
+description = """
+Target: Self, Positional
+Duration: 5 minutes
+School: Conjuration
+Spell Resistance: No
+Creates a rift to the plane of Xoriat, summoning a randomly chosen monster to
+fight for you for a brief time."""
+icon = "SummonXoriatHorror"
+school = "Conjuration"
+
+[[row]]
+name = "Sunburst"
+description = """
+Target: Foe, Direction, Breakable
+Duration: 1 minute 5 seconds
+School: Evocation
+Spell Resistance: No
+A globe of searing radiance to explodes to blast targets for 5 to 10 of Light
+damage per caster level. Oozes and Undead take an additional 5 to 10 per caster
+level damage. A successful Reflex save reduces the damage by half and negates
+the blindness. Light fearing Undead may be instantly destroyed by this spell."""
+icon = "Sunburst"
+school = "Evocation"
+
+[[row]]
+name = "Superior Efficacy"
+description = """
+Target: Self
+Duration: 3 minutes
+School: Abjuration
+Spell Resistance: No
+When activated, this effect provides a +15 Alchemical bonus to your Universal
+Spell Power for one minute."""
+icon = "Efficacy"
+school = "Abjuration"
+
+[[row]]
+name = "Swirling Icy Shield"
+description = """
+Target: Self
+Duration: 1 minute
+School: Abjuration
+Spell Resistance: No
+You are surrounded in a sphere of icy wind that reduces all damage (Except for
+Untyped damage) you take by 25% for one minute."""
+icon = "RadiantForcefield"
+school = "Abjuration"
+
+[[row]]
+name = "Symbol of Fear"
+description = """
+Target: Foe, Positional
+Duration: 1 minute 6 seconds
+School: Necromancy
+Spell Resistance: Yes
+You scribe a potent rune of power in the air. When the symbol is activated by a
+target approaching, all nearby targets are panicked for 6 seconds per caster
+level or until the symbol expires. A successful Will save negates this effect.
+A symbol will persist for about 5 minutes until triggered. Once triggered, a
+symbol's power begins to wane. A symbol will dissipate 20 seconds after first
+being triggered. Symbols are volatile when placed together."""
+icon = "SymbolOfFear"
+school = "Necromancy"
+
+[[row]]
+name = "Teleport"
+description = """
+Target: Self
+School: Conjuration
+Spell Resistance: No
+Teleports you to one of a variety of locations."""
+icon = "Teleport"
+school = "Enchantment"
+
+[[row]]
+name = "The Crownblade's Blessing"
+description = """
+Target: Friend, Self
+School: Conjuration
+
+Target is touched by Unyielding Sovereignty, which heals all hit point damage
+done to a targeted ally, and removes ability damage, death penalty effects,
+negative levels, and the conditions blinded, dazed, deafened, diseased,
+exhausted, fatigued, feebleminded, insanity, nauseated, poisoned, and stunned."""
+icon = "CrownbladeBlessing"
+school = "Conjuration"
+
+[[row]]
+name = "Titan Shield"
+description = """
+Target: Self
+Duration: 15 seconds
+School: Abjuration
+Spell Resistance: No
+Creates a shield protecting the caster from most physical damage and some spells.
+The shield is incapable of deflecting energy so fire, lightning etc should be
+avoided. DR 30/- and SR 30 for 15 seconds."""
+icon = "Shield"
+school = "Abjuration"
+
+[[row]]
+name = "Titan's Grip"
+description = """
+Target: Self
+Duration: 1 minute
+School: Spell Like Ability
+Spell Resistance: No
+Makes you as strong as a Warforged Titan, granting a +6 Psionic bonus to Strength."""
+icon = "TitansGrip"
+school = "Enchantment"
+
+[[row]]
+name = "Trash Shot"
+description = """
+Target: Foe, Directional, Breakable
+School: Evocation
+Spell Resistance: No
+Fires a slow moving pile of burning trash. Opponents in the blast radius take
+bludgeoning, fire, poison, and rust damage. Opponents struck by this receive a
+Fortitude save for half damage. When fully charges, this fires two projectiles
+that fly mush faster. Enemies hit take the following values in each damage type:
+receive a Fortitude save for half damage.
+
+Charge Tier 1: 4 to 10 + 1 to 2 per Artificer Level
+Charge Tier 2: 5 to 15 + 1 to 4 per Artificer Level
+Charge Tier 3: 6 to 20 + 1 to 6 per Artificer Level
+Charge Tier 4: 7 to 25 + 1 to 8 per Artificer Level
+Charge Tier 5: 8 to 30 + 1 to 10 per Artificer Level"""
+icon = "FireTrap"
+school = "Evocation"
+
+[[row]]
+name = "True Seeing"
+description = """
+Target: Friend, Self
+Duration: 1 minute per caster level
+School: Divination
+Spell Resistance: No
+You confer on the ally the ability to see things as they actually are. This allows
+the target to notice secret doors hidden by magic, see the exact location of
+creatures hidden by Blur or Displacement effects, and see Invisible creatures
+or objects normally."""
+icon = "TrueSeeing"
+school = "Divination"
+
+[[row]]
+name = "Turn the Page"
+description = """
+Target: Self
+Duration: 6 seconds
+School: Abjuration
+Spell Resistance: No
+Turning the page of the Litany of the Dead releases magical energy that a spell
+caster can harness to power their own spells. Spell point costs are reduced by
+50% for the next 6 seconds."""
+icon = "Efficacy"
+school = "Abjuration"
+
+[[row]]
+name = "Unholy Blight"
+description = """
+Target: Foe, Positional, Breakable
+Duration: 8 seconds to 24 seconds
+School: Evocation
+Spell Resistance: No
+Unholy power smites your targets. Only Good and Neutral (Not Evil)
+creatures are harmed by the spell. This spell deals 1d6+8 points of damage
+per caster level (Maximum damage 10d6+80.) to a Good creatures/Outsiders
+and causes it to be Sickened for 6d4 seconds. A successful Will save
+reduces damage by half and negates the Sickened condition. Neutral targets
+take half damage 1d2+2 points of damage per 2 caster levels (Maximum damage
+5d2+10), and they are not Sickened. This spell can only be cast by Evil or
+Neutral casters as it has no effect when cast by a Good caster."""
+icon = "UnholyBlight"
+
+[[row]]
+name = "Vigilant Like The Night"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activating the power of this item will grant you a +5 Competence bonus to your
+Spot and Search skills. This lasts until you activate the special power of another
+cosmetic item, or log out."""
+icon = "YouCantSeeMe"
+
+[[row]]
+name = "Warp Time"
+description = """
+Target: Self
+Duration: permanent
+School: Transmutation
+Spell Resistance: No
+This spell is able to warp the effect of time on the user, effectively increasing
+run speed. This enchantment is delicate, however, and is only usable in non-hostile
+areas like city wards and other pacified public areas."""
+icon = "ExpeditiousRetreat"
+school = "Transmutation"
+
+[[row]]
+name = "Water Breathing"
+description = """
+Target: Self
+Duration: 1 minute 30 seconds
+School: Transmutation
+Spell Resistance: No
+Grants the caster the ability to breathe water."""
+icon = "WaterBreathing"
+school = "Transmutation"
+
+[[row]]
+name = "Web"
+description = """
+Target: Foe, Positional, Breakable
+Duration: 30 seconds
+School: Conjuration
+Spell Resistance: No
+Creates a many-layered mass of strong, sticky strands that entangle targets
+within them. A successful Reflex save negates this effect. Entangled creatures
+may attempt to make a Strength check every 2 seconds to escape. Area of effect
+fire spells will destroy these webs and free any entangled creatures.
+Incorporeal creatures, oozes, and spiders are naturally immune. Fire elementals
+and other fire creatures are immune because they burn through the webs."""
+icon = "Web"
+school = "Conjuration"
+
+[[row]]
+name = "Whirlwind Absorption"
+description = "This effect absorbs air elementals knockdown attack."
+icon = "WhirlwindAbsorption"
+school = "Abjuration"
+
+[[row]]
+name = "Wild Mage Surge"
+description = """
+Target: Friend, Self
+Duration: 15 minutes
+School: Conjuration
+Spell Resistance: No
+As wild magic surges, a random spell will be cast."""
+icon = "WildMageSurge"
+school = "Conjuration"
+
+[[row]]
+name = "Woohoo! Let's party!"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activate the power of this item to be amazing at parties, granting a +7 Competence
+bonus to the Haggle skill and a +5 Competence bonus to the Perform and Diplomacy
+skills. This lasts until you activate the special power of another cosmetic item,
+or log out."""
+icon = "WooHoo"
+school = "Conjuration"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = ["Haggle"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Perform",
+]
+
+[[row]]
+name = "Xachosian Spell Frenzy"
+description = """
+Target: Self
+Duration: 1 minutes
+School: Spell Like Ability
+Spell Resistance: No
+Spurred into action, the Xachosian Eardweller increases its hosts spellcasting
+abilities. This grants a 100% bonus to spell damage and healing for 1 minute.
+This effect does not stack with other spell boosting item effects or potions
+and does not affect the spells you cast with wands and scrolls. When the effect
+ends, the host is exhausted."""
+icon = "XachosianEardweller"
+
+[[row]]
+name = "You Can't See Me"
+description = """
+Target: Self
+Duration: Permanent
+School: Conjuration
+Spell Resistance: No
+Activating the power of this item will grant you a +5 Competence bonus to your
+Hide and Move Silently skills. This lasts until you activate the special power
+of another cosmetic item, or log out."""
+icon = "YouCantSeeMe"

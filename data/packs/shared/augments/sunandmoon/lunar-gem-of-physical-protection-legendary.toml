@@ -1,0 +1,42 @@
+name = "Lunar Gem of Physical Protection (Legendary)"
+description = """
++30 Profane Bonus to Physical Resistance Rating.
+Drops in: Portal to Below, end chest
+The Covered Culvert, end chest
+A Miner Sacrifice, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Profane"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Miner Sacrifice"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Portal to Below"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"

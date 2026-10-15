@@ -1,0 +1,1861 @@
+[[row]]
+name = "Arcane Tempest"
+description = """
+AoE that deals 2d6 force damage per caster level every 2 seconds
+for 8 seconds. Unlisted Reflex save.(Cooldown 3mins, 30sp)"""
+icon = "ArcaneTempest"
+max_caster_level = 15
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+
+[[row.damage]]
+bonus_dice_number = 2
+bonus_dice_sides = 6
+damage = "Force"
+spell_power = "Force"
+
+[[row]]
+name = "Bane"
+description = """
+Enemies are filled with fear and doubt, giving a -1 penalty on attack rolls and
+saves against fear on all affected targets. A successful Will save negates
+this effect. Bane counters and dispels Bless."""
+icon = "Bane"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Banishment"
+description = """
+Allows casting a more powerful version of the Dismissal spell on multiple targets.
+A successful Will save negates this effect.
+(DC=spell's save DC-creature's Hit Die+caster level)"""
+icon = "Banishment"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Abjuration"]
+
+[[row]]
+name = "Bestow Curse"
+description = """
+The target is cursed, giving a -4 penalty to attack rolls, skill rolls and saves.
+A successful Will save negates this effect."""
+icon = "BestowCurse"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Blur"
+description = """
+An ally's outline becomes slightly blurred, granting a 20% miss chance on attacks
+against the ally."""
+icon = "Blur"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[row]]
+name = "Cause Fear"
+description = """
+If the target fails a Will save acquires the condition Cowering, otherwise it becomes Shaken.
+Creatures with 6 or more Hit Dice are immune to this spell. This spell counters
+and dispels Remove Fear."""
+icon = "CauseFear"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Charm Monster"
+description = """
+An enemy monster is charmed and will fight as a trusted friend and ally. Charmed
+monsters get additional saves every 3d6+12 seconds. A successful Will save
+negates this effect."""
+icon = "CharmMonster"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Charm Monster, Mass"
+description = """
+A group of enemy monsters are charmed and will fight as trusted friends and allies.
+Charmed monsters get additional saves every 3d6+12 seconds. A successful Will
+save negates this effect."""
+icon = "CharmMonsterMass"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Charm Person"
+description = """
+Charms an enemy humanoid, which will fight as a trusted friend and ally. Charmed humanoids
+get an additional saving throw every 3d6+12 seconds. A successful Will save
+negates this effect. Humanoids include kobolds, goblinoids, player races except
+for warforged, and more creatures."""
+icon = "CharmPerson"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negate"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Circle of Death"
+description = """
+Snuffs out the life force of living creatures in the area. Creatures can avoid this
+effect by making a successful Reflex save. Creatures that fail the Reflex save
+make another Fortitude save. They are killed immediately if the Fortitude save
+is failed or suffer 1d4 negative levels if they succeed on the second saving throw."""
+icon = "CircleOfDeath"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Death"
+dc_versus = "Reflex"
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negative Levels"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Color Spray"
+description = """
+Enemies are sprayed with illusions of color, and must make a Will save or be Dazed,
+Blinded, and/or Silenced. The target must make a saving throw for each effect."""
+icon = "ColorSpray"
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row]]
+name = "Command Undead"
+description = """
+Control is granted over the enemy Undead, forcing it to fight for you. Mindless
+undead are controlled for 1 to 4 minutes, while other Undead can be controlled
+for a maximum of 10 minutes but get an additional Will saving throw every 20
+seconds."""
+icon = "CommandUndead"
+max_caster_level = 1
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Contagion"
+description = """
+Infects a living enemy with the chosen disease, which strikes immediately and deals
+damage every minute to one or more attributes. A successful Fortitude save
+negates the damage. Affected creatures can only recover if they make two
+consecutive Fortitude saves."""
+icon = "Contagion"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Control Undead"
+description = """
+You bring a single undead under your control for a long time. A Will save negates
+this effect. Controlled undead gets an additional Will save every 2 minutes."""
+icon = "ControlUndead"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Create Undead"
+description = """
+Create undead minions to do your bidding, note however that they can turn against
+you every 15 to 30 seconds."""
+icon = "CreateUndead"
+metamagics = ["Quicken"]
+schools = ["Necromancy"]
+
+[[row]]
+name = "Dark Discorporation"
+description = """
+You turn into a swarm of bat like shadows. In this form, you gain Invisibility,
+25% Incorporeality, and damage from all sources (except for Untyped/Bane damage)
+is reduced by 50%. Attacking enemies or interacting with objects will revert you
+to normal form."""
+icon = "DarkDiscorporation"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Incorporeality"
+
+[[row.modifier.requirement]]
+items = ["Dark Discorporation"]
+req_type = "Stance"
+
+[[row]]
+name = "Deep Slumber"
+description = """
+This area of effect spell functions like Sleep (spell), inducing a magical slumber,
+sending a group of enemies to sleep (which renders them helpless) until attacked
+or for a duration of 20 + 2 seconds per caster level (no maximum).
+Ineffective on Undead, Constructs, Elves and other creatures immune to sleep.
+A successful Will save negates this effect."""
+icon = "DeepSlumber"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Detect Secret Doors"
+description = "Reveals secret and hidden doors."
+icon = "DetectSecretDoors"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Divination"]
+
+[[row.dc]]
+amount = [5]
+dc_type = "Find Secret Doors"
+dc_versus = "Door DC"
+
+[[row]]
+name = "Dimension Door"
+description = """
+Creates a door of magical energy in a dungeon or adventure area. Any member of your
+party may use the door to return to the inside entrance of the area.
+The magical door disappears after a set period of time."""
+icon = "DimensionDoor"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Dismissal"
+description = "Instantly forces an extra-planar enemy back to its proper plane of existence.\nA successful Will save negates this effect. \n(DC=spell's save DC-creature's Hit Die+your caster level)."
+icon = "Dismissal"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Abjuration"]
+
+[[row]]
+name = "Dispel Magic"
+description = """
+Removes ongoing spells that have been cast on a target, on a successful caster level
+check 1d20+caster level (Maximum caster level 10.) of DC 11+spell's caster level.
+In addition, this spell can be used to sever the connection between a summoner
+and his or her summoned monster, causing the summoned creature to attack
+unpredictably, possibly turning on its summoner."""
+icon = "DispelMagic"
+max_caster_level = 10
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Dispel"
+dc_versus = "Caster Level"
+schools = ["Abjuration"]
+
+[[row]]
+name = "Displacement"
+description = """
+An ally creature's outline becomes blurred, giving enemies a 50% miss chance when
+attacking."""
+icon = "Displacement"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[row]]
+name = "Dominate Monster"
+description = """
+Telepathically controls the actions of a living enemy that fails its Will save,
+causing it to change sides. Dominate acts like Charm Monster, but the target
+only gains an additional Will saving throw every 15 to 30 seconds. The creature
+has less chance to break free and will follow you throughout the dungeon."""
+icon = "DominateMonster"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Doom"
+description = """
+This spell fills a single living creature with a feeling of horrible dread that
+causes it to become shaken, penalizing all saves, attack rolls, and skill
+rolls by -2. A successful Will save negates this effect. This is a fear effect."""
+icon = "Doom"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Enervation"
+cost = 10
+description = """
+A black ray of crackling negative energy suppresses the life force of any living
+creature it strikes, granting an enemy 1d4 negative levels. If the target has
+as many negative levels as its Hit Die, it dies. Each negative level gives a
+creature a -2 penalty to attack rolls, saving throws, Skill checks, Ability
+checks and a -1 to effective level. Negative levels stack."""
+icon = "Enervation"
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row]]
+name = "Evard's Black Tentacles"
+description = """
+Conjures a zone filled with many rubbery black tentacles for 10 seconds. While inside
+the zone, enemies are Slowed (no save). Every 2 seconds, enemies within the
+zone must make a successful Strength save or become Entangled by the tentacles
+for 10 seconds. All enemies within the zone take 1d4 Bludgeoning damage per caster
+level (Scales with Spell Power) every 2 seconds as the tentacles try and grab
+them, and an additional 1d4 per caster level if Entangled. A successful Fortitude
+save reduces the damage by half. Tentacles may continue to hold enemies after
+the zone fades, though they will not deal damage."""
+icon = "EvardsBlackTentacles"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Bludgeon"
+spell_power = "Force"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Entanglement"
+dc_versus = "Strength Check"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Expeditious Retreat"
+description = "Increases base run speed by 25% for 1 minute per caster level."
+icon = "ExpeditiousRetreat"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "MovementSpeed"
+
+[[row]]
+name = "False Life"
+description = """
+Harnesses the power of unlife granting to the caster 10 plus 1 per caster level
+(Maximum caster level 10, for a total of 20) temporary hit points."""
+icon = "FalseLife"
+max_caster_level = 10
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Fear"
+description = """
+An area of effect of terror in the shape of a cone causes each living enemy in an
+area to become panicked. A successful Will save causes enemies to become shaken.
+Creatures that fail their save are also slowed 35% by necrotic energy."""
+icon = "Fear"
+metamagics = [
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Finger of Death"
+description = """
+Slays one living enemy. Those that succeed on a Fortitude save instead are dealt
+8 to 12 negative energy damage per caster level (Maximum caster level 25.)."""
+icon = "FingerOfDeath"
+max_caster_level = 25
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 2
+bonus_dice_sides = 3
+damage = "Negative"
+spell_power = "Negative"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Death"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Flesh to Stone"
+description = """
+Turns a single fleshy target into a mindless, inert statue in a Petrified condition.
+In stone form, creatures are much more difficult to damage (Damage Reduction
+10/Adamantine.), but are Helpless. Only creatures made of flesh are affected by
+this spell. This effect lasts 60 seconds plus 10 seconds per caster level, but
+the target has a chance to remake its Fortitude save every 24 seconds."""
+icon = "FleshToStone"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Turn to stone"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Fog Cloud"
+description = """
+A bank of fog billows out, obscuring the sight of all targets within its effect and
+giving all creatures in the fog concealment (Attackers have 20% miss chance.),
+similar to a target-able ranged version of Obscuring Mist.
+Affects party members."""
+icon = "FogCloud"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Ghoul Touch"
+description = """
+This spell imbues your hand with negative energy, allowing you to paralyze 1 living
+Humanoid that you touch. A successful Fortitude save negates. Humanoids
+include Kobolds, Goblinoids, player Races except for Warforged, Troglodytes,
+and more."""
+icon = "GhoulTouch"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Globe of Invulnerability"
+description = """
+As Lesser Globe of Invulnerability, but spells of level 4 and under fail to target
+anyone located within the globe, meanwhile any type of spell can be cast through
+or out of the magical globe."""
+icon = "GlobeOfInvulnerability"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Grease"
+description = """
+Covers the ground with a 10 ft. square layer of slippery grease, forcing targets to
+make a Reflex save or fall. (Affects party members.) Sometimes it deals 2d6
+Fire damage per 2 caster levels to all enemies of the caster in the grease every
+few seconds, as well as the caster of the Grease spell.
+A successful Reflex save will reduce this damage by half."""
+icon = "Grease"
+max_caster_level = 5
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_number = 2
+bonus_dice_sides = 6
+damage = "Fire"
+per_caster_levels = 2
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negate"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Greater Teleport"
+description = """
+Confers to the Player Characters in the area of effect the option to be transported
+to 1 of a variety of locations."""
+icon = "GreaterTeleport"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Haste"
+description = """
+Quickens allies (32% Enhancement bonus to run speed), causing them to attack 15%
+faster than normal (15% Enhancement bonus to attack speed). In addition the
+recipient gains a +1 Enhancement bonus to attack rolls, plus a +1 dodge bonus
+to AC and Reflex saves."""
+icon = "Haste"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [32]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "MovementSpeed"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row]]
+name = "Hold Monster"
+description = """
+This spell functions like Hold Person, except that it affects any living creature
+that fails its Will save. The enemy is aware, but it can take no actions for
+a maximum of 6 seconds per caster level. The enemy may attempt to make a new
+Will save every 3 seconds."""
+icon = "HoldMonster"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Hold Monster, Mass"
+description = """
+As Hold Monster, but for multiple targets. Enemies that fail its Will save become
+paralyzed and can take no actions for a maximum of 6 seconds per caster level.
+The enemy may attempt to make a new Will save every 3 seconds."""
+icon = "HoldMonsterMass"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Hold"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Hold Person, Mass"
+description = """
+Casts Hold Person on multiple targets. Affected enemies that fail his Will save
+become paralyzed and can take no actions for a maximum of 6 seconds per caster
+level. The enemy may attempt to make a new Will save every 3 seconds. All attacks
+against a held opponent follow the rules of helpless opponents."""
+icon = "HoldPersonMass"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Hypnotism"
+description = """
+Gestures and droning incantation fascinate nearby enemies, causing them to stop and stare
+blankly until damaged. A successful Will save negates this effect. Hypnotism
+confers a -3 Will Save on all targets for 15 seconds, even if the targets make
+their save."""
+icon = "Hypnotism"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Invisibility"
+description = """
+This spell renders a creature invisible for 1 minute per caster level. Attacking a
+target, or using an object (door, lever, etc.) removes this condition."""
+icon = "Invisibility"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row]]
+name = "Invisibility, Mass"
+description = """
+Casts Invisibility on multiple allied creatures, rendering the creatures Invisible
+for 1 minute per caster level. Attacking a target, or using an object (Door,
+lever, etc.) removes this condition."""
+icon = "InvisibilityMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Jump"
+description = """
+Gives an allied creature a +10 Enhancement bonus to Jump skill for 1 minute per caster
+level. This bonus increases to +20 at 5th level, and +30 at 9th level. However
+creatures will see no improvement after obtaining a Jump skill of 40."""
+icon = "Jump"
+max_caster_level = 9
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    10,
+    10,
+    10,
+    10,
+    20,
+    20,
+    20,
+    20,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Unknown"
+targets = ["Jump"]
+
+[[row]]
+name = "Lesser Globe of Invulnerability"
+description = """
+An immobile, faintly shimmering magical sphere surrounds you and excludes all spell
+effects of level 3 and lower. Such spells fail to target anyone located within
+the globe, but any type of spell can be cast through or out of the magical globe."""
+icon = "LesserGlobeOfInvulnerability"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Master's Touch"
+description = """
+Enchants the items currently equipped in the target's right and left hands to grant
+their wielder proficiency if the items are simple or martial weapons, or shields,
+and lasts until the target rests."""
+icon = "MastersTouch"
+schools = ["Divination"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Morale"
+effect_type = "WeaponProficiencyClass"
+targets = ["Simple"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Morale"
+effect_type = "WeaponProficiencyClass"
+targets = ["Martial"]
+
+[[row]]
+name = "Mind Fog"
+description = """
+Produces a bank of thin mist that weakens the mental resistance of those caught in
+it, giving a -10 competence penalty to Will saves. A successful Will save
+negates this effect."""
+icon = "MindFog"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Mordenkainen's Disjunction"
+description = """
+A powerful force disrupts magical effects on the target, removing ongoing spells that
+have been cast on a target. You must make a caster level check of 1d20+your
+caster level (No maximum.) versus 11+the spell's caster level to remove a spell
+effect, and your target must make a Will save for each equipped item or all
+magical properties on them are temporarily disabled. Very slow cast time."""
+icon = "MordenkainensDisjunction"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Nightshield"
+description = """
+Grants a +1 Resistance bonus to saves (+2 at 6th level, +3 at 9th level.), and
+protection from Magic Missiles for 1 minute per caster level."""
+icon = "Nightshield"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magic Missiles"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Resistance"
+effect_type = "SaveBonus"
+stack_source = "Unknown"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    10,
+    10,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "You've Got My Back + Nightshield"
+effect_type = "MRR"
+
+[[row]]
+name = "Ooze Puppet"
+description = """
+Telekinetically controls the actions of an enemy Ooze, forcing it to change sides.
+The target is slowed by this spell, but gains additional Fortitude saves
+every 60 seconds to break free. While under the effect of this spell, the
+Ooze can't split."""
+icon = "OozePuppet"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Otto's Resistible Dance"
+description = """
+At your touch forces one Foe to dance, preventing it from doing anything else. A successful
+Will save negates this effect."""
+icon = "OttosResistibleDance"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Power Word: Stun"
+description = """
+Stuns a target, according to its Hit Points. Creatures with 150 or fewer current Hit
+Points are stunned for 4 to 32 seconds, creatures with 151 to 300 Hit Points
+are stunned for 2 to 16 seconds, and creatures with more than 301 hp are stunned
+for 8 seconds."""
+icon = "PowerWordStun"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row]]
+name = "Protection From Energy"
+description = """
+Protection from Energy grants temporary immunity to one chosen type of energy you
+specify when you cast it, or until 12 points of energy per caster level (Maximum
+caster level 10.) from the chosen kind of energy type has been absorbed.
+Energy types available are: Acid, Cold, Electricity, Fire, and Sonic."""
+icon = "ProtectionFromEnergy"
+max_caster_level = 10
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "All"
+spell_power = "All"
+
+[[row]]
+name = "Protection from Elements"
+description = """
+Grants temporary immunity to all forms of energy for 1 minute per caster level, or
+until 12 points of energy per caster level (Maximum caster level 10.) for each
+energy type has been absorbed."""
+icon = "ProtectionFromElements"
+max_caster_level = 10
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+damage = "All"
+per_caster_levels = 1
+
+[[row]]
+name = "Protection from Elements, Mass"
+description = """
+Casts Protection from Elements on multiple targets, granting targets temporary immunity
+to all forms of energy for 1 minute per caster level, or until 12 points of energy
+per caster level (Maximum caster level 10) for each energy type has been absorbed."""
+icon = "ProtectionFromElementsMass"
+max_caster_level = 10
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+damage = "All"
+
+[[row]]
+name = "Ray of Enfeeblement"
+description = """
+A coruscating ray springs towards the target, inflicting a 1d6 Strength penalty plus
+1 additional per 2 caster levels. (Maximum Strength penalty 1d6+5.)"""
+icon = "RayOfEnfeeblement"
+max_caster_level = 9
+metamagics = ["Quicken"]
+schools = ["Necromancy"]
+
+[[row]]
+name = "Ray of Exhaustion"
+description = """
+A ray causes 1 target become exhausted. Exhausted creatures take a -6 penalty on
+Strength and Dexterity, and move at 50% speed. A successful Fortitude save means
+the creature is only fatigued."""
+icon = "RayOfExhaustion"
+metamagics = [
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Fatigue instead"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Resist Energy"
+description = """
+Gives an ally limited resistance from one chosen energy type, reducing damage or
+attack by 10. (20 at caster level 7th, 30 at 11th.)
+Energy types available are: Acid, Cold, Electricity, Fire, or Sonic."""
+icon = "ResistEnergy"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    20,
+    20,
+    20,
+    20,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+stack_source = "Unknown"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Sonic",
+]
+
+[[row]]
+name = "Scare"
+description = """
+This spell functions like Cause Fear on multiple targets. Creatures with 6 or more
+Hit Die are immune to this effect. Affected enemies become frightened.
+A successful Will save causes the target to become Shaken instead."""
+icon = "Scare"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "See Invisibility"
+description = "Reveals Invisible creatures, or objects."
+icon = "SeeInvisibility"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Divination"]
+
+[[row]]
+name = "Shadow Walk"
+description = """
+Transports you to the edge of the Material Plane where it borders
+the Plane of Shadow. While this spell is active, you move 50% faster than
+normal, and your outline appears faint and you are harder to hit. Attacking
+another creature, or otherwise interacting with objects shunts you back to
+the Material Plane."""
+icon = "ShadowWalk"
+max_caster_level = 20
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Illusion"]
+
+[[row]]
+name = "Shield"
+description = """
+Grants a +4 shield bonus to Armor Class, and protection from Magic Missile for 1
+minute per caster level."""
+icon = "Shield"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Shield"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magic Missiles"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    10,
+    10,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "You've Got My Back + Shield"
+effect_type = "PRR"
+
+[[row]]
+name = "Silence Creature"
+description = """
+Attempt to magically silence one enemy, who must succeed on a Will saving throw or
+be rendered unable to cast spells for 6 seconds, plus an additional second per
+caster level. (Maximum Caster Level: 20). Creatures that have been silenced in
+this manner may attempt to save again every two seconds. Does not affect Bosses
+or Raid Bosses."""
+icon = "SilenceCreature"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Sleep"
+description = """
+Induces a magical slumber, rendering creatures Helpless until attacked. Ineffective on Undead,
+Constructs, or Oozes. A successful Will save negates this effect."""
+icon = "Sleep"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Sleet Storm"
+description = """
+Driving sleet blocks all sight (Attackers are Blinded.), and causes the ground around
+the target to become icy, slowing targets within it by 50%. This spell affects
+party members too."""
+icon = "SleetStorm"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.dc]]
+amount = [10]
+dc_type = "Knocked Prone"
+dc_versus = "Reflex"
+
+[[row]]
+name = "Stoneskin"
+description = """
+The warded creature gains resistance to base melee damage granting Damage Reduction
+10/Adamantine. Once the spell has prevented a total of 10 points damage per
+caster level it is discharged. Otherwise it lasts 1 minute per caster level.
+(Special material component: Granite and Diamond Dust.)"""
+icon = "Stoneskin"
+max_caster_level = 15
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Adamantine"
+
+[[row]]
+name = "Suggestion"
+description = """
+Influences the actions of an enemy, allowing you to suggest it to fight as your ally
+for 30+2 seconds per caster level. A successful Will save negates this effect."""
+icon = "Suggestion"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Summon Monster I"
+description = """
+Summons 1 Monster from 3 choices: Brown Spider, Celestial Dog, Giant Rat to fight for you
+for 10 minutes. You can only have 1 summoned creature of any type serving you
+at a time. Summoning a new creature of any type will return the previous one to
+its home plane."""
+icon = "SummonMonsterI"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Summon Monster III"
+description = """
+Summons 1 Monster from 3 choices: Winter Wolf, Air Mephit or Hellhound to fight for
+you for 10 minutes. You can only have 1 summoned creature of any type serving
+you at a time. Summoning a new creature of any type will return the previous
+one to its home plane."""
+icon = "SummonMonsterIII"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Summon Monster IV"
+description = """
+Summons 1 Monster from 3 choices: Fiendish Monstrous Spider, Greater Air Mephit or
+Lantern Archon to fight for you for 10 minutes. You can only have 1 summoned
+creature of any type serving you at a time. Summoning a new creature of any
+type will return the previous one to its home plane."""
+icon = "SummonMonsterIV"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Summon Monster IX"
+description = """
+Summons 1 Monster from 3 choices: Eladrin Ghaele, Elder Fire Elemental, Hezrou to
+fight for you for 10 minutes. You can only have 1 summoned creature of any
+type serving you at a time. Summoning a new creature of any type will return
+the previous one to its home plane."""
+icon = "SummonMonsterIX"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Summon Monster VI"
+description = """
+Summons 1 Monster from 3 choices: Eladrin Bralani, Fiendish Troll or Large Water
+Elemental to fight for you for 10 minutes. You can only have 1 summoned
+creature of any type serving you at a time. Summoning a new creature of any
+type will return the previous one to its home plane."""
+icon = "SummonMonsterVI"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Summon Monster VIII"
+description = """
+Summons 1 Monster from 3 choices: Bezekira, Greater Air Elemental, Orthon to fight
+for you for 10 minutes. You can only have 1 summoned creature of any type
+serving you at a time. Summoning a new creature of any type will return the
+previous one to its home plane."""
+icon = "SummonMonsterVIII"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Symbol of Death"
+description = """
+You scribe a potent rune of power in the air. When the symbol is activated by a target
+approaching, all targets inside the symbol will suffer a single negative level.
+You can cause your enemies to run out and back in the symbol several times to
+stack up consecutive negative levels upon them, they will suffer one additional
+one each time they run through. A symbol will persist for about 5 minutes until
+triggered. Once triggered, a symbol's power begins to wane. A symbol will
+dissipate 20 seconds after first being triggered."""
+icon = "SymbolOfDeath"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row]]
+name = "Symbol of Fear"
+description = """
+You create a purple symbol of power in the air, and it's activated by an enemy who
+comes into range of it. It applies the condition Cowering to all nearby opponents
+for 6 seconds per caster level or until the symbol expires. Each enemy can make
+a Will save to negate this condition. The symbol dissipates in 20 seconds after
+being triggered, or in 5 minutes otherwise."""
+icon = "SymbolOfFear"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Symbol of Persuasion"
+description = """
+You create a pinkish symbol of power in the air, and it's activated by an enemy who
+comes into range of it, applying a charm effect to all nearby targets for 6
+seconds per caster level or until the symbol expires. Each target can make a
+Will save to negate the effect. The symbol dissipates 20 seconds after being
+triggered, or in 5 minutes otherwise."""
+icon = "SymbolOfPersuasion"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Symbol of Stunning"
+description = """
+You create a symbol of power in the air, and it's activated by a target approaching.
+All targets entering the area of effect are Stunned for 6d6 seconds or until
+the symbol expires. A successful Will save negates this condition. The symbol
+dissolves 20 seconds after being triggered, or in 5 minutes otherwise."""
+icon = "SymbolOfStunning"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Teleport"
+description = "Lets you pick from several destinations (In town only.)"
+icon = "Teleport"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Tenser's Transformation"
+description = """
+Causes the caster to become a virtual fighting machine becoming stronger, tougher,
+faster, and more skilled in combat. You gain a +4 alchemical bonus to Strength,
+Dexterity, and Constitution, a +6 alchemical bonus to Armor Class, and proficiency
+with all simple and martial weapons. Your base attack bonus equals your character
+level. Your spellcasting ability is reduced, resulting in a -2 penalty to all
+spell DCs, -2 to your rolls to bypass enemy Spell Resistance, and doubling the
+cooldown of your spells."""
+icon = "TensersTransformation"
+metamagics = [
+    "Embolden",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Alchemical"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+effect_type = "SpellPenetrationBonus"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Alchemical"
+effect_type = "WeaponProficiencyClass"
+targets = ["Simple"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Alchemical"
+effect_type = "WeaponProficiencyClass"
+targets = ["Martial"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "OverrideBAB"
+
+[[row]]
+name = "Touch of Idiocy"
+description = "Target takes 1d6 points of Charisma, Intelligence, and Wisdom damage."
+icon = "TouchOfIdiocy"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row]]
+name = "Trap the Soul"
+description = """
+Forces a creature's life force and its material body into a gem on a failed Will save.
+Although this essentially 'kills' the target, it is not a Death effect and
+functions on creatures such as Undead. (But not most Constructs.) This spell
+requires a Khyber Dragonshard as a special material component."""
+icon = "TrapTheSoul"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates becoming a Gem"
+dc_versus = "Will"
+schools = ["Conjuration"]
+
+[[row]]
+name = "True Seeing"
+description = """
+You confer on the ally the ability to see things as they actually are. This allows
+the target to notice secret doors hidden by magic, see the exact location of
+creatures hidden by Blur or Displacement effects, and see Invisible creatures
+or objects normally."""
+icon = "TrueSeeing"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Divination"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TrueSeeing"
+targets = ["All"]
+
+[[row]]
+name = "Undeath to Death"
+description = """
+Destroys several Undead creatures (With a Hit Die equal or less than 9), only 1 Undead
+is affected for every 4 caster levels. (Maximum Undead 4)
+A successful Will save negates this effect."""
+icon = "UndeathToDeath"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Wail of the Banshee"
+description = """
+You emit a terrible scream, creating a deadly area around yourself for 6 seconds.
+Every 2 seconds, two nearby enemies must make a Fortitude save or die.
+On a successful Fortitude save, the target takes 1 to 4 negative levels.
+You are free to perform other actions while Wail of the Banshee is active."""
+icon = "WailOfTheBanshee"
+metamagics = [
+    "Embolden",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Death"
+dc_versus = "Fortitude"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Water Breathing"
+description = "Grants the ability to breathe water to you and your allies."
+icon = "WaterBreathing"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Drowning"]
+
+[[row]]
+name = "Waves of Exhaustion"
+description = """
+Waves of negative energy cause all living creatures to become Exhausted. Exhausted
+creatures take a -6 penalty to Strength and Dexterity, and move at 50% speed."""
+icon = "WavesOfExhaustion"
+metamagics = ["Quicken"]
+schools = ["Necromancy"]
+
+[[row]]
+name = "Waves of Fatigue"
+description = """
+Waves of negative energy cause all living creatures to become Fatigued. Fatigued
+creatures take a -2 penalty to Strength and Dexterity."""
+icon = "WavesOfFatigue"
+metamagics = ["Quicken"]
+schools = ["Necromancy"]

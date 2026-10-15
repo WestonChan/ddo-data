@@ -1,0 +1,46 @@
+name = "Mythic Arcane Armor"
+description = """
+The result of an experiment in forming a brigade of armored wizards. The Wizards
+may have died in battle, but the armor remains."""
+drop_location = "Fashion Madness, end chest"
+enhancement_bonus = 10
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 26
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Wizardry X"
+bonus_type = "Enhancement"
+value = 250
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Greater Arcane Casting Dexterity"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fashion Madness"

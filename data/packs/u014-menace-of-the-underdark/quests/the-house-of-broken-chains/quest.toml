@@ -1,0 +1,32 @@
+name = "The House of Broken Chains"
+bestowed_by = "Mirini Elemys"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "Menace of the Underdark"
+patron = "Purple Dragon Knights"
+zone = "House Avithoul"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_House_of_Broken_Chains"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "epic_level"
+reason = "The wiki's quest index gives an epic level of 22; his Quests.xml gives none."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 22
+
+[[run]]
+tier = "epic"
+level = 22

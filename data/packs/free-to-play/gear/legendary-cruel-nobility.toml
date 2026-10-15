@@ -1,0 +1,50 @@
+name = "Legendary Cruel Nobility"
+accepts_sentience = true
+description = """
+A finely wrought scimitar that once belonged to a Rakshasa noble, glowing darkly
+with an unholy aura. It tears into enemies visciously and is especially debilitating
+against those whose hearts are not evil."""
+drop_location = "Legendary version of Epic Cruel Nobility"
+enhancement_bonus = 15
+icon = "Scimitar_6h"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Axiomatic Burst 6"
+
+[[effect]]
+name = "Evil Blast 6"
+
+[[effect]]
+name = "Bleeding 6"
+
+[[effect]]
+name = "Utter Disintegration"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

@@ -1,0 +1,26 @@
+name = "+5 Cold Resistance"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+description = """
+Exceptional Cold Resistance + 5: +5 Exceptional bonus to resist Cold damage.
+Water:Opposition:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Exceptional"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Exceptional"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: accessory subjugation"

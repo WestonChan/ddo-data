@@ -1,0 +1,59 @@
+name = "Epic Resplendence"
+description = """
+Polished so finely, this runearm appears to magnify even the dimmest of lights
+to a brilliant glare."""
+drop_location = "Fashion Madness, End chest"
+icon = "RuneArm_3e"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 26
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 150
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Rune Arm Imbue - Light IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Light Spirals",
+    "None",
+]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fashion Madness"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

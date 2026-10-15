@@ -1,0 +1,55 @@
+name = "Legendary Dream of the Worldshaper"
+description = """
+A comforting and inspiring presence surrounds you as you hold this cloak. Arcane
+runes run along the edges of this fine cape, and masterfully drawn on the silken
+lining is an incredibly detailed map of a place named 'Blackmoor'."""
+drop_location = "Catalyst Crafting, Turn in Mantle of the Worldshaper, its Legendary Deep Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+icon = "Cloak_22a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 35
+slot = "Back"
+
+[[clickie]]
+name = "Spell Absorption"
+clickie = "Spell Absorption"
+
+[[effect]]
+name = "Heroic Inspiration"
+
+[[effect]]
+name = "Nullmagic Guard"
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 13
+
+[[effect]]
+name = "Strength of Purpose"
+bonus_type = "Enhancement"
+value = 128
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    20,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Spell Absorption"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

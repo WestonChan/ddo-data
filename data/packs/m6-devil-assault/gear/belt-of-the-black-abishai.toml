@@ -1,0 +1,43 @@
+name = "Belt of the Black Abishai"
+description = "This belt seems to be attuned to elemental power."
+drop_location = "The Chronoscope, and The Chronoscope (Legendary), optional chests"
+icon = "Belt_4e"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 5
+slot = "Waist"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 12
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

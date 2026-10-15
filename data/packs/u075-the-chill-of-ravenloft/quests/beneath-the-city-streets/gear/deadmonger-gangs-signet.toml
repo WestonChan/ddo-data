@@ -1,0 +1,33 @@
+name = "Deadmonger Gang's Signet"
+description = """
+Used exclusively by higher-ups in the Deadmonger gang, this adds legitimacy
+to secret correspondences"""
+drop_location = "Beneath the City Streets, end chest (rare)"
+icon = "Ring_21a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 8
+slot = "Ring"
+
+[[effect]]
+name = "Minor Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"

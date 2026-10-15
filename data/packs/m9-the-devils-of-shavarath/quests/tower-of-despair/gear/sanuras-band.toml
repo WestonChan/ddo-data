@@ -1,0 +1,70 @@
+name = "Sanura's Band"
+description = """
+This ebon ring shivers with dark power. It was worn by Sanura, a dreaded Pale
+Master, who consorted with undead and controlled them with the hint of a whisper."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Pale Master"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    30,
+    30,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Pale Master - 2 Piece bonus"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    60,
+    60,
+    60,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Pale Master - 3 Piece bonus"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

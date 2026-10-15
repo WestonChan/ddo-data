@@ -1,0 +1,98 @@
+name = "Epic Chain of Conviction"
+description = """
+Bright blue sashes crisscross over a coat of thick mail. The holy symbol of
+the flame is clearly displayed."""
+drop_location = "Flesh Maker's Laboratory (epic), End chest"
+enhancement_bonus = 11
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 27
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 19
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 8
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    25,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flesh Maker's Laboratory"

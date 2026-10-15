@@ -1,0 +1,1777 @@
+name = "Dragon Disciple"
+background = "MonkBackground"
+icon = "Monk"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Dragon Disciple: Draconic Studies"
+cost_per_rank = [1]
+description = """
+While you are centered, you can use your Wisdom modifier to hit.
+You are centered with one-handed Clubs and Sceptres. Each core ability in this
+tree grants you +3 Melee Power, +3 Universal Spell Power, and +3 Magical
+Resistance Rating."""
+icon = "MDDDraconicStudies"
+internal_name = "MDDCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Club",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = [
+    "UniversalSpellPower",
+    "MRR",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Wisdom",
+    "All",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dragon Disciple: Way of the Mighty Dragon I"
+cost_per_rank = [1]
+description = """
+Like a Dragon, your power is undeniable.
+You gain +2 to your Spellcraft skill and +2 to Attack. At Dragon Disciple levels
+9 and 15 these bonuses increase by +1. You are now Centered while wielding Orbs.
+While you are Centered, you can use your Wisdom modifier to damage."""
+icon = "MDDWayOfTheMightyDragonI"
+internal_name = "MDDCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = [
+    "UniversalSpellPower",
+    "MRR",
+]
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+stack_source = "Dragon Disciple"
+targets = ["Spellcraft"]
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+stack_source = "Dragon Disciple"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Orb",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Wisdom",
+    "All",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["MDDCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Disciple: Way of the Mighty Dragon II"
+cost_per_rank = [1]
+description = """
+Your Way of the Mighty Dragon now includes +2% Doublestrike.
+At Dragon Disciple levels 9 and 15 this bonus increases by +1%.
+You gain True Seeing."""
+icon = "MDDWayOfTheMightyDragonII"
+internal_name = "MDDCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = [
+    "UniversalSpellPower",
+    "MRR",
+]
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+stack_source = "Dragon Disciple"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TrueSeeing"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 6
+
+[[enhancement.requirement]]
+items = ["MDDCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Disciple: Fist of the Dragon"
+cost_per_rank = [1]
+description = """
+Centered Melee Attack: Channel Draconic strength and the power of your weapons
+into your fist, hitting enemies in a small area. If you have a Power in Practice
+Imbue enabled, you deal 1d6 + 1d6 per Character Level damage of that imbue's
+element. This scales with 100% Spell Power.
+Cooldown: 12 seconds."""
+icon = "MDDFistOfTheDragon"
+internal_name = "MDDCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = [
+    "UniversalSpellPower",
+    "MRR",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 12
+
+[[enhancement.requirement]]
+items = ["MDDCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Disciple: Way of the Mighty Dragon III"
+cost_per_rank = [1]
+description = """
+Your Way of the Mighty Dragon now includes +3 Critical Confirmation and Critical
+Damage and +3 Imbue Dice. +5 Maximum Caster Level with Lesser Draconic Burst."""
+icon = "MDDWayOfTheMightyDragonIII"
+internal_name = "MDDCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = [
+    "UniversalSpellPower",
+    "MRR",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackCritical"
+extra_types = ["Weapon_DamageCritical"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevelSpell"
+targets = [
+    "Lesser Draconic Burst: Acid",
+    "Lesser Draconic Burst: Cold",
+    "Lesser Draconic Burst: Electric",
+    "Lesser Draconic Burst: Fire",
+    "Lesser Draconic Burst: Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 18
+
+[[enhancement.requirement]]
+items = ["MDDCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Disciple: Draconic Apotheosis"
+cost_per_rank = [1]
+description = """
+On Activation: For 20 seconds, you take 50% less damage from Fire, Cold, Electric, Acid,
+and Poison, gain +2 to all Ability Scores, immunity to Sleep and Paralysis,
++1 Critical Threat Range with all weapons, +5% Spell Critical Damage, and Acolyte's
+Breath and Devastation both deal double damage.
+Cost: 100 Ki.
+Cooldown: 2 minutes.
+Passive: +4 Wisdom, +3 Imbue Dice, +12 Melee Power, and +12 Universal Spell Power.
++10 Maximum Caster Level with Lesser Draconic Burst and Draconic Burst."""
+icon = "MDDDraconicApotheosis"
+internal_name = "MDDCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "MDDCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = [
+    "UniversalSpellPower",
+    "MRR",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["UniversalSpellPower"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevelSpell"
+targets = [
+    "Lesser Draconic Burst: Acid",
+    "Lesser Draconic Burst: Cold",
+    "Lesser Draconic Burst: Electric",
+    "Lesser Draconic Burst: Fire",
+    "Lesser Draconic Burst: Poison",
+    "Draconic Burst: Acid",
+    "Draconic Burst: Cold",
+    "Draconic Burst: Electric",
+    "Draconic Burst: Fire",
+    "Draconic Burst: Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 20
+
+[[enhancement.requirement]]
+items = ["MDDCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "MDDCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Dragon Disciple: Lesser Draconic Burst"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain five SLAs, each in one of the Draconic elements (Fire, Cold, Electric, Acid, and Poison),
+which all share a single cooldown. You channel Ki to bring forth your Dragon's
+element in a small burst, hitting all enemies very close to you.
+Deals 1d6+1 [element] damage per caster level (max 5d6+5 at caster level 5).
+A successful Reflex save reduces damage by half, DC 10 + WIS mod + (Evocation,
+Conjuration or Transmutation depending on element) + Breath Weapon bonuses.
+Cooldown: 4 seconds
+Cost: 5 Ki
+Must be Centered to use."""
+icon = "MDDLesserDraconicBurst"
+internal_name = "MDDLesserDraconicBurst"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lesser Draconic Burst: Acid",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lesser Draconic Burst: Cold",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lesser Draconic Burst: Electric",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lesser Draconic Burst: Fire",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lesser Draconic Burst: Poison",
+    "Dragon Disciple",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dragon Disciple: Power in Practice"
+cost_per_rank = [1]
+description = """
+Taking this enhancement grants you five Imbue Toggles, in Fire, Cold, Electric,
+Acid and Poison. Imbue Toggle: While you are Centered, your Draconic Studies
+embolden your weapon strikes, which deal 1d6 damage of the relevant element on
+each hit. This damage scales with 100% of the relevant Spell Power."""
+icon = "MDDPowerInPractice"
+internal_name = "MDDPowerInPractice"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 1
+
+[[enhancement.stance]]
+name = "Power in Practice: Acid"
+description = """
+Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
+strikes, which deal 1d6 Acid damage on each hit. This damage scales with 100%
+of the Acid Spell Power."""
+group_name = "Imbue"
+icon = "MDDPowerInPracticeAcid"
+
+[[enhancement.stance]]
+name = "Power in Practice: Electric"
+description = """
+Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
+strikes, which deal 1d6 Electric damage on each hit. This damage scales with 100%
+of the Electric Spell Power."""
+group_name = "Imbue"
+icon = "MDDPowerInPracticeElectric"
+
+[[enhancement.stance]]
+name = "Power in Practice: Fire"
+description = """
+Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
+strikes, which deal 1d6 Fire damage on each hit. This damage scales with 100%
+of the Fire Spell Power."""
+group_name = "Imbue"
+icon = "MDDPowerInPracticeFire"
+
+[[enhancement.stance]]
+name = "Power in Practice: Ice"
+description = """
+Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
+strikes, which deal 1d6 Cold damage on each hit. This damage scales with 100%
+of the Cold Spell Power."""
+group_name = "Imbue"
+icon = "MDDPowerInPracticeIce"
+
+[[enhancement.stance]]
+name = "Power in Practice: Poison"
+description = """
+Imbue Toggle: While you are Centered, your Draconic Studies embolden your weapon
+strikes, which deal 1d6 Poison damage on each hit. This damage scales with 100%
+of the Poison Spell Power."""
+group_name = "Imbue"
+icon = "MDDPowerInPracticePoison"
+
+[[enhancement]]
+name = "Dragon Disciple: Study of Scales"
+cost_per_rank = [1]
+description = "+[1/2/3] Fortitude Saving Throws."
+icon = "MDDStudyOfScales"
+internal_name = "MDDStudyOfScales"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dragon Disciple: Draconic Devotion I"
+cost_per_rank = [2]
+description = "While Centered, you gain +8 Universal Spell Power."
+icon = "MDDDraconicDevotionI"
+internal_name = "MDDDraconicDevotionI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dragon Disciple: Heart of the Dragon"
+cost_per_rank = [1]
+description = """
++[1/2/3] Spellcraft, Heal, and Listen.
+Rank 3: +3 Magical Resistance Rating."""
+icon = "MDDHeartOfTheDragon"
+internal_name = "MDDHeartOfTheDragon"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Listen",
+    "Spellcraft",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+rank = 3
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dragon Disciple: Acolyte's Breath"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Taking this enhancement grants you five SLAs, in Fire, Cold, Electric, Acid,
+and Poison. All five share a single cooldown.
+Centered Ki Breath Attack SLA: You channel Ki to bring forth Draconic power
+in a small burst, hitting all enemies very close to you. Deals 1d6+3 damage
+of the relevant element per caster level. A successful Reflex save reduces
+damage by half. DC 10 + WIS mod + (Evocation, Conjuration, Transmutation
+depending on element) + Breath Weapon bonuses."""
+icon = "MDDAcolytesBreath"
+internal_name = "MDDAcolytesBreath"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Acolyte's Breath: Black",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Acolyte's Breath: Blue",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Acolyte's Breath: Green",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Acolyte's Breath: Red",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Acolyte's Breath: White",
+    "Dragon Disciple",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["MDDLesserDraconicBurst"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Disciple: Power Begets Power"
+cost_per_rank = [1]
+description = "Your melee strikes with weapons generate +2 Ki."
+icon = "MDDPowerBegetsPower"
+internal_name = "MDDPowerBegetsPower"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "KiHit"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Dragon Disciple: Discipleship I"
+cost_per_rank = [1]
+description = "+1 Imbue Dice."
+icon = "MDDDiscipleshipI"
+internal_name = "MDDDiscipleshipI"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Dragon Disciple: Innate Arcana"
+cost_per_rank = [1]
+description = "Your studies have increased your maximum Spell Points by +[30/60/90]."
+icon = "MDDInnateArcana"
+internal_name = "MDDInnateArcana"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    90,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Dragon Disciple: Action Boost: Doublestrike"
+cost_per_rank = [2]
+description = """
+You gain a +30% Action Boost bonus to Doublestrike for 20 seconds.
+Usable 5 times per rest.
+Cooldown: 30 seconds"""
+icon = "SFActionBoostDoublestrike"
+internal_name = "MDDActionBoostDoublestrike"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Dragon Disciple: Draconic Burst"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Taking this enhancement grants you five SLAs, in Fire, Cold, Electric, Acid,
+and Poison. All five share a single cooldown.
+Centered Ki Breath Attack SLA: You channel Ki to bring forth your Dragon's
+element in a small burst, hitting all enemies close to you. Deals 1d6+3 damage
+of the relevant element per caster level. A successful Reflex save reduces
+damage by half, DC 10 + WIS mod + (Evocation, Conjuration or Transmutation)
+bonuses + Breath Weapon bonuses."""
+icon = "MDDDraconicBurst"
+internal_name = "MDDDraconicBurst"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Burst: Acid",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Burst: Cold",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Burst: Electric",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Burst: Fire",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Burst: Poison",
+    "Dragon Disciple",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["MDDAcolytesBreath"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Disciple: Way of the Dragon"
+cost_per_rank = [2]
+description = "Select a Way based on your choice of Light or Dark Monk Path."
+icon = "MDDWayOfTheDragon"
+internal_name = "MDDWayOfTheDragon"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "Channel the Enlightened Dragon"
+cost_per_rank = [2]
+description = """
+Activate: You and nearby allies become immune to Daze, Stun, and Sleep for 60 seconds.
+Cooldown: 9 seconds.
+Cost: 10 Ki"""
+icon = "MDDWayOfTheDragon"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Path of Harmonious Balance: Fists of Light"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51GrandmasterOfFlowersCore4",
+    "Disciple of Philosophy: Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Channel the Raging Dragon"
+cost_per_rank = [2]
+description = """
+Activate: Nearby allies gain a +2 Untyped bonus to Attack, Saving Throws,
+and Skills for 60 seconds.
+Cooldown: 9 seconds
+Cost: 10 Ki"""
+icon = "MDDRagingDragon"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Path of Inevitable Dominion: Fists of Darkness"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51GrandmasterOfFlowersCore4",
+    "Disciple of Philosophy: Dark",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Disciple: Clear Your Mind"
+cost_per_rank = [2]
+description = """
+Battle Trance: While Centered, you gain an Insight bonus to Attack, Damage and
+the DCs of Tactical feats equal to 1/2 of your Wisdom modifier for 120 seconds.
+The effects of this Trance are dispelled if you are no longer Centered.
+Cooldown: 20 seconds.
+Activation Cost: 35 Ki.
+
+Antirequisite: This ability can not be trained if you have any other Battle Trance
+ability (e.g. Know the Angles)."""
+icon = "MDDClearYourMind"
+internal_name = "MDDClearYourMind"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "MDDClearYourMind",
+    "Battle Trance",
+]
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Dragon Disciple: Clear Your Mind (Wis Mod / 2)"
+effect_type = "TacticalDC"
+stack_source = "SnapshotWisdom"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Clear Your Mind"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Dragon Disciple: Clear Your Mind (Wis Mod / 2)"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_Damage"]
+stack_source = "SnapshotWisdom"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Clear Your Mind"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = [
+    "MDDClearYourMind",
+    "Battle Trance",
+]
+req_type = "Exclusive"
+
+[[enhancement.stance]]
+name = "Clear Your Mind"
+description = """
+Battle Trance: While Centered, you gain an Insight bonus to Attack, Damage and
+the DCs of Tactical feats equal to 1/2 of your Wisdom modifier for 120 seconds.
+Cooldown: 20 seconds. Activation Cost: 30 Ki.
+The effects of this Trance are dispelled if you are no longer Centered."""
+group_name = "Battle Trance"
+icon = "MDDClearYourMind"
+
+[[enhancement]]
+name = "Dragon Disciple: Draconic Devotion II"
+cost_per_rank = [2]
+description = """
+While Centered, +8 Universal Spell Power and +1% Universal Spell Critical Chance.
+Your Breath Attacks apply Shaken to affected enemies for 6 seconds."""
+icon = "MDDDraconicDevotionII"
+internal_name = "MDDDraconicDevotionII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellLore"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Dragon Disciple: Ability I"
+cost_per_rank = [2]
+description = "Select +1 to one Ability Score."
+icon = "HMAbilityScore"
+internal_name = "MDDAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Dragon Disciple: Secret Power"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Your Lesser Draconic Bursts now apply 2 stacks of Vulnerability to affected targets.
+Your Draconic Bursts now apply a stack of Weakened Will, Feeble Fortitude, and
+Reduced Reflexes to affected targets."""
+icon = "MDDSecretPower"
+internal_name = "MDDSecretPower"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["MDDDraconicBurst"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Disciple: Tranquility in Strife"
+cost_per_rank = [2]
+description = """
+Select an aspect of the Dragon that will unlock new Melee Weapons you can be
+Centered with."""
+icon = "MDDTranquilityInStrife"
+internal_name = "MDDTranquilityInStrife"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 4
+
+[[enhancement.selection]]
+name = "Dragon's Claw"
+cost_per_rank = [2]
+description = "You are now Centered with Handaxe, Battle Axe, and Sickle."
+icon = "MDDDragonsClaw"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Battle Axe",
+    "Handaxe",
+    "Sickle",
+]
+
+[[enhancement.selection]]
+name = "Dragon's Tail"
+cost_per_rank = [2]
+description = "You are now Centered with Light Hammer and Warhammer."
+icon = "MDDDragonsTail"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Light Hammer",
+    "Warhammer",
+]
+
+[[enhancement.selection]]
+name = "Dragon's Tooth"
+cost_per_rank = [2]
+description = "You are now Centered with Light and Heavy Pick."
+icon = "MDDTranquilityInStrife"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Light Pick",
+    "Heavy Pick",
+]
+
+[[enhancement]]
+name = "Dragon Disciple: Discipleship II"
+cost_per_rank = [1]
+description = "+2 Imbue Die and +3 to Breath Weapon DCs."
+icon = "MDDDiscipleshipII"
+internal_name = "MDDDiscipleshipII"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = ["Breath Weapon"]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Dragon Disciple: Draconic Devotion III"
+cost_per_rank = [2]
+description = "While Centered, +8 Universal Spell Power and +2% Universal Spell Critical Chance."
+icon = "MDDDraconicDevotionIII"
+internal_name = "MDDDraconicDevotionIII"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellLore"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Dragon Disciple: Ability II"
+cost_per_rank = [2]
+description = "Select +1 to one Ability Score."
+icon = "HMAbilityScore"
+internal_name = "MDDAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Dragon Disciple: Draconic Devastation"
+cost_per_rank = [1]
+description = """
+Taking this enhancement grants you file SLAs, in Fire, Cold, Electric, Acid,
+and Poison. All five share a single cooldown.
+Centered Ki Breath Attack SLA: Cone that deals 1d6+6 damage of the relevant
+element per caster level. A successful Reflex save reduces damage by half,
+DC 10 + WIS mod + (Evocation, Conjuration or Transmutation depending on element)
+bonuses + Breath Weapon bonuses. Affected enemies who are Shaken become Afraid
+and have their movement speed reduced by 90% for 6 seconds."""
+icon = "MDDDraconicDevastation"
+internal_name = "MDDDraconicDevastation"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Devastation: Black",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Devastation: Blue",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Devastation: Green",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Devastation: Red",
+    "Dragon Disciple",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Draconic Devastation: White",
+    "Dragon Disciple",
+]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["MDDSecretPower"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragon Disciple: Peace in Destruction"
+cost_per_rank = [1]
+description = """
+While Centered, you gain +1 Competence Bonus to Critical Threat Range and
+Critical Multiplier.
+Passive: You gain a +25% Competence bonus to Maximum Hit Points."""
+icon = "MDDPeaceInDestruction"
+internal_name = "MDDPeaceInDestruction"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalMultiplier"]
+targets = ["Handwraps"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Dragon Disciple: Perfect Disciple"
+cost_per_rank = [1]
+description = "+2 Breath Weapon DCs and +2 Evocation, Conjuration, and Transmutation DCs."
+icon = "MDDPerfectDisciple"
+internal_name = "MDDPerfectDisciple"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Evocation",
+    "Conjuration",
+    "Transmutation",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = ["Breath Weapon"]
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Dragon Disciple: Shining Scales"
+cost_per_rank = [1]
+description = "You gain +30 MRR cap."
+icon = "MDDShiningScales"
+internal_name = "MDDShiningScales"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "MRRCap"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Dragon Disciple: Flawless Breathing"
+cost_per_rank = [1]
+description = """
++4% Universal Spell Critical Chance.
+Your Acolyte's Breath and Draconic Devastation have their cooldown reduced by 33%."""
+icon = "MDDFlawlessBreathing"
+internal_name = "MDDPerfectBreathing"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellLore"
+
+[[enhancement.requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Dragon Disciple"]
+req_type = "Class"

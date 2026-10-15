@@ -1,0 +1,3 @@
+name = "Vampirism"
+description_template = "This weapon drains a tiny portion of the target's life force whenever it does damage. (Note: Provides 1d3 hp of healing per hit.)"
+verbose_name_template = "Vampirism"

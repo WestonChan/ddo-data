@@ -1,0 +1,99 @@
+name = "Epic Vulkoor's Chosen"
+icon = "Menechtarun"
+
+[[item]]
+name = "Epic Ancient Vulkoorim Dagger"
+
+[[item]]
+name = "Epic Bloodstone"
+
+[[item]]
+name = "Epic Bracers of Deftness"
+
+[[item]]
+name = "Epic Collapsible Shortbow"
+
+[[item]]
+name = "Epic Pouch of Jerky"
+
+[[item]]
+name = "Epic Shield of the Scorpion"
+
+[[item]]
+name = "Epic Silken Mail"
+
+[[item]]
+name = "Epic Spectral Gloves"
+
+[[item]]
+name = "Epic Sting"
+
+[[item]]
+name = "Epic Vulkoorim Dervish Robe"
+
+[[item]]
+name = "Epic Vulkoorim Fighting Leathers"
+
+[[item]]
+name = "Epic Vulkoorim Pendant"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Poison Resistance"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Dexterity"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Constitution"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "EnergyResistance"
+targets = ["Poison"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "SneakAttackDice"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect_type = "AbilityBonus"
+targets = [
+    "Dexterity",
+    "Constitution",
+]

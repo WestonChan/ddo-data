@@ -1,0 +1,22 @@
+name = "Menace of the Underdark"
+pack = "Menace of the Underdark"
+wiki_url = "https://ddowiki.com/page/Menace_of_the_Underdark_(Epic)"
+quests = [
+    "Don't Drink the Water",
+    "Impossible Demands",
+    "In the Belly of the Beast",
+    "Reclaiming the Rift",
+    "The Battle for Eveningstar",
+    "The Deal and the Demon",
+    "The House of Broken Chains",
+    "The House of Death Undone",
+    "The House of Rusted Blades",
+    "The Lost Thread",
+    "The Portal Opens",
+    "The Unquiet Graves",
+    "Trial by Fury",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Menace_of_the_Underdark_(Epic)"
+read = "2026-10-02"

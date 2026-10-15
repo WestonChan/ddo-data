@@ -1,0 +1,38 @@
+name = "Epic Hide of the Fallen"
+description = """
+This large cape was once the skin of an animal summoned to this plane, then
+abandoned. Over time, it learned to survive... at a cost. Still, its remains
+should prove useful."""
+drop_location = "The Devil's Details, End chest"
+icon = "Cloak_9"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 28
+slot = "Back"
+
+[[effect]]
+name = "Druidic Survival Mastery"
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 6
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Devil's Details"

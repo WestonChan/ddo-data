@@ -1,0 +1,31 @@
+name = "Guidance of Shar (Level 15)"
+description = """
+This thin black disc of metal is a holy symbol dedicated to Shar, Mistress of
+the Night."""
+drop_location = "Disciples of Shar, end chest (Heroic Elite)"
+icon = "Trinket_77"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+slot = "Trinket"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Guidance of Shar"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Disciples of Shar"

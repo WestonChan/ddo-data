@@ -1,0 +1,37 @@
+name = "Legendary Plateshard Belt"
+description = "This makeshift belt is fastened from the broken steel of other suits of armor."
+drop_location = "Sunrise, End chest, Abbot chest"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 120
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Incite"
+bonus_type = "Insight"
+value = 52
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, abbot chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sunrise"

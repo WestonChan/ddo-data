@@ -1,0 +1,27 @@
+name = "Miserable Negative Spell Crit Damage (Legendary)"
+description = "+6% Quality bonus to Negative Spell Critical Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Quality"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Miserable Negative Spell Critical Damage (Legendary)"
+reason = "The wiki names it Miserable Negative Spell Crit Damage (Legendary), where Maetrim names it Spell Critical Damage."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-10-02"
+qualifier = 'family "Lamordia_Legendary"'
+
+[[slot]]
+slot = "lamordia: miserable (accessory)"

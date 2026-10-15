@@ -1,0 +1,30 @@
+name = "Giantcraft Siberys Compass (Level 25)"
+description = """
+This compass has been enchanted beyond the limits of what is now possible. Its
+wavering dragonshard needle all but points the way to your destiny."""
+drop_location = "Return to Gianthold Tor, Blue Dragon 's chest (Epic Elite)"
+icon = "Trinket_14a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 25
+slot = "Trinket"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "blue dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

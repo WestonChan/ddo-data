@@ -1,0 +1,71 @@
+name = "Kobold Admiral's Tiller"
+description = """
+Finding himself surrounded at the helm by a fierce pack of stowaway wererats,
+kobold 'Admiral' Ancker tore the ship's wheel off and, using it to fend them
+off, defeated the mangy lot of them. In honor of the day, he had the wheel
+fashioned into a 'proper' buckler shield."""
+drop_location = "Ghost of a Chance (epic), Puzzle chest; Three-Barrel Cove (epic), All Rare Encounters"
+enhancement_bonus = 7
+icon = "Shield_23"
+item_category = "Shield"
+item_type = "Buckler"
+material = "Densewood"
+minimum_level = 24
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 11
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Axeblock VI"
+
+[[effect]]
+name = "Hammerblock VII"
+
+[[effect]]
+name = "Guardbreaking"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "all rare encounters"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Three-Barrel Cove"
+
+[[source]]
+chest = "puzzle chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ghost of a Chance"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.8
+handedness = "Off-hand"
+weapon_type = "Buckler"

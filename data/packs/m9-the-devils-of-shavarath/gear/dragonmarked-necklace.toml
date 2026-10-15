@@ -1,0 +1,48 @@
+name = "Dragonmarked Necklace"
+description = """
+This necklace is inscribed with tiny Dragonmarks, and becomes more powerful
+in the hands of a Dragonmarked Heir."""
+drop_location = "Bastion of Power, Any end chest ; Tower of Despair, Nythirios chest"
+icon = "Necklace_3"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Minor Lesser Dragonmark Enhancement"
+
+[[effect]]
+name = "Dragonmark Heir"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Dragonmark Heir - 2 Piece bonus"
+effect_type = "NotModeled"
+extra_types = ["NotModeled"]
+targets = ["All"]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bastion of Power"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

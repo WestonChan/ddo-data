@@ -1,0 +1,4 @@
+name = "Ranged Threat Generation"
+category = "other"
+home_bonus_type = "Insight"
+verbose_name_template = "%b1 Ranged Threat Generation +{1}"

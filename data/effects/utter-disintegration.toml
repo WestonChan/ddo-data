@@ -1,0 +1,3 @@
+name = "Utter Disintegration"
+description_template = "This weapon has a dark, insidious power deep within. Occasionally, this power lashes out violently at enemies and attempts to disintegrate them. This disintegrate is incredibly powerful, and will utterly destroy weaker foes."
+verbose_name_template = "Utter Disintegration"

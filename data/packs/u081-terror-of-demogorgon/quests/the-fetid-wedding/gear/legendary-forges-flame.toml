@@ -1,0 +1,64 @@
+name = "Legendary Forge's Flame"
+description = "The fires of the Great Forge are barely contained in the mechanical frame."
+drop_location = "The Fetid Wedding, end chest"
+icon = "RuneArm_3a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 35
+slot = "Runearm"
+
+[[clickie]]
+name = "Fire Blast"
+clickie = "Fire Blast"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Fire Intensity"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Spell Lore V"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Insight"
+value = 6
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Fire Blast",
+    "Unknown",
+]
+
+[[socket]]
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Fetid Wedding"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

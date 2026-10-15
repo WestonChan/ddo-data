@@ -1,0 +1,48 @@
+name = "Gravekeeper's Gambeson"
+description = "Sturdy, yet fashionable, clothing suitable for working six feet down."
+drop_location = "Land of Lamordia, red-named rare encounter chests"
+enhancement_bonus = 4
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 16
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 5
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 2
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "red-named rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

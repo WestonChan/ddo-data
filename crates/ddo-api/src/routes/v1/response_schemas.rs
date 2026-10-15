@@ -46,6 +46,7 @@ pub(crate) struct EffectStatBonus {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectBonusGroup {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
 }
 
@@ -134,8 +135,43 @@ fn schema_line_damage() -> RefOr<Schema> {
 }
 
 #[derive(utoipa::ToSchema)]
+#[schema(
+    description = "A source row has no identity of its own: id and slug identify the referenced source entity. Both are null for starter gear, which has no source entity. Challenge sources reference an adventure pack."
+)]
+pub(crate) struct LootSource {
+    pub(crate) character_level: Option<i64>,
+    pub(crate) chest: Option<String>,
+    #[schema(schema_with = schema_vendor_cost)]
+    pub(crate) cost: Option<String>,
+    pub(crate) price: Vec<VendorPriceEntry>,
+    #[schema(required = true)]
+    pub(crate) id: Option<i64>,
+    #[schema(required = true)]
+    pub(crate) slug: Option<String>,
+    pub(crate) is_rare: bool,
+    pub(crate) kind: String,
+    pub(crate) loot_type: Option<String>,
+    pub(crate) name: String,
+    pub(crate) tier: Option<String>,
+    pub(crate) wiki_url: Option<String>,
+}
+
+fn schema_pack_update() -> RefOr<Schema> {
+    described_schema::<Option<String>>("The game update in which the pack shipped, such as Update 39, Module 1.4 or Public Beta Test; null when unknown.")
+}
+
+fn schema_pack_release_date() -> RefOr<Schema> {
+    described_schema::<Option<String>>("Release date in YYYY-MM-DD form; null when unknown.")
+}
+
+#[derive(utoipa::ToSchema)]
 pub(crate) struct AdventurePacksPageResponseAdventurePacksEntry {
+    #[schema(schema_with = schema_pack_update)]
+    pub(crate) update: Option<String>,
+    #[schema(schema_with = schema_pack_release_date)]
+    pub(crate) released: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_free_to_play: bool,
     pub(crate) name: String,
 }
@@ -152,6 +188,7 @@ pub(crate) struct AdventurePacksPageResponse {
 pub(crate) struct AdventurePacksDetailResponseItemsEntry {
     pub(crate) chest: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) loot_type: String,
     pub(crate) minimum_level: i64,
@@ -161,8 +198,13 @@ pub(crate) struct AdventurePacksDetailResponseItemsEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct AdventurePacksDetailResponse {
+    #[schema(schema_with = schema_pack_update)]
+    pub(crate) update: Option<String>,
+    #[schema(schema_with = schema_pack_release_date)]
+    pub(crate) released: Option<String>,
     pub(crate) augments: Vec<QuestsDetailResponseAugmentsEntry>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_free_to_play: bool,
     pub(crate) items: Vec<AdventurePacksDetailResponseItemsEntry>,
     pub(crate) name: String,
@@ -172,6 +214,7 @@ pub(crate) struct AdventurePacksDetailResponse {
 pub(crate) struct AugmentSlotTypesPageResponseAugmentSlotTypesEntry {
     pub(crate) family: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) label: String,
     pub(crate) qualifier: Option<String>,
     pub(crate) variant: String,
@@ -199,6 +242,7 @@ pub(crate) struct AugmentsPageResponseAugmentsEntry {
     pub(crate) grants_augment: Option<String>,
     pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) level_values: Option<Vec<f64>>,
     pub(crate) level_values2: Option<Vec<i64>>,
     pub(crate) levels: Option<Vec<i64>>,
@@ -223,6 +267,7 @@ pub(crate) struct AugmentsPageResponse {
 pub(crate) struct AugmentsDetailResponseAdventurePacksEntry {
     pub(crate) chest: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) loot_type: String,
     pub(crate) name: String,
@@ -269,7 +314,6 @@ pub(crate) struct AugmentsDetailResponseModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -287,6 +331,7 @@ pub(crate) struct AugmentsDetailResponseQuestsEntry {
     pub(crate) difficulties: Vec<String>,
     pub(crate) epic_level: Option<i64>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_free_to_play: bool,
     pub(crate) is_raid: bool,
     pub(crate) is_rare: bool,
@@ -295,20 +340,6 @@ pub(crate) struct AugmentsDetailResponseQuestsEntry {
     pub(crate) name: String,
     pub(crate) pack: String,
     pub(crate) patron: Option<String>,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct AugmentsDetailResponseSourcesEntry {
-    pub(crate) character_level: Option<i64>,
-    pub(crate) chest: Option<String>,
-    pub(crate) cost: Option<String>,
-    pub(crate) id: i64,
-    pub(crate) is_rare: bool,
-    pub(crate) kind: String,
-    pub(crate) loot_type: Option<String>,
-    pub(crate) name: String,
-    pub(crate) tier: Option<String>,
-    pub(crate) wiki_url: String,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -326,6 +357,7 @@ pub(crate) struct AugmentsDetailResponse {
     pub(crate) grants_augment: Option<String>,
     pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) level_values: Option<Vec<f64>>,
     pub(crate) level_values2: Option<Vec<i64>>,
     pub(crate) levels: Option<Vec<i64>>,
@@ -335,7 +367,7 @@ pub(crate) struct AugmentsDetailResponse {
     pub(crate) quests: Vec<AugmentsDetailResponseQuestsEntry>,
     pub(crate) set_bonus: Option<String>,
     pub(crate) slots: Vec<String>,
-    pub(crate) sources: Vec<AugmentsDetailResponseSourcesEntry>,
+    pub(crate) sources: Vec<LootSource>,
     pub(crate) suppress_set_bonus: bool,
     pub(crate) weapon_class: Option<String>,
 }
@@ -343,6 +375,7 @@ pub(crate) struct AugmentsDetailResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct BonusTypesPageResponseBonusTypesEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) stacks_with_self: bool,
 }
@@ -367,6 +400,7 @@ pub(crate) struct ClassesPageResponseClassesEntry {
     pub(crate) fortitude: String,
     pub(crate) hit_points: i64,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) large_icon: String,
     pub(crate) name: String,
     pub(crate) not_heroic: bool,
@@ -407,6 +441,7 @@ pub(crate) struct ClassesDetailResponseFeatsEntry {
     pub(crate) description: Option<String>,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) max_times_acquire: Option<i64>,
     pub(crate) name: String,
 }
@@ -437,6 +472,7 @@ pub(crate) struct ClassesDetailResponse {
     pub(crate) fortitude: String,
     pub(crate) hit_points: i64,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) large_icon: String,
     pub(crate) name: String,
     pub(crate) not_heroic: bool,
@@ -455,6 +491,7 @@ pub(crate) struct ClickiesPageResponseClickiesEntry {
     pub(crate) description: String,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) modifiers: Vec<AugmentsDetailResponseModifiersEntry>,
     pub(crate) name: String,
     pub(crate) school: Option<String>,
@@ -472,6 +509,7 @@ pub(crate) struct ClickiesPageResponse {
 pub(crate) struct CraftingSystemsPageResponseCraftingSystemsEntry {
     pub(crate) families: Vec<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) ingredient_count: i64,
     pub(crate) name: String,
     pub(crate) npc: Option<String>,
@@ -492,6 +530,7 @@ pub(crate) struct CraftingSystemsPageResponse {
 pub(crate) struct CraftingSystemsDetailResponseIngredientsEntry {
     pub(crate) bind: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) source: Option<String>,
     pub(crate) tier: String,
@@ -500,6 +539,7 @@ pub(crate) struct CraftingSystemsDetailResponseIngredientsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct CraftingSystemsDetailResponseRecipesEntryAugmentsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) min_level: i64,
     pub(crate) name: String,
 }
@@ -516,7 +556,6 @@ pub(crate) struct CraftingSystemsDetailResponseRecipesEntry {
     pub(crate) augments: Vec<CraftingSystemsDetailResponseRecipesEntryAugmentsEntry>,
     pub(crate) cost: Vec<CraftingSystemsDetailResponseRecipesEntryCostEntry>,
     pub(crate) grants_slot: Option<String>,
-    pub(crate) id: i64,
     pub(crate) note: Option<String>,
     pub(crate) option: String,
     pub(crate) slot: Option<String>,
@@ -527,6 +566,7 @@ pub(crate) struct CraftingSystemsDetailResponseRecipesEntry {
 pub(crate) struct CraftingSystemsDetailResponse {
     pub(crate) families: Vec<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) ingredient_count: i64,
     pub(crate) ingredients: Vec<CraftingSystemsDetailResponseIngredientsEntry>,
     pub(crate) name: String,
@@ -541,6 +581,7 @@ pub(crate) struct CraftingSystemsDetailResponse {
 pub(crate) struct DamageTypesPageResponseDamageTypesEntry {
     pub(crate) category: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
 }
 
@@ -564,6 +605,7 @@ pub(crate) struct EffectsPageResponseEffectsEntry {
     pub(crate) bonus_types: Vec<EffectsPageResponseEffectsEntryBonusTypesEntry>,
     pub(crate) detail_path: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) item_count: i64,
     pub(crate) kind: String,
     pub(crate) name: String,
@@ -653,6 +695,7 @@ pub(crate) struct EffectCarrierLine {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectsDetailResponseAugmentsAugmentsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     #[schema(schema_with = schema_carrier_line)]
     pub(crate) line: EffectLine,
@@ -681,6 +724,7 @@ pub(crate) struct EffectsDetailResponseAugments {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectsDetailResponseItemsItemsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     #[schema(schema_with = schema_carrier_line)]
     pub(crate) line: EffectLine,
@@ -708,7 +752,6 @@ pub(crate) struct EffectsDetailResponseItems {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectSetTierCarrier {
-    pub(crate) id: i64,
     pub(crate) name: String,
     #[schema(schema_with = schema_carrier_line)]
     pub(crate) line: EffectLine,
@@ -754,6 +797,7 @@ pub(crate) struct EffectsDetailResponseBonusesEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EffectTierStep {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) rank: i64,
 }
@@ -776,6 +820,7 @@ pub(crate) struct EffectsDetailResponse {
     #[schema(schema_with = schema_family_description_template)]
     pub(crate) description_template: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) items: EffectsDetailResponseItems,
     pub(crate) kind: String,
     pub(crate) category: Option<String>,
@@ -805,6 +850,7 @@ pub(crate) struct EnhancementTreesPageResponseEnhancementTreesEntry {
     pub(crate) enhancement_count: i64,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_legacy: bool,
     pub(crate) kind: String,
     pub(crate) name: String,
@@ -852,7 +898,6 @@ pub(crate) struct EnhancementTreesDetailResponseEnhancementsEntryModifiersEntry 
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -884,8 +929,9 @@ pub(crate) struct EnhancementTreesDetailResponseEnhancementsEntry {
     pub(crate) duration_seconds: Option<i64>,
     pub(crate) exclusions: Vec<String>,
     pub(crate) follow_on_modifiers: Vec<AugmentsDetailResponseModifiersEntry>,
-    pub(crate) icon: String,
+    pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) internal_name: String,
     pub(crate) is_clickie: bool,
     pub(crate) is_tier5: bool,
@@ -917,6 +963,7 @@ pub(crate) struct EnhancementTreesDetailResponse {
     pub(crate) enhancements: Vec<EnhancementTreesDetailResponseEnhancementsEntry>,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_legacy: bool,
     pub(crate) kind: String,
     pub(crate) name: String,
@@ -928,6 +975,7 @@ pub(crate) struct EnhancementTreesDetailResponse {
 pub(crate) struct EquipmentSlotsPageResponseEquipmentSlotsEntry {
     pub(crate) category: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) sort_order: i64,
 }
@@ -943,6 +991,7 @@ pub(crate) struct EquipmentSlotsPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EventsPageResponseEventsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) item_count: i64,
     pub(crate) name: String,
     pub(crate) wiki_url: String,
@@ -959,6 +1008,7 @@ pub(crate) struct EventsPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EventsDetailResponseItemsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) minimum_level: i64,
     pub(crate) name: String,
@@ -968,6 +1018,7 @@ pub(crate) struct EventsDetailResponseItemsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct EventsDetailResponse {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) item_count: i64,
     pub(crate) items: Vec<EventsDetailResponseItemsEntry>,
     pub(crate) name: String,
@@ -980,8 +1031,9 @@ pub(crate) struct FeatsPageResponseFeatsEntry {
     pub(crate) auto_acquire_ignores_requirements: bool,
     pub(crate) description: Option<String>,
     pub(crate) groups: Vec<String>,
-    pub(crate) icon: String,
+    pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) max_times_acquire: Option<i64>,
     pub(crate) name: String,
     pub(crate) source_id: Option<i64>,
@@ -1017,10 +1069,12 @@ pub(crate) struct FeatsDetailResponseAutoAcquireRequirementsEntry {
 }
 
 #[derive(utoipa::ToSchema)]
+#[schema(description = "A resolved feat bonus; id and slug identify the granting effect, not the bonus row.")]
 pub(crate) struct FeatsDetailResponseBonusesEntry {
     pub(crate) bonus_type: String,
     pub(crate) description: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) stat: String,
     pub(crate) stat_category: String,
@@ -1040,7 +1094,6 @@ pub(crate) struct FeatsDetailResponseConditionalGroupsEntryRequirementsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct FeatsDetailResponseConditionalGroupsEntry {
     pub(crate) groups: Vec<String>,
-    pub(crate) id: i64,
     pub(crate) requirements: Vec<FeatsDetailResponseConditionalGroupsEntryRequirementsEntry>,
 }
 
@@ -1076,7 +1129,6 @@ pub(crate) struct FeatsDetailResponseFollowOnModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -1113,7 +1165,6 @@ pub(crate) struct FeatsDetailResponseModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -1140,7 +1191,6 @@ pub(crate) struct FeatsDetailResponseStancesEntry {
     pub(crate) description: String,
     pub(crate) group_name: Option<String>,
     pub(crate) icon: String,
-    pub(crate) id: i64,
     pub(crate) incompatible: Option<Vec<String>>,
     pub(crate) modifiers: Vec<AugmentsDetailResponseModifiersEntry>,
     pub(crate) name: String,
@@ -1170,7 +1220,6 @@ pub(crate) struct FeatsDetailResponseThisAttackModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -1194,8 +1243,9 @@ pub(crate) struct FeatsDetailResponse {
     pub(crate) description: Option<String>,
     pub(crate) follow_on_modifiers: Vec<FeatsDetailResponseFollowOnModifiersEntry>,
     pub(crate) groups: Vec<String>,
-    pub(crate) icon: String,
+    pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) max_times_acquire: Option<i64>,
     pub(crate) modifiers: Vec<FeatsDetailResponseModifiersEntry>,
     pub(crate) name: String,
@@ -1225,7 +1275,6 @@ pub(crate) struct FiligreesPageResponseFiligreesEntryModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -1242,6 +1291,7 @@ pub(crate) struct FiligreesPageResponseFiligreesEntry {
     pub(crate) description: String,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) menu: String,
     pub(crate) modifiers: Vec<FiligreesPageResponseFiligreesEntryModifiersEntry>,
     pub(crate) name: String,
@@ -1273,7 +1323,6 @@ pub(crate) struct GuildBuffsPageResponseGuildBuffsEntryModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -1290,6 +1339,7 @@ pub(crate) struct GuildBuffsPageResponseGuildBuffsEntry {
     pub(crate) description: String,
     pub(crate) guild_level: i64,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) modifiers: Vec<GuildBuffsPageResponseGuildBuffsEntryModifiersEntry>,
     pub(crate) name: String,
 }
@@ -1308,6 +1358,7 @@ pub(crate) struct ItemsPageResponseItemsEntry {
     pub(crate) enhancement_bonus: Option<i64>,
     pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_legacy: bool,
     pub(crate) is_raid: bool,
     pub(crate) is_rare: bool,
@@ -1317,11 +1368,20 @@ pub(crate) struct ItemsPageResponseItemsEntry {
     pub(crate) pack: Option<String>,
     #[schema(schema_with = schema_item_first_set)]
     pub(crate) set: Option<String>,
+    pub(crate) sets: Vec<String>,
     pub(crate) slot: String,
 }
 
 fn schema_item_first_set() -> RefOr<Schema> {
-    described_schema::<Option<String>>("First set name on the item, or null when it belongs to none.")
+    described_schema::<Option<String>>(
+        "Deprecated: first set name on the item, or null when it belongs to none; use sets.",
+    )
+}
+
+fn schema_item_first_set_detail() -> RefOr<Schema> {
+    described_schema::<Option<ItemsDetailResponseSet>>(
+        "Deprecated: first set on the item, or null when it belongs to none; use sets.",
+    )
 }
 
 #[derive(utoipa::ToSchema)]
@@ -1345,6 +1405,7 @@ fn schema_item_page_rows() -> RefOr<Schema> {
 pub(crate) struct ItemsDetailResponseAdventurePacksEntry {
     pub(crate) chest: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) loot_type: Option<String>,
     pub(crate) name: String,
@@ -1380,7 +1441,6 @@ pub(crate) struct ItemsDetailResponseAugmentSlotsEntryOptionsEntryModifiersEntry
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -1395,6 +1455,7 @@ pub(crate) struct ItemsDetailResponseAugmentSlotsEntryOptionsEntryModifiersEntry
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseAugmentSlotsEntryOptionsEntrySetsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
 }
 
@@ -1404,7 +1465,6 @@ pub(crate) struct ItemsDetailResponseAugmentSlotsEntryOptionsEntry {
     pub(crate) effects: Vec<EffectLine>,
     pub(crate) grants_slot: Option<String>,
     pub(crate) icon: Option<String>,
-    pub(crate) id: i64,
     pub(crate) min_level: Option<i64>,
     pub(crate) modifiers: Vec<ItemsDetailResponseAugmentSlotsEntryOptionsEntryModifiersEntry>,
     pub(crate) name: String,
@@ -1425,6 +1485,7 @@ pub(crate) struct ItemsDetailResponseAugmentSlotsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseChallengePacksEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) name: String,
     pub(crate) wiki_url: String,
@@ -1442,6 +1503,7 @@ pub(crate) struct ItemsDetailResponseClickiesEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseCraftingSystemsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) name: String,
     pub(crate) wiki_url: String,
@@ -1450,6 +1512,7 @@ pub(crate) struct ItemsDetailResponseCraftingSystemsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseEventsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) name: String,
     pub(crate) wiki_url: String,
@@ -1471,7 +1534,6 @@ pub(crate) struct ItemsDetailResponseModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -1486,6 +1548,7 @@ pub(crate) struct ItemsDetailResponseModifiersEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseQuestChainsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) name: String,
     pub(crate) wiki_url: String,
@@ -1497,6 +1560,7 @@ pub(crate) struct ItemsDetailResponseQuestsEntry {
     pub(crate) difficulties: Vec<String>,
     pub(crate) epic_level: Option<i64>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_free_to_play: bool,
     pub(crate) is_raid: bool,
     pub(crate) is_rare: bool,
@@ -1510,6 +1574,7 @@ pub(crate) struct ItemsDetailResponseQuestsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseSagasEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) name: String,
     pub(crate) tier: Option<String>,
@@ -1518,23 +1583,10 @@ pub(crate) struct ItemsDetailResponseSagasEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseSet {
-    pub(crate) icon: String,
+    pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
-}
-
-#[derive(utoipa::ToSchema)]
-pub(crate) struct ItemsDetailResponseSourcesEntry {
-    pub(crate) character_level: Option<i64>,
-    pub(crate) chest: Option<String>,
-    pub(crate) cost: Option<String>,
-    pub(crate) id: Option<i64>,
-    pub(crate) is_rare: bool,
-    pub(crate) kind: String,
-    pub(crate) loot_type: Option<String>,
-    pub(crate) name: String,
-    pub(crate) tier: Option<String>,
-    pub(crate) wiki_url: Option<String>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -1544,8 +1596,11 @@ pub(crate) struct ItemsDetailResponseStarterRewardsEntry {
 
 #[derive(utoipa::ToSchema)]
 pub(crate) struct ItemsDetailResponseVendorsEntry {
+    #[schema(schema_with = schema_vendor_cost)]
     pub(crate) cost: Option<String>,
+    pub(crate) price: Vec<VendorPriceEntry>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) location: String,
     pub(crate) name: String,
@@ -1587,6 +1642,7 @@ pub(crate) struct ItemsDetailResponse {
     pub(crate) events: Vec<ItemsDetailResponseEventsEntry>,
     pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_legacy: bool,
     pub(crate) is_minor_artifact: bool,
     pub(crate) item_type: Option<String>,
@@ -1598,10 +1654,12 @@ pub(crate) struct ItemsDetailResponse {
     pub(crate) quests: Vec<ItemsDetailResponseQuestsEntry>,
     pub(crate) race_required: Option<String>,
     pub(crate) sagas: Vec<ItemsDetailResponseSagasEntry>,
+    #[schema(schema_with = schema_item_first_set_detail)]
     pub(crate) set: Option<ItemsDetailResponseSet>,
     pub(crate) set_name: Option<String>,
+    pub(crate) sets: Vec<ItemsDetailResponseSet>,
     pub(crate) slot: String,
-    pub(crate) sources: Vec<ItemsDetailResponseSourcesEntry>,
+    pub(crate) sources: Vec<LootSource>,
     pub(crate) starter_rewards: Vec<ItemsDetailResponseStarterRewardsEntry>,
     pub(crate) vendors: Vec<ItemsDetailResponseVendorsEntry>,
     pub(crate) weapon: Option<ItemsDetailResponseWeapon>,
@@ -1633,7 +1691,6 @@ pub(crate) struct OptionalBuffsPageResponseOptionalBuffsEntryModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -1645,11 +1702,17 @@ pub(crate) struct OptionalBuffsPageResponseOptionalBuffsEntryModifiersEntry {
     pub(crate) value: Option<String>,
 }
 
+fn schema_qualified_icon() -> RefOr<Schema> {
+    described_schema::<Option<String>>("Image path relative to /icons, without .png; null when artwork is unavailable.")
+}
+
 #[derive(utoipa::ToSchema)]
 pub(crate) struct OptionalBuffsPageResponseOptionalBuffsEntry {
     pub(crate) description: String,
-    pub(crate) icon: String,
+    #[schema(schema_with = schema_qualified_icon)]
+    pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) modifiers: Vec<OptionalBuffsPageResponseOptionalBuffsEntryModifiersEntry>,
     pub(crate) name: String,
 }
@@ -1665,6 +1728,7 @@ pub(crate) struct OptionalBuffsPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct PatronsPageResponsePatronsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
 }
 
@@ -1679,6 +1743,7 @@ pub(crate) struct PatronsPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct QuestChainsPageResponseQuestChainsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) pack: Option<String>,
     pub(crate) quest_count: i64,
@@ -1697,6 +1762,7 @@ pub(crate) struct QuestChainsPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct QuestChainsDetailResponseQuestsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) level: i64,
     pub(crate) name: String,
 }
@@ -1704,6 +1770,7 @@ pub(crate) struct QuestChainsDetailResponseQuestsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct QuestChainsDetailResponseRewardsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) minimum_level: i64,
     pub(crate) name: String,
@@ -1713,6 +1780,7 @@ pub(crate) struct QuestChainsDetailResponseRewardsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct QuestChainsDetailResponse {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) pack: Option<String>,
     pub(crate) quest_count: i64,
@@ -1731,6 +1799,7 @@ pub(crate) struct QuestsPageResponseQuestsEntry {
     pub(crate) favor: Option<i64>,
     pub(crate) flagging: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_challenge: bool,
     pub(crate) is_free_to_play: bool,
     pub(crate) is_raid: bool,
@@ -1754,6 +1823,7 @@ pub(crate) struct QuestsPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct QuestsDetailResponseQuestChainsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) wiki_url: String,
 }
@@ -1768,6 +1838,7 @@ pub(crate) struct QuestsDetailResponse {
     pub(crate) favor: Option<i64>,
     pub(crate) flagging: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_challenge: bool,
     pub(crate) is_free_to_play: bool,
     pub(crate) is_raid: bool,
@@ -1789,6 +1860,7 @@ pub(crate) struct RacesPageResponseRacesEntry {
     pub(crate) description: String,
     pub(crate) iconic_class: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_construct: bool,
     pub(crate) name: String,
     pub(crate) no_past_life: bool,
@@ -1824,6 +1896,7 @@ pub(crate) struct RacesDetailResponseFeatsEntry {
     pub(crate) description: Option<String>,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) max_times_acquire: Option<i64>,
     pub(crate) name: String,
 }
@@ -1845,6 +1918,7 @@ pub(crate) struct RacesDetailResponse {
     pub(crate) granted_feats: Vec<RacesDetailResponseGrantedFeatsEntry>,
     pub(crate) iconic_class: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_construct: bool,
     pub(crate) name: String,
     pub(crate) no_past_life: bool,
@@ -1856,6 +1930,7 @@ pub(crate) struct RacesDetailResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct SagasPageResponseSagasEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) pack: Option<String>,
     pub(crate) quest_count: i64,
@@ -1874,6 +1949,7 @@ pub(crate) struct SagasPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct SagasDetailResponseQuestsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) level: i64,
     pub(crate) name: String,
 }
@@ -1881,6 +1957,7 @@ pub(crate) struct SagasDetailResponseQuestsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct SagasDetailResponseRewardsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) minimum_level: i64,
     pub(crate) name: String,
@@ -1891,6 +1968,7 @@ pub(crate) struct SagasDetailResponseRewardsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct SagasDetailResponse {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
     pub(crate) pack: Option<String>,
     pub(crate) quest_count: i64,
@@ -1905,6 +1983,7 @@ pub(crate) struct SentientGemsPageResponseSentientGemsEntry {
     pub(crate) description: String,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) name: String,
 }
 
@@ -1919,8 +1998,9 @@ pub(crate) struct SentientGemsPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct SetsPageResponseSetsEntry {
     pub(crate) augment_count: i64,
-    pub(crate) icon: String,
+    pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_filigree_set: bool,
     pub(crate) item_count: i64,
     pub(crate) name: String,
@@ -1938,6 +2018,7 @@ pub(crate) struct SetsPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct SetsDetailResponseAugmentsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) min_level: i64,
     pub(crate) name: String,
 }
@@ -1958,7 +2039,6 @@ pub(crate) struct SetsDetailResponseFiligreesEntryModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -1975,6 +2055,7 @@ pub(crate) struct SetsDetailResponseFiligreesEntry {
     pub(crate) description: String,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) menu: String,
     pub(crate) modifiers: Vec<SetsDetailResponseFiligreesEntryModifiersEntry>,
     pub(crate) name: String,
@@ -1985,6 +2066,7 @@ pub(crate) struct SetsDetailResponseFiligreesEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct SetsDetailResponseItemsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) minimum_level: i64,
     pub(crate) name: String,
     pub(crate) slot: String,
@@ -2006,7 +2088,6 @@ pub(crate) struct SetsDetailResponseTiersEntryModifiersEntry {
     pub(crate) display_name: Option<String>,
     pub(crate) effect_type: String,
     pub(crate) extra_types: Option<Vec<String>>,
-    pub(crate) id: i64,
     pub(crate) is_item_specific: bool,
     pub(crate) is_rare: bool,
     pub(crate) percent: bool,
@@ -2022,7 +2103,6 @@ pub(crate) struct SetsDetailResponseTiersEntryModifiersEntry {
 pub(crate) struct SetsDetailResponseTiersEntry {
     pub(crate) effects: Vec<EffectLine>,
     pub(crate) equipped_count: i64,
-    pub(crate) id: i64,
     pub(crate) modifiers: Vec<SetsDetailResponseTiersEntryModifiersEntry>,
 }
 
@@ -2030,8 +2110,9 @@ pub(crate) struct SetsDetailResponseTiersEntry {
 pub(crate) struct SetsDetailResponse {
     pub(crate) augments: Vec<SetsDetailResponseAugmentsEntry>,
     pub(crate) filigrees: Vec<SetsDetailResponseFiligreesEntry>,
-    pub(crate) icon: String,
+    pub(crate) icon: Option<String>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_filigree_set: bool,
     pub(crate) items: Vec<SetsDetailResponseItemsEntry>,
     pub(crate) name: String,
@@ -2044,6 +2125,7 @@ pub(crate) struct SpellsPageResponseSpellsEntry {
     pub(crate) description: String,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) max_caster_level: Option<i64>,
     pub(crate) metamagics: Option<Vec<String>>,
     pub(crate) name: String,
@@ -2099,12 +2181,13 @@ pub(crate) struct SpellsDetailResponse {
     pub(crate) description: String,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) max_caster_level: Option<i64>,
     pub(crate) metamagics: Option<Vec<String>>,
     pub(crate) modifiers: Vec<AugmentsDetailResponseModifiersEntry>,
     pub(crate) name: String,
     pub(crate) schools: Option<Vec<String>>,
-    pub(crate) stances: Vec<StancesPageResponseStancesEntry>,
+    pub(crate) stances: Vec<FeatsDetailResponseStancesEntry>,
 }
 
 #[derive(utoipa::ToSchema)]
@@ -2123,6 +2206,7 @@ pub(crate) struct StancesPageResponseStancesEntry {
     pub(crate) group_name: String,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) incompatible: Option<Vec<String>>,
     pub(crate) modifiers: Vec<AugmentsDetailResponseModifiersEntry>,
     pub(crate) name: String,
@@ -2140,6 +2224,7 @@ pub(crate) struct StancesPageResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct VendorsPageResponseVendorsEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) item_count: i64,
     pub(crate) location: String,
     pub(crate) name: String,
@@ -2155,10 +2240,30 @@ pub(crate) struct VendorsPageResponse {
     pub(crate) vendors: Vec<VendorsPageResponseVendorsEntry>,
 }
 
+fn schema_vendor_cost() -> RefOr<Schema> {
+    utoipa::openapi::schema::ObjectBuilder::new()
+        .schema_type(utoipa::openapi::schema::SchemaType::from_iter([
+            utoipa::openapi::schema::Type::String,
+            utoipa::openapi::schema::Type::Null,
+        ]))
+        .description(Some("Deprecated display text generated from price; use price for ingredients and quantities."))
+        .deprecated(Some(utoipa::openapi::Deprecated::True))
+        .into()
+}
+
+#[derive(utoipa::ToSchema)]
+pub(crate) struct VendorPriceEntry {
+    pub(crate) ingredient: String,
+    pub(crate) quantity: i64,
+}
+
 #[derive(utoipa::ToSchema)]
 pub(crate) struct VendorsDetailResponseItemsEntry {
+    #[schema(schema_with = schema_vendor_cost)]
     pub(crate) cost: Option<String>,
+    pub(crate) price: Vec<VendorPriceEntry>,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) minimum_level: i64,
     pub(crate) name: String,
@@ -2168,6 +2273,7 @@ pub(crate) struct VendorsDetailResponseItemsEntry {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct VendorsDetailResponse {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) item_count: i64,
     pub(crate) items: Vec<VendorsDetailResponseItemsEntry>,
     pub(crate) location: String,
@@ -2179,6 +2285,7 @@ pub(crate) struct VendorsDetailResponse {
 #[derive(utoipa::ToSchema)]
 pub(crate) struct WeaponTypesPageResponseWeaponTypesEntry {
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_shield: bool,
     pub(crate) name: String,
     pub(crate) proficiency: Option<String>,
@@ -2203,6 +2310,7 @@ pub(crate) struct EnhancementTreesDetailResponseEnhancementsEntrySelectionsEntry
     pub(crate) follow_on_modifiers: Vec<AugmentsDetailResponseModifiersEntry>,
     pub(crate) icon: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_clickie: bool,
     pub(crate) min_spent: Option<i64>,
     pub(crate) modifiers: Vec<AugmentsDetailResponseModifiersEntry>,
@@ -2218,6 +2326,7 @@ pub(crate) struct QuestsDetailResponseAugmentsEntry {
     pub(crate) chest: Option<String>,
     pub(crate) family: String,
     pub(crate) id: i64,
+    pub(crate) slug: String,
     pub(crate) is_rare: bool,
     pub(crate) loot_type: String,
     pub(crate) min_level: i64,

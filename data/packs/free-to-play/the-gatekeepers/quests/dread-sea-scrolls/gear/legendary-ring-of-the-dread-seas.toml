@@ -1,0 +1,47 @@
+name = "Legendary Ring of the Dread Seas"
+drop_location = "Dread Sea Scrolls, End chest"
+icon = "Ring_26"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 29
+slot = "Ring"
+
+[[clickie]]
+name = "Solid Fog"
+clickie = "Solid Fog"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Frozen Depths Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Power of the Frozen Depths"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Crushing Wave Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Solid Fog"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dread Sea Scrolls"

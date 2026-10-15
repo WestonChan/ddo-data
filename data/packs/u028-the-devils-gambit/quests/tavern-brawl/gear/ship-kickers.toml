@@ -1,0 +1,35 @@
+name = "Ship Kickers"
+description = "Boots worn by the crew to get the airship ready for flight."
+drop_location = "Tavern Brawl, End chest"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 14
+slot = "Feet"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Tavern Brawl"

@@ -1,0 +1,47 @@
+name = "Legendary Dusk Heart"
+description = """
+A featureless blood red stone. Visions of a ghostly beating heart overcome you
+the first time you pick up the Dusk Heart."""
+drop_location = "Legendary version of Epic Dusk Heart"
+icon = "Trinket_5b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 30
+slot = "Trinket"
+
+[[clickie]]
+name = "Death Ward, Mass"
+spell = "Death Ward, Mass"
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Death Ward, Mass"]
+
+[[socket]]
+slot = "yellow"

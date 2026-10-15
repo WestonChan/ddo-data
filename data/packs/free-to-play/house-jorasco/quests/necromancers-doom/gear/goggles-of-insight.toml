@@ -1,0 +1,20 @@
+name = "Goggles of Insight"
+description = """
+These goggles are fitted with lenses that allow the user to perceive weaknesses
+in any opponent's armor."""
+drop_location = "Necromancer's Doom, End reward"
+icon = "Goggles_20"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 1
+slot = "Goggles"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Necromancer's Doom"

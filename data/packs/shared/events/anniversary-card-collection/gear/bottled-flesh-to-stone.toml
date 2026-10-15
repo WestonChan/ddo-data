@@ -1,0 +1,28 @@
+name = "Bottled Flesh to Stone"
+description = """
+May turn enemies in an area to stone. (DC check based on character level.)
+Instant statue garden, in a bottle!"""
+drop_location = "Anniversary Card Collection, Turn in Card V: Beholder &amp; Card VIII: Dragon for 7; Card I: Kobold &amp; Card IX: Lolth for 15"
+icon = "Dart_9"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Glass"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[source]]
+kind = "event"
+name = "Anniversary Card Collection"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 1
+critical_multiplier = 1
+critical_threat_range = 1
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Dart"

@@ -1,0 +1,52 @@
+name = "Epic Ring of Baphomet"
+description = """
+A large brass ring bearing demonic script. The metal is warm to the touch and
+appears to shrink to fit your finger."""
+drop_location = "Epic version of Ring of Baphomet"
+icon = "Ring_5a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Ring"
+
+[[clickie]]
+name = "Bestow Curse"
+clickie = "Bestow Curse"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Improved Demonic Shield"
+
+[[effect]]
+name = "Curse of Foolishness"
+bonus_type = "Penalty"
+
+[[effect]]
+name = "Curse of Repulsiveness"
+bonus_type = "Penalty"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Bestow Curse"]
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"

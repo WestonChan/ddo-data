@@ -1,0 +1,52 @@
+name = "Defiled Reliquary Heavy Mace"
+description = "The shine of this weapon is gone; there is now only malice within it."
+drop_location = "Unholy Defiler of the Hidden Hand, defiled version of Shining Reliquary Heavy Mace"
+enhancement_bonus = 5
+icon = "HeavyMace_1k"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Unholy 4"
+
+[[effect]]
+name = "Penalty Good"
+
+[[effect]]
+name = "Evil Blast 4"
+
+[[effect]]
+name = "Hand Vile Grip of the Hidden Hand"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Unholy Defiler of the Hidden Hand"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

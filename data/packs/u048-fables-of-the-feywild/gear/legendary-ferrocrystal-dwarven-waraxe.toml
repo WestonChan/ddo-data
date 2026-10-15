@@ -1,0 +1,62 @@
+name = "Legendary Ferrocrystal Dwarven Waraxe"
+accepts_sentience = true
+description = """
+This Crystalline weapon seems to hum with strong Magnetic energies. It is able
+to break the Cold Iron damage reduction of enemies such as Fey."""
+drop_location = "Fables of the Feywild, any chest, or turn in 20 Legendary Chunks of Ferrocrystal at the Cauldron of Cadence"
+enhancement_bonus = 15
+icon = "DwarvenWaraxe_2"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Crystal"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Feybane 6"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Maiming 6"
+
+[[effect]]
+name = "Crystal"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "any chest, or turn in 20 legendary chunks of ferrocrystal at the cauldron of cadence"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Fables of the Feywild"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Cadence"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

@@ -1,0 +1,3 @@
+name = "Blackscale Ferocity"
+description_template = "Killing enemies may cause you to fall into a ferocious rage, granting you the benefits of the Haste spell."
+verbose_name_template = "Blackscale Ferocity"

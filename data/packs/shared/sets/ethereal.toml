@@ -1,0 +1,216 @@
+name = "Ethereal"
+icon = "Ethereal"
+
+[[augment]]
+name = "Electric Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Negative Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Positive Spell Critical Damage 20%"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Charisma Skills / +6 UMD, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Wisdom Skills, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+22 Intelligence Skills, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+13 Reflex Save"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+13 Fortitude Save"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+13 Will Save"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Electric Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Negative Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Positive Spell Critical Damage 10% (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Charisma Skills / +3 UMD, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Wisdom Skills, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+11 Intelligence Skills, +151 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+7 Reflex Save (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+7 Fortitude Save (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+7 Will Save (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Electric Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Acid Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Fire Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Cold Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Negative Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "Positive Spell Critical Damage 5% (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Charisma Skills / +1 UMD, +75 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Wisdom Skills, +75 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+6 Intelligence Skills, +75 Spell Points"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+2 Reflex Save (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+2 Fortitude Save (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+2 Will Save (Quality)"
+family = "Greensteel_Legendary"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "1% Incorporeal miss chance, +0.5% per additional augment"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "With 2–6 augments, gain +2% to +4% Incorporeal miss chance."
+
+[[tier.effect]]
+effect = "Incorporeal Augment Scaling"
+
+[[tier.modifier]]
+amount_type = "SetBonusCount"
+amounts = [
+    0,
+    0,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+    10.5,
+    11,
+    11.5,
+    12,
+    12.5,
+    13,
+    13.5,
+    14,
+    14.5,
+    15,
+    15.5,
+    16,
+    16.5,
+    17,
+    17.5,
+    18,
+    18.5,
+    19,
+    20,
+    20.5,
+]
+apply_as_item_effect = true
+bonus_type = "Legendary"
+effect_type = "Incorporeality"
+stack_source = "Ethereal"
+
+[[tier.modifier.requirement]]
+items = ["Ethereal"]
+req_type = "Stance"

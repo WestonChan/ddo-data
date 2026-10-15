@@ -1,0 +1,40 @@
+name = "+15 Hitpoints, +4 Exceptional Dexterity Skills"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+variant = "Air:Escalation:Material"
+description = """
+Hitpoints +15: +15 Improved Elemental Energy bonus to maximum hit points
++4 Exceptional bonus to all Dexterity based skills
+Air:Escalation:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Improved Elemental Energy"
+value = 15
+
+[[effect]]
+name = "Dexterity Skills"
+bonus_type = "Exceptional"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Improved Elemental Energy"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Exceptional"
+effect = "Dexterity Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "crafting: accessory subjugation"

@@ -1,0 +1,35 @@
+name = "Anathema"
+description = """
+The wearer of this ring is reviled by most who meet him, but secretly he laughs
+at them, feeding on its true power."""
+drop_location = "The Cursed Crypt, end chest"
+icon = "Ring_13"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Ring"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Magi"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Hidden effect"
+bonus_type = "Penalty"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Cursed Crypt"

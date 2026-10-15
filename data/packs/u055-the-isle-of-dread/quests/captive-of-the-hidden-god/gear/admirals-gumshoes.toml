@@ -1,0 +1,38 @@
+name = "Admiral's Gumshoes"
+description = "The clicks of these sharp heels echo on the deck of every ship."
+drop_location = "Captive of the Hidden God, end chest"
+icon = "Boots_8"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Feet"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Speed"
+value = 17
+value2 = 5
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 3
+value2 = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Captive of the Hidden God"

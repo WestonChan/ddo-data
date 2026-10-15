@@ -1,0 +1,11 @@
+name = "Legendary Tempered"
+description = """
+Requires Air and Earth only
+Attacks and offensive spells have a moderate chance
+[10~20% for each] to deal extra acid and/or electric damage
+[80-120 damage, Spell power not applied]."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

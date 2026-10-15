@@ -1,0 +1,17 @@
+name = "Skirmisher's Locket (Level 15)"
+drop_location = "Friends in Low Places, End reward"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 15
+slot = "Neck"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Friends in Low Places"

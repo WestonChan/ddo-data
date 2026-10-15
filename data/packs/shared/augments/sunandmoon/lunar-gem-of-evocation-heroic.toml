@@ -1,0 +1,56 @@
+name = "Lunar Gem of Evocation (Heroic)"
+description = """
++2 Profane Bonus to Evocation DCs
+Drops in: The Proper Authorities, end chest
+Body and Mind, optional chest
+Burning Down the House, end chest (rare)
+The Darklake, Zarazurthu's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Evocation_(Heroic)"
+read = "2026-09-29"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Body and Mind"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Burning Down the House"
+
+[[source]]
+chest = "zarazurthu's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Proper Authorities"

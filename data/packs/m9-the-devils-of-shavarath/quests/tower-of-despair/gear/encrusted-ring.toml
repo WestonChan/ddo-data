@@ -1,0 +1,67 @@
+name = "Encrusted Ring"
+description = """
+This crude ring was stained red by the exploits of its previous bearer, Knost,
+an infamous Frenzied Berserker lost to Shavarath years ago."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Strength"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Frenzied Berserker"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Frenzied Berserker - 2 Piece bonus"
+effect_type = "ExtraRage"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Frenzied Berserker - 3 Piece bonus"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Constitution",
+]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

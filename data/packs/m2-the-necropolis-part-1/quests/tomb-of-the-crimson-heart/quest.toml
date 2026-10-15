@@ -1,0 +1,22 @@
+name = "Tomb of the Crimson Heart"
+bestowed_by = "Fram Redbones"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Necropolis, Part 1"
+patron = "The Silver Flame"
+zone = "Tomb of the Crimson Heart"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tomb_of_the_Crimson_Heart"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5

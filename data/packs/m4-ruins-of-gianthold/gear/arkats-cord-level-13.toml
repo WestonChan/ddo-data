@@ -1,0 +1,25 @@
+name = "Arkat's Cord (Level 13)"
+description = """
+Found by a slain foe in Gainthold, this cloth belt's former owner is identified
+by the name sewn into its lining."""
+drop_location = "A Cry for Help, and Foundation of Discord, End chest (Heroic Hard)"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 13
+slot = "Waist"
+
+[[effect]]
+name = "Reinforced Fists"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Cry for Help"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Foundation of Discord"

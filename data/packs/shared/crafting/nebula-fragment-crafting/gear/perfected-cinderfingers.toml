@@ -1,0 +1,48 @@
+name = "Perfected Cinderfingers"
+description = "Sparks of flame dance between the fingertips of these heavy leather gloves."
+drop_location = "Lahar, Turn in Nebula Fragment"
+icon = "Gloves_7m"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 30
+slot = "Hands"
+
+[[effect]]
+name = "Alchemical Fire Attunement"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 157
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Web Immunity"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Nebula Fragment Crafting"

@@ -1,0 +1,9 @@
+name = "Deacon of the Auricular Sacrarium"
+description = "Adds the Deacon of the Auricular Sacrarium set bonus"
+family = "DinosaurBone"
+icon = "DinosaurSetBonus"
+min_level = 31
+set_bonus = "Deacon of the Auricular Sacrarium"
+
+[[slot]]
+slot = "isle of dread: set bonus"

@@ -1,0 +1,11 @@
+name = "Yeenoghu's Butchery"
+description_template = "+18% Enhancement bonus to Doublestrike chance. In addition, on hit with this weapon, you deal an extra 15d6 Piercing Damage to Bosses and creatures who have been Paralyzed."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Yeenoghu's Butchery +18"
+
+[[bonus]]
+amount_from = 0
+constant = 18
+rounding = "down"
+scale = 1.0
+target = "Doublestrike"

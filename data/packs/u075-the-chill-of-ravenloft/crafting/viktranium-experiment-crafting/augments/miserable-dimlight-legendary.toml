@@ -1,0 +1,21 @@
+name = "Miserable Dimlight (Legendary)"
+description = "+2 Exceptional bonus to Intelligence."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

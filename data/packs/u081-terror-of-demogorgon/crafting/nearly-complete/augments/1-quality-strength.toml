@@ -1,0 +1,21 @@
+name = "+1 Quality Strength"
+description = "+1 Quality bonus to Strength"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: nearly complete: quality ability score (heroic)"

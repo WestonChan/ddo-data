@@ -1,0 +1,15 @@
+name = "Essence of the Spear of the Mournlands"
+description = """
+Touch of the Mournlands: This item, once wielded by the Lord of Blades himself,
+taints each wound with the power of the Mournlands. Prolonged exposure will make
+the target more and more difficult to heal and repair, cutting their Healing and
+Repair Amplification, and also interferes with their ability to use magic by
+occasionally Quelling enemies on a Vorpal strike.
+Requires: 50 Threads of Fate, Empty Soul Vessel and Spear of the Mournlands
+(Legendary Lord of Blades)"""
+family = "Named"
+icon = "OrangeRaidItemEssence"
+min_level = 30
+
+[[slot]]
+slot = "orange"

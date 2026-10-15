@@ -1,0 +1,3 @@
+name = "Deific Focus III"
+description_template = "On Spell Cast: +1 Sacred bonus to DC of that school for five seconds. Stacks up to III times. Casting a spell from another school clears all stacks of this effect."
+verbose_name_template = "Deific Focus III"

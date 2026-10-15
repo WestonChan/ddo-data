@@ -1,0 +1,61 @@
+name = "Epic Candlelight"
+description = """
+Valisk of Thrane hated tombs, but his adventuring companions enthusiastically
+hunted the undead. He crafted this rune arm from various items he found to
+protect himself from the abominations."""
+drop_location = "Endgame: The Archbishop's Fate, End chest"
+icon = "RuneArm_1f"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 23
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Superior Undead Guard"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 41
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 122
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 6
+
+[[effect]]
+name = "Rune Arm Imbue - Light IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Light Spirals",
+    "None",
+]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Endgame: The Archbishop's Fate"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

@@ -1,0 +1,57 @@
+name = "The Drowned (level 16)"
+description = "Down, down, down they sink."
+drop_location = "Treasure of Crystal Cove, Turn in 750 Silver Doubloon 300 Golden Doubloon 30 Stolen Ruby 600 Green Dragonshard at Euphonia's Barter Box"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 16
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 16
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 5
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Insight"
+value = 48
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 48
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

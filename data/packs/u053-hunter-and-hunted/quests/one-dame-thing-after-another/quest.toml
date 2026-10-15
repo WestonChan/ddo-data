@@ -1,0 +1,30 @@
+name = "One Dame Thing After Another"
+bestowed_by = "Fernleaf"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Hunter and Hunted"
+patron = "The Summer Court"
+zone = "Hunters Hollow"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/One_Dame_Thing_After_Another"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

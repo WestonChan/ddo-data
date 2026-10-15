@@ -1,0 +1,377 @@
+name = "Master's Riposte (Level 18)"
+description = "The most dangerous weapon is not the sword, but the wielder behind it."
+drop_location = "Lines of Supply, 'Supply Camp' End chest (Heroic Hard)"
+enhancement_bonus = 1
+icon = "Longsword_14"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Riposte VII"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Acid IV"
+description = "Acid IV: On Hit: 4 to 16 Acid Damage."
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Acid"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Anarchic III"
+description = """
+Anarchic III: On Hit: 3 to 12 Chaos damage. Chaos-aligned creatures are immune to this effect.
+Penalty: If equipped by a Lawful user, they receive 1 Negative Level for as long
+as this item is equipped."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Acid"
+dice_number = [3]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Penalty"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Lawful"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Axiomatic III"
+description = """
+Axiomatic III: On Hit: 3 to 12 Law damage. Law-aligned creatures are immune to this effect.
+Penalty: If equipped by a Chaotic user, they receive 1 Negative Level for as long
+as this item is equipped."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Unknown"
+dice_number = [3]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Penalty"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Chaotic"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Banishing"
+description = """
+Banishing: On Hit: 4 to 24 Bane damage to Outsiders.
+On Vorpal Hit: If an outsider struck by this weapon has fewer than 1000 Hit
+Points, it is instantly slain. If the outsider has above 1000 Hit Points, it
+takes 100 damage."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Outsider"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Eldritch II"
+description = "Eldritch II: On Hit: 2 to 8 Force Damage."
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Force"
+dice_number = [2]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Flaming IV"
+description = "Flaming IV: On Hit: 4 to 16 Fire Damage."
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Frost IV"
+description = "Frost IV: On Hit: 4 to 16 Cold Damage."
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Cold"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Holy II"
+description = """
+Holy II: On Hit: 2 to 8 Good damage. Good-aligned creatures are immune to this effect.
+Penalty: If equipped by a Evil user, they receive 1 Negative Level for as long
+as this item is equipped."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Good"
+dice_number = [2]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Penalty"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Evil"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Holy Burst"
+description = """
+Holy Burst: A holy weapon is imbued with holy power. This power makes the
+weapon good-aligned and thus bypasses the corresponding damage reduction. It
+deals an extra 2 to 12 points of damage against all of evil alignment and an
+extra 3 to 18 on a critical for weapons with a x2 critical multiplier, 4 to 24
+for a x3 multiplier, and 5 to 30 for a x4 multiplier."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Good"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Evil"]
+req_type = "EnemyType"
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Good"
+dice_number = [3]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Evil"]
+req_type = "EnemyType"
+
+[[socket.option.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "DRBypass"
+value = "Good"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Evil"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Improved Roaring"
+description = """
+Improved Roaring: This weapon causes targets to become shaken (DC 28 Will save
+negates) and, on a critical hit, does 2 to 12 sonic damage to the target."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Sonic"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Poison IV"
+description = """
+Poison IV: On Hit: 4 to 12 Poison Damage.
+On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Poison"
+dice_number = [4]
+dice_sides = [3]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Constitution"
+dice_number = [1]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Seeker +8"
+description = """
+Seeker +8: Provides a +8 Enhancement bonus to confirm critical hits, and a
++8 Enhancement bonus to critical hit damage (before multipliers are applied)."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus = "Not Set"
+effect_type = "Unknown"
+targets = ["All"]
+
+[[socket.option]]
+name = "Shock IV"
+description = "Shock IV: On Hit: 4 to 16 Electric Damage."
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Electric"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Shrieking III"
+description = "Shrieking III: On Hit: 3 to 12 Sonic Damage."
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Sonic"
+dice_number = [3]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Solar II"
+description = "Solar II: On Hit: 2 to 8 Light Damage."
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Light"
+dice_number = [2]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Vorpal"
+description = """
+Vorpal: Passive: +0.5[W] damage dice. On Vorpal Hit: If your target has fewer
+than 1000 Hit Points, they are instantly slain. If your target has above
+1000 Hit Points, they take 100 damage."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "'supply camp' end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Lines of Supply"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Longsword"

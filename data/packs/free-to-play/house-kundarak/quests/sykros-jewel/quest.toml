@@ -1,0 +1,23 @@
+name = "Sykros' Jewel"
+bestowed_by = "Sykros"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Kundarak"
+zone = "Smuggler's Hollow"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Sykros%27_Jewel"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10

@@ -1,0 +1,22 @@
+name = "Insightful Charisma +2"
+description = "Insightful Charisma +2: +2 Insight bonus to Charisma"
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: incredible potential"

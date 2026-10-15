@@ -1,0 +1,37 @@
+name = "Shen's Robe"
+description = "Wind, fire, all that kind of thing!"
+drop_location = "Special event items, Trivia Contest reward for Correct Answer"
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Solid Fog"
+clickie = "Solid Fog"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 15
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Solid Fog"]

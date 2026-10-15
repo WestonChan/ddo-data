@@ -1,0 +1,61 @@
+name = "Clamorous Forum Post (level 10)"
+description = """
+This post, once part of a fence around an old speaking forum in Stormreach,
+makes a lot of noise without actually saying much."""
+drop_location = "Anniversary Party, Turn in 20"
+enhancement_bonus = 4
+icon = "Club_1b"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 10
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 77
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 112
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

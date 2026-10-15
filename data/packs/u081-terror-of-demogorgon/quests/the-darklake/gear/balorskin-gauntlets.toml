@@ -1,0 +1,37 @@
+name = "Balorskin Gauntlets"
+description = "Grotesque Balor skin forms these gloves, granting the wearer some of their resistances."
+drop_location = "The Darklake, Zarazurthu 's chest"
+icon = "Gloves_7b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Hands"
+
+[[effect]]
+name = "Reinforced Fists"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 2
+value2 = 3
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Legendary"
+value = 2
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (heroic)"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "zarazurthu 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

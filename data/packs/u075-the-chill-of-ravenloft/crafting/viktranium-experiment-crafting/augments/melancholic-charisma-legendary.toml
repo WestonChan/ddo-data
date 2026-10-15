@@ -1,0 +1,21 @@
+name = "Melancholic Charisma (Legendary)"
+description = "+15 Enhancement bonus to Charisma."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

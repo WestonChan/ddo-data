@@ -1,0 +1,43 @@
+name = "Legendary Smuggler's Cap"
+description = """
+The sort of cap used by smugglers and lawful sailors alike, allowing the user
+to fit into mixed company."""
+drop_location = "The Haunting of Saltmarsh, end chest, or Legendary version of Epic Smuggler's Cap"
+icon = "Helmet_1b"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 30
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic smuggler's cap"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunting of Saltmarsh"

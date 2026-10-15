@@ -1,0 +1,38 @@
+name = "Whispering Ring"
+description = "While wearing this, you'll never feel quite so alone."
+drop_location = "Total Chaos, End chest"
+icon = "Ring_7"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 21
+slot = "Ring"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 4
+value2 = 6
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Total Chaos"

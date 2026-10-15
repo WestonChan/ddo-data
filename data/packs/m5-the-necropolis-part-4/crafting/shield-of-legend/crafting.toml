@@ -1,0 +1,116 @@
+name = "Shield of Legend"
+npc = "Racella Unary, Upper Necropolis, The Necropolis (level 10 minimum; gather the 8 Shield Fragments into a Shield: Frame and turn it in)"
+pack = "The Necropolis, Part 4"
+
+[[ingredient]]
+name = "Shield: Frame"
+bind = "Bound to Character"
+drop_location = "Complete set of the 8 Shield Fragments"
+tier = "any"
+
+[[ingredient]]
+name = "Shield: Fragment One"
+drop_location = "Litany of the Dead Part 4, mainly at Desecrated Temple of Vol (Marut chest)"
+tier = "any"
+
+[[ingredient]]
+name = "Shield: Fragment Two"
+drop_location = "Litany of the Dead Part 4, mainly at Desecrated Temple of Vol (Marut chest)"
+tier = "any"
+
+[[ingredient]]
+name = "Shield: Fragment Three"
+drop_location = "Litany of the Dead Part 4, mainly at Ghosts of Perdition (Undead wave chest)"
+tier = "any"
+
+[[ingredient]]
+name = "Shield: Fragment Four"
+drop_location = "Litany of the Dead Part 4, mainly at Ghosts of Perdition (Undead wave chest)"
+tier = "any"
+
+[[ingredient]]
+name = "Shield: Fragment Five"
+drop_location = "Litany of the Dead Part 4, mainly at Flesh Maker's Laboratory (Golem wave chest)"
+tier = "any"
+
+[[ingredient]]
+name = "Shield: Fragment Six"
+drop_location = "Litany of the Dead Part 4, mainly at Flesh Maker's Laboratory (Golem wave chest)"
+tier = "any"
+
+[[ingredient]]
+name = "Shield: Fragment Seven"
+drop_location = "Litany of the Dead Part 4, mainly at Inferno of the Damned (Locked Acolyte chest)"
+tier = "any"
+
+[[ingredient]]
+name = "Shield: Fragment Eight"
+drop_location = "Litany of the Dead Part 4, mainly at Inferno of the Damned (Locked Acolyte chest)"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Shield_of_Legend"
+read = "2026-10-02"
+
+[[recipe]]
+note = "produces Adherence (Tower shield, ML 14, Bound to Character on Acquire)"
+option = "Adherence"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Shield: Frame"
+quantity = 1
+
+[[recipe]]
+note = "produces Bijio (Large shield, ML 14, Bound to Character on Acquire)"
+option = "Bijio"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Shield: Frame"
+quantity = 1
+
+[[recipe]]
+note = "produces Death's Door (Large shield, ML 14, Bound to Character on Acquire)"
+option = "Death's Door"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Shield: Frame"
+quantity = 1
+
+[[recipe]]
+note = "produces Fanion (Large shield, ML 14, Bound to Character on Acquire)"
+option = "Fanion"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Shield: Frame"
+quantity = 1
+
+[[recipe]]
+note = "produces Sorrel (Large shield, ML 14, Bound to Character on Acquire)"
+option = "Sorrel"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Shield: Frame"
+quantity = 1
+
+[[recipe]]
+note = "produces Talon (Large shield, ML 14, Bound to Character on Acquire)"
+option = "Talon"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Shield: Frame"
+quantity = 1
+
+[[recipe]]
+note = "produces Arrondi (Large shield, ML 14, Bound to Character on Acquire)"
+option = "Arrondi"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Shield: Frame"
+quantity = 1

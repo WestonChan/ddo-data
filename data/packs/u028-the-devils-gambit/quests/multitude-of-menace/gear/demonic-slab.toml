@@ -1,0 +1,64 @@
+name = "Demonic Slab"
+description = """
+A mismatched selection of destruction and victim remains fused together through
+demonic powers."""
+drop_location = "Multitude of Menace, End chest"
+enhancement_bonus = 5
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Densewood"
+minimum_level = 14
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 40
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 13
+max_dex_bonus = 2
+shield_bonus = 16
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Impact"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Multitude of Menace"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

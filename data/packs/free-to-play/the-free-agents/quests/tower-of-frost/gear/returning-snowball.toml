@@ -1,0 +1,57 @@
+name = "Returning Snowball"
+description = "A snowball."
+drop_location = "Tower of Frost, End chest"
+enhancement_bonus = 5
+icon = "Dart_5"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Ice"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Humanoid Bane 3"
+
+[[effect]]
+name = "Frostbite"
+
+[[effect]]
+name = "Vorpal Lethargy"
+
+[[effect]]
+name = "Freezing 8"
+
+[[effect]]
+name = "Chilling 3"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Tower of Frost"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "Thrown"
+weapon_type = "Dart"

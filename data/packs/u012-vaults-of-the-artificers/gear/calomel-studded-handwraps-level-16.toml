@@ -1,0 +1,67 @@
+name = "Calomel Studded Handwraps (level 16)"
+description = """
+Handwraps crafted from durable white Calomel ore shimmer with condensed water
+droplets. They are particularly effective against dragons and fiery creatures."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 4
+icon = "HandWraps_4b"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Dragon Bane 4"
+
+[[effect]]
+name = "Tidal Burst"
+
+[[effect]]
+name = "Crushing Wave"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+5 Enhancement Bonus"
+description = "+5 Enhancement Bonus: +5 enhancement bonus to attack and damage rolls."
+min_level = 16
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Purple augment slot"
+description = "Adds a Purple augment slot to this item"
+min_level = 16
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Handwraps"

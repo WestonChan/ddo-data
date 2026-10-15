@@ -1,0 +1,53 @@
+name = "Legendary Core of a War Machine"
+description = "This core once powered something truly mighty. It still hungers for war."
+drop_location = "The Bark and the Blade, End chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Steel"
+minimum_level = 32
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[effect]]
+name = "Force Blast 6"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Impactful 6"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bark and the Blade"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 5.0
+handedness = "Off-hand"
+weapon_type = "Orb"

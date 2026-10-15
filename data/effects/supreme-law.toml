@@ -1,0 +1,3 @@
+name = "Supreme Law"
+description_template = "This weapon is infused with the supreme Power of Law. It does an additional 3 to 18 damage to non-lawful targets and can only be wielded by Lawful-aligned characters."
+verbose_name_template = "Supreme Law"

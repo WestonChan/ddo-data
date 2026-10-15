@@ -1,0 +1,40 @@
+name = "Legendary Ring of Unnatural Accuracy"
+description = """
+Somehow, this band allows its bearer a level of precision and focus that would
+be impossible for the average mind."""
+drop_location = "Pilgrims' Peril, end chest"
+icon = "Ring_16a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 32
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Greater Marksmanship"
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Enhancement"
+value = 22
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Pilgrims' Peril"

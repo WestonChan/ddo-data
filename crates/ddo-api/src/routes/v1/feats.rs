@@ -31,6 +31,7 @@ const FEAT_COLUMNS: &str = "f.id, f.name, f.source_kind, f.source_id,
 
 const FEATS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "f.name"),
+    ("slug", "f.name"),
     ("id", "f.id"),
     ("source_kind", "f.source_kind"),
     ("acquire", "f.acquire"),
@@ -94,7 +95,7 @@ async fn feats(
                 FEAT_COLUMNS,
                 "feats f",
                 &query,
-                "f.name, f.source_kind",
+                "f.name, f.source_kind, f.slug",
                 FEATS_SORT_FIELDS,
                 &where_clause,
             )?;
@@ -137,6 +138,7 @@ async fn feat_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
                 let conditional_group_id = conditional_group["id"].as_i64().unwrap_or(0);
                 conditional_group["requirements"] =
                     Value::Array(requirements_for(db, "feat_conditional_group", conditional_group_id)?);
+                conditional_group.as_object_mut().expect("conditional group").remove("id");
             }
             feat["conditional_groups"] = Value::Array(conditional_groups);
             feat["sub_items"] = Value::Array(json_rows(

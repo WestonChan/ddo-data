@@ -1,0 +1,84 @@
+name = "Enchantment Focus"
+choose_level = true
+description = "Equipment bonus to Enchantment DC"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    14,
+    14,
+    14,
+    14,
+]
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[slot]]
+slot = "crafting: cannith goggles prefix"
+
+[[slot]]
+slot = "crafting: cannith necklace prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith orb prefix"
+
+[[slot]]
+slot = "crafting: random helmet suffix"
+
+[[slot]]
+slot = "crafting: random goggles prefix"
+
+[[slot]]
+slot = "crafting: random necklace prefix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

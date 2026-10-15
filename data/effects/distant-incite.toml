@@ -1,0 +1,10 @@
+name = "Distant Incite"
+description_template = "{1}% bonus to increased threat generation from ranged damage"
+home_bonus_type = "Enhancement"
+verbose_name_template = "Distant Incite +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Ranged Threat Generation"

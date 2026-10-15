@@ -1,0 +1,27 @@
+name = "Lesser Boots of Striding and Springing"
+description = "These magical boots enhance the wearer's running and jumping skills."
+drop_location = "Stormcleave Outpost, Minotaur Lord Helos ' chest"
+icon = "Boots_22"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Feet"
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "minotaur lord helos ' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stormcleave Outpost"

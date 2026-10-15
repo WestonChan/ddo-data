@@ -1,0 +1,27 @@
+name = "Intelligence Skills"
+description_template = "{1} %b1 bonus to all Intelligence based skills."
+verbose_name_template = "%b1 Intelligence Skills +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Disable Device"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Repair"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Search"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Spellcraft"

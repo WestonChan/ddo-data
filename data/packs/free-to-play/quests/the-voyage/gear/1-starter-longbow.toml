@@ -1,0 +1,38 @@
+name = "+1 Starter Longbow"
+description = """
+A large, curved wooden bow, often nearly as tall as a human. This weapon is
+popular among elves and rangers. The bow appears to have once been carved with
+a name that appears to have been made illegible by a chisel."""
+drop_location = "The Voyage, End reward"
+enhancement_bonus = 1
+icon = "Longbow_1t"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Flaming"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Voyage"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

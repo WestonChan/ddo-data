@@ -1,0 +1,26 @@
+name = "Partycrashers"
+bestowed_by = "Cyan"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Phiarlan Carnival"
+patron = "House Phiarlan"
+zone = "Phiarlan Chapterhouse"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Partycrashers"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5
+
+[[run]]
+tier = "epic"
+level = 20

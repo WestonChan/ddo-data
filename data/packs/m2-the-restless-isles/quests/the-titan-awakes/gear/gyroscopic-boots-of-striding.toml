@@ -1,0 +1,24 @@
+name = "Gyroscopic Boots of Striding"
+description = "A pair of leather and metal boots that offer stability and speed to its wearer."
+drop_location = "The Titan Awakes, Warded Chest"
+icon = "Boots_20a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Feet"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

@@ -1,0 +1,12 @@
+name = "The Abandoned Excavation"
+pack = "Ruins of Threnal"
+wiki_url = "https://ddowiki.com/page/Ruins_of_Threnal"
+quests = [
+    "The Gate Chamber",
+    "Entering the Gate Chamber",
+    "The Missing Expedition",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Ruins_of_Threnal"
+read = "2026-10-02"

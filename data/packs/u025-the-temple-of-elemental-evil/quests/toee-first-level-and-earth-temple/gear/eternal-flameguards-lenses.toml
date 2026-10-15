@@ -1,0 +1,39 @@
+name = "Eternal Flameguard's Lenses"
+description = """
+The Eternal Flame cannot be extinguished. Its flame grows with every invader
+defeated."""
+drop_location = "ToEE: First Level and Earth Temple, end chest"
+icon = "Goggles_3"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 8
+slot = "Goggles"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 4
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: First Level and Earth Temple"

@@ -203,7 +203,7 @@ fn write_correction(
     row_ids: &[i64],
     buff_resolver: Option<&BuffResolver>,
 ) -> Result<()> {
-    let table_name = correction.kind.table_name();
+    let table_name = correction.target_table_name();
     match field.shape {
         FieldShape::EffectBonusConstant => {
             let stat_name = correction.stat.as_deref().context("effect constant names a stat")?;
@@ -462,6 +462,30 @@ fn write_correction(
 
 fn maetrim_row_ids_named(transaction: &Transaction, correction: &Correction, row_name: &str) -> Result<Vec<i64>> {
     let kind = correction.kind;
+
+    if correction.selection.is_some() || correction.stance.is_some() || correction.dc.is_some() {
+        let owner_table = kind.table_name();
+        let selection_join = if correction.selection.is_some() {
+            "JOIN enhancement_selections selection ON selection.enhancement_id = owner.id AND selection.name = ?2"
+        } else {
+            ""
+        };
+        let ability_name = correction.stance.as_ref().or(correction.dc.as_ref());
+        let (target, ability_join, no_ability) = if ability_name.is_some() {
+            let (owner_kind, owner_id) = if correction.selection.is_some() {
+                ("enhancement_selection", "selection.id")
+            } else {
+                (kind.as_str(), "owner.id")
+            };
+            let ability_table = correction.target_table_name();
+            ("ability.id", format!("JOIN {ability_table} ability ON ability.owner_kind = '{owner_kind}' AND ability.owner_id = {owner_id} AND ability.name = ?3"), "")
+        } else {
+            ("selection.id", String::new(), " AND ?3 IS NULL")
+        };
+        return Ok(transaction.prepare(&format!("SELECT {target} FROM {owner_table} owner {selection_join} {ability_join} WHERE owner.name = ?1{no_ability} ORDER BY {target}"))?
+            .query_map(params![row_name, correction.selection, ability_name], |row| row.get(0))?.collect::<rusqlite::Result<_>>()?);
+    }
+
     if matches!(kind, CorrectionKind::SetTier | CorrectionKind::SetTierBonus) {
         if correction.correctable_field()?.shape == FieldShape::TierAddition {
             return Ok(transaction
@@ -531,7 +555,7 @@ fn current_value(
     row_id: i64,
     set_tier_descriptions_by_id: Option<&HashMap<i64, String>>,
 ) -> Result<CorrectionValue> {
-    let table_name = correction.kind.table_name();
+    let table_name = correction.target_table_name();
     let value_sql = match field.shape {
         FieldShape::EffectBonusConstant => {
             let stat_name = correction.stat.as_deref().context("effect constant names a stat")?;
@@ -701,6 +725,85 @@ fn current_value(
     };
     let sql_value: SqlValue = transaction.query_row(&value_sql, params![row_id], |r| r.get(0))?;
     Ok(CorrectionValue::from_sql(sql_value))
+}
+
+pub(super) fn record_final_set_names(transaction: &Transaction) -> Result<()> {
+    let mut statement = transaction.prepare(
+        "SELECT correction.id, item.set_bonus FROM corrections correction
+         JOIN items item ON item.name = correction.name
+         WHERE correction.kind = 'item' AND correction.field = 'set_bonus'",
+    )?;
+    let rows = statement
+        .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, Option<String>>(1)?)))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    for (correction_id, set_name) in rows {
+        transaction.execute(
+            "UPDATE corrections SET to_value = ?2 WHERE id = ?1",
+            params![correction_id, serde_json::to_string(&set_name)?],
+        )?;
+    }
+    Ok(())
+}
+
+pub(super) fn record_built_item_effect_values(transaction: &Transaction) -> Result<()> {
+    let mut statement = transaction.prepare(
+        "SELECT id, name, qualifier, to_value FROM corrections WHERE kind = 'item_effect' AND field = 'add'",
+    )?;
+    let rows = statement
+        .query_map([], |row| {
+            Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?, row.get::<_, String>(3)?))
+        })?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    for (correction_id, item_name, effect_name, to_value) in rows {
+        if !serde_json::from_str::<serde_json::Value>(&to_value)?.is_object() {
+            continue;
+        }
+        let applied_effect: Option<(String, Option<String>, Option<i64>)> = transaction
+            .query_row(
+                "SELECT effect.verbose_name_template, effect.description_template, link.value
+               FROM item_effects link JOIN items item ON item.id = link.item_id
+               JOIN effects effect ON effect.id = link.effect_id
+              WHERE item.name = ?1 AND effect.name = ?2",
+                params![item_name, effect_name],
+                |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)),
+            )
+            .optional()?;
+        let Some((verbose, description, value)) = applied_effect else { continue };
+        let description = description.unwrap_or_default();
+        let description = if let Some((_, suffix)) = verbose.split_once(" — ") {
+            format!("{suffix}: {description}")
+        } else {
+            description
+        };
+        let mut applied = serde_json::json!({"name": effect_name, "description": description});
+        if let Some(value) = value {
+            applied["value"] = serde_json::json!(value);
+        }
+        transaction.execute(
+            "UPDATE corrections SET to_value = ?1 WHERE id = ?2",
+            params![applied.to_string(), correction_id],
+        )?;
+    }
+    Ok(())
+}
+
+pub(crate) fn data_correction_value(
+    transaction: &Transaction,
+    correction: &Correction,
+    current_name: &str,
+) -> Result<CorrectionValue> {
+    let field = correction.correctable_field()?;
+    let row_ids = maetrim_row_ids_named(transaction, correction, current_name)?;
+    ensure!(!row_ids.is_empty(), "no {} named {current_name:?} for data correction", correction.kind.as_str());
+    let mut values = Vec::new();
+    for row_id in row_ids {
+        let value = current_value(transaction, correction, field, row_id, None)?;
+        if !values.contains(&value) {
+            values.push(value);
+        }
+    }
+    ensure!(values.len() == 1, "data correction on {current_name:?} resolves to {} values", values.len());
+    Ok(values.remove(0))
 }
 
 fn effect_bonus_row_id(transaction: &Transaction, effect_id: i64, stat_name: &str) -> Result<i64> {
@@ -1422,7 +1525,7 @@ fn refuse_an_augment_name_taken_in_its_families(
     Ok(())
 }
 
-fn rename_socket_label(transaction: &Transaction, slot_type_id: i64, new_label: &str) -> Result<()> {
+pub(super) fn rename_socket_label(transaction: &Transaction, slot_type_id: i64, new_label: &str) -> Result<()> {
     if let Some(merged_slot_type_id) = socket_label_id(transaction, new_label)? {
         for (table_name, column) in [
             ("item_augment_slots", "slot_id"),

@@ -1,0 +1,11 @@
+name = "Energy Siphon VI"
+description_template = "On Hit: Gain 30 Temporary Spell Points which last for up to 1 minute. This effect can trigger at most once per minute."
+verbose_name_template = "Energy Siphon VI"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "Energy Siphon XII"
+reason = "The template's VI title follows the buff name and its 30 spell points; XII is a separate 60-point buff."
+url = "internal:effect-name-and-description"
+read = "2026-10-05"

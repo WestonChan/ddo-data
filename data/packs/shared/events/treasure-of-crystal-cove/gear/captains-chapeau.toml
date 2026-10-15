@@ -1,0 +1,24 @@
+name = "Captain's Chapeau"
+description = "You've certainly earned the feather in your cap."
+drop_location = "Treasure of Crystal Cove, Turn in at Euphonia's Hat Box ; DDO Store"
+icon = "Helmet_55"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Scallywag's Luck IV"
+
+[[effect]]
+name = "Enchantable: Crystal Rush"
+
+[[effect]]
+name = "Enchantable: Adventuring Bonus"
+
+[[effect]]
+name = "Enchantable: Skilled Seaman"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

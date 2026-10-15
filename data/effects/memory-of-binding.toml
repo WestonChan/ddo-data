@@ -1,0 +1,3 @@
+name = "Memory of Binding"
+description_template = "You recall holding your foes in a dreadful, unbreakable bond. On weapon hit, you have a chance of paralyzing your enemies. Struck enemies must made a DC 120 Fortitude save or be paralyzed."
+verbose_name_template = "Memory of Binding"

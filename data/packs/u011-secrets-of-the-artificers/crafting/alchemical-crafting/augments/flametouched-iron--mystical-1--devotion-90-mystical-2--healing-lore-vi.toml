@@ -1,0 +1,40 @@
+name = "Flametouched Iron: Mystical 1: Devotion +90, Mystical 2: Healing Lore VI"
+description = """
+Your weapon gains Good DR bypass.
+If you select Mystical Augments at Tier 1 or 2 You gain:
+Tier 1: Devotion +90
+Tier 2: Healing Lore VI"""
+family = "Alchemical"
+min_level = 16
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    90,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 1: Flametouched Iron"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    16,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 2: Flametouched Iron"
+effect_type = "SpellLore"
+targets = ["Positive"]
+
+[[slot]]
+slot = "crafting: alchemical material type"

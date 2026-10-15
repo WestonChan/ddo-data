@@ -1,0 +1,38 @@
+name = "Shadowhail Cloak"
+description = """
+When you wear this cloak, you are somehow able to see in the darkest of nights.
+Your foes, however, cannot."""
+drop_location = "Sealed in Amber, End chest &amp; optional draw Strahd's attention chest"
+icon = "Cloak_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 10
+slot = "Back"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 4
+value2 = 6
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sealed in Amber"

@@ -1,0 +1,3 @@
+name = "Soul Tear"
+description_template = "This weapon tears at the soul of your foes, reducing their PRR and Healing Amplification."
+verbose_name_template = "Soul Tear"

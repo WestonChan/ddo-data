@@ -1,0 +1,15 @@
+name = "The Dragons' Hand"
+update = "Update 79"
+released = "2026-04-08"
+
+[[citation]]
+url = "https://ddowiki.com/page/Modules_and_updates"
+read = "2026-10-13"
+
+[[note]]
+kind = "adventure_pack"
+field = "name"
+upstream = "The Dragon's Hand"
+reason = "The wiki names the pack The Dragons' Hand."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"

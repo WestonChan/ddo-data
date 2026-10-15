@@ -1,0 +1,22 @@
+name = "Skirmisher's Locket (Level 26)"
+drop_location = "Friends in Low Places, End reward"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Neck"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 8
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Friends in Low Places"

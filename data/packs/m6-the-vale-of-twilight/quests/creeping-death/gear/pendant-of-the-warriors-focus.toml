@@ -1,0 +1,39 @@
+name = "Pendant of the Warrior's Focus"
+description = """
+The metal symbol on this chain inspires those who wear it to strike harder and
+faster."""
+drop_location = "Creeping Death, End Chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+slot = "Neck"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Creeping Death"

@@ -1,0 +1,30 @@
+name = "Gloves of Forgotten Craft (historic)"
+description = """
+These gloves were sewn for the artisan slaves of the Lost Empire. The giants
+found that such enchanted tools enabled the nimble elves to manufacture wonders."""
+drop_location = "Gianthold Tor, White Dragon 's chest"
+icon = "Gloves_4"
+is_legacy = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Hands"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Weapon Focus Thrown"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[source]]
+chest = "white dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

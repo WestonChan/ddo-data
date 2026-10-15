@@ -1,0 +1,77 @@
+name = "Scepter of the Ogre Magi"
+description = """
+Lost to time, this scepter was eventually recovered by ogre magi and put to
+use in combat. It improves the damage of one's spells and makes him or her
+less likely to be interrupted while casting them."""
+drop_location = "Assault on Summerfield, end chest"
+enhancement_bonus = 5
+icon = "Club_22"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[clickie]]
+name = "Cone of Cold"
+clickie = "Cone of Cold"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 12
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 52
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 14
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Fragmented"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cone of Cold"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Assault on Summerfield"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Club"

@@ -1,0 +1,45 @@
+name = "Legendary Teraza's Sight"
+description = """
+A crown said to have been originally crafted for the hag queen Sora Teraza.
+It bestows its wearer with great wisdom, reflexes, and magical power."""
+drop_location = "Frame Work, End chests, Dorris ' chests"
+icon = "Helmet_18b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 31
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Exceptional Prudent Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 25
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Battle-Scarred"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chests, dorris ' chests"
+kind = "quest"
+loot_type = "chest"
+name = "Frame Work"

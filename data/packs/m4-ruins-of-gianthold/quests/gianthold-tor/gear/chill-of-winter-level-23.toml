@@ -1,0 +1,59 @@
+name = "Chill of Winter (Level 23)"
+description = """
+This armament draws the cold away from you, leaving it pleasantly warm to the
+touch."""
+drop_location = "Return to Gianthold Tor, White Dragon chest (Epic Normal)"
+icon = "RuneArm_2a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 23
+slot = "Runearm"
+
+[[clickie]]
+name = "Cold Bolts"
+clickie = "Cold Bolts"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Rune Arm Imbue - Cold IV"
+
+[[effect]]
+name = "Freezing Ice Guard"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Inherent"
+value = 5
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Cold Bolts",
+    "Unknown",
+]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "white dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

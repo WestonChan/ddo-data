@@ -1,0 +1,65 @@
+name = "Litany of the Dead"
+description = """
+The Litany of the Dead is a powerful book the Abbot used to attempt to ascend
+to godhood. Its powers have been mostly drained, but what remains is still
+potent."""
+drop_location = "Ascension Chamber, Warded Chest"
+icon = "Trinket_30"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 13
+slot = "Trinket"
+
+[[clickie]]
+name = "Turn the Page"
+clickie = "Turn the Page"
+
+[[effect]]
+name = "Litany of the Dead - Ability Bonus"
+
+[[effect]]
+name = "Litany of the Dead - Combat Bonus"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Turn the Page"]
+
+[[socket]]
+slot = "crafting: upgradeable item (black abbot)"
+
+[[socket.option]]
+name = "Taint of Evil"
+description = """
+Taint of Evil: Good aligned characters equipping this item suffer a temporary negative
+level until the item is removed."""
+icon = "BlackAbbot"
+min_level = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Good"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Removes Taint of Evil"
+description = "This item has been cleansed of its taint."
+icon = "BlackAbbot"
+min_level = 13
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"

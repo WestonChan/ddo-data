@@ -1,0 +1,55 @@
+name = "Fastidious Fabricator"
+icon = "Cannith"
+
+[[item]]
+name = "Legendary Fabricator's Bracers"
+
+[[item]]
+name = "Legendary Fabricator's Gauntlets"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Balance"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Repair",
+]

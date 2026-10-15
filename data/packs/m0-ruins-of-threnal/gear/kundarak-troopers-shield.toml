@@ -1,0 +1,47 @@
+name = "Kundarak Trooper's Shield"
+description = """
+Now a rarity, these immense shields were once carried by the elite guards of
+House Kundarak ."""
+drop_location = "The Abandoned Excavation, End reward"
+enhancement_bonus = 3
+icon = "Shield_3"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Steel"
+minimum_level = 8
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 8
+max_dex_bonus = 2
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Heroism"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

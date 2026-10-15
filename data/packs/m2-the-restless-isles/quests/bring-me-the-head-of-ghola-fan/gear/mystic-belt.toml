@@ -1,0 +1,41 @@
+name = "Mystic Belt"
+description = """
+Ghola-Fan contracted a treasure seeker to bring him treasures from all over
+Eberron. The origin of this piece is unknown because Ghola-Fan killed the treasure
+seeker before he learned it. He quickly discovered that the belt would not
+fit and tossed it into his vault."""
+drop_location = "Bring Me the Head of Ghola-Fan!, Treasure Room End Chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Waist"
+
+[[clickie]]
+name = "Shield"
+clickie = "Shield"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shield"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "treasure room end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bring Me the Head of Ghola-Fan!"

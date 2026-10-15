@@ -1,0 +1,37 @@
+name = "Ruby of Flaming Blast"
+description = """
+Critical hits with this weapon deal additional Fire Damage:
+x2: 1d10, x3 - 2d10, x3 - 3d10. Additionally, if you roll a 20 when attacking
+and confirm the critical hit, the weapon blasts your target, doing 4d6 damage.
+Drops in: Drop Location: ToEE: First Level and Earth Temple, and ToEE: Lower
+Temple Complex, rare encounter chests"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 8
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+chest = "any rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"
+
+[[source]]
+chest = "rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: First Level and Earth Temple"
+
+[[source]]
+chest = "rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Lower Temple Complex"

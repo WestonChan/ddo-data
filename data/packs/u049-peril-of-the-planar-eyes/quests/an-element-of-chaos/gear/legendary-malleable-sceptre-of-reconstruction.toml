@@ -1,0 +1,66 @@
+name = "Legendary Malleable Sceptre of Reconstruction"
+accepts_sentience = true
+description = "This magical sceptre is attuned to Repair spells."
+drop_location = "An Element of Chaos, End chest"
+enhancement_bonus = 15
+icon = "Club_2"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 50
+
+[[effect]]
+name = "Malleable"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "An Element of Chaos"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Club"

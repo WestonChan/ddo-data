@@ -1,0 +1,46 @@
+name = "Epic Silken Mail"
+description = """
+A Mithral Chainmail hauberk this armor is completely silent and seems impervious
+to most slashing damage."""
+drop_location = "Epic version of Silken Mail"
+enhancement_bonus = 6
+icon = "LightArmor_9d"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_bonus = 10
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 13
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Axeblock X"
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

@@ -1,0 +1,62 @@
+name = "Azure Tower"
+description = "The blue shine of this shield resembles that of the clear blue skies over Sharn."
+drop_location = "What Dreams May Come, End chest"
+enhancement_bonus = 5
+icon = "Shield_2"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Steel"
+minimum_level = 18
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 13
+max_dex_bonus = 2
+shield_bonus = 15
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Feat Elusive Target"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Insight"
+value = 35
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Dreams May Come"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

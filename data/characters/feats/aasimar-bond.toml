@@ -1,0 +1,103 @@
+[[row]]
+name = "Aasimar: Fallen Bond"
+acquire = "Train"
+description = "While fallen stance is active you gain +1 Strength and +1 to Reflex saving throws."
+icon = "AasimarFallen"
+source_name = "Aasimar"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Strength"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Reflex Save"
+value = 1
+
+[[row.group]]
+group_name = "Aasimar Bond"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["Aasimar: Fallen Bond"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier.requirement]]
+items = ["Aasimar: Fallen Bond"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "Aasimar: Fallen Bond"
+description = """
+While this stance is active you gain +1 Strength and +1 to Reflex saving throws.
+You also gain access to your Healing Hands ability, plus any additional
+enhancements trained dependent on this stance being active"""
+icon = "AasimarFallen"
+
+[[row]]
+name = "Aasimar: Protector Bond"
+acquire = "Train"
+description = "While protector stance is active you gain +1 Charisma and +1 to Will saving throws."
+icon = "AasimarProtector"
+source_name = "Aasimar"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Charisma"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Will Save"
+value = 1
+
+[[row.group]]
+group_name = "Aasimar Bond"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["Aasimar: Protector Bond"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier.requirement]]
+items = ["Aasimar: Protector Bond"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "Aasimar: Protector Bond"
+description = """
+While this stance is active you gain +1 Charisma and +1 to Will saving throws.
+You also gain access to your Healing Hands ability, plus any additional
+enhancements trained dependent on this stance being active"""
+icon = "AasimarProtector"

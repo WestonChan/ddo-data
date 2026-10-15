@@ -1,0 +1,709 @@
+name = "Bladeforged"
+background = "BladeforgedBackground"
+icon = "Bladeforged"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Bladeforged: Improved Fortification I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Your base fortification is increased to 50%."
+icon = "WarforgedImprovedFortification"
+internal_name = "BladeforgedCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Bladeforged: Constitution I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+internal_name = "BladeforgedCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["BladeforgedCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Bladeforged: Improved Fortification II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Your base fortification is increased to 75%."
+icon = "WarforgedImprovedFortification"
+internal_name = "BladeforgedCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["BladeforgedCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Bladeforged: Constitution II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+internal_name = "BladeforgedCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["BladeforgedCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Bladeforged: Improved Fortification III"
+cost_per_rank = [1]
+description = "Your base fortification is increased to 100%."
+icon = "WarforgedImprovedFortification"
+internal_name = "BladeforgedCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["BladeforgedCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Bladeforged: Communion of Sentinel"
+cost_per_rank = [2]
+description = """
++[1/2] to Fortitude and Will saving throws.
++[1/2] to Listen, Search, and Spot checks."""
+icon = "BladeforgedCommunionOfSentinel"
+internal_name = "BladeforgedCommunionOfSentinel"
+min_spent = 1
+ranks = 2
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Fortitude",
+    "Will",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement]]
+name = "Bladeforged: Repair Systems"
+cost_per_rank = [1]
+description = "Choose whether to embrace your construct nature, or strive for humanity."
+icon = "WarforgedRepairSystems"
+internal_name = "BladeforgedRepairSystems"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.selection]]
+name = "Healer's Friend"
+cost_per_rank = [1]
+description = "Your penalty to Positive Energy Healing is reduced from 50% to [40/30/20]%"
+icon = "WarforgedHealersFriend"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection]]
+name = "Mechanist"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] Repair skill and +[20/30/40] Repair amplification."
+icon = "WarforgedMechanist"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    20,
+    30,
+    40,
+]
+bonus_type = "Enhancement"
+effect_type = "RepairAmplification"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Repair"]
+
+[[enhancement]]
+name = "Bladeforged: Inscribed Armor"
+cost_per_rank = [1]
+description = "Reduces your body's inherent arcane spell failure by [5/10/15]%."
+icon = "WarforgedInscribedArmor"
+internal_name = "BladeforgedInscribedArmor"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement]]
+name = "Bladeforged: Construct Toughness I"
+cost_per_rank = [2]
+description = "You gain 10 hit points."
+icon = "WarforgedConstructToughness"
+internal_name = "BladeforgedConstructToughnessI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement]]
+name = "Bladeforged: Construct Stability"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] to the Repair skill and +[2/4/6] to the Balance skill."
+icon = "WarforgedConstructStability"
+internal_name = "BladeforgedConstructStability"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Repair"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[enhancement]]
+name = "Bladeforged: Communion of Scribing"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Reconstruct.
+Greatly repairs an ally construct, restoring 10 hit points per caster level (max 150hp),
+while simultaneously granting it an increase in attack speed (15% for melee and 22%
+for ranged) for a short time.
+Cost: 25 SP
+Cooldown: 6 seconds."""
+icon = "BladeforgedCommunionOfScribing"
+internal_name = "BladeforgedCommunionOfScribing"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    25,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Reconstruct",
+    "None",
+]
+
+[[enhancement]]
+name = "Bladeforged: Tactics"
+cost_per_rank = [1]
+description = "+[1/2/3] to the DC's of your Tactical abilities."
+icon = "WarforgedTactics"
+internal_name = "BladeforgedTactics"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement]]
+name = "Bladeforged: Great Weapon Aptitude"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "WarforgedGreatWeaponAptitude"
+internal_name = "BladeforgedGreatWeaponAptitude"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Feat"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Natural Fighting"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Bladeforged: Fearsome Presence"
+cost_per_rank = [1]
+description = """
+Enemies damaged by your melee attacks are Shaken for 6 seconds.
+Repeated damage extends the duration.
+
+Shaken: -2 penalty on attack rolls, saving throws, skill checks, and ability checks."""
+icon = "BladeforgedFearsomePresence"
+internal_name = "BladeforgedFearsomePresence"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement]]
+name = "Bladeforged: Damage Reduction"
+cost_per_rank = [1]
+description = """
+You gain damage reduction [1/2/3]/Adamantine, or improve your existing damage
+reduction by [1/2/3]/Adamantine."""
+icon = "WarforgedDamageReduction"
+internal_name = "BladeforgedDamageReduction"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+    2,
+    3,
+    4,
+    5,
+]
+bonus_type = "Feat"
+display_name = "Adamantine Body Damage Reduction"
+effect_type = "DR"
+targets = ["Adamantine"]
+
+[[enhancement]]
+name = "Bladeforged: Communion of Warding"
+cost_per_rank = [2]
+description = "Adamantine Durability: Grants +[4/8/12] Physical Resistance Rating."
+icon = "BladeforgedCommunionOfWarding"
+internal_name = "BladeforgedCommunionOfWarding"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Adamantine Body"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Bladeforged: Brute Fighting"
+cost_per_rank = [2]
+description = """
+Activate this ability to cause your melee attacks to generate 75% more hate,
+making enemies more likely to attack you. (Cooldown: 2 seconds)"""
+icon = "WarforgedBruteFighting"
+internal_name = "BladeforgedBruteFighting"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.modifier.requirement]]
+items = ["Brute Fighting"]
+req_type = "Stance"
+
+[[enhancement.stance]]
+name = "Brute Fighting"
+description = """
+Activate this ability to cause your melee attacks to generate [25/50/75]% more hate,
+making enemies more likely to attack you."""
+icon = "WarforgedBruteFighting"
+
+[[enhancement]]
+name = "Bladeforged: Improved Power Attack"
+cost_per_rank = [2]
+description = """
+Your Power Attack feat does [1/2/3] additional point of bonus damage but also
+has an additional -[1/2/3] to your attack bonus."""
+icon = "WarforgedImprovedPowerAttack"
+internal_name = "BladeforgedImprovedPowerAttack"
+is_clickie = true
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Melee"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -3,
+]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = ["WeaponAttackBonusCriticalClass"]
+targets = ["Melee"]
+
+[[enhancement.modifier.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Power Attack"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Bladeforged: Construct Toughness II"
+cost_per_rank = [2]
+description = "You gain 10 hit points"
+icon = "WarforgedConstructToughness"
+internal_name = "BladeforgedConstructToughnessII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement]]
+name = "Bladeforged: Communion of Handling"
+cost_per_rank = [1]
+description = """
+Your attached weapon becomes Adamantine, bypassing Adamantine damage reduction,
+and gains Racial Seeker: 2.
+Racial Seeker: Grants a bonus to confirm critical hits and a bonus to critical hit
+damage (before weapon multipliers). This stacks with other sources of Seeker except
+Racial."""
+icon = "BladeforgedCommunionOfHandling"
+internal_name = "BladeforgedCommunionOfHandling"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Adamantine"
+
+[[enhancement.modifier.requirement]]
+items = ["Weapon Attachment"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+apply_as_item_effect = true
+bonus_type = "Racial"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Weapon Attachment"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["BladeforgedWeaponAttachment"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Bladeforged: Weapon Attachment"
+arrows = ["ArrowLeft"]
+cost_per_rank = [1]
+description = """
+Activate to attach your currently equipped weapons to yourself, giving you
+superior control over them. Until you unequip these items or rest, they deal +0.5[W] damage.
+Cooldown: 15 seconds"""
+icon = "WarforgedWeaponAttachment"
+internal_name = "BladeforgedWeaponAttachment"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Weapon Attachment"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["BEWeaponAttachment"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = ["WarforgedWeaponAttachment"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Weapon Attachment"
+description = """
+Your current weapon is attached to you giving better control.
+You deal +0.5[W] damage."""
+icon = "WarforgedWeaponAttachment"
+
+[[enhancement]]
+name = "Bladeforged: Resolve"
+cost_per_rank = [1]
+description = """
+Action Boost: You gain temporary hit points equal to your Repair Skill.
+If you are below half health, you gain a +2 bonus to all saving throws while
+these temporary hit points last.
+Cooldown: 3 minutes."""
+icon = "WarforgedResolve"
+internal_name = "BladeforgedResolve"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement]]
+name = "Bladeforged: Power of the Forge"
+cost_per_rank = [1]
+description = """
+Action Boost: For 20 seconds you gain:
++20 Action Boost bonus to Melee and Ranged Power
++30 bonus to Universal Spell Power
++4 Action Boost bonus to all Saving Throws
++10 Action Boost bonus to Armor Class and Physical Resistance Rating
+Cooldown: 30 seconds"""
+icon = "BladeforgedPowerOfTheForge"
+internal_name = "BladeforgedPowerOfTheForge"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement]]
+name = "Bladeforged: Soulbound Plating"
+cost_per_rank = [2]
+description = """
+You have become one with your metallic flesh.
++5% Quality bonus to Maximum Hit Points"""
+icon = "BladeforgedSoulboundPlating"
+internal_name = "BladeforgedSoulboundPlating"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Quality"
+effect_type = "HitpointsPercent"
+
+[[requirement]]
+items = ["Bladeforged"]
+req_type = "Race"

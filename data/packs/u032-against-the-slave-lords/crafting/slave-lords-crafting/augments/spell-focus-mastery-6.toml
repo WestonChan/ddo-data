@@ -1,0 +1,39 @@
+name = "Spell Focus Mastery +6"
+description = "Legendary Equipment bonus to SpellDC's"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Equipment"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Spell Focus Mastery +4"
+reason = "The wiki's legendary Slave Lords Spell Focus Mastery is +6."
+url = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment_bonus"
+original_name = "Spell Focus Mastery +4"
+field = "value"
+upstream = 4
+reason = "The wiki's legendary Slave Lords Spell Focus Mastery is +6."
+url = "https://ddowiki.com/page/Slave_Lords_Crafting"
+read = "2026-09-30"
+qualifier = "Spell DCs / Equipment"
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

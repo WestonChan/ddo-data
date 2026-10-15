@@ -1,0 +1,20 @@
+name = "Curse of Minor Archery"
+description = "+2 Fortune Bonus to Ranged Power"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Ranged Power"
+effect_type = "RangedPower"
+
+[[slot]]
+slot = "crafting: deck curse"

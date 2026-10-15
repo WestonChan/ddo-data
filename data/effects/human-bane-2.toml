@@ -1,0 +1,3 @@
+name = "Human Bane 2"
+description_template = "This weapon is attuned specifically to hunt those with diversity and ambition, dealing an additional 2d10 bane damage vs. Humans."
+verbose_name_template = "Human Bane 2"

@@ -1,0 +1,41 @@
+name = "Leaves of the Forest (Level 15)"
+description = """
+Rather then being made of metal, the scales and plates of this mail are instead
+fashioned from rare darkwood, a natural material that, when properly treated,
+is as hard as steel."""
+drop_location = "Thorn and Paw, End chest (Heroic Normal)"
+enhancement_bonus = 4
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Darkwood"
+minimum_level = 15
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 20
+armor_bonus = 8
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Exceptional"
+value = 10
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thorn and Paw"

@@ -1,0 +1,3 @@
+name = "Forged Lightning"
+description_template = "On Hit: 2% Chance to do 300 to 500 damage in a blast radius."
+verbose_name_template = "Forged Lightning"

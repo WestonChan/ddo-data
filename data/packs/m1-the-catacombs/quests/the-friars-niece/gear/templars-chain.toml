@@ -1,0 +1,34 @@
+name = "Templar's Chain"
+description = "This chain mail is worn by distinguished Templars of the Silver Flame."
+drop_location = "The Friar's Niece, End chest"
+enhancement_bonus = 2
+icon = "LightArmor_9f"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 4
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Lesser Undead Guard"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Friar's Niece"

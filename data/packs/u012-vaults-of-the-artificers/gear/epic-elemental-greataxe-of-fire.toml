@@ -1,0 +1,131 @@
+name = "Epic Elemental Greataxe of Fire"
+accepts_sentience = true
+description = """
+This greataxe is part of a mass-produced line of House Cannith weapons with
+elementals bound to them. This one is infused with fire and burns enemies as
+a result."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 5
+icon = "GreatAxe_2d"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Flaming Burst"
+
+[[effect]]
+name = "Brilliance"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Greater Incineration"
+
+[[effect]]
+name = "Magma Surge"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+6 Enhancement Bonus, Cold Resistance 38 and a Colorless augment slot"
+description = """
++6 Enhancement Bonus: +6 enhancement bonus to attack and damage rolls.
+Cold Resistance +38: Passive: +38 Enhancement bonus to your Cold Resistance.
+Adds a Colorless augment slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+value = 38
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [38]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Cold Resistance 41 and Adds a Purple augment slot"
+description = """
+Cold Resistance +41: Passive: +41 Enhancement bonus to your Cold Resistance.
+Adds a Purple augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+value = 41
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [41]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Great Axe"

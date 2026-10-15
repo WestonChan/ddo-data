@@ -1,0 +1,51 @@
+name = "Carved Bone Shield"
+description = "This shield is a series of intricately carved and knit bones from various monsters."
+drop_location = "Flesh Maker's Laboratory, End Chest"
+enhancement_bonus = 5
+icon = "Shield_4m"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Bone"
+minimum_level = 12
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Negative Energy Spike"
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 20
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flesh Maker's Laboratory"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Off-hand"
+weapon_type = "Large Shield"

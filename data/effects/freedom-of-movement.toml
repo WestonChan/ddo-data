@@ -1,0 +1,3 @@
+name = "Freedom of Movement"
+description_template = "This item grants its wearer the ability to move and attack normally while under the influence of magic that impedes movement, such as paralysis, solid fog, slow and web."
+verbose_name_template = "Freedom of Movement"

@@ -1,0 +1,42 @@
+name = "Epic Sword of Shadow"
+accepts_sentience = true
+description = """
+This great sword was forged inside the Vault of Night itself. The essence of
+Shadow has seeped into this sword granting it exceptional death-dealing abilities."""
+drop_location = "Epic version of Sword of Shadow"
+enhancement_bonus = 10
+icon = "Greatsword_2"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Adamantine"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

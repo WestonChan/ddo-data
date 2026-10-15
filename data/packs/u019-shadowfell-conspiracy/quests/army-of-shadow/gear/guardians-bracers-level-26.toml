@@ -1,0 +1,21 @@
+name = "Guardian's Bracers (Level 26)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Army of Shadow, End reward"
+icon = "Bracers_6"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Wrists"
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Fire Guard VIII"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Army of Shadow"

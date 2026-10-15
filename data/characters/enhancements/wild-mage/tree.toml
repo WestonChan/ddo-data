@@ -1,0 +1,1142 @@
+name = "Wild Mage"
+background = "SorcererBackground"
+icon = "Sorcerer"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Wild Mage: Determination"
+cost_per_rank = [1]
+description = """
++1 Will Saving Throw and +10 Chaos Spell Power. (Chaos Spell Power is often part
+of Alignment Spell Power on items)."""
+icon = "WMDetermination"
+internal_name = "WMCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Chaos"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Wild Mage: Boldness"
+cost_per_rank = [1]
+description = "+1 Caster Level with Chaos Spells. +10 Chaos Spell Power, +10 Universal Spell Power."
+icon = "WMBoldness"
+internal_name = "WMCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+targets = ["Chaos"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Chaos"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["WMCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wild Mage: Riches of Randomness"
+cost_per_rank = [1]
+description = """
+Once per Rest, target an unopened chest and twist fate for a chance at better
+rewards for the entire party. Chests can only be improved in this way one time,
+and there is a chance of failure based on your Charisma. (There is no special
+drawback on failure). Some chests cannot be improved in this manner. This effect
+does not stack with Treasure Finding from the Greater Dragonmark of Finding.
+Cooldown: 15 seconds.
+
+Passive: +10 Chaos Spell Power."""
+icon = "WMRichesOfRandomness"
+internal_name = "WMCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Chaos"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 6
+
+[[enhancement.requirement]]
+items = ["WMCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wild Mage: Entropic Energy"
+cost_per_rank = [1]
+description = """
+You gain +1 Caster Level and +1 Max caster Level with all spells. +10 Chaos Spell
+Power, +10 universal Spell Power, +1% chance of incurring a Wild Magic Surge when
+casting a spell. You may use Riches of Randomness one additional time per Rest."""
+icon = "WMEntropicEnergy"
+internal_name = "WMCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Chaos"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WildsurgeChance"
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 12
+
+[[enhancement.requirement]]
+items = ["WMCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wild Mage: Reject Limits"
+cost_per_rank = [1]
+description = """
++1 Caster Level and +1 Max caster Level with all spells, +10 Chaos Spell Power,
++10 Universal Spell Power."""
+icon = "WMRejectLimits"
+internal_name = "WMCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Chaos"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 18
+
+[[enhancement.requirement]]
+items = ["WMCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wild Mage: Channel Entropy"
+cost_per_rank = [1]
+description = """
+SLA: A field of chaotic energy strikes the target and nearby enemies, dealing
+1d6+18 Chaos damage per caster level (max 380 to 480 at caster level 20).
+A successful Will save reduces the damage by half.
+
+Passive: +4 Charisma, +10 Chaos Spell Power, +10 Universal Spell Power, +1% chance
+of incurring a Wild Magic Surge when casting a spell, +1% Spell Critical Damage
+with all spells. Your may use Riches of Randomness one additional time per rest."""
+icon = "WMChannelEntropy"
+internal_name = "WMCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WMCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    20,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Channel Entropy",
+    "Wild Mage",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Chaos"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WildsurgeChance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 20
+
+[[enhancement.requirement]]
+items = ["WMCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "WMCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Wild Mage: Chaos Bolt"
+cost_per_rank = [1]
+description = """
+Fires a small orb of Chaos at a target, doing 1d6+2 Chaos Damage per caster level
+(Max 10d6+20 at caster level 10).
+Cost: 2 Spell Points
+Cooldown: 4 seconds."""
+icon = "WMChaosBolt"
+internal_name = "WMChaosBolt"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    10,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Chaos Bolt",
+    "Wild Mage",
+]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Wild Mage: Chaos Control I"
+cost_per_rank = [2]
+description = "If you would get a very Bad Wild Magic Surge, you get a Bad Surge instead."
+icon = "WMChaosControlI"
+internal_name = "WMChaosControlI"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Wild Mage: Student of Chaos I"
+cost_per_rank = [1]
+description = """
++[1/2/3]% chance of incurring a Wild Magic Surge when casting a spell,
++[1/2/3]% Spell Critical Damage with all spells."""
+icon = "WMStudentOfChaosI"
+internal_name = "WMStudentOfChaosI"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "WildsurgeChance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Wild Mage: Tides of Chaos I"
+cost_per_rank = [1]
+description = """
+Once per minute, you gain a +[1/2/3] bonus to one of Reflex, Fortitude, or Will
+Saving Throws for one minute."""
+icon = "WMTidesOfChaosI"
+internal_name = "WMTidesOfChaosI"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Wild Mage: Skills"
+cost_per_rank = [1]
+description = "+[1/2/3] Spellcraft, Concentration, and Bluff."
+icon = "WMSkills"
+internal_name = "WMSkills"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Concentration",
+    "Spellcraft",
+]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Wild Mage: Action Boost: Wild Magic"
+cost_per_rank = [2]
+description = """
+For the next 20 seconds, you gain a +15% Action Boost Bonus to your chance
+of incurring a Wild Magic Surge when casting a spell. Also grants a Wild Surge
+Luck bonus to increase the odds of positive surges."""
+icon = "WMActionBoostWildMagic"
+internal_name = "WMActionBoostWildMagic"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [15]
+bonus_type = "Action Boost"
+effect_type = "WildsurgeChance"
+
+[[enhancement.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Wild Mage: Chaos Control II"
+cost_per_rank = [2]
+description = "If you would get a Bad Wild Magic Surge, you get a Neutral Surge instead."
+icon = "WMChaosControlII"
+internal_name = "WMChaosControlII"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Wild Mage: Student of Chaos II"
+cost_per_rank = [1]
+description = """
++[1/2/3]% chance of incurring a Wild Magic Surge when casting a spell.
++[1/2/3]% Spell Critical Damage with all spells."""
+icon = "WMStudentOfChaosII"
+internal_name = "WMStudentOfChaosII"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "WildsurgeChance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Wild Mage: Tides of Chaos II"
+cost_per_rank = [2]
+description = """
+Once per minute, when you incur a Wild Magic Surge, you gain one of a variety of
+buffs that scale with your Wild Mage level that last for 20 seconds."""
+icon = "WMTidesOfChaosII"
+internal_name = "WMTidesOfChaosII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Wild Mage: Lucky Dodge"
+cost_per_rank = [1]
+description = """
++[1/2/3]% Dodge while wearing no Armor.
+Rank 3: In addition, while wearing no Armor, you gain +1d6 to Dodge Cap. This
+die is rerolled once per minute."""
+icon = "WMLuckyDodge"
+internal_name = "WMLuckyDodge"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+rank = 3
+
+[[enhancement.modifier.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Wild Mage: Chaos Sphere"
+cost_per_rank = [2]
+description = """
+Launch a chaotic orb that explodes on impact, dealing 1d6 Chaos Damage per caster
+level (up to a max of 10d6 Chaos Damage at caster level 10) to targets in the
+area. A successful Will save reduces the damage by half. This SLA uses the
+highest of your INT, Wis, and CHA in its DC calculation, and uses the higher of
+your Evocation and Conjuration DCs for its spell school.
+Cost: 4 Spell Points
+Cooldown: 6 seconds."""
+icon = "WMChaosSphere"
+internal_name = "WMChaosSphere"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    10,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Chaos Sphere",
+    "Wild Mage",
+]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Wild Mage: Power in Chaos"
+cost_per_rank = [2]
+description = """
+Toggle: You gain +2 Caster Level and Max Caster Level with all spells, but are able
+to receive Very Bad and Bad Surges even if you have Chaos Control I or II.
+Cooldown: 6 seconds."""
+icon = "WMPowerInChaos"
+internal_name = "WMPowerInChaos"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Power in Chaos"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 3
+
+[[enhancement.stance]]
+name = "Power in Chaos"
+description = """
+Toggle: You gain +2 Caster Level and Max Caster Level with all spells, but are able
+to receive Very Bad and Bad Surges even if you have Chaos Control I or II."""
+group_name = "User"
+icon = "WMPowerInChaos"
+
+[[enhancement]]
+name = "Wild Mage: Student of Chaos III"
+cost_per_rank = [1]
+description = """
++[1/2/3]% chance of incurring a Wild Magic Surge when casting a spell.
++[1/2/3]% Spell Critical Damage with all spells."""
+icon = "WMStudentOfChaosIII"
+internal_name = "WMStudentOfChaosIII"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "WildsurgeChance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Wild Mage: Prismatic Mind"
+cost_per_rank = [1]
+description = """
+Color Spray now deals 1d6 Chaos Damage per Caster Level in addition to its other
+effects. A successful Will saves reduces the damage by half.
+Rank 2: Also affects Greater Color Spray and Prismatic Ray (1d6+7).
+Rank 3: Also affects Prismatic Strike and Prismatic Spray (1d6+7)."""
+icon = "WMPrismaticMind"
+internal_name = "WMPrismaticMind"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "WildsurgeChance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Wild Mage: Ability I"
+cost_per_rank = [2]
+description = "Select an ability between Intelligence, Wisdom and Charisma."
+icon = "IntWisCha"
+internal_name = "WMAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Wild Mage: Unpredictable Consequences"
+cost_per_rank = [2]
+description = """
+Your Chaos Bolt, Chaos Sphere, Chaos Hammer, and Channel Entropy spells and SLAs now
+add additional damage, debuff, or crown controls effects when cast. If the target
+saves for half damage, the additional effects are negated."""
+icon = "WMUnpredictableConsequences"
+internal_name = "WMUnpredictableConsequences"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Wild Mage: Unstable Sorcery"
+cost_per_rank = [2]
+description = "Select an option."
+icon = "WMUnstableSorcery"
+internal_name = "WMUnstableSorcery"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 4
+
+[[enhancement.selection]]
+name = "Mixed Magics"
+cost_per_rank = [2]
+description = """
+Your Caster Level with spells is now equal to your Character Level instead of
+individual class levels (max 20). This does not change the caster level of Rune
+Arms, Wands, Scrolls, or other Items."""
+icon = "WMMixedMagics"
+
+[[enhancement.selection]]
+name = "Unstable Sorcery"
+cost_per_rank = [2]
+description = "While wearing no armor, you gain 2% Spell Critical Damage."
+icon = "WMUnstableSorcery"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Wild Mage:"
+cost_per_rank = [1]
+description = """
++[1/2/3]% chance of incurring a Wild Magic Surge when casting a spell,
++[1/2/3]% Spell Critical Damage with all spells."""
+icon = "WMStudentOfChaosIV"
+internal_name = "WMStudentOfChaosIV"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "WildsurgeChance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Wild Mage: Tides of Chaos III"
+cost_per_rank = [1]
+description = "+[2/4/6]% Spell Critical Chance with Chaos spells."
+icon = "WMTidesOfChaosIII"
+internal_name = "WMTidesOfChaosIII"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Chaos"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Wild Mage: Ability II"
+cost_per_rank = [2]
+description = "Select an ability between Intelligence, Wisdom and Charisma."
+icon = "IntWisCha"
+internal_name = "WMAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 4
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Wild Mage: Wild Strike"
+cost_per_rank = [1]
+description = """
+Surround target adversary with rainbows, dealing 1d6+6 Chaos Damage per caster level
+(Maximum damage 10d6+60 at caster level 10). Every 2 seconds for 8 seconds,
+affected enemies take a random effect.
+Cost: 25 Spell Points
+Cooldown: 6 seconds"""
+icon = "WMWildStrike"
+internal_name = "WMWildStrike"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    25,
+    10,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Wildstrike",
+    "Wild Mage",
+]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Wild Mage: Bend Luck"
+cost_per_rank = [1]
+description = """
+You gain Bend Luck: Whenever you fail a Saving Throw, you reroll that Saving throw
+and take the second result. This stacks with Slippery Mind, but does not stack
+with other sources of Bend Luck."""
+icon = "WMBendLuck"
+internal_name = "WMBendLuck"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Wild Mage: Rapid Surge"
+cost_per_rank = [1]
+description = """
+Activate to trigger a short session where you get a lot of surges very quickly.
+Also grants a Wild Surge Luck bonus to increase the chance of positive surges."""
+icon = "WMRapidSurge"
+internal_name = "WMRapidSurge"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Wild Mage: Random Deflector"
+cost_per_rank = [1]
+description = "While wearing no armor, you gain +1d100 MRR Cap. This die is rerolled once per minute."
+icon = "WMRandomDeflector"
+internal_name = "WMRandomDeflector"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect_type = "MRRCap"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Wild Mage: Tides of Chaos IV"
+cost_per_rank = [1]
+description = "-2 to all Spell DCs. Whenever you cast a spell with a DC, you add 1d6 to the DC of that spell."
+icon = "WMTidesOfChaosIV"
+internal_name = "WMTidesOfChaosIV"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wild Mage"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Wild Mage"]
+req_type = "Class"

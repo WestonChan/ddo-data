@@ -1,0 +1,38 @@
+name = "Legendary Golden Guile"
+description = """
+A necklace worn by a Rakshasa with links and a charm made of pure gold. It seems
+to increases the wearer's ability to convince others of what he or she wants
+them to believe, even making it possible to distract enemies in the midst of
+a battle."""
+drop_location = "Legendary version of Epic Golden Guile"
+icon = "Necklace_1b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Enhanced Ghostly"
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[socket]]
+slot = "yellow"

@@ -1,0 +1,273 @@
+name = "Twilight, Element of Magic"
+accepts_sentience = true
+description = "A spark of magic for a studious mind."
+drop_location = "Caught in the Web, Any end chest"
+enhancement_bonus = 7
+icon = "Quarterstaff_3a"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 23
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 21
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 80
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 120
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Arcane Augmentation IX"
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Planar Conflux"
+description = """
+Planar Conflux: When this item is equipped at the same time as a Planar Focus,
+you will gain set bonuses based on the Planar Focus that you have equipped."""
+icon = "Heroism"
+min_level = 23
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 3"
+
+[[socket.option]]
+name = "Combustion +120"
+description = "Combustion +120: Passive: +120 Equipment bonus to Fire Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 120
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option]]
+name = "Glaciation +120"
+description = "Glaciation +120: Passive: +120 Equipment bonus to Cold Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 120
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[socket.option]]
+name = "Corrosion +120"
+description = "Corrosion +120: Passive: +120 Equipment bonus to Acid Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 120
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[socket.option]]
+name = "Magnetism +120"
+description = "Magnetism +120: Passive: +120 Equipment bonus to Electric Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 120
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[socket.option]]
+name = "Nullification +120"
+description = "Nullification +120: Passive: +120 Equipment bonus to Negative and Poison Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Negative Spell Power"
+value = 120
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Poison Spell Power"
+value = 120
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[socket.option]]
+name = "Devotion +120"
+description = "Devotion +120: Passive: +120 Equipment bonus to Positive Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+value = 120
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[socket.option]]
+name = "Radiance +120"
+description = "Radiance +120: Passive: +120 Equipment bonus to Light and Alignment Spell Power."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Chaos Spell Power"
+value = 120
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Evil Spell Power"
+value = 120
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Good Spell Power"
+value = 120
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Law Spell Power"
+value = 120
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Light Spell Power"
+value = 120
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Light/Alignment",
+]
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 4"
+
+[[socket.option]]
+name = "Red Augment Slot"
+description = "Adds a Red augment slot to this weapon."
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.grant]]
+slot = "red"
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Caught in the Web"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.6
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

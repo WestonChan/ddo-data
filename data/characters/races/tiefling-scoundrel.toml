@@ -1,0 +1,25 @@
+name = "Tiefling Scoundrel"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Tiefling Scoundrels are melee focused Bards with an emphasis on Sonic and Fire
+damage. They gain special powers while in their racial darkness SLA.
+
+Starts with 1 level of: Bard"""
+iconic_class = "Bard"
+short_name = "Scoundrel"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Charisma"
+
+[[granted_feat]]
+feat = "Infernal Ancestry"
+
+[[granted_feat]]
+feat = "Fiendish Arpeggio"

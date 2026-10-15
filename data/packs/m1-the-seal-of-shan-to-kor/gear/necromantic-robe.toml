@@ -1,0 +1,35 @@
+name = "Necromantic Robe"
+description = """
+Some say the magic in this robe causes madness. Others claim it simply prolongs
+the madness of those who wear it by extending their life."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 3
+
+[[effect]]
+name = "Lesser False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Power II"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

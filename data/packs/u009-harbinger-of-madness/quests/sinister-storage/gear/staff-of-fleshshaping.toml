@@ -1,0 +1,65 @@
+name = "Staff of Fleshshaping"
+description = """
+A staff apparently carved and whittled down from an unknown creature's bone.
+You get the sense it was used for fell purposes, but turned towards better
+ends it might aid you in the arts of healing."""
+drop_location = "Sinister Storage, End chest"
+enhancement_bonus = 5
+icon = "Quarterstaff_6d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 72
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 72
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Efficient Metamagic - Empower Healing II"
+bonus_type = "Equipment"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sinister Storage"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

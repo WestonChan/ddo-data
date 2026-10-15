@@ -1,0 +1,27 @@
+name = "Sparksoles"
+description = "A light crackle follows each footfall."
+drop_location = "Down You Go, end chest"
+icon = "Boots_8"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 3
+slot = "Feet"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 53
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Down You Go"

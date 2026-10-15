@@ -1,0 +1,47 @@
+name = "Epic Slice 'n Dice"
+icon = "SliceAndDice"
+
+[[item]]
+name = "Epic Dice"
+
+[[item]]
+name = "Epic Slice"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Seeker +2 Quality at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Seeker / Quality"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+2 Quality bonus to Seeker"
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "Sneak Attack Hit"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "Seeker"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Sneak Attack Hit"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"

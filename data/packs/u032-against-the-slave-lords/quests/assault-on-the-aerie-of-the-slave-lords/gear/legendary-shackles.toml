@@ -1,0 +1,29 @@
+name = "Legendary Shackles"
+description = "To hold one back, is to give them strength through freedom."
+drop_location = "Assault on the Aerie of the Slave Lords, Small chest, End chest"
+icon = "Bracers_25"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 28
+slot = "Feet"
+
+[[socket]]
+slot = "crafting: legendary slavelords prefix"
+
+[[socket]]
+slot = "crafting: legendary slavelords suffix"
+
+[[socket]]
+slot = "crafting: legendary slavelords extra"
+
+[[socket]]
+slot = "crafting: legendary slavelords bonus"
+
+[[socket]]
+slot = "crafting: legendary slavelords set bonus"
+
+[[source]]
+chest = "small chest, end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Assault on the Aerie of the Slave Lords"

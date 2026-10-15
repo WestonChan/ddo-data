@@ -1,0 +1,8 @@
+name = "Saltmarsh"
+difficulties = []
+favor = 0
+pack = "Sinister Secret of Saltmarsh"
+
+[[run]]
+tier = "heroic"
+level = 1

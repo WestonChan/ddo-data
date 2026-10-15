@@ -1,0 +1,27 @@
+name = "Ruby of the Snowpeaks"
+description = """
+1 to 8 Cold Damage
+Freezing Ice: This Weapon stores the pitiless immovable power of the ice deep within.
+When this weapon is used, this power occasionally comes to the surface, attempting
+to freeze an enemy solid and encase them in ice. 5% chance of Freezing Ice encasement.
+Fortitude save DC of 35, Freedom of movement blocks it; doesn't work on bosses,
+incorporeal, elementals, or oozes.
+Has a duration of 9 seconds, no recurring saves.
+Target is immobilized, and helpless (monsters take +25% damage from all sources.)
+Drop Location: Flurry: Snowpeaks Festival Trader"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 4
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+kind = "event"
+name = "Snowpeaks Festival"

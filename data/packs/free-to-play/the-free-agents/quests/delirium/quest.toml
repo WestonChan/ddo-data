@@ -1,0 +1,22 @@
+name = "Delirium"
+bestowed_by = "Merla Bauerdatter"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Free Agents"
+zone = "Sleeping Spell Inn"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Delirium"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15

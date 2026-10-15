@@ -1,0 +1,27 @@
+name = "Essence of the Nullscale Armor"
+description = """
+Nullmagic Guard: On being hit with a spell: There is a small chance that you explode
+in arcane energies. Foes hit are subject to a silencing effect, preventing their
+spell casts and dampening their magical protections for 10 seconds.
+Requires: 50 Threads of Fate, Empty Soul Vessel and Nullscale Armor (Killing Time)"""
+family = "Named"
+icon = "TopazRaidItemEssence"
+min_level = 30
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Essence of Nullscale Armor"
+reason = "The wiki names the augment Essence of the Nullscale Armor, where Maetrim names it Essence of Nullscale Armor."
+url = "https://ddowiki.com/page/Soulforge"
+read = "2026-10-02"
+qualifier = 'family "Named"'
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

@@ -1,0 +1,19 @@
+name = "Acid II"
+description_template = "On Hit: 2 to 8 Acid Damage."
+verbose_name_template = "Acid II"
+
+[[damage]]
+amount_from = 0
+damage_type = "Acid"
+dice_bonus = 1
+dice_number = 1
+dice_sides = 7
+scale = 1.0
+trigger = "On Hit"
+
+[[note]]
+kind = "effect_damage"
+field = "add"
+reason = "Stoneworker's Hammer deals 2 to 8 Acid damage on hit, represented as 1d7+1."
+url = "https://ddowiki.com/page/Item:Stoneworker%27s_Hammer"
+read = "2026-10-04"

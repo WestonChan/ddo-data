@@ -1,0 +1,39 @@
+name = "Cloak of the Hunter"
+description = "The Master of the Hunt has graciously granted you this as a token of his respect."
+drop_location = "Hunt or Be Hunted, end chest"
+icon = "Cloak_7b"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 14
+
+[[effect]]
+name = "Deception"
+bonus_type = "Quality"
+value = 2
+value2 = 3
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hunt or Be Hunted"

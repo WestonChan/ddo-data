@@ -1,0 +1,27 @@
+name = "+1 Reaper Bonus to all skills and +3 PRR"
+description = "+1 Reaper Bonus to all skills and +3 PRR"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Reaper"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Reaper"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[slot]]
+slot = "crafting: reaper gloves"

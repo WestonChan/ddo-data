@@ -1,0 +1,37 @@
+name = "Eladrin"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Eladrin are the Elves of the Feywild, and carry a strong association to seasonal magic.
+They are charismatic and adept at both martial and magical combat."""
+short_name = "Eladrin"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Dexterity"
+
+[[granted_feat]]
+feat = "Elven Keen Senses"
+
+[[granted_feat]]
+feat = "Enchantment Save Bonus"
+
+[[granted_feat]]
+feat = "Immunity to Sleep"
+
+[[granted_feat]]
+feat = "Spring Affinity"
+
+[[granted_feat]]
+feat = "Summer Affinity"
+
+[[granted_feat]]
+feat = "Autumn Affinity"
+
+[[granted_feat]]
+feat = "Winter Affinity"

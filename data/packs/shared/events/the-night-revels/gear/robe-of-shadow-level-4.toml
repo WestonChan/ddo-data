@@ -1,0 +1,33 @@
+name = "Robe of Shadow (level 4)"
+description = """
+This robe is as dark as the night sky and almost seems to crawl visibly with
+moving shadows. It boosts the power of the wearer's negative energy magic,
+and grants a measure of necromantic protection against enemy attacks."""
+drop_location = "The Night Revels"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 42
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Lesser False Life"
+bonus_type = "Enhancement"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

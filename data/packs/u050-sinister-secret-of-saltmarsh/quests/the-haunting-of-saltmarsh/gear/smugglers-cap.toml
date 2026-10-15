@@ -1,0 +1,30 @@
+name = "Smuggler's Cap"
+description = """
+The sort of cap used by smugglers and lawful sailors alike, allowing the user
+to fit into mixed company."""
+drop_location = "The Haunting of Saltmarsh, end chest"
+icon = "Helmet_1"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 3
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 2
+value2 = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunting of Saltmarsh"

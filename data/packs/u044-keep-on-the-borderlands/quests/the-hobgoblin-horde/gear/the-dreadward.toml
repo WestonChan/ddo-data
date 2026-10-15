@@ -1,0 +1,37 @@
+name = "The Dreadward"
+description = "This cloth belt will ward against evil energies."
+drop_location = "The Hobgoblin Horde, end chest"
+icon = "Belt_1"
+item_category = "Clothing"
+material = "Red Dragonscale"
+minimum_level = 21
+slot = "Waist"
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 28
+
+[[effect]]
+name = "Curse Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 12
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hobgoblin Horde"

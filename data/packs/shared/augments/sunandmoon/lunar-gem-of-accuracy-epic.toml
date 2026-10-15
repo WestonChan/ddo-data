@@ -1,0 +1,21 @@
+name = "Lunar Gem of Accuracy (Epic)"
+description = "+? Profane Bonus to Weapon Attacks."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[slot]]
+slot = "moon"

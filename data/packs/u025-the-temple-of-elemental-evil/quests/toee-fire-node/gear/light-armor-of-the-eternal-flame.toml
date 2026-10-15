@@ -1,0 +1,44 @@
+name = "Light Armor of the Eternal Flame"
+description = "Armor from deep within the Temple of Elemental Evil."
+drop_location = "ToEE: Fire Node, end chest and random locked chest"
+enhancement_bonus = 3
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 18
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 70
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest and random locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"

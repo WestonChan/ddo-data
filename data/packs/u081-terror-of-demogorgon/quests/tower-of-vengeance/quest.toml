@@ -1,0 +1,30 @@
+name = "Tower of Vengeance"
+bestowed_by = "Grin Ousttyl"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+zone = "The Road to Vizeran's Tower"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tower_of_Vengeance"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 37
+
+[[run]]
+tier = "legendary"
+level = 37

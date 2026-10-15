@@ -1,0 +1,14 @@
+name = "Curse of Butterflies"
+description = "Grants Feather Falling, Cosmetic Butterflies"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling Damage"]
+
+[[slot]]
+slot = "crafting: deck curse"

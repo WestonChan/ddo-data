@@ -1,0 +1,13 @@
+name = "The Path of Inspiration"
+pack = "The Path of Inspiration"
+quests = [
+    "Finding the Path",
+    "I Dream of Jeets",
+    "The Mindsunder",
+    "Dream Conspiracy",
+    "The Shipwrecked Spy",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Path_of_Inspiration"
+read = "2026-10-02"

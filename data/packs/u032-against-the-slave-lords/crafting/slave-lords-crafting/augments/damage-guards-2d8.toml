@@ -1,0 +1,8 @@
+name = "Damage Guards 2d8"
+description = "Damage guard on hit of 2d8"
+family = "Slavelords_Heroic"
+icon = "SlavelordsSuffix"
+min_level = 8
+
+[[slot]]
+slot = "crafting: slavelords suffix"

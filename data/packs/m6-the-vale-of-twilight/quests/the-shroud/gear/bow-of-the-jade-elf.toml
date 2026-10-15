@@ -1,0 +1,58 @@
+name = "Bow of the Jade Elf"
+description = "This bow was taken from the body of the Jade Elf, a famous archer."
+drop_location = "The Shroud, Phase 1"
+enhancement_bonus = 5
+icon = "Longbow_1w"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Ranged Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Feat - Precise Shot"
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 25
+
+[[source]]
+chest = "phase 1"
+kind = "quest"
+loot_type = "raid"
+name = "The Shroud"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

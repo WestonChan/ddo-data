@@ -1,0 +1,62 @@
+name = "Epic Swashbuckler (level 20)"
+description = """
+An indispensable tool for many a pirate when dueling with a single blade. It
+can parry an enemy's blows effectively and even leave them open to counterattack."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Silver Doubloon 400 Golden Doubloon 35 Stolen Emerald 700 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 6
+icon = "Shield_18b"
+item_category = "Shield"
+item_type = "Buckler"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 8
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Guardbreaking"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Off-hand"
+weapon_type = "Buckler"

@@ -1,0 +1,56 @@
+name = "Stonemeld Plate Armor"
+description = """
+A large earth elemental is bound into this armor and crystalline structures
+appear on various areas of its surface."""
+drop_location = "Plane of Night, Dragon's Chest"
+enhancement_bonus = 4
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 16
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[clickie]]
+name = "Stoneskin"
+clickie = "Stoneskin"
+
+[[effect]]
+name = "Earthgrab Guard"
+
+[[effect]]
+name = "DR 5/-"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Stoneskin"]
+
+[[source]]
+chest = "dragon's chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

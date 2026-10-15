@@ -1,0 +1,56 @@
+name = "Legendary Gorgon Docent"
+description = """
+This docent was specially crafted for the warforged that serve as mercenaries
+for House Deneith ."""
+drop_location = "Eyes of Stone, Coin Lords' chest"
+enhancement_bonus = 15
+icon = "Docent_1"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 31
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = -14
+armor_type = "Docent"
+mithral_body = 5
+
+[[clickie]]
+name = "Gorgon Breath"
+clickie = "Gorgon Breath"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Legendary Stone Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Gorgon Breath"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "coin lords' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Eyes of Stone"

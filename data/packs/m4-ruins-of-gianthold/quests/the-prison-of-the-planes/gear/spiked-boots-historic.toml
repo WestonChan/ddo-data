@@ -1,0 +1,25 @@
+name = "Spiked Boots (historic)"
+description = """
+The heels and soles of these heavy boots are covered in metallic spikes that
+give its wearer excellent traction on all surfaces."""
+drop_location = "The Prison of the Planes, Risia Room Chest"
+icon = "Boots_3"
+is_legacy = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Feet"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Immunity to Slippery Surfaces"
+
+[[source]]
+chest = "risia room chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"

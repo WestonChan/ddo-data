@@ -1,0 +1,341 @@
+[[rule]]
+include = [
+    "data/packs/*/crafting/*/augments/*.toml",
+    "data/packs/free-to-play/*/crafting/*/augments/*.toml",
+    "data/packs/shared/augments/*/*.toml",
+    "data/packs/*/augments/*.toml",
+    "data/packs/free-to-play/*/augments/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/augment.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/augment-slot-types.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/augment-slot-types.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/bonus-types.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/bonus-types.schema.json"
+
+[[rule]]
+include = [
+    "data/characters/classes/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/class.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/clickies.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/clickies.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/crafting/*/crafting.toml",
+    "data/packs/free-to-play/*/crafting/*/crafting.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/crafting-system.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/damage-types.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/damage-types.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/*.toml",
+]
+exclude = [
+    "data/effects/bonus-types.toml",
+    "data/effects/equipment-slots.toml",
+    "data/effects/weapon-types.toml",
+    "data/effects/damage-types.toml",
+    "data/effects/item-materials.toml",
+    "data/effects/triggers.toml",
+    "data/effects/augment-slot-types.toml",
+    "data/effects/weapon-proficiencies.toml",
+    "data/effects/clickies.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/effect.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/tiers/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/effect-tier.schema.json"
+
+[[rule]]
+include = [
+    "data/characters/enhancements/*/tree.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/enhancement-tree.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/equipment-slots.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/equipment-slots.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/events/*/event.toml",
+    "data/packs/free-to-play/*/events/*/event.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/event.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/exceptions.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/exceptions.schema.json"
+
+[[rule]]
+include = [
+    "data/upstream/excluded-items.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/excluded-items.schema.json"
+
+[[rule]]
+include = [
+    "data/characters/feats/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/feat-category.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/filigrees/*.toml",
+    "data/packs/free-to-play/*/filigrees/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/filigree-set.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/stat-groups/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/stat-group.schema.json"
+
+[[rule]]
+include = [
+    "data/characters/guild-buffs.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/guild-buffs.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/gear/*.toml",
+    "data/packs/free-to-play/*/gear/*.toml",
+    "data/packs/*/*/*/gear/*.toml",
+    "data/packs/free-to-play/*/*/*/gear/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/item.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/item-materials.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/item-materials.schema.json"
+
+[[rule]]
+include = [
+    "data/characters/optional-buffs.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/optional-buffs.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/pack.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/pack.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/patrons/*.toml",
+    "data/packs/free-to-play/*/patrons/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/patron.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/challenges/*.toml",
+    "data/packs/free-to-play/*/challenges/*.toml",
+    "data/packs/*/quests/*/quest.toml",
+    "data/packs/free-to-play/*/quests/*/quest.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/quest.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/chains/*.toml",
+    "data/packs/free-to-play/*/chains/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/quest-chain.schema.json"
+
+[[rule]]
+include = [
+    "data/characters/races/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/race.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/sagas/*.toml",
+    "data/packs/free-to-play/*/sagas/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/saga.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/sentient-gems/*.toml",
+    "data/packs/free-to-play/*/sentient-gems/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/sentient-gem.schema.json"
+
+[[rule]]
+include = [
+    "data/upstream/source-aliases.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/source-aliases.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/sets/*.toml",
+    "data/packs/free-to-play/*/sets/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/set.schema.json"
+
+[[rule]]
+include = [
+    "data/characters/spells/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/spell-list.schema.json"
+
+[[rule]]
+include = [
+    "data/characters/stances.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/stances.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/stats/*.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/stat.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/triggers.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/triggers.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/*/vendors/*/vendor.toml",
+    "data/packs/free-to-play/*/vendors/*/vendor.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/vendor.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/weapon-proficiencies.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/weapon-proficiencies.schema.json"
+
+[[rule]]
+include = [
+    "data/effects/weapon-types.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/weapon-types.schema.json"
+
+[[rule]]
+include = [
+    "data/upstream/commit.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/upstream-commit.schema.json"
+
+[[rule]]
+include = [
+    "data/packs/shared/vendors/currencies.toml",
+]
+
+[rule.schema]
+path = "data/.schemas/vendor-currencies.schema.json"

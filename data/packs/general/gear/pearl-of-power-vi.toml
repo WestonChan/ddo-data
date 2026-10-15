@@ -1,0 +1,15 @@
+name = "Pearl of Power VI"
+description = """
+This seemingly normal pearl of average size and luster is a potent aid to all
+spell casters."""
+drop_location = "Random, level ~8 chests/rewards"
+icon = "Trinket_3"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 9
+slot = "Trinket"
+
+[[effect]]
+name = "Power VI"
+bonus_type = "Enhancement"
+value = 60

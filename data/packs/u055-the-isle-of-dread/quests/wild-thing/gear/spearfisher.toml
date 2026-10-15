@@ -1,0 +1,50 @@
+name = "Spearfisher"
+description = """
+This fishing spear makes for a fine weapon - or, in a pinch, a quick way to
+secure some lunch."""
+drop_location = "Wild Thing, end chest"
+enhancement_bonus = 3
+icon = "Quarterstaff_1"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Animal Bane 2"
+
+[[effect]]
+name = "Tidal 2"
+
+[[effect]]
+name = "Cold Vulnerability"
+
+[[effect]]
+name = "Underwater Action"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wild Thing"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,89 @@
+name = "Legendary Black Satin Waist"
+description = "It's definitely cursed."
+drop_location = "The Magma Must Flow, End Chest"
+icon = "Belt_15"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 38
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+3 Quality Intelligence"
+description = "+3 Quality bonus to Intelligence"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Intelligence"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "+3 Quality Wisdom"
+description = "+3 Quality bonus to Wisdom"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Wisdom"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "+3 Quality Charisma"
+description = "+3 Quality bonus to Charisma"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Charisma"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Magma Must Flow"

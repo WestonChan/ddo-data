@@ -1,0 +1,48 @@
+name = "The Masque"
+description = "A broken fragment of a mask. Oddly, it's warm to the touch."
+drop_location = "The Curse of Strahd, warded chest"
+icon = "Goggles_3a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 28
+slot = "Goggles"
+
+[[clickie]]
+name = "Howl of Terror"
+clickie = "Howl of Terror"
+
+[[effect]]
+name = "Strength of Purpose"
+bonus_type = "Enhancement"
+value = 128
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Soundproof"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    29,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Howl of Terror"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"

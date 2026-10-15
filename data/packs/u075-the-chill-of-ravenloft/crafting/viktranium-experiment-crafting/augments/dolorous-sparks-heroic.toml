@@ -1,0 +1,19 @@
+name = "Dolorous Sparks (Heroic)"
+description = """
+Adds Jolting. This effect causes the edges of this weapon to arc with electricity,
+dealing 6d6 Lightning damage on each critical hit."""
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Electric"
+dice_number = [6]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

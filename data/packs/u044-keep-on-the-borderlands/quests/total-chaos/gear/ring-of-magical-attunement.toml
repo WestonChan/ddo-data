@@ -1,0 +1,24 @@
+name = "Ring of Magical Attunement"
+description = """
+This is a rare and powerful artifact that can help you pass skill checks required
+to use magical equipment that does not correspond to your class or alignment."""
+drop_location = "Total Chaos, End Chest"
+icon = "Ring_4"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Ring"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Total Chaos"

@@ -53,6 +53,133 @@ fn recorded_corrections(db: &Connection) -> Vec<(String, String, String, String,
 }
 
 #[test]
+fn a_stance_icon_correction_is_scoped_to_its_spell_and_stance_name() {
+    let correction = correction_toml("spell", "Evolution", "icon", "\"intelligence\"", "\"Intelligence\"")
+        + "stance = \"IntEvolution\"\n";
+    let (db, report) = built_db_with(&[("icons.toml", &correction)]).unwrap();
+    assert_eq!(report.correction_applied_count, 1);
+    let icons = db.prepare("SELECT spell.name, stance.icon FROM stances stance JOIN spells spell ON stance.owner_kind = 'spell' AND stance.owner_id = spell.id WHERE stance.name = 'IntEvolution' ORDER BY spell.name").unwrap()
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?))).unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    assert_eq!(
+        icons,
+        [
+            ("Evolution".into(), "Intelligence".into()),
+            ("Greater Evolution".into(), "intelligence".into()),
+            ("Lesser Evolution".into(), "intelligence".into())
+        ]
+    );
+    let restored = Corrections::from_database(&db).unwrap();
+    assert_eq!(restored.entries[0].qualifier(), "stance \"IntEvolution\"");
+}
+
+#[test]
+fn icon_notes_cover_filigrees_and_every_existing_ability_owner() {
+    let (baseline, _) = built_db_with(&[]).unwrap();
+    let mut entries = Vec::new();
+    for (table, owner_kind, owner_table, qualifier_key) in [
+        ("stances", "feat", "feats", "stance"),
+        ("stances", "enhancement", "enhancements", "stance"),
+        ("dcs", "enhancement", "enhancements", "dc"),
+    ] {
+        let (owner, name, icon): (String, String, String) = baseline.query_row(
+            &format!("SELECT owner.name, ability.name, ability.icon FROM {table} ability JOIN {owner_table} owner ON owner.id = ability.owner_id WHERE ability.owner_kind = ?1 ORDER BY ability.id LIMIT 1"),
+            [owner_kind], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?))
+        ).unwrap();
+        entries.push(
+            correction_toml(owner_kind, &owner, "icon", &format!("{icon:?}"), "\"CorrectedAbilityIcon\"")
+                + &format!("{qualifier_key} = {name:?}\n"),
+        );
+    }
+    let (name, icon): (String, String) = baseline
+        .query_row("SELECT name, icon FROM filigrees ORDER BY id LIMIT 1", [], |row| Ok((row.get(0)?, row.get(1)?)))
+        .unwrap();
+    entries.push(correction_toml("filigree", &name, "icon", &format!("{icon:?}"), "\"CorrectedFiligreeIcon\""));
+    let correction_text = entries.join("\n");
+    let (db, report) = built_db_with(&[("icons.toml", &correction_text)]).unwrap();
+    assert_eq!(report.correction_applied_count, 4);
+    let output = std::env::temp_dir().join(format!("ddo-data-ability-icon-notes-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&output);
+    ddo_etl::tree::export_database(&db, &output).unwrap();
+    fn corrected_notes(value: &toml::Value) -> usize {
+        match value {
+            toml::Value::Table(fields) => {
+                let own = if fields
+                    .get("icon")
+                    .and_then(toml::Value::as_str)
+                    .is_some_and(|icon| icon.starts_with("Corrected"))
+                {
+                    assert_eq!(fields["note"][0]["field"].as_str(), Some("icon"));
+                    assert!(fields["note"][0].get("qualifier").is_none());
+                    1
+                } else {
+                    0
+                };
+                own + fields.values().map(corrected_notes).sum::<usize>()
+            }
+            toml::Value::Array(rows) => rows.iter().map(corrected_notes).sum(),
+            _ => 0,
+        }
+    }
+    let count: usize = walkdir::WalkDir::new(&output)
+        .into_iter()
+        .map(Result::unwrap)
+        .filter(|entry| entry.path().extension().is_some_and(|extension| extension == "toml"))
+        .map(|entry| {
+            corrected_notes(&toml::from_str::<toml::Value>(&std::fs::read_to_string(entry.path()).unwrap()).unwrap())
+        })
+        .sum();
+    assert_eq!(count, 4);
+    std::fs::remove_dir_all(output).unwrap();
+}
+
+#[test]
+fn nested_icon_notes_remain_beside_the_corrected_rows() {
+    let selection = correction_toml(
+        "enhancement",
+        "Legendary Dreadnought: Dire Attack",
+        "icon",
+        "\"DireAttack\"",
+        "\"SelectionIcon\"",
+    ) + "selection = \"Dire Charge\"\n";
+    let dc =
+        correction_toml("enhancement", "Legendary Dreadnought: Dire Attack", "icon", "\"DireAttack\"", "\"DcIcon\"")
+            + "selection = \"Dire Charge\"\ndc = \"Dire Charge\"\n";
+    let stance = correction_toml("spell", "Evolution", "icon", "\"intelligence\"", "\"Intelligence\"")
+        + "stance = \"IntEvolution\"\n";
+    let (db, report) =
+        built_db_with(&[("selection.toml", &selection), ("dc.toml", &dc), ("stance.toml", &stance)]).unwrap();
+    assert_eq!(report.correction_applied_count, 3);
+    let output = std::env::temp_dir().join(format!("ddo-data-nested-icon-notes-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&output);
+    ddo_etl::tree::export_database(&db, &output).unwrap();
+    let tree: toml::Value = toml::from_str(
+        &std::fs::read_to_string(output.join("characters/enhancements/legendary-dreadnought/tree.toml")).unwrap(),
+    )
+    .unwrap();
+    let enhancement = tree["enhancement"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|row| row["name"].as_str() == Some("Legendary Dreadnought: Dire Attack"))
+        .unwrap();
+    assert!(enhancement.get("note").is_none());
+    let selection = enhancement["selection"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|row| row["name"].as_str() == Some("Dire Charge"))
+        .unwrap();
+    for (row, icon) in [(selection, "SelectionIcon"), (&selection["dc"][0], "DcIcon")] {
+        assert_eq!(row["icon"].as_str(), Some(icon));
+        assert_eq!(row["note"][0]["upstream"].as_str(), Some("DireAttack"));
+        assert!(row["note"][0].get("qualifier").is_none());
+    }
+    let restored = Corrections::from_database(&db).unwrap();
+    assert_eq!(restored.entries.len(), 3);
+    std::fs::remove_dir_all(output).unwrap();
+}
+
+#[test]
 fn drop_location_correction_changes_the_source_before_links_are_written() {
     let correction = correction_toml(
         "item",
@@ -1700,6 +1827,64 @@ fn adds_a_socket_an_item_lacks_and_goes_stale_once_he_carries_it() {
     )])
     .unwrap_err();
     assert!(error.contains("crafting: no such socket"), "{error}");
+}
+
+#[test]
+fn distinct_quest_names_with_colliding_slugs_are_not_silently_skipped() {
+    let directory = data_files_with_untyped("quest-slug-collision", &[]);
+    let path = directory.join("Quests.xml");
+    let quests = std::fs::read_to_string(&path).unwrap();
+    std::fs::write(
+        &path,
+        quests
+            .replace("<Name>Land of Lamordia</Name>", "<Name>Slug Probe</Name>")
+            .replace("<Name>Redemption</Name>", "<Name>Slug-Probe</Name>"),
+    )
+    .unwrap();
+    let error = built_db_from(&directory, &[]).unwrap_err();
+    assert!(error.contains("quests.slug"), "{error}");
+    std::fs::remove_dir_all(directory.parent().unwrap()).unwrap();
+}
+
+#[test]
+fn colliding_socket_label_slugs_apply_the_recorded_rename_in_either_input_order() {
+    for reversed in [false, true] {
+        let directory = data_files_with_untyped(&format!("socket-slug-{reversed}"), &[]);
+        let path = directory.join("Items/Sireth, Spear of the Sky.item");
+        let original = std::fs::read_to_string(&path).unwrap();
+        let labels = if reversed {
+            ["Upgradeable Tier 2", "Upgradeable - Tier 2"]
+        } else {
+            ["Upgradeable - Tier 2", "Upgradeable Tier 2"]
+        };
+        std::fs::write(
+            &path,
+            original
+                .replace("<Type>Attuned to Heroism 1</Type>", &format!("<Type>{}</Type>", labels[0]))
+                .replace("<Type>Attuned to Heroism 2</Type>", &format!("<Type>{}</Type>", labels[1])),
+        )
+        .unwrap();
+        let correction = correction_toml(
+            "socket_label",
+            "crafting: upgradeable - tier 2",
+            "name",
+            "\"crafting: upgradeable - tier 2\"",
+            "\"crafting: upgradeable tier 2\"",
+        );
+        let (db, report) = built_db_from(&directory, &[("labels.toml", &correction)]).unwrap();
+        assert_eq!(
+            &item_socket_labels(&db, "Sireth, Spear of the Sky")[..2],
+            ["crafting: upgradeable tier 2", "crafting: upgradeable tier 2"]
+        );
+        assert_eq!(report.correction_applied_count, 1);
+        assert!(report.stale_corrections.is_empty());
+        assert_eq!(recorded_corrections(&db).len(), 1);
+        assert_eq!(
+            row_count(&db, "SELECT COUNT(*) FROM augment_slot_types WHERE slug = 'crafting-upgradeable-tier-2'"),
+            1
+        );
+        std::fs::remove_dir_all(directory.parent().unwrap()).unwrap();
+    }
 }
 
 #[test]

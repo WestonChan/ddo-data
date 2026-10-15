@@ -1,0 +1,29 @@
+name = "Purple Dragon Gauntlets"
+description = """
+These gauntlets are of the same make as those worn by the famed Purple Dragon
+Knights of Cormyr."""
+drop_location = "Eveningstar, Turn in 5 Commendations: Purple Dragon Knights Commendation: Purple Dragon Knights : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Purple Dragon Knights. You can exchange it in Eveningstar for powerful equipment."
+icon = "Gloves_8"
+item_category = "Clothing"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 60
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

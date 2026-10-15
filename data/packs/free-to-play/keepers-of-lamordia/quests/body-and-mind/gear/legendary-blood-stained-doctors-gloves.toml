@@ -1,0 +1,42 @@
+name = "Legendary Blood-Stained Doctor's Gloves"
+description = "These delacate gloves are covered in blood, although whose blood cannot be said."
+drop_location = "Body and Mind, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 34
+slot = "Hands"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 6
+value2 = 9
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Enhanced Bloodrage"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Body and Mind"

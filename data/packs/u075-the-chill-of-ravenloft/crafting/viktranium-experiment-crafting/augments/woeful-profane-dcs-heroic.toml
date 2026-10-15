@@ -1,0 +1,21 @@
+name = "Woeful Profane DCs (Heroic)"
+description = "You have a +1 Profane bonus to Spell DCs."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Profane"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: woeful (accessory)"

@@ -1,0 +1,49 @@
+name = "Wing of Tailara"
+description = "A frozen blade, hidden away from the one who made it."
+drop_location = "The Final Draw, end chest"
+enhancement_bonus = 5
+icon = "Khopesh_1n"
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Chilling 3"
+
+[[effect]]
+name = "Freezing 7"
+
+[[effect]]
+name = "Banishing"
+
+[[effect]]
+name = "Dragon's Edge 3"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Draw"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Khopesh"

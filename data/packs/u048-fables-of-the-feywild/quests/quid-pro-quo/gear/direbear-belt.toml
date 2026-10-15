@@ -1,0 +1,37 @@
+name = "Direbear Belt"
+description = """
+This belt is made of Direbear hide, and can take quite a beating. Rumor has
+it that some of the incredible ferocity of a Direbear can still be found within."""
+drop_location = "Quid Pro Quo, End Chest"
+icon = "Belt_8"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Waist"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 3
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 4
+
+[[effect]]
+name = "Roar"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Quid Pro Quo"

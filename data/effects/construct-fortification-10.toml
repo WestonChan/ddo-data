@@ -1,0 +1,11 @@
+name = "Construct Fortification (10%)"
+description_template = "This docent produces a a magical force that protects vital areas of the wearer more effectively. When a critical hit or sneak attack is scored on the wearer, there is a +10% chance that the critical hit or sneak attack is negated and damage is instead rolled normally. This ability is considered as Insight bonus when determining stacking with other sources of fortification."
+home_bonus_type = "Insight"
+verbose_name_template = "Construct Fortification (10%)"
+
+[[bonus]]
+amount_from = 0
+constant = 10
+rounding = "down"
+scale = 1.0
+target = "Fortification"

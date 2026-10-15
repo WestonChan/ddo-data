@@ -1,0 +1,3 @@
+name = "Bodyfeeder"
+description_template = "Whenever a bodyfeeder weapon you wield scores a critical hit, you gain 15 temporary hit points that last for up to 1 minute."
+verbose_name_template = "Bodyfeeder"

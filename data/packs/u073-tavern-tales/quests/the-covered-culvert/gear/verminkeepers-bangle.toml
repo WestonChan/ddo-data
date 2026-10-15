@@ -1,0 +1,37 @@
+name = "Verminkeeper's Bangle"
+drop_location = "The Covered Culvert, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 4
+slot = "Wrists"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Druidic Stoneshape"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"

@@ -1,0 +1,39 @@
+name = "Tchurvul's Kukri"
+description = "This weapon has been crafted by the minions of Tchurvul the Vulture."
+drop_location = "Special event items, Emerald Claw Conspiracy, Randomly dropped by Tchurvul."
+enhancement_bonus = 1
+icon = "Kukri_1l"
+item_category = "Weapon"
+item_type = "Kukri"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Curse of Repulsiveness"
+bonus_type = "Penalty"
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Tchurvul's Touch"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Kukri"

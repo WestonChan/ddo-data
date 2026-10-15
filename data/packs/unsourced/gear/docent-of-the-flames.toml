@@ -1,0 +1,47 @@
+name = "Docent of the Flames"
+description = "The power of the Silver Flame is not limited to fleshly followers"
+drop_location = "Silver Flame Nugget, End reward"
+enhancement_bonus = 5
+icon = "Docent_10a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 16
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 17
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 8
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Construct Fortification (10%)"
+bonus_type = "Insight"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

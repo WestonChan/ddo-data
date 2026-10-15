@@ -1,0 +1,872 @@
+name = "Warforged"
+background = "WarforgedBackground"
+icon = "Warforged"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Warforged: Improved Fortification I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Your base fortification is increased to 50%."
+icon = "WarforgedImprovedFortification"
+internal_name = "WarforgedCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Warforged: Constitution I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+internal_name = "WarforgedCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["WarforgedCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warforged: Improved Fortification II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Your base fortification is increased to 75%."
+icon = "WarforgedImprovedFortification"
+internal_name = "WarforgedCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["WarforgedCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warforged: Constitution II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+internal_name = "WarforgedCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["WarforgedCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warforged: Improved Fortification III"
+cost_per_rank = [1]
+description = "Your base fortification is increased to 100%."
+icon = "WarforgedImprovedFortification"
+internal_name = "WarforgedCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["WarforgedCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warforged: Construct Nature I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Built for Brains or Brawn?"
+icon = "WarforgedConstructNature"
+internal_name = "WarforgedConstructNatureI"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.selection]]
+name = "Construct Hardiness"
+cost_per_rank = [1]
+description = "Grants +[1/2/3] to Fortitude saving throws."
+icon = "WarforgedConstructHardiness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.selection]]
+name = "Construct Thinking"
+cost_per_rank = [1]
+description = "Grants +[1/2/3] to Will saving throws."
+icon = "WarforgedConstructThinking"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement]]
+name = "Warforged: Repair Systems"
+cost_per_rank = [1]
+description = "Choose whether to embrace your construct nature, or strive for humanity."
+icon = "WarforgedRepairSystems"
+internal_name = "WarforgedRepairSystems"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.selection]]
+name = "Healer's Friend"
+cost_per_rank = [1]
+description = "Your penalty to Positive Energy Healing is reduced from 50% to [40/30/20]%."
+icon = "WarforgedHealersFriend"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection]]
+name = "Mechanist"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] Repair skill and +[20/30/40] Repair amplification."
+icon = "WarforgedMechanist"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    20,
+    30,
+    40,
+]
+bonus_type = "Enhancement"
+effect_type = "RepairAmplification"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Repair"]
+
+[[enhancement]]
+name = "Warforged: Inscribed Armor"
+cost_per_rank = [1]
+description = "Reduces your body's inherent arcane spell failure by [5/10/15]%."
+icon = "WarforgedInscribedArmor"
+internal_name = "WarforgedInscribedArmor"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement]]
+name = "Warforged: Construct Toughness I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain 10 hit points."
+icon = "WarforgedConstructToughness"
+internal_name = "WarforgedConstructToughnessI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement]]
+name = "Warforged: Construct Stability"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] to the Repair skill and +[2/4/6] to the Balance skill."
+icon = "WarforgedConstructStability"
+internal_name = "WarforgedConstructStability"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Repair"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[enhancement]]
+name = "Warforged: Construct Nature II"
+cost_per_rank = [1]
+description = "Built for Brains or Brawn?"
+icon = "WarforgedConstructNature"
+internal_name = "WarforgedConstructNatureII"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["WarforgedConstructNatureI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Construct Hardiness"
+cost_per_rank = [1]
+description = "Grants +[1/2/3] to Fortitude saving throws."
+icon = "WarforgedConstructHardiness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.selection]]
+name = "Construct Thinking"
+cost_per_rank = [1]
+description = "Grants +[1/2/3] to Will saving throws."
+icon = "WarforgedConstructThinking"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.selector_exclusion]]
+internal_name = "WarforgedConstructNatureI"
+
+[[enhancement]]
+name = "Warforged: Tactics"
+cost_per_rank = [1]
+description = "+[1/2/3] to the DC's of your Tactical abilities."
+icon = "WarforgedTactics"
+internal_name = "WarforgedTactics"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement]]
+name = "Warforged: Great Weapon Aptitude"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "WarforgedGreatWeaponAptitude"
+internal_name = "WarforgedGreateWeaponAptitude"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Feat"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Natural Fighting"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Warforged: Construct Toughness II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain 10 hit points."
+icon = "WarforgedConstructToughness"
+internal_name = "WarforgedConstructToughnessII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["WarforgedConstructToughnessI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warforged: Damage Reduction"
+cost_per_rank = [1]
+description = """
+You gain damage reduction [1/2/3]/Adamantine, or improve your existing damage
+reduction by [1/2/3]/Adamantine."""
+icon = "WarforgedDamageReduction"
+internal_name = "WarforgedDamageReduction"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+    2,
+    3,
+    4,
+    5,
+]
+bonus_type = "Feat"
+display_name = "Adamantine Body Damage Reduction"
+effect_type = "DR"
+targets = ["Adamantine"]
+
+[[enhancement]]
+name = "Warforged: Improved Body"
+cost_per_rank = [1]
+description = "Improves Mithral or Adamantine Body feats."
+icon = "WarforgedImprovedBody"
+internal_name = "WarforgedImprovedBody"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Adamantine Body"]
+req_type = "Feat"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Mithral Body"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Adamantine Durability"
+cost_per_rank = [1]
+description = "Grants +[4/8/12] Physical Resistance Rating."
+icon = "WarforgedAdamantineDurability"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.selection.requirement]]
+items = ["Adamantine Body"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Mithral Fluidity"
+cost_per_rank = [1]
+description = """
+Increases the maximum dexterity bonus and reduces the armor check penalty
+of your mithral body plating by [1/2/3]."""
+icon = "WarforgedMithralFluidity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ArmorCheckPenalty"
+
+[[enhancement.selection.requirement]]
+items = ["Mithral Body"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Warforged: Brute Fighting"
+cost_per_rank = [2]
+description = """
+Activate this ability to cause your melee attacks to generate 75% more hate,
+making enemies more likely to attack you. (Cooldown: 2 seconds)"""
+icon = "WarforgedBruteFighting"
+internal_name = "WarforgedBruteFighting"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.modifier.requirement]]
+items = ["Brute Fighting"]
+req_type = "Stance"
+
+[[enhancement.stance]]
+name = "Brute Fighting"
+description = """
+Activate this ability to cause your melee attacks to generate 75% more hate,
+making enemies more likely to attack you. (Cooldown: 2 seconds)"""
+icon = "WarforgedBruteFighting"
+
+[[enhancement]]
+name = "Warforged: Improved Power Attack"
+cost_per_rank = [1]
+description = """
+Your Power Attack feat does [1/2/3] additional point(s) of bonus damage but also has
+an additional -[1/2/3] to your attack bonus."""
+icon = "WarforgedImprovedPowerAttack"
+internal_name = "WarforgedImprovedPowerAttack"
+is_clickie = true
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Melee"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -3,
+]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = ["WeaponAttackBonusCriticalClass"]
+targets = ["Melee"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Power Attack"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Warforged: Construct Toughness III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain 10 hit points."
+icon = "WarforgedConstructToughness"
+internal_name = "WarforgedConstructToughnessIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["WarforgedConstructToughnessII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warforged: Memories of the Last War I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "You recall distant memories of the War."
+icon = "WarforgedFinalWitness"
+internal_name = "WarforgedMemoriesOfTheLastWarI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.selection]]
+name = "Arcane Slinger"
+cost_per_rank = [1]
+description = "+25 Determination bonus to Universal Spell Power."
+icon = "WarforgedArcaneSlinger"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Determination"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection]]
+name = "Final Witness"
+cost_per_rank = [1]
+description = "+3 Determination bonus to all Saving Throws."
+icon = "WarforgedFinalWitness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Determination"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection]]
+name = "Front Lines"
+cost_per_rank = [1]
+description = "+15 Determination bonus to Melee Power and Ranged Power."
+icon = "WarforgedFrontLines"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Determination"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.selection]]
+name = "Spellcarved Soldier"
+cost_per_rank = [1]
+description = "+8 Determination bonus to Armor Class and Physical Resistance Rating."
+icon = "WarforgedSpellcarvedSoldier"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Determination"
+effect_type = "ACBonus"
+extra_types = ["PRR"]
+
+[[enhancement]]
+name = "Warforged: Weapon Attachment"
+cost_per_rank = [1]
+description = """
+Activate to attach your currently equipped weapons to yourself, giving you superior
+control over them. Until you unequip these items or rest, they deal +0.5[W] damage.
+Cooldown: 15 seconds"""
+icon = "WarforgedWeaponAttachment"
+internal_name = "WarforgedWeaponAttachment"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Weapon Attachment"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["BEWeaponAttachment"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = ["BladeforgedWeaponAttachment"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Weapon Attachment"
+description = "You current weapon is attached to you giving better control. You deal +0.5[W] damage."
+icon = "WarforgedWeaponAttachment"
+
+[[enhancement]]
+name = "Warforged: Resolve"
+cost_per_rank = [1]
+description = """
+Action Boost: You gain temporary hit points equal to your Repair Skill.
+If you are below half health, you gain a +2 bonus to all saving throws while these
+temporary hit points last.
+Cooldown: 3 minutes."""
+icon = "WarforgedResolve"
+internal_name = "WarforgedResolve"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement]]
+name = "Warforged: Construct Toughness IV"
+cost_per_rank = [2]
+description = "You gain 10 hit points."
+icon = "WarforgedConstructToughness"
+internal_name = "WarforgedConstructToughnessIV"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["WarforgedConstructToughnessIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Warforged: Memories of the Last War II"
+cost_per_rank = [1]
+description = "You recall further memories of the War."
+icon = "WarforgedFinalWitness"
+internal_name = "WarforgedMemoriesOfTheLastWarII"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["WarforgedMemoriesOfTheLastWarI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Arcane Slinger"
+cost_per_rank = [1]
+description = "+25 Determination bonus to Universal Spell Power."
+icon = "WarforgedArcaneSlinger"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Determination"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection]]
+name = "Final Witness"
+cost_per_rank = [1]
+description = "+3 Determination bonus to all Saving Throws."
+icon = "WarforgedFinalWitness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Determination"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection]]
+name = "Front Lines"
+cost_per_rank = [1]
+description = "+15 Determination bonus to Melee Power and Ranged Power."
+icon = "WarforgedFrontLines"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Determination"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.selection]]
+name = "Spellcarved Soldier"
+cost_per_rank = [1]
+description = "+8 Determination bonus to Armor Class and Physical Resistance Rating."
+icon = "WarforgedSpellcarvedSoldier"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Determination"
+effect_type = "ACBonus"
+extra_types = ["PRR"]
+
+[[enhancement.selector_exclusion]]
+internal_name = "WarforgedMemoriesOfTheLastWarI"
+
+[[requirement]]
+items = ["Warforged"]
+req_type = "Race"

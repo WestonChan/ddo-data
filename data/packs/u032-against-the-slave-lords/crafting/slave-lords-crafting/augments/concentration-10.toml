@@ -1,0 +1,21 @@
+name = "Concentration +10"
+description = "Competence bonus to Concentration"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect = "Concentration"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[slot]]
+slot = "crafting: slavelords extra"

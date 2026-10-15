@@ -1,0 +1,20 @@
+name = "Pirate's Bandana"
+description = """
+Found in an old pirate's cache, this bandana is favored by those who enjoy skulking
+in the shadows."""
+drop_location = "Special event items, Talk Like a Pirate Day"
+icon = "Helmet_56a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 5

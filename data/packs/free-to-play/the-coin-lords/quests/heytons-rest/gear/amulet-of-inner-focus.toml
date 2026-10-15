@@ -1,0 +1,23 @@
+name = "Amulet of Inner Focus"
+description = "This simple amulet radiates a sense of inner peace."
+drop_location = "Heyton's Rest, End reward"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Neck"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 1
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 1
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Heyton's Rest"

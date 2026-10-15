@@ -1,0 +1,40 @@
+name = "Chainmail Coif"
+description = "Fine links of flametouched iron form this magical helm."
+drop_location = "Sands of Menechtarun, Vorvand Darkfur 's chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Helmet_24a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 49
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Turning"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "vorvand darkfur 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

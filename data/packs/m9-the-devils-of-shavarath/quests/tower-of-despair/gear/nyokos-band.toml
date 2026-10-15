@@ -1,0 +1,72 @@
+name = "Nyoko's Band"
+description = """
+This simple golden band was worn by Nyoko, an infamous Ninja Spy, whose disappearance
+coincided with the opening of a portal to Shavarath."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Ninja Spy"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Ninja Spy - 2 Piece bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+    5,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Ninja Spy - 2 Piece bonus"
+effect_type = "SneakAttackDamage"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    -20,
+    -20,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Ninja Spy - 2 Piece bonus"
+effect_type = "ThreatBonusMelee"
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

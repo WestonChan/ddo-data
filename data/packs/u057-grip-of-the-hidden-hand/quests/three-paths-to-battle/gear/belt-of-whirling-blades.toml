@@ -1,0 +1,37 @@
+name = "Belt of Whirling Blades"
+description = "This belt is patterned with the swirling, evil blades of Shavarath."
+drop_location = "Three Paths to Battle, end chest"
+icon = "Belt_14"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 16
+slot = "Waist"
+
+[[effect]]
+name = "Tendon Slice"
+value = 6
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 6
+value2 = 9
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Three Paths to Battle"

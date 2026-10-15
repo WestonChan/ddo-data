@@ -1,0 +1,22 @@
+name = "The Reaver's Fate"
+bestowed_by = "Agon Uruhond"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_raid = true
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "Stormreaver's Inner Sanctum"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Reaver%27s_Fate"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14

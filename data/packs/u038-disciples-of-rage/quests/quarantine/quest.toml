@@ -1,0 +1,29 @@
+name = "Quarantine"
+bestowed_by = "Elsa d'Jorasco"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Disciples of Rage"
+patron = "House Jorasco"
+zone = "Dannel's Pride"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Quarantine"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

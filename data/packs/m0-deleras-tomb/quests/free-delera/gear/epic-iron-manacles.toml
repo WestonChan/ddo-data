@@ -1,0 +1,37 @@
+name = "Epic Iron Manacles"
+description = """
+These manacles once bound the hands of common criminals. Their souls remain
+trapped inside the wrought-iron bands."""
+drop_location = "Free Delera, any end chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 25
+slot = "Wrists"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 9
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 29
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 7
+
+[[effect]]
+name = "Greater Reinforced Fists"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Free Delera"

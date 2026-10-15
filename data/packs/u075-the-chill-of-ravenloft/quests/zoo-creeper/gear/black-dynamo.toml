@@ -1,0 +1,36 @@
+name = "Black Dynamo"
+description = "This small obsidian device on a long chain hums softly."
+drop_location = "Zoo Creeper, end chest"
+icon = "Necklace_1e"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 8
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

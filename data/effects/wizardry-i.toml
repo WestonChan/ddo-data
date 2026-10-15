@@ -1,0 +1,12 @@
+name = "Wizardry I"
+description_template = "Passive: {1} %b1 Bonus to Spell Points. If you have Sorcerer or Favored Soul levels, you gain additional spell points proportionate to the ratio of those levels to other heroic classes."
+home_bonus_type = "Enhancement"
+tier = 1
+tier_group = "Wizardry"
+verbose_name_template = "%b1 Wizardry I"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Spell Points"

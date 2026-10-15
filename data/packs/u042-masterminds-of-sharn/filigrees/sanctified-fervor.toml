@@ -1,0 +1,157 @@
+[[row]]
+name = "Sanctified Fervor: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "SanctifiedFervor"
+menu = "Masterminds of Sharn"
+set = "Sanctified Fervor"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Sanctified Fervor: Charisma : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Sanctified Fervor: +1 Strength"
+description = """
++1 Strength
+Rare: +2 PRR"""
+icon = "SanctifiedFervor"
+menu = "Masterminds of Sharn"
+set = "Sanctified Fervor"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Sanctified Fervor: Strength : Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Sanctified Fervor: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "SanctifiedFervor"
+menu = "Masterminds of Sharn"
+set = "Sanctified Fervor"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Sanctified Fervor: Wisdom : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Sanctified Fervor: +10 Healing Amplification"
+description = """
++10 Healing Amplification
+Rare: +2 MRR"""
+icon = "SanctifiedFervor"
+menu = "Masterminds of Sharn"
+set = "Sanctified Fervor"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Sanctified Fervor: Healing Amplification : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Sanctified Fervor: +2 Smite Evil Uses"
+description = """
++2 Smite Evil Uses per rest
+Rare: +2 MRR"""
+icon = "SanctifiedFervor"
+menu = "Masterminds of Sharn"
+set = "Sanctified Fervor"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Sanctified Fervor: Smite Evil : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Sanctified Fervor: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "SanctifiedFervor"
+menu = "Masterminds of Sharn"
+set = "Sanctified Fervor"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Sanctified Fervor: Melee Power : Rare +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Sanctified Fervor: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "SanctifiedFervor"
+menu = "Masterminds of Sharn"
+set = "Sanctified Fervor"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Sanctified Fervor: PRR : +2 MRR"
+effect_type = "MRR"
+is_rare = true

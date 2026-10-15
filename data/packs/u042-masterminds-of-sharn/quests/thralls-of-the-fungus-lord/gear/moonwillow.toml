@@ -1,0 +1,54 @@
+name = "Moonwillow"
+description = "Impossibly quick and gorgeous."
+drop_location = "Thralls of the Fungus Lord, End chest"
+enhancement_bonus = 5
+icon = "Shortsword_3c"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Silver"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Holy 4"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thralls of the Fungus Lord"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.5
+handedness = "One-handed"
+weapon_type = "Shortsword"

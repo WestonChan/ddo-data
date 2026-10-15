@@ -1,0 +1,21 @@
+name = "Solar Gem of Weapon Damage (Epic)"
+description = "+? Artifact Bonus to Weapon Damage."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Damage Bonus"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[slot]]
+slot = "sun"

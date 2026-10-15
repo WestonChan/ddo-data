@@ -1,0 +1,22 @@
+name = "Shaagh's Helm"
+description = "A hobgoblin war helm, taken from Hetman Shaagh of the Cloven-jaw Tribe."
+drop_location = "The Sacred Helm, end chest (guaranteed)"
+icon = "Helmet_73"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Head"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Sacred Helm"

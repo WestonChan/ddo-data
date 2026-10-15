@@ -1,0 +1,36 @@
+name = "Epic Siren's Charm"
+description = """
+This rare charm is enchanted with the protective magic of a water spirit and
+will defend the wearer from harm."""
+drop_location = "Epic version of Siren's Charm"
+icon = "Necklace_1d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 111
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

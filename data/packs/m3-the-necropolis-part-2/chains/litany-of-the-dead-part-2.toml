@@ -1,0 +1,13 @@
+name = "Litany of the Dead Part 2"
+pack = "The Necropolis, Part 2"
+quests = [
+    "Tomb of the Shadow Guard",
+    "Tomb of the Shadow King",
+    "Tomb of the Shadow Knight",
+    "Tomb of the Shadow Lord",
+    "The Shadow Crypt",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Litany_of_the_Dead_Part_2"
+read = "2026-10-02"

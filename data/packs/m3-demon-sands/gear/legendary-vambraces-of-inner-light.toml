@@ -1,0 +1,46 @@
+name = "Legendary Vambraces of Inner Light"
+description = "This Full Plate armor glows with an eerie golden light."
+drop_location = "Legendary version of Epic Vambraces of Inner Light"
+enhancement_bonus = 15
+icon = "HeavyArmor_1d"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Command"
+value = 7
+value2 = -6
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Radiance Guard"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

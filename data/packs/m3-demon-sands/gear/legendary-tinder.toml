@@ -1,0 +1,64 @@
+name = "Legendary Tinder"
+accepts_sentience = true
+description = """
+This long staff is imbued with the burning power of the desert sun. Fire spells
+cast using this staff to focus them are much more powerful."""
+drop_location = "Legendary version of Epic Tinder"
+enhancement_bonus = 15
+icon = "Quarterstaff_5b"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Legendary Magma Surge"
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Legendary Magma Surge Guard"
+
+[[effect]]
+name = "Overwhelming Incineration"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

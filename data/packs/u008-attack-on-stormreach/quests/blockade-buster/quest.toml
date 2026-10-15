@@ -1,0 +1,29 @@
+name = "Blockade Buster"
+bestowed_by = "Graden Wylkes"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Attack on Stormreach"
+patron = "The Coin Lords"
+zone = "Stormreach Harbor Blockade"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Blockade_Buster"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

@@ -1,0 +1,21 @@
+name = "Melancholic Constitution (Legendary)"
+description = "+15 Enhancement bonus to Constitution."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

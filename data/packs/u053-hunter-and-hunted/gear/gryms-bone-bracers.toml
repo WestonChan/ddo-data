@@ -1,0 +1,46 @@
+name = "Grym's Bone Bracers"
+description = """
+Grym wore these bones on his head as a crown, but they make a fine bracer to
+guard your wrists."""
+drop_location = "Hunter and Hunted, any chest"
+icon = "Bracers_29"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 48
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "any chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Hunter and Hunted"

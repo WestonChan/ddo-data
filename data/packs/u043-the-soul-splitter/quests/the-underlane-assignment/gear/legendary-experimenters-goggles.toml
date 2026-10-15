@@ -1,0 +1,37 @@
+name = "Legendary Experimenter's Goggles"
+description = "Tinker with the little things."
+drop_location = "The Underlane Assignment, end chest"
+icon = "Goggles_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Goggles"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 20
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Underlane Assignment"

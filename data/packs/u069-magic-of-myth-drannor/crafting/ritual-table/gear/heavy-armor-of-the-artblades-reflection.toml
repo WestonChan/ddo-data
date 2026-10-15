@@ -1,0 +1,52 @@
+name = "Heavy Armor of the Artblade's Reflection"
+description = """
+This armor took the power of the deathly ritual and turned it to the Artblade's
+purposes."""
+drop_location = "Ritual Table, Turn in \nLegendary Heavy Armor of the Artblade \n120 Barrier Fragments \nSigil of the Artblade"
+enhancement_bonus = 15
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 43
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Ritual Table"

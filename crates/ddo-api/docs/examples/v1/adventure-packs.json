@@ -1,19 +1,28 @@
 {
   "adventure_packs": [
     {
-      "id": 26,
+      "id": 275316373364250,
       "is_free_to_play": false,
-      "name": "Against the Slave Lords"
+      "name": "Against the Slave Lords",
+      "released": "2016-09-13",
+      "slug": "against-the-slave-lords",
+      "update": "Update 32"
     },
     {
-      "id": 40,
+      "id": 58445052541818,
       "is_free_to_play": false,
-      "name": "Attack on Stormreach"
+      "name": "Attack on Stormreach",
+      "released": "2010-12-13",
+      "slug": "attack-on-stormreach",
+      "update": "Update 8"
     },
     {
-      "id": 17,
+      "id": 7061451825821832,
       "is_free_to_play": false,
-      "name": "Delera's Tomb"
+      "name": "Delera's Tomb",
+      "released": null,
+      "slug": "deleras-tomb",
+      "update": "Public Beta Test"
     }
   ],
   "limit": 100,

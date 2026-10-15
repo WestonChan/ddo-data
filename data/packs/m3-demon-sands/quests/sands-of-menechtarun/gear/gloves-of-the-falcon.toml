@@ -1,0 +1,41 @@
+name = "Gloves of the Falcon"
+description = """
+Leather gloves modeled after a falconer's gloves. These gloves give the wearer
+dramatically increased visual acuity as well as increased dexterity."""
+drop_location = "Sands of Menechtarun, Firebrand Area: Lieutenant Ayurro 's chest (Rare Encounter); \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Hands"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "firebrand area: lieutenant ayurro 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

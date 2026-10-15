@@ -1,0 +1,3 @@
+name = "Shrieking IV"
+description_template = "On Hit: 4 to 16 Sonic Damage."
+verbose_name_template = "Shrieking IV"

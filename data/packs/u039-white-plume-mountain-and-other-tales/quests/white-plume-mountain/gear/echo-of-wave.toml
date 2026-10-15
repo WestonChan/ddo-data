@@ -1,0 +1,61 @@
+name = "Echo of Wave"
+description = """
+The crash of the waves echoes in your ears. Seize the moment, and swim for the
+surface."""
+drop_location = "White Plume Mountain, End chest"
+enhancement_bonus = 3
+icon = "Quarterstaff_12a"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Bone"
+minimum_level = 9
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 9
+
+[[effect]]
+name = "Cerulean Wave"
+
+[[effect]]
+name = "Frozen Storm Lore"
+value = 11
+
+[[effect]]
+name = "Power of the Frozen Storm"
+bonus_type = "Equipment"
+value = 73
+
+[[effect]]
+name = "Underwater Action"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "White Plume Mountain"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

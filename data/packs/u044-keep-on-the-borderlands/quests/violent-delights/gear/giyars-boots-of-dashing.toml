@@ -1,0 +1,29 @@
+name = "Giyar's Boots of Dashing"
+description = "These will help you acquire some additional, necessary velocity."
+drop_location = "Violent Delights, end chest"
+icon = "Boots_3"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Feet"
+
+[[clickie]]
+name = "Expeditious Retreat"
+clickie = "Expeditious Retreat"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Expeditious Retreat"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Violent Delights"

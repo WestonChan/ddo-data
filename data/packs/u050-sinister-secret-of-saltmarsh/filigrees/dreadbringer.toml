@@ -1,0 +1,192 @@
+[[row]]
+name = "Dreadbringer: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "Dreadbringer"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dreadbringer"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dreadbringer: Dexterity: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Dreadbringer: +1 Strength"
+description = """
++1 Strength
+Rare: +2 MRR"""
+icon = "Dreadbringer"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dreadbringer"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dreadbringer: Strength: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dreadbringer: +1 Tactics DC"
+description = """
++1 Tactical Feat DCs
+Rare: +2 Melee Power"""
+icon = "Dreadbringer"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dreadbringer"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dreadbringer: Tactics DC: Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Dreadbringer: +2 Fortitude Saves"
+description = """
++2 Fortitude Saves
+Rare: +2 MRR"""
+icon = "Dreadbringer"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dreadbringer"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dreadbringer: Fortitude Saves: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dreadbringer: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "Dreadbringer"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dreadbringer"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dreadbringer: Melee Power: Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Dreadbringer: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR (Bugged, game says +2 PRR, but its MRR)"""
+icon = "Dreadbringer"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dreadbringer"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dreadbringer: PRR: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Dreadbringer: +3 Ranged Power"
+description = """
++3 Ranged Power
+Rare: +2 Ranged Power"""
+icon = "Dreadbringer"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dreadbringer"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dreadbringer: Ranged Power: Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "Dreadbringer: +4 Armor Class"
+description = """
++4 Armor Class
+Rare: +2 PRR"""
+icon = "Dreadbringer"
+menu = "Sinister Secret of Saltmarsh"
+set = "Dreadbringer"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Dreadbringer: Armor Class: PRR"
+effect_type = "PRR"
+is_rare = true

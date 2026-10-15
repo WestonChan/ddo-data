@@ -1,0 +1,35 @@
+name = "Anger's Step"
+description = """
+This pair of boots is said to give speed to hearty warriors when they are called
+upon."""
+drop_location = "Sacrifices, End reward"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Feet"
+
+[[clickie]]
+name = "Expeditious Retreat"
+clickie = "Expeditious Retreat"
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 3
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Expeditious Retreat"]
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Sacrifices"

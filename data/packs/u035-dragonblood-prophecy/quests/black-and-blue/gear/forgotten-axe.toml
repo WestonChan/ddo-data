@@ -1,0 +1,51 @@
+name = "Forgotten Axe"
+description = """
+This small stone axe looks like it was forgotten for a long time. If you had
+to estimate, eleven years or so. That's a long time to forget about a Hand
+Axe."""
+drop_location = "Black and Blue, end chest"
+enhancement_bonus = 4
+icon = "HandAxe_1k"
+item_category = "Weapon"
+item_type = "Hand Axe"
+material = "Stone"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Reverberating 3"
+
+[[effect]]
+name = "Screeching 7"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Maiming 3"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Black and Blue"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Hand Axe"

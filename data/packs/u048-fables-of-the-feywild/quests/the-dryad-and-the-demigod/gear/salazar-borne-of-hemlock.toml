@@ -1,0 +1,60 @@
+name = "Salazar, Borne of Hemlock"
+accepts_sentience = true
+description = """
+This leaf is so sharp it can be thrown as if it were a shuriken. It carries
+the essence of a deep, dark poison, that brings both sleep and death."""
+drop_location = "The Dryad and the Demigod, End chest and optional chest"
+enhancement_bonus = 15
+icon = "Shuriken_1e"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Wood"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Legendary Slicing Winds"
+
+[[effect]]
+name = "Twining Hemlock"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Thrown"
+weapon_type = "Shuriken"

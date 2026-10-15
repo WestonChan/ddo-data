@@ -1,0 +1,73 @@
+name = "The Legendary Desert's Starless Nights"
+icon = "Menechtarun"
+
+[[item]]
+name = "Legendary Bracers of the Demon's Consort"
+
+[[item]]
+name = "Legendary Bramble-Casters"
+
+[[item]]
+name = "Legendary Dusk Heart"
+
+[[item]]
+name = "Legendary Hruvayah's Medallion"
+
+[[item]]
+name = "Legendary Mummy Wrappings"
+
+[[item]]
+name = "Legendary Ring of Baphomet"
+
+[[item]]
+name = "Legendary Spectacles of Spirit Sight"
+
+[[item]]
+name = "Perfected Bracers of the Demon's Consort"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative and Poison Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative and Poison Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

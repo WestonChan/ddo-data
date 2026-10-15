@@ -1,0 +1,9 @@
+name = "Keepers of Barovia"
+
+[[note]]
+kind = "patron"
+field = "name"
+upstream = "Keepers of the Feather"
+reason = "The wiki names the patron Keepers of Barovia."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"

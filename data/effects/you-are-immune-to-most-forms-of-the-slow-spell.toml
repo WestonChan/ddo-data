@@ -1,0 +1,3 @@
+name = "You are immune to most forms of the Slow spell"
+description_template = "You are immune to most forms of the Slow spell."
+verbose_name_template = "You are immune to most forms of the Slow spell"

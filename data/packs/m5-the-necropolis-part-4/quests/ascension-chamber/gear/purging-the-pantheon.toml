@@ -1,0 +1,61 @@
+name = "Purging the Pantheon"
+description = """
+This belt is covered with the holy symbols of many of the other deities . The
+large buckle is stamped with an impression of the Abbot's symbol."""
+drop_location = "Ascension Chamber, Raid Warded chest"
+icon = "Belt_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Waist"
+
+[[clickie]]
+name = "Quell"
+clickie = "Quell"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 75
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Quell"]
+
+[[socket]]
+slot = "crafting: upgradeable item (black abbot)"
+
+[[socket.option]]
+name = "Quell 5 Charges and Fortification 100%"
+icon = "BlackAbbot"
+min_level = 13
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification"
+value = 100
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"

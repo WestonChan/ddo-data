@@ -1,0 +1,35 @@
+name = "Nocturne Ring"
+description = "Sing the song of death."
+drop_location = "A Frosty Reception, End chest, Frost Giant chest"
+icon = "Ring_21a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 5
+slot = "Ring"
+
+[[effect]]
+name = "Command"
+value = 3
+value2 = -6
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Insight"
+value = 14
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 29
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, frost giant chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Frosty Reception"

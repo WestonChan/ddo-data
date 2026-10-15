@@ -1,0 +1,30 @@
+name = "Make Believe"
+bestowed_by = "Moscato"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Fables of the Feywild"
+patron = "The Summer Court"
+zone = "Viscount Xavier's Tower"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Make_Believe"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

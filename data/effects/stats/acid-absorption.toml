@@ -1,0 +1,5 @@
+name = "Acid Absorption"
+category = "defensive"
+description_template = "Passive: {1} %b1 Bonus to Acid Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Acid Absorption +{1}%"

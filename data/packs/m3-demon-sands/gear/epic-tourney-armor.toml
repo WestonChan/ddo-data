@@ -1,0 +1,49 @@
+name = "Epic Tourney Armor"
+description = """
+Full Plate armor designed for wear in Tourneys. Some sturdiness and protection
+has been sacrificed for ease of movement."""
+drop_location = "Epic version of Tourney Armor"
+enhancement_bonus = 6
+icon = "LightArmor_19"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 19
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 8
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "DR 15/Adamantine"
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Greater Nimbleness"
+bonus_type = "Stacking"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

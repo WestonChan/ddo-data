@@ -1,0 +1,3 @@
+name = "Constitution Poison, Lesser"
+description_template = "The deadly poison coating this weapon deals an extra 1 to 6 points of constitution damage when you score a critical hit on an enemy. Some creatures may be immune or resistant to ability damage."
+verbose_name_template = "Constitution Poison, Lesser"

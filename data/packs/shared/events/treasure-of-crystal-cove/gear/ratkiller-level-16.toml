@@ -1,0 +1,51 @@
+name = "Ratkiller (level 16)"
+description = """
+This hammer is well-worn and appears to have been used in the past to exterminate
+pests aboard pirate vessels. It's a surprisingly strong weapon for such a mundane
+task and would probably be useful in battle as well."""
+drop_location = "Treasure of Crystal Cove, Turn in 750 Silver Doubloon 300 Golden Doubloon 30 Stolen Ruby 600 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 5
+icon = "Maul_3"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Staggering Blow"
+
+[[effect]]
+name = "Earthgrab"
+
+[[effect]]
+name = "Animal Bane 4"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "Two-handed"
+weapon_type = "Maul"

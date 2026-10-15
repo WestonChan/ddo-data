@@ -1,0 +1,36 @@
+name = "Mysterious Bauble"
+description = """
+This exquisitely carved statue depicts a creature of unknown origin. This object
+hums slightly and radiates power."""
+drop_location = "The Weapons Shipment, End chest (main objective)"
+icon = "Trinket_67"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 18
+slot = "Trinket"
+
+[[clickie]]
+name = "Major Mnemonic Aid"
+clickie = "Major Mnemonic Aid"
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Major Mnemonic Aid"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Weapons Shipment"

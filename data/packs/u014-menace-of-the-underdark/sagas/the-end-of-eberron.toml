@@ -1,0 +1,19 @@
+name = "The End of Eberron"
+pack = "Menace of the Underdark"
+quests = [
+    "Beyond the Rift",
+    "Reclaiming the Rift",
+    "Servants of the Overlord",
+    "The Deal and the Demon",
+    "The House of Broken Chains",
+    "The House of Death Undone",
+    "The House of Rusted Blades",
+    "The Lords of Dust",
+    "The Portal Opens",
+    "The Spinner of Shadows",
+    "Trial by Fury",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_End_of_Eberron"
+read = "2026-10-02"

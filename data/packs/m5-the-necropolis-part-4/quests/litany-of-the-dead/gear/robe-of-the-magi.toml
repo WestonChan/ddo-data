@@ -1,0 +1,34 @@
+name = "Robe of the Magi"
+description = """
+This robe requires an arcane spell caster to unlock all of its potential. It
+is much favored by the arcane followers of Black Abbot."""
+drop_location = "Litany of the Dead, any boss end chest"
+enhancement_bonus = 7
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "any boss end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

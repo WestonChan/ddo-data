@@ -1,0 +1,20 @@
+name = "+35 Exceptional bonus to Electric Absorption"
+description = "Opposition/Air: +35 Exceptional bonus to Electric Absorption"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Exceptional"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Exceptional"
+effect = "Electric Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

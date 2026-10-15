@@ -1,0 +1,38 @@
+name = "Six-Blade Belt"
+description = "One blade for each hand."
+drop_location = "The Darklake, J'anara 's chest"
+icon = "Belt_8"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Waist"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "j'anara 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

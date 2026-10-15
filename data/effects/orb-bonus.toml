@@ -1,0 +1,10 @@
+name = "Orb Bonus"
+description_template = "While this orb is equipped and you are actively blocking, you gain a {1} orb bonus to all saving throws, as well as Acid, Cold, Fire, Electric, and Sonic resistances."
+home_bonus_type = "Orb"
+verbose_name_template = "+{1} Orb Bonus"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Spell DCs"

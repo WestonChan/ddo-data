@@ -1,0 +1,22 @@
+name = "Tower of Despair"
+bestowed_by = "Uloth"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+is_raid = true
+pack = "The Devils of Shavarath"
+patron = "The Yugoloth"
+zone = "The Tower of Despair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tower_of_Despair"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 20

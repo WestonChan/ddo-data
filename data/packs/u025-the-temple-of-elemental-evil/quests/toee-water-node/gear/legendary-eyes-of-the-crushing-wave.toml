@@ -1,0 +1,37 @@
+name = "Legendary Eyes of the Crushing Wave"
+description = "The waters of the Crushing Wave, put to a more honorable purpose."
+drop_location = "ToEE: Water Node, end chest and random locked chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 31
+slot = "Goggles"
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 286
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest and random locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"

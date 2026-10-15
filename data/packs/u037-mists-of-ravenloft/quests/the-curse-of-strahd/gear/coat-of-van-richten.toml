@@ -1,0 +1,47 @@
+name = "Coat of Van Richten"
+description = """
+An old coat of Van Richten's. He lost it once in an encounter gone bad, it's
+found another home now."""
+drop_location = "The Curse of Strahd, Raid Chest"
+enhancement_bonus = 15
+icon = "MediumArmor_4a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritcraft Leather"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 19
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"

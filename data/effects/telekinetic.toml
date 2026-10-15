@@ -1,0 +1,3 @@
+name = "Telekinetic"
+description_template = "Targets that suffer a critical hit from a Telekinetic weapon must make a DC 17 Balance check or be knocked down."
+verbose_name_template = "Telekinetic"

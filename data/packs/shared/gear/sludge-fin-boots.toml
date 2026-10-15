@@ -1,0 +1,22 @@
+name = "Sludge Fin Boots"
+description = """
+These scaly boots are outfitted with amphibious fins that allow the wearer to
+move more fluidly through even the murkiest of sewer water."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Feet"
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

@@ -1,0 +1,75 @@
+name = "Legendary Elyd Edge"
+accepts_sentience = true
+description = """
+Elven script on this fine silver blade reads 'Anthem of the heart; Anthem of
+the mind'."""
+drop_location = "Legendary version of Epic Elyd Edge"
+enhancement_bonus = 15
+icon = "Rapier_1j"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Cacophony"
+
+[[effect]]
+name = "Inspiring Echoes"
+
+[[effect]]
+name = "Sonic Blast 6"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Anthem"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[weapon]]
+attack_modifier = "Strength, Charisma"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength, Charisma"
+damage_multiplier = 5.0
+handedness = "One-handed"
+weapon_type = "Rapier"

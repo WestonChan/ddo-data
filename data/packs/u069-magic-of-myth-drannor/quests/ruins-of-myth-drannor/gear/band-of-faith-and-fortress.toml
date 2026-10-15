@@ -1,0 +1,35 @@
+name = "Band of Faith and Fortress"
+description = "A golden ring, blessed by divine protection."
+drop_location = "Ruins of Myth Drannor, Yegora 's chest"
+icon = "Ring_21a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 4
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 87
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 26
+
+[[effect]]
+name = "Temperance of Belief"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "yegora 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

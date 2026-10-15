@@ -1,0 +1,31 @@
+name = "Sapphire of the Twelve"
+description = "This fragment of a gemstone is infused with the power from The Twelve."
+drop_location = "The Marketplace, Turn in 50 Planar Shards from The Subterrane"
+icon = "Trinket_3a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Trinket"
+
+[[clickie]]
+name = "Cure Critical Wounds, Mass"
+clickie = "Cure Critical Wounds, Mass"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    16,
+    5,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cure Critical Wounds, Mass"]
+
+[[source]]
+kind = "vendor"
+name = "Vagan Taneer"
+
+[[source.price]]
+ingredient = "Planar Shard"
+quantity = 50

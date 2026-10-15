@@ -1,0 +1,45 @@
+name = "Epic Deneith Heavy Chain"
+description = """
+This armor is made of doubled layers of heavy chainmail that rival the protection
+of plate. It is typically worn by elite mercenaries serving House Deneith that
+prefer strength of protection over mobility, but still wish to wear medium
+armor. This particular suit has seen better days."""
+drop_location = "Epic version of Deneith Heavy Chain"
+enhancement_bonus = 6
+icon = "LightArmor_9d"
+item_category = "Armor"
+item_type = "Medium"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Medium"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

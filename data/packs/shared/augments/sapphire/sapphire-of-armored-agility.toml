@@ -1,0 +1,28 @@
+name = "Sapphire of Armored Agility"
+choose_level = true
+description = "Increases your Max Dex Bonus in Light/Medium and Heavy Armor"
+family = "Sapphire"
+icon = "Sapphire"
+level_values = [2]
+levels = [20]
+
+[[effect]]
+name = "Max Dex Bonus (Armor)"
+bonus_type = "Enhancement"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Max Dex Bonus (Armor)"
+effect_type = "MaxDexBonus"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "green"

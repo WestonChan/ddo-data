@@ -1,0 +1,14 @@
+name = "Legendary Salt"
+variant = "legendary-green-steel-items"
+description = """
+Requires Water and Negative only
+Attacks and offensive spells have a [100%] chance to greatly
+reduce enemy movement speed and attack speed [about -90% slowdown].
+This inflicts 8 stacks, which fade overtime. Has a short internal
+cooldown [1/4 seconds]. Doesn't affect bosses.
+[duration 11 seconds]"""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

@@ -1,0 +1,23 @@
+name = "The Depths of Doom"
+bestowed_by = "Keane d'Deneith"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Deneith"
+zone = "The Depths of Doom"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Depths_of_Doom"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5

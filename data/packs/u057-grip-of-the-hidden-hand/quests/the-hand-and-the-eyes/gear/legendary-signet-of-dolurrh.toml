@@ -1,0 +1,40 @@
+name = "Legendary Signet of Dolurrh"
+description = "This signet ring bears the sigil of the plane of Dolurrh."
+drop_location = "The Hand and the Eyes, end chest"
+icon = "Ring_26b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Ring"
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 47
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 47
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hand and the Eyes"

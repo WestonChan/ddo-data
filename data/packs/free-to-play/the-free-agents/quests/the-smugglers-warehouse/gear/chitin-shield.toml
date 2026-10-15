@@ -1,0 +1,44 @@
+name = "Chitin Shield"
+description = "This small shield is made from the chitin of a large scorpion."
+drop_location = "The Smuggler's Warehouse, Rancor 's Chest"
+enhancement_bonus = 1
+icon = "Shield_5"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Steel"
+minimum_level = 1
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 3
+max_dex_bonus = 0
+shield_bonus = 3
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "rancor 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Smuggler's Warehouse"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Small Shield"

@@ -1,0 +1,43 @@
+name = "Legendary University Duelist's Cloak"
+description = "Once used for a secretive dueling club, this cloak's future is now boundless."
+drop_location = "Taken in Hand, End chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 32
+slot = "Back"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 7
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Taken in Hand"

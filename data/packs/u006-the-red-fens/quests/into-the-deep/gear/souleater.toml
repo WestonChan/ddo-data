@@ -1,0 +1,45 @@
+name = "Souleater"
+description = """
+This is the staff used by the sahuagin High Priestess Slikir to commune with
+and channel a demon. It took on many of the demon's aspects and is now a dangerous
+and corrupted implement."""
+drop_location = "Into the Deep, Demon's chests"
+enhancement_bonus = 3
+icon = "Quarterstaff_10a"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Mortal Strike"
+
+[[effect]]
+name = "Feeding 10"
+
+[[effect]]
+name = "Vampirism 1"
+
+[[source]]
+chest = "demon's chests"
+kind = "quest"
+loot_type = "chest"
+name = "Into the Deep"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

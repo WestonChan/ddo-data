@@ -1,0 +1,3 @@
+name = "Lightning Lash"
+description_template = "This item lashes electricity through your opponents. Your attacks and offensive spells have a high change to deal very strong Electric damage over time."
+verbose_name_template = "Lightning Lash"

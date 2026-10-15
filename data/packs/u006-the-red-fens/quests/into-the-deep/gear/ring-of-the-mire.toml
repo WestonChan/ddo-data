@@ -1,0 +1,24 @@
+name = "Ring of the Mire"
+description = "This ring was crafted to ease travel through thick, overgrown marsh territory."
+drop_location = "Into the Deep, End reward"
+icon = "Ring_8"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 7
+slot = "Ring"
+
+[[effect]]
+name = "Spearblock III"
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 5
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Into the Deep"

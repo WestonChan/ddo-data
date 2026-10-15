@@ -1,0 +1,66 @@
+name = "St. Mu'Ray's Fire"
+description = """
+An eccentric genius to the last, St. Mu'ray was known to stand for hours on
+end in the crow's nest, subject to all elements, harnessing and unleashing
+lighting to the sound of gleeful laughter."""
+drop_location = "Precious Cargo, End chest, Chance to be in Chain reward list (Cydonie)"
+icon = "RuneArm_2d"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 24
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 114
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Inherent"
+value = 10
+
+[[effect]]
+name = "Spell Lore VIII"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 17
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Electrical Storm",
+    "None",
+]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Precious Cargo"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

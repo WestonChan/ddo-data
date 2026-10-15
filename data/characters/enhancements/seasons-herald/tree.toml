@@ -1,0 +1,1944 @@
+name = "Season's Herald"
+background = "DruidBackground"
+icon = "Druid"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Season's Herald: Child of Summer"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Child of Summer: You gain the ability Child of Summer: Activate to grant +5 Spell
+power when casting Fire, Light, Sonic, Force, Thorn, and Positive spells.
+This seasonal Spell power is multiplied by one for every Core enhancement
+possessed in Season's Heralds (starting with this one), up to +30 when you have
+all six Enhancements.
+Lasts until death or season change.
+Fire Elemental form changes you to this season automatically.
+Passive: +1 Universal Spell Power per AP spent in this tree."""
+icon = "SHChildOfSummer"
+internal_name = "SHCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Seasons Herald: Universal Spell Power per action point"
+effect_type = "UniversalSpellPower"
+stack_source = "Season's Herald"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Sonic",
+    "Positive",
+    "Force",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.stance]]
+name = "Child of Summer"
+description = """
+You gain the ability Child of Summer: Activate to grant +5 Spell power when
+casting Fire, Light, Sonic, Force, Thorn, and Positive spells.
+This seasonal Spell power is multiplied by one for every Core enhancement
+possessed in Season's Heralds (starting with this one), up to +30 when you have
+all six Enhancements.
+Lasts until death or season change.
+Fire Elemental form changes you to this season automatically."""
+icon = "SHChildOfSummer"
+
+[[enhancement]]
+name = "Season's Herald: Elder of Winter"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Elder of Winter: You gain Child of Winter: Activate to gain +5 Spell power when
+casting water, acid, earth, electric, and thorn spells per core in this tree (Max: 30).
+Lasts until death or season change.
+Water elemental form changes you into this season automatically.
+Passive: Your caster level is increased by 1 in your season."""
+icon = "SHElderOfWinter"
+internal_name = "SHCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Sonic",
+    "Positive",
+    "Force",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+targets = [
+    "Fire",
+    "Light",
+    "Sonic",
+    "Force",
+    "Positive",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["SHCore1"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Elder of Winter"
+description = """
+Activate to gain +5 Spell power when casting water, acid, earth, electric, and
+thorn spells per core in this tree (Max: 30).
+Lasts until death or season change.
+Water elemental form changes you into this season automatically."""
+icon = "SHElderOfWinter"
+
+[[enhancement]]
+name = "Season's Herald: Wellspring"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++1 max caster level for spells appropriate to your season.
+The effects of your Shillelagh spell are doubled.
+Your Entangle, Spike Growth and Grasping Thorn spells are no longer dispelled
+by fire effects."""
+icon = "SHWellspring"
+internal_name = "SHCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevel"
+targets = [
+    "Fire",
+    "Light",
+    "Sonic",
+    "Force",
+    "Positive",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevel"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Enchantment"
+display_name = "Shillelagh + Season's Herald: Wellspring Main Hand"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Weapon1"]
+req_type = "ItemSlot"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = [
+    "Wood",
+    "Weapon1",
+]
+req_type = "MaterialType"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = [
+    "Densewood",
+    "Weapon1",
+]
+req_type = "MaterialType"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = [
+    "Darkwood",
+    "Weapon1",
+]
+req_type = "MaterialType"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Enchantment"
+display_name = "Shillelagh + Season's Herald: Wellspring Off Hand"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Weapon2"]
+req_type = "ItemSlot"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = [
+    "Wood",
+    "Weapon2",
+]
+req_type = "MaterialType"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = [
+    "Densewood",
+    "Weapon2",
+]
+req_type = "MaterialType"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = [
+    "Darkwood",
+    "Weapon2",
+]
+req_type = "MaterialType"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Enchantment"
+display_name = "Shillelagh Quarterstaff + Season's Herald: Wellspring"
+effect_type = "Weapon_BaseDamage"
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = [
+    "Wood",
+    "Weapon1",
+]
+req_type = "MaterialType"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = [
+    "Densewood",
+    "Weapon1",
+]
+req_type = "MaterialType"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = [
+    "Darkwood",
+    "Weapon1",
+]
+req_type = "MaterialType"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["SHCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: Sunburst"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+A globe of searing radiance explodes to blast targets for 6d6 light damage
+in addition to blinding them. Oozes and Undead take 1d3+3 per caster level damage.
+A successful Reflex save reduces the damage by half and negates the blindness.
+Light fearing undead may be instantly destroyed by this spell.
+Cost: 4 SP
+Cooldown: 20 seconds"""
+icon = "SHSunburst"
+internal_name = "SHCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Sunburst",
+    "Druid",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Sonic",
+    "Positive",
+    "Force",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SHCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: Storm of Vengeance"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Conjures a storm with a massive thunderclap, deafening enemies, dousing them in acid rain
+and lancing them with lightning bolts. Enemies within the cloud when it is first
+conjured are deafened for 3 seconds per caster level. Enemies within the storm
+take 1d3 acid damage per caster level every two seconds. Every 4 seconds, a
+random enemy within the storm takes 1d6 Electric damage for every caster level
+(a successful Reflex save for half).
+Cost: 20 SP
+Cooldown: 120 seconds"""
+icon = "SHStormOfVengeance"
+internal_name = "SHCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    0,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Storm of Vengeance",
+    "Druid",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Sonic",
+    "Positive",
+    "Force",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["SHCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: Hierophant"
+cost_per_rank = [1]
+description = """
+You are wise and skilled in the art of wielding divine magic to summon aid
+and change the world around you.
+Gain +2 Wisdom and Constitution.
+Your Transmutation and Evocation spells gain +1 to their DCs.
+You gain a +1 bonus caster level and max caster level in both seasons."""
+icon = "SHHierophant"
+internal_name = "SHCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Sonic",
+    "Positive",
+    "Force",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Wisdom",
+    "Constitution",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Evocation",
+    "Transmutation",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = [
+    "Fire",
+    "Light",
+    "Sonic",
+    "Force",
+    "Positive",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["SHCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "SHCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Season's Herald: Beguile"
+cost_per_rank = [1]
+description = """
+Whenever you successfully attack an enemy or cast a spell on one there is
+a 50% chance to Beguile that enemy [1/0-2/0-3] times for [3/0-6/0-9] seconds.
+Beguile: -2% attack speed, -2 Spell power.
+Beguile stacks up to 25 times, and one stack fades every few seconds.
+Up to one enemy can be affected each second (by up to [1/2/3] stacks)
+Does not affect bosses"""
+icon = "SHBeguile"
+internal_name = "SHBeguile"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Season's Herald: Shared Spirit"
+cost_per_rank = [1]
+description = """
+Your wolf companion gains [3/6/10]% to its max health.
+You gain [1/2/3] Universal spell power."""
+icon = "SHSharedSpirit"
+internal_name = "SHSharedSpirit"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Season's Herald: Produce Flame"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Flames as bright as a torch appear in your open hand and launch towards your foes.
+They deal 1d2+2 Fire damage per caster level, up to 15d2+30 at caster level 15.
+Spell point cost: 3
+Cooldown: 4 seconds"""
+icon = "SHProduceFlame"
+internal_name = "SHProduceFlame"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Produce Flame",
+    "Druid",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Wax and Wane I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++2% critical chance with spells associated with your current season.
+This is cumulative with Season's Herald.
+Winter: Acid, Cold, Electric, Earth, Force and Physical
+Summer: Fire, Light, Positive, Force and Physical"""
+icon = "SHWaxAndWane"
+internal_name = "SHWaxAndWaneI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+    "Sonic",
+    "Force",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Season's Herald: Druidic Wisdom"
+cost_per_rank = [1]
+description = "+[1/2/3] Diplomacy, Heal and Spellcraft."
+icon = "SHDruidicWisdom"
+internal_name = "SHDruidicWisdom"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Heal",
+    "Spellcraft",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Season's Herald: Improved Metamagics I"
+cost_per_rank = [2]
+description = "Improves a selected Metamagic ability."
+icon = "SHImprovedMetamagics"
+internal_name = "SHImprovedMetamagicsI"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHImprovedMetamagicsI",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "SHImprovedMetamagicsI",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [2]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHImprovedMetamagicsI",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "SHImprovedMetamagicsI",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHImprovedMetamagicsI",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "SHImprovedMetamagicsI",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHImprovedMetamagicsI",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "SHImprovedMetamagicsI",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Season's Herald: Improved Metamagics II"
+cost_per_rank = [2]
+description = "Improves a Metamagic ability."
+icon = "SHImprovedMetamagics"
+internal_name = "SHImprovedMetamagicsII"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHImprovedMetamagicsII",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "SHImprovedMetamagicsII",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [2]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHImprovedMetamagicsII",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "SHImprovedMetamagicsII",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHImprovedMetamagicsII",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "SHImprovedMetamagicsII",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHImprovedMetamagicsII",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "SHImprovedMetamagicsII",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Season's Herald: Creeping Cold"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals on-going cold damage to the target every 2 seconds for 12 seconds.
+The damage starts small and grows larger as the spell continues.
+Each phase lasts 4 seconds.
+Phase 1: 1d4+2 damage per 3 caster levels (Max +12 at 18)
+Phase 2: 2d4+4 damage per 3 caster levels (Max +24 at 18)
+Phase 3: 3d4+6 damage per 3 caster levels (Max +36 at 18).
+Spell point cost: 3
+Cooldown: 8 seconds"""
+icon = "SHCreepingCold"
+internal_name = "SHCreepingCold"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Creeping Cold",
+    "Druid",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["SHProduceFlame"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: Wax and Wane II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++2% additional critical chance with spells associated with your current season.
+This is cumulative with Season's Herald.
+Winter: Acid, Cold, Electric, Earth, Force and Physical
+Summer: Fire, Light, Positive, Force and Physical"""
+icon = "SHWaxAndWane"
+internal_name = "SHWaxAndWaneII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+    "Sonic",
+    "Force",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["SHWaxAndWaneI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: Action Boost: Spell Power"
+cost_per_rank = [2]
+description = "Activate to gain a +30 Action Boost bonus to Universal Spell power for 20 seconds."
+icon = "SHActionBoostSpellpower"
+internal_name = "SHActionBoostSpellpower"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Season's Herald: Autumn Winds"
+cost_per_rank = [1]
+description = """
+Toggle to be shielded by the autumn winds. Under this effect gain Feather Fall,
++3 Dodge and a 10% chance to knock down any enemy who strikes you in melee.
+Activation cost: 8 Spell points"""
+icon = "SHAutumnWinds"
+internal_name = "SHAutumnWinds"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Autumn Winds"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Autumn Winds"
+description = """
+Toggle to be shielded by the autumn winds. Under this effect gain Feather Fall,
++3 Dodge and a 10% chance to knock down any enemy who strikes you in melee.
+Activation cost: 8 Spell points"""
+icon = "SHAutumnWinds"
+
+[[enhancement]]
+name = "Season's Herald: Efficient Metamagic: Heighten"
+cost_per_rank = [2]
+description = "Using the Heighten Spell feat costs you [1/2] fewer spell points per level of heightening."
+icon = "SHEfficientHeighten"
+internal_name = "SHEfficientHeighten"
+min_spent = 10
+ranks = 2
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SHEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostHeighten"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = [
+    "SHEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.requirement]]
+items = ["Heighten Spell"]
+req_type = "FeatAnySource"
+
+[[enhancement]]
+name = "Season's Herald: Call Lightning"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Calls forth a bolt of Lightning, which strikes your target for 1d5+5 Electric damage
+for every caster level up to 15. A successful Reflex save reduces damage by half.
+Cost: 6 SP
+Cooldown: 6 seconds."""
+icon = "SHCallLightning"
+internal_name = "SHCallLightning"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Call Lightning",
+    "Druid",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["SHCreepingCold"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: Wax and Wane III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++2% additional critical chance with spells associated with your current season.
+This is cumulative with Season's Herald.
+Winter: Acid, Cold, Electric, Earth, Force and Physical
+Summer: Fire, Light, Positive, Force and Physical"""
+icon = "SHWaxAndWane"
+internal_name = "SHWaxAndWaneIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+    "Sonic",
+    "Force",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["SHWaxAndWaneII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: +1 Wisdom"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+internal_name = "SHAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Season's Herald: Spring's Resurgence"
+cost_per_rank = [2]
+description = """
+Fill an ally with the energy of spring. When that ally falls below 50%
+hit points, they and any other allies near them are healed by 20d6 positive
+energy and receive a +2 primal bonus to attack rolls.
+Lasts 5 minutes or until triggered.
+Spell point cost: 4
+Cooldown: 2 seconds."""
+icon = "SHSpringsResurgence"
+internal_name = "ShSpringsResurgence"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "ShSpringsResurgence"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image SHSpringsResurgence.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Season's Herald: Strength of the Solstice"
+cost_per_rank = [2]
+description = "+1 to the DCs of your Evocation and Transmutation spells."
+icon = "SHStrengthOfTheSolstice"
+internal_name = "SHStrengthOfTheSolstice"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Evocation",
+    "Transmutation",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Season's Herald: Salt Ray"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+A thin shaft of whirling salt crystals lances out from your crooked finger to
+strike and shred your foe. Your target takes 1d6 Force damage per 2 caster levels,
+for a maximum of 5d6 at caster level 10. Targets are also stunned. Fortitude save
+negates the stun.
+Cost: 8 SP
+Cooldown: 8 seconds"""
+icon = "SHSaltRay"
+internal_name = "SHSaltRay"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Salt Ray",
+    "Druid",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SHCallLightning"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: Wax and Wane IV"
+cost_per_rank = [2]
+description = """
++2% additional critical chance with spells associated with your current season.
+This is cumulative with Season's Herald.
+Winter: Acid, Cold, Electric, Earth, Force and Physical
+Summer: Fire, Light, Positive, Force and Physical"""
+icon = "SHWaxAndWane"
+internal_name = "SHWaxAndWaneIV"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+    "Sonic",
+    "Force",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SHWaxAndWaneIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: +1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+internal_name = "SHAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SHAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: Crown of Summer"
+cost_per_rank = [2]
+description = """
+A target of your choice is filled with the light and vitality of summer.
+That target gains +15% enhancement bonus to Healing Amplification, and +10 Melee
+power and +5 Ranged power. Only one target can have the crown at a time, and it
+adds a halo of fluttering butterflies around the targets head.
+Spell point cost: 1
+Cooldown: 6 seconds."""
+icon = "SHCrownOfSummer"
+internal_name = "SHCrownOfSummer"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Season's Herald: Elemental Mastery"
+cost_per_rank = [1]
+description = """
+Elemental Master. Gain [5/10/15] additional spell power in your season.
+Rank 3: Druid level 17 or above:
+Changing into Fire Elemental form now grants you a brief version of Anger of the Noon Day Sun effect.
+Changing into Water Elemental Form grants you  a similar version of Icy Mantle.
+This is not affected by meta magics."""
+icon = "SHElementalMastery"
+internal_name = "SHElementalMastery"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Sonic",
+    "Positive",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Child of Summer"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Force",
+    "Negative",
+    "Untyped",
+    "Physical",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Elder of Winter"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Season's Herald: Word of Balance"
+cost_per_rank = [2]
+description = """
+You utter elder words of balance, judging those who stray too far from the path
+of neutrality. Targets with an alignment one step away from True Neutral take
+1d4+4 Bane damage for every 2 caster levels up to 20. Target who are two steps
+away take twice that. True Neutrals are not affected by this spell.
+Cost: 6 SP
+Cooldown: 10 seconds."""
+icon = "SHWordOfBalance"
+internal_name = "SHWordOfBalance"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Word of Balance",
+    "Druid",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SHSaltRay"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Season's Herald: Time and Tide"
+cost_per_rank = [2]
+description = "+1 caster level and +1 max caster level for spells in both seasons."
+icon = "SHTimeAndTide"
+internal_name = "SHTimeAndTide"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = [
+    "Fire",
+    "Light",
+    "Sonic",
+    "Force",
+    "Positive",
+    "Acid",
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Season's Herald: Winter's Heart"
+cost_per_rank = [2]
+description = """
+Activate: Gain 8 times your Wisdom in temporary hit points for 30 seconds.
+Cost: 12 Spell points
+Cooldown: 1 minute"""
+icon = "SHWintersHeart"
+internal_name = "SHWintersHeart"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Druid"]
+req_type = "BaseClass"

@@ -1,0 +1,71 @@
+name = "Bijio"
+description = "A brightly colored jewel is set in the center of this drow ceremonial shield."
+drop_location = "Shield of Legend, Turn in completed Shield: Frame"
+enhancement_bonus = 5
+icon = "Shield_30"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 14
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 11
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Efficient Metamagic - Empower Healing I"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 72
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Shield of Legend"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "Off-hand"
+weapon_type = "Large Shield"

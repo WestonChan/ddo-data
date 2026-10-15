@@ -1,0 +1,22 @@
+name = "Helm of Clarity"
+description = "Open your inner eye."
+drop_location = "The Borderlands, chest (Rare Encounters)"
+icon = "Helmet_18"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 1
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Borderlands"

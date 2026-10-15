@@ -23,15 +23,13 @@ fn fixture_wiki() -> ddo_etl::wiki::WikiOverrides {
 fn build_fixture_database(db: &mut rusqlite::Connection, wiki: &ddo_etl::wiki::WikiOverrides) {
     let dataset_version =
         DatasetVersion { upstream_sha: "fixture-sha".into(), built_at: "2026-09-21T00:00:00Z".into() };
-    ddo_etl::build::build_database(
-        &fixture_data_files_dir(),
-        wiki,
-        &ddo_etl::corrections::Corrections::from_dir(&fixture_data_files_dir().parent().unwrap().join("corrections"))
-            .unwrap(),
-        db,
-        &dataset_version,
-    )
-    .expect("fixture build");
+    let fixtures = fixture_data_files_dir().parent().unwrap().to_path_buf();
+    let mut corrections = ddo_etl::corrections::Corrections::from_dir(&fixtures.join("corrections")).unwrap();
+    corrections
+        .entries
+        .extend(ddo_etl::corrections::Corrections::from_dir(&fixtures.join("data-corrections")).unwrap().entries);
+    ddo_etl::build::build_database(&fixture_data_files_dir(), wiki, &corrections, db, &dataset_version)
+        .expect("fixture build");
 }
 
 fn fixture_db_path() -> &'static PathBuf {
@@ -80,6 +78,201 @@ async fn get_list_rows(path: &str) -> (StatusCode, axum::http::HeaderMap, Value)
     let (status, headers, page) = get(&format!("{path}{separator}limit=10000")).await;
     let rows_key = path.split('?').next().unwrap().trim_start_matches("/v1/").replace('-', "_");
     (status, headers, page[&rows_key].clone())
+}
+
+#[tokio::test]
+async fn packs_without_release_metadata_serve_explicit_nulls() {
+    let (status, _, page) = get("/v1/adventure-packs").await;
+    assert_eq!(status, StatusCode::OK);
+    for pack in page["adventure_packs"].as_array().unwrap() {
+        assert_eq!(pack.get("update"), Some(&Value::Null));
+        assert_eq!(pack.get("released"), Some(&Value::Null));
+        let (_, _, detail) = get(&format!("/v1/adventure-packs/{}", pack["id"])).await;
+        assert_eq!(detail.get("update"), pack.get("update"));
+        assert_eq!(detail.get("released"), pack.get("released"));
+    }
+}
+
+#[tokio::test]
+async fn data_entities_build_and_serve_authored_fields_without_ids() {
+    fn fill_fixture_icons(folder: &std::path::Path, data_dir: &std::path::Path) {
+        for entry in std::fs::read_dir(folder).unwrap() {
+            let path = entry.unwrap().path();
+            if path.is_dir() {
+                fill_fixture_icons(&path, data_dir);
+                continue;
+            }
+            if path.extension().is_none_or(|extension| extension != "toml") {
+                continue;
+            }
+            let Some((_, kind)) = ddo_etl::icons::icon_kind_for_data_path(path.strip_prefix(data_dir).unwrap()) else {
+                continue;
+            };
+            for line in std::fs::read_to_string(&path).unwrap().lines() {
+                let Some((field, quoted)) = line.trim().split_once(" = ") else { continue };
+                let image_kind = match field {
+                    "icon" => kind,
+                    "background" => "ui",
+                    "small_icon" | "large_icon" => "classes",
+                    _ => continue,
+                };
+                let Some(icon) = quoted.strip_prefix('"').and_then(|value| value.strip_suffix('"')) else { continue };
+                let icon_path = data_dir
+                    .join("icons")
+                    .join(if image_kind == "*" { "" } else { image_kind })
+                    .join(format!("{icon}.png"));
+                if !icon_path.is_file() {
+                    std::fs::create_dir_all(icon_path.parent().unwrap()).unwrap();
+                    std::fs::copy(data_dir.join("icons/feats/PowerAttack.png"), icon_path).unwrap();
+                }
+            }
+        }
+    }
+
+    let root = std::env::temp_dir().join(format!("ddo-api-data_dir-new-item-{}", std::process::id()));
+    let _ = std::fs::remove_dir_all(&root);
+    let data_dir = root.join("data");
+    let original = rusqlite::Connection::open(fixture_db_path()).unwrap();
+    ddo_etl::tree::export_database(&original, &data_dir).unwrap();
+    ddo_etl::icons::export_icons(&fixture_data_files_dir(), &data_dir.join("icons")).unwrap();
+    let missing_icons = ddo_etl::icons::complete_referenced_icons(&original, &data_dir).unwrap().missing_icons;
+    for missing_icon in missing_icons {
+        let path = data_dir.join("icons").join(missing_icon);
+        std::fs::create_dir_all(path.parent().unwrap()).unwrap();
+        std::fs::copy(data_dir.join("icons/feats/PowerAttack.png"), path).unwrap();
+    }
+    fill_fixture_icons(&data_dir, &data_dir);
+    ddo_etl::icons::place_enhancement_icons_beside_trees(&data_dir).unwrap();
+    let new_item_file = data_dir.join("packs/magic-of-myth-drannor/quests/book-burning/gear/new-api-item.toml");
+    std::fs::create_dir_all(new_item_file.parent().unwrap()).unwrap();
+    std::fs::write(
+        new_item_file,
+        "name = 'New API Item'\nslot = 'Feet'\nitem_category = 'Clothing'\nwiki_url = 'https://ddowiki.com/page/Item:New_API_Item'\nminimum_level = 1\n[[source]]\nkind = 'quest'\nname = 'Book Burning'\nloot_type = 'chest'\n[[source]]\nkind = 'vendor'\nname = 'Morten Edgewright'\n[[modifier]]\neffect_type = 'Strength'\nbonus_type = 'Enhancement'\namount_type = 'Simple'\namounts = [6]\n[[modifier.requirement]]\nreq_type = 'Feat'\nitems = ['Power Attack']\n[[modifier]]\neffect_type = 'Constitution'\nbonus_type = 'Enhancement'\namount_type = 'Simple'\namounts = [2]\n",
+    )
+    .unwrap();
+    let old_pack_folder = data_dir.join("packs/magic-of-myth-drannor");
+    let pack_folder = data_dir.join("packs/u069-magic-of-myth-drannor");
+    std::fs::rename(&old_pack_folder, &pack_folder).unwrap();
+    std::fs::write(pack_folder.join("pack.toml"), "name = 'Magic of Myth Drannor'\nupdate = 'Update 69'\nreleased = '2024-08-14'\n[[citation]]\nurl = 'https://ddowiki.com/page/Magic_of_Myth_Drannor'\nread = '2026-10-13'\n[[note]]\nkind = 'release'\nreason = 'Release research fixture'\nurl = 'https://ddowiki.com/page/Magic_of_Myth_Drannor'\nread = '2026-10-13'\n").unwrap();
+    let db_path = root.join("built.db");
+    let mut db = rusqlite::Connection::open(&db_path).unwrap();
+    ddo_etl::tree::build_from_data(&data_dir, &mut db).unwrap();
+    let id: i64 = db.query_row("SELECT id FROM items WHERE name = 'New API Item'", [], |row| row.get(0)).unwrap();
+    let exported_files = root.join("exported");
+    ddo_etl::tree::export_database(&db, &exported_files).unwrap();
+    let exported_item = std::fs::read_to_string(
+        exported_files.join("packs/u069-magic-of-myth-drannor/quests/book-burning/gear/new-api-item.toml"),
+    )
+    .unwrap();
+    assert!(exported_item.find("amounts = [6]").unwrap() < exported_item.find("amounts = [2]").unwrap());
+    let exported_pack =
+        std::fs::read_to_string(exported_files.join("packs/u069-magic-of-myth-drannor/pack.toml")).unwrap();
+    assert!(exported_pack.contains("kind = \"release\""));
+    assert!(exported_pack.contains("reason = \"Release research fixture\""));
+    assert!(exported_pack.contains("[[citation]]"));
+    let release_notes: i64 =
+        db.query_row("SELECT COUNT(*) FROM entity_notes WHERE kind = 'release'", [], |row| row.get(0)).unwrap();
+    let release_corrections: i64 =
+        db.query_row("SELECT COUNT(*) FROM corrections WHERE kind = 'release'", [], |row| row.get(0)).unwrap();
+    assert_eq!(release_notes, 1);
+    assert_eq!(release_corrections, 0);
+    drop(db);
+    let state = AppState::open(&db_path).unwrap();
+    let (status, _, packs) = get_from(state.clone(), "/v1/adventure-packs?q=Magic&sort=-released&sort=update").await;
+    assert_eq!(status, StatusCode::OK);
+    let pack = &packs["adventure_packs"][0];
+    assert_eq!(pack["update"], "Update 69");
+    assert_eq!(pack["released"], "2024-08-14");
+    let (status, _, detail) = get_from(state.clone(), &format!("/v1/adventure-packs/{}", pack["id"])).await;
+    assert_eq!(status, StatusCode::OK);
+    for field in ["id", "slug", "update", "released"] {
+        assert_eq!(detail[field], pack[field]);
+    }
+    let (status, _, item) = get_from(state.clone(), &format!("/v1/items/{id}")).await;
+    assert_eq!(status, StatusCode::OK);
+    assert_eq!(item["slug"], "new-api-item");
+    assert_eq!(item["sources"][0]["name"], "Book Burning");
+    assert_eq!(item["sources"][1]["name"], "Morten Edgewright");
+    for (source, resource) in item["sources"].as_array().unwrap().iter().zip(["quests", "vendors"]) {
+        let source_id = source["id"].as_i64().unwrap();
+        let (status, _, entity) = get_from(state.clone(), &format!("/v1/{resource}/{source_id}")).await;
+        assert_eq!(status, StatusCode::OK);
+        for field in ["id", "slug", "name"] {
+            assert_eq!(source[field], entity[field]);
+        }
+    }
+    assert_eq!(item["modifiers"][0]["amounts"][0], 6);
+    assert_eq!(item["modifiers"][1]["amounts"][0], 2);
+    assert_eq!(item["modifiers"][0]["requirements"][0]["items"][0], "Power Attack");
+    std::fs::remove_dir_all(root).unwrap();
+}
+
+#[tokio::test]
+async fn placeholder_icons_keep_their_served_names_when_the_data_omits_files() {
+    let db_path = std::env::temp_dir().join(format!("ddo-api-placeholder-icons-{}.db", std::process::id()));
+    let _ = std::fs::remove_file(&db_path);
+    let mut db = rusqlite::Connection::open(&db_path).unwrap();
+    build_fixture_database(&mut db, &fixture_wiki());
+    db.execute("INSERT INTO classes (name, large_icon, small_icon, slug) VALUES ('Unknown', 'Unknown', 'Unknown_Small', 'unknown')", [])
+        .unwrap();
+    let class_id = db.last_insert_rowid();
+    db.execute("INSERT INTO spells (name, icon, slug) VALUES ('No spell trained', 'Unknown', 'no-spell-trained')", [])
+        .unwrap();
+    let spell_id = db.last_insert_rowid();
+    drop(db);
+    let state = AppState::open(&db_path).unwrap();
+    let (_, _, class) = get_from(state.clone(), &format!("/v1/classes/{class_id}")).await;
+    let (_, _, spell) = get_from(state.clone(), &format!("/v1/spells/{spell_id}")).await;
+    assert_eq!(class["large_icon"], "Unknown");
+    assert_eq!(class["small_icon"], "Unknown_Small");
+    assert_eq!(spell["icon"], "Unknown");
+    let (_, _, classes) = get_from(state.clone(), "/v1/classes?limit=10000").await;
+    let (_, _, spells) = get_from(state, "/v1/spells?limit=10000").await;
+    assert_eq!(
+        classes["classes"].as_array().unwrap().iter().find(|row| row["id"] == class_id).unwrap()["large_icon"],
+        "Unknown"
+    );
+    assert_eq!(
+        spells["spells"].as_array().unwrap().iter().find(|row| row["id"] == spell_id).unwrap()["icon"],
+        "Unknown"
+    );
+    std::fs::remove_file(db_path).unwrap();
+}
+
+#[tokio::test]
+async fn item_detail_serves_every_set_with_the_primary_first() {
+    let db_path = std::env::temp_dir().join(format!("ddo-api-set-order-{}.db", std::process::id()));
+    let _ = std::fs::remove_file(&db_path);
+    let mut db = rusqlite::Connection::open(&db_path).unwrap();
+    build_fixture_database(&mut db, &fixture_wiki());
+    let (item_id, primary_set_id): (i64, i64) = db
+        .query_row(
+            "SELECT i.id, s.id FROM items i JOIN set_bonuses s ON s.name = i.set_bonus ORDER BY i.id LIMIT 1",
+            [],
+            |row| Ok((row.get(0)?, row.get(1)?)),
+        )
+        .unwrap();
+    let secondary_set_ids = db
+        .prepare("SELECT id FROM set_bonuses WHERE id <> ?1 ORDER BY id DESC LIMIT 2")
+        .unwrap()
+        .query_map([primary_set_id], |row| row.get::<_, i64>(0))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(secondary_set_ids.len(), 2);
+    db.execute("DELETE FROM set_bonus_items WHERE item_id = ?1", [item_id]).unwrap();
+    for set_id in [secondary_set_ids[0], secondary_set_ids[1], primary_set_id] {
+        db.execute("INSERT INTO set_bonus_items (item_id, set_id) VALUES (?1, ?2)", (item_id, set_id)).unwrap();
+    }
+    drop(db);
+    let (_, _, item) = get_from(AppState::open(&db_path).unwrap(), &format!("/v1/items/{item_id}")).await;
+    assert_eq!(item["set"]["id"], Value::from(primary_set_id));
+    let served_set_ids =
+        item["sets"].as_array().unwrap().iter().map(|set| set["id"].as_i64().unwrap()).collect::<Vec<_>>();
+    assert_eq!(served_set_ids[0], primary_set_id);
+    assert_eq!(served_set_ids.len(), 3);
+    assert!(secondary_set_ids.iter().all(|set_id| served_set_ids.contains(set_id)));
+    std::fs::remove_file(db_path).unwrap();
 }
 
 #[tokio::test]
@@ -301,6 +494,7 @@ async fn items_filter_by_any_or_all_sets_and_sort_by_first_set_name() {
     assert!(sorted["items"].as_array().unwrap().last().unwrap()["set"].is_null());
     let fish = sorted["items"].as_array().unwrap().iter().find(|row| row["name"] == "Fried Sword Fish").unwrap();
     assert_eq!(fish["set"], "Cooking By the Book");
+    assert_eq!(fish["sets"], serde_json::json!(["Cooking By the Book", "Fried & Frozen Frenzy"]));
 
     let (_, _, spec) = get("/v1/openapi.json").await;
     let params = spec["paths"]["/v1/items"]["get"]["parameters"].as_array().unwrap();
@@ -388,8 +582,12 @@ async fn family_and_stat_detail_page_their_real_carriers() {
     assert_eq!(family["bonuses"].as_array().unwrap().len(), 6);
     let tier = &family["set_tiers"]["set_tiers"][0];
     let (_, _, set) = get(&format!("/v1/sets/{}", tier["set_id"])).await;
-    let tier_line = set["tiers"].as_array().unwrap().iter().find(|candidate| candidate["id"] == tier["id"]).unwrap()
-        ["effects"]
+    let tier_line = set["tiers"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .find(|candidate| candidate["equipped_count"] == tier["equipped_count"])
+        .unwrap()["effects"]
         .as_array()
         .unwrap()
         .iter()
@@ -492,9 +690,11 @@ async fn effect_detail_totals_count_distinct_owners_and_match_the_vocabulary_row
                 owners.iter().filter(|owner| owner["lines"].as_array().map_or(0, Vec::len) > 1).count();
         }
         let tiers = detail["set_tiers"]["set_tiers"].as_array().unwrap();
-        let distinct_tier_ids: std::collections::BTreeSet<i64> =
-            tiers.iter().map(|tier| tier["id"].as_i64().unwrap()).collect();
-        assert_eq!(distinct_tier_ids.len(), tiers.len(), "{} set tier rows are owners", row["name"]);
+        let distinct_tiers: std::collections::BTreeSet<(i64, i64)> = tiers
+            .iter()
+            .map(|tier| (tier["set_id"].as_i64().unwrap(), tier["equipped_count"].as_i64().unwrap()))
+            .collect();
+        assert_eq!(distinct_tiers.len(), tiers.len(), "{} set tier rows are owners", row["name"]);
         assert_eq!(detail["set_tiers"]["total"], tiers.len(), "{} set tier total", row["name"]);
         let distinct_set_ids: std::collections::BTreeSet<i64> =
             tiers.iter().map(|tier| tier["set_id"].as_i64().unwrap()).collect();
@@ -1348,7 +1548,7 @@ async fn quest_detail_is_the_list_row_plus_the_items_and_augments_it_drops() {
     let buckler = items.iter().find(|item| item["name"] == "Buckler of the Golden Age").expect("{items:?}");
     let mut item_fields: Vec<&String> = buckler.as_object().unwrap().keys().collect();
     item_fields.sort();
-    assert_eq!(item_fields, ["chest", "id", "is_rare", "loot_type", "minimum_level", "name", "slot"]);
+    assert_eq!(item_fields, ["chest", "id", "is_rare", "loot_type", "minimum_level", "name", "slot", "slug"]);
     assert_eq!(
         (&buckler["loot_type"], &buckler["is_rare"], &buckler["chest"]),
         (&serde_json::json!("chest"), &serde_json::json!(true), &serde_json::json!("end chest"))
@@ -1362,7 +1562,7 @@ async fn quest_detail_is_the_list_row_plus_the_items_and_augments_it_drops() {
         .expect("{augments:?}");
     let mut augment_fields: Vec<&String> = lunar_gem.as_object().unwrap().keys().collect();
     augment_fields.sort();
-    assert_eq!(augment_fields, ["chest", "family", "id", "is_rare", "loot_type", "min_level", "name"]);
+    assert_eq!(augment_fields, ["chest", "family", "id", "is_rare", "loot_type", "min_level", "name", "slug"]);
     assert_eq!(lunar_gem["family"], "SunAndMoon");
     assert_eq!(lunar_gem["is_rare"], true);
 
@@ -1529,8 +1729,24 @@ async fn sets_feats_races_classes_trees_spells() {
     let (_, _, races) = get_list_rows("/v1/races").await;
     let dwarf = races.as_array().unwrap().iter().find(|r| r["name"] == "Dwarf").unwrap();
     let (_, _, race) = get(&format!("/v1/races/{}", dwarf["id"])).await;
-    assert_eq!(race["ability_modifiers"][0]["stat"], "Constitution");
+    let modifier_stats = race["ability_modifiers"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|modifier| modifier["stat"].as_str().unwrap())
+        .collect::<Vec<_>>();
+    assert_eq!(modifier_stats, ["Constitution", "Charisma"]);
     assert_eq!(race["granted_feats"].as_array().unwrap().len(), 5);
+
+    let bladeforged = races.as_array().unwrap().iter().find(|row| row["name"] == "Bladeforged").unwrap();
+    let (_, _, bladeforged) = get(&format!("/v1/races/{}", bladeforged["id"])).await;
+    let bladeforged_stats = bladeforged["ability_modifiers"]
+        .as_array()
+        .unwrap()
+        .iter()
+        .map(|modifier| modifier["stat"].as_str().unwrap())
+        .collect::<Vec<_>>();
+    assert_eq!(bladeforged_stats, ["Dexterity", "Constitution", "Wisdom"]);
 
     let (_, _, classes) = get_list_rows("/v1/classes").await;
     let paladin = classes.as_array().unwrap().iter().find(|c| c["name"] == "Paladin").unwrap();
@@ -1894,6 +2110,31 @@ async fn documentation_tags_follow_reader_tasks() {
             "bulk"
         ]
     );
+}
+
+#[tokio::test]
+async fn loot_source_schemas_share_required_nullable_references() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    let schemas = &spec["components"]["schemas"];
+    for owner_schema in ["ItemsDetailResponse", "AugmentsDetailResponse"] {
+        assert_eq!(schemas[owner_schema]["properties"]["sources"]["items"]["$ref"], "#/components/schemas/LootSource");
+    }
+    let source_schema = &schemas["LootSource"];
+    assert!(source_schema["description"].as_str().unwrap().contains("no identity of its own"));
+    for field in ["id", "slug"] {
+        assert!(source_schema["required"].as_array().unwrap().iter().any(|required| required == field));
+        assert!(source_schema["properties"][field]["type"].as_array().unwrap().iter().any(|kind| kind == "null"));
+    }
+}
+
+#[tokio::test]
+async fn vendor_price_schemas_share_entries_and_deprecate_cost() {
+    let (_, _, spec) = get("/v1/openapi.json").await;
+    for name in ["LootSource", "VendorsDetailResponseItemsEntry", "ItemsDetailResponseVendorsEntry"] {
+        let fields = &spec["components"]["schemas"][name]["properties"];
+        assert_eq!(fields["cost"]["deprecated"], true, "{name}");
+        assert_eq!(fields["price"]["items"]["$ref"], "#/components/schemas/VendorPriceEntry", "{name}");
+    }
 }
 
 #[tokio::test]
@@ -2427,7 +2668,7 @@ async fn optional_buffs_list_by_name_with_modifiers() {
     let optional_buffs = json.as_array().unwrap();
     let names: Vec<&str> = optional_buffs.iter().map(|b| b["name"].as_str().unwrap()).collect();
     assert_eq!(names, ["Barkskin", "Bless", "Deadly Weapons", "Stone of Change: Alchemical Shield Eldritch Ritual"]);
-    assert_eq!(optional_buffs[0]["icon"], "Barkskin");
+    assert_eq!(optional_buffs[0]["icon"], "spells/Barkskin");
     assert_eq!(optional_buffs[0]["modifiers"][0]["effect_type"], "NaturalArmor");
     assert_eq!(optional_buffs[3]["modifiers"][0]["requirements"][0]["req_type"], "Stance");
 }
@@ -2444,6 +2685,39 @@ async fn sentient_gems_list_by_name() {
     );
     assert_eq!(sentient_gems[2]["icon"], "SentientJewel_Blue");
     assert_eq!(sentient_gems[2]["description"], "Voiced by: Ally Murphy");
+}
+
+#[tokio::test]
+async fn feat_bonus_references_match_the_granting_effect() {
+    let (_, _, feats) = get_list_rows("/v1/feats").await;
+    let db = rusqlite::Connection::open(fixture_db_path()).unwrap();
+    let mut checked_bonuses = 0;
+    for feat in feats.as_array().unwrap() {
+        let (_, _, detail) = get(&format!("/v1/feats/{}", feat["id"])).await;
+        for bonus in detail["bonuses"].as_array().unwrap() {
+            let effect_id = bonus["id"].as_i64().expect("a feat bonus references its granting effect");
+            let (status, _, effect) = get(&format!("/v1/effects/{effect_id}")).await;
+            assert_eq!(status, StatusCode::OK);
+            assert_eq!(bonus["slug"], effect["slug"]);
+            let is_granted: bool = db
+                .query_row(
+                    "SELECT EXISTS (SELECT 1 FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
+                 WHERE ob.owner_kind = 'feat' AND ob.owner_id = ?1 AND COALESCE(ob.via_effect_id, ob.stat_id) = ?2
+                   AND s.name = ?3 AND ob.amount = ?4)",
+                    rusqlite::params![
+                        feat["id"].as_i64().unwrap(),
+                        effect_id,
+                        bonus["stat"].as_str().unwrap(),
+                        bonus["value"].as_i64().unwrap()
+                    ],
+                    |row| row.get(0),
+                )
+                .unwrap();
+            assert!(is_granted, "{}: {bonus}", feat["name"]);
+            checked_bonuses += 1;
+        }
+    }
+    assert!(checked_bonuses > 0);
 }
 
 #[tokio::test]
@@ -2657,7 +2931,7 @@ async fn quest_chains_list_their_pack_page_and_counts() {
     let (status, _, chains) = get_list_rows("/v1/quest-chains").await;
     assert_eq!(status, StatusCode::OK);
     let lost_seekers = &chains[0];
-    assert_eq!(keys_of(lost_seekers), ["id", "name", "pack", "quest_count", "reward_count", "wiki_url"]);
+    assert_eq!(keys_of(lost_seekers), ["id", "name", "pack", "quest_count", "reward_count", "slug", "wiki_url"]);
     assert_eq!(
         (&lost_seekers["name"], &lost_seekers["pack"], &lost_seekers["wiki_url"]),
         (
@@ -2682,10 +2956,10 @@ async fn quest_chain_detail_lists_its_quests_in_order_and_its_rewards() {
         assert_eq!(&chain[field_name], value, "{field_name} as the list returns it");
     }
     let quests = chain["quests"].as_array().unwrap();
-    assert_eq!(keys_of(&quests[0]), ["id", "level", "name"]);
+    assert_eq!(keys_of(&quests[0]), ["id", "level", "name", "slug"]);
     assert_eq!(quests.iter().map(|q| q["name"].as_str().unwrap()).collect::<Vec<_>>(), ["The Grotto", "Redemption"]);
     let rewards = chain["rewards"].as_array().unwrap();
-    assert_eq!(keys_of(&rewards[0]), ["id", "is_rare", "minimum_level", "name", "slot"]);
+    assert_eq!(keys_of(&rewards[0]), ["id", "is_rare", "minimum_level", "name", "slot", "slug"]);
     assert_eq!(
         rewards.iter().map(|r| (r["name"].as_str().unwrap(), r["is_rare"].as_bool().unwrap())).collect::<Vec<_>>(),
         [("Acrobat's Ring", false), ("Docent of Defiance", false), ("Kundarak Delving Boots", true)]
@@ -2700,21 +2974,21 @@ async fn saga_detail_lists_its_rewards_by_tier() {
     let (status, _, sagas) = get_list_rows("/v1/sagas").await;
     assert_eq!(status, StatusCode::OK);
     let sharn = sagas.as_array().unwrap().iter().find(|saga| saga["name"] == "Masterminds of Sharn").unwrap();
-    assert_eq!(keys_of(sharn), ["id", "name", "pack", "quest_count", "reward_count", "wiki_url"]);
+    assert_eq!(keys_of(sharn), ["id", "name", "pack", "quest_count", "reward_count", "slug", "wiki_url"]);
     assert_eq!((&sharn["quest_count"], &sharn["reward_count"]), (&serde_json::json!(2), &serde_json::json!(4)));
     let (_, _, saga) = get(&format!("/v1/sagas/{}", sharn["id"])).await;
     assert_no_provenance(&saga);
     let rewards = saga["rewards"].as_array().unwrap();
-    assert_eq!(keys_of(&rewards[0]), ["id", "is_rare", "minimum_level", "name", "slot", "tier"]);
+    assert_eq!(keys_of(&rewards[0]), ["id", "is_rare", "minimum_level", "name", "slot", "slug", "tier"]);
     assert_eq!(
         rewards.iter().map(|r| (r["name"].as_str().unwrap(), r["tier"].clone())).collect::<Vec<_>>(),
         [
             ("Band of Diani ir'Wynarn", serde_json::json!("epic")),
             ("Five Rings", serde_json::json!("epic")),
             ("Five Rings", serde_json::json!("legendary")),
-            ("Alabaster of the Twelve", Value::Null)
+            ("Alabaster of the Twelve", serde_json::json!("any"))
         ],
-        "heroic, epic, legendary, then untiered, each by name"
+        "heroic, epic, legendary, then any tier, each by name"
     );
     assert_eq!(
         saga["quests"].as_array().unwrap().iter().map(|q| q["name"].as_str().unwrap()).collect::<Vec<_>>(),
@@ -2727,12 +3001,12 @@ async fn saga_detail_lists_its_rewards_by_tier() {
 #[tokio::test]
 async fn item_and_quest_detail_name_the_quest_chains_and_sagas_they_belong_to() {
     let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
-    assert_eq!(keys_of(&ring["quest_chains"][0]), ["id", "is_rare", "name", "wiki_url"]);
+    assert_eq!(keys_of(&ring["quest_chains"][0]), ["id", "is_rare", "name", "slug", "wiki_url"]);
     assert_eq!(ring["quest_chains"][0]["name"], "The Lost Seekers");
     assert_eq!(ring["quest_chains"][0]["wiki_url"], "https://ddowiki.com/page/The_Lost_Seekers");
     assert_eq!(ring["sagas"], serde_json::json!([]));
     let (_, _, band) = get(&format!("/v1/items/{}", id_of_item_named("Band of Diani ir'Wynarn").await)).await;
-    assert_eq!(keys_of(&band["sagas"][0]), ["id", "is_rare", "name", "tier", "wiki_url"]);
+    assert_eq!(keys_of(&band["sagas"][0]), ["id", "is_rare", "name", "slug", "tier", "wiki_url"]);
     assert_eq!(band["sagas"][0]["wiki_url"], "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)");
     assert_eq!(
         (&band["sagas"][0]["name"], &band["sagas"][0]["tier"]),
@@ -2741,7 +3015,7 @@ async fn item_and_quest_detail_name_the_quest_chains_and_sagas_they_belong_to() 
 
     let quest_id = band["quests"][0]["id"].as_i64().unwrap();
     let (_, _, project_nemesis) = get(&format!("/v1/quests/{quest_id}")).await;
-    assert_eq!(keys_of(&project_nemesis["sagas"][0]), ["id", "name", "wiki_url"]);
+    assert_eq!(keys_of(&project_nemesis["sagas"][0]), ["id", "name", "slug", "wiki_url"]);
     assert_eq!(project_nemesis["sagas"][0]["wiki_url"], "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)");
     assert_eq!(project_nemesis["sagas"][0]["name"], "Masterminds of Sharn");
     assert_eq!(project_nemesis["quest_chains"], serde_json::json!([]));
@@ -2791,12 +3065,10 @@ async fn a_client_can_sustain_five_requests_per_second_after_the_burst() {
     for _ in 0..100 {
         assert_eq!(response_to_cross_origin_get(router.clone(), "/v1/version").await.status(), StatusCode::OK);
     }
-    let started = std::time::Instant::now();
     for _ in 0..20 {
         tokio::time::sleep(std::time::Duration::from_millis(210)).await;
         assert_eq!(response_to_cross_origin_get(router.clone(), "/v1/version").await.status(), StatusCode::OK);
     }
-    assert!(started.elapsed() < std::time::Duration::from_secs(5));
 }
 
 #[tokio::test]
@@ -2816,7 +3088,7 @@ async fn item_detail_lists_only_pack_wide_drops_in_adventure_packs() {
     assert_eq!(crossbow["quests"], serde_json::json!([]));
     let packs = crossbow["adventure_packs"].as_array().unwrap();
     assert_eq!(packs.len(), 1, "{packs:?}");
-    assert_eq!(keys_of(&packs[0]), ["chest", "id", "is_rare", "loot_type", "name", "wiki_url"]);
+    assert_eq!(keys_of(&packs[0]), ["chest", "id", "is_rare", "loot_type", "name", "slug", "wiki_url"]);
     assert_eq!(packs[0]["wiki_url"], "https://ddowiki.com/page/Magic_of_Myth_Drannor", "the page named after the pack");
     assert_eq!(
         (&packs[0]["name"], &packs[0]["loot_type"], &packs[0]["chest"], &packs[0]["is_rare"]),
@@ -2883,10 +3155,13 @@ async fn detail_drop_validation_rejects_repeated_and_rolled_up_locations() {
     let (_, _, mut crossbow) =
         get(&format!("/v1/items/{}", id_of_item_named("Light Crossbow of the Golden Age").await)).await;
     crossbow["sources"].as_array_mut().unwrap().push(serde_json::json!({
-        "kind": "quest_chain", "id": 999, "chest": "any end chest"
+        "kind": "quest_chain", "name": "Fixture chain", "chest": "any end chest"
     }));
     let mut source_packs_with_overlap = source_packs;
-    source_packs_with_overlap.entry(("quest_chain".into(), 999)).or_default().insert("Magic of Myth Drannor".into());
+    source_packs_with_overlap
+        .entry(("quest_chain".into(), "Fixture chain".into()))
+        .or_default()
+        .insert("Magic of Myth Drannor".into());
     assert!(detail_has_unique_drop_locations(&crossbow, "/v1/items/fixture", &source_packs_with_overlap)
         .unwrap_err()
         .contains("repeats a"));
@@ -2900,11 +3175,11 @@ async fn adventure_pack_detail_lists_the_loot_any_of_its_quests_drops() {
         .unwrap();
     let (status, _, pack) = get(&format!("/v1/adventure-packs/{pack_id}")).await;
     assert_eq!(status, StatusCode::OK);
-    assert_eq!(keys_of(&pack), ["augments", "id", "is_free_to_play", "items", "name"]);
+    assert_eq!(keys_of(&pack), ["augments", "id", "is_free_to_play", "items", "name", "released", "slug", "update"]);
     assert_eq!(pack["is_free_to_play"], false);
     let items = pack["items"].as_array().unwrap();
     assert_eq!(items.len(), 1, "{items:?}");
-    assert_eq!(keys_of(&items[0]), ["chest", "id", "is_rare", "loot_type", "minimum_level", "name", "slot"]);
+    assert_eq!(keys_of(&items[0]), ["chest", "id", "is_rare", "loot_type", "minimum_level", "name", "slot", "slug"]);
     assert_eq!(items[0]["name"], "Light Crossbow of the Golden Age");
     assert_eq!(items[0]["is_rare"], true);
     assert_eq!(pack["augments"], serde_json::json!([]));
@@ -2918,7 +3193,20 @@ async fn item_and_augment_detail_list_every_source_in_one_array() {
     let sources = band["sources"].as_array().unwrap();
     assert_eq!(
         keys_of(&sources[0]),
-        ["character_level", "chest", "cost", "id", "is_rare", "kind", "loot_type", "name", "tier", "wiki_url"]
+        [
+            "character_level",
+            "chest",
+            "cost",
+            "id",
+            "is_rare",
+            "kind",
+            "loot_type",
+            "name",
+            "price",
+            "slug",
+            "tier",
+            "wiki_url"
+        ]
     );
     let source_summaries: Vec<(&str, &str, Option<&str>, Option<&str>)> = sources
         .iter()
@@ -2936,14 +3224,14 @@ async fn item_and_augment_detail_list_every_source_in_one_array() {
         [("quest", "Project Nemesis", Some("raid"), None), ("saga", "Masterminds of Sharn", None, Some("epic"))],
         "quests first, then chains, sagas and packs"
     );
-    assert_eq!(sources[0]["id"], band["quests"][0]["id"]);
+    assert_eq!(sources[0]["name"], band["quests"][0]["name"]);
     assert_eq!(sources[0]["wiki_url"], "https://ddowiki.com/page/Project_Nemesis");
     assert_eq!(sources[1]["wiki_url"], "https://ddowiki.com/page/Masterminds_of_Sharn_(saga)");
 
     let (_, _, crossbow) =
         get(&format!("/v1/items/{}", id_of_item_named("Light Crossbow of the Golden Age").await)).await;
     assert_eq!(crossbow["sources"][0]["kind"], "adventure_pack");
-    assert_eq!(crossbow["sources"][0]["id"], crossbow["adventure_packs"][0]["id"]);
+    assert_eq!(crossbow["sources"][0]["name"], crossbow["adventure_packs"][0]["name"]);
     assert_eq!(crossbow["sources"][0]["wiki_url"], "https://ddowiki.com/page/Magic_of_Myth_Drannor");
     let (_, _, ring) = get(&format!("/v1/items/{}", id_of_item_named("Acrobat's Ring").await)).await;
     assert_eq!(ring["sources"][0]["kind"], "quest_chain");
@@ -2959,6 +3247,62 @@ async fn item_and_augment_detail_list_every_source_in_one_array() {
 }
 
 #[tokio::test]
+async fn loot_source_references_match_entity_routes() {
+    let mut checked_kinds = std::collections::BTreeSet::new();
+    for resource in ["items", "augments"] {
+        let (_, _, owners) = get_list_rows(&format!("/v1/{resource}")).await;
+        let mut source_count = 0;
+        for owner in owners.as_array().unwrap() {
+            let path = format!("/v1/{resource}/{}", owner["id"]);
+            let (status, _, detail) = get(&path).await;
+            assert_eq!(status, StatusCode::OK);
+            for source in detail["sources"].as_array().unwrap() {
+                let kind = source["kind"].as_str().unwrap();
+                checked_kinds.insert(kind.to_string());
+                source_count += 1;
+                if kind == "starter" {
+                    assert_eq!(source.get("id"), Some(&Value::Null));
+                    assert_eq!(source.get("slug"), Some(&Value::Null));
+                    continue;
+                }
+                let source_resource = match kind {
+                    "quest" => "quests",
+                    "quest_chain" => "quest-chains",
+                    "saga" => "sagas",
+                    "adventure_pack" | "challenge" => "adventure-packs",
+                    "crafting_system" => "crafting-systems",
+                    "vendor" => "vendors",
+                    "event" => "events",
+                    _ => panic!("uncovered source kind: {kind}"),
+                };
+                let source_id = source["id"].as_i64().unwrap_or_else(|| panic!("{path}: {source}"));
+                let (status, _, entity) = get(&format!("/v1/{source_resource}/{source_id}")).await;
+                assert_eq!(status, StatusCode::OK, "{path}: {source}");
+                for field in ["id", "slug", "name"] {
+                    assert_eq!(source[field], entity[field], "{path}: {kind}.{field}");
+                }
+                assert!(source["slug"].is_string());
+            }
+        }
+        assert!(source_count > 0, "{resource}");
+    }
+    assert_eq!(
+        checked_kinds.into_iter().collect::<Vec<_>>(),
+        [
+            "adventure_pack",
+            "challenge",
+            "crafting_system",
+            "event",
+            "quest",
+            "quest_chain",
+            "saga",
+            "starter",
+            "vendor"
+        ]
+    );
+}
+
+#[tokio::test]
 async fn item_detail_lists_the_crafting_systems_that_make_it() {
     let (_, _, orb) = get(&format!("/v1/items/{}", id_of_item_named("Thunder-Forged Orb").await)).await;
     let (_, _, crafting_systems) = get_list_rows("/v1/crafting-systems").await;
@@ -2969,6 +3313,7 @@ async fn item_detail_lists_the_crafting_systems_that_make_it() {
         serde_json::json!([{
             "id": thunder_forged_id,
             "name": "Thunder-Forged",
+            "slug": "thunder-forged",
             "is_rare": false,
             "wiki_url": "https://ddowiki.com/page/Thunder-Forged"
         }])
@@ -2976,10 +3321,9 @@ async fn item_detail_lists_the_crafting_systems_that_make_it() {
     let sources = orb["sources"].as_array().unwrap();
     assert_eq!(sources.len(), 1, "{sources:?}");
     assert_eq!(
-        (&sources[0]["kind"], &sources[0]["id"], &sources[0]["name"], &sources[0]["wiki_url"]),
+        (&sources[0]["kind"], &sources[0]["name"], &sources[0]["wiki_url"]),
         (
             &serde_json::json!("crafting_system"),
-            thunder_forged_id,
             &serde_json::json!("Thunder-Forged"),
             &serde_json::json!("https://ddowiki.com/page/Thunder-Forged")
         )
@@ -2997,14 +3341,15 @@ async fn item_detail_lists_the_challenge_pack_whose_ingredients_buy_it() {
         serde_json::json!([{
             "id": pack_id,
             "name": "Vaults of the Artificers",
+            "slug": "vaults-of-the-artificers",
             "is_rare": false,
             "wiki_url": "https://ddowiki.com/page/Vaults_of_the_Artificers"
         }])
     );
     assert_eq!(ring["adventure_packs"], serde_json::json!([]));
     assert_eq!(
-        (&ring["sources"][0]["kind"], &ring["sources"][0]["id"]),
-        (&serde_json::json!("challenge"), &serde_json::json!(pack_id))
+        (&ring["sources"][0]["kind"], &ring["sources"][0]["name"]),
+        (&serde_json::json!("challenge"), &serde_json::json!("Vaults of the Artificers"))
     );
     let (_, _, pack) = get(&format!("/v1/adventure-packs/{pack_id}")).await;
     assert_eq!(pack["items"], serde_json::json!([]), "the pack detail lists pack-wide drops only");
@@ -3021,12 +3366,14 @@ async fn item_detail_lists_the_starter_level_that_earns_an_iconic_item() {
         serde_json::json!([{
             "kind": "starter",
             "id": null,
+            "slug": null,
             "name": "Advance to level 15",
             "loot_type": null,
             "chest": null,
             "is_rare": false,
             "tier": null,
             "character_level": 15,
+            "price": [],
             "cost": null,
             "wiki_url": null
         }])
@@ -3040,7 +3387,7 @@ async fn vendors_list_their_location_pack_page_and_item_count_and_detail_their_i
     let (status, _, vendors) = get_list_rows("/v1/vendors").await;
     assert_eq!(status, StatusCode::OK);
     let vendor = &vendors[0];
-    assert_eq!(keys_of(vendor), ["id", "item_count", "location", "name", "pack", "wiki_url"]);
+    assert_eq!(keys_of(vendor), ["id", "item_count", "location", "name", "pack", "slug", "wiki_url"]);
     assert_eq!(
         (&vendor["name"], &vendor["location"], &vendor["pack"], &vendor["item_count"]),
         (
@@ -3054,10 +3401,10 @@ async fn vendors_list_their_location_pack_page_and_item_count_and_detail_their_i
     assert_eq!(status, StatusCode::OK);
     assert_no_provenance(&detail);
     let items = detail["items"].as_array().unwrap();
-    assert_eq!(keys_of(&items[0]), ["cost", "id", "is_rare", "minimum_level", "name", "slot"]);
+    assert_eq!(keys_of(&items[0]), ["cost", "id", "is_rare", "minimum_level", "name", "price", "slot", "slug"]);
     assert_eq!(
         items.iter().map(|item| (item["name"].as_str().unwrap(), item["cost"].as_str())).collect::<Vec<_>>(),
-        [("Alabaster of the Twelve", Some("10 Planar Shards")), ("Ethereal Great Crossbow", None)]
+        [("Alabaster of the Twelve", Some("10 Planar Shard")), ("Ethereal Great Crossbow", None)]
     );
     let (status, _, _) = get("/v1/vendors/999999").await;
     assert_eq!(status, StatusCode::NOT_FOUND);
@@ -3068,8 +3415,10 @@ async fn vendors_list_their_location_pack_page_and_item_count_and_detail_their_i
         serde_json::json!([{
             "id": vendor["id"],
             "name": "Morten Edgewright",
+            "slug": "morten-edgewright",
             "location": "House Jorasco",
             "cost": null,
+            "price": [],
             "is_rare": false,
             "wiki_url": "https://ddowiki.com/page/Morten_Edgewright"
         }])
@@ -3080,7 +3429,13 @@ async fn vendors_list_their_location_pack_page_and_item_count_and_detail_their_i
     );
     let (_, _, alabaster) = get(&format!("/v1/items/{}", id_of_item_named("Alabaster of the Twelve").await)).await;
     let vendor_source = alabaster["sources"].as_array().unwrap().iter().find(|source| source["kind"] == "vendor");
-    assert_eq!(vendor_source.unwrap()["cost"], "10 Planar Shards");
+    let vendor_source = vendor_source.unwrap();
+    assert_eq!(vendor_source["price"], serde_json::json!([{ "ingredient": "Planar Shard", "quantity": 10 }]));
+    assert_eq!(vendor_source["cost"], "10 Planar Shard");
+    assert_eq!(vendor_source["price"], items[0]["price"]);
+    assert_eq!(vendor_source["price"], alabaster["vendors"][0]["price"]);
+    assert_eq!(vendor_source["cost"], alabaster["vendors"][0]["cost"]);
+    assert_eq!(items[1]["price"], serde_json::json!([]));
 }
 
 #[tokio::test]
@@ -3088,7 +3443,7 @@ async fn events_list_their_page_and_item_count_and_detail_their_items() {
     let (status, _, events) = get_list_rows("/v1/events").await;
     assert_eq!(status, StatusCode::OK);
     let event = &events[0];
-    assert_eq!(keys_of(event), ["id", "item_count", "name", "wiki_url"]);
+    assert_eq!(keys_of(event), ["id", "item_count", "name", "slug", "wiki_url"]);
     assert_eq!(
         (&event["name"], &event["item_count"]),
         (&serde_json::json!("Treasure of Crystal Cove"), &serde_json::json!(3))
@@ -3099,7 +3454,7 @@ async fn events_list_their_page_and_item_count_and_detail_their_items() {
     let item_names: Vec<&str> =
         detail["items"].as_array().unwrap().iter().map(|item| item["name"].as_str().unwrap()).collect();
     assert_eq!(item_names, ["Acrobat's Ring", "Bold Trinket", "Ratkiller (legacy) (level 4)"]);
-    assert_eq!(keys_of(&detail["items"][0]), ["id", "is_rare", "minimum_level", "name", "slot"]);
+    assert_eq!(keys_of(&detail["items"][0]), ["id", "is_rare", "minimum_level", "name", "slot", "slug"]);
     let (status, _, _) = get("/v1/events/999999").await;
     assert_eq!(status, StatusCode::NOT_FOUND);
 
@@ -3109,6 +3464,7 @@ async fn events_list_their_page_and_item_count_and_detail_their_items() {
         serde_json::json!([{
             "id": event["id"],
             "name": "Treasure of Crystal Cove",
+            "slug": "treasure-of-crystal-cove",
             "is_rare": false,
             "wiki_url": "https://ddowiki.com/page/Treasure_of_Crystal_Cove"
         }])

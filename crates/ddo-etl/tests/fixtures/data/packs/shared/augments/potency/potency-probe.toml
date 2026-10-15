@@ -1,0 +1,20 @@
+name = "Potency Probe"
+description = "Equipment bonus to each Spell Power."
+family = "Potency"
+min_level = 30
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 111
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [111]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "yellow"

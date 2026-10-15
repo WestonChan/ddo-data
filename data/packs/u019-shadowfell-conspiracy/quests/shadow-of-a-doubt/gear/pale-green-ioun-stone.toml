@@ -1,0 +1,22 @@
+name = "Pale Green Ioun Stone"
+description = "A pale green gem about 1 inch in diameter."
+drop_location = "Shadow of a Doubt, end chest (Heroic Elite)"
+icon = "Trinket_4a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 15
+slot = "Trinket"
+
+[[effect]]
+name = "Heroic Inspiration"
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 40
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Shadow of a Doubt"

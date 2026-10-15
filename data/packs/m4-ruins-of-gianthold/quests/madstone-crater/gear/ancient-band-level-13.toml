@@ -1,0 +1,26 @@
+name = "Ancient Band (Level 13)"
+description = """
+This metallic band has suffered through thousands of years of wear. The scratches
+on its surface are so numerous that any shine the metal once had is gone forever."""
+drop_location = "Madstone Crater, end chest (Heroic Hard)"
+icon = "Ring_12"
+item_category = "Jewelry"
+material = "Adamantine"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"

@@ -1,0 +1,53 @@
+name = "Page Regalia: Unsanctioned Arcana"
+description = """
+This page, filled with knowledge and power from other tomes across Eberron,
+gained so much power it somehow manifested into a Cloak. It now seeks purpose."""
+drop_location = "Fire Over Morgrave, end chest"
+icon = "Cloak_5a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 32
+slot = "Back"
+
+[[clickie]]
+name = "Turn the Page"
+clickie = "Turn the Page"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Nullmagic Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Turn the Page"]
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Fire Over Morgrave"

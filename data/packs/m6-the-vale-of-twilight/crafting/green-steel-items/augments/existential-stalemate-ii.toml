@@ -1,0 +1,14 @@
+name = "Existential Stalemate II"
+description = """
+Concordant Opposition: This item is imbued with the energy of concordant opposition.
+Those who rest at the pinnacle of supreme balance can do nothing but gain.
+When the wearer of this item is successfully attacked in melee, there is a
+chance the item will bestow temporary hit points and grant spell points to
+the wearer.
+Negative:Positive:Positive+Negative"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

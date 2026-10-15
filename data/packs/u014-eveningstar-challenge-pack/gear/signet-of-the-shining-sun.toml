@@ -1,0 +1,27 @@
+name = "Signet of the Shining Sun"
+description = "This gold ring is shaped to resemble a rising sun."
+drop_location = "Eveningstar, Turn in 5 Commendations: Clerics of the Amaunator Commendation: Clerics of Amaunator : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Clerics of Amaunator. You can exchange it in Eveningstar for powerful equipment."
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

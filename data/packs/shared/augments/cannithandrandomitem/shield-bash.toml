@@ -1,0 +1,65 @@
+name = "Shield Bash"
+choose_level = true
+description = "You gain a chance to perform an automatic shield bash when hit in combat"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    2,
+    3,
+    4,
+    5,
+    6,
+    6,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    14,
+    14,
+    15,
+    15,
+    16,
+    17,
+    17,
+    18,
+    18,
+    19,
+    20,
+    20,
+    21,
+    21,
+    22,
+    23,
+    23,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+]
+
+[[slot]]
+slot = "crafting: cannith gloves suffix"
+
+[[slot]]
+slot = "crafting: cannith shield suffix"
+
+[[slot]]
+slot = "crafting: cannith orb suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random gloves suffix"
+
+[[slot]]
+slot = "crafting: random shield suffix"

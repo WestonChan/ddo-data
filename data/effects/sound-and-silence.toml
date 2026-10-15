@@ -1,0 +1,3 @@
+name = "Sound and Silence"
+description_template = "When true power is spoken, weaker beings cannot refute it. Your offensive spells and attacks have a small chance to cause 10d20 Sonic Damage to nearby enemies and Silence them. Each target can negate the Silence on Will save vs DC 90."
+verbose_name_template = "Sound and Silence"

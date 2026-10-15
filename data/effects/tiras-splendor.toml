@@ -1,0 +1,3 @@
+name = "Tira's Splendor"
+description_template = "Any weapon you wield becomes able to bypass silver damage reduction."
+verbose_name_template = "Tira's Splendor"

@@ -1,0 +1,44 @@
+name = "Cobalt Pocketwatch"
+description = "As this rests on your chest, its ticking seems to synchronize with your heartbeat."
+drop_location = "Hunter and Hunted, any chest"
+icon = "Necklace_34"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "any chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Hunter and Hunted"

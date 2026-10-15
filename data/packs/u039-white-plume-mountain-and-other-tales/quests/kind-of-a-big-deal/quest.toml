@@ -1,0 +1,26 @@
+name = "Kind of a Big Deal"
+bestowed_by = "Nymue Elethiel"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "White Plume Mountain and Other Tales"
+patron = "The Twelve"
+zone = "Mondo Valley"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Kind_of_a_Big_Deal"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 21

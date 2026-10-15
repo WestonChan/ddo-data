@@ -1,0 +1,20 @@
+name = "Spell Penetration +3"
+description = "Equipment bonus to Spell Penetration"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[slot]]
+slot = "crafting: slavelords extra"

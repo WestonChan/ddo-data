@@ -1,0 +1,48 @@
+name = "Doctor Vulcana's Broken Wristwatch"
+description = """
+This intricate wristwatch is powered by some unseen magical energy, and contains
+intriciate detail that belies incredible worth. Its glass face is shattered,
+and although you've tried your best to clean it, dried blood lingers in the
+cracks."""
+drop_location = "The Soul Splitter, any legendary end chest"
+icon = "Bracers_22"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Silver"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "any legendary end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "The Soul Splitter"

@@ -45,6 +45,7 @@ const fn named_reference(
 }
 
 const ITEM_FIELDS: &[CorrectableField] = &[
+    field("icon", FieldShape::Text, true),
     field("minimum_level", FieldShape::Integer, true),
     field("enhancement_bonus", FieldShape::Integer, true),
     field("description", FieldShape::Text, true),
@@ -127,8 +128,12 @@ const EFFECT_DAMAGE_FIELDS: &[CorrectableField] =
 const ITEM_SOCKET_FIELDS: &[CorrectableField] = &[field("add", FieldShape::SocketAddition, false)];
 
 const DESCRIPTION_FIELDS: &[CorrectableField] = &[field("description", FieldShape::Text, true)];
+const DESCRIPTION_AND_ICON_FIELDS: &[CorrectableField] =
+    &[field("description", FieldShape::Text, true), field("icon", FieldShape::Text, true)];
 
 const ROW_NAME_FIELDS: &[CorrectableField] = &[field("name", FieldShape::RowName, false)];
+const SET_BONUS_FIELDS: &[CorrectableField] =
+    &[field("name", FieldShape::RowName, false), field("icon", FieldShape::Text, true)];
 
 pub(super) const WIKI_QUEST_FIELDS: &[&str] =
     &["is_free_to_play", "legendary_level", "zone", "bestowed_by", "flagging"];
@@ -141,13 +146,14 @@ pub fn correctable_fields(kind: CorrectionKind) -> &'static [CorrectableField] {
         CorrectionKind::Quest => QUEST_FIELDS,
         CorrectionKind::Feat
         | CorrectionKind::Enhancement
-        | CorrectionKind::Race
-        | CorrectionKind::Class
-        | CorrectionKind::Spell => DESCRIPTION_FIELDS,
-        CorrectionKind::AdventurePack
-        | CorrectionKind::Patron
-        | CorrectionKind::SetBonus
-        | CorrectionKind::SocketLabel => ROW_NAME_FIELDS,
+        | CorrectionKind::Spell
+        | CorrectionKind::EnhancementTree
+        | CorrectionKind::OptionalBuff
+        | CorrectionKind::Clickie
+        | CorrectionKind::Filigree => DESCRIPTION_AND_ICON_FIELDS,
+        CorrectionKind::Race | CorrectionKind::Class => DESCRIPTION_FIELDS,
+        CorrectionKind::AdventurePack | CorrectionKind::Patron | CorrectionKind::SocketLabel => ROW_NAME_FIELDS,
+        CorrectionKind::SetBonus => SET_BONUS_FIELDS,
         CorrectionKind::AugmentBonus => AUGMENT_BONUS_FIELDS,
         CorrectionKind::ItemBonus => ITEM_BONUS_FIELDS,
         CorrectionKind::SetTier => SET_TIER_FIELDS,

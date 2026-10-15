@@ -1,0 +1,64 @@
+name = "Fiendish Requisition"
+description = "The demonic energy of the Abyss is capable of corrupting even the most Divine."
+drop_location = "Catalyst Crafting, Turn in Ultimatum, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 5
+icon = "Shield_3e"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Bone"
+minimum_level = 11
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 13
+max_dex_bonus = 2
+shield_bonus = 17
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Bleeding 3"
+
+[[effect]]
+name = "Legendary Conditioning"
+bonus_type = "Legendary"
+value = 20
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Unholy 3"
+
+[[effect]]
+name = "Penalty Good"
+
+[[effect]]
+name = "Petrification Immunity"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.2
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

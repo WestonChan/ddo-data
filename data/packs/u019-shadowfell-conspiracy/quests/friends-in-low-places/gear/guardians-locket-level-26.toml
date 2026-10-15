@@ -1,0 +1,22 @@
+name = "Guardian's Locket (Level 26)"
+drop_location = "Friends in Low Places, End reward"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Neck"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 9
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 8
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Friends in Low Places"

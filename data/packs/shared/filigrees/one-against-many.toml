@@ -1,0 +1,118 @@
+[[row]]
+name = "One Against Many: +1 Attack and Damage"
+description = """
++1 Attack and Damage
+Rare: +2 PRR"""
+icon = "OneAgainstMany"
+menu = "Ravenloft"
+set = "One Against Many"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "One Against Many: Attack and Damage: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "One Against Many: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "OneAgainstMany"
+menu = "Ravenloft"
+set = "One Against Many"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "One Against Many: Dexterity: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "One Against Many: +1 Strength"
+description = """
++1 Strength
+Rare: +2 PRR"""
+icon = "OneAgainstMany"
+menu = "Ravenloft"
+set = "One Against Many"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "One Against Many: Strength: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "One Against Many: +2 Critical Attack and Damage"
+description = """
++2 Critical Attack and Damage
+Rare: +2 PRR"""
+icon = "OneAgainstMany"
+menu = "Ravenloft"
+set = "One Against Many"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "One Against Many: Critical Attack and Damage: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "One Against Many: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "OneAgainstMany"
+menu = "Ravenloft"
+set = "One Against Many"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "One Against Many: Melee Power: Rare +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true

@@ -1,0 +1,86 @@
+name = "Defender of Tanaroa"
+icon = "DefenderOfTanaroa"
+
+[[augment]]
+name = "Defender of Tanaroa"
+family = "DinosaurBone"
+
+[[item]]
+name = "Legendary Defender's Cloak"
+
+[[item]]
+name = "Legendary Defender's Masque"
+
+[[item]]
+name = "Legendary Firemouth's Bulwark"
+
+[[item]]
+name = "Legendary Roughcut Armor"
+
+[[item]]
+name = "Legendary Tanaroa Sneaking Suit"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "UniversalSpellLore"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"

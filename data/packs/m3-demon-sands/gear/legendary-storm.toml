@@ -1,0 +1,60 @@
+name = "Legendary Storm"
+accepts_sentience = true
+description = """
+This gnoll-built weapon is crude but carries an aura of magic. Its bolts fly
+through the air with great power and accuracy."""
+drop_location = "Legendary version of Epic Storm"
+enhancement_bonus = 15
+icon = "HeavyCrossbow_6"
+item_category = "Weapon"
+item_type = "Heavy Crossbow"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Sovereign Lightning Strike"
+
+[[effect]]
+name = "Shocking Blast VI"
+
+[[effect]]
+name = "Screeching 15"
+
+[[effect]]
+name = "Thunderstorm Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Power of the Thunderstorm"
+bonus_type = "Equipment"
+value = 151
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Heavy Crossbow"

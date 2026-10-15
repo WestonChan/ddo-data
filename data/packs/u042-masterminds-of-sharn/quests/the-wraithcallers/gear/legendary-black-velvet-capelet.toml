@@ -1,0 +1,35 @@
+name = "Legendary Black Velvet Capelet"
+description = "This cloak shrouds you in negative energy."
+drop_location = "The Wraithcallers, End Chest"
+icon = "Cloak_9"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Insight"
+value = 27
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Greater Boon of Undeath"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wraithcallers"

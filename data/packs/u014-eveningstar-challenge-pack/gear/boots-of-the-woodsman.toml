@@ -1,0 +1,27 @@
+name = "Boots of the Woodsman"
+description = "These supple leather boots are as swift and silent as the falling night."
+drop_location = "Eveningstar, Turn in 5 Commendations: Druids of the King's Forest Commendation: Druids of the King's Forest : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Druids of the King's Forest. You can exchange it in Eveningstar for powerful equipment."
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Feet"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 15
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

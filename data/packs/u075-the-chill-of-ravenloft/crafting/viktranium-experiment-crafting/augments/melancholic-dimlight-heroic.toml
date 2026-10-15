@@ -1,0 +1,49 @@
+name = "Melancholic Dimlight (Heroic)"
+description = """
++5 Equipment bonus to Spell Penetration.
+If this is slotted in a Quarterstaff, also grants a +1 Exceptional bonus to
+Spell DCs and makes the Quarterstaff an Implement."""
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = [
+    "Weapon1",
+    "Quarterstaff",
+]
+req_type = "ItemTypeInSlot"
+
+[[slot]]
+slot = "lamordia: melancholic (weapon)"

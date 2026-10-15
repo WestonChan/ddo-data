@@ -1,0 +1,45 @@
+name = "Medium Armor of the Howling Hatred"
+description = "Armor from deep within the Temple of Elemental Evil."
+drop_location = "ToEE: Air Node, end chest, Tempest 's chest, and random locked chest"
+enhancement_bonus = 3
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 10
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 18
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 70
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, tempest 's chest, and random locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"

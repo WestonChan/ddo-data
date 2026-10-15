@@ -1,0 +1,21 @@
+name = "Terror of Demogorgon"
+pack = "Terror of Demogorgon"
+wiki_url = "https://ddowiki.com/page/Terror_of_Demogorgon_(Legendary)"
+quests = [
+    "A Blood Pact",
+    "A Long Way to Mushrooms",
+    "Back to the Abyss",
+    "Demon in the Rough",
+    "Flocked Together",
+    "For Want of a Heart",
+    "Hideous to Behold",
+    "If It Wasn't For Bad Luck",
+    "Stealing from Sorcere",
+    "The Fetid Wedding",
+    "The Price of an Egg",
+    "Tower of Vengeance",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Terror_of_Demogorgon_(Legendary)"
+read = "2026-10-02"

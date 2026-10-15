@@ -1,0 +1,37 @@
+name = "Black Earth Guardian's Lenses"
+description = "A guardian of the Black Earth is expected to be as stone. Become unbreakable."
+drop_location = "ToEE: First Level and Earth Temple, end chest"
+icon = "Goggles_3"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 8
+slot = "Goggles"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 52
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 18
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: First Level and Earth Temple"

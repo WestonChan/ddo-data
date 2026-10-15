@@ -1,0 +1,169 @@
+[[row]]
+name = "Zarigan's Arcane Enlightenment: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "ZarigansArcaneEnlightenment"
+menu = "Masterminds of Sharn"
+set = "Zarigan's Arcane Enlightenment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zarigan's Arcane Enlightenment: Charisma: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Zarigan's Arcane Enlightenment: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "ZarigansArcaneEnlightenment"
+menu = "Masterminds of Sharn"
+set = "Zarigan's Arcane Enlightenment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zarigan's Arcane Enlightenment: Intelligence: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Zarigan's Arcane Enlightenment: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "ZarigansArcaneEnlightenment"
+menu = "Masterminds of Sharn"
+set = "Zarigan's Arcane Enlightenment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zarigan's Arcane Enlightenment: Wisdom: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Zarigan's Arcane Enlightenment: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "ZarigansArcaneEnlightenment"
+menu = "Masterminds of Sharn"
+set = "Zarigan's Arcane Enlightenment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zarigan's Arcane Enlightenment: PRR: +2 MRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Zarigan's Arcane Enlightenment: +30 Spell Points"
+description = """
++30 Spell Points
+Rare: +4 Universal Spell Power"""
+icon = "ZarigansArcaneEnlightenment"
+menu = "Masterminds of Sharn"
+set = "Zarigan's Arcane Enlightenment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Stacking"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Zarigan's Arcane Enlightenment: Spell Points: +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Zarigan's Arcane Enlightenment: +5% Force Absorption"
+description = """
++5% Force Absorption
+Rare: +2 MRR"""
+icon = "ZarigansArcaneEnlightenment"
+menu = "Masterminds of Sharn"
+set = "Zarigan's Arcane Enlightenment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Force"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zarigan's Arcane Enlightenment: Force Absorption: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Zarigan's Arcane Enlightenment: +9 Force Spell Power"
+description = """
++9 Force Spell Power
+Rare: +2 MRR"""
+icon = "ZarigansArcaneEnlightenment"
+menu = "Masterminds of Sharn"
+set = "Zarigan's Arcane Enlightenment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Zarigan's Arcane Enlightenment: Force Spell Power: +2 MRR"
+effect_type = "MRR"
+is_rare = true

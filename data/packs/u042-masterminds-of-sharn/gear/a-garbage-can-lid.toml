@@ -1,0 +1,70 @@
+name = "A Garbage Can Lid?"
+description = "This is... a garbage can lid. It's dented."
+drop_location = "Scavenger Hunt, End Chest, The Magma Must Flow End Chest"
+enhancement_bonus = 5
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Densewood"
+minimum_level = 15
+slot = "Off Hand"
+wiki_url = "https://ddowiki.com/page/Item:A_Garbage_Can_Lid%3F"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+shield_bonus = 9
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:A_Garbage_Can_Lid%3F"
+read = "2026-09-30"
+
+[[citation]]
+field = "sources"
+url = "https://ddowiki.com/page/Item:A_Garbage_Can_Lid%3F"
+read = "2026-09-30"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Positive Healing Amplification"
+bonus_type = "Exceptional"
+value = 8
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Bludgeoning 4"
+
+[[effect]]
+name = "Shield Bashing +12"
+
+[[effect]]
+name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Scavenger Hunt"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Magma Must Flow"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 3
+damage_multiplier = 2.0
+handedness = "Off-hand"
+weapon_type = "Small Shield"

@@ -1,0 +1,245 @@
+name = "Augmentation Altar"
+npc = "Augmentation Altar inside the Temple of Silith-tar in the raid Den of Vipers (introduced in Update 72)"
+
+[[family]]
+family = "SealedInFire"
+
+[[family]]
+family = "SealedInUndeath"
+
+[[ingredient]]
+name = "Hydra Scale"
+drop_location = "Den of Vipers end and optional chests"
+tier = "legendary"
+
+[[ingredient]]
+name = "Sealed in Mist item"
+drop_location = "Den of Vipers raid weapons"
+tier = "legendary"
+
+[[ingredient]]
+name = "Sealed in Gloom item"
+drop_location = "Den of Vipers raid equipment"
+tier = "legendary"
+
+[[citation]]
+url = "https://ddowiki.com/page/Augmentation_Altar"
+read = "2026-09-29"
+
+[[recipe]]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Dust; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+option = "Legendary Dust (Raid Den of Vipers Weapons)"
+slot = "crafting: sealed in mist"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Dust"
+family = "SealedInFire"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Sealed in Mist item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Hydra Scale"
+quantity = 20
+
+[[recipe]]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Ash; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+option = "Legendary Ash (Raid Den of Vipers Weapons)"
+slot = "crafting: sealed in mist"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Ash"
+family = "SealedInFire"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Sealed in Mist item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Hydra Scale"
+quantity = 20
+
+[[recipe]]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Vacuum; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+option = "Legendary Vacuum (Raid Den of Vipers Weapons)"
+slot = "crafting: sealed in mist"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Vacuum"
+family = "SealedInFire"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Sealed in Mist item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Hydra Scale"
+quantity = 20
+
+[[recipe]]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Ooze; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+option = "Legendary Ooze (Raid Den of Vipers Weapons)"
+slot = "crafting: sealed in mist"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Ooze"
+family = "SealedInFire"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Sealed in Mist item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Hydra Scale"
+quantity = 20
+
+[[recipe]]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Salt; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+option = "Legendary Salt (Raid Den of Vipers Weapons)"
+slot = "crafting: sealed in mist"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Salt"
+family = "SealedInFire"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Sealed in Mist item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Hydra Scale"
+quantity = 20
+
+[[recipe]]
+note = "Removes any effect the Augmentation Altar added before and adds Legendary Affirmation; Sealed in Mist itself stays. The page gives one cost for all six weapon rows."
+option = "Legendary Affirmation (Raid Den of Vipers Weapons)"
+slot = "crafting: sealed in mist"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Legendary Affirmation"
+family = "SealedInFire"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Sealed in Mist item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Hydra Scale"
+quantity = 20
+
+[[recipe]]
+note = "Removes any effect the Augmentation Altar added before and adds one ability bonus of choice: +15, Insightful +7 or Quality +3 to any ability."
+option = "Ability bonus (Raid Den of Vipers Equipment)"
+slot = "crafting: sealed in gloom"
+tier = "legendary"
+
+[[recipe.augment]]
+name = "Strength +15"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Constitution +15"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Dexterity +15"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Intelligence +15"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Wisdom +15"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Charisma +15"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Insightful Strength +7"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Insightful Constitution +7"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Insightful Dexterity +7"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Insightful Intelligence +7"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Insightful Wisdom +7"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Insightful Charisma +7"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Quality Strength +3"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Quality Constitution +3"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Quality Dexterity +3"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Quality Intelligence +3"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Quality Wisdom +3"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.augment]]
+name = "Quality Charisma +3"
+family = "SealedInUndeath"
+level = 32
+
+[[recipe.ingredient]]
+ingredient = "Sealed in Gloom item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Hydra Scale"
+quantity = 20

@@ -1,0 +1,21 @@
+name = "Quality Bluff +5"
+description = "Legendary quality bonus to Bluff"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Bluff"
+effect_type = "SkillBonus"
+targets = ["Bluff"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

@@ -1,0 +1,54 @@
+name = "Diamond of Insightful Charisma"
+choose_level = true
+description = "Insightful bonus to Charisma"
+family = "Diamond"
+icon = "Diamond"
+level_values = [
+    2,
+    3,
+    4,
+    5,
+    6,
+]
+levels = [
+    12,
+    16,
+    20,
+    24,
+    28,
+]
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

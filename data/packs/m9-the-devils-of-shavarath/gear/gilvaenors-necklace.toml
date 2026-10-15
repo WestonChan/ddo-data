@@ -1,0 +1,49 @@
+name = "Gilvaenor's Necklace"
+description = """
+This necklace is inscribed with arcane runes. It was worn by Gilvaenor, a renowned
+Arcane Archer."""
+drop_location = "Genesis Point, Any end chest ; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[effect]]
+name = "Arcane Archer"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+    10,
+    10,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Arcane Archer - 2 Piece bonus"
+effect_type = "WeaponAlacrityClass"
+targets = ["Ranged"]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Genesis Point"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

@@ -1,0 +1,67 @@
+name = "Storm's Harness"
+accepts_sentience = true
+description = "Like lightning threaded between your fingertips."
+drop_location = "Legendary Tempest's Spine, Raid chest"
+enhancement_bonus = 14
+icon = "HandWraps_1"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 27
+slot = "Main Hand"
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Storm%27s_Harness"
+read = "2026-09-29"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Shock"
+
+[[effect]]
+name = "Shocking Burst"
+
+[[effect]]
+name = "Shocking Blast"
+
+[[effect]]
+name = "Greater Reinforced Fists"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Tempest's Spine"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.4
+handedness = "Two-handed"
+weapon_type = "Handwraps"

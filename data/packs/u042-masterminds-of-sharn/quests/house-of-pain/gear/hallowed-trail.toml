@@ -1,0 +1,37 @@
+name = "Hallowed Trail"
+description = "Soft and silky cloth that flutters in the wind."
+drop_location = "House of Pain, End Chest"
+icon = "Cloak_16"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 15
+slot = "Back"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 94
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "House of Pain"

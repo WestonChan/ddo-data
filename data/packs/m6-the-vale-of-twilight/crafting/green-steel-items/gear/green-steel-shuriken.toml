@@ -1,0 +1,42 @@
+name = "Green Steel Shuriken"
+description = """
+A tiny circular throwing weapon with a serrated edge. Favored by the plentiful
+ninjas of Shavarath."""
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+enhancement_bonus = 5
+icon = "Shuriken_1b"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "crafting: weapon invasion"
+
+[[source]]
+kind = "crafting_system"
+name = "Green Steel items"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Thrown"
+weapon_type = "Shuriken"

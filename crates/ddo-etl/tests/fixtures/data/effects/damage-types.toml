@@ -1,0 +1,71 @@
+[[row]]
+category = "elemental"
+name = "Acid"
+
+[[row]]
+category = "physical"
+name = "Bludgeoning"
+
+[[row]]
+category = "alignment"
+name = "Chaotic"
+
+[[row]]
+category = "elemental"
+name = "Cold"
+
+[[row]]
+category = "elemental"
+name = "Electric"
+
+[[row]]
+category = "alignment"
+name = "Evil"
+
+[[row]]
+category = "elemental"
+name = "Fire"
+
+[[row]]
+category = "energy"
+name = "Force"
+
+[[row]]
+category = "alignment"
+name = "Good"
+
+[[row]]
+category = "alignment"
+name = "Lawful"
+
+[[row]]
+category = "energy"
+name = "Light"
+
+[[row]]
+category = "energy"
+name = "Negative"
+
+[[row]]
+category = "physical"
+name = "Piercing"
+
+[[row]]
+category = "energy"
+name = "Poison"
+
+[[row]]
+category = "energy"
+name = "Positive"
+
+[[row]]
+category = "physical"
+name = "Slashing"
+
+[[row]]
+category = "elemental"
+name = "Sonic"
+
+[[row]]
+category = "untyped"
+name = "Untyped"

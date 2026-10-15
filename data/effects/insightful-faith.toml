@@ -1,0 +1,28 @@
+name = "Insightful Faith"
+description_template = "An item with this quality assists only wearers who have the ability to turn undead. Insightful Faith items provide Insight Bonuses to the owner's effective level for the turning check by +2, their maximum Hit Dice turned by +2, and their total Hit Dice turned by +4."
+home_bonus_type = "Insight"
+verbose_name_template = "Insightful Faith"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Insight"
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Turn Undead Level"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Insight"
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Turn Undead Max Dice"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Insight"
+constant = 4
+rounding = "down"
+scale = 1.0
+target = "Turn Undead Dice"

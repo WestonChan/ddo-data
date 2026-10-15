@@ -1,0 +1,41 @@
+name = "Legendary Minotaur Calling Horn"
+description = """
+Blowing into this horn produces a deep, shuddering sound known to the Minotaurs
+as a call to charge."""
+drop_location = "Flocked Together, end chest"
+icon = "Trinket_109"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 35
+slot = "Trinket"
+
+[[effect]]
+name = "Sonic Intensity"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Sounding"
+
+[[socket]]
+slot = "crafting: nearly complete: spell focus (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flocked Together"

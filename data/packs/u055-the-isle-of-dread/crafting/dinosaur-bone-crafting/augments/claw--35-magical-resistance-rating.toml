@@ -1,0 +1,20 @@
+name = "Claw: +35 Magical Resistance Rating"
+description = "+35 Magical Resistance Rating"
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Enhancement"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Enhancement"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "isle of dread: claw (accessory)"

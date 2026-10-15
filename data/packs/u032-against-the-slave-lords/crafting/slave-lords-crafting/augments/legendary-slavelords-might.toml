@@ -1,0 +1,9 @@
+name = "Legendary Slavelords Might"
+description = "Adds the Legendary Slavelords Might set bonus to this item"
+family = "Slavelords_Legendary"
+icon = "SlavelordsMight"
+min_level = 28
+set_bonus = "Legendary Slavelords Might"
+
+[[slot]]
+slot = "crafting: legendary slavelords set bonus"

@@ -1,0 +1,66 @@
+name = "Shining Devastation"
+description = """
+A huge club fashioned from adamantium and coated with a shining rust-resistant
+material."""
+drop_location = "Litany of the Dead, All bosses' end chests"
+enhancement_bonus = 5
+icon = "GreatClub_1g"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Blueshine"
+minimum_level = 14
+slot = "Main Hand"
+
+[[clickie]]
+name = "Blinding Flash"
+clickie = "Blinding Flash"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Everbright"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Impellent"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Blinding Flash"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "all bosses' end chests"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 16
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "Two-handed"
+weapon_type = "Great Club"

@@ -1,0 +1,10 @@
+name = "Acid Intensity"
+description_template = "+{1}% %b1 bonus to critical damage with Acid spells."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Acid Intensity +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Acid Spell Critical Damage"

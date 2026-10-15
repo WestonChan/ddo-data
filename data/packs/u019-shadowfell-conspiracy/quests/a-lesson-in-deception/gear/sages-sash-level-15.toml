@@ -1,0 +1,16 @@
+name = "Sage's Sash (Level 15)"
+drop_location = "A Lesson in Deception, End reward"
+icon = "Belt_10b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 15
+slot = "Waist"
+
+[[effect]]
+name = "Archmagi"
+bonus_type = "Equipment"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "A Lesson in Deception"

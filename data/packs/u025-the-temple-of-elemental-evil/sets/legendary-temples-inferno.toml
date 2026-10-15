@@ -1,0 +1,73 @@
+name = "Legendary Temple's Inferno"
+icon = "TemplesInferno"
+
+[[item]]
+name = "Legendary Blazing Sniper's Sights"
+
+[[item]]
+name = "Legendary Docent of the Eternal Flame"
+
+[[item]]
+name = "Legendary Eternal Flameguard's Lenses"
+
+[[item]]
+name = "Legendary Eyes of the Eternal Flame"
+
+[[item]]
+name = "Legendary Flame Priest's Focus"
+
+[[item]]
+name = "Legendary Heavy Armor of the Eternal Flame"
+
+[[item]]
+name = "Legendary Light Armor of the Eternal Flame"
+
+[[item]]
+name = "Legendary Medium Armor of the Eternal Flame"
+
+[[item]]
+name = "Legendary Robes of the Eternal Flame"
+
+[[item]]
+name = "Legendary The Flame and the Frost"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

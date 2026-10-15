@@ -1,0 +1,26 @@
+name = "Legendary Lord of Blades"
+bestowed_by = "Kenneth d'Cannith"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 10
+is_raid = true
+pack = "Secrets of the Artificers"
+patron = "House Cannith"
+zone = "House Cannith Enclave"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Legendary_Lord_of_Blades"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

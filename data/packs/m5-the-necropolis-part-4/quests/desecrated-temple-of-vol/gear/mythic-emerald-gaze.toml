@@ -1,0 +1,86 @@
+name = "Mythic Emerald Gaze"
+description = """
+It is said, the only way to obtain a helm of the Emerald Claw is to join their
+ranks... or to remove their head."""
+drop_location = "Desecrated Temple of Vol (epic), End chest"
+icon = "Helmet_32"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 27
+slot = "Head"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Tendon Slice"
+value = 8
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desecrated Temple of Vol"

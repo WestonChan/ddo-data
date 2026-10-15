@@ -1,0 +1,12 @@
+name = "Sands of Menechtarun"
+difficulties = ["normal"]
+favor = 0
+pack = "Demon Sands"
+
+[[citation]]
+url = "https://ddowiki.com/page/Sands_of_Menechtarun"
+read = "2026-10-02"
+
+[[run]]
+tier = "heroic"
+level = 11

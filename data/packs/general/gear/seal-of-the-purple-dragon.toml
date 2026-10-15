@@ -1,0 +1,21 @@
+name = "Seal of the Purple Dragon"
+description = "You are Cormyr's sword and shield, standing for justice."
+drop_location = "Advance to level 15, End reward"
+icon = "Ring_6"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 15
+race_required = "Purple Dragon Knight"
+slot = "Ring"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

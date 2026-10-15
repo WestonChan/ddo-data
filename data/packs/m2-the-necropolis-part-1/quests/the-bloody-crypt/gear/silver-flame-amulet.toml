@@ -1,0 +1,20 @@
+name = "Silver Flame Amulet"
+description = """
+This amulet of the Silver Flame has been transformed by the Brother Salasso's
+bloody altar."""
+drop_location = "The Bloody Crypt, altar"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 5
+slot = "Neck"
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 1
+
+[[source]]
+chest = "altar"
+kind = "quest"
+loot_type = "chest"
+name = "The Bloody Crypt"

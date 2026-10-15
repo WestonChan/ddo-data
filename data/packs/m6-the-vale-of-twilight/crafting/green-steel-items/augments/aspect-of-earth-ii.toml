@@ -1,0 +1,13 @@
+name = "Aspect of Earth II"
+description = """
+Earthgrab Guard: This item stores the implacable strength of the earth deep within.
+When the wearer of this item is successfully attacked in melee, this power
+occasionally comes to the surface, calling on the earth to erupt from the
+ground and hold an enemy in place.
+Earth:Earth:Earth"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

@@ -1,0 +1,29 @@
+name = "Demon Assault"
+bestowed_by = "Vachel"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Trials of the Archons"
+patron = "The Gatekeepers"
+zone = "Amrath's Anchor"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Demon_Assault"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 30
+
+[[run]]
+tier = "legendary"
+level = 30

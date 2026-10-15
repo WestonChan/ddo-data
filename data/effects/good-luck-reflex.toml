@@ -1,0 +1,11 @@
+name = "Good Luck - Reflex"
+default_value = 1
+description_template = "This item gives a {1} Luck bonus to Reflex saves."
+home_bonus_type = "Luck"
+verbose_name_template = "Good Luck - Reflex +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Reflex Save"

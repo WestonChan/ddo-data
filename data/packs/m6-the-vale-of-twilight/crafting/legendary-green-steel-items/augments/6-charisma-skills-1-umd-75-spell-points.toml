@@ -1,0 +1,73 @@
+name = "+6 Charisma Skills / +1 UMD, +75 Spell Points"
+description = "Ethereal/Escalation: +6/+1 (UMD) Quality bonus to Charisma based skills. +75 Quality spell points"
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Escalation"""
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Quality"
+value = 6
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Quality"
+value = 6
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Quality"
+value = 6
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Quality"
+value = 6
+
+[[effect]]
+name = "Perform"
+bonus_type = "Quality"
+value = 6
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Quality"
+value = 75
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Quality"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Intimidate",
+    "Perform",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [75]
+bonus_type = "Quality"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: equipment tier 3"

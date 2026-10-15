@@ -1,0 +1,62 @@
+name = "Legendary Rocksplitter"
+accepts_sentience = true
+description = """
+Diggers in the Droaam Army who were attempting to tunnel beneath Stormreach
+and gain the element of surprise used picks like this to aid them."""
+drop_location = "Eyes of Stone, End chest"
+enhancement_bonus = 15
+icon = "HeavyPick_1k"
+item_category = "Weapon"
+item_type = "Heavy Pick"
+material = "Adamantine"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Overwhelming Shockwave"
+
+[[effect]]
+name = "Reverberating 6"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Fusible"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Eyes of Stone"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "One-handed"
+weapon_type = "Heavy Pick"

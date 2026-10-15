@@ -1,0 +1,34 @@
+name = "Legendary Spiked Turban"
+description = "A spiked metal helm with a silk wrapping to ward off the desert sun."
+drop_location = "Legendary version of Epic Spiked Turban"
+icon = "Helmet_39"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Head"
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 13
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"

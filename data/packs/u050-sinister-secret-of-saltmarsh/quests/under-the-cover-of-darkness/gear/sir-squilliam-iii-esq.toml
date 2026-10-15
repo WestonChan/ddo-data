@@ -1,0 +1,61 @@
+name = "Sir Squilliam III, Esq."
+description = "The most distinguished of the Runearms."
+drop_location = "Under the Cover of Darkness, End chest"
+icon = "RuneArm_5b"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 3
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier II"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 3
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Crushing Wave"
+
+[[effect]]
+name = "Rune Arm Imbue - Tidal Shot II"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Salt Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Cover of Darkness"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

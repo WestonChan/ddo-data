@@ -1,0 +1,3 @@
+name = "The Warblade's Wrath"
+description_template = "On an attack roll of 20 which is confirmed as a critical hit this power will be released, dealing damage to the target and all enemies near it for 30d6 + 90 slashing damage. A successful Reflex save (DC 130) reduces this by half."
+verbose_name_template = "The Warblade's Wrath"

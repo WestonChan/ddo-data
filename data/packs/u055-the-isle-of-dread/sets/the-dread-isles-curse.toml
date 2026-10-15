@@ -1,0 +1,239 @@
+name = "The Dread Isle's Curse"
+icon = "TheDreadIslesCurse"
+
+[[item]]
+name = "Admiral's Cummerbund"
+
+[[item]]
+name = "Admiral's Gloves"
+
+[[item]]
+name = "Admiral's Gumshoes"
+
+[[item]]
+name = "Admiral's Wristwatch"
+
+[[item]]
+name = "Beachcombers"
+
+[[item]]
+name = "Belt of the Black Sands"
+
+[[item]]
+name = "Birchlore Gauntlets"
+
+[[item]]
+name = "Blue Raptor Feather"
+
+[[item]]
+name = "Bottle o' Rum"
+
+[[item]]
+name = "Bronzed Bracers"
+
+[[item]]
+name = "Captain's Spyglass"
+
+[[item]]
+name = "Commodore Alaina's Cutlass"
+
+[[item]]
+name = "Defender's Cloak"
+
+[[item]]
+name = "Defender's Masque"
+
+[[item]]
+name = "Docent of the Locus"
+
+[[item]]
+name = "Dread Stalker's Cloak"
+
+[[item]]
+name = "Dread Stalker's Skullcap"
+
+[[item]]
+name = "Fimbric, Lost Longsword"
+
+[[item]]
+name = "Firemouth's Bulwark"
+
+[[item]]
+name = "Firemouth's Cloak"
+
+[[item]]
+name = "Firemouth's Diving Helmet"
+
+[[item]]
+name = "Firesplitter"
+
+[[item]]
+name = "Firestalker Docent"
+
+[[item]]
+name = "Greenpine Gauntlets"
+
+[[item]]
+name = "Kopru Bracers"
+
+[[item]]
+name = "Magma Waders"
+
+[[item]]
+name = "Manaweave Armor"
+
+[[item]]
+name = "Masthead"
+
+[[item]]
+name = "Naildriver"
+
+[[item]]
+name = "Ol' Ironsides"
+
+[[item]]
+name = "Ol' Reliable"
+
+[[item]]
+name = "Pendant of the Earth"
+
+[[item]]
+name = "Pendant of the Sea"
+
+[[item]]
+name = "Pendant of the Sky"
+
+[[item]]
+name = "Powder-Packed Barrel"
+
+[[item]]
+name = "Red Raptor Feather"
+
+[[item]]
+name = "Robe of the Locus"
+
+[[item]]
+name = "Rope and Pulley"
+
+[[item]]
+name = "Roughcut Armor"
+
+[[item]]
+name = "Sacrarium Cloak"
+
+[[item]]
+name = "Sacrarium Suncatcher"
+
+[[item]]
+name = "Seaweed-woven Belt"
+
+[[item]]
+name = "Shipbreaker"
+
+[[item]]
+name = "Signet Ring of the Earth"
+
+[[item]]
+name = "Signet Ring of the Sea"
+
+[[item]]
+name = "Signet Ring of the Sky"
+
+[[item]]
+name = "Spearfisher"
+
+[[item]]
+name = "Stalker's Outfit"
+
+[[item]]
+name = "Tanaroa Sneaking Suit"
+
+[[item]]
+name = "The Compass Rose"
+
+[[item]]
+name = "Twinchopper"
+
+[[item]]
+name = "Walking Ancestor's Helmet"
+
+[[item]]
+name = "Walking Ancestor's Shroud"
+
+[[item]]
+name = "Wheel of the St. Marie"
+
+[[item]]
+name = "Wreckage of the Beachcomber"
+
+[[item]]
+name = "Wreckage of the Drowned Rat"
+
+[[item]]
+name = "Wreckage of the Tabernack"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Melee and Ranged Power"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Spell DCs"
+value = 1
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "PRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]

@@ -1,0 +1,36 @@
+name = "Legendary Shaman's Band"
+description = """
+Drow shamans often carry these rings to make their fearsome spells more likely
+to strike their foes."""
+drop_location = "Legendary version of Epic Shaman's Band"
+icon = "Ring_28a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Ring"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 13
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

@@ -1,0 +1,49 @@
+name = "Increased Potential"
+description = "One should always strive to unlock their true potential."
+drop_location = "Subversion, End chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 14
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 5
+
+[[effect]]
+name = "Wizardry V"
+bonus_type = "Enhancement"
+value = 125
+
+[[effect]]
+name = "Spell Penetration I"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Spell Focus I"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Subversion"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

@@ -1,0 +1,29 @@
+name = "Lunar Gem of Spell Difficulty (Epic)"
+description = """
++2 Profane Bonus to Spell DCs.
+Drops in: Toil and Trouble, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

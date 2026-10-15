@@ -1,0 +1,61 @@
+name = "Legendary Immaculate Globe"
+description = """
+This spinning globe hums with magic. The map doesn't appear to resemble Saltmarsh,
+nor any place you've ever seen."""
+drop_location = "Down You Go, end chest, or Legendary version of Epic Immaculate Globe"
+icon = "Orb_1f"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Wood"
+minimum_level = 30
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[effect]]
+name = "Permanent Efficacy"
+bonus_type = "Alchemical"
+
+[[effect]]
+name = "Superior Stability"
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 45
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "The wiki's Elemental Resistance +45 on this orb is a +45 Enhancement bonus; his buff has no bonus type."
+url = "https://ddowiki.com/page/Item:Legendary_Immaculate_Globe"
+read = "2026-10-02"
+qualifier = "Elemental Resistance / null"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest, or legendary version of epic immaculate globe"
+kind = "quest"
+loot_type = "chest"
+name = "Down You Go"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

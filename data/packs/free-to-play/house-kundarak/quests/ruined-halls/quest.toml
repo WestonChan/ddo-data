@@ -1,0 +1,23 @@
+name = "Ruined Halls"
+bestowed_by = "Edvag Goodgold"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Kundarak"
+zone = "Ruined Halls"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Ruined_Halls"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6

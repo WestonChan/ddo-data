@@ -1,0 +1,48 @@
+name = "Dagger of the Deep Ones"
+description = "A snake-like pattern winds its way around the handle."
+drop_location = "The Promise of Fire, end chest"
+enhancement_bonus = 3
+icon = "Dagger_1"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Tidal 2"
+
+[[effect]]
+name = "Corrosive Salt"
+
+[[effect]]
+name = "Bleeding 2"
+
+[[effect]]
+name = "Maiming 2"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Promise of Fire"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Dagger"

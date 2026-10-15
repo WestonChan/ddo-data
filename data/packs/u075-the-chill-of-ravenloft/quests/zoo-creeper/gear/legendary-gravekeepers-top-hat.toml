@@ -1,0 +1,41 @@
+name = "Legendary Gravekeeper's Top Hat"
+description = """
+Financing a cemetery seemed like a sure bet, but the financier that owned this
+hat wasn't especially good with numbers."""
+drop_location = "Zoo Creeper, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 34
+slot = "Head"
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 57
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

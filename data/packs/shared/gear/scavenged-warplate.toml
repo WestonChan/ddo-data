@@ -1,0 +1,33 @@
+name = "Scavenged Warplate"
+description = """
+Heavy plates of warforged iron scavenged from the Mournlands, roughly fashioned
+into a suit of interlocking plates."""
+drop_location = "Cult of the Six, End reward"
+enhancement_bonus = 5
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Adamantine"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 14
+armor_check_penalty = -6
+armor_type = "Heavy"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+is_rare = true
+kind = "quest_chain"
+name = "Cult of the Six"

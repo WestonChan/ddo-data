@@ -1,0 +1,32 @@
+name = "Restored Giantcraft Docent"
+description = "This docent has been imbued with the magic [of] the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Restored Giant Relics"
+enhancement_bonus = 6
+icon = "Docent_1f"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 23
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 20
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 9
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Relentless Fury"
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

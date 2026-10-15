@@ -1,0 +1,47 @@
+name = "Nicked Scimitar"
+description = """
+A curved sword favored by the elves of Valenar. The unique shape gives this
+weapon a keener edge. An inscription on the hilt reads 'To my dearest...'.
+The rest of the wording appears to have been melted off the hilt."""
+drop_location = "The Sharn Syndicate, End reward"
+enhancement_bonus = 2
+icon = "Scimitar_9b"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Acidic 2"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest_chain"
+name = "The Sharn Syndicate"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

@@ -1,0 +1,46 @@
+name = "Gilvaenor's Ring"
+description = """
+This simple silver ring has a series of sigils that glow faintly with magic.
+It was worn by the renowned Arcane Archer, Gilvaenor."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Arcane Archer"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+    10,
+    10,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Arcane Archer - 2 Piece bonus"
+effect_type = "WeaponAlacrityClass"
+targets = ["Ranged"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

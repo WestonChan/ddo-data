@@ -1,0 +1,46 @@
+name = "Mask of Tragedy"
+description = """
+A mask crafted for and used by the actors of the Livewood Theater . It represents
+sadness and misfortune, and is invested with magic to match."""
+drop_location = "Partycrashers, Theater, Rest Room or End chests"
+icon = "Helmet_34b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 4
+slot = "Head"
+
+[[clickie]]
+name = "Crushing Despair"
+clickie = "Crushing Despair"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 55
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Crushing Despair"]
+
+[[source]]
+chest = "theater, rest room or end chests"
+kind = "quest"
+loot_type = "chest"
+name = "Partycrashers"

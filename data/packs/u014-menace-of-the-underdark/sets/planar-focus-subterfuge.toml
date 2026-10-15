@@ -1,0 +1,83 @@
+name = "Planar Focus: Subterfuge"
+icon = "SubterfugePlanarConfluxSetBonus"
+
+[[item]]
+name = "Planar Focus of Subterfuge"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Exceptional"
+reason = "The wiki types Sneak Attack Damage as Insight at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Sneak Attack Damage / Exceptional"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 5
+reason = "The wiki gives Sneak Attack Damage +8 Insight at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Sneak Attack Damage / Insight"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Exceptional"
+reason = "The wiki types Dodge as Enhancement at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Dodge / Exceptional"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Sneak Attack Hit +5 Insight at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Sneak Attack Hit / Insight"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Damage"
+value = 8
+
+[[tier.effect]]
+effect = "You gain True seeing"
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Sneak Attack Hit"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Exceptional"
+effect = "Dodge"
+effect_type = "SneakAttackDamage"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "TrueSeeing"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Exceptional"
+effect = "Dodge"
+effect_type = "DodgeBonus"

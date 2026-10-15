@@ -1,0 +1,29 @@
+name = "Too Many Cooks"
+bestowed_by = "Varia Wordbringer"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Slice of Life"
+patron = "Morgrave University"
+zone = "The Feast of Four Fighters"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Too_Many_Cooks"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

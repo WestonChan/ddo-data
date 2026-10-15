@@ -1,0 +1,30 @@
+name = "Danger at Dunwater"
+bestowed_by = "Eliander Fireborn"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Sinister Secret of Saltmarsh"
+patron = "The Gatekeepers"
+zone = "Lizardfolk Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Danger_at_Dunwater"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

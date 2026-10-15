@@ -1,0 +1,3 @@
+name = "Manslayer"
+description_template = "While wearing this item, your weapon attacks gain the devastating ability to defeat a humanoid opponent with a single decisive blow. On an attack roll of 20 which is confirmed as a critical hit a humanoid target will be killed. Powerful humanoids may resist the vorpal strike and instead take 100 points of damage until they have been sufficiently weakened."
+verbose_name_template = "Manslayer"

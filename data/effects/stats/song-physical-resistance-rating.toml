@@ -1,0 +1,4 @@
+name = "Song Physical Resistance Rating"
+category = "other"
+home_bonus_type = "Exceptional"
+verbose_name_template = "%b1 Song Physical Resistance Rating +{1}"

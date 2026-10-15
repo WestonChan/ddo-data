@@ -1,0 +1,48 @@
+name = "Docent of Insight"
+description = """
+The material envelopes a construct instilling the feeling of a deep understanding
+of the underlying connections that bind the world together."""
+drop_location = "Grim and Barett, end chest"
+enhancement_bonus = 5
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 14
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = -4
+armor_type = "Docent"
+mithral_body = 5
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 2
+
+[[effect]]
+name = "Wizardry II"
+bonus_type = "Insight"
+value = 50
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Grim and Barett"

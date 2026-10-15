@@ -1,0 +1,27 @@
+name = "Stone-forged Gauntlet"
+description = "A large, simple stone appears to be central to the construction of this gauntlet."
+drop_location = "Housekeeping, End chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Stone"
+minimum_level = 3
+slot = "Hands"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 47
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Housekeeping"

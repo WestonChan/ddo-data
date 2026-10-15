@@ -1,0 +1,36 @@
+name = "Abyssal Compass"
+description = "Wherever your travels may take you, the Abyss lies below."
+drop_location = "Catalyst Crafting, Turn in Planar Compass, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+icon = "Trinket_14"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 11
+slot = "Trinket"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 9
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Improved Demonic Shield"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

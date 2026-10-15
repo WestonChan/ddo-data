@@ -1,0 +1,165 @@
+[[row]]
+name = "Eye of the Beholder/The Inevitable Grave +2 Intelligence"
+description = """
++2 Intelligence
+Rare: +8 Universal Spellpower"""
+icon = "EyeOfTheBeholderTheInevitableGrave"
+menu = "Raid Filigrees"
+set = "Eye of the Beholder"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Stacking"
+display_name = "Eye of the Beholder/The Inevitable Grave: +2 Intelligence: Rare +8 Universal Spellpower"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Eye of the Beholder: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "EyeOfTheBeholder"
+menu = "Ravenloft"
+set = "Eye of the Beholder"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Eye of the Beholder: Charisma : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Eye of the Beholder: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "EyeOfTheBeholder"
+menu = "Ravenloft"
+set = "Eye of the Beholder"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Eye of the Beholder: Intelligence : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Eye of the Beholder: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "EyeOfTheBeholder"
+menu = "Ravenloft"
+set = "Eye of the Beholder"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Eye of the Beholder: Wisdom : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Eye of the Beholder: +2 Will Saves"
+description = """
++2 Will Saving throw
+Rare: +2 MRR"""
+icon = "EyeOfTheBeholder"
+menu = "Ravenloft"
+set = "Eye of the Beholder"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Eye of the Beholder: Will : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Eye of the Beholder: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "EyeOfTheBeholder"
+menu = "Ravenloft"
+set = "Eye of the Beholder"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Eye of the Beholder: MRR : Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Eye of the Beholder: +6 Universal Spell Power"
+description = """
++6 Universal Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "EyeOfTheBeholder"
+menu = "Ravenloft"
+set = "Eye of the Beholder"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Eye of the Beholder: Universal Spell Power : Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

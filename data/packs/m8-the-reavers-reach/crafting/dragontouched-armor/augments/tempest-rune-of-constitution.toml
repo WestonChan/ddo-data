@@ -1,0 +1,23 @@
+name = "Tempest Rune of Constitution"
+description = """
+Constitution +6: This item gives the wearer improved health, granting a
++6 enhancement bonus to Constitution."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: tempest rune"

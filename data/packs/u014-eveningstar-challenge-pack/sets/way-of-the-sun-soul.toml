@@ -1,0 +1,28 @@
+name = "Way of the Sun Soul"
+icon = "WayOfTheSunSoul"
+
+[[item]]
+name = "Belt of the Sun Soul"
+
+[[item]]
+name = "Bracers of the Sun Soul"
+
+[[item]]
+name = "Vestments of the Sun Soul"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+effect = "Centered Attack and Damage"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"

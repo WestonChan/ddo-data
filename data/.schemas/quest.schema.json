@@ -1,0 +1,190 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "citations"
+    },
+    "EntityNote": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "entity_notes"
+    },
+    "QuestRun": {
+      "additionalProperties": false,
+      "properties": {
+        "level": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "tier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "tier",
+        "level"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bestowed_by": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "difficulties": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "epic_name": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "favor": {
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "flagging": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "is_challenge": {
+      "type": "boolean"
+    },
+    "is_free_to_play": {
+      "type": "boolean"
+    },
+    "is_raid": {
+      "type": "boolean"
+    },
+    "max_level": {
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "note": {
+      "items": {
+        "$ref": "#/$defs/EntityNote"
+      },
+      "type": "array"
+    },
+    "pack": {
+      "type": "string",
+      "x-reference-kind": "adventure_packs"
+    },
+    "patron": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-reference-kind": "patrons"
+    },
+    "run": {
+      "items": {
+        "$ref": "#/$defs/QuestRun"
+      },
+      "type": "array"
+    },
+    "variant": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "zone": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "pack"
+  ],
+  "title": "QuestFile",
+  "type": "object",
+  "x-table": "quests"
+}

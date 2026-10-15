@@ -1,0 +1,39 @@
+name = "Cloak of the Forest's Blade"
+description = """
+These cloaks were used by Elven Rangers charged with the first line of the city's
+defense - Patrolling the forest of Cormanthor, eliminating threats."""
+drop_location = "Ettercap Incursion, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 13
+slot = "Back"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Tendon Slice"
+value = 6
+
+[[effect]]
+name = "Feat - Wind through the Trees"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ettercap Incursion"

@@ -1,0 +1,21 @@
+name = "Curse of Charming Presence"
+description = "+2 Fortune Bonus to Bluff"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Bluff"
+effect_type = "SkillBonus"
+targets = ["Bluff"]
+
+[[slot]]
+slot = "crafting: deck curse"

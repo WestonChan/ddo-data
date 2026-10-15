@@ -1,0 +1,47 @@
+name = "Demon Scale Armor"
+description = """
+Scale mail fashioned from the hide of a Marilith Demon. The flexible scales
+allow this armor to be classified as Light as well as granting some of the
+Marilith's protections to the wearer. The inherently magical nature of the
+scales also reduces the Arcane spell failure ."""
+drop_location = "Zawabi's Revenge, Raid Warded Chest"
+enhancement_bonus = 5
+icon = "LightArmor_8b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 12
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 8
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 16
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"

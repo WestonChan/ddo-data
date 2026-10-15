@@ -1,0 +1,3 @@
+name = "Radiant Glory"
+description_template = "On Harmful Spellcast: Do an additional 2 to 12 Light damage. This effect scales with Light Spell Power. Cooldown: 1 second."
+verbose_name_template = "Radiant Glory"

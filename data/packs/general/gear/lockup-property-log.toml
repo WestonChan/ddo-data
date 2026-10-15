@@ -1,0 +1,25 @@
+name = "Lockup Property Log"
+description = """
+A list of the effects that were taken from you after the brawl. Looks like everything's
+accounted for."""
+drop_location = "Advance to level 15, End reward"
+icon = "Trinket_32a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+race_required = "Tiefling Scoundrel"
+slot = "Trinket"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

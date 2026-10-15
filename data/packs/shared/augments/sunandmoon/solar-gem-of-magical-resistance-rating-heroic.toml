@@ -1,0 +1,49 @@
+name = "Solar Gem of Magical Resistance Rating (Heroic)"
+description = """
++10 Artifact Bonus to Magical Resistance Rating.
+Drops in: The Darkness and the Light, end chest
+The Safehold, end chest
+The Covered Culvert, optional chest
+Cold Snap, Althea's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Artifact"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "althea's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darkness and the Light"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Safehold"

@@ -1,0 +1,63 @@
+name = "Epic Arm of the Archons"
+description = """
+It appears an intrepid Artificer once modified this piece of Armor into a Rune
+Arm; the ingenuity of House Cannith knows no bounds."""
+drop_location = "The Archons' Trial, End chest"
+icon = "RuneArm_3e"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 28
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 150
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Rune Arm Imbue - Force VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Force Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Archons' Trial"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

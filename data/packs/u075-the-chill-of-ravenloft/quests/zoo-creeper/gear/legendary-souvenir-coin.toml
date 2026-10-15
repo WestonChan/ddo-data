@@ -1,0 +1,39 @@
+name = "Legendary Souvenir Coin"
+description = "A memento of Ludendorf, a relief of town hall is imprinted on its reverse face."
+drop_location = "Zoo Creeper, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 34
+slot = "Trinket"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

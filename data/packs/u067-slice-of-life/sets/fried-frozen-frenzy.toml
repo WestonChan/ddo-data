@@ -1,0 +1,53 @@
+name = "Fried & Frozen Frenzy"
+icon = "FriedAndFrozenFrenzy"
+
+[[item]]
+name = "Fried Sword Fish"
+
+[[note]]
+kind = "set_tier"
+field = "remove"
+upstream = 0
+reason = "The wiki places this tier’s bonuses at two pieces and lists no 3-piece tier."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "+1 Artifact bonus to all Ability Scores"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Critical Multiplier (19-20) +1 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Critical Multiplier (19-20) / Artifact"
+
+[[tier]]
+equipped_count = 2
+description = "+1 Artifact all Ability Scores and +1 Artifact Critical Multiplier on 19–20."
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+value = 1
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Critical Multiplier (19-20)"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]

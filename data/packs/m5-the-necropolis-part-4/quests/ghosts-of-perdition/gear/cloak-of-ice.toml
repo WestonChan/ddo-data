@@ -1,0 +1,23 @@
+name = "Cloak of Ice"
+description = "A dirty white cloak always covered in frost."
+drop_location = "Ghosts of Perdition, end chest"
+icon = "Cloak_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Back"
+
+[[effect]]
+name = "Fire Shield (Cold)"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ghosts of Perdition"

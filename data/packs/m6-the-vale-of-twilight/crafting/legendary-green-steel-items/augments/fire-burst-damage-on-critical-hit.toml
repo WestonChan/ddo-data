@@ -1,0 +1,30 @@
+name = "Fire burst damage on critical hit"
+description = "Dominion/Fire: This weapon does additional Fire damage on any critical hit."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Fire"
+dice_number = [
+    0,
+    0,
+    3,
+    4,
+    5,
+]
+dice_sides = [
+    0,
+    0,
+    6,
+    6,
+    6,
+]
+display_name = "Fire Burst"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

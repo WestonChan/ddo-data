@@ -1,0 +1,20 @@
+name = "Curse of Major Spellwork"
+description = "+10 Fortune Bonus to Universal Spell Power"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Fortune"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Fortune"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[slot]]
+slot = "crafting: deck curse"

@@ -1,0 +1,46 @@
+name = "Clouded Dreams"
+description = "It's so hard to get a good night's sleep these days..."
+drop_location = "Killing Time, warded chest"
+icon = "Ring_18"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 28
+slot = "Ring"
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Legendary Nightmare Guard"
+
+[[effect]]
+name = "Mind Drain"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = -2
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"

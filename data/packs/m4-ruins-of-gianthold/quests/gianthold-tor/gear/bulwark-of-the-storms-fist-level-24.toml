@@ -1,0 +1,57 @@
+name = "Bulwark of the Storm's Fist (Level 24)"
+description = "A brutal, heavy shield for the aspiring champions of the Storm's Fist Horde."
+drop_location = "Return to Gianthold Tor, White Dragon chest (Epic Hard)"
+enhancement_bonus = 7
+icon = "Shield_12"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Magesteel"
+minimum_level = 24
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 14
+max_dex_bonus = 0
+shield_bonus = 16
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "white dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

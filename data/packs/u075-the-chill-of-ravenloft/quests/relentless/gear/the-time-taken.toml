@@ -1,0 +1,31 @@
+name = "The Time Taken"
+drop_location = "Relentless, end chest"
+icon = "Ring_16f"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 34
+slot = "Ring"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "lamordia: woeful (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Relentless"

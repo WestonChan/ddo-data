@@ -1,0 +1,52 @@
+name = "Legendary Light Boltslinger"
+accepts_sentience = true
+description = """
+The Drow decided to use their signature Hand Crossbows to model a new, more
+efficient version. From those efforts, this light crossbow was created."""
+drop_location = "Strike Back, End Chest"
+enhancement_bonus = 13
+icon = "RepeatingLightCrossbow_6c"
+item_category = "Weapon"
+item_type = "Repeating Light Crossbow"
+material = "Steel"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Jolting 14"
+
+[[effect]]
+name = "Electrifying 6"
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Insight"
+value = 9
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Strike Back"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 5.1
+handedness = "Two-handed"
+weapon_type = "Repeating Light Crossbow"

@@ -1,0 +1,40 @@
+name = "Sureshot"
+description = "Shoot first, ask questions later"
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 3
+icon = "LightCrossbow_1m"
+item_category = "Weapon"
+item_type = "Light Crossbow"
+material = "Wood"
+minimum_level = 15
+race_required = "Tiefling Scoundrel"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Anarchic 3"
+
+[[effect]]
+name = "Vorpal"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 2.0
+handedness = "Two-handed"
+weapon_type = "Light Crossbow"

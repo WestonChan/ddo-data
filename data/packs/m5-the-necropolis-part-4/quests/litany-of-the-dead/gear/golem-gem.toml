@@ -1,0 +1,29 @@
+name = "Golem Gem"
+description = "A miniature flesh golem is engraved into this gem."
+drop_location = "Litany of the Dead, Black dragon chamber work table"
+icon = "Trinket_4a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Golem Figurine"
+clickie = "Golem Figurine"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Golem Figurine"]
+
+[[source]]
+chest = "black dragon chamber work table"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

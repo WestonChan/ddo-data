@@ -1,0 +1,4 @@
+name = "Trip DC"
+category = "martial"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Trip DC +{1}"

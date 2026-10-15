@@ -1,0 +1,34 @@
+name = "Fang: Deception +11"
+description = """
++11 Enhancement bonus to hit and +17 to damage for any hit that would qualify as a
+sneak attack."""
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[effect]]
+name = "Sneak Attack Hit"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Sneak Attack Damage"
+bonus_type = "Enhancement"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[slot]]
+slot = "isle of dread: fang (accessory)"

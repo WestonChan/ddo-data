@@ -1,0 +1,3 @@
+name = "Greater Auto-Repair"
+description_template = "This item has a small percentage chance to cast a Reconstruct spell on you when you take damage."
+verbose_name_template = "Greater Auto-Repair"

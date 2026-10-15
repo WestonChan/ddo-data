@@ -1,0 +1,36 @@
+name = "Boots of Corrosion"
+description = """
+These boots are filled with caustic, entropic power. They appear to have almost
+fallen apart from containing such energy."""
+drop_location = "The Chronoscope, End reward"
+icon = "Boots_14a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 5
+slot = "Feet"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"

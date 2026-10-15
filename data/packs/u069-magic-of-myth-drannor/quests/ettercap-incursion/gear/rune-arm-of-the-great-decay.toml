@@ -1,0 +1,62 @@
+name = "Rune Arm of the Great Decay"
+description = """
+Decay and destruction have worked their way into the wood of this armlet, and
+works its way out in magical bursts."""
+drop_location = "Ettercap Incursion, end chest"
+icon = "RuneArm_3h"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Wood"
+minimum_level = 13
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier IV"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 52
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Equipment"
+value = 20
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Acid Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ettercap Incursion"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

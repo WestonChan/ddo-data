@@ -1,0 +1,123 @@
+[[row]]
+name = "Vigilance: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "Vigilance"
+menu = "Ravenloft"
+set = "Vigilance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Vigilance: Wisdom: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Vigilance: +2 Fortitude Saves"
+description = """
++2 Fortitude saves
+Rare: +2 PRR"""
+icon = "Vigilance"
+menu = "Ravenloft"
+set = "Vigilance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Vigilance: Fortitude: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Vigilance: +2 Reflex Saves"
+description = """
++2 Reflex saves
+Rare: +2 PRR"""
+icon = "Vigilance"
+menu = "Ravenloft"
+set = "Vigilance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Vigilance: Reflex: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Vigilance: +2 Will Saves"
+description = """
++2 Will saves
+Rare: +2 MRR"""
+icon = "Vigilance"
+menu = "Ravenloft"
+set = "Vigilance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Vigilance: Will: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Vigilance: Alertness"
+description = """
++2 Search, Listen and Spot
+Rare: +2 MRR"""
+icon = "Vigilance"
+menu = "Ravenloft"
+set = "Vigilance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SkillBonus"
+targets = [
+    "Search",
+    "Listen",
+    "Spot",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Vigilance: Alertness: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true

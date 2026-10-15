@@ -1,0 +1,41 @@
+name = "Citadel's Gaze"
+description = """
+Presented as a gift from the Boromar Clan to the Knight-Marshall of the Citadel,
+Sir Banarak Tithon, this helmet contains immense personal significance. It's
+a shame he doesn't wear it, as it's a uniquely beautiful piece."""
+drop_location = "Too Hot to Handle, End chest"
+icon = "Helmet_8"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Head"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 126
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Command"
+value = 7
+value2 = -6
+
+[[effect]]
+name = "Healers Bounty"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"

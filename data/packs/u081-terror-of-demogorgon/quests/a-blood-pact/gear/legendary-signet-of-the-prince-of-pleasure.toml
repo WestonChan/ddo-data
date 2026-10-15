@@ -1,0 +1,39 @@
+name = "Legendary Signet of the Prince of Pleasure"
+description = """
+Graz'zt bears the title of the Prince of Forbidden Pleasure. But truly, who
+stands to tell a Demon Lord what is forbidden?"""
+drop_location = "A Blood Pact, end chest"
+icon = "Ring_21a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 35
+slot = "Ring"
+
+[[effect]]
+name = "Healing Intensity"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Efficient Metamagic - Empower Healing II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: nearly complete: spell focus (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Blood Pact"

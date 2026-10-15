@@ -1,0 +1,39 @@
+name = "Legendary Chain of Manacles"
+description = """
+This belt is made of several interlocking pairs of magical manacles, each containing
+their own subtle, lawful magic."""
+drop_location = "Eye Know Whodunnit, End chest"
+icon = "Belt_14"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 53
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Eye Know Whodunnit"

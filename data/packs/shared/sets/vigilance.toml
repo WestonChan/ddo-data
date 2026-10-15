@@ -1,0 +1,30 @@
+name = "Vigilance"
+icon = "Vigilance"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Fortification"
+value = 50
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Stacking"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+effect = "True Seeing"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "TrueSeeing"

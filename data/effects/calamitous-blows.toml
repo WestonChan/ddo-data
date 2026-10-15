@@ -1,0 +1,3 @@
+name = "Calamitous Blows"
+description_template = "When you are holding a two-handed weapon, you gain a +3% Profane bonus to doublestrike."
+verbose_name_template = "Calamitous Blows"

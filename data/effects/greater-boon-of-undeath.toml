@@ -1,0 +1,3 @@
+name = "Greater Boon of Undeath"
+description_template = "Undead take solace in the hate of others. Every time a character wearing a Boon of Undeath item is struck in combat, an Inflict Moderate Wounds spell will be cast on the character."
+verbose_name_template = "Greater Boon of Undeath"

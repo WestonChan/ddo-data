@@ -1,0 +1,39 @@
+name = "+2 Festive Strength"
+description = "+2 Festive Strength"
+family = "Named"
+icon = "Diamond"
+min_level = 22
+
+[[effect]]
+name = "Strength"
+bonus_type = "Festive"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Festive"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

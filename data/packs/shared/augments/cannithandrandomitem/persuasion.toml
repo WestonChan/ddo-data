@@ -1,0 +1,33 @@
+name = "Persuasion"
+description = "Competence bonus to a Charisma based skills"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 4
+
+[[effect]]
+name = "Charisma Skills"
+bonus_type = "Competence"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Competence"
+effect = "Charisma Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: cannith goggles prefix"
+
+[[slot]]
+slot = "crafting: cannith helmet prefix"
+
+[[slot]]
+slot = "crafting: cannith ring prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

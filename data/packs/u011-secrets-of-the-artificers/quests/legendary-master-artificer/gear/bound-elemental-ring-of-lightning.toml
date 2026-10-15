@@ -1,0 +1,38 @@
+name = "Bound Elemental Ring of Lightning"
+description = "This elemental ring is sourced from the Cannith Engines that power the Manufactury."
+drop_location = "Legendary Master Artificer, end and optional chest"
+icon = "Ring_12d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 148
+
+[[effect]]
+name = "Alchemical Air Attunement"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Master Artificer"

@@ -1,0 +1,66 @@
+name = "Tinder"
+description = """
+This long staff is imbued with the burning power of the desert sun. Fire spells
+cast using this staff to focus them are much more powerful."""
+drop_location = "Sands of Menechtarun, Firebrand Area: Haraja the Firedancer 's Chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+enhancement_bonus = 5
+icon = "Quarterstaff_5g"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 10
+
+[[effect]]
+name = "Magma Surge"
+
+[[effect]]
+name = "Flaming Blast III"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 77
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "firebrand area: haraja the firedancer 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,37 @@
+name = "Necklace of Tranquility"
+description = "Grounded in reality."
+drop_location = "Caged Beast, end chest"
+icon = "Necklace_16"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 21
+slot = "Neck"
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 28
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 18
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Caged Beast"

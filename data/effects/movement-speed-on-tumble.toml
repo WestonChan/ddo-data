@@ -1,0 +1,3 @@
+name = "Movement Speed on Tumble"
+description_template = "Whenever you tumble, you gain a +10% Action Boost bonus to Movement Speed for 10 seconds. This may only trigger once every 30 seconds."
+verbose_name_template = "Movement Speed on Tumble"

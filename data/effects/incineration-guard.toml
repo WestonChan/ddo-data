@@ -1,0 +1,3 @@
+name = "Incineration Guard"
+description_template = "This item stores the power of a raging inferno deep within. When the wearer of this item is successfully attacked in melee, this destructive power occasionally comes to the surface, devastating enemies with massive fire damage."
+verbose_name_template = "Incineration Guard"

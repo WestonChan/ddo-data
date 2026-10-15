@@ -1,0 +1,24 @@
+name = "Griffon Set"
+icon = "GriffonSet"
+
+[[item]]
+name = "Eagle's Eye"
+
+[[item]]
+name = "Lion's Mane"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "Constitution"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]

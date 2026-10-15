@@ -1,0 +1,21 @@
+name = "Mining for Ancient Secrets"
+bestowed_by = "Velrath"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Dreaming Dark"
+patron = "The Coin Lords"
+zone = "Aspect Mine"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Mining_for_Ancient_Secrets"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

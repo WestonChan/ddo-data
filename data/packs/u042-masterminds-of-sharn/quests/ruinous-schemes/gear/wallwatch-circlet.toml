@@ -1,0 +1,36 @@
+name = "Wallwatch Circlet"
+description = "Keep your eyes on the horizon."
+drop_location = "Ruinous Schemes, End chest"
+icon = "Helmet_18"
+item_category = "Clothing"
+material = "Wood"
+minimum_level = 15
+slot = "Head"
+
+[[effect]]
+name = "Tendon Slice"
+value = 6
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 7
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruinous Schemes"

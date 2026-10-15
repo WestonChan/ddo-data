@@ -1,0 +1,48 @@
+name = "Crystal: Mystical 1: Impulse +90, Mystical 2: Kinetic Lore VI"
+description = """
+Your weapon gains Crystal DR bypass.
+If you select Mystical Augments at Tier 1 or 2 You gain:
+Tier 1: Impulse +90
+Tier 2: Kinetic Lore VI"""
+family = "Alchemical"
+min_level = 16
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Crystal"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    90,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 1: Crystal"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    16,
+]
+bonus_type = "Equipment"
+display_name = "Alchemical Material Mystical 2: Crystal"
+effect_type = "SpellLore"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[slot]]
+slot = "crafting: alchemical material type"

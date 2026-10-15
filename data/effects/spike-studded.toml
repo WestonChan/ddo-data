@@ -1,0 +1,3 @@
+name = "Spike-Studded"
+description_template = "This item is reinforced with metal studs that improve your unarmed strikes. Your unarmed attacks do an additional 1 to 4 piercing damage."
+verbose_name_template = "Spike-Studded"

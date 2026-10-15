@@ -1,0 +1,29 @@
+name = "Full Plate of Giants"
+description = "Fullplate armor created on the giant forges of old."
+drop_location = "Tempest's Spine, End Chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 13
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "DR 5/-"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

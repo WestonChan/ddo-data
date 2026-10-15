@@ -1,0 +1,54 @@
+name = "Shadow Striker - +3% Profane bonus to Doublestrike, Melee Alacrity 15%, Ranged Alacrity 20%"
+description = """
++3% Profane bonus to Doublestrike
+Melee Alacrity 15%
+Ranged Alacrity 20%"""
+family = "Thunderforged"
+min_level = 26
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Ranged Alacrity"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Melee Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Melee"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Ranged Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Ranged"]
+
+[[slot]]
+slot = "crafting: shadow medium variant"
+
+[[slot]]
+slot = "crafting: shadow heavy variant"
+
+[[slot]]
+slot = "crafting: shadow docent variant"

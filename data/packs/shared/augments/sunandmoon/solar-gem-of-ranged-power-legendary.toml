@@ -1,0 +1,35 @@
+name = "Solar Gem of Ranged Power (Legendary)"
+description = """
++15 Artifact Bonus to Ranged Power.
+Drops in: Seeds of Decay, end chest
+Land of Lamordia, Fangs of Winter's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Artifact"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Ranged Power"
+effect_type = "RangedPower"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "fangs of winter's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Seeds of Decay"

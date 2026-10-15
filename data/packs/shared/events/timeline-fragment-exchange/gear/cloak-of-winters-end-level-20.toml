@@ -1,0 +1,34 @@
+name = "Cloak of Winter's End (level 20)"
+description = "Time-Twisted version of Cloak of Winter"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+icon = "Cloak_8"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 20
+slot = "Back"
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 32
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

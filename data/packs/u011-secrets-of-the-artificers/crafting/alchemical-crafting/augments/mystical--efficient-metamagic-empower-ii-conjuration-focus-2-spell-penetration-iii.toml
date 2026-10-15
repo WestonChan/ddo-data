@@ -1,0 +1,48 @@
+name = "Mystical: Efficient Metamagic - Empower II, Conjuration Focus +2, Spell Penetration III"
+description = """
+Efficient Metamagic - Empower II: The additional spell point cost for using the Empower Metamagic
+feat is reduced by 2 SP.
+Conjuration Focus +2: +2 Equipment bonus to the DC of Conjuration spells.
+Spell Penetration III: Passive: +3 Equipment bonus to Spell Penetration checks."""
+family = "Alchemical"
+min_level = 20
+
+[[effect]]
+name = "Empower Cost Reduction"
+bonus_type = "Equipment"
+value = -2
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Equipment"
+effect = "Empower Cost Reduction"
+effect_type = "MetamagicCostEmpower"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[slot]]
+slot = "crafting: alchemical tier 3"

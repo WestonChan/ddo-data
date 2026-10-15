@@ -1,0 +1,36 @@
+name = "Legendary Bottle of Shadows"
+description = 'A label on the bottle reads, "For when you need to shroud yourself in darkness."'
+drop_location = "The Home of Memory, End Chest"
+icon = "Trinket_22"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 29
+slot = "Trinket"
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Law Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Good Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Home of Memory"

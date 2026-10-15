@@ -1,0 +1,53 @@
+name = "Coffin Nail"
+accepts_sentience = true
+description = """
+The damnable old pirate wouldn't stay dead in the box until they put this nail
+through it."""
+drop_location = "A Legend Revisited, End chest"
+enhancement_bonus = 7
+icon = "Dart_4"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Improved Paralyzing"
+
+[[effect]]
+name = "Improved Slowburst"
+
+[[effect]]
+name = "Improved Vorpal"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.3
+handedness = "Thrown"
+weapon_type = "Dart"

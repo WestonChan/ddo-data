@@ -1,0 +1,55 @@
+name = "Giantcraft Armor"
+npc = "Horatin, Gianthold"
+
+[[ingredient]]
+name = "Ancient Giant Relic"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Giantcraft_Armor"
+read = "2026-10-02"
+
+[[recipe]]
+note = "produces Giantcraft Breastplate; bound to character; shared properties: Minimum Level 10, +4 Enhancement Bonus, Haste Guard, Vengeful, Relentless Fury, Material: Adamantine"
+option = "Giantcraft Breastplate"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Giant Relic"
+quantity = 10
+
+[[recipe]]
+note = "produces Giantcraft Leather Armor; bound to character; shared properties: Minimum Level 10, +4 Enhancement Bonus, Haste Guard, Vengeful, Relentless Fury, Material: Adamantine"
+option = "Giantcraft Leather Armor"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Giant Relic"
+quantity = 10
+
+[[recipe]]
+note = "produces Giantcraft Plate Armor; bound to character; shared properties: Minimum Level 10, +4 Enhancement Bonus, Haste Guard, Vengeful, Relentless Fury, Material: Adamantine"
+option = "Giantcraft Plate Armor"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Giant Relic"
+quantity = 10
+
+[[recipe]]
+note = "produces Giantcraft Robe; bound to character; shared properties: Minimum Level 10, +4 Enhancement Bonus, Haste Guard, Vengeful, Relentless Fury, Material: Adamantine"
+option = "Giantcraft Robe"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Giant Relic"
+quantity = 10
+
+[[recipe]]
+note = "produces Giantcraft Docent; bound to character; shared properties: Minimum Level 10, +4 Enhancement Bonus, Haste Guard, Vengeful, Relentless Fury, Material: Adamantine"
+option = "Giantcraft Docent"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Ancient Giant Relic"
+quantity = 10

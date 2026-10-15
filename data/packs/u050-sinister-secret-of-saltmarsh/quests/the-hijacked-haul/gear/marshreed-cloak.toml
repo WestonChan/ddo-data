@@ -1,0 +1,44 @@
+name = "Marshreed Cloak"
+description = """
+Patterned with the Saltmarsh's reeds and sewn together with fine cotton thread,
+this cloak provides fine camoflage in the right environments."""
+drop_location = "The Hijacked Haul, End Chest"
+icon = "Cloak_23c"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 3
+slot = "Back"
+
+[[clickie]]
+name = "Camouflage"
+clickie = "Camouflage"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 6
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Camouflage"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hijacked Haul"

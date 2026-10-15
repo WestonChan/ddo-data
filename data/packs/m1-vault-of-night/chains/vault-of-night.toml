@@ -1,0 +1,15 @@
+name = "Vault of Night"
+pack = "Vault of Night"
+quests = [
+    "Haywire Foundry",
+    "Gateway to Khyber",
+    "The Jungle of Khyber",
+    "The Prisoner",
+    "Tharashk Arena",
+    "The Vault of Night",
+    "Plane of Night",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Vault_of_Night"
+read = "2026-10-02"

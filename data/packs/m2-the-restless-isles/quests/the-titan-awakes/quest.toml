@@ -1,0 +1,22 @@
+name = "The Titan Awakes"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_raid = true
+pack = "The Restless Isles"
+patron = "The Free Agents"
+zone = "Twilight Forge Core"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Titan_Awakes"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12

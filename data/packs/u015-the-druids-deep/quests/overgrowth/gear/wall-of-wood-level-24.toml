@@ -1,0 +1,72 @@
+name = "Wall of Wood (level 24)"
+description = """
+This splendid heavy shield is made out of rare densewood, harvested from the
+King's Forest. Obviously reinforced with magical enchantments, it provides
+much greater protection than a normal shield of its size."""
+drop_location = "Overgrowth, Wood Woads chest (Epic Elite)"
+enhancement_bonus = 7
+icon = "Shield_1d"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Densewood"
+minimum_level = 24
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 14
+max_dex_bonus = 0
+shield_bonus = 15
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 21
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Equipment"
+value = 20
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 6
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 60
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 114
+
+[[effect]]
+name = "DR 15/Slashing"
+
+[[source]]
+chest = "wood woads chest"
+kind = "quest"
+loot_type = "chest"
+name = "Overgrowth"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

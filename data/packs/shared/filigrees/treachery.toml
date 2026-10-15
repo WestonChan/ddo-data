@@ -1,0 +1,144 @@
+[[row]]
+name = "Treachery: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "Treachery"
+menu = "Ravenloft"
+set = "Treachery"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Treachery: Dexterity: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Treachery: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "Treachery"
+menu = "Ravenloft"
+set = "Treachery"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Treachery: Intelligence: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Treachery: +2 Critical Attack and Damage"
+description = """
++2 Critical Attack and Damage
+Rare: +2 PRR"""
+icon = "Treachery"
+menu = "Ravenloft"
+set = "Treachery"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Treachery: Critical Attack and Damage: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Treachery: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "Treachery"
+menu = "Ravenloft"
+set = "Treachery"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Treachery: Melee Power: Rare +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Treachery: +50% Threat Reduction"
+description = """
++50% Threat Reduction
+Rare: +2 PRR"""
+icon = "Treachery"
+menu = "Ravenloft"
+set = "Treachery"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-50]
+bonus_type = "Stacking"
+effect_type = "ThreatBonusMelee"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Treachery: Threat Reduction: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Treachery: Stealth"
+description = """
++2 Hide and Move Silently
+Rare: +2 PRR"""
+icon = "Treachery"
+menu = "Ravenloft"
+set = "Treachery"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Treachery: Stealth: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true

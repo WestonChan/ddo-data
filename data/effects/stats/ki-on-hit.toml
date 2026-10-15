@@ -1,0 +1,4 @@
+name = "Ki on Hit"
+category = "other"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Ki on Hit +{1}"

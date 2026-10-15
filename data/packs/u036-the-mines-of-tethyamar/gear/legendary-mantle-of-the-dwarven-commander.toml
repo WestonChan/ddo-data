@@ -1,0 +1,45 @@
+name = "Legendary Mantle of the Dwarven Commander"
+description = """
+This mantle once belonged to a great Dwarf commander. His keen insight and prowess
+as a tactician never failed him. Well, except once..."""
+drop_location = "Graveyard Shift, End chest; Strike Back, End chest"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 28
+slot = "Back"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Graveyard Shift"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Strike Back"

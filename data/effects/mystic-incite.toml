@@ -1,0 +1,10 @@
+name = "Mystic Incite"
+description_template = "{1} bonus to increased threat generation from spell damage"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Mystic Incite +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Spell Threat Generation"

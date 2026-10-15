@@ -1,0 +1,54 @@
+name = "Sanctuary"
+description = "This shield protects its wearer from magical harm."
+drop_location = "Endgame: Marguerite, End chest"
+enhancement_bonus = 2
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 2
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 5
+max_dex_bonus = 0
+shield_bonus = 5
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Endgame: Marguerite"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

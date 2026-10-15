@@ -1,0 +1,21 @@
+name = "Spellcraft +20"
+description = "Legendary Competence bonus to Spellcraft"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Spellcraft"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

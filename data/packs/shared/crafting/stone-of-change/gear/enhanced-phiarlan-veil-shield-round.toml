@@ -1,0 +1,44 @@
+name = "Enhanced Phiarlan Veil Shield (round)"
+description = "This shield has a mysterious vine motif that draws one in and hints at House Phiarlan's secretive ways. This shield now has the powerful treasure effects of the Battered Phiarlan Shield and the impressive appearance of a new Phiarlan Veil Shield."
+drop_location = "Stone of Change, Battered Phiarlan Shield (round) + Phiarlan Veil Shield (round)"
+enhancement_bonus = 3
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 4
+slot = "Off Hand"
+wiki_url = "https://ddowiki.com/page/Item:Enhanced_Phiarlan_Veil_Shield_%28round%29"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+shield_bonus = 6
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Enhanced_Phiarlan_Veil_Shield_%28round%29"
+read = "2026-09-30"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Acid Guard +2"
+
+[[effect]]
+name = "Absorb Enchantment Spells - 5 Charges (Recharged/Day: 5)"
+
+[[source]]
+kind = "crafting_system"
+name = "Stone of Change"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+handedness = "Off-hand"
+weapon_type = "Large Shield"

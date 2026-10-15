@@ -1,0 +1,3 @@
+name = "Choked by Mother Night"
+description_template = "This weapon is unholy, dealing an additional 6d6 evil damage on each hit. This effect makes the weapon evil aligned. Mother Night does not answer the prayers of her disciples without due cause. Strike those who disobey Her with this relic, and be rewarded."
+verbose_name_template = "Choked by Mother Night"

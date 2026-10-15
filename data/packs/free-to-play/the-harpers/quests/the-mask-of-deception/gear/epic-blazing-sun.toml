@@ -1,0 +1,54 @@
+name = "Epic Blazing Sun"
+description = "It is as if a miniature star is contained within this orb."
+drop_location = "The Mask of Deception, End chest"
+icon = "Orb_2"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 26
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 8
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 150
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 150
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mask of Deception"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

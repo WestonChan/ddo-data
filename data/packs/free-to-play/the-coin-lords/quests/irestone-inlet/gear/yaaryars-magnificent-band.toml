@@ -1,0 +1,22 @@
+name = "Yaaryar's Magnificent Band"
+description = "This magical ring, a trophy of battle, is magically enhanced."
+drop_location = "Irestone Inlet, Yaaryar 's chest"
+icon = "Ring_49"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 3
+slot = "Ring"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "yaaryar 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Irestone Inlet"

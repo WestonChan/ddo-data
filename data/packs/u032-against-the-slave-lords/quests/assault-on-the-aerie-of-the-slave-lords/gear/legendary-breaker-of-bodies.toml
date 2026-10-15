@@ -1,0 +1,87 @@
+name = "Legendary Breaker of Bodies"
+description = "When they get out of line, break their bones."
+drop_location = "Assault on the Aerie of the Slave Lords, End chest"
+enhancement_bonus = 12
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Densewood"
+minimum_level = 28
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 16
+max_dex_bonus = 0
+shield_bonus = 20
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Maiming 6"
+
+[[effect]]
+name = "Bashing 6"
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "crafting: against the slave lords set bonus"
+
+[[socket.option]]
+name = "Adds the Legendary Slave Lord's Might Set bonus"
+icon = "SlavelordsMight"
+min_level = 28
+
+[[socket.option.set]]
+set = "Legendary Slavelords Might"
+
+[[socket.option]]
+name = "Adds the Legendary Slave Lord's Sorcery Set bonus"
+icon = "SlavelordsSorcery"
+min_level = 28
+
+[[socket.option.set]]
+set = "Legendary Slavelords Sorcery"
+
+[[socket.option]]
+name = "Adds the Legendary Slave Lord's Endurance Set bonus"
+icon = "SlavelordsEndurance"
+min_level = 28
+
+[[socket.option.set]]
+set = "Legendary Slavelords Endurance"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Assault on the Aerie of the Slave Lords"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Off-hand"
+weapon_type = "Large Shield"

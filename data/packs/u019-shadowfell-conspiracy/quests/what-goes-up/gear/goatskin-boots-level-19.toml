@@ -1,0 +1,22 @@
+name = "Goatskin Boots (Level 19)"
+description = "Before it met its end, this animal had only one thought. Escape."
+drop_location = "What Goes Up, end chest, jeweled key chest (heroic elite)"
+icon = "Boots_7"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 19
+slot = "Feet"
+
+[[effect]]
+name = "Speed XI"
+value = 30
+value2 = 11
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, jeweled key chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Goes Up"

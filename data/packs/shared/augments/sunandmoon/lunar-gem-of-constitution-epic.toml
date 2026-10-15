@@ -1,0 +1,21 @@
+name = "Lunar Gem of Constitution (Epic)"
+description = "+3 Profane Bonus to Constitution"
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Profane"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "moon"

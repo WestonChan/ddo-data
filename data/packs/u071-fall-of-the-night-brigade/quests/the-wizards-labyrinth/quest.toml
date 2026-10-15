@@ -1,0 +1,30 @@
+name = "The Wizard's Labyrinth"
+bestowed_by = "Wyshbryn Saldar"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Fall of the Night Brigade"
+patron = "The Harpers"
+zone = "Darstil's Tower"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Wizard%27s_Labyrinth"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 34

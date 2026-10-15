@@ -1,0 +1,50 @@
+name = "Jeweled Cloak (Level 14)"
+description = """
+This cloak shimmers wit light, reflected off of the many gemstones woven into
+its fabric."""
+drop_location = "The Maze of Madness, and Trial by Fire, end chest (Heroic Elite)"
+icon = "Cloak_22a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 14
+slot = "Back"
+
+[[clickie]]
+name = "Spell Absorption"
+clickie = "Spell Absorption"
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 72
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    8,
+    8,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Spell Absorption"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Maze of Madness"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Trial by Fire"

@@ -1,0 +1,32 @@
+name = "+1 Starter Heavy Wooden Shield"
+drop_location = "Enhancement bonus"
+enhancement_bonus = 1
+icon = "Shield_1a"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Wood"
+minimum_level = 2
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 0
+max_dex_bonus = 0
+shield_bonus = 0
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[weapon]]
+attack_modifier = "Strength"
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

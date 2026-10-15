@@ -1,0 +1,49 @@
+name = "Light Armor of the Warblade's Reflection"
+description = """
+This armor took the power of the deathly ritual and turned it to the Warblade's
+purposes."""
+drop_location = "Ritual Table, Turn in \nLegendary Light Armor of the Warblade \n120 Barrier Fragments \nSigil of the Warblade"
+enhancement_bonus = 15
+icon = "LightArmor_1e"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 33
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 35
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 24
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Shadow Striker"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Legendary"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Ritual Table"

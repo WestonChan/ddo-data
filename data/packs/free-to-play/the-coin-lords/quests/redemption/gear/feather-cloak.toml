@@ -1,0 +1,28 @@
+name = "Feather Cloak"
+description = "This curious cloak is said to protect the wearer from a great fall."
+drop_location = "Redemption (quest), End reward"
+icon = "Cloak_11"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Back"
+
+[[clickie]]
+name = "Feather Fall"
+clickie = "Feather Fall"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Feather Fall"]
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Redemption"

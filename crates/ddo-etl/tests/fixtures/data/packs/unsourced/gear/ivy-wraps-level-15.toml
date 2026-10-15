@@ -1,0 +1,36 @@
+name = "Ivy Wraps (Level 15)"
+description = """
+These handwraps are made of heavy strips of leather for padding, with vicious,
+thorned vines wrapped and knotted around them. The vines seem to brighten at
+the taste of blood."""
+drop_location = "The Druid's Curse, Aghilde the Bog Hag chest (Heroic Normal)"
+enhancement_bonus = 4
+icon = "HandWraps_1q"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Leather"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Constitution Poison, Lesser"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

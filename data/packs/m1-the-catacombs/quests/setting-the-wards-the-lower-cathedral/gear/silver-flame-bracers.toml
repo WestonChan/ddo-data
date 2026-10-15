@@ -1,0 +1,37 @@
+name = "Silver Flame Bracers"
+description = "These golden bracers are emblazoned with flame-shaped symbols."
+drop_location = "Setting the Wards: The Lower Cathedral, End chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 3
+slot = "Wrists"
+
+[[clickie]]
+name = "Protection from Evil"
+clickie = "Protection from Evil"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 2
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Protection from Evil"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Setting the Wards: The Lower Cathedral"

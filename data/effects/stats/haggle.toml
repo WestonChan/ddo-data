@@ -1,0 +1,5 @@
+name = "Haggle"
+category = "skill"
+description_template = "Passive: {1} %b1 bonus to the Haggle skill."
+home_bonus_type = "Insight"
+verbose_name_template = "%b1 Haggle +{1}"

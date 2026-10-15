@@ -1,0 +1,21 @@
+name = "Curse of the Necromancer"
+description = "+1 Fortune Bonus to Necromancy DCs"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[slot]]
+slot = "crafting: deck curse"

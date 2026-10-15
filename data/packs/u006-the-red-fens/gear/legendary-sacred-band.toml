@@ -1,0 +1,39 @@
+name = "Legendary Sacred Band"
+description = """
+Though used primarily by drow ascetics, this ring will aid any healer in his
+or her duties."""
+drop_location = "Legendary version of Epic Sacred Band"
+icon = "Ring_25c"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 30
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Silver Flame Lore"
+value = 21
+
+[[effect]]
+name = "Power of the Silver Flame"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Greater Turning"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 20
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

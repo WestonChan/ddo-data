@@ -1,0 +1,21 @@
+name = "Open Lock +10"
+description = "Competence bonus to Open Lock"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect = "Open Lock"
+effect_type = "SkillBonus"
+targets = ["Open Lock"]
+
+[[slot]]
+slot = "crafting: slavelords extra"

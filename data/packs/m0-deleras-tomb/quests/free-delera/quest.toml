@@ -1,0 +1,26 @@
+name = "Free Delera"
+bestowed_by = "Colam Mersein"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Delera's Tomb"
+patron = "House Jorasco"
+zone = "Delera's Tomb"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Free_Delera"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 27

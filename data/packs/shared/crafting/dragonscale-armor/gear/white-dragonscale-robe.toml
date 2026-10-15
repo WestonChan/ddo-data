@@ -1,0 +1,41 @@
+name = "White Dragonscale Robe"
+description = "A finely crafted silk robe that includes many scales from a white dragon."
+drop_location = "White Dragonscale Armor, Turn in 20 White Dragon Scales"
+icon = "Cloth_12"
+item_category = "Armor"
+item_type = "Cloth"
+material = "White Dragonscale"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 4
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

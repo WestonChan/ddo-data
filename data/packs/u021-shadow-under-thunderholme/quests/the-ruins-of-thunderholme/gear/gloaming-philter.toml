@@ -1,0 +1,38 @@
+name = "Gloaming Philter"
+accepts_sentience = true
+description = """
+Doubly-enchanted glass containing pure water from a Shadowfell spring. Breaks on impact, dealing 10 to 60 Negative Energy Damage to nearby enemies, and possibly inflicting a negative level on them.
+
+Caution: Do Not Drink."""
+drop_location = "The Ruins of Thunderholme, Any Rare Encounter chests"
+icon = "Dart_10"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Glass"
+minimum_level = 27
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Special"
+
+[[source]]
+chest = "any rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Ruins of Thunderholme"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 1
+critical_multiplier = 1
+critical_threat_range = 1
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Dart"

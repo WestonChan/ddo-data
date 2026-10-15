@@ -1,0 +1,47 @@
+name = "Legendary Kindred Spirit"
+description = """
+This armor is shaped specifically for a Wolf, likely used for guarding the manor
+of a long-dead lord."""
+drop_location = "Sunrise, end chest, Abbot chest"
+enhancement_bonus = 14
+icon = "LightArmor_16"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 29
+race_required = "Pet"
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 18
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Don't Count Me Out!"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, abbot chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sunrise"

@@ -1,0 +1,133 @@
+name = "Shade's Hood (Level 26)"
+description = "The hood of a Shade of Netheril, it resonates with shadowy protective energies."
+drop_location = "Army of Shadow, Rantha 's chest &amp; end chest (Epic Hard)"
+icon = "Helmet_1a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Head"
+
+[[clickie]]
+name = "Shadow Walk"
+clickie = "Shadow Walk"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 9
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shadow Walk"]
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Acid Resistance +40"
+description = "Acid Resistance +40: Passive: +40 Enhancement bonus to your Acid Resistance."
+min_level = 14
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Acid Resistance"
+value = 40
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Acid Resistance"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[socket.option]]
+name = "Cold Resistance +40"
+description = "Cold Resistance +40: Passive: +40 Enhancement bonus to your Cold Resistance."
+min_level = 14
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+value = 40
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[socket.option]]
+name = "Fire Resistance +40"
+description = "Fire Resistance +40: Passive: +40 Enhancement bonus to your Fire Resistance."
+min_level = 14
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+value = 40
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[socket.option]]
+name = "Electric Resistance +40"
+description = "Electric Resistance +40: Passive: +40 Enhancement bonus to your Electric Resistance."
+min_level = 14
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+value = 40
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[socket.option]]
+name = "Sonic Resistance +40"
+description = "Sonic Resistance +40: Passive: +40 Enhancement bonus to your Sonic Resistance."
+min_level = 14
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sonic Resistance"
+value = 40
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "Sonic Resistance"
+effect_type = "EnergyResistance"
+targets = ["Sonic"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "rantha 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Army of Shadow"

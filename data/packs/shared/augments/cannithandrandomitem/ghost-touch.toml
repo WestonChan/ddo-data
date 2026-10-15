@@ -1,0 +1,17 @@
+name = "Ghost Touch"
+description = """
+An incorporeal creature's 50% chance to avoid damage does not apply to attacks with
+ghost touch weapons or ammunition."""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus = "Not Set"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: cannith weapon prefix"

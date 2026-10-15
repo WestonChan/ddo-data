@@ -1,0 +1,30 @@
+name = "Fresh-baked Dreams"
+bestowed_by = "Aglaya Karushkin"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "Old Bonegrinder"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Fresh-baked_Dreams"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

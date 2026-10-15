@@ -1,0 +1,71 @@
+name = "Shroud of Ardent"
+description = """
+This small shroud is made of scraps of the banner the Abbot's body was wrapped
+in. The scraps are bound together by a bowstring composed of hairs from a Nightmare."""
+drop_location = "The Mark of Death, warded chest"
+icon = "Necklace_31"
+item_category = "Jewelry"
+material = "Cloth"
+minimum_level = 26
+slot = "Neck"
+
+[[effect]]
+name = "Smoke Screen +20"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 53
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 13
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Mark of Death"

@@ -1,0 +1,50 @@
+name = "Spectral Dagger (level 32)"
+accepts_sentience = true
+description = """
+The residual power left behind as thousands of Spectral Dragon Scales crumbled
+to dust formed these ethereal blades."""
+drop_location = "The Night Revels, Turn in various ingredients at Joe Candymaker"
+enhancement_bonus = 15
+icon = "Dagger_8a"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Force"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Ghostbane 6"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Evil Outsider Bane 6"
+
+[[effect]]
+name = "Superior Vorpal"
+
+[[effect]]
+name = "Crushing 15"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.9
+handedness = "One-handed"
+weapon_type = "Dagger"

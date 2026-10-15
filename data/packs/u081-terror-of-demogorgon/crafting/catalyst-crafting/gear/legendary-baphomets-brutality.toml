@@ -1,0 +1,48 @@
+name = "Legendary Baphomet's Brutality"
+description = """
+This thick demon hide armor offers powerful protection, martial prowess, and
+a repulsive stench."""
+drop_location = "Catalyst Crafting, Turn in Hide of the Goristro, its Legendary Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 16
+icon = "MediumArmor_23"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 35
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 39
+armor_check_penalty = 1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 54
+
+[[effect]]
+name = "Legendary Demonic Shield"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

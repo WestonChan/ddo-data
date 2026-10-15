@@ -1,0 +1,181 @@
+name = "Opposition"
+icon = "Opposition"
+
+[[augment]]
+name = "+13 Reflex Save"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+13 Fortitude Save"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+13 Will Save"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+50 Electric Resistance"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+50 Acid Resistance"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+50 Fire Resistance"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+50 Cold Resistance"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+4 Insight bonus against Disease and Blindness immunity"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+128 Unconsciousness Range, 16 healing every 10 seconds (Enhancement)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+7 Reflex Save (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+7 Fortitude Save (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+7 Will Save (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Electric Resistance (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Acid Resistance (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Fire Resistance (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Cold Resistance (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+4 Insight bonus against Poison and Fear immunity"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+64 Unconsciousness Range (Insightful), 8 healing every 10 seconds (Insightful)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+2 Reflex Save (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+2 Fortitude Save (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+2 Will Save (Quality)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+17 Electric Resistance (Competence)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+17 Acid Resistance (Competence)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+17 Fire Resistance (Competence)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+17 Cold Resistance (Competence)"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+25 Negative Resistance (Enhancement) and Deathblock"
+family = "Greensteel_Legendary"
+
+[[augment]]
+name = "+32 Unconsciousness Range (Quality), 4 healing every 10 seconds (Quality)"
+family = "Greensteel_Legendary"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "3% bonus to Max Hitpoints, +1% per additional augment"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "With 2–6 augments, gain +5% to +9% Legendary maximum Hit Points."
+
+[[tier.effect]]
+effect = "Hit Point Augment Scaling"
+
+[[tier.modifier]]
+amount_type = "SetBonusCount"
+amounts = [
+    0,
+    0,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+]
+apply_as_item_effect = true
+bonus_type = "Legendary"
+effect_type = "Hitpoints"
+percent = true
+stack_source = "Opposition"
+
+[[tier.modifier.requirement]]
+items = ["Opposition"]
+req_type = "Stance"

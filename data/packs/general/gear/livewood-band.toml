@@ -1,0 +1,23 @@
+name = "Livewood Band"
+description = "Through wood and iron, we were given life."
+drop_location = "Advance to level 15, End reward"
+icon = "Ring_18b"
+item_category = "Jewelry"
+material = "Wood"
+minimum_level = 15
+race_required = "Bladeforged"
+slot = "Ring"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 13
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

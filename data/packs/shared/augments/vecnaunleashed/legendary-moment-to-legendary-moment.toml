@@ -1,0 +1,14 @@
+name = "Legendary Moment to Legendary Moment"
+description = "+3 Enhancement bonus to Action Boost charges."
+family = "VecnaUnleashed"
+icon = "HistoryBookYellow"
+min_level = 32
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

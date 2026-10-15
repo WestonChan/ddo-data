@@ -1,0 +1,36 @@
+name = "Nightforge Armbands"
+description = "Images from famous battles are inscribed onto these adamantine bracers."
+drop_location = "A Relic of a Sovereign Past, Turn in 10 Adamantine Ore"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Adamantine"
+minimum_level = 9
+slot = "Wrists"
+
+[[clickie]]
+name = "Heroism"
+clickie = "Heroism"
+
+[[effect]]
+name = "Improved False Life"
+bonus_type = "Enhancement"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Heroism"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "turn in 10 adamantine ore"
+kind = "quest"
+loot_type = "chest"
+name = "A Relic of a Sovereign Past"

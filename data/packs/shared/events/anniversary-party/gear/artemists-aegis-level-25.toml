@@ -1,0 +1,62 @@
+name = "Artemist's Aegis (level 25)"
+description = "This hefty shield is quite good at blocking Kookies and errant Darts."
+drop_location = "Anniversary Party, Turn in 80"
+enhancement_bonus = 7
+icon = "Shield_27"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Wood"
+minimum_level = 25
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 15
+max_dex_bonus = 0
+shield_bonus = 18
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 128
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 10
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

@@ -1,0 +1,38 @@
+name = "Legendary Great Forge Cowl"
+description = "Made centuries ago in the glory days of Gauntlgrym."
+drop_location = "Flocked Together, end chest"
+icon = "Helmet_1"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 35
+slot = "Head"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 159
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Sacred"
+value = 3
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (legendary)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flocked Together"

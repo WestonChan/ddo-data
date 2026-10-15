@@ -10,7 +10,7 @@
           "label": "green",
           "options": [],
           "qualifier": null,
-          "slot_type_id": 6,
+          "slot_type_id": 1769112694563431,
           "sort_order": 0,
           "variant": "green"
         },
@@ -19,7 +19,7 @@
           "label": "yellow",
           "options": [],
           "qualifier": null,
-          "slot_type_id": 7,
+          "slot_type_id": 1357484692219291,
           "sort_order": 1,
           "variant": "yellow"
         }
@@ -28,7 +28,7 @@
       "challenge_packs": [],
       "clickies": [
         {
-          "clickie_id": 13,
+          "clickie_id": 8668657769299021,
           "description": "Target: Foe\nDuration: 2 minutes 40 seconds\nSchool: Necromancy\nSpell Resistance: Yes\nThe target is cursed, giving a -4 penalty to attack rolls, skill rolls and saves.\nA successful Will save negates this effect.",
           "icon": "BestowCurse",
           "name": "Bestow Curse",
@@ -54,7 +54,7 @@
           ],
           "damage": [],
           "description": "Passive: +6 Enhancement bonus to Strength.",
-          "effect_id": 1,
+          "effect_id": 4051823190149989,
           "name": "Strength",
           "tier": null,
           "value": 6,
@@ -76,7 +76,7 @@
           ],
           "damage": [],
           "description": "+15 Enhancement bonus to Physical Resistance Rating",
-          "effect_id": 372,
+          "effect_id": 8499011149722438,
           "name": "Physical Sheltering",
           "tier": null,
           "value": 15,
@@ -98,7 +98,7 @@
           ],
           "damage": [],
           "description": "Passive: 15% Enhancement Bonus to Alignment Absorption. (Absorption reduces damage from an element by a percentage, after resistance have been taken into account.)",
-          "effect_id": 158,
+          "effect_id": 6046083909513009,
           "name": "Alignment Absorption",
           "tier": null,
           "value": 15,
@@ -109,7 +109,7 @@
       "enhancement_bonus": null,
       "events": [],
       "icon": "Ring_5",
-      "id": 6798,
+      "id": 1603901862026075,
       "is_legacy": false,
       "is_minor_artifact": false,
       "item_type": null,
@@ -135,7 +135,6 @@
           "display_name": null,
           "effect_type": "ItemClickie",
           "extra_types": null,
-          "id": 12408,
           "is_item_specific": false,
           "is_rare": false,
           "percent": false,
@@ -160,7 +159,7 @@
             "elite"
           ],
           "epic_level": 22,
-          "id": 323,
+          "id": 5370347279111863,
           "is_free_to_play": false,
           "is_raid": false,
           "is_rare": false,
@@ -168,7 +167,8 @@
           "loot_type": "chest",
           "name": "Chains of Flame",
           "pack": "Demon Sands",
-          "patron": "The Free Agents"
+          "patron": "The Free Agents",
+          "slug": "chains-of-flame"
         },
         {
           "chest": null,
@@ -178,7 +178,7 @@
             "elite"
           ],
           "epic_level": 22,
-          "id": 324,
+          "id": 7386339488196715,
           "is_free_to_play": false,
           "is_raid": true,
           "is_rare": false,
@@ -186,28 +186,41 @@
           "loot_type": "chest",
           "name": "Zawabi's Revenge",
           "pack": "Demon Sands",
-          "patron": "The Free Agents"
+          "patron": "The Free Agents",
+          "slug": "zawabis-revenge"
         }
       ],
       "race_required": null,
       "sagas": [],
       "set": {
         "icon": "Menechtarun",
-        "id": 136,
-        "name": "The Desert's Starless Nights"
+        "id": 6463707783032157,
+        "name": "The Desert's Starless Nights",
+        "slug": "the-deserts-starless-nights"
       },
       "set_name": "The Desert's Starless Nights",
+      "sets": [
+        {
+          "icon": "Menechtarun",
+          "id": 6463707783032157,
+          "name": "The Desert's Starless Nights",
+          "slug": "the-deserts-starless-nights"
+        }
+      ],
       "slot": "Ring",
+      "slug": "ring-of-baphomet",
       "sources": [
         {
           "character_level": null,
           "chest": "valgrim forge-bound 's chest",
           "cost": null,
-          "id": 323,
+          "id": 5370347279111863,
           "is_rare": false,
           "kind": "quest",
           "loot_type": "chest",
           "name": "Chains of Flame",
+          "price": [],
+          "slug": "chains-of-flame",
           "tier": null,
           "wiki_url": "https://ddowiki.com/page/Chains_of_Flame"
         },
@@ -215,11 +228,13 @@
           "character_level": null,
           "chest": null,
           "cost": null,
-          "id": 324,
+          "id": 7386339488196715,
           "is_rare": false,
           "kind": "quest",
           "loot_type": "chest",
           "name": "Zawabi's Revenge",
+          "price": [],
+          "slug": "zawabis-revenge",
           "tier": null,
           "wiki_url": "https://ddowiki.com/page/Zawabi's_Revenge"
         }
@@ -239,7 +254,7 @@
           "label": "blue",
           "options": [],
           "qualifier": null,
-          "slot_type_id": 8,
+          "slot_type_id": 1347619477428085,
           "sort_order": 0,
           "variant": "blue"
         }
@@ -266,7 +281,7 @@
           ],
           "damage": [],
           "description": "Passive: +10 Enhancement bonus to Strength.",
-          "effect_id": 1,
+          "effect_id": 4051823190149989,
           "name": "Strength",
           "tier": null,
           "value": 10,
@@ -288,7 +303,7 @@
           ],
           "damage": [],
           "description": "This item gives a +9 Resistance bonus to your Fortitude save.",
-          "effect_id": 18,
+          "effect_id": 4347764377480888,
           "name": "Fortitude Save",
           "tier": null,
           "value": 9,
@@ -310,7 +325,7 @@
           ],
           "damage": [],
           "description": "+1 Profane bonus to all abilities.",
-          "effect_id": 506,
+          "effect_id": 2841455014554526,
           "name": "Profane Well Rounded",
           "tier": null,
           "value": 1,
@@ -321,7 +336,7 @@
       "enhancement_bonus": null,
       "events": [],
       "icon": "Ring_2",
-      "id": 6800,
+      "id": 5571529999204577,
       "is_legacy": false,
       "is_minor_artifact": false,
       "item_type": null,
@@ -339,7 +354,7 @@
             "hard"
           ],
           "epic_level": 21,
-          "id": 22,
+          "id": 6022778267697502,
           "is_free_to_play": false,
           "is_raid": false,
           "is_rare": false,
@@ -347,24 +362,29 @@
           "loot_type": "chest",
           "name": "The Hobgoblin Horde",
           "pack": "Keep on the Borderlands",
-          "patron": "The Gatekeepers"
+          "patron": "The Gatekeepers",
+          "slug": "the-hobgoblin-horde"
         }
       ],
       "race_required": null,
       "sagas": [],
       "set": null,
       "set_name": null,
+      "sets": [],
       "slot": "Ring",
+      "slug": "ring-of-brutal-force",
       "sources": [
         {
           "character_level": null,
           "chest": "end chest",
           "cost": null,
-          "id": 22,
+          "id": 6022778267697502,
           "is_rare": false,
           "kind": "quest",
           "loot_type": "chest",
           "name": "The Hobgoblin Horde",
+          "price": [],
+          "slug": "the-hobgoblin-horde",
           "tier": null,
           "wiki_url": "https://ddowiki.com/page/The_Hobgoblin_Horde"
         }

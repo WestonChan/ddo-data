@@ -1,0 +1,31 @@
+name = "Desecrated Leathers"
+description = """
+A dusty set of leather armor, the symbol of Vol in the center has faded and
+been overwritten with a visage of the black abbot."""
+drop_location = "Desecrated Temple of Vol, End Chest"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 12
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 5
+armor_type = "Light"
+max_dex_bonus = 13
+
+[[effect]]
+name = "Greater Nimbleness"
+bonus_type = "Stacking"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desecrated Temple of Vol"

@@ -1,0 +1,46 @@
+name = "Ogrish War Axe"
+description = """
+The ogres of Droaam dress themselves in heavy armor and wield huge metallic
+weapons, unlike their more tribal cousins. This war axe is infused with the
+fury of such well-armed ogre brutes."""
+drop_location = "Attack on Stormreach, End reward"
+enhancement_bonus = 5
+icon = "GreatAxe_9"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Vengeful"
+
+[[effect]]
+name = "Humanoid Bane 3"
+
+[[effect]]
+name = "Gashing 7"
+
+[[effect]]
+name = "Malleable"
+
+[[source]]
+kind = "quest_chain"
+name = "Attack on Stormreach"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Great Axe"

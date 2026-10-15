@@ -1,0 +1,46 @@
+name = "Skullsmasher (Level 24)"
+description = """
+Judging from the bits of flesh and skull stuck to the top of this mace, Gorn
+Gut-Chewer must have used it to settle many disputes."""
+drop_location = "The Crucible, Gorn Gut-Chewer 's chest (Epic Hard)"
+enhancement_bonus = 7
+icon = "LightMace_4"
+item_category = "Weapon"
+item_type = "Light Mace"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Ribcracker VI"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "gorn gut-chewer 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crucible"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.25
+handedness = "One-handed"
+weapon_type = "Light Mace"

@@ -1,0 +1,3 @@
+name = "Shattermantle"
+description_template = "Translucent, writhing energy and blue sparks can be seen raging within this weapon. When a shattermantle weapon strikes a foe that has spell resistance, the value of that spell resistance is reduced by 3 for 9 seconds. A foe can only have its SR reduced by one Shattermantle effect at a time."
+verbose_name_template = "Shattermantle"

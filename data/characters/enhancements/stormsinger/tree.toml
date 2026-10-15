@@ -1,0 +1,1302 @@
+name = "Stormsinger"
+background = "BardBackground"
+icon = "Bard"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Stormsinger: Stormsinger"
+cost_per_rank = [1]
+description = """
+Each core ability you take in this tree, including this one, grants you
++5 Electric, Cold, and Sonic Spell Power."""
+icon = "BSStormsinger"
+internal_name = "StormCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Electric",
+    "Sonic",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Stormsinger: Lightning Strike"
+cost_per_rank = [1]
+description = """
+Your Sonic and Cold spells have a 20% chance to cause a massive Lightning Strike
+whenever they hit an enemy. This lightning strike deals an extra 1d6 Electric
+damage per caster level. (This damage uses your electric spell power and lore,
+and the originating spell's metamagics and max caster level)"""
+icon = "BSLightningStrike"
+internal_name = "StormCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Electric",
+    "Sonic",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["StormCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Stormsinger: Enhanced Bolt I"
+cost_per_rank = [1]
+description = "Your Lightning Strike damage is upgraded to deal 1d6+2 Electric damage per caster level."
+icon = "BSEnhancedBoltI"
+internal_name = "StormCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Electric",
+    "Sonic",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["StormCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Stormsinger: Enhanced Bolt II"
+cost_per_rank = [1]
+description = """
+Your Lightning Strike is upgraded to add 1d3 stacks of Vulnerability when it goes off.
+The damage is upgraded to 1d6+4."""
+icon = "BSEnhancedBoltII"
+internal_name = "StormCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Electric",
+    "Sonic",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["StormCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Stormsinger: Enhanced Bolt III"
+cost_per_rank = [1]
+description = """
+Whenever your Lightning Strike goes off, the enemy is Frozen with no save for 3 seconds.
++1 Caster Level and Max Caster Level with Sonic and Electric spells."""
+icon = "BSEnhancedBoltIII"
+internal_name = "StormCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Electric",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = [
+    "Ball Lightning",
+    "Blast Rod",
+    "Call Lightning",
+    "Chain Lightning",
+    "Eladar's Electric Surge",
+    "Electric Loop",
+    "Elemental Combination",
+    "Elemental Prod",
+    "Glyph of Warding",
+    "Greater Glyph of Warding",
+    "Lightning Bolt",
+    "Lightning Motes",
+    "Lightning Sphere",
+    "Multivial of Sparks",
+    "Shocking Bolt",
+    "Shocking Grasp",
+    "Sparks Concentration",
+    "Static Shock",
+    "Storm of Vengeance",
+    "Thunderstroke",
+    "Vial of Sparks",
+    "Vial Smash: Electric",
+    "Voltaic Backlash",
+    "Voltaic Burst",
+    "Voltaic Induction",
+    "Xiaobo's Shock Dust",
+    "Forced Escape",
+    "Greater Shout",
+    "Shout",
+    "Sonic Blast",
+    "Soundburst",
+    "Reverberate",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["StormCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Stormsinger: Master of Storms"
+cost_per_rank = [1]
+description = """
++4 Charisma, +1 Evocation DCs. Your Lightning Strike now deals 1d6+6 damage
+per caster level. The freeze is upgraded to 5 seconds. +1 Caster Level and Max
+Caster Level with Sonic and Electric spells."""
+icon = "BSMasterOfStorms"
+internal_name = "StormCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "StormCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Electric",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = [
+    "Ball Lightning",
+    "Blast Rod",
+    "Call Lightning",
+    "Chain Lightning",
+    "Eladar's Electric Surge",
+    "Electric Loop",
+    "Elemental Combination",
+    "Elemental Prod",
+    "Glyph of Warding",
+    "Greater Glyph of Warding",
+    "Lightning Bolt",
+    "Lightning Motes",
+    "Lightning Sphere",
+    "Multivial of Sparks",
+    "Shocking Bolt",
+    "Shocking Grasp",
+    "Sparks Concentration",
+    "Static Shock",
+    "Storm of Vengeance",
+    "Thunderstroke",
+    "Vial of Sparks",
+    "Vial Smash: Electric",
+    "Voltaic Backlash",
+    "Voltaic Burst",
+    "Voltaic Induction",
+    "Xiaobo's Shock Dust",
+    "Forced Escape",
+    "Greater Shout",
+    "Shout",
+    "Sonic Blast",
+    "Soundburst",
+    "Reverberate",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["StormCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "StormCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Stormsinger: Spell Like Ability I"
+cost_per_rank = [1]
+description = "Select a Spell-Like Ability."
+icon = "BSSpellLikeAbilityI"
+internal_name = "BSSpellLikeAbilityI"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Niac's Cold Ray"
+cost_per_rank = [1]
+icon = "NiacsColdRay"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    10,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Niac's Cold Ray",
+    "Stormsinger",
+]
+
+[[enhancement.selection]]
+name = "Sonic Blast"
+cost_per_rank = [1]
+description = """
+Spell-Like Ability: Sonic Blast.
+Activation cost: 4 SP.
+Cooldown: 4 seconds.
+Metamagic Feats can be used at no additional cost."""
+icon = "BSSpellLikeAbilityI"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BSSpellLikeAbilityI",
+    "Sonic Blast",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    10,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Sonic Blast",
+    "Stormsinger",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "BSSpellLikeAbilityI",
+    "Sonic Blast",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Stormsinger: Tavern Shanties"
+cost_per_rank = [1]
+description = "+[1/2/3] Bard Songs."
+icon = "BSEfficientEmpower"
+internal_name = "BSTavernShanties"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SongCount"
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Stormsinger: Stormsong I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% Spell Critical Chance with Electric and Cold spells."
+icon = "BSStormsongI"
+internal_name = "BSStormsongI"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Stormsinger: Electrocution"
+cost_per_rank = [1]
+description = """
+Whenever you cast an Electric, Cold, or Sonic damage spell, you gain
++5 to your Electric and Sonic Spell Power for 6 seconds.
+This stacks up to [1/3/5] times."""
+icon = "BSElectrocution"
+internal_name = "BSElectrocution"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Stormsinger: On Your Toes"
+cost_per_rank = [1]
+description = "+[1/2/3]% Dodge"
+icon = "BSOnYourToes"
+internal_name = "BSOnYourToes"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Stormsinger: Spell Like Ability II"
+cost_per_rank = [2]
+description = "Select a Spell-Like Ability."
+icon = "BSSpellLikeAbilityII"
+internal_name = "BSSpellLikeAbilityII"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Niac's Biting Cold"
+cost_per_rank = [2]
+description = """
+Gain SLA "Niac's Biting Cold" - A deep and chilling cold settles into the target's body, dealing
+1d6 cold damage + 1 per caster level every 2 seconds for a duration of 16 seconds.
+Up to a maximum of 1d6 + 20 at caster level 20. This spell can stack on the target
+up to 3 times, increasing the damage with each stack.
+Activation cost: 10 SP
+Cooldown: 9 seconds."""
+icon = "NiacsBitingCold"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    20,
+    9,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Niac's Biting Cold",
+    "Stormsinger",
+]
+
+[[enhancement.selection]]
+name = "Reverberate"
+cost_per_rank = [2]
+description = """
+Gain SLA "Reverberate" - Wrack the target's body with internal sonic booms,
+dealing 1 to 10 sonic damage +1 per three caster levels (up to caster level 18)
+every 2 seconds for a duration of 16 seconds. This spell can stack on the target
+up to three times, increasing the damage with each stack.
+Activation cost: 10 SP
+Cooldown: 9 seconds."""
+icon = "SSReverberate"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BSSpellLikeAbilityII",
+    "Reverberate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    18,
+    9,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Reverberate",
+    "Stormsinger",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "BSSpellLikeAbilityII",
+    "Reverberate",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Stormsinger: Efficient Metamagic I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Enhance a Metamagic by reducing its cost."
+icon = "EfficientMaximize"
+internal_name = "BSEfficientMetamagicI"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you 2 fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BSEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BSEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you 3 fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BSEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BSEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Stormsinger: Stormsong II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% Spell Critical Chance with Electric and Cold spells."
+icon = "BSStormsongI"
+internal_name = "BSStormsongII"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["BSStormsongI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Stormsinger: Pierce Electric Resistance"
+cost_per_rank = [1]
+description = """
+Your Electric, Cold, and Sonic damage spells now bypass [5/10/15] points
+of your target's resistance to those damage types, if any."""
+icon = "BSPierceElectricResistance"
+internal_name = "BSPierceElectricResistance"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Stormsinger: Fast Movement"
+cost_per_rank = [2]
+description = "You run 1% faster for each of your Bard levels."
+icon = "BSFastMovement"
+internal_name = "BSFastMovement"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+bonus_type = "Class"
+effect_type = "MovementSpeed"
+stack_source = "Stormsinger"
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Stormsinger: Spell Like Ability III"
+cost_per_rank = [2]
+description = "Select a Spell-Like Ability."
+icon = "BSSpellLikeAbilityIII"
+internal_name = "BSSpellLikeAbilityIII"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Shout"
+cost_per_rank = [2]
+description = """
+Spell-Like Ability: Shout.
+Activation cost: 9 SP
+Cooldown: 6 seconds
+Metamagic Feats can be used at no additional cost."""
+icon = "SSShout"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BSSpellLikeAbilityIII",
+    "Shout",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    9,
+    15,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shout",
+    "Stormsinger",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "BSSpellLikeAbilityIII",
+    "Shout",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Snowball Swarm"
+cost_per_rank = [2]
+description = """
+Spell-Like Ability: Snowball Swarm.
+Activation cost: 9 SP
+Cooldown: 6 seconds
+Metamagic Feats can be used at no additional cost."""
+icon = "SnowballSwarm"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    9,
+    10,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Snowball Swarm",
+    "Stormsinger",
+]
+
+[[enhancement]]
+name = "Stormsinger: Efficient Metamagic II"
+cost_per_rank = [2]
+description = "Enhance a Metamagic by reducing its cost."
+icon = "EfficientMaximize"
+internal_name = "BSEfficientMetamagicII"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["BSEfficientMetamagicI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you 2 fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BSEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BSEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you 3 fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BSEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BSEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Stormsinger: Stormsong III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% Spell Critical Chance with Electric and Cold spells."
+icon = "BSStormsongI"
+internal_name = "BSStormsongIII"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["BSStormsongII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Stormsinger: Stormcaller's Aria"
+cost_per_rank = [1]
+description = "Your Inspire Courage grants nearby allies +[3/6/9] more Universal Spell Power and +[1/2/3] to hit."
+icon = "BSStormcallersAria"
+internal_name = "BSStormcallersAria"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Stormsinger: Charisma I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+internal_name = "BSAbiltyI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Stormsinger: Stormsinger's Inspiration"
+cost_per_rank = [2]
+description = """
+Your Bardic Inspiration now grants allies a chance to have your Lightning Strike
+when they make a melee or ranged attack. This seems to have about a 2% proc chance.
+Also works when cast on self. It scales independently with each player's Electric
+Spell Power and Caster Level. It does not crit and is not affected by active
+Metamagic feats."""
+icon = "BSStormsingersInspiration"
+internal_name = "BSStormsingersInspiration"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Stormsinger: Stormsong IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2% Spell Critical Chance with Electric and Cold spells."
+icon = "BSStormsongI"
+internal_name = "BSStormsongIV"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["BSStormsongIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Stormsinger: Ride the Lightning"
+cost_per_rank = [2]
+description = """
+Your main hand weapon is now considered an Implement.
+When you critically hit with a Sonic, Cold, or Lightning Spell, you gain
++3% Dodge, +3 Reflex saving throws, and your spell point costs are reduced
+by 3% for 10 seconds."""
+icon = "BSRideTheLightning"
+internal_name = "BSRideTheLightning"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Stormsinger: Charisma II"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+internal_name = "BSAbiltyII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["BSAbiltyI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Stormsinger: Horn of Thunder"
+cost_per_rank = [2]
+description = """
+Spell-Like Ability: Horn of Thunder.
+Activation cost: 20 SP
+Cooldown: 12 seconds.
+Blast your foes with 1d4 Sonic and 1d4 Electric damage per caster level.
+Sonic damage is doubled vs. Oozes, as the thunderous pressure disrupts
+their amorphous structure. Creatures making a Reflex save take half damage.
+Max caster level: 25. Affects liches."""
+icon = "SSHornOfThunder"
+internal_name = "BSHornOfThunder"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    25,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Horn of Thunder",
+    "Stormsinger",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Stormsinger: Eye of the Storm"
+cost_per_rank = [2]
+description = """
+You are no longer negatively affected by Sleet storm, and while in
+any Sleet storm spells, you gain an additional Lightning Strike proc chance."""
+icon = "BSEyeOfTheStorm"
+internal_name = "BSEyeOfTheStorm"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Stormsinger: Stormsong V"
+cost_per_rank = [2]
+description = "+2% Spell Critical Chance with Electric and Cold spells."
+icon = "BSStormsongI"
+internal_name = "BSStormsongV"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["BSStormsongIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Stormsinger: Stormcaller"
+cost_per_rank = [1]
+description = """
++[5/10/15] Electric, Cold, and Sonic Spell Power.
+Rank 3: The spell Iceberg is added to your Spell book at level 6."""
+icon = "BSStormcaller"
+internal_name = "BSStormcaller"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Electric",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+rank = 3
+targets = [
+    "Iceberg",
+    "Stormsinger",
+]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Stormsinger: Storm Studies"
+cost_per_rank = [2]
+description = "+1 Evocation DCs."
+icon = "BSStormStudies"
+internal_name = "BSStormStudies"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.requirement]]
+items = ["Stormsinger"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Stormsinger"]
+req_type = "Class"

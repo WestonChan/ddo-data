@@ -1,0 +1,36 @@
+name = "Gravekeeper's Heavy Cloak"
+description = "Even the hale and hearty eventually find themselves in the grave."
+drop_location = "Locked Away (Part One), end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 8
+slot = "Back"
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 16
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part One)"

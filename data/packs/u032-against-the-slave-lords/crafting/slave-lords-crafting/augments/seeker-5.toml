@@ -1,0 +1,15 @@
+name = "Seeker +5"
+description = "Competence bonus to critical damage"
+family = "Slavelords_Heroic"
+icon = "SlavelordsSuffix"
+min_level = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Competence"
+effect_type = "Weapon_DamageCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: slavelords suffix"

@@ -1,0 +1,3 @@
+name = "Pierce Cold Iron"
+description_template = "While equipped this item grants the feat Pierce Cold Iron."
+verbose_name_template = "Pierce Cold Iron"

@@ -1,0 +1,68 @@
+name = "Corruption of Nature (level 24)"
+description = """
+This magical device, found in Eveningstar's hospital, seems to somehow have
+been altered by the magical plague afflicting the villagers. When worn by an
+Artificer capable of channeling energy through it, it infects them with a benign
+version of the disease, temporarily toughening their skin for as long as the
+rune arm is worn."""
+drop_location = "Outbreak, End chest"
+icon = "RuneArm_4"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Wood"
+minimum_level = 24
+slot = "Runearm"
+
+[[clickie]]
+name = "Acid Shot"
+clickie = "Acid Shot"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Rune Arm Imbue - Acid V"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 114
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 76
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 6
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Acid Shot",
+    "Unknown",
+]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Outbreak"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

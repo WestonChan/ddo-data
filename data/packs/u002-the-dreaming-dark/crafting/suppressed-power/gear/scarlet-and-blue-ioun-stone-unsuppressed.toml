@@ -1,0 +1,21 @@
+name = "Scarlet and Blue Ioun Stone (unsuppressed)"
+description = "A scarlet and blue gem about 1 inch in diameter"
+drop_location = "Dreamforge, Suppressed Power Crafting"
+icon = "Trinket_7a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intelligence Skills - Exceptional Bonus"
+value = 2
+
+[[source]]
+kind = "crafting_system"
+name = "Suppressed Power"

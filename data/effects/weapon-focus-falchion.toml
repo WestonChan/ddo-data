@@ -1,0 +1,3 @@
+name = "Weapon Focus Falchion"
+description_template = "Falchion: While equipped this item gives you the feat Weapon Focus: Slashing but only for Falchions, giving a +1 to your attack bonus while using Falchions."
+verbose_name_template = "Weapon Focus"

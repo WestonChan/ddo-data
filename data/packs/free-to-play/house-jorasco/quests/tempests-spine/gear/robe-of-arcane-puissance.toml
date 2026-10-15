@@ -1,0 +1,42 @@
+name = "Robe of Arcane Puissance"
+description = """
+Enchanted long ago by Mereppi Tinkerspell, a legendary gnomish mage of ages
+past, these enchanted robes pulse with magical energy, greatly aiding any spellcaster
+in the practice of their craft."""
+drop_location = "Tempest's Spine, end chest"
+icon = "Cloth_1f"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 40
+
+[[effect]]
+name = "Spell Lore III"
+bonus_type = "Equipment"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

@@ -1,0 +1,42 @@
+name = "Mighty Stormreach Guardian's Helm"
+description = """
+The Guards of Stormreach Harbor are known to wear these helmets at times. Remaining
+vigilant night after night could drive the weaker-willed to madness."""
+drop_location = "Night Falls on Stormreach, End Chest"
+icon = "Helmet_12"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 14
+slot = "Head"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 7
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Night Falls on Stormreach"

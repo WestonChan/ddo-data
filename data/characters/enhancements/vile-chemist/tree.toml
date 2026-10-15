@@ -1,0 +1,1649 @@
+name = "Vile Chemist"
+background = "WizardBackground"
+icon = "Alchemist"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Vile Chemist: Poisoner"
+cost_per_rank = [1]
+description = """
++1 to your Reflex Saving Throws. Each Core Ability you take in this tree beyond the
+first grants +5 Physical Resistance Rating."""
+icon = "VilePoisoner"
+internal_name = "VileCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vile Chemist: Poisoned Coating"
+cost_per_rank = [1]
+description = """
+Imbue Toggle: While active, simple weapons deal an additional 1d6 Poison damage on hit.
+This damage scales with Spell Power.
+
+You also gain an +1 bonus Imbue Dice every 3 Alchemist levels (at 6, 9, 12, 15 and 18).
+
+Passive: While your Reaction is Orchidium, you gain +5 Poison Spell Power, 2% Dodge,
+and 2% Dodge Cap."""
+icon = "VilePoisonedCoating"
+internal_name = "VileCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+stack_source = "Alchemist"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityTotal"
+bonus_type = "Enhancement"
+cap = "50"
+effect_type = "Doubleshot"
+stack_source = "Dexterity"
+
+[[enhancement.modifier.requirement]]
+items = ["Thrown Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["VileCore1"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Poisoned Coating"
+description = """
+While active, deal an additional 1d6 Poison damage on hit.
+You also gain an +1 bonus Imbue Dice every 3 Alchemist levels (at 6, 9, 12, 15 and 18).
+This damage scales with your Spell Power.
+You also gain Doubleshot equal to half your Dexterity score while wielding a Simple
+thrown weapon (Caps at 50%)."""
+group_name = "Imbue"
+icon = "VilePoisonedCoating"
+
+[[enhancement]]
+name = "Vile Chemist: Hidden Blades I"
+cost_per_rank = [1]
+description = """
++5 Universal Spell Power, +3% Doublestrike and Doubleshot, +1 Bonus Imbue Dice.
+
+While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
+2% Dodge Cap."""
+icon = "VileHiddenBlades"
+internal_name = "VileCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["VileCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vile Chemist: Hidden Blades II"
+cost_per_rank = [1]
+description = """
++5 Universal Spell Power, +3% Doublestrike and Doubleshot, +1 bonus Imbue Dice.
+
+Your Base Attack Bonus is now equal to your Character Level.
+
+While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
+2% Dodge Cap."""
+icon = "VileMoreHiddenBlades"
+internal_name = "VileCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "OverrideBAB"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["VileCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vile Chemist: Hidden Blades III"
+cost_per_rank = [1]
+description = """
++5 Universal Spell Power, +3% Doublestrike and Doubleshot, +1 bonus Imbue Dice.
+
+While holding a Simple Weapon in your Main Hand and a Simple Weapon, Orb,
+Rune Arm, or nothing in your off hand, you have +1 Competence bonus to Critical
+Damage Multiplier.
+
+While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
+2% Dodge Cap."""
+icon = "VileBrushedAside"
+internal_name = "VileCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "WeaponCriticalMultiplierClass"
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["VileCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vile Chemist: Venom's Grip"
+cost_per_rank = [1]
+description = """
+Passive: +4 Intelligence, +10 Universal Spell Power, +3% Doublestrike and Doubleshot,
++2 bonus Imbue Dice.
+
+While your Reaction in Orchidium, you gain +5 Poison Spell Power, 2% Dodge, and
+2% Dodge Cap."""
+icon = "VileVenomsGrip"
+internal_name = "VileCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["VileCore5"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vile Chemist: SLA: Stiffen Skin"
+cost_per_rank = [1]
+description = """
+SLA: Stiffen Skin
+Metamagic: Extend, Quicken
+Spell Point Cost: 2
+Cooldown 12 seconds
+Primer Element: Ceruleite
+
+This potion will mutate you and make your skin a little bit more resistant
+to physical damage. This grants a +2 Deflection bonus to AC, +1 per 6 caster
+levels, for 1 minute per caster level."""
+icon = "VileStiffenSkin"
+internal_name = "VileStiffenSkin"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    20,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Stiffen Skin",
+    "Alchemist",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vile Chemist: Deadly Poison I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain +2 to hit and +1 to damage while holding a Simple Weapon in your
+Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand."""
+icon = "VileDeadlyPoisonI"
+internal_name = "VileDeadlyPoisonI"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = ["WeaponAttackBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Unarmed"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vile Chemist: Alchemical Accuracy"
+cost_per_rank = [1]
+description = "+[1/2/3] to Attack."
+icon = "VileAlchemicalAccuracy"
+internal_name = "VileAlchemicalAccuracy"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vile Chemist: Martial Subtlety"
+cost_per_rank = [1]
+description = """
+-[20/30/40]% threat generation with melee attacks.
+
+Anti-requisite: This enhancement cannot be taken at the same time as Subtlety
+enhancements in other trees."""
+icon = "VileMagicalSubtlety"
+internal_name = "VileMartialSubtlety"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "VileMartialSubtlety",
+    "Martial Subtlety",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -20,
+    -30,
+    -40,
+]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "VileMartialSubtlety",
+    "Martial Subtlety",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Vile Chemist: Vile Skills"
+cost_per_rank = [1]
+description = """
++[1/2/3] Hide, Move Silently, and Bluff
+Rank 3: +1 Reflex Saving throws."""
+icon = "VileVileSkills"
+internal_name = "VileVileSkills"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Vile Chemist: Deadly Poison II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain +2 to hit and +1 to damage while holding a Simple Weapon in your
+Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand."""
+icon = "VileDeadlyPoisonII"
+internal_name = "VileDeadlyPoisonII"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = ["WeaponAttackBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["VileDeadlyPoisonI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vile Chemist: Poisoned Attack"
+cost_per_rank = [2]
+description = "Choose from either a Melee or Ranged attack."
+icon = "VilePoisonedAttack"
+internal_name = "VilePoisonedAttack"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Poisoned Shot"
+cost_per_rank = [2]
+description = """
++30% Damage
+Ranged Attack:: On successful damage, your opponent is Contaminated.
+Using this attack acts as if you cast a Crimsonite spell.
+Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds."""
+icon = "VilePoisonedShot"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Poisoned Strike"
+cost_per_rank = [2]
+description = """
++30% Damage
+Melee Attack: On successful damage, your opponent is Contaminated.
+Using this attack acts as if you cast a Crimsonite spell.
+Cause Poison-immune enemies to become vulnerable to Poison for 12 seconds."""
+icon = "VilePoisonedStrike"
+is_clickie = true
+
+[[enhancement]]
+name = "Vile Chemist: Venom Affinity"
+cost_per_rank = [1]
+description = """
++[3/6/10] Poison Spell Power
+Rank 3: +1 Reflex Saving throws."""
+icon = "VileVenomAffinity"
+internal_name = "VileVenomAffinity"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Vile Chemist: Stone of the Subliminal"
+cost_per_rank = [2]
+description = """
+Alchemist's Stone Toggle: While wielding an Orb in your off-hand, you gain
++5% Doublestrike, +5% Doubleshot, and the effects of the Blur spell (+20% Concealment).
+You can only have one Alchemist's Stone Toggle active at a time."""
+icon = "VileStoneOfTheSubliminal"
+internal_name = "VileStoneOfTheSubliminal"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Stone of the Subliminal"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Displacement"
+
+[[enhancement.modifier.requirement]]
+items = ["Stone of the Subliminal"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.stance]]
+name = "Stone of the Subliminal"
+description = """
+While wielding an Orb in your off-hand, you gain
++5% Doublestrike, +5% Doubleshot, and the effects of the Blur spell (+20% Concealment).
+You can only have one Alchemist's Stone Toggle active at a time."""
+group_name = "Alchemist's Stone"
+icon = "VileStoneOfTheSubliminal"
+
+[[enhancement]]
+name = "Vile Chemist: SLA: Wave of Poison"
+cost_per_rank = [2]
+description = """
+SLA: Wave of Poison
+Metamagic: Empower, Maximize, Quicken, Intensify
+Spell Point Cost: 4
+Cooldown 6 seconds
+Primer Element: Ceruleite
+
+You infect enemies in a short cone with a deadly poison that eats away at them.
+Affected enemies take 2d4 Poison damage plus 1 Poison damage per 2 Caster
+Levels every 2 seconds for 12 seconds. This poison will leave enemies
+Contaminated. (Max Caster Level: 10)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.
+Can stack up to 3 times."""
+icon = "VileWaveOfPoison"
+internal_name = "VileWaveOfPoison"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    10,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Wave of Poison",
+    "Alchemist",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Vile Chemist: Deadly Poison III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain +2 to hit and +1 to damage while holding a Simple Weapon in your
+Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand."""
+icon = "VileDeadlyPoisonIII"
+internal_name = "VileDeadlyPoisonIII"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = ["WeaponAttackBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["VileDeadlyPoisonII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vile Chemist: Toxic Augmentation"
+cost_per_rank = [2]
+description = """
+Your strikes against Contaminated enemies reduce their Fortitude saves by -1 for 6 seconds.
+This effect stacks up to 4 times."""
+icon = "VileToxicAugmentation"
+internal_name = "VileEnvenomTheHeart"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Vile Chemist: Swift Ambition"
+cost_per_rank = [2]
+description = """
+When your Reaction is Orchidium, you gain +1 Reflex Save,
++1 for every 5 Alchemist Levels you have."""
+icon = "VileWillfulAmbition"
+internal_name = "VileWillfulAmbition"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+stack_source = "Alchemist"
+targets = ["Reflex"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Vile Chemist: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose between Dexterity or Intelligence."
+icon = "DexInt"
+internal_name = "VileAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Vile Chemist: Simple Thrown Mastery"
+cost_per_rank = [1]
+description = """
+If you have Simple Thrown Weapon Expertise, you now use the higher of your Intelligence
+and Dexterity to determine how much Doubleshot you gain from that feat."""
+icon = "VileSimpleThorwnMastery"
+internal_name = "VileSimpleThorwnMastery"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "AbilityTotal"
+apply_as_item_effect = true
+bonus_type = "Feat"
+effect_type = "Doubleshot"
+stack_source = "Intelligence"
+
+[[enhancement.modifier.requirement]]
+items = ["Thrown Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["Simple Thrown Weapon Expertise"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Vile Chemist: Deadly Poison IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You gain +2 to hit and +1 to damage while holding a Simple Weapon in your
+Main Hand and a Simple Weapon, Orb, Rune Arm, or nothing in your off hand."""
+icon = "VileDeadlyPoisonIV"
+internal_name = "VileDeadlyPoisonIV"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = ["WeaponAttackBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["VileDeadlyPoisonIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vile Chemist: Venom Affinity II"
+cost_per_rank = [1]
+description = """
++[3/6/10] Poison Spell Power.
+Rank 3: +1 Reflex Saving throws"""
+icon = "VileEnvenomTheHeart"
+internal_name = "VileVenomAffinityII"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Vile Chemist: Unbreakable Ambition"
+cost_per_rank = [2]
+description = "While your Reaction is Orchidium, +8 Physical Resistance Rating."
+icon = "VileUnbreakableAmbition"
+internal_name = "VileUnbreakableAmbition"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Orchidium"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Vile Chemist: Ability II"
+cost_per_rank = [2]
+description = "Choose between Dexterity or Intelligence."
+icon = "DexInt"
+internal_name = "VileAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["VileAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Vile Chemist: SLA: Greater Wave of Poison"
+cost_per_rank = [1]
+description = """
+SLA: Greater Wave of Poison
+Metamagic: Empower, Maximize, Quicken, Intensify
+Spell Point Cost: 8
+Cooldown 10 seconds
+Primer Element: Ceruleite
+
+You infect enemies in a short cone with a deadly poison that eats away at them.
+Affected enemies take 2d6 Poison damage plus 1 Poison damage per Caster Level
+every 2 seconds for 16 seconds. This poison will leave enemies Contaminated.
+(Max Caster Level: 20)
+Poison-immune enemies to become vulnerable to Poison for 12 seconds.
+Can stack up to 3 times."""
+icon = "VileGreaterWaveOfPoison"
+internal_name = "VileGreaterWaveOfPoison"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Wave of Poison",
+    "Alchemist",
+]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Vile Chemist: Fatal Poison"
+cost_per_rank = [2]
+description = """
+While holding a Simple Weapon in your Main Hand and a Simple Weapon, Orb,
+Rune Arm, or nothing in your off hand, you gain +2 to hit, +1 damage, and +1
+Competence Bonus to Critical Range. For Darts, this Range bonus is +2 instead."""
+icon = "VileFatalPoison"
+internal_name = "VileFatalPoison"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = ["WeaponAttackBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "WeaponCriticalRangeClass"
+targets = ["Simple"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["Dart"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["VileDeadlyPoisonIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Vile Chemist: Contaminated Strikes"
+cost_per_rank = [1]
+description = """
+When you strike a Contaminated enemy, they gain one stack of Vulnerable.
+Contaminate enemies by using Poison Alchemical Spells.
+
+Vulnerable: You take 1% more damage for 3 seconds. This effect stacks up to 20
+times, and loses one stack on expiration."""
+icon = "VileContaminatedStrikes"
+internal_name = "VileContaminatedStrikes"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Vile Chemist: Better living through chemicals"
+cost_per_rank = [2]
+description = """
+Choice between a significant boost to hit points and melee power or an increase to
+weapon damage, and attack speed when throwing simple weapons."""
+icon = "VileChemicalWeapon"
+internal_name = "VileChemicalWeapon"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Chemical Weapon"
+cost_per_rank = [2]
+description = """
+Your Simple Weapons gain +1[W].
+Simple Thrown Weapons you wield also gain +15% Attack Speed as long as you are
+holding a Simple Weapon, Orb, Rune Arm, or nothing in your off hand."""
+icon = "VileChemicalWeapon"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Club",
+    "Dagger",
+    "Quarterstaff",
+    "Light Mace",
+    "Heavy Mace",
+    "Morningstar",
+    "Sickle",
+    "Light Crossbow",
+    "Heavy Crossbow",
+    "Throwing Dagger",
+    "Dart",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = [
+    "Dart",
+    "Throwing Dagger",
+    "Throwing Hammer",
+]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Empty Offhand"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Chemical Body"
+cost_per_rank = [2]
+description = "Grants a 15% Competence bonus to maximum hit points and 10 Melee power."
+icon = "VilePoisonedStrike"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement]]
+name = "Vile Chemist: Brushed Aside"
+cost_per_rank = [1]
+description = """
+You gain the Defensive Roll feat (While below 20% HP, there's a chance equal to your
+Reflex save that attacks do half damage and have their effects negated)."""
+icon = "VileSappingAmbition"
+internal_name = "VileBrushedAside"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Defensive Roll"]
+
+[[enhancement.requirement]]
+items = ["Alchemist"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Alchemist"]
+req_type = "Class"

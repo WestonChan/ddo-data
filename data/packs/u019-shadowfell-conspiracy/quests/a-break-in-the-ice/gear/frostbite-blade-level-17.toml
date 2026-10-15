@@ -1,0 +1,47 @@
+name = "Frostbite Blade (Level 17)"
+description = """
+Worry not when you find yourself chilled to the bone. Worry when you stop feeling
+it."""
+drop_location = "A Break In the Ice, End chest (Heroic Normal)"
+enhancement_bonus = 4
+icon = "Scimitar_2"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Ice"
+minimum_level = 17
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Frost IV"
+
+[[effect]]
+name = "Frostbite"
+
+[[effect]]
+name = "Vorpal Lethargy"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Break in the Ice"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

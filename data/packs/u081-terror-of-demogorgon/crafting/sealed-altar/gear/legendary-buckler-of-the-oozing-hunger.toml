@@ -1,0 +1,56 @@
+name = "Legendary Buckler of the Oozing Hunger"
+description = "An aspect of the Unspeakable."
+drop_location = "Sealed Altar, Turn in Legendary Duergarcraft Buckler and 50 Legendary Abyssal Gems"
+enhancement_bonus = 16
+item_category = "Shield"
+item_type = "Buckler"
+material = "Wood"
+minimum_level = 35
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_type = "Shield"
+shield_bonus = 35
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Buckler_of_the_Oozing_Hunger"
+read = "2026-09-29"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Lingering Acidic Burn"
+
+[[effect]]
+name = "Insightful Shield Bashing +11"
+
+[[effect]]
+name = "Acidic 7"
+
+[[effect]]
+name = "Destructive Acid +7"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Sealed Altar"
+
+[[weapon]]
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 2
+damage_multiplier = 6.0
+handedness = "Off-hand"
+weapon_type = "Buckler"

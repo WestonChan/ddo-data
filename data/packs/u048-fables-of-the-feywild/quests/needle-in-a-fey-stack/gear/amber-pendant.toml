@@ -1,0 +1,32 @@
+name = "Amber Pendant"
+description = "This fragment of amber was almost lost to time."
+drop_location = "Needle in a Fey Stack, End Chest"
+icon = "Necklace_29"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Neck"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Needle in a Fey Stack"

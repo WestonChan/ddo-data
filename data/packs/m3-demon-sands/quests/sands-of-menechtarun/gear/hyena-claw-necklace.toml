@@ -1,0 +1,42 @@
+name = "Hyena Claw Necklace"
+description = """
+Made from hyena claws, this necklace imparts some of the immense fortitude of
+the beast to its wearer."""
+drop_location = "Sands of Menechtarun, Stinkpelt 's Chest; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Necklace_1"
+item_category = "Jewelry"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 62
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "stinkpelt 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

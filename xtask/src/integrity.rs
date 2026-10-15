@@ -28,7 +28,7 @@ pub enum CheckStatus {
 pub struct IntegrityOptions {
     pub corrections: Corrections,
     pub allowed_empty_tables: Vec<String>,
-    pub data_files_dir: PathBuf,
+    pub data_files_dir: Option<PathBuf>,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -98,6 +98,21 @@ impl IntegrityCheck {
 }
 
 pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
+    IntegrityCheck::hard(
+        "source_references_exist",
+        "every source owner and vendor payment names an existing entity of its declared kind",
+        OffenderQuery::Sql(ddo_model::sources::REFERENCE_VIOLATIONS),
+    ),
+    IntegrityCheck::hard(
+        "augment_recipes_not_duplicated",
+        "augments with the same name, family and level have different recipe descriptions or affixes",
+        OffenderQuery::Sql(
+            "SELECT name, MIN(id), family || ' level ' || COALESCE(CAST(min_level AS TEXT), 'unknown')
+               FROM augments
+              GROUP BY name, family, min_level, description
+             HAVING COUNT(*) > 1",
+        ),
+    ),
     IntegrityCheck::hard(
         "legacy_items_hidden",
         "every item flagged is_legacy has a reason: a (legacy) or (historic) name, an is_legacy correction, or no \
@@ -308,7 +323,7 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
         "pack_wide_drops_repeat_quest_drops",
         "a pack-wide drop does not repeat the same owner's quest drop in that pack when chests match or either chest is unknown",
         OffenderQuery::Sql(
-            "SELECT COALESCE(i.name, a.name), pack_drop.id,
+            "SELECT COALESCE(i.name, a.name, pack_drop.kind || ' source'), pack_drop.id,
                     'pack ' || p.name || ' chest ' || COALESCE(pack_drop.chest, '(unknown)') || ' repeats a quest drop'
              FROM sources pack_drop JOIN adventure_packs p ON p.id = pack_drop.pack_id
              LEFT JOIN items i ON i.id = pack_drop.item_id
@@ -431,8 +446,13 @@ pub const INTEGRITY_CHECKS: &[IntegrityCheck] = &[
     )
     .showing_every_offender(),
     IntegrityCheck::warn(
+        "buff_types_not_classified",
+        "XML buff-family types that are neither stat-mapped nor engine_only, with family and item counts; runs only with --source",
+        OffenderQuery::Built(buff_types_not_classified),
+    ).showing_every_offender(),
+    IntegrityCheck::warn(
         "effect_types_not_classified",
-        "effect types in ItemBuffs.xml and written modifiers that are neither stat-mapped nor engine_only; each entry gives the number of buff families and items using it",
+        "stored modifier types that are neither stat-mapped nor engine_only; each entry counts the items using it",
         OffenderQuery::Built(effect_types_not_classified),
     )
     .showing_every_offender(),
@@ -772,7 +792,7 @@ fn source_match_is_only_in_prerequisite(segment: &str, source_match: &str) -> bo
 fn sources_from_prerequisite_clauses(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
     let mut offenders = Vec::new();
     let mut statement = db.prepare(
-        "SELECT s.id, COALESCE(i.name, a.name), s.drop_text_segment, s.source_match
+        "SELECT s.id, COALESCE(i.name, a.name, s.kind || ' source'), s.drop_text_segment, s.source_match
          FROM sources s LEFT JOIN items i ON i.id = s.item_id LEFT JOIN augments a ON a.id = s.augment_id
          WHERE s.drop_text_segment IS NOT NULL ORDER BY s.id",
     )?;
@@ -787,17 +807,27 @@ fn sources_from_prerequisite_clauses(db: &Connection, _options: &IntegrityOption
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
-fn source_review_allowlist(collection: &str) -> Result<BTreeMap<String, String>> {
-    let review: serde_json::Value = serde_json::from_str(include_str!("../data/source_review.json"))?;
-    let entries = review[collection].as_object().context("source review allow-list")?;
-    entries
-        .iter()
-        .map(|(name, page)| {
-            let page = page.as_str().context("source review page")?;
-            anyhow::ensure!(page.starts_with("https://ddowiki.com/page/"), "source review {name:?} has no wiki page");
-            Ok((name.clone(), page.to_string()))
-        })
-        .collect()
+fn source_review_allowlist(db: &Connection, collection: &str) -> Result<BTreeMap<String, String>> {
+    let rule = match collection {
+        "items_spanning_packs" => "item",
+        "packs_with_several_patrons" => "patron",
+        _ => anyhow::bail!("unknown source review collection {collection}"),
+    };
+    let mut statement =
+        db.prepare("SELECT DISTINCT entity_name, url FROM pack_exceptions WHERE rule = ?1 ORDER BY entity_name")?;
+    let citations = statement.query_map([rule], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?)))?;
+    let mut reviewed = BTreeMap::new();
+    for citation in citations {
+        let (name, citation_url) = citation?;
+        anyhow::ensure!(
+            citation_url.starts_with("https://ddowiki.com/page/"),
+            "source review {name:?} has no wiki page"
+        );
+        if let Some(previous) = reviewed.insert(name.clone(), citation_url.clone()) {
+            anyhow::ensure!(previous == citation_url, "source review {name:?} has conflicting citations");
+        }
+    }
+    Ok(reviewed)
 }
 
 fn quest_version_base(name: &str) -> Option<String> {
@@ -810,19 +840,24 @@ fn quest_version_base(name: &str) -> Option<String> {
     name.split_once(" - Epic ").map(|(area, challenge)| format!("{area} - {challenge}"))
 }
 
-fn pending_quest_versions() -> Result<BTreeMap<String, String>> {
-    let review: serde_json::Value = serde_json::from_str(include_str!("../data/source_review.json"))?;
-    let entries = review["quest_versions_pending_wiki_read"].as_object().context("quest version pending wiki reads")?;
-    entries
-        .iter()
-        .map(|(name, reason)| {
-            anyhow::ensure!(
-                reason.as_str().is_some_and(|reason| !reason.trim().is_empty()),
-                "quest version {name:?} needs a reason for the pending wiki read"
-            );
-            Ok((name.clone(), reason.as_str().unwrap().to_string()))
-        })
-        .collect()
+fn pending_quest_versions(db: &Connection) -> Result<BTreeMap<String, String>> {
+    let mut pending = BTreeMap::new();
+    let mut statement =
+        db.prepare("SELECT entity_name, reason, url FROM pack_exceptions WHERE rule = 'quest' ORDER BY entity_name")?;
+    for row in statement
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))?
+    {
+        let (name, reason, citation_url) = row?;
+        anyhow::ensure!(
+            !reason.trim().is_empty() && citation_url.starts_with("https://ddowiki.com/page/"),
+            "quest version {name:?} needs a reason and wiki citation"
+        );
+        anyhow::ensure!(
+            pending.insert(name.to_string(), reason.to_string()).is_none(),
+            "quest version {name:?} is reviewed twice"
+        );
+    }
+    Ok(pending)
 }
 
 fn quest_version_differences(db: &Connection) -> Result<Vec<Offender>> {
@@ -860,14 +895,14 @@ fn quest_version_differences(db: &Connection) -> Result<Vec<Offender>> {
 }
 
 fn unreviewed_quest_version_differences(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let pending = pending_quest_versions()?;
+    let pending = pending_quest_versions(db)?;
     let offenders =
         quest_version_differences(db)?.into_iter().filter(|quest| !pending.contains_key(&quest.name)).collect();
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
 }
 
 fn reviewed_quest_version_differences(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let pending = pending_quest_versions()?;
+    let pending = pending_quest_versions(db)?;
     let differences =
         quest_version_differences(db)?.into_iter().map(|quest| (quest.name.clone(), quest)).collect::<BTreeMap<_, _>>();
     let mut offenders = Vec::new();
@@ -887,7 +922,7 @@ fn reviewed_quest_version_differences(db: &Connection, _options: &IntegrityOptio
 }
 
 fn items_spanning_packs(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let reviewed = source_review_allowlist("items_spanning_packs")?;
+    let reviewed = source_review_allowlist(db, "items_spanning_packs")?;
     let mut by_item: BTreeMap<(i64, String), Vec<(String, String)>> = BTreeMap::new();
     let mut statement = db.prepare(
         "SELECT i.id, i.name, pack.name, source.source_kind
@@ -926,7 +961,7 @@ fn items_spanning_packs(db: &Connection, _options: &IntegrityOptions) -> Result<
 }
 
 fn packs_with_several_patrons(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
-    let reviewed = source_review_allowlist("packs_with_several_patrons")?;
+    let reviewed = source_review_allowlist(db, "packs_with_several_patrons")?;
     let mut offenders = Vec::new();
     let mut reviewed_count = 0;
     let mut statement = db.prepare(
@@ -1372,7 +1407,10 @@ fn owner_names_disagree_with_linked_effects(db: &Connection, _options: &Integrit
 }
 
 fn effect_definitions_with_partially_mapped_targets(_db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
-    let definitions = item_buffs::parse(&options.data_files_dir.join("ItemBuffs.xml"))?;
+    let Some(source) = &options.data_files_dir else {
+        return Ok(Findings { offenders: None, notes: vec!["XML mapping audit; enable with --source".into()] });
+    };
+    let definitions = item_buffs::parse(&source.join("ItemBuffs.xml"))?;
     let resolver = BuffResolver::from_definitions(&definitions);
     let mut offenders = Vec::new();
     for (buff_kind, definition) in &definitions {
@@ -1537,33 +1575,34 @@ fn stat_links_missing_value(db: &Connection, _options: &IntegrityOptions) -> Res
     stat_link_findings(db, "l.value IS NULL AND e.default_value IS NULL", "has no first amount")
 }
 
-fn effect_types_not_classified(db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
-    let definition_path = options.data_files_dir.join("ItemBuffs.xml");
-    if !definition_path.is_file() {
-        return Ok(Findings { offenders: None, notes: vec![format!("{} is absent", definition_path.display())] });
-    }
-    let definitions = item_buffs::parse(&definition_path)?;
+fn is_classified_effect_type(effect_type: &str) -> bool {
     let vocabulary = &EFFECT_MAP.effect;
-    let is_classified = |effect_type: &str| {
-        vocabulary.fixed.contains_key(effect_type)
-            || vocabulary.targeted.contains_key(effect_type)
-            || vocabulary.by_item.contains_key(effect_type)
-            || vocabulary.by_item_default.contains_key(effect_type)
-            || vocabulary.engine_only.contains_key(effect_type)
-            || effect_type == "SkillBonusAbility"
+
+    vocabulary.fixed.contains_key(effect_type)
+        || vocabulary.targeted.contains_key(effect_type)
+        || vocabulary.by_item.contains_key(effect_type)
+        || vocabulary.by_item_default.contains_key(effect_type)
+        || vocabulary.engine_only.contains_key(effect_type)
+        || effect_type == "SkillBonusAbility"
+}
+
+fn buff_types_not_classified(_db: &Connection, options: &IntegrityOptions) -> Result<Findings> {
+    let Some(source) = &options.data_files_dir else {
+        return Ok(Findings { offenders: None, notes: vec!["XML mapping audit; enable with --source".into()] });
     };
+    let definitions = item_buffs::parse(&source.join("ItemBuffs.xml"))?;
     let mut families_by_type: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
     let mut items_by_type: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
     let mut types_by_family: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
     for (family, definition) in definitions {
         for effect_type in definition.effects.iter().flat_map(|effect| &effect.types) {
-            if !is_classified(effect_type) {
+            if !is_classified_effect_type(effect_type) {
                 families_by_type.entry(effect_type.clone()).or_default().insert(family.clone());
                 types_by_family.entry(family.clone()).or_default().insert(effect_type.clone());
             }
         }
     }
-    let items_dir = options.data_files_dir.join("Items");
+    let items_dir = source.join("Items");
     if items_dir.is_dir() {
         for entry in walkdir::WalkDir::new(items_dir).into_iter().filter_map(Result::ok) {
             if !entry.file_type().is_file() || entry.path().extension().is_none_or(|extension| extension != "item") {
@@ -1580,23 +1619,6 @@ fn effect_types_not_classified(db: &Connection, options: &IntegrityOptions) -> R
             }
         }
     }
-    let mut modifier_statement = db.prepare(
-        "SELECT DISTINCT m.effect_type, i.name FROM modifiers m
-         LEFT JOIN items i ON m.source_kind = 'item' AND i.id = m.source_id
-         UNION SELECT DISTINCT types.value, i.name FROM modifiers m, json_each(m.extra_types) types
-         LEFT JOIN items i ON m.source_kind = 'item' AND i.id = m.source_id",
-    )?;
-    for row in
-        modifier_statement.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(1)?)))?
-    {
-        let (effect_type, item_name) = row?;
-        if !is_classified(&effect_type) {
-            families_by_type.entry(effect_type.clone()).or_default();
-            if let Some(item_name) = item_name {
-                items_by_type.entry(effect_type).or_default().insert(item_name);
-            }
-        }
-    }
     let offenders = families_by_type
         .into_iter()
         .map(|(effect_type, families)| {
@@ -1608,6 +1630,36 @@ fn effect_types_not_classified(db: &Connection, options: &IntegrityOptions) -> R
                 id: None,
                 detail: format!("{} {family_word}; {item_count} {item_word}", families.len()),
             }
+        })
+        .collect();
+    Ok(Findings { offenders: Some(offenders), notes: Vec::new() })
+}
+
+fn effect_types_not_classified(db: &Connection, _options: &IntegrityOptions) -> Result<Findings> {
+    let mut unclassified_types = BTreeSet::new();
+    let mut items_by_type: BTreeMap<String, BTreeSet<String>> = BTreeMap::new();
+    let mut modifier_statement = db.prepare(
+        "SELECT DISTINCT m.effect_type, i.name FROM modifiers m
+         LEFT JOIN items i ON m.source_kind = 'item' AND i.id = m.source_id
+         UNION SELECT DISTINCT types.value, i.name FROM modifiers m, json_each(m.extra_types) types
+         LEFT JOIN items i ON m.source_kind = 'item' AND i.id = m.source_id",
+    )?;
+    for row in
+        modifier_statement.query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, Option<String>>(1)?)))?
+    {
+        let (effect_type, item_name) = row?;
+        if !is_classified_effect_type(&effect_type) {
+            unclassified_types.insert(effect_type.clone());
+            if let Some(item_name) = item_name {
+                items_by_type.entry(effect_type).or_default().insert(item_name);
+            }
+        }
+    }
+    let offenders = unclassified_types
+        .into_iter()
+        .map(|name| {
+            let count = items_by_type.get(&name).map_or(0, BTreeSet::len);
+            Offender { name, id: None, detail: format!("{count} items with stored modifiers") }
         })
         .collect();
     Ok(Findings { offenders: Some(offenders), notes: Vec::new() })

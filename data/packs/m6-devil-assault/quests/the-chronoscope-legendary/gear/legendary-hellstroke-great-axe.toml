@@ -1,0 +1,66 @@
+name = "Legendary Hellstroke Great Axe"
+accepts_sentience = true
+description = """
+A fearsome polearm that resembles the cruel implements orthon warriors use to
+rend their enemies. It occasionally allows the user to attack twice consecutively,
+much like an orthon."""
+drop_location = "The Chronoscope (Legendary), end chest, or Legendary version of Epic Hellstroke Great Axe"
+enhancement_bonus = 15
+icon = "GreatAxe_4a"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Cold Iron"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Maiming 6"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 129
+
+[[effect]]
+name = "Cold Iron"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest, or legendary version of epic hellstroke great axe"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Great Axe"

@@ -1,0 +1,57 @@
+name = "Gnawed Ring"
+description = "This gnawed upon ring was once the property of the famous Occult Slayer, Vorne."
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Occult Slayer - 2 Piece bonus"
+effect_type = "SaveBonus"
+targets = [
+    "Will",
+    "Reflex",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    22,
+    22,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+display_name = "Occult Slayer - 2 Piece bonus"
+effect_type = "SpellResistance"
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

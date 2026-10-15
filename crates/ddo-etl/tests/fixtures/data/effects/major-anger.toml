@@ -1,0 +1,11 @@
+name = "Major Anger"
+description_template = "This will increase the total number of Rages you can use by 5. However, these additional Rages will only take effect after the wielder rests."
+home_bonus_type = "Equipment"
+verbose_name_template = "Major Anger +5"
+
+[[bonus]]
+amount_from = 0
+constant = 5
+rounding = "down"
+scale = 1.0
+target = "Rage Uses"

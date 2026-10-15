@@ -1,0 +1,42 @@
+name = "Solar Gem of Armor Layers (Heroic)"
+description = """
++5% Artifact Bonus to Armor Class.
+Drops in: Voices of the Dead, end chest
+Sleeping with the Fishes, House Lyrandar uprising optional chest
+The Body Snatchers, cookbook optional chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Armor Class Percentage"
+bonus_type = "Artifact"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "house lyrandar uprising optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"
+
+[[source]]
+chest = "cookbook optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

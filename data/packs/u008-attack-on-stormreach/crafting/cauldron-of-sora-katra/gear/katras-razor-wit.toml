@@ -1,0 +1,38 @@
+name = "Katra's Razor Wit"
+description = """
+This ring, said to have been originally crafted for the hag queen Sora Katra,
+has been upgraded. It makes its wearer glowingly charismatic, and allows him
+or her to sway others with words alone."""
+drop_location = "Cauldron of Sora Katra, upgrade of Katra's Wit"
+icon = "Ring_44"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"

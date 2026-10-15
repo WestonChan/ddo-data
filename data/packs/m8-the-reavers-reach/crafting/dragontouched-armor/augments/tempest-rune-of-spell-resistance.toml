@@ -1,0 +1,20 @@
+name = "Tempest Rune of Spell Resistance"
+description = "Spell Resistance +22: +22 Enhancement bonus to Spell Resistance."
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 22
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Enhancement"
+effect = "Spell Resistance"
+effect_type = "SpellResistance"
+
+[[slot]]
+slot = "crafting: tempest rune"

@@ -1,0 +1,44 @@
+name = "Legendary Draconic Prophecy"
+icon = "Kundarak"
+
+[[item]]
+name = "Legendary Azure Necklace of Prophecy"
+
+[[item]]
+name = "Legendary Crimson Necklace of Prophecy"
+
+[[item]]
+name = "Legendary Dragon's Eye"
+
+[[item]]
+name = "Legendary Silver Necklace of Prophecy"
+
+[[item]]
+name = "Perfected Dragon's Eye"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"

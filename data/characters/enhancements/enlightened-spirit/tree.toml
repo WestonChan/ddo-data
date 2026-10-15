@@ -1,0 +1,1274 @@
+name = "Enlightened Spirit"
+background = "WarlockBackground"
+icon = "Warlock"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Enlightened Spirit: Eldritch Aura"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Eldritch Blast Shape: Your Eldritch Blast changes into an aura. It deals the same
+damage as your Eldritch Blast to all foes in range every 5 seconds. You cannot
+fire Eldritch Blasts while in this stance, but may attack normally with weapons
+and cast spells.
+Cooldown: 8 seconds."""
+icon = "WESEldritchAura"
+internal_name = "WESCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.stance]]
+name = "Eldritch Aura"
+description = """
+While this is active, your Eldritch Blast changes into an aura that
+deals the same damage as your Eldritch Blast to all foes in range every few seconds."""
+group_name = "Blast Shape"
+icon = "WESEldritchAura"
+
+[[enhancement]]
+name = "Enlightened Spirit: Aura of Courage"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain immunity to Fear, and all allies around you gain a +4 Morale bonus to
+saving throws against fear. Cooldown: 2 seconds.
+Passive: +5 Healing Amplification."""
+icon = "WESAuraOfCourage"
+internal_name = "WESCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["WESCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Enlightened Spirit: Shape Vestments"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While wearing Light Armor, you gain +10 Maximum HP and +5 Magical Resistance
+Rating. While wearing Medium Armor you are proficient with, you gain +20 Maximum
+HP and +10 Magical Resistance Rating.
+Passive: Your Eldritch Aura now affects enemies every 4 seconds."""
+icon = "WESShapeVestments"
+internal_name = "WESCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Medium Armor Proficiency"]
+req_type = "FeatAnySource"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Medium Armor Proficiency"]
+req_type = "FeatAnySource"
+
+[[enhancement.requirement]]
+items = ["WESCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Enlightened Spirit: Aura of Menace"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Toggle: You project a 15 meter Aura of Menace, decreasing the saving throws,
+attack, and armor class of nearby enemies by 2. Cooldown: 2 seconds.
+Passive: Your Eldritch Aura now affects enemies every 3 seconds and you gain
+proficiency with all Martial weapons."""
+icon = "WESAuraOfMenace"
+internal_name = "WESCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Hand Axe",
+    "Kukri",
+    "Light Hammer",
+    "Light Pick",
+    "Shortsword",
+    "Battle Axe",
+    "Heavy Pick",
+    "Longsword",
+    "Rapier",
+    "Scimitar",
+    "Warhammer",
+    "Falchion",
+    "Great Axe",
+    "Great Club",
+    "Maul",
+    "Great Sword",
+    "Shortbow",
+    "Longbow",
+    "Throwing Axe",
+]
+
+[[enhancement.requirement]]
+items = ["WESCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Enlightened Spirit: Celestial Spirit"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Major Form Toggle: When enabled, you float above the ground, gain Feather Falling,
+are immune to most knockdown effects, and you gain +3 bonus Imbue Dice.
+Cooldown: 8 seconds.
+
+Passive: Your Eldritch Aura now affects enemies every 2 seconds."""
+icon = "WESCelestialSpirit"
+internal_name = "WESCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier.requirement]]
+items = ["Celestial Spirit"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Knockdown"]
+
+[[enhancement.modifier.requirement]]
+items = ["Celestial Spirit"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["WESCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.stance]]
+name = "Celestial Spirit"
+description = """
+You float above the ground, gain Feather Falling, and are immune to knockdown effects.
+When enabled, you Gain +3 bonus Imbue Dice."""
+group_name = "Major Form"
+icon = "WESCelestialSpirit"
+
+[[enhancement]]
+name = "Enlightened Spirit: Ultimate Enlightenment"
+cost_per_rank = [1]
+description = """
++2 Constitution, +2 Charisma, +20% Competence bonus to Maximum HP, +10 Universal
+Spell Power, +20 Light Spell Power. While your Eldritch Aura is enabled, you
+gain full Base Attack Bonus, +10 Melee Power, and +10 Ranged Power."""
+icon = "WESUltimateEnlightenment"
+internal_name = "WESCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WESCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Constitution",
+    "Charisma",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "OverrideBAB"
+
+[[enhancement.modifier.requirement]]
+items = ["Celestial Spirit"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier.requirement]]
+items = ["Celestial Spirit"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.requirement]]
+items = ["WESCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "WESCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Enlightened Spirit: Resilience of Body"
+cost_per_rank = [1]
+description = "+[2/4/6] Physical Resistance Rating"
+icon = "WESResilienceOfBody"
+internal_name = "WESResilienceOfBody"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Enlightened Spirit: Spiritual Defense"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While your Eldritch Aura is active, you and nearby allies get a +[1/2/3] bonus to AC.
+You personally receive +[5/10/15] Maximum Hit Points (while Aura is active)."""
+icon = "WESSpiritualDefense"
+internal_name = "WESSpiritualDefense"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Eldritch Aura"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier.requirement]]
+items = ["Eldritch Aura"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Enlightened Spirit: Resilience of Soul"
+cost_per_rank = [1]
+description = "+[2/4/6] Magical Resistance Rating"
+icon = "WESResilienceOfSoul"
+internal_name = "WESResilienceOfSoul"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Enlightened Spirit: Brutality"
+cost_per_rank = [1]
+description = "Choose one"
+icon = "WESBrutality"
+internal_name = "WESBrutality"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Brutal Spellcasting"
+cost_per_rank = [1]
+description = """
+Your damaging spells generate 75% more hate than they normally would,
+making enemies more likely to attack you."""
+icon = "WESBrutalSpellcasting"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusSpell"
+
+[[enhancement.selection]]
+name = "Brute Fighting"
+cost_per_rank = [1]
+description = """
+Your melee attacks generate 75% more hate than they normally would,
+making enemies more likely to attack you."""
+icon = "WESBruteFighting"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement]]
+name = "Enlightened Spirit: Rewards of Tribute"
+cost_per_rank = [1]
+description = """
++[1/2/3] Heal, Balance, and Intimidate.
+Rank 3: +1 Fortitude Save"""
+icon = "WESRewardsOfTribute"
+internal_name = "WESRewardsOfTribute"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Heal",
+    "Intimidate",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Fortitude"]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Enlightened Spirit: Resist Energies"
+cost_per_rank = [2]
+description = """
+Gives yourself or an ally an Enhancement bonus against Fire, Cold, Electric, Acid,
+and Sonic damage, reducing that type of damage taken by 10.
+The bonus increases to 20 at caster level 7 and 30 at caster level 11.
+Activation Cost: 40 Spell Points.
+Cooldown: 2 seconds.
+Metamagic: Extend, Quicken, Enlarge. Spell Resistance: No."""
+icon = "WESResistEnergies"
+internal_name = "WESResistEnergies"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    40,
+    0,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Resist Energies",
+    "Warlock",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Enlightened Spirit: Spiritual Bastion"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While your Eldritch Aura is active, you get +[3/6/10] Physical Resistance Rating.
+In addition, you and nearby allies get a +[1/2/3] Determination Bonus to Physical
+Resistance Rating."""
+icon = "WESSpiritualBastion"
+internal_name = "WESSpiritualBastion"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Eldritch Aura"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Determination"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Eldritch Aura"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["WESSpiritualDefense"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Enlightened Spirit: Power of Enlightenment: Light I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "You gain +[5/10/15] Light Spell Power and +[2/4/6] Universal Spell Power."
+icon = "WESPowerOfEnlightenmentLightI"
+internal_name = "WESPowerOfEnlightenmentLightI"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Enlightened Spirit: Shield"
+cost_per_rank = [2]
+description = """
+You permanently gain the effects of the Shield spell.
+Shield: Grants a +4 Shield bonus to Armor Class and protection from magic missiles."""
+icon = "WESShield"
+internal_name = "WESShield"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Shield"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magic Missiles"]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Enlightened Spirit: Action Boost: Defense"
+cost_per_rank = [2]
+description = """
+Activate to gain a +15 Action Boost Bonus to AC and Physical
+Resistance Rating for 20 seconds.
+Cooldown: 30 seconds."""
+icon = "WESActionBoostDefense"
+internal_name = "WESActionBoostDefense"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Enlightened Spirit: Eldritch Burst"
+cost_per_rank = [2]
+description = """
+Fire your Eldritch Blast in an AOE centered on you.
+All enemies caught in the burst take 1d6 Light Damage, plus any other effects
+and damage your Eldritch Blasts produce. This ability shares a cooldown with
+Cleave, and the damage scales with 100% spell power. Affected by ASF.
+Cooldown: 5 seconds.
+Metamagic: Empower, Maximize, Quicken, Intensify. Spell Resistance: No."""
+icon = "WESEldritchBurst"
+internal_name = "WESEldritchBurst"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Enlightened Spirit: Spiritual Ward"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While your Eldritch Aura is active, you get +[3/6/10] Magical Resistance Rating.
+In addition, you and nearby allies get a +[1/2/3] Determination Bonus to Magical
+Resistance Rating."""
+icon = "WESSpiritualWard"
+internal_name = "WESSpiritualWard"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Eldritch Aura"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Determination"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Eldritch Aura"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["WESSpiritualBastion"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Enlightened Spirit: Power of Enlightenment: Light II"
+cost_per_rank = [1]
+description = "You gain +[5/10/15] Light Spell Power and +[2/4/6] Universal Spell Power."
+icon = "WESPowerOfEnlightenmentLightII"
+internal_name = "WESPowerOfEnlightenmentLightII"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["WESPowerOfEnlightenmentLightI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Enlightened Spirit: Fortify Summons"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Your summoned creatures, hirelings, and pets get [25/50/100]% Fortification,
++[5/10/20] Physical Resistance Rating, and +[5/10/20] Magical Resistance Rating."""
+icon = "WESFortifySummons"
+internal_name = "WESFortifySummons"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "HirelingFortification"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "HirelingPRR"
+extra_types = ["HirelingMRR"]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Enlightened Spirit: Ability I"
+cost_per_rank = [2]
+description = "Choose either Constitution or Charisma"
+icon = "ConCha"
+internal_name = "WESAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Enlightened Spirit: Medium Armor Proficiency"
+cost_per_rank = [2]
+description = """
+Passive: You gain proficiency in Medium Armor, and the ability to cast arcane
+spells in medium armor without arcane spell failure. (Note: applies to arcane
+spells cast by all classes)"""
+icon = "WESMediumArmorProficiency"
+internal_name = "WESMediumArmorProficiency"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Medium Armor Proficiency"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-100]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement.modifier.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Enlightened Spirit: Spiritual Retribution"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your Eldritch Blasts, Melee Attacks, and Ranged Attacks gain
+1d6 Light damage that scales with Spell Power."""
+icon = "WESSpiritualRetribution"
+internal_name = "WESSpiritualRetribution"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["WESSpiritualWard"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Enlightened Spirit: Spiritual Retribution"
+description = """
+Imbue Toggle: Your Eldritch Blasts, Melee Attacks, and Ranged Attacks gain
+1d6 Light damage that scales with Spell Power."""
+group_name = "Imbue"
+icon = "WESSpiritualRetribution"
+
+[[enhancement]]
+name = "Enlightened Spirit: Brilliance"
+cost_per_rank = [1]
+description = """
+Your Eldritch Aura provides you and nearby allies with a Determination bonus to
+Temporary Hit points equal to your Constitution score. If you are level 20 or
+higher this effect is doubled."""
+icon = "WESBrilliance"
+internal_name = "WESBrilliance"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Enlightened Spirit: Imbue Summons"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Your summoned creatures/hirelings/pets gain +[10/20/30] Melee, Ranged,
+and Universal Spell Power."""
+icon = "WESImbueSummons"
+internal_name = "WESImbueSummons"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "HirelingMeleePower"
+extra_types = [
+    "HirelingRangedPower",
+    "HirelingSpellPower",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["WESFortifySummons"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Enlightened Spirit: Ability II"
+cost_per_rank = [2]
+description = "Choose either Constitution or Charisma"
+icon = "ConCha"
+internal_name = "WESAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Enlightened Spirit: Spirit Blast"
+cost_per_rank = [2]
+description = """
+Fire your Eldritch Blast in an AOE centered on you.
+All enemies caught in the burst take 4d6 Light Damage, plus any other effects
+and damage your Eldritch Blasts produce. This ability shares a cooldown with
+Great Cleave, and the damage scales with 100% spell power. Affected by ASF.
+Cooldown 5 seconds.
+Metamagic: Empower, Maximize, Quicken, Intensify. Spell Resistance: No."""
+icon = "WESSpiritBlast"
+internal_name = "WESSpiritBlast"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Enlightened Spirit: Beacon"
+cost_per_rank = [1]
+description = """
+While your Eldritch Aura is active, you gain +10 Healing Amplification.
+In addition, you and nearby allies get a +10 Determination bonus to Healing
+Amplification."""
+icon = "WESBeacon"
+internal_name = "WESBeacon"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier.requirement]]
+items = ["Eldritch Aura"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Determination"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier.requirement]]
+items = ["Eldritch Aura"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Enlightened Spirit: Shining Through"
+cost_per_rank = [2]
+description = """
+Gain a Sacred bonus to Temporary Hitpoints equal to 8x your Constitution Score
+that lasts for up to 10 minutes, which also stacks with Feigned Health and is
+affected by all damage reduction abilities such as MRR or the Resist Energies
+spell. The two health barriers are "layered" on top of each other; the first
+one to get drained is the last one to have been cast.
+For 20 seconds, you gain +25 Sacred bonus to Healing Amplification.
+Cooldown: 30 seconds
+Cost: 8 spell points"""
+icon = "WESShiningThrough"
+internal_name = "WESShiningThrough"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Enlightened Spirit: Displace Summons"
+cost_per_rank = [1]
+description = """
+Your summoned creatures/hirelings/pets gain a permanent 25% Enhancement bonus
+to Concealment, as per the item effect "Lesser Displacement", and 10% Dodge."""
+icon = "WESDisplaceSummons"
+internal_name = "WESDisplaceSummons"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "HirelingConcealment"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HirelingDodge"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["WESImbueSummons"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Enlightened Spirit: Displacement"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Displacement
+Activation Cost: 6 Spell Points.
+Cooldown: 3 seconds."""
+icon = "WESDisplacement"
+internal_name = "WESDisplacement"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Displacement",
+    "Warlock",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Warlock"]
+req_type = "Class"

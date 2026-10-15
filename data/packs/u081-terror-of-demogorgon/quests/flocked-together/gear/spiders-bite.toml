@@ -1,0 +1,56 @@
+name = "Spider's Bite"
+description = "This axe cleaves deep and leaves its poison behind."
+drop_location = "Flocked Together, The Decomposter's chest"
+enhancement_bonus = 5
+icon = "GreatAxe_1m"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Poisonous 3"
+
+[[effect]]
+name = "Toxic 7"
+
+[[effect]]
+name = "Nightshade Venom"
+
+[[effect]]
+name = "Vampirism 1"
+
+[[note]]
+kind = "item"
+field = "drop_location"
+upstream = "Stealing from Sorcere, Romira and Juvian 's chest (requires completion of Sleeping with the Fishes and visits to The Cerulean Hills and Ruins of Myth Drannor )"
+reason = "The wiki lists Flocked Together's Decomposter chest as this item's only drop; his drop text belongs to Stitched Great Forge Shroud."
+url = "https://ddowiki.com/page/Item:Spider%27s_Bite"
+read = "2026-10-05"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "the decomposter's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flocked Together"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Great Axe"

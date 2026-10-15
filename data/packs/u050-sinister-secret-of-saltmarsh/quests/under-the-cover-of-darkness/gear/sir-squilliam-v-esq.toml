@@ -1,0 +1,67 @@
+name = "Sir Squilliam V, Esq."
+description = "The son of the son of the most distinguished of the Runearms."
+drop_location = "Under the Cover of Darkness, end chest, or Legendary version of Sir Squilliam IV, Esq."
+icon = "RuneArm_5a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 30
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Alchemical Water Attunement"
+
+[[effect]]
+name = "Legendary Ice Shards Guard"
+
+[[effect]]
+name = "Rune Arm Imbue - Tidal Shot VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Salt Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of sir squilliam iv, esq"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Cover of Darkness"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

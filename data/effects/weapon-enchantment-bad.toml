@@ -1,0 +1,3 @@
+name = "Weapon Enchantment Bad"
+description_template = "This weapon is less well-made than normal, giving a -1 penalty to attack and damage rolls."
+verbose_name_template = "-1 Enhancement Bonus"

@@ -1,0 +1,3 @@
+name = "Eidolon Summons"
+description_template = "On Being Damaged: Animates a portion of the wearer's shadow to support them in battle. The shadow remains animate for 30 seconds and can be created once every 120 seconds."
+verbose_name_template = "Eidolon Summons"

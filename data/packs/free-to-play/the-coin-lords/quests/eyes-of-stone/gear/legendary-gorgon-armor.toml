@@ -1,0 +1,60 @@
+name = "Legendary Gorgon Armor"
+description = """
+A suit of armor crafted using the essence of a vicious gorgon. It allows its
+wearer to breathe a cone of vapor that will petrify creatures, just as a gorgon
+can do."""
+drop_location = "Eyes of Stone, Coin Lords' chest"
+enhancement_bonus = 15
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[clickie]]
+name = "Gorgon Breath"
+clickie = "Gorgon Breath"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Legendary Stone Guard"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 14
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Gorgon Breath"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "coin lords' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Eyes of Stone"

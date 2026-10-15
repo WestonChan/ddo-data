@@ -1,0 +1,30 @@
+name = "Spiked Boots (Level 24)"
+description = """
+The heels and soles of these heavy boots are covered in metallic spikes that
+give its wearer excellent traction on all surfaces."""
+drop_location = "Return to Prison of the Planes, Risia Room Chest (Epic Hard)"
+icon = "Boots_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 24
+slot = "Feet"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Immunity to Slippery Surfaces"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "risia room chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"

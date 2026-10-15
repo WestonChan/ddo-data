@@ -1,0 +1,22 @@
+name = "The Bloody Crypt"
+bestowed_by = "Loremistress Jinna"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The Necropolis, Part 1"
+patron = "The Silver Flame"
+zone = "The Bloody Crypt"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Bloody_Crypt"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6

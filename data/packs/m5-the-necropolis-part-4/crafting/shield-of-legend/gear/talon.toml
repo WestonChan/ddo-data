@@ -1,0 +1,66 @@
+name = "Talon"
+description = """
+Razor sharp blades extend from the top of this shield. A small cloth dangles
+from below, used to wipe the blood from its claws."""
+drop_location = "Shield of Legend, Turn in completed Shield: Frame"
+enhancement_bonus = 5
+icon = "Shield_43"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 14
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 11
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Maiming"
+
+[[effect]]
+name = "Spikes"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Shield of Legend"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "Off-hand"
+weapon_type = "Large Shield"

@@ -1,0 +1,40 @@
+name = "Tattered Scrolls of the Broken One"
+description = "Wrap these ancient scrolls around yourself to unlock incredible holy power."
+drop_location = "Too Hot to Handle, end chest"
+icon = "Bracers_28"
+item_category = "Clothing"
+material = "Paper"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"

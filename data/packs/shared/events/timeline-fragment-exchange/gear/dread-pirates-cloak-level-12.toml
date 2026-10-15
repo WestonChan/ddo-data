@@ -1,0 +1,37 @@
+name = "Dread Pirate's Cloak (level 12)"
+description = "Time-Twisted version of Dread Stalker's Cloak"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+icon = "Cloak_21a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 12
+slot = "Back"
+
+[[effect]]
+name = "Exceptional Nimble Skills Bonus"
+bonus_type = "Exceptional"
+value = 7
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 84
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 84
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

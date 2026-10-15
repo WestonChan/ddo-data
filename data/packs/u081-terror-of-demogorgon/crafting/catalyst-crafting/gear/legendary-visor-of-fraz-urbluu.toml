@@ -1,0 +1,54 @@
+name = "Legendary Visor of Fraz-Urb'luu"
+description = "This visor confers the power of illusion. Or at least, it seems to."
+drop_location = "Catalyst Crafting, Turn in Visor of the Flesh Render Guards, its Legendary Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+icon = "Goggles_1e"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 35
+slot = "Goggles"
+
+[[clickie]]
+name = "Death Ward"
+clickie = "Death Ward"
+
+[[effect]]
+name = "Illusion Save"
+bonus_type = "Resistance"
+value = 13
+
+[[effect]]
+name = "Eversight"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 14
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Death Ward"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

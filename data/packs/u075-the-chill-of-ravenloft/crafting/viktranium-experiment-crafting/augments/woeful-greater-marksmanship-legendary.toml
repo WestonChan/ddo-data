@@ -1,0 +1,22 @@
+name = "Woeful Greater Marksmanship (Legendary)"
+description = "You gain +3 Competence bonus to your Ranged Attack and +2 Competence bonus to your Ranged Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Competence"
+effect_type = "WeaponAttackBonusClass"
+targets = ["Ranged"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Competence"
+effect_type = "WeaponDamageBonusClass"
+targets = ["Ranged"]
+
+[[slot]]
+slot = "lamordia: woeful (accessory)"

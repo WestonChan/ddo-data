@@ -1,0 +1,37 @@
+name = "Ring of Spring's Storms"
+description = "The thunder beckons you."
+drop_location = "The Icemount Curse, End chest"
+icon = "Ring_26"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 5
+slot = "Ring"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 59
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Icemount Curse"

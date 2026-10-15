@@ -1,0 +1,37 @@
+name = "Vestments of the Sun Soul"
+description = """
+The Order of the Sun Soul is a monastic order dedicated to the welfare of the
+common fold of Faerun. This simple travelling garb is typical of the adventuring
+members of their order."""
+drop_location = "Eveningstar, Turn in 10 Commendations: Villagers of Eveningstar Commendation: Villagers of Eveningstar : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Villagers of Eveningstar. You can exchange it in Eveningstar for powerful equipment."
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 9
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Reinforced Fists"
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

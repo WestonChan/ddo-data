@@ -1,0 +1,50 @@
+name = "Sapphire of Repair Amplification"
+choose_level = true
+description = "Competence bonus to Repair Amplification"
+family = "Sapphire"
+icon = "GolemsHeart"
+level_values = [
+    3,
+    11,
+    18,
+    24,
+    31,
+    37,
+    44,
+    50,
+    57,
+    63,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+]
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Competence"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

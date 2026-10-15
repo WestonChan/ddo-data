@@ -1,0 +1,26 @@
+name = "Madstone Crater"
+bestowed_by = "Blaze ar'Rhind"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Return to Madstone Crater"
+favor = 8
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "Madstone Crater"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Madstone_Crater"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 24

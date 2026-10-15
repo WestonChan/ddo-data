@@ -1,0 +1,29 @@
+name = "A Raven at the Door"
+bestowed_by = "Oksana Cantemir"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "Castle Ravenloft, Servant's Door"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/A_Raven_at_the_Door"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

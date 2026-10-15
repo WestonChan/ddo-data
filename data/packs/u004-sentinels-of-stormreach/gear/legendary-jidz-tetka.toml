@@ -1,0 +1,51 @@
+name = "Legendary Jidz-Tet'ka"
+description = """
+Thri-kreen runes carved into these chitin bracers read 'The shell of the seeker
+of enlightenment.'"""
+drop_location = "Legendary version of Epic Jidz-Tet'ka"
+icon = "Bracers_15a"
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 30
+slot = "Wrists"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 13
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Legendary Tet-zik, The Enlightened Change"
+
+[[effect]]
+name = "Kos-zik, The Air-Change"
+
+[[effect]]
+name = "Riik-zik, The Fire-Change"
+
+[[effect]]
+name = "Thok-zik, The Earth-Change"
+
+[[effect]]
+name = "Sed-zik, The Water-Change"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "yellow"

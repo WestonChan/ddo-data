@@ -1,0 +1,3 @@
+name = "Banishing Fists"
+description_template = "On Vorpal Hit: If an outsider struck by your attacks has fewer than 1000 Hit Points, it is instantly slain. If the outsider has above 1000 hit points, it takes 100 damage."
+verbose_name_template = "Banishing Fists"

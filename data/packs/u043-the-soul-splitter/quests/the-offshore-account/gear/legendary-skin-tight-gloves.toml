@@ -1,0 +1,37 @@
+name = "Legendary Skin-tight Gloves"
+description = "You do not know what these are made of, but you can take a few horrifying guesses"
+drop_location = "The Offshore Account, end chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Flesh"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 10
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 38
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Offshore Account"

@@ -1,0 +1,30 @@
+name = "Frame Work"
+bestowed_by = "Gavin Northus"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "Matador Village"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Frame_Work"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

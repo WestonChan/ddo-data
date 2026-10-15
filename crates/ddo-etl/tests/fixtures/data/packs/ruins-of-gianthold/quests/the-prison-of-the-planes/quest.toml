@@ -1,0 +1,19 @@
+name = "The Prison of the Planes"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Return to Prison of the Planes"
+favor = 6
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 24

@@ -1,0 +1,3 @@
+name = "Sparkscale"
+description_template = "Adds Silver material type. On hit: 15d6 Electric Damage."
+verbose_name_template = "Sparkscale"

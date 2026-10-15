@@ -1,0 +1,32 @@
+name = "Ruby of the Vampire Slayer"
+description = """
+1 to 4 Light Damage
+Silver: A complex process involving metallurgy and alchemy can bond silver to
+a weapon made of steel so that it bypasses the damage reduction of creatures
+such as devils and vampires. Silver weapons have 2 points lower hardness then
+equivalent steel weapons, and as such aren't quite as durable.
+Drops in: Joe Candymaker: The Night Revels Trader"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Silver"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

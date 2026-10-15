@@ -1,0 +1,1530 @@
+[[row]]
+name = "Ablative Armor"
+description = """
+Wards an ally against physical damage.
+Once this infusion has prevented a total of 5 damage per caster level (max 50)
+it is discharged."""
+icon = "AblativeArmor"
+max_caster_level = 10
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Adamantine Weapons"
+description = """
+Your target's currently equipped weapons gain the ability to bypass Adamantine damage
+reduction. An item can have only one temporary item enchantment at a time."""
+icon = "AdamantineWeapons"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Adamantine"
+
+[[row]]
+name = "Armor of Speed"
+description = """
+Your target's currently equipped armor gains Equip Effect: Quickens the wearer, causing
+them to attack 15% faster than normal. In addition the recipient gains a +1
+Enhancement bonus to attack rolls and a +1 dodge bonus to AC and Reflex saves.
+An item can have only one temporary item enchantment at a time."""
+icon = "ArmorOfSpeed"
+max_caster_level = 1
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+extra_types = ["DodgeBonus"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row]]
+name = "Bear's Endurance"
+description = "An ally gains a +4 Enhancement bonus to Constitution for 1 minute per caster level."
+icon = "BearsEndurance"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row]]
+name = "Bear's Endurance, Mass"
+description = """
+Casts Bear's Endurance on multiple targets giving a +4 Enhancement bonus to Constitution
+to each of them for 1 minute per caster level."""
+icon = "BearsEnduranceMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row]]
+name = "Blade Barrier"
+description = """
+Creates a circular wall of blades that damages all those that pass through it, dealing
+1d6 points of Slashing damage per caster level (Maximum damage 15d6.), a Reflex
+save reduces this damage by half."""
+icon = "BladeBarrier"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Slash"
+spell_power = "Force"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Blast Rod"
+description = """
+A blast of Electricity bursts from your outstretched hand, dealing 1d6+3 Electrical
+damage per caster level (up to a max of 10d6+30 damage at caster level 10) to
+targets in its path. A successful Reflex save reduces the damage by half."""
+icon = "BlastRod"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Bull's Strength"
+description = "An ally gains a +4 Enhancement bonus to Strength for 1 minute per caster level."
+icon = "BullsStrength"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row]]
+name = "Bull's Strength, Mass"
+description = """
+Casts Bull's Strength on multiple targets giving a +4 Enhancement bonus to Strength
+to each of them for 1 minute per caster level."""
+icon = "BullsStrengthMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row]]
+name = "Byeshk Weapons"
+description = """
+Your target's currently equipped weapons gain the ability to bypass Byeshk damage reduction.
+An item can have only one temporary item enchantment at a time."""
+icon = "ByeshkWeapons"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Byeshk"
+
+[[row]]
+name = "Cat's Grace, Mass"
+description = """
+Casts Cat's Grace on multiple targets, giving a +4 Enhancement bonus to Dexterity to
+each of them for 1 minute per caster level."""
+icon = "CatsGraceMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row]]
+name = "Chain Lightning"
+description = """
+An Electrical discharge strikes a primary target for 1d6+6 per caster level Electrical
+damage, then arcs to other nearby targets hitting each of them with a similar
+lightning bolt. A successful Reflex save reduces the damage by half."""
+icon = "ChainLightning"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Cold Iron Weapons"
+description = """
+Your target's currently equipped weapons gain the ability to bypass Cold Iron damage
+reduction. An item can have only one temporary item enchantment at a time."""
+icon = "ColdIronWeapons"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Cold Iron"
+
+[[row]]
+name = "Conjure Bolts"
+description = """
+Conjures a stack of 1000 bolts for use with a crossbow.
+They are +1 at caster level 1 with +1 more each 4 caster levels.
+These bolts dissolve into nothingness after logout."""
+icon = "ConjureBolts"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Deadly Weapons"
+description = """
+Your targets currently equipped weapons deal +1[W].
+(A weapon that deals 1d6 per hit will deal 2d6 instead, while a weapon that deals 2d4
+damage per hit will deal 4d4 damage instead. This effects base dice associated with a
+weapon any time they are rolled.)
+An item can have only one temporary artificer enchantment at a time."""
+icon = "DeadlyWeapons"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Alchemical"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[row]]
+name = "Deconstruct"
+description = """
+Greatly damages an enemy construct, dealing 10 damage per caster level (max 150), slows their
+move and attack speed, reduces fortification by 25%, and inflicts a 25% penalty
+to Repair effects. Reconstruction will remove this penalty.
+A successful Will save halves this damage and prevents the debuff portion."""
+icon = "Deconstruct"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+damage = "Repair"
+spell_power = "Repair"
+
+[[row]]
+name = "Eagle's Splendor"
+description = "An ally gains a +4 Enhancement bonus to Charisma for 1 minute per caster level."
+icon = "EaglesSplendor"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row]]
+name = "Eagle's Splendor, Mass"
+description = """
+Casts Eagle's Splendor on multiple targets, giving a +4 Enhancement bonus to Charisma
+to each of them for 1 minute per caster level."""
+icon = "EaglesSplendorMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row]]
+name = "Elemental Prod"
+description = """
+Touch Range. Target enemy takes 1d6 per caster level in two of three elements
+(Fire, Force, or Electric) chosen randomly each time. Elementals are also Dazed."""
+icon = "ElementalProd"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+per_caster_levels = 2
+spell_power = "Fire"
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Force"
+per_caster_levels = 2
+spell_power = "Force"
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+per_caster_levels = 2
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row]]
+name = "Enchant Armor"
+description = """
+Increases the Enhancement Bonus of your targets' currently equipped armor by 1.
+An item can have only one temporary item enchantment at a time."""
+icon = "EnchantArmor"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Enchant Weapons"
+description = """
+Increases the Enhancement Bonus of your target's currently equipped weapons or shields by 1.
+An item can have only one temporary item enchantment at a time."""
+icon = "EnchantWeapons"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[row]]
+name = "Fire Trap"
+description = """
+Creates a trap that wards an area. When an enemy triggers the spell by entering the
+area, a fiery explosion does 1d6+4 Fire damage per caster level.
+(Maximum caster level 20.) A successful Reflex save reduces the damage by half."""
+icon = "FireTrap"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Abjuration"]
+
+[[row]]
+name = "Flame Arrow"
+description = """
+Creates 500 flaming ammo within the caster's inventory, each ammo deals an additional
+1d6 Fire damage. This spell requires and consumes 1 normal ammo of that type.
+Ammo drops when you log out."""
+icon = "FlameArrow"
+metamagics = ["Quicken"]
+schools = ["Evocation"]
+
+[[row]]
+name = "Flame Turret"
+description = """
+Conjures a destroyable turret that fires jets of flame at nearby enemies.
+You can have only one summoned creature at a time."""
+icon = "FlameTurret"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Fox's Cunning, Mass"
+description = """
+Casts Fox's Cunning on multiple targets, giving a +4 Enhancement bonus to Intelligence
+to each of them for 1 minute per caster level."""
+icon = "FoxsCunningMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row]]
+name = "Inflict Critical Damage"
+description = "Deals 4d6+8 damage plus 1d4 per caster level (Maximum caster level 20.) to a construct."
+icon = "InflictCriticalDamage"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 8
+base_dice_number = 4
+base_dice_sides = 6
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row]]
+name = "Inflict Critical Damage, Mass"
+description = """
+Transmutes the structure of a construct enemies to deal 4d6+8 damage plus an additional
+1d4 for every caster level up to caster level 40."""
+icon = "InflictCriticalDamageMass"
+max_caster_level = 40
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 8
+base_dice_number = 4
+base_dice_sides = 6
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row]]
+name = "Inflict Light Damage"
+description = "Deals 1d6+2 damage plus 1 per caster level  to a construct."
+icon = "InflictLightDamage"
+max_caster_level = 5
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 2
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Negative"
+spell_power = "Negative"
+
+[[row]]
+name = "Inflict Light Damage, Mass"
+description = """
+Transmutes the structure of construct enemies to deal 1d6+2 rust damage plus an
+additional 1d4 for every caster level up to caster level 25."""
+icon = "InflictLightDamageMass"
+max_caster_level = 25
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 2
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row]]
+name = "Inflict Moderate Damage"
+description = "Deals 2d6+4 damage plus 1 per caster level (Maximum caster level 15.) to a construct."
+icon = "InflictModerateDamage"
+max_caster_level = 15
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 2
+bonus_dice_sides = 6
+damage = "Negative"
+spell_power = "Negative"
+
+[[row]]
+name = "Inflict Moderate Damage, Mass"
+description = """
+Deals 2d6+4 damage plus 1d4 per caster level (Maximum caster level 20.) to a group of
+constructs."""
+icon = "InflictModerateDamageMass"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 4
+base_dice_number = 2
+base_dice_sides = 6
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row]]
+name = "Inflict Serious Damage"
+description = """
+Transmutes the structure of a construct enemy to deal 3d6+6 damage plus an additional
+1d4 for every caster level up to caster level 15."""
+icon = "InflictSeriousDamage"
+max_caster_level = 15
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 3
+base_dice_sides = 6
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row]]
+name = "Inflict Serious Damage, Mass"
+description = """
+Transmutes the structure of Construct enemies to deal 3d6+6 damage plus an additional
+1d4 for every caster level up to caster level 35."""
+icon = "InflictSeriousDamageMass"
+max_caster_level = 35
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 3
+base_dice_sides = 6
+bonus_dice_number = 1
+bonus_dice_sides = 4
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row]]
+name = "Insightful Damage"
+description = """
+Enchants a crossbow or one handed melee weapon to permit the use of the equipper's
+Intelligence modifier for damage rolls, if it is the only weapon (other than a
+Runearm) equipped. This spell dispels Insightful Strikes, but as a personal item
+enchantment it can be used alongside other general temporary item enchantments.
+The item is temporarily bound to character while this effect is active."""
+icon = "InsightfulDamage"
+metamagics = ["Quicken"]
+schools = ["Divination"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageAbilityClass"
+targets = [
+    "Intelligence",
+    "Crossbow",
+]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageAbilityClass"
+targets = [
+    "Intelligence",
+    "RepeatingCrossbow",
+]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageAbilityClass"
+targets = [
+    "Intelligence",
+    "One Handed",
+]
+
+[[row]]
+name = "Insightful Strikes"
+description = """
+Enchants a crossbow or one handed melee weapon to permit the use of the equipper's
+Intelligence modifier for attack rolls if it is higher than the standard ability
+for the weapon, if it is the only weapon (other than a Runearm) equipped.
+This spell dispels Insightful Damage, but as a personal item enchantment it can
+be used alongside other general temporary item enchantments.
+The item is temporarily bound to character while this effect is active."""
+icon = "InsightfulStrikes"
+metamagics = ["Quicken"]
+schools = ["Divination"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackAbilityClass"
+targets = [
+    "Intelligence",
+    "Crossbow",
+]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackAbilityClass"
+targets = [
+    "Intelligence",
+    "RepeatingCrossbow",
+]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackAbilityClass"
+targets = [
+    "Intelligence",
+    "One Handed",
+]
+
+[[row]]
+name = "Lightning Bolt"
+description = """
+Deals 1d6+3 per caster level (Maximum damage 10d6+30.) Electricity damage to each
+target in its path. A successful Reflex save reduces the damage by half. Has a
+50% chance to fork, hitting affected targets a second time with another Reflex
+save allowed to halve the damage from the second bolt."""
+icon = "LightningBolt"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Lightning Motes"
+description = """
+You create a nebulous cloud of Electric motes that damages enemies that enter it.
+Any creatures that are hit by the cloud take 1d6+2 Electric damage per caster level
+(up to a max of 10d6+20 damage at caster level 10).
+A successful Reflex save reduces this damage by half.
+Enemies hit by the cloud are also made temporarily more vulnerable to Electric damage,
+taking 15% extra damage from any Electric-based attacks."""
+icon = "LightningMotes"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Lightning Sphere"
+description = """
+Launches an Electrical orb that explodes on impact, dealing 1d6 Electrical damage per
+caster levels (up to a max of 10d6 Electricity damage at caster level 10) to
+targets in the area. The targets of this spell will also be dazed for a short
+period of time or until they take damage. A successful Fortitude save reduces
+the damage by half and negates the daze. Unlike most other projectile spells,
+the caster can arc the orb if no target is selected."""
+icon = "LightningSphere"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+schools = ["Abjuration"]
+
+[[row]]
+name = "Lucky Cape"
+description = """
+Your target's cloak grants a +1 Luck bonus to saving throws. An item can have only
+one temporary item enchantment at a time."""
+icon = "LuckyCape"
+metamagics = ["Quicken"]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Luck"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row]]
+name = "Owl's Wisdom"
+description = "An ally gains a +4 Enhancement bonus to Wisdom for 1 minute per caster level."
+icon = "OwlsWisdom"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row]]
+name = "Owl's Wisdom, Mass"
+description = """
+Casts Owl's Wisdom on multiple targets, giving a +4 Enhancement bonus to Wisdom to
+each of them for 1 minute per caster level."""
+icon = "OwlsWisdomMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row]]
+name = "Planar (Align) Weapons"
+description = """
+Your Targets Currently equipped weapons gain the ability to bypass alignment based
+damage reduction. An item can have only one temporary item enchantment at a time."""
+icon = "AlignWeapons"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Lawful"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Chaotic"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Evil"
+
+[[row]]
+name = "Positive Energy Infusion"
+description = """
+You enhance an ally with some of your life force, giving them a 10% Enhancement bonus
+to maximum hit points. You suffer a maximum hit point penalty of 10% for each
+time this spell has been cast. The effect lasts for five minutes before expiring."""
+icon = "PositiveEnergyInfusion"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Prismatic Strike"
+description = """
+Ray spell. Enemy takes 1d6 per caster level in two of three elements (Fire, Force, or Electric)
+chosen randomly each time. The enemy is also subject to 2 of 3 CC effects
+(from the original Prismatic Strike) chosen randomly each time."""
+icon = "PrismaticStrike"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Force"
+spell_power = "Force"
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row]]
+name = "Radiant Forcefield"
+description = """
+Your target is surrounded in a sphere of magical force that reduces all damage they
+take by 25% for a short period of time."""
+icon = "RadiantForcefield"
+metamagics = ["Quicken"]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Reconstruct"
+description = """
+Repairs the ally Construct, restoring 10 Hit Points per caster level (Maximum caster level 15.),
+while simultaneously granting the Construct an increase in attack speed for a short time."""
+icon = "Reconstruct"
+max_caster_level = 15
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+damage = "Repair"
+spell_power = "Repair"
+
+[[row]]
+name = "Reinforce Construct"
+description = """
+Reinforces the target ally construct or living construct, giving a bonus of 10 temporary
+hit points plus 1 additional one per caster level up to caster level 10."""
+icon = "ReinforceConstruct"
+max_caster_level = 10
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Repair Critical Damage, Mass"
+description = """
+Transmutes the structure of living Construct allies to repair 4d6+8 Hit Points plus 1 per caster level.
+(Maximum caster level 40.)"""
+icon = "RepairCriticalDamageMass"
+max_caster_level = 40
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 8
+base_dice_number = 4
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Repair"
+per_caster_levels = 1
+spell_power = "Repair"
+
+[[row]]
+name = "Repair Light Damage, Mass"
+description = """
+Transmutes the structure of living Construct allies to repair 1d6+2 Hit Points plus
+1 per caster level. (Maximum caster level 25.)"""
+icon = "RepairLightDamageMass"
+max_caster_level = 25
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 2
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Rust"
+per_caster_levels = 1
+spell_power = "Rust"
+
+[[row]]
+name = "Repair Moderate Damage"
+description = """
+Transmutes the structure of a living Construct ally to repair 2d6+4 Hit Points plus
+1 per caster level. (Maximum caster level 10.)"""
+icon = "RepairModerateDamage"
+max_caster_level = 10
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+bonus_dice_bonus = 4
+bonus_dice_number = 2
+bonus_dice_sides = 6
+damage = "Repair"
+spell_power = "Repair"
+
+[[row]]
+name = "Repair Moderate Damage, Mass"
+description = """
+Transmutes the structure of living Construct allies to repair 2d6+4 Hit Points plus
+1 per caster level. (Maximum caster level 30.)"""
+icon = "RepairModerateDamageMass"
+max_caster_level = 30
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 4
+base_dice_number = 2
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Repair"
+per_caster_levels = 1
+spell_power = "Repair"
+
+[[row]]
+name = "Repair Serious Damage, Mass"
+description = """
+Transmutes the structure of living Construct allies to repair 3d6+6 Hit Points plus
+1 per caster level. (Maximum caster level 35.)"""
+icon = "RepairSeriousDamageMass"
+max_caster_level = 35
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 3
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Repair"
+per_caster_levels = 1
+spell_power = "Repair"
+
+[[row]]
+name = "Resistance"
+description = """
+Imbues the ally with magical energy that protects from harm, granting them a +1
+Resistance bonus on saves (+2 at 6th level, +3 at 9th level)."""
+icon = "Resistance"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+]
+bonus_type = "Resistance"
+effect_type = "SaveBonus"
+stack_source = "Unknown"
+targets = ["All"]
+
+[[row]]
+name = "Shield of Faith"
+description = """
+Creates a shimmering, magical field around an ally that averts attacks, giving a
++2 Deflection bonus to Armor Class. This bonus is increased by 1 for every 6
+caster levels."""
+icon = "ShieldOfFaith"
+max_caster_level = 20
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+]
+bonus_type = "Deflection"
+effect_type = "ACBonus"
+stack_source = "Unknown"
+
+[[row]]
+name = "Shield of Faith, Mass"
+description = """
+Casts Shield of Faith on multiple targets, creating a shimmering, magical field around
+allies that averts attacks, giving a +2 Deflection bonus to Armor Class. This
+bonus is increased by 1 for every 6 caster levels."""
+icon = "ShieldOfFaithMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+]
+bonus_type = "Deflection"
+effect_type = "ACBonus"
+stack_source = "Unknown"
+
+[[row]]
+name = "Silver Weapons"
+description = """
+Your target's currently equipped weapons gain the ability to bypass Silver damage reduction.
+An item can have only one temporary item enchantment at a time."""
+icon = "SilverWeapons"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Silver"
+
+[[row]]
+name = "Static Shock"
+description = """
+An Electrical discharge strikes one target for 1d6 Electricity damage plus 1d6 Electricity
+damage per two caster levels up to a maximum damage of 6d6 at caster level 10.
+A successful Reflex save reduces this damage by half.
+On a failed save, the target must make a successful Will save or be dazed for
+a short period of time or until they take damage."""
+icon = "StaticShock"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+per_caster_levels = 2
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Tactical Detonation"
+description = """
+Causes an unstable ball of plasma to streak towards your enemy. The ball explodes on impact, knocking
+enemies to the ground and dealing 1d6+3 Fire damage per caster level (a successful
+Reflex save reduces the Fire damage by half and negates the knockdown effect)
+and 1d6+3 force damage per caster level (no save) to targets in the area."""
+icon = "TacticalDetonation"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Force"
+spell_power = "Force"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Thundering Armor"
+description = """
+Your target's currently equipped armor gains Retributive Hit Effect: Attacker takes
+1d6 Sonic damage and has a 5% chance to take an additional 8d6 Sonic damage
+(Fortitude DC: 25 save for half damage).
+An item can have only one temporary item enchantment at a time."""
+icon = "ThunderingArmor"
+metamagics = ["Quicken"]
+schools = ["Evocation"]
+
+[[row.dc]]
+amount = [25]
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+
+[[row]]
+name = "Toughen Construct"
+description = """
+Toughens the skin of a ally construct, giving a +2 Natural Armor bonus to AC with an
+additional +1 bonus for every 3 caster levels above 3rd, to a maximum of +5 at
+caster level 12."""
+icon = "ToughenConstruct"
+max_caster_level = 12
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+base_dice_bonus = 2
+bonus_dice_bonus = 1
+per_caster_levels = 3
+
+[[row.note]]
+kind = "spell"
+field = "icon"
+upstream = "toughenConstruct"
+reason = "DDOBuilderV2's SpellImages folder spells the image ToughenConstruct.png."
+url = "Output/DataFiles/SpellImages"
+read = "2026-10-08"

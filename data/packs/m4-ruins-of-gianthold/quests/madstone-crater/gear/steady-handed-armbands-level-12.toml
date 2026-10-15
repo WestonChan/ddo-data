@@ -1,0 +1,26 @@
+name = "Steady Handed Armbands (Level 12)"
+description = """
+These leather bands aren't too spectacular looking, but when you put them on,
+it is almost as if your arms are weightless."""
+drop_location = "Madstone Crater, End chest (Heroic Normal)"
+icon = "Bracers_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 12
+slot = "Wrists"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 1
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 4
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"

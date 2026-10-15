@@ -1,0 +1,47 @@
+name = "Axe of Adaxus (Level 25)"
+accepts_sentience = true
+description = """
+Legends speak of the first fire giant, Adaxus, whose fiendish alliances led
+to the formation of the Sul'at League. Although the knowledge and wisdom of
+these giants was lost in the cataclysm that destroyed Xen'drik, the once powerful
+leader's axe apparently was not."""
+drop_location = "Return to Madstone Crater, End chest (Epic Elite)"
+enhancement_bonus = 7
+icon = "BattleAxe_2"
+item_category = "Weapon"
+item_type = "Battle Axe"
+material = "Crystal"
+minimum_level = 25
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Battle Axe"

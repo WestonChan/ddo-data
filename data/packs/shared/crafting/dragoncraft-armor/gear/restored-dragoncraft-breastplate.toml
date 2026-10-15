@@ -1,0 +1,38 @@
+name = "Restored Dragoncraft Breastplate"
+description = """
+A breastplate imbued with ancient draconic magic, for the rare humanoids that
+they favor favored."""
+drop_location = "Dragoncraft Armor, Turn in 10 Restored Dragon Relics"
+enhancement_bonus = 6
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritforged Iron"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 14
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 7
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 6
+
+[[source]]
+kind = "crafting_system"
+name = "Dragoncraft Armor"

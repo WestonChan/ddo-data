@@ -1,0 +1,1129 @@
+[[row]]
+name = "Agents of Argonnessen Favor Rewards"
+acquire = "Favor"
+description = """
+Rank 1 (75): Choice of item.
+Rank 2 (150): "Agents of Argonnessen: Draconic Vitality" "This feat grants you +10 HP"
+Rank 3 (400): "Agents of Argonnessen: Save Bonus" "This feat grants you +2 saves versus Dragons."
+Rank 4 (700): Not reachable"""
+icon = "AgentsOfArgonnessen"
+max_times_acquire = 3
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    10,
+    10,
+]
+bonus_type = "Feat"
+display_name = "Agents of Argonnessen: Draconic Vitality"
+effect_type = "Hitpoints"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+]
+bonus_type = "Feat"
+display_name = "Agents of Argonnessen: Save Bonus"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Dragon"]
+req_type = "EnemyType"
+
+[[row]]
+name = "Attack"
+acquire = "Automatic"
+description = """
+This is the standard attack for all characters. It can be toggled on to
+attack repeatedly until your target is defeated, or activated once by right-clicking the mouse."""
+icon = "Attack"
+max_times_acquire = 1
+
+[[row.attack]]
+name = "Basic Attack"
+cooldown_seconds = 0
+description = "You attack with your weapon"
+icon = "Attack"
+
+[[row.dc]]
+name = "Intimidate"
+dc_type = "Intimidate"
+dc_versus = "10+HD+Wis Mod"
+description = """
+Allows you to intimidate certain NPCs and to draw the attention of monsters while in battle.
+You will suffer a -4 penalty to your intimidate skill for every size category
+you are smaller than the creature your are trying to intimidate, or +4 for every
+size category your are larger. (15 second cooldown)"""
+icon = "Intimidate"
+other = "d20"
+skill = "Intimidate"
+
+[[row.dc]]
+name = "Diplomacy"
+dc_type = "Diplomacy"
+dc_versus = "CR+Quest Level"
+description = """
+Allows you to negotiate more effectively with certain NPCs and to encourage
+monsters to find targets other than yourself. Any accumulated threat you
+have with enemies that you successfully diplomacize is reduced.
+(15 second cooldown, Shares cooldown with Bluff)"""
+icon = "Diplomacy"
+other = "d20"
+skill = "Diplomacy"
+
+[[row.dc]]
+name = "Bluff"
+dc_type = "Bluff"
+dc_versus = "CR+Quest Level"
+description = """
+Allows you to bluff certain NPCs, draw monsters away from their group,
+or make an individual monster vulnerable to sneak attack for six seconds.
+You also gain a decrease in threat generation for a short period of time after
+successfully using this ability. (15 second cooldown, Shares cooldown with Diplomacy)"""
+icon = "Bluff"
+other = "d20"
+skill = "Bluff"
+
+[[row.effect]]
+bonus_type = "Base"
+effect = "Unconsciousness Range"
+value = -10
+
+[[row.effect]]
+bonus_type = "Base"
+effect = "Helpless Damage"
+value = 50
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Offhand Strike Chance"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Strikethrough"
+value = 20
+
+[[row.effect]]
+bonus_type = "Base"
+effect = "Armor Class"
+value = 10
+
+[[row.effect]]
+bonus_type = "Base"
+effect = "Dodge Cap"
+value = 25
+
+[[row.effect]]
+bonus_type = "Equipment"
+effect = "Max Dex Bonus (Armor)"
+value = 999
+
+[[row.effect]]
+bonus_type = "Shield"
+effect = "Physical Resistance Rating"
+value = 0
+
+[[row.effect]]
+bonus_type = "Shield"
+effect = "Magical Resistance Rating"
+value = 0
+
+[[row.effect]]
+bonus_type = "Shield"
+effect = "Physical Resistance Rating"
+value = 5
+
+[[row.effect]]
+bonus_type = "Shield"
+effect = "Magical Resistance Rating"
+value = 5
+
+[[row.effect]]
+bonus_type = "Shield"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[row.effect]]
+bonus_type = "Shield"
+effect = "Magical Resistance Rating"
+value = 10
+
+[[row.effect]]
+bonus_type = "Shield"
+effect = "Physical Resistance Rating"
+value = 15
+
+[[row.effect]]
+bonus_type = "Shield"
+effect = "Magical Resistance Rating"
+value = 15
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+display_name = "Tumble Base Charges"
+effect_type = "TumbleCharge"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "10 Skill Ranks in Tumble"
+effect_type = "TumbleCharge"
+
+[[row.modifier.requirement_group]]
+kind = "all"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Tumble"]
+req_type = "Skill"
+value = 10
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "20 Skill Ranks in Tumble"
+effect_type = "TumbleCharge"
+
+[[row.modifier.requirement_group]]
+kind = "all"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Tumble"]
+req_type = "Skill"
+value = 20
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Base"
+display_name = "Standard Death at"
+effect = "Unconsciousness Range"
+effect_type = "UnconsciousRange"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Base"
+display_name = "Standard Helpless Damage Bonus"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+display_name = "Standard off hand attack chance"
+effect = "Offhand Strike Chance"
+effect_type = "OffHandAttackBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+display_name = "Standard Strikethrough chance"
+effect = "Strikethrough"
+effect_type = "Strikethrough"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Base"
+display_name = "Base AC"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Base"
+display_name = "Base Dodge Cap"
+effect = "Dodge Cap"
+effect_type = "DodgeCapBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Base"
+display_name = "Base Main hand Weapon Multiplier"
+effect_type = "DamageAbilityMultiplier"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Base"
+display_name = "Base Two Handed Fighting Weapon Multiplier"
+effect_type = "DamageAbilityMultiplier"
+
+[[row.modifier.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.1]
+bonus_type = "Base"
+display_name = "Base Hand and a Half Main hand Weapon Multiplier"
+effect_type = "DamageAbilityMultiplier"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Bastard Sword"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Base"
+display_name = "Base Off hand Weapon Multiplier"
+effect_type = "DamageAbilityMultiplierOffhand"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [999]
+bonus_type = "Equipment"
+display_name = "No limit to Max Dex Bonus"
+effect = "Max Dex Bonus (Armor)"
+effect_type = "MaxDexBonus"
+
+[[row.modifier.requirement_group]]
+kind = "all"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group]]
+kind = "none_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Tower Shield"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0]
+bonus_type = "Shield"
+display_name = "Equipped Buckler PRR/MRR Bonus"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[row.modifier.requirement]]
+items = ["Buckler"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Shield"
+display_name = "Equipped Small Shield PRR/MRR Bonus"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[row.modifier.requirement]]
+items = ["Small Shield"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Shield"
+display_name = "Equipped Large Shield PRR/MRR Bonus"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[row.modifier.requirement]]
+items = ["Large Shield"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Shield"
+display_name = "Equipped Tower Shield PRR/MRR Bonus"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[row.modifier.requirement]]
+items = ["Tower Shield"]
+req_type = "Stance"
+
+[[row.requirement]]
+req_type = "Level"
+value = 1
+phase = "auto_acquire"
+
+[[row.stance]]
+name = "Reaper"
+description = "Activate to view your characters abilities when running in Reaper mode"
+group_name = "User"
+icon = "ReaperTree"
+
+[[row.stance]]
+name = "Action Boost"
+description = "An action boost is active"
+group_name = "User"
+icon = "ActionBoostAttack"
+
+[[row.stance]]
+name = "Blocking"
+description = "You are blocking."
+group_name = "User"
+icon = "Blocking"
+
+[[row]]
+name = "Aura of Courage"
+acquire = "Automatic"
+description = """
+A feeling of confidence and fearlessness surrounds you while near a
+Paladin, granting a bonus to saves against fear."""
+icon = "AuraOfCourage"
+source_name = "Paladin"
+
+[[row]]
+name = "Aura of Good"
+acquire = "Automatic"
+description = """
+An aura of holiness surrounds you while near a Paladin, granting a bonus
+to saves and Armor Class against evil creatures."""
+icon = "AuraOfGood"
+source_name = "Paladin"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Armor Class"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Saving Throws"
+value = 1
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "ACBonus"
+extra_types = ["SaveBonus"]
+targets = ["All"]
+
+[[row]]
+name = "Bladeforged"
+acquire = "Automatic"
+description = """
+The devout of the Lord of Blades gain the rare benefit of meeting their
+god personally. Your strong faith increases the strength of your Aura of Good,
+giving +2 Armor Class and +1 to all saving throws.
+Blade Absorption: You take -10% Slashing damage.
+When you take slashing damage, you gain +1 stacking PPR for three seconds (up to +20 PRR).
+Stacks fade 1 at a time as metal bits fall off.
+Your positive healing is reduced -10% compared to other Warforged (-5% starting
+positive damage vulnerability).
+Your combat abilities on behalf of the Warforged race grants you the following magic
+as you gain spell levels: Repair Light Damage, Repair Moderate Damage, Mass Repair
+Light Damage, Repair Serious Damage, Mass Repair Moderate Damage, Repair Critical Damage,
+Mass Repair Serious Damage."""
+icon = "WarforgedFeat"
+source_name = "Bladeforged"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Saving Throws"
+value = 1
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Armor Class"
+value = 2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Healing Amplification"
+value = -10
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Penalty"
+display_name = "Bladeforged: Additional Healing Amplification Penalty"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    6,
+    5,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Light Damage",
+    "Paladin",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    8,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Moderate Damage",
+    "Paladin",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    10,
+    25,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Light Damage, Mass",
+    "Paladin",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    12,
+    15,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Serious Damage",
+    "Paladin",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    16,
+    30,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Moderate Damage, Mass",
+    "Paladin",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    16,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Critical Damage",
+    "Paladin",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    7,
+    40,
+    35,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Serious Damage, Mass",
+    "Paladin",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    1,
+    6,
+    5,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Light Damage",
+    "Sacred Fist",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    8,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Moderate Damage",
+    "Sacred Fist",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    10,
+    25,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Light Damage, Mass",
+    "Sacred Fist",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    4,
+    12,
+    15,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Serious Damage",
+    "Sacred Fist",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    16,
+    30,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Moderate Damage, Mass",
+    "Sacred Fist",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    16,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Critical Damage",
+    "Sacred Fist",
+]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    7,
+    40,
+    35,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Repair Serious Damage, Mass",
+    "Sacred Fist",
+]
+
+[[row]]
+name = "Divine Grace"
+acquire = "Automatic"
+description = """
+A Paladin receives bonus to saves, equal to his or her Charisma bonus.
+Divine Grace is capped at 2 + (3 x Paladin level). For multi-classing, this means
+2 levels of Paladin would at best grant a max of +8 to saves."""
+icon = "DivineGrace"
+source_name = "Paladin"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0]
+bonus_type = "Feat"
+effect_type = "DivineGrace"
+
+[[row]]
+name = "Divine Health"
+acquire = "Automatic"
+description = "A Paladin is immune to natural, magical and supernatural diseases."
+icon = "DivineHealth"
+source_name = "Paladin"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = ["Natural Disease"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = ["Magical Disease"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = ["Super-Natural Disease"]
+
+[[row]]
+name = "Dwarven Stability"
+acquire = "Automatic"
+description = """
+Dwarves naturally are able to keep their balance, receiving a +4 on
+their Balance skill."""
+icon = "DwarvenFeats"
+source_name = "Dwarf"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Balance"
+value = 4
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Balance"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[row]]
+name = "Dwarven Stonecutting"
+acquire = "Automatic"
+description = """
+Dwarves naturally are able to find secret doors more often, receiving
+a +2 bonus on their Search skill."""
+icon = "DwarvenFeats"
+source_name = "Dwarf"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Search"
+value = 2
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Search"
+effect_type = "SkillBonus"
+targets = ["Search"]
+
+[[row]]
+name = "Fear Immunity"
+acquire = "Automatic"
+description = "A Paladin is immune to fear effects."
+icon = "FearImmunity"
+source_name = "Paladin"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[row]]
+name = "Lay on Hands"
+acquire = "Automatic"
+variant = "paladin-level"
+description = """
+Activate this Paladin ability to apply a burst of holiness to your target,
+either healing an amount based on your Paladin level times your Charisma bonus
+or dealing that much damage to an undead target."""
+icon = "LayOnHands"
+source_name = "Paladin"
+
+[[row.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Lay_on_Hands"
+read = "2026-09-29"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Lay on Hands Uses"
+value = 1
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lay on Hands",
+    "Paladin",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Lay on Hands Uses"
+effect_type = "ExtraLayOnHands"
+
+[[row]]
+name = "Lay on Hands"
+acquire = "Automatic"
+variant = "total-level"
+description = """
+Activate this ability to apply a burst of holiness to your target, either healing
+an amount based on your Total level times your Charisma bonus or dealing that
+much damage to an undead target."""
+icon = "LayOnHands"
+source_name = "Paladin"
+
+[[row.citation]]
+field = "description"
+url = "https://ddowiki.com/page/Lay_on_Hands"
+read = "2026-09-29"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Lay on Hands Uses"
+value = 1
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lay on Hands",
+    "None",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Lay on Hands Uses"
+effect_type = "ExtraLayOnHands"
+
+[[row]]
+name = "Orc and Goblin Bonus"
+acquire = "Automatic"
+description = "Dwarves get a +1 bonus to attack against orcs and goblins."
+icon = "DwarvenFeats"
+source_name = "Dwarf"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+value = 1
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+stack_source = "Ranger"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = [
+    "Goblinoid",
+    "Orc",
+]
+req_type = "EnemyType"
+
+[[row]]
+name = "Past Life: Bladeforged"
+acquire = "IconicPastLife"
+description = """
+Iconic Past Life Stance: +10 Repair Spell Power per stack of this Past Life.
+Passive Bonus: +5% Fortification per stack of this Past Life."""
+icon = "IconicPastLifeBladeforged"
+max_times_acquire = 3
+source_name = "Bladeforged"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortification"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Repair Spell Power"
+value = 10
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[row.modifier.requirement]]
+items = ["Bladeforged "]
+req_type = "Stance"
+
+[[row.stance]]
+name = "Bladeforged"
+description = "Iconic Past Life Stance: +[10/20/30] Repair Spell Power."
+group_name = "Iconic"
+icon = "IconicPastLifeBladeforged"
+
+[[row]]
+name = "Past Life: Cleric - Dark Apostate"
+acquire = "HeroicPastLife"
+description = """
+You were a Dark Apostate in a past life.
+You occasionally feel the presence of the heretical.
+Each time you acquire this feat you gain +5 to your Negative Healing Amplification
+and Negative Spell Power.
+This feat can be stacked up to three times."""
+icon = "PastLifeCleric"
+max_times_acquire = 3
+source_name = "Dark Apostate"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Negative Healing Amplification"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Negative Spell Power"
+value = 5
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Negative Spell Power"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[row]]
+name = "Past Life: Dwarf"
+acquire = "RacialPastLife"
+description = """
+You were a Dwarf in a previous life
+Tier1: +1 Balance
+Tier2: +1 Constitution
+Tier3: +1 Racial Tree Action point"""
+icon = "PastLifeDwarf"
+max_times_acquire = 3
+source_name = "Dwarf"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Feat"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    1,
+    1,
+]
+bonus_type = "Feat"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+]
+bonus_type = "Feat"
+effect_type = "RAPBonus"
+
+[[row]]
+name = "Past Life: Paladin"
+acquire = "HeroicPastLife"
+description = """
+You were a Paladin in a past life.
+You occasionally find yourself overcome with righteous fervor.
+Each time you acquire this feat you gain 10% positive healing amplification.
+(This feat can be stacked up to 3 times, providing 10%, 20%, or 30% Healing Amplification.)"""
+icon = "PastLifePaladin"
+max_times_acquire = 3
+source_name = "Paladin"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+value = 10
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[row]]
+name = "Poison Save Bonus"
+acquire = "Automatic"
+description = "Dwarves are naturally resistant to poison, receiving a +2 bonus to saves against poisons."
+icon = "DwarvenFeats"
+source_name = "Dwarf"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Poison Save"
+value = 2
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Poison Save"
+effect_type = "SaveBonus"
+targets = ["Poison"]
+
+[[row]]
+name = "Remove Disease"
+acquire = "Automatic"
+description = "Activate this Paladin ability to cure one or more diseases in your target."
+icon = "RemoveDisease"
+max_times_acquire = 5
+source_name = "Paladin"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Remove Disease",
+    "None",
+]
+
+[[row]]
+name = "Smite Evil"
+acquire = "Automatic"
+description = """
+Using this attack, you call on the Paladin's ability to strike down evil
+creatures, gaining twice your Charisma bonus to your attack roll and a damage
+bonus based on your Paladin level. Smites return at a rate of one every 90 seconds."""
+icon = "SmiteEvil"
+max_times_acquire = 5
+source_name = "Paladin"
+
+[[row]]
+name = "Smite Evil (Ranged)"
+acquire = "Automatic"
+description = """
+Using this attack, you call on the Paladin's ability to strike down evil
+creatures, gaining twice your Charisma bonus to your attack roll and a damage
+bonus based on your Paladin level. Smites return at a rate of one every 90 seconds."""
+icon = "SmiteEvilRanged"
+max_times_acquire = 5
+source_name = "Paladin"

@@ -1,0 +1,3 @@
+name = "Grip of Venom"
+description_template = "This item inflicts a deadly poison upon your opponents. Your attacks and offensive spells have a high change to deal very strong Poison damage over time."
+verbose_name_template = "Grip of Venom"

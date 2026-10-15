@@ -1,0 +1,31 @@
+name = "Gnome"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Gnomes are small, clever, and insatiably curious, yet not as strong as others.
+They gain bonuses vs. giants, bonuses with and against illusions, are hard to
+hit due to their small size, and have a general affinity with magical devices.
+
+Gnomes love magic, inventions, and secrets. Often skilled with illusions and
+mercantile ventures, many gnomes dabble in magic of one kind or another, though
+some are skilled with light hammers and similar weapons."""
+short_name = "Gnome"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Strength"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Intelligence"
+
+[[granted_feat]]
+feat = "Gnomish Proficiencies"
+
+[[granted_feat]]
+feat = "Small Size Bonus"

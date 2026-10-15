@@ -1,0 +1,43 @@
+name = "Greater Force Rune Arm"
+description = "None"
+drop_location = "DDO Store, Not available anywhere else"
+icon = "RuneArm_1"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 13
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier IV"
+
+[[effect]]
+name = "Rune Arm Imbue - Force III"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Force Shot",
+    "None",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

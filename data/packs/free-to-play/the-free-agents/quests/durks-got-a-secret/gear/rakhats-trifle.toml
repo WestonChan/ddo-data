@@ -1,0 +1,26 @@
+name = "Rakhat's Trifle"
+description = "A faint whispering sound surrounds this glowing blue gem."
+drop_location = "Durk's Got A Secret, Witch Doctor Rakhat 's chest"
+icon = "Trinket_3a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 1
+
+[[removed]]
+kind = "item"
+name = "Rahkat's Trifle"
+reason = "The wiki and his own drop text spell the witch doctor Rakhat; his Rahkat's Trifle repeats Rakhat's Trifle's bonuses, level and drop."
+url = "https://ddowiki.com/page/Durk%27s_Got_a_Secret"
+read = "2026-10-01"
+
+[[source]]
+chest = "witch doctor rakhat 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Durk's Got a Secret"

@@ -1,0 +1,57 @@
+name = "Oathblade"
+accepts_sentience = true
+description = """
+This exquisite longsword is sharper than any blade you have seen before. Engraved
+upon the blade are the cryptic words 'Hope rides alone.'"""
+drop_location = "Eveningstar, Turn in 15 Commendations: Purple Dragon Knights Commendation: Purple Dragon Knights : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Purple Dragon Knights. You can exchange it in Eveningstar for powerful equipment."
+enhancement_bonus = 6
+icon = "Longsword_2"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Parrying VIII"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Absolute Law"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Maiming"
+
+[[effect]]
+name = "Bleed"
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 3.5
+handedness = "One-handed"
+weapon_type = "Longsword"

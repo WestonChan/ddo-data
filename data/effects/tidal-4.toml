@@ -1,0 +1,3 @@
+name = "Tidal 4"
+description_template = "This weapon is sheathed in water. A Tidal weapon deals an extra 4d6 points of damage on a successful hit. Creatures with the Fire trait take double this damage instead."
+verbose_name_template = "Tidal 4"

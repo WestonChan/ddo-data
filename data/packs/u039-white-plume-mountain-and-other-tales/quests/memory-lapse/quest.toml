@@ -1,0 +1,26 @@
+name = "Memory Lapse"
+bestowed_by = "Tara Fenwyth"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "White Plume Mountain and Other Tales"
+patron = "The Twelve"
+zone = "The Memory Library"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Memory_Lapse"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 23

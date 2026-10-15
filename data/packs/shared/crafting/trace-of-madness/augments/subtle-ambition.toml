@@ -1,0 +1,34 @@
+name = "Subtle Ambition"
+description = "+2 to the DC of your Conjuration and Illusion spells"
+family = "Other"
+icon = "SubtleAmbition"
+min_level = 1
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Illusion Focus"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[slot]]
+slot = "crafting: trace of madness"

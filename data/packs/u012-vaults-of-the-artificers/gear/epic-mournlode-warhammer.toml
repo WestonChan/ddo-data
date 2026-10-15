@@ -1,0 +1,86 @@
+name = "Epic Mournlode Warhammer"
+accepts_sentience = true
+description = """
+A weapon crafted from valuable Mournlode crystals is especially effective against
+the undead."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 5
+icon = "Warhammer_5b"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Righteous"
+
+[[effect]]
+name = "Undead Bane 4"
+
+[[effect]]
+name = "Brilliance"
+
+[[effect]]
+name = "Radiant Blast"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+6 Enhancement Bonus, Undead Guard 5, Colorless Augment slot"
+description = """
++5 Enhancement Bonus: +6 enhancement bonus to attack and damage rolls.
+Undead Guard +5: Chance to deal 5d8 Good damage to undead when hit.
+Colorless Augment slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Blinding Flash and a Purple augment slot"
+description = """
+Blinding Flash: This weapon glows with a white radiance. If you roll a 20 when
+attacking and confirm the critical hit, the target will become blinded by a
+burst of high-intensity light.
+Adds a Purple augment slot to this item"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Warhammer"

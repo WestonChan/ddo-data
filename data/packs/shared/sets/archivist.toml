@@ -1,0 +1,23 @@
+name = "Archivist"
+icon = "Archivist"
+
+[[item]]
+name = "Archivist's Goggles"
+
+[[item]]
+name = "Archivist's Necklace"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Equipment"
+effect = "Spell Points"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Equipment"
+effect = "Spell Points"
+effect_type = "SpellPoints"

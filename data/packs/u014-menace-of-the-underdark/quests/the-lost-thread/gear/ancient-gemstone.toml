@@ -1,0 +1,89 @@
+name = "Ancient Gemstone"
+description = """
+This metal and gem-studded sphere was found in the ruined Temple of Mystra.
+It may have been used as a power source for some sort of magical device or
+construct."""
+drop_location = "The Lost Thread, end chest ; Menace of the Underdark: The Darkening, quest chain end reward"
+enhancement_bonus = 6
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 20
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 20
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 9
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 2
+
+[[socket]]
+slot = "crafting: commendation upgrade"
+
+[[socket.option]]
+name = "Amaunator's Blessing"
+description = "Adds the Amaunator's Blessing set bonus to this item"
+min_level = 20
+
+[[socket.option.set]]
+set = "Amaunator's Blessing"
+
+[[socket.option]]
+name = "Battle Arcanist"
+description = "Adds the Battle Arcanist set bonus to this item"
+min_level = 20
+
+[[socket.option.set]]
+set = "Battle Arcanist"
+
+[[socket.option]]
+name = "Knight's Loyalty"
+description = "Adds the Knight's Loyalty set bonus to this item"
+min_level = 20
+
+[[socket.option.set]]
+set = "Knight's Loyalty"
+
+[[socket.option]]
+name = "Way of the Sun Soul"
+description = "Adds the Way of the Sun Soul set bonus to this item"
+min_level = 20
+
+[[socket.option.set]]
+set = "Way of the Sun Soul"
+
+[[socket.option]]
+name = "Woodsman's Guile"
+description = "Adds the Woodsman's Guile set bonus to this item"
+min_level = 20
+
+[[socket.option.set]]
+set = "Woodsman's Guile"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Lost Thread"
+
+[[source]]
+kind = "saga"
+name = "Menace of the Underdark"
+tier = "any"

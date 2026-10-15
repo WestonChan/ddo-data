@@ -1,0 +1,52 @@
+name = "Duergarcraft Longbow"
+description = "Crafted long ago in Gauntlygrym, these weapons seem to have scattered far and wide."
+drop_location = "Terror of Demogorgon, any end chest, most optional chests"
+enhancement_bonus = 5
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Duergarcraft_Longbow"
+read = "2026-09-29"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Piercing 3"
+
+[[effect]]
+name = "Stabbing 7"
+
+[[effect]]
+name = "Banishing 45"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Mythic Weapon Boost +2 or +4"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "any end chest, most optional chests"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Terror of Demogorgon"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Longbow"

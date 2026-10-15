@@ -1,0 +1,46 @@
+name = "The Dark Six-Fingered Glove"
+description = """
+A finger for each of the Dark Six. While worn, the sixth finger moves where
+you will it as if it were part of your hand. It feels wrong."""
+drop_location = "The Evil We Know, End chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Hands"
+
+[[clickie]]
+name = "Dark Discorporation"
+clickie = "Dark Discorporation"
+
+[[effect]]
+name = "Extra Smites"
+value = 2
+
+[[effect]]
+name = "Temperance of Belief"
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 9
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    29,
+    6,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Dark Discorporation"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Evil We Know"

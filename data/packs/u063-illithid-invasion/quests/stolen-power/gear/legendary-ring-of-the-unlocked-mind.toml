@@ -1,0 +1,42 @@
+name = "Legendary Ring of the Unlocked Mind"
+description = """
+As you slip this ring onto your finger, you feel something move at the back
+of your head. And then... everything becomes new."""
+drop_location = "Stolen Power, end chest"
+icon = "Ring_26"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 32
+slot = "Ring"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Quality"
+value = 37
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Enchantment Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stolen Power"

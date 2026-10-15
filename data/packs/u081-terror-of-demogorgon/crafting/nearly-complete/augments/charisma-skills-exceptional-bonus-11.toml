@@ -1,0 +1,23 @@
+name = "Charisma Skills - Exceptional Bonus +11"
+description = """
+Exceptional Bonus +11 to the Charisma based skills of: Bluff, Diplomacy, Haggle,
+Intimidate, Perform and Use Magic Device (UMD)."""
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Charisma Skills"
+bonus_type = "Exceptional"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Exceptional"
+effect = "Charisma Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: nearly complete: exceptional skills (legendary)"

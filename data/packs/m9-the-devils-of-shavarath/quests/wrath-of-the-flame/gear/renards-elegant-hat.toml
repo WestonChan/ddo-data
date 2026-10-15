@@ -1,0 +1,38 @@
+name = "Renard's Elegant Hat"
+description = """
+This jaunty hat was once owned by Renard Lyrandar, a famous airship captian.
+This once influential member of house Lyrandar was lost when his ship disappeared
+several decades ago, never to be heard from again."""
+drop_location = "Wrath of the Flame, End chest"
+icon = "Helmet_66"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Head"
+
+[[clickie]]
+name = "Whirlwind Absorption"
+clickie = "Whirlwind Absorption"
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Underwater Action"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    25,
+    10,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Whirlwind Absorption"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wrath of the Flame"

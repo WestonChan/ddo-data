@@ -1,0 +1,36 @@
+name = "Infused Chaos Docent"
+description = """
+This docent, imbued with powerful and unpredictable magic, seems to have gained
+its powers from Kythri originally. The denizens of Xoriat likely found its
+wild enchantments intriguing, so they seized it and brought it back with them
+to their own realm."""
+drop_location = "Reign of Madness, End reward"
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 14
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 16
+armor_bonus = 2
+armor_type = "Docent"
+mithral_body = 7
+
+[[effect]]
+name = "Spell Turmoil"
+
+[[effect]]
+name = "Lesser Evocation Augmentation IX"
+
+[[effect]]
+name = "Power Drain"
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[source]]
+kind = "quest_chain"
+name = "Reign of Madness"

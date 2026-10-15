@@ -1,0 +1,3 @@
+name = "Suppressed Power"
+description_template = "This psionic item is powerful, but you sense that it has not unlocked all of its secrets to you at this time."
+verbose_name_template = "Suppressed Power"

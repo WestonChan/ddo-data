@@ -1,0 +1,50 @@
+name = "Medium Armor of the Warblade"
+description = """
+When the Echo broke off from the Warblade, the force of its defiance manifested
+this armor, and shares its clarity of purpose."""
+drop_location = "Oghma's Song, end chest (rare)"
+enhancement_bonus = 5
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 17
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Demonic Shield"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Legendary"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Oghma's Song"

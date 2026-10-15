@@ -1,0 +1,37 @@
+name = "Legendary Bottle of Smoke"
+description = 'A label on the bottle reads, "For when you need to shroud yourself in smoke."'
+drop_location = "The Home of Memory, End chest"
+icon = "Trinket_23"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 29
+slot = "Trinket"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Smoke Screen +20"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 10
+value2 = 15
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Home of Memory"

@@ -1,0 +1,37 @@
+name = "War Wizard's Robes"
+description = """
+Layered with protective enhancements, these are the robes that the War Wizards
+of Cormyr wear into battle."""
+drop_location = "Eveningstar, Turn in 10 Commendations: War Wizards Commendation: War Wizards : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the War Wizards. You can exchange it in Eveningstar for powerful equipment."
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Archmagi"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Elemental Absorption"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 15
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

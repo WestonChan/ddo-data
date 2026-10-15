@@ -1,0 +1,21 @@
+name = "Woeful Quality Spell Focus Mastery (Legendary)"
+description = "+2 Quality Bonus to spell DCs."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Quality"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: woeful (accessory)"

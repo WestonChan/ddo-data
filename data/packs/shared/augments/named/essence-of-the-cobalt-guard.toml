@@ -1,0 +1,13 @@
+name = "Essence of the Cobalt Guard"
+description = """
+Improved Quelling Strikes: On Vorpal Melee: applies Quell to target enemies for six
+seconds, rendering them unable to cast divine spells. 50% chance of preventing
+the from casting all spells for three seconds (12 second cooldown).
+Requires: 50 Threads of Fate, Empty Soul Vessel and Cobalt Guard
+(Riding the Storm Out)"""
+family = "Named"
+icon = "PurpleRaidItemEssence"
+min_level = 30
+
+[[slot]]
+slot = "purple"

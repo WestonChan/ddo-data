@@ -1,0 +1,11 @@
+name = "Greater Ice Guard"
+adds_augment = "Accessory Aspect II"
+description = """
+1d8 Cold damage on being hit
+Water:Dominion:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory devastation"

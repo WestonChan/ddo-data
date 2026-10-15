@@ -1,0 +1,59 @@
+name = "Legendary Siren's Ward"
+icon = "SirensWard"
+
+[[item]]
+name = "Legendary Siren's Belt"
+
+[[item]]
+name = "Legendary Siren's Charm"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Shield Armor Class +3 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Shield Armor Class / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+value = 3
+
+[[tier.effect]]
+effect = "+3 Artifact bonus to Shield Armor Class"
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Shield Armor Class"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "ACPercent"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect_type = "ShieldEnchantment"
+targets = ["All"]

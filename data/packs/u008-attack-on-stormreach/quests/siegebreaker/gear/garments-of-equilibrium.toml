@@ -1,0 +1,41 @@
+name = "Garments of Equilibrium"
+description = """
+A field of mystical energy surrounds these garments, protecting the wearer from
+critical damage and reinforcing his or her fists with extra power."""
+drop_location = "Siegebreaker, Medusas' chests"
+icon = "Cloth_16"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 12
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 14
+
+[[effect]]
+name = "Reinforced Fists"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "medusas' chests"
+kind = "quest"
+loot_type = "chest"
+name = "Siegebreaker"

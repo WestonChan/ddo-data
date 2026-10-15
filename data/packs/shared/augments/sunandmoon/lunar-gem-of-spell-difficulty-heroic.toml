@@ -1,0 +1,50 @@
+name = "Lunar Gem of Spell Difficulty (Heroic)"
+description = """
++1 Profane Bonus to Spell DCs.
+Drops in: Seeds of Decay, end chest
+The Wizard's Labyrinth, end chest
+Toil and Trouble, end chest
+The Body Snatchers, cookbook optional chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Profane"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Seeds of Decay"
+
+[[source]]
+chest = "cookbook optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wizard's Labyrinth"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

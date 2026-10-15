@@ -1,0 +1,49 @@
+name = "Alchemist's Pendant"
+description = """
+House Cannith alchemists often wear charms such as this to ward against the
+deadly materials they work with. It also boosts the wearer's ability to utilize
+his or her energy more efficiently."""
+drop_location = "Blown to Bits, end chests including the optional one for destroying all the crates"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Alchemical Conservation"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Greater Elemental Energy"
+bonus_type = "Elemental Energy"
+
+[[note]]
+kind = "item"
+field = "set_bonus"
+reason = "The wiki lists this item as a member of Alchemist's Lore."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Alchemist's Lore"
+description = "Upgrades the item to include the Alchemist's Lore set bonus"
+icon = "AlchemistsLore"
+min_level = 18
+
+[[socket.option.set]]
+set = "Alchemist's Lore"
+
+[[source]]
+chest = "end chests including the optional one for destroying all the crates"
+kind = "quest"
+loot_type = "chest"
+name = "Blown to Bits"

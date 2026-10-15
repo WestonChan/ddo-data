@@ -1,0 +1,82 @@
+name = "Insightful Intelligence"
+choose_level = true
+description = "Insight bonus to Intelligence"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+]
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "crafting: cannith cloak extra"
+
+[[slot]]
+slot = "crafting: cannith goggles extra"
+
+[[slot]]
+slot = "crafting: cannith helmet extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random cloak extra"
+
+[[slot]]
+slot = "crafting: random helmet extra"
+
+[[slot]]
+slot = "crafting: random goggles extra"

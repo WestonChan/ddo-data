@@ -1,0 +1,31 @@
+name = "Mysterious Bracers (Level 14)"
+description = "Bracers. Mysterious."
+drop_location = "Champion Hunter, Turn in 4000 Mysterious Remnants"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Paper"
+minimum_level = 14
+slot = "Wrists"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 30
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[effect]]
+name = "Wondrous Craftsmanship"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "vendor"
+name = "Champion Hunter"

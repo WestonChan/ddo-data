@@ -1,0 +1,21 @@
+name = "Raid the Vulkoorim"
+bestowed_by = "Walk-up"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Demon Sands"
+patron = "The Free Agents"
+zone = "Vulkoorim Creche"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Raid_the_Vulkoorim"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11

@@ -1,0 +1,26 @@
+name = "+5 Polished Cormyrian Full Plate"
+description = """
+This exquisite platemail armor is a suit that any knight would be proud to own.
+The smithies of Cormyr are renowned for the quality of their work, and equipment
+intended for use in service to the kingdom is layered with powerful enchantments
+by the War Wizards."""
+drop_location = "Eveningstar Challenge Pack"
+enhancement_bonus = 5
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 4
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

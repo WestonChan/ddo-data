@@ -1,0 +1,21 @@
+name = "Charisma +5"
+description = "Enhancement bonus to Charisma"
+family = "Slavelords_Heroic"
+icon = "SlavelordsPrefix"
+min_level = 8
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: slavelords prefix"

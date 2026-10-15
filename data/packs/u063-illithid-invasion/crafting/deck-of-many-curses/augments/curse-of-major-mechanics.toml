@@ -1,0 +1,28 @@
+name = "Curse of Major Mechanics"
+description = "+2 Fortune Bonus to Open Lock and Disable Device"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Fortune"
+value = 2
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[slot]]
+slot = "crafting: deck curse"

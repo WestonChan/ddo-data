@@ -1,0 +1,39 @@
+name = "Blooming Gauntlets"
+drop_location = "Toil and Trouble, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Hands"
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Undying"
+bonus_type = "Enhancement"
+value = 50
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 12
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

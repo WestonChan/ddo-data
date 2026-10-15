@@ -1,0 +1,63 @@
+[[row]]
+category = "weapon"
+name = "Main Hand"
+
+[[row]]
+category = "weapon"
+name = "Off Hand"
+
+[[row]]
+category = "weapon"
+name = "Ranged"
+
+[[row]]
+category = "weapon"
+name = "Quiver"
+
+[[row]]
+category = "armor"
+name = "Head"
+
+[[row]]
+category = "accessory"
+name = "Neck"
+
+[[row]]
+category = "accessory"
+name = "Trinket"
+
+[[row]]
+category = "armor"
+name = "Back"
+
+[[row]]
+category = "armor"
+name = "Wrists"
+
+[[row]]
+category = "armor"
+name = "Hands"
+
+[[row]]
+category = "armor"
+name = "Body"
+
+[[row]]
+category = "armor"
+name = "Waist"
+
+[[row]]
+category = "armor"
+name = "Feet"
+
+[[row]]
+category = "accessory"
+name = "Goggles"
+
+[[row]]
+category = "accessory"
+name = "Ring"
+
+[[row]]
+category = "weapon"
+name = "Runearm"

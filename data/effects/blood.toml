@@ -1,0 +1,19 @@
+name = "Blood"
+description_template = "This Docent converts a portion of the wood and metal structure of the Warforged to living flesh. The Warforged will benefit more from positive energy healing such as cure spells and potions (+20 Positive Healing Amplification) but will also be more subject to critical hits (-10% fortification )."
+verbose_name_template = "Blood"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Equipment"
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Healing Amplification"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Penalty"
+constant = -10
+rounding = "down"
+scale = 1.0
+target = "Fortification"

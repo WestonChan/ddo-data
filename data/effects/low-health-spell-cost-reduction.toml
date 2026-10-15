@@ -1,0 +1,3 @@
+name = "Low Health Spell Cost Reduction"
+description_template = "Spells costs [10/20/30]% less when you're below [50/25/10]% hp."
+verbose_name_template = "Low Health Spell Cost Reduction"

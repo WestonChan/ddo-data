@@ -1,0 +1,29 @@
+name = "Silver Pocketwatch"
+description = """
+Whenever you try to set this watch back to the current time in Saltmarsh, it
+winds itself back to where it was."""
+drop_location = "Down You Go, end chest"
+icon = "Trinket_14"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 3
+slot = "Trinket"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Down You Go"

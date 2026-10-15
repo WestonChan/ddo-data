@@ -1,0 +1,28 @@
+name = "Elven Chain"
+description = "This extremely light chainmail is made of very fine mithral links."
+drop_location = "Stormcleave Outpost, Gorehoof 's Chest"
+enhancement_bonus = 4
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_bonus = 5
+armor_type = "Light"
+max_dex_bonus = 9
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "gorehoof 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stormcleave Outpost"

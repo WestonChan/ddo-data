@@ -1,0 +1,59 @@
+name = "Pale Rod"
+accepts_sentience = true
+description = "Around this rod, even the air itself seems to wither and die."
+drop_location = "The Unquiet Graves, End Chest ; Menace of the Underdark: The Darkening, Quest chain end reward"
+enhancement_bonus = 6
+icon = "Club_8"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 90
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Light Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Unquiet Graves"
+
+[[source]]
+kind = "saga"
+name = "Menace of the Underdark"
+tier = "any"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Club"

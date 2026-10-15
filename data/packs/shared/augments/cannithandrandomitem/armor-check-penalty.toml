@@ -1,0 +1,21 @@
+name = "Armor Check Penalty"
+description = "Armor skill check penalty"
+enter_value = true
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Armor Check Penalty"
+bonus_type = "Armor"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Armor"
+effect = "Armor Check Penalty"
+effect_type = "ArmorCheckPenalty"
+
+[[slot]]
+slot = "crafting: cannith armor check penalty"

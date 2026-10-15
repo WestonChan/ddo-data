@@ -1,0 +1,26 @@
+name = "The Black Loch"
+bestowed_by = "Tyn d'Deneith"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Sentinels of Stormreach"
+patron = "House Deneith"
+zone = "The Black Loch"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Black_Loch"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 20

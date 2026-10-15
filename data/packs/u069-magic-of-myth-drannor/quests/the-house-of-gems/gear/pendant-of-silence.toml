@@ -1,0 +1,38 @@
+name = "Pendant of Silence"
+description = """
+Sounds are muted around this pendant, bringing either sweet quiet or maddening
+silence, depending on the user's point of view."""
+drop_location = "The House of Gems, end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Neck"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 2
+
+[[effect]]
+name = "Melodic Guard"
+
+[[effect]]
+name = "Soundproof"
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 26
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Gems"

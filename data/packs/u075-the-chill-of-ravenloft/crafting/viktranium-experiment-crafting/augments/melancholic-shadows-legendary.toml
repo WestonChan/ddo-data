@@ -1,0 +1,49 @@
+name = "Melancholic Shadows (Legendary)"
+description = """
++10% Enhancement bonus to Spell Cost Reduction.
+If this is slotted in a Quarterstaff, also grants a +2 Exceptional bonus to
+Spell DCs and makes the Quarterstaff an Implement."""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Spell Point Cost Reduction"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Spell Point Cost Reduction"
+effect_type = "SpellPointCostPercent"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = [
+    "Weapon1",
+    "Quarterstaff",
+]
+req_type = "ItemTypeInSlot"
+
+[[slot]]
+slot = "lamordia: melancholic (weapon)"

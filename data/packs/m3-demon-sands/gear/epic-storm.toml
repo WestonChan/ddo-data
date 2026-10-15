@@ -1,0 +1,91 @@
+name = "Epic Storm"
+accepts_sentience = true
+description = """
+This gnoll-built weapon is crude but carries an aura of magic. Its bolts fly
+through the air with great power and accuracy."""
+drop_location = "Epic version of Storm"
+enhancement_bonus = 6
+icon = "HeavyCrossbow_6"
+item_category = "Weapon"
+item_type = "Heavy Crossbow"
+material = "Wood"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 20
+
+[[effect]]
+name = "Lightning Strike"
+
+[[effect]]
+name = "Shocking Blast IV"
+
+[[effect]]
+name = "Screeching 10"
+
+[[effect]]
+name = "Thunderstorm Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Power of the Thunderstorm"
+bonus_type = "Equipment"
+value = 111
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = """For Epic Storm's Electric Spell Lore, the Thunderstorm Lore page says "Your Electric and Sonic spells gain a <x>% Equipment Bonus to their chance to critical hit"; his buff has no bonus type."""
+url = "https://ddowiki.com/page/Thunderstorm_Lore"
+read = "2026-10-03"
+qualifier = "Electric Spell Lore / null / 16"
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = """For Epic Storm's Sonic Spell Lore, the Thunderstorm Lore page says "Your Electric and Sonic spells gain a <x>% Equipment Bonus to their chance to critical hit"; his buff has no bonus type."""
+url = "https://ddowiki.com/page/Thunderstorm_Lore"
+read = "2026-10-03"
+qualifier = "Sonic Spell Lore / null / 16"
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "For Epic Storm's Electric Spell Power, the type follows the Spell Power convention the wiki states: spell power from items is an Equipment bonus; his buff has no bonus type."
+url = "https://ddowiki.com/page/Power_of_the_Thunderstorm"
+read = "2026-10-03"
+qualifier = "Electric Spell Power / null / 111"
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "For Epic Storm's Sonic Spell Power, the type follows the Spell Power convention the wiki states: spell power from items is an Equipment bonus; his buff has no bonus type."
+url = "https://ddowiki.com/page/Power_of_the_Thunderstorm"
+read = "2026-10-03"
+qualifier = "Sonic Spell Power / null / 111"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Heavy Crossbow"

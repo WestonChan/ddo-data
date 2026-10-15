@@ -1,0 +1,55 @@
+name = "Epic Scraps of Enlightenment"
+accepts_sentience = true
+description = """
+These thin shreds of fabric once covered the shoulders of a mighty Paladin who
+ventured into the Battlefield. After he was burned alive, this is all that
+remains of him."""
+drop_location = "The Archons' Trial, End chest"
+enhancement_bonus = 12
+icon = "HandWraps_1f"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Holy VI"
+
+[[effect]]
+name = "Solar VI"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Greater Reinforced Fists"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Archons' Trial"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Two-handed"
+weapon_type = "Handwraps"

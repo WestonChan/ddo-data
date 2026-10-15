@@ -1,0 +1,53 @@
+name = "Bleeding Edge"
+description = """
+Some wicked blades seek blood. Far more wicked are the blades the blood itself
+seeks."""
+drop_location = "Demon Assault, End chest"
+enhancement_bonus = 5
+icon = "Khopesh_2"
+item_category = "Weapon"
+item_type = "Khopesh"
+material = "Flametouched Iron"
+minimum_level = 13
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Limb Chopper"
+
+[[effect]]
+name = "Bloodletter III"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon Assault"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.6
+handedness = "One-handed"
+weapon_type = "Khopesh"

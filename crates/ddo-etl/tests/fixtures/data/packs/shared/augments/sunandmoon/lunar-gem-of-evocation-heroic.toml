@@ -1,0 +1,34 @@
+name = "Lunar Gem of Evocation (Heroic)"
+description = """
++2 Profane Bonus to Evocation DCs
+Drops in: Book Burning, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Lunar_Gem_of_Evocation_(Heroic)"
+read = "2026-09-29"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Book Burning"

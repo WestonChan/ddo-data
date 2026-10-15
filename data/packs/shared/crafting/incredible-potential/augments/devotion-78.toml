@@ -1,0 +1,21 @@
+name = "Devotion +78"
+description = "Devotion +78: +78 Equipment bonus to Positive spell power."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Positive Spell Power"
+bonus_type = "Equipment"
+value = 78
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[slot]]
+slot = "crafting: incredible potential"

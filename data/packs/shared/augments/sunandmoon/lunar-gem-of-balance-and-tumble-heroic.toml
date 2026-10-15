@@ -1,0 +1,36 @@
+name = "Lunar Gem of Balance and Tumble (Heroic)"
+description = """
++2 Profane Bonus to Balance and Tumble
+Drops in: Locked Away (Part One), Asylum Otyugh's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Balance"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Tumble",
+]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "asylum otyugh's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part One)"

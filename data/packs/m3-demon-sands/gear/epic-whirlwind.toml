@@ -1,0 +1,54 @@
+name = "Epic Whirlwind"
+accepts_sentience = true
+description = """
+An air spirit bound to this greatsword shrieks when the sword is swept through
+the air. Swirling gusts of wind can knock the sword's target to the ground."""
+drop_location = "Epic version of Whirlwind"
+enhancement_bonus = 6
+icon = "Greatsword_4b"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Epic Telekinetic"
+
+[[effect]]
+name = "Shocking Blast IV"
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Air Guard"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

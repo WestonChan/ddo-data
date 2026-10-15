@@ -1,0 +1,42 @@
+name = "Legendary Rust-Laden Pendant"
+description = """
+Recently recovered from the sewers' putrid waters, this necklace has spent a
+long time breaking down into its current state."""
+drop_location = "Kill Ten Rats, End Chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Neck"
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Quality"
+value = 36
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Kill Ten Rats"

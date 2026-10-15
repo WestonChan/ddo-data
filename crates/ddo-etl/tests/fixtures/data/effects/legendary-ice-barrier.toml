@@ -1,0 +1,3 @@
+name = "Legendary Ice Barrier"
+description_template = "When struck in combat, there is a small chance you will be shielded by conjured ice, preventing the next 150 Damage unless that damage is Fire. This lasts for 1 minute or until depleted."
+verbose_name_template = "Legendary Ice Barrier"

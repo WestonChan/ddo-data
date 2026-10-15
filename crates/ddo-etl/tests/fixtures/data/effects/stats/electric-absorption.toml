@@ -1,0 +1,3 @@
+name = "Electric Absorption"
+category = "defensive"
+verbose_name_template = "%b1 Electric Absorption +{1}"

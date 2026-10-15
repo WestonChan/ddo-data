@@ -1,0 +1,37 @@
+name = "Eloquence"
+description = "When all you have is words, they cut like the sharpest blade."
+drop_location = "Demon Assault, end chest"
+icon = "Helmet_21"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 13
+slot = "Head"
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 1
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon Assault"

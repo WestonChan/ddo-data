@@ -1,0 +1,56 @@
+name = "Roadwatch Bow (Level 17)"
+description = """
+This old longbow, once used by guardsmen who kept watch over Cormyr's High Road,
+has remained in perfect condition despite years of disuse."""
+drop_location = "Rest Stop, Umbral Gargoyle Lord chest (Heroic Hard)"
+enhancement_bonus = 5
+icon = "Longbow_1m"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Darkwood"
+minimum_level = 17
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Axiomatic"
+
+[[effect]]
+name = "Aligned"
+
+[[effect]]
+name = "Heartseeker III"
+
+[[source]]
+chest = "umbral gargoyle lord chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rest Stop"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Longbow"

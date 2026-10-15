@@ -1,0 +1,51 @@
+name = "Devourer's Reaping"
+accepts_sentience = true
+description = "All victims are sent directly to the Devourer."
+drop_location = "Ghost of a Chance (epic), Puzzle chest and Major Mal 's chest"
+enhancement_bonus = 7
+icon = "Sickle_1d"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Greater Vorpal"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Hemorrhaging"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "puzzle chest and major mal 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ghost of a Chance"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.3
+handedness = "One-handed"
+weapon_type = "Sickle"

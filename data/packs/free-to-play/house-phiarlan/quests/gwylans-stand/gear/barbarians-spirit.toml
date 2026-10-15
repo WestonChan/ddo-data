@@ -1,0 +1,32 @@
+name = "Barbarian's Spirit"
+description = "These bracers allow their user to periodically mimic a barbarian's frenzy."
+drop_location = "Gwylan's Stand, Twin Horn 's chest"
+icon = "Bracers_31"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Wrists"
+
+[[clickie]]
+name = "Rage"
+clickie = "Rage"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Rage"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "twin horn 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gwylan's Stand"

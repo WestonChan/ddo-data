@@ -1,0 +1,27 @@
+name = "Insightful Intelligence +7"
+description = """
+Insightful Intelligence +7: This item focuses the power of the wearer's mind, granting
+a +7 Insightful bonus to Intelligence."""
+family = "SealedInUndeath"
+icon = "Intelligence"
+min_level = 32
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "crafting: sealed in undeath"
+
+[[slot]]
+slot = "crafting: sealed in gloom"

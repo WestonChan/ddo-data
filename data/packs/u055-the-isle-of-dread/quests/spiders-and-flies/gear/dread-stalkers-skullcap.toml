@@ -1,0 +1,35 @@
+name = "Dread Stalker's Skullcap"
+description = "The lenses fused into this mask tint the world a dusty red."
+drop_location = "Spiders and Flies, end chest"
+icon = "Helmet_1a"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 7
+slot = "Head"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Spiders and Flies"

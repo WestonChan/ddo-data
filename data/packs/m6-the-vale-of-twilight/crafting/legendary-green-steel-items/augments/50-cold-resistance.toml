@@ -1,0 +1,23 @@
+name = "+50 Cold Resistance"
+description = "Material/Opposition: +50 Enhancement bonus to Cold Resistance."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: equipment tier 1"

@@ -1,0 +1,17 @@
+name = "Legendary Salt"
+variant = "sealedinfire"
+description = """
+Attacks and offensive spells have a [100%] chance to greatly
+reduce enemy movement speed and attack speed [about -90% slowdown].
+This inflicts 8 stacks, which fade overtime. Has a short internal
+cooldown [1/4 seconds]. Doesn't affect bosses.
+[duration 11 seconds]"""
+family = "SealedInFire"
+icon = "GreenAugment"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in fire"
+
+[[slot]]
+slot = "crafting: sealed in mist"

@@ -1,0 +1,33 @@
+name = "Ring of the Djinn (Level 23)"
+description = """
+It is written on the side of this intricately carved golden ring that 'He who
+holds this ring, holds Tehram 's heart.'"""
+drop_location = "Return to Prison of the Planes, Lamannia room's chest (Epic Normal); Return to Gianthold, quest chain end reward"
+icon = "Ring_35c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 23
+slot = "Ring"
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "DR 10/Lawful"
+
+[[source]]
+chest = "lamannia room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"
+
+[[source]]
+kind = "quest_chain"
+name = "Return to Gianthold"

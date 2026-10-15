@@ -1,0 +1,188 @@
+[[row]]
+name = "Bastard Sword"
+proficiency = "Exotic"
+
+[[row]]
+name = "Battle Axe"
+proficiency = "Martial"
+
+[[row]]
+is_shield = true
+name = "Buckler"
+
+[[row]]
+name = "Club"
+proficiency = "Simple"
+
+[[row]]
+name = "Collar"
+
+[[row]]
+is_shield = true
+name = "Cosmetic Shield"
+
+[[row]]
+name = "Dagger"
+proficiency = "Simple"
+
+[[row]]
+name = "Dart"
+proficiency = "Simple"
+
+[[row]]
+name = "Dwarven Axe"
+proficiency = "Exotic"
+
+[[row]]
+name = "Falchion"
+proficiency = "Martial"
+
+[[row]]
+name = "Great Axe"
+proficiency = "Martial"
+
+[[row]]
+name = "Great Club"
+proficiency = "Martial"
+
+[[row]]
+name = "Great Crossbow"
+proficiency = "Exotic"
+
+[[row]]
+name = "Great Sword"
+proficiency = "Martial"
+
+[[row]]
+name = "Hand Axe"
+proficiency = "Martial"
+
+[[row]]
+name = "Handwraps"
+proficiency = "Simple"
+
+[[row]]
+name = "Heavy Crossbow"
+proficiency = "Simple"
+
+[[row]]
+name = "Heavy Mace"
+proficiency = "Simple"
+
+[[row]]
+name = "Heavy Pick"
+proficiency = "Martial"
+
+[[row]]
+name = "Kama"
+proficiency = "Exotic"
+
+[[row]]
+name = "Khopesh"
+proficiency = "Exotic"
+
+[[row]]
+name = "Kukri"
+proficiency = "Martial"
+
+[[row]]
+is_shield = true
+name = "Large Shield"
+
+[[row]]
+name = "Light Crossbow"
+proficiency = "Simple"
+
+[[row]]
+name = "Light Hammer"
+proficiency = "Martial"
+
+[[row]]
+name = "Light Mace"
+proficiency = "Simple"
+
+[[row]]
+name = "Light Pick"
+proficiency = "Martial"
+
+[[row]]
+name = "Longbow"
+proficiency = "Martial"
+
+[[row]]
+name = "Longsword"
+proficiency = "Martial"
+
+[[row]]
+name = "Maul"
+proficiency = "Martial"
+
+[[row]]
+name = "Morningstar"
+proficiency = "Simple"
+
+[[row]]
+name = "Orb"
+
+[[row]]
+name = "Quarterstaff"
+proficiency = "Simple"
+
+[[row]]
+name = "Rapier"
+proficiency = "Martial"
+
+[[row]]
+name = "Repeating Heavy Crossbow"
+proficiency = "Exotic"
+
+[[row]]
+name = "Repeating Light Crossbow"
+proficiency = "Exotic"
+
+[[row]]
+name = "Rune Arm"
+
+[[row]]
+name = "Scimitar"
+proficiency = "Martial"
+
+[[row]]
+name = "Shortbow"
+proficiency = "Martial"
+
+[[row]]
+name = "Shortsword"
+proficiency = "Martial"
+
+[[row]]
+name = "Shuriken"
+proficiency = "Exotic"
+
+[[row]]
+name = "Sickle"
+proficiency = "Simple"
+
+[[row]]
+is_shield = true
+name = "Small Shield"
+
+[[row]]
+name = "Throwing Axe"
+proficiency = "Martial"
+
+[[row]]
+name = "Throwing Dagger"
+proficiency = "Simple"
+
+[[row]]
+name = "Throwing Hammer"
+proficiency = "Martial"
+
+[[row]]
+is_shield = true
+name = "Tower Shield"
+
+[[row]]
+name = "Warhammer"
+proficiency = "Martial"

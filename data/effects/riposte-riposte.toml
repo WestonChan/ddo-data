@@ -1,0 +1,3 @@
+name = "Riposte Riposte"
+description_template = "When its wearer is successfully attacked in melee, this shield occasionally allows him or her to make an immediate counterattack, dealing bludgeoning damage to the offending enemy."
+verbose_name_template = "Riposte"

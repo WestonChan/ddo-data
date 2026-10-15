@@ -1,0 +1,33 @@
+name = "Widow Weave Cloak"
+description = """
+This cloak is a by-product of the Kar'Thul experimentation on Whisperdoom and
+her spawn. The magically altered spiders were found to produce strong silk
+imbued with special properties. Months of delicate work and treatment went
+into this item's fabrication and few were actually produced. These cloaks were
+likely reserved for Kar'Thul of high regard."""
+drop_location = "The Spawn of Whisperdoom, Turn in Silver Goblet to the Ungurz Lieutenant for a small chance to get it"
+icon = "Cloak_4"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 9
+slot = "Back"
+
+[[effect]]
+name = "Spearblock III"
+
+[[effect]]
+name = "Web Immunity"
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "turn in silver goblet to the ungurz lieutenant for a small chance to get it"
+kind = "quest"
+loot_type = "chest"
+name = "The Spawn of Whisperdoom"

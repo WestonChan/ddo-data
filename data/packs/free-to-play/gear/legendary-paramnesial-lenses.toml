@@ -1,0 +1,43 @@
+name = "Legendary Paramnesial Lenses"
+description = """
+Enchanted heavily with illusionary magic, these goggles sometimes make it hard
+to discern the reality around you."""
+drop_location = "Memoirs of an Illusory Larcener, End Chest"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 28
+slot = "Goggles"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Memoirs of an Illusory Larcener"
+
+[[source]]
+chest = "left end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mask of Deception"

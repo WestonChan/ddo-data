@@ -1,0 +1,217 @@
+{
+  "$defs": {
+    "EffectBonus": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_from": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "constant": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "rounding": {
+          "type": "string"
+        },
+        "scale": {
+          "format": "double",
+          "type": "number"
+        },
+        "target": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        }
+      },
+      "required": [
+        "amount_from",
+        "rounding",
+        "scale",
+        "target"
+      ],
+      "type": "object",
+      "x-table": "effect_bonuses"
+    },
+    "EffectDamage": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_from": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "damage_type": {
+          "type": "string",
+          "x-reference-kind": "damage_types"
+        },
+        "dice_bonus": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "dice_number": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "dice_sides": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "scale": {
+          "format": "double",
+          "type": "number"
+        },
+        "trigger": {
+          "type": "string",
+          "x-reference-kind": "triggers"
+        }
+      },
+      "required": [
+        "amount_from",
+        "damage_type",
+        "dice_bonus",
+        "dice_number",
+        "dice_sides",
+        "scale",
+        "trigger"
+      ],
+      "type": "object",
+      "x-table": "effect_damage"
+    },
+    "EntityNote": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "entity_notes"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bonus": {
+      "items": {
+        "$ref": "#/$defs/EffectBonus"
+      },
+      "type": "array"
+    },
+    "damage": {
+      "items": {
+        "$ref": "#/$defs/EffectDamage"
+      },
+      "type": "array"
+    },
+    "default_value": {
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "description_template": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "home_bonus_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-reference-kind": "bonus_types"
+    },
+    "name": {
+      "type": "string"
+    },
+    "note": {
+      "items": {
+        "$ref": "#/$defs/EntityNote"
+      },
+      "type": "array"
+    },
+    "set_bonus_line_template": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tier": {
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "tier_group": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-reference-kind": "effect_tier_groups"
+    },
+    "variant": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "verbose_name_template": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "name",
+    "verbose_name_template"
+  ],
+  "title": "EffectFile",
+  "type": "object",
+  "x-table": "effects"
+}

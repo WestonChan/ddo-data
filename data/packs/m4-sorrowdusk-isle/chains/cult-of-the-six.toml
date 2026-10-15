@@ -1,0 +1,13 @@
+name = "Cult of the Six"
+quests = [
+    "The Temple Outpost: Captives of the Cult",
+    "The Temple Outpost: The Libram of the Six",
+    "The Fane of the Six: Cleansing the Temple",
+    "The Fane of the Six: Fall of the Prelate",
+    "The Sanctum: Quench the Flames",
+    "The Sanctum: Church of the Fury",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Cult_of_the_Six"
+read = "2026-10-02"

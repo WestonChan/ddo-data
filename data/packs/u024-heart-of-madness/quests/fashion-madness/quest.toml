@@ -1,0 +1,25 @@
+name = "Fashion Madness"
+bestowed_by = "Kier d'Phiarlan"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Heart of Madness"
+patron = "The Twelve"
+zone = "Lordsmarch Plaza"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Fashion_Madness"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 26

@@ -1,0 +1,141 @@
+[[row]]
+name = "The Wreath of Flame: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "TheWreathOfFlame"
+menu = "Ravenloft"
+set = "The Wreath of Flame"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Wreath of Flame: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Wreath of Flame: +2 Fortitude Saves"
+description = """
++2 Fortitude saves
+Rare: +2 PRR"""
+icon = "TheWreathOfFlame"
+menu = "Ravenloft"
+set = "The Wreath of Flame"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Wreath of Flame: Fortitude: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Wreath of Flame: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "TheWreathOfFlame"
+menu = "Ravenloft"
+set = "The Wreath of Flame"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Wreath of Flame: Melee Power: Rare +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "The Wreath of Flame: +3 Ranged Power"
+description = """
++3 Ranged Power
+Rare: +2 Ranged Power"""
+icon = "TheWreathOfFlame"
+menu = "Ravenloft"
+set = "The Wreath of Flame"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Wreath of Flame: Ranged Power: Rare +2 Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "The Wreath of Flame: +5% Fire Absorption"
+description = """
++5% Fire Absorption
+Rare: +2 MRR"""
+icon = "TheWreathOfFlame"
+menu = "Ravenloft"
+set = "The Wreath of Flame"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Wreath of Flame: Fire Absorption: Rare +4 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "The Wreath of Flame: +9 Fire Spell Power"
+description = """
++9 Fire spell power
+Rare: +4 Universal spell power"""
+icon = "TheWreathOfFlame"
+menu = "Ravenloft"
+set = "The Wreath of Flame"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "The Wreath of Flame: Fire Spell Power: Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

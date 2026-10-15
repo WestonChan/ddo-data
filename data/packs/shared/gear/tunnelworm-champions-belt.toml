@@ -1,0 +1,20 @@
+name = "Tunnelworm Champion's Belt"
+description = """
+Only the strongest Tunnelworm was allowed to wear this coveted belt, which provided
+much needed comfort from the cold, dank sewer environment."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Waist"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

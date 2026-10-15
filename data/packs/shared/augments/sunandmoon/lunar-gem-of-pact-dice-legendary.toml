@@ -1,0 +1,28 @@
+name = "Lunar Gem of Pact Dice (Legendary)"
+description = """
+Profane Power in Pact +3
+Drops in: Snowfall and Sunlight, locked chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Eldritch Blast Dice"
+bonus_type = "Profane"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "Eldritch Blast Dice"
+effect_type = "EldritchBlastD6"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

@@ -1,0 +1,3 @@
+name = "Petrification Immunity"
+description_template = "This items gives immunity to Petrification."
+verbose_name_template = "Petrification Immunity"

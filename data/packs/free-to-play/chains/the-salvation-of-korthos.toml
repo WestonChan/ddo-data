@@ -1,0 +1,16 @@
+name = "The Salvation of Korthos"
+quests = [
+    "Heyton's Rest",
+    "The Storehouse's Secret",
+    "The Cannith Crystal",
+    "The Collaborator",
+    "Sacrifices",
+    "Redemption",
+    "Necromancer's Doom",
+    "Stopping the Sahuagin",
+    "Misery's Peak",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Salvation_of_Korthos"
+read = "2026-10-02"

@@ -1,0 +1,130 @@
+name = "Spare Hand (Level 15)"
+description = """
+A belt with a remarkable augmentation: a clawed hand that extends from it and
+will help you attack your foes and make tasks easier to perform."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+icon = "Belt_20"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 15
+slot = "Waist"
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Staggering Blow"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 16
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 16
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Insightful Combat Mastery +4"
+description = """
+Insightful Combat Mastery +4: +4 Insight bonus to the DC to resist the character's Trip,
+Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."""
+icon = "Upgrade"
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Combat Mastery"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Tactics"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Riposte +4, Disable Device +17, Open Lock +17 and a Green Augment Slot"
+description = """
+Riposte +4: This item enchants its user with incredible awareness and speed, granting a +4 Insight bonus to AC and to Saves.
+Disable Device +17: Passive: +17 Competence bonus to the Disable Device skill.
+Open Lock +17: Passive: +17 Competence bonus to the Open Lock skill.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Disable Device"
+value = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
+value = 17
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

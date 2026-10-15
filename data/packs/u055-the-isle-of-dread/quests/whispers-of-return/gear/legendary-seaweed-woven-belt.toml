@@ -1,0 +1,38 @@
+name = "Legendary Seaweed-woven Belt"
+description = "Seaweed, when dried and woven together, can form a relatively strong canvas."
+drop_location = "Whispers of Return, end chest"
+icon = "Belt_4c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 31
+slot = "Waist"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 103
+
+[[socket]]
+slot = "isle of dread: claw (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Whispers of Return"

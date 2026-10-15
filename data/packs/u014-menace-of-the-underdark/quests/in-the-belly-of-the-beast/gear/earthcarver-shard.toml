@@ -1,0 +1,54 @@
+name = "Earthcarver Shard"
+description = """
+This appears to be merely the broken shard of a much more powerful implement.
+Nevertheless, it's extremely effective against purple worms and the digestive
+slimes that inhabit their stomachs."""
+drop_location = "In the Belly of the Beast, Special quest only temporary weapon"
+enhancement_bonus = 6
+icon = "Dagger_18"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Glass"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Epic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Incandescence"
+
+[[effect]]
+name = "Ooze Bane"
+
+[[effect]]
+name = "Aberration Bane"
+
+[[effect]]
+name = "Magical Beast Bane"
+
+[[effect]]
+name = "Acidic Reaping"
+
+[[source]]
+chest = "special quest only temporary weapon"
+kind = "quest"
+loot_type = "chest"
+name = "In the Belly of the Beast"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Dagger"

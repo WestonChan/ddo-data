@@ -1,0 +1,21 @@
+name = "Tough Shield"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Tough Shields"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

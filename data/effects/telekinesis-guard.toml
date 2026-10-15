@@ -1,0 +1,3 @@
+name = "Telekinesis Guard"
+description_template = "When enemies hit you, they may be assaulted by these psychic forces, falling to the ground unless they make a DC 35 Reflex save."
+verbose_name_template = "Telekinesis Guard"

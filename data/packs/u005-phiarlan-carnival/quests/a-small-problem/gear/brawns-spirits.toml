@@ -1,0 +1,50 @@
+name = "Brawn's Spirits"
+description = """
+A powerful draught of the giant Brawn's spirits. One swig will give you great
+battle prowess and allow you to intimidate your foes, but it does make you
+a bit addle-brained."""
+drop_location = "A Small Problem, Brawnpits ' camp chest"
+icon = "Trinket_27a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 4
+slot = "Trinket"
+
+[[clickie]]
+name = "Rage"
+clickie = "Rage"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 38
+
+[[effect]]
+name = "Curse of Foolishness"
+bonus_type = "Penalty"
+
+[[effect]]
+name = "Curse of Dullness"
+bonus_type = "Penalty"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Rage"]
+
+[[source]]
+chest = "brawnpits ' camp chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Small Problem"

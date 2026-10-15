@@ -1,0 +1,3 @@
+name = "Poison Blast 6"
+description_template = "This weapon drips with vile poison, dealing 6d6 Poison damage on a successful hit, and an additional 6d6 Poison damage on a critical hit."
+verbose_name_template = "Poison Blast 6"

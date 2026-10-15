@@ -1,0 +1,20 @@
+name = "+2 Constitution (Exceptional)"
+description = "Escalation/Earth or Positive: +2 Exceptional bonus to Constitution"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

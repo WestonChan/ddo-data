@@ -1,0 +1,57 @@
+name = "The Immortal Sun Flask"
+accepts_sentience = true
+description = """
+This flask is packed with secret ingredients passed down from generation to
+generation, and bursts on impact with a monster or wall. Nearby creatures are
+momentarily blinded by the flash, and it's claimed that the liberal use of
+Sun Flasks can drive away the darkness of Mabar."""
+drop_location = "Too Cold to Continue, on the floor at the end of the optional path"
+enhancement_bonus = 15
+icon = "Dart_6"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Brilliance of the Shattered Sun"
+
+[[effect]]
+name = "Ghostbane 6"
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Good Blast 6"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Thrown"
+weapon_type = "Dart"

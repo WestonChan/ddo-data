@@ -1,0 +1,3 @@
+name = "Eldritch VI"
+description_template = "On Hit: 6 to 24 Force Damage."
+verbose_name_template = "Eldritch VI"

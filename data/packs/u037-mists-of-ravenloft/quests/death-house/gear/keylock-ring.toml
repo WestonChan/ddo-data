@@ -1,0 +1,37 @@
+name = "Keylock Ring"
+description = "This fits under a gauntlet and is almost impossible to detect"
+drop_location = "Death House, End chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 10
+slot = "Ring"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 12
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Death House"

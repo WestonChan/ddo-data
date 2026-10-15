@@ -1,0 +1,93 @@
+name = "Legendary Temple's Tide"
+icon = "TemplesTide"
+
+[[item]]
+name = "Legendary Bracelets of Subtle Life"
+
+[[item]]
+name = "Legendary Docent of the Crushing Wave"
+
+[[item]]
+name = "Legendary Eyes of the Crushing Wave"
+
+[[item]]
+name = "Legendary Heavy Armor of the Crushing Wave"
+
+[[item]]
+name = "Legendary Light Armor of the Crushing Wave"
+
+[[item]]
+name = "Legendary Medium Armor of the Crushing Wave"
+
+[[item]]
+name = "Legendary Robes of the Crushing Wave"
+
+[[item]]
+name = "Legendary The Flame and the Frost"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Threat Reduction -20 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Threat Reduction / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = -20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Threat Generation"
+value = -20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell Threat Generation"
+value = -20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Threat Reduction"
+value = -20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [-20]
+bonus_type = "Artifact"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]

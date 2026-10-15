@@ -1,0 +1,27 @@
+name = "Under the Big Top"
+bestowed_by = "Cerise"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+flagging = "A Small Problem, Partycrashers, and The Snitch must all be completed and flagged before acquiring this quest."
+pack = "Phiarlan Carnival"
+patron = "House Phiarlan"
+zone = "The Traveling Troubadors"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Under_the_Big_Top"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5
+
+[[run]]
+tier = "epic"
+level = 20

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "sha": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "sha"
+  ],
+  "title": "UpstreamCommitFile",
+  "type": "object",
+  "x-table": "dataset_version"
+}

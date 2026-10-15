@@ -1,0 +1,25 @@
+name = "Battleworn Medal"
+description = "The markings on this are unfamiliar."
+drop_location = "Heart of the Problem, End chest"
+icon = "Trinket_43"
+item_category = "Jewelry"
+material = "Copper"
+minimum_level = 3
+slot = "Trinket"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Heroism"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Heart of the Problem"

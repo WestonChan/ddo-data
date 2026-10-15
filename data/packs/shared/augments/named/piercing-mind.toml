@@ -1,0 +1,32 @@
+name = "Piercing Mind"
+description = """
+3-Piece Set Bonus: +3 Artifact bonus to Intelligence
+Requires: 50 Threads of Fate, Empty Soul Vessel and Staggershockers
+(Project Nemesis)"""
+effect_description = "This augment will suppress any set bonus this item may have."
+family = "Named"
+icon = "ColorlessRaidItemEssence"
+min_level = 30
+set_bonus = "Piercing Mind"
+suppress_set_bonus = true
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

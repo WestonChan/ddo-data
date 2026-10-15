@@ -1,0 +1,43 @@
+name = "Legendary Full Plate of the Ringleader"
+description = """
+A brilliant and gaudy set of armor that makes its wearer the center of attention.
+It is made from surprisingly durable materials."""
+drop_location = "Legendary version of Epic Full Plate of the Ringleader"
+enhancement_bonus = 15
+icon = "HeavyArmor_1d"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Command"
+value = 7
+value2 = -6
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Legendary Brilliance Guard"
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[socket]]
+slot = "blue"

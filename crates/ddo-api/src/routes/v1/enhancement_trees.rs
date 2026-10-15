@@ -20,6 +20,7 @@ const ENHANCEMENT_TREE_COLUMNS: &str = "t.id, t.name, t.version, t.kind, t.is_le
 
 const ENHANCEMENT_TREES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("kind", "listed.kind"),
     ("version", "listed.version"),

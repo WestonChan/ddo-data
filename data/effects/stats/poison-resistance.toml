@@ -1,0 +1,5 @@
+name = "Poison Resistance"
+category = "defensive"
+description_template = "Passive: {1} %b1 bonus to your Poison Resistance."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Poison Resistance +{1}"

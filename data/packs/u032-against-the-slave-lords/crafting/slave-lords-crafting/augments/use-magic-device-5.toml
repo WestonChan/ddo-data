@@ -1,0 +1,21 @@
+name = "Use Magic Device +5"
+description = "Legendary Competence bonus to Use Magic Device"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Competence"
+effect = "Use Magic Device"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

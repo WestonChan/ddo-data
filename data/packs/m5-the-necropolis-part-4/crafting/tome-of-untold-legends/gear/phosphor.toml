@@ -1,0 +1,48 @@
+name = "Phosphor"
+description = """
+This relic of the Silver Flame is believed to be the primary weapon of a close
+friend and guardian of Tira Miron."""
+drop_location = "Tome of Untold Legends, Turn in completed Tome: Binding"
+enhancement_bonus = 5
+icon = "HeavyMace_2a"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Blueshine"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Sun Burst"
+
+[[effect]]
+name = "Righteous"
+
+[[effect]]
+name = "Coruscating"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Tome of Untold Legends"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 5
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

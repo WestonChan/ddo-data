@@ -1,0 +1,11 @@
+name = "Legendary Negation"
+description = """
+Requires Negative Negative Negative
+Attacks and offensive spells have a [100%, or later nerfed?]
+chance to deal 1d3 Negative levels (to a single target).
+This has a 30 second cooldown."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

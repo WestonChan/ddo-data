@@ -1,0 +1,102 @@
+name = "Elemental Rapier of Air (level 12)"
+description = """
+This rapier is part of a mass-produced line of House Cannith weapons with elementals
+bound to them. This one is infused with Air and shocks enemies as a result."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 3
+icon = "Rapier_4d"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Shocking Burst"
+
+[[effect]]
+name = "Screaming"
+
+[[effect]]
+name = "Roaring"
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 24
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+4 Enhancement Bonus and Electric Resistance 26"
+description = """
++4 Enhancement Bonus: +4 Enhancement bonus to attack and damage rolls.
+Electric Resistance +26: Passive: +26 Enhancement bonus to your Electric Resistance."""
+min_level = 12
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+value = 26
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [26]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Purple augment slot and Electric Resistance 29"
+description = """
+Adds a Purple augment slot to this item
+Electric Resistance +29: Passive: +29 Enhancement bonus to your Electric Resistance."""
+min_level = 12
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+value = 29
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [29]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Rapier"

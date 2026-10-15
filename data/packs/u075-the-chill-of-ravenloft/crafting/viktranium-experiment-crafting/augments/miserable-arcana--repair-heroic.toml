@@ -1,0 +1,21 @@
+name = "Miserable Arcana: Repair (Heroic)"
+description = "+70 Equipment bonus to Repair Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Repair Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Equipment"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = ["Repair"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

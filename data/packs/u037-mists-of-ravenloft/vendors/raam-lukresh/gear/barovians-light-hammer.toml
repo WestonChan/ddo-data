@@ -1,0 +1,56 @@
+name = "Barovian's Light Hammer"
+description = "This weapon was designed to help those lost in the mists."
+drop_location = "Blue Water Inn, Turn in 40 Vistani Talismans"
+enhancement_bonus = 5
+icon = "LightHammer_1a"
+item_category = "Weapon"
+item_type = "Light Hammer"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[effect]]
+name = "Holy 3"
+
+[[effect]]
+name = "Fiery 3"
+
+[[effect]]
+name = "Undead Bane 3"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Raam Lukresh"
+
+[[source.price]]
+ingredient = "Vistani Talisman"
+quantity = 40
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Light Hammer"

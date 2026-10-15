@@ -1,0 +1,41 @@
+name = "Elemental Rapier of Air (level 4)"
+description = """
+This rapier is part of a mass-produced line of House Cannith weapons with elementals
+bound to them. This one is infused with Air and shocks enemies as a result."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 1
+icon = "Rapier_1e"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Shock"
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 11
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Rapier"

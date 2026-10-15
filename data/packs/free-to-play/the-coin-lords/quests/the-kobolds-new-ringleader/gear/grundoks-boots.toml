@@ -1,0 +1,22 @@
+name = "Grundok's Boots"
+description = "These magical boots were taken from the chest of the bugbear Grundok."
+drop_location = "The Kobolds' New Ringleader, Grundok the Quick 's chest"
+icon = "Boots_15"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 1
+slot = "Feet"
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "grundok the quick 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Kobolds' New Ringleader"

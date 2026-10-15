@@ -1,0 +1,13 @@
+name = "Gloves of Dexterity"
+description = "Sleek moleskin gloves."
+drop_location = "Random, level ~4 chests/rewards"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Hands"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 4

@@ -1,0 +1,22 @@
+name = "Tomb of the Shadow King"
+bestowed_by = "Samir Sirka"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Necropolis, Part 2"
+patron = "The Silver Flame"
+zone = "Tomb of the Shadow King"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tomb_of_the_Shadow_King"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8

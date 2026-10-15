@@ -1,0 +1,47 @@
+name = "Ring of Master Artifice (Level 3)"
+description = """
+A ring said to have been worn by a legendary artificer. Using it, he was able
+to take things that seemed beyond repair and make them as good as new."""
+drop_location = "Vaults of the Artificers, from exchanged challenge rewards"
+icon = "Ring_22"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 3
+slot = "Ring"
+
+[[clickie]]
+name = "Repair Light Damage"
+clickie = "Repair Light Damage"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 57
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 54
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Auto-Repair"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Repair Light Damage"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

@@ -1,0 +1,10 @@
+name = "Fearsome"
+description = """
+This item causes those who strike the user to be overcome with terror, as from the
+Fear spell (DC 17)."""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[slot]]
+slot = "crafting: cannith armor prefix"

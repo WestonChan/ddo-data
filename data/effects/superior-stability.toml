@@ -1,0 +1,3 @@
+name = "Superior Stability"
+description_template = "This armor grants a +6 Deflection bonus to AC and a +6 Resistance bonus to saves for characters of True Neutral alignment."
+verbose_name_template = "Superior Stability"

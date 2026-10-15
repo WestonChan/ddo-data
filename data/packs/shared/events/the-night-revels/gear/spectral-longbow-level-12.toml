@@ -1,0 +1,48 @@
+name = "Spectral Longbow (level 12)"
+description = """
+The residual power left behind as thousands of Spectral Dragon Scales crumbled
+to dust formed this ethereal weapon."""
+drop_location = "The Night Revels, Turn in various ingredients to Joe Candymaker"
+enhancement_bonus = 4
+icon = "Longbow_3"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Force"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Ghostbane 3"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Evil Outsider Bane 3"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Crushing 7"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.9
+handedness = "Two-handed"
+weapon_type = "Longbow"

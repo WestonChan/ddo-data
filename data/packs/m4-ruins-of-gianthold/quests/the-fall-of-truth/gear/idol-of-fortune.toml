@@ -1,0 +1,67 @@
+name = "Idol of Fortune"
+description = """
+You feel a surge of hope as you hold this charm consisting of a small stone
+carving of the Stormreaver's head attached to a chain. The other end of the
+chain is looped for ease of attachment to the hilt of your weapon."""
+drop_location = "The Fall of Truth, warded chest (Epic Normal)"
+icon = "Trinket_41"
+item_category = "Jewelry"
+material = "Stone"
+minimum_level = 25
+slot = "Trinket"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 2
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Good Luck +3"
+description = "Good Luck +3: This item gives a +3 Luck bonus to all saves and skill checks."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Luck"
+effect = "Saving Throws"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Luck"
+effect = "Saving Throws"
+effect_type = "SkillBonus"
+extra_types = ["SaveBonus"]
+targets = ["All"]
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Fall of Truth"

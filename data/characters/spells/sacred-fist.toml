@@ -1,0 +1,75 @@
+[[row]]
+name = "Incinerating Wave"
+description = """
+Creates an incinerating wave of Ki Fire. This effect does 1d6+3 Fire
+and Force damage per caster level, scaling with 150% Melee power and 100% Force
+spell power."""
+icon = "IncineratingWave"
+max_caster_level = 20
+metamagics = ["Quicken"]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 3
+damage = "Fire"
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 3
+damage = "Force"
+
+[[row]]
+name = "Ki Bolt"
+description = """
+You Fire a Ki blast that deals 1d6 Fire and 1d4 Force damage per caster
+level to an opponent, scaling with 150% Melee power and 100% Fire Spell power.
+This ability has double the normal range.
+A successful Reflex saves reduces the damage by half."""
+icon = "KiBolt"
+max_caster_level = 20
+metamagics = ["Quicken"]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Force"
+
+[[row]]
+name = "Ki Explosion"
+description = """
+Wave of Fire emanate from your body, dealing 1d6 per Sacred Fist Dice in Fire,
+Light and Force damage to enemies in your vicinity, scaling with 150% Melee Power
+and 100% Fire Spell Power. For 20 seconds after you cast the spell, you benefit
+from Fire Shield: Hot, which prevents 50% of your incoming Fire Damage and deals
+a small amount of Fire damage to attackers that strike you in melee."""
+icon = "IncineratingWave"
+metamagics = ["Quicken"]
+schools = ["Evocation"]
+
+[[row]]
+name = "Sacred Fist Empowerment"
+description = """
+Upon cast, you are empowered by holy magic, granting you +3 Sacred Fist Dice (Alchemical bonus)
+and allowing your critical hits to deal 1d20 Bane damage per Sacred Fist Dice,
+scaling with 100% of your Melee Power."""
+icon = "SacredFlameEmpowerment"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Alchemical"
+effect_type = "ImbueDice"

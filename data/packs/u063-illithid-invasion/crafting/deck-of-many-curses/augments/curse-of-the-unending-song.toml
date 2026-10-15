@@ -1,0 +1,41 @@
+name = "Curse of the Unending Song"
+description = "+2 Fortune Bonus to Perform, +1 Bard Song"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Perform"
+bonus_type = "Fortune"
+value = 2
+
+[[effect]]
+name = "Bard Songs"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Perform"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect = "Bard Songs"
+effect_type = "SongCount"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Curse of Unending Song"
+reason = "The wiki names the curse Curse of the Unending Song."
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-09-30"
+
+[[slot]]
+slot = "crafting: deck curse"

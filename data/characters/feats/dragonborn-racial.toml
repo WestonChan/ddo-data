@@ -1,0 +1,263 @@
+[[row]]
+name = "Draconic Ancestry: Black"
+acquire = "Train"
+description = """
+Your ancestry is linked to Black Dragons of a bygone age.
+You gain a stacking bonus to Acid Energy Resistance equal to your Character Level.
+This choice also selects the element you will gain bonuses with the Dragonborn
+Racial Enhancement Tree."""
+icon = "DragonbornBlack"
+source_name = "Dragonborn"
+
+[[row.group]]
+group_name = "Dragonborn Racial"
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[row.requirement]]
+items = ["Dragonborn"]
+req_type = "Race"
+
+[[row]]
+name = "Draconic Ancestry: Blue"
+acquire = "Train"
+description = """
+Your ancestry is linked to Blue Dragons of a bygone age.
+You gain a stacking bonus to Electric Energy Resistance equal to your Character Level.
+This choice also selects the element you will gain bonuses with the Dragonborn
+Racial Enhancement Tree."""
+icon = "DragonbornBlue"
+source_name = "Dragonborn"
+
+[[row.group]]
+group_name = "Dragonborn Racial"
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[row.requirement]]
+items = ["Dragonborn"]
+req_type = "Race"
+
+[[row]]
+name = "Draconic Ancestry: Red"
+acquire = "Train"
+description = """
+You ancestry is linked to Red Dragons of a bygone age.
+You gain a stacking bonus to Fire Energy Resistance equal to your Character Level.
+This choice also selects the element you will gain bonuses with the Dragonborn
+Racial Enhancement Tree."""
+icon = "DragonbornRed"
+source_name = "Dragonborn"
+
+[[row.group]]
+group_name = "Dragonborn Racial"
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[row.requirement]]
+items = ["Dragonborn"]
+req_type = "Race"
+
+[[row]]
+name = "Draconic Ancestry: White"
+acquire = "Train"
+description = """
+You ancestry is linked to White Dragons of a bygone age.
+You gain a stacking bonus to Cold Energy Resistance equal to your Character Level.
+This choice also selects the element you will gain bonuses with the Dragonborn
+Racial Enhancement Tree."""
+icon = "DragonbornWhite"
+source_name = "Dragonborn"
+
+[[row.group]]
+group_name = "Dragonborn Racial"
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[row.requirement]]
+items = ["Dragonborn"]
+req_type = "Race"

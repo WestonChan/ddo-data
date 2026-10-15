@@ -1,0 +1,27 @@
+name = "Ghostly"
+description_template = "Equipping this item causes you to become partially incorporeal. Your melee attacks do not roll a miss chance for Incorporeal targets. Enemy attacks have a 10% chance to miss you due to incorporeality. You receive a +5 enhancement bonus to your Hide and Move Silently skills."
+verbose_name_template = "Ghostly"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Equipment"
+constant = 10
+rounding = "down"
+scale = 1.0
+target = "Incorporeality"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Enhancement"
+constant = 5
+rounding = "down"
+scale = 1.0
+target = "Hide"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Enhancement"
+constant = 5
+rounding = "down"
+scale = 1.0
+target = "Move Silently"

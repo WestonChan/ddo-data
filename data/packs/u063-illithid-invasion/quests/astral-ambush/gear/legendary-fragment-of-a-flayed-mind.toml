@@ -1,0 +1,40 @@
+name = "Legendary Fragment of a Flayed Mind"
+description = """
+Lost and wracked with panic and grief, the mind of this monk is too willful
+to die but certainly no longer whole."""
+drop_location = "Astral Ambush, end chest"
+icon = "Trinket_103"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 32
+slot = "Trinket"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Superior Reinforced Fists"
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 21
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Astral Ambush"

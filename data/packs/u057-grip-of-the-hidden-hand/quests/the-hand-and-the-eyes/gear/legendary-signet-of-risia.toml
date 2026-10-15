@@ -1,0 +1,40 @@
+name = "Legendary Signet of Risia"
+description = "This signet ring bears the sigil of the plane of Risia."
+drop_location = "The Hand and the Eyes, end chest"
+icon = "Ring_16a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Ring"
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hand and the Eyes"

@@ -1,0 +1,35 @@
+name = "Epic Snakeskin Belt"
+description = "The fangs on this belt buckle are a little sharper than they need to be."
+drop_location = "Epic version of Snakeskin Belt"
+icon = "Belt_14a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 20
+slot = "Waist"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Underwater Action"
+
+[[effect]]
+name = "Swim like a Fish"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

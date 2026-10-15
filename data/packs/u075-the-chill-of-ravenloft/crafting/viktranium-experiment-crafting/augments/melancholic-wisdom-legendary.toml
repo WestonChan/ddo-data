@@ -1,0 +1,21 @@
+name = "Melancholic Wisdom (Legendary)"
+description = "+15 Enhancement bonus to Wisdom."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

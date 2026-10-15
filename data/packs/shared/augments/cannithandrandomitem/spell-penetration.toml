@@ -1,0 +1,83 @@
+name = "Spell Penetration"
+choose_level = true
+description = "Enhancement bonus to Spell Penetration"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+]
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Enhancement"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith goggles suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random gloves prefix"
+
+[[slot]]
+slot = "crafting: random goggles suffix"
+
+[[slot]]
+slot = "crafting: random weapon extra"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

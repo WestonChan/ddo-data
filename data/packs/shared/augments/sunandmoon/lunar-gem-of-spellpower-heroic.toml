@@ -1,0 +1,43 @@
+name = "Lunar Gem of Spellpower (Heroic)"
+description = """
++15 Profane Bonus to Spellpower.
+Drops in: The Key to the Mythal, end chest
+Toil and Trouble, end chest
+A Light in the Attic, secret area chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Profane"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "secret area chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Key to the Mythal"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

@@ -1,0 +1,23 @@
+name = "Acid Spell Critical Damage 5% (Quality)"
+description = "Ethereal/Dominion: 5% Quality bonus increase in Acid spell critical damage."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Dominion"""
+
+[[effect]]
+name = "Acid Spell Critical Damage"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Acid Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: equipment tier 3"

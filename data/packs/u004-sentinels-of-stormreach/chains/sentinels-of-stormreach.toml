@@ -1,0 +1,13 @@
+name = "Sentinels of Stormreach"
+pack = "Sentinels of Stormreach"
+quests = [
+    "Bargain of Blood",
+    "The Black Loch",
+    "Storm the Beaches",
+    "The Tide Turns",
+    "Spies in the House",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Sentinels_of_Stormreach"
+read = "2026-10-02"

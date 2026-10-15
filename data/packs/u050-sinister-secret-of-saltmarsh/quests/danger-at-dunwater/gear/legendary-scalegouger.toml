@@ -1,0 +1,58 @@
+name = "Legendary Scalegouger"
+accepts_sentience = true
+description = "This Heavy Pick is a quick and efficient way to pry scales from large fish."
+drop_location = "Danger at Dunwater, end chest, or Legendary version of Epic Scalegouger"
+enhancement_bonus = 15
+icon = "HeavyPick_1e"
+item_category = "Weapon"
+item_type = "Heavy Pick"
+material = "Flametouched Iron"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Reptilian Bane 6"
+
+[[effect]]
+name = "Evil Blast 6"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Crippling"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest, or legendary version of epic scalegouger"
+kind = "quest"
+loot_type = "chest"
+name = "Danger at Dunwater"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "One-handed"
+weapon_type = "Heavy Pick"

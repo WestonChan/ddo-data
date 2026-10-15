@@ -1,0 +1,58 @@
+name = "Conqueror of Bone"
+accepts_sentience = true
+description = """
+A grim weapon in its original purpose, the Bonesplitter was made more brutal
+still when the influence of Xoriat seeped into it. It deals grievous damage
+to most enemies with a skeleton, even severely crippling them on particularly
+strong blows."""
+drop_location = "Legendary Vision of Destruction, End chest"
+enhancement_bonus = 15
+icon = "GreatClub_2a"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Wood"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Bonesplitter"
+
+[[effect]]
+name = "Blunt Trauma"
+bonus_type = "Destiny"
+
+[[effect]]
+name = "Fracturing 6"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Great Club"

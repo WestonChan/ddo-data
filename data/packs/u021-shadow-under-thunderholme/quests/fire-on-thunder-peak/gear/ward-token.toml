@@ -1,0 +1,40 @@
+name = "Ward Token"
+description = """
+"The greatest offence is a rock solid defense."
+- Hammerfist Ogrebane, Stalwart Defender"""
+drop_location = "Fire on Thunder Peak, raid chest"
+icon = "Ring_2a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Ring"
+
+[[effect]]
+name = "Improved Earthen Guard"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 10
+
+[[effect]]
+name = "Diehard"
+
+[[effect]]
+name = "Holding On"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Earthgrab Guard"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Fire on Thunder Peak"

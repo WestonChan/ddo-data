@@ -1,0 +1,25 @@
+name = "Army of Shadow"
+bestowed_by = "Iden Krell"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Shadowfell Conspiracy"
+patron = "Purple Dragon Knights"
+zone = "Netherese Recruiting Center"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Army_of_Shadow"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 26

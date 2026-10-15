@@ -1,0 +1,33 @@
+name = "Legendary Kundarak Warding Bracers"
+description = """
+These bracers are Kundarak-forged for dwarven guardians, but most races can
+wear them."""
+drop_location = "Legendary version of Epic Kundarak Warding Bracers"
+icon = "Bracers_13b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 30
+slot = "Wrists"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "yellow"

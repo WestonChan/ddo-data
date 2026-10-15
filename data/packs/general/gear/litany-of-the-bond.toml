@@ -1,0 +1,23 @@
+name = "Litany of the Bond"
+description = "A book that tells the tale of those who have shared a Bond like yours."
+drop_location = "Advance to level 15, End reward"
+icon = "Trinket_32a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+race_required = "Aasimar Scourge"
+slot = "Trinket"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

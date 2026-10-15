@@ -1,0 +1,26 @@
+name = "Into the Deep"
+bestowed_by = "Ta Prin"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Red Fens"
+patron = "House Kundarak"
+zone = "The Deeps"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Into_the_Deep"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9
+
+[[run]]
+tier = "epic"
+level = 21

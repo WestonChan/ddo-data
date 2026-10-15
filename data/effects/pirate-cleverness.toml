@@ -1,0 +1,11 @@
+name = "Pirate Cleverness"
+description_template = "You gain the cleverness of a pirate, which grants a +50 bonus to your maximum spell points. This stacks with all other bonuses except itself."
+home_bonus_type = "Pirate"
+verbose_name_template = "Pirate Cleverness +50"
+
+[[bonus]]
+amount_from = 0
+constant = 50
+rounding = "down"
+scale = 1.0
+target = "Spell Points"

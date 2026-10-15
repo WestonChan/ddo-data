@@ -1,0 +1,3 @@
+name = "Mindcleaver"
+description_template = "This blade is made of pure force and is surprisingly light to the touch. It bypasses the Incorporeal chances of Ethereal monsters innately."
+verbose_name_template = "Mindcleaver"

@@ -1,0 +1,53 @@
+name = "Legendary Cranium Sphere"
+description = "A small sphere with a miniature brain inside it, at the end of a long necklace."
+drop_location = "The Wizard's Labyrinth, end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 33
+slot = "Neck"
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 156
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    25,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wizard's Labyrinth"

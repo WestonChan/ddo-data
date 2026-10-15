@@ -1,0 +1,10 @@
+name = "Aspect of Salt"
+description = """
+Horrid Wilting (2/day)
+Water:Negative"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect i"

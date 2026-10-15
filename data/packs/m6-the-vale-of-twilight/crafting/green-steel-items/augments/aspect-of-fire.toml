@@ -1,0 +1,10 @@
+name = "Aspect of Fire"
+description = """
+Delayed Blast Fireball (3/day)
+Fire:Fire"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect i"

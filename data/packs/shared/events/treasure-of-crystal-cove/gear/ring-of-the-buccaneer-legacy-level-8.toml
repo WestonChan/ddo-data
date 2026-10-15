@@ -1,0 +1,71 @@
+name = "Ring of the Buccaneer (legacy) (level 8)"
+description = """
+This ring is coveted by many who travel by sea for its ability to make one more
+dexterous, and better able to survive the perils of the ocean."""
+drop_location = "Treasure of Crystal Cove, Turn in at Dusty Old Treasure of Crystal Cove"
+icon = "Ring_34"
+is_legacy = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 8
+slot = "Ring"
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Underwater Action"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Adds Protection +2"
+description = "Protection +2: Passive: +2 Deflection bonus to Armor Class."
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Deflection"
+effect = "Armor Class"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Becomes Dexterity +4"
+description = """
+Dexterity +4: This item makes the wearer more nimble and dexterous, granting a +4
+Enhancement bonus to Dexterity."""
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

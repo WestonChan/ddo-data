@@ -1,0 +1,39 @@
+name = "Legendary Gravekeeper's Nimble Cloak"
+description = "Even the quick and the clever eventually find themselves in the grave."
+drop_location = "Land of Lamordia, Experiment Y 's chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 34
+slot = "Back"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "experiment y 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

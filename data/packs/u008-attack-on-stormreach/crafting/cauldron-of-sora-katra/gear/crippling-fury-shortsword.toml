@@ -1,0 +1,48 @@
+name = "Crippling Fury Shortsword"
+description = """
+This small sword, capable of conferring a disease to enemies, can now cripple
+an enemy and hamper its movement."""
+drop_location = "Cauldron of Sora Katra, Blade of Fury + Gnollish War Bow + Mark of Sheshka + Mark of Rhesh Turakbar (produces a pair of swords)"
+enhancement_bonus = 5
+icon = "Shortsword_1"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Medusa Fury"
+
+[[effect]]
+name = "Demon Fever"
+
+[[effect]]
+name = "Wounding 2"
+
+[[effect]]
+name = "Crippling"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Shortsword"

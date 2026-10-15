@@ -1,0 +1,35 @@
+name = "Legendary Dustless Boots"
+description = "Subtle transmutative magic causes the wearer's footprints to erase themselves."
+drop_location = "Legendary version of Epic Dustless Boots"
+icon = "Boots_5b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Feet"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 5
+value2 = 8
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 21
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"

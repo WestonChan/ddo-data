@@ -1,0 +1,40 @@
+name = "Legendary Boots of Corrosion"
+description = """
+These boots are filled with caustic, entropic power. They appear to have almost
+fallen apart from containing such energy."""
+drop_location = "The Chronoscope (Legendary), end chest, or Legendary version of Epic Boots of Corrosion"
+icon = "Boots_14b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 30
+slot = "Feet"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Disintegration Guard"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 54
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest, or legendary version of epic boots of corrosion"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

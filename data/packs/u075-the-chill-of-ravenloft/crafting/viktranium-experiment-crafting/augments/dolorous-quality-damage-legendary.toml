@@ -1,0 +1,21 @@
+name = "Dolorous Quality Damage (Legendary)"
+description = "+4 Quality bonus to Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Damage Bonus"
+bonus_type = "Quality"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Quality"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: dolorous (accessory)"

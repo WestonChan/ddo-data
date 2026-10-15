@@ -1,0 +1,10 @@
+name = "Lifesealed"
+description_template = "You are immune to magical effects that cause instant death. In addition, you have a {1} %b1 bonus to Negative Energy Absorption."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Lifesealed +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Negative Absorption"

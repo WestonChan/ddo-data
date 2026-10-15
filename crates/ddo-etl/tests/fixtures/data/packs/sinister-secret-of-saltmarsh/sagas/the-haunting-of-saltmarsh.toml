@@ -1,0 +1,10 @@
+name = "The Haunting of Saltmarsh"
+pack = "Sinister Secret of Saltmarsh"
+quests = [
+    "Saltmarsh",
+    "The Tide Turns",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Haunting_of_Saltmarsh"
+read = "2026-10-02"

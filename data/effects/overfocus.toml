@@ -1,0 +1,20 @@
+name = "Overfocus"
+description_template = "This item helps you focus your attention, but it makes you somewhat oblivious to your surroundings, causing a -10 penalty to Search and Spot."
+home_bonus_type = "Penalty"
+verbose_name_template = "Overfocus -10"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Penalty"
+constant = -10
+rounding = "down"
+scale = 1.0
+target = "Search"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Penalty"
+constant = -10
+rounding = "down"
+scale = 1.0
+target = "Spot"

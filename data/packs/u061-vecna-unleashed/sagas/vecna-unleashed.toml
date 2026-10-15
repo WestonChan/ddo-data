@@ -1,0 +1,22 @@
+name = "Vecna Unleashed"
+pack = "Vecna Unleashed"
+wiki_url = "https://ddowiki.com/page/Vecna_Unleashed_(Legendary)"
+quests = [
+    "Enemy of My Enemy",
+    "Grand Theft Aureon",
+    "Law and Order",
+    "Paper Trail",
+    "Party 101",
+    "Taken in Hand",
+    "The Bark and the Blade",
+    "The Devils to Pay",
+    "The Evil We Know",
+    "Turn the Page",
+    "Vecna Denied",
+    "Vecna Unleashed",
+    "What Dreams May Come",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Vecna_Unleashed_(Legendary)"
+read = "2026-10-02"

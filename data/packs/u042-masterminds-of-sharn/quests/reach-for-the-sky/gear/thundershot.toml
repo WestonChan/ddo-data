@@ -1,0 +1,53 @@
+name = "Thundershot"
+description = """
+"Storm the beaches!"
+
+"Wait, literally?""""
+drop_location = "Reach for the Sky, End chest"
+enhancement_bonus = 5
+icon = "RepeatingHeavyCrossbow_1e"
+item_category = "Weapon"
+item_type = "Repeating Heavy Crossbow"
+material = "Steel"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Reverberating 4"
+
+[[effect]]
+name = "Jolting 9"
+
+[[effect]]
+name = "Blunted Ammunition"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Reach for the Sky"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 2.0
+handedness = "Two-handed"
+weapon_type = "Repeating Heavy Crossbow"

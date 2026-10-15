@@ -1,0 +1,21 @@
+name = "+7 Strength (Insight)"
+description = "Escalation/Water or Negative: +7 Insight bonus to Strength"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

@@ -1,0 +1,61 @@
+name = "Legendary Ball o' Yarn"
+accepts_sentience = true
+description = "Foes underestimate just how tangled a single ball of yarn can become."
+drop_location = "Catastrophe, end chest"
+enhancement_bonus = 15
+icon = "Dart_5a"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Cloth"
+minimum_level = 32
+slot = "Main Hand"
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Legendary_Ball_o%27_Yarn"
+read = "2026-09-29"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Legendary Slowburst"
+
+[[effect]]
+name = "Legendary Entangling Yarn"
+
+[[effect]]
+name = "Impactful 6"
+
+[[effect]]
+name = "Bludgeoning 6"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Catastrophe"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "Thrown"
+weapon_type = "Dart"

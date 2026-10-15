@@ -1,0 +1,23 @@
+name = "Lesser Arcane Casting Dexterity"
+description = "This ability reduces the arcane spell failure chance by -5%."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[effect]]
+name = "Arcane Spell Failure"
+bonus_type = "Equipment"
+value = -5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-5]
+bonus_type = "Equipment"
+effect = "Arcane Spell Failure"
+effect_type = "ArcaneSpellFailure"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

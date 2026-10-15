@@ -1,0 +1,66 @@
+name = "Stalwart Necklace"
+description = """
+This iron necklace was once owned by Cinder, a famous Stalwart Defender. It
+has seen many battlefields, leaving it heavily scratched and scuffed."""
+drop_location = "Sins of Attrition, Any chest ; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Lesser Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Stalwart Defender"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+    15,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Stalwart Defender - 2 Piece bonus"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusMelee"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Stalwart Defender - 3 Piece bonus"
+effect_type = "ACBonus"
+extra_types = ["ACBonus"]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sins of Attrition"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

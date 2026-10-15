@@ -1,0 +1,38 @@
+name = "Stitched Great Forge Cloak"
+description = "A sturdy cloak, combining Dwarven metalwork with exceptional tailoring."
+drop_location = "Hideous to Behold, Drev'kalor 's chest"
+icon = "Cloak_6"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 11
+slot = "Back"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 9
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "drev'kalor 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Hideous to Behold"

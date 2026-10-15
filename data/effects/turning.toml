@@ -1,0 +1,11 @@
+name = "Turning"
+description_template = "This will increase the total number of Turn Undead attempts you can use by 3. However, these additional Turn Undead attempts will only take effect after the wielder rests."
+home_bonus_type = "Equipment"
+verbose_name_template = "Turning +3"
+
+[[bonus]]
+amount_from = 0
+constant = 3
+rounding = "down"
+scale = 1.0
+target = "Turn Undead Uses"

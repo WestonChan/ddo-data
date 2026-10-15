@@ -1,0 +1,45 @@
+name = "Rod of Greater Teleport"
+description = """
+A sceptre containing multiple charges of Greater Teleport . This spell can instantly
+transport you and your party to a variety of far flung locations. You will
+need to enter a private instance to use this spell."""
+drop_location = "DDO Store, Fast Travel"
+enhancement_bonus = 2
+icon = "Club_17"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[clickie]]
+name = "Greater Teleport"
+clickie = "Greater Teleport"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    50,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Teleport"]
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

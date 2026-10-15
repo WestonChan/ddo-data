@@ -1,0 +1,43 @@
+name = "Epic Black Lace Blindfold"
+description = """
+A strange garment, perhaps meant to cover the eyes of the deceased. Perhaps
+it was intended to be worn by a grieving widow."""
+drop_location = "The Mystery of Delera's Tomb, End Chest"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 25
+slot = "Goggles"
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 18
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 9
+
+[[effect]]
+name = "Curse of Clumsiness"
+bonus_type = "Penalty"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mystery of Delera's Tomb"

@@ -38,6 +38,8 @@ fn versioned_api(state: &AppState, api_version: &'static str) -> (Router<AppStat
 
 const DOCS_PAGE_HTML: &str = include_str!("../res/docs.html");
 
+const RATE_LIMIT_REPLENISH_INTERVAL: std::time::Duration = std::time::Duration::from_millis(200);
+
 fn mount_docs(router: Router<AppState>, api_version: &'static str, spec: OpenApi) -> Router<AppState> {
     let shared_spec = Arc::new(spec.clone());
     router.merge(Scalar::with_url(format!("/{api_version}/docs"), spec).custom_html(DOCS_PAGE_HTML)).route(
@@ -71,7 +73,7 @@ pub fn app(state: AppState) -> Router {
         .layer(CompressionLayer::new());
     if state.is_rate_limited() {
         let rate_limit_config = GovernorConfigBuilder::default()
-            .per_millisecond(200)
+            .period(RATE_LIMIT_REPLENISH_INTERVAL)
             .burst_size(100)
             .key_extractor(SmartIpKeyExtractor)
             .finish()
@@ -89,4 +91,12 @@ pub fn app(state: AppState) -> Router {
         )
         .layer(TraceLayer::new_for_http())
         .with_state(state)
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn rate_limit_replenishes_five_requests_per_second() {
+        assert_eq!(super::RATE_LIMIT_REPLENISH_INTERVAL * 5, std::time::Duration::from_secs(1));
+    }
 }

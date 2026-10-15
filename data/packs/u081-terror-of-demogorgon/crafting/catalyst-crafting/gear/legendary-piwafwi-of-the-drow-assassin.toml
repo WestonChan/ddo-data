@@ -1,0 +1,46 @@
+name = "Legendary Piwafwi of the Drow Assassin"
+description = """
+Fashioned from spider silk, these magical cloaks are prized possessions of their
+drow owners. This one was seemingly designed for stealth in mind, as it appears
+to bend light around the wearer, dampening any noise that they would otherwise
+produce."""
+drop_location = "Catalyst Crafting, Turn in Drow Piwafwi, its Legendary Deep Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 35
+slot = "Back"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 13
+value2 = 20
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Legendary"
+value = 6
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Quality"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

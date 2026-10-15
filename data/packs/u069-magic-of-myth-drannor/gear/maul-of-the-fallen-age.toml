@@ -1,0 +1,63 @@
+name = "Maul of the Fallen Age"
+description = "Wild magic has imbued entropy into this weapon over the years."
+drop_location = "Magic of Myth Drannor, any end chest"
+enhancement_bonus = 5
+icon = "Maul_1o"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 13
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Anarchic Blast 3"
+
+[[effect]]
+name = "Anarchic 3"
+
+[[effect]]
+name = "Penalty Lawful"
+
+[[effect]]
+name = "Aligned"
+
+[[effect]]
+name = "Impact"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "any end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Magic of Myth Drannor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.6
+handedness = "Two-handed"
+weapon_type = "Maul"

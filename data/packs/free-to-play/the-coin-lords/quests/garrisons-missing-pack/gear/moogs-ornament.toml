@@ -1,0 +1,19 @@
+name = "Moog's Ornament"
+description = "A faint whispering sound surrounds this glowing amber gem."
+drop_location = "Garrison's Missing Pack, Witch Doctor Moog 's chest"
+icon = "Trinket_68"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 1
+
+[[source]]
+chest = "witch doctor moog 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Garrison's Missing Pack"

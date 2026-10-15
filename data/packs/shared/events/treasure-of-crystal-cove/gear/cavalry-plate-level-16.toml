@@ -1,0 +1,77 @@
+name = "Cavalry Plate (level 16)"
+description = """
+High-seas pirates plundered this richly-decorated plate mail from naval cavalry
+officers. Although it did not suit the pirates well, a fighter looking for
+better protection may benefit from it."""
+drop_location = "Treasure of Crystal Cove, Turn in 750 Silver Doubloon 300 Golden Doubloon 30 Stolen Ruby 600 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 4
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Mithral"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 17
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Demonic Shield"
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "DR 2/Chaotic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "crafting: upgradeable tier 2"
+
+[[socket.option]]
+name = "+4 Enhancement Bonus -> +5 Enhancement Bonus"
+description = "+5 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a +5 Enhancement bonus to AC."
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "crafting: upgradeable tier 3"
+
+[[socket.option]]
+name = "DR 2/Chaotic -> DR 3/Chaotic"
+description = "DR Damage Reduction 3/Chaotic: Reduces physical damage by 3, except from Chaotic attacks."
+min_level = 16
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "DR"
+targets = ["Chaotic"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

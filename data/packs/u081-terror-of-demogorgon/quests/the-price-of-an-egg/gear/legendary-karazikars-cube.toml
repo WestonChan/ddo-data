@@ -1,0 +1,43 @@
+name = "Legendary Karazikar's Cube"
+description = """
+Mechanical bits whir in this odd cube, its six sides perfectly shaped. A perfect
+order."""
+drop_location = "The Price of an Egg, end chest"
+icon = "Trinket_108"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 35
+slot = "Trinket"
+
+[[effect]]
+name = "Repair Intensity"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Equipment"
+value = 13
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Price of an Egg"

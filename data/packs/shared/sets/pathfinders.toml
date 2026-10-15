@@ -1,0 +1,24 @@
+name = "Pathfinders"
+icon = "Pathfinders"
+
+[[item]]
+name = "Pathfinder's Boots"
+
+[[item]]
+name = "Pathfinder's Necklace"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Attack Bonus"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]

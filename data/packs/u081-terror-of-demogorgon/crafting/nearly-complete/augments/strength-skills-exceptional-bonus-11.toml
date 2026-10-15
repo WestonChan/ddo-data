@@ -1,0 +1,21 @@
+name = "Strength Skills - Exceptional Bonus +11"
+description = "Exceptional Bonus +11 to the Strength based skills of: Jump and Swim."
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Strength Skills"
+bonus_type = "Exceptional"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Exceptional"
+effect = "Strength Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: nearly complete: exceptional skills (legendary)"

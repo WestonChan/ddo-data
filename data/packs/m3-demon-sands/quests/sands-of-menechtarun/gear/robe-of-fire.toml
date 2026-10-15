@@ -1,0 +1,50 @@
+name = "Robe of Fire"
+description = """
+A small fire elemental has been bound into the silken cloth of this robe enhancing
+many aspects of the wearer's command of fire."""
+drop_location = "Sands of Menechtarun, Undead area: Thumok the Mad ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Fire Shield (Hot)"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "undead area: thumok the mad"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

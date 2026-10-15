@@ -1,0 +1,3 @@
+name = "Archmage"
+description_template = "This item in one of two pieces of the Archmage set. When both items are equipped, you gain a +1% Artifact bonus to your Critical Chance with all spells."
+verbose_name_template = "Archmage"

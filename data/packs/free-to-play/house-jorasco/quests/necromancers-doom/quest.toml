@@ -1,0 +1,22 @@
+name = "Necromancer's Doom"
+bestowed_by = "Handsome Wilm"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+]
+favor = 2
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Jorasco"
+zone = "Decrepit Catacombs"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Necromancer%27s_Doom"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 1

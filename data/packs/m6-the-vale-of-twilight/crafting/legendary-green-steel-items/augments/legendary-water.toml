@@ -1,0 +1,13 @@
+name = "Legendary Water"
+description = """
+Requires Water Water Water
+Attacks and offensive spells have a chance [5~10%] to inflict
+ten stacks of cold damage over time [20~30 damage per stack,
+around 250 damage at full stack], adding one stack at a time.
+This effect has an internal cooldown.
+[cooldown unknown, duration 4 seconds per a stack]"""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

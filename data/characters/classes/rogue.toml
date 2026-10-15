@@ -1,0 +1,286 @@
+name = "Rogue"
+alignments = ["Any"]
+bab = [
+    0,
+    0.75,
+    1.5,
+    2.25,
+    3,
+    3.75,
+    4.5,
+    5.25,
+    6,
+    6.75,
+    7.5,
+    8.25,
+    9,
+    9.75,
+    10.5,
+    11.25,
+    12,
+    12.75,
+    13.5,
+    14.25,
+    15,
+]
+class_specific_feat_types = ["Special Ability"]
+description = """
+Rogues get the most skill points in the game. They are capable of
+finding and disarming traps and opening locks. The rogue can also
+deal devastating sneak attack damage when they are beneath the
+notice of their enemies and are the best at stealth and sneaking
+around. Their defenses are quite low, even though they have
+Evasion and a fairly high Dodge, and so must rely on their wits
+and cunning to survive tough battles. Rogues can do well as either
+a melee or ranged character, and their primary attributes are
+Dexterity and Intelligence."""
+fortitude = "poor"
+hit_points = 8
+large_icon = "Rogue"
+reflex = "good"
+skill_points = 8
+small_icon = "Rogue_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+will = "poor"
+
+[[auto_buy_skill]]
+skill = "Disable Device"
+
+[[auto_buy_skill]]
+skill = "Search"
+
+[[auto_buy_skill]]
+skill = "Open Lock"
+
+[[auto_buy_skill]]
+skill = "Spot"
+
+[[auto_buy_skill]]
+skill = "Use Magic Device"
+
+[[auto_buy_skill]]
+skill = "Hide"
+
+[[auto_buy_skill]]
+skill = "Move Silently"
+
+[[auto_feat]]
+level = 1
+feat = "Light Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Rapier"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Shortbow"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Shortsword"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Club"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dart"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Morningstar"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Quarterstaff"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Sickle"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Throwing Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Unarmed"
+
+[[auto_feat]]
+level = 1
+feat = "Sneak Attack"
+
+[[auto_feat]]
+level = 1
+feat = "Trapfinding"
+
+[[auto_feat]]
+level = 2
+feat = "Evasion"
+
+[[auto_feat]]
+level = 3
+feat = "Sneak Attack"
+
+[[auto_feat]]
+level = 3
+feat = "Trap Sense (Rogue)"
+
+[[auto_feat]]
+level = 4
+feat = "Trapmaking"
+
+[[auto_feat]]
+feat_name = "Uncanny Dodge"
+level = 4
+
+[[auto_feat]]
+level = 5
+feat = "Sneak Attack"
+
+[[auto_feat]]
+level = 7
+feat = "Sneak Attack"
+
+[[auto_feat]]
+level = 8
+feat = "Improved Uncanny Dodge"
+
+[[auto_feat]]
+level = 9
+feat = "Sneak Attack"
+
+[[auto_feat]]
+level = 11
+feat = "Sneak Attack"
+
+[[auto_feat]]
+level = 13
+feat = "Sneak Attack"
+
+[[auto_feat]]
+level = 15
+feat = "Sneak Attack"
+
+[[auto_feat]]
+level = 17
+feat = "Sneak Attack"
+
+[[auto_feat]]
+level = 19
+feat = "Sneak Attack"
+
+[[feat_slot]]
+feat_type = "Rogue Special Ability"
+level = 10
+update_list = [
+    "Improved Evasion",
+    "Skill Mastery",
+]
+
+[[feat_slot]]
+feat_type = "Rogue Special Ability"
+level = 13
+
+[[feat_slot]]
+feat_type = "Rogue Special Ability"
+level = 16
+
+[[feat_slot]]
+feat_type = "Rogue Special Ability"
+level = 19
+
+[[skill]]
+skill = "Balance"
+
+[[skill]]
+skill = "Bluff"
+
+[[skill]]
+skill = "Diplomacy"
+
+[[skill]]
+skill = "Disable Device"
+
+[[skill]]
+skill = "Haggle"
+
+[[skill]]
+skill = "Hide"
+
+[[skill]]
+skill = "Intimidate"
+
+[[skill]]
+skill = "Jump"
+
+[[skill]]
+skill = "Listen"
+
+[[skill]]
+skill = "Move Silently"
+
+[[skill]]
+skill = "Open Lock"
+
+[[skill]]
+skill = "Repair"
+
+[[skill]]
+skill = "Search"
+
+[[skill]]
+skill = "Spot"
+
+[[skill]]
+skill = "Swim"
+
+[[skill]]
+skill = "Tumble"
+
+[[skill]]
+skill = "Use Magic Device"

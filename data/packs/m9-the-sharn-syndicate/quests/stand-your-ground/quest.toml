@@ -1,0 +1,22 @@
+name = "Stand Your Ground"
+bestowed_by = "Maxwell Statler"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "The Sharn Syndicate"
+patron = "The Coin Lords"
+zone = "The Dragontail Saloon"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Stand_Your_Ground"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

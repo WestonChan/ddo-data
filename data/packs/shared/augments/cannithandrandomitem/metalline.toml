@@ -1,0 +1,46 @@
+name = "Metalline"
+description = """
+This weapon transmutes into a form that is able to bypass any metal-based Damage
+Reduction that can be bypassed. (Adamantine, Alchemical Silver, Byeshk,
+Cold Iron or Mithral)"""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Adamantine"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Silver"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Byeshk"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Cold Iron"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Equipment"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Mithral"
+
+[[slot]]
+slot = "crafting: cannith weapon suffix"

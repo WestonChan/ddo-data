@@ -1,0 +1,52 @@
+name = "Epic Smuggler's Gear"
+description = "A good smuggler dresses light to stay quick on their feet."
+drop_location = "Epic version of Smuggler's Gear"
+enhancement_bonus = 6
+icon = "LightArmor_8d"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 10
+armor_type = "Light"
+max_dex_bonus = 14
+
+[[clickie]]
+name = "Displacement"
+clickie = "Displacement"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Displacement"]
+
+[[socket]]
+slot = "green"

@@ -1,0 +1,29 @@
+name = "The Archons' Trial"
+bestowed_by = "Jalena"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Trials of the Archons"
+patron = "The Gatekeepers"
+zone = "Citadel of the Dawn"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Archons%27_Trial"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 30
+
+[[run]]
+tier = "legendary"
+level = 30

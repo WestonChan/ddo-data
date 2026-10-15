@@ -1,0 +1,1124 @@
+name = "Dwarf"
+background = "DwarfBackground"
+icon = "Dwarf"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Dwarf: Toughness I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain 10 Hitpoints"
+icon = "Toughness"
+internal_name = "DwarfCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement]]
+name = "Dwarf: Constitution I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+internal_name = "DwarfCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+items = ["DwarfCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Dwarf: Toughness II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain 10 Hitpoints"
+icon = "Toughness"
+internal_name = "DwarfCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["DwarfCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement]]
+name = "Dwarf: Constitution II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+internal_name = "DwarfCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+items = ["DwarfCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement]]
+name = "Dwarf: Toughness III"
+cost_per_rank = [1]
+description = "You gain 10 Hitpoints"
+icon = "Toughness"
+internal_name = "DwarfCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["DwarfCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement]]
+name = "Dwarf: Kundarak Dragonmark Focus"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark use per day, +[1/2/3] Search"
+icon = "DwarfKundarakDragonmarkFocus"
+internal_name = "DwarfKundarakDragonmarkFocus"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Search"]
+
+[[enhancement.requirement]]
+items = ["Least Dragonmark of Warding"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Dwarf: Iron Stomach"
+cost_per_rank = [1]
+description = """
+When you drink, you gain the following effects for 2 minutes:
+Rank 1: Neutralize Poison
+Rank 2: Remove Disease
+Rank 3: Heroism"""
+icon = "DwarfIronStomach"
+internal_name = "DwarfIronStomach"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement]]
+name = "Dwarf: Stout"
+cost_per_rank = [1]
+description = "+[1/2/3] Balance and Saves against Poison."
+icon = "DwarfStout"
+internal_name = "DwarfStout"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Poison"]
+
+[[enhancement]]
+name = "Dwarf: Weapon Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose one"
+icon = "DwarfAxeTraining"
+internal_name = "DwarfDwarvenWeaponTrainingI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.selection]]
+name = "Axe Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
+and greataxes. While using dwarven waraxe, +5% Strikethrough Chance."""
+icon = "DwarfAxeTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Battle Axe",
+    "Dwarven Axe",
+    "Hand Axe",
+    "Great Axe",
+    "Throwing Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Pick and Hammer Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with heavy picks, light hammer, light picks, mauls,
+throwing hammers, and warhammers."""
+icon = "DwarfPickAndHammerTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Heavy Pick",
+    "Light Hammer",
+    "Light Pick",
+    "Maul",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement]]
+name = "Dwarf: Armor Mastery"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Armor Class and Armor Maximum Dexterity Bonus."
+icon = "DwarfDwarvenArmorMastery"
+internal_name = "DwarfDwarvenArmorMastery"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+extra_types = ["MaxDexBonus"]
+
+[[enhancement]]
+name = "Dwarf: Lesser Dragonmark of Warding"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Lesser Dragonmark Spell: Spell Resistance.
+Wards an ally with Spell Resistance of 12 plus 1 per caster level.
+Cooldown: 10 seconds."""
+icon = "DwarfLesserDragonmarkOfWarding"
+internal_name = "DwarfLesserDragonmarkOfWarding"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Spell Resistance",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["DwarfKundarakDragonmarkFocus"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dwarf: Tactics"
+cost_per_rank = [1]
+description = "Grants a +[1/2/3] bonus on the DC of your combat feats."
+icon = "DwarfDwarvenTactics"
+internal_name = "DwarfDwarvenTactics"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement]]
+name = "Dwarf: Child of the Mountain"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] Fortitude saves
+Rank 3: +5% Quality bonus to Maximum Hitpoints"""
+icon = "DwarfChildOfTheMountain"
+internal_name = "DwarfChildOfTheMountain"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Quality"
+effect_type = "HitpointsPercent"
+rank = 3
+
+[[enhancement]]
+name = "Dwarf: Weapon Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose the same Training from Dwarven Weapon Training, Tier 1."
+icon = "DwarfAxeTraining"
+internal_name = "DwarfDwarvenWeaponTrainingII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["DwarfDwarvenWeaponTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Axe Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
+and greataxes. +1 to hit and +2 damage with great axes.
+While using dwarven waraxe, +5% Strikethrough Chance."""
+icon = "DwarfAxeTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Battle Axe",
+    "Dwarven Axe",
+    "Hand Axe",
+    "Throwing Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Great Axe"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Great Axe"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DwarfDwarvenWeaponTrainingI",
+    "Axe Training",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Pick and Hammer Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with heavy picks, light hammer, light picks, throwing hammers,
+and Warhammers. +1 to hit and +2 damage with Mauls."""
+icon = "DwarfPickAndHammerTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Heavy Pick",
+    "Light Hammer",
+    "Light Pick",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Maul"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Maul"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DwarfDwarvenWeaponTrainingI",
+    "Pick and Hammer Training",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dwarf: Shield Mastery"
+cost_per_rank = [1]
+description = "+[5/10/15]% Shield Armor Class and +[1/2/3] Tower Shield Maximum Dexterity Bonus."
+icon = "DwarfDwarvenShieldMastery"
+internal_name = "DwarfDwarvenShieldMastery"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonusShield"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonusTowerShield"
+
+[[enhancement.requirement]]
+items = ["DwarfDwarvenArmorMastery"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dwarf: Greater Dragonmark of Warding"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Greater Dragonmark Spell: Radiant Forcefield.
+Your target is surrounded in a sphere of magical force that reduces all damage
+(Except for untyped damage) they take by 25% for a short period of time.
+Cooldown: 1 minute."""
+icon = "DwarfGreaterDragonmarkOfWarding"
+internal_name = "DwarfGreaterDragonmarkOfWarding"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    60,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Radiant Forcefield",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["DwarfLesserDragonmarkOfWarding"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dwarf: Dwarven Runes"
+cost_per_rank = [1]
+description = "Gain +[1/2/3] to saves against spell effects."
+icon = "DwarfDwarvenRunes"
+internal_name = "DwarfDwarvenRunes"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Spell"]
+
+[[enhancement]]
+name = "Dwarf: Stand Like Stone"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Action Boost: For 20 seconds you gain +30 Balance, Physical Resistance Rating,
+and stacking Energy Resistance, but have a 20% penalty to movement speed,
+sink in water, and cannot fly.
+Cooldown: 3 minutes."""
+icon = "DwarfStandLikeStone"
+internal_name = "DwarfStandLikeStone"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["DwarfChildOfTheMountain"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dwarf: Weapon Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose the same Training from Dwarven Weapon Training, Tier 2:"
+icon = "DwarfAxeTraining"
+internal_name = "DwarfDwarvenWeaponTrainingIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["DwarfDwarvenWeaponTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Axe Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with battle axes, dwarven waraxes, hand axes, great axes,
+and throwing axes. While using dwarven waraxe, +5% Strikethrough Chance.
+You gain Dwarven Axe as a Favored Weapon."""
+icon = "DwarfAxeTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Battle Axe",
+    "Dwarven Axe",
+    "Hand Axe",
+    "Great Axe",
+    "Throwing Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Dwarven Axe",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DwarfDwarvenWeaponTrainingI",
+    "Axe Training",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Pick and Hammer Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with heavy picks, light hammer, light picks, mauls,
+throwing hammers, and warhammers."""
+icon = "DwarfPickAndHammerTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Heavy Pick",
+    "Light Hammer",
+    "Light Pick",
+    "Maul",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DwarfDwarvenWeaponTrainingI",
+    "Pick and Hammer Training",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dwarf: Favored Enemies"
+cost_per_rank = [1]
+description = "Select a Favored Enemy of Dwarves."
+icon = "DuergarFavoredEnemies"
+internal_name = "DwarfFavoredEnemies"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.selection]]
+name = "Favored Enemy: Giant"
+cost_per_rank = [2]
+description = "You deal extra damage to giants"
+icon = "DuergarFavoredEnemyGiant"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Giant"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Giant"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Monstrous Humanoid"
+cost_per_rank = [2]
+description = "You deal extra damage to monstrous humanoids"
+icon = "DuergarFavoredEnemyMonstrousHumanoid"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Monstrous Humanoid"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Monstrous Humanoid"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Favored Enemy: Vermin"
+cost_per_rank = [2]
+description = "You deal extra damage to vermin"
+icon = "DuergarFavoredEnemyVermin"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Vermin"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Favored Enemy: Vermin"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Dwarf: Hands of Stone"
+cost_per_rank = [1]
+description = """
+Greater Dragonmark Spell: Earthgrab
+Target corporeal creature is grabbed by earthen hands and rendered helpless.
+(Reflex DC 14 + Level + Constitution Modifier + Stunning Bonuses Negates.)"""
+icon = "DwarfHandsOfStone"
+internal_name = "DwarfHandsOfStone"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.dc]]
+name = "Dwarf: Hands of Stone"
+amount = [14]
+class_level = "All"
+dc_type = "Earthgrab"
+dc_versus = "Reflex"
+description = """
+Greater Dragonmark Spell: Earthgrab
+Target corporeal creature is grabbed by earthen hands and rendered helpless."""
+icon = "DwarfHandsOfStone"
+mod_ability = ["Constitution"]
+tactical = "Stun"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Earth Grab",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["DwarfGreaterDragonmarkOfWarding"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dwarf Fortress"
+cost_per_rank = [1]
+description = """
+While wearing full plate and using a shield, you gain +[1/2/3] Armor Class,
+Intimidate, and Will saving throws vs. Fear, and you gain +[3/5/7] Melee and
+Ranged Power."""
+icon = "DwarfFortress"
+internal_name = "DwarfFortress"
+min_spent = 15
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[enhancement.modifier.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fear"]
+
+[[enhancement.modifier.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    5,
+    7,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DwarfStandLikeStone"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dwarf: Weapon Training IV"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose the same Training from Dwarven Weapon Training, Tier 3"
+icon = "DwarfAxeTraining"
+internal_name = "DwarfDwarvenWeaponTrainingIV"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["DwarfDwarvenWeaponTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Axe Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with battle axes, hand axes ans throwing axes.
++1 to hit and +2 damage with dwarven waraxes and greataxes.
+While using a dwarven waraxe, +1 Competence Bonus to Critical Threat Range
+and +10% Strikethrough Chance."""
+icon = "DwarfAxeTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Battle Axe",
+    "Hand Axe",
+    "Throwing Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Dwarven Axe",
+    "Great Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Dwarven Axe",
+    "Great Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["Dwarven Axe"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "DwarfDwarvenWeaponTrainingI",
+    "Axe Training",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Pick and Hammer Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with heavy picks, light hammer, light picks, throwing hammers,
+and warhammers. +1 to hit and +2 damage with Mauls. While using a Heavy Pick or
+Warhammer, +1 Competence Bonus to Critical Threat Range."""
+icon = "DwarfPickAndHammerTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Heavy Pick",
+    "Light Hammer",
+    "Light Pick",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Maul"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Maul"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = [
+    "Heavy Pick",
+    "Warhammer",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DwarfDwarvenWeaponTrainingI",
+    "Pick and Hammer Training",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dwarf: Throw Your Weight Around"
+cost_per_rank = [1]
+description = "Put your Dwarven mass behind your weapon of choice."
+icon = "DwarfThrowYourWeightAround"
+internal_name = "DwarfThrowYourWeightAround"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["DwarfDwarvenWeaponTrainingIV"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Axes"
+cost_per_rank = [1]
+description = """
+You may use your Constitution modifier to determine the damage you deal
+with Battle Axes, Dwarven Waraxes, Hand Axes, Greataxes and Throwing Axes."""
+icon = "DwarfAxes"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Constitution",
+    "Battle Axe",
+    "Dwarven Axe",
+    "Hand Axe",
+    "Great Axe",
+    "Throwing Axe",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DwarfDwarvenWeaponTrainingI",
+    "Axe Training",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Picks and Hammers"
+cost_per_rank = [1]
+description = """
+You may use your Constitution modifier to determine the damage you deal
+with Heavy Picks, Light Hammer, Light Picks, Mauls, Throwing Hammers, and Warhammers."""
+icon = "DwarfPicksAndHammers"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Constitution",
+    "Heavy Pick",
+    "Light Hammer",
+    "Light Pick",
+    "Maul",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "DwarfDwarvenWeaponTrainingI",
+    "Pick and Hammer Training",
+]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Dwarf"]
+req_type = "Race"

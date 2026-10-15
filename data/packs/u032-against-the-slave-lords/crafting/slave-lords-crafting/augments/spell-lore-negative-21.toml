@@ -1,0 +1,28 @@
+name = "Spell Lore Negative +21"
+description = "Legendary Equipment bonus to spell critical chance"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Negative Spell Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Poison Spell Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [21]
+bonus_type = "Equipment"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

@@ -1,0 +1,20 @@
+name = "Woeful Strength of Purpose (Legendary)"
+description = "You gain a +128 bonus to Unconsciousness Range, and regenerate 16 Hit Points using Positive Healing every 6 seconds."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Unconsciousness Range"
+bonus_type = "Enhancement"
+value = -128
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-128]
+bonus_type = "Enhancement"
+effect = "Unconsciousness Range"
+effect_type = "UnconsciousRange"
+
+[[slot]]
+slot = "lamordia: woeful (accessory)"

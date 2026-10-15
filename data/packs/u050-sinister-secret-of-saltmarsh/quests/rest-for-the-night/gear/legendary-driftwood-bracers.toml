@@ -1,0 +1,40 @@
+name = "Legendary Driftwood Bracers"
+description = "Occasionally, sea and time align to create something both functional and elegant."
+drop_location = "Rest for the Night, end chest, or Legendary version of Epic Driftwood Bracers"
+icon = "Bracers_19b"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 30
+slot = "Wrists"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 277
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic driftwood bracers"
+kind = "quest"
+loot_type = "chest"
+name = "Rest for the Night"

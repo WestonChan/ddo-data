@@ -1,0 +1,19 @@
+name = "Kutik's Bead"
+description = "A faint whispering sound surrounds this glowing black gem."
+drop_location = "Garrison's Missing Pack, Witch Doctor Kutik 's chest"
+icon = "Trinket_78"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 1
+
+[[source]]
+chest = "witch doctor kutik 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Garrison's Missing Pack"

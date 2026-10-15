@@ -1,0 +1,8 @@
+name = "Shadowfang"
+description = "Attacks and spells can Curse, dealing Untyped damage over time."
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[slot]]
+slot = "isle of dread: fang (weapon)"

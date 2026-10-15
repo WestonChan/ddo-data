@@ -1,0 +1,173 @@
+[[row]]
+name = "Ultimate Fury: +1 Attack and Damage"
+description = """
++1 Attack and Damage
+Rare: +2 MRR (Says PRR buts actually MRR)
+Bug: Also provides a +1 bonus to Wisdom"""
+icon = "UltimateFury"
+menu = "Sinister Secret of Saltmarsh"
+set = "Ultimate Fury"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Ultimate Fury: Attack and Damage: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Ultimate Fury: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "UltimateFury"
+menu = "Sinister Secret of Saltmarsh"
+set = "Ultimate Fury"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Ultimate Fury: Constitution: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Ultimate Fury: +1 Strength"
+description = """
++1 Strength
+Rare: +2 MRR Bug Says MRR but its PRR"""
+icon = "UltimateFury"
+menu = "Sinister Secret of Saltmarsh"
+set = "Ultimate Fury"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Ultimate Fury: Strength: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Ultimate Fury: +1 Trip DC"
+description = """
++1 Trip DC
+Rare: +2 PRR"""
+icon = "UltimateFury"
+menu = "Sinister Secret of Saltmarsh"
+set = "Ultimate Fury"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Ultimate Fury: Trip DC: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Ultimate Fury: +2 Fortitude Saves"
+description = """
++2 Fortitude Saves
+Rare: +2 MRR"""
+icon = "UltimateFury"
+menu = "Sinister Secret of Saltmarsh"
+set = "Ultimate Fury"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Ultimate Fury: Fortitude Saves: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Ultimate Fury: +2 Rage Uses"
+description = """
++2 Rage Uses
+Rare: +2 MRR"""
+icon = "UltimateFury"
+menu = "Sinister Secret of Saltmarsh"
+set = "Ultimate Fury"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "ExtraRage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Ultimate Fury: Rage: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Ultimate Fury: +3 PRR"
+description = """
++3 PRR
+Rare: +2 PRR Bug Says PRR but is MRR"""
+icon = "UltimateFury"
+menu = "Sinister Secret of Saltmarsh"
+set = "Ultimate Fury"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Ultimate Fury: PRR: MRR"
+effect_type = "MRR"
+is_rare = true

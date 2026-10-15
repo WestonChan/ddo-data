@@ -1,0 +1,144 @@
+name = "Nether Orb (Level 27)"
+description = """
+Some more devious Netherse Wizard discovered how to syphon the life energies
+of his enemies and convert it into magical energies. Some called him mad. Some
+called him brilliant. The rest called him careless for allowing this ability
+to only function by touch."""
+drop_location = "The Tracker's Trap, End chest (Epic Hard)"
+icon = "Orb_9"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 27
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 8
+
+[[effect]]
+name = "Spell Lore IX"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Energy Siphon XI"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Evocation Focus V"
+description = "Evocation Focus V: +5 Equipment bonus to the DC of Evocation spells."
+icon = "Variant"
+min_level = 27
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[socket.option]]
+name = "Conjuration Focus V"
+description = "Conjuration Focus V: +5 Equipment bonus to the DC of Conjuration spells."
+icon = "Variant"
+min_level = 27
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[socket.option]]
+name = "Enchantment Focus V"
+description = "Enchantment Focus V: +5 Equipment bonus to the DC of Enchantment spells."
+icon = "Variant"
+min_level = 27
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[socket.option]]
+name = "Necromancy Focus V"
+description = "Necromancy Focus V: +3 Equipment bonus to the DC of Necromancy spells."
+icon = "Variant"
+min_level = 27
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[socket.option]]
+name = "Transmutation Focus V"
+description = "Transmutation Focus V: +5 Equipment bonus to the DC of Transmutation spells."
+icon = "Variant"
+min_level = 27
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Transmutation Focus"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Transmutation Focus"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tracker's Trap"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

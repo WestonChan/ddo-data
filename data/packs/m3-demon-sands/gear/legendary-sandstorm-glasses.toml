@@ -1,0 +1,37 @@
+name = "Legendary Sandstorm Glasses"
+description = """
+These thick-lensed goggles are made from canvas and cut amber crystals. They
+enable the wearer to see in the most extreme conditions."""
+drop_location = "Legendary version of Epic Sandstorm Glasses"
+icon = "Goggles_15a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Goggles"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 21
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"

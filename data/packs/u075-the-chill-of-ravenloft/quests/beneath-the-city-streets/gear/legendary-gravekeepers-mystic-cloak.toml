@@ -1,0 +1,39 @@
+name = "Legendary Gravekeeper's Mystic Cloak"
+description = "Even the mystic and powerful eventually find themselves in the grave."
+drop_location = "Beneath the City Streets, Dead Man's Wrath 's chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 34
+slot = "Back"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "dead man's wrath 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"

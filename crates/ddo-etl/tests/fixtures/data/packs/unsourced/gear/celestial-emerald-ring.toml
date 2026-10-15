@@ -1,0 +1,83 @@
+name = "Celestial Emerald Ring"
+description = "A blazing emerald is embedded into this ring."
+drop_location = "No Refunds, End chest"
+icon = "Ring_13"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 15
+slot = "Ring"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Insight"
+value = 30
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Linguistics"
+bonus_type = "Equipment"
+value = 10
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+8 Constitution"
+description = "+8 Enhancement bonus to Constitution"
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "+8 Strength"
+description = "+8 Enhancement bonus to Strength"
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+8 Wisdom"
+description = "+8 Enhancement bonus to Wisdom"
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket]]
+slot = "blue"

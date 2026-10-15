@@ -1,0 +1,56 @@
+name = "Epic Sparkstriker"
+accepts_sentience = true
+description = """
+Forged from dwarven steel and meteoric iron, this pick shoots out a torrent
+of sparks when it strikes a foe."""
+drop_location = "The Mystery of Delera's Tomb, End chest"
+enhancement_bonus = 8
+icon = "HeavyPick_1d"
+item_category = "Weapon"
+item_type = "Heavy Pick"
+material = "Steel"
+minimum_level = 25
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Electrifying 5"
+
+[[effect]]
+name = "Jolting 12"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mystery of Delera's Tomb"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "One-handed"
+weapon_type = "Heavy Pick"

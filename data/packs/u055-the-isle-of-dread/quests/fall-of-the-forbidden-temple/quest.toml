@@ -1,0 +1,30 @@
+name = "Fall of the Forbidden Temple"
+bestowed_by = "Marikan"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Isle of Dread"
+patron = "The Gatekeepers"
+zone = "Forbidden Kopru Temple"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Fall_of_the_Forbidden_Temple"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

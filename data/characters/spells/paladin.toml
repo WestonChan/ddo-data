@@ -1,0 +1,199 @@
+[[row]]
+name = "Angelskin"
+description = "The caster gains +1 Racial bonus to Physical and Magical Resistance Rating per caster level."
+icon = "Angelskin"
+max_caster_level = 20
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Racial"
+effect_type = "PRR"
+extra_types = ["MRR"]
+stack_source = "TBD"
+
+[[row]]
+name = "Holy Sword"
+description = """
+While you are enchanted with Holy Sword, any weapons in your hands gain +1 to their
+Enhancement bonus and +1 Competence bonus to Critical Threat Range and Critical
+Damage Multiplier. This does not apply to shields, orbs or Rune Arms."""
+icon = "HolySword"
+metamagics = ["Quicken"]
+schools = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "WeaponCriticalRangeClass"
+extra_types = ["WeaponCriticalMultiplierClass"]
+targets = [
+    "Melee",
+    "Ranged",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[row]]
+name = "Lionheart"
+description = """
+Imbues a single ally with great bravery, making him immune to fear for 1 minute per
+caster level."""
+icon = "Lionheart"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row]]
+name = "Righteous Command"
+description = "+1 Morale bonus to Melee and Ranged Power per caster level, max caster level 15."
+icon = "RighteousCommand"
+max_caster_level = 15
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "ClassCasterLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Morale"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+stack_source = "TBD"
+
+[[row]]
+name = "Virtue"
+description = """
+Grants 10 temporary Hit Points plus 2 per caster level over level 4th (Maximum Hit
+Points 20.) to an ally."""
+icon = "Virtue"
+max_caster_level = 5
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Zeal"
+description = "Grants the caster a +10% sacred bonus to doublestrike and doubleshot."
+icon = "Zeal"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Sacred"
+effect_type = "Doublestrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Sacred"
+effect_type = "Doubleshot"

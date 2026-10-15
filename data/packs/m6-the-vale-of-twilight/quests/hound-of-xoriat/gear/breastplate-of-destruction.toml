@@ -1,0 +1,37 @@
+name = "Breastplate of Destruction"
+description = """
+A mithral breastplate matching the description of this armor is said to appear
+in several stories over the past five centuries. In every story, this armor
+exuded a powerful aura, that could be channeled into the wielder's weapon,
+and weaken their foe."""
+drop_location = "Hound of Xoriat, Raid Warded chest"
+enhancement_bonus = 5
+icon = "MediumArmor_1c"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 14
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Destruction"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hound of Xoriat"

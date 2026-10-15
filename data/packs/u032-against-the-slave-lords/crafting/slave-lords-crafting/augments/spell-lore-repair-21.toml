@@ -1,0 +1,24 @@
+name = "Spell Lore Repair +21"
+description = "Legendary Equipment bonus to spell critical chance"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Repair Spell Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [21]
+bonus_type = "Equipment"
+effect = "Repair Spell Lore"
+effect_type = "SpellLore"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

@@ -1,0 +1,78 @@
+name = "Legendary Shield of Reflecting"
+description = """
+This shield was probably once used in an attempt to fight a medusa. It can protect
+the wielder against transmutation spells such as Flesh to Stone ."""
+drop_location = "Diplomatic Impunity, Kukennama 's/Eliminate the Clan chest"
+enhancement_bonus = 15
+icon = "Shield_39"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 31
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 19
+max_dex_bonus = 0
+shield_bonus = 22
+
+[[clickie]]
+name = "Absorb Petrification"
+clickie = "Absorb Petrification"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "Legendary Stone Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Absorb Petrification"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "kukennama 's/eliminate the clan chest"
+kind = "quest"
+loot_type = "chest"
+name = "Diplomatic Impunity"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Off-hand"
+weapon_type = "Large Shield"

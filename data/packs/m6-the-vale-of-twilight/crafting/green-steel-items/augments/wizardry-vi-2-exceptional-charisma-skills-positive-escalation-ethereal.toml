@@ -1,0 +1,38 @@
+name = "Wizardry VI, +2 Exceptional Charisma Skills"
+adds_augment = "Accessory Subjugation"
+variant = "Positive:Escalation:Ethereal"
+description = """
+Wizardry VI: +150 Elemental Spell Power bonus to spell points.
++2 Exceptional bonus to all Charisma based skills
+Positive:Escalation:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Elemental Spell Power"
+value = 150
+
+[[effect]]
+name = "Charisma Skills"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Elemental Spell Power"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Charisma Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: accessory invasion"

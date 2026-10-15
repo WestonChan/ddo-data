@@ -1,0 +1,45 @@
+name = "Legendary Stormsinger Cloak"
+description = """
+Some harpies of the Stormsinger flight wear cloaks such as this to increase
+their musical prowess. It will also protect the wearer with violent sonic energy."""
+drop_location = "Assault on Summerfield, Captain Markus ' chest and optional chests"
+icon = "Cloak_7"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 31
+slot = "Back"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Insight"
+value = 74
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Anthem"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "captain markus ' chest and optional chests"
+kind = "quest"
+loot_type = "chest"
+name = "Assault on Summerfield"

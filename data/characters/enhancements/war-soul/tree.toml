@@ -1,0 +1,1470 @@
+name = "War Soul"
+background = "FavoredSoulBackground"
+icon = "Favored Soul"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "War Soul: Smite Foe"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Choose between a Melee and a Ranged attack.
+Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power"""
+icon = "WPSmiteFoe"
+internal_name = "WarSoulCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Smite Foe (Melee)"
+cost_per_rank = [1]
+description = """
+Melee Attack: Deals +20% Damage. Smite your enemy with a melee attack.
+Cooldown: 12 seconds
+Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power"""
+icon = "WPSmiteFoe"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Smite Foe (Ranged)"
+cost_per_rank = [1]
+description = """
+Ranged Attack: Deals +20% Damage. Smite your enemy with a ranged attack.
+Cooldown: 12 seconds
+Passive: +2 Armor Class, +5 Fire Spell Power, +5 Light Spell Power"""
+icon = "WPSmiteFoeRanged"
+is_clickie = true
+
+[[enhancement]]
+name = "War Soul: Resilience of Battle"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Passive: Damage Reduction 5/-, +2 Armor Class, +5 Fire Spell Power,
++5 Light Spell Power. +1 Imbue Dice"""
+icon = "WPResilienceOfBattle"
+internal_name = "WarSoulCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "DR"
+targets = ["-"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.requirement]]
+items = ["WarSoulCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "War Soul: Sanctuary"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+For 20 seconds, you gain +20 Sacred bonus to Physical Resistance.
+Spell Point Cost: 10 Spell Points
+Cooldown: 1 minute
+Passive:
++2 Armor Class
++5 Fire Spell Power
++5 Light Spell Power"""
+icon = "WPSanctuary"
+internal_name = "WarSoulCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Sanctuary"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.requirement]]
+items = ["WarSoulCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "War Soul: War Caster: Blur"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Blur is added to your spell book as a level 2 spell.
+In addition, you permanently benefit from the effect of the Blur spell.
+Passive:
++1 Imbue Dice
++2 Armor Class
++5 Fire Spell Power
++5 Light Spell Power"""
+icon = "WPWarDomainBlur"
+internal_name = "WarSoulCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    2,
+    15,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Blur",
+    "Favored Soul",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.requirement]]
+items = ["WarSoulCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "War Soul: War caster: Haste"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Haste is added to your spell book as a level 3 spell.
+Passive:
++1 Imbue Dice
++2 Armor Class
++5 Fire Spell Power
++5 Light Spell Power
++1 Competence Bonus to Critical Threat Range with your Favored weapon."""
+icon = "WPWarDomainHaste"
+internal_name = "WarSoulCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    3,
+    20,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Haste",
+    "Favored Soul",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["WarSoulCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "War Soul: Implacable Foe"
+cost_per_rank = [1]
+description = """
+Choose between Strength, Wisdom, and Charisma variants of a temporary buff that
+grants temporary hitpoints and additional damage."""
+icon = "WPImplacableFoe"
+internal_name = "WarSoulCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WarSoulCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.requirement]]
+items = ["WarSoulCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "WarSoulCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Implacable Foe (Strength)"
+cost_per_rank = [1]
+description = """
+Activate: You and nearby allies gain 100 Temporary Hit Points and their
+attacks will deal 10% additional damage. For the next 18 seconds, these bonuses
+will refresh every 3 seconds on you and each ally that remains in range.
+These effects will expire 5 seconds after they are no longer refreshed.
+Cooldown: 3 minutes
+Passive:
+Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 25.
++4 Strength
++2 Armor Class
++5 Fire Spell Power
++5 Light Spell Power"""
+icon = "WPImplacableFoe"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "Implacable Foe (Wisdom)"
+cost_per_rank = [1]
+description = """
+Activate: You and nearby allies gain 100 Temporary Hit Points and their
+attacks will deal 10% additional damage. For the next 18 seconds, these bonuses
+will refresh every 3 seconds on you and each ally that remains in range.
+These effects will expire 5 seconds after they are no longer refreshed.
+Cooldown: 3 minutes
+Passive:
+Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 25.
++4 Wisdom
++2 Armor Class
++5 Fire Spell Power
++5 Light Spell Power"""
+icon = "WPImplacableFoe"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Implacable Foe (Charisma)"
+cost_per_rank = [1]
+description = """
+Activate: You and nearby allies gain 100 Temporary Hit Points and their
+attacks will deal 10% additional damage. For the next 18 seconds, these bonuses
+will refresh every 3 seconds on you and each ally that remains in range.
+These effects will expire 5 seconds after they are no longer refreshed. (Cooldown: 5 minutes)
+Passive:
+Divine Vessel now triggers on reaching 20 stacks of Divine Conduit, instead of 25.
++4 Charisma
++2 Armor Class
++5 Fire Spell Power
++5 Light Spell Power"""
+icon = "WPImplacableFoe"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "War Soul: Divine Might"
+cost_per_rank = [1]
+description = "Choose your upgrade: Divine Might/Presence or Will"
+icon = "WPDivineMight"
+internal_name = "WSDivineMight"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "WSDivineMight",
+    "Battle Trance",
+]
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "WSDivineMight",
+    "Battle Trance",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Divine Might"
+cost_per_rank = [1]
+description = """
+Activate: You gain an Insight bonus to Attack, damage and the DC of tactical
+feats equal to 1/2 of your Charisma modifier for 120 seconds.
+Spell point Cost: 21 Spell Points
+Cooldown: 20 seconds"""
+icon = "WPDivineMight"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "War Soul: Divine Might (Cha Mod / 2)"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "SnapshotCharisma"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Might"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "War Soul: Divine Might (Cha Mod / 2)"
+effect_type = "TacticalDC"
+stack_source = "SnapshotCharisma"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Will"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Divine Might"
+description = """
+You gain an Insight bonus to Attack, damage and the DC of tactical feats equal to 1/2 of your
+Charisma modifier for 120 seconds.
+Spell point Cost: 21 Spell Points
+Cooldown: 20 seconds"""
+group_name = "Battle Trance"
+icon = "WPDivineMight"
+
+[[enhancement.selection]]
+name = "Divine Will"
+cost_per_rank = [1]
+description = """
+You gain an Insight bonus to Attack, damage and the DC of tactical feats equal to 1/2 of your
+Wisdom modifier for 120 seconds.
+Spell point Cost: 21 Spell Points
+Cooldown: 20 seconds"""
+icon = "WPDivineMight"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "War Soul: Divine Will (Wis Mod / 2)"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "SnapshotWisdom"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Will"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "War Soul: Divine Will (Wis Mod / 2)"
+effect_type = "TacticalDC"
+stack_source = "SnapshotWisdom"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Divine Will"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Divine Will"
+description = """
+You gain an Insight bonus to Attack, damage and the DC of tactical feats equal to 1/2 of your
+Wisdom modifier for 120 seconds.
+Spell point Cost: 21 Spell Points
+Cooldown: 20 seconds"""
+group_name = "Battle Trance"
+icon = "WPDivineMight"
+
+[[enhancement]]
+name = "War Soul: Toughness"
+cost_per_rank = [1]
+description = "+[5/10/15] maximum hp."
+icon = "Toughness"
+internal_name = "WSToughness"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "War Soul: Righteous Weapons I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+When wielding your religion's favored weapon in your main hand, you gain +1 to
+hit and damage and +3 Universal Spell Power"""
+icon = "WPRighteousWeapons"
+internal_name = "WSRighteousWeaponsI"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "War Soul: Sacred Touch"
+cost_per_rank = [1]
+description = """
+When you heal allies (with positive energy damage spells) they gain +[1/2/3] AC
+and +[1/2/3] PRR for 12 seconds."""
+icon = "WPSacredTouch"
+internal_name = "WSSacredTouch"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "War Soul: Awareness"
+cost_per_rank = [1]
+description = """
++[1/2/3] Listen, Search and Spot.
+Rank 3: +1 save vs traps"""
+icon = "Awareness"
+internal_name = "WSAwareness"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Traps"]
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "War Soul: Smite Weakness"
+cost_per_rank = [2]
+description = """
+When you strike an enemy with Smite Foe, they gain four to seven stacks of Vulnerable.
+(For each stack, the target takes 1% more damage for 3 seconds. This effect
+stacks up to 20 times, and loses one stack on expiration.)"""
+icon = "WPSmiteWeakness"
+internal_name = "WSSmiteWeakness"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "War Soul: Wall of Steel"
+cost_per_rank = [1]
+description = "+[3/6/10] Physical Resistance Rating"
+icon = "WPWallOfSteel"
+internal_name = "WSWallOfSteel"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "War Soul: Righteous Weapons II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+When wielding your religion's favored weapon in your main hand, you gain +1 to
+hit and damage, and +3 Universal Spell Power."""
+icon = "WPRighteousWeapons"
+internal_name = "WSRighteousWeaponsII"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["WSRighteousWeaponsI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "War Soul: Inflame"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You and your nearby allies gain a +4 bonus to Armor Class, Attack Rolls, and Damage Rolls.
+Duration: 30 seconds.
+Cooldown: 90 seconds minute"""
+icon = "WPInflame"
+internal_name = "WSInflame"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "War Soul: Action Boost Haste"
+cost_per_rank = [2]
+description = "Activate to gain a +30% Action Boost bonus to attack speed for 20 seconds."
+icon = "WPActionBoostHaste"
+internal_name = "WSActionBoostHaste"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "War Soul: Magic Backlash"
+cost_per_rank = [1]
+description = """
+When an enemy damages you with a spell, there is a [10/20/30]% chance they
+will be knocked down. (Does not affect bosses.)"""
+icon = "WPMagicBacklash"
+internal_name = "WSMagicBacklash"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "War Soul: Radiant Flourish"
+cost_per_rank = [2]
+description = "Choose between a Melee and Ranged attack"
+icon = "WPRadiantFlourish"
+internal_name = "WSRadiantFlourish"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Radiant Flourish (Melee)"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Favored Weapon Melee Attack: On Hit: Enemy takes 3d6 Light Damage.
+This damage scales at 200% with the higher of your Melee and Ranged Power.
+Non-boss enemies have a small chance to be blinded with no save.
+6 Second cooldown"""
+icon = "WPRadiantFlourish"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Radiant Flourish (Ranged)"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Favored Weapon Ranged Attack: On Hit: Enemy takes 3d6 Light Damage.
+This damage scales at 200% with the higher of your Melee and Ranged Power.
+Non-boss enemies have a small chance to be blinded with no save.
+6 Second cooldown"""
+icon = "WPRadiantFlourishRanged"
+is_clickie = true
+
+[[enhancement]]
+name = "War Soul: Righteous Weapons III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+When wielding your religion's favored weapon in your main hand, you gain +1 to
+hit and damage, and +3 Universal Spell Power."""
+icon = "WPRighteousWeapons"
+internal_name = "WSRighteousWeaponsIII"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["WSRighteousWeaponsII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "War Soul: Greater Inflame"
+cost_per_rank = [1]
+description = """
+Your Inflame now also grants a +[2/3/4] bonus to Saving Throws and a +[5/10/15]%
+bonus to Acid, Cold, Electric, Fire, and Sonic Energy Absorption."""
+icon = "WPGreaterInflame"
+internal_name = "WSGreaterInflame"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["WSInflame"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "War Soul: Ability I"
+cost_per_rank = [2]
+description = "Choose either Strength, Wisdom or Charisma"
+icon = "StrWisCha"
+internal_name = "WarSoulAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "War Soul: Ameliorating Strike"
+cost_per_rank = [2]
+description = """
+When you strike an enemy with Smite Foe, you and your nearby allies are
+healed by 1d3 per character level, and benefit from the effects of the Lesser
+Restoration spell. (The heal from Ameliorating Strike is affected by your
+Positive Spell Power) You may only perform this AOE heal once per time you use
+this skill."""
+icon = "WPAmelioratingStrike"
+internal_name = "WSAmelioratingStrike"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "War Soul: Fires of Fury"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
+with your Fire Spell Power."""
+icon = "WSFiresOfFury"
+internal_name = "WSFiresOfFury"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.stance]]
+name = "War Soul: Fires of Fury"
+description = """
+Imbue Toggle: Your Favored Weapons deal an additional 1d6 Fire Damage, scaling
+with your Fire Spell Power."""
+group_name = "Imbue"
+icon = "WSFiresOfFury"
+
+[[enhancement]]
+name = "War Soul: Righteous Weapons IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+When wielding your religion's favored weapon in your main hand, you gain +1 to
+hit and damage, and +3 Universal Spell Power."""
+icon = "WPRighteousWeapons"
+internal_name = "WSRighteousWeaponsIV"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["WSRighteousWeaponsIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "War Soul: Holy Striker"
+cost_per_rank = [1]
+description = "Choose between Doublestrike or Doubleshot"
+icon = "WPHolyStriker"
+internal_name = "WSHolyStriker"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Holy Striker"
+cost_per_rank = [1]
+description = "+[3/6/10]% Doublestrike"
+icon = "WPHolyStriker"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.selection]]
+name = "Holy Sniper"
+cost_per_rank = [1]
+description = "+[3/6/10]% Doubleshot"
+icon = "WPHolySniper"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "Doubleshot"
+
+[[enhancement]]
+name = "War Soul: Ability II"
+cost_per_rank = [2]
+description = "Choose either Strength, Wisdom or Charisma"
+icon = "StrWisCha"
+internal_name = "WarSoulAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "War Soul: Divine Power"
+cost_per_rank = [2]
+description = """
+Passive: Your god has imbued you with power and skill in combat, granting a
++1 Competence Bonus to Critical Multiplier with weapons, a +6 Sacred bonus to Strength,
+and a base attack bonus equal to a fighter of the same level."""
+icon = "WPDivinePower"
+internal_name = "WSDivinePower"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Sacred"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "OverrideBAB"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "War Soul: Divine Vessel"
+cost_per_rank = [1]
+description = """
+Choose between Melee and Ranged attacks.
+Shares its cooldown with the Great Cleave feat."""
+icon = "WPDivineVessel"
+internal_name = "WSDivineVessel"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Divine Vessel (Melee Attack)"
+cost_per_rank = [1]
+description = """
+Deals: +30% Damage
+Melee Favored Weapon Cleave Attack: Make a sweeping weapon attack against all
+nearby enemies. Each affected enemy is hit by a meteor, taking 1 to  4 Fire and
+1 to 4 Light damage per character level. (Damage from the meteor is affected by
+Fire and Light Spell Power).
+
+Shares its cooldown with the Great Cleave feat."""
+icon = "WPDivineVessel"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Divine Vessel (Ranged Attack)"
+cost_per_rank = [1]
+description = """
+Deals: +20% Damage
+AOE Ranged Favored Weapon Cleave Attack: Each affected enemy is hit by a meteor,
+taking 1 to  4 Fire and 1 to 4 Light damage per character level. (Damage from
+the meteor is affected by Fire and Light Spell Power).
+
+Shares its cooldown with the Great Cleave feat."""
+icon = "WPDivineVessel"
+is_clickie = true
+
+[[enhancement]]
+name = "War Soul: Wrathful Weapons"
+cost_per_rank = [2]
+description = """
+When wielding your religion's favored weapon in your main hand, you gain
++3 to hit and damage, and +9 Universal Spell Power. When you score a Vorpal Hit
+with your religion's favored weapon, you gain +3 bonus Imbue dice for the next
+12 seconds, and your Fires of Fury Imbue Toggle changes its damage type from
+Fire to Light."""
+icon = "WPWrathfulWeapons"
+internal_name = "WSWrathfulWeapons"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier.requirement]]
+items = ["Critical Hit"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["WSRighteousWeaponsIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "War Soul: Divine Champion"
+cost_per_rank = [2]
+description = """
+While wearing Medium armor (or in Mithral body feat), you gain +5% Doublestrike,
++5% Doubleshot, +5 to confirm Critical hits and damage (before weapon multipliers).
++20% Competence bonus to Maximum Hit Points."""
+icon = "WSDivineChampion"
+internal_name = "WSDivineChampion"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "War Soul: Divine Intervention"
+cost_per_rank = [2]
+description = """
+Active: Divine Intervention: Ward your target against fatal damage.
+Hit point damage cannot lower a warded ally's hit point total below -9.
+When a warded ally is incapacitated, this effect heals the target after a few
+seconds for 10 to 39 hit points and then fades.
+Spell Point Cost: 30 spell points.
+Cooldown: 2 minutes"""
+icon = "WPDivineIntervention"
+internal_name = "WSDivineIntervention"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Favored Soul"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Favored Soul"]
+req_type = "Class"

@@ -1,0 +1,29 @@
+name = "The Underlane Assignment"
+bestowed_by = "Inil Norwyth"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Soul Splitter"
+patron = "Sharn City Council"
+zone = "Underlane Neighborhood, Investigation Area"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Underlane_Assignment"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

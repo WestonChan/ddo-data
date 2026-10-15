@@ -1,0 +1,3 @@
+name = "Shield Armor Class"
+category = "defensive"
+verbose_name_template = "%b1 Shield Armor Class +{1}"

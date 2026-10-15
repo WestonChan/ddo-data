@@ -1,0 +1,45 @@
+name = "Legendary Helm of Eternal Night"
+description = """
+Sacred moonlight shone on the creation of this helm, giving its guidance to
+those who wear it."""
+drop_location = "Seeds of Decay, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 33
+slot = "Head"
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 37
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Seeds of Decay"

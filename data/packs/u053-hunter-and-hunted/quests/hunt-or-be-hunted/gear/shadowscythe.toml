@@ -1,0 +1,73 @@
+name = "Shadowscythe"
+accepts_sentience = true
+description = """
+This manifestation of Illusion Magic is made real by your touch... and something
+else. As the Shadowscythe is not physical, monks may use it without becoming
+uncentered."""
+drop_location = "Hunt or Be Hunted, end chest"
+enhancement_bonus = 15
+icon = "Sickle_1h"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Force"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Shadowblade"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Insight"
+value = 74
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Quality"
+value = 36
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Sickle",
+]
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hunt or Be Hunted"
+
+[[weapon]]
+attack_modifier = "Charisma"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Charisma"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Sickle"

@@ -1,0 +1,22 @@
+name = "The Stormreaver Fresco"
+bestowed_by = "Burgundy Tir"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "The Sharn Syndicate"
+patron = "The Coin Lords"
+zone = "Lordsmarch Bank"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Stormreaver_Fresco"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

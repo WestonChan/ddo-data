@@ -1,0 +1,33 @@
+name = "Spectral Gloves"
+description = "These gloves have an ethereal quality to them."
+drop_location = "An Offering of Blood, in any of the three rooms after the 2nd Aspect"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Hands"
+
+[[effect]]
+name = "Ethereal"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 9
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 4
+value2 = 6
+
+[[source]]
+chest = "in any of the three rooms after the 2nd aspect"
+kind = "quest"
+loot_type = "chest"
+name = "An Offering of Blood"

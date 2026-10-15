@@ -1,0 +1,3 @@
+name = "Slicing Winds"
+description_template = "This weapon stores the cyclonic might of a windstorm within. When this weapon is used, this power can come to the surface as a series of rushing, cutting winds that deal slashing damage to the target over several seconds."
+verbose_name_template = "Slicing Winds"

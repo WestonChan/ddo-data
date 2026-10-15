@@ -1,0 +1,21 @@
+name = "Quality Spot +5"
+description = "Legendary quality bonus to Spot"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Spot"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Spot"
+effect_type = "SkillBonus"
+targets = ["Spot"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

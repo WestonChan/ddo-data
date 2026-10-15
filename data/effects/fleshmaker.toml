@@ -1,0 +1,11 @@
+name = "Fleshmaker"
+description_template = "Magical insight into the ways of the flesh allow the wearer of this item to receive more effect from healing spells cast on them. +20 Enhancement bonus to Positive Healing Amplification."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Fleshmaker +20"
+
+[[bonus]]
+amount_from = 0
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Healing Amplification"

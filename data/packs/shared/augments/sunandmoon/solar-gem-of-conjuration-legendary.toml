@@ -1,0 +1,36 @@
+name = "Solar Gem of Conjuration (Legendary)"
+description = """
+Artifact Conjuration Focus +4
+Drops in: A Light in the Attic, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Artifact"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "If It Wasn't For Bad Luck"

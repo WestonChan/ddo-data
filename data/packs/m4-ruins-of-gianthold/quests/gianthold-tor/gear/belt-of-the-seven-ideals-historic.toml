@@ -1,0 +1,27 @@
+name = "Belt of the Seven Ideals (historic)"
+description = """
+This gaudy belt is adorned with seven faceted stones that span every color of
+the rainbow. Surely they have magical as well as aesthetic properties."""
+drop_location = "Gianthold Tor, Black Dragon chest"
+icon = "Belt_9"
+is_legacy = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Waist"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 48
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[source]]
+chest = "black dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

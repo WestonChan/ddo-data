@@ -1,0 +1,22 @@
+name = "Combat Mastery"
+description_template = "+{1} %b1 bonus to the DC to resist the character's Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Combat Mastery +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Trip DC"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Sunder DC"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Stun DC"

@@ -1,0 +1,27 @@
+name = "Cinder's Dance"
+description = "This ring is enscribed with a series of images of dancing flames."
+drop_location = "Hold for Reinforcements, End Chest"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 7
+slot = "Ring"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Fire Guard I"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Hold for Reinforcements"

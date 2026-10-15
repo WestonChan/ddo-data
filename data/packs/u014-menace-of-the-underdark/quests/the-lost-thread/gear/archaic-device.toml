@@ -1,0 +1,66 @@
+name = "Archaic Device"
+description = """
+Though you are not certain what this device was originally utilized for, it
+seems to be able to absorb elemental energy and convert it into pure magical
+force."""
+drop_location = "The Lost Thread, End chest ; Menace of the Underdark: The Darkening, Quest chain end reward"
+icon = "RuneArm_3"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 20
+slot = "Runearm"
+
+[[clickie]]
+name = "Force Shot"
+clickie = "Force Shot"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Rune Arm Imbue - Force IV"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Enhancement"
+value = 60
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[effect]]
+name = "Elemental Absorption"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Force Shot",
+    "Unknown",
+]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Lost Thread"
+
+[[source]]
+kind = "saga"
+name = "Menace of the Underdark"
+tier = "any"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

@@ -1,0 +1,47 @@
+name = "Webs of the Drow Penitent"
+description = """
+This clothing is spun entirely from the silk of some arachnid. It is strong,
+flexible, and nearly weightless."""
+drop_location = "Catalyst Crafting, Turn in Spider-spun Caparison, its Deep Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 5
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 11
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Reinforced Fists"
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

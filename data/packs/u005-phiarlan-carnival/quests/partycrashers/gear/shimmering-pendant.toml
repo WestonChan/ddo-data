@@ -1,0 +1,31 @@
+name = "Shimmering Pendant"
+description = """
+This beautiful necklace immediately makes the wearer appear more attractive
+and confident."""
+drop_location = "Partycrashers, Private Rooms chest, End chest"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 4
+slot = "Neck"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 6
+
+[[source]]
+chest = "private rooms chest, end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Partycrashers"

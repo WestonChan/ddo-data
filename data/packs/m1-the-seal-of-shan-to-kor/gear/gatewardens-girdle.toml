@@ -1,0 +1,24 @@
+name = "Gatewarden's Girdle"
+description = """
+Amrog the Gatewarden wore this large durable belt, which protected against many
+an adventurer who would try to force entry into the underground hobgoblin city."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Waist"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 2
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 25
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

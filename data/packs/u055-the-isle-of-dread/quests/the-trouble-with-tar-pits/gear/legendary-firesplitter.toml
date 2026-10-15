@@ -1,0 +1,52 @@
+name = "Legendary Firesplitter"
+accepts_sentience = true
+description = "Originally meant to cut firewood, this axe now burns with its own inner heat."
+drop_location = "The Trouble with Tar Pits, end chest"
+enhancement_bonus = 15
+icon = "HandAxe_1f"
+item_category = "Weapon"
+item_type = "Hand Axe"
+material = "Silver"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Incineration"
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Trouble with Tar Pits"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "One-handed"
+weapon_type = "Hand Axe"

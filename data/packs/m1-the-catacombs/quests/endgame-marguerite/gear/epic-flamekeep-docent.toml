@@ -1,0 +1,71 @@
+name = "Epic Flamekeep Docent"
+description = """
+This docent was blessed in the heart of the Flamekeep by the order of the Silver
+Flame."""
+drop_location = "Endgame: Marguerite, End chest"
+enhancement_bonus = 6
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 23
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[effect]]
+name = "Command"
+value = 6
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Enhancement"
+value = 43
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 122
+
+[[effect]]
+name = "Repair Spell Lore"
+bonus_type = "Equipment"
+value = 18
+
+[[note]]
+kind = "item_bonus"
+field = "remove"
+reason = "The wiki has Repair Lore instead of an untyped Repair skill line."
+url = "https://ddowiki.com/page/Item:Epic_Flamekeep_Docent"
+read = "2026-10-04"
+qualifier = "Repair / Competence"
+
+[[note]]
+kind = "item_bonus"
+field = "add"
+reason = "The wiki lists Repair Lore +18%."
+url = "https://ddowiki.com/page/Item:Epic_Flamekeep_Docent"
+read = "2026-10-04"
+qualifier = "Repair Spell Lore / Equipment"
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+upstream = "Competence"
+reason = "The wiki calls Repair Amplification an Enhancement bonus."
+url = "https://ddowiki.com/page/Item:Epic_Flamekeep_Docent"
+read = "2026-10-04"
+qualifier = "Repair Amplification / Competence"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Endgame: Marguerite"

@@ -1,0 +1,52 @@
+name = "Topaz of Spell Penetration"
+choose_level = true
+description = "Grants an Equipment bonus to Spell Penetration checks"
+family = "Topaz"
+icon = "Topaz"
+level_values = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+    40,
+]
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

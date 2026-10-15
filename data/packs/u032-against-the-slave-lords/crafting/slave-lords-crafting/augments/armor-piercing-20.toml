@@ -1,0 +1,20 @@
+name = "Armor Piercing +20"
+description = "Legendary Enhancement bonus to fortification bypass"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[effect]]
+name = "Fortification Bypass"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

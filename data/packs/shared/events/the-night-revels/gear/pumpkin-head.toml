@@ -1,0 +1,28 @@
+name = "Pumpkin Head"
+description = """
+Trick or Treat! Throw this at your friends! Note: Pumpkin Heads do not work
+on anyone who has a Cosmetic Helmet, Goggles, or other cosmetic headwear equipped."""
+drop_location = "The Night Revels, Turn in 10 Piece of Darkest Chocolate to Joe Candymaker"
+icon = "Dart_12"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Wood"
+minimum_level = 5
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 1
+critical_multiplier = 1
+critical_threat_range = 1
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Dart"

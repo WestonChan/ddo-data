@@ -1,0 +1,61 @@
+name = "The Dumpster Fire"
+description = "Do you want ants? This is how you get ants."
+drop_location = "Scavenger Hunt, End chest"
+icon = "RuneArm_1b"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Rust"
+minimum_level = 15
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 94
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 8
+
+[[effect]]
+name = "Rune Arm Imbue - Bludgeon IV"
+
+[[effect]]
+name = "Rune Arm Imbue - Fire IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Trash Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Scavenger Hunt"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

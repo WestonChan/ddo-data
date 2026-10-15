@@ -1,0 +1,70 @@
+name = "Temple's Monolith"
+icon = "TemplesMonolith"
+
+[[item]]
+name = "Black Earth Guardian's Lenses"
+
+[[item]]
+name = "Docent of the Black Earth"
+
+[[item]]
+name = "Eyes of the Black Earth"
+
+[[item]]
+name = "Heavy Armor of the Black Earth"
+
+[[item]]
+name = "Light Armor of the Black Earth"
+
+[[item]]
+name = "Medium Armor of the Black Earth"
+
+[[item]]
+name = "Pendant of Subtle Pain"
+
+[[item]]
+name = "Robes of the Black Earth"
+
+[[item]]
+name = "The Earth and the Sky"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Acid Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

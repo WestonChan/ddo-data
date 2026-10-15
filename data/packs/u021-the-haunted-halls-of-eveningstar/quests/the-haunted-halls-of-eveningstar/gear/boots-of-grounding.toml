@@ -1,0 +1,30 @@
+name = "Boots of Grounding"
+description = """
+These copper-plated boots were developed to protect the wearer from sudden lightning
+storms."""
+drop_location = "The Haunted Halls of Eveningstar, On the ground near Doppleganger's chest"
+icon = "Boots_2"
+item_category = "Clothing"
+material = "Copper"
+minimum_level = 28
+slot = "Feet"
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Grounded"
+bonus_type = "Penalty"
+
+[[source]]
+chest = "on the ground near doppleganger's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunted Halls of Eveningstar"

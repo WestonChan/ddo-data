@@ -1,0 +1,3 @@
+name = "Burning Ammunition - 1d8"
+description_template = "On Ranged Attack: 1 to 8 Fire damage."
+verbose_name_template = "Burning Ammunition - 1d8"

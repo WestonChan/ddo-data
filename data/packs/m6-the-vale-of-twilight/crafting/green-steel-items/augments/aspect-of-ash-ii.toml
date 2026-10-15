@@ -1,0 +1,12 @@
+name = "Aspect of Ash II"
+description = """
+Enervation Guard: This item stores a menacing, ravenous power deep within. When the wearer
+of this item is successfully attacked in melee, this power occasionally comes
+to the surface, draining the life force of the enemy and giving negative levels.
+Fire:Negative:Fire+Negative"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

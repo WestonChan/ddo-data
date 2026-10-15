@@ -1,0 +1,8 @@
+name = "Curse of the Unbreakable"
+description = "This item is now immune to item damage."
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[slot]]
+slot = "crafting: deck curse"

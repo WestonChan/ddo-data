@@ -1,0 +1,22 @@
+name = "Venn's Necklace"
+description = """
+Venn ar-Kerran never understood the magical nature of this family heirloom,
+his brother Arlos did. He has offered it to you in thanks for saving his life."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 3
+slot = "Neck"
+
+[[effect]]
+name = "Wizardry I"
+bonus_type = "Enhancement"
+value = 25
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

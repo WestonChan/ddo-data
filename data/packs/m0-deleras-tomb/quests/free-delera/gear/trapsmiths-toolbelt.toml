@@ -1,0 +1,27 @@
+name = "Trapsmith's Toolbelt"
+description = "Various implements hang from this heavy leather belt."
+drop_location = "Free Delera, End chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Waist"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 9
+
+[[effect]]
+name = "Repair"
+bonus_type = "Competence"
+value = 9
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Free Delera"

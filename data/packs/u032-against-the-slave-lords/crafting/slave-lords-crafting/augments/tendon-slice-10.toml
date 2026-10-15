@@ -1,0 +1,10 @@
+name = "Tendon Slice +10"
+description = """
+Legendary enhancement bonus to Tendon Slice
+On Hit: 10% chance to slow target's movement speed by 50% for 10 seconds."""
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

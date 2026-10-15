@@ -1,0 +1,41 @@
+name = "Legendary Argonnessen Eye Band"
+description = "House Argonnessen can see the hidden pathways of magic in ways few others can."
+drop_location = "The Final Draw, end chest (rare )"
+icon = "Ring_16f"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 34
+slot = "Ring"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 155
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Sacred"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Final Draw"

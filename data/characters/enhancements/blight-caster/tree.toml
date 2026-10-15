@@ -1,0 +1,1389 @@
+name = "Blight Caster"
+background = "DruidBackground"
+icon = "Druid"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Blight Caster: The Cycle of Decays"
+cost_per_rank = [1]
+description = "You gain 5 Force, Poison, Negative, and Acid Spell Power per core in this tree."
+icon = "BlightTheCycleOfDecays"
+internal_name = "BlightCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Blight Caster: Spread the Blight"
+cost_per_rank = [1]
+description = """
+Your offensive spells now apply a 10 second debuff called Blight.
+Blight: Reduces saves by 1 and incoming positive healing by 20%"""
+icon = "BlightSpreadTheBlight"
+internal_name = "BlightCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["BlightCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Blight Caster: Death Eater"
+cost_per_rank = [1]
+description = """
+You gain 1 temporary hit point equal to your Wisdom score whenever you kill
+an enemy (Creatures 2 levels below you do not count). These hit points remain
+until damage removes them or the quest ends. This can stack 3 times and is
+refreshed on each kill."""
+icon = "BlightDeathEater"
+internal_name = "BlightCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 6
+
+[[enhancement.requirement]]
+items = ["BlightCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Blight Caster: Blight upon Blight"
+cost_per_rank = [1]
+description = """
+You gain Know the End which acts as a permanent Deathblock. Blight effect
+is improved to reduces saves by 2 and incoming positive healing by 40% for 10
+seconds. Death Eater's max stack size increased to 4."""
+icon = "BlightBlightUponBlight"
+internal_name = "BlightCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Death Effects"]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 12
+
+[[enhancement.requirement]]
+items = ["BlightCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Blight Caster: Vile Eruption"
+cost_per_rank = [1]
+description = """
+Earthquake now deals 2d6+1 Acid damage every 3 seconds in addition
+to it's regular damage.
+Death Eater's max stack size increased to 5."""
+icon = "BlightVileEruption"
+internal_name = "BlightCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 18
+
+[[enhancement.requirement]]
+items = ["BlightCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Blight Caster: Master of Decay"
+cost_per_rank = [1]
+description = """
+You gain Creeping Doom as a spell like ability.
+You gain +2 Wisdom and Constitution.
+Blight now reduces saves by 4 and positive healing by 60% for 10 seconds."""
+icon = "BlightMasterOfDecay"
+internal_name = "BlightCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BlightCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    30,
+    0,
+    2.5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Creeping Doom",
+    "Blight Caster",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Wisdom",
+    "Constitution",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 20
+
+[[enhancement.requirement]]
+items = ["BlightCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "BlightCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Blight Caster: Prickly"
+cost_per_rank = [1]
+description = """
+You gain +[1/2/3] Physical Resistance Rating.
+Rank 3: +1 Damage to all weapon attacks."""
+icon = "BlightPrickly"
+internal_name = "BlightPrickly"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Blight Caster: Kiss of the Blight"
+cost_per_rank = [1]
+description = "You gain [5/10/15]% Absorption against Poison and Acid Damage."
+icon = "BlightKissOfTheBlight"
+internal_name = "BlightKissOfTheBlight"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Acid",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Blight Caster: Thorn or Bile I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Selector either Thorn Strike or Acid Spray as a spell like ability."
+icon = "BlightThornOrBile"
+internal_name = "BlightThornOrBileI"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 1
+
+[[enhancement.selection]]
+name = "Acid Spray"
+cost_per_rank = [1]
+description = """
+You gain Acid Spray as a spell like ability.
+Cooldown: 4 Seconds
+Spell Point Cost: 1"""
+icon = "BlightAcidSpray"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Acid Spray",
+    "Blight Caster",
+]
+
+[[enhancement.selection]]
+name = "Thorn Strike"
+cost_per_rank = [1]
+description = """
+You gain Thorn Strike as a spell like ability.
+Cooldown: 3 Seconds
+Spell Point Cost: 1"""
+icon = "ThornStrike"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Thorn Strike",
+    "Blight Caster",
+]
+
+[[enhancement]]
+name = "Blight Caster: Sharp Edges I"
+cost_per_rank = [1]
+description = "Gain +1% Spell Critical Chance with Physical, Negative, Poison and Acid Spells."
+icon = "BlightSharpEdges"
+internal_name = "BlightSharpEdgesI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Poison",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Blight Caster: Lore of the Great Plagues"
+cost_per_rank = [1]
+description = """
+You gain a +[1/2/3] saving throw bonus against Poison and Disease.
+Rank 3: You gain 5 Poison and Negative Spell Power."""
+icon = "BlightLoreOfTheGreatPlagues"
+internal_name = "BlightLoreOfTheGreatPlagues"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Disease",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Blight Caster: Defiled Growth"
+cost_per_rank = [2]
+description = """
+Your Entangle, Spike Growth and Grasping Thorns spells now cause 1d4 Negative energy
+damage per spell level every 2 seconds.
+Notes: Bonus is actually 1d4 Negative Energy damage per caster level.
+Unlisted: This negative damage will not heal undead. If a target would be healed
+by the negative damage, they are instead immune to the negative damage effect.
+All other effects still apply."""
+icon = "BlightDefiledGrowth"
+internal_name = "BlightDefiledGrowth"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Blight Caster: Efficient Metamagics I"
+cost_per_rank = [
+    2,
+    2,
+    2,
+]
+description = "Choose a metamagic to reduce the costs of."
+icon = "EfficientMetamagic"
+internal_name = "BlightEfficientMetamagicI"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BlightEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BlightEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BlightEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BlightEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BlightEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BlightEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Blight Caster: Thorn or Bile II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Selector either Splinterbolt or Melf's Acid Arrow as a spell like ability."
+icon = "BlightThornOrBile"
+internal_name = "BlightThornOrBileII"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["BlightThornOrBileI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Splinterbolt"
+cost_per_rank = [2]
+description = """
+You gain Splinterbolt as a spell like ability.
+Cooldown: 4 Seconds
+Spell Point Cost: 2"""
+icon = "BlightSplinterBolt"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Splinterbolt",
+    "Blight Caster",
+]
+
+[[enhancement.selection]]
+name = "Melf's Acid Arrow"
+cost_per_rank = [2]
+description = """
+You gain Melf's Acid Arrow as a spell like ability.
+Cooldown: 4 Seconds
+Spell Point Cost: 2"""
+icon = "BlightMelfsAcidArrow"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Melf's Acid Arrow",
+    "Blight Caster",
+]
+
+[[enhancement]]
+name = "Blight Caster: Sharp Edges II"
+cost_per_rank = [1]
+description = "Gain +1% Spell Critical Chance with Physical, Negative, Poison and Acid Spells."
+icon = "BlightSharpEdges"
+internal_name = "BlightSharpEdgesII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Poison",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Blight Caster: Every Rose has its Thorn"
+cost_per_rank = [2]
+description = """
+When using Thorn Kin/Knight shape or Blighted wolf form you gain 15 PRR and MRR
+for standing inside any Entangle, Spike Growth or Grasping Thorns spell effect.
+Spike Growth deals 100% increased damage."""
+icon = "BlightEveryRoseHasItsThorn"
+internal_name = "BlightEveryRoseHasItsThorn"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Blight Caster: Out Break"
+cost_per_rank = [2]
+description = "Your Contagion and Insidious Spores spell now also apply to enemies near your target."
+icon = "BlightOutBreak"
+internal_name = "BlightOutBreak"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Blight Caster: Efficient Metamagics II"
+cost_per_rank = [2]
+description = "Choose a metamagic to reduce the costs of."
+icon = "EfficientMetamagic"
+internal_name = "BlightEfficientMetamagicII"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BlightEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BlightEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BlightEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BlightEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "BlightEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "BlightEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Blight Caster: Enveloping Swarm"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Spell Like Ability: A swarm of voracious insects envelops your target dealing
+2d6 Acid damage + 1d6 for every 3 Druid levels every 2 seconds for 16 seconds.
+Cooldown: 8 seconds
+Cost: 4 SP."""
+icon = "BlightEnvelopingSwarm"
+internal_name = "BlightEnvelopingSwarm"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Enveloping Swarm",
+    "Blight Caster",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["BlightThornOrBileII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Blight Caster: Sharp Edges III"
+cost_per_rank = [1]
+description = "Gain +1% Spell Critical Chance with Force, Physical, Negative, Poison and Acid Spells."
+icon = "BlightSharpEdges"
+internal_name = "BlightSharpEdgesIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Poison",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Blight Caster: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose between Constitution or Wisdom."
+icon = "ConWis"
+internal_name = "BlightAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "+1  Constitution"
+cost_per_rank = [2]
+description = "+1  Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Blight Caster: Poison of the Hydra"
+cost_per_rank = [2]
+description = """
+The Poison spell is now greatly enhanced when cast.
+Still doing it's original effect it now also applies to up to five targets,
+strips poison damage immunity for 30 seconds and immediately does 2 to 5
+Poison damage per caster level on application and for every 4 seconds up
+to 12 seconds. Fortitude save for half damage.
+Creatures immune to constitution damage will still ignore that aspect of
+the spell, but will take poison damage."""
+icon = "BlightFastActingPoison"
+internal_name = "BlightPoisonOfTheHydra"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Blight Caster: Unkindness of Ravens"
+cost_per_rank = [2]
+description = """
+A swarm of ravens blasts through you and a narrow path ahead. Enemies in the way
+take 1d3 Piercing damage per Druid level and must save vs confusion and blind
+separately DC: 20 + Druid level + Conjuration DC.
+
+If you have a raven summon active from the Falconry tree when you used
+this ability you gain the "More Unkindness to Come" effect for 10 seconds; All
+your spells and attacks apply 1d6 Piercing damage to blind targets for every Druid
+level. This damage can only apply once every two seconds."""
+icon = "BlightMurderOfCrows"
+internal_name = "BlightAnUnkindnessOfRavens"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.dc]]
+name = "An Unkindness of Ravens"
+amount = [
+    20,
+    20,
+    20,
+]
+class_level = "Blight Caster"
+dc_type = "Confuse and Blind"
+dc_versus = "Fortitude"
+description = """
+A swarm of ravens blasts through you and a narrow path ahead. Enemies in the way
+take 1d3 Piercing damage per Druid level and must save vs confusion and blind
+separately"""
+icon = "BlightMurderOfCrows"
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Blight Caster: Thorn or Bile III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Selector either Thorn Bloom or Acid Rain as a spell like ability."
+icon = "BlightThornOrBile"
+internal_name = "BlightThornOrBileIII"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["BlightEnvelopingSwarm"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Acid Rain"
+cost_per_rank = [2]
+description = """
+You gain Acid Rain as a spell like ability.
+Cooldown: 12 Seconds
+Spell Point Cost: 6"""
+icon = "BlightAcidRain"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Acid Rain",
+    "Blight Caster",
+]
+
+[[enhancement.selection]]
+name = "Thorn Bloom"
+cost_per_rank = [2]
+description = """
+You gain Thorn Bloom as a spell like ability.
+Cooldown: 8 Seconds
+Spell Point Cost: 6"""
+icon = "BlightThornBloom"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Thorn Bloom",
+    "Blight Caster",
+]
+
+[[enhancement]]
+name = "Blight Caster: Sharp Edges IV"
+cost_per_rank = [1]
+description = "Gain +1% Spell Critical Chance with Physical, Negative, Poison and Acid Spells."
+icon = "BlightSharpEdges"
+internal_name = "BlightSharpEdgesIV"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Poison",
+    "Negative",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Blight Caster: Ability II"
+cost_per_rank = [2]
+description = "Choose between Constitution or Wisdom."
+icon = "ConWis"
+internal_name = "BlightAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["BlightAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1  Constitution"
+cost_per_rank = [2]
+description = "+1  Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Blight Caster: Coated Thorns"
+cost_per_rank = [2]
+description = "Choose an option."
+icon = "BlightCoatedThorns"
+internal_name = "BlightCoatedThorns"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Poisoned Thorns"
+cost_per_rank = [2]
+description = """
+Your Splinter Bolt and Thorn Spells now also cause an additional 2 points of Poison
+damage for every spell level. This scales with spell power.
+Note: Bonus is actually per caster level. Damage is added after the initial hit.
+If an enemy is slain by the initial hit, the bonus damage from Coated Thorns will
+not appear."""
+icon = "BlightCoatedThorns"
+
+[[enhancement.selection]]
+name = "Vile Thorns"
+cost_per_rank = [2]
+description = """
+Your Splinter Bolt and Thorn Spells now also cause an additional 1 point of Acid
+damage for every spell level. This scales with spell power.
+Note: Bonus is actually per caster level. Damage is added after the initial hit.
+If an enemy is slain by the initial hit, the bonus damage from Coated Thorns will
+not appear."""
+icon = "BlightAcidRain"
+
+[[enhancement]]
+name = "Blight Caster: Everything Decays"
+cost_per_rank = [
+    1,
+    1,
+    1,
+]
+description = """
+Gain [5/10/15] Acid and Poison spell Power.
+Rank 3: Your Acid Spells remove Acid Immunity on hostile targets for 30 seconds."""
+icon = "BlightEverythingDecays"
+internal_name = "BlightEverythingDecays"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Blight Caster: Grasping Thorns"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Spell Like Ability: Powerful thorny vines rip out of the
+ground seizing all enemies in the area. Enemies save vs Reflex or become entangled,
+with a re-occurring Strength save to break free. Targets also take 1d6 in
+piercing damage every 2 seconds. All enemy movement through the area is slowed
+by 30%, no save. Area of effect fire spells will destroy these vines and free
+any entangled creatures. Incorporeal creatures and oozes are naturally immune.
+Fire elementals and other fire creatures are immune because they burn through
+the plants.
+Cooldown: 30 Seconds
+Spell Point Cost: 20"""
+icon = "BlightGraspingThorns"
+internal_name = "BlightGraspingThorns"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    0,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Grasping Thorns",
+    "Blight Caster",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["BlightThornOrBileIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Blight Caster: Doomsayer"
+cost_per_rank = [2]
+description = "Gain +1 Bonus to Conjuration, Evocation and Necromancy DCs."
+icon = "BlightDoomsayer"
+internal_name = "BlightDoomsayer"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Conjuration",
+    "Evocation",
+    "Necromancy",
+]
+
+[[enhancement.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Blight Caster"]
+req_type = "Class"

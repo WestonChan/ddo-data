@@ -1,0 +1,78 @@
+name = "Accuracy"
+choose_level = true
+description = "All your attacks gain a Competence bonus to accuracy"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    2,
+    3,
+    4,
+    5,
+    6,
+    6,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    11,
+    11,
+    12,
+    12,
+    13,
+    14,
+    14,
+    15,
+    15,
+    16,
+    17,
+    17,
+    18,
+    18,
+    19,
+    20,
+    20,
+    21,
+    21,
+    22,
+    23,
+    23,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+]
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Competence"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: random gloves prefix"
+
+[[slot]]
+slot = "crafting: random goggles suffix"
+
+[[slot]]
+slot = "crafting: random helmet suffix"
+
+[[slot]]
+slot = "crafting: cannith goggles suffix"
+
+[[slot]]
+slot = "crafting: cannith helmet suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"

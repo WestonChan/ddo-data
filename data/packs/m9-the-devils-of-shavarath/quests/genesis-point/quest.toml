@@ -1,0 +1,21 @@
+name = "Genesis Point"
+bestowed_by = "Sebi"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "The Devils of Shavarath"
+patron = "The Yugoloth"
+zone = "Genesis Point"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Genesis_Point"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

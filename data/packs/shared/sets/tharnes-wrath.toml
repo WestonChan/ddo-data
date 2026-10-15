@@ -1,0 +1,56 @@
+name = "Tharne's Wrath"
+icon = "LegacyOfTharne"
+
+[[augment]]
+name = "Sovereign Rune of Tharne"
+family = "Dragontouched_SovereignRune"
+
+[[item]]
+name = "Tharne's Bracers"
+
+[[item]]
+name = "Tharne's Goggles"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "Father Falling"
+reason = "The wiki describes the 3-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Equipment"
+effect = "Melee Threat Generation"
+value = -20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [-20]
+bonus_type = "Equipment"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[tier]]
+equipped_count = 3
+description = "Feather Falling"
+
+[[tier.effect]]
+effect = "Feather Falling"
+
+[[tier.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Falling Damage"]

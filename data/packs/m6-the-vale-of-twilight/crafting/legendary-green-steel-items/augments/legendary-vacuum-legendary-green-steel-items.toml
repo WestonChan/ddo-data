@@ -1,0 +1,12 @@
+name = "Legendary Vacuum"
+variant = "legendary-green-steel-items"
+description = """
+Requires Negative and Air Only
+Attacks and offensive spells have a [30%?] chance to inflict
+multiple [2-4] stacks of Vulnerable. Originally had 100%,
+6-7 stacks but nerfed."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

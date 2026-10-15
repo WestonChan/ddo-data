@@ -1,0 +1,39 @@
+name = "Construct Champion's Bands"
+description = """
+These bands are relatively uncomfortable for those who weren't built with their
+use in mind."""
+drop_location = "Night Falls on Stormreach, End chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 14
+slot = "Wrists"
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 29
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 90
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Night Falls on Stormreach"

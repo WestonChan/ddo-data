@@ -1,0 +1,27 @@
+name = "Death's Locket (Level 14)"
+description = """
+This locket consists of the bones of several small mammals strung together with
+a small skull weighing them down. The side of the skull is hinged and opens
+to reveal some unknown thing's ashes."""
+drop_location = "The Prison of the Planes, Dolurrh room's chest (Heroic Elite)"
+icon = "Necklace_21a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 14
+slot = "Neck"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 5
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "dolurrh room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"

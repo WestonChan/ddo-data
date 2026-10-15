@@ -1,0 +1,72 @@
+name = "The Legendary Desert's Biting Sands"
+icon = "Menechtarun"
+
+[[item]]
+name = "Legendary Green Blade"
+
+[[item]]
+name = "Legendary Ring of Spell Storing"
+
+[[item]]
+name = "Legendary Sirocco"
+
+[[item]]
+name = "Legendary Staff of Arcane Power"
+
+[[item]]
+name = "Legendary Staff of Inner Sight"
+
+[[item]]
+name = "Legendary Torc of Prince Raiyum-de II"
+
+[[item]]
+name = "Perfected Torc of Prince Raiyum-de II"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Force Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Force Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "SpellLore"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"

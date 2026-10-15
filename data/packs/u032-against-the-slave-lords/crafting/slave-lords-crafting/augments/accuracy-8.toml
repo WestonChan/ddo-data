@@ -1,0 +1,21 @@
+name = "Accuracy +8"
+description = "Competence bonus to Attack Bonus"
+family = "Slavelords_Heroic"
+icon = "SlavelordsSuffix"
+min_level = 8
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Competence"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: slavelords suffix"

@@ -1,0 +1,8 @@
+name = "Woeful Acidburn (Legendary)"
+description = "Your attacks and offensive spells have a high chance to deal very strong acid damage over time."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

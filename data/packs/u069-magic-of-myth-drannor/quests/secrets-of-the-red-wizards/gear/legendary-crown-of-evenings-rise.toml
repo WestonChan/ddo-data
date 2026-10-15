@@ -1,0 +1,42 @@
+name = "Legendary Crown of Evening's Rise"
+description = "The cool of twilight surrounds this helmet's metallic frame."
+drop_location = "Secrets of the Red Wizards, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 33
+slot = "Head"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Intelligence Skills - Exceptional Bonus"
+value = 6
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secrets of the Red Wizards"

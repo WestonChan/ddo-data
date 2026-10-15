@@ -1,0 +1,49 @@
+name = "Dinosaur Bone Orb"
+description = "This orb is actually a fossilized dinosaur egg!"
+drop_location = "Skeletons in the Closet, The Mountain Keeper chest, end chest"
+icon = "Orb_3"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Bone"
+minimum_level = 31
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "isle of dread: fang (weapon)"
+
+[[socket]]
+slot = "isle of dread: scale (armor)"
+
+[[socket]]
+slot = "isle of dread: fang (armor)"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "the mountain keeper chest, end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Skeletons in the Closet"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

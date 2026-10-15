@@ -1,0 +1,21 @@
+name = "Quality Open Lock +5"
+description = "Legendary quality bonus to Open Lock"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Open Lock"
+effect_type = "SkillBonus"
+targets = ["Open Lock"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

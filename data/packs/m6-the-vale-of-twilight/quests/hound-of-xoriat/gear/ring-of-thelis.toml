@@ -1,0 +1,32 @@
+name = "Ring of Thelis"
+description = """
+This silver ring has been engraved with arcane runes. It was said to have been
+owned by a renowned sorcerer Thelis, who vanished nearly a century ago while
+investigating the disappearance of several adventurers in the ruins beneath
+Stormreach."""
+drop_location = "Hound of Xoriat, Raid Warded chest"
+icon = "Ring_12e"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Efficient Metamagic - Empower II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Wizardry VII"
+bonus_type = "Enhancement"
+value = 175
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 22
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hound of Xoriat"

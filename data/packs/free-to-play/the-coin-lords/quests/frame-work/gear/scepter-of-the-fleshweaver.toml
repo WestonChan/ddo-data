@@ -1,0 +1,74 @@
+name = "Scepter of the Fleshweaver"
+description = """
+Said to be a creation of Mordain the Fleshweaver, master transmuter of Droaam,
+this scepter boosts the wielder's intellect and improves his or her skill with
+transmutation magic."""
+drop_location = "Frame Work, end chests, Dorris ' chests"
+enhancement_bonus = 4
+icon = "Club_21"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 10
+slot = "Main Hand"
+
+[[clickie]]
+name = "Stone to Flesh"
+clickie = "Stone to Flesh"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 10
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 77
+
+[[effect]]
+name = "Fragmented"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Stone to Flesh"]
+
+[[source]]
+chest = "end chests, dorris ' chests"
+kind = "quest"
+loot_type = "chest"
+name = "Frame Work"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

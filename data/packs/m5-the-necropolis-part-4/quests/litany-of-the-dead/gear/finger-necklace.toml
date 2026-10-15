@@ -1,0 +1,21 @@
+name = "Finger Necklace"
+description = "This necklace is a set of two dozen fingers, each from a different race."
+drop_location = "Litany of the Dead, Mentau 's chest"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Neck"
+
+[[effect]]
+name = "Fleshmaker"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "mentau 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

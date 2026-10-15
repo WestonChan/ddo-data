@@ -1,0 +1,16 @@
+name = "Sparkfang"
+description = "Lawful bypass. Attacks and spells have small chance to deal large electric damage."
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Lawful"
+
+[[slot]]
+slot = "isle of dread: fang (weapon)"

@@ -1,0 +1,22 @@
+name = "Krugg's Spiked Boots"
+description = """
+These boots are fitted with dark metal spikes. They were once worn by Krugg,
+warmaster of Splinterskull."""
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Feet"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

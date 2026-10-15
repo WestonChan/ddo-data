@@ -1,0 +1,40 @@
+name = "Scourge of the Outsiders"
+description = """
+Deals +4 to 24 Bane damage to Outsiders on hit.
+On Vorpal Hit: If an outsider struck by this weapon has fewer than 1000 Hit Points,
+it is instantly slain. If the outsider has above 1000 hit points, it takes 100 damage.
+Drops in U48 Quest: The Thornwrite"""
+family = "Named"
+icon = "OrangeGem"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Outsider"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [4]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Outsider"]
+req_type = "Stance"
+
+[[slot]]
+slot = "orange"

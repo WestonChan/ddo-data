@@ -1,0 +1,34 @@
+name = "Epic Silver Pocketwatch"
+description = """
+Whenever you try to set this watch back to the current time in Saltmarsh, it
+winds itself back to where it was."""
+drop_location = "Epic version of Silver Pocketwatch"
+icon = "Trinket_14b"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 20
+slot = "Trinket"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Linguistics 10%"
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

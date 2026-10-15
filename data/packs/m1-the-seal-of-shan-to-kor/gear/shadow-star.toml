@@ -1,0 +1,43 @@
+name = "Shadow Star"
+description = """
+Magical Shurikens are a favorite weapon of Hobgoblin Assassins. They are incredibly
+accurate and enchanted to return to whoever throws it."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+enhancement_bonus = 2
+icon = "Shuriken_1h"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Keen"
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 2
+base_dice_sides = 3
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Thrown"
+weapon_type = "Shuriken"

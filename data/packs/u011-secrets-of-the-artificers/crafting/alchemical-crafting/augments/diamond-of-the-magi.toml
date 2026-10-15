@@ -1,0 +1,39 @@
+name = "Diamond of the Magi"
+description = "Upgrade an item to provide a +100 Insight bonus to Maximum Spell Points."
+family = "Alchemical"
+icon = "Diamond"
+min_level = 28
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Insight"
+value = 100
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

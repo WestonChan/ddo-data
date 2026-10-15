@@ -1,0 +1,3 @@
+name = "Legendary Magma Surge Guard"
+description_template = "This item stores the immeasurable heat of the planet's molten mantle. When the wearer of this item is successfully attacked in melee, superheated magma occasionally surges to the surface, causing a tremendous amount of Fire damage to the attacker."
+verbose_name_template = "Legendary Magma Surge Guard"

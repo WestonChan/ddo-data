@@ -1,0 +1,1563 @@
+name = "Eldritch Knight (Wiz)"
+background = "WizardBackground"
+icon = "Wizard"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Eldritch Knight: Eldritch Strike"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Deals +10% Damage
+Cooldown: 12 seconds
+Melee Cleave Attack: Sheathe your weapon in eldritch energies. If this attack
+hits, your weapon also releases a blast of magical energy, dealing an additional
+1 to 2 Force Damage per character level to all nearby foes. This additional Force
+damage is affected by your Force Spell Power.
+
+Passive:  You gain proficiency with Simple Weapons. Every Core Ability in this
+tree, including this one, grants +10 Maximum Hit Points."""
+icon = "EKEldritchStrike"
+internal_name = "EKWizCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Club",
+    "Dagger",
+    "Quarterstaff",
+    "Light Mace",
+    "Heavy Mace",
+    "Morningstar",
+    "Sickle",
+    "Light Crossbow",
+    "Heavy Crossbow",
+    "Throwing Dagger",
+    "Dart",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["EKSorcCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eldritch Knight: Spellsword"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain four elemental toggles that each imbue your weapon with elemental power.
+Only one may be active at a time, causing them to deal an additional 1d6 (element)
+damage on hit. You gain an additional Imbue Dice every 3 Sorcerer levels
+(at 3, 6, 9, 12, 15 and 18). This damage scales with Spell Power. While active,
+your Eldritch Strike deals 1-2 additional (element) damage per Character Level
+which scales with Spell Power. While this is enabled, your weapon and shield
+attacks have Ghost Touch.
+Passive: +2% Doublestrike, +10 Universal Spell Power. You also gain proficiency
+in Light Armor and Martial weapons."""
+icon = "EKSpellsword"
+internal_name = "EKWizCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Spellsword: Acid"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Spellsword: Cold"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Spellsword: Electric"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Spellsword: Fire"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+stack_source = "Wizard"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Hand Axe",
+    "Kukri",
+    "Light Hammer",
+    "Light Pick",
+    "Shortsword",
+    "Battle Axe",
+    "Heavy Pick",
+    "Longsword",
+    "Rapier",
+    "Scimitar",
+    "Warhammer",
+    "Falchion",
+    "Great Axe",
+    "Great Club",
+    "Maul",
+    "Great Sword",
+    "Shortbow",
+    "Longbow",
+    "Throwing Axe",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Light Armor Proficiency"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["EKWizCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Spellsword: Acid"
+description = """
+Imbue your weapon with elemental power: Acid
+Causing them to deal an additional 1d6 Acid damage per Imbue Dice that scales
+with Acid Spell power."""
+group_name = "Imbue"
+icon = "AACorrosiveArrows"
+
+[[enhancement.stance]]
+name = "Spellsword: Cold"
+description = """
+Imbue your weapon with elemental power: Cold
+Causing them to deal an additional 1d6 Cold damage per Imbue Dice that scales
+with Cold Spell power."""
+group_name = "Imbue"
+icon = "AAFrostArrows"
+
+[[enhancement.stance]]
+name = "Spellsword: Electric"
+description = """
+Imbue your weapon with elemental power: Electric
+Causing them to deal an additional 1d6 Electric damage per Imbue Dice that scales
+with Electric Spell power."""
+group_name = "Imbue"
+icon = "AAShockArrows"
+
+[[enhancement.stance]]
+name = "Spellsword: Fire"
+description = """
+Imbue your weapon with elemental power: Fire
+Causing them to deal an additional 1d6 Fire damage per Imbue Dice that scales
+with Fire Spell power."""
+group_name = "Imbue"
+icon = "AAFlamingArrows"
+
+[[enhancement]]
+name = "Eldritch Knight: Imbue the Blade"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Melee weapons are considered Spellcasting Implements in your hands.
+You gain the Quick Draw feat, reducing the time between spellcasting and
+weapon use.
+-15% Arcane Spell Failure from equipped Armor, Shields, and Warforged Body feats.
++2% Doublestrike, +10 Universal Spell Power."""
+icon = "EKImbueTheBlade"
+internal_name = "EKWizCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Quick Draw"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-15]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+extra_types = ["ArcaneSpellFailureShields"]
+
+[[enhancement.requirement]]
+items = ["EKWizCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Eldritch Knight: Subtle Force I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+projectile that would have struck you every 6 seconds.
+You gain +1 Imbue Dice
+-20% Arcane Spell Failure from equipped Armor, Shields, and Warforged Body feats.
++6 Resistance to Acid, Cold, Electric, Fire and Sonic damage.
++2% Doublestrike and +10 Universal Spell Power."""
+icon = "EKSubtleForceI"
+internal_name = "EKWizCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-20]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+extra_types = ["ArcaneSpellFailureShields"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Sonic",
+]
+
+[[enhancement.requirement]]
+items = ["EKWizCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Eldritch Knight: Subtle Force II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++5% Stacking Incorporeality. Your Deflect Arrows now triggers every 2 seconds.
+You gain +1 Imbue Dice. +2% Doublestrike. +10 Universal Spell Power."""
+icon = "EKSubtleForceII"
+internal_name = "EKWizCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "Incorporeality"
+
+[[enhancement.requirement]]
+items = ["EKWizCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Eldritch Knight: Eldritch Blade"
+cost_per_rank = [1]
+description = """
+Your Eldritch Strike now grants you a Power Charge. When you have 5 Power Charges,
+they are removed, and you gain Eldritch Power. Eldritch Power: +10% to your
+damage with weapon attacks, +4 Imbue Dice, +25 Universal spell power.
+Duration: 30 seconds.
+Passive: You gain +2 Imbue Dice, +2 Charisma, +2 Constitution, +2% Doublestrike,
++10 Universal Spell Power"""
+icon = "EKEldritchBlade"
+internal_name = "EKWizCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "EKWizCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Constitution",
+]
+
+[[enhancement.requirement]]
+items = ["EKWizCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "EKWizCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Eldritch Knight: Improved Mage Armor"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Mage Armor.
+You gain Mage Armor as a spell-like ability. In addition, while you are under the
+effect of the Mage Armor spell, you gain a +10% exceptional bonus to your
+total Armor Class.
+Activation Cost: 4 Spell Points"""
+icon = "EKImprovedMageArmor"
+internal_name = "EKWizImprovedMageArmor"
+is_clickie = true
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Mage Armor",
+    "Wizard",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [10]
+bonus_type = "Exceptional"
+effect_type = "ACPercent"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Eldritch Knight: Arcane Siphon"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+Cooldown: 12 seconds
+Melee Attack: On Hit: Gain +30 Competence bonus to Universal Spell Power
+for 20 seconds."""
+icon = "EKArcaneSiphon"
+internal_name = "EKWizArcaneSiphon"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [30]
+bonus_type = "Competence"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Arcane Siphon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Eldritch Knight: Item Defense"
+cost_per_rank = [1]
+description = "You have a [25/50/75]% chance to negate potential item wear."
+icon = "EKItemDefense"
+internal_name = "EKWizItemDefense"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Eldritch Knight: Toughness"
+cost_per_rank = [1]
+description = "+[5/10/15] maximum Hit Points."
+icon = "Toughness"
+internal_name = "EKWizToughness"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Eldritch Knight: Battlemage"
+cost_per_rank = [1]
+description = "+[1/2/3] Concentration, Intimidate, and Spellcraft."
+icon = "EKBattlemage"
+internal_name = "EKWizBattleMage"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "EKBattleMage"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image EKBattlemage.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Intimidate",
+    "Spellcraft",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Eldritch Knight: Improved Shield"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Shield
+You gain the Shield spell as a spell-like ability. In addition, while you are under
+the effect of the Shield spell, you gain +10 Physical Resistance Rating.
+Shield: +4 Shield bonus to Armor Class and Immunity to Magic Missiles.
+Activation Cost: 4 Spell points"""
+icon = "EKImprovedShield"
+internal_name = "EKWizImprovedShield"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shield",
+    "Wizard",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["EKWizImprovedMageArmor"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Eldritch Knight: Mystic Wards"
+cost_per_rank = [1]
+description = "+[3/6/10] Magical Resistance Rating"
+icon = "EKMysticWards"
+internal_name = "EKWizMysticWards"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Eldritch Knight: Action Boost Spell Power"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "You gain a +30 Action Boost bonus to Universal Spell Power for 20 seconds."
+icon = "EKActionBoostSpellpower"
+internal_name = "EKWizActionBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Eldritch Knight: Shield Training"
+cost_per_rank = [2]
+description = """
+Passive: You gain proficiency with all shields except Tower Shields, and your
+Arcane Spell Failure chance from equipped shields is reduced by 5%.
+This enhancement does not count as a prerequisite for Feats which require
+shield proficiency."""
+icon = "EKShieldTraining"
+internal_name = "EKWizShieldTraining"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Shield Proficiency (General)"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-5]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailureShields"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Eldritch Knight: Wand and Scroll Mastery"
+cost_per_rank = [1]
+description = """
++[25/50/75]% effectiveness from your wands, scrolls, and other items that cast spells,
+and +[1/2/3] to the save DC of your offensive wands.
+Taking Wand and Scroll Mastery in one enhancement tree will block its
+availability in other enhancement trees."""
+icon = "EKWandAndScrollMastery"
+internal_name = "EKWizWandAndScrollMastery"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "EKWizWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Wands"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = [
+    "EKWizWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Eldritch Knight: Arcane Barrier"
+cost_per_rank = [2]
+description = """
+Passive: When your hit points drop below 50% of maximum, you are immediately
+protected by an Arcane Barrier that reduces all incoming damage by 25% for the
+next 20 seconds. This effect may only trigger once every 90 seconds."""
+icon = "EKArcaneBarrier"
+internal_name = "EKWizArcaneBarrier"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Eldritch Knight: Eldritch Accuracy"
+cost_per_rank = [2]
+description = "You get Intelligence to hit with weapons and shield bashes."
+icon = "EKEldritchAccuracy"
+internal_name = "EKWizEldritchAccuracy"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Intelligence",
+    "All",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Eldritch Knight: Synergetic Magic"
+cost_per_rank = [2]
+description = """
+When you activate Action Boost: Spell Power, you also gain an equal Action Boost
+bonus to Melee and Ranged Power for 20 seconds."""
+icon = "EKSynergeticMagic"
+internal_name = "EKWizSynergeticMagic"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["EKWizActionBoost"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Eldritch Knight: Critical Mastery"
+cost_per_rank = [1]
+description = "+[1/2/3] to confirm critical hits and critical hit damage (before weapon multipliers)"
+icon = "EKCriticalMastery"
+internal_name = "EKWizCriticalMastery"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "EKWizCriticalMastery",
+    "Critical Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = [
+    "EKWizCriticalMastery",
+    "Critical Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Eldritch Knight: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Strength, Dexterity or Intelligence"
+icon = "StrDexInt"
+internal_name = "EKWizAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Eldritch Knight: Knight's Transformation"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Toggle: While this toggle is active your base attack bonus is increased to equal
+your character level. When you successfully hit with an Eldritch Strike you gain
+Knight's Strike: +30 Universal spell power and +3% Critical Spell Damage for
+30 seconds.
+
+Exclusive from the Enlarge Metamagic and any Eldritch Blast shape stance.
+This stance works with other offensive and defensive stances, as well as Rage."""
+icon = "EKKnightsTransformation"
+internal_name = "EKWizKnightsTransformation"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Knight's Strike"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Knight's Strike"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "OverrideBAB"
+
+[[enhancement.modifier.requirement]]
+items = ["Knight's Transformation"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.stance]]
+name = "Knight's Transformation"
+description = """
+Toggle: While this toggle is active your base attack bonus is increased to equal
+your character level. When you successfully hit with an Eldritch Strike you gain
+Knight's Strike: +30 Universal spell power and +3% Critical Spell Damage for 30 seconds."""
+group_name = "Blast Shape"
+icon = "EKKnightsTransformation"
+
+[[enhancement.stance]]
+name = "Knight's Strike"
+description = "Knight's Strike: +30 Universal spell power and +3% Critical Spell Damage for 30 seconds."
+icon = "EKKnightsTransformation"
+
+[[enhancement]]
+name = "Eldritch Knight: Offhand Defenses"
+cost_per_rank = [1]
+description = "Pick between Shield and Orb bonuses."
+icon = "EKOffhandDefenses"
+internal_name = "EKWizOffhandDefenses"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Orb Saves"
+cost_per_rank = [1]
+description = "+[1/2/3] to saving throws and +[3/6/10] Universal Spell Power while holding an Orb"
+icon = "EKOrbSaves"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Shield Striking"
+cost_per_rank = [1]
+description = """
+On Hit: +[5/10/15]% chance to proc an immediate Shield Bash attack with an equipped shield.
+ Passive: Every six seconds while you have a shield equipped, you gain Temporary
+ Hit Points equal to the enhancement bonus of your equipped shield."""
+icon = "EKOffhandDefenses"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SecondaryShieldBash"
+
+[[enhancement]]
+name = "Eldritch Knight: Force's Point"
+cost_per_rank = [2]
+description = """
+When you cast an offensive spell, you gain a stack of Force's Point:
+Martial (+1 to Hit and Damage). This stacks up to 5 times. When you hit with a
+melee weapon, you gain a stack of Force's Point: Magical (+2 Universal Spell Power).
+This stacks up to 10 times. Stacks last 12 seconds each.
+You may only gain each effect once per second."""
+icon = "EKForcesPoint"
+internal_name = "EKWizForcesPoint"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Force's Point: Melee"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "Force's Point: Melee"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Force's Point: Magical"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+stack_source = "Force's Point: Magical"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Eldritch Knight: Armored Arcana"
+cost_per_rank = [2]
+description = """
+Passive: You gain proficiency in Medium Armor, and you no longer suffer Arcane
+Spell Failure from Light Armor, Medium Armor or Mithral Body."""
+icon = "EKArmoredArcana"
+internal_name = "EKWizArmoredArcana"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Medium Armor Proficiency"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-100]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Eldritch Knight: Ability II"
+cost_per_rank = [2]
+description = "Choose either Strength, Dexterity or Intelligence"
+icon = "StrDexInt"
+internal_name = "EKWizAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["EKWizAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Eldritch Knight: Improved Knight's Transformation"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = """
+While Knight's transformation is active you gain a +1 Competence bonus to your
+weapons critical multiplier. When your Eldritch Strike hits you gain the
+additional bonuses to your Knight's Strike of +3 to Hit, Damage and 3% doublestrike.
+Passive Bonus: You gain 15% competence bonus to Max Hit Points
+(regardless if the toggle is on or not)"""
+icon = "EKImprovedKnightsTransformation"
+internal_name = "EKWizImprovedKnightsTransformation"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Knight's Transformation"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["EKWizKnightsTransformation"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eldritch Knight: Knight's Arcanum"
+cost_per_rank = [2]
+description = "Pick a focus for your spells while in Knight's Transformation"
+icon = "EKKnightsArcanum"
+internal_name = "EKWizKnightsArcanum"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Knight's Transformation"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Mobile Spellcasting"]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["EKWizImprovedKnightsTransformation"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Knight's Controller"
+cost_per_rank = [2]
+description = """
+Your Knight's Strike also grants +2 Enchantment DCs, +2 Illusion DCs,
++4 Spell Penetration and +20 Melee Power for 30 seconds.
+Passive: As long as you have knight's transformation active you have the
+Mobile Spellcasting feat."""
+icon = "EKKnightsController"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Enchantment",
+    "Illusion",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Knight's Transformation"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Knight's Transformation"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Knight's Striker"
+cost_per_rank = [2]
+description = """
+Your Knight's Strike also grants +2 Evocation and Conjuration DCs and +20
+Melee power for 20 seconds.
+Passive: You gain mobile spell casting."""
+icon = "EKKnightsController"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Evocation",
+    "Conjuration",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Knight's Transformation"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Eldritch Knight: Force's Edge"
+cost_per_rank = [2]
+description = """
+When you cast an offensive spell, you gain +1 Competence Bonus to Critical Threat
+Range for 12 seconds. When you make a Melee Attack, you gain +5% Spell Critical
+Chance for 12 seconds."""
+icon = "EKForcesEdge"
+internal_name = "EKWizForcesEdge"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Spell Cast"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Competence"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Melee Attack"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Eldritch Knight: Radiant Forcefield"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Radiant Forcefield
+Activation Cost: 30 Spell Points.
+Cooldown: 3 Minutes"""
+icon = "EKRadiantForcefield"
+internal_name = "EKWizRadiantForcefield"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    30,
+    0,
+    180,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Radiant Forcefield",
+    "Wizard",
+]
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Eldritch Knight: Eldritch Tempest"
+cost_per_rank = [2]
+description = """
+Deals +50% Damage
++3 Critical Multiplier
++10 Critical Threat Range
+Activation Cost: 15 Spell points
+Cooldown: 30 seconds
+Activate: Perform a spinning melee attack. Enemies affected are knocking prone
+for 1 second and slowed by 50% for 6 seconds.
+If any foes are struck by Eldritch Tempest, your weapon also releases an explosion
+of magical force, dealing an additional 1d6 Force damage per character level to
+all nearby enemies. This additional force damage is affected by your spell power."""
+icon = "EKEldritchTempest"
+internal_name = "EKWizEldritchTempest"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Wizard"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Wizard"]
+req_type = "Class"

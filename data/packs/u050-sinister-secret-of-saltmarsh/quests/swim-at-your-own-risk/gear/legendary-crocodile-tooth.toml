@@ -1,0 +1,40 @@
+name = "Legendary Crocodile Tooth"
+description = """
+A chip is missing from this tooth, a memory of the battle involved in taking
+it from its owner."""
+drop_location = "Swim at Your Own Risk, end chest, or Legendary version of Epic Crocodile Tooth"
+icon = "Trinket_55a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 30
+slot = "Trinket"
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Insight"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic crocodile tooth"
+kind = "quest"
+loot_type = "chest"
+name = "Swim at Your Own Risk"

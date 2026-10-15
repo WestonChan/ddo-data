@@ -1,0 +1,39 @@
+name = "Legendary The Blood of Demons"
+description = """
+This amulet has a vial of real blood flowing in the center. Perhaps from one
+of the Demon Lords. Perhaps from all of them."""
+drop_location = "Catalyst Crafting, Turn in Epic Locus of Vol, its Legendary Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 35
+slot = "Neck"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[effect]]
+name = "Enhanced Bloodrage"
+
+[[effect]]
+name = "Raging Inferno"
+
+[[effect]]
+name = "Raging Strength"
+value = 3
+
+[[effect]]
+name = "Calamitous Blows"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

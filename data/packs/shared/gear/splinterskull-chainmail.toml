@@ -1,0 +1,24 @@
+name = "Splinterskull Chainmail"
+description = "This chainmail was forged in Splinterskull for its finest warriors."
+drop_location = "Assault on Splinterskull, End reward"
+enhancement_bonus = 3
+icon = "LightArmor_9f"
+item_category = "Armor"
+item_type = "Light"
+material = "Steel"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 5
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 7
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

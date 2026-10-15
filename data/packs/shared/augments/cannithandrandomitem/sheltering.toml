@@ -1,0 +1,113 @@
+name = "Sheltering"
+choose_level = true
+description = "Enhancement bonus to your Physical and Magical Resistance Ratings."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    3,
+    4,
+    5,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    40,
+    40,
+    40,
+    40,
+]
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Enhancement"
+value = 38
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Enhancement"
+value = 38
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [38]
+bonus_type = "Enhancement"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [38]
+bonus_type = "Enhancement"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "crafting: cannith boots suffix"
+
+[[slot]]
+slot = "crafting: cannith bracers extra"
+
+[[slot]]
+slot = "crafting: cannith helmet prefix"
+
+[[slot]]
+slot = "crafting: cannith necklace suffix"
+
+[[slot]]
+slot = "crafting: cannith ring suffix"
+
+[[slot]]
+slot = "crafting: cannith shield suffix"
+
+[[slot]]
+slot = "crafting: cannith orb suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random boots suffix"
+
+[[slot]]
+slot = "crafting: random bracers extra"
+
+[[slot]]
+slot = "crafting: random helmet prefix"
+
+[[slot]]
+slot = "crafting: random necklace suffix"
+
+[[slot]]
+slot = "crafting: random ring suffix"

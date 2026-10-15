@@ -1,0 +1,3 @@
+name = "Memory of Chains Broken"
+description_template = "Your hits have a 5% chance to Paralyze enemies for 5 seconds."
+verbose_name_template = "Memory of Chains Broken"

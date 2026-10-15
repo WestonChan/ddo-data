@@ -1,0 +1,35 @@
+name = "Shifter"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Shifters are a basic Eberron race with notable Lycanthropic ancestry.
+They cannot transform entirely into animals, but can shift parts of their bodies
+to be animal-like for short periods of time. In DDO, this Shifting has
+similarities (and statistical connections to) Raging.
+
+Depending on sub-race selection, Shifters excel at Defense/Tanking or WIS-based
+casting."""
+short_name = "Shifter"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Dexterity"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Intelligence"
+
+[[feat_slot]]
+feat_type = "Animalistic Aspect"
+level = 1
+
+[[granted_feat]]
+feat = "Dismiss Rage"
+
+[[granted_feat]]
+feat = "Shifter Traits"

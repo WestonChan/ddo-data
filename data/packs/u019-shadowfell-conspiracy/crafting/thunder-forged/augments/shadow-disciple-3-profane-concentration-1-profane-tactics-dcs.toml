@@ -1,0 +1,52 @@
+name = "Shadow Disciple - +3 Profane Concentration, +1 Profane tactics DCs"
+description = """
++3 Profane bonus to Concentration
++1 Profane bonus to tactics DCs"""
+family = "Thunderforged"
+min_level = 26
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Tactics"
+bonus_type = "Profane"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "Concentration"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "Tactics"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[slot]]
+slot = "crafting: shadow cloth variant"
+
+[[slot]]
+slot = "crafting: shadow light variant"
+
+[[slot]]
+slot = "crafting: shadow medium variant"
+
+[[slot]]
+slot = "crafting: shadow heavy variant"
+
+[[slot]]
+slot = "crafting: shadow docent variant"

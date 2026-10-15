@@ -1,0 +1,30 @@
+name = "ToEE: First Level and Earth Temple"
+bestowed_by = "Ostler Gundigoot"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Temple of Elemental Evil"
+patron = "The Gatekeepers"
+zone = "Temple of Elemental Evil's Upper Level"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/ToEE:_First_Level_and_Earth_Temple"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

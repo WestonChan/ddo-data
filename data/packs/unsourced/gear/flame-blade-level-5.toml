@@ -1,0 +1,31 @@
+name = "Flame Blade (Level 5)"
+description = "="
+drop_location = "The page gives no location"
+enhancement_bonus = 2
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Fire"
+minimum_level = 5
+slot = "Main Hand"
+wiki_url = "https://ddowiki.com/page/Item:Flame_Blade_%28level_5%29"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Flame_Blade_%28level_5%29"
+read = "2026-09-29"
+
+[[effect]]
+name = "Flameblade"
+
+[[effect]]
+name = "Fiery 2"
+
+[[effect]]
+name = "Flaming Blast 2"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+handedness = "One-handed"
+weapon_type = "Scimitar"

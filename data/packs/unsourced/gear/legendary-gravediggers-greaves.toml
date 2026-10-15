@@ -1,0 +1,33 @@
+name = "Legendary Gravedigger's Greaves"
+description = "TBD."
+drop_location = ", end chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 34
+slot = "Feet"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 79
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"

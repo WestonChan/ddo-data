@@ -1,0 +1,89 @@
+name = "Fire I: Radiance"
+adds_augment = "Legendary Alchemical Tier 2"
+description = "Combine T0 item with 50 threads and stabilizing compound."
+effect_description = """
+Radiance 152: +152 Equipment Bonus to Light and Alignment Spell Power.
+Radiance Lore +21%: Your Light and Alignment spells gain a +21% Equipment Bonus
+to their chance to Critical Hit."""
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[effect]]
+name = "Light Spell Power"
+bonus_type = "Equipment"
+value = 152
+
+[[effect]]
+name = "Chaos Spell Power"
+bonus_type = "Equipment"
+value = 152
+
+[[effect]]
+name = "Evil Spell Power"
+bonus_type = "Equipment"
+value = 152
+
+[[effect]]
+name = "Good Spell Power"
+bonus_type = "Equipment"
+value = 152
+
+[[effect]]
+name = "Law Spell Power"
+bonus_type = "Equipment"
+value = 152
+
+[[effect]]
+name = "Light Spell Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Chaos Spell Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Evil Spell Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Good Spell Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Law Spell Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [152]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [21]
+bonus_type = "Equipment"
+effect_type = "SpellLore"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 1"

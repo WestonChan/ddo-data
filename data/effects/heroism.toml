@@ -1,0 +1,3 @@
+name = "Heroism"
+description_template = "Passive: +2 Morale bonus to all your attack rolls, saving throws, and skill checks."
+verbose_name_template = "Heroism"

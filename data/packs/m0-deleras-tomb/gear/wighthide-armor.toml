@@ -1,0 +1,25 @@
+name = "Wighthide Armor"
+description = """
+This armor is smooth and supple, stitched together from, well, perhaps it is
+best to avoid such unpleasant matters."""
+drop_location = "Delera's Tomb, End reward"
+enhancement_bonus = 3
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "Delera's Tomb"

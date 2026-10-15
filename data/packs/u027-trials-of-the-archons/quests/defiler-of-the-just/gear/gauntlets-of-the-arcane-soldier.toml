@@ -1,0 +1,38 @@
+name = "Gauntlets of the Arcane Soldier"
+description = "These heavy gloves draw in arcane energy from wherever they can find it."
+drop_location = "Defiler of the Just, Warded chest"
+icon = "Gloves_4a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Hands"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Arcane Augmentation IX"
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Quality"
+value = 67
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

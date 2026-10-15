@@ -1,0 +1,408 @@
+{
+  "$defs": {
+    "EffectGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "effect": {
+          "type": "string",
+          "x-reference-kind": "effects"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect"
+      ],
+      "type": "object"
+    },
+    "EntityNote": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "entity_notes"
+    },
+    "FileNumber": {
+      "anyOf": [
+        {
+          "format": "int64",
+          "type": "integer"
+        },
+        {
+          "format": "double",
+          "type": "number"
+        }
+      ]
+    },
+    "Modifier": {
+      "additionalProperties": false,
+      "properties": {
+        "amount_type": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "amounts": {
+          "items": {
+            "$ref": "#/$defs/FileNumber"
+          },
+          "type": "array"
+        },
+        "apply_as_item_effect": {
+          "type": "boolean"
+        },
+        "bonus": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "bonus_type": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "bonus_types"
+        },
+        "cap": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_bonus": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_damage": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "dice_number": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dice_sides": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "display_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "effects"
+        },
+        "effect_type": {
+          "type": "string"
+        },
+        "extra_types": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "is_item_specific": {
+          "type": "boolean"
+        },
+        "is_rare": {
+          "type": "boolean"
+        },
+        "percent": {
+          "type": "boolean"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rank": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        },
+        "stack_source": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "targets": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "value": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "effect_type"
+      ],
+      "type": "object",
+      "x-table": "modifiers"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "req_type": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "req_type"
+      ],
+      "type": "object",
+      "x-table": "requirements"
+    },
+    "RequirementGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "SetAugment": {
+      "additionalProperties": false,
+      "properties": {
+        "family": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "x-reference-kind": "augments"
+        }
+      },
+      "required": [
+        "name",
+        "family"
+      ],
+      "type": "object",
+      "x-table": "set_bonus_augments"
+    },
+    "SetItem": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-reference-kind": "items"
+        },
+        "primary": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "x-table": "set_bonus_items"
+    },
+    "SetTier": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "effect": {
+          "items": {
+            "$ref": "#/$defs/EffectGrant"
+          },
+          "type": "array"
+        },
+        "equipped_count": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "modifier": {
+          "items": {
+            "$ref": "#/$defs/Modifier"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "equipped_count"
+      ],
+      "type": "object",
+      "x-table": "set_bonus_tiers"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "augment": {
+      "items": {
+        "$ref": "#/$defs/SetAugment"
+      },
+      "type": "array"
+    },
+    "icon": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-image-kind": ""
+    },
+    "is_filigree_set": {
+      "type": "boolean"
+    },
+    "item": {
+      "items": {
+        "$ref": "#/$defs/SetItem"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "note": {
+      "items": {
+        "$ref": "#/$defs/EntityNote"
+      },
+      "type": "array"
+    },
+    "tier": {
+      "items": {
+        "$ref": "#/$defs/SetTier"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "name"
+  ],
+  "title": "SetFile",
+  "type": "object",
+  "x-table": "set_bonuses"
+}

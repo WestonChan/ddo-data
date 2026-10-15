@@ -1,0 +1,42 @@
+name = "Epic Gertrude's Waistwrap"
+drop_location = "Toil and Trouble, end chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 27
+slot = "Waist"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

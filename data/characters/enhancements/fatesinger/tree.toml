@@ -1,0 +1,1607 @@
+name = "Fatesinger"
+background = "DestinyArcane"
+icon = "Fatesinger"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Fatesinger: Fate Singer's Repertoire"
+cost_per_rank = [1]
+description = """
+Each Core Ability in this tree, including this one, grants the following:
+
++1 Epic Bonus to all spell DCs
++15 Maximum Hit points
++25 Maximum Spell Points
++5 Melee Power
++5 Ranged Power
++5 Positive, Sonic and Universal Spell Power"""
+icon = "FatesingersRepertoire"
+internal_name = "U51FatesingerCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "FateSingersRepertoire"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image FatesingersRepertoire.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Fatesinger: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fatesinger: Intoxicating Presence"
+cost_per_rank = [1]
+description = """
+Enemies that strike you have a 5% chance of becoming Fascinated for 12 seconds,
+with no saving throw."""
+icon = "IntoxicatingPresence"
+internal_name = "U51FatesingerCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Fatesinger: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51FatesingerCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fatesinger: Glitter of Fame"
+cost_per_rank = [1]
+description = "+1 to all Ability scores and Saves."
+icon = "GlitterOfFame"
+internal_name = "U51FatesingerCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Fatesinger: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51FatesingerCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fatesinger: Hear my Voice Friend"
+cost_per_rank = [1]
+description = """
+Greatest Shout, Great Shout, Shout, and Echoes of Discord spells now target
+allies inside their areas of effect and heal them for 10% of the damage potential
+of the spell."""
+icon = "HearMyVoiceFriend"
+internal_name = "U51FatesingerCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Fatesinger: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51FatesingerCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fatesinger: Music of the Spider Queen"
+cost_per_rank = [1]
+description = """
+You gain +[3/6/10] Universal Spell Power.
+Rank 3: If you have Fascinate it now gains the power to mesmerize Vermin and if
+you have Bardic Inspiration it now Neutralizes Poison."""
+icon = "MusicOfTheSpiderQueen"
+internal_name = "U51FatesingerMusicOfTheSpiderQueen"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fatesinger: Jack of all trades"
+cost_per_rank = [1]
+description = """
++[1/2/3] to all Skills.
+Rank 3: Inspire Competence now grants an additional +3 bonus to all skills."""
+icon = "JackOfAlltrades"
+internal_name = "U51FatesingerJackOfAlltrades"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fatesinger: Epic Strike"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Select an Epic Strike"
+icon = "FateEpicStrike"
+internal_name = "U51FatesingerEpicStrike"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Strike a Chord"
+cost_per_rank = [2]
+description = """
+Epic Strike: Blasts a single target with a random note of music for 1d6+3 Sonic
+damage per Character Level. On use, you gain a stack of Chords of Fate. Chords
+of Fate stacks last 30 seconds and stack up to 3 times.
+Cooldown: 2 seconds
+Cost: 2 spell points
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "FateEpicStrike"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "The Pluck of a String"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
++4 Critical Threat Range
+Epic Strike: Ranged Attack: Your weapon sings with the power of song, causing an
+additional 2d10 Sonic Damage per Character Level that scales with 200% Ranged
+Power. Critical Hits cause the target to be stunned for 2 seconds, no save. On
+Use, you gain a stack of Chords of Fate. Chords of Fate stacks last 30 seconds
+and stack up to 3 times.
+Cooldown: 5 seconds
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "FateEpicStrike"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "The Sword Sings"
+cost_per_rank = [2]
+description = """
+Deals +50% Damage
++4 Critical Threat Range
+Epic Strike: Melee Attack: Your weapon sings with the power of song, causing an
+additional 2d10 Sonic Damage per Character Level that scales with 200% Melee
+Power. Critical Hits cause the target to be stunned for 2 seconds, no save. On
+Use, you gain a stack of Chords of Fate. Chords of Fate stacks last 30 seconds
+and stack up to 3 times.
+Cooldown: 4 seconds
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "FateEpicStrike"
+is_clickie = true
+
+[[enhancement]]
+name = "Fatesinger: Harmonic Resonance"
+cost_per_rank = [2]
+description = """
+Your weapon attacks and offensive spells have a 20% chance to build up a stack of
+Harmonic Resonance on your enemies.
+
+Harmonic Resonance: Each stack increases the creatures vulnerability to Sonic
+Damage by 10% and reduces their Armor Class by 5. This stacks up to 3 times and
+each stack lasts up to 20 seconds."""
+icon = "U51HarmonicResonance"
+internal_name = "U51FatesingerHarmonicResonance"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fatesinger: Tune of the Weave"
+cost_per_rank = [1]
+description = "You gain [2/4/6] Magical Resistance Rating and +[10/20/30] Maximum Spell Points."
+icon = "TuneOfTheWeave"
+internal_name = "U51FatesingerTuneOfTheWeave"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fatesinger: Pianissimo"
+cost_per_rank = [1]
+description = """
+You generate [15/25/35]% less threat with all sources, and gain  +[5/10/15] Positive
+Spell Power."""
+icon = "Pianissimo"
+internal_name = "U51FatesingerPianissimo"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -15,
+    -25,
+    -35,
+]
+bonus_type = "Destiny"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fatesinger: Mantle of Sound and Fury"
+cost_per_rank = [2]
+description = """
+Fatesinger Destiny Mantle: All your attacks and spells have a chance to cause
+a swirl of music notes to surround you causing 1d6+6 Sonic Damage per Character
+Level to all nearby foes. Scales with the highest of Sonic, or 200% of Melee or
+Ranged Power. This damage does not affect Fascinated targets. When this occurs
+you gain 6 Temporary Hit Points per Character Level. This can only occur once
+every 10 seconds."""
+icon = "MantleOfSoundAndFury"
+internal_name = "U51FatesingerMantleOfSoundAndFury"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Mantle of Sound and Fury"
+description = """
+Fatesinger Destiny Mantle: All your attacks and spells have a chance to cause
+a swirl of music notes to surround you causing 1d6+6 Sonic Damage per Character
+Level to all nearby foes. Scales with the highest of Sonic, or 200% of Melee or
+Ranged Power. This damage does not affect Fascinated targets. When this occurs
+you gain 6 Temporary Hit Points per Character Level. This can only occur once
+every 10 seconds."""
+group_name = "Mantle"
+icon = "MantleOfSoundAndFury"
+
+[[enhancement]]
+name = "Fatesinger: Discord"
+cost_per_rank = [2]
+description = "Manifest Discord against your enemies"
+icon = "Discord"
+internal_name = "U51FatesingerDiscord"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["U51FatesingerEpicStrike"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Arrow of Discord"
+cost_per_rank = [2]
+description = """
+Deals +20% Damage
++2 Critical Threat Range
+AOE Ranged Attack: Consumes all Chords of Fate: Fire a single discordant shot,
+hitting every enemy in an area around where the shot hits. Enemies must make a
+Fortitude saving throw (DC 20 + Highest Ability Mod + Stunning Bonuses) or be
+stunned for 1 second per Chord of Fate consumed. Releasing 3 Chords of Fate
+Restores 10 Spell Points.
+Cooldown: 15 seconds"""
+icon = "Discord"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Blade of Discord"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
++2 Critical Threat Range
+Cleave Attack: Consumes all Chords of Fate: You cleave your enemies with the
+power of music.  Enemies must also make a Fortitude saving throw (DC 20 +
+Highest Ability Mod + Stunning Bonuses) or be stunned for 1 second per Chord of
+Fate consumed. Releasing 3 Chords of Fate Restores 10 Spell Points.
+Cooldown: 15 seconds"""
+icon = "Discord"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Echoes of Discord"
+cost_per_rank = [2]
+description = """
+Consumes all Chords of Fate: Creates a blast of music on the target that strikes
+nearby enemies for 1d6+1 Sonic Damage per Character Level, scaling with Sonic
+Spell Power. Each Chord of Fate you have increases this damage by 1d6+1 per
+Character Level. Enemies must also make a Fortitude saving throw (DC 20 + Highest
+of Int/Wis/Cha Mod + Evocation bonuses) or be stunned for 1 second per Chord of
+Fate consumed. Releasing 3 Chords of Fate Restores 10 Spell Points.
+Cooldown: 15 seconds"""
+icon = "Discord"
+is_clickie = true
+
+[[enhancement]]
+name = "Fatesinger: Grandeur"
+cost_per_rank = [2]
+description = """
+Your friendly spells now apply Grandeur.
+
+Grandeur: +3 Armor Class and Physical Resistance Rating. Maximum of 2 stacks,
+lasts for 10 seconds."""
+icon = "Grandeur"
+internal_name = "U51FatesingerGrandeur"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fatesinger: A Little bit of Music"
+cost_per_rank = [2]
+description = """
+Grants the Bardic Inspire Courage Feat if you do not already have it. +3 Bard Songs
+and +1 Spell Penetration."""
+icon = "ALittleBitOfMusic"
+internal_name = "U51FatesingerALittleBitOfMusic"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Bardic Inspiration"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SongCount"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Fatesinger: Master the Acoustics"
+cost_per_rank = [1]
+description = """
++[5/10/15] Sonic Spell Power.
+Rank 3: The damage of the spells Sonic Blast and Reverberate are increased by 50%.
+The Sonic damage of your Epic Strikes from this tree is Doubled."""
+icon = "MasterTheAcoustics"
+internal_name = "U51FatesingerMasterTheAcoustics"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Fatesinger: The Rhythm to Reign"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Hit. On a Vorpal Strike, you unleash a thunderclap, dealing [7/9/11]d20
+Sonic and [7/9/11]d20 Electric Damage. Scales with Spell Power."""
+icon = "U51Reign"
+internal_name = "U51FatesingerReign"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Fatesinger: Spell Focus"
+cost_per_rank = [1]
+description = "Choose a spell school to enhance"
+icon = "TheMagicOfMusic"
+internal_name = "U51FatesingerTheMagicOfMusic"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Abjuration"
+cost_per_rank = [1]
+description = "+[1/2/3] Abjuration DC"
+icon = "TheMagicOfMusic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51FatesingerTheMagicOfMusic",
+    "Destiny Abjuration",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51FatesingerTheMagicOfMusic",
+    "Destiny Abjuration",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Enchantment"
+cost_per_rank = [1]
+description = "+[1/2/3] Enchantment DC"
+icon = "TheMagicOfMusic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51FatesingerTheMagicOfMusic",
+    "Destiny Enchantment",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51FatesingerTheMagicOfMusic",
+    "Destiny Enchantment",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Evocation"
+cost_per_rank = [1]
+description = "+[1/2/3] Evocation DC"
+icon = "TheMagicOfMusic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51FatesingerTheMagicOfMusic",
+    "Destiny Evocation",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51FatesingerTheMagicOfMusic",
+    "Destiny Evocation",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Illusion"
+cost_per_rank = [1]
+description = "+[1/2/3] Illusion DC"
+icon = "TheMagicOfMusic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51FatesingerTheMagicOfMusic",
+    "Destiny Illusion",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51FatesingerTheMagicOfMusic",
+    "Destiny Illusion",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Fatesinger: The Sonata to Serve"
+cost_per_rank = [1]
+description = """
++[1/2/3] Spell Penetration and [3/6/9]% Fortification Bypass.
+
+Rank 3: While in your Fatesinger Destiny Mantle, you no longer have Arcane Spell
+Failure."""
+icon = "TheSonataToServe"
+internal_name = "U51FatesingerTheSonataToServe"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Destiny"
+effect_type = "FortificationBypass"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-100]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Fatesinger: Masquerade"
+cost_per_rank = [1]
+description = "Reduces the cost of you spells by [3/6/10]%."
+icon = "Masquerade"
+internal_name = "U51FatesingerMasquerade"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPointCostPercent"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Fatesinger: Great Ballads of War"
+cost_per_rank = [1]
+description = """
++[1/2/3] Attack and Damage. If you have the Bardic Ballad Feat this also applies
+to your Ballad's bonus to others."""
+icon = "GreatBalladsOfWar"
+internal_name = "U51FatesingerGreatBalladsOfWar"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Fatesinger: Majesty"
+cost_per_rank = [2]
+description = """
+You are immune to Charisma stat damage.
+
+When you play any Bardic Song while using the Fatesinger Destiny Mantle you heal
+yourself and nearby allies for 1d2 Hit Points per Character Level (scaling with
+Positive Spell Power) and apply the Restoration spell."""
+icon = "Majesty"
+internal_name = "U51FatesingerMajesty"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Charisma Damage"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Fatesinger: Resonance of Fate"
+cost_per_rank = [2]
+description = "Select a Resonation"
+icon = "ResonanceOfFate"
+internal_name = "U51FatesingerResonanceOfFate"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Arcane Resonance"
+cost_per_rank = [2]
+description = """
++1 to Intelligence, Wisdom and Charisma. When using your Fatesinger Destiny Mantle,
+gain +10 Universal Spell Power, +2 Spell Penetration, +4 Use Magic Device, and
++10% to your Fire, Cold, Acid and Electric Absorption."""
+icon = "ResonanceOfFate"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Destiny"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Divine Resonance"
+cost_per_rank = [2]
+description = """
++1 to Strength, Charisma and Wisdom. When using your Fatesinger Destiny Mantle,
+you gain +1 Attack, Damage, and Critical Hit Confirmation, +5 Physical Resistance
+Rating, and +15 Positive and Negative Spell Power."""
+icon = "DivineResonance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Charisma",
+    "Wisdom",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamage"
+extra_types = ["Weapon_AttackCritical"]
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Negative",
+]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Martial Resonance"
+cost_per_rank = [2]
+description = """
++1 to Strength, Dexterity and Constitution. When using your Fatesinger Destiny Mantle,
+you gain +5 Physical and Magical Resistance Rating, +5 Armor Class, and +10 Melee
+and Ranged Power"""
+icon = "MartialResonance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Primal Resonance"
+cost_per_rank = [2]
+description = """
++1 to Strength, Constitution and Wisdom. When using your Fatesinger Destiny Mantle,
+you gain +25 Maximum Hit Points, +10 Spell Resistance, +10 Healing Amplification,
+and an additional +3 Strength while Raging."""
+icon = "PrimalResonance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellResistance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Mantle of Sound and Fury"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Fatesinger: Shout it out"
+cost_per_rank = [2]
+description = "Increase your ability to Shout"
+icon = "ShoutItout"
+internal_name = "U51FatesingerShoutItout"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Greatest Shout"
+cost_per_rank = [2]
+description = """
+You may cast the spell Greater Shout as a Spell-like ability with an increased DC.
+
+Emits an ear-splitting yell that deals 1d6+3 Sonic damage per caster level and
+stuns targets in its path. A successful Fortitude save (DC:20 + Highest of
+Int/Wis/Chat Mod + Evocation bonuses) halves the damage and negates the stun.
+Cooldown: 6 seconds.
+Costs 6 Spell Points."""
+icon = "ShoutItout"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    20,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Shout",
+    "None",
+]
+
+[[enhancement.selection]]
+name = "Very Very Vocal"
+cost_per_rank = [2]
+description = """
+The damage of the Shout spell is increased by 50%.
+
+The damage of the spells Greater Shout and Horn of thunder are increased by 100%.
+
+Your Discord abilities stun for an additional 3 seconds when you have 3 Chords
+of Fate."""
+icon = "VeryVeryVocal"
+
+[[enhancement]]
+name = "Fatesinger: Metamagics Attunement"
+cost_per_rank = [1]
+description = "Choose a Metamagic feat which you can use with no cost."
+icon = "MetamagicsAttunement"
+internal_name = "U51FatesingerMetamagicsAttunement"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Enlarge"
+cost_per_rank = [1]
+description = """
+Like Enlarge Spell, your spells have twice the range. This does not increase
+their Spell Point cost."""
+icon = "Enlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Enlarge Spell"]
+
+[[enhancement.selection]]
+name = "Eschew"
+cost_per_rank = [1]
+description = """
+Like Eschew Materials, your spells no longer need common material components.
+This does not increase their Spell Point cost."""
+icon = "Eschew"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Eschew Materials"]
+
+[[enhancement.selection]]
+name = "Extend"
+cost_per_rank = [1]
+description = """
+Like Extend Spell, your spells last twice as long.
+This does not increase their Spell Point cost."""
+icon = "Extend"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Extend Spell"]
+
+[[enhancement]]
+name = "Fatesinger: Ballad of the ages"
+cost_per_rank = [1]
+description = """
+You gain +2 damage and benefit from the True Seeing spell. If you have Bardic
+Ballad, Inspire Transcendence is added to it.
+
+Inspire Transcendence: +1 to all Spell DCs, +1 to the DC of all Tactical Feats,
+and True Seeing."""
+icon = "BalladOfTheAges"
+internal_name = "U51FatesingerBalladOfTheAges"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "TrueSeeing"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Destiny"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Fatesinger: Mastering the Strings"
+cost_per_rank = [1]
+description = "+[1/2/3] to all Spell DCs"
+icon = "MasteringTheStrings"
+internal_name = "U51FatesingerMasteringTheStrings"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Fatesinger: Blade Song"
+cost_per_rank = [1]
+description = """
++1 Critical Damage Multiplier on a roll of 19-20 (unless you are in Animal Form
+or using Handwraps)."""
+icon = "U51BladeSong"
+internal_name = "U51FatesingerBladeSong"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = [
+    "Bastard Sword",
+    "Battle Axe",
+    "Club",
+    "Dagger",
+    "Dwarven Axe",
+    "Falchion",
+    "Great Axe",
+    "Great Club",
+    "Great Sword",
+    "Hand Axe",
+    "Heavy Mace",
+    "Heavy Pick",
+    "Kama",
+    "Khopesh",
+    "Kukri",
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Longsword",
+    "Maul",
+    "Morningstar",
+    "Quarterstaff",
+    "Rapier",
+    "Scimitar",
+    "Shortsword",
+    "Sickle",
+    "Warhammer",
+]
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Fatesinger: Turn the Tide"
+cost_per_rank = [1]
+description = """
+Epic Moment: The trumpets herald your heroic call! For 20 seconds you and your party
+gain full Base Attack Bonus, +10% to Weapon Damage, +10% Uncapped Dodge,
++100 Universal Spell Power, and +25% to Spell Costs Reduction.
+Cooldown: 5 minutes"""
+icon = "TurnTheTide"
+internal_name = "U51FatesingerTurnTheTide"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Fatesinger: Cut the Strings"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Strike a note to reveal the strings of fate so you might cut them.
+All monsters within a wide radius around you are forced to dance (Will vs
+DC:20 + Highest Ability Score Mod + Enchantment) pulled by the strings of fate
+for 10 seconds. In addition, for 10 seconds, your character gains the ability to
+cut their strings with any weapon strike or spell at a rate of once per second,
+instantly killing them. Bosses if they fail their save do not dance but will
+take an additional 300 Sonic Damage that scales with Spell Power when struck for
+the duration of the effect.
+Cooldown: 60 seconds."""
+icon = "CutTheStrings"
+internal_name = "U51FatesingerCutTheStrings"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[requirement]]
+items = ["Fatesinger"]
+req_type = "Feat"

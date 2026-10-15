@@ -1,0 +1,33 @@
+name = "Epic Ring of the Blue Abishai"
+description = "This ring seems to be attuned to elemental power."
+drop_location = "Epic version of Ring of the Blue Abishai"
+icon = "Ring_7g"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Insight"
+value = 55
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Quality"
+value = 27
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Efficient Metamagic - Enlarge II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

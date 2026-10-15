@@ -1,0 +1,61 @@
+name = "Kundarak Warding Shield"
+description = "Very few non-dwarves have ever possessed a Kundarak Warding Shield."
+drop_location = "Plane of Night, Raid warded End Chest"
+enhancement_bonus = 5
+icon = "Shield_4h"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Dwarven Iron"
+minimum_level = 10
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 19
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 21
+
+[[source]]
+chest = "raid warded end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

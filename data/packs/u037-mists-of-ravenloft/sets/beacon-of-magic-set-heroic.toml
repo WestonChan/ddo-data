@@ -1,0 +1,93 @@
+name = "Beacon of Magic Set (Heroic)"
+icon = "BeaconOfMagic"
+
+[[item]]
+name = "Barovian Nobles' Regalia"
+
+[[item]]
+name = "Blurfingered Gloves"
+
+[[item]]
+name = "Burnscar Sash"
+
+[[item]]
+name = "Memory of Fine Regalia"
+
+[[item]]
+name = "Silverthread Belt"
+
+[[item]]
+name = "Thrummingspark Cord"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 5
+reason = "The wiki gives Magical Resistance Rating +20 Artifact at 3 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Magical Resistance Rating / Artifact"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "MRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "MRRCap"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "MissileDeflection"

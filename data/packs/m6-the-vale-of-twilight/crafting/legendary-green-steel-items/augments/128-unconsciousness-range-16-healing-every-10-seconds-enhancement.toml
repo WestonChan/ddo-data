@@ -1,0 +1,22 @@
+name = "+128 Unconsciousness Range, 16 healing every 10 seconds (Enhancement)"
+description = "Material/Opposition: +128 Unconsciousness Range, 16 healing every 10 seconds (Enhancement)"
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Unconsciousness Range"
+bonus_type = "Enhancement"
+value = -128
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-128]
+bonus_type = "Enhancement"
+effect = "Unconsciousness Range"
+effect_type = "UnconsciousRange"
+
+[[slot]]
+slot = "crafting: equipment tier 1"

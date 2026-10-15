@@ -1,0 +1,22 @@
+name = "In the Demon's Den"
+bestowed_by = "Uriel"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Silver Flame"
+zone = "The Demon's Den"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/In_the_Demon%27s_Den"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18

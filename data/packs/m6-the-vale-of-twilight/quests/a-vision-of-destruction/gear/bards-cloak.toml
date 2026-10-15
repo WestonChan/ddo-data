@@ -1,0 +1,42 @@
+name = "Bard's Cloak"
+description = """
+Despite the Bard's warm and shining personality, people continued to run from
+him like the plague. Perhaps he would one day learn that in order to keep friends
+near, a man such as himself needed to keep them tied up."""
+drop_location = "A Vision of Destruction, End chest"
+icon = "Cloak_3b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Back"
+
+[[clickie]]
+name = "Greater Command"
+clickie = "Greater Command"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 15
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Command"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "A Vision of Destruction"

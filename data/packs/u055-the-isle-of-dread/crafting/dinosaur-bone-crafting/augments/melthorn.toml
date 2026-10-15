@@ -1,0 +1,8 @@
+name = "Melthorn"
+description = "Attacks and offensive spells can reduce enemy PRR and Heal Amp"
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[slot]]
+slot = "isle of dread: horn (weapon)"

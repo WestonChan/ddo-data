@@ -1,0 +1,44 @@
+name = "Legendary Sailcloth Cloak"
+description = "This cloak appears to have been fashioned from the sail of a seaworthy vessel."
+drop_location = "Under the Cover of Darkness, end chest, or Legendary version of Epic Sailcloth Cloak"
+icon = "Cloak_24a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 30
+slot = "Back"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 5
+value2 = 8
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Feat - Wind through the Trees"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic sailcloth cloak"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Cover of Darkness"

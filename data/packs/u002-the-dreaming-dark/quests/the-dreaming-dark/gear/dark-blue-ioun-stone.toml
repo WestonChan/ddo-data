@@ -1,0 +1,26 @@
+name = "Dark Blue Ioun Stone"
+description = "A dark blue gem about 1 inch in diameter."
+drop_location = "Random, Highest drop rate from The Dreaming Dark"
+icon = "Trinket_7a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 2
+slot = "Trinket"
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Suppressed Power"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Dreaming Dark"

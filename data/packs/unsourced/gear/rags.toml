@@ -1,0 +1,11 @@
+name = "Rags"
+description = "The tattered remains of clothing."
+drop_location = "Shipwreck Shore, Automatically received after non-Warforged character creation"
+icon = "Cloth_18"
+item_category = "Armor"
+item_type = "Cloth"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"

@@ -1,0 +1,93 @@
+name = "Part of the Family"
+icon = "PartOfTheFamily"
+
+[[item]]
+name = "Enforcer's Coat"
+
+[[item]]
+name = "Enforcer's Plate"
+
+[[item]]
+name = "Family Recruit Sigil"
+
+[[item]]
+name = "Hammerfist"
+
+[[item]]
+name = "Platinum Knuckles"
+
+[[item]]
+name = "Turncoat"
+
+[[item]]
+name = "Umbral Soul"
+
+[[item]]
+name = "Wildcard"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Doublestrike +10 Artifact at 3 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Doublestrike / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Melee Power +10 Artifact at 3 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Melee Power / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Helpless Damage +5 Artifact at 3 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Helpless Damage / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Fortification Bypass +5 Artifact at 3 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Fortification Bypass / Artifact"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+effect = "Doublestrike Surge"
+
+[[tier.effect]]
+effect = "Melee Power Surge"
+
+[[tier.effect]]
+effect = "Helpless Damage Surge"
+
+[[tier.effect]]
+effect = "Fortification Bypass Surge"
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 5

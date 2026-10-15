@@ -1,0 +1,22 @@
+name = "Ruby of Law DR Bypass"
+description = "Your weapons now bypass Law damage reduction type"
+family = "Ruby"
+icon = "Ruby"
+min_level = 8
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Lawful"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

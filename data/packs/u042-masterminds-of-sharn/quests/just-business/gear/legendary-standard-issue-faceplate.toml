@@ -1,0 +1,37 @@
+name = "Legendary Standard Issue Faceplate"
+description = "Slightly dented, barely used, better than anything else around."
+drop_location = "Just Business, End chest"
+icon = "Helmet_8a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Head"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 120
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Just Business"

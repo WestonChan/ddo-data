@@ -1,0 +1,44 @@
+name = "Fintan's Bite"
+accepts_sentience = true
+description = """
+A curved sword with a keen edge. This scimitar has a hilt engraved with images
+of salmon and hazelnuts."""
+drop_location = "The Collaborator, End reward"
+icon = "Scimitar_6g"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Bodyfeeder"
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Collaborator"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

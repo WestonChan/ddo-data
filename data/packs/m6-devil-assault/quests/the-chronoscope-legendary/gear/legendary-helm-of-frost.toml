@@ -1,0 +1,55 @@
+name = "Legendary Helm of Frost"
+description = """
+This helm has a chill about it and is cold where it touches your skin. Nevertheless
+it will protect you from harmful cold magic, and allows you to release some
+of that energy against foes."""
+drop_location = "The Chronoscope (Legendary), end chest, or Legendary version of Epic Helm of Frost"
+icon = "Helmet_10c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Head"
+
+[[clickie]]
+name = "Polar Ray"
+clickie = "Polar Ray"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 54
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Polar Ray"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic helm of frost"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

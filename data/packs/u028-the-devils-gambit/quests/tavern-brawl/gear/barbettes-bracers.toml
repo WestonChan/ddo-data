@@ -1,0 +1,35 @@
+name = "Barbette's Bracers"
+description = """
+Shoved below deck, the Barbettes held though, their aim true, manning the cannons
+with the utmost bravery."""
+drop_location = "Tavern Brawl, End chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 14
+slot = "Wrists"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 4
+
+[[effect]]
+name = "Heroism"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Tavern Brawl"

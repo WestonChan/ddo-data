@@ -1,0 +1,129 @@
+name = "Frozen Tunic (Level 8)"
+description = """
+This tunic shimmers like frost and is filled with a powerful freezing energy.
+It will invest your attacks with an icy edge, as well as boosting the power
+of your ice-related magic. A bound Water Elemental fuels this item."""
+drop_location = "Vaults of the Artificers, Crafted from various challenge ingredients"
+icon = "Cloth_16a"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 4
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 69
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Minor Freezing Ice"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Armor Bonus +5, Glaciation 74 and Ice Lore 11%"
+description = """
+Armor Bonus +5: This item surrounds the wearer with an invisible but tangible
+field of force, granting +5 armor bonus to AC, just as though he were wearing armor.
+Glaciation +74: Passive: +74 Equipment bonus to Cold Spell Power.
+Ice Lore +11: Passive: Your Cold spells gain a 11% Equipment bonus to their chance to critical hit."""
+icon = "Upgrade"
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 5
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 74
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+value = 11
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [74]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Glaciation 79, Ice Lore 12% and a Green augment slot"
+description = """
+Glaciation +79: Passive: +79 Equipment bonus to Cold Spell Power.
+Ice Lore +12: Passive: Your Cold spells gain a 12% Equipment bonus to their chance to critical hit.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+value = 79
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+value = 12
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [79]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Equipment"
+effect = "Cold Spell Lore"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

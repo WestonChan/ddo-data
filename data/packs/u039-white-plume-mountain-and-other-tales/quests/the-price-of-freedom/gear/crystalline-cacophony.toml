@@ -1,0 +1,46 @@
+name = "Crystalline Cacophony"
+description = "These fractured shards of harmonic crystals resonate within your core."
+drop_location = "The Price of Freedom, End chest"
+enhancement_bonus = 3
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 6
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 15
+armor_bonus = 3
+armor_type = "Docent"
+mithral_body = 8
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 63
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Price of Freedom"

@@ -1,0 +1,8 @@
+name = "Legendary Green Steel Belt"
+description = "A belt crafted from green steel."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+icon = "Belt_13"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Waist"

@@ -1,0 +1,23 @@
+name = "Devoted Goggles"
+description = "This pair of goggles will augment a cleric's ability to cast spells."
+drop_location = "Sacrifices, End reward"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 1
+slot = "Goggles"
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Power I"
+bonus_type = "Enhancement"
+value = 10
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Sacrifices"

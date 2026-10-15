@@ -1,0 +1,33 @@
+name = "Socket Band"
+description = "A socket filled with a cloudy blue gem comprises this band."
+drop_location = "Locked Away (Part One), end chest"
+icon = "Ring_26"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 8
+slot = "Ring"
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part One)"

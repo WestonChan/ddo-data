@@ -1,0 +1,40 @@
+name = "Legendary Climber's Remembrance"
+description = """
+On donning this necklace, you remember a murder most foul, the determination
+of vengeance, the gleam of armor, and a fatal uphill climb."""
+drop_location = "The Wish, end chest (rare)"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 34
+slot = "Neck"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Wish"

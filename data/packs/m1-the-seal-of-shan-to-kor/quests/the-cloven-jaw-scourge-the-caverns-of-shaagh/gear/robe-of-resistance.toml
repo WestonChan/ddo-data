@@ -1,0 +1,28 @@
+name = "Robe of Resistance"
+description = """
+A fine cloth robe that, although unable to provide protection against physical
+harm, is instead enchanted to ward against other forms of attack."""
+drop_location = "The Cloven-jaw Scourge: The Caverns of Shaagh, End chest"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Cloven-jaw Scourge: The Caverns of Shaagh"

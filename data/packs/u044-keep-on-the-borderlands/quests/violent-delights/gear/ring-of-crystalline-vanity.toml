@@ -1,0 +1,37 @@
+name = "Ring of Crystalline Vanity"
+description = "Flaunt your arrogance."
+drop_location = "Violent Delights, End chest"
+icon = "Ring_4"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 21
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Enchantment Save"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 33
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Violent Delights"

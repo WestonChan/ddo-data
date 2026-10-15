@@ -1,0 +1,4 @@
+name = "Helpless Damage"
+category = "martial"
+set_bonus_line_template = "+{1}% %b1 Bonus to Damage vs. Helpless opponents"
+verbose_name_template = "%b1 Helpless Damage +{1}"

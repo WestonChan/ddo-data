@@ -1,0 +1,32 @@
+name = "Spider Silk Robe"
+description = "This shroud is woven out of incredibly strong fibers of spider silk."
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 5
+
+[[effect]]
+name = "Axeblock II"
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

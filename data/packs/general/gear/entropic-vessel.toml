@@ -1,0 +1,23 @@
+name = "Entropic Vessel"
+description = "A small globe that constantly leaks chaotic energy."
+drop_location = "Advance to level 15, End reward"
+icon = "Trinket_32a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+race_required = "Eladrin Chaosmancer"
+slot = "Trinket"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

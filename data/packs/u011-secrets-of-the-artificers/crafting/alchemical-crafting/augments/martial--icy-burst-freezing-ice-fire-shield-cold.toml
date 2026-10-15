@@ -1,0 +1,50 @@
+name = "Martial: Icy Burst, Freezing Ice, Fire Shield (Cold)"
+description = """
+Icy Burst: This weapon is sheathed in icy cold, and deals 1 to 6 cold damage each hit.
+Critical hits deal an additional 1 to 10 cold damage for weapons with a x2
+critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4
+multiplier.
+Freezing Ice: This Weapon stores the pitiless immovable power of the ice deep
+within. When this weapon is used, this power occasionally comes to the surface,
+attempting to freeze an enemy solid and encase them in ice.
+Fire Shield (Cold): When you are successfully attacked, there is a 10% chance
+that a Fire Shield (Cold) will be cast on you. If this effect activates while
+you have an active Fire Shield (Hot) from another item source, they will
+nullify each-other."""
+family = "Alchemical"
+min_level = 16
+
+[[modifier]]
+amount_type = "Dice"
+bonus_type = "Stacking"
+dice_damage = "Cold"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Cold"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: alchemical tier 1"

@@ -1,0 +1,38 @@
+name = "Trailblazer's Branch"
+description = "An olive branch to some, a judgement upon others."
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 3
+icon = "Quarterstaff_1"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 15
+race_required = "Tabaxi Trailblazer"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Bludgeoning 3"
+
+[[effect]]
+name = "Shockwave"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

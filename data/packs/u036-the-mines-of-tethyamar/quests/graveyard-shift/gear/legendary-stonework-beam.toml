@@ -1,0 +1,56 @@
+name = "Legendary Stonework Beam"
+accepts_sentience = true
+description = """
+Lighter that one would expect, this beam retains all of the toughness of Dwarwen
+stonework."""
+drop_location = "Graveyard Shift, End chest"
+enhancement_bonus = 13
+icon = "Quarterstaff_1"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Stone"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Percussive Maintenance 3"
+
+[[effect]]
+name = "Improved Paralyzing"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Quality"
+value = 2
+value2 = 4
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 13
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Graveyard Shift"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,3 @@
+name = "Felling the Oak"
+description_template = "On a natural 20 that is confirmed as a critical hit, this weapon will trip your opponent, forcing them to fall prone. There is no save against this effect."
+verbose_name_template = "Felling the Oak"

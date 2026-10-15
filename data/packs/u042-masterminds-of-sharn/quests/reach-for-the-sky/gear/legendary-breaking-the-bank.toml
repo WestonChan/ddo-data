@@ -1,0 +1,61 @@
+name = "Legendary Breaking the Bank"
+description = "It's made of... solid gold? What?"
+drop_location = "Reach for the Sky, End Chest"
+icon = "RuneArm_1b"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gold"
+minimum_level = 29
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 98
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Rune Arm Imbue - Fire V"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Gold Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Reach for the Sky"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

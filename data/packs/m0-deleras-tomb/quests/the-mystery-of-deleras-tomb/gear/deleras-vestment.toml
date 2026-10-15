@@ -1,0 +1,35 @@
+name = "Delera's Vestment"
+description = "A rich, brocade robe once worn by the great lady of Stormreach herself."
+drop_location = "The Mystery of Delera's Tomb, End chest"
+enhancement_bonus = 3
+icon = "Cloth_1"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 36
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mystery of Delera's Tomb"

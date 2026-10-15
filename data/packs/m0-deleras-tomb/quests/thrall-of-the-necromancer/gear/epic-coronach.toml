@@ -1,0 +1,65 @@
+name = "Epic Coronach"
+description = "A dirge or song of lamentation for the dead."
+drop_location = "Thrall of the Necromancer, end chest"
+icon = "RuneArm_1f"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 25
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "Coronach"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Rune Arm Imbue - Light IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Light Spirals",
+    "None",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thrall of the Necromancer"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

@@ -1,0 +1,904 @@
+name = "Tiefling"
+background = "HumanBackground"
+icon = "Tiefling"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Tiefling: Bloodhunt I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Imbue Toggle: Your weapon attacks deal an additional 1d4 Fire damage per Imbue Dice to enemies
+under 75% HP. This damage scales with 100% Spell Power.
+
+Passive: +5 Fire Spell Power"""
+icon = "Bloodhunt"
+internal_name = "TieflingCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement.stance]]
+name = "Tiefling: Bloodhunt"
+description = """
+Your weapon attacks deal an additional 1d[4/6/8] Fire damage per Imbue Dice to enemies
+under [75/50/25]% HP. This damage scales with 100% Spell Power."""
+group_name = "Imbue"
+icon = "Bloodhunt"
+
+[[enhancement]]
+name = "Tiefling: Charisma I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+internal_name = "TieflingCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["TieflingCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tiefling: Bloodhunt II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your Bloodhunt Imbue Toggle is increased to 1d6 Fire damage to enemies under 50% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +10 Fire Spell Power"""
+icon = "BloodhuntII"
+internal_name = "TieflingCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["TieflingCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tiefling: Charisma II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+internal_name = "TieflingCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["TieflingCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tiefling: Bloodhunt III"
+cost_per_rank = [1]
+description = """
+Your Bloodhunt Imbue Toggle is increased to 1d8 Fire damage to enemies under 50% HP.
+This damage scales with 100% Spell Power.
+
+Passive: +20 Fire Spell Power"""
+icon = "BloodhuntIII"
+internal_name = "TieflingCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["TieflingCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tiefling: Hellish Rebuke"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Enveloped in a cloak of infernal flame, you have a chance to deal fire damage
+to foes that strike you in melee range. Enemies have a chance to take 1d10
+Fire Damage +1 per Character Level, max 30. This damage scales with Fire Spell Power.
+5 Minutes + 1 Minute per character level duration.
+Cooldown: 12 seconds"""
+icon = "HellishRebuke"
+internal_name = "TieflingHellishRebuke"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement]]
+name = "Tiefling: Infernal Nature"
+cost_per_rank = [1]
+description = "+[1/2/3] Bluff, Spellcraft and Balance"
+icon = "InfernalNature"
+internal_name = "TieflingInfernalNature"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Feat"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Bluff",
+    "Spellcraft",
+]
+
+[[enhancement]]
+name = "Tiefling: Innate Protection"
+cost_per_rank = [1]
+description = "+[1/2/3] to Saves vs Spells"
+icon = "InnateProtection"
+internal_name = "TieflingInnateProtection"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Feat"
+effect_type = "SaveBonus"
+targets = ["Spell"]
+
+[[enhancement]]
+name = "Tiefling: Wand and Scroll Mastery"
+cost_per_rank = [1]
+description = """
++[25/50/75]% damage and healing of your wands, scrolls and other items that cast
+spells. Adds +[1/2/3] to the save DCs of your offensive wands."""
+icon = "TieflingWandAndScrollMastery"
+internal_name = "TieflingWandAndScrollMastery"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "TieflingWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Wands"]
+
+[[enhancement.requirement]]
+items = [
+    "TieflingWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Tiefling: Obscuring Darkness"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You can channel your fiendish nature to manifest a zone of Obscuring Darkness at will.
+Foes inside the darkness suffer a 20% chance of missing any attack they make
+due to concealment. This does not apply to attacking misted targets from
+outside. Further Enhancements can modify how Obscuring Darkness can affect
+both you and your enemies. Lasts 30 seconds, Activation cost: 10 Spell Points
+Cooldown: 30 Seconds"""
+icon = "ObscuringDarkness"
+internal_name = "TieflingObscuringDarkness"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    30,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Obscuring Darkness",
+    "None",
+]
+
+[[enhancement]]
+name = "Tiefling: Ferocious Rebuke"
+cost_per_rank = [1]
+description = """
+While Hellish Rebuke is active, enemies that strike you have a chance to be
+tripped with no save."""
+icon = "FerociousRebuke"
+internal_name = "TieflingFerociousRebuke"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["TieflingHellishRebuke"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tiefling: Infernal Resistance I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Tieflings are naturally immune to certain elements."
+icon = "InfernalResistanceCold"
+internal_name = "TieflingInfernalResistanceI"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.selection]]
+name = "Infernal Resistance (Acid)"
+cost_per_rank = [2]
+description = "You gain Acid Resistance equal to your Character Level."
+icon = "InfernalResistanceAcid"
+
+[[enhancement.selection.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[enhancement.selection]]
+name = "Infernal Resistance (Cold)"
+cost_per_rank = [2]
+description = "You gain Cold Resistance equal to your Character Level."
+icon = "InfernalResistanceCold"
+
+[[enhancement.selection.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[enhancement]]
+name = "Tiefling: Infernal Defense"
+cost_per_rank = [1]
+description = "+[2/4/6] Magical Resistance Rating"
+icon = "InfernalDefense"
+internal_name = "TieflingInfernalDefense"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "MRR"
+
+[[enhancement]]
+name = "Tiefling: Traditionalist Caster"
+cost_per_rank = [1]
+description = "+[3/6/10] Universal Spell Power while wielding an Orb or Staff."
+icon = "TraditionalistCaster"
+internal_name = "TieflingTraditionalistCaster"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Magical Training"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Tiefling: Lasting Darkness"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Enemies that enter your Obscuring Darkness have a chance to be blinded with no save."
+icon = "LastingDarkness"
+internal_name = "TieflingLastingDarkness"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["TieflingObscuringDarkness"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tiefling: Ash"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+You can cast the spell Scorch as a Spell Like Ability, with its Caster Level based on
+your Character Level. Subsequent ranks in this ability reduce the cooldown and Spell Point cost.
+Activation cost: 4 Spell Points
+Cooldown: 10 seconds"""
+icon = "TieflingScorch"
+internal_name = "TieflingScorch"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Scorch",
+    "None",
+]
+
+[[enhancement]]
+name = "Tiefling: Infernal Resistance II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Tieflings are naturally immune to certain elements."
+icon = "InfernalResistanceCold"
+internal_name = "TieflingInfernalResistanceII"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["TieflingInfernalResistanceI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Infernal Resistance (Acid)"
+cost_per_rank = [1]
+description = "You gain Acid Resistance equal to your Character Level."
+icon = "InfernalResistanceAcid"
+
+[[enhancement.selection.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[enhancement.selection]]
+name = "Infernal Resistance (Cold)"
+cost_per_rank = [1]
+description = "You gain Cold Resistance equal to your Character Level."
+icon = "InfernalResistanceCold"
+
+[[enhancement.selection.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[enhancement.selector_exclusion]]
+internal_name = "TieflingInfernalResistanceI"
+
+[[enhancement]]
+name = "Tiefling: Incineration I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+2% Spell Critical Damage with Fire Spells"
+icon = "Inceneration"
+internal_name = "TieflingInceneration"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["Fire"]
+
+[[enhancement]]
+name = "Tiefling: Student of Darkness"
+cost_per_rank = [2]
+description = """
+While in Obscuring Darkness, you gain +3 Saving Throws,
++3 Magical Resistance Rating and +15 Magical Resistance Cap."""
+icon = "StudentOfDarkness"
+internal_name = "TieflingStudentOfDarkness"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["ObscuringDarkness"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["ObscuringDarkness"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MRRCap"
+
+[[enhancement.modifier.requirement]]
+items = ["ObscuringDarkness"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["TieflingLastingDarkness"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tiefling: Improved Scorch"
+cost_per_rank = [1]
+description = """
+Enemies affected by you Scorch spell increase Fire damage thay take by 5%.
+When cast on a creature that is immune to Fire, it makes them vulnerable to
+that element for a short period of time."""
+icon = "ImprovedScorch"
+internal_name = "TieflingImprovedScorch"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["TieflingScorch"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tiefling: Infernal Sovereign"
+cost_per_rank = [1]
+description = "Your Fire mastery conquers other elements."
+icon = "InfernalSovereign"
+internal_name = "TieflingInfernalSovereign"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["TieflingInfernalResistanceII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Infernal Sovereign (Acid)"
+cost_per_rank = [1]
+description = "You use your Fire Spell Power in place of your Acid Spell Power if it is higher, and vice versa."
+icon = "InfernalSovereignAcid"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "SpellPowerReplacement"
+targets = [
+    "Acid",
+    "Fire",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "SpellPowerReplacement"
+targets = [
+    "Fire",
+    "Acid",
+]
+
+[[enhancement.selection]]
+name = "Infernal Sovereign (Cold)"
+cost_per_rank = [1]
+description = "You use your Fire Spell Power in place of your Cold Spell Power if it is higher, and vice versa."
+icon = "InfernalSovereign"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "SpellPowerReplacement"
+targets = [
+    "Cold",
+    "Fire",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "SpellPowerReplacement"
+targets = [
+    "Fire",
+    "Cold",
+]
+
+[[enhancement.selection]]
+name = "Infernal Sovereign (Electric)"
+cost_per_rank = [1]
+description = "You use your Fire Spell Power in place of your Electric Spell Power if it is higher, and vice versa."
+icon = "InfernalSovereignElectric"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "SpellPowerReplacement"
+targets = [
+    "Electric",
+    "Fire",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "SpellPowerReplacement"
+targets = [
+    "Fire",
+    "Electric",
+]
+
+[[enhancement]]
+name = "Tiefling: Incineration II"
+cost_per_rank = [2]
+description = "+3% Spell Critical Damage with Fire Spells"
+icon = "TieflingIncineration"
+internal_name = "TieflingIncineration"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+items = ["TieflingInceneration"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Tiefling: Servant of Darkness"
+cost_per_rank = [1]
+description = """
+While in Obscuring Darkness, you gain +[10/20/30] Universal Spell Power
+and +[1/2/2] Evocation and Conjuration DCs"""
+icon = "ServantOfDarkness"
+internal_name = "TieflingServantOfDarkness"
+min_spent = 15
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Conjuration",
+    "Evocation",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["ObscuringDarkness"]
+req_type = "Stance"
+
+[[requirement]]
+items = ["Tiefling"]
+req_type = "Race"

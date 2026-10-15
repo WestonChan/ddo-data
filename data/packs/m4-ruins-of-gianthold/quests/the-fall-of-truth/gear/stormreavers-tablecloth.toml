@@ -1,0 +1,66 @@
+name = "Stormreaver's Tablecloth"
+description = """
+You hold in your hand a small shred of the huge tablecloth that was used by
+the Stormreaver in his final meal before the great cataclysm. You can't tell
+if the red stains on its surface are of wine or blood, but it does seem that
+everything is so much easier to understand now."""
+drop_location = "The Fall of Truth, Raid warded chest (Epic Normal)"
+icon = "Cloak_24a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 25
+slot = "Back"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Spell Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Adds Spell Penetration III"
+description = "Spell Penetration III: Passive: +3 Equipment bonus to Spell Penetration checks."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Fall of Truth"

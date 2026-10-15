@@ -1,0 +1,37 @@
+name = "Legendary Knifepalm"
+description = "This single leather glove has a slot where a simple knife can be hidden."
+drop_location = "The Final Vintage, End chest"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Insight"
+value = 9
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Vintage"

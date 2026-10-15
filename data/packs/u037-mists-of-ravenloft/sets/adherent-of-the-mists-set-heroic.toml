@@ -1,0 +1,170 @@
+name = "Adherent of the Mists Set (Heroic)"
+icon = "AdherentOfTheMists"
+
+[[item]]
+name = "Adversion"
+
+[[item]]
+name = "Blight Inferno"
+
+[[item]]
+name = "Bracers of the Fallen Hero"
+
+[[item]]
+name = "Crumbling Gloves"
+
+[[item]]
+name = "Cursebane Ring"
+
+[[item]]
+name = "Dawn's Herald-Charm"
+
+[[item]]
+name = "Deathwarden"
+
+[[item]]
+name = "Flightfoot Greaves"
+
+[[item]]
+name = "Garstone's Lenses"
+
+[[item]]
+name = "Gauntlets of Innate Arcanum"
+
+[[item]]
+name = "Keylock Ring"
+
+[[item]]
+name = "Kindred Pendant"
+
+[[item]]
+name = "Knifepalm"
+
+[[item]]
+name = "Lore-Fueled Packbanner"
+
+[[item]]
+name = "Mantle of Fury"
+
+[[item]]
+name = "Mirrorplate Tower"
+
+[[item]]
+name = "Negotiator's Spectacles"
+
+[[item]]
+name = "Perfect Pinnacle"
+
+[[item]]
+name = "Phasecloak"
+
+[[item]]
+name = "Reflective Bloodstone"
+
+[[item]]
+name = "Ring of Nightfall"
+
+[[item]]
+name = "Scarlet Scale Cloak"
+
+[[item]]
+name = "Shadow's Footsteps"
+
+[[item]]
+name = "Silverthread Cloak"
+
+[[item]]
+name = "Skulled Ring"
+
+[[item]]
+name = "Softsole Slippers"
+
+[[item]]
+name = "Summoner's Spectacles"
+
+[[item]]
+name = "Suppressive Fire"
+
+[[item]]
+name = "Symphonic Lenses"
+
+[[item]]
+name = "The Mistfallen"
+
+[[item]]
+name = "Twisthallow Cloak"
+
+[[item]]
+name = "Van Richten's Cane"
+
+[[item]]
+name = "Vistani Fighter's Sash"
+
+[[item]]
+name = "Warsword Shield"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Physical Resistance Rating"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Healing Amplification"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Negative Healing Amplification"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Repair Amplification"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Melee and Ranged Power"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "PRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"

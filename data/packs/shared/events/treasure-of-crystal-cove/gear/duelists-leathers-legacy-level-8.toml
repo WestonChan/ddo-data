@@ -1,0 +1,70 @@
+name = "Duelist's Leathers (legacy) (level 8)"
+description = """
+When pirates who prefer light blades in battle need armor, this is the kind
+of item they will put their money on- a lightweight vest of leather or hide
+that allows plenty of stylish movement in combat."""
+drop_location = "Treasure of Crystal Cove, Turn in 650 Copper Doubloon 375 Silver Doubloon 20 Stolen Amber at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 2
+icon = "LightArmor_1b"
+is_legacy = true
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Greater Nimbleness"
+bonus_type = "Stacking"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+3 Enhancement Bonus"
+description = "+3 Enhancement Bonus: +3 Enhancement bonus to Armor Class."
+icon = "Upgrade"
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Superior Nimbleness"
+description = """
+Superior Nimbleness: This suit of armor looks much less restrictive than others of
+its type. A suit of armor that has this property has a maximum Dexterity bonus
+4 higher than normal, and its armor check penalty is reduced by 4."""
+icon = "Upgrade"
+min_level = 8
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

@@ -1,0 +1,22 @@
+name = "Nightforge Gorget"
+description = "This metal collar protects its wearer's throat and neck from injury."
+drop_location = "A Relic of a Sovereign Past, Turn in 10 Adamantine Ore"
+icon = "Necklace_20"
+item_category = "Jewelry"
+material = "Adamantine"
+minimum_level = 9
+slot = "Neck"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "turn in 10 adamantine ore"
+kind = "quest"
+loot_type = "chest"
+name = "A Relic of a Sovereign Past"

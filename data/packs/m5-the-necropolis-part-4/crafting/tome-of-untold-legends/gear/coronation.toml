@@ -1,0 +1,48 @@
+name = "Coronation"
+description = """
+It is rumored that Kaius II carried this Morningstar on the day he ascended
+to the throne of Karrnath."""
+drop_location = "Tome of Untold Legends, Turn in completed Tome: Binding"
+enhancement_bonus = 5
+icon = "Morningstar_4"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Steel"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Ribcracker V"
+
+[[effect]]
+name = "Persuasion"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Tome of Untold Legends"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.8
+handedness = "One-handed"
+weapon_type = "Morningstar"

@@ -1,0 +1,26 @@
+name = "Obstructing the Orcs"
+bestowed_by = "Sartra Esalovin"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "Keep on the Borderlands"
+patron = "The Gatekeepers"
+zone = "Orc Caves"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Obstructing_the_Orcs"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 1
+
+[[run]]
+tier = "epic"
+level = 21

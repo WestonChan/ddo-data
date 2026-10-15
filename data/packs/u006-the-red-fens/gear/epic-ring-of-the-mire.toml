@@ -1,0 +1,28 @@
+name = "Epic Ring of the Mire"
+description = "This ring was crafted to ease travel through thick, overgrown marsh territory."
+drop_location = "Epic version of Ring of the Mire"
+icon = "Ring_8a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Ring"
+
+[[effect]]
+name = "Spearblock X"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Improved Earthen Guard"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

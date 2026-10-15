@@ -1,0 +1,30 @@
+name = "Fang: Damage +12"
+description = "Deadly +12"
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[effect]]
+name = "Damage Bonus"
+bonus_type = "Competence"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Competence"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Fang: Deadly +12"
+reason = "The wiki names the augment Fang: Damage, where Maetrim names it Fang: Deadly."
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-10-02"
+qualifier = 'family "DinosaurBone"'
+
+[[slot]]
+slot = "isle of dread: artifact fang (accessory)"

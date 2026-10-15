@@ -1,0 +1,197 @@
+name = "Legendary Saltmarsh Explorer"
+icon = "SaltmarshExplorer"
+
+[[item]]
+name = "Black Pearl Ring"
+
+[[item]]
+name = "Explorer of the Depths"
+
+[[item]]
+name = "Legendary Amethyst Loupe"
+
+[[item]]
+name = "Legendary Anchorchain"
+
+[[item]]
+name = "Legendary Belt of Myriad Pockets"
+
+[[item]]
+name = "Legendary Cinderfingers"
+
+[[item]]
+name = "Legendary Corroded Iron Lenses"
+
+[[item]]
+name = "Legendary Crocodile Skin Boots"
+
+[[item]]
+name = "Legendary Crocodile Tooth"
+
+[[item]]
+name = "Legendary Dockworker's Outfit"
+
+[[item]]
+name = "Legendary Driftwood Bracers"
+
+[[item]]
+name = "Legendary Ethereal Ring"
+
+[[item]]
+name = "Legendary Gloves of the Tinkerer"
+
+[[item]]
+name = "Legendary Immaculate Globe"
+
+[[item]]
+name = "Legendary Lizardfolk Tooth Necklace"
+
+[[item]]
+name = "Legendary Marshreed Cloak"
+
+[[item]]
+name = "Legendary Privateer's Leathers"
+
+[[item]]
+name = "Legendary Sailcloth Cloak"
+
+[[item]]
+name = "Legendary Salt-Pearl Ring"
+
+[[item]]
+name = "Legendary Saltiron Bracer"
+
+[[item]]
+name = "Legendary Saltiron Docent"
+
+[[item]]
+name = "Legendary Saltiron Plate"
+
+[[item]]
+name = "Legendary Saltiron Targe"
+
+[[item]]
+name = "Legendary Ship-Mage's Attire"
+
+[[item]]
+name = "Legendary Silver Pocketwatch"
+
+[[item]]
+name = "Legendary Skull of the Sea"
+
+[[item]]
+name = "Legendary Skullduggery Cap"
+
+[[item]]
+name = "Legendary Smash 'n Grabber"
+
+[[item]]
+name = "Legendary Smuggler's Cap"
+
+[[item]]
+name = "Legendary Smuggler's Gear"
+
+[[item]]
+name = "Legendary Snakeskin Belt"
+
+[[item]]
+name = "Legendary Sparksoles"
+
+[[item]]
+name = "Legendary Wind-Swept Buckler"
+
+[[item]]
+name = "Perfected Cinderfingers"
+
+[[item]]
+name = "Perfected Salt-Pearl Ring"
+
+[[item]]
+name = "Ring of the Kraken"
+
+[[item]]
+name = "Sapphire Spyglass"
+
+[[item]]
+name = "Sir Squilliam V, Esq."
+
+[[item]]
+name = "The Brass Admiral"
+
+[[item]]
+name = "The Two-Headed Platinum Piece"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sheltering"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+effect_type = "MeleePower"
+extra_types = [
+    "RangedPower",
+    "UniversalSpellPower",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]

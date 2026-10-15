@@ -1,0 +1,49 @@
+name = "Cormyrian Green Dragonscale Robe"
+description = "A finely silk robe that includes many scales from a green dragon."
+drop_location = "Mikrom Sum: Purple Dragon Knight Patron Vendor"
+icon = "Cloth_9a"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Green Dragonscale"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 9
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Power Store"
+
+[[source]]
+kind = "crafting_system"
+name = "Mikrom Sum"

@@ -1,0 +1,4 @@
+name = "Movement Speed"
+category = "other"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Movement Speed +{1}"

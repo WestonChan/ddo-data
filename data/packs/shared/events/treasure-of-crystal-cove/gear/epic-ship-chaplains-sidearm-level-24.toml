@@ -1,0 +1,55 @@
+name = "Epic Ship-Chaplain's Sidearm (level 24)"
+accepts_sentience = true
+description = "Even pirates, at times, need the guidance of the divine."
+drop_location = "Treasure of Crystal Cove, Turn in 1250 Silver Doubloon 500 Golden Doubloon 40 Stolen Opal 800 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 7
+icon = "Morningstar_6"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Holy 5"
+
+[[effect]]
+name = "Ghostbane 5"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Holy Burst"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.8
+handedness = "One-handed"
+weapon_type = "Morningstar"

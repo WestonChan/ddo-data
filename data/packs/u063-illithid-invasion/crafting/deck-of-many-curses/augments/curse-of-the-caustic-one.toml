@@ -1,0 +1,50 @@
+name = "Curse of the Caustic One"
+description = """
++5 Fortune Bonus to Acid Spell Power
++1% Fortune Bonus to Acid Absorption
++3 Fortune Bonus to Acid Resistance"""
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Acid Spell Power"
+bonus_type = "Fortune"
+value = 5
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Fortune"
+value = 1
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Fortune"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Fortune"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect = "Acid Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Fortune"
+effect = "Acid Resistance"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: deck curse"

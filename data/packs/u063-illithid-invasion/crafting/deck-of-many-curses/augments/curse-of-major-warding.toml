@@ -1,0 +1,20 @@
+name = "Curse of Major Warding"
+description = "+5 Fortune Bonus to MRR"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Fortune"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Fortune"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "crafting: deck curse"

@@ -1,0 +1,47 @@
+name = "Crisis Mail"
+drop_location = "Dinosaur Crisis, end chest"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 7
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Quality"
+value = 21
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 23
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"

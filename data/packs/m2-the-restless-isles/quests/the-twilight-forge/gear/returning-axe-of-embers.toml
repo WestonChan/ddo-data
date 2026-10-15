@@ -1,0 +1,35 @@
+name = "Returning Axe of Embers"
+description = """
+This powerful flametouched throwing axe was handmade in the depths of the Twilight
+Forge foundry thousands of years ago."""
+drop_location = "The Twilight Forge, 2nd Gauntlet chest"
+enhancement_bonus = 5
+icon = "ThrowingAxe_5"
+item_category = "Weapon"
+item_type = "Throwing Axe"
+material = "Flametouched Iron"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Returning"
+
+[[source]]
+chest = "2nd gauntlet chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Twilight Forge"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Thrown"
+weapon_type = "Throwing Axe"

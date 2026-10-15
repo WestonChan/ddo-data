@@ -1,0 +1,35 @@
+name = "Legendary Ludendorf Class Ring"
+description = "The year this ring's bearer graduated has been worn off entirely."
+drop_location = "The Proper Authorities, end chest"
+icon = "Ring_16a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 34
+slot = "Ring"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Tendon Slice"
+value = 12
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Proper Authorities"

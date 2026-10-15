@@ -1,0 +1,3 @@
+name = "Alchemical Earth Attunement"
+description_template = "Attacks and offensive spells deal stacking acid damage over time."
+verbose_name_template = "Alchemical Earth Attunement"

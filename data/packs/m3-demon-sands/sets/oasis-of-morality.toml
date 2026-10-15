@@ -1,0 +1,64 @@
+name = "Oasis of Morality"
+icon = "Menechtarun"
+
+[[item]]
+name = "Adherent's Pendant"
+
+[[item]]
+name = "Bejeweled Letter Opener"
+
+[[item]]
+name = "Chainmail Coif"
+
+[[item]]
+name = "Coronation Shield"
+
+[[item]]
+name = "Shining Crest of St. Markus"
+
+[[item]]
+name = "Vambraces of Inner Light"
+
+[[item]]
+name = "Ward of Undeath"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Lore"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "SpellLore"
+targets = ["Positive"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"

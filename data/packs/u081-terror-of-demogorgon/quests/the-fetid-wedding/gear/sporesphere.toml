@@ -1,0 +1,54 @@
+name = "Sporesphere"
+description = """
+Small clouds of fungal spores emanate from deep within this orb on the hour,
+every hour."""
+drop_location = "The Fetid Wedding, end chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Wood"
+minimum_level = 11
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 4
+
+[[effect]]
+name = "Void Intensity"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 60
+
+[[socket]]
+slot = "crafting: nearly complete: healing amplification (heroic)"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Fetid Wedding"
+
+[[weapon]]
+attack_modifier = "Charisma"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Intelligence"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

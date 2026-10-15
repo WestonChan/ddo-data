@@ -1,0 +1,14 @@
+name = "Cult of the Dragon Mask"
+description = "A mask worn by members of the Cult of the Dragon."
+drop_location = "The Mask of Deception, First 2 cultists, Supply room chest"
+icon = "Helmet_134"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 1
+slot = "Head"
+
+[[source]]
+chest = "first 2 cultists, supply room chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mask of Deception"

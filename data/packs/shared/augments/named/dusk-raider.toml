@@ -1,0 +1,32 @@
+name = "Dusk Raider"
+description = """
+3-Piece Set Bonus: +15 Artifact Bonus to Melee and Ranged Power
+Requires: 50 Threads of Fate, Empty Soul Vessel and Coat of Van Richten
+(The Curse of Strahd)"""
+effect_description = "This augment will suppress any set bonus this item may have."
+family = "Named"
+icon = "ColorlessRaidItemEssence"
+min_level = 30
+set_bonus = "Dusk Raider"
+suppress_set_bonus = true
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

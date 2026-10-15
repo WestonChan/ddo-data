@@ -1,0 +1,36 @@
+name = "Sojourner's Cowl"
+drop_location = "Third Time's a Charm, End chest"
+icon = "Helmet_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 15
+slot = "Head"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 94
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Third Time's a Charm"

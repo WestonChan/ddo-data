@@ -1,0 +1,38 @@
+name = "Diamond of Vitality +20"
+description = "A Vitality bonus to hitpoints"
+family = "Named"
+icon = "Diamond"
+min_level = 11
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Vitality"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Vitality"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

@@ -1,0 +1,3 @@
+name = "Acid Blast"
+description_template = "An acid blast weapon is sheathed in corrosive acid. Critical hits with this weapon deal an additional 1 to 10 acid damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 critical multiplier, and 3 to 30 for a x4 multiplier. Additionally, if you roll a 20 when attacking and confirm the critical hit, the weapon blasts your target, doing 4 to 24 more acid damage."
+verbose_name_template = "Acid Blast"

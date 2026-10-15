@@ -1,0 +1,31 @@
+name = "Dragon's Eye"
+description = """
+A massive star ruby that resembles an eye, especially as it winks from time
+to time."""
+drop_location = "Plane of Night, warded chest"
+icon = "Trinket_28a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 9
+slot = "Trinket"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 104
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 8
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

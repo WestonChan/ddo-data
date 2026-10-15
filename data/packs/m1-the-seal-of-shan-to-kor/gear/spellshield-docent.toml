@@ -1,0 +1,31 @@
+name = "Spellshield Docent"
+description = """
+This docent is all that remained of a hired Warforged mercenary that double-crossed
+the Cloven Jaw Hobgoblins. It grants the host Warforged limited immunity to
+spells."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+enhancement_bonus = 2
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 2
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

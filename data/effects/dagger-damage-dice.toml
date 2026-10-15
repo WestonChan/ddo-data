@@ -1,0 +1,2 @@
+name = "Dagger Damage Dice"
+verbose_name_template = "Gain +0.5[W] to each dagger."

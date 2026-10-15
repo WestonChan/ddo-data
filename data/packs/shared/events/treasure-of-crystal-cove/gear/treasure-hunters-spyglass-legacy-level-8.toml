@@ -1,0 +1,94 @@
+name = "Treasure Hunter's Spyglass (legacy) (level 8)"
+description = """
+A tool such as this is a great aid to the treasure-seeking pirate, for it allows
+him or her to locate small details, find secret passages and notice any traps
+that might be lurking along the way."""
+drop_location = "Treasure of Crystal Cove, Turn in 650 Copper Doubloon 375 Silver Doubloon 20 Stolen Amber at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_17"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 8
+slot = "Trinket"
+
+[[clickie]]
+name = "Detect Secret Doors"
+clickie = "Detect Secret Doors"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 7
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Detect Secret Doors"]
+
+[[socket]]
+slot = "crafting: upgradeable tier 2"
+
+[[socket.option]]
+name = "Spot +11 and Search +11"
+description = """
+Spot +11: Passive: +11 Competence bonus to the Spot skill.
+Search +11: Passive: +11 Competence bonus to the Search skill."""
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Spot"
+value = 11
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Search"
+value = 11
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Search",
+]
+
+[[socket]]
+slot = "crafting: upgradeable tier 3"
+
+[[socket.option]]
+name = "Add Intelligence +4"
+description = """
+Intelligence +4: This item focuses the power of the wearer's mind, granting a
++4 Enhancement bonus to Intelligence."""
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

@@ -1,0 +1,23 @@
+name = "The Sunken Sewer"
+bestowed_by = "Aurla Courson"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "The Sunken Sewer"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Sunken_Sewer"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3

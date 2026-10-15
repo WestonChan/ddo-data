@@ -1,0 +1,27 @@
+name = "Flamering"
+description = "This silver ring contains a single, magical ruby."
+drop_location = "Watch Your Step, End Chest"
+icon = "Ring_2"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Ring"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 38
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 19
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Watch Your Step"

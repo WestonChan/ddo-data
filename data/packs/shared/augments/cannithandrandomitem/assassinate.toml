@@ -1,0 +1,96 @@
+name = "Assassinate"
+choose_level = true
+description = "Adds an Enhancement bonus to the DC of your Assassinate attempts"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    2,
+    2,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+    12,
+    12,
+    13,
+    13,
+    14,
+    14,
+    15,
+    15,
+    15,
+    16,
+    16,
+    17,
+    17,
+    18,
+    18,
+    18,
+    18,
+    18,
+]
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect = "Assassinate"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[slot]]
+slot = "crafting: cannith belt extra"
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith goggles extra"
+
+[[slot]]
+slot = "crafting: cannith ring suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: cannith melee suffix"
+
+[[slot]]
+slot = "crafting: random belt extra"
+
+[[slot]]
+slot = "crafting: random gloves prefix"
+
+[[slot]]
+slot = "crafting: random goggles extra"
+
+[[slot]]
+slot = "crafting: random ring suffix"
+
+[[slot]]
+slot = "crafting: random weapon suffix"

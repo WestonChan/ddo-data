@@ -1,0 +1,173 @@
+[[row]]
+name = "Follower of Aureon"
+acquire = "Train"
+description = """
+You follow Aureon, member of the Sovereign Host and use his favored weapon.
+You are proficient with Quarterstaves and gain +1 to hit with them.
+Quarterstaves are considered as a favored weapon."""
+icon = "Aureon"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Quarterstaff",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Quarterstaff"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Quarterstaff",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Eberron"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Sovereign Host"]
+req_type = "Feat"
+
+[[row]]
+name = "Follower of the Sovereign Host"
+acquire = "Train"
+description = """
+You follow the Sovereign Host.
+You are proficient with Longswords and gain +1 to hit with them.
+Longswords are considered as a favored weapon."""
+icon = "SovereignHost"
+
+[[row.conditional_group]]
+groups = [
+    "Standard",
+    "Epic Feat",
+    "Human Bonus Feat",
+    "Purple Dragon Knight Bonus Feat",
+]
+
+[[row.conditional_group.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[row.group]]
+group_name = "Follower Of"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Longsword",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_Attack"
+targets = ["Longsword"]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Longsword",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Eberron"]
+req_type = "StartingWorld"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Aureon"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Blood of Vol"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Olladra"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of Onatar"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Follower of the Silver Flame"]
+req_type = "Feat"

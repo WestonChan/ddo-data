@@ -1,0 +1,20 @@
+name = "Sovereign Rune of Natural Armor"
+description = "Natural Armor +4: Passive: +4 Natural Armor Bonus to Armor Class."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Enhancement"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect = "Natural Armor"
+effect_type = "NaturalArmor"
+
+[[slot]]
+slot = "crafting: sovereign rune"

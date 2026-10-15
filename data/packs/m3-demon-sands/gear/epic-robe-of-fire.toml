@@ -1,0 +1,50 @@
+name = "Epic Robe of Fire"
+description = """
+A small fire elemental has been bound into the silken cloth of this robe enhancing
+many aspects of the wearer's command of fire."""
+drop_location = "Epic version of Robe of Fire"
+icon = "Cloth_1b"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Fire Shield (Hot)"
+clickie = "Fire Shield (Hot)"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Incineration Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Fire Shield (Hot)"]
+
+[[socket]]
+slot = "blue"

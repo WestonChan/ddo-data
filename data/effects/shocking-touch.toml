@@ -1,0 +1,3 @@
+name = "Shocking Touch"
+description_template = "This weapon tingles when held. A shocking touch weapon deals an extra +1 electric damage on a successful hit."
+verbose_name_template = "Shocking Touch"

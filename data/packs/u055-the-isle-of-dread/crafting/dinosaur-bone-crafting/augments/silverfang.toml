@@ -1,0 +1,53 @@
+name = "Silverfang"
+description = "+2 Profane bonus to Spell DCs, Tactics, Assassinate"
+family = "DinosaurBone"
+icon = "ScaleSilver"
+min_level = 31
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Trip DC"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Sunder DC"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Stun DC"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "Assassinate",
+]
+
+[[slot]]
+slot = "isle of dread: fang (armor)"

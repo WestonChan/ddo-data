@@ -1,0 +1,21 @@
+name = "Touch of the Silver Flame"
+description = """
+This small icon of the Silver Flame is said to cause harm to any undead creature
+that attacks its bearer."""
+drop_location = "Necropolis, Turn in Scarlet Scarab Powder"
+icon = "Trinket_60"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Lesser Undead Guard"
+
+[[source]]
+kind = "vendor"
+name = "Squire Rale"
+
+[[source.price]]
+ingredient = "Scarlet Scarab Powder"
+quantity = 1

@@ -1,0 +1,3 @@
+name = "Blinding"
+description_template = "This item can generate a flash of light that has a chance to blind opponents."
+verbose_name_template = "Blinding"

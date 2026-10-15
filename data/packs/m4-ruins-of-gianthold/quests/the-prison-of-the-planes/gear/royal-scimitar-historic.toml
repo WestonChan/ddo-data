@@ -1,0 +1,42 @@
+name = "Royal Scimitar (historic)"
+description = """
+One of six swords passed down through the royal family of Aurelia. Its edge
+is sharp enough to cut through even the toughest armor."""
+drop_location = "The Prison of the Planes, Shavarath room's chest"
+enhancement_bonus = 3
+icon = "Scimitar_10"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Destruction"
+
+[[source]]
+chest = "shavarath room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

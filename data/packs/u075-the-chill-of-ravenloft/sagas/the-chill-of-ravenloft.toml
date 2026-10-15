@@ -1,0 +1,22 @@
+name = "The Chill of Ravenloft"
+pack = "The Chill of Ravenloft"
+wiki_url = "https://ddowiki.com/page/The_Chill_of_Ravenloft_(Legendary)"
+quests = [
+    "A Light in the Attic",
+    "A Miner Sacrifice",
+    "Beneath the City Streets",
+    "Cold Snap",
+    "Ends and Means",
+    "Locked Away (Part One)",
+    "Locked Away (Part Two)",
+    "Snowfall and Sunlight",
+    "Special Delivery",
+    "The Body Snatchers",
+    "The Proper Authorities",
+    "The Wish",
+    "Zoo Creeper",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Chill_of_Ravenloft_(Legendary)"
+read = "2026-10-02"

@@ -63,4 +63,3 @@ critical_threat_range = 3
 critical_multiplier = 2
 handedness = "Two-handed"
 dr_bypass = ["Pierce", "Magic"]
-

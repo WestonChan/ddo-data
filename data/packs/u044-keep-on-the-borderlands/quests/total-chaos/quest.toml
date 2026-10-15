@@ -1,0 +1,26 @@
+name = "Total Chaos"
+bestowed_by = "Howarth the Faithkeeper"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Keep on the Borderlands"
+patron = "The Gatekeepers"
+zone = "Temple of Evil Chaos"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Total_Chaos"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 2
+
+[[run]]
+tier = "epic"
+level = 22

@@ -1,0 +1,59 @@
+name = "Doctor Lifestone's Hunting Horn"
+description = "It seems Doctor Lifestone had one last trick up his sleeves."
+drop_location = "Skeletons in the Closet, Free Yarrow optional chest"
+icon = "Trinket_54"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 31
+slot = "Trinket"
+
+[[clickie]]
+name = "Summon Legendary Dinosaur"
+clickie = "Summon Legendary Dinosaur"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Spell: Summon Raptor"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Legendary Dinosaur"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "free yarrow optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Skeletons in the Closet"

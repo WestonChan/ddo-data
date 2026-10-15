@@ -1,0 +1,94 @@
+name = "Light and Darkness"
+description = """
+Long ago a champion of light and a champion of darkness faced off against one
+another in perfect balance. Neither could defeat the other until the champion
+of light sacrificed herself to mortally wound her foe. In the days that followed,
+this item was forged from the shattered remains of their shields."""
+drop_location = "The Mindsunder, Disc locked optional end chest ; \n Chance on every 3rd completion of The Mindsunder"
+enhancement_bonus = 5
+icon = "Shield_34"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Mithral"
+minimum_level = 18
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 11
+max_dex_bonus = 0
+shield_bonus = 12
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Superior Stability"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "DR 3/-"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "crafting: suppressed power"
+
+[[socket.option]]
+name = "Adds DR 5/Epic, Bashing"
+description = """
+Damage Reduction 5/Epic: Reduces physical damage by 5, except from Epic aligned attacks.
+Bashing: This shield does an additional 1 to 6 damage when used to shield bash."""
+icon = "Upgrade"
+min_level = 18
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Not Set"
+effect_type = "DR"
+targets = ["Epic"]
+
+[[source]]
+chest = "disc locked optional end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mindsunder"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "Off-hand"
+weapon_type = "Large Shield"

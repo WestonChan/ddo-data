@@ -1,0 +1,23 @@
+name = "Fists of Justice"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Gloves_3b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Sun Elf"
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

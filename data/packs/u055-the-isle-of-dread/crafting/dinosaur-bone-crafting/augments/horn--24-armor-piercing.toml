@@ -1,0 +1,47 @@
+name = "Horn: +24 Armor Piercing"
+description = "+24 Enhancement bonus to Armor piercing"
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[effect]]
+name = "Fortification Bypass"
+bonus_type = "Enhancement"
+value = 24
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[note]]
+kind = "augment"
+original_name = "Horn: +23 Armor Piercing"
+field = "description"
+upstream = "+23 Enhancement bonus to Armor piercing"
+reason = "The wiki's Horn: Armor Piercing is +24%, not +23."
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Horn: +23 Armor Piercing"
+reason = "The wiki's Horn: Armor Piercing is +24%, not +23."
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment_bonus"
+original_name = "Horn: +23 Armor Piercing"
+field = "value"
+upstream = 23
+reason = "The wiki's Horn: Armor Piercing is +24%, not +23."
+url = "https://ddowiki.com/page/Dinosaur_Bone_crafting"
+read = "2026-09-30"
+qualifier = "Fortification Bypass / Enhancement"
+
+[[slot]]
+slot = "isle of dread: artifact horn (accessory)"

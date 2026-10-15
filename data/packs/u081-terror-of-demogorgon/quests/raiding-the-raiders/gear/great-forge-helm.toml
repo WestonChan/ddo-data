@@ -1,0 +1,36 @@
+name = "Great Forge Helm"
+description = "Made centuries ago in the glory days for Gauntlgrym."
+icon = "Helmet_12"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Raiding the Raiders"

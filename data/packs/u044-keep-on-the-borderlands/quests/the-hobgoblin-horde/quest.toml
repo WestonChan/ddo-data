@@ -1,0 +1,26 @@
+name = "The Hobgoblin Horde"
+bestowed_by = "Ranbolt Satherwild"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Keep on the Borderlands"
+patron = "The Gatekeepers"
+zone = "Hobgoblin Caves"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Hobgoblin_Horde"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 1
+
+[[run]]
+tier = "epic"
+level = 21

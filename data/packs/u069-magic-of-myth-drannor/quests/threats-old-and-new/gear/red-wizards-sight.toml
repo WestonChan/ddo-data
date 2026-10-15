@@ -1,0 +1,41 @@
+name = "Red Wizard's Sight"
+description = "A vision for the future."
+drop_location = "Threats Old and New, Raid Warded chest"
+icon = "Goggles_19b"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 33
+slot = "Goggles"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 27
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 8
+
+[[socket]]
+slot = "crafting: sealed in undeath"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Threats Old and New"

@@ -1,0 +1,105 @@
+name = "Legendary Vulkoor's Chosen"
+icon = "Menechtarun"
+
+[[item]]
+name = "Legendary Ancient Vulkoorim Dagger"
+
+[[item]]
+name = "Legendary Bloodstone"
+
+[[item]]
+name = "Legendary Bracers of Deftness"
+
+[[item]]
+name = "Legendary Collapsible Shortbow"
+
+[[item]]
+name = "Legendary Pouch of Jerky"
+
+[[item]]
+name = "Legendary Shield of the Scorpion"
+
+[[item]]
+name = "Legendary Silken Mail"
+
+[[item]]
+name = "Legendary Spectral Gloves"
+
+[[item]]
+name = "Legendary Sting"
+
+[[item]]
+name = "Legendary Vulkoorim Dervish Robe"
+
+[[item]]
+name = "Legendary Vulkoorim Fighting Leathers"
+
+[[item]]
+name = "Legendary Vulkoorim Pendant"
+
+[[item]]
+name = "Perfected Bloodstone"
+
+[[item]]
+name = "Perfected Vulkoorim Pendant"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Poison Resistance"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Dexterity"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Constitution"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "EnergyResistance"
+targets = ["Poison"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "SneakAttackDice"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect_type = "AbilityBonus"
+targets = [
+    "Dexterity",
+    "Constitution",
+]

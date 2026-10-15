@@ -1,0 +1,2007 @@
+name = "Arcane Trickster"
+background = "RogueBackground"
+icon = "Rogue"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Arcane Trickster: Trained in Trickery"
+cost_per_rank = [1]
+description = """
+You gain +5 Universal Spell Power, +2% bonus to Doublestrike and Doubleshot,
+per Arcane Trickster core ability you possess.
+Additionally, some of your emotes will generate a mage hand which will emote with you."""
+icon = "ATTrainedInTrickery"
+internal_name = "ArcaneTricksterCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Arcane Trickster: Stolen Spell I"
+cost_per_rank = [1]
+description = "Choose a stolen spell"
+icon = "ATStolenSpell"
+internal_name = "ArcaneTricksterCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["ArcaneTricksterCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Stolen Spell - Conjure Bolts"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATConjureBolts"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    20,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Conjure Bolts",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Cure Light Wounds"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "CureLightWounds"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    5,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cure Light Wounds",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Fine Dust"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATFineDust"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    3,
+    5,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fine Dust",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Magic Missile"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATMagicMissile"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Magic Missile",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Shillelagh"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATShillelagh"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    5,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shillelagh",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Sonic Blast"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "SSSonicBlast"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Sonic Blast",
+    "Arcane Trickster",
+]
+
+[[enhancement]]
+name = "Arcane Trickster: Stolen Spell II"
+cost_per_rank = [1]
+description = "Choose a stolen spell"
+icon = "ATStolenSpell"
+internal_name = "ArcaneTricksterCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 6
+
+[[enhancement.requirement]]
+items = ["ArcaneTricksterCore2"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Stolen Spell - Chain Missile"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATChainMissile"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Chain Missiles",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Cure Moderate Wounds"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "CureModerateWounds"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    20,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cure Moderate Wounds",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Personal Augmentation Insightful Damage"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATInsightfulDamage"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    20,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Insightful Damage",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Salt Crystals"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATSaltCrystals"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    20,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Salt Crystals",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Salt Ray"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATSaltRay"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    20,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Salt Ray",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Sound Burst"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATSoundburst"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "ATSoundBurst"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image ATSoundburst.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    20,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Soundburst",
+    "Arcane Trickster",
+]
+
+[[enhancement]]
+name = "Arcane Trickster: Stolen Spell III"
+cost_per_rank = [1]
+description = "Choose a stolen spell"
+icon = "ATStolenSpell"
+internal_name = "ArcaneTricksterCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 12
+
+[[enhancement.requirement]]
+items = ["ArcaneTricksterCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Stolen Spell - Cure Serious Wounds"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATCureSeriousWounds"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    20,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cure Serious Wounds",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Flash Freeze"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATFlashFreeze"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Flash Freeze",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Force Missile"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATForceMissiles"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    20,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Force Missiles",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Hold Monster"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATHoldMonster"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    20,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Hold Monster",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Radiant Force Field"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATRadiantForcefield"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    20,
+    180,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Radiant Forcefield",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Thorn Bloom"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATThornBloom"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    20,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Thorn Bloom",
+    "Arcane Trickster",
+]
+
+[[enhancement]]
+name = "Arcane Trickster: Stolen Spell IV"
+cost_per_rank = [1]
+description = "Choose a stolen spell"
+icon = "ATStolenSpell"
+internal_name = "ArcaneTricksterCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 18
+
+[[enhancement.requirement]]
+items = ["ArcaneTricksterCore4"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Stolen Spell - Disintegrate"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATDisintegrate"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Disintegrate",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Fire Seeds"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATFireSeeds"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fire Seeds",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Greater Shout"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "GreaterShout"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Shout",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Heal"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "Heal"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    20,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Heal",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Tenser's Transformation"
+cost_per_rank = [1]
+description = """
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "EKTensersTransformation"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Tenser's Transformation",
+    "Arcane Trickster",
+]
+
+[[enhancement.selection]]
+name = "Stolen Spell - Turn to Frog"
+cost_per_rank = [1]
+description = """
+Throw a vial at a single enemy, who must succeed a Fortitude saving throw or
+be turned into a frog.
+
+This is a stolen spell which acts like a Spell-Like Ability.
+The DC of these spells are equal to your Disable Device Skill and are not
+affected by Heighten or Embolden Meta Magics."""
+icon = "ATTurnToFrog"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    25,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Turn to Frog",
+    "Arcane Trickster",
+]
+
+[[enhancement]]
+name = "Arcane Trickster: Master of Trickery"
+cost_per_rank = [1]
+description = """
++2 all Attributes, +2 Imbue Dice.
+
+Magical Ambush now scales with 100% Spellpower.
+Spell Thief now steals 100% more Spell Points."""
+icon = "ATMasterOfTrickery"
+internal_name = "ArcaneTricksterCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ArcaneTricksterCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 20
+
+[[enhancement.requirement]]
+items = ["ArcaneTricksterCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "ArcaneTricksterCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Arcane Trickster: Mage Hand: Eye Poke"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Target takes 1d6 + 1d6 per speak attack dice in Force damage that scales with
+Force spell power. Target must make a Reflex save against your disable device
+skill +1d20, if they fail they become blind for 12 seconds with a recurring save
+every 4 seconds. This ability acts like an extra action but shares a 1 second
+cooldown with other offensive mage hand abilities. This is not considered a
+spell but does apply magical ambush.
+Cooldown: 10 seconds
+Cost: 2 spell points
+
+Passive: Gain 30 Spell Points."""
+icon = "ATEyePoke"
+internal_name = "ATEyePoke"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.dc]]
+name = "Mage Hand: Eye Poke"
+dc_type = "Blind"
+dc_versus = "Reflex"
+description = """
+Target takes 1d6 + 1d6 per speak attack dice in Force damage that scales with
+Force spell power. Target must make a Reflex save against your disable device skill
++1d20, if they fail they become blind for 12 seconds with a recurring save
+every 4 seconds. This ability acts like an extra action but shares a 1 second
+cooldown with other offensive mage hand abilities. This is not considered a
+spell but does apply magical ambush."""
+icon = "ATEyePoke"
+other = "d20"
+skill = "Disable Device"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Arcane Trickster: Magic Fingers"
+cost_per_rank = [1]
+description = "Gain +[1/2/3] bonus to Open Locks, Disable Device and Concentration."
+icon = "ATMagicFingers"
+internal_name = "ATMagicFingers"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Open Lock",
+    "Disable Device",
+    "Concentration",
+]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Arcane Trickster: Keep it Flexible"
+cost_per_rank = [1]
+description = """
+-[5/10/15]% Arcane Spell Failure from equipped Armor, Shields, and Warforged
+Body feats."""
+icon = "ATKeepItFlexible"
+internal_name = "ATKeepItFlexible"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+extra_types = ["ArcaneSpellFailureShields"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Arcane Trickster: My Favorite Bauble"
+cost_per_rank = [2]
+description = "Gain +10 Universal Spell Power when using a staff, dagger, throwing dagger or an orb."
+icon = "ATMyFavoriteBauble"
+internal_name = "ATMyFavoriteBauble"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dagger"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Throwing Dagger"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Orb"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Arcane Trickster: I Prefer Subtlety"
+cost_per_rank = [1]
+description = "Reduce threat from your missile and spell attacks by [10/20/30]%"
+icon = "ATIPreferSubtlety"
+internal_name = "ATIPreferSubtlety"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -10,
+    -20,
+    -30,
+]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusSpell"
+extra_types = ["ThreatBonusRanged"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Arcane Trickster: Mage Hand: Slap"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Target takes 1d6 +1d6 per sneak attack dice in Force damage that scales with
+spell power. They must make a Fortitude save against your Disable Device Skill
++1d20 or become stunned for 6 seconds with recurring saves every 2 seconds.
+This ability acts like an extra action but shares a 1 second cooldown with
+other offensive mage hand abilities. This is not considered a spell but does
+apply magical ambush.
+Cooldown: 10 seconds
+Cost: 2 spell points
+
+Passive: Gain 30 Spell Points."""
+icon = "ATMageHandSlap"
+internal_name = "ATMageHandSlap"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.dc]]
+name = "Mage Hand: Slap"
+dc_type = "Stun"
+dc_versus = "Fortitude"
+description = """
+Target takes 1d6 +1d6 per sneak attack dice in Force damage that scales with
+spell power. They must make a Fortitude save against your Disable Device Skill
++ 1d20 or become stunned for 6 seconds with recurring saves every 2 seconds.
+This ability acts like an extra action but shares a 1 second cooldown with
+other offensive mage hand abilities. This is not considered a spell but does
+apply magical ambush."""
+icon = "ATMageHandSlap"
+other = "d20"
+skill = "Disable Device"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["ATEyePoke"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcane Trickster: Protective Gear"
+cost_per_rank = [1]
+description = "Gain a +[2/4/6] to Magical Resistance Rating and Magical Resistance Rating Cap."
+icon = "ATProtectiveGear"
+internal_name = "ATProtectiveGear"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+extra_types = ["MRRCap"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Arcane Trickster:Three Handed Casting"
+cost_per_rank = [1]
+description = """
+Your Quicken Spell Feat costs [1/2/4] Spell Points less. Stacks with Efficient
+Quicken from other trees."""
+icon = "ATThreeHandedCasting"
+internal_name = "ATThreeHandedCasting"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Arcane Trickster: Arms of the Trickster"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Choice of how your Weapon Imbue will scale..."
+icon = "ATArmsOfTheTrickster"
+internal_name = "ATArmsOfTheTrickster"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 2
+
+[[enhancement.selection]]
+name = "Trickster's Blade"
+cost_per_rank = [1]
+description = """
+Imbue Toggle: Your weapon attacks do 1d4+1 Force damage. Scales with 200% Melee power.
+Costs 5SP to activate."""
+icon = "ATTrickstersBlade"
+is_clickie = true
+
+[[enhancement.selection.stance]]
+name = "Trickster's Blade"
+description = """
+Your weapon attacks do 1d4+1 Force damage. Scales with 200% Melee power.
+Costs 5SP to activate."""
+group_name = "Imbue"
+icon = "ATTrickstersBlade"
+
+[[enhancement.selection]]
+name = "Trickster's Bolt"
+cost_per_rank = [1]
+description = """
+Imbue Toggle: Your weapon attacks do 1d4+1 Force damage. Scales with 200% Ranged power.
+Costs 5SP to activate."""
+icon = "ATTrickstersBolt"
+is_clickie = true
+
+[[enhancement.selection.stance]]
+name = "Trickster's Bolt"
+description = """
+Your weapon attacks do 1d4+1 Force damage. Scales with 200% Ranged power.
+Costs 5SP to activate."""
+group_name = "Imbue"
+icon = "ATTrickstersBolt"
+
+[[enhancement.selection]]
+name = "Trickster's Trick"
+cost_per_rank = [1]
+description = """
+Imbue Toggle: Your weapon attacks do 1d4+1 Force damage. Scales with 100% Force spell power.
+Costs 5SP to activate."""
+icon = "ATTrickstersTrick"
+is_clickie = true
+
+[[enhancement.selection.stance]]
+name = "Trickster's Trick"
+description = """
+Your weapon attacks do 1d4+1 Force damage. Scales with spell power.
+Costs 5SP to activate."""
+group_name = "Imbue"
+icon = "ATTrickstersTrick"
+
+[[enhancement]]
+name = "Arcane Trickster: Catcher Glove"
+cost_per_rank = [2]
+description = """
+Your mage hand will deflect incoming projectiles occasionally granting the
+deflect arrow feat.
+
+Passive: You also gain a +2% bonus to dodge."""
+icon = "ATCatcherGlove"
+internal_name = "ATCatcherGlove"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Arcane Trickster: Mage Hand: Meddle with Reality"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Any creature you target with mage hand Slap or Eye Poke undergoes Meddled Reality.
+Target is no longer immune to sneak attacks, -25% penalty to Fortification and
+-4 to Will saves. This lasts for 30 seconds.
+
+For non-bosses there is an additional effect for 3 seconds where the Creature's
+type changes to Fey, Magical Beast or something even odder.
+
+Does not remove race-based damage immunities, but does remove race-based effect
+immunities, such as allowing Undead to be slain by Death effects.
+
+Passive: Gain 30 Spell Points."""
+icon = "ATMeddleWithReality"
+internal_name = "ATMeddleWithReality"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["ATMageHandSlap"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcane Trickster: More Magic More Fun"
+cost_per_rank = [2]
+description = "Choose an option."
+icon = "ATMoreMagicMoreFun"
+internal_name = "ATMoreMagicMoreFun"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "Mixed Magics"
+cost_per_rank = [2]
+description = """
+Your base Caster Level is equal to your Character Level (Maximum 20).
+This does not change the caster level of Rune Arms, Wands, Scrolls, or other
+items."""
+icon = "ATMoreMagicMoreFun"
+
+[[enhancement.selection]]
+name = "Quick Silver"
+cost_per_rank = [2]
+description = "You gain the Quick Draw feat and 5 Universal Spell Power."
+icon = "ATQuickSilver"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Quick Draw"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement]]
+name = "Arcane Trickster: Tricks on Tricks"
+cost_per_rank = [1]
+description = """
+Your weapon attacks and offensive Evocation spells have a chance of granting
+you a stack of Tricks on Tricks, which gives a +1 to Illusion and Enchantment
+DCs. This stacks up to 4 times. The stacks decay at a rate of 1 every 30 seconds."""
+icon = "ATTricksOnTricks"
+internal_name = "ATTricksOnTricks"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+stack_source = "Tricks on Tricks"
+targets = [
+    "Enchantment",
+    "Illusion",
+]
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Tricks on Tricks"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Arcane Trickster: Applied Force"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Gain +1 Imbue die per 3 Rogue levels and +10% to Critical damage with Force
+spells."""
+icon = "ATAppliedForce"
+internal_name = "ATAppliedForce"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+stack_source = "Arcane Trickster"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["Force"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["ATArmsOfTheTrickster"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcane Trickster: Ability I"
+cost_per_rank = [2]
+description = "Choose between +1 Dexterity, Intelligence or Charisma"
+icon = "DexIntCha"
+internal_name = "ATAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Arcane Trickster: Mage Hand: Helping Hand"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Removes most crowd control effects from a target, heals them for 50% of their
+Max Hit points and applies a restoration effect to the target. Can be used
+while Crowd Controlled. If your incapacitated for more than 6 seconds and have
+5 spell points you will receive the helping hand effect. This cannot occur
+again until you are out of combat.
+Cooldown: 1 minute.
+Cost: 5 Spell Points
+
+Mage Hand effects count as 'extra effects', do not count as spells, and do not
+interrupt other actions. All Mage Hand effects share a 1 second cooldown.
+
+Passive: Gain 30 Spell Points."""
+icon = "ATHelpingHand"
+internal_name = "ATHelpingHand"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ATMeddleWithReality"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcane Trickster: Slippery Magic"
+cost_per_rank = [2]
+description = """
+When you cast an offensive spell, you gain a stack of Slippery Magic.
+Slippery Magic: +5% uncapped bonus to dodge, +1 Reflex saves.
+This can stack up to 3 times. 1 stack drops every 30 seconds.
+
+Passive: +3% bonus to dodge."""
+icon = "ATSlipperyMagic"
+internal_name = "ATSlipperyMagic"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+stack_source = "Slippery Magic"
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+stack_source = "Slippery Magic"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Slippery Magic"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Arcane Trickster: Pin Point"
+cost_per_rank = [1]
+description = """
+Game +[1/2/3] Spell Penetration and [3/6/10]% Fortification Bypass.
+Rank 3: Your mage hand spells now automatically dispel Nightshield and Shield
+spell effects on the target."""
+icon = "ATPinPoint"
+internal_name = "ATPinPoint"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "FortificationBypass"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Arcane Trickster: Sharp Magic"
+cost_per_rank = [1]
+description = "+1 Sneak Attack dice for every Metamagic feat you've trained."
+icon = "ATSharpMagic"
+internal_name = "ATSharpMagic"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+display_name = "Arcane Trickster: Sharp Magic"
+effect_type = "SneakAttackDice"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ATAppliedForce"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcane Trickster: Ability II"
+cost_per_rank = [2]
+description = "Choose between +1 Dexterity, Intelligence or Charisma"
+icon = "DexIntCha"
+internal_name = "ATAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Arcane Trickster: Presto"
+cost_per_rank = [2]
+description = """
+Mage hand snaps it's fingers over a non-boss target to make them disappear.
+We don't know where they go, it's magic! Target gets a Will save to negate the
+effect with a DC equal to your disable device skill. This ability acts like an
+extra action but shares a 1 second cooldown with other offensive mage hand
+abilities. This is not considered a spell.
+Cooldown: 20 seconds
+Cost: 10 spell points
+
+Passive: Gain 80 Spell Points."""
+icon = "ATPresto"
+internal_name = "ATPresto"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.dc]]
+name = "Mage Hand: Presto"
+dc_type = "Disappear"
+dc_versus = "Will"
+description = """
+Mage hand snaps it's fingers over a non-boss target to make them disappear.
+We don't know where they go, it's magic! Target gets a Will save to negate the
+effect with a DC equal to your disable device skill. This ability acts like an
+extra action but shares a 1 second cooldown with other offensive mage hand
+abilities. This is not considered a spell."""
+icon = "ATPresto"
+skill = "Disable Device"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [80]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["ATHelpingHand"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcane Trickster: Extra Hand"
+cost_per_rank = [1]
+description = """
+The Spell Point cost of all Metamagic feats are reduced by 2.
+
+An extra mage hand sometimes manifests when a monster strikes you with a spell
+and knocks them down."""
+icon = "ATExtraHand"
+internal_name = "ATExtraHand"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostAccelerate"
+extra_types = [
+    "MetamagicCostEschewMaterials",
+    "MetamagicCostEmbolden",
+    "MetamagicCostEmpower",
+    "MetamagicCostEmpowerHealing",
+    "MetamagicCostEnlarge",
+    "MetamagicCostExtend",
+    "MetamagicCostHeighten",
+    "MetamagicCostIntensify",
+    "MetamagicCostMaximize",
+    "MetamagicCostQuicken",
+]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Arcane Trickster: Magic is a Tricky Business"
+cost_per_rank = [1]
+description = """
+You gain a +[1/2] bonus to Illusion and Enchantment DCs.
+Rank 2: Passive - Tricks on Tricks now also increase your Universal Spell Power
+by 5 and your to-hit and damage with weapons by 1 per stack."""
+icon = "ATTrickyBusiness"
+internal_name = "ATTrickyBusiness"
+is_tier5 = true
+min_spent = 30
+ranks = 2
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Enchantment",
+    "Illusion",
+]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+rank = 2
+stack_source = "Tricks on Tricks"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+rank = 2
+stack_source = "Tricks on Tricks"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Arcane Trickster: Good with my Hands"
+cost_per_rank = [1]
+description = """
+Gain a +[3/6/10] bonus to Melee, Ranged and Force Spell Power.
+
+Rank 3: Passive - Your Magic Resistance Rating Cap is increased by 8."""
+icon = "ATGoodWithMyHands"
+internal_name = "ATGoodWithMyHands"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Force"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "MRRCap"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Arcane Trickster: Not Half Bad..."
+cost_per_rank = [2]
+description = "Choose what your not half bad at..."
+icon = "ATNotHalfBad"
+internal_name = "ATNotHalfBad"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellLore"
+
+[[enhancement.requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Not that Bad with a Blade"
+cost_per_rank = [2]
+description = """
+When using melee weapons, you gain a +1 Competence bonus to Critical Threat Range
+and Critical Damage Multiplier.
+
++15% Competence bonus to Maximum Hit Points
++5% Universal Spell Critical Chance"""
+icon = "ATNotHalfBadBlade"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "WeaponCriticalRangeClass"
+extra_types = ["WeaponCriticalMultiplierClass"]
+targets = ["Melee"]
+
+[[enhancement.selection]]
+name = "Not that Bad with a Bow"
+cost_per_rank = [2]
+description = """
+While using ranged weapons, you gain a +1 Competence bonus to Critical Threat Range
+and Critical Damage Multiplier, as well as +10% Dodge Bypass.
+
++5% Universal Spell Critical Chance"""
+icon = "ATNotHalfBadBow"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "DodgeBypass"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "WeaponCriticalRangeClass"
+extra_types = ["WeaponCriticalMultiplierClass"]
+targets = ["Ranged"]
+
+[[requirement]]
+items = ["Arcane Trickster"]
+req_type = "Class"

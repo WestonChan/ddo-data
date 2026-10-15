@@ -1,0 +1,35 @@
+name = "Ring of the Buccaneer (level 4)"
+description = """
+This ring is coveted by many who travel by sea for its ability to make one more
+dexterous, and better able to survive the perils of the ocean."""
+drop_location = "Treasure of Crystal Cove, Turn in 100 Silver Doubloon 50 Golden Doubloon 15 Stolen Pyrite 300 Green Dragonshard at Euphonia's Barter Box"
+icon = "Ring_34"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 4
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 1
+
+[[effect]]
+name = "Underwater Action"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

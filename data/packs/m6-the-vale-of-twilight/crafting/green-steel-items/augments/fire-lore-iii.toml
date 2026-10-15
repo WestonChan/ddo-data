@@ -1,0 +1,32 @@
+name = "Fire Lore III"
+adds_augment = "Accessory Subjugation"
+description = """
+Fire Lore III: Passive: Your Fire spells gain a 6% Equipment bonus
+to their chance to critical hit and a 0.25 spell critical damage bonus.
+Fire:Dominion:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[effect]]
+name = "Fire Spell Lore"
+bonus_type = "Equipment"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [0.25]
+bonus_type = "Equipment"
+effect_type = "SpellCriticalDamage"
+targets = ["Fire"]
+
+[[slot]]
+slot = "crafting: accessory invasion"

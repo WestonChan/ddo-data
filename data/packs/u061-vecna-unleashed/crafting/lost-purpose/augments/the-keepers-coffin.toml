@@ -1,0 +1,9 @@
+name = "The Keeper's Coffin"
+description = "Adds The Keeper's Coffin set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 18
+set_bonus = "The Keeper's Coffin"
+
+[[slot]]
+slot = "crafting: lost purpose"

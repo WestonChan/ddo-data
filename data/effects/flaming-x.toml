@@ -1,0 +1,3 @@
+name = "Flaming X"
+description_template = "On Hit: 10 to 40 Fire Damage."
+verbose_name_template = "Flaming X"

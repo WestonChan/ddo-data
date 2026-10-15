@@ -1,0 +1,13 @@
+name = "Litany of the Dead Part 1"
+pack = "The Necropolis, Part 1"
+quests = [
+    "Tomb of the Sanguine Heart",
+    "Tomb of the Crimson Heart",
+    "Tomb of the Burning Heart",
+    "Tomb of the Immortal Heart",
+    "The Bloody Crypt",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Litany_of_the_Dead_Part_1"
+read = "2026-10-02"

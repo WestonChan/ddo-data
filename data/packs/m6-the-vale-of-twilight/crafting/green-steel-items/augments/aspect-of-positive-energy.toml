@@ -1,0 +1,10 @@
+name = "Aspect of Positive Energy"
+description = """
+Raise Dead (1/day)
+Positive:Positive"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect i"

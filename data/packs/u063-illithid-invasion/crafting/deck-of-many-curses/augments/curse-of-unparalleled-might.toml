@@ -1,0 +1,25 @@
+name = "Curse of Unparalleled Might"
+description = "While under the effects of any Action Boost, you gain a +6 Fortune Bonus to Strength."
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Strength"
+bonus_type = "Fortune"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Fortune"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[slot]]
+slot = "crafting: deck curse"

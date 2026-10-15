@@ -3,16 +3,19 @@
   "offset": 0,
   "patrons": [
     {
-      "id": 1,
-      "name": "Agents of Argonnessen"
+      "id": 554952258455002,
+      "name": "Agents of Argonnessen",
+      "slug": "agents-of-argonnessen"
     },
     {
-      "id": 21,
-      "name": "Battlehammer Expedition"
+      "id": 8659349075020032,
+      "name": "Battlehammer Expedition",
+      "slug": "battlehammer-expedition"
     },
     {
-      "id": 19,
-      "name": "Cormanthor Elves"
+      "id": 7855946773030346,
+      "name": "Cormanthor Elves",
+      "slug": "cormanthor-elves"
     }
   ],
   "total": 22

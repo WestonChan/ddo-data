@@ -1,0 +1,34 @@
+name = "Curse of the Power of Body"
+description = "+1 Fortune Bonus to Strength, Dexterity and Constitution"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Strength"
+bonus_type = "Fortune"
+value = 1
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Fortune"
+value = 1
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+]
+
+[[slot]]
+slot = "crafting: deck curse"

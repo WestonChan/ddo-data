@@ -1,0 +1,77 @@
+name = "Epic Litany of the Dead"
+description = """
+The Litany of the Dead is a powerful book the Abbot used to attempt to ascend to godhood. A faint glow eminates from the tome from an apparent attempt to purge it of evil magic.
+
+It didn't work."""
+drop_location = "The Mark of Death, warded chest"
+icon = "Trinket_30"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 26
+slot = "Trinket"
+
+[[clickie]]
+name = "Turn the Page"
+clickie = "Turn the Page"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[effect]]
+name = "Litany of the Dead II - Ability Bonus"
+
+[[effect]]
+name = "Litany of the Dead II - Combat Bonus"
+
+[[effect]]
+name = "Light of Dawn"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Turn the Page"]
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Mark of Death"

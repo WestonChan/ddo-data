@@ -1,0 +1,27 @@
+name = "Ghosts of Perdition"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 150
+pack = "Chill of Ravenloft"
+patron = "The Coin Lords"
+zone = "Test zone"
+
+[[citation]]
+url = "https://ddowiki.com/page/Ghosts_of_Perdition"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 32
+
+[[run]]
+tier = "epic"
+level = 33
+
+[[run]]
+tier = "legendary"
+level = 34

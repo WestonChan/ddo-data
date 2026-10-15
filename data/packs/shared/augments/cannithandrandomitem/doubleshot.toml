@@ -1,0 +1,71 @@
+name = "Doubleshot"
+choose_level = true
+description = "Enhancement bonus to Doubleshot"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10,
+    10,
+]
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 9
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Enhancement"
+effect = "Doubleshot"
+effect_type = "Doubleshot"
+
+[[slot]]
+slot = "crafting: cannith belt prefix"
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith ranged suffix"

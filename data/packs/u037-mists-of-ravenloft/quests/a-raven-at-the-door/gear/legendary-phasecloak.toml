@@ -1,0 +1,39 @@
+name = "Legendary Phasecloak"
+description = """
+This cloak is emblazoned with an indecipherable symbol. Examining it more closesly,
+it looks like the symbol is written in blood..."""
+drop_location = "A Raven at the Door, End chest, Rescue Yesper From The Dungeons optional chest"
+icon = "Cloak_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 269
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, rescue yesper from the dungeons optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Raven at the Door"

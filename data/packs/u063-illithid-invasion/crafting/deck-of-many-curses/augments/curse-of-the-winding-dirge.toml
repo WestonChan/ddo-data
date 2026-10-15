@@ -1,0 +1,30 @@
+name = "Curse of the Winding Dirge"
+description = """
+Your Inspire Courage grants you and your allies an additional +1 Fortune bonus to
+Attack, Damage, Saves versus Fear, and an additional +3 Fortune bonus to Universal
+Spell Power."""
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Song Universal Spell Power"
+bonus_type = "Fortune"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect_type = "SongAttackBonus"
+extra_types = ["SongDamageBonus"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Fortune"
+effect = "Song Universal Spell Power"
+effect_type = "SongUniversalSpellPower"
+
+[[slot]]
+slot = "crafting: deck curse"

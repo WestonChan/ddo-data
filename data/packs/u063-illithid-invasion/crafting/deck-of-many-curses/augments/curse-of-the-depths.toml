@@ -1,0 +1,27 @@
+name = "Curse of the Depths"
+description = "+2 Fortune Bonus to Swim, Water breathing"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Swim"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Swim"
+effect_type = "SkillBonus"
+targets = ["Swim"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Drowning"]
+
+[[slot]]
+slot = "crafting: deck curse"

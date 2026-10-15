@@ -1,0 +1,5 @@
+name = "Rune Arm Charge Rate"
+category = "other"
+description_template = "This Rune Arm has a {1}% %b1 bonus to its Charge Rate."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Rune Arm Charge Rate +{1}%"

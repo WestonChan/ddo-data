@@ -1,0 +1,26 @@
+name = "Endgame: Marguerite"
+bestowed_by = "Archbishop Dryden"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "The Catacombs"
+patron = "The Silver Flame"
+zone = "Eastern Catacombs"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Endgame:_Marguerite"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 23

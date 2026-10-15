@@ -1,0 +1,37 @@
+name = "Boots of Tranquility"
+description = "Strong, stable, and stylish."
+drop_location = "Obstructing the Orcs, end chest"
+icon = "Boots_3"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 21
+slot = "Feet"
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 28
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 18
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Obstructing the Orcs"

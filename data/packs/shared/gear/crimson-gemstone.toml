@@ -1,0 +1,20 @@
+name = "Crimson Gemstone"
+description = "This gemstone pulses with a pale red light."
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Trinket_5b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Wizardry II"
+bonus_type = "Enhancement"
+value = 50
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

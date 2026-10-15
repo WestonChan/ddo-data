@@ -1,0 +1,20 @@
+name = "Goldscale"
+description = "+150% Enhancement bonus to Fortification"
+family = "DinosaurBone"
+icon = "ScaleLightOrange"
+min_level = 31
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 150
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[slot]]
+slot = "isle of dread: scale (armor)"

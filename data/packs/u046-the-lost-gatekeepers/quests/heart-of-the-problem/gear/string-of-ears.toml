@@ -1,0 +1,27 @@
+name = "String of Ears"
+description = '"All the better to hear you with, my dear!"'
+drop_location = "Heart of the Problem, End chest"
+icon = "Necklace_20"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 3
+slot = "Neck"
+
+[[effect]]
+name = "Exceptional Prudent Skills Bonus"
+bonus_type = "Exceptional"
+value = 2
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Heart of the Problem"

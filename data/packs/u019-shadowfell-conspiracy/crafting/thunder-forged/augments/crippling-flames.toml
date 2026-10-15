@@ -1,0 +1,47 @@
+name = "Crippling Flames"
+description = "Crippling Flames: On Crit: 135 to 325 Fire Damage. On Hit: 5% chance to apply 2 Negative Levels."
+family = "Thunderforged"
+min_level = 28
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_bonus = [116]
+dice_damage = "Fire"
+dice_number = [19]
+dice_sides = [10]
+display_name = "Crippling Flames"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: thunderforged tier 3"

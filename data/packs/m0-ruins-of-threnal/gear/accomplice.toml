@@ -1,0 +1,31 @@
+name = "Accomplice"
+description = """
+A thief's best friend is a good accomplice, they say. A cloak that can shield
+a thief from spying eyes is even better."""
+drop_location = "The Abandoned Excavation, End reward"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Back"
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Curse of Repulsiveness"
+bonus_type = "Penalty"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

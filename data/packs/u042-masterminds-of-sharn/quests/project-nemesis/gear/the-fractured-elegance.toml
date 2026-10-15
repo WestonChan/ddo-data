@@ -1,0 +1,89 @@
+name = "The Fractured Elegance"
+accepts_sentience = true
+description = "This scimitar is made of tempered glass."
+drop_location = "Project Nemesis, End chest"
+enhancement_bonus = 15
+icon = "Scimitar_1d"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Glass"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Glass Shards"
+
+[[effect]]
+name = "Spiked"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Purple Augment Slot"
+description = "Adds a Purple Augment Slot"
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket]]
+slot = "crafting: almost there"
+
+[[socket.option]]
+name = "Sovereign Vorpal"
+description = "Sovereign Vorpal: Passive: +0.5[W] damage dice. On Vorpal Hit: If your target has fewer than 3000 Hit Points, they are instantly slain. If your target has above 3000 Hit Points, they take 300 damage."
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: finishing touch"
+
+[[socket.option]]
+name = "Completed Weapon"
+description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
+min_level = 1
+
+[[socket.option.modifier]]
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 6
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Scimitar"

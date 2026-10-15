@@ -1,0 +1,88 @@
+name = "Beacon of Magic Set (Legendary)"
+icon = "BeaconOfMagic"
+
+[[item]]
+name = "Legendary Barovian Nobles' Regalia"
+
+[[item]]
+name = "Legendary Blurfingered Gloves"
+
+[[item]]
+name = "Legendary Burnscar Sash"
+
+[[item]]
+name = "Legendary Memory of Fine Regalia"
+
+[[item]]
+name = "Legendary Silverthread Belt"
+
+[[item]]
+name = "Legendary Thrummingspark Cord"
+
+[[item]]
+name = "Mantle of Escher"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Magical Resistance Rating Cap +30 Artifact at 3 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Magical Resistance Rating Cap / Artifact"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "MRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "MissileDeflection"

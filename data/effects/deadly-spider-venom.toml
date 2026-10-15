@@ -1,0 +1,3 @@
+name = "Deadly Spider Venom"
+description_template = "This item is steeped in deadly spider venom. On an attack roll of 20 which is confirmed as a critical hit it will inflict the target with a poison that deals 10d6 poison damage every 2 seconds for 6 seconds. When the poison wears off, it also deals 3d6 Constitution damage to the target. A successful Fortitude save (DC 34) negates the Constitution damage."
+verbose_name_template = "Deadly Spider Venom"

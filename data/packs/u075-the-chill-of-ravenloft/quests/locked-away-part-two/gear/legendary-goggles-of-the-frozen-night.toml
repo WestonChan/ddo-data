@@ -1,0 +1,38 @@
+name = "Legendary Goggles of the Frozen Night"
+description = "A mild warmth eminates around the lenses, preventing frost from forming."
+drop_location = "Locked Away (Part Two), end chest (rare)"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 34
+slot = "Goggles"
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 38
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part Two)"

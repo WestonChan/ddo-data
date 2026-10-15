@@ -1,0 +1,3 @@
+name = "Axiomatic III"
+description_template = "On Hit: 3 to 12 Law damage. Law-aligned creatures are immune to this effect."
+verbose_name_template = "Axiomatic III"

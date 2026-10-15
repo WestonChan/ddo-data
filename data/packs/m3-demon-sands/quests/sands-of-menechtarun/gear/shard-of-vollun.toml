@@ -1,0 +1,43 @@
+name = "Shard of Vollun"
+description = """
+A shard of the ancient Vollun gemstone. Even this fragment stores fantastic
+amounts of arcane energy."""
+drop_location = "Sands of Menechtarun, Volrune the Curate (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Trinket_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Trinket"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Insight"
+value = 40
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Insight"
+value = 40
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Insight"
+value = 40
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 121
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "volrune the curate"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

@@ -1,0 +1,39 @@
+name = "Hat of the Head Chef"
+description = """
+Legends say this hat was worn by the first winner of the Feast, who may or may
+not have been a Vargouille."""
+drop_location = "Too Many Cooks, end chest"
+icon = "Helmet_70"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 18
+slot = "Head"
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Quality"
+value = 4
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Speed"
+value = 28
+value2 = 13
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Too Many Cooks"

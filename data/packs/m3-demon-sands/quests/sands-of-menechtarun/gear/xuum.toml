@@ -1,0 +1,61 @@
+name = "Xuum"
+description = "This oversized falchion is a prized possession of Vorvand Darkfur."
+drop_location = "Sands of Menechtarun, Vorvand Darkfur 's Chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+enhancement_bonus = 5
+icon = "Falchion_1f"
+item_category = "Weapon"
+item_type = "Falchion"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 10
+
+[[effect]]
+name = "Magma Surge"
+
+[[effect]]
+name = "Flaming Blast III"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 77
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "vorvand darkfur 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Falchion"

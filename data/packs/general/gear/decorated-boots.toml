@@ -1,0 +1,22 @@
+name = "Decorated Boots"
+drop_location = "Advance to level 15, End reward"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Dhampir Dark Bargainer"
+slot = "Feet"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

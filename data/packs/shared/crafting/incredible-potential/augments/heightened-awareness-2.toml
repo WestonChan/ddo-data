@@ -1,0 +1,24 @@
+name = "Heightened Awareness +2"
+description = """
+Heightened Awareness +2: This item helps you to quickly read situations with sharpness
+and clarity, allowing you to predict actions before they occur. You gain a +2
+Insight bonus to AC."""
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[slot]]
+slot = "crafting: incredible potential"

@@ -1,0 +1,49 @@
+name = "Epic Increased Potential"
+description = "One should always strive to unlock their true potential"
+drop_location = "Subversion, End chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 28
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 12
+
+[[effect]]
+name = "Wizardry XI"
+bonus_type = "Enhancement"
+value = 275
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Subversion"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

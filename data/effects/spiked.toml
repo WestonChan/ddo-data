@@ -1,0 +1,3 @@
+name = "Spiked"
+description_template = "This weapon is studded with vicious spikes, causing it to deal piercing damage in addition to its normal damage types."
+verbose_name_template = "Spiked"

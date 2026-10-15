@@ -1,0 +1,26 @@
+name = "Domus' Cuirass"
+description = """
+An otherwise unimpressive breastplate bears the maker mark of Domus, a legendary
+blacksmith from Sharn."""
+drop_location = "The Abandoned Excavation, End reward"
+enhancement_bonus = 5
+icon = "MediumArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 20
+armor_bonus = 8
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

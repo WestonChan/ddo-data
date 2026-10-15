@@ -1,0 +1,20 @@
+name = "+35 Exceptional bonus to Negative Absorption"
+description = "Opposition/Negative: +35 Exceptional bonus to Negative Absorption"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Negative Absorption"
+bonus_type = "Exceptional"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Exceptional"
+effect = "Negative Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

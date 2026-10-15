@@ -1,0 +1,24 @@
+name = "Claw: Cold Spell Critical Damage"
+description = "+5% Quality bonus to Cold spell critical damage"
+family = "DinosaurBone"
+icon = "Claw"
+min_level = 31
+
+[[effect]]
+name = "Cold Spell Critical Damage"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Cold Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Cold"]
+
+[[slot]]
+slot = "isle of dread: claw (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact claw (accessory)"

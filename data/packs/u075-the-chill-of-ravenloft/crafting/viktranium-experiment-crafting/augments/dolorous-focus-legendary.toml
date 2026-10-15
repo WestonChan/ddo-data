@@ -1,0 +1,50 @@
+name = "Dolorous Focus (Legendary)"
+description = """
++5 Equipment bonus to all Spell DCs.
+If this is slotted in a Quarterstaff, also grants a +5% Exceptional bonus to
+Spell Critical Chance and makes the Quarterstaff an Implement."""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Exceptional"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = [
+    "Weapon1",
+    "Quarterstaff",
+]
+req_type = "ItemTypeInSlot"
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

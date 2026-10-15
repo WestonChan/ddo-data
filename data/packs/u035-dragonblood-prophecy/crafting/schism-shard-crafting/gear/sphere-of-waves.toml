@@ -1,0 +1,56 @@
+name = "Sphere of Waves"
+description = "I echo the crash of waves in your ears. Seize the moment, and swim for the surface."
+drop_location = "Schism Shard Crafting, Turn in 5 Schism Shards, Legendary Echo of Wave and Sentient Jewel of Wave"
+enhancement_bonus = 15
+icon = "Orb_1g"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Ice"
+minimum_level = 28
+slot = "Off Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 28
+
+[[effect]]
+name = "Paragon Cerulean Wave"
+
+[[effect]]
+name = "Frozen Storm Lore"
+value = 21
+
+[[effect]]
+name = "Power of the Frozen Storm"
+bonus_type = "Equipment"
+value = 145
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "crafting_system"
+name = "Schism Shard Crafting"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

@@ -1,0 +1,370 @@
+name = "Prison Break (Level 14)"
+description = "When brute force doesn't work... You didn't use enough brute force."
+drop_location = "A Lesson in Deception, End chest (Heroic Normal)"
+enhancement_bonus = 4
+icon = "DwarvenWaraxe_3"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Steel"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Sundering IV"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Acid Burst"
+description = """
+Acid Burst: This weapon is sheathed in corrosive acid, and does 1 to 6 acid damage
+each hit. Critical hits deal an additional 1 to 10 acid damage for weapons with
+a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier."""
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Acid"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Acid"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Acid II"
+description = "Acid II: On Hit: 2 to 8 Acid Damage."
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Acid"
+dice_number = [2]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Anarchic I"
+description = """
+Anarchic I: On Hit: 1 to 6 Chaos damage. Chaos-aligned creatures are immune to this effect.
+Penalty: If equipped by a Lawful user, they receive 1 Negative Level for as long as this item is equipped."""
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Acid"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Penalty"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Lawful"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Axiomatic I"
+description = """
+Axiomatic I: On Hit: 1 to 6 Law damage. Law-aligned creatures are immune to this effect.
+Penalty: If equipped by a Chaotic user, they receive 1 Negative Level for as long as this item is equipped."""
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Unknown"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Penalty"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement]]
+items = ["Chaotic"]
+req_type = "AlignmentType"
+
+[[socket.option]]
+name = "Flaming Burst"
+description = """
+Flaming Burst: This weapon is sheathed in fire, and deals 1 to 6 fire damage each hit.
+Critical hits deal an additional 1 to 10 fire damage for weapons with a x2 critical
+multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier."""
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Flaming II"
+description = "Flaming II: On Hit: 2 to 8 Fire Damage."
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Fire"
+dice_number = [2]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Frost II"
+description = "Frost II: On Hit: 2 to 8 Cold Damage."
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Cold"
+dice_number = [2]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Icy Burst"
+description = """
+Icy Burst: This weapon is sheathed in icy cold, and deals 1 to 6 cold damage each hit.
+Critical hits deal an additional 1 to 10 cold damage for weapons with a x2 critical
+multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier."""
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Cold"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Cold"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Poison II"
+description = """
+Poison II: On Hit: 2 to 6 Poison Damage.
+On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage."""
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Poison"
+dice_number = [2]
+dice_sides = [3]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Constitution"
+dice_number = [1]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Seeker +4"
+description = """
+Seeker +4: Provides a +4 Enhancement bonus to confirm critical hits, and a
++8 Enhancement bonus to critical hit damage (before multipliers are applied)."""
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Not Set"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Shocking Burst"
+description = """
+Shocking Burst: This weapon is sheathed in crackling electricity, and deals 1 to 6
+electric damage each hit. Critical hits deal an additional 1 to 10 electric damage
+for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30
+for a x4 multiplier."""
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Electric"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Electric"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Shock II"
+description = "Shock II: On Hit: 2 to 8 Electric Damage."
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Electric"
+dice_number = [2]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Shrieking I"
+description = "Shrieking I: On Hit: 1 to 6 Sonic Damage."
+icon = "Variant"
+min_level = 14
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Sonic"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Lesson in Deception"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

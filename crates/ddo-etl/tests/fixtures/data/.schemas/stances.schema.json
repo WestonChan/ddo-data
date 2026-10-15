@@ -1,0 +1,171 @@
+{
+  "$defs": {
+    "EntityNote": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "entity_notes"
+    },
+    "Requirement": {
+      "additionalProperties": false,
+      "properties": {
+        "items": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "phase": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "req_type": {
+          "type": "string"
+        },
+        "value": {
+          "format": "int64",
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "req_type"
+      ],
+      "type": "object",
+      "x-table": "requirements"
+    },
+    "RequirementGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "requirement"
+      ],
+      "type": "object"
+    },
+    "Stance": {
+      "additionalProperties": false,
+      "properties": {
+        "auto_controlled": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "group_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "icon": {
+          "type": "string",
+          "x-image-kind": ""
+        },
+        "incompatible": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "type": "string"
+        },
+        "note": {
+          "items": {
+            "$ref": "#/$defs/EntityNote"
+          },
+          "type": "array"
+        },
+        "requirement": {
+          "items": {
+            "$ref": "#/$defs/Requirement"
+          },
+          "type": "array"
+        },
+        "requirement_group": {
+          "items": {
+            "$ref": "#/$defs/RequirementGroup"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "description",
+        "icon"
+      ],
+      "type": "object",
+      "x-table": "stances"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "row": {
+      "items": {
+        "$ref": "#/$defs/Stance"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "row"
+  ],
+  "title": "StancesFile",
+  "type": "object"
+}

@@ -1,0 +1,41 @@
+name = "Threnalian War Dagger"
+description = "A magically enhanced dagger, forged in the abandoned city of Threnal."
+drop_location = "The Threnal Arena, End reward"
+enhancement_bonus = 5
+icon = "Dagger_24"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Threnal Arena"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Dagger"

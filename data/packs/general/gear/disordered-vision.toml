@@ -1,0 +1,20 @@
+name = "Disordered Vision"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Goggles_9a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 15
+race_required = "Eladrin Chaosmancer"
+slot = "Goggles"
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

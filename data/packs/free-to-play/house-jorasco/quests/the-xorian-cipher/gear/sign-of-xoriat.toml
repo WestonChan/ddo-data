@@ -1,0 +1,44 @@
+name = "Sign of Xoriat"
+description = """
+This medallion is decorated with images of eyes and mouths and is unpleasantly
+warm to the touch."""
+drop_location = "The Xorian Cipher, end chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Neck"
+
+[[clickie]]
+name = "Shout"
+clickie = "Shout"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = -2
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shout"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Xorian Cipher"

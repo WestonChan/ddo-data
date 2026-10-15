@@ -1,0 +1,34 @@
+name = "Touch of Grace"
+icon = "TouchOfGrace"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Spell Points"
+value = 50
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Stacking"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Positive Spell Power"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]

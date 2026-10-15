@@ -1,0 +1,12 @@
+name = "Strength Skills - Exceptional Bonus"
+default_value = 3
+description_template = "Passive {1} Exceptional bonus to the Strength based skills of: Jump and Swim"
+home_bonus_type = "Exceptional"
+verbose_name_template = "Strength Skills - Exceptional Bonus +{1}"
+
+[[bonus]]
+amount_from = 1
+bonus_type = "Exceptional"
+rounding = "down"
+scale = 1.0
+target = "Strength Skills"

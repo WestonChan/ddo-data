@@ -1,0 +1,87 @@
+name = "Epic Ring of the Buccaneer (legacy) (level 24)"
+description = """
+This ring is coveted by many who travel by sea for its ability to make one more
+dexterous, and better able to survive the perils of the ocean."""
+drop_location = "Treasure of Crystal Cove, Turn in various ingredients at Dusty Old Treasure of Crystal Cove"
+icon = "Ring_34b"
+is_legacy = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 24
+slot = "Ring"
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Underwater Action"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 1
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Good Luck +2 and Protection +7"
+description = """
+Good Luck +2: This item gives a +2 Luck bonus to all saves and skill checks.
+Protection +7: Passive: +7 Deflection bonus to Armor Class."""
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.effect]]
+bonus_type = "Luck"
+effect = "Saving Throws"
+value = 2
+
+[[socket.option.effect]]
+bonus_type = "Deflection"
+effect = "Armor Class"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Luck"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+extra_types = ["SkillBonus"]
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Green augment slot"
+description = "Adds a Green augment slot to this item"
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

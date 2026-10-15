@@ -1,0 +1,5 @@
+name = "Poison VII"
+description_template = """
+On Hit: 7 to 28 Poison Damage.
+On Critical Hit: 1d4 Strength, Dexterity, or Constitution Damage."""
+verbose_name_template = "Poison VII"

@@ -1,0 +1,89 @@
+name = "Diversion"
+choose_level = true
+description = "Enhancement bonus to threat generation"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    -2,
+    -3,
+    -4,
+    -5,
+    -6,
+    -6,
+    -7,
+    -8,
+    -8,
+    -9,
+    -9,
+    -10,
+    -11,
+    -11,
+    -12,
+    -12,
+    -13,
+    -14,
+    -14,
+    -15,
+    -15,
+    -16,
+    -17,
+    -17,
+    -18,
+    -18,
+    -19,
+    -20,
+    -20,
+    -21,
+    -21,
+    -22,
+    -23,
+    -23,
+    -23,
+    -23,
+    -23,
+    -23,
+    -23,
+    -23,
+]
+
+[[effect]]
+name = "Melee Threat Generation"
+bonus_type = "Enhancement"
+value = -23
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-23]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[slot]]
+slot = "crafting: cannith boots suffix"
+
+[[slot]]
+slot = "crafting: cannith cloak prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: cannith melee suffix"
+
+[[slot]]
+slot = "crafting: cannith ranged suffix"
+
+[[slot]]
+slot = "crafting: cannith thrown suffix"
+
+[[slot]]
+slot = "crafting: random boots suffix"
+
+[[slot]]
+slot = "crafting: random cloak prefix"
+
+[[slot]]
+slot = "crafting: random weapon suffix"

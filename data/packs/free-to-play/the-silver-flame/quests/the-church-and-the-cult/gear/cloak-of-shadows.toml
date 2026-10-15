@@ -1,0 +1,29 @@
+name = "Cloak of Shadows"
+description = """
+A long, lustrous black cloak that is nearly impossible to examine closely. Your
+eyes tend to slide right off."""
+drop_location = "The Church and the Cult, End chest"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Back"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Church and the Cult"

@@ -1,0 +1,51 @@
+name = "Epic Seal of the Earth"
+description = """
+A gold and ivory ring bearing a star-like symbol and the word HEVDEVI in blocky
+letters."""
+drop_location = "Epic version of Seal of the Earth"
+icon = "Ring_29a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 20
+slot = "Ring"
+
+[[clickie]]
+name = "Stoneskin"
+clickie = "Stoneskin"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 9
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Earthgrab Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Stoneskin"]
+
+[[socket]]
+slot = "yellow"

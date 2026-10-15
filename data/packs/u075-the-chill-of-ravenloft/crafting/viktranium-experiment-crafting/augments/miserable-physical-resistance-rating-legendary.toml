@@ -1,0 +1,20 @@
+name = "Miserable Physical Resistance Rating (Legendary)"
+description = "+38 Enhancement bonus to Physical Resistance Rating."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Enhancement"
+value = 38
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [38]
+bonus_type = "Enhancement"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[slot]]
+slot = "lamordia: miserable (accessory)"

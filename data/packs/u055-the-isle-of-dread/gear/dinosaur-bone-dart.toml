@@ -1,0 +1,56 @@
+name = "Dinosaur Bone Dart"
+accepts_sentience = true
+description = "Fashioned of intricately carved bones from long-forgotten Dinosaurs."
+drop_location = "The Isle of Dread, any chest"
+enhancement_bonus = 15
+icon = "Dart_7a"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Bone"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "isle of dread: fang (weapon)"
+
+[[socket]]
+slot = "isle of dread: claw (weapon)"
+
+[[socket]]
+slot = "isle of dread: horn (weapon)"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "any chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "The Isle of Dread"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Thrown"
+weapon_type = "Dart"

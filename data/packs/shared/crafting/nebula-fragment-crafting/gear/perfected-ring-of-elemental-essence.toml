@@ -1,0 +1,55 @@
+name = "Perfected Ring of Elemental Essence"
+description = """
+This ring seems very ancient, and is set with numerous colored gems that pulse
+with elemental power. It will enhance the effectiveness of many kinds of offensive
+magic."""
+drop_location = "Lahar, Turn in Nebula Fragment"
+icon = "Ring_10c"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 30
+slot = "Ring"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 157
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 157
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 157
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 157
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 45
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 305
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Nebula Fragment Crafting"

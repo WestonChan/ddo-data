@@ -1,0 +1,52 @@
+name = "Infested Armor"
+description = """
+An orthon warrior's body is crawling with hungry maggots that feed on its wounds.
+This suit of armor, crafted from the salvaged parts of an orthon's protective
+gear, is similarly infested and may impart a disease to those that attack the
+wearer."""
+drop_location = "The Chronoscope, and The Chronoscope (Legendary), Blood Plate 's Chest"
+enhancement_bonus = 2
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 9
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 56
+
+[[effect]]
+name = "Disease Guard"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "DR 5/Good"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "blood plate 's chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[source]]
+chest = "blood plate 's chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

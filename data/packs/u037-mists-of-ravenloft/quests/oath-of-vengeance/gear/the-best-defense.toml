@@ -1,0 +1,58 @@
+name = "The Best Defense"
+description = "... is a good offense."
+drop_location = "Oath of Vengeance, End chest"
+enhancement_bonus = 5
+icon = "Shield_4c"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Densewood"
+minimum_level = 10
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 9
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Fiery 3"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Vorpal"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oath of Vengeance"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Off-hand"
+weapon_type = "Large Shield"

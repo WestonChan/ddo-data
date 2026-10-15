@@ -1,0 +1,3 @@
+name = "Glass Shards"
+description_template = "This weapon is made of fragile glass and will shatter on impact, inflicting a bleed effect on targets vulnerable to bleeding. This bleed deals 5d10 damage per stack every two seconds, lasts for 20 seconds, and can stack up to 15 times."
+verbose_name_template = "Glass Shards"

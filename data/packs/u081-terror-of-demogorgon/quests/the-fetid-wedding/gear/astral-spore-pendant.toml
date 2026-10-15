@@ -1,0 +1,40 @@
+name = "Astral Spore Pendant"
+description = """
+Strange, otherworldly fungi grow on this pendant, absorbing nearby poisons that
+would prove deadly to others."""
+drop_location = "The Fetid Wedding, end chest"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Poison Absorption"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "False Life"
+bonus_type = "Insight"
+value = 11
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Fetid Wedding"

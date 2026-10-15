@@ -1,0 +1,31 @@
+name = "Topaz of the Twelve"
+description = "This fragment of a gemstone is infused with the power from The Twelve."
+drop_location = "The Marketplace, Turn in 50 Planar Shards from The Subterrane"
+icon = "trinket_86"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Trinket"
+
+[[clickie]]
+name = "Heal"
+clickie = "Heal"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Heal"]
+
+[[source]]
+kind = "vendor"
+name = "Vagan Taneer"
+
+[[source.price]]
+ingredient = "Planar Shard"
+quantity = 50

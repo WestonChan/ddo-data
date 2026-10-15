@@ -1,0 +1,39 @@
+name = "Legendary Cloak of Spring"
+description = """
+This cloak appears to be made of still-living foliage, in the form of newly
+grown leaves."""
+drop_location = "Witch Hunt, End chest"
+icon = "Cloak_7"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Witch Hunt"

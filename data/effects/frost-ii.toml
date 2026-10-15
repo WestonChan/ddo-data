@@ -1,0 +1,3 @@
+name = "Frost II"
+description_template = "On Hit: 2 to 8 Cold Damage."
+verbose_name_template = "Frost II"

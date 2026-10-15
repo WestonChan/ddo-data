@@ -1,0 +1,39 @@
+name = "Snare, the Chained Band"
+description = """
+A ring on a long chain. It vibrates with energy. You are exceptionally certain
+that if the chain were removed, the ring would lose all power."""
+drop_location = "Fire Over Morgrave, end chest"
+icon = "Necklace_29a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 32
+slot = "Neck"
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 50
+
+[[effect]]
+name = "Firestorm Lore"
+value = 23
+
+[[effect]]
+name = "Improved Demonic Shield"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 43
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Fire Over Morgrave"

@@ -1,0 +1,21 @@
+name = "Perform +20"
+description = "Legendary Competence bonus to Perform"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Perform"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

@@ -1,0 +1,41 @@
+name = "Robes of the Black Earth"
+description = "A robe from deep within the Temple of Elemental Evil."
+drop_location = "ToEE: Earth Node, end chest and random locked chest"
+enhancement_bonus = 3
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 18
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 70
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest and random locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"

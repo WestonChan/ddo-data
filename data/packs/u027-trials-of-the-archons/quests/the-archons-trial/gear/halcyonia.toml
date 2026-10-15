@@ -1,0 +1,44 @@
+name = "Halcyonia"
+description = """
+Shavarath may never know peace, but when this helm rests upon one's head, it
+almost seems... possible."""
+drop_location = "The Archons' Trial, end chest"
+icon = "Helmet_41"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Archons' Trial"

@@ -1,0 +1,16 @@
+name = "Official Risia Ice Games Ice Skates"
+description = """
+These sturdy ice skates have enchanted blades that look like candy canes. In
+addition to providing great ankle support, these skates allow you to glide
+across icy surfaces with grace and aplomb... and get big air on the ski jump
+in the Harbor during the Risia Ice Games! Try out the half pipe in House Phiarlan's
+Bogwater Tavern too!"""
+drop_location = "DDO Store, Seasonal Item"
+icon = "Boots_23"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Feet"
+
+[[effect]]
+name = "Tropical Winter Wonderland"

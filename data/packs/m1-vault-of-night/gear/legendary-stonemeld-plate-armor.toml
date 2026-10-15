@@ -1,0 +1,58 @@
+name = "Legendary Stonemeld Plate Armor"
+description = """
+A large earth elemental is bound into this armor and crystalline structures
+appear on various areas of its surface."""
+drop_location = "Legendary version of Epic Stonemeld Plate Armor"
+enhancement_bonus = 15
+icon = "HeavyArmor_1f"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[clickie]]
+name = "Stoneskin"
+clickie = "Stoneskin"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 11
+
+[[effect]]
+name = "Legendary Stone Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Stoneskin"]
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

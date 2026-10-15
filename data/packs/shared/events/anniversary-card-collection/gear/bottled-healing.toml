@@ -1,0 +1,29 @@
+name = "Bottled Healing"
+description = """
+Heals nearby players and hirelings at the point of impact. Healing scales with character level.
+
+In Case of Emergency: Break Glass"""
+drop_location = "Anniversary Card Collection, Turn in Card III: Kuo-Toa &amp; Card IX: Lolth for 15 or Card III: Kuo-Toa &amp; Card VI: Grell for 7"
+icon = "Dart_9b"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Glass"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[source]]
+kind = "event"
+name = "Anniversary Card Collection"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 1
+critical_multiplier = 1
+critical_threat_range = 1
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Dart"

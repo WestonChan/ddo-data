@@ -1,0 +1,12 @@
+name = "Aspect of Positive Energy II"
+description = """
+Greater Disruption Guard: This Item stores a holy and righteous power deep within.
+When the wearer of this item is successfully attacked in melee by undead, this
+power occasionally comes to the surface, annihilating enemy undead.
+Positive:Positive:Positive"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

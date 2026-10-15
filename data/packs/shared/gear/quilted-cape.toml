@@ -1,0 +1,27 @@
+name = "Quilted Cape"
+description = """
+A mother-of-pearl clasps fastens this patchwork garment across its wearer's
+shoulders. It seems to dull ambient sounds."""
+drop_location = "Cult of the Six, End reward"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Back"
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"

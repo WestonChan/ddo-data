@@ -1,0 +1,21 @@
+name = "Move Silently +20"
+description = "Legendary Competence bonus to Move Silently"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Move Silently"
+effect_type = "SkillBonus"
+targets = ["Move Silently"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

@@ -1,0 +1,48 @@
+name = "Crippling Fury Blade"
+description = """
+This large sword, capable of conferring a disease to enemies, can now cripple
+an enemy and hamper its movement."""
+drop_location = "Cauldron of Sora Katra, Blade of Fury + Gnollish War Bow + Mark of Sheshka + Mark of Sheshka"
+enhancement_bonus = 5
+icon = "Greatsword_10a"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Medusa Fury"
+
+[[effect]]
+name = "Demon Fever"
+
+[[effect]]
+name = "Wounding 2"
+
+[[effect]]
+name = "Crippling"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Great Sword"

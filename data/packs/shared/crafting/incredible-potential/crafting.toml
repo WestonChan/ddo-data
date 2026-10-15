@@ -1,0 +1,703 @@
+name = "Incredible Potential"
+npc = "Altar of Subjugation (The Shroud part 3 or Devil Battlefield)"
+
+[[family]]
+family = "IncrediblePotential"
+
+[[ingredient]]
+name = "Shavarath War Trophy"
+drop_location = "The ring's text calls them Shavarath War Trophies; the recipe text calls them Shavarath Trophies of War; the page gives no drop location"
+tier = "heroic"
+
+[[ingredient]]
+name = "Imbued Shard of Great Power"
+drop_location = "Created at the Altar of Subjugation from a focus, a gem and an essence of the types each recipe names"
+tier = "heroic"
+
+[[citation]]
+url = "https://ddowiki.com/page/Incredible_Potential"
+read = "2026-09-29"
+
+[[recipe]]
+focus_path = "Air:Dominion:Ethereal"
+note = "All recipes are on this page; the focus, gem and essence recipes are on Altar of Subjugation - Raw Ingredients Recipes. Each recipe also consumes a Tower of Despair raid ring with Incredible Potential. Only one effect per ring; a Yellow Dopant removes it (since Update 14). Imbued Shard of Great Power made from focus type Air, gem type Dominion, essence type Ethereal."
+option = "Magnetism 78"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Magnetism +78"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Earth:Dominion:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Dominion, essence type Ethereal."
+option = "Corrosion 78"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Corrosion +78"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Fire:Dominion:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Dominion, essence type Ethereal."
+option = "Combustion 78"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Combustion +78"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Water:Dominion:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Water, gem type Dominion, essence type Ethereal."
+option = "Glaciation 78"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Glaciation +78"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Negative:Dominion:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Dominion, essence type Ethereal."
+option = "Nullification 78"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Nullification +78"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Positive:Dominion:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Dominion, essence type Ethereal."
+option = "Devotion 78"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Devotion +78"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Air:Dominion:Material"
+note = "Imbued Shard of Great Power made from focus type Air, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
+option = "Shocking Burst*"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Shocking Burst"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Earth:Dominion:Material"
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
+option = "Acid Burst*"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Acid Burst"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Fire:Dominion:Material"
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
+option = "Flaming Burst*"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Flaming Burst"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Water:Dominion:Material"
+note = "Imbued Shard of Great Power made from focus type Water, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
+option = "Icy Burst*"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Icy Burst"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Negative:Dominion:Material"
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
+option = "Unholy Burst*"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Unholy Burst"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Positive:Dominion:Material"
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Dominion, essence type Material. Bursts apply only to unarmed attacks and do not stack with identical handwrap effects."
+option = "Holy Burst*"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Holy Burst"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Air:Escalation:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Air, gem type Escalation, essence type Ethereal."
+option = "Insightful Charisma +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Charisma +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Earth:Escalation:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Escalation, essence type Ethereal."
+option = "Insightful Wisdom +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Wisdom +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Fire:Escalation:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Escalation, essence type Ethereal."
+option = "Insightful Intelligence +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Intelligence +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Water:Escalation:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Water, gem type Escalation, essence type Ethereal."
+option = "Insightful Wisdom +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Wisdom +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Negative:Escalation:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Escalation, essence type Ethereal."
+option = "Insightful Intelligence +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Intelligence +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Positive:Escalation:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Escalation, essence type Ethereal."
+option = "Insightful Charisma +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Charisma +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Air:Escalation:Material"
+note = "Imbued Shard of Great Power made from focus type Air, gem type Escalation, essence type Material."
+option = "Insightful Dexterity +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Dexterity +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Earth:Escalation:Material"
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Escalation, essence type Material."
+option = "Insightful Constitution +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Constitution +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Fire:Escalation:Material"
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Escalation, essence type Material."
+option = "Insightful Dexterity +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Dexterity +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Water:Escalation:Material"
+note = "Imbued Shard of Great Power made from focus type Water, gem type Escalation, essence type Material."
+option = "Insightful Strength +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Strength +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Negative:Escalation:Material"
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Escalation, essence type Material."
+option = "Insightful Strength +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Strength +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Positive:Escalation:Material"
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Escalation, essence type Material."
+option = "Insightful Constitution +2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Insightful Constitution +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Air:Opposition:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Air, gem type Opposition, essence type Ethereal."
+option = "Heightened Awareness 2 (+2 AC Insight Bonus)"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Heightened Awareness +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Earth:Opposition:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Opposition, essence type Ethereal."
+option = "Heightened Awareness 2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Heightened Awareness +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Fire:Opposition:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Opposition, essence type Ethereal."
+option = "Heightened Awareness 2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Heightened Awareness +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Water:Opposition:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Water, gem type Opposition, essence type Ethereal."
+option = "Heightened Awareness 2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Heightened Awareness +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Negative:Opposition:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Opposition, essence type Ethereal."
+option = "Heightened Awareness 2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Heightened Awareness +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Positive:Opposition:Ethereal"
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Opposition, essence type Ethereal."
+option = "Heightened Awareness 2"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Heightened Awareness +2"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Air:Opposition:Material"
+note = "Imbued Shard of Great Power made from focus type Air, gem type Opposition, essence type Material."
+option = "15% Electrical Absorption"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+15% Electrical Absorption"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Earth:Opposition:Material"
+note = "Imbued Shard of Great Power made from focus type Earth, gem type Opposition, essence type Material."
+option = "15% Acid Absorption"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+15% Acid Absorption"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Fire:Opposition:Material"
+note = "Imbued Shard of Great Power made from focus type Fire, gem type Opposition, essence type Material."
+option = "15% Fire Absorption"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+15% Fire Absorption"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Water:Opposition:Material"
+note = "Imbued Shard of Great Power made from focus type Water, gem type Opposition, essence type Material."
+option = "15% Cold Absorption"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+15% Cold Absorption"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Negative:Opposition:Material"
+note = "Imbued Shard of Great Power made from focus type Negative, gem type Opposition, essence type Material."
+option = "20% Negative Energy Absorption"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+20% Negative Absorption"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1
+
+[[recipe]]
+focus_path = "Positive:Opposition:Material"
+note = "Imbued Shard of Great Power made from focus type Positive, gem type Opposition, essence type Material."
+option = "+40 Healing Amplification (Equipment bonus)"
+slot = "crafting: incredible potential"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "+40 Healing Amplification"
+level = 18
+
+[[recipe.ingredient]]
+ingredient = "Shavarath War Trophy"
+quantity = 9
+
+[[recipe.ingredient]]
+ingredient = "Imbued Shard of Great Power"
+quantity = 1

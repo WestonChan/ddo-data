@@ -1,0 +1,31 @@
+name = "Solar Gem of Arcane Endurance (Heroic)"
+description = """
++3% Legendary Bonus to Maximum Spell Points.
+Drops in: A Miner Sacrifice, end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Legendary"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Legendary"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+percent = true
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "A Miner Sacrifice"

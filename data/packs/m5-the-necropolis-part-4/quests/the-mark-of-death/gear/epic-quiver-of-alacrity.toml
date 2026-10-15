@@ -1,0 +1,40 @@
+name = "Epic Quiver of Alacrity"
+description = """
+Said to allow the user to draw arrows or bolts at a very fast rate, this large,
+thin quiver will hold 3 different types of arrow or bolt and can store each
+type in a stack of up to 4500. Total capacity: 13500."""
+drop_location = "The Mark of Death, warded chest"
+icon = "Quiver_1"
+item_category = "Clothing"
+minimum_level = 20
+slot = "Quiver"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Penalty"
+value = -50
+
+[[effect]]
+name = "Ranged Speed XV"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Stealth Strike"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 4
+value2 = 6
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 8
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Mark of Death"

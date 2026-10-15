@@ -1,0 +1,34 @@
+name = "Epic Corroded Iron Lenses"
+description = "Salt and sea have done their work on these old frames."
+drop_location = "Epic version of Corroded Iron Lenses"
+icon = "Goggles_2b"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 20
+slot = "Goggles"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

@@ -1,0 +1,26 @@
+name = "Belt of Tongue"
+description = """
+The Black Abbot had Cholthulzz's tongue stretched and tied into a belt, a gruesome
+but powerful garment."""
+drop_location = "Litany of the Dead, Cholthulzz 's chest"
+icon = "Belt_15"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Waist"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 19
+
+[[effect]]
+name = "Enchantment Save"
+bonus_type = "Resistance"
+value = 6
+
+[[source]]
+chest = "cholthulzz 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

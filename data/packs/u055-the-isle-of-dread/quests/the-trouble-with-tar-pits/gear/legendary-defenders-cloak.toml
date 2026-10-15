@@ -1,0 +1,38 @@
+name = "Legendary Defender's Cloak"
+description = "The defensive enchantments on this cloak can shield you from harm."
+drop_location = "The Trouble with Tar Pits, End chest"
+icon = "Cloak_9"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 31
+slot = "Back"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 14
+
+[[effect]]
+name = "Equipped Healing Amplification"
+bonus_type = "Equipment"
+value = 28
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Trouble with Tar Pits"

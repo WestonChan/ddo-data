@@ -1,0 +1,45 @@
+name = "The Hydra's Heart"
+description = "TBD"
+drop_location = "Den of Vipers, end chest"
+icon = "Trinket_44a"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 33
+slot = "Trinket"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 58
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 52
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 39
+
+[[socket]]
+slot = "crafting: sealed in gloom"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Den of Vipers"

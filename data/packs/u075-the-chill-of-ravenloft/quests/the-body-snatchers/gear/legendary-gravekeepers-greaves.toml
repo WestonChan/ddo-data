@@ -1,0 +1,39 @@
+name = "Legendary Gravekeeper's Greaves"
+description = "A set of sturdy boots made to kick through dirt with ease."
+drop_location = "The Body Snatchers, end chest"
+icon = "Boots_24"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 34
+slot = "Feet"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 79
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"

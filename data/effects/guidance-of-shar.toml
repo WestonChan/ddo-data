@@ -1,0 +1,3 @@
+name = "Guidance of Shar"
+description_template = "On Vorpal Melee Hit: Your target is blinded for 3 seconds. 10% Chance On Being Hit: You are blinded for 1 second. Blindness immunity does not prevent this effect."
+verbose_name_template = "Guidance of Shar"

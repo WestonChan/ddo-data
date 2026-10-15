@@ -1,0 +1,79 @@
+name = "The Legendary Desert's Writhing Storm"
+icon = "Menechtarun"
+
+[[item]]
+name = "Legendary Bow of the Elements (Air)"
+
+[[item]]
+name = "Legendary Cloak of the Zephyr"
+
+[[item]]
+name = "Legendary Flint"
+
+[[item]]
+name = "Legendary Gloves of the Falcon"
+
+[[item]]
+name = "Legendary Golden Greaves"
+
+[[item]]
+name = "Legendary Spiked Turban"
+
+[[item]]
+name = "Legendary Storm"
+
+[[item]]
+name = "Legendary Whirlwind"
+
+[[item]]
+name = "Legendary Zephyr"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Legendary"
+reason = "The wiki types Magical Resistance Rating as Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Magical Resistance Rating / Legendary"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Legendary"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"

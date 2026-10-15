@@ -1,0 +1,39 @@
+name = "Legendary Thief's Escape"
+description = "For when one must go quickly."
+drop_location = "Catastrophe, End chest"
+icon = "Boots_22"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 32
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Catastrophe"

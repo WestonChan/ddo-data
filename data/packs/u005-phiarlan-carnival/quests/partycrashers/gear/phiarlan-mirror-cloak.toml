@@ -1,0 +1,33 @@
+name = "Phiarlan Mirror Cloak"
+description = """
+House Phiarlan spies keep many tools to help them in their trade. This cloak
+is a prime example of such a tool, and reflects light in such a way that the
+wearer is made partially invisible. This effect also wards it against certain
+harmful spells."""
+drop_location = "Partycrashers, Rest Room chest; End chest"
+icon = "Cloak_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 4
+slot = "Back"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 17
+
+[[source]]
+chest = "rest room chest"
+kind = "quest"
+loot_type = "chest"
+name = "Partycrashers"

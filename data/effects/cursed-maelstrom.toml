@@ -1,0 +1,3 @@
+name = "Cursed Maelstrom"
+description_template = "This weapon is wracked with a dangerous and volatile curse. Striking an enemy has a chance to place a random, debilitating, and deadly debuff on your foe."
+verbose_name_template = "Cursed Maelstrom"

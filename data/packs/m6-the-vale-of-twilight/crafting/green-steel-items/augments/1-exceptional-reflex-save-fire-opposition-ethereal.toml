@@ -1,0 +1,27 @@
+name = "+1 Exceptional Reflex Save"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+variant = "Fire:Opposition:Ethereal"
+description = """
+Reflex Save +1: +1 Exceptional Resistance bonus to your Reflex save.
+Fire:Opposition:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[slot]]
+slot = "crafting: accessory subjugation"

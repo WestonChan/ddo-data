@@ -1,0 +1,4 @@
+name = "Sneak Attack Damage"
+category = "martial"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Sneak Attack Damage +{1}"

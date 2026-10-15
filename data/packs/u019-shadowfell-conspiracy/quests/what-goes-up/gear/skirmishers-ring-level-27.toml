@@ -1,0 +1,24 @@
+name = "Skirmisher's Ring (Level 27)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "What Goes Up, End reward"
+icon = "Ring_4"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 27
+slot = "Ring"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Thunderstruck"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "What Goes Up"

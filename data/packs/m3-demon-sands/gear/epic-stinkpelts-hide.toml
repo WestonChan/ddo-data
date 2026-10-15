@@ -1,0 +1,62 @@
+name = "Epic Stinkpelt's Hide"
+description = """
+The sturdy hide of the hyena Stinkpelt, can be fashioned into a suit of armor
+that is easier to move around in than most hide armor, though little can be
+done about the stench."""
+drop_location = "Epic version of Stinkpelt's Hide"
+enhancement_bonus = 6
+icon = "MediumArmor_11b"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritcraft Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 20
+armor_bonus = 8
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 14
+
+[[clickie]]
+name = "Cloudkill"
+clickie = "Cloudkill"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Poison Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[effect]]
+name = "Curse of Repulsiveness"
+bonus_type = "Penalty"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cloudkill"]
+
+[[socket]]
+slot = "blue"

@@ -1,0 +1,37 @@
+name = "Bugkickers"
+drop_location = "The Covered Culvert, end chest"
+icon = "Boots_24"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 4
+slot = "Feet"
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"

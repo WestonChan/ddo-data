@@ -1,0 +1,33 @@
+name = "Legendary Chainmail Coif"
+description = "Fine links of flametouched iron form this magical helm."
+drop_location = "Legendary version of Epic Chainmail Coif"
+icon = "Helmet_24"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 30
+slot = "Head"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 100
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Turning"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "yellow"

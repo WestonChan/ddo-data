@@ -1,0 +1,27 @@
+name = "Topaz of Evocation Power"
+description = "+8 Equipment bonus to Evocation DCs."
+family = "Topaz"
+icon = "TopazBlueBorder"
+min_level = 30
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

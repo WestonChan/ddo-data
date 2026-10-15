@@ -5,20 +5,23 @@
     {
       "description": "Voiced by: Scott McNeil",
       "icon": "SentientJewel_Green",
-      "id": 8,
-      "name": "Sentient Jewel of Blackrazor"
+      "id": 4128917361712547,
+      "name": "Sentient Jewel of Blackrazor",
+      "slug": "sentient-jewel-of-blackrazor"
     },
     {
       "description": "Voiced by: Cindy Robinson",
       "icon": "SentientJewel_Green",
-      "id": 9,
-      "name": "Sentient Jewel of Wave"
+      "id": 6592230005011129,
+      "name": "Sentient Jewel of Wave",
+      "slug": "sentient-jewel-of-wave"
     },
     {
       "description": "Voiced by: Scott McNeil",
       "icon": "SentientJewel_Green",
-      "id": 10,
-      "name": "Sentient Jewel of Whelm"
+      "id": 4687634425881654,
+      "name": "Sentient Jewel of Whelm",
+      "slug": "sentient-jewel-of-whelm"
     }
   ],
   "total": 14

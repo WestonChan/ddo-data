@@ -1,0 +1,42 @@
+name = "Legendary Mystic Monocle"
+description = """
+You may see your foes, but can you see the way to their core? Their very soul?
+It was once said this monocle let its user see both."""
+drop_location = "Paper Trail, End chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 32
+slot = "Goggles"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 26
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Paper Trail"

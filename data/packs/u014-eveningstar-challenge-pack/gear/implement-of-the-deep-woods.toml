@@ -1,0 +1,85 @@
+name = "Implement of the Deep Woods"
+accepts_sentience = true
+description = """
+Staves of this type are a traditional druidic implement, though they can be
+used for a wide variety of divine magic. This staff can cast the Restoration
+spell. Although it is depleted after only one use, it will automatically recharge
+itself over time."""
+drop_location = "Eveningstar, Turn in 15 Commendations: Druids of the King's Forest Commendation: Druids of the King's Forest : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Druids of the King's Forest. You can exchange it in Eveningstar for powerful equipment."
+enhancement_bonus = 6
+icon = "Quarterstaff_3"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Densewood"
+minimum_level = 20
+slot = "Main Hand"
+
+[[clickie]]
+name = "restoration"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 90
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 90
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 90
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["restoration"]
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

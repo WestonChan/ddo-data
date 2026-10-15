@@ -1,0 +1,141 @@
+[[row]]
+name = "Melony's Melody: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "MelonysMelody"
+menu = "Ravenloft"
+set = "Melony's Melody"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Melony's Melody: Charisma: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Melony's Melody: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "MelonysMelody"
+menu = "Ravenloft"
+set = "Melony's Melody"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Melony's Melody: Intelligence: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Melony's Melody: +2 Bard Songs"
+description = """
++2 Bard Songs per rest
+Rare: +2 MRR"""
+icon = "MelonysMelody"
+menu = "Ravenloft"
+set = "Melony's Melody"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SongCount"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Melony's Melody: Bard Songs: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Melony's Melody: +2 Will Saves"
+description = """
++2 Will saves
+Rare: +2 MRR"""
+icon = "MelonysMelody"
+menu = "Ravenloft"
+set = "Melony's Melody"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Melony's Melody: Will: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Melony's Melody: +4 Perform"
+description = """
++4 Perform
+Rare: +2 PRR"""
+icon = "MelonysMelody"
+menu = "Ravenloft"
+set = "Melony's Melody"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Melony's Melody: Perform: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Melony's Melody: +6 Universal Spell Power"
+description = """
++6 Universal Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "MelonysMelody"
+menu = "Ravenloft"
+set = "Melony's Melody"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Melony's Melody: Universal Spell Power: Rare +4 Universal Spell Power"
+effect_type = "SpellPower"
+is_rare = true

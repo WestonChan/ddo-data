@@ -1,0 +1,24 @@
+name = "Scurvy's Wrap"
+description = "This magical cloak, a trophy of battle, is magically enhanced."
+drop_location = "Irestone Inlet, Scurvy 's chest"
+icon = "Cloak_27"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Back"
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 10
+
+[[source]]
+chest = "scurvy 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Irestone Inlet"

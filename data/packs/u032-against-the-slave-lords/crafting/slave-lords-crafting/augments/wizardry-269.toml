@@ -1,0 +1,20 @@
+name = "Wizardry +269"
+description = "Legendary Enhancement bonus to Spell Points"
+family = "Slavelords_Legendary"
+icon = "SlavelordsPrefix"
+min_level = 28
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Enhancement"
+value = 269
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [269]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: legendary slavelords prefix"

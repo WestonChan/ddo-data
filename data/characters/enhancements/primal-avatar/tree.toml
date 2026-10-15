@@ -1,0 +1,2265 @@
+name = "Primal Avatar"
+background = "DestinyPrimal"
+icon = "PrimalAvatar"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Primal Avatar: This is your Nature"
+cost_per_rank = [1]
+description = """
+You gain the Magical Training feat. Each Core Ability in this tree, including this
+one, grants the following: +1 Epic bonus to all Spell DCs.
+Choose a path to follow between Heart, Sky and Thorn."""
+icon = "ThisIsYourNature"
+internal_name = "U51PrimalAvatarCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Primal Avatar: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Heart"
+cost_per_rank = [1]
+description = """
+You follow the path of the Heart. The rest of this tree's options will be
+determined by this choice.
+
+You gain the Magical Training feat.
+
+Each Core Ability in this tree, including this one, grants the following:
+
++1 Epic bonus to all DCs
++5 Fire, Light, Positive and Universal Spell Power
++50 Maximum Spell Points"""
+icon = "Heart"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Heart"
+effect_type = "SpellPower"
+extra_types = [
+    "SpellPower",
+    "SpellPower",
+    "SpellPower",
+    "SpellPower",
+]
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+]
+
+[[enhancement.selection]]
+name = "Sky"
+cost_per_rank = [1]
+description = """
+You follow the path of the Sky. The rest of this tree's options will be
+determined by this choice.
+
+You gain the Magical Training feat.
+
+Each Core Ability in this tree, including this one, grants the following:
+
++1 Epic bonus to all DCs
++5 Electric, Cold, Sonic and Universal Spell Power
++50 Maximum Spell Points"""
+icon = "Sky"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Sky"
+effect_type = "SpellPower"
+extra_types = [
+    "SpellPower",
+    "SpellPower",
+    "SpellPower",
+    "SpellPower",
+]
+targets = [
+    "Electric",
+    "Cold",
+    "Sonic",
+]
+
+[[enhancement.selection]]
+name = "Thorn"
+cost_per_rank = [1]
+description = """
+You follow the path of the Thorn. The rest of this tree's options will be
+determined by this choice.
+
+Each Core Ability in this tree, including this one, grants the following:
+
++1 Epic bonus to all DCs
++5 Acid, Force, Poison and Universal Spell Power
++50 Maximum Spell Points"""
+icon = "Thorn"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Thorn"
+effect_type = "SpellPower"
+extra_types = [
+    "SpellPower",
+    "SpellPower",
+    "SpellPower",
+]
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Poison",
+]
+
+[[enhancement]]
+name = "Primal Avatar: Now Grow"
+cost_per_rank = [1]
+description = "Choose a second path to follow beyond your first."
+icon = "NowGrow"
+internal_name = "U51PrimalAvatarCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Primal Avatar: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Heart"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Sky"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Cold",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Thorn"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51PrimalAvatarCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Heart"
+cost_per_rank = [1]
+description = """
+You gain a minor affinity for Heart. You gain the following for each Core
+Ability you take in this tree, including this one:
+
++3 Fire, Light, and Positive Spell Power."""
+icon = "Heart"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+]
+
+[[enhancement.selection]]
+name = "Sky"
+cost_per_rank = [1]
+description = """
+You gain a minor affinity for Sky. You gain the following for each Core
+Ability you take in this tree, including this one:
+
++3 Electric, Cold, and Sonic Spell Power."""
+icon = "Sky"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Cold",
+    "Sonic",
+]
+
+[[enhancement.selection]]
+name = "Thorn"
+cost_per_rank = [1]
+description = """
+You gain a minor affinity for Thorn. You gain the following for each Core
+Ability you take in this tree, including this one:
+
++3 Acid, Force, and Poison Spell Power."""
+icon = "Thorn"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Poison",
+]
+
+[[enhancement.selector_exclusion]]
+internal_name = "U51PrimalAvatarCore1"
+
+[[enhancement]]
+name = "Primal Avatar: Weathering the Elements"
+cost_per_rank = [1]
+description = """
++15% Absorption versus Fire, Cold, Electric, Acid, and Poison damage. Whenever you
+cast any Protection From Energy spell, it grants you 25 points per level instead
+of 12 with no level cap."""
+icon = "WeatheringTheElements"
+internal_name = "U51PrimalAvatarCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Primal Avatar: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Heart"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Sky"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Cold",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Thorn"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51PrimalAvatarCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Primal Avatar: Regrowth"
+cost_per_rank = [1]
+description = """
+Resting grants you Nature's Resurgence. In addition, once per rest, if you drop
+below 5% of your maximum spell points, you immediately gain Nature's Resurgence
+and 500 Spell Points.
+
+Nature's Resurgence: +5% Spell Critical Damage. This lasts until your next rest."""
+icon = "NaturalReserves"
+internal_name = "U51PrimalAvatarCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Primal Avatar: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Heart"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+    "Positive",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Sky"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Cold",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+]
+bonus_type = "Destiny"
+display_name = "Primal Avatar: Thorn"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Force",
+    "Physical",
+    "Untyped",
+    "Poison",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51PrimalAvatarCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Primal Avatar: Seeking Balance"
+cost_per_rank = [1]
+description = """
++[1/2/3] Reflex Saving Throws, +[2/4/6] Tumble and Balance.
+Rank 3: If you are using a Quarterstaff, you gain +1 Damage and +5 Universal
+Spell Power."""
+icon = "U51SeekingBalance"
+internal_name = "U51PrimalAvatarSeekingBalance"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_Damage"
+rank = 3
+targets = ["Quarterstaff"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Quarterstaff"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Primal Avatar: Well Weathered"
+cost_per_rank = [1]
+description = "+[1/2/3] to Physical and Magical Resistance Rating."
+icon = "WellWeathered"
+internal_name = "U51PrimalAvatarWellWeathered"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Primal Avatar: Primal Spell Selection I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Select an Epic Strike."
+icon = "PrimalSpellSelectionI"
+internal_name = "U51PrimalSpellSelectionI"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Carrion Swarm"
+cost_per_rank = [2]
+description = """
+Epic Strike: Target enemies and all enemies within a small radius around
+them become covered with biting acidic and poisonous insects. Every 2 seconds
+they take 1d6+1 Acid and 1d6+1 Poison damage per every 2 Character Levels for 8
+seconds (Max Caster Level 20). Stacks up to 3 times. Each stack also causes a
+-4 penalty to attack rolls and Armor class. Every few seconds, affected enemies
+have a chance to break free of the swarm if they pass a Fortitude saving throw
+(DC: 20 + highest of Int/Wis/Cha modifier mod + Conjuration bonuses).
+Cost: 2 Spell Points
+Cooldown: 6 seconds.
+
+Is considered a Druid spell for interactions with other abilities.
+
+Requires you to be attuned to the path of Thorn.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "CarrionSwarm"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Thorn",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore2",
+    "Thorn",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Spring to Summer"
+cost_per_rank = [2]
+description = """
+Epic Strike: A burst of butterflies forms around the caster in a small radius
+applying a copy of rejuvenation cocoon to all allies. After several seconds the
+butterflies burst into flame causing 1d6+6 Fire Damage per Character Level (up to
+a Max caster Level of 20) to all nearby enemies. This damage is halved on a
+successful Reflex save (DC: 20 + Highest of INT/WIS/CHA mod + Evocation bonuses).
+Cost: 2 Spell Points
+Cooldown: 12 seconds.
+
+Is considered a Druid spell for interactions with other abilities.
+
+Requires you to be attuned to the path of Heart.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "SpringToSummer"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Heart",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore2",
+    "Heart",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Storm Catcher"
+cost_per_rank = [2]
+description = """
+Epic Strike: Target enemy is instantly struck by a bolt of lightning for
+1d8+8 Electric damage per Caster Level. Target also becomes chilled to the bone
+for 8 seconds slowing their movement and reducing their Reflex save by half your
+Character Level (Max caster level 20). They also taking 1d6 Cold damage per
+Caster Level every two seconds for the duration.
+Cost: 2 Spell Points
+Cooldown: 8 seconds.
+
+Is considered a Druid spell for interactions with other abilities.
+
+Requires you to be attuned to the path of Sky.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "StormCatcher"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Sky",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore2",
+    "Sky",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Primal Avatar: Nature's Friend"
+cost_per_rank = [2]
+description = """
+When you sit to rest at a Rest Shrine your selected friend of nature visits
+you briefly and offers comfort. You and nearby party members are granted a buff
+that lasts until the end of your current quest."""
+icon = "NaturesFriendBat"
+internal_name = "U51PrimalAvatarNaturesFriend"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Bat of Echoes"
+cost_per_rank = [2]
+description = """
+When you sit to rest at a Rest Shrine your selected friend of nature visits
+you briefly and offers comfort. You and nearby party members are granted a buff
+that lasts until the end of your current quest.
+
++10 Sonic Spell Power, +15% Sonic Absorption, +3 Listen"""
+icon = "NaturesFriendBat"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Sonic"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["Listen"]
+
+[[enhancement.selection]]
+name = "Bird of Wind"
+cost_per_rank = [2]
+description = """
+When you sit to rest at a Rest Shrine your selected friend of nature visits
+you briefly and offers comfort. You and nearby party members are granted a buff
+that lasts until the end of your current quest.
+
++10 Electric Spell Power, +1% Dodge, +3 Spot"""
+icon = "NaturesFriendBird"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["Spot"]
+
+[[enhancement.selection]]
+name = "Fox of Flame"
+cost_per_rank = [2]
+description = """
+When you sit to rest at a Rest Shrine your selected friend of nature visits
+you briefly and offers comfort. You and nearby party members are granted a buff
+that lasts until the end of your current quest.
+
++10 Fire Spell Power, +2 Damage with Sneak Attacks, +3 Move Silently"""
+icon = "NaturesFriendFox"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDamage"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["Move Silently"]
+
+[[enhancement.selection]]
+name = "Frog of the Lake"
+cost_per_rank = [2]
+description = """
+When you sit to rest at a Rest Shrine your selected friend of nature visits
+you briefly and offers comfort. You and nearby party members are granted a buff
+that lasts until the end of your current quest.
+
++10 Cold Spell Power, +2 Magical Resistance Rating, +3 Jump"""
+icon = "NaturesFriendFrog"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["Jump"]
+
+[[enhancement.selection]]
+name = "Spider of the Deeps"
+cost_per_rank = [2]
+description = """
+When you sit to rest at a Rest Shrine your selected friend of nature visits
+you briefly and offers comfort. You and nearby party members are granted a buff
+that lasts until the end of your current quest.
+
++10 Poison and Acid Spell Power, 15% Poison Absorption"""
+icon = "NaturesFriendSpider"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Poison",
+    "Acid",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Poison"]
+
+[[enhancement.selection]]
+name = "Squirrel of Luck"
+cost_per_rank = [2]
+description = """
+When you sit to rest at a Rest Shrine your selected friend of nature visits
+you briefly and offers comfort. You and nearby party members are granted a buff
+that lasts until the end of your current quest.
+
++1 to Attack, Damage, and all Saving Throws"""
+icon = "NaturesFriendSquirrel"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement]]
+name = "Primal Avatar: Rejuvenation Cocoon"
+cost_per_rank = [2]
+description = """
+Protects your target with a shield of 150 Temporary Hit Points for 9 seconds.
+Heals 5d6 HP every 2 seconds while the shield persists.
+Cost: 12 Spell points
+Cooldown: 12 seconds."""
+icon = "RejuvenationCocoon"
+internal_name = "U51PrimalAvatarRejuvenationCocoon"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Primal Avatar: Flowers in the Thorns"
+cost_per_rank = [2]
+description = """
+Stepping inside a Spike Growth or Entangle spell, whether hostile or friendly,
+heals you for 1d3 hit points every 5 seconds per Character Level of the spell's
+owner."""
+icon = "FlowersInTheThorns"
+internal_name = "U51PrimalAvatarFlowersInTheThorns"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 22
+
+[[enhancement]]
+name = "Primal Avatar: Mantle of Nature"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Select a Primal Avatar Destiny Mantle."
+icon = "MantleOfNature"
+internal_name = "U51PrimalAvatarMantleOfNature"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 22
+
+[[enhancement.selection]]
+name = "Heart"
+cost_per_rank = [2]
+description = """
+Primal Avatar Destiny Mantle: Your Healing spells have a chance to apply
+a copy of Rejuvenation Cocoon to your target. Your Fire, Light, and Alignment
+spells have a chance to apply a blast of that damage type for an extra 1d6 per
+Character Level. All effects scale with 100% Spell Power. Each effect can only
+occur once every 5 seconds, tracked separately. Any Melee or Ranged Attack can
+also generate one of these effects."""
+icon = "MantleOfNatureHeart"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Heart",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore2",
+    "Heart",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.stance]]
+name = "Primal Mantle"
+description = """
+Mantle of Nature: Your Healing spells have a chance to apply a copy of Rejuvenation
+Cocoon to your target. Your Fire, Light, and Alignment spells have a chance to
+apply a blast of that damage type for an extra 1d6+6 per character level.
+All effects scale with 100% Spell Power. Each effect can only occur once every 5
+seconds, tracked separately. Any melee or ranged attack can also generate one of
+these effects."""
+group_name = "Mantle"
+icon = "MantleOfNatureHeart"
+
+[[enhancement.selection]]
+name = "Sky"
+cost_per_rank = [2]
+description = """
+Primal Avatar Destiny Mantle: Your Cold, Electric, and Sonic spells have
+a chance to blast one target for an additional 1d6 damage per Character Level of
+the same type as the spell used. All effects scale with 100% Spell Power. Each
+element can only strike once every 5 seconds, tracked separately. Any Melee or
+Ranged Attack can also generate one of these effects."""
+icon = "MantleOfNatureSky"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Sky",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore2",
+    "Sky",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.stance]]
+name = "Primal Mantle"
+description = """
+Mantle of Nature: Your Cold, Electric, and Sonic spells have a chance to blast one target
+for an additional 1d6+6 damage per character of the same type as the spell used.
+All effects scale with 100% Spell Power. Each element can only strike once every 5
+seconds, tracked separately. Any melee or ranged attack can also generate one of
+these effects."""
+group_name = "Mantle"
+icon = "MantleOfNatureSky"
+
+[[enhancement.selection]]
+name = "Thorn"
+cost_per_rank = [2]
+description = """
+Primal Avatar Destiny Mantle: Your Acid, Force, and Poison spells have a
+chance to blast one target for an additional 1d6+6 damage per Character
+Level of the same type as the spell used. All effects scale with 100% Spell Power.
+Each element can only strike once every 5 seconds, tracked separately.
+Any Melee or Ranged Attack can also generate one of these effects."""
+icon = "MantleOfNatureThorn"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Thorn",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore2",
+    "Thorn",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.stance]]
+name = "Primal Mantle"
+description = """
+Mantle of Nature: Your Acid, Force, and Poison spells have a chance to blast one target
+for an additional 1d6+6 damage per character of the same type as the spell used.
+All effects scale with 100% Spell Power. Each element can only strike once every 5
+seconds, tracked separately. Any melee or ranged attack can also generate one of
+these effects."""
+group_name = "Mantle"
+icon = "MantleOfNatureThorn"
+
+[[enhancement]]
+name = "Primal Avatar: Thrive"
+cost_per_rank = [2]
+description = """
++50 Maximum Spell Points.
+
+Your Epic strike in this tree now has a 30% chance to grant Thrive when cast.
+
+Thrive: The cost of all spells is reduced by a 25% Enhancement bonus for 4 seconds."""
+icon = "PrimalAvatarThrive"
+internal_name = "U51PrimalAvatarThrive"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 22
+
+[[enhancement.requirement]]
+items = ["U51PrimalSpellSelectionI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Primal Avatar: Primal Spell"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Select a Primal spell."
+icon = "PrimalChoice"
+internal_name = "U51PrimalAvatarPrimalSpell"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 22
+
+[[enhancement.selection]]
+name = "Reborn in Fire"
+cost_per_rank = [2]
+description = """
+A swirl of fire surrounds you dealing 1d6 Fire damage per Character Level
+to enemies, who take half damage on a successful Reflex save (DC: 20 + Highest
+of INT/WIS/CHA mod + Evocation bonuses) and healing allies for 1d6 Hit Points per
+Character Level (Max Caster Level 20).
+Cost: 20 Spell Points
+Cooldown: 20 seconds.
+
+Is considered a Druid spell for interactions with other abilities.
+
+Requires you to be attuned to the path of Heart."""
+icon = "RebornInFire"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    20,
+    20,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Reborn in Fire",
+    "None",
+]
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Heart",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore2",
+    "Heart",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Shard Storm"
+cost_per_rank = [2]
+description = """
+Summons a cloud of acidic poisonous shards that randomly strikes enemies
+within 15 meters. 6 strikes over 6 seconds. Each shard deals 1d4+2 Poison and
+1d4+2 Acid damage per Character Level (Max Caster Level 20).
+Cost: 20 Spell Points
+Cooldown: 20 seconds.
+
+Is considered a Druid spell for interactions with other abilities.
+
+Requires you to be attuned to the path of Thorn."""
+icon = "ShardStorm"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    20,
+    20,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shard Storm",
+    "None",
+]
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Thorn",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore2",
+    "Thorn",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Thunder Snow"
+cost_per_rank = [2]
+description = """
+Sends forth a wide wave of freezing hail with a narrow blast of lightning
+at its center directly in front of the caster. The hail deals 1d6+4 Cold damage
+per Character Level to enemies it hits, who take half damage on a successful
+Fortitude save (DC: 20 + Highest of INT/WIS/CHA mod + Evocation bonuses). The
+bolt of lightning strikes for 1d6+4 Electric damage per Character Level (Max
+Caster Level 20) to enemies it hits, who take half damage on a successful Reflex
+save (same DC as above).
+Cost: 20 Spell Points
+Cooldown: 20
+
+Is considered a Druid spell for interactions with other abilities.
+
+Requires you to be attuned to the path of Sky."""
+icon = "ThunderSnow"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    20,
+    20,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Thunder Snow",
+    "None",
+]
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Sky",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51PrimalAvatarCore2",
+    "Sky",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Primal Avatar: Spirit Boon"
+cost_per_rank = [1]
+description = "Multi-selector"
+icon = "U51SpiritBoon"
+internal_name = "U51PrimalAvatarSpiritBoon"
+min_spent = 5
+ranks = 2
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Body"
+cost_per_rank = [1]
+description = "+[1/2] Primal bonus to Strength, Dexterity, and Constitution."
+icon = "SpiritBoonBody"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+bonus_type = "Primal"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Dexterity",
+    "Constitution",
+]
+
+[[enhancement.selection]]
+name = "Mind"
+cost_per_rank = [1]
+description = "+[1/2] Primal bonus to Intelligence, Wisdom, and Charisma."
+icon = "SpiritBoonMind"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+bonus_type = "Primal"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+
+[[enhancement]]
+name = "Primal Avatar: Evergreen"
+cost_per_rank = [1]
+description = """
++[30/60/100] Maximum Spell Points.
+Rank 3: When using your Primal Avatar Destiny Mantle, your spells have a chance
+to grant you 100 Temporary Spell Points for 60 seconds."""
+icon = "EverGreen"
+internal_name = "U51PrimalAvatarEverGreen"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    100,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Primal Avatar: Shared Mantle"
+cost_per_rank = [2]
+description = """
+While within your Primal Avatar Destiny Mantle you gain +3 bonus Imbue Dice.
+Your summons and hirelings now also benefit from your Primal Avatar Destiny Mantle,
+and they gain your current Spell Power Values."""
+icon = "U51SharedMantle"
+internal_name = "U51PrimalAvatarSharedMantle"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier.requirement]]
+items = ["Primal Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51PrimalAvatarMantleOfNature"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Primal Avatar: Spell Focus"
+cost_per_rank = [1]
+description = "Select a Spell School to enhance."
+icon = "MagicOfTheOldWorld"
+internal_name = "U51PrimalAvatarMagicOfTheOldWorld"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Conjuration"
+cost_per_rank = [1]
+description = "+[1/2/3] Conjuration DC"
+icon = "MagicOfTheOldWorld"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51PrimalAvatarMagicOfTheOldWorld",
+    "Destiny Conjuration",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarMagicOfTheOldWorld",
+    "Destiny Conjuration",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Enchantment"
+cost_per_rank = [1]
+description = "+[1/2/3] Enchantment DC"
+icon = "MagicOfTheOldWorld"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51PrimalAvatarMagicOfTheOldWorld",
+    "Destiny Enchantment",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarMagicOfTheOldWorld",
+    "Destiny Enchantment",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Evocation"
+cost_per_rank = [1]
+description = "+[1/2/3] Evocation DC"
+icon = "MagicOfTheOldWorld"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51PrimalAvatarMagicOfTheOldWorld",
+    "Destiny Evocation",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarMagicOfTheOldWorld",
+    "Destiny Evocation",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Transmutation"
+cost_per_rank = [1]
+description = "+[1/2/3] Transmutation DC"
+icon = "MagicOfTheOldWorld"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51PrimalAvatarMagicOfTheOldWorld",
+    "Destiny Transmutation",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarMagicOfTheOldWorld",
+    "Destiny Transmutation",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Primal Avatar: At Its Core"
+cost_per_rank = [1]
+description = """
+Upgrades your selected Primal Spell.
+
+Heart: Doubles the damage of Reborn in Fire. Reborn in Fire now also grants +25%
+Uncapped Dodge for 4 seconds on use.
+
+Sky: Doubles the damage of Thunder Snow. Thunder Snow now also applies the slow
+effect of Storm Catcher, slowing movement and reducing all targets' Reflex saves
+by half your Character Level for the duration of the slow.
+
+Thorn: Doubles the damage of Shard Storm. Shard Storm now also grants you Shard
+Reflection for 12 seconds when used, giving you 25% of your Maximum Hit Points
+as Temporary Hit points."""
+icon = "AtItsCore"
+internal_name = "U51PrimalAvatarAtItsCreUpgradePrimalSpell"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51PrimalAvatarPrimalSpell"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Primal Avatar: Natural Shielding"
+cost_per_rank = [2]
+description = """
++10 Maximum Hit Points and +2 Magical Resistance Rating. Your summons, pets, and
+hirelings gain a 60% bonus to Maximum Hitpoints, +30 Magical Resistance Rating,
++4 Reflex Saving Throws, and gain the Evasion feat."""
+icon = "NaturalShielding"
+internal_name = "U51PrimalAvatarNaturalShielding"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Destiny"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [60]
+bonus_type = "Destiny"
+effect_type = "HirelingHitpoints"
+percent = true
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Destiny"
+effect_type = "HirelingMRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Destiny"
+effect_type = "HirelingSaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "HirelingGrantFeat"
+targets = ["Evasion"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Primal Avatar: Natural Evasion"
+cost_per_rank = [2]
+description = "Gain the Evasion Feat. Exclusive from other enhancements that grant this feat."
+icon = "NaturesEvasion"
+internal_name = "U51PrimalAvatarNaturalEvasion"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Evasion"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Primal Avatar: Nature's Reach"
+cost_per_rank = [1]
+description = """
++[5/10/15] Universal Spell Power. Using the Enlarge Spell Metamagic costs you
+[3/6/9] fewer Spell Points."""
+icon = "NaturesReach"
+internal_name = "U51PrimalAvatarNaturesReach"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Primal Avatar: Nature's Blessing"
+cost_per_rank = [2]
+description = """
+When you rest, a natural spirit manifests as a Unicorn and grants Nature's Blessing
+to yourself and nearby allies.
+
+Nature's Blessing: +5% Insight bonus to Maximum Hit points. This effect lasts
+until you leave the dungeon."""
+icon = "NaturesBlessing"
+internal_name = "U51PrimalAvatarNaturesBlessing"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Primal Avatar: Improved Metamagic"
+cost_per_rank = [1]
+description = "Select a Metamagic to improve."
+icon = "EpicImprovedMetamagics"
+internal_name = "U51PrimalAvatarEpicImprovedMetamagicsI"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Empower"
+cost_per_rank = [1]
+description = "Reduces the cost of the Empower Metamagic by [2/4/6] spell points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Maximize"
+cost_per_rank = [1]
+description = "Reduces the cost of the Maximize Metamagic by [3/6/9] spell points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Quicken"
+cost_per_rank = [1]
+description = "Reduces the cost of the Quicken Metamagic by [1/2/4] spell points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Primal Avatar: Improved Metamagic"
+cost_per_rank = [2]
+description = "Select a Metamagic to improve."
+icon = "EpicImprovedMetamagics"
+internal_name = "U51PrimalAvatarEpicImprovedMetamagicsII"
+min_spent = 20
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Empower"
+cost_per_rank = [1]
+description = "Reduces the cost of the Empower Metamagic by [2/4/6] spell points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Maximize"
+cost_per_rank = [1]
+description = "Reduces the cost of the Maximize Metamagic by [3/6/9] spell points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Quicken"
+cost_per_rank = [1]
+description = "Reduces the cost of the Quicken Metamagic by [1/2/4] spell points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Primal Avatar: Primal Ally"
+cost_per_rank = [2]
+description = "Gain the ability to summon an elemental ally based on your nature."
+icon = "PrimalAlly"
+internal_name = "U51PrimalAvatarPrimalAlly"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.selection]]
+name = "Heart Flame Dryad"
+cost_per_rank = [2]
+description = """
+Heart Flame Dryad: Creates an elder dryad that casts Fire, Light, and Healing
+spells (using you Fire, Light, and Positive Spell Powers respectively) and adding
+double the highest of your (INT/WIS/CHA) modifier to their casting DCs. She remains
+rooted to her summoning point.
+Cost: 50 Spell Points.
+Cooldown: 20 Seconds.
+
+Is considered a Druid spell for interactions with other abilities."""
+icon = "PrimalAllyHeart"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Heart",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Sky Storm Rager"
+cost_per_rank = [2]
+description = """
+Sky Storm Rager: Creates a greater storm spirit to blast your foes with
+Lightning, Cold and Sound (using your Electric, Cold, and Sonic Spell Powers
+respectively) and adding double the highest of your (INT/WIS/CHA) modifier to
+their casting DCs. Remains bound to their summoning spot.
+Cost: 50 Spell Points.
+Cooldown: 20 Seconds.
+
+Is considered a Druid spell for interactions with other abilities."""
+icon = "PrimalAllySky"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Sky",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Thorn Walker"
+cost_per_rank = [2]
+description = """
+Thorn Walker: Creates a greater thorn spirit to blast your foes with Acid,
+Poison and Force (using your Acid, Poison, and Force Spell Powers respectively)
+and adding double the highest of your (INT/WIS/CHA) modifier to their casting DCs.
+Remains bound to their summoning spot.
+Cost: 50 Spell Points.
+Cooldown: 20 Seconds.
+
+Is considered a Druid spell for interactions with other abilities."""
+icon = "PrimalAllyThorn"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Thorn",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Primal Avatar: Ancient Wisdom"
+cost_per_rank = [1]
+description = "+[1/2/3] to all Spell DCs."
+icon = "AncientWisdom"
+internal_name = "U51PrimalAvatarAncientWisdom"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Primal Avatar: Mass Frog"
+cost_per_rank = [2]
+description = "Up to six nearby enemies are turned into frogs. Each may avoid ribbiting on a\nsuccessful Fortitude saving throw vs. DC (20 + Highest of INT/WIS/CHA modifier\n+ Transmutation bonuses).\nCosts 60 Spell Points. \nCooldown: 60 seconds."
+icon = "MassFrog"
+internal_name = "U51PrimalAvatarMassFrog"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.dc]]
+name = "Mass Frog"
+amount = [20]
+dc_type = "Ribbit"
+dc_versus = "Fortitude"
+description = """
+Up to six nearby enemies are turned into frogs.
+Each may avoid ribbiting on a successful Fortitude saving throw vs.
+DC (20 + Highest of Wis/Int/Cha modifier + Transmutation bonuses)."""
+icon = "MassFrog"
+mod_ability = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Primal Avatar: Greater Form"
+cost_per_rank = [2]
+description = """
+Choose a powerful form of Wild Shape.
+Cooldown: 5 minutes."""
+icon = "PrimalAvatarGreaterForm"
+internal_name = "U51PrimalAvatarGreaterForm"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.selection]]
+name = "Heart of Flame"
+cost_per_rank = [2]
+description = """
+Epic Moment: Become like a Summer Fire for 20 seconds and gain:
+
+25% Action Boost to movement speed
+Ethereality to enemies, allowing you to pass through them.
+25% Uncapped Dodge
+Immunity to Fire damage, Light damage, and most Crowd Control effects.
+You deal 1d6 Fire damage per Character Level (Max caster Level 20) to enemies
+close to you and heal you and your allies with Positive energy for 1d6 Hit Points
+every 2 seconds.
+Cooldown: 5 minutes"""
+icon = "HeartOfFlame"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Heart",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Sky Rager"
+cost_per_rank = [2]
+description = """
+Epic Moment: Become like a raging storm for 20 seconds and gain:
+
+25% Action Boost to movement speed
+Ethereality to enemies, allowing you to pass through them.
+Immunity to Cold damage, Electric damage, and most Crowd Control effects.
+You deal 1d6 Cold damage per Character Level to enemies close to you every 2
+seconds, and slow those enemies. Random nearby enemies will be struck by Lightning
+for 1d6+6 Electric damage per Character Level (Max caster Level 20) and will be
+knocked down with no saving throw.
+Cooldown: 5 minutes"""
+icon = "SkyRager"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Sky",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Thorn Cloud"
+cost_per_rank = [2]
+description = """
+Epic Moment: Become like a cloud of thorns for 20 seconds and gain:
+
+25% Action Boost to movement speed
+Ethereality to enemies, allowing you to pass through them.
+50% Incorporeality
+Immunity to Poison damage, Acid damage, and most Crowd Control effects.
+You deal 1d6+3 Acid and 1d6+3 Poison damage per Character Level (Max caster Level 20)
+to enemies close to you every 2 seconds. Nearby enemies also have a 50% chance to
+become confused for 6 seconds with no saving throw.
+Cooldown: 5 minutes"""
+icon = "ThornCloud"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51PrimalAvatarCore1",
+    "Thorn",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Primal Avatar: Epic Improved Intensify Spell"
+cost_per_rank = [1]
+description = "Reduces the cost of the Intensify Spell Metamagic by [2/4/6] Spell Points."
+icon = "EpicImprovedIntensifySpell"
+internal_name = "U51PrimalAvatarEpicImprovedIntensifySpell"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostIntensify"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.requirement]]
+items = ["Intensify Spell"]
+req_type = "Feat"
+
+[[requirement]]
+items = ["Primal Avatar"]
+req_type = "Feat"

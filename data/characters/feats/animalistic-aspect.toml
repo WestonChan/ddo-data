@@ -1,0 +1,261 @@
+[[row]]
+name = "Beasthide Shifter"
+acquire = "Train"
+description = """
+Passive: +1 Constitution
+Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Armor Class and Constitution, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
+When the form ends, however, you will lose the hit points granted by increased Constitution
+and become fatigued. Your form will last for 30 seconds plus an additional amount of time
+based on your Constitution. You can prematurely end your form by using the Dismiss Rage
+feat. This shares charges with Barbarian's Rage feat, and anything that grants bonuses while
+Raging will grant bonuses with this. Shifting your form in this way prevents Spellcasting,
+and prevents use of other abilities that cannot be used while Raging."""
+icon = "BeasthideShifter"
+source_name = "Shifter"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Constitution"
+value = 1
+
+[[row.effect]]
+bonus_type = "Rage"
+effect = "Armor Class"
+value = 4
+
+[[row.effect]]
+bonus_type = "Rage"
+effect = "Constitution"
+value = 4
+
+[[row.effect]]
+bonus_type = "Morale"
+effect = "Fortitude Save"
+value = 2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Wisdom"
+value = -2
+
+[[row.group]]
+group_name = "Animalistic Aspect"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Rage"
+display_name = "Beasthide Shifter: Shifted Form"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Rage"
+display_name = "Beasthide Shifter: Shifted Form"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Morale"
+display_name = "Beasthide Shifter: Shifted Form"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+display_name = "Beasthide Shifter: Shifted Form"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "Beasthide Shifter: Shifted Form"
+description = """
+Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Armor Class and Constitution, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Wisdom.
+When the form ends, however, you will lose the hit points granted by increased Constitution
+and become fatigued."""
+icon = "BeasthideShifter"
+incompatible = [
+    "Combat Expertise",
+    "Resilience",
+    "Rage",
+    "Razorclaw Shifter: Shifted Form",
+    "Power Attack",
+    "Defensive Fighting",
+    "Precision",
+]
+
+[[row]]
+name = "Wildhunt Shifter"
+acquire = "Train"
+description = """
+Passive: +1 Wisdom
+Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Wisdom and Dexterity, a +2 Morale bonus to Will saves, and a -2 penalty to Strength.
+When the form ends, however, you will become fatigued. Your form will last for 30 seconds
+plus an additional amount of time based on your Wisdom. You can prematurely end your form by
+using the Dismiss Rage feat. This shares charges with Barbarian's Rage feat, and anything
+that grants bonuses while Raging will grant bonuses with this, with the exception of abilities
+that add Strength while Raging. Shifting your form in this way prevents Spellcasting,
+and prevents use of other abilities that cannot be used while Raging."""
+icon = "WildhuntShifter"
+source_name = "Shifter"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Wisdom"
+value = 1
+
+[[row.effect]]
+bonus_type = "Rage"
+effect = "Wisdom"
+value = 4
+
+[[row.effect]]
+bonus_type = "Rage"
+effect = "Dexterity"
+value = 4
+
+[[row.effect]]
+bonus_type = "Morale"
+effect = "Fortitude Save"
+value = 2
+
+[[row.effect]]
+bonus_type = "Penalty"
+effect = "Strength"
+value = -2
+
+[[row.group]]
+group_name = "Animalistic Aspect"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Rage"
+display_name = "Wildhunt Shifter: Shifted Form"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Rage"
+display_name = "Wildhunt Shifter: Shifted Form"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Morale"
+display_name = "Wildhunt Shifter: Shifted Form"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Penalty"
+display_name = "Wildhunt Shifter: Shifted Form"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[row.stance]]
+name = "Wildhunt Shifter: Shifted Form"
+description = """
+Active: Activate this Shifter ability to shift your form, granting you a +4 Rage bonus to
+Wisdom and Dexterity, a +2 Morale bonus to Fortitude saves, and a -2 penalty to Strength.
+When the form ends, however, you will become fatigued."""
+icon = "WildhuntShifter"
+incompatible = [
+    "Combat Expertise",
+    "Resilience",
+    "Rage",
+    "Beasthide Shifter: Shifted Form",
+    "Power Attack",
+    "Defensive Fighting",
+    "Precision",
+]

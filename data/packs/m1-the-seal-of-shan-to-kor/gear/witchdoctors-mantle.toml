@@ -1,0 +1,24 @@
+name = "Witchdoctor's Mantle"
+description = """
+A ceremonial mantle worm by hobgoblin witchdoctors, providing them with great
+mystical insight."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Cloak_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Back"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 2
+
+[[effect]]
+name = "Power II"
+bonus_type = "Enhancement"
+value = 20
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

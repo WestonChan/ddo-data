@@ -1,0 +1,46 @@
+name = "Topaz of Melee Power"
+choose_level = true
+description = "Enhancement bonus to Melee Power"
+family = "Topaz"
+icon = "Topaz"
+level_values = [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+]
+levels = [
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+    40,
+]
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Enhancement"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "green"

@@ -1,0 +1,48 @@
+name = "Lolth's Protection"
+description = """
+This helm was taken from the body of a fallen Drider said to be one of Lolth's
+personal guards."""
+drop_location = "Catalyst Crafting, Turn in Seraphim, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+icon = "Helmet_10"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Insightful Faith"
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 7
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Undying"
+bonus_type = "Enhancement"
+value = 85
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

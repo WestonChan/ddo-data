@@ -1,0 +1,24 @@
+name = "Glorious Dawn (Level 15)"
+description = "A ring blessed with Amaunator's love."
+drop_location = "A Lesson in Deception, end chest (Heroic Hard)"
+icon = "Ring_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 15
+slot = "Ring"
+
+[[effect]]
+name = "Deathblock IV"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Solar Guard IV"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Lesson in Deception"

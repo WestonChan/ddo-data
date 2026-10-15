@@ -1,0 +1,207 @@
+name = "Stone Heart"
+description = """
+This strange, roughly spherical lump of stone appears to be the petrified heart
+of some fiendish creature. Although difficult to tell for what purposes it
+was created, it eminates a palpable aura of energy. It looks like it is just
+the right size to replace the docent in a Warforged..."""
+drop_location = "Trial by Fury, Shufarix and Tsirrik chest"
+enhancement_bonus = 6
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 22
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 21
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 10
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 6
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "+8 Strength"
+description = "+8 Enhancement bonus to Strength"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+8 Dexterity"
+description = "+8 Enhancement bonus to Dexterity"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+8 Constitution"
+description = "+8 Enhancement bonus to Constitution"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "+8 Intelligence"
+description = "+8 Enhancement bonus to Intelligence"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "+8 Wisdom"
+description = "+8 Enhancement bonus to Wisdom"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "+8 Charisma"
+description = "+8 Enhancement bonus to Charisma"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "crafting: upgrade"
+
+[[socket.option]]
+name = "Adds Amaunator's Blessing Set bonus"
+description = "Adds the Amaunator's Blessing Set bonus"
+icon = "AmaunatorsBlessing"
+min_level = 22
+
+[[socket.option.set]]
+set = "Amaunator's Blessing"
+
+[[socket.option]]
+name = "Adds Woodsman's Guile Set bonus"
+description = "Adds Woodsman's Guile Set bonus"
+icon = "WoodsmansGuile"
+min_level = 22
+
+[[socket.option.set]]
+set = "Woodsman's Guile"
+
+[[socket.option]]
+name = "Adds Knight's Loyalty Set bonus"
+description = "Adds the Knight's Loyalty Set bonus"
+icon = "KnightsLoyalty"
+min_level = 22
+
+[[socket.option.set]]
+set = "Knight's Loyalty"
+
+[[socket.option]]
+name = "Adds the Way of the Sun Soul Set bonus"
+description = "Adds the Way of the Sun Soul Set bonus"
+icon = "WayOfTheSunSoul"
+min_level = 22
+
+[[socket.option.set]]
+set = "Way of the Sun Soul"
+
+[[socket.option]]
+name = "Adds the Battle Arcanist Set bonus"
+description = "Adds the Battle Arcanist Set bonus"
+icon = "BattleArcanist"
+min_level = 22
+
+[[socket.option.set]]
+set = "Battle Arcanist"
+
+[[source]]
+chest = "shufarix and tsirrik chest"
+kind = "quest"
+loot_type = "chest"
+name = "Trial by Fury"

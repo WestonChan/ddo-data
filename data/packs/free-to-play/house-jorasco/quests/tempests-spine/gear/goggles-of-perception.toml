@@ -1,0 +1,32 @@
+name = "Goggles of Perception"
+description = "These goggles sharpen its wearer's eyes, giving a bonus on search and spot skills."
+drop_location = "Tempest's Spine, Inevitable 's chest"
+icon = "Goggles_21"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 9
+slot = "Goggles"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "inevitable 's chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

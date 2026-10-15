@@ -1,0 +1,39 @@
+name = "Epic Icon of Mielikki"
+drop_location = "Toil and Trouble, optional chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 27
+slot = "Neck"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 135
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 20
+
+[[effect]]
+name = "Greater Thorn Guard"
+
+[[effect]]
+name = "Protection from Evil"
+bonus_type = "Deflection"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

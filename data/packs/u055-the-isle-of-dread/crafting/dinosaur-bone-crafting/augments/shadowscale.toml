@@ -1,0 +1,43 @@
+name = "Shadowscale"
+description = """
++10% Enhancement bonus to Spell Cost Reduction.
+If this is slotted in a Quarterstaff, also grants a +2 Exceptional bonus to Spell DCs."""
+family = "DinosaurBone"
+icon = "ScaleDarkPurple"
+min_level = 31
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Exceptional"
+value = 2
+
+[[effect]]
+name = "Spell Point Cost Reduction"
+bonus_type = "Enhancement"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = [
+    "Weapon1",
+    "Quarterstaff",
+]
+req_type = "ItemTypeInSlot"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Spell Point Cost Reduction"
+effect_type = "SpellPointCostPercent"
+targets = ["All"]
+
+[[slot]]
+slot = "isle of dread: scale (weapon)"

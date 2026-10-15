@@ -1,0 +1,21 @@
+name = "+15% Electrical Absorption"
+description = "Electrical Absorption +15%: Passive: +15% Equipment Bonus to Electrical Absorption."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Equipment"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Electric Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[slot]]
+slot = "crafting: incredible potential"

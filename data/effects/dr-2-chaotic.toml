@@ -1,0 +1,11 @@
+name = "DR 2/Chaotic"
+description_template = "Reduces physical damage by 2, except from Chaotic attacks."
+verbose_name_template = "DR 2/Chaotic"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "DR Damage Reduction 2/Chaotic"
+reason = "The corrected DR amount and damage type follow this effect's own name and description."
+url = "internal:effect-name-and-description"
+read = "2026-10-05"

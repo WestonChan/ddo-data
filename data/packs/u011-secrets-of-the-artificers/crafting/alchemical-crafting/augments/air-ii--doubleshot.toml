@@ -1,0 +1,22 @@
+name = "Air II: Doubleshot"
+adds_augment = "Legendary Alchemical T3"
+description = "Combine T1 item with 100 threads and stabilizing compound."
+effect_description = "Doubleshot +13%: +13% Enhancement bonus to Doubleshot chance."
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Doubleshot"
+effect_type = "Doubleshot"
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 2"

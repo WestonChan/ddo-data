@@ -1,0 +1,26 @@
+name = "Charming Festival Mask"
+description = """
+Wear this to charm both your friends and enemies! Thismask has a whimsical look
+that partially covers your face and gives you 8 charges of the Charm Person
+spell to cast on enemies. These charges do not re charge after resting."""
+drop_location = "DDO Store"
+icon = "Helmet_33c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Head"
+
+[[clickie]]
+name = "Charm Person"
+clickie = "Charm Person"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    8,
+    8,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Charm Person"]

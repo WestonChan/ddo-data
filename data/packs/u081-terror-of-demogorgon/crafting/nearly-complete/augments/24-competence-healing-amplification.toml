@@ -1,0 +1,47 @@
+name = "+24 Competence Healing Amplification"
+description = "+24 Competence bonus to Healing Amplification"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 1
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 24
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [24]
+bonus_type = "Enhancement"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[note]]
+kind = "augment"
+original_name = "+24 Enhancement Healing Amplification"
+field = "description"
+upstream = "+24 Enhancement bonus to Healing Amplification"
+reason = "The wiki gives the Nearly Complete healing amplification a Competence bonus, not Enhancement."
+url = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "+24 Enhancement Healing Amplification"
+reason = "The wiki gives the Nearly Complete healing amplification a Competence bonus, not Enhancement."
+url = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment_bonus"
+original_name = "+24 Enhancement Healing Amplification"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = "The wiki gives the Nearly Complete healing amplification a Competence bonus, not Enhancement."
+url = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+qualifier = "Healing Amplification / Enhancement"
+
+[[slot]]
+slot = "crafting: nearly complete: healing amplification (heroic)"

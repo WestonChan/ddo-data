@@ -12,15 +12,26 @@ pub(super) fn write_wiki_vendors_and_events(
 ) -> Result<()> {
     for vendor in &wiki_overrides.vendors {
         transaction.execute(
-            "INSERT INTO vendors (name, location, provenance, wiki_url) VALUES (?1, ?2, ?3, ?4)",
-            params![vendor.name, vendor.location, Provenance::Wiki.as_str(), vendor.page],
+            "INSERT INTO vendors (name, location, provenance, wiki_url, slug) VALUES (?1, ?2, ?3, ?4, ?5)",
+            params![
+                vendor.name,
+                vendor.location,
+                Provenance::Wiki.as_str(),
+                vendor.page,
+                crate::tree::xml_entity_slug("vendors", None, &vendor.name, None)
+            ],
         )?;
         report.wiki_vendor_count += 1;
     }
     for event in &wiki_overrides.events {
         transaction.execute(
-            "INSERT INTO events (name, provenance, wiki_url) VALUES (?1, ?2, ?3)",
-            params![event.name, Provenance::Wiki.as_str(), event.page],
+            "INSERT INTO events (name, provenance, wiki_url, slug) VALUES (?1, ?2, ?3, ?4)",
+            params![
+                event.name,
+                Provenance::Wiki.as_str(),
+                event.page,
+                crate::tree::xml_entity_slug("events", None, &event.name, None)
+            ],
         )?;
         report.wiki_event_count += 1;
     }
@@ -47,10 +58,14 @@ pub(super) fn write_wiki_vendor_and_event_items(
             let item_id = listed_item_id(transaction, &citation, vendor_item.name())?;
             insert_listed_item(transaction, LootSource::Vendor(vendor_id), item_id)?;
             if let Some(cost) = vendor_item.cost() {
-                transaction.execute(
-                    "UPDATE sources SET cost = ?3 WHERE kind = 'vendor' AND vendor_id = ?1 AND item_id = ?2",
-                    params![vendor_id, item_id, cost],
+                let offer_id: i64 = transaction.query_row(
+                    "SELECT id FROM vendor_offers WHERE vendor_id = ?1 AND item_id = ?2",
+                    params![vendor_id, item_id],
+                    |row| row.get(0),
                 )?;
+                let price = crate::vendor_prices::legacy_price(transaction, cost)
+                    .with_context(|| format!("vendor {:?}, item {:?}", vendor.name, vendor_item.name()))?;
+                crate::vendor_prices::insert_prices(transaction, offer_id, &price)?;
             }
             report.vendor_item_count += 1;
         }
@@ -95,7 +110,6 @@ fn insert_listed_item(transaction: &Transaction, source: LootSource, item_id: i6
             is_rare: false,
             chest: None,
             tier: None,
-            cost: None,
             drop_text_segment: None,
             source_match: None,
         },

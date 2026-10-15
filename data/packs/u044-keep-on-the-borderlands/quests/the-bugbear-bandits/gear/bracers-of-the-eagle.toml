@@ -1,0 +1,37 @@
+name = "Bracers of the Eagle"
+description = "Wearing these bracers, you feel like taking flight."
+drop_location = "The Bugbear Bandits, End chest"
+icon = "Bracers_10"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 21
+slot = "Wrists"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 203
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 101
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bugbear Bandits"

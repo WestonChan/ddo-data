@@ -1,0 +1,54 @@
+name = "Legendary Stormreach Guardian's Axe"
+accepts_sentience = true
+description = """
+Left behind by a fallen member of the Stormreach Harbor Guard, this axe's work
+is not yet finished."""
+drop_location = "Night Falls on Stormreach, End Chest"
+enhancement_bonus = 15
+icon = "DwarvenWaraxe_2i"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Chilling 6"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Bleeding 6"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Night Falls on Stormreach"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

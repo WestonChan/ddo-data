@@ -1,0 +1,71 @@
+name = "Pillar of Light"
+description = "This fiery staff blazes with the righteousness of the Silver Flame."
+drop_location = "Setting the Wards: The Lower Cathedral, End Chest"
+enhancement_bonus = 2
+icon = "Quarterstaff_10"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 2
+slot = "Main Hand"
+
+[[clickie]]
+name = "Searing Light"
+clickie = "Searing Light"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 2
+
+[[effect]]
+name = "Silver Flame Lore"
+value = 6
+
+[[effect]]
+name = "Power of the Silver Flame"
+bonus_type = "Equipment"
+value = 43
+
+[[effect]]
+name = "Holy 1"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Searing Light"]
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Setting the Wards: The Lower Cathedral"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

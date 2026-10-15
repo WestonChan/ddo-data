@@ -1,0 +1,226 @@
+name = "Shield of Morning (Level 27)"
+description = "Towards a brighter future."
+drop_location = "Breaking the Ranks, End chest (Epic Hard)"
+enhancement_bonus = 7
+icon = "Shield_13"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Magesteel"
+minimum_level = 27
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 11
+max_dex_bonus = 0
+shield_bonus = 12
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield of Greater Sunburst"
+
+[[effect]]
+name = "Solar Guard VI"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Axeblock VII"
+description = """
+Axeblock VII: Passive: Reduces physical damage taken by 14, except from Bludgeoning
+or Piercing weapons. (Damage Reduction: 14/Pierce, Bludgeon)"""
+icon = "Variant"
+min_level = 27
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus = "Not Set"
+effect_type = "DR"
+targets = [
+    "Pierce",
+    "Bludgeon",
+]
+
+[[socket.option]]
+name = "Bashing VII"
+description = """
+Bashing VII: On Shield Bash: +4d4 Bludgeoning damage.
+On Melee Hit: +6% Chance to automatically hit your enemy with a Shield Bash attack."""
+icon = "Variant"
+min_level = 27
+
+[[socket.option]]
+name = "Deathblock VII"
+description = """
+Deathblock VII: Passive: 21% Enhancement Bonus to Negative Energy Absorption.
+In addition, you are immune to magical effects that can cause instant death."""
+icon = "Variant"
+min_level = 27
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+value = 21
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+effect_type = "Immunity"
+targets = ["Death Effects"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [21]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[socket.option]]
+name = "Hammerblock VII"
+description = """
+Hammerblock VII: Passive: Reduces physical damage taken by 14, except from Piercing
+or Slashing weapons. (Damage Reduction: 14/Slash, Pierce)"""
+icon = "Variant"
+min_level = 27
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus = "Not Set"
+effect_type = "DR"
+targets = [
+    "Pierce",
+    "Slash",
+]
+
+[[socket.option]]
+name = "Insightful COmabt Mastery +4"
+description = """
+Insightful Combat Mastery +4: +4 Insight bonus to the DC to resist the character's
+Trip, Improved Trip, Sunder, Improved Sunder, Stunning Blow, and Stunning Fist attempts."""
+icon = "Variant"
+min_level = 27
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Combat Mastery"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Tactics"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[socket.option]]
+name = "Riposte VII"
+description = """
+Riposte VII: When Missed by an attack: Deals 7 to 28 damage to your attacker.
+Passive: +4 Insight bonus to Armor Class, +3 Insight bonus to Fortitude, Reflex,
+and Will Saving Throws."""
+icon = "Variant"
+min_level = 27
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 4
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option]]
+name = "Spearblock VII"
+description = """
+Spearblock VII: Passive: Reduces physical damage taken by 14, except from Bludgeoning
+or Slashing weapons. (Damage Reduction: 14/Slash, Bludgeon)"""
+icon = "Variant"
+min_level = 27
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus = "Not Set"
+effect_type = "DR"
+targets = [
+    "Bludgeon",
+    "Slash",
+]
+
+[[socket.option]]
+name = "Vitality +35"
+description = "Vitality +35: Passive: +35 Vitality bonus to Hit Points."
+icon = "Variant"
+min_level = 27
+
+[[socket.option.effect]]
+bonus_type = "Vitality"
+effect = "Hit Points"
+value = 35
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus_type = "Vitality"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Breaking the Ranks"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "Off-hand"
+weapon_type = "Small Shield"

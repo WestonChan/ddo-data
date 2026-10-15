@@ -1,0 +1,40 @@
+name = "Epic Memories of Charity"
+description = """
+A fragment of a misplaced thought, a brilliant light you once remembered. This
+tattered memory was once the face of someone who gave everything they had when
+it mattered most."""
+drop_location = "Memory Lapse, End chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 23
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 220
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 4
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Memory Lapse"

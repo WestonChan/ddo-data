@@ -1,0 +1,20 @@
+name = "Sovereign Rune of Dodging"
+description = "Dodge +3%: +3% Enhancement bonus to Dodge."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[slot]]
+slot = "crafting: sovereign rune"

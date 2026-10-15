@@ -1,0 +1,30 @@
+name = "Miserable Light Spell Crit Damage (Legendary)"
+description = "+6% Quality bonus to Light and Alignment Spell Critical Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Quality"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Miserable Light Spell Critical Damage (Legendary)"
+reason = "The wiki names it Miserable Light Spell Crit Damage (Legendary), where Maetrim names it Spell Critical Damage."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-10-02"
+qualifier = 'family "Lamordia_Legendary"'
+
+[[slot]]
+slot = "lamordia: miserable (accessory)"

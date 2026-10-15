@@ -1,0 +1,27 @@
+name = "The Promise of Fire"
+bestowed_by = "Lady Sera Jaymes"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "Morgrave University"
+zone = "The Reliquary of Flame"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Promise_of_Fire"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 27

@@ -1,0 +1,55 @@
+name = "Spectral Warhammer (level 28)"
+accepts_sentience = true
+description = """
+The residual power left behind as thousands of Spectral Dragon Scales crumbled
+to dust formed this ethereal weapon."""
+drop_location = "The Night Revels, Turn in Spectral Warhammer (level 24) and 250 Piece of Darkest Chocolate, obtained in the Crypt, in any challenge, and via Draught of Midnight 100 Spooky Almond, obtained in Haverdashed and Under New Ravagement 120 Pinch of Sinister Cinnamon, obtained in Hayweird Foundry and The Snitch and the Lich to Joe Candymaker"
+enhancement_bonus = 12
+icon = "Warhammer_1"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Force"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Ghostbane 6"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Evil Outsider Bane 6"
+
+[[effect]]
+name = "Superior Vorpal"
+
+[[effect]]
+name = "Crushing 13"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[source]]
+chest = "the lich to joe candymaker"
+kind = "quest"
+loot_type = "chest"
+name = "The Snitch"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.1
+handedness = "One-handed"
+weapon_type = "Warhammer"

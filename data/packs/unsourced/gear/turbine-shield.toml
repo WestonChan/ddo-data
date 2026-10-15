@@ -1,0 +1,34 @@
+name = "Turbine Shield"
+description = "A large metal shield is strapped to your forearm and gripped with your hand."
+drop_location = "N/A"
+icon = "Shield_1e"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Mithral"
+minimum_level = 1
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 2
+max_dex_bonus = 0
+shield_bonus = 2
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Mithral"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

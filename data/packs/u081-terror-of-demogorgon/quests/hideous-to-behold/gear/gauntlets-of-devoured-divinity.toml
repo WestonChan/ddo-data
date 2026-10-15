@@ -1,0 +1,38 @@
+name = "Gauntlets of Devoured Divinity"
+description = """
+A bold Paladin wandered down into the Abyss, sure that their zeal and devotion
+would be the key slaying the evils within.nnThey were wrong."""
+drop_location = "Hideous to Behold, Shedrak of the Eyes 's chest"
+icon = "Gloves_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Hands"
+
+[[effect]]
+name = "Temperance of Belief"
+
+[[effect]]
+name = "Strength of Purpose"
+bonus_type = "Enhancement"
+value = 128
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (heroic)"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "shedrak of the eyes 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Hideous to Behold"

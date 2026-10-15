@@ -1,0 +1,3 @@
+name = "Incorporeal Augment Scaling"
+description_template = "With 2–6 augments, gain +2% to +4% Incorporeal miss chance."
+verbose_name_template = "Incorporeal Augment Scaling"

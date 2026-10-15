@@ -1,0 +1,36 @@
+name = "Epic Pendant of Quiet Movements"
+description = "This strange bauble seems to absorb the sound of footsteps"
+drop_location = "Demon Assault, end chest"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 28
+slot = "Neck"
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 12
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon Assault"

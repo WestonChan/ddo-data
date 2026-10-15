@@ -1,0 +1,26 @@
+name = "Kardin's Eye (Level 14)"
+description = """
+One of the still living eye stalks from the Beholder Kardin. It wriggles in
+your hand and turns to gaze at danger."""
+drop_location = "The Prison of the Planes, Xoriat room's chest (Heroic Elite)"
+icon = "Trinket_16a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 14
+slot = "Trinket"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 4
+
+[[source]]
+chest = "xoriat room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"

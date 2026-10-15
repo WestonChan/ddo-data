@@ -1,0 +1,2 @@
+name = "Melee Attack Speed (One Handed)"
+verbose_name_template = "Melee Attack Speed +{1}% (One Handed)"

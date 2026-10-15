@@ -1,0 +1,36 @@
+name = "Death's Locket (historic)"
+description = """
+This locket consists of the bones of several small mammals strung together with
+a small skull weighing them down. The side of the skull is hinged and opens
+to reveal some unknown thing's ashes."""
+drop_location = "The Prison of the Planes, Dolurrh room's chest"
+icon = "Necklace_21a"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Neck"
+
+[[clickie]]
+name = "Cause Fear"
+clickie = "Cause Fear"
+
+[[effect]]
+name = "Deathblock"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cause Fear"]
+
+[[source]]
+chest = "dolurrh room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"

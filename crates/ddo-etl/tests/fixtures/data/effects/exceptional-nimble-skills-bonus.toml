@@ -1,0 +1,10 @@
+name = "Exceptional Nimble Skills Bonus"
+description_template = "{1} Exceptional bonus to Balance, Hide, Move Silently, Open Lock and Tumble."
+home_bonus_type = "Exceptional"
+verbose_name_template = "Exceptional Nimble Skills Bonus +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Nimble"

@@ -1,0 +1,25 @@
+name = "Detour"
+bestowed_by = "Tibalt Dormen"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The High Road of Shadows"
+patron = "The Harpers"
+zone = "Greenweald Lane"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Detour"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 24

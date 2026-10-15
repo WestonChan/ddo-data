@@ -1,0 +1,44 @@
+name = "Giantcrafted Plate Armor"
+description = "Plate armor imbued with the power of the ancient giants."
+drop_location = "Giantcraft Armor, Turn in 10 Ancient Giant Relics"
+enhancement_bonus = 5
+icon = "HeavyArmor_1"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Adamantine"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 12
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[clickie]]
+name = "Shield"
+clickie = "Shield"
+
+[[effect]]
+name = "Adamantine"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 25
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shield"]
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

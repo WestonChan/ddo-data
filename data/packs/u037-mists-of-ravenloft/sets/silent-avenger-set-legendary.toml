@@ -1,0 +1,78 @@
+name = "Silent Avenger Set (Legendary)"
+icon = "SilentAvenger"
+
+[[item]]
+name = "Legendary Braided Cutcord"
+
+[[item]]
+name = "Legendary Disciple of the Dawn"
+
+[[item]]
+name = "Legendary Memory of Hiding in Darkness"
+
+[[item]]
+name = "Legendary Mist-laden Vestment"
+
+[[item]]
+name = "Legendary Shadowhail Cloak"
+
+[[item]]
+name = "Patience Through Peril"
+
+[[item]]
+name = "The Invisible Cloak of Strahd"
+
+[[item]]
+name = "Vestments of Ravenloft"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "SneakAttackDice"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "FortificationBypass"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

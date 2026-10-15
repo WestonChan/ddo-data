@@ -1,0 +1,23 @@
+name = "Skirmisher's Cloak (Level 25)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "The Tracker's Trap, End reward"
+icon = "Cloak_7"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 25
+slot = "Back"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Tracker's Trap"

@@ -1,0 +1,21 @@
+name = "Armor Max Dex Bonus"
+description = "Armor Max Dex Bonus. If this is a docent enter the value for your Body Feat type."
+enter_value = true
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Max Dex Bonus (Armor)"
+bonus_type = "Equipment"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Max Dex Bonus (Armor)"
+effect_type = "MaxDexBonus"
+
+[[slot]]
+slot = "crafting: cannith armor max dex/dodge bonus"

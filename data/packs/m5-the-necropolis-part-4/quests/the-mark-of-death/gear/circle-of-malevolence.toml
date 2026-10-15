@@ -1,0 +1,87 @@
+name = "Circle of Malevolence"
+description = """
+The ring off the dead finger of the Abbot. This was a family heirloom from his
+days worshipping Vol, and seems to have become further twisted by her immediate
+influence."""
+drop_location = "The Mark of Death, warded chest"
+icon = "Ring_17"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Ring"
+
+[[clickie]]
+name = "Improved Harm"
+clickie = "Improved Harm"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 10
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 44
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 25
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 120
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    11,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Improved Harm"]
+
+[[socket]]
+slot = "crafting: primary upgrade"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Adds a Blue Augment Slot"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Adds a Yellow Augment Slot"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: secondary upgrade"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Adds a Green Augment Slot"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Mark of Death"

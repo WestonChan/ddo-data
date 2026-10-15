@@ -1,0 +1,40 @@
+name = "Poison-Tipped Crossbow"
+description = """
+A simple ranged weapon consisting of a small bow mounted crosswise on a light
+wooden stock."""
+drop_location = "Redwillow's Ruins, Ker'xxan T'korcha 's chest"
+enhancement_bonus = 3
+icon = "LightCrossbow_1d"
+item_category = "Weapon"
+item_type = "Light Crossbow"
+material = "Wood"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Poison"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "ker'xxan t'korcha 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Redwillow's Ruins"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Light Crossbow"

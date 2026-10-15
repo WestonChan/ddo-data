@@ -1,0 +1,78 @@
+{
+  "$defs": {
+    "StatCategoryFile": {
+      "enum": [
+        "ability",
+        "defensive",
+        "magical",
+        "martial",
+        "other",
+        "skill"
+      ],
+      "type": "string"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "category": {
+      "$ref": "#/$defs/StatCategoryFile"
+    },
+    "default_value": {
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "description_template": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "home_bonus_type": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-reference-kind": "bonus_types"
+    },
+    "name": {
+      "type": "string"
+    },
+    "set_bonus_line_template": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tier": {
+      "format": "int64",
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "tier_group": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-reference-kind": "effect_tier_groups"
+    },
+    "verbose_name_template": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "category"
+  ],
+  "title": "StatFile",
+  "type": "object",
+  "x-table": "effects"
+}

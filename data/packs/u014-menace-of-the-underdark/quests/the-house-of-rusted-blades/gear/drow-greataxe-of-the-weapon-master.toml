@@ -1,0 +1,123 @@
+name = "Drow Greataxe of the Weapon Master"
+accepts_sentience = true
+description = """
+Although Drow craftsmanship is among the finest in Faerun, few are foolhardy
+enough to steal from the owner of such a weapon."""
+drop_location = "The House of Rusted Blades, End Chest"
+enhancement_bonus = 6
+icon = "GreatAxe_1"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 21
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Maiming"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Insightful Combat Mastery +5"
+description = "+5 Insightful bonus to combat master"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Combat Mastery"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "TacticalDC"
+targets = [
+    "Stun",
+    "Trip",
+    "Sunder",
+]
+
+[[socket.option]]
+name = "Shatter +10"
+description = "Shatter +10: This effect gives a +10 enhancement bonus to the DC to resist the character's Sunder and Improved Sunder attempts."
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sunder DC"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Sunder DC"
+effect_type = "TacticalDC"
+targets = ["Sunder"]
+
+[[socket.option]]
+name = "Stunning +10"
+description = "Stunning +10: +10 Enhancement bonus to the DC of character's Stunning Blow and Stunning Fist attempts."
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[socket.option]]
+name = "Vertigo +10"
+description = "Vertigo +10: This effect gives a +10 Enhancement bonus to the DC to resist the character's Trip and Improved Trip attempts."
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[socket.option]]
+name = "Tendon Slice +10%"
+description = "Tendon Slice 10%: This effect gives a 10% chance to Hamstring the target for each attack that does damage."
+min_level = 21
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Rusted Blades"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 3.2
+handedness = "Two-handed"
+weapon_type = "Great Axe"

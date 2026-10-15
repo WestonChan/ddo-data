@@ -1,0 +1,50 @@
+name = "Legendary Duergarcraft Plate"
+description = "Protective gear made by Duergar craftspeople."
+drop_location = "Demon in the Rough, end chest"
+enhancement_bonus = 16
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 35
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 42
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 163
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 9
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 14
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon in the Rough"

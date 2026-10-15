@@ -1,0 +1,20 @@
+name = "+62 Enhancement Repair Amplification"
+description = "+62 Enhancement bonus to Repair Amplification"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Enhancement"
+value = 62
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [62]
+bonus_type = "Enhancement"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[slot]]
+slot = "crafting: nearly complete: healing amplification (legendary)"

@@ -1,0 +1,67 @@
+name = "Raven's Eye"
+icon = "RavensEye"
+
+[[item]]
+name = "Raven's Sight"
+
+[[item]]
+name = "Raven's Talons"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Attack Bonus +3 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Attack Bonus / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Damage Bonus +3 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Damage Bonus / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+3 Artifact bonus to Attack and Damage"
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Search"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spot"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Attack Bonus"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Search",
+    "Spot",
+]

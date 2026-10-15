@@ -1,0 +1,22 @@
+name = "Slavers of the Shrieking Mines"
+bestowed_by = "Opu the Elder"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Restless Isles"
+patron = "The Free Agents"
+zone = "The Shrieking Mines"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Slavers_of_the_Shrieking_Mines"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10

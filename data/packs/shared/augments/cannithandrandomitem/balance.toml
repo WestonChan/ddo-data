@@ -1,0 +1,99 @@
+name = "Balance"
+choose_level = true
+description = "Competence bonus to Balance"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    15,
+    16,
+    16,
+    16,
+    17,
+    17,
+    17,
+    18,
+    18,
+    18,
+    18,
+    19,
+    19,
+    19,
+    19,
+    20,
+    20,
+    20,
+    21,
+    21,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+]
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 22
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Competence"
+effect = "Balance"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[slot]]
+slot = "crafting: cannith belt suffix"
+
+[[slot]]
+slot = "crafting: cannith boots prefix"
+
+[[slot]]
+slot = "crafting: cannith cloak prefix"
+
+[[slot]]
+slot = "crafting: cannith ring prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random armor extra"
+
+[[slot]]
+slot = "crafting: random belt suffix"
+
+[[slot]]
+slot = "crafting: random boots prefix"
+
+[[slot]]
+slot = "crafting: random cloak prefix"
+
+[[slot]]
+slot = "crafting: random ring prefix"
+
+[[slot]]
+slot = "crafting: random shield extra"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

@@ -1,0 +1,42 @@
+name = "+5 Heirloom Spelltouched Dart"
+accepts_sentience = true
+description = """
+Spelltouched weaponry has been affected by the chaotic magic of the Spellplague,
+and may have unpredictable effects."""
+drop_location = "Underdark Arena: Ring of Fire, End chest"
+enhancement_bonus = 5
+icon = "Dart_1e"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Flaming"
+
+[[effect]]
+name = "Steam"
+
+[[effect]]
+name = "Strength Sapping"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Thrown"
+weapon_type = "Dart"

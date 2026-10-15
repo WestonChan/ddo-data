@@ -1,0 +1,21 @@
+name = "Quality Spellcraft +5"
+description = "Legendary quality bonus to Spellcraft"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Spellcraft"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

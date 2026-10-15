@@ -1,0 +1,60 @@
+name = "Scorched Bracers"
+description = """
+A pair of bracers that guards the wearer against magic flames. They seem to
+have been tested vigorously until the protection was perfected."""
+drop_location = "The Chronoscope, end chest, and The Chronoscope (Legendary), heroic chest"
+icon = "Bracers_4a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Wrists"
+
+[[clickie]]
+name = "Fireball"
+spell = "Fireball"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 4
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 14
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Fireball"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[source]]
+chest = "heroic chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

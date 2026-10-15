@@ -1,0 +1,59 @@
+name = "Fabricator's Ingenuity"
+icon = "FabricatorsIngenuity"
+
+[[item]]
+name = "Fabricator's Bracers"
+
+[[item]]
+name = "Fabricator's Gauntlets"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Attack Bonus +2 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Attack Bonus / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Damage Bonus +2 Artifact at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Damage Bonus / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Exceptional"
+effect = "Fortification"
+value = 25
+
+[[tier.effect]]
+effect = "+2 Artifact bonus to attack and damage"
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Attack Bonus"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Exceptional"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]

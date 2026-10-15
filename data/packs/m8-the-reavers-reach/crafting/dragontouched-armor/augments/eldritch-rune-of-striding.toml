@@ -1,0 +1,20 @@
+name = "Eldritch Rune of Striding"
+description = "Striding +20%: Makes the wearer more fleet of foot, giving a 20% bonus to run speed."
+family = "Dragontouched_EldritchRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Movement Speed"
+bonus_type = "Enhancement"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[slot]]
+slot = "crafting: eldritch rune"

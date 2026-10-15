@@ -1,0 +1,3 @@
+name = "Greater Bleeding"
+description_template = "This weapon is precisely sharp and will do an additional 8 to 40 damage to targets that are vulnerable to bleeding."
+verbose_name_template = "Greater Bleeding"

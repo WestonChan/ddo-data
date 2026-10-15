@@ -1,0 +1,23 @@
+name = "+50 Fire Resistance"
+description = "Material/Opposition: +50 Enhancement bonus to Fire Resistance."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect = "Fire Resistance"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[slot]]
+slot = "crafting: equipment tier 1"

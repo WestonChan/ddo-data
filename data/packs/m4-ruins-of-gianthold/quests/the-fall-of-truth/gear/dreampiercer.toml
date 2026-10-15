@@ -1,0 +1,99 @@
+name = "Dreampiercer"
+description = """
+This is a truly ancient relic of the giant wars against the Dal Quor. The dream-monsters
+were best fought with weapons that struck down the spirit, rather then the
+flesh"""
+drop_location = "The Fall of Truth, Raid Warded chest (Epic Normal)"
+enhancement_bonus = 7
+icon = "Quarterstaff_7"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Crystal"
+minimum_level = 25
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Greater Good"
+
+[[effect]]
+name = "Greater Evil Outsider Bane"
+
+[[effect]]
+name = "Life Stealing"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Supreme Good"
+description = "Phlebotomizing: This weapon is wickedly sharp and will do an additional 3 to 24 damage to targets that are vulnerable to bleeding."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.modifier]]
+bonus_type = "Stacking"
+dice_damage = "Good"
+dice_number = [3]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Non-Good"]
+req_type = "EnemyType"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Fall of Truth"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

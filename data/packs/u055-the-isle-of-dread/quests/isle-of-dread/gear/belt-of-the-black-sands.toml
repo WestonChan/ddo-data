@@ -1,0 +1,33 @@
+name = "Belt of the Black Sands"
+description = "The volcanic Black Sands of the Isle of Dread are rumored to have mystical properties."
+drop_location = "Isle of Dread (wilderness), rare encounter chest"
+icon = "Belt_8"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 7
+slot = "Waist"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Invisibility Guard"
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

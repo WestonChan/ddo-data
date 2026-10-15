@@ -1,0 +1,30 @@
+name = "Halls of Shan-To-Kor"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Seal of Shan-To-Kor"
+patron = "The Coin Lords"
+zone = "Halls of Shan-To-Kor"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Halls_of_Shan-To-Kor"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "The Halls of Shan-To-Kor"
+reason = "The wiki titles the quest Halls of Shan-To-Kor."
+url = "https://ddowiki.com/page/Halls_of_Shan-To-Kor"
+read = "2026-10-02"
+
+[[run]]
+tier = "heroic"
+level = 5

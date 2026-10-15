@@ -1,0 +1,23 @@
+name = "Irestone Inlet"
+bestowed_by = "Niles Cage"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "Irestone Inlet"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Irestone_Inlet"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

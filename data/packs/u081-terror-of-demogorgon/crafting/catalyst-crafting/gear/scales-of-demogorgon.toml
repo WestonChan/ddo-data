@@ -1,0 +1,50 @@
+name = "Scales of Demogorgon"
+description = "Sharp scales line this armor, a memory of victory."
+drop_location = "Catalyst Crafting, Turn in Demon Scale Armor, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 5
+icon = "HeavyArmor_7"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 11
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = 5
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Legendary Demonic Shield"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 6
+
+[[effect]]
+name = "Smoke Screen"
+bonus_type = "Enhancement"
+value = 21
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

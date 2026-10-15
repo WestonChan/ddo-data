@@ -1,0 +1,48 @@
+name = "Illusionist's Garb"
+description = """
+This magician's robe catches the eye and appears to glitter prismatically in
+the light. The wearer becomes more clever and can conjure a number of hypnotic
+effects."""
+drop_location = "The Maleficent Cabal, End reward"
+enhancement_bonus = 3
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Hypnotic Pattern"
+clickie = "Hypnotic Pattern"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 4
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Hypnotic Pattern"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Maleficent Cabal"

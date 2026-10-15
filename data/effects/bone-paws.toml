@@ -1,0 +1,3 @@
+name = "Bone Paws"
+description_template = "While in any Wild Shape, your weapons gain Piercing damage bypass and +1[W]."
+verbose_name_template = "Bone Paws"

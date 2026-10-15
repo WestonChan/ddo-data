@@ -1,0 +1,94 @@
+name = "Epic Duelist's Leathers (legacy) (level 24)"
+description = """
+When pirates who prefer light blades in battle need armor, this is the kind
+of item they will put their money on- a lightweight vest of leather or hide
+that allows plenty of stylish movement in combat."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Silver Doubloon 500 Golden Doubloon 40 Stolen Malachite at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 6
+icon = "LightArmor_1b"
+is_legacy = true
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 24
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 8
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 26
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Epic Nimbleness"
+bonus_type = "Stacking"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+7 Enhancement Bonus"
+description = "+7 Enhancement Bonus: +7 Enhancement bonus to Armor Class."
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Dodge 10% and a Blue Augment Slot"
+description = """
+Dodge +10%: +10% Enhancement bonus to Dodge.
+Adds a Blue Augment Slot."""
+icon = "Upgrade"
+min_level = 24
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 10
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

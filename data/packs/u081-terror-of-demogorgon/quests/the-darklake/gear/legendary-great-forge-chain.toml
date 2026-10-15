@@ -1,0 +1,49 @@
+name = "Legendary Great Forge Chain"
+description = "Protective gear made by Dwarven craftspeople."
+drop_location = "The Darklake, red-named rare encounter chests"
+enhancement_bonus = 16
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 35
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 34
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 62
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 15
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 3
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "red-named rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

@@ -1,0 +1,36 @@
+name = "Efficient Metamagic - Maximize II"
+description_template = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 4 SP."
+home_bonus_type = "Equipment"
+verbose_name_template = "Efficient Metamagic - Maximize II"
+
+[[bonus]]
+amount_from = 0
+constant = -4
+rounding = "down"
+scale = 1.0
+target = "Maximize Cost Reduction"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "Efficient Metamagic - Maximize II -2"
+reason = "The wiki shows the tier name without the fixed spell-point reduction."
+url = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
+read = "2026-10-05"
+
+[[note]]
+kind = "effect"
+field = "description_template"
+upstream = "The additional spell point cost for using the Maximize Metamagic feat is reduced by 2 SP."
+reason = "The wiki says Maximize II reduces the cost by 4 SP rather than 2."
+url = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
+read = "2026-10-05"
+
+[[note]]
+kind = "effect"
+field = "constant"
+upstream = -2
+reason = "The wiki says the Maximize II cost reduction is 4 SP."
+url = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
+read = "2026-10-05"
+qualifier = 'stat "Maximize Cost Reduction"'

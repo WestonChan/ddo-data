@@ -1,0 +1,34 @@
+name = "Cloak of the Silver Concord"
+description = "This magical cloak is a gift to a very select few of the Aurum inner circles."
+drop_location = "Plane of Night, Raid Warded chest"
+icon = "Cloak_17a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Back"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 5
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

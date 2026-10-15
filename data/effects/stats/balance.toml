@@ -1,0 +1,5 @@
+name = "Balance"
+category = "skill"
+description_template = "Passive: {1} %b1 bonus to the Balance skill."
+home_bonus_type = "Competence"
+verbose_name_template = "%b1 Balance +{1}"

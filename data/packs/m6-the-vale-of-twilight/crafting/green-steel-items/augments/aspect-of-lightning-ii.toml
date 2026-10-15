@@ -1,0 +1,13 @@
+name = "Aspect of Lightning II"
+description = """
+Lightning Storm Guard: This item stores the power of a volatile thunderstorm deep within.
+When the wearer of this item is successfully attacked in melee, this dynamic
+power occasionally comes to the surface, devastating enemies with a massive
+lightning strike.
+Air:Positive:Air+Positive"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

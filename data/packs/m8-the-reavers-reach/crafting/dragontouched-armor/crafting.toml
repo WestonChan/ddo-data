@@ -1,0 +1,1285 @@
+name = "Dragontouched Armor"
+npc = "Vorace, across from the Stormreaver in Reaver's Refuge, beside the Dragontouched Eldritch, Tempest and Sovereign Altars"
+pack = "The Reaver's Reach"
+
+[[family]]
+family = "Dragontouched_EldritchRune"
+
+[[family]]
+family = "Dragontouched_TempestRune"
+
+[[family]]
+family = "Dragontouched_SovereignRune"
+
+[[ingredient]]
+name = "Draconic Rune"
+drop_location = "1-3 from named chests in Aussircaex's Valley, Soami Gardens, Mount Reysalon and Eerie Forest; 3-11 from end chests in Enter the Kobold, Monastery of the Scorpion and Prey on the Hunter; 50 as the Stealer of Souls end reward. Spending them needs Stealer of Souls complete; Vorace also trades 50 for an Eberron Dragonshard Essence and 25 each for a Siberys or Khyber Dragonshard Essence"
+tier = "heroic"
+
+[[ingredient]]
+name = "Eldritch Rune"
+drop_location = "1-2 from Enter the Kobold; 1-2 from Monastery of the Scorpion; one from Vorace for 50 Draconic Runes. 23 types; identified in the chest since Update 7"
+tier = "heroic"
+
+[[ingredient]]
+name = "Tempest Rune"
+drop_location = "1 from Prey on the Hunter; made from three Eldritch Runes. 24 types"
+tier = "heroic"
+
+[[ingredient]]
+name = "Sovereign Rune"
+drop_location = "1 from Stealer of Souls; made from three Tempest Runes. 33 types"
+tier = "heroic"
+
+[[citation]]
+url = "https://ddowiki.com/page/Dragontouched_Armor"
+read = "2026-09-29"
+
+[[recipe]]
+note = "All recipe facts are on this page (Dragontouched_Armor redirects to Item:Dragontouched_Armor). Vorace sells the blank for 50 Draconic Runes once Stealer of Souls is complete; all six types are ML16: Plate Armor (armor +22, max Dex +1), Breastplate (+17, max Dex +5), Leather Armor (+11, max Dex +11), Docent (Adamantine +16, Mithral +7, Composite +2, Construct Fortification 10%), Shroud (robe, +6) and Vestments (outfit, +6). The armor takes one rune of each type, in any order, at the matching altar; no augment counterpart."
+option = "Dragontouched Armor (blank)"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Draconic Rune"
+quantity = 50
+
+[[recipe]]
+note = "Vorace shows ten of the 25 possible Eldritch Runes and you pick one; Tempest and Sovereign Runes can no longer be bought (since Module 9). No augment counterpart."
+option = "Eldritch Rune from Vorace"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Draconic Rune"
+quantity = 50
+
+[[recipe]]
+note = "Three Eldritch Runes at the Dragontouched Eldritch Altar make one random Tempest Rune; a stack of identical runes cannot be used, but separate identical runes can. No augment counterpart."
+option = "Tempest Rune Empowered"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 3
+
+[[recipe]]
+note = "Three Tempest Runes make one random Sovereign Rune. No augment counterpart."
+option = "Sovereign Rune Empowered"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 3
+
+[[recipe]]
+note = "At the Dragontouched Sovereign Altar (since Update 7) a Sovereign Rune and a Draconic Rune return 1-9 Eldritch Runes' worth, converted up (5 gives 1 Tempest and 2 Eldritch; 9 gives a Sovereign), with exceptions. No augment counterpart."
+option = "Sovereign Rune Shattered"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Draconic Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Striding +20%."
+option = "Eldritch Rune of Striding"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Striding"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Striding +25%."
+option = "Eldritch Rune of Greater Striding"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Greater Striding"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Acid Resistance +30."
+option = "Eldritch Rune of Acid Resistance"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Acid Resistance"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Cold Resistance +30."
+option = "Eldritch Rune of Cold Resistance"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Cold Resistance"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Electric Resistance +30."
+option = "Eldritch Rune of Electricity Resistance"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Electricity Resistance"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Fire Resistance +30."
+option = "Eldritch Rune of Fire Resistance"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Fire Resistance"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Sonic Resistance +30."
+option = "Eldritch Rune of Sonic Resistance"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Sonic Resistance"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Strength Skills +6. The in-game text says +3; the actual bonus is +6."
+option = "Eldritch Rune of Skill:Strength"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Skill:Strength"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Dexterity Skills +6. The in-game text says +3; the actual bonus is +6."
+option = "Eldritch Rune of Skill:Dexterity"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Skill:Dexterity"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Constitution Skills +6. The in-game text says +3; the actual bonus is +6."
+option = "Eldritch Rune of Skill:Constitution"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Skill:Constitution"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Intelligence Skills +6. The in-game text says +3; the actual bonus is +6."
+option = "Eldritch Rune of Skill:Intelligence"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Skill:Intelligence"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Wisdom Skills +6. The in-game text says +3; the actual bonus is +6."
+option = "Eldritch Rune of Skill:Wisdom"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Skill:Wisdom"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Charisma Skills +6. The in-game text says +3; the actual bonus is +6."
+option = "Eldritch Rune of Skill:Charisma"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Skill:Charisma"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Fortification +100%."
+option = "Eldritch Rune of Fortification"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Fortification"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Resistance +5."
+option = "Eldritch Rune of Resistance"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Resistance"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Improved False Life."
+option = "Eldritch Rune of Improved False Life"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Improved False Life"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Greater False Life."
+option = "Eldritch Rune of Greater False Life"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Greater False Life"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Fearsome."
+option = "Eldritch Rune of Fear"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Fear"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Feather Falling."
+option = "Eldritch Rune of Featherfalling"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Featherfalling"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Deathblock."
+option = "Eldritch Rune of Deathward"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Deathward"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Lionheart (procs Remove Fear)."
+option = "Eldritch Rune of Lionheart"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Lionheart"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Healing Amplification +20."
+option = "Eldritch Rune of Lesser Healing Amplification"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Lesser Healing Amplification"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Incite +10."
+option = "Eldritch Rune of Threat"
+slot = "crafting: eldritch rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Eldritch Rune of Threat"
+family = "Dragontouched_EldritchRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Eldritch Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Strength +6."
+option = "Tempest Rune of Strength"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Strength"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Dexterity +6."
+option = "Tempest Rune of Dexterity"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Dexterity"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Constitution +6."
+option = "Tempest Rune of Constitution"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Constitution"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Intelligence +6."
+option = "Tempest Rune of Intelligence"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Intelligence"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Wisdom +6."
+option = "Tempest Rune of Wisdom"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Wisdom"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Charisma +6."
+option = "Tempest Rune of Charisma"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Charisma"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Strength +1."
+option = "Tempest Rune of Exceptional Strength"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Exceptional Strength"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Dexterity +1."
+option = "Tempest Rune of Exceptional Dexterity"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Exceptional Dexterity"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Constitution +1."
+option = "Tempest Rune of Exceptional Constitution"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Exceptional Constitution"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Intelligence +1."
+option = "Tempest Rune of Exceptional Intelligence"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Exceptional Intelligence"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Wisdom +1."
+option = "Tempest Rune of Exceptional Wisdom"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Exceptional Wisdom"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Exceptional Charisma +1."
+option = "Tempest Rune of Exceptional Charisma"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Exceptional Charisma"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Protection +5."
+option = "Tempest Rune of Protection"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Protection"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Corrosive Salt Guard."
+option = "Tempest Rune of Salt"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Salt"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Crushing Wave Guard."
+option = "Tempest Rune of Water"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Water"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Magma Surge Guard."
+option = "Tempest Rune of Magma"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Magma"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: True Seeing."
+option = "Tempest Rune of Sight"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Sight"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Spell Resistance +22."
+option = "Tempest Rune of Spell Resistance"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Spell Resistance"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Equipment Healing Amplification +40."
+option = "Tempest Rune of Healing Amplification"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Healing Amplification"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Incite +15."
+option = "Tempest Rune of Threat"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Threat"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Wizardry +6."
+option = "Tempest Rune of Wizardry"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Wizardry"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Efficient Metamagic - Empower Healing II."
+option = "Tempest Rune of Empowered Healing"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Empowered Healing"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Spell Penetration II."
+option = "Tempest Rune of Spell Penetration"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Spell Penetration"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Lesser Arcane Sigil."
+option = "Tempest Rune of Arcane Sigil"
+slot = "crafting: tempest rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Tempest Rune of Arcane Sigil"
+family = "Dragontouched_TempestRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Tempest Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Glacial Assault. Part of a three-piece set with two Module 7 raid items: 2 pieces Glaciation +72, 3 pieces Glaciation +78."
+option = "Sovereign Rune of Glacial Assault"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Glacial Assault"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Levik's Defender. Part of a three-piece set with two Module 7 raid items: 2 pieces +3 insight AC, 20% additional melee threat, unlisted +1 insight bonus to Fortitude and Will saves; 3 pieces +5 insight AC, 30% additional melee threat."
+option = "Sovereign Rune of Levik"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Levik"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Lorikk's Champion. Part of a three-piece set with two Module 7 raid items: 2 pieces Devotion +72, 3 pieces Devotion +78."
+option = "Sovereign Rune of Lorikk"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Lorikk"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Tharne's Wrath. Part of a three-piece set with two Module 7 raid items: 2 pieces Ghost Touch and -20% melee threat reduction, 3 pieces Feather Falling."
+option = "Sovereign Rune of Tharne"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Tharne"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Dodge +3%."
+option = "Sovereign Rune of Dodging"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Dodging"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Natural Armor +4."
+option = "Sovereign Rune of Natural Armor"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Natural Armor"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Heightened Awareness 4."
+option = "Sovereign Rune of Insight"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Insight"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Air Guard."
+option = "Sovereign Rune of Air"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Air"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Disintegration Guard."
+option = "Sovereign Rune of Dust"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Dust"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Earthen Guard."
+option = "Sovereign Rune of Stoneskin"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Stoneskin"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Earthgrab Guard."
+option = "Sovereign Rune of Earth"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Earth"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Enervation Guard."
+option = "Sovereign Rune of Ash"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Ash"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Freezing Ice Guard."
+option = "Sovereign Rune of Ice"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Ice"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Melodic Guard."
+option = "Sovereign Rune of Dancing"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Dancing"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Sundering Ooze Guard."
+option = "Sovereign Rune of Ooze"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Ooze"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Radiance Guard."
+option = "Sovereign Rune of Radiance"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Radiance"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Crippling (Melee weapon attack only)."
+option = "Sovereign Rune of Crippling"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Crippling"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Destruction (Melee weapon attack only)."
+option = "Sovereign Rune of Destruction"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Destruction"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Smiting (Melee or ranged attack post U-11)."
+option = "Sovereign Rune of Smiting"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Smiting"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Incite +20."
+option = "Sovereign Rune of Threat"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Threat"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Greater Elemental Energy (+20 HP)."
+option = "Sovereign Rune of Health"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Health"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Greater Elemental Spell Power (+100 SP)."
+option = "Sovereign Rune of Spell Power"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Spell Power"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Arcane Sigil."
+option = "Sovereign Rune of Arcane Sigil"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Arcane Sigil"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Combustion +84."
+option = "Sovereign Rune of Flame"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Flame"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Combustion +84."
+option = "Sovereign Rune of the Inferno"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of the Inferno"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Devotion +84."
+option = "Sovereign Rune of Life"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Life"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Glaciation +84."
+option = "Sovereign Rune of Chill"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Chill"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Glaciation +84."
+option = "Sovereign Rune of Frost"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Frost"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Resonance +84."
+option = "Sovereign Rune of Sound"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Sound"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Resonance +84."
+option = "Sovereign Rune of Cacophony"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Cacophony"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Potency +56."
+option = "Sovereign Rune of Magic"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Magic"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Potency +56."
+option = "Sovereign Rune of Power"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Power"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1
+
+[[recipe]]
+note = "Effect: Spell Penetration III."
+option = "Sovereign Rune of Spell Penetration"
+slot = "crafting: sovereign rune"
+tier = "heroic"
+
+[[recipe.augment]]
+name = "Sovereign Rune of Spell Penetration"
+family = "Dragontouched_SovereignRune"
+level = 16
+
+[[recipe.ingredient]]
+ingredient = "Sovereign Rune"
+quantity = 1

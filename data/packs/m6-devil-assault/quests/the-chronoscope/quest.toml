@@ -1,0 +1,27 @@
+name = "The Chronoscope"
+bestowed_by = "Nolan Gann"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_raid = true
+pack = "Devil Assault"
+patron = "The Coin Lords"
+zone = "The Chronoscope"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Chronoscope"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 21

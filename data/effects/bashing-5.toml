@@ -1,0 +1,3 @@
+name = "Bashing 5"
+description_template = "This shield is exceptionally durable and dense, and does an additional 5d6 damage when used to shield bash."
+verbose_name_template = "Bashing 5"

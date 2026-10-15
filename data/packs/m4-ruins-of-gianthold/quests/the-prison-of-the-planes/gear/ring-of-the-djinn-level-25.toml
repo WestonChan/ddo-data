@@ -1,0 +1,29 @@
+name = "Ring of the Djinn (level 25)"
+description = """
+It is written on the side of this intricately carved golden ring that 'He who
+holds this ring, holds Tehram's heart.'"""
+drop_location = "Return to Prison of the Planes, Lamannia room's chest (Epic Elite)"
+icon = "Ring_35c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 25
+slot = "Ring"
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[effect]]
+name = "DR 15/Lawful"
+
+[[source]]
+chest = "lamannia room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"

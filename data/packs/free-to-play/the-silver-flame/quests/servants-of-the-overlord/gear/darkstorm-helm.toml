@@ -1,0 +1,52 @@
+name = "Darkstorm Helm"
+description = """
+Helms such as this, forged from some dark and glittering metal, are worn by
+drow spellcasters both arcane and divine to heighten the power of their spells.
+This helm can channel enough energy to start a brief thunderstorm."""
+drop_location = "Servants of the Overlord, locked chest, end chest"
+icon = "Helmet_11"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 16
+slot = "Head"
+
+[[clickie]]
+name = "Call Lightning Storm"
+clickie = "Call Lightning Storm"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 97
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 97
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    16,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Call Lightning Storm"]
+
+[[source]]
+chest = "locked chest, end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Servants of the Overlord"

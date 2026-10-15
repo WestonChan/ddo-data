@@ -1,0 +1,3 @@
+name = "Symbiotic Backlash"
+description_template = "This item is symbiotic and grants you benefits, but it also deals 2 to 12 extra damage to you when enemies roll a 20 on an attack against you."
+verbose_name_template = "Symbiotic Backlash"

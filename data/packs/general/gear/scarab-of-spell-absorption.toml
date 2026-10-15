@@ -1,0 +1,25 @@
+name = "Scarab of Spell Absorption"
+description = """
+The scarab will absorb up to 50 spell levels. The Scarab turns to powder and
+is destroyed when all of its charges are expended."""
+drop_location = "Random, level ~10-17 chests/rewards"
+icon = "Trinket_91"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Spell Absorption"
+clickie = "Spell Absorption"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    50,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Spell Absorption"]

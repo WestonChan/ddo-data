@@ -1,0 +1,95 @@
+name = "Necronomicannon"
+description = """
+This Runearm seems to generate terrible and forbidden knowledge at a moment's
+notice. Thankfully, these accursed books are used for little else other than
+blunt force trauma."""
+drop_location = "The Feywild, rare encounters"
+icon = "RuneArm_7c"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 5
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier II"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Trap the Soul"
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 12
+
+[[effect]]
+name = "Rune Arm Imbue - Evil Shot I"
+
+[[effect]]
+name = "Book Shot"
+
+[[effect]]
+name = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Book Shot",
+    "None",
+]
+
+[[note]]
+kind = "item"
+field = "name"
+upstream = "Necronimicannon"
+reason = "The wiki spells the rune arm Necronomicannon; Necronimicannon is a misspelling."
+url = "https://ddowiki.com/page/Item:Necronomicannon"
+read = "2026-10-01"
+
+[[note]]
+kind = "item_effect"
+original_name = "Necronimicannon"
+field = "add"
+reason = "The wiki's Necronomicannon has the Book Shot effect; his item lists it only as a spell-like ability, not an effect."
+url = "https://ddowiki.com/page/Item:Necronomicannon"
+read = "2026-10-01"
+qualifier = "Book Shot"
+
+[[note]]
+kind = "item_effect"
+original_name = "Necronimicannon"
+field = "add"
+added_as_name = true
+reason = "The wiki's Necronomicannon has the rare Mythic Weapon Boost or Mythic Shield Boost; his item lacks it."
+url = "https://ddowiki.com/page/Item:Necronomicannon"
+read = "2026-10-01"
+qualifier = "Mythic Weapon Boost +2 or +4 and/or Mythic Shield Boost +2 or +4"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "rare encounters"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

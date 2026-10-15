@@ -1,0 +1,5 @@
+name = "Linguistics"
+category = "skill"
+description_template = "This item reduced the cooldowns of your Social skills (Diplomacy, Bluff, Intimidate) by {1}%. This does not stack with the Negotiator ability."
+home_bonus_type = "Equipment"
+verbose_name_template = "Linguistics +{1}%"

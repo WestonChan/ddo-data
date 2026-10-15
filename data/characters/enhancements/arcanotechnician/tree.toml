@@ -1,0 +1,1344 @@
+name = "Arcanotechnician"
+background = "ArtificerBackground"
+icon = "Artificer"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Arcanotechnician"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Each core ability you take in this tree grants +5 Electric, Fire, and Force Spell
+Power, and every point spent in total also provides you with +1 Universal Spell
+Power."""
+icon = "ATArcanotechnician"
+internal_name = "ATCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Arcanotechnician: Spell power per action point"
+effect_type = "SpellPower"
+stack_source = "Arcanotechnician"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Arcanotechnician: Palliative Admixture"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Creating an infused potion of magical energy, you hurl it towards your target in an
+arc. The potion explodes in a small area that provides nearby allies with 20
+Temporary Hit Point +2 per Artificer level and 10 Temporary Spell Points +1
+per two Artificer levels. These last one minute, or until affected creatures rest.
+Activation Cost: 5 Spell Points.
+Cooldown: 30 seconds."""
+icon = "ATPalliativeAdmixture"
+internal_name = "ATCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    0,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Palliative Admixture",
+    "Artificer",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["ATCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Arcanotechnician: Thaumaturgical Battery"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Whenever you cast an infusion or spell, you capture a portion of that infusion
+or spells' energy as 1 Temporary Spell Point. This Temporary Spell Point lasts
+for one minute, until consumed by another infusion or spell, or until you rest."""
+icon = "ATThaumaturgicalBattery"
+internal_name = "ATCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["ATCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Arcanotechnician: Lightning Bolt"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Lightning Bolt
+You may cast the spell Lightning Bolt at will as a Spell-Like Ability. You may
+use Metamagic Feats with Spell-Like Abilities at no additional cost.
+
+A powerful stroke of electrical energy deals 1d6+3 electricity damage per
+caster level to targets in its path. A successful Reflex save reduces the damage
+by half, For each enemy this spell strikes it has a 50% chance to fork,
+replicating the spell's effect on that target. This can happen once. This spell
+is a bolt and has double range.
+
+Activation Cost: 6 Spell Points.
+Cooldown: 7 seconds."""
+icon = "ATLightningBolt"
+internal_name = "ATCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    -1,
+    7,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lightning Bolt",
+    "Artificer",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["ATCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Arcanotechnician: Runic Efficacy"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Passive: +2 to Caster Level and Max Caster Level of electric spells, +1 Evocation DCs,
++2 to Rune Arm DCs."""
+icon = "ATRunicEfficacy"
+internal_name = "ATCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+extra_types = ["MaxCasterLevel"]
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Rune Arm"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["ATCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Arcanotechnician: Arcane Empowerment"
+cost_per_rank = [1]
+description = """
+The patterns of the most complex magical formulae are like children's drawings to
+you. You gain +4 Intelligence and +5 Spellcraft. You treat any non-scroll
+activated equipped item that casts spells (such as wands, rods, armor, or other
+activated items) as if they were staves, increasing their caster level to equal
+yours as well as increasing Save DCs to (10 + your Intelligence bonus + level of
+spell) if it would be an improvement. These increases are applied after Artificer
+Knowledge, so do not stack."""
+icon = "ATArcaneEmpowerment"
+internal_name = "ATCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ATCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["ATCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "ATCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Arcanotechnician: Static Shock"
+arrows = ["LongArrowUp"]
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Static Shock
+You may cast the spell Static Shock at will as a Spell-Like Ability. You may
+use Metamagic Feats with Spell-Like Abilities at no additional cost. Further
+points spent in this enhancement will reduce the cooldown and Spell Point Cost
+of this Spell-Like Ability.
+
+Static Shock: An electrical discharge strikes one target for 1d6 electricity
+damage per caster level up to a maximum of 10d6 at caster level 10. A successful
+Reflex save reduces the damage by half. On a failed Reflex save, the target must
+then also make a Will save or be dazed for 1d6+6 seconds, or until they take
+damage.
+
+Cost: 2 spell points.
+Cooldown: 4 seconds"""
+icon = "ATStaticShock"
+internal_name = "ATStaticShock"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    -1,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Static Shock",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Arcanotechnician: Energy of the Creator"
+cost_per_rank = [1]
+description = "Your studies have increased your maximum Spell Points by +[30/60/90]."
+icon = "ATEnergyOfCreation"
+internal_name = "ATEnergyOfCreation"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    90,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Arcanotechnician: Arcane Skills"
+cost_per_rank = [1]
+description = "+[1/2/3] Spellcraft and Use Magic Device"
+icon = "ATArcaneSkills"
+internal_name = "ATArcaneSkills"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spellcraft",
+    "Use Magic Device",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Arcanotechnician: Spell Critical I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Electric, Fire, and Force spells have an additional 1% to critically hit."
+icon = "ATSpellCritical"
+internal_name = "ATSpellCriticalI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Arcanotechnician: Wand and Scroll Mastery"
+cost_per_rank = [1]
+description = """
++[25/50/75] to the effectiveness of your wands, scrolls, and other items that cast
+spells, and +[1/3/6] to the save DCs of your offensive wands."""
+icon = "ATWandAndScrollMastery"
+internal_name = "ATWandAndScrollMastery"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ATWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "ATWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Arcanotechnician: Efficient Metamagic"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic."""
+icon = "EfficientMetamagic"
+internal_name = "ATEfficientMetamagic"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ATEfficientMetamagic",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "ATEfficientMetamagic",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ATEfficientMetamagic",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "ATEfficientMetamagic",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Arcanotechnician: Imbue Defender"
+cost_per_rank = [1]
+description = """
+Your Iron Defender gains +[5/10/15] Physical Resistance Rating and [5/10/15]% Doublestrike.
+
+Your experience imbuing your Iron Defender grants you a passive +[5/10/15] Electric
+Spell Power and +[2/4/6] Universal Spell Power."""
+icon = "ATImbueDefender"
+internal_name = "ATImbueDefender"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Arcanotechnician: Spell Critical II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Electric, Fire, and Force spells have an additional 1% to critically hit."
+icon = "ATSpellCritical"
+internal_name = "ATSpellCriticalII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["ATSpellCriticalI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcanotechnician: Shocking Vulnerability"
+cost_per_rank = [1]
+description = """
+Your studies of the arcane have taught you how to expose enemies' hidden weaknesses.
+Each Electric spell you cast has a 5% chance of applying 1d[1/1-2/1-3] stack[s]
+of Vulnerable to each affected enemy.
+
+Vulnerable - Target takes 2% more damage for 6 seconds.
+This effect stacks up to 10 times and loses one stack on expiration."""
+icon = "ATShockingVulnerability"
+internal_name = "ATShockingVulnerability"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Arcanotechnician: Lightning Sphere"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Lightning Sphere
+You may cast the spell Lightning Sphere at will as a Spell-Like Ability. You may
+use Metamagic Feats with Spell-Like Abilities at no additional cost. Further
+points spent in this enhancement will reduce the cooldown and Spell Point Cost
+of this Spell-Like Ability.
+
+Lightning Sphere: Launches an electrical orb that explodes on impact, dealing
+1d6 electrical damage per caster level (up to a max of 10d6 damage at caster
+level 10) to targets in the area. The targets of this spell will also be dazed
+for a short period of time or until they take damage. A successful Fortitude save
+reduces the damage by half and negates the daze. Unlike most other projectile
+spells, the caster can arc the orb if no target is selected.
+
+Activation Cost: 4 spell points.
+Cooldown: 5 seconds."""
+icon = "ATLightningSphere"
+internal_name = "ATLightningSphere"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lightning Sphere",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["ATStaticShock"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcanotechnician: Efficient Metamagic"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Choose one of the following Metamagic feats.
+Reduce the spell point cost of using that Metamagic."""
+icon = "EfficientMetamagic"
+internal_name = "ATEfficientMetamagicII"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["ATEfficientMetamagic"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ATEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "ATEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ATEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "ATEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Arcanotechnician: Automated Repairs"
+cost_per_rank = [1]
+description = """
+You have installed automated repair systems in your Iron Defender.
+It repairs 4d4+1 hit points of damage to itself every [18/12/6] seconds,
+
+In addition, every six seconds, your Iron Defender will repair you for
+[0/4d4+1/4d4+1] and nearby allies for [0/0/4d4+1]."""
+icon = "ATAutomatedRepairs"
+internal_name = "ATAutomatedRepairs"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Arcanotechnician: Spell Critical III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Electric, Fire, and Force spells have an additional 1% to critically hit."
+icon = "ATSpellCritical"
+internal_name = "ATSpellCriticalIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["ATSpellCriticalII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcanotechnician: Intelligence I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+internal_name = "ATIntelligence"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Arcanotechnician: Blast Rod"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Blast Rod
+You may cast the spell Blast Rod at will as a Spell-Like Ability. You may
+use Metamagic Feats with Spell-Like Abilities at no additional cost. Further
+points spent in this enhancement will reduce the cooldown and Spell Point Cost
+of this Spell-Like Ability.
+
+Blast Rod: A blast of electricity bursts from your outstretched hand, dealing
+1d6+3 electrical damage per caster level (up to a maximum of 10d6+30 damage at
+caster level 10) to targets in its path. A successful Reflex save reduces the
+damage by half.
+Activation Cost: 6 spell points.
+Cooldown: 6 seconds."""
+icon = "ATBlastRod"
+internal_name = "ATBlastRod"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Blast Rod",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ATLightningSphere"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcanotechnician: Efficient Heighten"
+cost_per_rank = [2]
+description = """
+Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Point(s) per
+heightened level."""
+icon = "EfficientHeighten"
+internal_name = "ATEfficientHeighten"
+min_spent = 20
+ranks = 2
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ATEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostHeighten"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = [
+    "ATEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.requirement]]
+items = ["ATEfficientMetamagicII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Heighten Spell"]
+req_type = "FeatAnySource"
+
+[[enhancement]]
+name = "Arcanotechnician: Arcane Engine"
+cost_per_rank = [1]
+description = """
+You have carved arcane symbols on the core engine of your Iron Defender, allowing
+you to channel Arcane energies through him. As long as you remain near your
+Iron Defender, he will provide you with [3/6/10] Universal Spell Power.
+
+Your experience imbuing your Iron Defender grants you a passive +[5/10/15]
+Electric Spell Power and +[2/4/6] Universal Spell Power."""
+icon = "ATArcaneEngine"
+internal_name = "ATArcaneEngine"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+display_name = "Arcanotechnician: Near Iron Defender"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Near Iron Defender"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Arcanotechnician: Spell Critical IV"
+cost_per_rank = [2]
+description = "Your Electric, Fire, and Force spells have an additional 1% to critically hit."
+icon = "ATSpellCritical"
+internal_name = "ATSpellCriticalIV"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Electric",
+    "Fire",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ATSpellCriticalIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcanotechnician: Intelligence II"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+internal_name = "ATIntelligenceII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ATIntelligence"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcanotechnician: Lightning Motes"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Lightning Motes
+You may cast the spell Lightning Motes at will as a Spell-Like Ability. You may
+use Metamagic Feats with Spell-Like Abilities at no additional cost. Further
+points spent in this enhancement will reduce the cooldown and Spell Point Cost
+of this Spell-Like Ability.
+
+Lightning Motes: You create a nebulous cloud of electric motes that damages
+enemies that enter it. Any creatures that are hit by the cloud take 1d6+2 electric
+damage per caster level up to a max of 10d6+20 damage at caster level 10).
+A successful Reflex save reduces the damage by half. Enemies hit by the cloud are
+also made temporarily more vulnerable to electric damage, taking 15% extra damage
+from any electric-based attacks.
+Activation Cost: 6 spell points.
+Cooldown: 6 seconds."""
+icon = "ATLightningMotes"
+internal_name = "ATLightningMotes"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lightning Motes",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["ATBlastRod"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Arcanotechnician: Charged Recoil"
+cost_per_rank = [2]
+description = """
+Your Runearm shots now strip Electric Immunity from enemies, rendering them
+vulnerable to Electric spells if they were immune for 10 seconds.
+While wielding a Rune Arm, +[10/15/20] Electric Spell Power, +[5/10/15] Universal
+Spell Power."""
+icon = "ATChargedRecoil"
+internal_name = "ATChargedRecoil"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    15,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Arcanotechnician: Master Defender"
+cost_per_rank = [1]
+description = """
+Your Iron Defender gain +[2/4/6] to Strength, Dexterity, and Constitution.
+In addition, as long as you remain near your Iron Defender, he will provide you
+with [1/2/3]% Dodge."""
+icon = "ATMasterDefender"
+internal_name = "ATMasterDefender"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Near Iron Defender"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Arcanotechnician: Evocation Focus"
+cost_per_rank = [1]
+description = """
+You have trained extensively in Evocation magic, granting a +[1/2/3] bonus to
+your spell DCs of that school."""
+icon = "ATEvocationFocus"
+internal_name = "ATEvocationFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Arcanotechnician: Shock Gauntlet"
+cost_per_rank = [2]
+description = """
+You may cast the spell Shock Gauntlet at will as a Spell-Like Ability. You may
+use Metamagic Feats with Spell-Like Abilities at no additional cost.
+
+Shock Gauntlet: Target living, construct, or inanimate object foe at touch range
+must make an Evocation Saving Throw or die. If they succeed, they take 1d6+4
+Electric Damage per Caster Level (max 25d6+100).
+Cooldown: 20 seconds.
+Cost: 15 SP"""
+icon = "ATShockGauntlet"
+internal_name = "ATShockGauntlet"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Artificer"]
+req_type = "Class"

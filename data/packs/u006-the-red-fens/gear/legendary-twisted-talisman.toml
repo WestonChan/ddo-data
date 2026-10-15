@@ -1,0 +1,52 @@
+name = "Legendary Twisted Talisman"
+description = """
+The crystal on this necklace's chain glows darkly with a profane energy. It
+was found near High Priestess Slikir after her defeat, and will grant the wielder
+more power for his or her spells, but at a price..."""
+drop_location = "Legendary version of Epic Twisted Talisman"
+icon = "Necklace_3f"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 30
+slot = "Neck"
+
+[[clickie]]
+name = "Blood Sacrifice"
+clickie = "Blood Sacrifice"
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 45
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    10,
+    10,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Blood Sacrifice"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

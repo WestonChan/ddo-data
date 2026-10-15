@@ -1,0 +1,49 @@
+name = "Guardian Mantle"
+description = """
+Specially designed grooves cover the surface of this shield, making it very
+effective against spears and arrows."""
+drop_location = "The Tear of Dhakaan, Champion Krazna 's Chest"
+enhancement_bonus = 3
+icon = "Shield_3"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Wood"
+minimum_level = 6
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 7
+max_dex_bonus = 2
+shield_bonus = 7
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spearblock III"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "champion krazna 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tear of Dhakaan"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

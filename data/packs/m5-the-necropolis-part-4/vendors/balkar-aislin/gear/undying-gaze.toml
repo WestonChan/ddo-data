@@ -1,0 +1,47 @@
+name = "Undying Gaze"
+description = """
+Noble bugbears who are mummified are often buried wearing one of these masks
+as a headdress. The eyes are made to appear to be always open, intended to
+scare off any would be tomb raider."""
+drop_location = "Tattered Tapestries, Turn in 20 Tattered Tapestries"
+icon = "Helmet_76"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Head"
+
+[[clickie]]
+name = "Fear"
+clickie = "Fear"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Fear"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "vendor"
+name = "Balkar Aislin"
+
+[[source.price]]
+ingredient = "Shred of Tapestry"
+quantity = 20

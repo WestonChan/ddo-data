@@ -1,0 +1,26 @@
+name = "Amaunator's Blessing"
+icon = "AmaunatorsBlessing"
+
+[[item]]
+name = "Breastplate of the Shining Sun"
+
+[[item]]
+name = "Signet of the Shining Sun"
+
+[[item]]
+name = "Symbol of the Shining Sun"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Point Cost Reduction"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Spell Point Cost Reduction"
+effect_type = "SpellPointCostPercent"

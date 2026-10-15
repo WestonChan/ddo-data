@@ -1,0 +1,42 @@
+name = "Dumathoin's Bracers"
+description = """
+"Hold the gates! No green-skin will step one foot into Thunderholme!"
+- Dumathoin Thunderstone, Captain of the Guard"""
+drop_location = "Temple of the Deathwyrm, Raid chest"
+icon = "Bracers_1a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Wrists"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 45
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Temple of the Deathwyrm"

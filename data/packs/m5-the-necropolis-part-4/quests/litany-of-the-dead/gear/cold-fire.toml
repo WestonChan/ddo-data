@@ -1,0 +1,29 @@
+name = "Cold Fire"
+description = "This trinket is a flickering blue flame that is icy cold to the touch."
+drop_location = "Litany of the Dead, Black dragon chamber work table"
+icon = "Trinket_3a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Cold Fire"
+clickie = "Cold Fire"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cold Fire"]
+
+[[source]]
+chest = "black dragon chamber work table"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

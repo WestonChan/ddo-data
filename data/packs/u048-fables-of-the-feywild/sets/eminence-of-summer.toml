@@ -1,0 +1,180 @@
+name = "Eminence of Summer"
+icon = "EminenceOfSummer"
+
+[[item]]
+name = "Aspect of the Wild Hunt"
+
+[[item]]
+name = "Firefly Garb"
+
+[[item]]
+name = "Legendary Belt of the Ram"
+
+[[item]]
+name = "Legendary Brightsun"
+
+[[item]]
+name = "Legendary Cloak of Summer"
+
+[[item]]
+name = "Legendary Crown of Fireflies"
+
+[[item]]
+name = "Legendary Lionheart Ring"
+
+[[item]]
+name = "Legendary Necklace of Bottled Sunlight"
+
+[[item]]
+name = "Legendary Plate of the Summer Solstice"
+
+[[item]]
+name = "Legendary Red Dragonscale Boots"
+
+[[item]]
+name = "Legendary Ring of Summer's Heat"
+
+[[item]]
+name = "Legendary Sunscale"
+
+[[item]]
+name = "Legendary Vambrace of the Summer Court"
+
+[[item]]
+name = "Magmatic Grasp"
+
+[[item]]
+name = "Pendant of Bottled Moonlight"
+
+[[item]]
+name = "Sphere of Souls"
+
+[[item]]
+name = "The Changestone"
+
+[[item]]
+name = "The Prince's Gauntlet"
+
+[[item]]
+name = "Titania's Glory"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Assassinate"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Tactics"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Rune Arm DC"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "TacticalDC"
+targets = [
+    "Assassinate",
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+    "Rune Arm",
+]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"
+
+[[tier]]
+equipped_count = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Doubleshot"
+effect_type = "Doubleshot"
+
+[[tier]]
+equipped_count = 7
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Ranged Power"
+effect_type = "RangedPower"

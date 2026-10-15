@@ -1,0 +1,26 @@
+name = "Daggertooth's Belt (level 12)"
+description = """
+This is the very belt that once held up Daggertooth of the Windlasher Gnoll's
+armor. It is tattered and worn, but somehow still provides excellent support."""
+drop_location = "The Crucible, Daggertooth chest (heroic normal)"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 12
+slot = "Waist"
+
+[[effect]]
+name = "Armor Mastery"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 4
+
+[[source]]
+chest = "daggertooth chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crucible"

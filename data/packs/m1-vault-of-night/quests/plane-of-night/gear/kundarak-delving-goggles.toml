@@ -1,0 +1,39 @@
+name = "Kundarak Delving Goggles"
+description = """
+These goggles are Kundarak-forged and useful for exploring (and infiltrating)
+secure spaces."""
+drop_location = "Plane of Night, Raid Warded chest"
+icon = "Goggles_11b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Goggles"
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 11
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

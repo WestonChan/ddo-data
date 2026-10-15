@@ -1,0 +1,3 @@
+name = "Negativity 6"
+description_template = "This effect causes this weapon to be shrouded in dark mists, dealing 6d6 negative energy on each hit."
+verbose_name_template = "Negativity 6"

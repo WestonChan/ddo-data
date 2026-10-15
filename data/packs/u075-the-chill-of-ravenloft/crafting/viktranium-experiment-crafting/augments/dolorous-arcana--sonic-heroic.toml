@@ -1,0 +1,22 @@
+name = "Dolorous Arcana: Sonic (Heroic)"
+description = "+35 Insight bonus to Sonic Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Sonic Spell Power"
+bonus_type = "Insight"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

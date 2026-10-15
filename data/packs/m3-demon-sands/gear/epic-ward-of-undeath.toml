@@ -1,0 +1,61 @@
+name = "Epic Ward of Undeath"
+description = """
+A large shield made from flame-touched iron. This shield is particularly effective
+when bashing the Undead."""
+drop_location = "Epic version of Ward of Undeath"
+enhancement_bonus = 6
+icon = "Shield_4j"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Flametouched Iron"
+minimum_level = 20
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 12
+max_dex_bonus = 0
+shield_bonus = 13
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Flaming Blast IV"
+
+[[effect]]
+name = "Undead Bane 4"
+
+[[effect]]
+name = "Superior Undead Guard"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "blue"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

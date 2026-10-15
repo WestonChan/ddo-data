@@ -1,0 +1,12 @@
+name = "Legendary Earth"
+description = """
+Requires Earth Earth Earth
+Attacks and offensive spells deal stacking Acid damage over
+time [100% chance to proc]. Half-second cooldown as of U29P1.
+[10-90 damage per stack, maximum 5 stacks, around 250 damage
+at full stacks]"""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

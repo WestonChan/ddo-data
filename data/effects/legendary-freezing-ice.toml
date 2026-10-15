@@ -1,0 +1,3 @@
+name = "Legendary Freezing Ice"
+description_template = "On hit, this has a chance of freezing your enemies in solid ice. Struck enemies must make a DC 100 Fortitude save or be frozen solid."
+verbose_name_template = "Legendary Freezing Ice"

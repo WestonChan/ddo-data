@@ -1,0 +1,21 @@
+name = "Bastion of Power"
+bestowed_by = "Awan"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The Devils of Shavarath"
+patron = "The Yugoloth"
+zone = "The Iron Maw"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Bastion_of_Power"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

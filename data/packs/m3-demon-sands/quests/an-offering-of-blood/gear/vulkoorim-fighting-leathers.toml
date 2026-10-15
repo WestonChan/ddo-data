@@ -1,0 +1,48 @@
+name = "Vulkoorim Fighting Leathers"
+description = """
+The Drow of the Menechtarun wear specially crafted leather armor that offers
+some protection but also is cool to wear."""
+drop_location = "An Offering of Blood, any chest after 2nd Aspect"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 4
+armor_type = "Light"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 9
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 4
+value2 = 6
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 12
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "any chest after 2nd aspect"
+kind = "quest"
+loot_type = "chest"
+name = "An Offering of Blood"

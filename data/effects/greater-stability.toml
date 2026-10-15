@@ -1,0 +1,3 @@
+name = "Greater Stability"
+description_template = "This item grants a +4 Deflection bonus to AC and a +4 Resistance bonus to saving throws for characters of True Neutral alignment."
+verbose_name_template = "Greater Stability"

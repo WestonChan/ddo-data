@@ -1,0 +1,13 @@
+name = "Aspect of Air II"
+description = """
+Air Guard: This Weapon stores the incredible, dynamic power of the air deep within.
+When the user of this weapon is successfully attacked in melee, this power
+occasionally comes to the surface, knocking enemies over or speeding up the
+wearer with rushing winds.
+Air:Air:Air"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

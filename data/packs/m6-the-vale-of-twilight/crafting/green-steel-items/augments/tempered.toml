@@ -1,0 +1,43 @@
+name = "Tempered"
+description = """
+Increased Durability and Hardness. +7 Intimidate and Repair, +10 Concentration
+Fire:Water or Water:Fire"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Repair"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Intimidate",
+    "Repair",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect = "Concentration"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[slot]]
+slot = "crafting: accessory aspect i"

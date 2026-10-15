@@ -1,0 +1,50 @@
+name = "Brand of Kalok Shash"
+description = "This painful brand of the Demon Wastes grants you incredible power."
+drop_location = "Too Hot to Handle, end chest; Masterminds of Sharn saga: Epic end reward; rare drop in any legendary Sharn quest"
+icon = "Bracers_20"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Flesh"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 37
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"
+
+[[source]]
+kind = "saga"
+name = "Masterminds of Sharn"
+tier = "epic"

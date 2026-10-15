@@ -1,0 +1,63 @@
+name = "Cannith Spell Casting Implement"
+choose_level = true
+description = "Orb bonus to spell power"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    36,
+    36,
+    36,
+    36,
+]
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Implement"
+value = 28
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [28]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: cannith orb spell casting implement"

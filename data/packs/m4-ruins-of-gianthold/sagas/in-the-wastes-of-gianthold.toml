@@ -1,0 +1,15 @@
+name = "In the Wastes of Gianthold"
+pack = "Ruins of Gianthold"
+wiki_url = "https://ddowiki.com/page/In_the_Wastes_of_Gianthold_(Epic)"
+quests = [
+    "A Cry for Help",
+    "Feast or Famine",
+    "Foundation of Discord",
+    "The Crucible",
+    "The Maze of Madness",
+    "Trial by Fire",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/In_the_Wastes_of_Gianthold_(Epic)"
+read = "2026-10-02"

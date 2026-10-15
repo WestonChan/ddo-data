@@ -1,0 +1,34 @@
+name = "Brawling Gloves (level 4)"
+description = """
+Some pirates prefer to brawl with their bare hands. These strength-enhancing
+gloves are perfect for their fighting style."""
+drop_location = "Treasure of Crystal Cove, Turn in various ingredients at Euphonia's Barter Box"
+icon = "Gloves_6"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 4
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Spike-Studded"
+
+[[effect]]
+name = "Glass Jaw Strike"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 2
+value2 = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

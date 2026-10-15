@@ -1,0 +1,32 @@
+name = "The Eye of Dolurrh"
+description = "This weapon gains Ghost Touch, and on each hit, deals 10d6 Evil damage."
+family = "Ruby"
+icon = "Ruby"
+min_level = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Evil"
+dice_number = [10]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

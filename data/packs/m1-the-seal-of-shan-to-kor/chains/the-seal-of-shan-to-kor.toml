@@ -1,0 +1,12 @@
+name = "The Seal of Shan-To-Kor"
+pack = "The Seal of Shan-To-Kor"
+quests = [
+    "The Sacred Helm",
+    "The Cloven-jaw Scourge: Blockade",
+    "The Cloven-jaw Scourge: The Caverns of Shaagh",
+    "Halls of Shan-To-Kor",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Seal_of_Shan-To-Kor"
+read = "2026-10-02"

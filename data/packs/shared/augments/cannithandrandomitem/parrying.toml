@@ -1,0 +1,116 @@
+name = "Parrying"
+choose_level = true
+description = "Grants an Insight bonus to both AC and saves"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+]
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: cannith armor extra"
+
+[[slot]]
+slot = "crafting: cannith belt suffix"
+
+[[slot]]
+slot = "crafting: cannith boots suffix"
+
+[[slot]]
+slot = "crafting: cannith bracers extra"
+
+[[slot]]
+slot = "crafting: cannith helmet suffix"
+
+[[slot]]
+slot = "crafting: cannith shield extra"
+
+[[slot]]
+slot = "crafting: cannith orb extra"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random armor extra"
+
+[[slot]]
+slot = "crafting: random bracers extra"
+
+[[slot]]
+slot = "crafting: random boots suffix"
+
+[[slot]]
+slot = "crafting: random ring extra"
+
+[[slot]]
+slot = "crafting: random shield extra"
+
+[[slot]]
+slot = "crafting: random weapon prefix"

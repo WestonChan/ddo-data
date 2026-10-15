@@ -1,0 +1,31 @@
+name = "Miserable Improved Destruction (Legendary)"
+description = """
+Your attacks apply a stack of Armor Destruction.
+-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration.
+Stacks up to 15 times. This effect may trigger once every second."""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[note]]
+kind = "augment"
+original_name = "Miserable Destruction (Legendary)"
+field = "description"
+upstream = """
+Your attacks apply a stack of Armor Destruction.
+-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration.
+Stacks up to 15 times. This effect may trigger once every three seconds."""
+reason = "The wiki names the legendary augment Miserable Improved Destruction, triggering once every second."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Miserable Destruction (Legendary)"
+reason = "The wiki names the legendary augment Miserable Improved Destruction, triggering once every second."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-09-30"
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

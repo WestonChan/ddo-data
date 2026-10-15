@@ -1,0 +1,40 @@
+name = "Titanic Docent"
+description = """
+This docent was scavenged from the wreckage of the Warforged Titan and grants
+some semblance of its abilities to a Warforged that equips it."""
+drop_location = "The Titan Awakes, Warded Raid Chest"
+enhancement_bonus = 5
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Adamantine"
+minimum_level = 10
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 16
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 7
+
+[[clickie]]
+name = "Titan Shield"
+clickie = "Titan Shield"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Titan Shield"]
+
+[[source]]
+chest = "warded raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

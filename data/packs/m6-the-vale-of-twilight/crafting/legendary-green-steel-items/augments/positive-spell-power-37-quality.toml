@@ -1,0 +1,20 @@
+name = "Positive Spell Power - +37 Quality"
+description = "Dominion/Positive: +37 Quality bonus increase to Positive spell power."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Positive Spell Power"
+bonus_type = "Quality"
+value = 37
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [37]
+bonus_type = "Quality"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

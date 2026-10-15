@@ -1,0 +1,29 @@
+name = "The Bark and the Blade"
+bestowed_by = "Kion"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Vecna Unleashed"
+patron = "Morgrave University"
+zone = "Mournlands Training Camp"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Bark_and_the_Blade"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

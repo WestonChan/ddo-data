@@ -1,0 +1,73 @@
+name = "Epic Purging the Pantheon"
+description = """
+This belt is covered with the holy symbols of many of the other deities, overlaid
+with newer symbols of a strange, arcane nature. The large buckle is stamped
+with an impression of the abbot's symbol."""
+drop_location = "The Mark of Death, Warded chest"
+icon = "Belt_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Waist"
+
+[[effect]]
+name = "Improved Quelling Strikes"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 10
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Light Absorption"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Mark of Death"

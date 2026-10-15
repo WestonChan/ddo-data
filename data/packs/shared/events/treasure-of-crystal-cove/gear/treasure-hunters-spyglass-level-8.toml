@@ -1,0 +1,48 @@
+name = "Treasure Hunter's Spyglass (level 8)"
+description = """
+A tool such as this is a great aid to the treasure-seeking pirate, for it allows
+him or her to locate small details, find secret passages and notice any traps
+that might be lurking along the way."""
+drop_location = "Treasure of Crystal Cove, Turn in various ingredients at Euphonia's Barter Box"
+icon = "Trinket_17"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 8
+slot = "Trinket"
+
+[[clickie]]
+name = "Detect Secret Doors"
+clickie = "Detect Secret Doors"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Astute Skills Bonus"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Exceptional Prudent Skills Bonus"
+bonus_type = "Exceptional"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Detect Secret Doors"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

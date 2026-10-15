@@ -1,0 +1,46 @@
+name = "Night Hag's Heartstone"
+description = """
+The night hags of Droaam carry these vile gems with them wherever they go, which
+allow them to enter the dreams of others. This particular specimen can exhaust
+the wearer's foes, putting them to sleep or damaging their minds with terrible
+nightmares."""
+drop_location = "Siegebreaker, end chest"
+icon = "Trinket_70"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 12
+slot = "Trinket"
+
+[[clickie]]
+name = "Deep Slumber"
+clickie = "Deep Slumber"
+
+[[effect]]
+name = "Nightmare Guard"
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Deep Slumber"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Siegebreaker"

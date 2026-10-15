@@ -1,0 +1,21 @@
+name = "Sinister Storage"
+bestowed_by = "Parker Pipewort"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Harbinger of Madness"
+patron = "The Free Agents"
+zone = "Creative Objects Storage"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Sinister_Storage"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15

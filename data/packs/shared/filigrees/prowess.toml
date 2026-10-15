@@ -1,0 +1,164 @@
+[[row]]
+name = "Prowess: +1 Attack and Damage"
+description = """
++1 Attack and Damage
+Rare: +2 PRR"""
+icon = "Prowess"
+menu = "Ravenloft"
+set = "Prowess"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Prowess: Attack and Damage: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Prowess: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "Prowess"
+menu = "Ravenloft"
+set = "Prowess"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Prowess: Dexterity: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Prowess: +1 Strength"
+description = """
++1 Strength
+Rare: +2 PRR"""
+icon = "Prowess"
+menu = "Ravenloft"
+set = "Prowess"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Prowess: Strength: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Prowess: +2 Critical Attack and Damage"
+description = """
++2 Critical Attack and Damage
+Rare: +2 PRR"""
+icon = "Prowess"
+menu = "Ravenloft"
+set = "Prowess"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Prowess: Critical Attack and Damage: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Prowess: +3 MRR"
+description = """
++3 MRR
+Rare: +2 PRR"""
+icon = "Prowess"
+menu = "Ravenloft"
+set = "Prowess"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Prowess: MRR: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Prowess: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "Prowess"
+menu = "Ravenloft"
+set = "Prowess"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Prowess: Melee Power: Rare +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Prowess: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "Prowess"
+menu = "Ravenloft"
+set = "Prowess"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Prowess: PRR: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true

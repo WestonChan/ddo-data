@@ -1,0 +1,23 @@
+name = "Knight's Gorget"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Necklace_20"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+race_required = "Purple Dragon Knight"
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

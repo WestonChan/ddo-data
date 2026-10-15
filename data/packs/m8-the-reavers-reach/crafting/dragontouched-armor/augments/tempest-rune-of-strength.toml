@@ -1,0 +1,23 @@
+name = "Tempest Rune of Strength"
+description = """
+Strength +6: This item gives the wearer the power of Ogre Strength, granting a
++6 enhancement bonus to Strength."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: tempest rune"

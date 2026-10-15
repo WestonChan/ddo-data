@@ -1,0 +1,40 @@
+name = "Legendary Architect's Cloak"
+description = "Build away!"
+drop_location = "This Old Haunt, end chest, Wraith chest"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 32
+slot = "Back"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 153
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest, wraith chest"
+kind = "quest"
+loot_type = "chest"
+name = "This Old Haunt"

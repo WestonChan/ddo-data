@@ -1,0 +1,37 @@
+name = "Admiral's Cummerbund"
+description = "This white cloth belt has many silver buttons to clasp."
+drop_location = "The Trouble with Tar Pits, end chest"
+icon = "Belt_14"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 7
+slot = "Waist"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Law Absorption"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Trouble with Tar Pits"

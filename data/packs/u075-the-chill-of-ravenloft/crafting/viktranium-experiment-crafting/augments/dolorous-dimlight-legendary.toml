@@ -1,0 +1,10 @@
+name = "Dolorous Dimlight (Legendary)"
+description = """
+Your attacks and offensive spells have a chance to deal Untyped damage.
+(Undocumented: Grants Legendary Steam)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

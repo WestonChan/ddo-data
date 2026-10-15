@@ -1,0 +1,32 @@
+name = "Crown of Leaves"
+description = "This Eladrin crown is exquisitely crafted."
+drop_location = "Make Believe, End chest"
+icon = "Helmet_5"
+item_category = "Clothing"
+material = "Paper"
+minimum_level = 5
+slot = "Head"
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Make Believe"

@@ -1,0 +1,43 @@
+name = "Page Regalia: Blasphemer's Manuscript"
+description = """
+A cloak that manifested from an especially forbidden page from the University
+Library through unknown means. It now seeks purpose."""
+drop_location = "Fire Over Morgrave, end chest"
+icon = "Cloak_5a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 32
+slot = "Back"
+
+[[effect]]
+name = "Improved Demonic Shield"
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 135
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Fire Over Morgrave"

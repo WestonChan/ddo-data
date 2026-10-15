@@ -1,0 +1,48 @@
+name = "Legendary Red Dragonhide Armor"
+description = """
+Leather armor forged from the scales of the Red Dragon, Velah. This suit of
+armor can be repaired by a smith knowledgable in black dragonscale repair techniques."""
+drop_location = "Legendary version of Epic Red Dragonhide Armor"
+enhancement_bonus = 15
+icon = "LightArmor_12"
+item_category = "Armor"
+item_type = "Light"
+material = "Red Dragonscale"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 10
+armor_type = "Light"
+max_dex_bonus = 15
+
+[[effect]]
+name = "Dripping with Magma"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 54
+
+[[effect]]
+name = "Fire Guard X"
+
+[[effect]]
+name = "Incineration Guard"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

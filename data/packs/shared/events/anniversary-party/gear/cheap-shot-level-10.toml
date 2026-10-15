@@ -1,0 +1,48 @@
+name = "Cheap Shot (level 10)"
+description = "Useful for taking a bunch of shots at The Mother Board ."
+drop_location = "Anniversary Party, Turn in 20"
+enhancement_bonus = 4
+icon = "Longbow_1h"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Poisonous 3"
+
+[[effect]]
+name = "Critical Befouling 2"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Keen"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

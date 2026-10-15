@@ -1,0 +1,108 @@
+name = "Devotion of the Firemouth"
+
+[[augment]]
+name = "Devotion of the Firemouth"
+family = "DinosaurBone"
+
+[[item]]
+name = "Legendary Firemouth's Bulwark"
+primary = true
+
+[[item]]
+name = "Legendary Firemouth's Cloak"
+
+[[item]]
+name = "Legendary Firemouth's Diving Helmet"
+
+[[item]]
+name = "Legendary Firestalker Docent"
+
+[[item]]
+name = "Legendary Roughcut Armor"
+primary = true
+
+[[note]]
+kind = "set_bonus"
+field = "icon"
+upstream = "DevotionOfTheFiremouth"
+reason = "DDOBuilderV2's SetBonusImages folder has no DevotionOfTheFiremouth.png."
+url = "Output/DataFiles/SetBonusImages"
+read = "2026-10-07"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = 100
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Threat Generation"
+value = 100
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell Threat Generation"
+value = 100
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "PRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Artifact"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]

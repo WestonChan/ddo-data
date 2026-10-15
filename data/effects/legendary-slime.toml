@@ -1,0 +1,3 @@
+name = "Legendary Slime"
+description_template = "Attacks and offensive spells reduce enemy PRR and MRR by 10 each. This debuff does not stack but refreshes on each hit."
+verbose_name_template = "Legendary Slime"

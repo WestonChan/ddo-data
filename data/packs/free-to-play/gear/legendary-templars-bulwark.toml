@@ -1,0 +1,69 @@
+name = "Legendary Templar's Bulwark"
+description = """
+Templars of the Silver Flame wield these massive tower shields, said to blessed
+by Tira Miron, to guard against weapon blows and elemental spells alike."""
+drop_location = "Legendary version of Epic Templar's Bulwark"
+enhancement_bonus = 15
+icon = "Shield_2d"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Mithral"
+minimum_level = 30
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 40
+armor_check_penalty = -6
+armor_type = "Shield"
+damage_reduction = 22
+max_dex_bonus = 4
+shield_bonus = 25
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "blue"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

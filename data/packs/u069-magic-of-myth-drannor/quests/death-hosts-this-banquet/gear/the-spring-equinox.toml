@@ -1,0 +1,48 @@
+name = "The Spring Equinox"
+description = """
+Power evenly divided between the Sun and Moon, the power of Spring at its fullest
+is channeled here."""
+drop_location = "Death Hosts This Banquet, end chest"
+icon = "Ring_21g"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Ring"
+
+[[effect]]
+name = "Alchemical Air Attunement"
+
+[[effect]]
+name = "Thorn of the Rose"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Death Hosts This Banquet"

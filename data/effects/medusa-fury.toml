@@ -1,0 +1,3 @@
+name = "Medusa Fury"
+description_template = "When you fall below 25% of your maximum hit points you will enter a constant Medusa Fury until your hit points return to 25% or greater. Medusa Fury grants a +4 Morale bonus to Strength and Constitution, a 5% Morale bonus to your chance to doublestrike, and a -25% penalty to fortifications."
+verbose_name_template = "Medusa Fury"

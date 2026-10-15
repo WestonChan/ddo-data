@@ -1,0 +1,3 @@
+name = "Shock VII"
+description_template = "On Hit: 7 to 28 Electric Damage."
+verbose_name_template = "Shock VII"

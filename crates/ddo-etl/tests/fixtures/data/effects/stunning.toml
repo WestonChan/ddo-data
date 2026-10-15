@@ -1,0 +1,10 @@
+name = "Stunning"
+description_template = "{1} %b1 bonus to the DC of character's Stunning Blow and Stunning Fist attempts."
+home_bonus_type = "Insight"
+verbose_name_template = "%b1 Stunning +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Stun DC"

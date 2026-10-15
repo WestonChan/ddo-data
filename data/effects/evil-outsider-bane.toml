@@ -1,0 +1,3 @@
+name = "Evil Outsider Bane"
+description_template = "This weapon is attuned specifically to hunt monsters that bring ill intent from other planes, dealing an additional 1d10 bane damage vs. Evil Outsiders."
+verbose_name_template = "Evil Outsider Bane"

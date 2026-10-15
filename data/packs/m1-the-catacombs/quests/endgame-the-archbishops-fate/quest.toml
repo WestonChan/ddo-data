@@ -1,0 +1,26 @@
+name = "Endgame: The Archbishop's Fate"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "The Catacombs"
+patron = "The Silver Flame"
+zone = "Dryden's Chamber"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Endgame:_The_Archbishop%27s_Fate"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4
+
+[[run]]
+tier = "epic"
+level = 23

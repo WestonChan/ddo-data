@@ -1,0 +1,40 @@
+name = "Legendary Salt-Pearl Ring"
+description = "This ring features a singular pearl encrusted with bitter salt."
+drop_location = "Saltmarsh, rare encounter chests, or Legendary version of Epic Salt-Pearl Ring"
+icon = "Ring_21e"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 30
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "rare encounter chests, or legendary version of epic salt-pearl ring"
+kind = "quest"
+loot_type = "chest"
+name = "Saltmarsh"

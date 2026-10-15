@@ -1,0 +1,161 @@
+name = "Epic Bracers of Wind"
+description = """
+Bracers empowered by a bound Air Elemental. They surround you with a windy aura
+that deflects missiles occasionally, makes you harder to hit, and boosts the
+power of your electric spells."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Bracers_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Wrists"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 110
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Air Guard"
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "The wiki's Tier 2 upgrade raises the bracers' Lightning Lore +16% to +17%, the Equipment bonus his own option description names; his effect's bonus is Not Equipment."
+url = "https://ddowiki.com/page/Item:Epic_Bracers_of_Wind"
+read = "2026-10-02"
+qualifier = "Electric Spell Lore / null / 17"
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "The wiki's Tier 3 upgrade raises the bracers' Lightning Lore +17% to +18%, the Equipment bonus his own option description names; his effect's bonus is Not Equipment."
+url = "https://ddowiki.com/page/Item:Epic_Bracers_of_Wind"
+read = "2026-10-02"
+qualifier = "Electric Spell Lore / null / 18"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Magnetism 116, Lightning Lore 17%, Dodge 10% and a Colorless Augment slot"
+description = """
+Magnetism +116: Passive: +116 Equipment bonus to Electricity Spell Power.
+Lightning Lore +17: Passive: Your Electricity spells gain a 17% Equipment bonus to their chance to
+critical hit.
+Dodge +10%: +10% Enhancement bonus to Dodge."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 116
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 17
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 10
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [116]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus = "Not Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Magnetism 122, Lightning Lore 18%, Dodge 11% and a Green Augment slot"
+description = """
+Magnetism +122: Passive: +122 Equipment bonus to Electricity Spell Power.
+Lightning Lore +18: Passive: Your Electricity spells gain a 18% Equipment bonus to their chance to
+critical hit.
+Dodge +11%: +11% Enhancement bonus to Dodge."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 122
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 18
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 11
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [122]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [18]
+bonus = "Not Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

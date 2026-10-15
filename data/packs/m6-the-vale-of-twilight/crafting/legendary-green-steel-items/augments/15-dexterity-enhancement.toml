@@ -1,0 +1,20 @@
+name = "+15 Dexterity (Enhancement)"
+description = "Escalation/Air or Fire: +15 Enhancement bonus to Dexterity"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

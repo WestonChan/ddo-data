@@ -1,0 +1,20 @@
+name = "Dolorous Voidwheel (Heroic)"
+description = "+5 Exceptional bonus to Universal Spell Power."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Exceptional"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[slot]]
+slot = "lamordia: dolorous (armor)"

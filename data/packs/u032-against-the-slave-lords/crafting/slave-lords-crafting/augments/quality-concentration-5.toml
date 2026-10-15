@@ -1,0 +1,21 @@
+name = "Quality Concentration +5"
+description = "Legendary quality bonus to Concentration"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Concentration"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

@@ -1,0 +1,38 @@
+name = "Treads of Falling Shadow (Level 23)"
+description = """
+These black leather boots seem to cause your shadow to warp and twist, almost
+as if it were alive."""
+drop_location = "Detour, end chest (Epic Normal), Netherese Legacy chain end reward"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Spiritcraft Leather"
+minimum_level = 23
+slot = "Feet"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 2
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Detour"
+
+[[source]]
+kind = "quest_chain"
+name = "Netherese Legacy"

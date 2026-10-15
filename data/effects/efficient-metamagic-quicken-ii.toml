@@ -1,0 +1,11 @@
+name = "Efficient Metamagic - Quicken II"
+description_template = "The additional spell point cost for using the Quicken Metamagic feat is reduced by 2 SP."
+home_bonus_type = "Equipment"
+verbose_name_template = "Efficient Metamagic - Quicken II -2"
+
+[[bonus]]
+amount_from = 0
+constant = -2
+rounding = "down"
+scale = 1.0
+target = "Quicken Cost Reduction"

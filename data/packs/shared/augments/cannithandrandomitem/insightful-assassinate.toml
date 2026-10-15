@@ -1,0 +1,81 @@
+name = "Insightful Assassinate"
+choose_level = true
+description = "Adds an Insight bonus to the DC of your Assassinate attempts"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+]
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Equipment"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Assassinate"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[slot]]
+slot = "crafting: cannith gloves suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: cannith melee extra"
+
+[[slot]]
+slot = "crafting: cannith ranged extra"
+
+[[slot]]
+slot = "crafting: cannith thrown extra"
+
+[[slot]]
+slot = "crafting: random gloves suffix"
+
+[[slot]]
+slot = "crafting: random weapon extra"

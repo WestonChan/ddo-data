@@ -1,0 +1,10 @@
+name = "Curse of the Sentient's Meal"
+description = """
+This item is now worth 10,000 Sentient XP and its sale value has increased by
+100,000 Platinum."""
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[slot]]
+slot = "crafting: deck curse"

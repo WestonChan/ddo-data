@@ -1,0 +1,57 @@
+name = "Ornamented Dagger (level 4)"
+description = """
+A dagger set with precious gems, each of which are enchanted with spell-enhancing
+magic. Most likely it was seized from nobles by a band of pirates as part of
+their pillaging."""
+drop_location = "Treasure of Crystal Cove, Turn in various ingredients at Euphonia's Barter Box"
+enhancement_bonus = 2
+icon = "Dagger_2"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 55
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 55
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 55
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Dagger"

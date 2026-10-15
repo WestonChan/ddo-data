@@ -1,0 +1,3 @@
+name = "Thunderbane"
+description_template = "This weapon was crafted in the great Thunderforge before the Dragons came. Against constructs and the undead, this weapon's effective enhancement bonus is +8 better than its normal enhancement bonus. It deals an extra 7 to 42 points of damage against the foes."
+verbose_name_template = "Thunderbane"

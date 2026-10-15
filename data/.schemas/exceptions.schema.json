@@ -1,0 +1,70 @@
+{
+  "$defs": {
+    "PackException": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "url"
+      ],
+      "type": "object",
+      "x-table": "pack_exceptions"
+    },
+    "QuestPackException": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "pack_exceptions"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "item": {
+      "items": {
+        "$ref": "#/$defs/PackException"
+      },
+      "type": "array"
+    },
+    "patron": {
+      "items": {
+        "$ref": "#/$defs/PackException"
+      },
+      "type": "array"
+    },
+    "quest": {
+      "items": {
+        "$ref": "#/$defs/QuestPackException"
+      },
+      "type": "array"
+    }
+  },
+  "title": "ExceptionsFile",
+  "type": "object"
+}

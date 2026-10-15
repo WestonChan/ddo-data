@@ -1,0 +1,65 @@
+name = "Bulwark of Snow"
+description = """
+This crystalline shield radiates the energies of Winter, and is adept at protecting
+you from enemy attacks."""
+drop_location = "Quid Pro Quo, End chest"
+enhancement_bonus = 2
+icon = "Shield_2"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Mithral"
+minimum_level = 5
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 40
+armor_check_penalty = -6
+armor_type = "Shield"
+damage_reduction = 10
+max_dex_bonus = 4
+shield_bonus = 12
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Avalanche"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Quid Pro Quo"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

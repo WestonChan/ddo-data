@@ -1,0 +1,30 @@
+name = "Blessed Goggles"
+description = """
+These enchanted goggles are said to grant a blessing upon those that gather
+around the wearer."""
+drop_location = "Necromancer's Doom, End reward"
+icon = "Goggles_20"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 1
+slot = "Goggles"
+
+[[clickie]]
+name = "Bless"
+clickie = "Bless"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Bless"]
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Necromancer's Doom"

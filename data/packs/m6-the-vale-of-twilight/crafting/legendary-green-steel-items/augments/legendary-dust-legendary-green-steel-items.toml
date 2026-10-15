@@ -1,0 +1,13 @@
+name = "Legendary Dust"
+variant = "legendary-green-steel-items"
+description = """
+Requires Negative and Earth only
+Attacks and offensive spells have a 50% chance to reduce enemy
+PRR and Positive Healing Amplification. This penalty stacks.
+[-7 PRR and -20 healing amp per stack, maximum stack 5, hence -35 PRR
+and -100 healing amp at full stack. 11 seconds duration each stack]"""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

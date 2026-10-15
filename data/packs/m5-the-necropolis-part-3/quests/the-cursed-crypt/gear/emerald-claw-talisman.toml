@@ -1,0 +1,44 @@
+name = "Emerald Claw Talisman"
+description = """
+This Talisman of the Emerald Claw has been transformed by the altars of blood,
+darkness and damnation."""
+drop_location = "The Cursed Crypt, Altar; upgraded from Emerald Claw Pendant"
+icon = "Necklace_4"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Neck"
+
+[[clickie]]
+name = "Symbol of Fear"
+clickie = "Symbol of Fear"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Fearsome"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    11,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Symbol of Fear"]
+
+[[source]]
+chest = "altar"
+kind = "quest"
+loot_type = "chest"
+name = "The Cursed Crypt"

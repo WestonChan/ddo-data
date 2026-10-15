@@ -1,0 +1,29 @@
+name = "Solar Gem of Imbuement (Epic)"
+description = """
++2 Artifact Bonus to Imbue Dice.
+Drops in: Toil and Trouble, end chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Imbue Dice"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

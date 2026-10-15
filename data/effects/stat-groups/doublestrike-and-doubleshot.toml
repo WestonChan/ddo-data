@@ -1,0 +1,17 @@
+name = "Doublestrike and Doubleshot"
+description_template = "+{1}% %b1 bonus to Doublestrike and Doubleshot."
+home_bonus_type = "Profane"
+set_bonus_line_template = "+{1}% %b1 Bonus to Doublestrike and Doubleshot"
+verbose_name_template = "%b1 Doublestrike and Doubleshot +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Doublestrike"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Doubleshot"

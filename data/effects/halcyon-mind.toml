@@ -1,0 +1,3 @@
+name = "Halcyon Mind"
+description_template = "When you are damaged by an attack: 5% chance to gain 15 Temporary Spell Points. These Temporary Spell Points last for one minute, or until consumed to cast a spell."
+verbose_name_template = "Halcyon Mind"

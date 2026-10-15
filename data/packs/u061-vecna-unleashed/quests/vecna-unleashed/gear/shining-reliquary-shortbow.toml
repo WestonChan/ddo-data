@@ -1,0 +1,52 @@
+name = "Shining Reliquary Shortbow"
+description = "This shining weapon is a relic of a bygone age."
+drop_location = "Vecna Unleashed, any chest or trade with Steps Obliss"
+enhancement_bonus = 5
+icon = "Shortbow_1h"
+item_category = "Weapon"
+item_type = "Shortbow"
+material = "Steel"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Coruscating 4"
+
+[[effect]]
+name = "Blazing 10"
+
+[[effect]]
+name = "Evil Outsider Bane 4"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "any chest or trade with steps obliss"
+kind = "quest"
+loot_type = "chest"
+name = "Vecna Unleashed"
+
+[[source]]
+kind = "vendor"
+name = "Steps Obliss"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 2.6
+handedness = "Two-handed"
+weapon_type = "Shortbow"

@@ -1,0 +1,49 @@
+name = "Mystical: Efficient Metamagic - Enlarge II, Enchantment Focus +2, Spell Focus Mastery +1"
+description = """
+Efficient Metamagic - Enlarge II: The additional spell point cost for using the
+Enlarge Metamagic feat is reduced by 2 SP.
+Enchantment Focus +2: +2 Equipment bonus to the DC of Enchantment spells.
+Spell Focus Mastery +1: +1 Equipment bonus to the DC of all spells."""
+family = "Alchemical"
+min_level = 20
+
+[[effect]]
+name = "Enlarge Cost Reduction"
+bonus_type = "Equipment"
+value = -2
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Equipment"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Equipment"
+effect = "Enlarge Cost Reduction"
+effect_type = "MetamagicCostEnlarge"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: alchemical tier 3"

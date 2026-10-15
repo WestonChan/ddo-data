@@ -1,0 +1,51 @@
+name = "Dwarven Brawler's Wraps"
+description = """
+Legend has it that when a great Dwarven hero had his axe shattered by the Drow,
+he took a swig from his flask, tore his tunic, wrapped the shreds around his
+hands, and routed them with nothing but devastating punches."""
+drop_location = "Desire in the Dark, End chest"
+enhancement_bonus = 5
+icon = "HandWraps_1"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 15
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Reinforced Fists"
+
+[[effect]]
+name = "Evil Outsider Bane 4"
+
+[[effect]]
+name = "Banishing"
+
+[[effect]]
+name = "Glass Jaw Strike"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desire in the Dark"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

@@ -1,0 +1,85 @@
+name = "Terminus"
+description = "While the enemy's attacks are many...they all stop here."
+drop_location = "Legendary Hound of Xoriat, End chest and Legendary Tempest's Spine End chest"
+enhancement_bonus = 14
+icon = "Shield_2a"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Planeforged Steel"
+minimum_level = 27
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 22
+max_dex_bonus = 2
+shield_bonus = 26
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Healers Bounty"
+
+[[effect]]
+name = "Bashing 6"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Hound of Xoriat"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Tempest's Spine"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 10
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.4
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

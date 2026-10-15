@@ -1,0 +1,44 @@
+name = "Silverscale"
+description = "+56 bonus to each Positive(Competence)/Negative(Profane)/Repair(Enhancement) Amplification"
+family = "DinosaurBone"
+icon = "ScaleSilver"
+min_level = 31
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 56
+
+[[effect]]
+name = "Negative Healing Amplification"
+bonus_type = "Profane"
+value = 56
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Enhancement"
+value = 56
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [56]
+bonus_type = "Competence"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [56]
+bonus_type = "Profane"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [56]
+bonus_type = "Enhancement"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[slot]]
+slot = "isle of dread: scale (armor)"

@@ -1,0 +1,38 @@
+name = "The Mask of the Killer"
+drop_location = "Relentless, end chest"
+icon = "Helmet_141a"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 34
+slot = "Head"
+
+[[effect]]
+name = "Memory of Butchery"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Relentless"

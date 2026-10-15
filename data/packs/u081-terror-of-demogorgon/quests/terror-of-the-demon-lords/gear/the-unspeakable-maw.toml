@@ -1,0 +1,72 @@
+name = "The Unspeakable Maw"
+description = "Praise."
+drop_location = "Terror of the Demon Lords, end chest"
+icon = "RuneArm_1j"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 35
+slot = "Runearm"
+
+[[clickie]]
+name = "Acid Shot"
+clickie = "Acid Shot"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 25
+
+[[effect]]
+name = "Spell Lore II"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Legendary Ash"
+
+[[effect]]
+name = "Rune Arm Imbue - Acid VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Acid Shot",
+    "Unknown",
+]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

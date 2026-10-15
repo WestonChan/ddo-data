@@ -1,0 +1,3 @@
+name = "Banishing 117"
+description_template = "On Hit: 7d6 Bane damage to Outsiders.On Vorpal Hit: If an outsider struck by this weapon has fewer than 3320 Hit Points, it is instantly slain. If the outsider has above 3320 Hit Points, it takes 7d20 damage."
+verbose_name_template = "Banishing 117"

@@ -1,0 +1,30 @@
+name = "Holy Symbol of Ravenkind"
+description = """
+The Holy Symbol of Ravenkind is a unique holy symbol sacred to the good-hearted
+faithful of Barovia."""
+drop_location = "The Curse of Strahd"
+icon = "Trinket_78"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Dispel the Grip of Strahd"
+clickie = "Dispel the Grip of Strahd"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    28,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Dispel the Grip of Strahd"]
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"

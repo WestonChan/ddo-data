@@ -1,0 +1,13 @@
+name = "Aspect of Steam II"
+description = """
+Steam Guard: This item is constantly building a magical steam within. When the wearer of
+this item is successfully attacked in melee, this pressure can be violently
+discharged, periodically damaging the enemy with an additional 2d8 plus 8
+points of untyped damage.
+Water:Positive:Water+Positive"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

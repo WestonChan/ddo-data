@@ -1,0 +1,24 @@
+name = "Phiarlan's Ring"
+description = """
+A ring so old it predates the dragonmarked houses. It still carries the essence
+of song within."""
+drop_location = "Gwylan's Stand, Yarlbur 's chest"
+icon = "Ring_45"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 5
+slot = "Ring"
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "yarlbur 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gwylan's Stand"

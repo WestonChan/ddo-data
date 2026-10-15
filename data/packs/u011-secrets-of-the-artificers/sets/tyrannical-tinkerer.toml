@@ -1,0 +1,56 @@
+name = "Tyrannical Tinkerer"
+icon = "Cannith"
+
+[[item]]
+name = "Legendary Tinkerer's Gloves"
+
+[[item]]
+name = "Legendary Tinkerer's Goggles"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Disable Device"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Open Lock"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]

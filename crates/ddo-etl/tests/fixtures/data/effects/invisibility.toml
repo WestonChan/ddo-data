@@ -1,0 +1,10 @@
+name = "Invisibility"
+description_template = "{1} Deflection bonus to Armor Class"
+home_bonus_type = "Deflection"
+verbose_name_template = "Invisibility"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"

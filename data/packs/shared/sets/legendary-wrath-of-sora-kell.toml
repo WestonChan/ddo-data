@@ -1,0 +1,103 @@
+name = "Legendary Wrath of Sora Kell"
+icon = "WrathOfSoraKell"
+
+[[item]]
+name = "Legendary Katra's Razor Wit"
+primary = true
+
+[[item]]
+name = "Legendary Katra's Wit"
+
+[[item]]
+name = "Legendary Maenya's Fists"
+
+[[item]]
+name = "Legendary Maenya's Iron Fists"
+primary = true
+
+[[item]]
+name = "Legendary Night Hag's Heartstone"
+primary = true
+
+[[item]]
+name = "Legendary Teraza's Perfect Sight"
+primary = true
+
+[[item]]
+name = "Legendary Teraza's Sight"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Attack Bonus +3 Artifact at 3 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Attack Bonus / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Damage Bonus +3 Artifact at 3 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Damage Bonus / Artifact"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.effect]]
+effect = "+3 Artifact bonus to Hit and Damage"
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Attack Bonus"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Damage Bonus"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "PRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"

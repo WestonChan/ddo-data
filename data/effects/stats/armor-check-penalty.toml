@@ -1,0 +1,4 @@
+name = "Armor Check Penalty"
+category = "defensive"
+home_bonus_type = "Stacking"
+verbose_name_template = "%b1 Armor Check Penalty +{1}"

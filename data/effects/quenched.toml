@@ -1,0 +1,3 @@
+name = "Quenched"
+description_template = "Your Cold and Lightning spells apply the debuff portion of Quench with no save."
+verbose_name_template = "Quenched"

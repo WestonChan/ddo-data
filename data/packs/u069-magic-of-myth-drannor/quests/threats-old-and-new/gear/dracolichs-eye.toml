@@ -1,0 +1,40 @@
+name = "Dracolich's Eye"
+description = "This magically preserved eye, on a long chain, lends its sight to its wearer."
+drop_location = "Threats Old and New, Raid Warded chest"
+icon = "Necklace_14c"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 33
+slot = "Neck"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 6
+value2 = 9
+
+[[socket]]
+slot = "crafting: sealed in undeath"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Threats Old and New"

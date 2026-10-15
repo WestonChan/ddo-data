@@ -1,0 +1,38 @@
+name = "Pendant of the White Abishai"
+description = "This necklace seems to be attuned to elemental power."
+drop_location = "The Chronoscope, and The Chronoscope (Legendary), optional chests"
+icon = "Necklace_13r"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 5
+slot = "Neck"
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

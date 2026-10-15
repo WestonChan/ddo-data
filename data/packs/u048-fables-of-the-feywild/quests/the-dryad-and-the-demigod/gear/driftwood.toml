@@ -1,0 +1,66 @@
+name = "Driftwood"
+description = """
+This arcane curiousity appears to be fashioned entirely out of woven, magical
+wood."""
+drop_location = "The Dryad and the Demigod, End chest and optional chest"
+icon = "RuneArm_5a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Wood"
+minimum_level = 29
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Insight"
+value = 74
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Quality"
+value = 36
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[effect]]
+name = "Corrosive Salt"
+
+[[effect]]
+name = "Rune Arm Imbue - Tidal Shot VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Salt Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

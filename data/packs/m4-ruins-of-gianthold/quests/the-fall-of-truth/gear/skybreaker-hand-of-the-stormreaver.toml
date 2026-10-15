@@ -1,0 +1,84 @@
+name = "Skybreaker, Hand of the Stormreaver"
+description = "None"
+drop_location = "The Fall of Truth, Raid Warded chest (Epic Normal)"
+enhancement_bonus = 7
+icon = "Greatsword_6"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Mithral"
+minimum_level = 25
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Skybreaker"
+
+[[effect]]
+name = "The Reaver's Resolve"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus and The Reaver's Quest"
+description = """
++8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls.
+The Reaver's Quest: The Stormreaver slipped from The Celestial One's care, and
+set out across Xen'drik for the components to craft a new sword. Purest Mithral
+was gathered from the Bluespine Peaks, and diamonds from the Burning Mountain,
+ground to dust under his heel. He forged his blade in the heart of Mount Reysalon's
+volcano, and quenched it in the fury of a hurricane that was battering itself
+against Shargon's Teeth.
+(This enchantment has no effect.)"""
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Adds Reaver's Fate and a Red Augment Slot"
+description = """
+The Reaver's Fate: With Skybreaker in hand, The Stormreaver returned to Gianthold
+to fight the menace to his people, and to seek triumph where he had once found only failure.
+(This enchantment has no effect.)
+Adds a Red augment slot to this weapon."""
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.grant]]
+slot = "red"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Fall of Truth"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 3
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

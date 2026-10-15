@@ -1,0 +1,25 @@
+name = "Moldy Quarterstaff"
+description = """
+This quarterstaff is carved with symbols and is slightly damp. Double-click
+on this weapon to equip it."""
+drop_location = "Shipwreck Shore, Jeets Shimis"
+icon = "Quarterstaff_15"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

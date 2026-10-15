@@ -1,0 +1,55 @@
+name = "Tinker's Gloves"
+description = """
+Gloves worn by House Cannith tinkers to grant them greater dexterity and aid
+them in working with complex devices."""
+drop_location = "Schemes of the Enemy, Whitefang 's chest, some End chests ; House Cannith Manufactury, Stellite 's chest (Rare Encounter)."
+icon = "Gloves_15a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Hands"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Enhancement"
+value = 5
+
+[[note]]
+kind = "item"
+field = "set_bonus"
+reason = "The wiki lists this item as a member of Tinker's Finesse."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Tinker's Finesse"
+description = "Adds the Tinker's Finesse set bonus"
+icon = "Heroism"
+min_level = 18
+
+[[socket.option.set]]
+set = "Tinker's Finesse"
+
+[[source]]
+chest = "whitefang 's chest, some end chests"
+kind = "quest"
+loot_type = "chest"
+name = "Schemes of the Enemy"

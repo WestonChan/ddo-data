@@ -1,0 +1,11 @@
+name = "Lesser Action Boost Enhancement"
+description_template = "This will increase the total number of Action Boosts you can use by 2. However, these additional Action Boosts will only take effect after the wielder rests."
+home_bonus_type = "Equipment"
+verbose_name_template = "Lesser Action Boost Enhancement +2"
+
+[[bonus]]
+amount_from = 0
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Action Boosts"

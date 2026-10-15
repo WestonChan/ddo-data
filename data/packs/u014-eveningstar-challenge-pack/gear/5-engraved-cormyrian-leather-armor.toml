@@ -1,0 +1,30 @@
+name = "+5 Engraved Cormyrian Leather Armor"
+description = """
+This exquisite suit of leathers is a prime example of quality Cormyrian craftsmanship,
+and equipment intended for use in service to the kingdom is layered with powerful
+enchantments by the War Wizards."""
+drop_location = "Eveningstar Challenge Pack, any chest or trade with Lorani Thallam"
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 12
+armor_type = "Light"
+max_dex_bonus = 14
+
+[[socket]]
+slot = "crafting: random effect 1"
+
+[[socket]]
+slot = "crafting: random effect 2"
+
+[[source]]
+chest = "any chest or trade with lorani thallam"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

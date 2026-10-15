@@ -1,0 +1,21 @@
+name = "Miserable Stunning (Heroic)"
+description = "+6 Enhancement bonus to Stunning DCs."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Stun DC"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[slot]]
+slot = "lamordia: miserable (accessory)"

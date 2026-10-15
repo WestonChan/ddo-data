@@ -1,0 +1,51 @@
+name = "Seal of the Earth"
+description = """
+A gold and ivory ring bearing a star-like symbol and the word HEVDEVI in blocky
+letters."""
+drop_location = "Zawabi's Revenge, warded chest"
+icon = "Ring_29b"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 11
+slot = "Ring"
+
+[[clickie]]
+name = "Stoneskin"
+clickie = "Stoneskin"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 80
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 6
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 23
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Stoneskin"]
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"

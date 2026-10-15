@@ -1,0 +1,29 @@
+name = "Feat: Quick Draw"
+description_template = "While equipped, this item grants the feat Quick Draw."
+verbose_name_template = "Feat: Quick Draw"
+
+[[note]]
+kind = "effect"
+original_name = "Feat Quick Draw"
+field = "verbose_name_template"
+upstream = "Feat"
+reason = "The wiki line uses this effect title; Maetrim copied an unrelated title into the template."
+url = "https://ddowiki.com/page/Item:Legendary_Mastermaker's_Fingers"
+read = "2026-10-05"
+
+[[note]]
+kind = "effect"
+original_name = "Feat Quick Draw"
+field = "description_template"
+upstream = "Quick Draw: While equipped, this item grants the feat Quick Draw."
+reason = "The wiki puts Quick Draw in the line title and the remaining sentence in its tooltip."
+url = "https://ddowiki.com/page/Item:Legendary_Mastermaker's_Fingers"
+read = "2026-10-05"
+
+[[note]]
+kind = "effect"
+field = "name"
+upstream = "Feat Quick Draw"
+reason = "The wiki names the item line Feat: Quick Draw, matching the existing Feat: Elusive Target form."
+url = "https://ddowiki.com/page/Item:Legendary_Mastermaker's_Fingers"
+read = "2026-10-05"

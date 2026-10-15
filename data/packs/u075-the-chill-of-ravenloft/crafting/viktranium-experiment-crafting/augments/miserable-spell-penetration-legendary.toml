@@ -1,0 +1,20 @@
+name = "Miserable Spell Penetration (Legendary)"
+description = "+10 Equipment bonus to Spell Penetration."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[slot]]
+slot = "lamordia: miserable (accessory)"

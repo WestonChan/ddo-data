@@ -1,0 +1,37 @@
+name = "Bloody Bite"
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 3
+icon = "Rapier_1"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 15
+race_required = "Dhampir Dark Bargainer"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Piercing 3"
+
+[[effect]]
+name = "Shockwave"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Rapier"

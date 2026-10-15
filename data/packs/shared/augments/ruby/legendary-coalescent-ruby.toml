@@ -1,0 +1,35 @@
+name = "Legendary Coalescent Ruby"
+description = """
++100 Equipment Bonus to each individual Spell Power.
+Drops in: Isle of Dread, any chest"""
+family = "Ruby"
+icon = "Deconstructor"
+min_level = 30
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 100
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

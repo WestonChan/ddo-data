@@ -1,0 +1,21 @@
+name = "Legendary Convalescent Ruby"
+description = "+100 Equipment Bonus to each individual Spell Power."
+family = "DinosaurBone"
+icon = "Deconstructor"
+min_level = 30
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 100
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "red"

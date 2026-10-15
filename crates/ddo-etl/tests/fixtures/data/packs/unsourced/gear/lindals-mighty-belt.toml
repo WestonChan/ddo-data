@@ -1,0 +1,28 @@
+name = "Lindal's Mighty Belt"
+description = "The silver shields on this belt seem to imbue you with magical strength"
+drop_location = "Skeletons in the Closet, Free Yarrow optional chest"
+icon = "Belt_4"
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 31
+slot = "Waist"
+
+[[effect]]
+name = "Lay on Hands Uses"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Charisma Skills"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Invisibility"
+bonus_type = "Deflection"
+value = 2
+
+[[effect]]
+name = "Unwieldy"
+bonus_type = "Penalty"
+value = -2

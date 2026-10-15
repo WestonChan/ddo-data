@@ -1,0 +1,118 @@
+[[row]]
+name = "Crackshot Negotiator: +1 Attack and Damage"
+description = """
++1 to Attack and Damage
+Rare: +2 PRR"""
+icon = "CrackshotNegotiator"
+menu = "Masterminds of Sharn"
+set = "Crackshot Negotiator"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Crackshot Negotiator: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Crackshot Negotiator: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "CrackshotNegotiator"
+menu = "Masterminds of Sharn"
+set = "Crackshot Negotiator"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Crackshot Negotiator: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Crackshot Negotiator: +2 Reflex Saves"
+description = """
++2 Reflex Save
+Rare: +2 MRR"""
+icon = "CrackshotNegotiator"
+menu = "Masterminds of Sharn"
+set = "Crackshot Negotiator"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Crackshot Negotiator: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Crackshot Negotiator: +3 Ranged Power"
+description = """
++3 Ranged Power
+Rare: +2 Ranged Power"""
+icon = "CrackshotNegotiator"
+menu = "Masterminds of Sharn"
+set = "Crackshot Negotiator"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Crackshot Negotiator: Ranged Power: +2 Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "Crackshot Negotiator: +5 Diplomacy"
+description = """
++5 Diplomacy
+Rare: +2 PRR"""
+icon = "CrackshotNegotiator"
+menu = "Masterminds of Sharn"
+set = "Crackshot Negotiator"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "SkillBonus"
+targets = ["Diplomacy"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Crackshot Negotiator: Ranged Power: +2 PRR"
+effect_type = "PRR"
+is_rare = true

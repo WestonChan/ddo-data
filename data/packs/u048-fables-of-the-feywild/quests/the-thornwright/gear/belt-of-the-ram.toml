@@ -1,0 +1,30 @@
+name = "Belt of the Ram"
+description = "No shepard is necessary to guide your path."
+drop_location = "The Thornwright, End chest"
+icon = "Belt_8"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Waist"
+
+[[effect]]
+name = "Ram's Might"
+
+[[effect]]
+name = "Speed"
+value = 15
+value2 = 5
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Thornwright"

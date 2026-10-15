@@ -1,0 +1,31 @@
+name = "Elfcrafted Plate Armor"
+description = "Plate armor imbued with the power of the elven slaves of the giant empire."
+drop_location = "Elfcraft Armor, Turn in 10 Ancient Elven Relics"
+enhancement_bonus = 3
+icon = "HeavyArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 12
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Arcane Lore"
+
+[[effect]]
+name = "Minor Spell Penetration VII"
+bonus_type = "Equipment"
+
+[[source]]
+kind = "crafting_system"
+name = "Elfcraft Armor"

@@ -1,0 +1,80 @@
+name = "Flawless Blue Dragonscale Armor"
+description = "Flawless breastplate and scale armor forged from the scales of a blue dragon."
+drop_location = "Blue Dragonscale Armor"
+enhancement_bonus = 7
+icon = "MediumArmor_14"
+item_category = "Armor"
+item_type = "Medium"
+material = "Blue Dragonscale"
+minimum_level = 25
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 19
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 80
+
+[[effect]]
+name = "Superior Lightning Resistance"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Spell Lore IX"
+description = "Spell Lore IX: Passive: All of your spells gain a 9% Equipment bonus to their chance to critical hit."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+value = 9
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

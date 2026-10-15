@@ -1,0 +1,97 @@
+name = "Titan Control Matrix"
+description = "This strange device seems to key into House Cannith's infrastructure, somehow."
+drop_location = "Legendary Master Artificer, end and optional chest"
+icon = "Bracers_1"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Insight"
+value = 77
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Intelligence +14"
+description = "+14 Enhancement bonus to Intelligence"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 14
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Insightful Intelligence +6"
+description = "+6 Insight bonus to Intelligence"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Quality Intelligence +3"
+description = "+3 Quality bonus to Intelligence"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Intelligence"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Master Artificer"

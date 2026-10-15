@@ -1,0 +1,23 @@
+name = "Redwillow's Ruins"
+bestowed_by = "Jandul d'Jorasco"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Jorasco"
+zone = "Redwillow's Ruins"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Redwillow%27s_Ruins"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6

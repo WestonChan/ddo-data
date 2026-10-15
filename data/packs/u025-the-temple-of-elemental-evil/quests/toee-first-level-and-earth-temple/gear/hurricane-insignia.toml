@@ -1,0 +1,39 @@
+name = "Hurricane Insignia"
+description = """
+Those who have given themselves over to the Howling Hatred know each other by
+these badges and the unending screams that seem to follow them."""
+drop_location = "ToEE: First Level and Earth Temple, end chest"
+icon = "Trinket_44"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 8
+slot = "Trinket"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Speed"
+value = 18
+value2 = 6
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: First Level and Earth Temple"

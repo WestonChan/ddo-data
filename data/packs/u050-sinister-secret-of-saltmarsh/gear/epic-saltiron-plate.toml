@@ -1,0 +1,40 @@
+name = "Epic Saltiron Plate"
+description = "Underneath this fine coat are sturdy plates of Saltiron."
+drop_location = "Epic version of Saltiron Plate"
+enhancement_bonus = 6
+icon = "HeavyArmor_1e"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Copper"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 15
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 8
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 9
+
+[[socket]]
+slot = "blue"

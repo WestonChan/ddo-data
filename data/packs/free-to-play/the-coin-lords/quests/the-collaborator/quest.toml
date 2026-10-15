@@ -1,0 +1,22 @@
+name = "The Collaborator"
+bestowed_by = "Sigmund Bauerson"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "Wavecrest Tavern"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Collaborator"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 1

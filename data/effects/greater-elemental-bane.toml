@@ -1,0 +1,3 @@
+name = "Greater Elemental Bane"
+description_template = "A bane weapon excels at attacking one type or subtype of creature. Against Elementals, this weapon's effective enhancement bonus is +4 better than its normal enhancement bonus. It deals an extra 3 to 18 points of damage against the foe."
+verbose_name_template = "Greater Elemental Bane"

@@ -1,0 +1,40 @@
+name = "Legendary Chieftain"
+description = """
+This impressive signet was worn by an ancient Dwarf warlord. The silver band
+serves as a visual reminder of his influence to Dwarves who remember him and
+his legacy."""
+drop_location = "Graveyard Shift, end chest"
+icon = "Ring_4"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 28
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 10
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Graveyard Shift"

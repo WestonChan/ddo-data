@@ -1,0 +1,19 @@
+name = "Plane of Night"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_raid = true
+pack = "Vault of Night"
+patron = "House Kundarak"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 22

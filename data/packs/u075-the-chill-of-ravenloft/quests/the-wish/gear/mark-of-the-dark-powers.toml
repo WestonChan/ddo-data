@@ -1,0 +1,38 @@
+name = "Mark of the Dark Powers"
+description = """
+A vile emblem, carved in apparent worship of the Dark Powers. Whatever pact
+the artisan formed, it does not appear to have saved them."""
+drop_location = "The Wish, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 8
+slot = "Trinket"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 16
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wish"

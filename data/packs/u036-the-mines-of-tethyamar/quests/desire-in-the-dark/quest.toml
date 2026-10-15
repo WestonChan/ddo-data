@@ -1,0 +1,29 @@
+name = "Desire in the Dark"
+bestowed_by = "Inger Ingersdottir"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Mines of Tethyamar"
+patron = "The Harpers"
+zone = "The Eastern Reaches"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Desire_in_the_Dark"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

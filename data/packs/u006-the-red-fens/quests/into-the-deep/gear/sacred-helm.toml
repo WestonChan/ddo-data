@@ -1,0 +1,25 @@
+name = "Sacred Helm"
+description = """
+Though used primarily by drow ascetics, this helm will protect any healer from
+death magic and the undead."""
+drop_location = "Into the Deep, End reward"
+icon = "Helmet_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Head"
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 5
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Eternal Faith"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Into the Deep"

@@ -1,0 +1,74 @@
+name = "+3 Melee/Ranged and Spell Power"
+description = "+3 Reaper bonus to Melee, Ranged and Spell Power"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Reaper"
+value = 3
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Reaper"
+value = 3
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Reaper"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Reaper"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Reaper"
+effect = "Universal Spell Power"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: reaper armor"
+
+[[slot]]
+slot = "crafting: reaper belt"
+
+[[slot]]
+slot = "crafting: reaper boot"
+
+[[slot]]
+slot = "crafting: reaper bracers"
+
+[[slot]]
+slot = "crafting: reaper cloak"
+
+[[slot]]
+slot = "crafting: reaper gloves"
+
+[[slot]]
+slot = "crafting: reaper goggles"
+
+[[slot]]
+slot = "crafting: reaper helmet"
+
+[[slot]]
+slot = "crafting: reaper necklace"
+
+[[slot]]
+slot = "crafting: reaper ring"
+
+[[slot]]
+slot = "crafting: reaper shield"
+
+[[slot]]
+slot = "crafting: reaper trinket"
+
+[[slot]]
+slot = "crafting: reaper weapon"

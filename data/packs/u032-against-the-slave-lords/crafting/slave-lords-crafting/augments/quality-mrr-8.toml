@@ -1,0 +1,20 @@
+name = "Quality MRR +8"
+description = "Legendary quality bonus to MRR"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Quality"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Quality"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

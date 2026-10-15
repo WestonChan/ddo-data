@@ -1,0 +1,8 @@
+name = "Dragonshard Focus - Sentinel"
+description_template = """
+This effect bestows additional benefits to those that
+bear the Dragonmark of Sentinel.
+Least: Exotic Weapon Proficiency: Bastard Sword.
+Lesser: Parrying I
+Greater: Insightful Fortification +25%"""
+verbose_name_template = "Dragonshard Focus - Sentinel"

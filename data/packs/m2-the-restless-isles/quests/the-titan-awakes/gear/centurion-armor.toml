@@ -1,0 +1,30 @@
+name = "Centurion Armor"
+description = """
+This stunning suit of plate is polished to a high shine. Leather straps evenly
+distribute its considerable weight, making movement a bit easier."""
+drop_location = "The Titan Awakes, Raid Warded Chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Magesteel"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 16
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 4
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

@@ -1,0 +1,3 @@
+name = "Corroding 16"
+description_template = "This effect causes the edges of this weapon to drip with acid, dealing 16d6 Acid damage on each critical hit."
+verbose_name_template = "Corroding 16"

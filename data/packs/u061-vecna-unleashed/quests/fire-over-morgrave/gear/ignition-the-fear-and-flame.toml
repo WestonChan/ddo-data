@@ -1,0 +1,56 @@
+name = "Ignition, the Fear and Flame"
+accepts_sentience = true
+description = "The moment a candle turns into an inferno, made manifest."
+drop_location = "Fire Over Morgrave, end chest"
+enhancement_bonus = 15
+icon = "BastardSword_1j"
+item_category = "Weapon"
+item_type = "Bastard Sword"
+material = "Adamantine"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Identity Crisis"
+
+[[effect]]
+name = "Legendary Paralysis"
+
+[[effect]]
+name = "Legendary Slay Living"
+
+[[effect]]
+name = "Flaming Blast 7"
+
+[[socket]]
+slot = "crafting: planar searing"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Fire Over Morgrave"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "One-handed"
+weapon_type = "Bastard Sword"

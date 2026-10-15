@@ -1,0 +1,29 @@
+name = "Legendary Chains"
+description = "Oppression will always fail, just as chains will always be broken."
+drop_location = "Slave Pits of the Undercity, Small chest"
+icon = "Necklace_15"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 28
+slot = "Waist"
+
+[[socket]]
+slot = "crafting: legendary slavelords prefix"
+
+[[socket]]
+slot = "crafting: legendary slavelords suffix"
+
+[[socket]]
+slot = "crafting: legendary slavelords extra"
+
+[[socket]]
+slot = "crafting: legendary slavelords bonus"
+
+[[socket]]
+slot = "crafting: legendary slavelords set bonus"
+
+[[source]]
+chest = "small chest"
+kind = "quest"
+loot_type = "chest"
+name = "Slave Pits of the Undercity"

@@ -1,0 +1,39 @@
+name = "Dance of the Wind"
+icon = "DanceOfTheWind"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Missile Deflection"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Missile Deflection"
+effect_type = "MissileDeflection"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating Cap"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "Movement Speed on Tumble"

@@ -1,0 +1,22 @@
+name = "The Library of Threnal"
+bestowed_by = "Sal Danek"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Ruins of Threnal"
+patron = "House Phiarlan"
+zone = "The Library of Threnal"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Library_of_Threnal"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

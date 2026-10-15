@@ -1,0 +1,10 @@
+name = "Natural Armor"
+home_bonus_type = "Natural Armor"
+set_bonus_line_template = "+{1} %b1 Bonus to Natural Armor"
+verbose_name_template = "Natural Armor +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"

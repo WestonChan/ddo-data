@@ -1,0 +1,38 @@
+name = "Duergarcraft Cowl"
+description = "A cowl made by Duergar craftspeople, combining metal parts and fine cloth."
+drop_location = "The Fetid Wedding, end chest"
+icon = "Helmet_1"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Fetid Wedding"

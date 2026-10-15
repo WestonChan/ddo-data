@@ -1,0 +1,41 @@
+name = "Skullduggery Cap"
+description = "When shady work is the order of the evening, a light cap can be essential."
+drop_location = "The Final Enemy, end chest"
+icon = "Helmet_1a"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 3
+slot = "Head"
+
+[[clickie]]
+name = "Deathward"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Deathward"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Enemy"

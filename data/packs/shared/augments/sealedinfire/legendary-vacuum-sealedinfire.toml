@@ -1,0 +1,14 @@
+name = "Legendary Vacuum"
+variant = "sealedinfire"
+description = """
+Attacks and offensive spells have a [30%?] chance to inflict
+multiple [2-4] stacks of Vulnerable. Originally had 100%, 6-7 stacks but nerfed."""
+family = "SealedInFire"
+icon = "GreenAugment"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in fire"
+
+[[slot]]
+slot = "crafting: sealed in mist"

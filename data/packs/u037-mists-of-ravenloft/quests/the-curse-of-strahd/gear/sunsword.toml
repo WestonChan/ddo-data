@@ -1,0 +1,49 @@
+name = "Sunsword"
+description = "This blade of light cries out to destroy Strahd."
+drop_location = "The Curse of Strahd, Turn in given by Rudolph van Richten"
+enhancement_bonus = 15
+icon = "Shortsword_3"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Light"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Coruscating 6"
+
+[[effect]]
+name = "Blazing 14"
+
+[[effect]]
+name = "Undead Bane 6"
+
+[[effect]]
+name = "Brazen Brilliance"
+
+[[effect]]
+name = "Sunsword's Power"
+
+[[source]]
+chest = "turn in given by rudolph van richten"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Shortsword"

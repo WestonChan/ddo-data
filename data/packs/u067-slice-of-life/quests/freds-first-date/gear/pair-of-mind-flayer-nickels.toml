@@ -1,0 +1,47 @@
+name = "Pair of Mind Flayer Nickels"
+description = "If I had a nickel for every time..."
+drop_location = "Fred's First Date, end chest"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 18
+slot = "Trinket"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Pair_of_Mind_Flayer_Nickels"
+read = "2026-09-30"
+
+[[citation]]
+field = "sources"
+url = "https://ddowiki.com/page/Item:Pair_of_Mind_Flayer_Nickels"
+read = "2026-09-30"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Mythic Trinket Boost +1 or +3"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Fred's First Date"

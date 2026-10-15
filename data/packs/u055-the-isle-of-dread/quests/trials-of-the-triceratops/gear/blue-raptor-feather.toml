@@ -1,0 +1,37 @@
+name = "Blue Raptor Feather"
+description = "A blue plumed feather from a raptor of the Isle of Dread."
+drop_location = "Trials of the Triceratops, end chest"
+icon = "Trinket_56"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 7
+slot = "Trinket"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Trials of the Triceratops"

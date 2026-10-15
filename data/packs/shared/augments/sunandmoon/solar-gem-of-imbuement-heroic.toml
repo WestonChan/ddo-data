@@ -1,0 +1,53 @@
+name = "Solar Gem of Imbuement (Heroic)"
+description = """
++1 Artifact Bonus to Imbue Dice.
+Drops in: Magic of Myth Drannor (Heroic), Elite and True Elite
+Voices of the Dead, end chest (rare)
+Toil and Trouble, end chest (rare)
+Snowfall and Sunlight, end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Imbue Dice"
+bonus_type = "Artifact"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Hideous to Behold"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

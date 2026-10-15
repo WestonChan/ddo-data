@@ -1,0 +1,51 @@
+name = "Drow Captain's Mask"
+description = "These masks were given to Menzoberranzan's most trusted guards."
+drop_location = "Catalyst Crafting, Turn in Royal Guard Mask, its Deep Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+icon = "Helmet_71"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 11
+slot = "Head"
+
+[[clickie]]
+name = "Teleport"
+clickie = "Teleport"
+
+[[effect]]
+name = "Smoke Screen"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Feat - Wind through the Trees"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Teleport"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

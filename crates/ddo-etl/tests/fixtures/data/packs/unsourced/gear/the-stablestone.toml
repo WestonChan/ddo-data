@@ -1,0 +1,32 @@
+name = "The Stablestone"
+description = "The more things change, the more they stay the same."
+drop_location = "Hunt or Be Hunted, end chest"
+icon = "Trinket_40a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 29
+slot = "Trinket"
+
+[[effect]]
+name = "Intercession Ward"
+
+[[effect]]
+name = "Alignment Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Light Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"

@@ -1,0 +1,43 @@
+name = "Legendary Periapt of Wisdom"
+description = "A mark of wisdom, recognizing the bearer's discipline and give them deeper understanding."
+drop_location = "Times Long Past, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Trinket"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 9
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Times Long Past"

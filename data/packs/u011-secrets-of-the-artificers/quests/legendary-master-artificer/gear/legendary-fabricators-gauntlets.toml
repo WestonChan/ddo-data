@@ -1,0 +1,95 @@
+name = "Legendary Fabricator's Gauntlets"
+description = """
+Fabricators of House Cannith wear bulky gauntlets like these to increase their
+manual strength and their ability to work with raw materials."""
+drop_location = "Legendary Master Artificer, End and optional chest"
+icon = "Gloves_3"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 148
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+13 Strength"
+description = "+13 Enhancement bonus to Strength"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+6 Insightful Strength"
+description = "+6 Insight bonus to Strength"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+3 Quality Strength"
+description = "+3 Quality bonus to Strength"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Strength"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Master Artificer"

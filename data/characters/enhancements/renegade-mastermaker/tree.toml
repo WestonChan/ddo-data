@@ -1,0 +1,1462 @@
+name = "Renegade Mastermaker"
+background = "ArtificerBackground"
+icon = "Artificer"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Renegade Mastermaker: Renegade Defender"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Each core ability in this tree grants you +10 Maximum Hit Points, +5 Positive Spell
+Power and +5 Repair Spell Power."""
+icon = "RMRenegadeDefender"
+internal_name = "RMCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+display_name = "Renegade Mastermaker: +10hp per core enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Repair",
+    "Rust",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Renegade Mastermaker: Alchemical Shield"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While in Medium Armor, Heavy Armor, or Adamantine Body, your equipped armor grants
+you a +4 Alchemical bonus to AC and immunity to Magic Missiles."""
+icon = "RMAlchemicalShield"
+internal_name = "RMCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+display_name = "Renegade Mastermaker: +10hp per core enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Repair",
+    "Rust",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Alchemical"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Magic Missiles"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["RMCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Renegade Mastermaker: Curative Admixture: Cure Serious Wounds"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Cure Serious Wounds SLA
+Infuses a Cure Serious Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 3d6+6 plus
+1 per caster level (maximum caster level 15) positive energy damage to nearby
+living allies and enemy undead.
+This infusion is affected by Artificer Knowledge: Potions
+Activation Cost: 4 Spell Points.
+Cooldown: 8 seconds
+Passive: Your Admixture spells gain +4 to their Maximum Caster Level."""
+icon = "RMCurativeAdmixtureCSW"
+internal_name = "RMCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+display_name = "Renegade Mastermaker: +10hp per core enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Repair",
+    "Rust",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    10,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Cure Serious Wounds",
+    "Artificer",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevelSpell"
+targets = [
+    "Curative Admixture: Cure Light Wounds",
+    "Curative Admixture: Cure Moderate Wounds",
+    "Curative Admixture: Cure Serious Wounds",
+    "Curative Admixture: Cure Critical Wounds",
+    "Palliative Admixture",
+    "Curative Admixture: Remove Disease",
+    "Curative Admixture: Remove Poison",
+    "Curative Admixture: Remove Curse",
+    "Curative Admixture: Remove Paralysis",
+    "Curative Admixture: Inflict Light Wounds",
+    "Curative Admixture: Inflict Moderate Wounds",
+    "Curative Admixture: Inflict Serious Wounds",
+    "Curative Admixture: Inflict Critical Wounds",
+    "Curative Admixture: Harm",
+    "Curative Admixture: Heal",
+]
+
+[[enhancement.requirement]]
+items = ["RMCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Renegade Mastermaker: Constructive Conduit"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++30 Repair Amplification. +50 Maximum Hit Points. While in Medium Armor, Heavy Armor,
+or Adamantine Body, +2 Max Dex Bonus. Your Admixture spells gain +6 to their
+Maximum Caster Level. You no longer suffer Arcane Spell Failure from armor.
+You gain +4 to Fortitude Saves."""
+icon = "RMConstructiveConduit"
+internal_name = "RMCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+display_name = "Renegade Mastermaker: +10hp per core enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Repair",
+    "Rust",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "RepairAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevel"
+targets = ["Admixture"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-100]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.requirement]]
+items = ["RMCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Renegade Mastermaker: Radiant Forcefield"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Radiant Forcefield SLA.
+Your target is surrounded in a sphere of magical force that reduces all damage
+(except from untyped damage) they take by 25% for a short period of time.
+Activation Cost: 30 Spell Points
+Cooldown: 3 minutes
+Passive: You gain Curative Admixture: Heal as a 6th level Artificer spell."""
+icon = "RMRadiantForcefield"
+internal_name = "RMCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+display_name = "Renegade Mastermaker: +10hp per core enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Repair",
+    "Rust",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    30,
+    0,
+    180,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Radiant Forcefield",
+    "Artificer",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    30,
+    -1,
+]
+bonus_type = "Feat"
+effect_type = "GrantSpell"
+targets = [
+    "Curative Admixture: Heal",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["RMCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Renegade Mastermaker: Mass Unbreakable Forcefield"
+cost_per_rank = [1]
+description = """
+Mass Unbreakable Forcefield
+For 6 seconds, your party takes -95% damage from all sources (except untyped damage).
+Only works inside dungeons.
+Activation Cost: 30 Spell Points
+Cooldown: 3 minutes.
+
+Passive: +2 CON, +2 INT. +10 PRR, +10 MRR
+While in Medium Armor, Heavy Armor, or Adamantine Body, +3 to Max Dex Bonus."""
+icon = "RMMassUnbreakableForcefield"
+internal_name = "RMCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "RMCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+display_name = "Renegade Mastermaker: +10hp per core enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Positive",
+    "Repair",
+    "Rust",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    30,
+    0,
+    180,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Mass Unbreakable Forcefield",
+    "Artificer",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Constitution",
+    "Intelligence",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["RMCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "RMCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Renegade Mastermaker: Curative Admixture: Cure Light Wounds"
+cost_per_rank = [1]
+description = """
+Cure Light Wounds SLA.
+Infuses a Cure Light Wounds potion with magical
+energy, hurling it towards your target in an arc. The
+potion explodes in a small AOE that deals 1d6+2 plus 1
+per caster level (maximum caster level 5) positive
+energy damage to nearby living allies and enemy undead.
+This infusion is affected by Artificer Knowledge: Potions.
+Activation Cost: 2 Spell Points.
+Cooldown: 4 seconds"""
+icon = "RMCurativeAdmixtureCLW"
+internal_name = "RMCurativeAdmixtureCLW"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Cure Light Wounds",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Renegade Mastermaker: Easily Fixed"
+cost_per_rank = [1]
+description = "+10 Healing Amplification, +20 Repair Amplification."
+icon = "RMEasilyFixed"
+internal_name = "RMEasilyFixed"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "RepairAmplification"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Renegade Mastermaker: Supporting Construction"
+cost_per_rank = [1]
+description = "While in Medium or Heavy Armor, or Adamantine Body, +[2/4/6] PRR."
+icon = "RMSupportingConstruction"
+internal_name = "RMSupportingConstruction"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Medium Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Renegade Mastermaker: Well-Rounded Maker"
+cost_per_rank = [1]
+description = "+[1/2/3] Repair, Heal and Balance"
+icon = "RMSkills"
+internal_name = "RMWellRoundedMaker"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Heal",
+    "Repair",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Renegade Mastermaker: Toughness"
+cost_per_rank = [1]
+description = "+[5/10/15] Maximum Hit Points"
+icon = "RMToughness"
+internal_name = "RMToughness"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Renegade Mastermaker: Kinetic Discharge"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 10 seconds
+Cleave Attack: On hit, deals 2d6 Force damage. This damage scales with 200%
+Melee Power."""
+icon = "RMKineticDischarge"
+internal_name = "RMKineticDischarge"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Renegade Mastermaker: Mighty Slam"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 15 seconds
+Melee Attack. Stuns your target for 6 seconds. Stunned creatures are considered
+helpless. A successful Fortitude save negates this effect.
+(DC: 10 + 1/2 Artificer level + INT modifier + Sunder Modifiers).
+This ability shares a cooldown with Stunning Blow.
+Must have a Rune Arm equipped to use."""
+icon = "RMMightySlam"
+internal_name = "RMMightySlam"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.dc]]
+name = "Renegade Mastermaker: Mighty Slam"
+amount = [10]
+dc_type = "Stun"
+dc_versus = "Fortitude"
+description = """
+Deals +30% Damage
+Melee Attack. Stuns your target for 6 seconds. Stunned creatures are considered
+helpless. A successful Fortitude save negates this effect."""
+icon = "RMMightySlam"
+mod_ability = ["Intelligence"]
+tactical = "Sunder"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Renegade Mastermaker: Armor Mastery"
+cost_per_rank = [1]
+description = "+[1/2/3] Armor Class and Armor Maximum Dexterity Bonus"
+icon = "RMArmorMastery"
+internal_name = "RMArmorMastery"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+extra_types = ["MaxDexBonus"]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Renegade Mastermaker: Converter"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Converter
+Target player, hireling, or pet takes 100% base healing from Repair spells for the
+next three minutes, or until the target dies. Has no effect on Constructs or NPC
+allies. This overrides their innate base healing from Repair spells for the duration.
+Spell Point Cost: 4 spell points.
+Cooldown: 3 minutes."""
+icon = "RMConverter"
+internal_name = "RMConverter"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    180,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Converter",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Renegade Mastermaker: Action Boost Choice"
+cost_per_rank = [2]
+description = "Action Boost: Defense or Action Boost: Saving Throws"
+icon = "RMActionBoost"
+internal_name = "RMActionBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Renegade Mastermaker: Action Boost: Defense"
+cost_per_rank = [2]
+description = """
+Activate to gain a +15 Action boost bonus to
+Armor Class and Physical Resistance Rating for 20 seconds.
+Cooldown: 30 Seconds."""
+icon = "RMActionBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Renegade Mastermaker: Action Boost: Saving Throws"
+cost_per_rank = [2]
+description = """
+Activate to gain a +6 Action boost bonus to
+all Saving Throws for 20 seconds. While under this effect
+you do not automatically fail Saving Throws on a roll of a
+Natural 1."""
+icon = "RMActionBoostSaves"
+is_clickie = true
+
+[[enhancement]]
+name = "Renegade Mastermaker: Battlefist"
+cost_per_rank = [1]
+description = """
+Deals +50% Damage
+Cooldown: 15 seconds
+Melee Attack: You've attuned your Rune Arm to deal a devastating strike. If the
+target is under the effect of Mighty Slam, it takes 1d3 Sonic Damage per
+Artificer level, 1d3 Force Damage per Artificer level, and is knocked down for
+10 seconds with no save. This damage scales with 100% Melee Power.
+Must have a Rune Arm equipped to use."""
+icon = "RMBattlefist"
+internal_name = "RMBattlefist"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["RMMightySlam"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Renegade Mastermaker: Reinforced Armor"
+cost_per_rank = [1]
+description = """
+The Armor Class bonus you gain from armor or docents
+is increased by [15/30/50]%."""
+icon = "RMReinforcedArmor"
+internal_name = "RMReinforcedArmor"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    15,
+    30,
+    50,
+]
+bonus_type = "Enhancement"
+effect_type = "ArmorACBonus"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Renegade Mastermaker: Shielding Construct"
+cost_per_rank = [1]
+description = """
+Shielding Construct
+You create a drone set to shield your allies. When activated, you and your
+allies nearby (at the time of activation) gain the effects of the Shield
+spell for 2 minutes, granting a +4 Shield bonus to Armor Class and protection
+from Magic Missiles. The force shield created by this reduces grazing hits
+by 10%, as if it were a small shield. This effect is dispelled by death
+and anti-magic.
+Activation Cost: 4 Spell Points
+Cooldown: 1 minute"""
+icon = "RMShieldingConstruct"
+internal_name = "RMShieldingConstruct"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    60,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shielding Construct",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Renegade Mastermaker: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose wither Constitution or Intelligence"
+icon = "ConInt"
+internal_name = "RMAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Renegade Mastermaker: +1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Renegade Mastermaker: +1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Renegade Mastermaker: Kinetic Charge"
+cost_per_rank = [1]
+description = """
+Kinetic Charge: You charge up energy through successive hits with your melee attacks.
+
+Passive: Any time you hit an opponent in melee, you have a chance of gaining a
+stack of Kinetic Charge. Each stack grants +1 Shield Bonus to Armor Class
+per 3 Artificer levels (stacks up to five times). Stacks decay by one every 15
+seconds, and gaining a new stack resets the duration. Equipping a ranged weapon
+clears all stacks immediately.
+
+Active: When this ability is toggled on, using Kinetic Discharge will clear all
+stacks of Kinetic Charge and slow all affected enemies by 10% per cleared stack
+for 10 seconds."""
+icon = "RMKineticCharge"
+internal_name = "RMKineticCharge"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SliderValueLookup"
+amounts = [
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Shield"
+effect_type = "ACBonus"
+stack_source = "Artificer"
+targets = ["Kinetic Charge"]
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Kinetic Charge"]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Renegade Mastermaker: Reconstruct"
+cost_per_rank = [2]
+description = """
+Reconstruct
+Greatly repairs an ally construct, restoring 10 hit points per caster level
+(max 150hp), while simultaneously granting it an increase in attack speed for
+a short time.
+Activation Cost: 25 Spell Points.
+Cooldown: 6 seconds"""
+icon = "RMReconstruct"
+internal_name = "RMReconstruct"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    25,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Reconstruct",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Renegade Mastermaker: Embed Component"
+cost_per_rank = [1]
+description = """
++[5/10/15] Magical Resistance Rating and +[2/4/6] Constitution. You can no longer
+use Evasion, Druid Wild Shape feats, or Primal Avatar's Tree form"""
+icon = "RMEmbedComponent"
+internal_name = "RMEmbedComponent"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Construct Essence"]
+req_type = "Feat"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Warforged"]
+req_type = "Race"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Bladeforged"]
+req_type = "Race"
+
+[[enhancement]]
+name = "Renegade Mastermaker: Warding Construct"
+cost_per_rank = [1]
+description = """
+You create a drone set to counter magical spells. Every 10 seconds, you and
+nearby allies gain a +3 Alchemical bonus to Saving Throws vs. Magic and +3
+Alchemical bonus to Saving Throws vs. Traps that lasts for 10 seconds.
+This effect is dispelled by death and anti-magic.
+Activation Cost: 4 spell points
+Cooldown: 1 minute"""
+icon = "RMWardingConstruct"
+internal_name = "RMWardingConstruct"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    60,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Warding Construct",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Renegade Mastermaker: Ability II"
+cost_per_rank = [2]
+description = "Choose either Constitution or Intelligence"
+icon = "ConInt"
+internal_name = "RMAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["RMAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Renegade Mastermaker: +1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Renegade Mastermaker: +1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Renegade Mastermaker: Curative Admixture: Cure Critical Wounds"
+cost_per_rank = [1]
+description = """
+Cure Critical Wounds SLA.
+Infuses a Cure Critical  Wounds potion with magical energy, hurling it towards
+your target in an arc. The potion explodes in a small AOE that deals 4d6+8
+plus 1 per caster level (maximum caster level 20) positive energy damage to
+nearby living allies and enemy undead.
+This infusion is affected by Artificer Knowledge: Potions.
+Activation Cost: 5 Spell Points
+Cooldown: 12 seconds"""
+icon = "RMCurativeAdmixtureCCW"
+internal_name = "RMCurativeAdmixtureCCW"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    20,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Curative Admixture: Cure Critical Wounds",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Renegade Mastermaker: Unbreakable Forcefields"
+cost_per_rank = [1]
+description = "Choose either Unbreakable or Automatic Forcefield"
+icon = "RMForcefield"
+internal_name = "RMForcefield"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Renegade Mastermaker: Automatic Forcefield"
+cost_per_rank = [1]
+description = """
+Passive: When your HP drops below 50%, you take -95% damage from all sources
+(except Untyped damage) for 5 seconds. This effect may trigger once every 90 seconds."""
+icon = "RMReactiveForcefield"
+
+[[enhancement.selection]]
+name = "Renegade Mastermaker: Unbreakable Forcefield"
+cost_per_rank = [1]
+description = """
+Unbreakable Forcefield
+Active: For 6 seconds, your target takes -95% damage from all sources (except
+Untyped damage). (This is a separate cooldown from the Mass version).
+Activation Cost: 30 Spell Points
+Cooldown: 3 minutes"""
+icon = "RMUnbreakableForcefield"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    30,
+    0,
+    180,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Unbreakable Forcefield",
+    "Artificer",
+]
+
+[[enhancement]]
+name = "Renegade Mastermaker: Powerful Engines"
+cost_per_rank = [2]
+description = "Select between an aggressive and tactical strike."
+icon = "RMPowerfulEngines"
+internal_name = "RMPowerfulEngines"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Aggression Engine"
+cost_per_rank = [2]
+description = """
+Melee Attack: +50% damage.
+On Hit: For the next 6 seconds, you gain +20 Melee Power, +40 Universal Spell
+Power, and +10% Spell Crit Damage. For the next 20 seconds, you gain a +450%
+Competence Bonus to Melee Threat and 900% Competence Bonus to Spell Threat.
+Cooldown: 12 seconds.
+Passive: +100% Melee and Spell Threat"""
+icon = "RMPowerfulEngines"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusSpell"]
+
+[[enhancement.selection]]
+name = "Tactical Engine"
+cost_per_rank = [2]
+description = """
+Melee Attack: +50% damage.
+On Hit: For the next 6 seconds, you gain +20 Melee Power, +40 Universal Spell
+Power, and +10% Spell Crit Damage. For the next 20 seconds, you gain +10%
+Doublestrike and a +4 Competence Bonus to Spell and Sunder DCs.
+Cooldown: 12 seconds.
+Passive: +5 Melee Power"""
+icon = "RMTacticalEngine"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement]]
+name = "Renegade Mastermaker: Regeneration Construct"
+cost_per_rank = [1]
+description = """
+Regenerating Construct
+You are surrounded by arcane energy capable of repairing damage.
+Allies (equal to your Artificer level) are Repaired for 1 hit point per
+3 Artificer levels as long as they are near you. This lasts for 30 minutes,
+but is dispelled death and anti-magic.
+Activation Cost: 30 Spell Points
+Cooldown: 1 minute"""
+icon = "RMRegenerationConstruct"
+internal_name = "RMRegenerationConstruct"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    30,
+    0,
+    60,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Regenerating Construct",
+    "Artificer",
+]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Renegade Mastermaker: Mastermaker"
+cost_per_rank = [1]
+description = """
+Your Repair Wounds spells have no maximum caster level and you gain a +30%
+Competence bonus to Maximum Hit Points. +1 Competence Bonus to Critical Threat
+Range with Weapons"""
+icon = "RMMastermaker"
+internal_name = "RMMastermaker"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [999]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevelSpell"
+targets = [
+    "Repair Light Damage",
+    "Repair Moderate Damage",
+    "Repair Serious Damage",
+    "Repair Critical Damage",
+    "Repair Light Damage, Mass",
+    "Repair Moderate Damage, Mass",
+    "Repair Serious Damage, Mass",
+    "Repair Critical Damage, Mass",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Artificer"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Artificer"]
+req_type = "Class"

@@ -1,0 +1,27 @@
+name = "Reaver's Ring"
+description = """
+A leaden ring made up of jagged, twisted barbs. The sharp points dig into your
+finger, causing discomfort."""
+drop_location = "The Xorian Cipher, iron key room"
+icon = "Ring_7"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Ring"
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = -2
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "iron key room"
+kind = "quest"
+loot_type = "chest"
+name = "The Xorian Cipher"

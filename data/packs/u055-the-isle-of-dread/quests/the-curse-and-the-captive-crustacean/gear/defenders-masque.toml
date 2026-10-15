@@ -1,0 +1,35 @@
+name = "Defender's Masque"
+description = "This distinctive golden mask leaves only a small area for you to see."
+drop_location = "The Curse and the Captive Crustacean, end chest"
+icon = "Helmet_17"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 7
+slot = "Head"
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 66
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Curse and the Captive Crustacean"

@@ -1,0 +1,36 @@
+name = "Bound Elemental Ring of Flames"
+description = "This elemental ring is sourced from the Cannith Engines that power the Manufactury."
+drop_location = "Legendary Lord of Blades, end and optional chest"
+icon = "Ring_12b"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 148
+
+[[effect]]
+name = "Alchemical Fire Attunement"
+
+[[effect]]
+name = "Arcane Augmentation IX"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Lord of Blades"

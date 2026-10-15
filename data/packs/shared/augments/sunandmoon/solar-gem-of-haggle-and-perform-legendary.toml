@@ -1,0 +1,36 @@
+name = "Solar Gem of Haggle and Perform (Legendary)"
+description = """
++6 Artifact bonus to Haggle and Perform
+Drops in: The Wish, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Perform"
+bonus_type = "Artifact"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Haggle",
+    "Perform",
+]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wish"

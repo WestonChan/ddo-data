@@ -1,0 +1,36 @@
+name = "Direwolf Belt"
+description = "FEYTWISTED form of Legendary Direbear Belt \n\nThis belt is made of Direwolf hide, and can take quite a beating. Rumor has\nit that some of the incredible ferocity of a Direwolf can still be found within."
+drop_location = "The Feywild, Feytwisted chests"
+icon = "Belt_7"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Superior Reinforced Fists"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 10
+value2 = 15
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"

@@ -1,0 +1,37 @@
+name = "Legendary Deep Promise Onyx"
+description = "The deeper you look, the heavier it feels..."
+drop_location = "Rosemary's Ballad, End chest"
+icon = "Trinket_44"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 29
+slot = "Trinket"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Insight"
+value = 27
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Quality"
+value = 14
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 50
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rosemary's Ballad"

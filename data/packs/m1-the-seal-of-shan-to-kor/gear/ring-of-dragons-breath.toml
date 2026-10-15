@@ -1,0 +1,29 @@
+name = "Ring of Dragon's Breath"
+description = """
+A Kobold Slave in the Caverns of Shaagh claimed this ring was given to him by
+a mighty red dragon."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Ring_15"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Ring"
+
+[[clickie]]
+name = "Burning Hands"
+clickie = "Burning Hands"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Burning Hands"]
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

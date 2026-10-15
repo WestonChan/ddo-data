@@ -1,0 +1,26 @@
+name = "Lenses of Opportunity"
+description = """
+A valuable treasure of the servants of the Lord of Eyes. These goggles are extremely
+sensitive and will point out an enemy's every weakness, allowing you to strike
+where the most damage will be dealt. however, you are likely to miss the details
+of your environment while wearing them."""
+drop_location = "Acute Delirium, The Lost Chest"
+icon = "Goggles_20"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 15
+slot = "Goggles"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Overfocus"
+
+[[source]]
+chest = "the lost chest"
+kind = "quest"
+loot_type = "chest"
+name = "Acute Delirium"

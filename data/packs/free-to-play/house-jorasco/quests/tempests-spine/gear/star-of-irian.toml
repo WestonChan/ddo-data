@@ -1,0 +1,51 @@
+name = "Star of Irian"
+description = "A simple weapon comprised of a round, spiked head and a long haft."
+drop_location = "Tempest's Spine, Beholder chest"
+enhancement_bonus = 4
+icon = "Morningstar_6a"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Holy"
+
+[[effect]]
+name = "Righteous"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "beholder chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Morningstar"

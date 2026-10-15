@@ -1,0 +1,64 @@
+name = "The Desert's Burning Sun"
+icon = "Menechtarun"
+
+[[item]]
+name = "Bracers of the Hunter"
+
+[[item]]
+name = "Firestorm Greaves"
+
+[[item]]
+name = "Lion-headed Belt Buckle"
+
+[[item]]
+name = "Robe of Fire"
+
+[[item]]
+name = "Shard of Vollun"
+
+[[item]]
+name = "Tinder"
+
+[[item]]
+name = "Xuum"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Lore"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fire Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"

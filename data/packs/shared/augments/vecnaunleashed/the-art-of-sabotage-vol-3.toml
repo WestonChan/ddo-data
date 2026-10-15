@@ -1,0 +1,26 @@
+name = "The Art of Sabotage, Vol. 3"
+description = "+22% Enhancement bonus to Fortification Bypass."
+family = "VecnaUnleashed"
+icon = "HistoryBookYellow"
+min_level = 32
+
+[[effect]]
+name = "Fortification Bypass"
+bonus_type = "Enhancement"
+value = 22
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

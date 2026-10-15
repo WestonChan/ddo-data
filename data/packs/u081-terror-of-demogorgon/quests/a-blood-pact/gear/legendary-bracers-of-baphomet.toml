@@ -1,0 +1,41 @@
+name = "Legendary Bracers of Baphomet"
+description = "Baphomet's insidious brutality and prowess lingers in these armbands."
+drop_location = "A Blood Pact, end chest"
+icon = "Bracers_17"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 35
+slot = "Wrists"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 24
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Blood Pact"

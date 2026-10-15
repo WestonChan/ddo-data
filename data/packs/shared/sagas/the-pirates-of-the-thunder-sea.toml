@@ -1,0 +1,16 @@
+name = "The Pirates of the Thunder Sea"
+wiki_url = "https://ddowiki.com/page/The_Pirates_of_the_Thunder_Sea_(Epic)"
+quests = [
+    "Bargain of Blood",
+    "Ghost of a Chance",
+    "Prove Your Worth",
+    "Spies in the House",
+    "Storm the Beaches",
+    "The Black Loch",
+    "The Tide Turns",
+    "Precious Cargo",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Pirates_of_the_Thunder_Sea_(Epic)"
+read = "2026-10-02"

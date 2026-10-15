@@ -1,0 +1,37 @@
+name = "Glabrezu Claw Pendant"
+description = "The razor-sharp tip of a Glabrezu's claw hangs at the end of a long gold chain."
+drop_location = "Tower of Vengeance, end chest"
+icon = "Necklace_12"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Minor Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Tower of Vengeance"

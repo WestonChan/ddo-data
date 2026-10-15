@@ -1,0 +1,10 @@
+name = "Curse Resistance"
+description_template = "Passive: {1} Enhancement bonus to saves versus curses."
+home_bonus_type = "Resistance"
+verbose_name_template = "%b1 Curse Resistance +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Curse Save"

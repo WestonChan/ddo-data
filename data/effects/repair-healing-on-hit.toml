@@ -1,0 +1,3 @@
+name = "Repair Healing on Hit"
+description_template = "Your weapon attacks heal you for 1d6 Repair Damage on hit. This damage scales with Repair Spell Power."
+verbose_name_template = "Repair Healing on Hit"

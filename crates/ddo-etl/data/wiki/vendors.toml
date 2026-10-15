@@ -346,7 +346,7 @@ pack = "Mists of Ravenloft"
 [[vendor]]
 name = "Squire Rale"
 page = "https://ddowiki.com/page/Squire_Rale"
-read = "2026-10-02"
+read = "2026-10-08"
 location = "The Necropolis, far west side of encampment area, just north of the Banker and Auctioneer"
 items = [
   { name = "Lumric's Longbow", cost = "Scarlet Scarab Powder" },

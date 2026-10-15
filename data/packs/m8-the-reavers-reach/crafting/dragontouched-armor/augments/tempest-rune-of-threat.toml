@@ -1,0 +1,20 @@
+name = "Tempest Rune of Threat"
+description = "Incite +15: +15% Enhancement bonus to increased threat generation from melee damage."
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Melee Threat Generation"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[slot]]
+slot = "crafting: tempest rune"

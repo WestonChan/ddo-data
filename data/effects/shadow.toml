@@ -1,0 +1,11 @@
+name = "Shadow"
+default_value = 5
+description_template = "This armor blurs the wearer whenever she tries to hide, granting a {1} %b1 bonus to Hide checks."
+home_bonus_type = "Competence"
+verbose_name_template = "+{1} Shadow"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Hide"

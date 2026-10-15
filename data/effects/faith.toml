@@ -1,0 +1,3 @@
+name = "Faith"
+description_template = "Holy power infuses this item, providing damage reduction 5/evil."
+verbose_name_template = "Faith"

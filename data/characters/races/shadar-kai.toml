@@ -1,0 +1,26 @@
+name = "Shadar-Kai"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+A lethal Rogue who has thrown off the Netherese yoke and draws on innate powers
+of the Shadowfell to hide and to kill.
+
+Starts with 1 level of: Rogue"""
+iconic_class = "Rogue"
+short_name = "Shadar-Kai"
+starting_world = "Forgotten Realms"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Dexterity"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Charisma"
+
+[[granted_feat]]
+feat = "Spiked Chain Attack"

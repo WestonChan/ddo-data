@@ -1,0 +1,3 @@
+name = "Roaring"
+description_template = "This weapon causes targets to become shaken (DC 25 Will save negates) and, on a critical hit, does 2 to 12 sonic damage to the target."
+verbose_name_template = "Roaring"

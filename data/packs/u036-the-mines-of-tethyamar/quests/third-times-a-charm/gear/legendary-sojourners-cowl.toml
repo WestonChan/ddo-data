@@ -1,0 +1,41 @@
+name = "Legendary Sojourner's Cowl"
+description = """
+Many travellers have attempted to navigate through the Underdark, but far fewer
+have lived to the end of their dangerous journeys. This abandoned cowl serves
+as a stark reminder of what becomes of those who leave their dwellings without
+a map and a properly-stocked knapsack."""
+drop_location = "Third Time's a Charm, End chest"
+icon = "Helmet_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 28
+slot = "Head"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Third Time's a Charm"

@@ -1,0 +1,35 @@
+name = "Restored Giantcraft Breastplate"
+description = "A breastplate imbued with the magic of the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Restored Giant Relics"
+enhancement_bonus = 6
+icon = "MediumArmor_1"
+item_category = "Armor"
+item_type = "Medium"
+material = "Adamantine"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 14
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Adamantine"
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

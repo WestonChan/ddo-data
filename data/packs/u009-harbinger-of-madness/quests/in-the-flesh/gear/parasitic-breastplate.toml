@@ -1,0 +1,44 @@
+name = "Parasitic Breastplate"
+description = """
+This grotesque breastplate appear to be at least partially alive. Its organic
+sinews cause it to be more flexible than most other armor of its type, and
+it will siphon some of its life into the wearer if he or she should become
+unconscious."""
+drop_location = "In The Flesh, End chest"
+enhancement_bonus = 5
+icon = "LightArmor_20"
+item_category = "Armor"
+item_type = "Light"
+material = "Flesh"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 11
+armor_type = "Light"
+max_dex_bonus = 9
+
+[[effect]]
+name = "Symbiotic Flexibility"
+bonus_type = "Stacking"
+
+[[effect]]
+name = "Diehard"
+
+[[effect]]
+name = "Symbiotic Backlash"
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 3
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "In The Flesh"

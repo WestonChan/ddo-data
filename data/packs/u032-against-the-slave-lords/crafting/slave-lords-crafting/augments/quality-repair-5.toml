@@ -1,0 +1,21 @@
+name = "Quality Repair +5"
+description = "Legendary quality bonus to Repair"
+family = "Slavelords_Legendary"
+icon = "SlavelordsBonus"
+min_level = 28
+
+[[effect]]
+name = "Repair"
+bonus_type = "Quality"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Quality"
+effect = "Repair"
+effect_type = "SkillBonus"
+targets = ["Repair"]
+
+[[slot]]
+slot = "crafting: legendary slavelords bonus"

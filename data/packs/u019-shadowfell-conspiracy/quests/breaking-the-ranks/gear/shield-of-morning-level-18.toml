@@ -1,0 +1,199 @@
+name = "Shield of Morning (Level 18)"
+description = "Towards a brighter future."
+drop_location = "Breaking the Ranks, End chest (Heroic Hard)"
+enhancement_bonus = 4
+icon = "Shield_13"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Magesteel"
+minimum_level = 18
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 8
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield of Lesser Sunburst"
+
+[[effect]]
+name = "Solar Guard III"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Axeblock IV"
+description = """
+Axeblock IV: Passive: Reduces physical damage taken by 8, except from Bludgeoning
+or Piercing weapons. (Damage Reduction: 8/Pierce, Bludgeon)"""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus = "Not Set"
+effect_type = "DR"
+targets = [
+    "Pierce",
+    "Bludgeon",
+]
+
+[[socket.option]]
+name = "Bashing IV"
+description = """
+Bashing IV: On Shield Bash: +2d4 Bludgeoning damage.
+On Melee Hit: +4% Chance to automatically hit your enemy with a Shield Bash attack."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option]]
+name = "Deathblock IV"
+description = """
+Deathblock IV: Passive: 12% Enhancement Bonus to Negative Energy Absorption.
+In addition, you are immune to magical effects that can cause instant death."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+value = 12
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+effect_type = "Immunity"
+targets = ["Death Effects"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[socket.option]]
+name = "Hammerblock IV"
+description = """
+Hammerblock IV: Passive: Reduces physical damage taken by 8, except from Piercing
+or Slashing weapons. (Damage Reduction: 8/Slash, Pierce)"""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus = "Not Set"
+effect_type = "DR"
+targets = [
+    "Pierce",
+    "Slash",
+]
+
+[[socket.option]]
+name = "Riposte IV"
+description = """
+Riposte IV: When Missed by an attack: Deals 4 to 16 damage to your attacker.
+Passive: +2 Insight bonus to Armor Class, +2 Insight bonus to Fortitude, Reflex,
+and Will Saving Throws."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 2
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option]]
+name = "Spearblock IV"
+description = """
+Spearblock IV: Passive: Reduces physical damage taken by 8, except from Bludgeoning
+or Slashing weapons. (Damage Reduction: 8/Slash, Bludgeon)"""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus = "Not Set"
+effect_type = "DR"
+targets = [
+    "Bludgeon",
+    "Slash",
+]
+
+[[socket.option]]
+name = "Vitality +20"
+description = "Vitality +20: Passive: +20 Vitality bonus to Hit Points."
+icon = "Variant"
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Vitality"
+effect = "Hit Points"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Vitality"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Breaking the Ranks"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "Off-hand"
+weapon_type = "Small Shield"

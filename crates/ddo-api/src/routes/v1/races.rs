@@ -18,6 +18,7 @@ const RACE_FLAG_COLUMNS: &[&str] = &["is_construct", "no_past_life"];
 
 const RACES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("starting_world", "listed.starting_world"),
     ("build_points", "listed.build_points"),
@@ -71,7 +72,7 @@ async fn race_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             convert_to_booleans(&mut race, RACE_FLAG_COLUMNS);
             race["ability_modifiers"] = Value::Array(json_rows(
                 db,
-                "SELECT s.name AS stat, m.modifier FROM race_ability_modifiers m JOIN effects s ON s.id = m.stat_id WHERE m.race_id = ?1 ORDER BY s.id",
+                "SELECT s.name AS stat, m.modifier FROM race_ability_modifiers m JOIN effects s ON s.id = m.stat_id WHERE m.race_id = ?1 ORDER BY m.sort_order",
                 [id],
             )?);
             race["granted_feats"] = Value::Array(json_rows(
@@ -81,7 +82,7 @@ async fn race_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
             )?);
             race["feats"] = Value::Array(json_rows(
                 db,
-                "SELECT id, name, description, icon, acquire, max_times_acquire FROM feats WHERE source_kind = 'race' AND source_id = ?1 ORDER BY name",
+                "SELECT id, name, description, icon, acquire, max_times_acquire FROM feats WHERE source_kind = 'race' AND source_id = ?1 ORDER BY name, slug",
                 [id],
             )?);
             race["feat_slots"] = Value::Array(json_rows(db, "SELECT level, feat_type, update_list FROM race_feat_slots WHERE race_id = ?1 ORDER BY level", [id])?);

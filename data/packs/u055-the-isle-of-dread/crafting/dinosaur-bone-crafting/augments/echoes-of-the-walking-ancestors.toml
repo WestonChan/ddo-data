@@ -1,0 +1,9 @@
+name = "Echoes of the Walking Ancestors"
+description = "Adds the Echoes of the Walking Ancestors set bonus"
+family = "DinosaurBone"
+icon = "DinosaurSetBonus"
+min_level = 31
+set_bonus = "Echoes of the Walking Ancestors"
+
+[[slot]]
+slot = "isle of dread: set bonus"

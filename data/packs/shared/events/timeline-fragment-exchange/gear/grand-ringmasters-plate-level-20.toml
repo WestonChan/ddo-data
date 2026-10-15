@@ -1,0 +1,47 @@
+name = "Grand Ringmaster's Plate (level 20)"
+description = "Time-Twisted version of Full Plate of the Ringmaster"
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+enhancement_bonus = 6
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Command"
+value = 5
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 9
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

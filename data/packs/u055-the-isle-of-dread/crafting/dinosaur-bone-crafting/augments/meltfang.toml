@@ -1,0 +1,16 @@
+name = "Meltfang"
+description = "Evil bypass. Attacks and spells can deal stacking Acid DoT."
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Evil"
+
+[[slot]]
+slot = "isle of dread: fang (weapon)"

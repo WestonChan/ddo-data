@@ -1,0 +1,29 @@
+name = "Red Rain"
+bestowed_by = "Zeleth Crowspire"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Masterminds of Sharn"
+patron = "Sharn City Council"
+zone = "Cogsgate"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Red_Rain"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

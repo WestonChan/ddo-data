@@ -1,0 +1,23 @@
+name = "Efficient Metamagic: Empower"
+description = "The additional spell point cost for using the Empower Metamagic feat is reduced by 2 SP."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Empower Cost Reduction"
+bonus_type = "Equipment"
+value = -2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-2]
+bonus_type = "Equipment"
+effect = "Empower Cost Reduction"
+effect_type = "MetamagicCostEmpower"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: cannith rune arm extra"

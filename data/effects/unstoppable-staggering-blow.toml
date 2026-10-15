@@ -1,0 +1,3 @@
+name = "Unstoppable Staggering Blow"
+description_template = "On a Vorpal strike with a Melee weapon, this weapon will trip your opponent, forcing them to fall prone for 2 seconds. There is no save against this effect."
+verbose_name_template = "Unstoppable Staggering Blow"

@@ -1,0 +1,43 @@
+name = "Solar Gem of Blast Dice (Heroic)"
+description = """
++1 Artifact Bonus to Eldritch Blast Dice.
+Drops in: Cold Snap, end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Eldritch Blast d8 Dice"
+bonus_type = "Artifact"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "Eldritch Blast d8 Dice"
+effect_type = "EldritchBlastD8"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Body and Mind"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"
+
+[[source]]
+chest = "depthdigger's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

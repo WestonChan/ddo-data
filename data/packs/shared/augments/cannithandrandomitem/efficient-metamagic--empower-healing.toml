@@ -1,0 +1,23 @@
+name = "Efficient Metamagic: Empower Healing"
+description = "The additional spell point cost for using the Empower Healing Metamagic feat is reduced by 1 SP."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Empower Healing Cost Reduction"
+bonus_type = "Equipment"
+value = -1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-1]
+bonus_type = "Equipment"
+effect = "Empower Healing Cost Reduction"
+effect_type = "MetamagicCostEmpowerHealing"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: cannith rune arm extra"

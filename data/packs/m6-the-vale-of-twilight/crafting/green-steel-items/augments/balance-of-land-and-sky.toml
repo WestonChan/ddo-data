@@ -1,0 +1,48 @@
+name = "Balance of Land and Sky"
+description = """
++3 Deflection AC, +3 Resistance bonus to saves, +11 Balance
+Air:Earth or Earth:Air"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Deflection"
+value = 3
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Resistance"
+value = 3
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Competence"
+effect = "Balance"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[slot]]
+slot = "crafting: accessory aspect i"

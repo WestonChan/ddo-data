@@ -1,0 +1,37 @@
+name = "Memories of Kindness"
+description = """
+A fragment of a misplaced thought, a brilliant light you once remembered. This
+tattered memory was once the face of someone who was kind to you."""
+drop_location = "Memory Lapse, End chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 6
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Memory Lapse"

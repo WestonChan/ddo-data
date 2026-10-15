@@ -1,0 +1,47 @@
+name = "Attuned Bone Greataxe"
+accepts_sentience = true
+description = "Fashioned of intricately carved bones from long-forgotten Dinosaurs."
+drop_location = "Skeletons in the Closet, end chest"
+enhancement_bonus = 15
+icon = "GreatAxe_7"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Bone"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "isle of dread: fang (weapon)"
+
+[[socket]]
+slot = "isle of dread: claw (weapon)"
+
+[[socket]]
+slot = "isle of dread: horn (weapon)"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Two-handed"
+weapon_type = "Great Axe"

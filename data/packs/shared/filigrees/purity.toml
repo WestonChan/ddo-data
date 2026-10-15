@@ -1,0 +1,164 @@
+[[row]]
+name = "Purity/Touch of Grace +20 Healing Amplification"
+description = """
++20 Healing Amplification
+Rare: +4 MRR"""
+icon = "PurityTouchOfGrace"
+menu = "Raid Filigrees"
+set = "Purity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Purity/Touch of Grace: +20 Healing Amplification: Rare +4 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Purity: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "Purity"
+menu = "Ravenloft"
+set = "Purity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Purity: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Purity: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "Purity"
+menu = "Ravenloft"
+set = "Purity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Purity: Wisdom: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Purity: +10 Healing Amplification"
+description = """
++10 Healing Amplification
+Rare: +2 MRR"""
+icon = "Purity"
+menu = "Ravenloft"
+set = "Purity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Purity: Healing Amplification: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Purity: +12 Positive Spell Power"
+description = """
++12 Positive Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "Purity"
+menu = "Ravenloft"
+set = "Purity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Purity: Positive Spell Power: Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Purity: +2 Fortitude Saves"
+description = """
++2 Fortitude Saves
+Rare: +2 PRR"""
+icon = "Purity"
+menu = "Ravenloft"
+set = "Purity"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Purity: Fortitude: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Purity: Death Block"
+description = """
+Death Block
+Rare: +2 MRR"""
+icon = "Purity"
+menu = "Ravenloft"
+set = "Purity"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Death Effects"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Purity: Death Block: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true

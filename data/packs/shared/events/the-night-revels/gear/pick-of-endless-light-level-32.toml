@@ -1,0 +1,45 @@
+name = "Pick of Endless Light (level 32)"
+accepts_sentience = true
+description = "This pick is light upon light; both brilliant and lacking in weight."
+drop_location = "The Night Revels, Turn in Pick of Endless Light (level 28), Darkest Chocolates, Black Apples, Caramels at Joe Candymaker"
+enhancement_bonus = 15
+icon = "LightPick_1h"
+item_category = "Weapon"
+item_type = "Light Pick"
+material = "Steel"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Undead Bane 6"
+
+[[effect]]
+name = "Coruscating 6"
+
+[[effect]]
+name = "Light Bringer"
+
+[[effect]]
+name = "Greater Sunburst"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "One-handed"
+weapon_type = "Light Pick"

@@ -1,0 +1,39 @@
+name = "Eladrin Chaosmancer"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = "Wild magic is my only friend. An Eladrin wild mage who causes chaos where they roam."
+iconic_class = "Wild Mage"
+short_name = "Chaosmancer"
+starting_world = "Forgotten Realms"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Charisma"
+
+[[granted_feat]]
+feat = "Elven Keen Senses"
+
+[[granted_feat]]
+feat = "Enchantment Save Bonus"
+
+[[granted_feat]]
+feat = "Immunity to Sleep"
+
+[[granted_feat]]
+feat_name = "Spring Affinity"
+
+[[granted_feat]]
+feat_name = "Summer Affinity"
+
+[[granted_feat]]
+feat_name = "Autumn Affinity"
+
+[[granted_feat]]
+feat_name = "Winter Affinity"
+
+[[granted_feat]]
+feat = "Wildmagic Fey"

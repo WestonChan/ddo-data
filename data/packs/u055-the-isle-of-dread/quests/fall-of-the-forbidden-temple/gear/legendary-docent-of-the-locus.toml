@@ -1,0 +1,51 @@
+name = "Legendary Docent of the Locus"
+description = """
+This stone heart beats slowly in your hands. Its volcanic rock exterior is smooth
+to the touch."""
+drop_location = "Fall of the Forbidden Temple, end chest"
+enhancement_bonus = 15
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Stone"
+minimum_level = 31
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 20
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 74
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fall of the Forbidden Temple"

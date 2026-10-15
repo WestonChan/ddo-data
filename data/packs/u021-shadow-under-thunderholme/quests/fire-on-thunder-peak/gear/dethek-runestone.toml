@@ -1,0 +1,71 @@
+name = "Dethek Runestone"
+description = """
+Someone took this stone slab, covered faintly in Dwarf-inscribed enchantments,
+and attached a handle to the back, turning it into a shield."""
+drop_location = "Fire on Thunder Peak, Raid chest"
+enhancement_bonus = 13
+icon = "Shield_4h"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Stone"
+minimum_level = 26
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 20
+max_dex_bonus = 0
+shield_bonus = 23
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 39
+
+[[effect]]
+name = "Permanent Efficacy"
+bonus_type = "Alchemical"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[effect]]
+name = "Stone Paws"
+
+[[effect]]
+name = "Runic Revitalization"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Fire on Thunder Peak"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Off-hand"
+weapon_type = "Large Shield"

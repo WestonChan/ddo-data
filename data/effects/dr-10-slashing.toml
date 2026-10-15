@@ -1,0 +1,11 @@
+name = "DR 10/Slashing"
+description_template = "Reduces physical damage by 10, except from Slashing attacks."
+verbose_name_template = "DR 10/Slashing"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "DR Damage Reduction 5/Slashing"
+reason = "The wiki writes damage reduction lines as DR X/Y; the old template used a copied label or amount."
+url = "https://ddowiki.com/page/Item:Wall_of_Wood_(level_23)"
+read = "2026-10-05"

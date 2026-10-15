@@ -1,0 +1,33 @@
+name = "Mad Tea Party"
+bestowed_by = "Jirko Lukresh"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "The Town of Vallaki"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Mad_Tea_Party"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "A Mad Tea Party"
+reason = "The wiki titles the quest Mad Tea Party (A_Mad_Tea_Party redirects there), the name his own items' drop text uses."
+url = "https://ddowiki.com/page/Mad_Tea_Party"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 31

@@ -1,0 +1,42 @@
+name = "Stone Shoes"
+description = "They sink in water."
+drop_location = "Red Rain, End chest"
+icon = "Boots_12"
+item_category = "Clothing"
+material = "Stone"
+minimum_level = 15
+slot = "Feet"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 47
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Quality"
+value = 23
+
+[[effect]]
+name = "Weighty Asset"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Sink Like a Brick"
+
+[[effect]]
+name = "Earthgrab Guard"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Red Rain"

@@ -1,0 +1,19 @@
+name = "Chiku's Bauble"
+description = "A faint whispering sound surrounds this reddish gem."
+drop_location = "The Smuggler's Warehouse, Witch Doctor Chiku 's chest"
+icon = "Trinket_62"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+chest = "witch doctor chiku 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Smuggler's Warehouse"

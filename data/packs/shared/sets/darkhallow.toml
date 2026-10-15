@@ -1,0 +1,47 @@
+name = "Darkhallow"
+icon = "DarkHallow"
+is_filigree_set = true
+
+[[note]]
+kind = "set_bonus"
+field = "icon"
+upstream = "Darkhallow"
+reason = "DDOBuilderV2's FiligreeImages folder spells the image DarkHallow.png."
+url = "Output/DataFiles/FiligreeImages"
+read = "2026-10-08"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Negative Healing Amplification"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Universal Spell Power"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "Negative Healing on Hit"

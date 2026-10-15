@@ -1,0 +1,69 @@
+name = "Lorinthor's Belt"
+description = """
+Belts of this type were worn by members of the Knights of the Chalice. The markings
+on this item indicate that it was worn by Lorinthor, a dedicated Knight and
+hero to the people of Xen'drik."""
+drop_location = "Sins of Attrition, Any chest ; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Knight of the Chalice"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    22,
+    22,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Knight of the Chalice - 2 Piece bonus"
+effect_type = "SpellResistance"
+extra_types = ["SpellResistance"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Knight of the Chalice - 3 Piece bonus"
+effect_type = "NotModeled"
+extra_types = ["NotModeled"]
+targets = ["All"]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sins of Attrition"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

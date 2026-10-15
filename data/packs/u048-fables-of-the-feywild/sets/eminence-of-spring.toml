@@ -1,0 +1,153 @@
+name = "Eminence of Spring"
+icon = "EminenceOfSpring"
+
+[[item]]
+name = "Blood of Blossoms"
+
+[[item]]
+name = "Bloodbark Bracers"
+
+[[item]]
+name = "Flower Boots"
+
+[[item]]
+name = "Hyrsam's Fiddle"
+
+[[item]]
+name = "Legendary Black Dragonscale Tasset"
+
+[[item]]
+name = "Legendary Clearwater"
+
+[[item]]
+name = "Legendary Cloak of Spring"
+
+[[item]]
+name = "Legendary Crown of Butterflies"
+
+[[item]]
+name = "Legendary Garb of the Spring Winds"
+
+[[item]]
+name = "Legendary Gloves of Tranquility"
+
+[[item]]
+name = "Legendary Hexbreaker"
+
+[[item]]
+name = "Legendary Ring of Spring's Storms"
+
+[[item]]
+name = "Legendary Rockslide Ring"
+
+[[item]]
+name = "Legendary Thorn Boots"
+
+[[item]]
+name = "Legendary Vinelash Bracers"
+
+[[item]]
+name = "Magmatic Grasp"
+
+[[item]]
+name = "Rosethorn Necklace"
+primary = true
+
+[[item]]
+name = "Sphere of Souls"
+
+[[item]]
+name = "Stormscale"
+
+[[item]]
+name = "The Legendary Lotus Mail"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Missile Deflection"
+effect_type = "MissileDeflection"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Dodge Cap"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Legendary"
+effect = "Dodge Cap"
+effect_type = "DodgeCapBonus"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[tier]]
+equipped_count = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier]]
+equipped_count = 7
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

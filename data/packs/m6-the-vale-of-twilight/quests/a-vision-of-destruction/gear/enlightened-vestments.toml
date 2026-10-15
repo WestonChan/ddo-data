@@ -1,0 +1,34 @@
+name = "Enlightened Vestments"
+description = """
+This ancient outfit has been imbued with the essence of a keeper of the elements.
+This ancient type of monk is said to have had the ability to banish elementals
+from where they came with his fists."""
+drop_location = "A Vision of Destruction, End chest"
+icon = "Cloth_2b"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Banishing Fists"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "A Vision of Destruction"

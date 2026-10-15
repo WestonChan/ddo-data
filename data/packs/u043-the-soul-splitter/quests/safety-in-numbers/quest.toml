@@ -1,0 +1,29 @@
+name = "Safety in Numbers"
+bestowed_by = "Lazar Greenmantle"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Soul Splitter"
+patron = "Sharn City Council"
+zone = "Underlane Neighborhood, Rally Area"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Safety_in_Numbers"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

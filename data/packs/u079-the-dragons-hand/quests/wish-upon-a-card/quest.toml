@@ -1,0 +1,29 @@
+name = "Wish Upon a Card"
+bestowed_by = "Irsed the Bright"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Dragons' Hand"
+patron = "Agents of Argonnessen"
+zone = "Jungle Ruins"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Wish_Upon_a_Card"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

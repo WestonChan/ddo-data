@@ -1,0 +1,29 @@
+name = "Thaarak Fang"
+description = """
+A single yellowed tooth, wrenched free from its socket. Dark blood remains congealed
+around the stump."""
+drop_location = "The Xorian Cipher, end chest"
+icon = "Trinket_96"
+item_category = "Jewelry"
+material = "Bone"
+minimum_level = 9
+slot = "Trinket"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = -2
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Xorian Cipher"

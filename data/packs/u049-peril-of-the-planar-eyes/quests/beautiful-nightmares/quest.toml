@@ -1,0 +1,29 @@
+name = "Beautiful Nightmares"
+bestowed_by = "Electa Poole"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Peril of the Planar Eyes"
+patron = "Morgrave University"
+zone = "The House of Languor"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Beautiful_Nightmares"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

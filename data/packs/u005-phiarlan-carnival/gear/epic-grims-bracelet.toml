@@ -1,0 +1,34 @@
+name = "Epic Grim's Bracelet"
+description = """
+It seems one of the Grim brothers (you're not sure which one) wore this bracelet
+around his wrist. Due to its size it will probably only fit you around your
+neck."""
+drop_location = "Epic version of Grim's Bracelet"
+icon = "Necklace_23a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "green"

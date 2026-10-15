@@ -1,0 +1,22 @@
+name = "Entering the Gate Chamber"
+bestowed_by = "Zaveera Halfspear"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Ruins of Threnal"
+patron = "House Phiarlan"
+zone = "The Southern Ruins"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Entering_the_Gate_Chamber"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

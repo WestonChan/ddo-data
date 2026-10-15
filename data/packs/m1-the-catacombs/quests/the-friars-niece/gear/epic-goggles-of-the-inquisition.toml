@@ -1,0 +1,37 @@
+name = "Epic Goggles of the Inquisition"
+description = """
+These goggles are infused with the power of intimidation. This helps the Church
+inquisitors to wring confessions from heretics and unbelievers."""
+drop_location = "The Friar's Niece, End Chest"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 23
+slot = "Goggles"
+
+[[effect]]
+name = "Anger"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 18
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 101
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Friar's Niece"

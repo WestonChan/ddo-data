@@ -1,0 +1,13 @@
+name = "Feareater"
+description = """
+Upgrade an item to provide a Sovereign Nightmares.
+On Vorpal Hit: If your target has below 5,000 Hit Points, a burst of pure terror
+emanates from this weapon, snuffing out its life as if it were the subject of a
+Phantasmal Killer spell. If your target has above 5,000 Hit Points, they instead
+take significant Force damage."""
+family = "Other"
+icon = "PurpleAugment"
+min_level = 30
+
+[[slot]]
+slot = "purple"

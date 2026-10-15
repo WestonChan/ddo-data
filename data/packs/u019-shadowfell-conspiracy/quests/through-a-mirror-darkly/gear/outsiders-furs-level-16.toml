@@ -1,0 +1,27 @@
+name = "Outsider's Furs (Level 16)"
+description = """
+Bundled fur and hide, fashioned into clothing large enough to fit a Warforged,
+but few others."""
+drop_location = "Through a Mirror Darkly, End reward"
+enhancement_bonus = 5
+icon = "Docent_11"
+item_category = "Armor"
+item_type = "Docent"
+material = "Wood"
+minimum_level = 16
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 16
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 7
+
+[[effect]]
+name = "Heroism"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Through a Mirror Darkly"

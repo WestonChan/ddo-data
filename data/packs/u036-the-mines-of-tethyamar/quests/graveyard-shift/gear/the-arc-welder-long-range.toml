@@ -1,0 +1,74 @@
+name = "The Arc Welder (long range)"
+description = """
+SAFETY INSTRUCTIONS:
+Use the long-range welding prototype to join metals with a surge of electricity.
+Power supplies are accepted via rear-oriented connection. Do not look directly
+into the aperture. Do not point the aperture at any nonmetal apparatus while
+connected to a power supply. Do not submerge this welding prototype in water.
+Do not attempt to disassemble the prototype or any accompanying power supply
+materials.
+
+WARNING: Operating this prototype without safety equipment, including
+but not limited to appropriately fitting and approved safety goggles, may cause
+serious damage to yourself and others. User caution is advised."""
+drop_location = "Graveyard Shift, End chest"
+icon = "RuneArm_1d"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 15
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 94
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Electrical Storm",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Graveyard Shift"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

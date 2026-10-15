@@ -1,0 +1,42 @@
+name = "Legendary Mad Brew Bottle"
+description = """
+This potent concoction, mixed by a Duergar Alchemist, is sealed in an unopenable
+bottle on a leather string. its power can be drawn upon by simply making contact."""
+drop_location = "Tower of Vengeance, end chest"
+icon = "Necklace_43"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 35
+slot = "Neck"
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Efficient Metamagic - Quicken II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Tower of Vengeance"

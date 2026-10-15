@@ -1,0 +1,39 @@
+name = "Pendant of Hidden Tools"
+description = """
+After fiddling with the round pendant set into this short cord, you are surprised
+to discover several small tools hidden inside. Perfect for picking locks..."""
+drop_location = "Strike Back, end chest"
+icon = "Necklace_2"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 15
+slot = "Neck"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 16
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Quality"
+value = 4
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Quality"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Strike Back"

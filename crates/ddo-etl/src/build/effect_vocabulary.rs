@@ -1,7 +1,7 @@
 use crate::map::effect_map::EFFECT_MAP;
 use anyhow::Result;
 use ddo_model::enums::BonusType;
-use rusqlite::{params, Connection};
+use rusqlite::{params, Connection, OptionalExtension};
 
 pub(super) fn insert_effect_vocabulary(db: &Connection) -> Result<()> {
     for (alias, canonical_name) in &EFFECT_MAP.bonus_type_aliases {
@@ -12,6 +12,22 @@ pub(super) fn insert_effect_vocabulary(db: &Connection) -> Result<()> {
             )?;
         }
     }
+    insert_effect_vocabulary_counts(db)
+}
+
+pub(crate) fn insert_data_effect_vocabulary(db: &Connection) -> Result<()> {
+    for (alias, canonical_name) in &EFFECT_MAP.bonus_type_aliases {
+        if let Some(id) = db
+            .query_row("SELECT id FROM bonus_types WHERE name = ?1", [canonical_name], |row| row.get::<_, i64>(0))
+            .optional()?
+        {
+            db.execute("INSERT INTO bonus_type_aliases (name, bonus_type_id) VALUES (?1, ?2)", params![alias, id])?;
+        }
+    }
+    insert_effect_vocabulary_counts(db)
+}
+
+fn insert_effect_vocabulary_counts(db: &Connection) -> Result<()> {
     db.execute_batch(
         "INSERT INTO effect_vocabulary_counts (kind, id, item_count, augment_count, set_count)
          SELECT 'effect', e.id,

@@ -1,0 +1,144 @@
+name = "Epic Cloak of Flames"
+description = """
+Imbued with the power of a bound Fire Elemental, this smooth cloak of crimson
+fabric absorbs harmful flames and makes your fire spells stronger."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Cloak_15"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Back"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 110
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Fire Shield (Hot)"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Combustion 116, Fire Lore 17%, Fire Absorption 28% and a Colorless augment slot"
+description = """
+Combustion +116: Passive: +116 Equipment bonus to Fire Spell Power.
+Fire Lore +17: Passive: Your Fire spells gain a 17% Equipment bonus to their
+chance to critical hit.
+Fire Absorption +28%: Passive: 28% Enhancement Bonus to Fire Absorption.
+Colorless augment slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 116
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Absorption"
+value = 28
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [116]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [28]
+bonus_type = "Equipment"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Combustion 122, Fire Lore 18%, Fire Absorption 30% and a Green augment slot"
+description = "Adds a Purple augment slot to this item"
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 122
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 18
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Absorption"
+value = 30
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [122]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [18]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Equipment"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

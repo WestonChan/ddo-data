@@ -258,7 +258,7 @@ fn writes_the_wiki_vendors_and_events_with_the_items_they_list_and_his_text_name
     assert!(source_rows(&db, "Alabaster of the Twelve").contains(&"vendor Morten Edgewright 0".to_string()));
     assert_eq!(
         vendor_costs(&db),
-        [("Alabaster of the Twelve".into(), Some("10 Planar Shards".into())), ("Ethereal Great Crossbow".into(), None)]
+        [("Alabaster of the Twelve".into(), Some("10 Planar Shard".into())), ("Ethereal Great Crossbow".into(), None)]
     );
     assert_eq!(source_rows(&db, "Bold Trinket"), ["event Treasure of Crystal Cove 0"]);
     assert!(source_rows(&db, "Acrobat's Ring").contains(&"event Treasure of Crystal Cove 0".to_string()));

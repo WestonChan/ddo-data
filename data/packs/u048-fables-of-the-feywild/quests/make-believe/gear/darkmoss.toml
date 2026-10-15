@@ -1,0 +1,49 @@
+name = "Darkmoss"
+description = "A layer of living moss and lichen surrounds this perfectly smooth stone."
+drop_location = "Make Believe, End chest"
+enhancement_bonus = 2
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 5
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 15
+armor_bonus = 4
+armor_type = "Docent"
+mithral_body = 8
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 3
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 8
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Make Believe"

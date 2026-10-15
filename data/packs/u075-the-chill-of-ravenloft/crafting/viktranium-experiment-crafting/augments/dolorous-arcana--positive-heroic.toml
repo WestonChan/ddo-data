@@ -1,0 +1,22 @@
+name = "Dolorous Arcana: Positive (Heroic)"
+description = "+35 Insight bonus to Positive Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Positive Spell Power"
+bonus_type = "Insight"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

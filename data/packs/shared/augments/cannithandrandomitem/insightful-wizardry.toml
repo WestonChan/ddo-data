@@ -1,0 +1,69 @@
+name = "Insightful Wizardry"
+choose_level = true
+description = "you can an insight bonus to spell points"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    9,
+    16,
+    20,
+    30,
+    35,
+    39,
+    44,
+    48,
+    52,
+    56,
+    60,
+    64,
+    68,
+    72,
+    77,
+    81,
+    85,
+    89,
+    93,
+    97,
+    101,
+    105,
+    110,
+    114,
+    118,
+    122,
+    126,
+    130,
+    134,
+    138,
+    143,
+    147,
+    151,
+    155,
+    159,
+    163,
+    163,
+    163,
+    163,
+    163,
+]
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Insight"
+value = 25
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: random gloves extra"
+
+[[slot]]
+slot = "crafting: random necklace suffix"
+
+[[slot]]
+slot = "crafting: cannith necklace suffix"

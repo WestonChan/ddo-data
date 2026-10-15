@@ -1,0 +1,33 @@
+name = "Epic Belt of the Mroranon"
+description = """
+This powerful belt is an ancient keepsake of the Mroranon Clan of the Ironroot
+Mountains."""
+drop_location = "Epic version of Belt of the Mroranon"
+icon = "Belt_1b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Waist"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 32
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 8
+
+[[socket]]
+slot = "yellow"

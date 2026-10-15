@@ -1,0 +1,42 @@
+name = "Legendary Perfected Wrath"
+icon = "LegendaryPerfectedWrath"
+
+[[item]]
+name = "Legendary Katra's Razor Wit"
+
+[[item]]
+name = "Legendary Maenya's Iron Fists"
+
+[[item]]
+name = "Legendary Night Hag's Heartstone"
+
+[[item]]
+name = "Legendary Teraza's Perfect Sight"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

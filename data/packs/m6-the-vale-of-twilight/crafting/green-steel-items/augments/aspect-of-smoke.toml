@@ -1,0 +1,10 @@
+name = "Aspect of Smoke"
+description = """
+Displacement (2/day)
+Air:Fire or Fire:Air"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect i"

@@ -1,0 +1,22 @@
+name = "Tempest Rune of Arcane Sigil"
+description = """
+Lesser Arcane Sigil: The arcane sigil inscribed on this item lowers the arcane spell
+failure chance by -5%."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Arcane Spell Failure"
+bonus_type = "Equipment"
+value = -5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-5]
+bonus_type = "Equipment"
+effect = "Arcane Spell Failure"
+effect_type = "ArcaneSpellFailure"
+
+[[slot]]
+slot = "crafting: tempest rune"

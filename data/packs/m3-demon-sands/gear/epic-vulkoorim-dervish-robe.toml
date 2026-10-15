@@ -1,0 +1,34 @@
+name = "Epic Vulkoorim Dervish Robe"
+description = """
+The Vulkoorim Dervish use silk robes to cover their Drow bodies from the baking
+heat of the desert."""
+drop_location = "Epic version of Vulkoorim Dervish Robe"
+icon = "Cloth_1b"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 111
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Disintegration Guard"
+
+[[socket]]
+slot = "blue"

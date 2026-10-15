@@ -1,0 +1,94 @@
+name = "Legendary Staff of Arcane Power"
+accepts_sentience = true
+description = """
+This staff began as a ceremonial weapon created by the gnolls of the desert.
+Long years of use by powerful shaman have gradually increased the staff's power.
+This process has accelerated lately as the staff has been involved in powerful
+summoning ritual."""
+drop_location = "Legendary version of Epic Staff of Arcane Power"
+enhancement_bonus = 15
+icon = "Quarterstaff_6"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[clickie]]
+name = "Staff of Arcane Power: Spell Selection"
+clickie = "Staff of Arcane Power: Spell Selection"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 291
+
+[[effect]]
+name = "Arcane Augmentation IX"
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Efficient Metamagic - Empower II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Efficient Metamagic - Enlarge II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Efficient Metamagic - Extend II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 3
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    50,
+    50,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Staff of Arcane Power: Spell Selection"]
+
+[[note]]
+kind = "item_effect"
+field = "value"
+upstream = 5
+reason = "The wiki shows Spell Focus Mastery +7 on this staff; Maetrim gives it +5."
+url = "https://ddowiki.com/page/Item:Legendary_Staff_of_Arcane_Power"
+read = "2026-10-05"
+qualifier = 'effect "Spell Focus Mastery"'
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

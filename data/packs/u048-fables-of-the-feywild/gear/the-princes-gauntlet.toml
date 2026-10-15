@@ -1,0 +1,45 @@
+name = "The Prince's Gauntlet"
+description = """
+This gauntlet would fit the Prince of Frost, and carries incredible powers of
+cold within."""
+drop_location = "Fables of the Feywild, any chest"
+icon = "Gloves_7d"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Cold Iron"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Lifeblood of the Undead Prince"
+value = 58
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Quality"
+value = 9
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "any chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Fables of the Feywild"

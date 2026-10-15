@@ -1,0 +1,4 @@
+name = "Spell Threat Generation"
+category = "other"
+home_bonus_type = "Insight"
+verbose_name_template = "%b1 Spell Threat Generation +{1}"

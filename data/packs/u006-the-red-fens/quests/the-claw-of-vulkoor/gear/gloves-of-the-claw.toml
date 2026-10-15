@@ -1,0 +1,15 @@
+name = "Gloves of the Claw"
+description = """
+Drow warriors don these gloves before combat and are granted great power in
+battle. They claim the gloves are infused with Vulkoor's wrath."""
+drop_location = "The Claw of Vulkoor, End reward"
+icon = "Gloves_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 7
+slot = "Hands"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Claw of Vulkoor"

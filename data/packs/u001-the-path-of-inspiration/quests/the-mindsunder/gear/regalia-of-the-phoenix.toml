@@ -1,0 +1,72 @@
+name = "Regalia of the Phoenix"
+description = """
+This robe was the final true creation of the ancient tailor Sursadir, who was
+inspired by a vision of a mighty Phoenix flying overhead. Unable to ever capture
+the power and purity of that flame again, he found that all his subsequent
+attempts at art were mere ashes."""
+drop_location = "The Mindsunder, Disc locked optional end chest"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 18
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[clickie]]
+name = "Greater Inferno"
+clickie = "Greater Inferno"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 78
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Suppressed Power"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Inferno"]
+
+[[note]]
+kind = "item_socket"
+field = "add"
+reason = "The wiki's Regalia of the Phoenix carries a Suppressed Power; his item has no Suppressed Power socket."
+url = "https://ddowiki.com/page/Dreamforge"
+read = "2026-09-30"
+qualifier = "crafting: suppressed power"
+
+[[socket]]
+slot = "crafting: suppressed power"
+
+[[source]]
+chest = "disc locked optional end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mindsunder"

@@ -1,0 +1,40 @@
+name = "Echo of the Icon"
+description = "A skillfully made, small size replica of the Icon of Ravenloft."
+drop_location = "Old Baba's Hut, Raid Chest"
+icon = "Trinket_8a"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 28
+slot = "Trinket"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 145
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"

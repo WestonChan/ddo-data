@@ -1,0 +1,21 @@
+name = "Dolorous Damage (Legendary)"
+description = "+12 Competence bonus to Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Damage Bonus"
+bonus_type = "Competence"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Competence"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: dolorous (accessory)"

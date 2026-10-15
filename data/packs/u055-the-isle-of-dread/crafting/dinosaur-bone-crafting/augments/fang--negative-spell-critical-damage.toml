@@ -1,0 +1,22 @@
+name = "Fang: Negative Spell Critical Damage"
+description = "+10 Insightful bonus to Negative and Poison spell critical damage"
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "isle of dread: fang (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact fang (accessory)"

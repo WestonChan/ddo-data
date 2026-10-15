@@ -1,0 +1,40 @@
+name = "Legendary Band of Acrobatics"
+description = "A platinum ring, lighter than it looks."
+drop_location = "Ruins of Myth Drannor, Goranathanil 's chest"
+icon = "Ring_26a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 33
+slot = "Ring"
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Legendary"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "goranathanil 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

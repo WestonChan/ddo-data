@@ -1,0 +1,36 @@
+name = "Kundarak Warding Bracers"
+description = """
+These bracers are Kundarak-forged for dwarven guardians, but most races can
+wear them."""
+drop_location = "Plane of Night, raid warded chest"
+icon = "Bracers_13c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 9
+slot = "Wrists"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 13
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"

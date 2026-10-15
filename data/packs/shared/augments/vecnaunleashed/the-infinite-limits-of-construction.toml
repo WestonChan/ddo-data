@@ -1,0 +1,44 @@
+name = "The Infinite Limits of Construction"
+description = "On Hit Effect: 6d10 Bane damage vs Constructs."
+family = "VecnaUnleashed"
+icon = "HistoryBookRed"
+min_level = 32
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Bane"
+dice_number = [6]
+dice_sides = [10]
+display_name = "The Infinite Limits of Construction"
+effect_type = "WeaponOtherDamageBonus"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Construct"]
+req_type = "EnemyType"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Bane"
+dice_number = [6]
+dice_sides = [10]
+display_name = "The Infinite Limits of Construction"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Construct"]
+req_type = "EnemyType"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"

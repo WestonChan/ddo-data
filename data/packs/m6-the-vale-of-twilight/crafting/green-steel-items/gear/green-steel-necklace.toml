@@ -1,0 +1,15 @@
+name = "Green Steel Necklace"
+description = "A necklace crafted from a chunk of green steel."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+icon = "Necklace_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 11
+slot = "Neck"
+
+[[socket]]
+slot = "crafting: accessory invasion"
+
+[[source]]
+kind = "crafting_system"
+name = "Green Steel items"

@@ -1,0 +1,44 @@
+name = "Axe of the Scarlet Warrior"
+description = "This greataxe was taken from the body of the Scarlet Warrior."
+drop_location = "The Shroud, Part 1"
+enhancement_bonus = 5
+icon = "GreatAxe_8b"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Maiming"
+
+[[source]]
+chest = "part 1"
+kind = "quest"
+loot_type = "raid"
+name = "The Shroud"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.5
+handedness = "Two-handed"
+weapon_type = "Great Axe"

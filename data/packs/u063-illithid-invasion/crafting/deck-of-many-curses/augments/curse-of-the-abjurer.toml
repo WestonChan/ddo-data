@@ -1,0 +1,21 @@
+name = "Curse of the Abjurer"
+description = "+1 Fortune Bonus to Abjuration DCs"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Abjuration Focus"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect = "Abjuration Focus"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[slot]]
+slot = "crafting: deck curse"

@@ -1,0 +1,22 @@
+name = "Brood of Flame"
+bestowed_by = "Idas"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Three-Barrel Cove"
+patron = "The Free Agents"
+zone = "The Fire Caves"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Brood_of_Flame"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5

@@ -1,0 +1,32 @@
+name = "Epic Ring of Spell Storing"
+description = """
+This ring is capable of storing the magical energy necessary to cast spells.
+When the ring is activated the wearer's store of power is replenished enough
+to cast a Level 4 Spell."""
+drop_location = "Epic version of Ring of Spell Storing"
+icon = "Ring_3a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Ring"
+
+[[clickie]]
+name = "Major Mnemonic Aid"
+clickie = "Major Mnemonic Aid"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Major Mnemonic Aid"]
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"

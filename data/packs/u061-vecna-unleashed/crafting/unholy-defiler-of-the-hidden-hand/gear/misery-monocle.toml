@@ -1,0 +1,45 @@
+name = "Misery Monocle"
+description = """
+You've seen what lies at the hearts of those who oppose you; now you see how
+to break them."""
+drop_location = "Unholy Defiler of the Hidden Hand, defiled version of Legendary Mystic Monocle"
+icon = "Goggles_19a"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 32
+slot = "Goggles"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 28
+
+[[effect]]
+name = "Spell Lore V"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Utter Disintegration"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Unholy Defiler of the Hidden Hand"

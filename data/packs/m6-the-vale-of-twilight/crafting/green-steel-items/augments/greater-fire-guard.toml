@@ -1,0 +1,11 @@
+name = "Greater Fire Guard"
+adds_augment = "Accessory Aspect II"
+description = """
+1d8 Fire damage on being hit
+Fire:Dominion:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory devastation"

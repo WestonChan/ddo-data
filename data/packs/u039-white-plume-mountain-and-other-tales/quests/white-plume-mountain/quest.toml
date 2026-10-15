@@ -1,0 +1,30 @@
+name = "White Plume Mountain"
+bestowed_by = "Raheen the Gatekeeper"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "White Plume Mountain and Other Tales"
+patron = "The Gatekeepers"
+zone = "Beneath White Plume Mountain"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/White_Plume_Mountain"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

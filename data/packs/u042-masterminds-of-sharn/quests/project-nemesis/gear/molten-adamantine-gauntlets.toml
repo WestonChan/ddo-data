@@ -1,0 +1,37 @@
+name = "Molten Adamantine Gauntlets"
+description = "These drip molten adamantine. Do not eat."
+drop_location = "Project Nemesis, Raid Chest"
+icon = "Gloves_16"
+item_category = "Clothing"
+material = "Adamantine"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Feat: Pierce Adamantine"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"

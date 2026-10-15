@@ -1,0 +1,58 @@
+name = "Hammer of the Leaden Clouds (Level 23)"
+description = """
+Buried in the Xen'drik wastes for millennia, this might have served as a giant
+lord's throwing-hammer. When swung, it rumbles like distant thunder."""
+drop_location = "Return to Gianthold Tor, Blue Dragon chest (Epic Normal)"
+enhancement_bonus = 6
+icon = "Warhammer_2"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Steel"
+minimum_level = 23
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 108
+
+[[effect]]
+name = "Shrieking"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 10
+
+[[source]]
+chest = "blue dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Warhammer"

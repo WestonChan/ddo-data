@@ -1,0 +1,37 @@
+name = "Epic Smuggler's Cap"
+description = """
+The sort of cap used by smugglers and lawful sailors alike, allowing the user
+to fit into mixed company."""
+drop_location = "Epic version of Smuggler's Cap"
+icon = "Helmet_1c"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 20
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Quality"
+value = 4
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 7
+value2 = 11
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 9
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

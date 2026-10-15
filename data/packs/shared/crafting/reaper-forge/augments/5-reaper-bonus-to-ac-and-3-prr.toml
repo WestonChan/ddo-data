@@ -1,0 +1,32 @@
+name = "+5% Reaper Bonus to AC and +3 PRR"
+description = "+5% Reaper Bonus to AC and +3 PRR"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Armor Class Percentage"
+bonus_type = "Reaper"
+value = 5
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Reaper"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Reaper"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Reaper"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[slot]]
+slot = "crafting: reaper armor"

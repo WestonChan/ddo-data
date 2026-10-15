@@ -1,0 +1,20 @@
+name = "Fortification +142%"
+description = "Legendary Enhancement bonus to Fortification"
+family = "Slavelords_Legendary"
+icon = "SlavelordsPrefix"
+min_level = 28
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [142]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[slot]]
+slot = "crafting: legendary slavelords prefix"

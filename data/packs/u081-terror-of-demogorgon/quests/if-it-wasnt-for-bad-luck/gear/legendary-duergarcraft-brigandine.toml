@@ -1,0 +1,50 @@
+name = "Legendary Duergarcraft Brigandine"
+description = "Protective gear made by Duergar craftspeople."
+drop_location = "If It Wasn't For Bad Luck, end chest"
+enhancement_bonus = 16
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 35
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 39
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 163
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 9
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 14
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "If It Wasn't For Bad Luck"

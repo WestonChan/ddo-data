@@ -1,0 +1,49 @@
+name = "Legendary Ruby Encrusted Gauntlets"
+description = "These ruby-encrusted gauntlets shine with a feverish glow."
+drop_location = "Legendary version of Epic Ruby Encrusted Gauntlets"
+icon = "Gloves_8d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Hands"
+
+[[clickie]]
+name = "Meteor Swarm"
+clickie = "Meteor Swarm"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 151
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    17,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Meteor Swarm"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

@@ -1,0 +1,29 @@
+name = "Records of the Past"
+bestowed_by = "Freygar Plumbline"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Mines of Tethyamar"
+patron = "The Harpers"
+zone = "The Ruins of Ironvale Deep"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Records_of_the_Past"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

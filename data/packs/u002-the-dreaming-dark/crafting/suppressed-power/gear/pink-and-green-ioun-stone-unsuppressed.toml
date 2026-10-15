@@ -1,0 +1,21 @@
+name = "Pink and Green Ioun Stone (unsuppressed)"
+description = "A pink and green gem about 1 inch in diameter"
+drop_location = "Dreamforge, Suppressed Power Crafting"
+icon = "Trinket_4a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Charisma Skills - Exceptional Bonus"
+value = 2
+
+[[source]]
+kind = "crafting_system"
+name = "Suppressed Power"

@@ -1,0 +1,27 @@
+name = "Death's Smile"
+description = "A look that penetrates the soul."
+drop_location = "The Night Revels, Turn in Joe Candymaker"
+icon = "Helmet_58"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Head"
+
+[[clickie]]
+name = "Shadow Weapons"
+clickie = "Shadow Weapons"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shadow Weapons"]
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

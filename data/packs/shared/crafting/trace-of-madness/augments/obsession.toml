@@ -1,0 +1,8 @@
+name = "Obsession"
+description = "Obsession Attack Proc: 100% extra threat for 15 seconds."
+family = "Other"
+icon = "Obsession"
+min_level = 1
+
+[[slot]]
+slot = "crafting: trace of madness"

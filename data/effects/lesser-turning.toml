@@ -1,0 +1,11 @@
+name = "Lesser Turning"
+description_template = "Increases total number of Turn Undead uses by 2, once wielder rests. If you unequip the item you will lose these turns."
+home_bonus_type = "Equipment"
+verbose_name_template = "Lesser Turning +2"
+
+[[bonus]]
+amount_from = 0
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Turn Undead Uses"

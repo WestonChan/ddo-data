@@ -1,0 +1,48 @@
+name = "Lunar Gem of Illusion (Legendary)"
+description = """
++4 Profane Bonus to Illusion DCs
+Drops in: Cold Snap, Althea's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Profane"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Profane"
+effect = "Illusion Focus"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "althea's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "If It Wasn't For Bad Luck"
+
+[[source]]
+chest = "j'anara's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Final Draw"

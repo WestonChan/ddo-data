@@ -1,0 +1,1596 @@
+name = "Knight of the Chalice"
+background = "PaladinBackground"
+icon = "Paladin"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Knight of the Chalice: Slayer of Evil I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Imbue Toggle: While using a Favored Weapon, you deal 1d6 additional Light damage
+that scales with 200% Melee or Ranged Power (whichever is higher).
+
+Passive: You resist evil influences particularly well, gaining a +2 bonus to
+saves against spells and effects produced by evil creatures. You also gain +1 to
+attack evil creatures."""
+icon = "KoTCSlayerOfEvil"
+internal_name = "KotCCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCSlayerOfEvil"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCSlayerOfEvil.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Spell"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Creatures"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.stance]]
+name = "Knight of the Chalice: Slayer of Evil"
+description = "You 1d6 Light damage per Imbue dice that scales with 200% Melee or Ranged Power"
+group_name = "Imbue"
+icon = "KoTCSlayerOfEvil"
+
+[[enhancement.stance.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCSlayerOfEvil"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCSlayerOfEvil.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement]]
+name = "Knight of the Chalice: Courage of Heaven"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your Aura of Courage grants an additional +2 Sacred bonus to saves against Fear
+and now also grants a +2 Sacred bonus to saves against Enchantment.
+You gain +1 to hit for all attacks. +1 Imbue Dice"""
+icon = "KoTCCourageOfHeaven"
+internal_name = "KotCCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCCourageOfHeaven"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCCourageOfHeaven.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+targets = [
+    "Fear",
+    "Enchantment",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Aura of Courage"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["KotCCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Knight of the Chalice: Slayer of Evil II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your slayer of Evil now grants +2 to attack evil creatures. +1 bonus Imbue Dice.
+You now resist evil influences particularly well, gaining a +2 bonus to saves
+against spells and effects produced by evil creatures. Your weapons gain the
+Ghost Touch effect.
+
+In Addition, you gain +4 Remove Disease charges and your Remove Disease also
+applies a Greater Restoration effect to your target."""
+icon = "KoTCSlayerOfEvilII"
+internal_name = "KotCCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Spell"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Creatures"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["KotCCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Knight of the Chalice: Improved Courage of Heaven"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your Aura of Courage grants an additional +2 Sacred bonus to saves against Fear
+and now also grants a +2 Sacred bonus to saves against Enchantment. You now
+gain +2 to hit for all attacks. +1 Imbue Dice.
+
+You are now immune to Energy Drain."""
+icon = "KoTCImprovedCourageOfHeaven"
+internal_name = "KotCCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCImprovedCourageOfHeaven"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCImprovedCourageOfHeaven.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Enchantment",
+    "Fear",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Aura of Courage"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Energy Drain"]
+
+[[enhancement.requirement]]
+items = ["KotCCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Knight of the Chalice: Slayer of Evil III"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your Slayer of Evil now grants +4 to attack evil creatures. +1 bonus Imbue Dice.
+You now resist evil influences particularly well, gaining a +4 bonus to saves
+against spells and effects produced by evil creatures. Your vorpal hits against
+undead do an additional 500 damage."""
+icon = "KoTCSlayerOfEvilII"
+internal_name = "KotCCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Spell"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Creatures"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["KotCCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Knight of the Chalice: Champion of Good"
+cost_per_rank = [1]
+description = """
+You gain +4 Charisma and +10 Melee Power and Ranged Power. The save bonuses
+vs. Fear and Enchantment granted by Courage of Heaven are increased by an
+additional +2. Any weapon you wield is considered Good aligned for purposes of
+bypassing damage reduction. +1 bonus Imbue Dice.
+
+In addition, your Aura of Courage now grants allies a +3% Sacred Bonus to Melee
+and Ranged damage, and if you have Ascendancy your Blessed Purpose now stacks
+up to 25 times."""
+icon = "KoTCChampionOfGood"
+internal_name = "KotCCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCChampionOfGood"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCChampionOfGood.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "KotCCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Fear",
+    "Enchantment",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Aura of Courage"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["KotCCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "KotCCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Knight of the Chalice: Holy Combatant I"
+cost_per_rank = [2]
+description = "+1 to Attack and Damage with Favored Weapons."
+icon = "KotCHolyCombatantI"
+internal_name = "KotCHolyCombatantI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Knight of the Chalice: Extra Smite"
+cost_per_rank = [1]
+description = "You gain +[2/4/6] additional uses of Smite Evil per rest."
+icon = "KoTCExtraSmite"
+internal_name = "KotCExtraSmite"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCExtraSmite"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCExtraSmite.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraSmite"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Knight of the Chalice: Improved Second Strikes"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "KotCImprovedSecondStrikes"
+internal_name = "KotCImprovedSecondStrikes"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Knight of the Chalice: Shieldbreaker"
+cost_per_rank = [1]
+description = "+[1/2/3] to Sunder DCs."
+icon = "KotCShieldbeaker"
+internal_name = "KotCShieldbreaker"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Sunder"]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Knight of the Chalice: Knight's Authority"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Intimidate, Diplomacy and Concentration.
+Rank 3: +1 Fortitude Save."""
+icon = "KotCKnightsAuthority"
+internal_name = "KotCKnightsAuthority"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Intimidate",
+    "Diplomacy",
+    "Concentration",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Fortitude"]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Knight of the Chalice: Adept Combatant"
+cost_per_rank = [2]
+description = """
++1 to Attack and Damage with all weapons. You gain Longsword, Battle Axe,
+Heavy Mace, Morningstar and War Hammer as Favored Weapons."""
+icon = "KotCAdeptCombatant"
+internal_name = "KotCAdeptCombatant"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Longsword",
+    "Battle Axe",
+    "Heavy Mace",
+    "Morningstar",
+    "Warhammer",
+]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Knight of the Chalice: Divine Might"
+cost_per_rank = [2]
+description = """
+Battle Trance: You gain an Insight bonus to Attack, Damage, and the DC
+of tactical feats equal to 1/2 of your Charisma modifier for 120 seconds.
+
+Anti-requisite: This ability can not be trained if you have any other Battle Trance
+abilities.
+Spell Point Cost: 15
+Cooldown: 20 seconds"""
+icon = "KoTCDivineMight"
+internal_name = "KotCDivineMight"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCDivineMight"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCDivineMight.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "KotCDivineMight",
+    "Battle Trance",
+]
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Knight of the Chalice: Divine Might (Cha Mod / 2)"
+effect_type = "TacticalDC"
+stack_source = "SnapshotCharisma"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Divine Might"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Knight of the Chalice: Divine Might (Cha Mod / 2)"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "SnapshotCharisma"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Divine Might"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = [
+    "KotCDivineMight",
+    "Battle Trance",
+]
+req_type = "Exclusive"
+
+[[enhancement.stance]]
+name = "Divine Might"
+description = """
+You gain an Insight bonus to Attack, Damage, and the DC of tactical feats equal to
+1/2 of your Charisma modifier for 120 seconds."""
+group_name = "Battle Trance"
+icon = "KoTCDivineMight"
+
+[[enhancement.stance.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCDivineMight"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCDivineMight.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement]]
+name = "Knight of the Chalice: Critical Mastery"
+cost_per_rank = [1]
+description = "+[1/2/3] to confirm critical hits and critical hit damage (before weapon multipliers)."
+icon = "KotCCriticalMastery"
+internal_name = "KotCCriticalMastery"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "KotCCriticalMastery",
+    "Critical Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = [
+    "KotCCriticalMastery",
+    "Critical Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Knight of the Chalice: Exalted Attack"
+cost_per_rank = [2]
+description = "Choose a Melee Cleave or Ranged Attack."
+icon = "KoTCExaltedCleave"
+internal_name = "KotCExaltedCleave"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCExaltedCleave"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCExaltedCleave.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Exalted Shot"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 5 seconds
+AOE Ranged Attack: Take a powerful shot.
+Shares a cooldown with the Cleave feat."""
+icon = "KotCAvengingShot"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Exalted Cleave"
+cost_per_rank = [2]
+description = """
+Deals +20% Damage
+Cooldown: 5 seconds
+Make a sweeping attack against all nearby enemies.
+Shares a cooldown with the Cleave feat."""
+icon = "KoTCExaltedCleave"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCExaltedCleave"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCExaltedCleave.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement]]
+name = "Knight of the Chalice: Action Boost"
+cost_per_rank = [2]
+description = "Choose between Action Boost: Attack and Damage"
+icon = "KoTCMeleeRangedPowerBoost"
+internal_name = "KotCMeleeRangedPowerBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCMeleeRangedPowerBoost"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCMeleeRangedPowerBoost.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Melee/Ranged Power"
+cost_per_rank = [2]
+description = """
+Activate to gain a +30 Action Boost bonus to
+Melee and Ranged Power for 20 Seconds"""
+icon = "KoTCMeleeRangedPowerBoost"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCMeleeRangedPowerBoost"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCMeleeRangedPowerBoost.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection]]
+name = "Attack Boost"
+cost_per_rank = [2]
+description = "Activate to gain a +8 Action Boost bonus to hit for 20 seconds"
+icon = "KoTCAttackBoost"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCAttackBoost"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCAttackBoost.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement]]
+name = "Knight of the Chalice: Holy Combatant II"
+cost_per_rank = [2]
+description = """
++2 to Attack and Damage with Favored Weapons.
+You gain Greatsword as a Favored Weapon."""
+icon = "KotCHolyCombatantII"
+internal_name = "KotCHolyCombatantII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Great Sword",
+]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Knight of the Chalice: Divine Sacrifice"
+cost_per_rank = [2]
+description = "Select a Melee or Ranged Attack."
+icon = "KoTCDivineSacrifice"
+internal_name = "KotCDivineSacrifice"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCDivineSacrifice"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCDivineSacrifice.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Divine Sacrifice"
+cost_per_rank = [2]
+description = """
+Deals +40% Damage
++1 Critical Multiplier
+Cooldown: 3 seconds.
+Giving up some of your life force to win the battle, you empower your next blow
+against your foe. This attack deals an additional 5d6 Light damage, but costs
+you 5 HP and 1 SP, whether or not the attack is successful. You gain +15
+Temporary Spell Points if you strike an Undead or Evil Outsider with this attack."""
+icon = "KoTCDivineSacrifice"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCDivineSacrifice"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCDivineSacrifice.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection]]
+name = "Divine Sacrifice (Ranged)"
+cost_per_rank = [2]
+description = """
+Deals +40% Damage
++1 Critical Multiplier
+Cooldown: 3 seconds.
+Giving up some of your life force to win the battle, you empower your next blow
+against your foe. This attack deals an additional 5d6 Light damage, but costs
+you 5 HP and 1 SP, whether or not the attack is successful. You gain +15
+Temporary Spell Points if you strike an Undead or Evil Outsider with this attack."""
+icon = "KotCDivineSacrificeRanged"
+is_clickie = true
+
+[[enhancement]]
+name = "Knight of the Chalice: Lead the Charge"
+cost_per_rank = [2]
+description = """
+Deals +50% Damage
+Melee Rush Attack: Rush forward up to 30 feet to your selected opponent and deliver
+a mighty strike. Shares a cooldown with Shield Charge.
+12 second cooldown."""
+icon = "KotCLeadTheCharge"
+internal_name = "KotCLeadTheCharge"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Knight of the Chalice: Exalted Smite"
+cost_per_rank = [2]
+description = "Select a Melee or Ranged Smite."
+icon = "KoTCExaltedSmite"
+internal_name = "KotCExaltedSmite"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCExaltedSmite"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCExaltedSmite.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Exalted Smite"
+cost_per_rank = [2]
+description = """
+Active: An improved smite that adds +2 to your weapon's critical
+damage multiplier.
+
+Smite Evil: Using this attack, you call on the paladin's ability to strike down
+evil creatures, gaining twice your Charisma bonus to your attack roll, and a
+damage bonus based on your paladin level. Smites return at a rate of one every
+90 seconds. In addition, your Smite Evil and Exalted Smite abilities increase
+Melee and Ranged Power by 5 for 10 seconds."""
+icon = "KoTCExaltedSmite"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCExaltedSmite"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCExaltedSmite.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection]]
+name = "Exalted Smite (Ranged)"
+cost_per_rank = [2]
+description = """
+Active: An improved smite that adds +2 to your weapon's critical
+damage multiplier.
+
+Smite Evil: Using this attack, you call on the paladin's ability to strike down
+evil creatures, gaining twice your Charisma bonus to your attack roll, and a
+damage bonus based on your paladin level. Smites return at a rate of one every
+90 seconds. In addition, your Smite Evil and Exalted Smite abilities increase
+Melee and Ranged Power by 5 for 10 seconds."""
+icon = "KotCExaltedSmiteRanged"
+is_clickie = true
+
+[[enhancement]]
+name = "Knight of the Chalice: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Charisma or Strength"
+icon = "ChaStr"
+internal_name = "KotCAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Knight of the Chalice: Knight's Training"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++1 to Attack and Damage with all weapons and +1 to Attack and Damage with
+Favored Weapons. You also gain the Knight's Training feat and the Shot on the
+Run feat."""
+icon = "KotCKnightsTraining"
+internal_name = "KotCKnightsTraining"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Knight of the Chalice: Knight's Training : Favored Weapon"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Knight's Training"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Shot on the Run"]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Knight of the Chalice: Censure Demons"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "You gain On Vorpal: Stun Chaotic Evil outsiders for 3 seconds."
+icon = "KoTCCensureDemons"
+internal_name = "KotCCensureDemons"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCCensureDemons"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCCensureDemons.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Knight of the Chalice: Vigor of Life I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++30 Positive Healing Amplification
+-30 Negative Healing Amplification."""
+icon = "KoTCVigorOfLife"
+internal_name = "KotCVigorOfLifeI"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCVigorOfLife"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCVigorOfLife.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-30]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Knight of the Chalice: Improved Turning"
+cost_per_rank = [1]
+description = """
+You count as [1/2/3] level higher when turning undead and add [2/4/6] to the
+number of hit dice turned and gain +[1/2/3] uses of Turn Undead per rest. Your Turn
+Undead ability now also deals [6/12/18]d6 light damage to nearby undead which scales
+with 200% of the higher of Melee or Ranged power."""
+icon = "KoTCImprovedTurning"
+internal_name = "KotCImprovedTurning"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCImprovedTurning"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCImprovedTurning.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TurnLevelBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "TurnBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraTurns"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Knight of the Chalice: Ability II"
+cost_per_rank = [2]
+description = "Choose either Charisma or Strength"
+icon = "ChaStr"
+internal_name = "KotCAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["KotCAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Knight of the Chalice: Ascendancy"
+cost_per_rank = [2]
+description = """
++2 to Attack and Damage with all weapons. An additional +2 to Attack and
+Damage with Favored Weapons. You gain 15% Fortification Bypass.
+
+Whenever you attack an Undead or Evil Outsider with a Favored Weapon, you gain a
+stack of Blessed Purpose: +3 Sacred Bonus to Melee and Ranged Power that lasts
+for 6 seconds. You can acquire up to 15 stacks of this by continuing to attack
+Undead or Evil Outsiders. Switching to a non-Favored Weapon will reset your
+stacks of Blessed Purpose."""
+icon = "KotCAscendancy"
+internal_name = "KotCAscendancy"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    25,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Blessed Purpose"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [3]
+bonus_type = "Sacred"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+stack_source = "Blessed Purpose"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+display_name = "Knight of the Chalice: Ascendancy : Favored Weapon"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "FortificationBypass"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["KotCKnightsTraining"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Knight of the Chalice: Censure Outsiders"
+cost_per_rank = [1]
+description = """
+Your Censure Demons ability now applies to all Chaotic or Evil outsiders.
+All other Evil creatures are instead Dazed for six seconds.
+Passive: +10 Melee and Ranged Power."""
+icon = "KoTCCensureOutsiders"
+internal_name = "KotCCensureOutsiders"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCCensureOutsiders"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCCensureOutsiders.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["KotCCensureDemons"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Knight of the Chalice: Vigor of Life II"
+cost_per_rank = [2]
+description = """
++30 Positive Healing Amplification
+-30 Negative Healing Amplification.
+
+You gain a +25% Competence bonus to Maximum Hit Points."""
+icon = "KoTCVigorOfLife"
+internal_name = "KotCVigorOfLifeII"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCVigorOfLife"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCVigorOfLife.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-30]
+bonus_type = "Enhancement"
+effect_type = "NegativeHealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["KotCVigorOfLifeI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Knight of the Chalice: Avenging Attack"
+cost_per_rank = [2]
+description = "Choose a Melee Cleave or Ranged Attack"
+icon = "KoTCAvengingCleave"
+internal_name = "KotCAvengingCleave"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCAvengingCleave"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCAvengingCleave.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Avenging Cleave"
+cost_per_rank = [2]
+description = """
+Deals +40% Damage
+Cooldown: 5 seconds.
+Make a sweeping weapon attack against all nearby enemies. Damaged enemies gains
+one stack of Vulnerability.
+
+Shares its cooldown with the Great Cleave feat.
+
+Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
+20 times, and loses one stack on expiration."""
+icon = "KoTCAvengingCleave"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCAvengingCleave"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCAvengingCleave.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection]]
+name = "Avenging Shot"
+cost_per_rank = [2]
+description = """
+Deals +20% Damage
+Cooldown: 5 seconds.
+AOE Ranged Attack: Damaged enemies gains one stack of Vulnerability.
+
+Shares its cooldown with the Great Cleave feat.
+
+Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
+20 times, and loses one stack on expiration."""
+icon = "KotCAvengingCleaveRanged"
+is_clickie = true
+
+[[enhancement]]
+name = "Knight of the Chalice: Holy Retribution"
+cost_per_rank = [1]
+description = "Choose a Melee or Ranged Attack"
+icon = "KoTCHolyRetribution"
+internal_name = "KotCHolyRetribution"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCHolyRetribution"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCHolyRetribution.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+items = ["Paladin"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Holy Retribution"
+cost_per_rank = [1]
+description = """
+Deals +50% Damage
+Cooldown: 30 seconds
+Melee Attack: Executes a powerful holy cleave against nearby targets that deals
+100 extra holy damage that scales with 200% Melee or Ranged Power, -6 to all
+ability scores for 10 seconds, and recharges one Smite Evil charge to you.
+On Damage: Evil creatures may be forced to make a Will save
+(DC 10 + Paladin Level + Charisma Mod + Sunder Bonuses) or be destroyed.
+
+Evil creatures with under 1000 HP must always make this save or die.
+Evil creatures with between 5000 and 1000 HP have a 50% chance to be forced to
+make this save or die.
+Evil creatures with more than 5000 have a 33% chance to be forced to make this
+save or die."""
+icon = "KoTCHolyRetribution"
+is_clickie = true
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "KotCHolyRetribution"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image KoTCHolyRetribution.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection]]
+name = "Holy Retribution Shot"
+cost_per_rank = [1]
+description = """
+Deals +50% Damage
+Cooldown: 30 seconds
+Ranged Attack: Deals 100 extra holy damage that scales with 200% Melee or Ranged
+Power, -6 to all ability scores for 10 seconds, and recharges one Smite Evil
+charge to you. On Damage: Evil creatures may be forced to make a Will save
+(DC 10 + Paladin Level + Charisma Mod + Sunder Bonuses) or be destroyed.
+
+Evil creatures with under 1000 HP must always make this save or die.
+Evil creatures with between 5000 and 1000 HP have a 50% chance to be forced to
+make this save or die.
+Evil creatures with more than 5000 have a 33% chance to be forced to make this
+save or die."""
+icon = "KotCHolyRetributionShot"
+is_clickie = true
+
+[[requirement]]
+items = ["Paladin"]
+req_type = "Class"

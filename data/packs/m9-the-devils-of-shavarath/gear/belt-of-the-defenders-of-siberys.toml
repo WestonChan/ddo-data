@@ -1,0 +1,66 @@
+name = "Belt of the Defenders of Siberys"
+description = """
+Once worn by the hero Vlor, this sturdy leather belt is sacred to the Defenders
+of Siberys, and gives strength in times of need."""
+drop_location = "Genesis Point, Any end chest ; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Defender of Siberys"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+    15,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Defender of Siberys - 2 Piece bonus"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusMelee"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Defender of Siberys - 3 Piece bonus"
+effect_type = "ACBonus"
+extra_types = ["ACBonus"]
+
+[[source]]
+chest = "any end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Genesis Point"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

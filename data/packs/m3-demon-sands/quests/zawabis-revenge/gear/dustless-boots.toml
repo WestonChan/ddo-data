@@ -1,0 +1,35 @@
+name = "Dustless Boots"
+description = "Subtle transmutative magic causes the wearer's footprints to erase themselves."
+drop_location = "Zawabi's Revenge, Warded Chest"
+icon = "Boots_5b"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Feet"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 2
+value2 = 3
+
+[[effect]]
+name = "Speed"
+value = 21
+value2 = 8
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 13
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"

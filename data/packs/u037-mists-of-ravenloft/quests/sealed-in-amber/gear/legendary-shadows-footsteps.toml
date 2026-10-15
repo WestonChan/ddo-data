@@ -1,0 +1,37 @@
+name = "Legendary Shadow's Footsteps"
+description = "Move like the night, silent and omnipresent."
+drop_location = "Sealed in Amber, End chest &amp; optional draw Strahd's attention chest"
+icon = "Boots_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Feet"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sealed in Amber"

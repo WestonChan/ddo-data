@@ -1,0 +1,33 @@
+name = "Belt of Thoughtful Rememberance"
+description = """
+This belt is said to protect the wielder from dark energies, and conjure images
+of a soothing nature."""
+drop_location = "Flesh Maker's Laboratory, End Chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 20
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flesh Maker's Laboratory"

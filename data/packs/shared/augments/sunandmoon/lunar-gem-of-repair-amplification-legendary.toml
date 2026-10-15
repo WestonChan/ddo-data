@@ -1,0 +1,42 @@
+name = "Lunar Gem of Repair Amplification (Legendary)"
+description = """
++30 Profane Bonus to Repair Amplification.
+Drops in: Ruins of Myth Drannor (Yegora's chest)
+Romira and Juvian's right chest (requires completion of Sleeping with the Fishes)
+Sleeping with the Fishes, House Lyrandar uprising optional chest
+Snowfall and Sunlight, locked chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Profane"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Profane"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "house lyrandar uprising optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"
+
+[[source]]
+chest = "locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

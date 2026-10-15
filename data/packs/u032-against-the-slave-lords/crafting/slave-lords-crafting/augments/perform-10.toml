@@ -1,0 +1,21 @@
+name = "Perform +10"
+description = "Competence bonus to Perform"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect = "Perform"
+effect_type = "SkillBonus"
+targets = ["Perform"]
+
+[[slot]]
+slot = "crafting: slavelords extra"

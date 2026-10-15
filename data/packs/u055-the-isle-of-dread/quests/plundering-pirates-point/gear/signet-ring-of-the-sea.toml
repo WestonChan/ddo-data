@@ -1,0 +1,37 @@
+name = "Signet Ring of the Sea"
+description = "This weighty ring carries energy from the ocean."
+drop_location = "Plundering Pirates' Point, end chest"
+icon = "Ring_21b"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 7
+slot = "Ring"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 66
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Plundering Pirates' Point"

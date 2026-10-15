@@ -1,0 +1,38 @@
+name = "Pendant of the Green Abishai"
+description = "This necklace seems to be attuned to elemental power."
+drop_location = "The Chronoscope, and The Chronoscope (Legendary), optional chests"
+icon = "Necklace_13p"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 5
+slot = "Neck"
+
+[[effect]]
+name = "Poison Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

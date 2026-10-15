@@ -1,0 +1,75 @@
+name = "Flawless Black Dragonplate Armor"
+description = "Flawless plate armor forged from scales of a black dragon."
+drop_location = "Black Dragonscale Armor"
+enhancement_bonus = 7
+icon = "HeavyArmor_9"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Black Dragonscale"
+minimum_level = 25
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -3
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Superior Acid Resistance"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "+8 Enhancement Bonus"
+description = "+8 Enhancement Bonus: +8 enhancement bonus to attack and damage rolls."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Armor Piercing 20%"
+description = "Armor-Piercing 20%: Passive: +20% Enhancement bonus to Fortification Bypass. (Fortification Bypass makes your attacks ignore a percentage of enemy Fortification.)"
+icon = "Heroism"
+min_level = 23
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

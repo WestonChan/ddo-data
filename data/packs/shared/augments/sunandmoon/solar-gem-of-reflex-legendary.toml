@@ -1,0 +1,51 @@
+name = "Solar Gem of Reflex (Legendary)"
+description = """
++3 Artifact Bonus to Reflex Save.
+Drops in: Book Burning, end chest
+Dinosaur Crisis, optional chest
+The Cerulean Hills, Romira and Juvian's chest (requires completion of Sleeping with the Fishes)
+Ruins of Myth Drannor, Romira and Juvian's right chest (requires completion of Sleeping with the Fishes)
+Snowfall and Sunlight, locked chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Book Burning"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"
+
+[[source]]
+chest = "romira and juvian's right chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

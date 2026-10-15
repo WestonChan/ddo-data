@@ -1,0 +1,27 @@
+name = "Shadow Striker"
+description_template = "Passive: +3% Profane bonus to Doublestrike and Doubleshot. (Doublestrike/Doubleshot is a chance to score an additional hit with a melee/ranged attack.) +15% Enhancement Bonus to Melee Attack Speed. +20% Enhancement Bonus to Ranged Attack Speed."
+verbose_name_template = "Shadow Striker"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Profane"
+constant = 3
+rounding = "down"
+scale = 1.0
+target = "Doublestrike and Doubleshot"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Enhancement"
+constant = 15
+rounding = "down"
+scale = 1.0
+target = "Melee Attack Speed"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Enhancement"
+constant = 15
+rounding = "down"
+scale = 1.0
+target = "Ranged Attack Speed"

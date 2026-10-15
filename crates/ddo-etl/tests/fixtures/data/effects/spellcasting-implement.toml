@@ -1,0 +1,10 @@
+name = "Spellcasting Implement"
+description_template = "Passive: {1} Implement bonus to Universal Spell Power."
+home_bonus_type = "Implement"
+verbose_name_template = "Spellcasting Implement +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Universal Spell Power"

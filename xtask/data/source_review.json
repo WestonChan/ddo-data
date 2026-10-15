@@ -14,7 +14,15 @@
     "Shadowfell Conspiracy": "https://ddowiki.com/page/Shadowfell_Conspiracy"
   },
   "quest_versions_pending_wiki_read": {
-    "Dr. Rushmore's Mansion - Picture Portals - EPIC": "Heroic Free to Play and epic Secrets of the Artificers require a wiki pack comparison.",
-    "Legendary Hound of Xoriat": "Heroic The Vale of Twilight and legendary Free to Play require a wiki pack comparison."
+    "Dr. Rushmore's Mansion - Picture Portals - EPIC": {
+      "reason": "Heroic Free to Play and epic Secrets of the Artificers require a wiki pack comparison.",
+      "source": "https://ddowiki.com/page/Vaults_of_the_Artificers",
+      "read": "2026-10-07"
+    },
+    "Legendary Hound of Xoriat": {
+      "reason": "Heroic The Vale of Twilight and legendary Free to Play require a wiki pack comparison.",
+      "source": "https://ddowiki.com/page/Legendary_Hound_of_Xoriat",
+      "read": "2026-10-07"
+    }
   }
 }

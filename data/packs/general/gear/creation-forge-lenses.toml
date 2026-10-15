@@ -1,0 +1,25 @@
+name = "Creation Forge Lenses"
+description = """
+Look out upon the world, and see the freedom that will one day belong to all
+Warforged."""
+drop_location = "Advance to level 15, End reward"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 15
+race_required = "Bladeforged"
+slot = "Goggles"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Repair"
+bonus_type = "Competence"
+value = 13
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

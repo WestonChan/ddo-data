@@ -1,0 +1,41 @@
+name = "Spiked Turban"
+description = "A spiked metal helm with a silk wrapping to ward off the desert sun."
+drop_location = "Sands of Menechtarun, Mendexethazz 's Chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Helmet_39a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 6
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "mendexethazz 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

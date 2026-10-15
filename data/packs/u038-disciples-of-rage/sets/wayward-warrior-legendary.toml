@@ -1,0 +1,43 @@
+name = "Wayward Warrior (Legendary)"
+icon = "WaywardWarrior"
+
+[[item]]
+name = "Legendary Giant's Platter"
+primary = true
+
+[[item]]
+name = "Legendary Scales of the Exile"
+
+[[item]]
+name = "Legendary Tail of the Scorpion"
+
+[[item]]
+name = "Legendary Vulkoor's Edge"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Natural Armor"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Constitution"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Constitution"
+effect_type = "NaturalArmor"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]

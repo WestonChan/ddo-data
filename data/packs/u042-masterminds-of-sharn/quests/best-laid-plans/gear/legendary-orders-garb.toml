@@ -1,0 +1,42 @@
+name = "Legendary Order's Garb"
+description = "Balance within the enigma."
+drop_location = "Best Laid Plans, End chest"
+enhancement_bonus = 15
+icon = "Cloth_3"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 29
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Best Laid Plans"

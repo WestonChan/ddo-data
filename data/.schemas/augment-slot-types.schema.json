@@ -1,0 +1,98 @@
+{
+  "$defs": {
+    "EntityNote": {
+      "additionalProperties": false,
+      "properties": {
+        "added_as_name": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "field": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string"
+        },
+        "original_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "qualifier": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "upstream": {
+          "description": "Omitted when Maetrim has no value for this field."
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "entity_notes"
+    },
+    "SocketType": {
+      "additionalProperties": false,
+      "properties": {
+        "family": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "note": {
+          "items": {
+            "$ref": "#/$defs/EntityNote"
+          },
+          "type": "array"
+        },
+        "qualifier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "variant": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "family",
+        "label",
+        "variant"
+      ],
+      "type": "object",
+      "x-table": "augment_slot_types"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "row": {
+      "items": {
+        "$ref": "#/$defs/SocketType"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "row"
+  ],
+  "title": "AugmentSlotTypesFile",
+  "type": "object"
+}

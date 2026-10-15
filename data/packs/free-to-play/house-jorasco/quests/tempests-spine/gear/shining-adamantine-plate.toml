@@ -1,0 +1,36 @@
+name = "Shining Adamantine Plate"
+description = """
+This armor consists of shaped and fitted metal plates riveted and interlocked
+to cover the entire body."""
+drop_location = "Tempest's Spine, right end chest"
+enhancement_bonus = 4
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Adamantine"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 13
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Command"
+value = 2
+value2 = -6
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "right end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

@@ -1,0 +1,37 @@
+name = "Delighter's Docent"
+description = """
+Despite being constructed from shadows and sugar, this docent radiates arcane
+power."""
+drop_location = "The Night Revels, Turn in Joe Candymaker,"
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 1
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = 1
+armor_type = "Docent"
+mithral_body = 5
+
+[[clickie]]
+name = "Night Horrors"
+clickie = "Night Horrors"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Night Horrors"]
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

@@ -1,0 +1,32 @@
+name = "Essence of the Cracked Core"
+description = """
+Alchemical Conservation: This item modifies the user's energy expenditure in
+such a way that many abilities can be used more frequently than normal. You will
+gain +1 Ki on every successful attack (Enhanced Ki). You will gain an additional
+use, per rest, of: Action boost, Turn Undead, and Bard song. These additional uses
+will only take effect after your rest.
+Requires: 50 Threads of Fate, Empty Soul Vessel and Cracked Core (Project Nemesis)"""
+family = "Named"
+icon = "TopazRaidItemEssence"
+min_level = 30
+
+[[effect]]
+name = "Ki on Hit"
+bonus_type = "Destiny"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect = "Ki on Hit"
+effect_type = "KiHit"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

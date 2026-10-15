@@ -1,0 +1,35 @@
+name = "Seven Fingered Gloves"
+description = """
+Plain white gloves of undistinguished make or material. But then there's that
+whole 'seven fingers' thing..."""
+drop_location = "The Titan Awakes, Raid Warded chest"
+icon = "Gloves_19"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Hands"
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Arcane Casting Dexterity"
+bonus_type = "Enhancement"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

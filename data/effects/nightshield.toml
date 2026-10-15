@@ -1,0 +1,3 @@
+name = "Nightshield"
+description_template = "Caster level: 14 Charges: 5 (5/day)"
+verbose_name_template = "Nightshield — 5 Charges"

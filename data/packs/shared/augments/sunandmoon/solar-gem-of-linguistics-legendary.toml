@@ -1,0 +1,43 @@
+name = "Solar Gem of Linguistics (Legendary)"
+description = """
++6 Artifact bonus to Diplomacy, Intimidate and Bluff
+Drops in: A Light in the Attic, end chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Artifact"
+value = 6
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Artifact"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Intimidate",
+    "Bluff",
+]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"

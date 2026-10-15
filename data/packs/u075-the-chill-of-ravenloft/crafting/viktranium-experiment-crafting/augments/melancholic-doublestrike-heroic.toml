@@ -1,0 +1,20 @@
+name = "Melancholic Doublestrike (Heroic)"
+description = "+6% Enhancement bonus to Doublestrike."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

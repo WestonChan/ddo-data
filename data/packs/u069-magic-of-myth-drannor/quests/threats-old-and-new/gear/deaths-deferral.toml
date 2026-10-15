@@ -1,0 +1,41 @@
+name = "Death's Deferral"
+description = "The power to deny death is sought by many, but few understand its cost."
+drop_location = "Threats Old and New, Raid Warded chest"
+icon = "Boots_11e"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 33
+slot = "Feet"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Undying"
+bonus_type = "Enhancement"
+value = 285
+
+[[socket]]
+slot = "crafting: sealed in undeath"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Threats Old and New"

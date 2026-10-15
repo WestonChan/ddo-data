@@ -1,0 +1,31 @@
+name = "Dolorous Light Spell Crit Damage (Heroic)"
+description = "+5% Insight bonus to Light and Alignment Spell Critical Damage."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Dolorous Light Spell Critical Damage (Heroic)"
+reason = "The wiki names it Dolorous Light Spell Crit Damage (Heroic), where Maetrim names it Spell Critical Damage."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-10-02"
+qualifier = 'family "Lamordia_Heroic"'
+
+[[slot]]
+slot = "lamordia: dolorous (accessory)"

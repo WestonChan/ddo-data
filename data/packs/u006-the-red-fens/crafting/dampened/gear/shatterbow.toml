@@ -1,0 +1,45 @@
+name = "Shatterbow"
+description = """
+Arrows fired from this bow are invested with powerful sonic energy, and are
+shot so fast that they shriek through the air. Constructs hit by these arrows
+are wounded grievously."""
+drop_location = "Altar of Vulkoor, Upgrade of Dampened Shatterbow"
+enhancement_bonus = 3
+icon = "Longbow_1j"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Reverberating 2"
+
+[[effect]]
+name = "Construct Bane 2"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 7
+
+[[source]]
+kind = "crafting_system"
+name = "Dampened"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

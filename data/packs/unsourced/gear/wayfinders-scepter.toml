@@ -1,0 +1,31 @@
+name = "Wayfinder's Scepter"
+accepts_sentience = true
+description = """
+This scepter is a trophy of renown in the halls of Wayfinder Foundation. Those
+who have received this exclusive reward"""
+drop_location = "Special event items, Item Finding Reward"
+icon = "Club_25"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 1
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 1
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

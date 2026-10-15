@@ -1,0 +1,41 @@
+name = "Robe of Potency"
+description = """
+These enchanted vestments serve to energize spells cast by the wearer, increasing
+their power."""
+drop_location = "Tempest's Spine, Vyikkus ' Chest"
+icon = "Cloth_1f"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 40
+
+[[effect]]
+name = "Spell Lore III"
+bonus_type = "Equipment"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "vyikkus ' chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

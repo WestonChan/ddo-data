@@ -1,0 +1,5 @@
+name = "Seeker"
+category = "martial"
+description_template = "Provides a {1} %b1 bonus to confirm critical hits, and a {1} %b1 bonus to critical hit damage (before multipliers are applied)."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Seeker +{1}"

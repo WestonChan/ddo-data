@@ -1,18 +1,21 @@
 {
   "bonus_types": [
     {
-      "id": 1,
-      "name": "Enhancement",
+      "id": 6572337191316843,
+      "name": "Action Boost",
+      "slug": "action-boost",
       "stacks_with_self": false
     },
     {
-      "id": 2,
-      "name": "Competence",
+      "id": 7130788633516100,
+      "name": "Alchemical",
+      "slug": "alchemical",
       "stacks_with_self": false
     },
     {
-      "id": 3,
-      "name": "Insight",
+      "id": 6103080548610061,
+      "name": "Armor",
+      "slug": "armor",
       "stacks_with_self": false
     }
   ],

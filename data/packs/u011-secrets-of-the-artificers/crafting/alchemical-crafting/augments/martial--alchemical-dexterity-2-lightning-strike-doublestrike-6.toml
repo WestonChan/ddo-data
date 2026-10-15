@@ -1,0 +1,46 @@
+name = "Martial: Alchemical Dexterity +2, Lightning Strike, Doublestrike 6%"
+description = """
++2 Alchemical bonus to Dexterity
+Lightning Strike: This weapon stores the power of a volatile thunderstorm deep
+within. Occasionally, this dynamic power comes to the surface, devastating
+enemies with a massive lightning strike.
+Doublestrike 6%: Passive: 6% Enhancement bonus to Doublestrike. (Doublestrike
+is a chance to score an additional hit with a melee attack.)"""
+family = "Alchemical"
+min_level = 18
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Alchemical"
+value = 2
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Alchemical"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Martial: Alchemical Dexterity +2, Lighting Strike, Doublestrike 6%"
+reason = "Lighting Strike is a typo for the wiki's Lightning Strike."
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-09-30"
+
+[[slot]]
+slot = "crafting: alchemical tier 2"

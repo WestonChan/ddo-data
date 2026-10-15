@@ -1,0 +1,3 @@
+name = "Entropic"
+description_template = "An entropic weapon crackles with a sinister energy that seeks to unmake anything it contacts. When it strikes a target, they take an extra 2 to 12 points of untyped damage."
+verbose_name_template = "Entropic"

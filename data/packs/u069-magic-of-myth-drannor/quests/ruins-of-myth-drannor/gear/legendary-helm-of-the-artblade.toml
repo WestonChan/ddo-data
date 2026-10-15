@@ -1,0 +1,44 @@
+name = "Legendary Helm of the Artblade"
+description = """
+When the Echo broke off from the Artblade, the force of its defiance manifested
+this helm, and shares its clarity of purpose."""
+drop_location = "Ruins of Myth Drannor, Yegora 's chest (rare)"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 33
+slot = "Head"
+
+[[effect]]
+name = "Power of Creeping Dust"
+value = 156
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 37
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "yegora 's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

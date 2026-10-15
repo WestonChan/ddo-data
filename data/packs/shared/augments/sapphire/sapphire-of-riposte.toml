@@ -1,0 +1,63 @@
+name = "Sapphire of Riposte"
+description = """
+Riposte +2: This item enchants its user with incredible awareness and speed,
+granting a +2 Insight bonus to AC and to Saves.
+Drops in: ToEE: First Level and Earth Temple and ToEE: Lower Temple Complex, rare
+encounter chests"""
+family = "Sapphire"
+icon = "SapphireBlueBorder"
+min_level = 8
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Insight"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"
+
+[[source]]
+chest = "any rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"
+
+[[source]]
+chest = "rare"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: First Level and Earth Temple"
+
+[[source]]
+chest = "rare"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Lower Temple Complex"

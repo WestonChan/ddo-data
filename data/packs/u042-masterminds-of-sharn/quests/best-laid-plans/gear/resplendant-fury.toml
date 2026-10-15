@@ -1,0 +1,115 @@
+name = "Resplendant Fury"
+description = "The concord of Syrania flickers within your hands."
+drop_location = "Best Laid Plans, End Chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 15
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 5
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Insight"
+value = 47
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Insight"
+value = 9
+
+[[effect]]
+name = "Coalesced Flame"
+
+[[socket]]
+slot = "crafting: variant ability"
+
+[[socket.option]]
+name = "Insightful Charisma +3"
+description = "+3 Insight bonus to Charisma"
+icon = "Variant"
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket.option]]
+name = "Insightful Intelligence +3"
+description = "+3 Insight bonus to Intelligence"
+icon = "Variant"
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Insightful Wisdom +3"
+description = "+3 Insight bonus to Wisdom"
+icon = "Variant"
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Best Laid Plans"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

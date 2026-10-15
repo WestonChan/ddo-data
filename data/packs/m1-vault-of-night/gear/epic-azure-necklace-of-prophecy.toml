@@ -1,0 +1,33 @@
+name = "Epic Azure Necklace of Prophecy"
+description = """
+This glittering necklace is rumored to contain important hints of the draconic
+prophecy. They rarely fall in the hands of non-dragon kind."""
+drop_location = "Epic version of Azure Necklace of Prophecy"
+icon = "Necklace_17a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 27
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "green"

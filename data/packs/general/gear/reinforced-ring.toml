@@ -1,0 +1,23 @@
+name = "Reinforced Ring"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Ring_12"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 15
+race_required = "Shadar-Kai"
+slot = "Ring"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Exceptional"
+value = 1
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

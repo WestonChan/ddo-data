@@ -1,0 +1,43 @@
+name = "Half-Elf"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Half-Elves are a cross between humans and elves, so Half-Elves have a good blend
+of human versatility and elven sensibility and have access to both race's
+enhancements and racial-specific equipment. Half-Elves don't have a favored
+class, they can do well in any class and are also naturals at social interaction
+and can use social skills more often than the other races, an advantage in
+managing the battle and assisting their party. They may also dabble with an
+additional class ability using the Dilettante feat, making them even more
+diverse and self-sufficient."""
+short_name = "Half-Elf"
+starting_world = "Eberron"
+
+[[feat_slot]]
+feat_type = "Dilettante Feat"
+level = 1
+
+[[granted_feat]]
+feat = "Immunity to Sleep"
+
+[[granted_feat]]
+feat = "Half-Elven Keen Senses"
+
+[[granted_feat]]
+feat = "Half-Elven Social Graces"
+
+[[granted_feat]]
+feat = "Half-Elven Social Graces: Bluff"
+
+[[granted_feat]]
+feat = "Half-Elven Social Graces: Diplomacy"
+
+[[granted_feat]]
+feat = "Half-Elven Social Graces: Intimidate"
+
+[[granted_feat]]
+feat = "Half-Elven Mixed Heritage"

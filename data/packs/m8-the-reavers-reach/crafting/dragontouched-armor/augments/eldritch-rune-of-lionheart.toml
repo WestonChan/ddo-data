@@ -1,0 +1,10 @@
+name = "Eldritch Rune of Lionheart"
+description = """
+Lionheart: The user of this item has a chance to gain the benefits of the Remove Fear
+spell when being hit in melee."""
+family = "Dragontouched_EldritchRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: eldritch rune"

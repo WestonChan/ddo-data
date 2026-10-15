@@ -1,0 +1,211 @@
+[[row]]
+name = "Animal Growth"
+description = """
+Grants an Animal, Magical Beast, or Vermin a +4 Size Bonus to Strength, a +4 Size
+Bonus to Constitution, and a -2 penalty to Dexterity."""
+icon = "AnimalGrowth"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Size"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Size"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-2]
+apply_as_item_effect = true
+bonus_type = "Penalty"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Size"
+display_name = "Animal Growth + Spirit of the Beast"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Size"
+display_name = "Animal Growth + Spirit of the Beast"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    -4,
+]
+apply_as_item_effect = true
+bonus_type = "Penalty"
+display_name = "Animal Growth + Spirit of the Beast"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row]]
+name = "Camouflage"
+description = """
+An ally becomes more able to blend in with its surroundings giving them a +10
+Circumstance bonus to Hide."""
+icon = "Camouflage"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Circumstance"
+effect_type = "SkillBonus"
+targets = ["Hide"]
+
+[[row]]
+name = "Camouflage, Mass"
+description = "Casts Camouflage on multiple targets giving a +10 Circumstance bonus to Hide."
+icon = "CamouflageMass"
+metamagics = [
+    "Enlarge",
+    "Extend",
+    "Quicken",
+]
+schools = ["Abjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Circumstance"
+effect_type = "SkillBonus"
+targets = ["Hide"]
+
+[[row]]
+name = "Charm Animal"
+description = """
+Charms a hostile Animal, Magical Beast or Vermin which will fight as a trusted friend
+and ally. Charmed animals get an additional save every 15 to 30 seconds.
+A successful Will save negates this effect. Mindless targets cannot save, but
+the duration is halved."""
+icon = "CharmAnimal"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Magic Fang"
+description = """
+Increases the Enhancement Bonus of the target's natural weapon by 1, plus 1 per five
+caster levels. An item can have only one temporary item Enhancement at a time.
+Only works on players, hirelings, or pets, and only if they are Animals,
+Vermin, Magical Beasts, Dragons or Fey."""
+icon = "MagicFang"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Summon Nature's Ally I"
+description = """
+Summons a Gray Wolf or a Brown Rat to fight for you for 10 minutes. You can only
+have 1 summoned creature of any type serving you at a time. Summoning a new
+creature of any type will return the previous one to its home plane."""
+icon = "SummonNaturesAllyI"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Summon Nature's Ally II"
+description = """
+Summons a Hyena or Black Widow to fight for you for 10 minutes. You can only have 1
+summoned creature of any type serving you at a time. Summoning a new creature
+of any type will return the previous one to its home plane."""
+icon = "SummonNaturesAllyII"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Summon Nature's Ally III"
+description = """
+Summons a Lioness or Winter Wolf to fight for you for 10 minutes. You can only have
+1 summoned creature of any type serving you at a time. Summoning a new creature
+of any type will return the previous one to its home plane."""
+icon = "SummonNaturesAllyIII"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Summon Nature's Ally IV"
+description = """
+Summons a Young Razor Cat or Glass Spider to fight for you for 10 minutes. You can
+only have 1 summoned creature of any type serving you at a time. Summoning a
+new creature of any type will return the previous one to its home plane."""
+icon = "SummonNaturesAllyIV"
+metamagics = ["Quicken"]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Wild Instincts"
+description = """
+You sharpen your instincts and your awareness of immediate surroundings, giving a
++10 Insight bonus on Listen and Spot checks."""
+icon = "WildInstincts"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Divination"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Spot",
+]

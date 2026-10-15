@@ -1,0 +1,66 @@
+name = "Delight of the Devourer"
+icon = "WrathOfSoraKell"
+
+[[augment]]
+name = "Delight of the Devourer"
+family = "LostPurpose"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Artifact"
+reason = "The wiki types Universal Spell Critical Damage as Legendary at 3 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Universal Spell Critical Damage / Artifact"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Lore"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "UniversalSpellLore"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "UniversalSpellCriticalDamage"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

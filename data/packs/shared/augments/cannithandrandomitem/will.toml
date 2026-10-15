@@ -1,0 +1,87 @@
+name = "Will"
+choose_level = true
+description = "You have a Resistance bonus to Will saves"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    2,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    10,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+    13,
+]
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Resistance"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[slot]]
+slot = "crafting: cannith bracers prefix"
+
+[[slot]]
+slot = "crafting: cannith cloak prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: random bracers prefix"
+
+[[slot]]
+slot = "crafting: random cloak prefix"
+
+[[slot]]
+slot = "crafting: random cloak suffix"
+
+[[slot]]
+slot = "crafting: random gloves suffix"
+
+[[slot]]
+slot = "crafting: random helmet suffix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

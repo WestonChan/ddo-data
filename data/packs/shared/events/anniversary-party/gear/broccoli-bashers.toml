@@ -1,0 +1,62 @@
+name = "Broccoli Bashers"
+accepts_sentience = true
+description = "As everyone knows, Oozes hate broccoli."
+drop_location = "Anniversary Party, Turn in 80"
+enhancement_bonus = 7
+icon = "Club_12"
+item_category = "Weapon"
+item_type = "Club"
+material = "Blueshine"
+minimum_level = 25
+slot = "Main Hand"
+
+[[clickie]]
+name = "Blinding Flash"
+clickie = "Blinding Flash"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Ooze Bane 5"
+
+[[effect]]
+name = "Bludgeoning 5"
+
+[[effect]]
+name = "Smashing 12"
+
+[[effect]]
+name = "Everbright"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Blinding Flash"]
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "One-handed"
+weapon_type = "Club"

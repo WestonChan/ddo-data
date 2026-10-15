@@ -1,0 +1,74 @@
+name = "Epic Boneshard Flute"
+accepts_sentience = true
+description = """
+A hollowed-out femur bone inscribed with draconic runes. Voices from beyond
+the grave whisper in your ear while you hold the flute."""
+drop_location = "The Missing Party, End chest"
+enhancement_bonus = 8
+icon = "Club_1c"
+item_category = "Weapon"
+item_type = "Club"
+material = "Bone"
+minimum_level = 25
+slot = "Main Hand"
+
+[[clickie]]
+name = "Control Undead"
+clickie = "Control Undead"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 25
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 19
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 128
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Control Undead"]
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Missing Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "One-handed"
+weapon_type = "Club"

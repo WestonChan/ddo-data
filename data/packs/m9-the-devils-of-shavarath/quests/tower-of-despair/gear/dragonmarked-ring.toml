@@ -1,0 +1,46 @@
+name = "Dragonmarked Ring"
+description = """
+This ring is inscribed with tiny Dragonmarks, and becomes more powerful in the
+hands of a Dragonmarked Heir."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Dragonmark Heir"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Dragonmark Heir - 2 Piece bonus"
+effect_type = "NotModeled"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

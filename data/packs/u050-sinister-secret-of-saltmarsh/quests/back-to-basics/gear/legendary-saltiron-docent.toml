@@ -1,0 +1,49 @@
+name = "Legendary Saltiron Docent"
+description = """
+With this Docent embedded, plates of Saltiron cover your body, mostly hidden
+by a fine coat."""
+drop_location = "Back to Basics, end chest, or Legendary version of Epic Saltiron Docent"
+enhancement_bonus = 15
+icon = "Docent_3c"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 30
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 146
+
+[[effect]]
+name = "The Golden Curse"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic saltiron docent"
+kind = "quest"
+loot_type = "chest"
+name = "Back to Basics"

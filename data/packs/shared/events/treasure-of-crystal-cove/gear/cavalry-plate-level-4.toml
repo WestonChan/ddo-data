@@ -1,0 +1,76 @@
+name = "Cavalry Plate (level 4)"
+description = """
+High-seas pirates plundered this richly-decorated plate mail from naval cavalry
+officers. Although it did not suit the pirates well, a fighter looking for
+better protection may benefit from it."""
+drop_location = "Treasure of Crystal Cove, Turn in 100 Silver Doubloon 50 Golden Doubloon 15 Stolen Pyrite 300 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 1
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Mithral"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 9
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "Lesser False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 1
+
+[[socket]]
+slot = "crafting: upgradeable tier 2"
+
+[[socket.option]]
+name = "+1 Enhancement Bonus -> +2 Enhancement Bonus"
+description = "+2 Enhancement Bonus: This item has been magically enhanced. Armor with this quality gains a +2 Enhancement bonus to AC."
+min_level = 4
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "crafting: upgradeable tier 3"
+
+[[socket.option]]
+name = "Lesser False Life -> False Life"
+description = "False Life +10: +10 Enhancement bonus to hit points."
+min_level = 4
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "False Life"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

@@ -1,0 +1,21 @@
+name = "The Darklake"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 0
+pack = "Terror of Demogorgon"
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Darklake"
+read = "2026-10-02"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "legendary"
+level = 37

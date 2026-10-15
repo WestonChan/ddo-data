@@ -1,0 +1,61 @@
+name = "Quarantine"
+description = "It's hard to spread plague when you're frozen solid."
+drop_location = "Quarantine, End Chest"
+icon = "RuneArm_2a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 14
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 90
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 7
+
+[[effect]]
+name = "Occasional Overcooling"
+
+[[effect]]
+name = "Rune Arm Imbue - Cold IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cold Bolts",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Quarantine"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

@@ -1,0 +1,43 @@
+name = "Occultic Circlet"
+description = "While wearing this circlet, you feel a surge of immense power."
+drop_location = "Catalyst Crafting, Turn in Pansophic Circlet, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+icon = "Helmet_36"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 54
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 27
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 13
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Sacred"
+value = 1
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

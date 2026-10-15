@@ -1,0 +1,153 @@
+name = "Death's Touch"
+description = "A palpable aura of evil radiates from this malevolent weapon."
+drop_location = "The Mindsunder, Disc locked optional end chest"
+enhancement_bonus = 5
+icon = "Sickle_4"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Steel"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Negative Energy Spike"
+
+[[effect]]
+name = "Lesser Vampirism"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 84
+
+[[effect]]
+name = "Void Lore VI"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "crafting: suppressed power"
+
+[[socket.option]]
+name = "Adds Unholy Burst and Necromancy Focus II"
+description = """
+Unholy Burst: An unholy weapon is imbued with unholy power. This power makes the
+weapon evil-aligned and thus bypasses the corresponding damage reduction.
+It deals an extra 2 to 12 points of damage against all of good alignment and an
+extra 3 to 18 on a critical for weapons with a x2 critical multiplier, 4 to 24
+for a x3 multiplier, and 5 to 30 for a x4 multiplier.
+Necromancy Focus II: +2 Equipment bonus to the DC of Necromancy spells."""
+min_level = 18
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+value = 2
+
+[[socket.option.modifier]]
+bonus = "Not Set"
+dice_damage = "Evil"
+dice_number = [2]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Good"]
+req_type = "EnemyType"
+
+[[socket.option.modifier]]
+amount_type = "CriticalDice"
+bonus = "Not Set"
+dice_damage = "Evil"
+dice_number = [
+    0,
+    2,
+    3,
+    4,
+    5,
+    6,
+]
+dice_sides = [
+    0,
+    6,
+    6,
+    6,
+    6,
+    6,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Good"]
+req_type = "EnemyType"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "NegativeLevel"
+
+[[socket.option.modifier.requirement_group]]
+kind = "one_of"
+
+[[socket.option.modifier.requirement_group.requirement]]
+items = ["Lawful Good"]
+req_type = "Alignment"
+
+[[socket.option.modifier.requirement_group.requirement]]
+items = ["Neutral Good"]
+req_type = "Alignment"
+
+[[socket.option.modifier.requirement_group.requirement]]
+items = ["Chaotic Good"]
+req_type = "Alignment"
+
+[[socket.option.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "DRBypass"
+value = "Evil"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[source]]
+chest = "disc locked optional end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mindsunder"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 7
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "One-handed"
+weapon_type = "Sickle"

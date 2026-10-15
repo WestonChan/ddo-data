@@ -1,0 +1,43 @@
+name = "Lunar Gem of Disable Device and Open Lock (Heroic)"
+description = """
++2 Profane Bonus to Disable Device and Open Lock
+Drops in: Beneath the City Streets, Dead Man's Wrath's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "dead man's wrath's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"
+
+[[source]]
+chest = "j'anara's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

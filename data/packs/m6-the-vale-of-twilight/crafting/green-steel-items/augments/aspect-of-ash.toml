@@ -1,0 +1,10 @@
+name = "Aspect of Ash"
+description = """
+Waves of Exhaustion (3/day)
+Fire:Negative or Negative:Fire"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect i"

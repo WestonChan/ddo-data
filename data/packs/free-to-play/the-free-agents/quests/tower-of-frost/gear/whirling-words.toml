@@ -1,0 +1,66 @@
+name = "Whirling Words"
+description = """
+This Rune Arm belonged to a very literate wizard in a tower. All of his read
+tomes are fed into this machine, and the supply seems endless."""
+drop_location = "Tower of Frost, End chest"
+icon = "RuneArm_1"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 14
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 4
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 13
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Rune Arm Imbue - Bludgeon IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Book Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Tower of Frost"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

@@ -1,0 +1,41 @@
+name = "Dragontouched Breastplate"
+description = """
+This breastplate is etched with several ancient draconic runes that appear to
+be dormant. Perhaps untold powers can be awakened if a power source could be
+found."""
+drop_location = "Dragontouched Armor, Turn in 50 Draconic Runes &amp; Complete the quest Stealer of Souls"
+enhancement_bonus = 5
+icon = "MediumArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Dragontouched"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 12
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Dragontouched"
+
+[[socket]]
+slot = "crafting: eldritch rune"
+
+[[socket]]
+slot = "crafting: tempest rune"
+
+[[socket]]
+slot = "crafting: sovereign rune"
+
+[[source]]
+kind = "crafting_system"
+name = "Dragontouched Armor"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Stealer of Souls"

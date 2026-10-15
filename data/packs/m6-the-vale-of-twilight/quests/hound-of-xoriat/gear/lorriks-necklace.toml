@@ -1,0 +1,31 @@
+name = "Lorrik's Necklace"
+description = """
+This relic of the Silver Flame was supposedly once worn by the powerful cleric
+Lorrik. Lorrik and his brother Levik disappeared many years ago while investigating
+tales of an ancient creature residing beneath Stormreach."""
+drop_location = "Hound of Xoriat, Raid Warded chest"
+icon = "Necklace_3a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 13
+slot = "Neck"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Efficient Metamagic - Empower Healing II"
+bonus_type = "Equipment"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hound of Xoriat"

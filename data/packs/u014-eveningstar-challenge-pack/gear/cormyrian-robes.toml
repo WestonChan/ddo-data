@@ -1,0 +1,34 @@
+name = "Cormyrian Robes"
+description = """
+This robe, dyed in the purple of Cormyr's knights, is reinforced with metal
+plates. It has been enchanted by the War Wizards with magics to aid in spellcasting."""
+drop_location = "Eveningstar Challenge Pack"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 8
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 90
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

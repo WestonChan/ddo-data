@@ -1,0 +1,11 @@
+name = "Undying"
+default_value = 1
+description_template = "Bound to service beyond death, you gain a {1} %b1 bonus to your Incapacitation range."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Undying +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Unconsciousness Range"

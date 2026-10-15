@@ -1,0 +1,301 @@
+name = "Prismatic Cloak, Red (Level 27)"
+description = """
+How did the rainbow meet its end;
+Will the spectrum ever mend?"""
+drop_location = "The Tracker's Trap, Lines of Supply, Breaking the Ranks, A Break In the Ice, What Goes Up, end chest (Epic Hard)"
+icon = "Cloak_6"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 27
+slot = "Back"
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 28
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Accuracy X"
+description = "Accuracy X: Passive: +10 Competence bonus to attack rolls"
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Attack Bonus"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[socket.option]]
+name = "Bluff +20"
+description = "Bluff +20: Passive: +20 Competence bonus to the Bluff skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Bluff"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Bluff"
+effect_type = "SkillBonus"
+targets = ["Bluff"]
+
+[[socket.option]]
+name = "Concentration +20"
+description = "Concentration +20: Passive: +20 Competence bonus to the Concentration skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Concentration"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Concentration"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[socket.option]]
+name = "Diplomacy +20"
+description = "Diplomacy +20: Passive: +20 Competence bonus to the Diplomacy skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Diplomacy"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Diplomacy"
+effect_type = "SkillBonus"
+targets = ["Diplomacy"]
+
+[[socket.option]]
+name = "Haggle +20"
+description = "Haggle +20: Passive: +20 Competence bonus to the Haggle skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Haggle"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Haggle"
+effect_type = "SkillBonus"
+targets = ["Haggle"]
+
+[[socket.option]]
+name = "Heal +20"
+description = "Heal +20: Passive: +20 Competence bonus to the Heal skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Heal"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Heal"
+effect_type = "SkillBonus"
+targets = ["Heal"]
+
+[[socket.option]]
+name = "Intimidate +20"
+description = "Intimidate +20: Passive: +20 Competence bonus to the Intimidate skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Intimidate"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Intimidate"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[socket.option]]
+name = "Listen +20"
+description = "Listen +20: Passive: +20 Competence bonus to the Listen skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Listen"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Listen"
+effect_type = "SkillBonus"
+targets = ["Listen"]
+
+[[socket.option]]
+name = "Natural Armor +10"
+description = "Natural Armor +10: Passive: +10 Natural Armor Bonus to Armor Class."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Natural Armor"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Natural Armor"
+effect_type = "NaturalArmor"
+
+[[socket.option]]
+name = "Resistance +10"
+description = "Resistance +10: Passive: +10 Resistance bonus to Fortitude, Reflex, and Will Saving Throws."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option]]
+name = "Search +20"
+description = "Search +20: Passive: +20 Competence bonus to the Search skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Search"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Search"
+effect_type = "SkillBonus"
+targets = ["Search"]
+
+[[socket.option]]
+name = "Spellcraft +20"
+description = "Spellcraft +20: Passive: +20 Competence bonus to the Spellcraft skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Spellcraft"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Spellcraft"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[socket.option]]
+name = "Spot +20"
+description = "Spot +20: Passive: +20 Competence bonus to the Spot skill."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Spot"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Spot"
+effect_type = "SkillBonus"
+targets = ["Spot"]
+
+[[socket.option]]
+name = "Wizardry X"
+description = "Wizardry X: This item grants the wearer +250 maximum spell points. Sorcerers and Favored Souls gain up to double spell points from items."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Spell Points"
+value = 250
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [250]
+bonus_type = "Equipment"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Break in the Ice"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Breaking the Ranks"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Lines of Supply"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tracker's Trap"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Goes Up"

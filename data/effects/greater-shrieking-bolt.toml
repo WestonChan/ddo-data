@@ -1,0 +1,3 @@
+name = "Greater Shrieking Bolt"
+description_template = "This item resonates with sonic energy. On ranged attacks, on an attack roll of 20 which is confirmed as a critical hit it will punish the target with a blast of sound (20 to 120 sonic damage)."
+verbose_name_template = "Greater Shrieking Bolt"

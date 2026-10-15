@@ -1,0 +1,37 @@
+name = "Epic Vulkoorim Pendant"
+description = "A golden chain holds a carved jade scorpion."
+drop_location = "Epic version of Vulkoorim Pendant"
+icon = "Necklace_4e"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 111
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"

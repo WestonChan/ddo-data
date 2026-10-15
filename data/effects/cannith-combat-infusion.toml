@@ -1,0 +1,3 @@
+name = "Cannith Combat Infusion"
+description_template = "Your ranged and melee attacks have a chance to cause this item to inject a Cannith Combat Infusion into your bloodstream. For the next ten seconds, this will grant a +4 Alchemical bonus to Strength, Constitution and Dexterity, as well as a 5% Alchemical bonus to your chance to doublestrike and a +2 Alchemical bonus to Armor Class."
+verbose_name_template = "Cannith Combat Infusion"

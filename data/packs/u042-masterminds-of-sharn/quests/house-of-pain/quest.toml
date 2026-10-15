@@ -1,0 +1,29 @@
+name = "House of Pain"
+bestowed_by = "Muldan Heartsun"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Masterminds of Sharn"
+patron = "Sharn City Council"
+zone = "Callestan"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/House_of_Pain"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

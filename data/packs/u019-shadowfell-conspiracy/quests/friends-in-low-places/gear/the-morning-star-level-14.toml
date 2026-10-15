@@ -1,0 +1,54 @@
+name = "The Morning Star (Level 14)"
+description = "Sometimes the only star you need is the sun in the sky."
+drop_location = """
+Friends in Low Places, End chest (Heroic Normal);
+Shadow Over Wheloon, Quest chain end reward (Heroic)"""
+enhancement_bonus = 4
+icon = "Shuriken_2"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Steel"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Solar I"
+
+[[effect]]
+name = "Flaming II"
+
+[[effect]]
+name = "Ghostbane I"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Friends in Low Places"
+
+[[source]]
+kind = "quest_chain"
+name = "Shadow Over Wheloon"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Thrown"
+weapon_type = "Shuriken"

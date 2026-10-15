@@ -1,0 +1,84 @@
+name = "Insightful Fortification"
+choose_level = true
+description = "Insight bonus to Fortification"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    19,
+    21,
+    23,
+    27,
+    29,
+    31,
+    33,
+    35,
+    36,
+    38,
+    40,
+    42,
+    43,
+    45,
+    47,
+    48,
+    50,
+    52,
+    54,
+    55,
+    57,
+    59,
+    61,
+    62,
+    64,
+    66,
+    67,
+    69,
+    71,
+    73,
+    74,
+    76,
+    78,
+    79,
+    81,
+    83,
+    83,
+    83,
+    83,
+    83,
+]
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 79
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [79]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[slot]]
+slot = "crafting: cannith boots extra"
+
+[[slot]]
+slot = "crafting: cannith bracers extra"
+
+[[slot]]
+slot = "crafting: cannith helmet extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random armor extra"
+
+[[slot]]
+slot = "crafting: random boots extra"
+
+[[slot]]
+slot = "crafting: random helmet extra"
+
+[[slot]]
+slot = "crafting: random shield extra"

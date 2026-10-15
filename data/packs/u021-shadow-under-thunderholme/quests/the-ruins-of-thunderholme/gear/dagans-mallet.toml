@@ -1,0 +1,66 @@
+name = "Dagan's Mallet"
+accepts_sentience = true
+description = """
+"With the force of a bolt of lightning, I tear into my foes."
+- Dagan, Regent of Thunderholme"""
+drop_location = "The Ruins of Thunderholme, Any Rare Encounter chests"
+enhancement_bonus = 10
+icon = "ThrowingHammer_2"
+item_category = "Weapon"
+item_type = "Throwing Hammer"
+material = "Steel"
+minimum_level = 27
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Aligned"
+
+[[effect]]
+name = "Knee Cracker"
+
+[[effect]]
+name = "Thunderbane"
+
+[[effect]]
+name = "Forged Lightning"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "any rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Ruins of Thunderholme"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.4
+handedness = "Thrown"
+weapon_type = "Throwing Hammer"

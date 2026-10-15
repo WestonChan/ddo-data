@@ -1,0 +1,37 @@
+name = "Solar Gem of Abjuration (Legendary)"
+description = """
+Artifact Abjuration Focus +4
+Drops in: Locked Away (Part Two), end chest (rare)
+The Chill of Ravenloft (Legendary), any difficulty
+Terror of Demogorgon (Legendary), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Abjuration_(Legendary)"
+read = "2026-09-29"
+
+[[effect]]
+name = "Abjuration Focus"
+bonus_type = "Artifact"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Abjuration Focus"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part Two)"

@@ -1,0 +1,11 @@
+name = "Minor Spell Penetration VII"
+description_template = "Your Level 7 and lower spells gain +1 to the die roll to penetrate the target's Spell Resistance."
+home_bonus_type = "Equipment"
+verbose_name_template = "Minor Spell Penetration VII +1"
+
+[[bonus]]
+amount_from = 0
+constant = 1
+rounding = "down"
+scale = 1.0
+target = "Spell Penetration"

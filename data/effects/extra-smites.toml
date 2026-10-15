@@ -1,0 +1,3 @@
+name = "Extra Smites"
+description_template = "{1} Smite Evil  uses per rest. Smite Evil uses regenerate 15% faster."
+verbose_name_template = "Extra Smites +{1}"

@@ -1,0 +1,97 @@
+name = "Cutthroat's Smallblade (legacy) (level 16)"
+description = """
+When a cutlass is simply too big for the job, a pirate will turn instead to
+a trusty smallblade. This one is serrated and quite adept at inflicting painful
+wounds on living creatures."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Copper Doubloon 500 Silver Doubloon 30 Stolen Ruby at Dusty Old Treasure of Crystal Cove"
+enhancement_bonus = 4
+icon = "Shortsword_3"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Slicing"
+
+[[effect]]
+name = "Bleed"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 13
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+5 Enhancement Bonus"
+description = "+5 Enhancement Bonus: +5 Enhancement bonus to attack and damage rolls."
+icon = "Upgrade"
+min_level = 16
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds Corrosive Salt and Doublestrike 6%"
+description = """
+Corrosive Salt: This weapon stores a caustic, insatiable power deep within. When
+this weapon is used, this power can come to the surface in the form of a noxious,
+corrosive salt that dissolves all substances.
+Doublestrike 6%: Passive: 6% Enhancement bonus to Doublestrike. (Doublestrike is
+a chance to score an additional hit with a melee attack.)"""
+icon = "Upgrade"
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Shortsword"

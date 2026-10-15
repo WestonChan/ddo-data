@@ -1,0 +1,3 @@
+name = "Smite Evil Power"
+description_template = "When you activate Smite Evil, you gain +5 Melee Power +1 per Religious Lore you have for 60 seconds."
+verbose_name_template = "Smite Evil Power"

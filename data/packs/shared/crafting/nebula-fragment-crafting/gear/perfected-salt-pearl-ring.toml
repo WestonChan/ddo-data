@@ -1,0 +1,48 @@
+name = "Perfected Salt-Pearl Ring"
+description = "This ring features a singular pearl encrusted with bitter salt."
+drop_location = "Lahar, Turn in Nebula Fragment"
+icon = "Ring_21f"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 30
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 157
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 11
+
+[[effect]]
+name = "Legendary Cacophonic Guard"
+
+[[effect]]
+name = "Anthem Melody"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Nebula Fragment Crafting"

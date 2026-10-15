@@ -1,0 +1,39 @@
+name = "Hallowed Gauntlets"
+description = """
+Wear these powerful gauntlets to channel additional holy energies against the
+Undead."""
+drop_location = "Watch Your Step, End Chest"
+icon = "Gloves_6"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 21
+slot = "Hands"
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 9
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Watch Your Step"

@@ -1,0 +1,27 @@
+name = "The Legendary Book of Defense: Reflexes"
+description = "+12 Resistance bonus to Reflex Saving Throws."
+family = "VecnaUnleashed"
+icon = "HistoryBookBlue"
+min_level = 32
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Resistance"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

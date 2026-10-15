@@ -1,0 +1,36 @@
+name = "Mindcleaver (Level 5)"
+description = "The manifestation of your mind has been sharpened to a keen edge. As you increase in level, this weapon will also grow in power. Because it is a manifestation of pure mind rather than a physical weapon, it will dissipate if unequipped."
+drop_location = "The page gives no location"
+enhancement_bonus = 2
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Force"
+minimum_level = 5
+slot = "Main Hand"
+wiki_url = "https://ddowiki.com/page/Item:Mindcleaver_%28level_5%29"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Mindcleaver_%28level_5%29"
+read = "2026-09-29"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Mindcleaver"
+
+[[effect]]
+name = "Impactful 2"
+
+[[effect]]
+name = "Force Blast 2"
+
+[[weapon]]
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

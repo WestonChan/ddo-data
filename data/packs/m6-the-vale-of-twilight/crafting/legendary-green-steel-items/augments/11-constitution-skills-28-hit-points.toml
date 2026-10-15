@@ -1,0 +1,39 @@
+name = "+11 Constitution Skills, +28 Hit Points"
+description = """
+Material/Escalation: +11 Insight bonus to Constitution based skills.
++28 Insight Hit Points"""
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Escalation"""
+
+[[effect]]
+name = "Constitution Skills"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Insight"
+value = 28
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Constitution"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [28]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[slot]]
+slot = "crafting: equipment tier 2"

@@ -1,0 +1,21 @@
+name = "The Weapons Shipment"
+bestowed_by = "Mystichaze Shastien"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Devils of Shavarath"
+patron = "The Twelve"
+zone = "Perdition Pass"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Weapons_Shipment"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

@@ -1,0 +1,29 @@
+name = "Belt of the Seven Ideals (Level 12)"
+description = """
+This gaudy belt is adorned with seven faceted stones that span every color of
+the rainbow. Surely they have magical as well as aesthetic properties."""
+drop_location = "Gianthold Tor, Black Dragon chest (Heroic Normal)"
+icon = "Belt_9"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 12
+slot = "Waist"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 44
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "black dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

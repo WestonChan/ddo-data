@@ -1,0 +1,22 @@
+name = "Made to Order"
+bestowed_by = "Hazra d'Kundarak"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Kundarak"
+zone = "Haywire Grotto"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Made_to_Order"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11

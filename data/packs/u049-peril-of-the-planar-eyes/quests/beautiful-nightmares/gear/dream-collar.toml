@@ -1,0 +1,35 @@
+name = "Dream Collar"
+description = "This collar belonged to a very, very good boy."
+drop_location = "Beautiful Nightmares, End chest"
+icon = "Necklace_11"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 12
+slot = "Neck"
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beautiful Nightmares"

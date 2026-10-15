@@ -1,0 +1,49 @@
+name = "Legendary Tanaroa Sneaking Suit"
+description = "Wearing this makes you feel lighter on your feet."
+drop_location = "Fall of the Forbidden Temple, end chest"
+enhancement_bonus = 15
+icon = "LightArmor_8"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 10
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 20
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 74
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fall of the Forbidden Temple"

@@ -1,0 +1,50 @@
+name = "Insanity"
+description = """
+This mighty blade has become an embodiment of the madness of Xoriat. Enemies
+struck by its cleaving edge feel their minds weakening, and have a chance to
+go wild and attack their own allies."""
+drop_location = "Missing, End chest"
+enhancement_bonus = 5
+icon = "Greatsword_15"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Wild Frenzy"
+
+[[effect]]
+name = "Bewildering"
+value = 1
+
+[[effect]]
+name = "Unbalancing"
+
+[[effect]]
+name = "Unwieldy"
+bonus_type = "Penalty"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Missing"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

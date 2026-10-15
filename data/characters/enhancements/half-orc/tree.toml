@@ -1,0 +1,836 @@
+name = "Half-Orc"
+background = "Half-OrcBackground"
+icon = "Half-Orc"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Half-Orc: Orcish Fury I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "When below 80% health, you gain a +2 morale bonus to strength."
+icon = "HalfOrcOrcishFury"
+internal_name = "HalfOrcCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    100,
+    0,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Hitpoints"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement]]
+items = ["-80% Hitpoints"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Half-Orc: Orcish Strength I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+internal_name = "HalfOrcCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["HalfOrcCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Orcish Fury II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "When below 60% health, you gain a +4 morale bonus to strength."
+icon = "HalfOrcOrcishFury"
+internal_name = "HalfOrcCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement]]
+items = ["-60% Hitpoints"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["HalfOrcCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Orcish Strength II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+internal_name = "HalfOrcCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["HalfOrcCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Orcish Fury III"
+cost_per_rank = [1]
+description = "When below 40% health, you gain a +8 morale bonus to strength."
+icon = "HalfOrcOrcishFury"
+internal_name = "HalfOrcCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement]]
+items = ["-40% Hitpoints"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["HalfOrcCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Tharashk Dragonmark Focus"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark use per day, +[1/2/3] Search"
+icon = "HalfOrcTharashkDragonmarkFocus"
+internal_name = "HalfOrcTharashkDragonmarkFocus"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DragonmarkUse"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Search"]
+
+[[enhancement.requirement]]
+items = ["Least Dragonmark of Finding"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Half-Orc: Mighty Sundering"
+cost_per_rank = [1]
+description = "+[1/2/3] to Sunder DC's."
+icon = "HalfOrcMightySundering"
+internal_name = "HalfOrcMightySundering"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Sunder"]
+
+[[enhancement]]
+name = "Half-Orc: Brute Force"
+cost_per_rank = [2]
+description = "Your attacks or spells make enemies more likely to attack you."
+icon = "HalfOrcBruteForce"
+internal_name = "HalfOrcBruteForce"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.selection]]
+name = "Brutal Spellcasting"
+cost_per_rank = [2]
+description = """
+Your damaging spells generate 75% more hate than they normally
+would, making enemies more likely to attack you."""
+icon = "HalfOrcBrutalSpellcasting"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusSpell"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Brutal Spellcasting"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Brutal Spellcasting"
+description = """
+Activate this ability to cause your melee attacks to generate 75% more hate,
+making enemies more likely to attack you."""
+icon = "HalfOrcBrutalFighting"
+
+[[enhancement.selection]]
+name = "Brutal Fighting"
+cost_per_rank = [2]
+description = """
+Activate this ability to cause your melee attacks to generate 75%
+more hate, making enemies more likely to attack you."""
+icon = "HalfOrcBrutalFighting"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Brute Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Brute Fighting"
+description = """
+Activate this ability to cause your melee attacks to generate 75% more hate,
+making enemies more likely to attack you."""
+icon = "HalfOrcBrutalFighting"
+
+[[enhancement]]
+name = "Half-Orc: Orcish Weapon Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++2 to hit and damage when using two handed melee weapons and +1 to hit and damage
+when using one handed melee weapons."""
+icon = "HalfOrcOrcishWeaponTraining"
+internal_name = "HalfOrcOrcishWeaponTrainingI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = [
+    "WeaponDamageBonusClass",
+    "WeaponAttackBonusCriticalClass",
+    "WeaponDamageBonusCriticalClass",
+]
+targets = ["Two Handed"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = [
+    "WeaponDamageBonusClass",
+    "WeaponAttackBonusCriticalClass",
+    "WeaponDamageBonusCriticalClass",
+]
+targets = ["One Handed"]
+
+[[enhancement]]
+name = "Half-Orc: Stubborn"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] bonus to Will saving throws."
+icon = "HalfOrcStubborn"
+internal_name = "HalfOrcStubborn"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement]]
+name = "Half-Orc: Lesser Dragonmark of Finding"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Lesser Dragonmark Spell: Knock
+Knock unlocks any lock which could be picked by a sufficiently skilled rogue.
+(DC = Character Level + Charisma Modifier).
+Also allows you to use your Least Dragonmark of Finding an extra time per rest."""
+icon = "HalfOrcLesserDragonmarkOfFinding"
+internal_name = "HalfOrcLesserDragonmarkOfFinding"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.dc]]
+name = "Knock"
+class_level = "All"
+dc_type = "Open Lock"
+dc_versus = "Lock DC"
+description = "Lesser Dragonmark Spell: Knock"
+icon = "Knock"
+mod_ability = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Knock",
+    "None",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DragonmarkUse"
+
+[[enhancement.requirement]]
+items = ["HalfOrcTharashkDragonmarkFocus"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Lock Bash"
+cost_per_rank = [1]
+description = """
+Attempt to pick a lock - with your fist.
+This ability operates as an Open Lock check using your Intimidate skill and
+Strength modifier."""
+icon = "HalfOrcLockBash"
+internal_name = "HalfOrcLockBash"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.dc]]
+name = "Half-Orc: Lock Bash"
+dc_type = "Open Lock"
+dc_versus = "Lock DC"
+description = "Attempt to pick a lock - with your fist."
+icon = "HalfOrcLockBash"
+mod_ability = ["Strength"]
+skill = "Intimidate"
+
+[[enhancement]]
+name = "Half-Orc: Extra Action Boost"
+cost_per_rank = [2]
+description = """
+Half-Orcs keep fighting long after other races tire.
+You can use each of your action boosts [1/2/3] additional times per rest."""
+icon = "HalfOrcExtraActionBoost"
+internal_name = "HalfOrcExtraActionBoost"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraActionBoost"
+
+[[enhancement]]
+name = "Half-Orc: Orcish Weapon Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++2 to hit and damage when using two handed melee weapons and +1 to hit and damage
+when using one handed melee weapons."""
+icon = "HalfOrcOrcishWeaponTraining"
+internal_name = "HalfOrcOrcishWeaponTrainingII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = [
+    "WeaponDamageBonusClass",
+    "WeaponAttackBonusCriticalClass",
+    "WeaponDamageBonusCriticalClass",
+]
+targets = ["Two Handed"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = [
+    "WeaponDamageBonusClass",
+    "WeaponAttackBonusCriticalClass",
+    "WeaponDamageBonusCriticalClass",
+]
+targets = ["One Handed"]
+
+[[enhancement.requirement]]
+items = ["HalfOrcOrcishWeaponTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Action Boost: Orcish Rage"
+cost_per_rank = [2]
+description = """
+Action Boost: You become enraged, gaining +40 Primal Bonus to Melee Power and a
++2 Primal Bonus to Strength for 20 seconds. Using this ability enrages you,
+preventing spellcasting and uncenters you.
+Cooldown: 30 seconds"""
+icon = "HalfOrcOrcishRage"
+internal_name = "HalfOrcOrcishRage"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Primal"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = ["Orcish Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+apply_as_item_effect = true
+bonus_type = "Primal"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement]]
+items = ["Orcish Rage"]
+req_type = "Stance"
+
+[[enhancement.stance]]
+name = "Orcish Rage"
+description = """
+Action Boost: You become enraged, gaining +40 Primal Bonus to Melee Power and a
++2 Primal Bonus to Strength for 20 seconds. Using this ability enrages you,
+preventing spellcasting and uncenters you."""
+icon = "HalfOrcOrcishRage"
+
+[[enhancement]]
+name = "Half-Orc: Greater Dragonmark of Finding"
+cost_per_rank = [2]
+description = """
+Greater Dragonmark Spell: Treasure Finding.
+Activate this ability to harness the bloodline of House Tharashk to cast Treasure
+Finding once per rest. Also allows you to use your Least and Lesser Marks of
+Finding an extra time per rest. Treasure Finding lets you target an unopened
+chest and twist fate for a chance at better rewards for the entire party.
+Chests can only be improved in this way once time, and there is a chance of
+failure based on your Charisma.
+(Cooldown: 15 seconds)"""
+icon = "HalfOrcGreaterDragonmarkOfFinding"
+internal_name = "HalfOrcGreaterDragonmarkOfFinding"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Treasure Finding",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["HalfOrcLesserDragonmarkOfFinding"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Great Weapon Aptitude"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "HalfOrcGreatWeaponAptitude"
+internal_name = "HalfOrcGreatWeaponAptitude"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.requirement_group]]
+kind = "one_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Feat"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Natural Fighting"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Half-Orc: Improved Power Attack"
+cost_per_rank = [1]
+description = """
+Your Power Attack feat does [1/2/3] additional point(s) of bonus damage but
+also has an additional -[1/2/3] to your attack bonus."""
+icon = "HalfOrcImprovedPowerAttack"
+internal_name = "HalfOrcImprovedPowerAttack"
+is_clickie = true
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -3,
+]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = ["WeaponAttackBonusCriticalClass"]
+targets = ["Melee"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Melee"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Power Attack"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Half-Orc: Orcish Weapon Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++2 to hit and damage when using two handed melee weapons and +1 to hit and damage
+when using one handed melee weapons."""
+icon = "HalfOrcOrcishWeaponTraining"
+internal_name = "HalfOrcOrcishWeaponTrainingIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = [
+    "WeaponDamageBonusClass",
+    "WeaponAttackBonusCriticalClass",
+    "WeaponDamageBonusCriticalClass",
+]
+targets = ["Two Handed"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = [
+    "WeaponDamageBonusClass",
+    "WeaponAttackBonusCriticalClass",
+    "WeaponDamageBonusCriticalClass",
+]
+targets = ["One Handed"]
+
+[[enhancement.requirement]]
+items = ["HalfOrcOrcishWeaponTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Raging Crush"
+cost_per_rank = [1]
+description = """
+Deals +40% Damage
++100 Critical threat Range
+Cooldown: 30 seconds
+Melee Attack: Brutally smash an enemy. This attack is guaranteed to be a Critical Hit."""
+icon = "HalfOrcRagingCrush"
+internal_name = "HalfOrcRagingCrush"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement]]
+name = "Half-Orc: Brutality"
+cost_per_rank = [1]
+description = "Your melee attacks deal an additional 20% damage to helpless opponents."
+icon = "HalfOrcBrutality"
+internal_name = "HalfOrcBrutality"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamage"
+
+[[enhancement.modifier.requirement]]
+items = ["Melee"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["HalfOrcOrcishWeaponTrainingIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Weapon Training IV"
+arrows = ["ArrowLeft"]
+cost_per_rank = [2]
+description = """
++2 to hit and damage when using two handed melee weapons and +1 to hit and damage
+when using one handed melee weapons."""
+icon = "HalfOrcOrcishWeaponTraining"
+internal_name = "HalfOrcOrcishWeaponTrainingIV"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = [
+    "WeaponDamageBonusClass",
+    "WeaponAttackBonusCriticalClass",
+    "WeaponDamageBonusCriticalClass",
+]
+targets = ["Two Handed"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackBonusClass"
+extra_types = [
+    "WeaponDamageBonusClass",
+    "WeaponAttackBonusCriticalClass",
+    "WeaponDamageBonusCriticalClass",
+]
+targets = ["One Handed"]
+
+[[enhancement.requirement]]
+items = ["HalfOrcOrcishWeaponTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Orc: Power Rage"
+cost_per_rank = [1]
+description = """
+When raging, you gain an additional +[1/2/3] Strength, but also get an additional
+-[1/2/3] penalty to AC."""
+icon = "HalfOrcPowerRage"
+internal_name = "HalfOrcPowerRage"
+min_spent = 15
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[requirement]]
+items = ["Half-Orc"]
+req_type = "Race"

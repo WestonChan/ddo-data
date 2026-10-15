@@ -1,0 +1,36 @@
+name = "Hooves of the Nightmare"
+description = "Where dreams run, the night's terrible horse goes."
+drop_location = "The Wish, end chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 8
+slot = "Feet"
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 19
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Quality"
+value = 17
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wish"

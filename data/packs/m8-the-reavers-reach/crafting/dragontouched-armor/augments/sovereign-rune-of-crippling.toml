@@ -1,0 +1,11 @@
+name = "Sovereign Rune of Crippling"
+description = """
+Adds Crippling to any equipped Melee weapon.
+A crippling weapon is infused with binding power so that when a target is critically
+hit their movement is slowed by half (making it crippled)."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

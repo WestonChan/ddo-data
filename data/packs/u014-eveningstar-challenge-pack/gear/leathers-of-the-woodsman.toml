@@ -1,0 +1,38 @@
+name = "Leathers of the Woodsman"
+description = """
+This exquisite suit of leathers is standard equipment for rangers of the King's
+Forest, in service to the crown of Cormyr. Equipment intended for use in service
+to the kingdom is layered with powerful enchantments by the War Wizards."""
+drop_location = "Eveningstar, Turn in 10 Commendations: Druids of the King's Forest Commendation: Druids of the King's Forest : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Druids of the King's Forest. You can exchange it in Eveningstar for powerful equipment."
+enhancement_bonus = 6
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 14
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 15
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

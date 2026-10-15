@@ -1,0 +1,58 @@
+name = "Radiant Ring"
+description = """
+This shining ring was worn by Tokala, a Radiant Servant, augmenting her power
+against the forces of undeath."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_33"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Radiant Servant"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Radiant Servant - 2 Piece bonus"
+effect_type = "ExtraTurns"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Radiant Servant - 2 Piece bonus"
+effect_type = "TurnLevelBonus"
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

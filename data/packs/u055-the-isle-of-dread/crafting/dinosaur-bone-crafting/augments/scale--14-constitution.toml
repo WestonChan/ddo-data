@@ -1,0 +1,21 @@
+name = "Scale: +14 Constitution"
+description = "+14 Enhancement bonus to Constitution"
+family = "DinosaurBone"
+icon = "ScalePurple"
+min_level = 31
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "isle of dread: scale (accessory)"

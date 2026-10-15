@@ -1,0 +1,48 @@
+name = "Diabolist's Ring"
+description = """
+Professor Tremas' ring, taken off the battlefield from within the Market Tent.
+It still retains some of his diabolical power."""
+drop_location = "The Chronoscope, end chest, and The Chronoscope (Legendary), heroic chest"
+icon = "Ring_26"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 4
+slot = "Ring"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 31
+
+[[effect]]
+name = "Demonic Shield"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[source]]
+chest = "heroic chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

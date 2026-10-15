@@ -1,0 +1,94 @@
+name = "Mournlode Fullplate (level 8)"
+description = """
+Metal armor constructed from valuable purple Mournlode crystal is imbued with
+a protective, almost holy power. Undead are seared by it, and it protects the
+wearer from evil."""
+drop_location = "Vaults of the Artificers, Turn in Various Cannith challenge ingredients"
+enhancement_bonus = 2
+icon = "HeavyArmor_1"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 14
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Undead Guard"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+3 Enhancement Bonus and Undead Guard 3"
+description = """
++3 Enhancement Bonus: +3 Enhancement bonus to Armor Class.
+Undead Guard +3: Chance to deal 3d8 Good damage to undead when hit."""
+icon = "Upgrade"
+min_level = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Protection +5, Resistance +5 and a Green Augment Slot"
+description = """
+Protection +5: Passive: +5 Deflection bonus to Armor Class.
+Resistance +5: Passive: +5 Resistance bonus to Fortitude, Reflex, and Will Saving Throws.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Deflection"
+effect = "Armor Class"
+value = 5
+
+[[socket.option.effect]]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+value = 5
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

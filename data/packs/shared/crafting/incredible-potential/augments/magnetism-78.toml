@@ -1,0 +1,21 @@
+name = "Magnetism +78"
+description = "Magnetism +78: +78 Equipment bonus to Electric spell power."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Electric Spell Power"
+bonus_type = "Equipment"
+value = 78
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [78]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[slot]]
+slot = "crafting: incredible potential"

@@ -1,0 +1,21 @@
+name = "Illusion Focus +13"
+description = "+13 Equipment bonus to the DCs of Illusion spells."
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Illusion Focus"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[slot]]
+slot = "crafting: nearly complete: spell focus (legendary)"

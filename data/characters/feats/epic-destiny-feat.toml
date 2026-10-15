@@ -1,0 +1,3027 @@
+[[row]]
+name = "Arcane Actions"
+acquire = "Train"
+description = """
+Whenever you use an Action Boost, you gain a +50 Competence Bonus to Universal
+Spell Power and +2 Imbue Dice for 6 seconds"""
+icon = "ArcaneActions"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Competence"
+effect = "Universal Spell Power"
+value = 50
+
+[[row.effect]]
+bonus_type = "Competence"
+effect = "Imbue Dice"
+value = 2
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Competence"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Competence"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Arcane Pulse"
+acquire = "Train"
+description = """
+Spell: A magical pulse of force reverberates through the target's body,
+dealing 3d6+6 force damage every 2 seconds for a duration of 16 seconds.
+This spell can stack on the target up to 5 times, increasing the damage with each stack.
+Cooldown: 3 Seconds"""
+icon = "ArcanePulse"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    3,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Arcane Pulse",
+    "None",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 28
+
+[[row]]
+name = "Arcane Warrior"
+acquire = "Train"
+description = """
+Your weapon and unarmed attacks grant you a stack of Arcane Warrior:
+Magical (+2 Universal Spell Power). Your offensive spells grant you a stack of
+Arcane Warrior: Physical (+1 Melee and Ranged Power). Each of these stacks to
+20 times and each stack lasts for 12 seconds. You may gain a stack of each no
+more than once per second."""
+icon = "ArcaneWarrior"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["AW: Magical"]
+
+[[row.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["AW: Physical"]
+
+[[row.modifier]]
+amount_type = "SliderValue"
+amounts = [2]
+bonus_type = "Feat"
+effect_type = "UniversalSpellPower"
+stack_source = "AW: Magical"
+
+[[row.modifier]]
+amount_type = "SliderValue"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "MeleePower"
+stack_source = "AW: Physical"
+
+[[row.modifier]]
+amount_type = "SliderValue"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "RangedPower"
+stack_source = "AW: Physical"
+
+[[row.requirement]]
+req_type = "Level"
+value = 28
+
+[[row]]
+name = "Channel Power"
+acquire = "Train"
+description = """
+After blocking with an Orb or Staff for at least 3 seconds, you gain a +100 Competence
+Bonus to Universal Spell Power and +4 to all Spell DCs for 3 seconds."""
+icon = "ChannelPower"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Competence"
+effect = "Universal Spell Power"
+value = 100
+
+[[row.effect]]
+bonus_type = "Competence"
+effect = "Spell DCs"
+value = 4
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Competence"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Competence"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Crush Weakness"
+acquire = "Train"
+description = "+15% damage versus the Helpless"
+icon = "CrushWeakness"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Helpless Damage"
+value = 15
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"
+
+[[row.requirement]]
+req_type = "Level"
+value = 25
+
+[[row]]
+name = "Deific Warding"
+acquire = "Train"
+description = """
++10 PRR and MRR. When you take damage from an enemy's attack or spell,
+add one stack of Deific Warding (+2 to PRR and MRR). This effect can stack
+up to 10 times. One stack is removed every 3 seconds."""
+icon = "DeificWarding"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Destiny"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[row.effect]]
+bonus_type = "Destiny"
+effect = "Magical Resistance Rating"
+value = 10
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Deific Warding"]
+
+[[row.modifier]]
+amount_type = "SliderValue"
+amounts = [2]
+bonus_type = "Destiny"
+display_name = "Deific Warding: Stacks from being hit"
+effect_type = "PRR"
+extra_types = ["MRR"]
+stack_source = "Deific Warding"
+
+[[row.requirement]]
+req_type = "Level"
+value = 28
+
+[[row]]
+name = "Doubleshot"
+acquire = "Train"
+description = "+10% Doubleshot."
+icon = "Doubleshot"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Doubleshot"
+value = 10
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Doubleshot"
+effect_type = "Doubleshot"
+
+[[row.requirement]]
+req_type = "Level"
+value = 25
+
+[[row]]
+name = "Doublestrike"
+acquire = "Train"
+description = "+5% Doublestrike."
+icon = "Doublestrike"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Doublestrike"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Dreamscape"
+acquire = "Train"
+description = """
+You are invulnerable and invisible for five seconds, then return with a random
+30-second buff. Cooldown: 1 minute
+Activate to pop off to the land of dreams."""
+icon = "Dreamscape"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 28
+
+[[row]]
+name = "Elemental Form Specialty"
+acquire = "Train"
+description = """
+Your elemental forms grant you mastery over the other three elements as well.
+Excluding the element of your current form, you gain the following bonuses to
+air, earth, fire, and water as long as you are in a Sorcerer's Elemental
+Apotheosis or Druid Elemental Wild Shape form: +3 Caster Levels with those elements,
++3 to Max Caster Level with those elements, +20 to Spell Power of those elements,
++2% Spell Critical Chance with those elements."""
+icon = "ElementalFormSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 31
+
+[[row]]
+name = "Elusive Target"
+acquire = "Train"
+description = """
+Each time you would be physically damaged, you have a +5% chance to
+completely ignore the damage.
+(This applies to physical attacks and spells that deal physical damage.)"""
+icon = "ElusiveTarget"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 25
+
+[[row]]
+name = "Embodiment of Law"
+acquire = "Train"
+description = "+3 PRR and MRR, If you are Lawful you also gain +2 Imbue dice"
+icon = "EmbodimentOfLaw"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 3
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 3
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Imbue Dice"
+value = 2
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.modifier.requirement]]
+items = ["Lawful"]
+req_type = "Stance"
+
+[[row.requirement]]
+req_type = "Level"
+value = 28
+
+[[row]]
+name = "Enhanced Elemental Dice"
+acquire = "Train"
+description = "+1 Imbue Dice."
+icon = "EnhancedElementalDice"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+value = 1
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.requirement]]
+req_type = "Level"
+value = 31
+
+[[row]]
+name = "Epic Mage Armor"
+acquire = "Train"
+description = "+20 Armor bonus to AC. Spell Point Cost: 5. Target: Friend, Self."
+icon = "EpicMageArmor"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Epic Mage Armor",
+    "None",
+]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    20,
+    0,
+    0,
+]
+bonus_type = "Armor"
+display_name = "Epic Mage Armor"
+effect_type = "ACBonus"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Pact Dice"
+acquire = "Train"
+description = """
++3d6 Pact dice, +1d6 per 2 Epic levels and Legendary levels.
+For example, a level 34 character receives +1d6 base increase, +5d6 from Epic
+levels, and +2d6 from Legendary levels."""
+icon = "EpicArcaneEldritchBlast"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+    10,
+    11,
+    11,
+    12,
+]
+bonus_type = "Feat"
+effect_type = "EldritchBlastD6"
+stack_source = "Epic"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "EldritchBlastD6"
+stack_source = "Legendary"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "BaseClass"
+value = 12
+
+[[row]]
+name = "Epic Spell Power: Acid"
+acquire = "Train"
+description = """
++20 Acid Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerAcid"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Acid Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Acid Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Acid Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Acid"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Cold"
+acquire = "Train"
+description = """
++20 Cold Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerCold"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Cold Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Cold"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Electric"
+acquire = "Train"
+description = """
++20 Electric Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerElectric"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Electric Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Electric Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Electric Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Fire"
+acquire = "Train"
+description = """
++20 Fire Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerFire"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fire Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fire Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Fire Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Force"
+acquire = "Train"
+description = """
++20 Force/Untyped Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerForce"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Force Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Force Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Force Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Force Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Light"
+acquire = "Train"
+description = """
++20 Light Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerLight"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Light Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Chaos Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Evil Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Good Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Law Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Negative"
+acquire = "Train"
+description = """
++20 Negative Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerNegative"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Negative Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Negative Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Negative Spell Power"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Negative Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Negative"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Poison"
+acquire = "Train"
+description = """
++20 Poison Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerPoison"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Poison Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Poison Spell Power"
+effect_type = "SpellPower"
+targets = ["Poison"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "SpellCriticalDamage"
+targets = ["Poison"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Positive"
+acquire = "Train"
+description = """
++20 Positive Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerPositive"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Positive Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Positive Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Positive Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Repair"
+acquire = "Train"
+description = """
++20 Repair Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerRepair"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Repair Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Repair Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Repair Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Epic Spell Power: Sonic"
+acquire = "Train"
+description = """
++20 Sonic Spell Power. +10% spell critical damage.
++5% Universal spell critical damage with all spell damage types."""
+icon = "EpicSpellPowerSonic"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sonic Spell Power"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Sonic Spell Critical Damage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Sonic Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Sonic"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Face Me"
+acquire = "Train"
+description = "Whenever you use an Action Boost, your threat generation is increased by 200% for 6 seconds."
+icon = "FaceMe"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Stacking"
+effect = "Melee Threat Generation"
+value = 200
+
+[[row.effect]]
+bonus_type = "Stacking"
+effect = "Ranged Threat Generation"
+value = 200
+
+[[row.effect]]
+bonus_type = "Stacking"
+effect = "Spell Threat Generation"
+value = 200
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [200]
+bonus_type = "Stacking"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]
+percent = true
+
+[[row.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "First Blood"
+acquire = "Train"
+description = """
+Melee weapons and unarmed attacks deal 5d20 extra untyped damage against enemies
+with 90% or more HP. This extra damage won't trigger twice within three seconds."""
+icon = "FirstBlood"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 25
+
+[[row]]
+name = "Forced Escape"
+acquire = "Train"
+description = """
+You radiate destruction, dealing 20d20 sonic damage to enemies around you.
+Enemies succeeding a Fortitude saving throw vs. (20 + Wisdom modifier) take half damage.
+Spell Point Cost: 30  Target: Self, Foe Directional, Breakable
+This dispells crowd control effects such as stuns on you and can be used when
+stunned or otherwise incapacitated (but still conscious)."""
+icon = "ForcedEscape"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 25
+
+[[row]]
+name = "Fount of Life"
+acquire = "Train"
+description = "+20 Healing Amp and Positive Spell Power"
+icon = "FountOfLife"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Positive Spell Power"
+value = 20
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    15,
+]
+bonus_type = "Destiny"
+display_name = "Exalted Angel: Blessed Water"
+effect_type = "PRR"
+extra_types = [
+    "PRR",
+    "PRR",
+    "ACBonus",
+    "ACBonus",
+    "ACBonus",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 28
+
+[[row]]
+name = "Guarded Actions"
+acquire = "Train"
+description = "Whenever you use an Action Boost, you take 20% less damage for 6 seconds."
+icon = "GuardedActions"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Guardian Angel"
+acquire = "Train"
+description = """
+When you drop below 50% HP, for thirty seconds you gain Physical Resistance
+equal to your Wisdom and saving throws equal to your epic level. This won't
+trigger again for three minutes."""
+icon = "GuardianAngel"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Harbinger of Chaos"
+acquire = "Train"
+description = "+2% Doublestrike and Doubleshot. If you are Chaotic, you gain +2 Imbue dice."
+icon = "HarbingerOfChaos"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Doublestrike"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Doubleshot"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Imbue Dice"
+value = 2
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[row.modifier.requirement]]
+items = ["Chaotic"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    34,
+]
+bonus_type = "Destiny"
+display_name = "Harbinger of Chaos / Scarred by Chaos"
+effect_type = "Hitpoints"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    11,
+]
+bonus_type = "Destiny"
+display_name = "Harbinger of Chaos / Scarred by Chaos"
+effect_type = "PRR"
+
+[[row.requirement]]
+req_type = "Level"
+value = 28
+
+[[row]]
+name = "Hellball"
+acquire = "Train"
+description = """
+Deal 10d6 acid, electric, fire and sonic damage to enemies in an area.
+Successful Reflex saving throws may negate each type of damage.
+Taking this feat provides two versions, one based on Charisma and another based
+on Intelligence. Spell Point Cost: 50"""
+icon = "Hellball"
+source_name = "Epic"
+
+[[row.dc]]
+name = "Hellball"
+amount = [20]
+dc_type = "Negate Damage"
+dc_versus = "Reflex"
+description = """
+Deal 10d6 acid, electric, fire and sonic damage to enemies in an area.
+Successful Reflex saving throws may negate each type of damage."""
+icon = "Hellball"
+mod_ability = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    50,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Hellball",
+    "None",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 25
+
+[[row]]
+name = "Holy Strike"
+acquire = "Train"
+description = """
+Your weapons gain Ghost Touch. Your vorpal strikes deal 10d6 untyped damage
+vs. Evil enemies. (This bonus damage works with melee, unarmed and ranged attacks.)"""
+icon = "HolyStrike"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Vision"
+effect_type = "DodgeBypass"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Vision"
+effect_type = "FortificationBypass"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Intimidating Shout"
+acquire = "Train"
+description = """
+Active: Shout at all nearby creatures, Intimidating them (Save vs Will, DC DC equal
+to your Intimidate skill). This works on all creature types, including those
+normally immune to Intimidate.
+Cooldown: 30 seconds"""
+icon = "IntimidatingShout"
+source_name = "Epic"
+
+[[row.dc]]
+name = "Intimidating Shout"
+dc_type = "Intimidate"
+dc_versus = "Will"
+description = """
+Active: Shout at all nearby creatures, Intimidating them (Save vs Will, DC DC equal
+to your Intimidate skill). This works on all creature types, including those
+normally immune to Intimidate."""
+icon = "IntimidatingShout"
+skill = "Intimidate"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 21
+
+[[row]]
+name = "Lasting Inspiration"
+acquire = "Train"
+description = "+3 Bard Songs per rest. Bard songs last 90 seconds longer."
+icon = "LastingInspiration"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Bard Songs"
+value = 3
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Song Duration"
+value = 90
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Bard Songs"
+effect_type = "SongCount"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [90]
+bonus_type = "Feat"
+effect = "Song Duration"
+effect_type = "SongDuration"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Legendary Aim"
+acquire = "Train"
+description = "While using a Ranged Weapon, +10 to Attack, +5% Dodge Bypass"
+icon = "LegendaryAim"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Dodge Bypass"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Ranged"]
+req_type = "WeaponClassMainHand"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Thrown"]
+req_type = "WeaponClassMainHand"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Dodge Bypass"
+effect_type = "DodgeBypass"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Ranged"]
+req_type = "WeaponClassMainHand"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Thrown"]
+req_type = "WeaponClassMainHand"
+
+[[row.requirement]]
+req_type = "Level"
+value = 31
+
+[[row]]
+name = "Legendary Toughness"
+acquire = "Train"
+description = "+100 Maximum Hit Points. This can be taken multiple times."
+icon = "LegendaryToughness"
+max_times_acquire = 99
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Hit Points"
+value = 100
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Feat"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[row.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement]]
+items = ["Constitution"]
+req_type = "Ability"
+value = 21
+
+[[row]]
+name = "Perfect Natural Fighting"
+acquire = "Train"
+description = """
+If in any Bear form, Two-Handed weapons add 25% more of your ability score modifier
+to their base damage, and your Bear form's bonus to Armor Class is increased by 5%.
+
+If in any Wolf form, you gain +20% Competence bonus to maximum hit points and
++2d6 sneak attack dice."""
+icon = "PerfectNaturalFighting"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Armor Class Percentage"
+value = 5
+
+[[row.effect]]
+bonus_type = "Competence"
+effect = "Maximum Hit Points"
+value = 20
+
+[[row.effect]]
+bonus_type = "Competence"
+effect = "Sneak Attack Dice"
+value = 2
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.25]
+bonus_type = "Feat"
+effect_type = "DamageAbilityMultiplier"
+
+[[row.modifier.requirement_group]]
+kind = "all"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect = "Maximum Hit Points"
+effect_type = "HitpointsPercent"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Competence"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "HitpointsStyleBonus"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row.requirement]]
+items = ["Natural Fighting"]
+req_type = "Feat"
+
+[[row]]
+name = "Perfect Shield Mastery"
+acquire = "Train"
+description = """
+You are a paragon of shield usage, able to effectively leverage all types of shields
+in close combat. Your shield gains +1[W], and you gain +20% Shield Armor Class
+and +5 Physical Resistance Rating."""
+icon = "PerfectShieldMastery"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Shield Armor Class"
+value = 20
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 5
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Buckler",
+    "Small Shield",
+    "Large Shield",
+    "Tower Shield",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Shield Armor Class"
+effect_type = "ACBonusShield"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier.requirement]]
+items = ["Shield"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "HitpointsStyleBonus"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row.requirement]]
+items = ["Shield Mastery"]
+req_type = "Feat"
+
+[[row]]
+name = "Perfect Single Weapon Fighting"
+acquire = "Train"
+description = """
+While Single Weapon Fighting, your vorpal threat range is increased by +1.
+(Instead of scoring Vorpal hits only on 20, you score them in 19-20, assuming you
+confirm the critical hit afterwards.)
+Increases your base ability damage modifier by 25% and you gain a +10 Combat style bonus
+to Melee power."""
+icon = "PerfectSingleWeaponFighting"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee Power"
+value = 10
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "Weapon_VorpalRange"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.25]
+bonus_type = "Feat"
+effect_type = "DamageAbilityMultiplier"
+
+[[row.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[row.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "HitpointsStyleBonus"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Perfect Two Handed Fighting"
+acquire = "Train"
+description = """
+While Two Handed Fighting: You gain +30% Strikethrough Chance,
+and a +10 Combat Style bonus to Melee Power. Two Handed weapons add 25% more of your
+ability score modifier to their base damage."""
+icon = "PerfectTwoHandedFighting"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Strikethrough"
+value = 30
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee Power"
+value = 10
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Feat"
+effect = "Strikethrough"
+effect_type = "Strikethrough"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[row.modifier.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.25]
+bonus_type = "Feat"
+effect_type = "DamageAbilityMultiplier"
+
+[[row.modifier.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "HitpointsStyleBonus"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Perfect Two Weapon Fighting"
+acquire = "Train"
+description = """
+Your offhand attacks now doublestrike at 65% of the rate of your main hand,
+versus the base 50%, up to a maximum of 65%."""
+icon = "PerfectTwoWeaponFighting"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "HitpointsStyleBonus"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Pierce Adamantine"
+acquire = "Train"
+description = """
+Your equipped weapons are considered Adamantine allowing them bypassing
+the form of damage reduction."""
+icon = "PierceAdamantine"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Adamantine"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Pierce Byeshk"
+acquire = "Train"
+description = """
+Your equipped weapons are considered Byeshk allowing them bypassing the
+form of damage reduction."""
+icon = "PierceByeshk"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Byeshk"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Pierce Cold Iron"
+acquire = "Train"
+description = """
+Your equipped weapons are considered Cold Iron allowing them bypassing the
+form of damage reduction."""
+icon = "PierceColdIron"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Cold Iron"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Pierce Silver"
+acquire = "Train"
+description = """
+Your equipped weapons are considered Silver allowing them bypassing the
+form of damage reduction."""
+icon = "PierceSilver"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Silver"
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Shield Mastery Specialty"
+acquire = "Train"
+description = """
+While wielding a Shield, you gain +10% Doublestrike and a +9 Combat Style Bonus
+to Melee Power. You gain +10 Physical Resistance rating while using a Buckler or
+Small Shield. If you are using a Large Shield, this bonus increases to +15.
+If you are using a Tower Shield, this bonus increases to +20. This does not work
+in Animal Form. This does not count as a Combat Fighting Style feat."""
+icon = "ShieldMasterySpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Doublestrike"
+value = 10
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee Power"
+value = 9
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 15
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 20
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Combat Style"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[row.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[row.modifier.requirement]]
+items = ["Sword and Board"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+display_name = "Shield Mastery Specialty: Buckler"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier.requirement]]
+items = ["Buckler"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+display_name = "Shield Mastery Specialty: Small Shield"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier.requirement]]
+items = ["Small Shield"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+display_name = "Shield Mastery Specialty: Large Shield"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier.requirement]]
+items = ["Large Shield"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+display_name = "Shield Mastery Specialty: Tower Shield"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier.requirement]]
+items = ["Tower Shield"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Single Weapon Fighting"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Two Weapon Fighting"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Two Handed Fighting"]
+req_type = "Feat"
+
+[[row]]
+name = "Single Weapon Specialty"
+acquire = "Train"
+description = """
+While Single Weapon Fighting (fighting with a single one-handed weapon,
+and wielding only an Orb, Runearm, or nothing in your offhand) you gain a +30%
+Combat Style Bonus to attack speed, +6 Combat Style Bonus to Melee Power, and
++50% more of your appropriate ability score to your damage. For Bastard Sword and
+Dwarven Waraxe, this adds to their existing 10% bonus. This does not work in
+Animal Form. This does not count as a Combat Fighting Style feat."""
+icon = "SingleWeaponSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee Power"
+value = 6
+
+[[row.effect]]
+effect = "Melee Attack Speed (One Handed)"
+value = 30
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[row.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect = "Melee Attack Speed (One Handed)"
+effect_type = "WeaponAlacrityClass"
+targets = ["One Handed"]
+
+[[row.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Feat"
+effect_type = "DamageAbilityMultiplier"
+
+[[row.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Shield Mastery"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Two Weapon Fighting"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Two Handed Fighting"]
+req_type = "Feat"
+
+[[row]]
+name = "Spell Specialty: Abjuration"
+acquire = "Train"
+description = "You gain a secondary Spell Focus: +3 to the DC of your Abjuration spells."
+icon = "SpellSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Abjuration Focus"
+value = 3
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Abjuration Focus"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Spell Focus: Abjuration"]
+req_type = "Feat"
+
+[[row]]
+name = "Spell Specialty: Conjuration"
+acquire = "Train"
+description = "You gain a secondary Spell Focus: +3 to the DC of your Conjuration spells."
+icon = "SpellSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Conjuration Focus"
+value = 3
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Spell Focus: Conjuration"]
+req_type = "Feat"
+
+[[row]]
+name = "Spell Specialty: Enchantment"
+acquire = "Train"
+description = "You gain a secondary Spell Focus: +3 to the DC of your Enchantment spells."
+icon = "SpellSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Enchantment Focus"
+value = 3
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Spell Focus: Enchantment"]
+req_type = "Feat"
+
+[[row]]
+name = "Spell Specialty: Evocation"
+acquire = "Train"
+description = "You gain a secondary Spell Focus: +3 to the DC of your Evocation spells."
+icon = "SpellSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+value = 3
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Spell Focus: Evocation"]
+req_type = "Feat"
+
+[[row]]
+name = "Spell Specialty: Illusion"
+acquire = "Train"
+description = "You gain a secondary Spell Focus: +3 to the DC of your Illusion spells."
+icon = "SpellSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Illusion Focus"
+value = 3
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Illusion Focus"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Spell Focus: Illusion"]
+req_type = "Feat"
+
+[[row]]
+name = "Spell Specialty: Necromancy"
+acquire = "Train"
+description = "You gain a secondary Spell Focus: +3 to the DC of your Necromancy spells."
+icon = "SpellSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Necromancy Focus"
+value = 3
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Spell Focus: Necromancy"]
+req_type = "Feat"
+
+[[row]]
+name = "Spell Specialty: Transmutation"
+acquire = "Train"
+description = "You gain a secondary Spell Focus: +3 to the DC of your Transmutation spells."
+icon = "SpellSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Transmutation Focus"
+value = 3
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Transmutation Focus"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Spell Focus: Transmutation"]
+req_type = "Feat"
+
+[[row]]
+name = "Spirit Blades"
+acquire = "Train"
+description = """
+Spell: Create a series of spectral blades which fly at a nearby opponent.
+Each of the five blades does 2d20 Piercing and 1d20 Force damage."""
+icon = "SpiritBlades"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Spirit Blades",
+    "None",
+]
+
+[[row.requirement]]
+req_type = "Level"
+value = 28
+
+[[row]]
+name = "Tactician"
+acquire = "Train"
+description = "+2 Tactical feat DCs."
+icon = "Tactician"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Tactics"
+value = 2
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Tactics"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+    0,
+    4,
+    8,
+    12,
+]
+bonus_type = "Destiny"
+display_name = "Legendary Dreadnought: Backstab"
+effect_type = "Weapon_Attack"
+extra_types = [
+    "Weapon_Attack",
+    "Weapon_Attack",
+    "Weapon_Attack",
+]
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Flanking"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+    0,
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+display_name = "Legendary Dreadnought: Honor"
+effect_type = "Weapon_Attack"
+extra_types = [
+    "Weapon_Attack",
+    "Weapon_Attack",
+    "Weapon_Attack",
+]
+targets = ["All"]
+
+[[row.requirement]]
+req_type = "Level"
+value = 22
+
+[[row]]
+name = "Titan's Blood"
+acquire = "Train"
+description = "You gain a +10% Legendary Bonus to Maximum Hit Points."
+icon = "TitansBlood"
+source_name = "Epic"
+
+[[row.effect]]
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+value = 10
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+effect_type = "HitpointsPercent"
+
+[[row.requirement]]
+req_type = "Level"
+value = 34
+
+[[row]]
+name = "Two Handed Specialty"
+acquire = "Train"
+description = """
+While Two-Handed Fighting: +120% Strikethrough Chance.
+You also gain a +6 Combat Style bonus to Melee Power while Two-Handed Fighting.
+
+For the purposes of this feat, you are considered to be Two-Handed Fighting while
+using a Two-Handed Melee Weapon (not including Handwraps). You are also considered
+to be Two-Handed Fighting while wielding a Bastard Sword or Dwarven Waraxe in your
+main hand and a Shield, Orb, Rune Arm, or Nothing in your off-hand. You are not
+considered to be Two-Handed Fighting while in Druid Animal Forms.
+
+In addition, While using a Two-Handed Weapon, your Ability Score bonus to damage
+improves to 2.25x the Ability Score Modifier you use for damage. When using a
+Bastard Sword or Dwarven Waraxe, your Ability Score bonus to damage improves to
+1.6x the Ability Score Modifier you use for damage. Neither bonus applies in Animal
+Form. This does not count as a Combat Fighting Style feat."""
+icon = "TwoHandedSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Strikethrough"
+value = 120
+
+[[row.effect]]
+bonus_type = "Combat Style"
+effect = "Melee Power"
+value = 6
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [120]
+bonus_type = "Feat"
+effect = "Strikethrough"
+effect_type = "Strikethrough"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Bastard Sword"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [0.75]
+bonus_type = "Base"
+effect_type = "DamageAbilityMultiplier"
+
+[[row.modifier.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1.6]
+bonus_type = "Base"
+display_name = "Two Handed Specialty: Hand and a Half"
+effect_type = "DamageAbilityMultiplier"
+
+[[row.modifier.requirement_group]]
+kind = "all"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Hand and a Half"]
+req_type = "WeaponGroup"
+
+[[row.modifier.requirement_group]]
+kind = "none_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[row.modifier.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Single Weapon Fighting"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Two Weapon Fighting"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Shield Mastery"]
+req_type = "Feat"
+
+[[row]]
+name = "Two Weapon Specialty"
+acquire = "Train"
+description = """
+Reduces the penalty for fighting with two weapons.
+You gain +60% offhand strike chance. This does not work in Animal Form.
+This does not count as a Combat Fighting Style feat."""
+icon = "TwoWeaponSpecialty"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Offhand Strike Chance"
+value = 60
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [60]
+bonus_type = "Feat"
+effect = "Offhand Strike Chance"
+effect_type = "OffHandAttackBonus"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Single Weapon Fighting"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Two Handed Fighting"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Greater Shield Mastery"]
+req_type = "Feat"
+
+[[row]]
+name = "Wild Force"
+acquire = "Train"
+description = """
+While in Druid Wild Shape, you gain some of the aspects of the form you aren't in.
+While in wolf or winter wolf form, you gain bear form's +10% exceptional bonus
+to Armor Class. While in bear or dire bear form, you gain wolf form's
++10% movement speed."""
+icon = "WildForce"
+max_times_acquire = 1
+source_name = "Legendary"
+
+[[row.effect]]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+value = 10
+
+[[row.effect]]
+bonus_type = "Exceptional"
+effect = "Movement Speed"
+value = 10
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Exceptional"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Exceptional"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[row.modifier.requirement_group]]
+kind = "one_of"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.requirement]]
+req_type = "Level"
+value = 31
+
+[[row.requirement]]
+items = ["Druid"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[row]]
+name = "Wind through the Trees"
+acquire = "Train"
+description = """
+When enemies hit or miss you, they have a 5% chance to be knocked down
+with no save. This may only trigger once every 12 seconds."""
+icon = "WindThroughTheTrees"
+source_name = "Epic"
+
+[[row.group]]
+group_name = "Epic Destiny Feat"
+
+[[row.requirement]]
+req_type = "Level"
+value = 28

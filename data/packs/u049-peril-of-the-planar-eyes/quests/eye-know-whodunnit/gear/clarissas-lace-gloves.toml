@@ -1,0 +1,38 @@
+name = "Clarissa's Lace Gloves"
+description = "Why would Clarissa have gloves like these? Curious."
+drop_location = "Eye Know Whodunnit, End chest"
+icon = "Gloves_7a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 12
+slot = "Hands"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 5
+value2 = 8
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Eye Know Whodunnit"

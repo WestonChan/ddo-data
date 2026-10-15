@@ -164,7 +164,6 @@ impl TableWriter<'_> {
             if let Some(requirements) = &effect.requirements {
                 self.write_requirements(RequirementOwner::Modifier, modifier_id, requirements)?;
             }
-            self.written.modifier_count += 1;
         }
         Ok(())
     }
@@ -349,7 +348,7 @@ impl TableWriter<'_> {
                         continue;
                     }
                     let source_name = shared_name.map(str::to_string).unwrap_or_else(|| {
-                        self.buff_resolver.effect_family_name(effect_type, target, first_bonus.stat.name)
+                        self.buff_resolver.effect_tier_name(effect_type, target, first_bonus.stat.name)
                     });
                     let family_name = if owner.kind == BonusOwnerKind::Augment {
                         EFFECT_MAP.augment_line_name(owner.name, &source_name).unwrap_or(&source_name).to_string()

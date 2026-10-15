@@ -1,0 +1,66 @@
+name = "Icerazor"
+accepts_sentience = true
+description = """
+This wicked sickle is crafted from magical ice that will never melt. Any flesh
+it touches will instantly freeze to the blade, to be painfully ripped away
+when the weapon is withdrawn."""
+drop_location = "The House of Broken Chains, End Chest ; Slavemaster Banister Avithoul 's chest in The Underdark ; Menace of the Underdark: City of Portals, Quest chain end reward"
+enhancement_bonus = 6
+icon = "Sickle_1b"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Ice"
+minimum_level = 21
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 102
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Slicing"
+
+[[effect]]
+name = "Icy Burst"
+
+[[effect]]
+name = "Freezing Ice"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Broken Chains"
+
+[[source]]
+kind = "saga"
+name = "Menace of the Underdark"
+tier = "any"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.2
+handedness = "One-handed"
+weapon_type = "Sickle"

@@ -1,0 +1,22 @@
+name = "Dolorous Arcana: Repair (Heroic)"
+description = "+35 Insight bonus to Repair Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Repair Spell Power"
+bonus_type = "Insight"
+value = 35
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [35]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Repair Spell Power"
+effect_type = "SpellPower"
+targets = ["Repair"]
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

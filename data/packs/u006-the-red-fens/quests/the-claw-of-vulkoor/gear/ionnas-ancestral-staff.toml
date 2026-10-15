@@ -1,0 +1,52 @@
+name = "Ionna's Ancestral Staff"
+description = """
+This staff shivers once in a while, and air around it tingles with energy. It
+smells of swamp water."""
+drop_location = "The Claw of Vulkoor"
+enhancement_bonus = 1
+icon = "Quarterstaff_15a"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[clickie]]
+name = "Summon Monster III"
+clickie = "Summon Monster III"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Giant Slayer"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Monster III"]
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Claw of Vulkoor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

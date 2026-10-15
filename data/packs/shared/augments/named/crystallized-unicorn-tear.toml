@@ -1,0 +1,17 @@
+name = "Crystallized Unicorn Tear"
+description = """
+Provides a 5% chance to gain 150 Temporary Hitpoints when you are hit.
+This can only proc once every 10 seconds.
+These Hitpoints last for 10 minutes or until used up, whichever is first."""
+family = "Named"
+icon = "GolemsHeart"
+min_level = 28
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

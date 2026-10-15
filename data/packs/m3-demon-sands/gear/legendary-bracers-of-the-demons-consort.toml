@@ -1,0 +1,38 @@
+name = "Legendary Bracers of the Demon's Consort"
+description = """
+These jagged, spiked leather bracers are covered in barbs and wicked-looking
+blades that protrude from the wrists and forearms."""
+drop_location = "Legendary version of Epic Bracers of the Demon's Consort"
+icon = "Bracers_23a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Wrists"
+
+[[effect]]
+name = "Legendary Demonic Curse"
+
+[[effect]]
+name = "Legendary Demonic Shield"
+
+[[effect]]
+name = "Utter Disintegration Guard"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Hidden Effect Demonic Drain"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"

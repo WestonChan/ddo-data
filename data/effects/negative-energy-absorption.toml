@@ -1,0 +1,3 @@
+name = "Negative Energy Absorption"
+description_template = "This effect absorbs negative energy and energy drain effects."
+verbose_name_template = "Negative Energy Absorption"

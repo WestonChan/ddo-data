@@ -1,0 +1,22 @@
+name = "Minotaur Hair Belt"
+description = "A thick belt woven of coarse hair that increases its wearer's balance."
+drop_location = "Gwylan's Stand, Crippler Bigfoot 's chest"
+icon = "Belt_22"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Waist"
+
+[[effect]]
+name = "Balance"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "crippler bigfoot 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gwylan's Stand"

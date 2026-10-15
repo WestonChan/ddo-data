@@ -1,0 +1,29 @@
+name = "Shimmering Arrowhead"
+description = """
+This arrowhead is made from an unusual material that hums slightly and radiates
+power."""
+drop_location = "The Weapons Shipment, End chest (main objective)"
+icon = "Trinket_94"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 18
+slot = "Trinket"
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Weapons Shipment"

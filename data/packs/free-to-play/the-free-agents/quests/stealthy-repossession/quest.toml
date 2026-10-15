@@ -1,0 +1,23 @@
+name = "Stealthy Repossession"
+bestowed_by = "Lesto Half-Price"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Free Agents"
+zone = "Cultists' Shrine"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Stealthy_Repossession"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 2

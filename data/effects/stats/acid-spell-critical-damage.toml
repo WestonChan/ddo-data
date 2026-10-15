@@ -1,0 +1,4 @@
+name = "Acid Spell Critical Damage"
+category = "magical"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Acid Spell Critical Damage +{1}"

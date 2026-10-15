@@ -1,0 +1,27 @@
+name = "Insightful Wisdom +7"
+description = """
+Insightful Wisdom +7: This item makes the wearer more in tune with her surroundings, granting
+a +7 Insightful bonus to Wisdom."""
+family = "SealedInUndeath"
+icon = "Wisdom"
+min_level = 32
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: sealed in undeath"
+
+[[slot]]
+slot = "crafting: sealed in gloom"

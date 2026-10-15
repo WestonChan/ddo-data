@@ -1,0 +1,37 @@
+name = "Cracked Core"
+description = "It appears the crack is not a defect."
+drop_location = "Project Nemesis, End chest"
+icon = "Necklace_16a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Soundproof"
+
+[[effect]]
+name = "Alchemical Conservation"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"

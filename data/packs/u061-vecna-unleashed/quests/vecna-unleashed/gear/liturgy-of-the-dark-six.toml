@@ -1,0 +1,59 @@
+name = "Liturgy of the Dark Six"
+description = """
+An often-banned tome recounting the Schism in ways that paint the Dark Six in
+a sympathetic light."""
+drop_location = "Vecna Unleashed (quest), End chest"
+icon = "Orb_8"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Wood"
+minimum_level = 18
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 5
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Insight"
+value = 52
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Insight"
+value = 52
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Fearsome"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Vecna Unleashed"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

@@ -1,0 +1,22 @@
+name = "The Cloven-jaw Scourge: The Caverns of Shaagh"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Seal of Shan-To-Kor"
+patron = "The Coin Lords"
+zone = "Caverns Of Shaagh"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Cloven-jaw_Scourge:_The_Caverns_of_Shaagh"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

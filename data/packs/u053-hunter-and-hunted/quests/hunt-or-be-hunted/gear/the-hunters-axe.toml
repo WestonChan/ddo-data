@@ -1,0 +1,70 @@
+name = "The Hunter's Axe"
+accepts_sentience = true
+description = """
+The green crystal of this Dwarven Axe has been attuned to Force. The Master
+of the Hunt must have kept it in his private armory."""
+drop_location = "Hunt or Be Hunted, end chest"
+enhancement_bonus = 15
+icon = "DwarvenWaraxe_2g"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Crystal"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Force Blast 6"
+
+[[effect]]
+name = "Fetters of Unreality"
+
+[[effect]]
+name = "Vulnerable"
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Insight"
+value = 74
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Quality"
+value = 36
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hunt or Be Hunted"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.3
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

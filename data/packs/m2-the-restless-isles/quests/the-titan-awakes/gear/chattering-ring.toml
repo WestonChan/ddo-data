@@ -1,0 +1,33 @@
+name = "Chattering Ring"
+description = """
+This tiny ring bears a mechanical mouth instead of a stone. Aside from warning
+of attacks, its running commentary also alerts the wearer to any traps or secret
+doors in the area. Two chattering rings will constantly try to talk over one
+another, resulting in the wearer getting no added bonus for the second ring."""
+drop_location = "The Titan Awakes, Raid Warded chest"
+icon = "Ring_43"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Ring"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = -10
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"

@@ -1,0 +1,29 @@
+name = "Visor of the Flesh Render Guards"
+description = """
+This visor was acquired from the hobgoblin guard that watches over the trapped
+flesh render in the depths of Splinterskull."""
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 5
+slot = "Goggles"
+
+[[clickie]]
+name = "Death Ward"
+clickie = "Death Ward"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Death Ward"]
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

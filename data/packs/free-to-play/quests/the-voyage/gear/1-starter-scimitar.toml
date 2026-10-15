@@ -1,0 +1,38 @@
+name = "+1 Starter Scimitar"
+description = """
+A curved sword favored by the elves of Valenar. The unique shape gives this
+weapon a keener edge. An enscription on the hilt reads 'To my dearest ...'.
+The rest of the wording appears to have been melted off the hilt."""
+drop_location = "The Voyage, End reward"
+enhancement_bonus = 1
+icon = "Scimitar_9a"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Flaming"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Voyage"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

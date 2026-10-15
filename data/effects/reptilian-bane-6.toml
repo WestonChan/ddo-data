@@ -1,0 +1,3 @@
+name = "Reptilian Bane 6"
+description_template = "This weapon is attuned specifically to hunt those with cunning and scales, dealing an additional 6d10 bane damage vs. Reptilians."
+verbose_name_template = "Reptilian Bane 6"

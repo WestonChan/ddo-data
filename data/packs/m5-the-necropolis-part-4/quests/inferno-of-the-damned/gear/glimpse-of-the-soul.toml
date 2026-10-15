@@ -1,0 +1,32 @@
+name = "Glimpse of the Soul"
+description = "These goggles allow the wearer to see the true nature of someone's soul."
+drop_location = "Inferno of the Damned, end chest"
+icon = "Goggles_1"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 13
+slot = "Goggles"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Inferno of the Damned"

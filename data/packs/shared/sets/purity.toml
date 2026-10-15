@@ -1,0 +1,45 @@
+name = "Purity"
+icon = "Purity"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+5 Healing Amplification"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+effect = "Immune to Mummy Rot and Natural Diseases"
+
+[[tier.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Mummy Rot"]
+
+[[tier.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Natural Diseases"]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "Energy Drain Immunity"
+
+[[tier.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Energy Drain"]

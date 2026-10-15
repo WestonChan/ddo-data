@@ -1,0 +1,78 @@
+name = "Epic Boots of the Innocent"
+description = """
+These boots belonged to an ancient nobleman's son. Kidnapped from Stormreach,
+he was sacrificed to Vol in this shrine. His ghost haunts the remains of the
+shrine."""
+drop_location = "Desecrated Temple of Vol (epic), end chest"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 27
+slot = "Feet"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Speed XV"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Vertigo"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Greater Heroism"
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desecrated Temple of Vol"

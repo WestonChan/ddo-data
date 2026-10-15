@@ -1,0 +1,25 @@
+name = "Shaman's Band"
+description = """
+Drow shamans often carry these rings to make their fearsome spells more likely
+to strike their foes."""
+drop_location = "Into the Deep, End reward"
+icon = "Ring_28"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 7
+slot = "Ring"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 60
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Into the Deep"

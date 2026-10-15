@@ -1,0 +1,30 @@
+name = "Back to Basics"
+bestowed_by = "Eyrk Hollums"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Sinister Secret of Saltmarsh"
+patron = "The Gatekeepers"
+zone = "Ruined Tower Basement"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Back_to_Basics"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

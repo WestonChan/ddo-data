@@ -1,0 +1,40 @@
+name = "Legendary Vinelash Bracers"
+description = """
+Living, sharp, and thorny vines are wound around the wrists of these wooden
+bracers."""
+drop_location = "The Icemount Curse, End Chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Darkwood"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Deception"
+bonus_type = "Quality"
+value = 2
+value2 = 3
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Icemount Curse"

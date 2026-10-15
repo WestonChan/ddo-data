@@ -1,0 +1,35 @@
+name = "Bracers of the Spider Queen"
+description = "A pair of well-made bracers given to those truly devoted to Lolth."
+icon = "Bracers_17"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Wrists"
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Efficient Metamagic - Empower I"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Raiding the Raiders"

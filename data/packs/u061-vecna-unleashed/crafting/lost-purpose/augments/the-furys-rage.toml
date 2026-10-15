@@ -1,0 +1,17 @@
+name = "The Fury's Rage"
+description = "Adds The Fury's Rage set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 18
+set_bonus = "The Fury's Rage"
+
+[[note]]
+kind = "augment"
+field = "min_level"
+upstream = 318
+reason = "Every sibling augment in LostPurpose is min level 18; 318 is a typo."
+url = "https://ddowiki.com/page/Lost_Purpose"
+read = "2026-09-29"
+
+[[slot]]
+slot = "crafting: lost purpose"

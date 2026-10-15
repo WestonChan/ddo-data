@@ -1,0 +1,50 @@
+name = "The Blood Stone"
+description = """
+A featureless blood red stone. Visions of murder and mayhem possess you the
+first time you pick up the Bloodstone."""
+drop_location = "Sands of Menechtarun, The Thirsty One and Palumak the Scourer chests ; \n Masei Mkembe sells for 625 Antique Bronze Tokens (sold as 'Bloodstone'); \n Epic Zawabi's Revenge, Warded chest."
+icon = "Trinket_87a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Trinket"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 4
+value2 = 6
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 9
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "the thirsty one and palumak the scourer chests"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

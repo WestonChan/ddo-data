@@ -1,0 +1,47 @@
+name = "Platemail of Strahd"
+description = """
+An old painting in Castle Ravenloft depicts Strahd wearing this very set of
+armor."""
+drop_location = "The Curse of Strahd, Raid chest"
+enhancement_bonus = 15
+icon = "HeavyArmor_2"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"

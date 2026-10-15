@@ -1,0 +1,51 @@
+name = "Legendary Inevitable Balance"
+
+[[item]]
+name = "Legendary Sunken Blasphemy"
+
+[[item]]
+name = "Legendary Sunken Obscurity"
+
+[[item]]
+name = "Legendary Sunken Radiance"
+
+[[item]]
+name = "Legendary Sunken Virtue"
+
+[[note]]
+kind = "set_bonus"
+field = "icon"
+upstream = "InevitableBalance"
+reason = "DDOBuilderV2's SetBonusImages folder has no InevitableBalance.png."
+url = "Output/DataFiles/SetBonusImages"
+read = "2026-10-07"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "+10 Melee Power, 10% Doublestrike, Your Sneak Attacks do additional Bane damage"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "10% Melee Power, 10% Doublestrike, and extra Bane damage on sneak attacks."
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Melee Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Doublestrike"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+extra_types = ["Doublestrike"]

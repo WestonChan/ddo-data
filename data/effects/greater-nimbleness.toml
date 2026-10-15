@@ -1,0 +1,35 @@
+name = "Greater Nimbleness"
+default_value = 2
+description_template = "This suit of armor looks much less restrictive than others of its type. A suit of armor that has this property has a maximum Dexterity bonus {1} higher than normal, and its armor check penalty is reduced by 4."
+home_bonus_type = "Stacking"
+verbose_name_template = "Greater Nimbleness"
+
+[[bonus]]
+amount_from = 0
+constant = 4
+rounding = "down"
+scale = 1.0
+target = "Armor Check Penalty"
+
+[[note]]
+kind = "effect"
+field = "description_template"
+upstream = "This suit of armor looks much less restrictive than others of its type. A suit of armor that has this property has a maximum Dexterity bonus 2 higher than normal, and its armor check penalty is reduced by 4."
+reason = "The wiki distinguishes the maximum Dexterity bonus from the fixed armor-check reduction."
+url = "https://ddowiki.com/page/Item:Legendary_Tourney_Armor"
+read = "2026-10-05"
+
+[[note]]
+kind = "effect"
+field = "default_value"
+reason = "The wiki gives this Nimbleness tier its own maximum Dexterity amount."
+url = "https://ddowiki.com/page/Item:Legendary_Tourney_Armor"
+read = "2026-10-05"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "Greater Nimbleness +4"
+reason = "The wiki line shows only the Nimbleness tier; its fixed maximum Dexterity increase remains in the description and value."
+url = "https://ddowiki.com/page/Item:Legendary_Tourney_Armor"
+read = "2026-10-05"

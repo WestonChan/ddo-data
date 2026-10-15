@@ -1,0 +1,16 @@
+name = "Ruby Eye of Righteousness"
+description = """
+2% Chance On-Hit to cause a blast of holy energy that deals 3 to 12 points of holy
+damage per minimum level of the upgraded weapon to all nearby enemies."""
+family = "Ruby"
+icon = "RubyEye"
+min_level = 1
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

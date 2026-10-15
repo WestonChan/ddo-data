@@ -1,0 +1,45 @@
+name = "Boots of Blessed Travels"
+description = """
+When lives are on the line, the wise strap on these greaves to rush to the front
+lines."""
+drop_location = "Defiler of the Just, warded chest"
+icon = "Boots_2a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Feet"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Armor Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Speed XV"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

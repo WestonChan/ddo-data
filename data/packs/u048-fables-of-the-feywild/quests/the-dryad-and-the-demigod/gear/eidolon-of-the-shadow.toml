@@ -1,0 +1,61 @@
+name = "Eidolon of the Shadow"
+accepts_sentience = true
+description = "FEYTWISTED form of Esper, the Shadowblade \n\nThis manifestation of Illusion Magic is made real by your touch... and something\nelse. As the Shadowblade is not physical, monks may use it without becoming\nuncentered."
+drop_location = "The Dryad and the Demigod, Greater feytwisted chest"
+enhancement_bonus = 15
+icon = "Greatsword_1c"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Force"
+minimum_level = 29
+slot = "Main Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Shadowblade"
+
+[[effect]]
+name = "Impactful 6"
+
+[[effect]]
+name = "Force Blast 6"
+
+[[effect]]
+name = "Constricting Nightmare"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Great Sword",
+]
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "greater feytwisted chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+attack_modifier = "Charisma"
+base_dice_bonus = 6
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Great Sword"

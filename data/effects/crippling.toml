@@ -1,0 +1,3 @@
+name = "Crippling"
+description_template = "A crippling weapon is infused with binding power so that when a target is critically hit their movement is slowed by half. (Bug: Actually only a 25% decrease)"
+verbose_name_template = "Crippling"

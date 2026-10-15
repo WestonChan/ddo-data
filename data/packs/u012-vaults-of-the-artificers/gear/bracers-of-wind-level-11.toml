@@ -1,0 +1,138 @@
+name = "Bracers of Wind (level 11)"
+description = """
+Bracers empowered by a bound Air Elemental. They surround you with a windy aura
+that deflects missiles occasionally, makes you harder to hit, and boosts the
+power of your electric spells."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Bracers_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Wrists"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 82
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Magnetism +88, Lightning Lore +13% and Dodge 7%"
+description = """
+Magnetism +88: Passive: +88 Equipment bonus to Electricity Spell Power.
+Lightning Lore +13: Passive: Your Electricity spells gain a 13% Equipment bonus to their chance to critical hit.
+Dodge +7%: +7% Enhancement bonus to Dodge."""
+min_level = 11
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 88
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 13
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [88]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+targets = ["Electric"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Magnetism +94, Lightning Lore +14%, Dodge 8% and a Green augment slot"
+description = """
+Magnetism +94: Passive: +94 Equipment bonus to Electricity Spell Power.
+Lightning Lore +14: Passive: Your Electricity spells gain a 14% Equipment bonus to their chance to critical hit.
+Dodge +8%: +8% Enhancement bonus to Dodge.
+Adds a Green augment slot."""
+min_level = 11
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 94
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 14
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 8
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [94]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+targets = ["Electric"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

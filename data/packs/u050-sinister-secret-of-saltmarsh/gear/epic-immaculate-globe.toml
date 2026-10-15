@@ -1,0 +1,55 @@
+name = "Epic Immaculate Globe"
+description = """
+This spinning globe hums with magic. The map doesn't appear to resemble Saltmarsh,
+nor any place you've ever seen."""
+drop_location = "Epic version of Immaculate Globe"
+icon = "Orb_1d"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Wood"
+minimum_level = 20
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 6
+
+[[effect]]
+name = "Permanent Efficacy"
+bonus_type = "Alchemical"
+
+[[effect]]
+name = "Superior Stability"
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 6
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "The wiki's Elemental Resistance +30 on this orb is a +30 Enhancement bonus; his buff has no bonus type."
+url = "https://ddowiki.com/page/Item:Epic_Immaculate_Globe"
+read = "2026-10-02"
+qualifier = "Elemental Resistance / null"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

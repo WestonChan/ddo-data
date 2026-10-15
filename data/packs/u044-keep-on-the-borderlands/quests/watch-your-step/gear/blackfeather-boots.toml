@@ -1,0 +1,35 @@
+name = "Blackfeather Boots"
+description = """
+Formed of exquisite blackened feathers, these boots are enchanted to help you
+take flight"""
+drop_location = "Watch Your Step, end chest"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 21
+slot = "Feet"
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Watch Your Step"

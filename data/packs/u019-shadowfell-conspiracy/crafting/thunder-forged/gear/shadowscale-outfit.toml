@@ -1,0 +1,54 @@
+name = "Shadowscale Outfit"
+description = "A finely crafted monk outfit that includes many scales from a shadow dragon."
+drop_location = "Magma Forge, Crafted from various ingredients"
+enhancement_bonus = 11
+icon = "Cloth_5"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 26
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Shadow Phase"
+clickie = "Shadow Phase"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 10
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 130
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "From The Shadows"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shadow Phase"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Thunder-Forged"

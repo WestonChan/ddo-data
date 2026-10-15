@@ -1,0 +1,35 @@
+name = "Fire Touch Heavy Mace"
+description = "A simple weapon comprised of a solid blunt head attached to a haft."
+drop_location = "Cannith Crafting Tutorial"
+icon = "HeavyMace_3e"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Fire Touch"
+
+[[socket]]
+slot = "crafting: cannith weapon prefix"
+
+[[socket]]
+slot = "crafting: cannith weapon suffix"
+
+[[socket]]
+slot = "crafting: cannith weapon extra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

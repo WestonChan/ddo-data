@@ -1,0 +1,67 @@
+name = "Epic Elemental Bloom"
+accepts_sentience = true
+drop_location = "ToEE: Earth Node, Hyrelgas chest (Confirmed), ToEE: Air Node, dragon's hoard chests, ToEE: Fire Node, Periron chest, and ToEE: Water Node, Jotun Rimeblade chest"
+enhancement_bonus = 7
+icon = "Quarterstaff_8"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Greater Elemental Bane"
+
+[[effect]]
+name = "Bodyfeeder"
+
+[[effect]]
+name = "Improved Paralyzing"
+
+[[effect]]
+name = "Bewildering"
+value = 1
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "dragon's hoard chests"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Air Node"
+
+[[source]]
+chest = "hyrelgas chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"
+
+[[source]]
+chest = "periron chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"
+
+[[source]]
+chest = "jotun rimeblade chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Water Node"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.2
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

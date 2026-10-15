@@ -1,0 +1,44 @@
+name = "Nuushmaar's Adamantine Tooth"
+description = """
+A long, thin sword with a fine point. Unlike other swords, this weapon lacks
+an edged blade, and can only be used for thrusting attacks."""
+drop_location = "Stormcleave Outpost, Nuushmaar 's chest"
+enhancement_bonus = 3
+icon = "Rapier_5a"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Adamantine"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "nuushmaar 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stormcleave Outpost"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Rapier"

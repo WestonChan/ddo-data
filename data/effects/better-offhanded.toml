@@ -1,0 +1,3 @@
+name = "Better Offhanded"
+description_template = "While this item is in your offhand, it gains +2[W]."
+verbose_name_template = "Better Offhanded"

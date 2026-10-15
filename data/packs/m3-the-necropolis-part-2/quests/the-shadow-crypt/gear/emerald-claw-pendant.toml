@@ -1,0 +1,41 @@
+name = "Emerald Claw Pendant"
+description = """
+This Pendant of the Emerald Claw has been transformed by the altars of blood
+and darkness."""
+drop_location = "The Shadow Crypt, altar; upgraded from Emerald Claw Amulet"
+icon = "Necklace_4"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 9
+slot = "Neck"
+
+[[clickie]]
+name = "Symbol of Fear"
+clickie = "Symbol of Fear"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 7
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    11,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Symbol of Fear"]
+
+[[source]]
+chest = "altar"
+kind = "quest"
+loot_type = "chest"
+name = "The Shadow Crypt"

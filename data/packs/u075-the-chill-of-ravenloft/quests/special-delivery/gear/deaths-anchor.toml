@@ -1,0 +1,57 @@
+name = "Death's Anchor"
+description = """
+Deathly magic follows this device, which seems to tether it to wherever this
+energy came from."""
+drop_location = "Special Delivery, Max Entsetzen 's chest"
+icon = "Orb_1a"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Steel"
+minimum_level = 8
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 8
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 4
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Quality"
+value = 17
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[socket]]
+slot = "lamordia: melancholic (weapon)"
+
+[[socket]]
+slot = "lamordia: dolorous (weapon)"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "max entsetzen 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

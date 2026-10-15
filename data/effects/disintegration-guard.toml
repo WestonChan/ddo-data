@@ -1,0 +1,3 @@
+name = "Disintegration Guard"
+description_template = "This item has a store of dark, insidious power deep within. When the wearer of this item is successfully attacked in melee, this power occasionally lashes out violently at enemies and attempts to disintegrate them."
+verbose_name_template = "Disintegration Guard"

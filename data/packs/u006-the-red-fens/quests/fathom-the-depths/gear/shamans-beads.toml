@@ -1,0 +1,25 @@
+name = "Shaman's Beads"
+description = """
+Favored by Drow shamans, necklaces such as this one are a powerful aid to spells
+in combat."""
+drop_location = "Fathom the Depths, End reward"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 7
+slot = "Neck"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Fathom the Depths"

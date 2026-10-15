@@ -1,0 +1,46 @@
+name = "Legendary Frostflame Robe"
+description = """
+Droaam ogre magi have enchanted these robes to make the fire and cold magic
+of the wearer more deadly. The enchantments also protect the wearer from those
+same elemental forces."""
+drop_location = "Attack on Stormreach, End reward"
+enhancement_bonus = 15
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "Attack on Stormreach"

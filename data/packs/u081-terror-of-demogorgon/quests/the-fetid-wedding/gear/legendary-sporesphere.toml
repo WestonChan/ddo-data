@@ -1,0 +1,57 @@
+name = "Legendary Sporesphere"
+description = """
+Small clouds of fungal spores emanate from deep within this orb on the hour,
+every hour."""
+drop_location = "The Fetid Wedding, end chest"
+icon = "Orb_1f"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Wood"
+minimum_level = 35
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 16
+
+[[effect]]
+name = "Void Intensity"
+bonus_type = "Insight"
+value = 13
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 159
+
+[[socket]]
+slot = "crafting: nearly complete: healing amplification (legendary)"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Fetid Wedding"
+
+[[weapon]]
+attack_modifier = "Charisma"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

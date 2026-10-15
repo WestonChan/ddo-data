@@ -1,0 +1,51 @@
+name = "The Zarash'ak Ward"
+description = """
+The Dragon Below has followers everywhere, and a sect in Zarash'ak has forged
+this Ward in its name."""
+drop_location = "Project Nemesis, end chest; Masterminds of Sharn saga: Epic end reward; rare drop in any Sharn quest"
+icon = "Necklace_34"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Force"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 26
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"
+
+[[source]]
+kind = "saga"
+name = "Masterminds of Sharn"
+tier = "epic"

@@ -1,0 +1,23 @@
+name = "+50 Electric Resistance"
+description = "Material/Opposition: +50 Enhancement bonus to Electric Resistance."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 50
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[slot]]
+slot = "crafting: equipment tier 1"

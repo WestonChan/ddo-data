@@ -1,0 +1,36 @@
+name = "Solar Gem of Balance and Tumble (Heroic)"
+description = """
++2 Artifact bonus to Balance and Tumble
+Drops in: The Body Snatchers, cookbook optional chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Balance"
+bonus_type = "Artifact"
+value = 2
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Tumble",
+]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "cookbook optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"

@@ -1,0 +1,11 @@
+name = "Sealed in Undeath"
+description = """
+Sealed in Undeath: This item seethes with a sealed power.
+It can have its power unsealed at the Ritual Table, adding one effect.
+Attempting to add another will remove the original."""
+family = "SealedInUndeath"
+icon = "BlackAbbot"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in undeath"

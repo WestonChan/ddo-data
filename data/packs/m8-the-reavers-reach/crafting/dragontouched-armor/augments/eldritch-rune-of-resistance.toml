@@ -1,0 +1,21 @@
+name = "Eldritch Rune of Resistance"
+description = "Resistance +5: Passive: +5 Resistance bonus to Fortitude, Reflex, and Will Saving Throws."
+family = "Dragontouched_EldritchRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Resistance"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: eldritch rune"

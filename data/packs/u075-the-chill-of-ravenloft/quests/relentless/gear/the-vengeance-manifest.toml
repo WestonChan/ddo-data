@@ -1,0 +1,77 @@
+name = "The Vengeance Manifest"
+description = """
+Augmentation slots line the back of this shield, allowing tinkerers to unlock
+its full potential."""
+drop_location = "Relentless, end chest"
+enhancement_bonus = 15
+icon = "Shield_2d"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Wood"
+minimum_level = 34
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 19
+max_dex_bonus = 0
+shield_bonus = 38
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Murderous Spikes"
+
+[[effect]]
+name = "Revel in Blood (Shield)"
+
+[[socket]]
+slot = "lamordia: melancholic (weapon)"
+
+[[socket]]
+slot = "lamordia: dolorous (weapon)"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Relentless"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 8
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.8
+handedness = "Off-hand"
+weapon_type = "Large Shield"

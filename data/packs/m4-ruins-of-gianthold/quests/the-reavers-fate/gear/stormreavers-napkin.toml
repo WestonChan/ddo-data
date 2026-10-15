@@ -1,0 +1,39 @@
+name = "Stormreaver's Napkin"
+description = """
+You hold in your hand the huge cloth napkin that was used by the Stormreaver
+in his final meal before the great cataclysm. You can't tell if the red stains
+on its surface are of wine or blood, but it does seem that everything is so
+much easier to understand now."""
+drop_location = "The Reaver's Fate, Raid warded chest"
+icon = "Cloak_24a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Back"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Spell Focus I"
+bonus_type = "Equipment"
+value = 25
+
+[[note]]
+kind = "item_socket"
+field = "add"
+reason = "The wiki's Stormreaver Monument upgrades Stormreaver's Napkin; his item has no upgrade socket."
+url = "https://ddowiki.com/page/Stormreaver_Monument"
+read = "2026-09-30"
+qualifier = "crafting: upgradeable item (stormreaver)"
+
+[[socket]]
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"

@@ -1,0 +1,1145 @@
+name = "Soul Eater"
+background = "WarlockBackground"
+icon = "Warlock"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Soul Eater: Inhuman Understanding"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain +1 damage with melee and ranged attacks and +5 Universal Spell Power
+for each core ability you take in this tree."""
+icon = "SEInhumanUnderstanding"
+internal_name = "SECore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Soul Eater: Inhuman Nature"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+As your form becomes more inhuman you gain +25% Fortification and +4 Saving Throws
+versus Poison and Disease."""
+icon = "SEInhumanNature"
+internal_name = "SECore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Poison",
+    "Disease",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["SECore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Soul Eater: No Worse Fate"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain immunity to Fear. Your melee, ranged and Eldritch Blast attacks cause
+enemies to be Shaken for 6 seconds. This can occur up to once per 2 seconds."""
+icon = "SENoWorseFate"
+internal_name = "SECore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[enhancement.requirement]]
+items = ["SECore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Soul Eater: Inhuman Nature"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain +25% Fortification and +4 Saving Throws versus Poison and Disease.
+Your Consume damage over time is increased by 2d10. Your Stricken damage is
+increased by 4d6."""
+icon = "SEInhumanNature"
+internal_name = "SECore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Poison",
+    "Disease",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["SECore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Soul Eater: Eldritch Seeker"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain +5% chance to critically hit with spells and with Eldritch Blast."
+icon = "SEEldritchSeeker"
+internal_name = "SECore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["SECore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Soul Eater: Devour the Soul"
+cost_per_rank = [1]
+description = """
+Passive: +4 Charisma.
+You consume the soul of your targeted enemy, killing it instantly unless it
+makes a Will saving throw (DC of 16 + Cha Mod + Necromancy School bonuses).
+This ability is considered a Necromancy spell. This ability works on undead,
+but not constructs and other creatures with no life force. If the target
+survives then it loses 20 PRR and MRR for 6 seconds.
+Cooldown: 15 seconds."""
+icon = "SEDevourTheSoul"
+internal_name = "SECore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.dc]]
+name = "Soul Eater: Devour the Soul"
+amount = [16]
+dc_type = "Death"
+dc_versus = "Will"
+description = """
+You consume the soul of your targeted enemy, killing it instantly unless it
+makes a Will saving throw."""
+icon = "SEDevourTheSoul"
+mod_ability = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SECore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Devour the Soul",
+    "Warlock",
+]
+
+[[enhancement.requirement]]
+items = ["SECore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "SECore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Soul Eater: Consume"
+cost_per_rank = [2]
+description = """
+Ranged Magical Attack. Your magics consume bits of your opponent's form,
+disintegrating bits of them for 2d10 Chaotic damage every 2 seconds for a duration
+of 16 seconds. The damage scales with 125% spell power. The effect can stack up
+to 3 times. Your enemy is also marked with the Consumed trait. The shot is
+unguided with a slower flight speed, so enemies at long range may avoid it.
+Cooldown 10 seconds"""
+icon = "SEConsume"
+internal_name = "SEConsume"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Soul Eater: Subtle Spellcasting"
+cost_per_rank = [1]
+description = """
+Your attacks and spells generate [20/30/40]% less hate, making enemies less
+likely to attack you."""
+icon = "SESubtleSpellcasting"
+internal_name = "SESubtleSpellcasting"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SESubtleSpellcasting",
+    "Magical Subtlety",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -20,
+    -30,
+    -40,
+]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusSpell"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "SESubtleSpellcasting",
+    "Magical Subtlety",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Soul Eater: Taint the Blood"
+cost_per_rank = [1]
+description = """
+Your Eldritch Blast, Melee and Ranged attacks reduce the Fortitude saving throw
+of the target by -1 for 6 seconds. The effect stacks up to 4 times."""
+icon = "SETaintTheBlood"
+internal_name = "SETaintTheBlood"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Soul Eater: Daunting Presence"
+cost_per_rank = [1]
+description = """
++[1/2/3] Bluff, Haggle, and Diplomacy.
+Rank 3: +1 Will saving throw."""
+icon = "SEDauntingPresence"
+internal_name = "SEDauntingPresence"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Will"]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Soul Eater: Hungry for Destruction I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "You gain +[1/2/3] Melee Power and Ranged Power, and +[2/4/6] Universal Spell Power."
+icon = "SEHungryForDestruction"
+internal_name = "SEHungryForDestructionI"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Soul Eater: Stricken"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Ranged Magical Attack. You cause 12d6 Chaotic damage and reduce the Healing
+Amplification of the opponent by 120 for 12 seconds.
+The reduction is negated by a Fortitude saving throw with a DC of
+18 + Warlock level + Max[Int/Cha] modifier.
+The damage scales with 125% Spell Power. Your enemy is also marked with the
+Strickened trait.  The shot is unguided with a slower flight speed, so enemies
+at long range may avoid it.
+Cooldown: 10 seconds."""
+icon = "SEStricken"
+internal_name = "SEStricken"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.dc]]
+name = "Soul Eater: Stricken"
+amount = [18]
+base_class_level = "Warlock"
+dc_type = "Stricken"
+dc_versus = "Fortitude"
+description = """
+Ranged Magical Attack. You cause 12d6 Chaotic damage and reduce
+the Healing Amplification of the opponent by 120 for 12 seconds."""
+icon = "SEStricken"
+mod_ability = [
+    "Intelligence",
+    "Charisma",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Soul Eater: Feeding Frenzy"
+cost_per_rank = [2]
+description = """
+When you use Consume on an enemy the feeding increases your movement speed by 1%
+per Warlock level for 20 seconds. This stacks with all other standard speed
+buffs like Expeditious Retreat, Haste or an Enhancement via equipment.
+You will get the speed buff the instant the projectile is launched, whether or
+not it hits the target."""
+icon = "SEFeedingFrenzy"
+internal_name = "SEFeedingFrenzy"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Soul Eater: Taint the Aura"
+cost_per_rank = [2]
+description = """
+Against targets marked by your Consume attack: Your Melee, Ranged and Eldritch
+Blast attacks reduce the Spell Resistance, PRR and MRR of the target by -2 for
+10 seconds. The effect stacks up to 5 times."""
+icon = "SETaintTheAura"
+internal_name = "SETaintTheAura"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Soul Eater: Consume Sight"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Blindness
+You can cast the spell Blindness as a Spell-Like Ability.
+You may use Metamagic Feats with Spell-Like Abilities at no additional cost.
+Blinds an enemy.
+Activation Cost: 10 Spell Points.
+Cooldown: 3 seconds"""
+icon = "SEConsumeSight"
+internal_name = "SEConsumeSight"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Blindness",
+    "Warlock",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Soul Eater: Hungry for Destruction II"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] Melee Power and Ranged Power, and +[2/4/6] Universal Spell Power."
+icon = "SEHungryForDestruction"
+internal_name = "SEHungryForDestructionII"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["SEHungryForDestructionI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Soul Eater: Strickened Soul"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Against targets marked by your Stricken attack: Your Eldritch Blast, Melee and
+Ranged attacks reduce the target's Melee Power, Ranged Power and Spell Power
+by 20 for 10 seconds."""
+icon = "SEStrickenedSoul"
+internal_name = "SEStrickenedSoul"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["SEStricken"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Soul Eater: Your Flesh is Weak"
+cost_per_rank = [2]
+description = "Select one"
+icon = "SEDarkFeeding"
+internal_name = "SEDarkFeeding"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Blood Feast"
+cost_per_rank = [2]
+description = """
+Activate this ability to cause 1d8+2 Constitution damage to your opponent.
+You gain an Insight bonus of 1d8+2 Constitution for 20 seconds."""
+icon = "SEDarkFeeding"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Food for Thought"
+cost_per_rank = [2]
+description = """
+Activate this ability to cause 1d8+2 Intelligence damage to your opponent.
+You gain an Insight bonus of 1d8+2 Intelligence for 20 seconds."""
+icon = "SEDarkFeeding"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "You Cannot Evade Me"
+cost_per_rank = [2]
+description = """
+Activate this ability to cause 1d8+2 Dexterity damage to your opponent.
+You gain an Insight bonus of 1d8+2 Dexterity for 20 seconds."""
+icon = "SEDarkFeeding"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Your Flesh Is Weak"
+cost_per_rank = [2]
+description = """
+Activate this ability to cause 1d8+2 Strength damage to your opponent.
+You gain an Insight bonus of 1d8+2 Strength for 20 seconds."""
+icon = "SEDarkFeeding"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Your Will Is Mine"
+cost_per_rank = [2]
+description = """
+Activate this ability to cause 1d8+2 Wisdom damage to your opponent.
+You gain an Insight bonus of 1d8+2 Wisdom for 20 seconds."""
+icon = "SEDarkFeeding"
+is_clickie = true
+
+[[enhancement]]
+name = "Soul Eater: Burning Blood"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Burning Blood
+You can cast the spell Burning Blood as a Spell-Like ability.
+You may use Metamagic Feats with Spell-Like Abilities at no additional cost.
+Cost: 10 SP.
+Cooldown: 5 seconds.
+
+A harmful enchantment that deals Acid damage (1d8) and Fire damage (1d8, +1
+per caster level) every 2 seconds for a duration of 10 seconds.
+No initial tic, then 4 tics of damage."""
+icon = "SEBurningBlood"
+internal_name = "SEBurningBlood"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Burning Blood",
+    "Warlock",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Soul Eater: Eldritch Blast Shape: Cone"
+cost_per_rank = [2]
+description = """
+Eldritch Blast Shape: Cone: Eldritch Blast Shape Stance: toggle on to turn your
+automatic attack into a ranged magical cone dealing 1d6 force damage.
+While active you have -1 Pact damage die, and this spell scales with 100% Spell
+power. This cone attack has standard range for cone spells."""
+icon = "SEEldritchBlastShapeCone"
+internal_name = "SEEldritchBlastShapeCone"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD6"
+
+[[enhancement.modifier.requirement]]
+items = ["Cone"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Cone"
+description = """
+Eldritch Blast Shape: Cone: Eldritch Blast Shape Stance: toggle on to turn your
+automatic attack into a ranged magical cone dealing 1d6 force damage.
+While active you have -1 Pact damage die, and this spell scales with 100% Spell
+power. This cone attack has standard range for cone spells."""
+group_name = "Blast Shape"
+icon = "SEEldritchBlastShapeCone"
+
+[[enhancement]]
+name = "Soul Eater: Ability I"
+cost_per_rank = [2]
+description = "Choose either Intelligence or Charisma"
+icon = "IntCha"
+internal_name = "SEAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Soul Eater: Strickened Form"
+cost_per_rank = [2]
+description = """
+Against targets marked by your Stricken attack: Your Melee, Ranged and
+Eldritch Blast attacks inflict Vulnerability.
+
+Vulnerability: You take 1% more damage for 3 seconds. This effect stacks up to
+20 times, and loses one stack on expiration."""
+icon = "SEStrickenedForm"
+internal_name = "SEStrickenedForm"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SEStrickenedSoul"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Soul Eater: Greater Hunger"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Your Melee, Ranged, and Eldritch Blast attacks do 2d6 Chaotic damage when striking
+an opponent marked by your Consume attack.
+
+Your Consume damage over time is increased by 2d10.
+
+Your stricken damage is increased by 4d6."""
+icon = "SEGreaterHunger"
+internal_name = "SEGreaterHunger"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Soul Eater: Steal Life Force"
+cost_per_rank = [2]
+description = """
+You cause 12d6 Chaotic damage to your target and heal for 12d6
+positive energy (or negative if you are undead.) This damage and healing scales
+with 150% spell power. Cooldown: 20 seconds.
+
+It will always give you the self healing effect even if the target is blocked
+from taking damage. The projectile is unguided but quite fast, so it has a
+good chance of hitting long-range targets."""
+icon = "SEStealLifeForce"
+internal_name = "SEStealLifeForce"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Soul Eater: Immortal Will"
+cost_per_rank = [2]
+description = "+1 to the DC of Enchantment, Illusion, and Necromancy spells."
+icon = "SEImmortalWill"
+internal_name = "SEImmortalWill"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Enchantment",
+    "Illusion",
+    "Necromancy",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Soul Eater: Ability II"
+cost_per_rank = [2]
+description = "Choose either Intelligence or Charisma"
+icon = "IntCha"
+internal_name = "SEAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Soul Eater: Eldritch Wave"
+cost_per_rank = [2]
+description = """
+You create a cone of eldritch energy that strikes all opponents in the area with
+three consecutive Eldritch Blasts. The damage from these Eldritch Blasts
+scales with 150% spell power. Cooldown 8 seconds."""
+icon = "SEEldritchWave"
+internal_name = "SEEldritchWave"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Soul Eater: Supreme Hunger"
+cost_per_rank = [1]
+description = """
+Supreme Hunger: Your Consume damage over time is increased by 2d10.
+Your Stricken damage is increased by 4d6."""
+icon = "SESupremeHunger"
+internal_name = "SESupremeHunger"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SEGreaterHunger"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Soul Eater: Feed On Magic"
+cost_per_rank = [1]
+description = """
+Attacking with Melee, Ranged, and Eldritch Blast gives a 10% chance to gain 10
+temporary Spell Points +1 per Warlock level. Spell Points last 1 minute."""
+icon = "SEFeedOnMagic"
+internal_name = "SEFeedOnMagic"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Soul Eater: Spell Tearing"
+cost_per_rank = [2]
+description = "You gain +3% chance to critically hit with your spells and Eldritch Blast"
+icon = "SESpelltearing"
+internal_name = "SESpellTearing"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "SESpellTearing"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image SESpelltearing.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Soul Eater: Finger of Death"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Finger of Death
+Activation Cost: 40 Spell Points.
+Cooldown: 8 seconds."""
+icon = "SEFingerOfDeath"
+internal_name = "SEFingerOfDeath"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    40,
+    0,
+    8,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Finger of Death",
+    "Warlock",
+]
+
+[[enhancement.requirement]]
+items = ["Warlock"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Warlock"]
+req_type = "BaseClass"

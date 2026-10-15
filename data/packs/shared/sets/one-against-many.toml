@@ -1,0 +1,39 @@
+name = "One Against Many"
+icon = "OneAgainstMany"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Melee Power"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Strikethrough"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Strikethrough"
+effect_type = "Strikethrough"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "Melee Power Debuff"

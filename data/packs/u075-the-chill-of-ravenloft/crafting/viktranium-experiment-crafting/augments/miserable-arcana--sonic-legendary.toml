@@ -1,0 +1,21 @@
+name = "Miserable Arcana: Sonic (Legendary)"
+description = "+159 Equipment bonus to Sonic Spellpower."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Sonic Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [159]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

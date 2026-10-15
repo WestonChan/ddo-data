@@ -1,0 +1,31 @@
+name = "Sage's Ring (Level 27)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "What Goes Up, End reward"
+icon = "Ring_9"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 27
+slot = "Ring"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 92
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "What Goes Up"

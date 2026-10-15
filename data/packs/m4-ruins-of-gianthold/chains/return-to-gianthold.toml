@@ -1,0 +1,13 @@
+name = "Return to Gianthold"
+pack = "Ruins of Gianthold"
+quests = [
+    "A Cabal for One",
+    "Madstone Crater",
+    "The Prison of the Planes",
+    "Gianthold Tor",
+    "The Fall of Truth",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Return_to_Gianthold"
+read = "2026-10-02"

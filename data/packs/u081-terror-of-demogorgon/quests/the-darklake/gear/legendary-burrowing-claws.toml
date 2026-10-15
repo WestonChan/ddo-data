@@ -1,0 +1,43 @@
+name = "Legendary Burrowing Claws"
+description = """
+Fashioned after the claws of the Bulette, these would be especially good for
+digging."""
+drop_location = "The Darklake, Depthdigger 's chest"
+icon = "Gloves_20"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Hands"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 7
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "depthdigger 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

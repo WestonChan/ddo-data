@@ -1,0 +1,21 @@
+name = "The Lord of Eyes"
+bestowed_by = "Elawyn Thwr"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Reign of Madness"
+patron = "The Twelve"
+zone = "The Lower Arcanum"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Lord_of_Eyes"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

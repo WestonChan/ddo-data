@@ -1,0 +1,53 @@
+name = "Spur, the Claw of Death"
+accepts_sentience = true
+description = "Death and fire flow from his mighty jaws."
+drop_location = "Threats Old and New, Raid Warded chest"
+enhancement_bonus = 15
+icon = "Kama_1c"
+item_category = "Weapon"
+item_type = "Kama"
+material = "Steel"
+minimum_level = 33
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Life Stealing"
+
+[[effect]]
+name = "Legendary Paralysis"
+
+[[effect]]
+name = "Overwhelming Incineration"
+
+[[socket]]
+slot = "crafting: sealed in fire"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Threats Old and New"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.6
+handedness = "One-handed"
+weapon_type = "Kama"

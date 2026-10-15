@@ -1,0 +1,40 @@
+name = "Legendary Pendant of the Blue Abishai"
+description = "This necklace seems to be attuned to elemental power."
+drop_location = "The Chronoscope (Legendary), End chest or Legendary version of Epic Pendant of the Blue Abishai"
+icon = "Necklace_13j"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest or legendary version of epic pendant of the blue abishai"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

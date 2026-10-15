@@ -1,0 +1,19 @@
+name = "The Dreaming Dark"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Dreaming Dark"
+patron = "The Coin Lords"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Dreaming_Dark"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 20

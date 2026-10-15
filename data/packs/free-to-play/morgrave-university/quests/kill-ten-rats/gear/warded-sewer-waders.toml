@@ -1,0 +1,40 @@
+name = "Warded Sewer Waders"
+description = """
+These boots help the user ward off sicknesses one might acquire in the sewers.
+Given that they were dredged up from its depths without their user, they seem
+less effective at warding off the sewers' inhabitants."""
+drop_location = "Kill Ten Rats, end chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Feet"
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Speed"
+value = 28
+value2 = 13
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Kill Ten Rats"

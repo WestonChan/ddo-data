@@ -1,0 +1,36 @@
+name = "Seraphim"
+description = "This helm was taken from the body of a fallen Astral Deva."
+drop_location = "Tattered Tapestries, Turn in 20 Tattered Tapestries"
+icon = "Helmet_10"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Abjuration Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 66
+
+[[source]]
+kind = "vendor"
+name = "Balkar Aislin"
+
+[[source.price]]
+ingredient = "Shred of Tapestry"
+quantity = 20

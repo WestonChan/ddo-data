@@ -1,0 +1,16 @@
+name = "Keep on the Borderlands"
+pack = "Keep on the Borderlands"
+quests = [
+    "The Bugbear Bandits",
+    "Watch Your Step",
+    "Treasure Hunt",
+    "Caged Beast",
+    "Obstructing the Orcs",
+    "The Hobgoblin Horde",
+    "Violent Delights",
+    "Total Chaos",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Keep_on_the_Borderlands"
+read = "2026-10-02"

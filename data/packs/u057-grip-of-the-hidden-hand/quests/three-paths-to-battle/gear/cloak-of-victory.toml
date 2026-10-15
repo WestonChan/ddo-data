@@ -1,0 +1,38 @@
+name = "Cloak of Victory"
+description = "This fine cloak fills you with the spirit of battle."
+drop_location = "Three Paths to Battle, end chest"
+icon = "Cloak_21a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 16
+slot = "Back"
+
+[[effect]]
+name = "Heroism"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 32
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Three Paths to Battle"

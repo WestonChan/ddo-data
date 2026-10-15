@@ -1,0 +1,3 @@
+name = "Embodiment of Law"
+description_template = "Chaotic aligned characters equipping this item suffer a temporary negative level until the item is removed."
+verbose_name_template = "Embodiment of Law"

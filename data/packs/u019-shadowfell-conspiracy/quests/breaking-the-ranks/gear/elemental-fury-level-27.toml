@@ -1,0 +1,47 @@
+name = "Elemental Fury (Level 27)"
+description = """
+Umbrage of earth, rage of fire. Temper of wind, ire of water. These are your weapons. Drive their fury into the hearts of your enemies.'
+-Yrrgann, Gnoll Elementalist"""
+drop_location = "Breaking the Ranks, End chest (Epic Hard)"
+enhancement_bonus = 5
+icon = "Shortsword_1c"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 27
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Acid V"
+
+[[effect]]
+name = "Flaming V"
+
+[[effect]]
+name = "Shock IV"
+
+[[effect]]
+name = "Frost IV"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Breaking the Ranks"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Shortsword"

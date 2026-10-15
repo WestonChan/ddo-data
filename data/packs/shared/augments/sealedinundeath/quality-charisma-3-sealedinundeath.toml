@@ -1,0 +1,27 @@
+name = "Quality Charisma +3"
+variant = "sealedinundeath"
+description = """
+Quality Charisma +3: This item makes the wearer have more flair, granting
+a +3 Quality bonus to Charisma."""
+family = "SealedInUndeath"
+icon = "Charisma"
+min_level = 32
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: sealed in undeath"
+
+[[slot]]
+slot = "crafting: sealed in gloom"

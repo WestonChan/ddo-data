@@ -1,0 +1,16 @@
+name = "Experienced Evil"
+description = "Dealing with evil has its rewards."
+drop_location = "The Temple of Elemental Evil, End reward"
+icon = "Trinket_62"
+item_category = "Jewelry"
+material = "Adamantine"
+minimum_level = 7
+slot = "Trinket"
+
+[[effect]]
+name = "Heroic Inspiration"
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "reward"
+name = "The Temple of Elemental Evil"

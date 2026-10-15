@@ -1,0 +1,3 @@
+name = "Extra damage vs non-Giants"
+description_template = "This weapon deals an additional 1 to 8 damage against non-Giants."
+verbose_name_template = "Extra damage vs non-Giants"

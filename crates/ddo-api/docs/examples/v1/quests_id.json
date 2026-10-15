@@ -10,7 +10,7 @@
   "epic_name": null,
   "favor": 3,
   "flagging": null,
-  "id": 86,
+  "id": 6370271940477599,
   "is_challenge": false,
   "is_free_to_play": true,
   "is_raid": false,
@@ -23,11 +23,13 @@
   "patron": "The Coin Lords",
   "quest_chains": [
     {
-      "id": 1,
+      "id": 4406248643734309,
       "name": "The Lost Seekers",
+      "slug": "the-lost-seekers",
       "wiki_url": "https://ddowiki.com/page/The_Lost_Seekers"
     }
   ],
   "sagas": [],
+  "slug": "venns-trail-venns-fate",
   "zone": "Clan Tunnelworm Prison"
 }

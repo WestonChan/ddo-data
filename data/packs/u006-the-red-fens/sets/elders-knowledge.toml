@@ -1,0 +1,54 @@
+name = "Elder's Knowledge"
+icon = "EldersKnowledge"
+
+[[item]]
+name = "Elder's Cap"
+
+[[item]]
+name = "Elder's Focus"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Artifact"
+reason = "The wiki types Universal Spell Critical Damage as Legendary at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Universal Spell Critical Damage / Artifact"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 4
+reason = "The wiki gives Universal Spell Critical Damage +5 Legendary at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Universal Spell Critical Damage / Legendary"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Lore"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellLore"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Universal Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]

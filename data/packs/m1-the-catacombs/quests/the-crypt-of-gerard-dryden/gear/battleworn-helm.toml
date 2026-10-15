@@ -1,0 +1,24 @@
+name = "Battleworn Helm"
+description = "This helm once belonged to Gerard Dryden, and has seen much use."
+drop_location = "The Crypt of Gerard Dryden, old End chest"
+icon = "Helmet_53"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 25
+
+[[source]]
+chest = "old end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crypt of Gerard Dryden"

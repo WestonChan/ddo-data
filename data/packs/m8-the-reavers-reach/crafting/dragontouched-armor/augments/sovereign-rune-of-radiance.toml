@@ -1,0 +1,11 @@
+name = "Sovereign Rune of Radiance"
+description = """
+Radiance Guard: This item is imbued with a brilliant, radiant power. When the wearer
+of this item is successfully attacked in melee, the attacker has a chance of
+being hit by 4d6 points of light damage and has a chance of being blinded."""
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

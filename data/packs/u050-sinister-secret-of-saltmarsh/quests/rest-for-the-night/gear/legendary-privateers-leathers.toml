@@ -1,0 +1,46 @@
+name = "Legendary Privateer's Leathers"
+description = "Light enough for sailing, heavy enough to take an impact."
+drop_location = "Rest for the Night, end chest, or Legendary version of Epic Privateer's Leathers"
+enhancement_bonus = 15
+icon = "MediumArmor_11c"
+item_category = "Armor"
+item_type = "Medium"
+material = "Leather"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 18
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 146
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest, or legendary version of epic privateer's leathers"
+kind = "quest"
+loot_type = "chest"
+name = "Rest for the Night"

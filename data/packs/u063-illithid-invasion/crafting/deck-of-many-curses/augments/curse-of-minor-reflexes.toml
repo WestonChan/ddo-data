@@ -1,0 +1,30 @@
+name = "Curse of Minor Reflexes"
+description = "+1 Fortune Bonus to Reflex Saving Throws"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Fortune"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect = "Reflex Save"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Curse of Minor Reflex"
+reason = "The wiki spells the curse Curse of Minor Reflexes, where Maetrim spells it Curse of Minor Reflex."
+url = "https://ddowiki.com/page/Item:Deck_of_Many_Curses"
+read = "2026-10-02"
+qualifier = 'family "DeckOfManyCurses"'
+
+[[slot]]
+slot = "crafting: deck curse"

@@ -1,0 +1,24 @@
+name = "Skirmisher's Lenses (Level 27)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "A Break In the Ice, End reward"
+icon = "Goggles_8a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 27
+slot = "Goggles"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 8
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "A Break in the Ice"

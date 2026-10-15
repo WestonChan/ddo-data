@@ -1,0 +1,123 @@
+[[row]]
+name = "Grace of Battle"
+acquire = "Train"
+description = """
+Your faith allows you to use your Charisma bonus for to-hit and
+damage purposes with your deities' Favored Weapon if it is higher than your
+Strength bonus. This benefit only applies if your Favored Soul level is equal
+to or greater than half of your total Heroic Character level."""
+icon = "GraceOfBattle"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Battle Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Charisma",
+    "Quarterstaff",
+    "Dagger",
+    "Great Sword",
+    "Sickle",
+    "Warhammer",
+    "Longbow",
+    "Longsword",
+    "Scimitar",
+    "Shortsword",
+    "Heavy Mace",
+    "Bastard Sword",
+    "Maul",
+]
+
+[[row.modifier.requirement]]
+items = ["FavoredWeapon"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Charisma",
+    "Quarterstaff",
+    "Dagger",
+    "Great Sword",
+    "Sickle",
+    "Warhammer",
+    "Longbow",
+    "Longsword",
+    "Scimitar",
+    "Shortsword",
+    "Heavy Mace",
+    "Bastard Sword",
+    "Maul",
+]
+
+[[row.modifier.requirement]]
+items = ["FavoredWeapon"]
+req_type = "Stance"
+
+[[row]]
+name = "Knowledge of Battle"
+acquire = "Train"
+description = """
+Your faith allows you to use your Wisdom bonus for to-hit and
+damage purposes with your deities' Favored Weapon if it is higher than your
+Strength bonus. This benefit only applies if your Favored Soul level is equal
+to or greater than half of your total Heroic Character level."""
+icon = "KnowledgeOfBattle"
+source_name = "Favored Soul"
+
+[[row.group]]
+group_name = "Battle Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Wisdom",
+    "Quarterstaff",
+    "Dagger",
+    "Great Sword",
+    "Sickle",
+    "Warhammer",
+    "Longbow",
+    "Longsword",
+    "Scimitar",
+    "Shortsword",
+    "Heavy Mace",
+    "Bastard Sword",
+    "Maul",
+]
+
+[[row.modifier.requirement]]
+items = ["FavoredWeapon"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Wisdom",
+    "Quarterstaff",
+    "Dagger",
+    "Great Sword",
+    "Sickle",
+    "Warhammer",
+    "Longbow",
+    "Longsword",
+    "Scimitar",
+    "Shortsword",
+    "Heavy Mace",
+    "Bastard Sword",
+    "Maul",
+]
+
+[[row.modifier.requirement]]
+items = ["FavoredWeapon"]
+req_type = "Stance"

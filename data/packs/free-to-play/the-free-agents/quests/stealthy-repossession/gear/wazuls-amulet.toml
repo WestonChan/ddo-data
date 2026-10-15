@@ -1,0 +1,19 @@
+name = "Wazul's Amulet"
+description = "A faint whispering sound surrounds this silver necklace."
+drop_location = "Stealthy Repossession, Witch Doctor Wazul 's chest"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Neck"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 2
+
+[[source]]
+chest = "witch doctor wazul 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stealthy Repossession"

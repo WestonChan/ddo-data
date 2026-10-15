@@ -1,0 +1,33 @@
+name = "Facet of Psionic Intrusion"
+description = """
+Slotted Effect: This weapon is considered an Implement.
++153 Equipment bonus to Force Spell Power."""
+family = "Facets"
+icon = "OrangeGem"
+min_level = 32
+
+[[effect]]
+name = "Force Spell Power"
+bonus_type = "Equipment"
+value = 153
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [153]
+bonus_type = "Equipment"
+effect = "Force Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[slot]]
+slot = "orange"

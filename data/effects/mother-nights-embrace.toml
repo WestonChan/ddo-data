@@ -1,0 +1,3 @@
+name = "Mother Night's Embrace"
+description_template = "This weapon is unholy and imbued by one of the two deities of Barovia - the Mother Night. This weapon is evil, dealing an additional 3d6 evil damage on hit."
+verbose_name_template = "Mother Night's Embrace"

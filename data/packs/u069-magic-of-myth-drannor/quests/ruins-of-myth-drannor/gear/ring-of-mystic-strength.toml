@@ -1,0 +1,40 @@
+name = "Ring of Mystic Strength"
+description = """
+Once held by those chosen by the Blade Rites, this ring confers both Martial
+and Magical prowess."""
+drop_location = "Ruins of Myth Drannor, red-named encounter chests"
+icon = "Ring_21"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Deception"
+bonus_type = "Quality"
+value = 1
+value2 = 2
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "red-named encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

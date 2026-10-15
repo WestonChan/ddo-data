@@ -1,0 +1,42 @@
+name = "Doctor Gustav's Warped Lenses"
+description = """
+A set of black glasses that alter the vision. It makes a certain kind of sense,
+but certainly not the standard kind."""
+drop_location = "Body and Mind, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 8
+slot = "Goggles"
+
+[[effect]]
+name = "Spell Focus"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 96
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Body and Mind"

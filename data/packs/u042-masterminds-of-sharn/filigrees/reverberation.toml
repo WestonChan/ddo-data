@@ -1,0 +1,141 @@
+[[row]]
+name = "Reverberation: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "Reverberation"
+menu = "Masterminds of Sharn"
+set = "Reverberation"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Reverberation: Charisma: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Reverberation: +2 Reflex Saves"
+description = """
++2 Reflex Saving Throw
+Rare: +2 MRR"""
+icon = "Reverberation"
+menu = "Masterminds of Sharn"
+set = "Reverberation"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Reverberation: Reflex: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Reverberation: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "Reverberation"
+menu = "Masterminds of Sharn"
+set = "Reverberation"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Reverberation: PRR: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Reverberation: +5% Sonic Absorption"
+description = """
++5% Sonic Absorption
+Rare: +2 MRR"""
+icon = "Reverberation"
+menu = "Masterminds of Sharn"
+set = "Reverberation"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Sonic"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Reverberation: Sonic Absorption: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Reverberation: +6 Universal Spell Power"
+description = """
++6 Universal Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "Reverberation"
+menu = "Masterminds of Sharn"
+set = "Reverberation"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Reverberation: Universal Spell Power: +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Reverberation: +9 Sonic Spell Power"
+description = """
++9 Sonic Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "Reverberation"
+menu = "Masterminds of Sharn"
+set = "Reverberation"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Reverberation: Sonic Spell Power: +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

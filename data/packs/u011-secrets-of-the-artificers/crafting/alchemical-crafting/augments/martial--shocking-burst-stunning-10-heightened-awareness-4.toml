@@ -1,0 +1,81 @@
+name = "Martial: Shocking Burst, Stunning +10, Heightened Awareness 4"
+description = """
+Shocking Burst: This weapon is sheathed in crackling electricity, and deals 1 to
+6 electric damage each hit. Critical hits deal an additional 1 to 10 electric
+damage for weapons with a x2 critical multiplier, 2 to 20 for a x3 multiplier
+and 3 to 30 for a x4 multiplier.
+Stunning +10
+Heightened Awareness 4: This item helps you to quickly read situations with
+sharpness and clarity, allowing you to predict actions before they occur.
+You gain a +4 Insight bonus to AC."""
+family = "Alchemical"
+min_level = 16
+
+[[effect]]
+name = "Stun DC"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Insight"
+value = 4
+
+[[modifier]]
+amount_type = "Dice"
+bonus_type = "Stacking"
+dice_damage = "Electric"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "CriticalDice"
+bonus_type = "Stacking"
+dice_damage = "Electric"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus = "Not Set"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+reason = "The wiki's Tier 1 Air martial effect Stunning +10 is a +10 Enhancement bonus to the Stunning DC; his TacticalDC effect is Not Set."
+url = "https://ddowiki.com/page/Alchemical_Crafting"
+read = "2026-10-02"
+qualifier = "Stun DC / null"
+
+[[slot]]
+slot = "crafting: alchemical tier 1"

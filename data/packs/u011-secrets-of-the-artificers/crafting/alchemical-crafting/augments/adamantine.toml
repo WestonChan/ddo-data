@@ -1,0 +1,17 @@
+name = "Adamantine"
+adds_augment = "Legendary Alchemical Tier 1"
+description = "Weapon/shield breaks adamantine DR, Hardness increases by 10"
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Adamantine"
+
+[[slot]]
+slot = "crafting: legendary alchemical material"

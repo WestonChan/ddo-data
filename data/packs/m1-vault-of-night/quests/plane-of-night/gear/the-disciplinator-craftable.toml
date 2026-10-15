@@ -1,0 +1,53 @@
+name = "The Disciplinator (Craftable)"
+description = """
+An unfinished design, Haywire was in the middle of perfecting this rune arm
+when his foundry exploded. It was meant to keep unruly constructs in line."""
+drop_location = "Plane of Night, Raid warded chest"
+icon = "RuneArm_1d"
+item_category = "Weapon"
+item_type = "Rune Arm"
+minimum_level = 9
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier III"
+
+[[effect]]
+name = "Smiting Weapons"
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical II"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Electrical Lash",
+    "None",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

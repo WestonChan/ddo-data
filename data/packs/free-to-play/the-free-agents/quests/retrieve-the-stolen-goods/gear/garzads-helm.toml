@@ -1,0 +1,17 @@
+name = "Garzad's Helm"
+description = "An old plate helm, without a dent or scratch on it."
+drop_location = "Retrieve the Stolen Goods, Garzad 's chest"
+icon = "Helmet_13"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "DR 1/-"
+
+[[source]]
+chest = "garzad 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Retrieve the Stolen Goods"

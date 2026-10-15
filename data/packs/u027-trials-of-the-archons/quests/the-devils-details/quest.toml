@@ -1,0 +1,29 @@
+name = "The Devil's Details"
+bestowed_by = "Zanthe"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Trials of the Archons"
+patron = "The Gatekeepers"
+zone = "The Adamant Spire"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Devil%27s_Details"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 30
+
+[[run]]
+tier = "legendary"
+level = 30

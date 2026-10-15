@@ -1,0 +1,165 @@
+[[row]]
+name = "Soulweaver: +1 Charisma"
+description = """
++1 Charisma
+Rare: +2 MRR"""
+icon = "Soulweaver"
+menu = "Masterminds of Sharn"
+set = "Soulweaver"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Soulweaver: Charisma : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Soulweaver: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "Soulweaver"
+menu = "Masterminds of Sharn"
+set = "Soulweaver"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Soulweaver: Constitution : Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Soulweaver: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "Soulweaver"
+menu = "Masterminds of Sharn"
+set = "Soulweaver"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Soulweaver: Wisdom : Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Soulweaver: +2% Positive Spell Critical Damage"
+description = """
++2% Positive Spell Critical Damage
+Rare: +4 Universal Spell Power"""
+icon = "Soulweaver"
+menu = "Masterminds of Sharn"
+set = "Soulweaver"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SpellCriticalDamage"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Soulweaver: Positive Spell Critical Damage : Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Soulweaver: +30 Spell Points"
+description = """
++30 Spell Points
+Rare: +4 Universal Spell Power"""
+icon = "Soulweaver"
+menu = "Masterminds of Sharn"
+set = "Soulweaver"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Stacking"
+effect_type = "SpellPoints"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Soulweaver: Spell Points : Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Soulweaver: +6 Universal Spell Power"
+description = """
++6 Universal Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "Soulweaver"
+menu = "Masterminds of Sharn"
+set = "Soulweaver"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "UniversalSpellPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Soulweaver: Universal Spell Power : Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Soulweaver: +9 Positive Spell Power"
+description = """
++9 Positive Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "Soulweaver"
+menu = "Masterminds of Sharn"
+set = "Soulweaver"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Soulweaver: Positive Spell Power : Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

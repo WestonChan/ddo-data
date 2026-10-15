@@ -1,0 +1,32 @@
+name = "Assassin Initiate's Leathers (Level 15)"
+description = """
+When someone asks you to knife my mother, next time ask them how much they're paying before you do it. Got that?'
+-Assassin, to initiate"""
+drop_location = "Shadow of a Doubt, End chest (Heroic Elite)"
+enhancement_bonus = 5
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 15
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 5
+armor_type = "Light"
+max_dex_bonus = 11
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Shadow of a Doubt"

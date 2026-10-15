@@ -1,0 +1,47 @@
+name = "Memory of a Tailor's Duress"
+description = """
+This stone quakes with the memory of a tailor forced to create coats for Strahd.
+Hundreds of them, but they were never right."""
+drop_location = "Old Baba's Hut, Raid Chest"
+enhancement_bonus = 15
+icon = "Docent_3d"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 28
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"

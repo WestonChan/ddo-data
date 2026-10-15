@@ -1,0 +1,44 @@
+name = "Legendary Selune's Light"
+description = "Selune's light can only be hidden for so long."
+drop_location = "The Darkness and the Light, end chest (rare)"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Trinket"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 156
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Insight"
+value = 14
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Sacred"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Darkness and the Light"

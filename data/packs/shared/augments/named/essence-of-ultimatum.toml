@@ -1,0 +1,17 @@
+name = "Essence of Ultimatum"
+description = """
+Petrification Immunity.
+Requires: 50 Threads of Fate, Empty Soul Vessel and Ultimatum
+(Defiler of the Just)"""
+family = "Named"
+icon = "GreenRaidItemEssence"
+min_level = 30
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Petrification"]
+
+[[slot]]
+slot = "green"

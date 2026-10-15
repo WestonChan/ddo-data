@@ -1,0 +1,25 @@
+name = "The End of the Road"
+bestowed_by = "Olyn Araphyr"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The High Road of Shadows"
+patron = "The Harpers"
+zone = "The Blooded Wood"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_End_of_the_Road"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 24

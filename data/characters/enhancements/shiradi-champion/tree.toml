@@ -1,0 +1,1489 @@
+name = "Shiradi Champion"
+background = "DestinyPrimal"
+icon = "ShiradiChampion"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Shiradi Champion: Fey Favor"
+cost_per_rank = [1]
+description = """
+Each core ability in this tree, including this one, grants the following:
+
++1 Epic bonus to Spell DCs
++15 Maximum Hit Points
++25 Maximum Spell Points
++5 Ranged Power
++5 Force and Universal Spell Power"""
+icon = "U51FeyFavor"
+internal_name = "U51ShiradiChampionCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Shiradi Champion: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shiradi Champion: Vision"
+cost_per_rank = [1]
+description = """
+Your attacks have Ghost Touch and you bypass 5% Dodge and Fortification. If you
+have the Holy Strike feat, double the Dodge and Fortification bypass."""
+icon = "Vision"
+internal_name = "U51ShiradiChampionCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Shiradi Champion: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Vision"
+effect_type = "DodgeBypass"
+extra_types = [
+    "DodgeBypass",
+    "FortificationBypass",
+    "FortificationBypass",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51ShiradiChampionCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shiradi Champion: Audience with the Queen"
+cost_per_rank = [1]
+description = """
+Get some tea! When you rest at a shrine, you pop off for some tea, and
+randomly get a beneficial effect based on the type of tea you receive.
+These effects last for 10 minutes."""
+icon = "U51AudienceWithTheQueen"
+internal_name = "U51ShiradiChampionCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Shiradi Champion: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51ShiradiChampionCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shiradi Champion: Fey Countenance"
+cost_per_rank = [1]
+description = """
+You gain +1 to Saving Throws vs. Spells, with an additional +1 for every Favored
+Enemy feat you've acquired.
++1 Maximum Manyshot charges."""
+icon = "FeyCountenance"
+internal_name = "U51ShiradiChampionCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Shiradi Champion: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    0,
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    8,
+    0,
+    9,
+    0,
+    10,
+    0,
+    11,
+    0,
+    12,
+    0,
+    13,
+    0,
+    14,
+    0,
+    15,
+    0,
+    16,
+    0,
+    17,
+    0,
+    18,
+    0,
+    19,
+    0,
+    20,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Fey Countenance + Favored Enemy's"
+effect_type = "SaveBonus"
+targets = ["Spell"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51ShiradiChampionCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shiradi Champion: Prism"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Shiradi Champion Destiny Mantle: Your ranged and thrown attacks have a 15% chance
+to deal 7d77 extra damage of a random type, scaling with 200% Ranged Power.
+Your offensive spells have a 7% chance to deal 7d77 extra damage of a random type,
+scaling with that type's Spell Power."""
+icon = "ShiradiDestinyMantle"
+internal_name = "U51ShiradiChampionPrism"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Shiradi Destiny Mantle"
+description = """
+Shiradi Champion Destiny Mantle: Your ranged and thrown attacks have a 15% chance
+to deal 7d77 extra damage of a random type, scaling with 200% Ranged Power.
+Your offensive spells have a 7% chance to deal 7d77 extra damage of a random type,
+scaling with that type's Spell Power."""
+group_name = "Mantle"
+icon = "ShiradiDestinyMantle"
+
+[[enhancement]]
+name = "Shiradi Champion: Wild Magics"
+cost_per_rank = [1]
+description = """
++[30/60/100] Maximum Spell Points.
+Rank 3: +5 Force and Universal Spell Power"""
+icon = "WildMagics"
+internal_name = "U51ShiradiChampionWildMagics"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    100,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shiradi Champion: Good Luck"
+cost_per_rank = [1]
+description = """
++[1/2/3] Luck bonus to all Saving Throws and Skills.
+If you have the Luck of Heroes feat, double this bonus."""
+icon = "GoodLuck"
+internal_name = "U51ShiradiChampionGoodLuck"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Luck"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Luck"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    2,
+    4,
+    6,
+]
+apply_as_item_effect = true
+bonus_type = "Luck"
+display_name = "Shiradi Champion: Good Luck and Luck of Heroes"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    2,
+    4,
+    6,
+]
+apply_as_item_effect = true
+bonus_type = "Luck"
+display_name = "Shiradi Champion: Good Luck and Luck of Heroes"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shiradi Champion: Shiradi Strike"
+cost_per_rank = [1]
+description = "Pick a Ranged or Caster Epic Strike."
+icon = "ShiradiStrike"
+internal_name = "U51ShiradiChampionShiradiStrike"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Fey Lights"
+cost_per_rank = [1]
+description = """
+Epic Strike: Enemies in a cone take 1d6+3 Force damage per caster level
+and must make a save DC (20 + Max(INT, WIS,CHA) + Illusion bonuses) versus Will,
+Fortitude, and Reflex for a Daze, Blind, and Silence effect.
+Cooldown: 6 seconds.
+Cost: 10 Spell Points.
+
+If you have the Shiradi Champion Destiny Mantle abilities Stay Good, Stay Loud,
+or Stay Toxic, this ability's damage changes to match your selected damage type.
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "FeyLights"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Pin"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+Cooldown: 15 seconds
+Epic Strike: AOE Ranged Attack: Make a Single Shot Ranged Attack that shatters
+on impact, hitting all enemies in a small area around where it lands. If a moving
+enemy is affected, they are slowed for 12 seconds.
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "ShiradiStrike"
+is_clickie = true
+
+[[enhancement]]
+name = "Shiradi Champion: Fey Sight"
+cost_per_rank = [1]
+description = """
++[2/4/6] Listen, Search, and Spot.
+Rank 3: You are immune to Blindness."""
+icon = "FeySight"
+internal_name = "U51ShiradiChampionFeySight"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+rank = 3
+targets = ["Blindness"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shiradi Champion: Stay"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Pick a Secondary Element."
+icon = "Stay"
+internal_name = "U51ShiradiChampionStay"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["U51ShiradiChampionPrism"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Stay Good"
+cost_per_rank = [1]
+description = """
+While in your Shiradi Champion Destiny Mantle, Ranged and thrown attacks have
+a 15% chance to deal [1/3/7]d77 extra Light damage. Your offensive spells have
+a 7% chance to proc this damage. This Light damage scales with 200% Ranged Power
+if from a Ranged attack, or 100% Light Spell Power if from a spell.
+Rank 3: Enemies hit by your ranged attacks or spells have a 25% chance to be
+blinded for 10 seconds, and the damage is increased by 1d77 for every 7 bonus
+Imbue Dice.
+Info: Blind also affects creatures usually immune to blindness like plants or undead."""
+icon = "StayGood"
+
+[[enhancement.selection]]
+name = "Stay Loud"
+cost_per_rank = [1]
+description = """
+While in your Shiradi Champion Destiny Mantle, Ranged and thrown attacks have
+a 15% chance to deal [1/3/7]]d77 extra Sonic damage. Your offensive spells have
+a 7% chance to proc this damage. This Sonic damage scales with 200% Ranged Power
+if from a Ranged attack, or 100% Sonic Spell Power if from a spell.
+Rank 3: Enemies hit by your ranged attacks or spells have a 25% chance to be
+silenced for 10 seconds, and the damage is increased by 1d77 for every 7 bonus
+Imbue Dice."""
+icon = "StayLoud"
+
+[[enhancement.selection]]
+name = "Stay Strong"
+cost_per_rank = [1]
+description = """
+While in your Shiradi Champion Destiny Mantle, Ranged and thrown attacks have
+a 15% chance to deal [1/3/7]d77 extra Force damage. Your offensive spells have
+a 7% chance to proc this damage. This Force damage scales with 200% Ranged Power
+if from a Ranged attack, or 100% Force Spell Power if from a spell.
+Rank 3: Enemies hit by your ranged attacks or spells have a 25% chance to be
+slowed for 10 seconds, and the damage is increased by 1d77 for every 7 bonus
+Imbue Dice."""
+icon = "StayStrong"
+
+[[enhancement.selection]]
+name = "Stay Toxic"
+cost_per_rank = [1]
+description = """
+While in your Shiradi Champion Destiny Mantle, Ranged and thrown attacks have
+a 15% chance to deal [1/3/7]d77 extra Poison damage. Your offensive spells have
+a 7% chance to proc this damage. This Poison damage scales with 200% Ranged Power
+if from a Ranged attack, or 100% Poison Spell Power if from a spell.
+Rank 3: Enemies hit by your ranged attacks or spells have a 25% chance to be
+cursed for 10 seconds, and the damage is increased by 1d77 for every 7 bonus
+Imbue Dice."""
+icon = "StayPoison"
+
+[[enhancement]]
+name = "Shiradi Champion: Fade or Presence"
+cost_per_rank = [1]
+description = "Select between Doubleshot and defensive ability."
+icon = "FadeOrPresence"
+internal_name = "U51ShiradiChampionFadeOrPresence"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Fey Presence"
+cost_per_rank = [1]
+description = "+[2/4/6]% Incorporeality"
+icon = "FeyPresence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Incorporeality"
+
+[[enhancement.selection]]
+name = "Phase Double"
+cost_per_rank = [1]
+description = "+[2/4/6] Doubleshot"
+icon = "FadeOrPresence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Doubleshot"
+
+[[enhancement]]
+name = "Shiradi Champion: Friend or Foe"
+cost_per_rank = [1]
+description = "Embrace your Fey nature or reject it."
+icon = "FriendOrFoe"
+internal_name = "U51ShiradiChampionFriendOrFoe"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Enemy Of My Own"
+cost_per_rank = [1]
+description = "You gain the Favored Enemy: Fey feat."
+icon = "FriendOrFoe"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Fey"]
+
+[[enhancement.selection]]
+name = "Fey Form"
+cost_per_rank = [1]
+description = """
+You gain DR 10/Cold Iron, +5 Force and Universal Spell Power, and your main
+hand weapon becomes an Implement."""
+icon = "U51FeyForm"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "DR"
+targets = ["Cold Iron"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+
+[[enhancement]]
+name = "Shiradi Champion: Healing Spring"
+cost_per_rank = [1]
+description = """
+Casts Greater Vigor on multiple targets. A positive energy conjuration that heals
+1d8, +1 per 3 caster levels (max +13 at level 39), every 2 seconds for 8 seconds.
+When the initial effect expires, a smaller healing effect hat heals 1 HP every
+5 seconds for 30 seconds is applied.
+Cooldown: 30 Seconds.
+Cost: 1 Wild Empathy Charge.
+
+Only one Vigor spell can be active at a time, with the most beneficial taking
+priority. If multiple Vigor spells are cast on the same target, then the
+duration is extended.
+Passive: +1 Wild Empathy Charge."""
+icon = "U51HealingSpring"
+internal_name = "U51ShiradiChampionHealingSpring"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shiradi Champion: Empathetic Link"
+cost_per_rank = [1]
+description = "+[1/2/3] charges of Wild Empathy."
+icon = "EmpatheticLink"
+internal_name = "U51ShiradiChampionEmpatheticLink"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shiradi Champion: Double Rainbow"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+While in your Shiradi Champion Destiny Mantle, your ranged and offensive spells have
+a 7% chance to inflict a random effect on your target. These effects scale with
+various different things depending on their origins, including Melee, Ranged,
+and Spell Power."""
+icon = "U51DoubleRainbow"
+internal_name = "U51ShiradiChampionDoubleRainbow"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51ShiradiChampionStay"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shiradi Champion: Pierce Deception"
+cost_per_rank = [2]
+description = "You gain the Watchful Eye feat, or, if you have it already, you gain +5% Doubleshot."
+icon = "PierceDeception"
+internal_name = "U51ShiradiChampionPierceDeception"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Watchful Eye"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Watchful Eye"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    5,
+]
+bonus_type = "Destiny"
+display_name = "Shiradi Champion: Pierce Deception + Watchful Eye"
+effect_type = "Doubleshot"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Shiradi Champion: Beguile or Hunt's End"
+cost_per_rank = [1]
+description = "Choose a special ability."
+icon = "BeguileOrHuntsEnd"
+internal_name = "U51ShiradiChampionBeguileOrHuntsEnd"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Beguiling Charm"
+cost_per_rank = [1]
+description = """
+Target must make a Will save versus DC (20 + Highest of INT/WIS/CHA + Enchantment
+bonuses) or be Charmed for 12 seconds. While under this Charm, they deal double
+damage.
+Cooldown: 15 seconds.
+Cost: 10 Spell Points."""
+icon = "BeguilingCharm"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Hunt's End"
+cost_per_rank = [1]
+description = """
+Deals +250% Damage
++20 Critical Threat Range
+
+Ranged Attack: End the hunt with a single, decisive shot.
+Cooldown: 9 seconds."""
+icon = "BeguileOrHuntsEnd"
+is_clickie = true
+
+[[enhancement]]
+name = "Shiradi Champion: Strike Upgrade I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Upgrade Pin or Fey Lights"
+icon = "StrikeUpgradeI"
+internal_name = "U51ShiradiChampionStrikeUpgradeI"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Fey Flash"
+cost_per_rank = [1]
+description = """
+Fey Flash: Fey Lights now additionally affects Undead, Plants, Constructs, and
+Oozes, who would normally be immune to such effects."""
+icon = "FeyFlash"
+
+[[enhancement.selection]]
+name = "Otto's Whistler"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+If enemies hit by Pin are not moving, they are Immobilized for 6 seconds. If enemies
+hit by Pin are moving, they Dance for 6 seconds."""
+icon = "QueensDiplomacy"
+
+[[enhancement]]
+name = "Shiradi Champion: Shiradi Champion Spell Focus"
+cost_per_rank = [1]
+description = "Select a Spell School to enhance."
+icon = "ShiradiSpellFocus"
+internal_name = "U51ShiradiChampionSpellFocus"
+min_spent = 10
+ranks = 3
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Conjuration"
+cost_per_rank = [1]
+description = "+[1/2/3] Conjuration Spell DCs."
+icon = "ShiradiSpellFocusConjuration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51ShiradiChampionSpellFocus",
+    "Destiny Conjuration",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShiradiChampionSpellFocus",
+    "Destiny Conjuration",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Enchantment"
+cost_per_rank = [1]
+description = "+[1/2/3] Enchantment Spell DCs."
+icon = "ShiradiSpellFocusEnchantment"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51ShiradiChampionSpellFocus",
+    "Destiny Enchantment",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShiradiChampionSpellFocus",
+    "Destiny Enchantment",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Illusion"
+cost_per_rank = [1]
+description = "+[1/2/3] Illusion Spell DCs."
+icon = "ShiradiSpellFocusIllusion"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51ShiradiChampionSpellFocus",
+    "Destiny Illusion",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShiradiChampionSpellFocus",
+    "Destiny Illusion",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Transmutation"
+cost_per_rank = [1]
+description = "+[1/2/3] Transmutation Spell DCs."
+icon = "ShiradiSpellFocusTransmutation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51ShiradiChampionSpellFocus",
+    "Destiny Transmutation",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShiradiChampionSpellFocus",
+    "Destiny Transmutation",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Shiradi Champion: Cruelty of the Hunt"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While in your Shiradi Champion Destiny Mantle, you deal +10% damage against Helpless
+opponents."""
+icon = "CrueltyOfTheHunt"
+internal_name = "U51ShiradiChampionCrueltyOfTheHunt"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "HelplessDamage"
+
+[[enhancement.modifier.requirement]]
+items = ["Shiradi Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51ShiradiChampionDoubleRainbow"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shiradi Champion: Track"
+cost_per_rank = [1]
+description = """
+Dealing damage to enemies with spells or ranged attacks reduces their Saving Throws
+and Armor Class by 1 and Fortification by 2%. Stacks 10 times."""
+icon = "U51Track"
+internal_name = "U51ShiradiChampionTrack"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Shiradi Champion: Queen's Diplomacy"
+cost_per_rank = [1]
+description = "You generate -30% less Threat from all sources."
+icon = "QueensDiplomacy2"
+internal_name = "U51ShiradiChampionQueensDiplomacy"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-30]
+bonus_type = "Destiny"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Shiradi Champion: Strike Upgrade II"
+cost_per_rank = [2]
+description = "Upgrade Pin or Fey Lights"
+icon = "StrikeUpgradeII"
+internal_name = "U51ShiradiChampionStrikeUpgradeII"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51ShiradiChampionStrikeUpgradeI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Fey Flare"
+cost_per_rank = [2]
+description = "The Daze portion of Fey Lights is now a Stun instead."
+icon = "StrikeUpgradeII"
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShiradiChampionStrikeUpgradeI",
+    "Fey Flash",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Overwhelming Force"
+cost_per_rank = [2]
+description = "Pin now automatically applies 10 stacks of Track to enemies."
+icon = "ShiradiOverwhelmingForce"
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShiradiChampionStrikeUpgradeI",
+    "Queen's Diplomacy",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shiradi Champion: Crooked Touch"
+cost_per_rank = [
+    2,
+    1,
+    1,
+]
+description = "Choose between critical damage/confirmation or Imbue dice."
+icon = "U51WhirlingWrists"
+internal_name = "U51ShiradiChampionCrookedTouch"
+min_spent = 20
+ranks = 3
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Flickering Fingers"
+cost_per_rank = [1]
+description = "+[1/2/3] Imbue dice"
+icon = "FlickeringFingers"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "ImbueDice"
+
+[[enhancement.selection]]
+name = "Whirling Wrists"
+cost_per_rank = [1]
+description = "+[1/2/3] to Critical Confirmation and Damage with thrown weapons."
+icon = "U51WhirlingWrists"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Thrown"]
+req_type = "GroupMember"
+
+[[enhancement]]
+name = "Shiradi Champion: Nerve Venom"
+cost_per_rank = [2]
+description = """
+While in your Shiradi Champion Destiny Mantle, your ranged attacks and offensive
+spells have a 7% chance to paralyze living creatures for 6 seconds."""
+icon = "ShiradiNerveVenom"
+internal_name = "U51ShiradiChampionNerveVenom"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.requirement]]
+items = ["U51ShiradiChampionCrueltyOfTheHunt"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shiradi Champion: Control"
+cost_per_rank = [1]
+description = "+[1/2/3] to all Spell DCs."
+icon = "ShiradiControl"
+internal_name = "U51ShiradiChampionControl"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Shiradi Champion: Lore of the Hunt"
+cost_per_rank = [1]
+description = "Ranged Weapons gain +1 Critical Damage Multiplier on rolls of 19-20."
+icon = "LoreOfTheHunt"
+internal_name = "U51ShiradiChampionLoreOfTheHunt"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Ranged"]
+req_type = "GroupMember"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Thrown"]
+req_type = "GroupMember"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Shiradi Champion: Feywild Attunement"
+cost_per_rank = [1]
+description = """
+Every 4 Wilderness Lore feats grant you +1% Dodge.
+
+You are always considered to be in Point Blank Shot range.
+
+You have Base Attack Bonus equal to your Character Level.
+
++10 Force and Universal Spell Power."""
+icon = "FeywildAttunement"
+internal_name = "U51ShiradiChampionFeywildAttunement"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "OverrideBAB"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier]]
+amount_type = "FeatCount"
+amounts = [
+    0,
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+]
+bonus_type = "Destiny"
+effect_type = "DodgeBonus"
+stack_source = "Wilderness Lore"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Shiradi Champion: Epic Moment"
+cost_per_rank = [1]
+description = "Select an Epic Moment."
+icon = "ShiradiEpicMoment"
+internal_name = "U51ShiradiChampionEpicMoment"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.selection]]
+name = "Inexorable Advance"
+cost_per_rank = [1]
+description = """
+Epic Moment: For 30 seconds, you gain +30 Ranged Power, you can move while still
+gaining Archer's Focus stacks, and you do not take the normal 20% damage penalty
+while using Improved Precise Shot. You also gain 30% Action Boost bonus to
+Movement Speed for the duration. In addition, your Ranged attacks have a 30%
+chance to deal 10d100+180 Cold damage and 10d100+180 Light damage which scale with
+200% Ranged Power. Finally, your Ranged attacks in this state have a 100% chance
+to proc Double Rainbow effects.
+Cooldown: 5 minutes."""
+icon = "ShiradiEpicMoment"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Mass Chaos"
+cost_per_rank = [1]
+description = """
+Epic Moment: Enemies in an area are Confused with no save for 30 seconds, gain
+1 stack of Fey Chaos, and apply a stack of Fey Chaos on hitting non-Player,
+non-Hireling targets while Confused.
+5 minute cooldown.
+
+Fey Chaos: This creature takes 5% more damage from all sources for 10 seconds.
+This effect can stack up to 10 times, and all stacks expire after not gaining
+new ones for 10 seconds."""
+icon = "MassChaos"
+is_clickie = true
+
+[[requirement]]
+items = ["Shiradi Champion"]
+req_type = "Feat"

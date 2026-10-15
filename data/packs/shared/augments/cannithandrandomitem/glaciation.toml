@@ -1,0 +1,105 @@
+name = "Glaciation"
+choose_level = true
+description = "Your Cold based spells have an equipment bonus to their Spell Power"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    38,
+    43,
+    47,
+    55,
+    59,
+    63,
+    66,
+    70,
+    73,
+    77,
+    80,
+    84,
+    87,
+    90,
+    94,
+    97,
+    101,
+    104,
+    108,
+    111,
+    115,
+    118,
+    122,
+    125,
+    128,
+    132,
+    135,
+    139,
+    142,
+    146,
+    149,
+    153,
+    156,
+    159,
+    163,
+    166,
+    166,
+    166,
+    166,
+    16,
+]
+
+[[effect]]
+name = "Cold Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [159]
+bonus_type = "Equipment"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: cannith armor prefix"
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith necklace suffix"
+
+[[slot]]
+slot = "crafting: cannith ring suffix"
+
+[[slot]]
+slot = "crafting: cannith shield prefix"
+
+[[slot]]
+slot = "crafting: cannith orb prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: cannith melee prefix"
+
+[[slot]]
+slot = "crafting: cannith ranged prefix"
+
+[[slot]]
+slot = "crafting: random gloves prefix"
+
+[[slot]]
+slot = "crafting: random ring suffix"
+
+[[slot]]
+slot = "crafting: random shield prefix"
+
+[[slot]]
+slot = "crafting: random weapon prefix"
+
+[[slot]]
+slot = "crafting: cannith rune arm suffix"

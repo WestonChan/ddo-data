@@ -1,0 +1,37 @@
+name = "Belt of Subtle Villainy"
+description = "Share your subtlety."
+drop_location = "The Bugbear Bandits, end chest"
+icon = "Belt_1"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 21
+slot = "Waist"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 38
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Bugbear Bandits"

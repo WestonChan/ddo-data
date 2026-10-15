@@ -1,0 +1,60 @@
+name = "Thamor's Ring"
+description = """
+The powerful Earth Savant Thamor wore this ring when he shook the earth and
+crushed an undead army."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Earth Savant"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+    5,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Earth Savant - 2 Piece bonus"
+effect_type = "SpellLore"
+targets = ["Acid"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    50,
+    50,
+]
+apply_as_item_effect = true
+bonus_type = "Equipment"
+display_name = "Earth Savant - 2 Piece bonus"
+effect_type = "SpellCriticalDamage"
+targets = ["Acid"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

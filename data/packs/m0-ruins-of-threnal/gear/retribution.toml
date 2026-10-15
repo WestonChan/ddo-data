@@ -1,0 +1,51 @@
+name = "Retribution"
+description = """
+The inscription on the blade read - For those who gave their lives in Defense
+of the Light, we pledge our lives."""
+drop_location = "The Abandoned Excavation, End reward"
+enhancement_bonus = 4
+icon = "Longsword_8a"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Holy"
+
+[[effect]]
+name = "True Law"
+
+[[effect]]
+name = "Pure Good"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Longsword"

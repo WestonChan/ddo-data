@@ -1,0 +1,43 @@
+name = "Perfected Charged Gauntlets"
+description = "These gloves channel powerful electric energy into enemies that you strike."
+drop_location = "Lahar, Turn in Nebula Fragment"
+icon = "Gloves_9b"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Hands"
+
+[[effect]]
+name = "Sovereign Lightning Strike"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 56
+
+[[effect]]
+name = "Legendary Lightningstorm Guard"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Nebula Fragment Crafting"

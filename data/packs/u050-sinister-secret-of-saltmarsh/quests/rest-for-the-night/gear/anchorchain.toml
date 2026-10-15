@@ -1,0 +1,34 @@
+name = "Anchorchain"
+description = """
+A small anchor adorns the end of this chain, looped around your neck. It's too
+small to weigh down any serious boat."""
+drop_location = "Rest for the Night, end chest"
+icon = "Necklace_15"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 3
+slot = "Neck"
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 53
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 9
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rest for the Night"

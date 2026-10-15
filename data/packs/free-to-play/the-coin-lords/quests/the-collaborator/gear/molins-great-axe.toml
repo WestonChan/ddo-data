@@ -1,0 +1,33 @@
+name = "Molin's Great Axe"
+description = """
+Used by Molin, a young dwarf adventurer, this big, heavy, double-bladed axe
+is wieldable only with two hands. It is said to haunt the dreams of the Sahuagin."""
+drop_location = "The Collaborator, End reward"
+icon = "GreatAxe_10"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Lesser Monstrous Humanoid Bane"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Collaborator"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Axe"

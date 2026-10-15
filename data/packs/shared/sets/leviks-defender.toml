@@ -1,0 +1,91 @@
+name = "Levik's Defender"
+icon = "Levik"
+
+[[augment]]
+name = "Sovereign Rune of Levik"
+family = "Dragontouched_SovereignRune"
+
+[[item]]
+name = "Levik's Bracers"
+
+[[item]]
+name = "Levik's Defender"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Melee Threat Generation"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Fortitude Save"
+value = 1
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Will Save"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Melee Threat Generation"
+effect_type = "ACBonus"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "SaveBonus"
+targets = [
+    "Fortitude",
+    "Will",
+]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Melee Threat Generation"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Melee Threat Generation"
+effect_type = "ACBonus"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"

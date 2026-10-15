@@ -1,0 +1,19 @@
+name = "Dolorous Chill (Heroic)"
+description = """
+Adds Freezing. This effect causes the edges of this weapon to become frozen to
+the touch, dealing 6d6 Ice damage on each critical hit."""
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Cold"
+dice_number = [6]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

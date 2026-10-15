@@ -1,0 +1,27 @@
+name = "Levik's Bracers"
+description = """
+This relic of the Silver Flame was supposedly worn by the powerful Paladin Levik.
+Levik and his brother Lorrik disappeared many years ago when investigating
+tales of an ancient creature residing beneath Stormreach."""
+drop_location = "Hound of Xoriat, Raid Warded Chest"
+icon = "Bracers_1a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Wrists"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Equipment"
+value = 40
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hound of Xoriat"

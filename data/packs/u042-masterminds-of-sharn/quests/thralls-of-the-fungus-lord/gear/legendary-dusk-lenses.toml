@@ -1,0 +1,35 @@
+name = "Legendary Dusk Lenses"
+description = "Peer into the gloom of the unknown."
+drop_location = "Thralls of the Fungus Lord, End Chest"
+icon = "Goggles_10"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Goggles"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 98
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 49
+
+[[effect]]
+name = "Efficient Metamagic - Empower II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thralls of the Fungus Lord"

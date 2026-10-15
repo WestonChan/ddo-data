@@ -1,0 +1,119 @@
+name = "Epic Etched Club"
+description = "A weapon found deep within the Temple of Elemental Evil."
+drop_location = "Temple of Elemental Evil Part One, and Temple of Elemental Evil Part Two any chest"
+enhancement_bonus = 7
+icon = "Club_1m"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Acid Vulnerability"
+
+[[socket]]
+slot = "upgrade: tier 1"
+
+[[socket.option]]
+name = "Greater Maiming and Greater Acid Torrent"
+description = """
+Greater Maiming: This weapon has a twisted haft or grip and spikes along its blade,
+head, or point. Whenever you score a critical hit with this weapon it deals an
+amount of extra untyped damage depending on its critical multiplier:
+x2 - 8 to 48, x3 - 12 to 72, x4 - 16 to 96.
+Greater Acid Torrent: This weapon is imbued with a vitriolic wrath.
+On an attack roll of 20 which is confirmed as a critical hit this power will be
+released, dealing damage to the target and all enemies near it for 30d3 + 90 acid
+damage. A successful Reflex save (DC 90) reduces this by half."""
+min_level = 7
+
+[[socket.option.modifier]]
+bonus_type = "Enhancement"
+dice_number = [
+    0,
+    0,
+    8,
+    12,
+    16,
+    20,
+]
+dice_sides = [
+    0,
+    0,
+    6,
+    6,
+    6,
+    6,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Enhancement"
+dice_bonus = [90]
+dice_damage = "Acid"
+dice_number = [30]
+dice_sides = [3]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Greater Acid Blast, Purple Augment slot and Set Bonus."
+description = """
+Greater Acid Blast: An acid blast weapon is sheathed in corrosive acid.
+Critical hits with this weapon deal an additional 4 to 40 acid damage for
+weapons with a x2 critical multiplier, 6 to 60 for a x3 critical multiplier,
+and 8 to 80 for a x4 multiplier. Additionally, if you roll a 20 when
+attacking and confirm the critical hit, the weapon blasts your target, doing
+6 to 36 more acid damage."""
+min_level = 7
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+bonus_type = "Enhancement"
+dice_damage = "Acid"
+dice_number = [
+    0,
+    0,
+    4,
+    6,
+    8,
+    10,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[socket.option.set]]
+set = "Epic Elemental Evil Set"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.2
+handedness = "One-handed"
+weapon_type = "Club"

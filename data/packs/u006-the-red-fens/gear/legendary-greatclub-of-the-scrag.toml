@@ -1,0 +1,52 @@
+name = "Legendary Greatclub of the Scrag"
+accepts_sentience = true
+description = """
+This particularly nasty weapon once belonged to one of the Scrag in High Priestess'
+Slikir's service. It seems that when the troll was killed, its blood seeped
+into this club, granting the weapon some of the creature's characteristics."""
+drop_location = "Legendary version of Epic Greatclub of the Scrag"
+enhancement_bonus = 15
+icon = "GreatClub_1m"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Strength of Purpose"
+bonus_type = "Enhancement"
+value = 128
+
+[[effect]]
+name = "Anarchic Burst 6"
+
+[[effect]]
+name = "Icy Blast 6"
+
+[[effect]]
+name = "Impact"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Great Club"

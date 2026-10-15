@@ -1,0 +1,10 @@
+name = "Curse of Major Masterworks"
+description = """
+The power of some effects on this item has been increased as if it were two levels higher.
+(NOT MODELLED), Probably too difficult to do TBH."""
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[slot]]
+slot = "crafting: deck curse"

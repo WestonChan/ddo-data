@@ -1,0 +1,55 @@
+name = "Otto's Irrevocable Power"
+icon = "OttosIrrevocablePower"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Spell Points"
+value = 200
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [200]
+bonus_type = "Stacking"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Spell DCs"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+effect = "Arcane Spell Cost Reduction"

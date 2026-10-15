@@ -1,0 +1,1044 @@
+name = "Duergar Mindcleaver"
+background = "DwarfBackground"
+icon = "Dwarf"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Mindcleaver: Underdark Upbringing I"
+cost_per_rank = [1]
+description = "+5 Maximum Hit Points, +6 Maximum Spell Points"
+icon = "UnderdarkUpbringingI"
+internal_name = "MindcleaverCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Mindcleaver: Ability I"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "ConInt"
+internal_name = "MindcleaverCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+items = ["MindcleaverCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Mindcleaver: Underdark Upbringing II"
+cost_per_rank = [1]
+description = "+5 Maximum Hit Points, +6 Maximum Spell Points, +1 to Attack and Damage"
+icon = "UnderdarkUpbringingII"
+internal_name = "MindcleaverCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["MindcleaverCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement]]
+name = "Mindcleaver: Ability II"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "ConInt"
+internal_name = "MindcleaverCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+items = ["MindcleaverCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement]]
+name = "Mindcleaver: Underdark Upbringing III"
+cost_per_rank = [1]
+description = "+5 Maximum Hit Points, +6 Maximum Spell Points, +2 to Attack and Damage"
+icon = "UnderdarkUpbringingIII"
+internal_name = "MindcleaverCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["MindcleaverCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement]]
+name = "Mindcleaver: Dwarven Weapon Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose one"
+icon = "DwarfAxeTraining"
+internal_name = "MindcleaverDwarvenWeaponTrainingI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.selection]]
+name = "Axe Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
+and greataxes. While using dwarven waraxe, +5% Strikethrough Chance."""
+icon = "DwarfAxeTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Battle Axe",
+    "Dwarven Axe",
+    "Hand Axe",
+    "Great Axe",
+    "Throwing Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Pick and Hammer Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with heavy picks, light hammer, light picks, mauls,
+throwing hammers, and warhammers."""
+icon = "DwarfPickAndHammerTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Heavy Pick",
+    "Light Hammer",
+    "Light Pick",
+    "Maul",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement]]
+name = "Mindcleaver: Shape I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While Enlarged, you gain a +3 Psionic Bonus to Attack.
+While Reduced, you gain +3 Psionic Bonus to Max Dodge and the Max Dex Bonus of your Armor.
+Your Enlarge and Reduce now last for two minutes."""
+icon = "DuergarShapeI"
+internal_name = "MindcleaverShapeI"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Psionic"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Enlarge Self"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Psionic"
+effect_type = "DodgeCapBonus"
+extra_types = ["MaxDexBonus"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reduce Self"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Mindcleaver: Mind Weapons"
+cost_per_rank = [1]
+description = """
+You can tap into your mind to manifest and empower weapons.
+This grants both ability to conjure Mindcleaver Dwarven Waraxes to wield as
+weapons, as well as the ability to enchant your current weapons to be more
+powerful."""
+icon = "MindcleaverMindWeapons"
+internal_name = "MindcleaverMindWeapons"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement]]
+name = "Mindcleaver: Armor Cleaver"
+cost_per_rank = [1]
+description = "+[1/2/3] to Sunder DCs"
+icon = "MindcleaverArmorCleaver"
+internal_name = "MindcleaverArmorCleaver"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Feat"
+effect_type = "TacticalDC"
+targets = ["Sunder"]
+
+[[enhancement]]
+name = "Mindcleaver: Forge Apprentice"
+cost_per_rank = [1]
+description = """
+You gain proficiency with Handaxes, Light Picks, Light Hammers, Throwing Axes,
+and Throwing Hammers, and consider them Simple Weapons."""
+icon = "DuergarForgeApprentice"
+internal_name = "MindcleaverForgeApprentice"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Hand Axe",
+    "Light Pick",
+    "Light Hammer",
+    "Throwing Axe",
+    "Throwing Hammer",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Simple",
+    "Hand Axe",
+    "Light Pick",
+    "Light Hammer",
+    "Throwing Axe",
+    "Throwing Hammer",
+]
+
+[[enhancement]]
+name = "Mindcleaver: Weapon Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose the same Training from Dwarven Weapon Training, Tier 1."
+icon = "DwarfAxeTraining"
+internal_name = "MindcleaverDwarvenWeaponTrainingII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["MindcleaverDwarvenWeaponTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Axe Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with battle axes, dwarven waraxes, hand axes, throwing axes,
+and greataxes. +1 to hit and +2 damage with great axes.
+While using dwarven waraxe, +5% Strikethrough Chance."""
+icon = "DwarfAxeTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Battle Axe",
+    "Dwarven Axe",
+    "Hand Axe",
+    "Throwing Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Great Axe"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Great Axe"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "MindcleaverDwarvenWeaponTrainingI",
+    "Axe Training",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Pick and Hammer Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with heavy picks, light hammer, light picks, throwing hammers,
+and Warhammers. +1 to hit and +2 damage with Mauls."""
+icon = "DwarfPickAndHammerTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Heavy Pick",
+    "Light Hammer",
+    "Light Pick",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Maul"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Maul"]
+
+[[enhancement.selection.requirement]]
+items = [
+    "MindcleaverDwarvenWeaponTrainingI",
+    "Pick and Hammer Training",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Mindcleaver: Shape II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While Enlarged, you gain a +3 Psionic Bonus to Damage.
+While Reduced, you gain +3% Psionic Bonus to Max Dodge.
+Your Enlarge and Reduce now last for three minutes."""
+icon = "DuergarShapeII"
+internal_name = "MindcleaverShapeII"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Psionic"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Enlarge Self"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Psionic"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Reduce Self"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["MindcleaverShapeI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Mindcleaver: Unbreakable Spirit"
+cost_per_rank = [1]
+description = "+[1/2/3] Will Saving Throws."
+icon = "MindcleaverUnbreakableSpirit"
+internal_name = "MindcleaverUnbreakableSpirit"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement]]
+name = "Mindcleaver: Psychic Armor"
+cost_per_rank = [1]
+description = "+[2/4/6] Force Absorption and +[2/4/6]% Psionic bonus to total Armor Class."
+icon = "MindcleaverPsychicArmor"
+internal_name = "MindcleaverPsychicArmor"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Force"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Psionic"
+effect_type = "ACPercent"
+
+[[enhancement]]
+name = "Mindcleaver: Forge Familiarity"
+cost_per_rank = [1]
+description = "Your Arcane Spell Failure chance from armor is decreased by 15%."
+icon = "DuergarForgeFamiliarity"
+internal_name = "MindcleaverForgeFamiliarity"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-15]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement]]
+name = "Mindcleaver: Weapon Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Choose the same Training from Dwarven Weapon Training, Tier 2:"
+icon = "DwarfAxeTraining"
+internal_name = "MindcleaverDwarvenWeaponTrainingIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["MindcleaverDwarvenWeaponTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Axe Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with battle axes, dwarven waraxes, hand axes, great axes,
+and throwing axes. While using dwarven waraxe, +5% Strikethrough Chance.
+You gain Dwarven Axe as a Favored Weapon."""
+icon = "DwarfAxeTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Battle Axe",
+    "Dwarven Axe",
+    "Hand Axe",
+    "Great Axe",
+    "Throwing Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Dwarven Axe",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "MindcleaverDwarvenWeaponTrainingI",
+    "Axe Training",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Pick and Hammer Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with heavy picks, light hammer, light picks, mauls,
+throwing hammers, and warhammers."""
+icon = "DwarfPickAndHammerTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Heavy Pick",
+    "Light Hammer",
+    "Light Pick",
+    "Maul",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "MindcleaverDwarvenWeaponTrainingI",
+    "Pick and Hammer Training",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Mindcleaver: Shape III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While Enlarged, you gain a +5% Psionic Bonus to Fortification Bypass.
+While Reduced, you gain +5 Psionic Bonus to Natural Armor.
+Your Enlarge and Reduce now last for five minutes."""
+icon = "DuergarShapeIII"
+internal_name = "MindcleaverShapeIII"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Psionic"
+effect_type = "FortificationBypass"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Enlarge Self"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Psionic"
+effect_type = "NaturalArmor"
+
+[[enhancement.modifier.requirement]]
+items = ["Reduce Self"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["MindcleaverShapeII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Mindcleaver: Mind's Edge"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++20% Damage
+Melee Sunder Attack: You conjure a Mindcleaver and send it hurtling at target foe,
+making an Attack roll on that target and dealing damage with your main hand Melee
+weapons if it hits, plus 1d4 Force Damage per Character Level to that target that
+scales with 100% Melee Power. In addition, the affected target must make a Will
+Saving Throw (14 + [Str/Int] Mod + Sunder Bonuses) or be Sundered, losing -10% AC
+penalty and -25% Fortification for 6 seconds. This ability is considered a Sunder
+for the purpose of other abilities.
+Cooldown: 15 seconds."""
+icon = "MindcleaverMindsEdge"
+internal_name = "MindcleaverMindsEdge"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement]]
+name = "Mindcleaver: Great Weapon Aptitude"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "HalfOrcGreatWeaponAptitude"
+internal_name = "MindcleaverGreatWeaponAptitude"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement]]
+name = "Mindcleaver: Forgemaster"
+cost_per_rank = [1]
+description = """
+Axes, Picks, and Hammers in your hands become Spellcasting Implements, and
+no longer take item damage."""
+icon = "Forgemaster"
+internal_name = "MindcleaverForgemaster"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImplementInYourHands"
+targets = [
+    "Dwarven Axe",
+    "Battle Axe",
+    "Great Axe",
+    "Hand Axe",
+    "Throwing Axe",
+    "Light Pick",
+    "Heavy Pick",
+    "Light Hammer",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement]]
+name = "Mindcleaver: Weapon Training IV"
+cost_per_rank = [2]
+description = "Choose the same Training from Dwarven Weapon Training, Tier 3"
+icon = "DwarfAxeTraining"
+internal_name = "MindcleaverDwarvenWeaponTrainingIV"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["MindcleaverDwarvenWeaponTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Axe Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with battle axes, hand axes ans throwing axes.
++1 to hit and +2 damage with dwarven waraxes and greataxes.
+While using a dwarven waraxe, +1 Competence Bonus to Critical Threat Range
+and +10% Strikethrough Chance."""
+icon = "DwarfAxeTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Battle Axe",
+    "Hand Axe",
+    "Throwing Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Dwarven Axe",
+    "Great Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Dwarven Axe",
+    "Great Axe",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["Dwarven Axe"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dwarven Axe"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = [
+    "MindcleaverDwarvenWeaponTrainingI",
+    "Axe Training",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Pick and Hammer Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with heavy picks, light hammer, light picks, throwing hammers,
+and warhammers. +1 to hit and +2 damage with Mauls. While using a Heavy Pick or
+Warhammer, +1 Competence Bonus to Critical Threat Range."""
+icon = "DwarfPickAndHammerTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Heavy Pick",
+    "Light Hammer",
+    "Light Pick",
+    "Throwing Hammer",
+    "Warhammer",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Maul"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Maul"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = [
+    "Heavy Pick",
+    "Warhammer",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "MindcleaverDwarvenWeaponTrainingI",
+    "Pick and Hammer Training",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Mindcleaver: Shape IV"
+cost_per_rank = [1]
+description = """
+While Enlarged, you gain a +2 Psionic Bonus to Critical Confirmation and Damage.
+While Reduced, you gain +10 Psionic Bonus to MRR.
+Your Enlarge and Reduce now last until rest or death."""
+icon = "DuergarShapeIV"
+internal_name = "MindcleaverShapeIV"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Psionic"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Enlarge Self"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Psionic"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Reduce Self"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["MindcleaverShapeIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Mindcleaver: Shattering Mind"
+cost_per_rank = [1]
+description = """
+Your Mind's Edge now explodes when it hits its target, hitting enemies in a small
+radius. Affected enemies also suffer the Psychic Trauma effect, which grants -3
+to Will Saving Throws. Stacks 5 times. Lasts 24 seconds."""
+icon = "MindcleaverShatteringMind"
+internal_name = "MindcleaverShatteringMind"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["MindcleaverMindsEdge"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Mindcleaver: Perfect Mindcleavers"
+cost_per_rank = [1]
+description = """
+Mindcleavers and weapons that are Empowered With Mind that you wield cause enemies
+to become Shaken for 6 seconds. This can apply once every 2 seconds."""
+icon = "MindcleaverPerfectMindcleavers"
+internal_name = "MindcleaverPerfectMindcleavers"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement]]
+name = "Mindcleaver: Invisibility"
+cost_per_rank = [1]
+description = """
+Spell-Like Ability: An ally becomes invisible, vanishing from sight, even from
+darkvision. If he or she attacks a target, the effect is removed.
+Cost: 6 Spell Points
+Cooldown: 12 seconds"""
+icon = "Invisibility"
+internal_name = "MindcleaverInvisibility"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    12,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Invisibility",
+    "None",
+]
+
+[[requirement]]
+items = ["Duergar Mindcleaver"]
+req_type = "Race"

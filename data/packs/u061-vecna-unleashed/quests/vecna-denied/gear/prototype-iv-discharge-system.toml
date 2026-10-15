@@ -1,0 +1,65 @@
+name = "Prototype IV: Discharge System"
+description = """
+Prototype Notes IV: Well, at least we managed to output the excess lightning
+SOMEWHERE. I'm not sure this solution is optimal, however. Back to the drawing
+board."""
+drop_location = "Vecna Denied, End chest"
+icon = "RuneArm_3e"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 18
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Insight"
+value = 52
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Rune Arm Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Efficient Metamagic - Empower II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Electrical Blast",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Vecna Denied"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

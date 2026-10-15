@@ -1,0 +1,49 @@
+name = "Legendary Firemouth's Bulwark"
+description = "This sharp naval outfit features ornate golden accents."
+drop_location = "The Stone Crypt Chronicle, end chest"
+enhancement_bonus = 15
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Copper"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 20
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 74
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Stone Crypt Chronicle"

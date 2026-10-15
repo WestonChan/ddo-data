@@ -1,0 +1,63 @@
+name = "Cutting Currency"
+description = "It's garish but effective."
+drop_location = "Another Man's Treasure, End chest"
+enhancement_bonus = 3
+icon = "BastardSword_1"
+item_category = "Weapon"
+item_type = "Bastard Sword"
+material = "Platinum"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Transmuted Platinum"
+
+[[effect]]
+name = "Bludgeoning 2"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Gashing 5"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Another Man's Treasure"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Bastard Sword"

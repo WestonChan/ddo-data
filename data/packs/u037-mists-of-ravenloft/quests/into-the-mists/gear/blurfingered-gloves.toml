@@ -1,0 +1,33 @@
+name = "Blurfingered Gloves"
+description = "It's not about who casts the best, it's about who casts the fastest."
+drop_location = "Into the Mists, End Chest"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 10
+slot = "Hands"
+
+[[effect]]
+name = "Feat: Quick Draw"
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Efficient Metamagic - Maximize I"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Enhancement"
+value = 9
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Into the Mists"

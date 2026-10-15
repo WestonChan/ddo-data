@@ -1,0 +1,3 @@
+name = "Demonic Retribution"
+description_template = "Each time you are hit in melee combat there is a chance that a demonic force will strike back at your attacker hitting them with an Inflict Moderate Wounds spell."
+verbose_name_template = "Demonic Retribution"

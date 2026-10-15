@@ -1,0 +1,25 @@
+name = "Insightful Doublestrike"
+description = "Insight bonus to Doublestrike"
+enter_value = true
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[slot]]
+slot = "crafting: random belt extra"
+
+[[slot]]
+slot = "crafting: random gloves extra"

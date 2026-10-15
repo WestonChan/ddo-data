@@ -1,0 +1,29 @@
+name = "Oath of Vengeance"
+bestowed_by = "Zigmund Kovalev"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "Argynvostholt"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Oath_of_Vengeance"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

@@ -1,0 +1,26 @@
+name = "Wisdom +15"
+description = """
+Wisdom +15: This item makes the wearer more in tune with her surroundings, granting
+a +15 Enhancement bonus to Wisdom."""
+family = "SealedInUndeath"
+icon = "Wisdom"
+min_level = 32
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: sealed in undeath"
+
+[[slot]]
+slot = "crafting: sealed in gloom"

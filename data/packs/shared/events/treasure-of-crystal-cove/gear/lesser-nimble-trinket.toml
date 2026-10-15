@@ -1,0 +1,20 @@
+name = "Lesser Nimble Trinket"
+description = """
+Pirates are deft and light on their feet, able to dodge enemy attacks and land
+their own with ease. This trinket boosts the accuracy of your attacks and improves
+your dodging ability."""
+drop_location = "Treasure of Crystal Cove, Turn in at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_38a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 4
+slot = "Trinket"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

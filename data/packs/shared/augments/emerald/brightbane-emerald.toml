@@ -1,0 +1,45 @@
+name = "Brightbane Emerald"
+description = """
+Command. This armor or shield always appears brilliant and gleaming, no matter
+what he conditions and despite all attempts to paint over or obscure it.
+Coveted by military leaders of all sorts, it carries a powerful aura that
+grants a +5 Insight bonus on Charisma-based skill checks. Command armor and
+command shields make their owners very noticeable, imposing a -6 penalty on
+Hide checks."""
+family = "Emerald"
+icon = "Emerald"
+min_level = 8
+
+[[effect]]
+name = "Command"
+value = 4
+value2 = -6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Charisma"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-6]
+bonus_type = "Penalty"
+effect = "Hide"
+effect_type = "SkillBonus"
+targets = ["Hide"]
+
+[[note]]
+kind = "augment_bonus"
+field = "value"
+upstream = 5
+reason = "The wiki gives Brightbane Emerald's Command bonus as +4, while Maetrim's source line says +5."
+url = "https://ddowiki.com/page/Item:Brightbane_Emerald"
+read = "2026-10-05"
+qualifier = 'family "Emerald", Charisma Skills / Insight'
+
+[[slot]]
+slot = "green"

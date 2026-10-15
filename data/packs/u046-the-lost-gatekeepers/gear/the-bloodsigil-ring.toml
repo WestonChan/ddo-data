@@ -1,0 +1,47 @@
+name = "The Bloodsigil Ring"
+description = """
+This signet ring contains some arcane sigil that appears to be written in dried
+blood. There is some strange charm to it, somehow."""
+drop_location = "The Lost Gatekeepers, any legendary chest"
+icon = "Ring_39"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Deception"
+bonus_type = "Quality"
+value = 3
+value2 = 5
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "any legendary chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "The Lost Gatekeepers"

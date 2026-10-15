@@ -1,0 +1,39 @@
+name = "Epic Memories of Insight"
+description = """
+A fragment of a misplaced thought, a brilliant light you once remembered. This
+tattered memory was once the face of someone who knew everything."""
+drop_location = "Memory Lapse, End chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 23
+slot = "Head"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 220
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Memory Lapse"

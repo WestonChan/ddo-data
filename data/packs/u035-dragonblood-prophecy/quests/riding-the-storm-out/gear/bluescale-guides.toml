@@ -1,0 +1,41 @@
+name = "Bluescale Guides"
+description = """
+On the hands of a capable spellcaster, these fingerless scale gloves augment
+magic as it flows through them."""
+drop_location = "Riding the Storm Out, Warded chest"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Blue Dragonscale"
+minimum_level = 27
+slot = "Hands"
+
+[[effect]]
+name = "Efficient Metamagic - Embolden II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Quality"
+value = 4
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Riding the Storm Out"

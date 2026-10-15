@@ -1,0 +1,42 @@
+name = "Legendary Official Kobold Union Buckle"
+drop_location = "Sleeping with the Fishes, end chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 33
+slot = "Waist"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Carrying Capacity"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sleeping with the Fishes"

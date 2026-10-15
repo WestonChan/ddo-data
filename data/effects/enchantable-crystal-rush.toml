@@ -1,0 +1,3 @@
+name = "Enchantable: Crystal Rush"
+description_template = "Crystal Rush: This hat can be enchanted to bestow one of various benefits to nearby kobolds in Crystal Cove."
+verbose_name_template = "Enchantable"

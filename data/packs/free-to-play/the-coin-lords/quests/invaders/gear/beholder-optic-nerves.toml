@@ -1,0 +1,45 @@
+name = "Beholder Optic Nerves"
+description = """
+This necklace is fashioned from the optic nerves of a beholder. Wearing this
+necklace grants increased visual acuity. The optic nerves can also absorb a
+limited amount of aberrant beholder energy. The necklace will absorb any spell
+like effects cast by beholders for a limited time. After absorbing a limited
+number of spells some time is required to bleed off the energy before the necklace
+can once again perform this warding function."""
+drop_location = "Invaders!, end chest (only if Boktar is the end boss)"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 7
+slot = "Neck"
+
+[[clickie]]
+name = "Absorb Beholder Spells"
+clickie = "Absorb Beholder Spells"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 7
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 7
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    8,
+    8,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Absorb Beholder Spells"]
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Invaders!"

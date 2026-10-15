@@ -1,0 +1,3 @@
+name = "Radiance Attack"
+description_template = "This weapon is imbued with a brilliant, radiant power that deals an additional 4 to 24 points of Light damage and blinds the target on a successful critical hit."
+verbose_name_template = "Radiance"

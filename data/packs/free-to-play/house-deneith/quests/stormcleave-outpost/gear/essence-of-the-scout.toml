@@ -1,0 +1,29 @@
+name = "Essence of the Scout"
+description = "This small, round metal disc is engraved with symbols representing silence."
+drop_location = "Stormcleave Outpost, Ortadar 's chest"
+enhancement_bonus = 4
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 6
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[effect]]
+name = "Silent Moves"
+bonus_type = "Competence"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "ortadar 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stormcleave Outpost"

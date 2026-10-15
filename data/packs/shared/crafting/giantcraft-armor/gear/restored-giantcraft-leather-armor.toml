@@ -1,0 +1,31 @@
+name = "Restored Giantcraft Leather Armor"
+description = "Leather armor imbued with the magic of the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Restored Giant Relics"
+enhancement_bonus = 6
+icon = "LightArmor_1"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 14
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Relentless Fury"
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

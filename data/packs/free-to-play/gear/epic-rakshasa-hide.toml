@@ -1,0 +1,43 @@
+name = "Epic Rakshasa Hide"
+description = """
+Crafted from the tanned hide of a Rakshasa, this armor is lightweight and grants
+many of the magical traits and supernatural senses that a Rakshasa possesses."""
+drop_location = "Epic version of Rakshasa Hide"
+enhancement_bonus = 6
+icon = "MediumArmor_12"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_type = "Light"
+max_dex_bonus = 18
+
+[[effect]]
+name = "Roar"
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Superior Nimbleness"
+bonus_type = "Stacking"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 3
+
+[[socket]]
+slot = "blue"

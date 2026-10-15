@@ -1,0 +1,3 @@
+name = "Bloodletter V"
+description_template = "On Critical Hit: 11 to 66 Slashing damage from weapons with a x2 Critical Multiplier, 11 to 88 Slashing damage from weapons with a x3 Critical Multiplier, and 11 to 110 Slashing damage from weapons with a x4 or greater Critical Multiplier."
+verbose_name_template = "Bloodletter V"

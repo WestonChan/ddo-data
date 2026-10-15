@@ -1,0 +1,25 @@
+name = "Outbreak"
+bestowed_by = "Meena Follakin"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Druid's Deep"
+patron = "The Harpers"
+zone = "Eveningstar War Hospital"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Outbreak"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17
+
+[[run]]
+tier = "epic"
+level = 23

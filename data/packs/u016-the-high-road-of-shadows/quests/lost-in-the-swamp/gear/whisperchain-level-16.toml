@@ -1,0 +1,41 @@
+name = "Whisperchain (Level 16)"
+description = """
+The mithral links of this otherworldly chainmail armor seem almost ethereal
+to the touch, and are completely weightless."""
+drop_location = "Lost in the Swamp, Underwater chest (Heroic Normal)"
+enhancement_bonus = 4
+icon = "LightArmor_9"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_bonus = 7
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 11
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Ethereal"
+
+[[effect]]
+name = "Improved False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 3
+
+[[source]]
+chest = "underwater chest"
+kind = "quest"
+loot_type = "chest"
+name = "Lost in the Swamp"

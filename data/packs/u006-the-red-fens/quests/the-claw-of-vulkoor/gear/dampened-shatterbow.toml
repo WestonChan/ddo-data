@@ -1,0 +1,50 @@
+name = "Dampened Shatterbow"
+description = """
+Arrows fired from this bow are invested with powerful sonic energy, and are
+shot so fast that they shriek through the air. Constructs hit by these arrows
+are wounded grievously."""
+drop_location = "The Claw of Vulkoor, Scorpions optional chest (don't kill scorpions)"
+enhancement_bonus = 1
+icon = "Longbow_1j"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Dampened"
+
+[[effect]]
+name = "Screaming"
+
+[[effect]]
+name = "Construct Bane"
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = -5
+
+[[source]]
+chest = "scorpions optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Claw of Vulkoor"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

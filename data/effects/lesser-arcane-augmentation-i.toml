@@ -1,0 +1,3 @@
+name = "Lesser Arcane Augmentation I"
+description_template = "Increases the wearer's caster level when casting first level sorcerer or wizard spells by one."
+verbose_name_template = "Lesser Arcane Augmentation I"

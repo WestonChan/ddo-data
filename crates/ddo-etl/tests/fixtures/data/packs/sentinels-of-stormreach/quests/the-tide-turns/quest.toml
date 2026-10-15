@@ -1,0 +1,19 @@
+name = "The Tide Turns"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Sentinels of Stormreach"
+patron = "House Deneith"
+
+[[run]]
+tier = "heroic"
+level = 7
+
+[[run]]
+tier = "epic"
+level = 20

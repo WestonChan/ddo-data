@@ -1,0 +1,50 @@
+name = "Unleash the Resistance"
+description = """
+Unleashed Resistance: +20 Competence Fire/Electric Resistance
++5% Profane Fire/Electric absorption"""
+family = "PlanarSearing"
+icon = "Deconstructor"
+min_level = 32
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Profane"
+value = 5
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Profane"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect_type = "EnergyResistance"
+targets = [
+    "Electric",
+    "Fire",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Profane"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Electric",
+    "Fire",
+]
+
+[[slot]]
+slot = "crafting: leashed power"

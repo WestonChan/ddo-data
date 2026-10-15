@@ -1,0 +1,3 @@
+name = "Cold Touch"
+description_template = "The temperature around this weapon is colder than normal. A cold touch weapon deals an additional +1 cold damage on a successful hit."
+verbose_name_template = "Cold Touch"

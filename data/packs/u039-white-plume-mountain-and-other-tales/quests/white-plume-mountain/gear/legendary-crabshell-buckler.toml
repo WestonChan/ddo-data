@@ -1,0 +1,61 @@
+name = "Legendary Crabshell Buckler"
+description = "A very permanent reminder of the risks of uncooked shellfish."
+drop_location = "White Plume Mountain, End chest"
+enhancement_bonus = 15
+icon = "Shield_14"
+item_category = "Shield"
+item_type = "Buckler"
+material = "Bone"
+minimum_level = 29
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 19
+max_dex_bonus = 0
+shield_bonus = 20
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Chitinous Covering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Guardbreaking"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "White Plume Mountain"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Dexterity"
+damage_multiplier = 4.8
+handedness = "Off-hand"
+weapon_type = "Buckler"

@@ -1,0 +1,44 @@
+name = "Fist of Daarguul"
+description = """
+This bludgeon is legendary for ferocious beatings. It is feared and revered
+throughout the hobgoblin kingdom of Darguul."""
+drop_location = "Assault on Splinterskull, End reward"
+enhancement_bonus = 3
+icon = "Club_14"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Lesser Goblinoid Bane"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Club"

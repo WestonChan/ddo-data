@@ -1,0 +1,37 @@
+name = "Belt of Blind Devotion"
+description = "Bargain with blindness."
+drop_location = "Violent Delights, end chest"
+icon = "Belt_1"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 21
+slot = "Waist"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 38
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Violent Delights"

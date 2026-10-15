@@ -1,0 +1,58 @@
+name = "Wolf Whistle"
+description = """
+A molded metal whistle that can charm non-magical canine creatures with blasts
+of ultrasonic sound."""
+drop_location = "Sands of Menechtarun, Den Mother Fheena 's Chest (Rare Encounter); \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Necklace_2"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Neck"
+
+[[clickie]]
+name = "Charm Canine"
+clickie = "Charm Canine"
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Charm Canine"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "den mother fheena 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

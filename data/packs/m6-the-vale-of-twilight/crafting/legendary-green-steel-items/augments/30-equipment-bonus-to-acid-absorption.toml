@@ -1,0 +1,20 @@
+name = "+30 Equipment bonus to Acid Absorption"
+description = "Opposition/Earth: +30 Equipment bonus to Acid Absorption"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Equipment"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Equipment"
+effect = "Acid Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

@@ -1,0 +1,3 @@
+name = "Raging Focus"
+description_template = "While Raged, +4 Rage Bonus to Saves vs. Enchantments."
+verbose_name_template = "Raging Focus"

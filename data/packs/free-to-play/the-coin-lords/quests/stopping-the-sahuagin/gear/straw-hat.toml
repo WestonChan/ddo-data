@@ -1,0 +1,23 @@
+name = "Straw Hat"
+description = "This straw hat glows faintly of magical energy."
+drop_location = "Stopping the Sahuagin, End reward"
+icon = "Helmet_53"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Stopping the Sahuagin"

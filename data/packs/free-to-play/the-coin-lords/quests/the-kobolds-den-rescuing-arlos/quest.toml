@@ -1,0 +1,23 @@
+name = "The Kobold's Den: Rescuing Arlos"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "Clan Gnashtooth Prison"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Kobold%27s_Den:_Rescuing_Arlos"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3

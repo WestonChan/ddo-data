@@ -1,0 +1,30 @@
+name = "Chaosgarde"
+description = """
+This set of polished silver bracers is stamped with a mark of True Law. They
+look slightly damaged from prior battles."""
+drop_location = "The Xorian Cipher, Green Key Room"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Silver"
+minimum_level = 9
+slot = "Wrists"
+
+[[effect]]
+name = "Heroism"
+
+[[effect]]
+name = "Chaosguard"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "green key room"
+kind = "quest"
+loot_type = "chest"
+name = "The Xorian Cipher"

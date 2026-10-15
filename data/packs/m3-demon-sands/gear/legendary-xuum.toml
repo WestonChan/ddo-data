@@ -1,0 +1,62 @@
+name = "Legendary Xuum"
+accepts_sentience = true
+description = "This oversized falchion is a prized possession of Vorvand Darkfur."
+drop_location = "Legendary version of Epic Xuum"
+enhancement_bonus = 15
+icon = "Falchion_1p"
+item_category = "Weapon"
+item_type = "Falchion"
+material = "Steel"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Legendary Magma Surge"
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Legendary Magma Surge Guard"
+
+[[effect]]
+name = "Overwhelming Incineration"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Falchion"

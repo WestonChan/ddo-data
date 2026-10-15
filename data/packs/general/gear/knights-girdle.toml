@@ -1,0 +1,22 @@
+name = "Knight's Girdle"
+drop_location = "Advance to level 15, End reward"
+icon = "Belt_7c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+race_required = "Purple Dragon Knight"
+slot = "Waist"
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Exceptional"
+value = 1
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

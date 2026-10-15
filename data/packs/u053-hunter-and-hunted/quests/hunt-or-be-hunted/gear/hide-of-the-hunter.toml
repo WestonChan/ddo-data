@@ -1,0 +1,47 @@
+name = "Hide of the Hunter"
+description = "The Master of the Hunt has graciously granted you this as a token of his respect."
+drop_location = "Hunt or Be Hunted, end chest"
+enhancement_bonus = 15
+icon = "LightArmor_1e"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 29
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 18
+armor_check_penalty = -1
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 148
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Feat: Elusive Target"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hunt or Be Hunted"

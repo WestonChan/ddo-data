@@ -1,0 +1,38 @@
+name = "Sacrarium Cloak"
+description = """
+The Auricular Sacrarium is a cabal of evil Kopru that have found refuge on the
+Isle of Dread."""
+drop_location = "Isle of Dread (wilderness), rare encounter chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 7
+slot = "Back"
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 38
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 19
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

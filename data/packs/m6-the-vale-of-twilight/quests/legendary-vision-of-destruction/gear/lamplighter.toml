@@ -1,0 +1,60 @@
+name = "Lamplighter"
+accepts_sentience = true
+description = """
+Strikes with this unholy lantern will spread its evil flame to your enemies.
+Even water is not enough to quench these flames. The red fire that burns within
+seems to be limitless, and while hot enough to burn, somehow produces no light
+at all..."""
+drop_location = "Legendary Vision of Destruction, End chest"
+enhancement_bonus = 15
+icon = "Morningstar_3"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Adamantine"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Fetters of Unreality"
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Lights Out"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Morningstar"

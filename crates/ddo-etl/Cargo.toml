@@ -16,6 +16,7 @@ clap = { workspace = true }
 ddo-model = { path = "../ddo-model" }
 quick-xml = { workspace = true }
 rusqlite = { workspace = true }
+schemars = "1.2.2"
 serde = { workspace = true }
 serde_json = { workspace = true }
 toml = { workspace = true }

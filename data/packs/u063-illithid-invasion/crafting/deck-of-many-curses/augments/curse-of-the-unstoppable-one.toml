@@ -1,0 +1,34 @@
+name = "Curse of the Unstoppable One"
+description = """
++2% Fortune Bonus to Maximum Hit Points
++3% Fortune Bonus to Armor Class"""
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Maximum Hit Points"
+bonus_type = "Fortune"
+value = 2
+
+[[effect]]
+name = "Armor Class Percentage"
+bonus_type = "Fortune"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Maximum Hit Points"
+effect_type = "HitpointsPercent"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Fortune"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[slot]]
+slot = "crafting: deck curse"

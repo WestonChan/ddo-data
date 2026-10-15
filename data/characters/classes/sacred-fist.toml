@@ -1,0 +1,939 @@
+name = "Sacred Fist"
+alignments = ["Lawful Good"]
+bab = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+base_class = "Paladin"
+casting_stats = ["Wisdom"]
+class_specific_feat_types = [
+    "Follower Of",
+    "Deity",
+]
+description = """
+Sacred Fist is a variant Paladin archetype focusing on burning enemies with sacred
+fists (unarmed attacks). Introduced in Update 56."""
+fortitude = "good"
+hit_points = 10
+large_icon = "Paladin"
+reflex = "poor"
+skill_points = 2
+small_icon = "Paladin_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    20,
+    35,
+    50,
+    65,
+    80,
+    95,
+    110,
+    125,
+    140,
+    155,
+    170,
+    185,
+    200,
+    215,
+    230,
+    245,
+    260,
+]
+will = "poor"
+
+[[auto_buy_skill]]
+skill = "Intimidate"
+
+[[auto_buy_skill]]
+skill = "Heal"
+
+[[auto_feat]]
+level = 1
+feat = "AC Bonus: Charisma"
+
+[[auto_feat]]
+feat_name = "Aura of Good"
+level = 1
+
+[[auto_feat]]
+level = 1
+feat = "Exotic Weapon Proficiency: Handwraps"
+
+[[auto_feat]]
+feat_name = "Flurry of Blows"
+level = 1
+
+[[auto_feat]]
+level = 1
+feat = "Follower of the Path of Light"
+
+[[auto_feat]]
+level = 1
+feat = "Religious Lore"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Club"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dart"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Morningstar"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Quarterstaff"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Sickle"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Throwing Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Unarmed"
+
+[[auto_feat]]
+feat_name = "Smite Evil"
+level = 1
+
+[[auto_feat]]
+feat_name = "Smite Evil (Ranged)"
+level = 1
+
+[[auto_feat]]
+feat_name = "Unarmed Strike"
+level = 1
+
+[[auto_feat]]
+feat_name = "Divine Grace"
+level = 2
+
+[[auto_feat]]
+level = 2
+feat = "Evasion"
+
+[[auto_feat]]
+feat_name = "Lay on Hands"
+level = 2
+
+[[auto_feat]]
+level = 2
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Smite Evil"
+level = 2
+
+[[auto_feat]]
+feat_name = "Smite Evil (Ranged)"
+level = 2
+
+[[auto_feat]]
+feat_name = "Aura of Courage"
+level = 3
+
+[[auto_feat]]
+feat_name = "Divine Health"
+level = 3
+
+[[auto_feat]]
+feat_name = "Fear Immunity"
+level = 3
+
+[[auto_feat]]
+level = 3
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Smite Evil"
+level = 3
+
+[[auto_feat]]
+feat_name = "Smite Evil (Ranged)"
+level = 3
+
+[[auto_feat]]
+level = 4
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Smite Evil"
+level = 4
+
+[[auto_feat]]
+feat_name = "Smite Evil (Ranged)"
+level = 4
+
+[[auto_feat]]
+level = 4
+feat = "Turn Undead"
+
+[[auto_feat]]
+feat_name = "Unarmed Strike"
+level = 4
+
+[[auto_feat]]
+level = 5
+feat = "AC Bonus (Sacred Fist)"
+
+[[auto_feat]]
+level = 5
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Smite Evil"
+level = 5
+
+[[auto_feat]]
+feat_name = "Smite Evil (Ranged)"
+level = 5
+
+[[auto_feat]]
+level = 6
+feat = "Divine Dream"
+
+[[auto_feat]]
+level = 6
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Remove Disease"
+level = 6
+
+[[auto_feat]]
+level = 7
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Remove Disease"
+level = 7
+
+[[auto_feat]]
+level = 8
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Remove Disease"
+level = 8
+
+[[auto_feat]]
+feat_name = "Unarmed Strike"
+level = 8
+
+[[auto_feat]]
+level = 9
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Remove Disease"
+level = 9
+
+[[auto_feat]]
+level = 10
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Remove Disease"
+level = 10
+
+[[auto_feat]]
+level = 11
+feat = "Religious Lore"
+
+[[auto_feat]]
+level = 12
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Unarmed Strike"
+level = 12
+
+[[auto_feat]]
+level = 13
+feat = "Religious Lore"
+
+[[auto_feat]]
+level = 14
+feat = "Religious Lore"
+
+[[auto_feat]]
+level = 15
+feat = "Religious Lore"
+
+[[auto_feat]]
+level = 16
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Unarmed Strike"
+level = 16
+
+[[auto_feat]]
+level = 17
+feat = "Religious Lore"
+
+[[auto_feat]]
+level = 18
+feat = "Religious Lore"
+
+[[auto_feat]]
+level = 19
+feat = "Religious Lore"
+
+[[auto_feat]]
+level = 20
+feat = "Religious Lore"
+
+[[auto_feat]]
+feat_name = "Unarmed Strike"
+level = 20
+
+[[skill]]
+skill = "Concentration"
+
+[[skill]]
+skill = "Diplomacy"
+
+[[skill]]
+skill = "Heal"
+
+[[skill]]
+skill = "Intimidate"
+
+[[spell]]
+max_caster_level = 20
+spell = "Bless"
+spell_level = 1
+spell_name = "Bless"
+
+[[spell]]
+cost = 6
+max_caster_level = 5
+spell = "Cure Light Wounds"
+spell_level = 1
+spell_name = "Cure Light Wounds"
+
+[[spell]]
+max_caster_level = 9
+spell = "Divine Favor"
+spell_level = 1
+spell_name = "Divine Favor"
+
+[[spell]]
+max_caster_level = 5
+spell = "Ki Bolt"
+spell_level = 1
+spell_name = "Ki Bolt"
+
+[[spell]]
+cost = 10
+spell = "Lesser Restoration"
+spell_level = 1
+spell_name = "Lesser Restoration"
+
+[[spell]]
+spell = "Lionheart"
+spell_level = 1
+spell_name = "Lionheart"
+
+[[spell]]
+spell = "Protection from Evil"
+spell_level = 1
+spell_name = "Protection from Evil"
+
+[[spell]]
+spell = "Resistance"
+spell_level = 1
+spell_name = "Resistance"
+
+[[spell]]
+cost = 5
+spell = "Seek Eternal Rest"
+spell_level = 1
+spell_name = "Seek Eternal Rest"
+
+[[spell]]
+max_caster_level = 5
+spell = "Virtue"
+spell_level = 1
+spell_name = "Virtue"
+
+[[spell]]
+max_caster_level = 20
+spell = "Angelskin"
+spell_level = 2
+spell_name = "Angelskin"
+
+[[spell]]
+spell = "Bull's Strength"
+spell_level = 2
+spell_name = "Bull's Strength"
+
+[[spell]]
+spell = "Eagle's Splendor"
+spell_level = 2
+spell_name = "Eagle's Splendor"
+
+[[spell]]
+max_caster_level = 15
+spell = "Righteous Command"
+spell_level = 2
+spell_name = "Righteous Command"
+
+[[spell]]
+spell = "Remove Paralysis"
+spell_level = 2
+spell_name = "Remove Paralysis"
+
+[[spell]]
+spell = "Resist Energy"
+spell_level = 2
+spell_name = "Resist Energy"
+
+[[spell]]
+spell = "Sacred Fist Empowerment"
+spell_level = 2
+spell_name = "Sacred Fist Empowerment"
+
+[[spell]]
+spell = "Owl's Wisdom"
+spell_level = 2
+spell_name = "Owl's Wisdom"
+
+[[spell]]
+cost = 12
+max_caster_level = 10
+spell = "Cure Moderate Wounds"
+spell_level = 3
+spell_name = "Cure Moderate Wounds"
+
+[[spell]]
+cost = 15
+max_caster_level = 10
+spell = "Dispel Magic"
+spell_level = 3
+spell_name = "Dispel Magic"
+
+[[spell]]
+spell = "Incinerating Wave"
+spell_level = 3
+spell_name = "Incinerating Wave"
+
+[[spell]]
+spell = "Magic Circle Against Evil"
+spell_level = 3
+spell_name = "Magic Circle Against Evil"
+
+[[spell]]
+spell = "Remove Blindness"
+spell_level = 3
+spell_name = "Remove Blindness"
+
+[[spell]]
+cost = 20
+spell = "Remove Curse"
+spell_level = 3
+spell_name = "Remove Curse"
+
+[[spell]]
+spell = "Prayer"
+spell_level = 3
+spell_name = "Prayer"
+
+[[spell]]
+cost = 25
+max_caster_level = 15
+spell = "Break Enchantment"
+spell_level = 4
+spell_name = "Break Enchantment"
+
+[[spell]]
+cost = 16
+max_caster_level = 15
+spell = "Cure Serious Wounds"
+spell_level = 4
+spell_name = "Cure Serious Wounds"
+
+[[spell]]
+spell = "Death Ward"
+spell_level = 4
+spell_name = "Death Ward"
+
+[[spell]]
+spell = "Holy Sword"
+spell_level = 4
+spell_name = "Holy Sword"
+
+[[spell]]
+spell = "Ki Explosion"
+spell_level = 4
+spell_name = "Ki Explosion"
+
+[[spell]]
+spell = "Neutralize Poison"
+spell_level = 4
+spell_name = "Neutralize Poison"
+
+[[spell]]
+spell = "Restoration"
+spell_level = 4
+spell_name = "Restoration"
+
+[[spell]]
+spell = "Stalwart Pact"
+spell_level = 4
+spell_name = "Stalwart Pact"
+
+[[spell]]
+spell = "Zeal"
+spell_level = 4
+spell_name = "Zeal"
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 1
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 1
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 1
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 1
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 5
+slots = 1
+spell_level = 1
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 6
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 7
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 8
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 8
+slots = 1
+spell_level = 2
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 9
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 9
+slots = 1
+spell_level = 2
+
+[[spell_slot]]
+class_level = 9
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 9
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 10
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 10
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 10
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 10
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 11
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 11
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 11
+slots = 1
+spell_level = 3
+
+[[spell_slot]]
+class_level = 11
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 12
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 12
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 12
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 12
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 13
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 13
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 13
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 13
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 14
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 14
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 14
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 14
+slots = 1
+spell_level = 4
+
+[[spell_slot]]
+class_level = 15
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 15
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 15
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 15
+slots = 2
+spell_level = 4
+
+[[spell_slot]]
+class_level = 16
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 16
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 16
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 16
+slots = 2
+spell_level = 4
+
+[[spell_slot]]
+class_level = 17
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 17
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 17
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 17
+slots = 2
+spell_level = 4
+
+[[spell_slot]]
+class_level = 18
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 18
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 18
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 18
+slots = 2
+spell_level = 4
+
+[[spell_slot]]
+class_level = 19
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 19
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 19
+slots = 4
+spell_level = 3
+
+[[spell_slot]]
+class_level = 19
+slots = 3
+spell_level = 4
+
+[[spell_slot]]
+class_level = 20
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 20
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 20
+slots = 4
+spell_level = 3
+
+[[spell_slot]]
+class_level = 20
+slots = 4
+spell_level = 4

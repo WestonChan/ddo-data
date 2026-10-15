@@ -1,0 +1,121 @@
+name = "Epic Mournlode Fullplate"
+description = """
+Metal Armor constructed from valuable purple Mournlode crystal is imbued with
+a protective, almost holy power. Undead are seared by it, and it protects the
+wearer from evil."""
+drop_location = "Vaults of the Artificers, Turn in Crafted from various challenge ingredients"
+enhancement_bonus = 5
+icon = "HeavyArmor_1"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Mithral"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 24
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 8
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Undead Guard"
+
+[[effect]]
+name = "Protection from Evil"
+bonus_type = "Deflection"
+
+[[effect]]
+name = "Healers Bounty"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+6 Enhancement Bonus, Undead Guard 5, Colorless Augment slot"
+description = """
++6 Enhancement Bonus: +6 enhancement bonus to Armor Class.
+Undead Guard +5: Chance to deal 5d8 Good damage to undead when hit.
+Colorless Augment slot"""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+value = 6
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Protection +9, Resistance +9, Negative Absorption 30%, Adds a Green augment slot"
+description = "Adds a Purple augment slot to this item"
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Deflection"
+effect = "Armor Class"
+value = 9
+
+[[socket.option.effect]]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+value = 9
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+value = 30
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect = "Negative Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Negative"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

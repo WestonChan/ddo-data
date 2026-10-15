@@ -1,0 +1,60 @@
+name = "Solar Gem of Spell Critical Chance (Heroic)"
+description = """
++2% Artifact Bonus to Spell Critical Chance.
+Drops in: Magic of Myth Drannor (Heroic), Elite and True Elite
+Ruins of Myth Drannor, Yegora rare encounter chest (rare)
+Romira and Juvian's right chest (rare, requires completion of Sleeping with the Fishes)
+The Wizard's Labyrinth, end chest (rare)
+Toil and Trouble, end chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Back to the Abyss"
+
+[[source]]
+chest = "yegora rare encounter chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Proper Authorities"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Wizard's Labyrinth"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

@@ -1,0 +1,25 @@
+name = "Skullduggery Kit (Level 15)"
+description = "Tools of the trade."
+drop_location = "Through a Mirror Darkly, End chest (Heroic Hard)"
+icon = "Belt_7c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 15
+slot = "Waist"
+
+[[effect]]
+name = "Intelligence Skills - Exceptional Bonus"
+value = 4
+
+[[effect]]
+name = "Dexterity Skills - Exceptional Bonus"
+value = 2
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Through a Mirror Darkly"

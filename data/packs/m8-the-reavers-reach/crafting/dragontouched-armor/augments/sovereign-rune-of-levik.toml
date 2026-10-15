@@ -1,0 +1,9 @@
+name = "Sovereign Rune of Levik"
+description = "Adds the Levik's Defender set bonus."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+set_bonus = "Levik's Defender"
+
+[[slot]]
+slot = "crafting: sovereign rune"

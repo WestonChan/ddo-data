@@ -1,0 +1,22 @@
+name = "Rabbit Gloves"
+description = """
+Luxurious gloves that keep out the cold and give their wearer a dose of good
+luck. Better luck than the rabbit's, you hope."""
+drop_location = "The Abandoned Excavation, End reward"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Hands"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 1
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

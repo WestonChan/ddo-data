@@ -1,0 +1,43 @@
+name = "Devilscale Bracers"
+description = """
+Crafted of the scales of a Horned Devil, this sturdy pair of bracers will magically
+enhance your ability to strike your enemies."""
+drop_location = "Legendary Vision of Destruction, End chest"
+icon = "Bracers_5c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"

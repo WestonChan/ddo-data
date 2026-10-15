@@ -1,0 +1,21 @@
+name = "Arcane Guardian"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Arcane Guardian"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"

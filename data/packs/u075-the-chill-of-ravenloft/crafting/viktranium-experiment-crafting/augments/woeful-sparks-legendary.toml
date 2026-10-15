@@ -1,0 +1,10 @@
+name = "Woeful Sparks (Legendary)"
+description = """
+Your attacks and offensive spells have a chance to inflict multiple stacks of Vulnerability.
+(Undocumented: Grants Legendary Vacuum)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: woeful (weapon)"

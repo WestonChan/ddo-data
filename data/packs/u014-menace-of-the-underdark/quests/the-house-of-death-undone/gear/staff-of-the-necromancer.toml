@@ -1,0 +1,69 @@
+name = "Staff of the Necromancer"
+accepts_sentience = true
+description = """
+Made from a solid rod of dark metal, this staff is deceptively light. Strange,
+arcane script traces like spiderwebs across its surface."""
+drop_location = "The House of Death Undone, End Chest ; Menace of the Underdark: City of Portals, Quest chain end reward"
+enhancement_bonus = 6
+icon = "Quarterstaff_2"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Magesteel"
+minimum_level = 21
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 68
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 102
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Lesser Arcane Augmentation I"
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Death Undone"
+
+[[source]]
+kind = "saga"
+name = "Menace of the Underdark"
+tier = "any"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.2
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

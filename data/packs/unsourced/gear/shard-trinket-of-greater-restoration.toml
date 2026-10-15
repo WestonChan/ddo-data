@@ -1,0 +1,23 @@
+name = "Shard Trinket of Greater Restoration"
+description = "This trinket periodically casts greater restoration."
+drop_location = "The Marketplace, Turn in 3 Medium Eberron Dragonshard Fragments to Clarice Roden ."
+icon = "Trinket_2"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Greater Restoration"
+clickie = "Greater Restoration"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    20,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Restoration"]

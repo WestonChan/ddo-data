@@ -1,0 +1,59 @@
+name = "Alarphon's Staff"
+accepts_sentience = true
+description = """
+This metal staff hums with power. Arcane runes are inscribed along its length.
+In the hands of an arcane caster, this staff is capable of casting a diverse
+array of offensive spells. Although this staff does not regain charges when
+you rest, it recharges automatically as time passes."""
+drop_location = "Eveningstar, Turn in 15 Commendations: War Wizards Commendation: War Wizards : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the War Wizards. You can exchange it in Eveningstar for powerful equipment."
+enhancement_bonus = 6
+icon = "Quarterstaff_2d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Magesteel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[clickie]]
+name = "Alaphon's Staff: Spell Selection"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Elemental Manipulation"
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 6
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    25,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Alaphon's Staff: Spell Selection"]
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

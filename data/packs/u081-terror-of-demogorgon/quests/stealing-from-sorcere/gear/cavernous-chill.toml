@@ -1,0 +1,38 @@
+name = "Cavernous Chill"
+description = "The freezing temperatures of truly deep caves draws out arcane properties."
+drop_location = "Stealing from Sorcere, Shadow Demon 's chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Waist"
+
+[[effect]]
+name = "Ice Intensity"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 121
+
+[[socket]]
+slot = "crafting: nearly complete: spell focus (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "shadow demon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stealing from Sorcere"

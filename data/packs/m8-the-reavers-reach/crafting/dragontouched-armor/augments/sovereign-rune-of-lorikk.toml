@@ -1,0 +1,9 @@
+name = "Sovereign Rune of Lorikk"
+description = "Adds the Lorikk's Champion set bonus."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+set_bonus = "Lorikk's Champion"
+
+[[slot]]
+slot = "crafting: sovereign rune"

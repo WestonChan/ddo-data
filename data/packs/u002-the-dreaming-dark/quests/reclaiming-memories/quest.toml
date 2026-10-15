@@ -1,0 +1,21 @@
+name = "Reclaiming Memories"
+bestowed_by = "Bitterblood"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The Dreaming Dark"
+patron = "The Coin Lords"
+zone = "Forgotten Ruins"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Reclaiming_Memories"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 19

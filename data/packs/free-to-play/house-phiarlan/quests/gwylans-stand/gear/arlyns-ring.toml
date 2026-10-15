@@ -1,0 +1,22 @@
+name = "Arlyn's Ring"
+description = "A ring engraved with the name 'Arlyn Feathercrest'."
+drop_location = "Gwylan's Stand, Arlyn Feathercrest 's chest"
+icon = "Ring_10"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 5
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "arlyn feathercrest 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gwylan's Stand"

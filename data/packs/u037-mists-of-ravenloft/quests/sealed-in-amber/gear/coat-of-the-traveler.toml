@@ -1,0 +1,46 @@
+name = "Coat of the Traveler"
+description = "A good traveler deserves a sturdy coat."
+drop_location = "Sealed in Amber, End chest &amp; optional draw Strahd's attention chest"
+enhancement_bonus = 5
+icon = "MediumArmor_3"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritcraft Leather"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 12
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 77
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sealed in Amber"

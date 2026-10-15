@@ -1,0 +1,39 @@
+name = "Legendary Twisthallow Cloak"
+description = """
+This tattered cloak was left behind in the wake of one trying to flee Barovia.
+Unsuccessfully, one might add."""
+drop_location = "Mad Tea Party, End chest"
+icon = "Cloak_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Back"
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Mad Tea Party"

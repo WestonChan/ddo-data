@@ -1,0 +1,3 @@
+name = "Thrill of the Hunt"
+description_template = '"Lesser beings hunt for the prize, but for me, the hunt is prize enough." On Hit: You have a small chance to attempt to hold a monster in place. Even if the Hold is unsuccessful, their will saves will be reduced by 5.'
+verbose_name_template = "Thrill of the Hunt"

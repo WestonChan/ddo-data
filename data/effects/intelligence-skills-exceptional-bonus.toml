@@ -1,0 +1,11 @@
+name = "Intelligence Skills - Exceptional Bonus"
+description_template = "Passive {1} Exceptional bonus to the Intelligence based skills of: Disable Device, Repair, Search, and Spellcraft"
+home_bonus_type = "Exceptional"
+verbose_name_template = "Intelligence Skills - Exceptional Bonus +{1}"
+
+[[bonus]]
+amount_from = 1
+bonus_type = "Exceptional"
+rounding = "down"
+scale = 1.0
+target = "Intelligence Skills"

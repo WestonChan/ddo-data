@@ -1,0 +1,30 @@
+name = "Dusk"
+description = "This docent is studded with black diamonds and seems to absorb light."
+drop_location = 'The Shadow Crypt, Optional "big chest"'
+enhancement_bonus = 5
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 8
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = -4
+armor_type = "Docent"
+mithral_body = 5
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = 'optional "big chest"'
+kind = "quest"
+loot_type = "chest"
+name = "The Shadow Crypt"

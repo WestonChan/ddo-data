@@ -1,0 +1,21 @@
+name = "Runic Gloves"
+description = """
+These gloves have small runes that glow when the wearer is holding an item that
+has magical properties."""
+drop_location = "Necromancer's Doom, Chest behind locked door"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Hands"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+chest = "chest behind locked door"
+kind = "quest"
+loot_type = "chest"
+name = "Necromancer's Doom"

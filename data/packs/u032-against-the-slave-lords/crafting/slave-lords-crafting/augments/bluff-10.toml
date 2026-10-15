@@ -1,0 +1,21 @@
+name = "Bluff +10"
+description = "Competence bonus to Bluff"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect = "Bluff"
+effect_type = "SkillBonus"
+targets = ["Bluff"]
+
+[[slot]]
+slot = "crafting: slavelords extra"

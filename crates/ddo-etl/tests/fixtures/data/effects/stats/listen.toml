@@ -1,0 +1,3 @@
+name = "Listen"
+category = "skill"
+verbose_name_template = "%b1 Listen +{1}"

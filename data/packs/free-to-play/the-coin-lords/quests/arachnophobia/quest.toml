@@ -1,0 +1,17 @@
+name = "Arachnophobia"
+bestowed_by = "Berne Jorn"
+difficulties = ["solo"]
+favor = 2
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "Jorn Family Crypt"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Arachnophobia"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 2

@@ -1,0 +1,34 @@
+name = "Kobold Island - Short Cuts Epic"
+variant = "2"
+difficulties = []
+is_challenge = true
+max_level = 20
+pack = "Vaults of the Artificers"
+patron = "House Cannith"
+
+[[note]]
+kind = "quest"
+field = "pack"
+upstream = "Free to Play"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+url = "https://ddowiki.com/page/Kobold_Island:_Short_Cuts_-_EPIC"
+read = "2026-10-05"
+
+[[note]]
+kind = "quest"
+field = "patron"
+reason = "The Cannith challenge awards House Cannith favor."
+url = "https://ddowiki.com/page/Kobold_Island:_Short_Cuts_-_EPIC"
+read = "2026-10-05"
+
+[[note]]
+kind = "slug_collision"
+field = "name"
+upstream = "Kobold Island - Short Cuts - EPIC"
+reason = "The two epic challenge rows differ in maximum level and remain separate for review."
+url = "upstream/Output/DataFiles/Challenges.xml"
+read = "2026-10-07"
+
+[[run]]
+tier = "heroic"
+level = 15

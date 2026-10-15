@@ -1,0 +1,3 @@
+name = "Percussive Maintenance 3"
+description_template = "Each strike from this weapon vibrates with disruptive levels of energy, interrupting your target's concentration. This weapon's strikes deal 3 Wisdom damage on each hit."
+verbose_name_template = "Percussive Maintenance 3"

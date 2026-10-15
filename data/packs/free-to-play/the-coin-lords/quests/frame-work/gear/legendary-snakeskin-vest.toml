@@ -1,0 +1,50 @@
+name = "Legendary Snakeskin Vest"
+description = """
+Eerily, it seems this vest was made from the hides of dozens of medusa snakes.
+Something of the snakes lives on in the vest and it will bestow its wearer
+with the same alertness the snakes had in life."""
+drop_location = "Frame Work, end chests, Dorris ' chests"
+enhancement_bonus = 15
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 10
+armor_type = "Light"
+max_dex_bonus = 26
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Epic Nimbleness"
+bonus_type = "Stacking"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chests, dorris ' chests"
+kind = "quest"
+loot_type = "chest"
+name = "Frame Work"

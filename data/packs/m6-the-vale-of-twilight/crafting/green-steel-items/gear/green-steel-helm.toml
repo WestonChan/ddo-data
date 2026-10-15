@@ -1,0 +1,15 @@
+name = "Green Steel Helm"
+description = "A helmet crafted from green steel."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+icon = "Helmet_7b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Head"
+
+[[socket]]
+slot = "crafting: accessory invasion"
+
+[[source]]
+kind = "crafting_system"
+name = "Green Steel items"

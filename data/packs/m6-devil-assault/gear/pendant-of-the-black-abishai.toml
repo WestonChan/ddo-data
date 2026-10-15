@@ -1,0 +1,39 @@
+name = "Pendant of the Black Abishai"
+description = "This necklace seems to be attuned to elemental power."
+drop_location = "The Chronoscope, and The Chronoscope (Legendary), optional chests"
+icon = "Necklace_13n"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 5
+slot = "Neck"
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 2
+value2 = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[source]]
+chest = "optional chests"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

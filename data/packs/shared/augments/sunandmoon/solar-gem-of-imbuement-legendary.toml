@@ -1,0 +1,40 @@
+name = "Solar Gem of Imbuement (Legendary)"
+description = """
++3 Artifact Bonus to Imbue Dice.
+Drops in: Voices of the Dead"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Imbue Dice"
+bonus_type = "Artifact"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Hideous to Behold"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Voices of the Dead"

@@ -1,0 +1,37 @@
+name = "Legendary Ward-Inscribed Pendant"
+description = "There is an odd glyph inscribed on this stone pendant."
+drop_location = "Ravens' Bane, end chest"
+icon = "Necklace_2"
+item_category = "Jewelry"
+material = "Stone"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Curse Resistance"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ravens' Bane"

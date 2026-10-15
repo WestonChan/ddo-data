@@ -30,8 +30,13 @@ impl TableWriter<'_> {
                 continue;
             }
             self.transaction.execute(
-                "INSERT INTO set_bonuses (name, icon, is_filigree_set) VALUES (?1, ?2, ?3)",
-                params![set_name, trimmed_non_empty(set_bonus.icon.as_deref()), is_filigree_set],
+                "INSERT INTO set_bonuses (name, icon, is_filigree_set, slug) VALUES (?1, ?2, ?3, ?4)",
+                params![
+                    set_name,
+                    trimmed_non_empty(set_bonus.icon.as_deref()),
+                    is_filigree_set,
+                    crate::tree::xml_entity_slug("set_bonuses", None, set_name, None)
+                ],
             )?;
             let set_id = self.transaction.last_insert_rowid();
             self.written.set_bonus_ids_by_name.insert(set_name.to_string(), set_id);
@@ -61,14 +66,8 @@ impl TableWriter<'_> {
                 None => None,
             };
             self.transaction.execute(
-                "INSERT OR IGNORE INTO filigrees (name, description, icon, menu, set_id) VALUES (?1, ?2, ?3, ?4, ?5)",
-                params![
-                    filigree.name.trim(),
-                    trimmed_non_empty(filigree.description.as_deref()),
-                    trimmed_non_empty(filigree.icon.as_deref()),
-                    trimmed_non_empty(filigree.menu.as_deref()),
-                    set_id
-                ],
+                "INSERT INTO filigrees (name, description, icon, menu, set_id, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6) ON CONFLICT(name) DO NOTHING",
+                params![filigree.name.trim(), trimmed_non_empty(filigree.description.as_deref()), trimmed_non_empty(filigree.icon.as_deref()), trimmed_non_empty(filigree.menu.as_deref()), set_id, crate::tree::xml_entity_slug("filigrees", None, filigree.name.trim(), None)],
             )?;
             let filigree_id: i64 = self.transaction.query_row(
                 "SELECT id FROM filigrees WHERE name = ?1",
@@ -187,11 +186,12 @@ impl TableWriter<'_> {
         }
         for gem in sentient_gems::parse(path)? {
             report.sentient_gem_count += self.transaction.execute(
-                "INSERT OR IGNORE INTO sentient_gems (name, icon, description) VALUES (?1, ?2, ?3)",
+                "INSERT INTO sentient_gems (name, icon, description, slug) VALUES (?1, ?2, ?3, ?4) ON CONFLICT(name) DO NOTHING",
                 params![
                     gem.name,
                     trimmed_non_empty(gem.icon.as_deref()),
-                    trimmed_non_empty(gem.description.as_deref())
+                    trimmed_non_empty(gem.description.as_deref()),
+                    crate::tree::xml_entity_slug("sentient_gems", None, &gem.name, None)
                 ],
             )?;
         }

@@ -1,0 +1,37 @@
+name = "+22 Dexterity Skills, +28 Hit Points"
+description = """
+Material/Escalation: +22 Competence bonus to Dexterity based skills.
++28 Profane Hit Points"""
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Escalation"""
+
+[[effect]]
+name = "Dexterity Skills"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Profane"
+value = 28
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Competence"
+effect = "Dexterity Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Dexterity"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [28]
+bonus_type = "Profane"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[slot]]
+slot = "crafting: equipment tier 1"

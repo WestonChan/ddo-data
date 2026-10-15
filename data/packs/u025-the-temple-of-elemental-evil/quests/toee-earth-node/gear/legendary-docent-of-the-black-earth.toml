@@ -1,0 +1,42 @@
+name = "Legendary Docent of the Black Earth"
+description = "A docent from deep within the Temple of Elemental Evil."
+drop_location = "ToEE: Earth Node, end chest and random locked chest"
+enhancement_bonus = 15
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 31
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = -9
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 149
+
+[[source]]
+chest = "end chest and random locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"

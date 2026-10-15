@@ -1,0 +1,39 @@
+name = "Legendary Vizeran's Band"
+description = """
+A small green gem is set into the inside golden band, hiding it from prying
+eyes."""
+drop_location = "Tower of Vengeance, end chest"
+icon = "Ring_25e"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 35
+slot = "Ring"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Efficient Metamagic - Maximize II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Tower of Vengeance"

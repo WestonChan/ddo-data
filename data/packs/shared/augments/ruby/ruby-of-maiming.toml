@@ -1,0 +1,36 @@
+name = "Ruby of Maiming"
+description = """
+Maiming: This weapon has a twisted haft or grip and spikes along its blade, head,
+or point. Whenever you score a critical hit with this weapon it deals an amount
+of extra untyped damage depending on its critical multiplier: x2 - 1 to 6,
+x3 - 2 to 12, x4 - 3 to 18.
+Drops in: ToEE: First Level and Earth Temple, and ToEE: Lower Temple Complex,
+rare encounter chests"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 8
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+chest = "any rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: First Level and Earth Temple"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Lower Temple Complex"

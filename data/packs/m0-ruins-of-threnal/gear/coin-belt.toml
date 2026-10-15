@@ -1,0 +1,27 @@
+name = "Coin Belt"
+description = """
+A jangling string of coins worn about the waist. It's believed to confer good
+luck onto the wearer."""
+drop_location = "The Abandoned Excavation, End reward"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Waist"
+
+[[effect]]
+name = "Command"
+value = 2
+value2 = -6
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

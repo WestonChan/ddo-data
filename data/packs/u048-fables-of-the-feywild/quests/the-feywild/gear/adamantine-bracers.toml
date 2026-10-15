@@ -1,0 +1,31 @@
+name = "Adamantine Bracers"
+description = "FEYTWISTED form of Cold Iron Bracers \n\nThese heavy bracers are made of Adamantine and can withstand heavy blows."
+drop_location = "The Feywild, Feytwisted chests"
+icon = "Bracers_5a"
+item_category = "Clothing"
+material = "Adamantine"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 53
+
+[[effect]]
+name = "Greater Auto-Repair"
+
+[[effect]]
+name = "DR 30/Adamantine"
+
+[[effect]]
+name = "Maker's Touch"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"

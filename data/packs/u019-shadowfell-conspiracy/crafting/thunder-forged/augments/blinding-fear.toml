@@ -1,0 +1,92 @@
+name = "Blinding Fear"
+adds_augment = "Thunderforged Tier 2"
+description = "Blinding Fear: On Hit: Blinds and Shakens foe for 6 sec, 12 sec cool down."
+family = "Thunderforged"
+min_level = 24
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Orb"
+value = 10
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Orb"
+value = 10
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Orb"
+value = 10
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Orb"
+value = 10
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Orb"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Bane"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "Bane of Dragons"
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Dragon"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Orb"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Orb"
+damage = "Acid"
+effect_type = "EnergyResistance"
+targets = [
+    "Cold",
+    "Electric",
+    "Fire",
+    "Sonic",
+]
+
+[[modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[slot]]
+slot = "crafting: thunderforged tier 1"

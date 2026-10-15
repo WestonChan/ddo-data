@@ -1,0 +1,63 @@
+name = "Breeze"
+description = """
+This simple hollow staff is surprising sturdy and extremely light. Those that
+seek to master it should flow with the wind rather than fight against it. Dexterous
+users will find that their agility dramatically increases their ability to
+strike and damage, while those that favor brute force will be confounded."""
+drop_location = "Ascension Chamber, Raid Warded chest"
+enhancement_bonus = 5
+icon = "Quarterstaff_2f"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Screaming"
+
+[[effect]]
+name = "Roaring"
+
+[[effect]]
+name = "Telekinetic"
+
+[[effect]]
+name = "Slicing Winds"
+
+[[socket]]
+slot = "crafting: upgradeable item"
+
+[[socket.option]]
+name = "Adds Greater Sirocco and Greater Telekinetic"
+description = """
+Greater Sirocco: A critical hit with this weapon causes a whirlwind of desert sand
+to swirl about the target, temporarily blinding it. A successful Reflex save
+(DC 35) prevents the effect.
+Greater Telekinetic: Targets that suffer a critical hit from a Telekinetic weapon
+must make a DC 28 Strength or Dexterity check or be knocked down. The target will
+then be forced to make DC 16 Balance checks to recover from this effect."""
+min_level = 14
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Dexterity"
+damage_multiplier = 1.8
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

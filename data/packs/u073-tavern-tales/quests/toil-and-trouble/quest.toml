@@ -1,0 +1,26 @@
+name = "Toil and Trouble"
+bestowed_by = "Jarra Morand"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Tavern Tales"
+patron = "The Harpers"
+zone = "Mielikki's Grove"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Toil_and_Trouble"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5
+
+[[run]]
+tier = "epic"
+level = 28

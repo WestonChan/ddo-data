@@ -1,0 +1,12 @@
+name = "Fall of the Night Brigade"
+pack = "Fall of the Night Brigade"
+quests = [
+    "Rats in a Cage",
+    "The Wizard's Labyrinth",
+    "The Knife's Edge",
+    "The Darkness and the Light",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Fall_of_the_Night_Brigade"
+read = "2026-10-02"

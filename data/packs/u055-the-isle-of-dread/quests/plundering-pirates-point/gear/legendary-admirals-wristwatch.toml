@@ -1,0 +1,40 @@
+name = "Legendary Admiral's Wristwatch"
+description = """
+This bracer features a small watch and an intricate compass sewn into the lining.
+It's perfect for finding your way in the storms."""
+drop_location = "Plundering Pirates' Point, end chest"
+icon = "Bracers_19"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 31
+slot = "Wrists"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "isle of dread: scale (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Plundering Pirates' Point"

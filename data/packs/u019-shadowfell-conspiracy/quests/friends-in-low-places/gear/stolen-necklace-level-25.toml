@@ -1,0 +1,279 @@
+name = "Stolen Necklace (Level 25)"
+description = """
+Lost to a pocket, away from it's locket, the gem was precious indeed.
+Once fit for a king, of whom bards did sing, the necklace is now in need."""
+drop_location = "Friends in Low Places, end chest (Epic Normal); Shadow Over Wheloon, quest chain end reward (Epic)"
+icon = "Necklace_17b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 25
+slot = "Neck"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Accuracy IX"
+description = "Accuracy IX: Passive: +9 Competence bonus to attack rolls"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Attack Bonus"
+value = 9
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Competence"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+
+[[socket.option]]
+name = "Natural Armor +9"
+description = "Natural Armor +9: Passive: +9 Natural Armor Bonus to Armor Class."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Resistance"
+effect = "Natural Armor"
+value = 9
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Resistance"
+effect = "Natural Armor"
+effect_type = "NaturalArmor"
+
+[[socket.option]]
+name = "Resistance +9"
+description = "Resistance +9: Passive: +9 Resistance bonus to Fortitude, Reflex, and Will Saving Throws."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+value = 9
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+
+[[socket.option]]
+name = "Wizardry IX"
+description = "Wizardry IX: This item grants the wearer +225 maximum spell points. Sorcerers and Favored Souls gain up to double spell points from items"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+value = 225
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [225]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[socket.option]]
+name = "Bluff +19"
+description = "Bluff +19: Passive: +19 Competence bonus to the Bluff skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Bluff"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Bluff"
+effect_type = "SkillBonus"
+targets = ["Bluff"]
+
+[[socket.option]]
+name = "Concentration +19"
+description = "Concentration +19: Passive: +19 Competence bonus to the Concentration skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Concentration"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Concentration"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[socket.option]]
+name = "Diplomacy +19"
+description = "Diplomacy +19: Passive: +19 Competence bonus to the Diplomacy skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Diplomacy"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Diplomacy"
+effect_type = "SkillBonus"
+targets = ["Diplomacy"]
+
+[[socket.option]]
+name = "Haggle +19"
+description = "Haggle +19: Passive: +19 Competence bonus to the Haggle skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Haggle"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Haggle"
+effect_type = "SkillBonus"
+targets = ["Haggle"]
+
+[[socket.option]]
+name = "Heal +19"
+description = "Heal +19: Passive: +19 Competence bonus to the Heal skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Heal"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Heal"
+effect_type = "SkillBonus"
+targets = ["Heal"]
+
+[[socket.option]]
+name = "Intimidate +19"
+description = "Intimidate +19: Passive: +19 Competence bonus to the Intimidate skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Intimidate"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Intimidate"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[socket.option]]
+name = "Listen +19"
+description = "Listen +19: Passive: +19 Competence bonus to the Listen skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Listen"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Listen"
+effect_type = "SkillBonus"
+targets = ["Listen"]
+
+[[socket.option]]
+name = "Search +19"
+description = "Search +19: Passive: +19 Competence bonus to the Search skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Search"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Search"
+effect_type = "SkillBonus"
+targets = ["Search"]
+
+[[socket.option]]
+name = "Spellcraft +19"
+description = "Spellcraft +19: Passive: +19 Competence bonus to the Spellcraft skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Spellcraft"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Spellcraft"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[socket.option]]
+name = "Spot +19"
+description = "Spot +19: Passive: +19 Competence bonus to the Spot skill."
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Spot"
+value = 19
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect = "Spot"
+effect_type = "SkillBonus"
+targets = ["Spot"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Friends in Low Places"
+
+[[source]]
+kind = "quest_chain"
+name = "Shadow Over Wheloon"

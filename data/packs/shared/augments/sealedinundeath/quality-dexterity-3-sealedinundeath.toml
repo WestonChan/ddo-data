@@ -1,0 +1,27 @@
+name = "Quality Dexterity +3"
+variant = "sealedinundeath"
+description = """
+Quality Dexterity +3: This item makes the wearer more nimble and dexterous, granting
+a +3 Quality bonus to Dexterity."""
+family = "SealedInUndeath"
+icon = "Dexterity"
+min_level = 32
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Quality"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "crafting: sealed in undeath"
+
+[[slot]]
+slot = "crafting: sealed in gloom"

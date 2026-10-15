@@ -1,0 +1,25 @@
+name = "Blueshine"
+description = """
+This armor glistens with a blue-black sheen as if it were covered with an oily liquid
+sapphire. A suit of armor imbued with this property never tarnishes and is immune
+to acid damage and rusting effects. While wearing blueshine armor you gain a
++3 Competence bonus on Hide checks."""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Competence"
+effect = "Hide"
+effect_type = "SkillBonus"
+targets = ["Hide"]
+
+[[slot]]
+slot = "crafting: cannith armor prefix"

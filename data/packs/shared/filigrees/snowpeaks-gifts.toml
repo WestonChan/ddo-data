@@ -1,0 +1,125 @@
+[[row]]
+name = "Snowpeak's Gifts: +1 Charisma"
+description = """
++1 Charisma
+Rare: No rare form of this filigree"""
+icon = "SnowpeaksGifts"
+menu = "Festival"
+set = "Snowpeak's Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row]]
+name = "Snowpeak's Gifts: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: No rare form of this filigree"""
+icon = "SnowpeaksGifts"
+menu = "Festival"
+set = "Snowpeak's Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row]]
+name = "Snowpeak's Gifts: +1 Imbue Dice"
+description = """
++1 Imbue Damage Dice
+Rare: No rare form of this filigree"""
+icon = "SnowpeaksGifts"
+menu = "Festival"
+set = "Snowpeak's Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "ImbueDice"
+
+[[row]]
+name = "Snowpeak's Gifts: +1% Dodge and Maximum Dodge"
+description = """
++1% Dodge and Maximum Dodge
+Rare: No rare form of this filigree"""
+icon = "SnowpeaksGifts"
+menu = "Festival"
+set = "Snowpeak's Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[row]]
+name = "Snowpeak's Gifts: +30% Movement Speed"
+description = """
++30% Movement Speed
+Rare: No rare form of this filigree"""
+icon = "SnowpeaksGifts"
+menu = "Festival"
+set = "Snowpeak's Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "MovementSpeed"
+
+[[row]]
+name = "Snowpeak's Gifts: +5% Cold Absorption"
+description = """
++5% Cold Absorption
+Rare: No rare form of this filigree"""
+icon = "SnowpeaksGifts"
+menu = "Festival"
+set = "Snowpeak's Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row]]
+name = "Snowpeak's Gifts: +9 Cold Spell Power"
+description = """
++9 Cold Spell Power
+Rare: No rare form of this filigree"""
+icon = "SnowpeaksGifts"
+menu = "Festival"
+set = "Snowpeak's Gifts"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[row]]
+name = "Snowpeak's Gifts: Hamstring Ward"
+description = """
+You are warded against Hamstring effects
+Rare: No rare form of this filigree"""
+icon = "SnowpeaksGifts"
+menu = "Festival"
+set = "Snowpeak's Gifts"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Hamstring"]

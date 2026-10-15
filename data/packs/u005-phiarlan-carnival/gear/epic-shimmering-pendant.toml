@@ -1,0 +1,48 @@
+name = "Epic Shimmering Pendant"
+description = """
+This beautiful necklace immediately makes the wearer appear more attractive
+and confident."""
+drop_location = "Epic version of Shimmering Pendant"
+icon = "Necklace_5a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[clickie]]
+name = "Suggestion"
+clickie = "Suggestion"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Suggestion"]
+
+[[socket]]
+slot = "yellow"

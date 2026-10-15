@@ -1,0 +1,27 @@
+name = "Ring of Changes"
+description = "This ring containts a subtle snake-like pattern."
+drop_location = "The Home of Memory, end chest"
+icon = "Ring_6"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 3
+slot = "Ring"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Home of Memory"

@@ -1,0 +1,61 @@
+name = "Suppressive Fire"
+description = """
+A curious device crafted by some mad Wizard in order to keep the local pests
+in check."""
+drop_location = "The Final Vintage, End Chest"
+icon = "RuneArm_1b"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 10
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier IV"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 77
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 21
+
+[[effect]]
+name = "Rune Arm Imbue - Fire III"
+
+[[effect]]
+name = "Tira's Splendor"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Corrupted Exploding Fire Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Vintage"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

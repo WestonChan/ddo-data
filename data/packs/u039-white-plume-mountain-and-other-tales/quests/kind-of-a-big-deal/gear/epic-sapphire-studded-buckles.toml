@@ -1,0 +1,50 @@
+name = "Epic Sapphire Studded Buckles"
+description = """
+This belt buckle is emblazoned with several polished sapphires. They glow warmly
+in the light."""
+drop_location = "Kind of a Big Deal, End Chest"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 21
+slot = "Waist"
+
+[[clickie]]
+name = "Shield"
+clickie = "Shield"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 8
+value2 = 12
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 8
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 12
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shield"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Kind of a Big Deal"

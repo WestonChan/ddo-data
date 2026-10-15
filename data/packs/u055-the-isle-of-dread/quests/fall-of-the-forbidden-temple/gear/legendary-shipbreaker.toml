@@ -1,0 +1,52 @@
+name = "Legendary Shipbreaker"
+accepts_sentience = true
+description = """
+A mallet designed to repair a ship - or to destroy one. Its acidic and flaming
+enchantments are excellent against sturdy constructs."""
+drop_location = "Fall of the Forbidden Temple, end chest"
+enhancement_bonus = 15
+icon = "Maul_1i"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Wood"
+minimum_level = 31
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Construct Bane 6"
+
+[[effect]]
+name = "Fiery 6"
+
+[[effect]]
+name = "Acidic 6"
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fall of the Forbidden Temple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Two-handed"
+weapon_type = "Maul"

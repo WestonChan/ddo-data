@@ -24,39 +24,43 @@
       "acquire": "Automatic",
       "description": "You gain a racial lay on hands SLA which heals for 10 + Character Level * Wisdom Modifier.\n+2 Racial bonus to Heal, Listen and Spot.\n+5 Resistance to Cold, Acid and Electricity",
       "icon": "AasimarRacialTraits",
-      "id": 364,
+      "id": 5952988644880685,
       "max_times_acquire": null,
-      "name": "Aasimar Racial Traits"
+      "name": "Aasimar Racial Traits",
+      "slug": "aasimar-racial-traits"
     },
     {
       "acquire": "Train",
       "description": "While fallen stance is active you gain +1 Strength and +1 to Reflex saving throws.",
       "icon": "AasimarFallen",
-      "id": 363,
+      "id": 5003017690598897,
       "max_times_acquire": null,
-      "name": "Aasimar: Fallen Bond"
+      "name": "Aasimar: Fallen Bond",
+      "slug": "aasimar-fallen-bond"
     },
     {
       "acquire": "Train",
       "description": "While protector stance is active you gain +1 Charisma and +1 to Will saving throws.",
       "icon": "AasimarProtector",
-      "id": 362,
+      "id": 7635191091245954,
       "max_times_acquire": null,
-      "name": "Aasimar: Protector Bond"
+      "name": "Aasimar: Protector Bond",
+      "slug": "aasimar-protector-bond"
     }
   ],
   "granted_feats": [
     {
-      "feat_id": 364,
+      "feat_id": 5952988644880685,
       "name": "Aasimar Racial Traits"
     }
   ],
   "iconic_class": null,
-  "id": 1,
+  "id": 955166124957093,
   "is_construct": false,
   "name": "Aasimar",
   "no_past_life": false,
   "short_name": "Aasimar",
   "skill_points": null,
+  "slug": "aasimar",
   "starting_world": "Eberron"
 }

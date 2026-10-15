@@ -1,0 +1,38 @@
+name = "Surreptitious Shackles"
+description = """
+On closing the shackle, a memory flashes by: A form that isn't your own, breaking
+free from your bonds, your desire for revenge insatiable."""
+drop_location = "Locked Away (Part Two), end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 8
+slot = "Wrists"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part Two)"

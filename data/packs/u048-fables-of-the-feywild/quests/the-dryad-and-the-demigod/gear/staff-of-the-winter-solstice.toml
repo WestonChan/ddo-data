@@ -1,0 +1,67 @@
+name = "Staff of the Winter Solstice"
+accepts_sentience = true
+description = "FEYTWISTED form of Staff of the Summer Solstice \n\nThis light beam of a cursed oak is infused with cold magic. The faerielights\nthat flicker around it seem hostile."
+drop_location = "The Dryad and the Demigod, Greater feytwisted chest"
+enhancement_bonus = 15
+icon = "Quarterstaff_1f"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Shielded by Moonlight"
+
+[[effect]]
+name = "Moonlit Haunt Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Power of the Moonlit Haunt"
+bonus_type = "Equipment"
+value = 148
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Winter's Impertinence"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "greater feytwisted chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

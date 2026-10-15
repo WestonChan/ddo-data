@@ -1,0 +1,51 @@
+name = "Epic Wolf Whistle"
+description = """
+A molded metal whistle that can charm non-magical canine creatures with blasts
+of ultrasonic sound."""
+drop_location = "Epic version of Wolf Whistle"
+icon = "Necklace_2b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[clickie]]
+name = "Summon Epic Thaarak Hound"
+clickie = "Summon Epic Thaarak Hound"
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 8
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Epic Thaarak Hound"]
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"

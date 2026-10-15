@@ -1,0 +1,11 @@
+name = "Curse of Foolishness"
+description_template = "Passive -1 Penalty to Wisdom. The minimum level required to equip this item is lower than normal due to this curse."
+home_bonus_type = "Penalty"
+verbose_name_template = "Curse of Foolishness -1"
+
+[[bonus]]
+amount_from = 0
+constant = -1
+rounding = "down"
+scale = 1.0
+target = "Wisdom"

@@ -1,0 +1,16 @@
+name = "Negative and Poison Spell Lore"
+description_template = "Passive: Your Negative Energy and Poison spells gain a {1}% %b1 bonus to their chance to critical hit."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Negative and Poison Spell Lore +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Negative Spell Lore"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Poison Spell Lore"

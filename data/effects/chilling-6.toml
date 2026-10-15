@@ -1,0 +1,3 @@
+name = "Chilling 6"
+description_template = "This effect causes the edges of this weapon to become frozen to the touch, dealing 6d6 Ice damage on each hit."
+verbose_name_template = "Chilling 6"

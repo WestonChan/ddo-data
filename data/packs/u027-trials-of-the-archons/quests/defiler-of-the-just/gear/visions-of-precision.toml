@@ -1,0 +1,41 @@
+name = "Visions of Precision"
+description = """
+These lenses were crafted to allow their bearers greater focus on the battlefield;
+they seem to filter out anything that would distract from one's goals."""
+drop_location = "Defiler of the Just, warded chest"
+icon = "Goggles_3a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 26
+slot = "Goggles"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Dazing IX"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

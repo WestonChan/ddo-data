@@ -1,0 +1,23 @@
+name = "Iron Band"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Ring_3"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 15
+race_required = "Deep Gnome"
+slot = "Ring"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 5
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

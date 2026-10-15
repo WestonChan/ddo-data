@@ -1,0 +1,53 @@
+name = "Encyclopedia of the Dead, Vol. 3"
+description = """
+On Hit Effect: 6d10 Bane damage vs Undead.
+This weapon has Ghost Touch and can bypass the Ethereality of Incorporeal creatures."""
+family = "VecnaUnleashed"
+icon = "HistoryBookRed"
+min_level = 32
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Bane"
+dice_number = [6]
+dice_sides = [10]
+display_name = "Encyclopedia of the Dead, Vol. 3"
+effect_type = "WeaponOtherDamageBonus"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Bane"
+dice_number = [6]
+dice_sides = [10]
+display_name = "Encyclopedia of the Dead, Vol. 3"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"

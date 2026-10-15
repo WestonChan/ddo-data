@@ -1,0 +1,50 @@
+name = "Epic Dhovras' Armlet"
+drop_location = "Toil and Trouble, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 27
+slot = "Wrists"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 126
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 13
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[removed]]
+kind = "item"
+name = "Epic Dhovras' Amulet"
+reason = "A misnamed older copy of his Epic Dhovras' Armlet (Spell Focus Mastery 3 where the Armlet has 4); the Toil and Trouble page lists Epic Dhovras' Armlet."
+url = "https://ddowiki.com/page/Toil_and_Trouble"
+read = "2026-10-01"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

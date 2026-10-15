@@ -1,0 +1,95 @@
+name = "Spell Resistance"
+choose_level = true
+description = "Enhancement bonus to Spell Resistance"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    3,
+    5,
+    6,
+    9,
+    10,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    44,
+    45,
+    46,
+    46,
+    46,
+    46,
+    46,
+]
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 51
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [51]
+bonus_type = "Enhancement"
+effect = "Spell Resistance"
+effect_type = "SpellResistance"
+
+[[slot]]
+slot = "crafting: cannith armor prefix"
+
+[[slot]]
+slot = "crafting: cannith belt prefix"
+
+[[slot]]
+slot = "crafting: cannith cloak prefix"
+
+[[slot]]
+slot = "crafting: cannith ring prefix"
+
+[[slot]]
+slot = "crafting: cannith shield prefix"
+
+[[slot]]
+slot = "crafting: cannith orb prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: random armor prefix"
+
+[[slot]]
+slot = "crafting: random belt prefix"
+
+[[slot]]
+slot = "crafting: random cloak prefix"
+
+[[slot]]
+slot = "crafting: random ring prefix"
+
+[[slot]]
+slot = "crafting: random shield prefix"

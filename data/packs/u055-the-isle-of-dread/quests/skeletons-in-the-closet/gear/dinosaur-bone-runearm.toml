@@ -1,0 +1,40 @@
+name = "Dinosaur Bone Runearm"
+description = "This Runearm is a blend of dinosaur bone and magical technology."
+drop_location = "Skeletons in the Closet, The Mountain Keeper chest, end chest"
+icon = "RuneArm_8"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Bone"
+minimum_level = 31
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[socket]]
+slot = "isle of dread: scale (weapon)"
+
+[[socket]]
+slot = "isle of dread: fang (weapon)"
+
+[[socket]]
+slot = "isle of dread: scale (armor)"
+
+[[socket]]
+slot = "isle of dread: fang (armor)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "the mountain keeper chest, end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Skeletons in the Closet"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

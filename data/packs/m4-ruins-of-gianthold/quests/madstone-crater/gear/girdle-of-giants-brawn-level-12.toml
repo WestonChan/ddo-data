@@ -1,0 +1,29 @@
+name = "Girdle of Giants' Brawn (Level 12)"
+description = """
+While this girdle is incredibly difficult to lift, once it is around your waist,
+its weight seems to drop in half."""
+drop_location = "Madstone Crater, end chest (normal)"
+icon = "Belt_11c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 12
+slot = "Waist"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = -3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"

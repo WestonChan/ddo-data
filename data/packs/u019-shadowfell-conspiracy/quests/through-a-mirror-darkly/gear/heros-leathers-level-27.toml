@@ -1,0 +1,25 @@
+name = "Hero's Leathers (Level 27)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Through a Mirror Darkly, End reward"
+enhancement_bonus = 10
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Spiritcraft Leather"
+minimum_level = 27
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 18
+
+[[effect]]
+name = "Greater Heroism"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Through a Mirror Darkly"

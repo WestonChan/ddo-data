@@ -1,0 +1,1714 @@
+[[row]]
+name = "Domain of Air"
+acquire = "Train"
+description = """
+You gain +1 to the DC of your Evocation spells.
+This increases by +1 at Cleric levels 6, 12 and 18.
+Your lightning spells will use Light Spell Power if it is higher,
+and your light spells will use Lightning Spell power if it is higher.
+Turn Undead now works on Elemental creatures. Additionally, using
+Turn Undead provides a bonus to your party's Reflex saving throws
+equal to half of your Cleric level and Electric Resistance equal to
+twice your Cleric level, for 20 seconds."""
+icon = "AirDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellDC"
+stack_source = "Cleric"
+targets = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SaveBonus"
+stack_source = "Cleric"
+targets = ["Reflex"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+stack_source = "Cleric"
+targets = ["Electric"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Animals"
+acquire = "Train"
+description = """
+You gain +1 Spot, +1 Listen and +1 Reflex saving throws
+for every 2 Cleric levels. Your Turn Undead works on Animal creatures.
+When you use Turn Undead, your party gains points of Constitution equal to
+half your Cleric level for 20 seconds."""
+icon = "AnimalDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SkillBonus"
+stack_source = "Cleric"
+targets = [
+    "Spot",
+    "Listen",
+]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SaveBonus"
+stack_source = "Cleric"
+targets = ["Reflex"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "AbilityBonus"
+stack_source = "Cleric"
+targets = ["Constitution"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Chaos"
+acquire = "Train"
+description = """
+You gain +1 to Will saving throws for every 2 Cleric levels.
+When you use Turn Undead, your party gains 1d20 points of Universal
+Spell Power and 1d10 points (each rolled separately) of Melee Power,
+Ranged Power, Physical Resistance Rating and Magical Resistance Rating."""
+icon = "ChaosDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SaveBonus"
+stack_source = "Cleric"
+targets = ["Will"]
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Lawful Good"]
+req_type = "Alignment"
+
+[[row.requirement_group.requirement]]
+items = ["Lawful Neutral"]
+req_type = "Alignment"
+
+[[row]]
+name = "Domain of Death"
+acquire = "Train"
+description = """
+You gain +1 to the DC of your Necromancy spells. This increases
+by +1 at Cleric levels 6, 12 and 18. You gain +2 to your effective
+Cleric level to Turn Undead and +2 to the hit dice of undead effected."""
+icon = "DeathDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Turn Undead Level"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Turn Undead Dice"
+value = 2
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellDC"
+stack_source = "Cleric"
+targets = ["Necromancy"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Turn Undead Level"
+effect_type = "TurnLevelBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Turn Undead Dice"
+effect_type = "TurnDiceBonus"
+
+[[row]]
+name = "Domain of Destruction"
+acquire = "Train"
+description = """
+You gain +1 Melee and Ranged Power. You gain another point of
+each at Cleric levels 4, 8, 12, 16 and 20. You can cast your Cleric spells
+while Raging. When you use Turn Undead, your party gains a Divine bonus to
+Melee and Ranged Power equal to half your Cleric level for 20 seconds."""
+icon = "DestructionDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Ranged Power"
+value = 1
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "MeleePower"
+stack_source = "Cleric"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Ranged Power"
+effect_type = "RangedPower"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Divine"
+effect_type = "MeleePower"
+stack_source = "Cleric"
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Divine"
+effect_type = "RangedPower"
+stack_source = "Cleric"
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Earth"
+acquire = "Train"
+description = """
+You gain +2 Acid Spell Power (Corrosion) per Cleric Level.
+Your acid spells will use Light Spell Power if it is higher. Your light
+spells will use Acid Spell Power if it is higher. Your Turn Undead works
+on Elemental creatures. When you use Turn Undead, your party gains a bonus
+to Fortitude saving throws equal to half your Cleric level and points of
+Acid Resistance equal to twice your Cleric level for 20 seconds."""
+icon = "EarthDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+stack_source = "Cleric"
+targets = ["Acid"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SaveBonus"
+stack_source = "Cleric"
+targets = ["Fortitude"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+stack_source = "Cleric"
+targets = ["Acid"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Fire"
+acquire = "Train"
+description = """
+You gain +2 Fire Spell Power (Combustion) per Cleric Level.
+Your fire spells will use Light Spell Power if it is higher. Your light
+spells will use Fire Spell Power if it is higher. When you use Turn Undead,
+your party gains points of Fire Resistance equal to twice your Cleric level
+for 20 seconds. Your Turn Undead works on Elemental creatures."""
+icon = "FireDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+stack_source = "Cleric"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+stack_source = "Cleric"
+targets = ["Fire"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Good"
+acquire = "Train"
+description = """
+You gain +2 Light Spell Power (Radiance) per Cleric Level.
+You gain +1 to the Heal skill for every 2 Cleric levels. When you use
+Turn Undead, your party gains temporary Hit Points equal to five times your
+Cleric level for 20 seconds."""
+icon = "GoodDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+stack_source = "Cleric"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SkillBonus"
+stack_source = "Cleric"
+targets = ["Heal"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    5,
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50,
+    55,
+    60,
+    65,
+    70,
+    75,
+    80,
+    85,
+    90,
+    95,
+    100,
+]
+bonus_type = "Feat"
+effect_type = "Hitpoints"
+stack_source = "Cleric"
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Healing"
+acquire = "Train"
+description = """
+You gain +2 Positive Spell Power (Devotion) per Cleric Level.
+When you use Turn Undead, your party gains 20 points of Healing
+Amplification."""
+icon = "HealingDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+value = 20
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+stack_source = "Cleric"
+targets = ["Positive"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Knowledge"
+acquire = "Train"
+description = """
+You gain +2 to all skills. When you use Turn Undead, your
+party gains points of Intelligence equal to half your Cleric level for 20
+seconds."""
+icon = "KnowledgeDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "AbilityBonus"
+stack_source = "Cleric"
+targets = ["Intelligence"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Law"
+acquire = "Train"
+description = """
+You gain +1 to the DC of your Enchantment spells.
+This increases by +1 at Cleric levels 6, 12 and 18. When you use your
+Turn Undead, your party gains a Sacred bonus to saving throws equal to
+half your Cleric level for 20 seconds."""
+icon = "LawDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellDC"
+stack_source = "Cleric"
+targets = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+stack_source = "Cleric"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Chaotic Good"]
+req_type = "Alignment"
+
+[[row.requirement_group.requirement]]
+items = ["Chaotic Neutral"]
+req_type = "Alignment"
+
+[[row]]
+name = "Domain of Luck"
+acquire = "Train"
+description = """
+You gain +1 to your Fortitude, Reflex and Will saving throws.
+This increases by +1 at Cleric levels 6, 12 and 18. When you use
+Turn Undead, your party gains a Divine bonus to saving throws equal
+to half your Cleric level for 20 seconds."""
+icon = "LuckDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+]
+bonus_type = "Sacred"
+effect_type = "SaveBonus"
+stack_source = "Cleric"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Divine"
+effect_type = "SaveBonus"
+stack_source = "Cleric"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Magic"
+acquire = "Train"
+description = """
+You gain +1 to the DC of your Evocation spells.
+This increases by +1 at Cleric levels 6, 12 and 18. When you use
+Turn Undead, your party gains a Divine bonus to Universal Spell Power
+equal to twice your Cleric level for 20 seconds."""
+icon = "MagicDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellDC"
+stack_source = "Cleric"
+targets = ["Evocation"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Divine"
+effect_type = "SpellPower"
+stack_source = "Cleric"
+targets = ["All"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Protection"
+acquire = "Train"
+description = """
+You gain +1 to Armor Class, Physical Resistance Rating,
+and Magical Resistance Rating. This increases by +1 at Cleric levels
+5, 10, 15 and 20. When you use Turn Undead, your party gains a Divine
+bonus to PRR and MRR equal to twice your Cleric level for 20 seconds."""
+icon = "ProtectionDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+]
+bonus_type = "Feat"
+effect_type = "ACBonus"
+stack_source = "Cleric"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+]
+bonus_type = "Feat"
+effect_type = "PRR"
+stack_source = "Cleric"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+]
+bonus_type = "Feat"
+effect_type = "MRR"
+stack_source = "Cleric"
+
+[[row]]
+name = "Domain of Strength"
+acquire = "Train"
+description = """
+You gain +2 Strength. You passively restore all ability score
+damage to Strength every 6 seconds. When you use Turn Undead, your party
+gains a Divine bonus to Strength equal to half your Cleric level for 20 seconds."""
+icon = "StrengthDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Strength"
+value = 2
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "AbilityBonus"
+stack_source = "Cleric"
+targets = ["Strength"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Sun"
+acquire = "Train"
+description = """
+You gain +2 to Fire (Combustion) and Light Spell Power (Radiance)
+per Cleric level. When you use Turn Undead, you and your allies gain
+True Sight. In addition, for 20 seconds, enemies in the radius of the
+Turn Undead have their Incorporeal miss chance negated and will be
+inflicted with 10% Vulnerability to Light damage."""
+icon = "SunDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+stack_source = "Cleric"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+stack_source = "Cleric"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[row]]
+name = "Domain of Trickery"
+acquire = "Train"
+description = """
+You gain +1 to the DC of your Enchantment spells.
+This increases by +1 at Cleric levels 6, 12 and 18. When you use
+Turn Undead, your party gains points of Charisma equal to half your
+Cleric level for 20 seconds."""
+icon = "TrickeryDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellDC"
+stack_source = "Cleric"
+targets = ["Enchantment"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "AbilityBonus"
+stack_source = "Cleric"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of War"
+acquire = "Train"
+description = """
+You gain +1 to-hit and damage with melee and ranged weapons.
+This increases at Cleric levels 4, 8, 12, 16 and 20. When you use
+Turn Undead, your party gains a Divine bonus to Melee Power and
+Ranged Power equal to half your Cleric level for 20 seconds."""
+icon = "WarDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "Cleric"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Divine"
+effect_type = "MeleePower"
+stack_source = "Cleric"
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Divine"
+effect_type = "RangedPower"
+stack_source = "Cleric"
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row]]
+name = "Domain of Water"
+acquire = "Train"
+description = """
+You gain Water Breathing. You gain +1 to Swimming and
++2 Cold Spell Power (Glaciation) per Cleric level. Your cold spells
+will use Positive Spell Power if it is higher. Your healing spells
+will use Cold Spell Power if it is higher. Your Turn Undead works
+on Elemental creatures. When you use Turn Undead, your party gains
+a bonus to Will saving throws equal to half you Cleric level and
+points of Cold Resistance equal to twice your Cleric level for 20 seconds."""
+icon = "WaterDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = ["Drowning"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "SkillBonus"
+stack_source = "Cleric"
+targets = ["Swim"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+stack_source = "Cleric"
+targets = ["Cold"]
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SaveBonus"
+stack_source = "Cleric"
+targets = ["Will"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+stack_source = "Cleric"
+targets = ["Cold"]
+
+[[row.modifier.requirement]]
+items = ["Turn Undead"]
+req_type = "Stance"

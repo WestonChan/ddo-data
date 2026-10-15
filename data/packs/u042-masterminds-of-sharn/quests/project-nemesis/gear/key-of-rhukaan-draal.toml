@@ -1,0 +1,51 @@
+name = "Key of Rhukaan Draal"
+description = """
+Forged in Darguun, this intricate silver key can open many doors... Slip it
+underneath your gloves for easy access."""
+drop_location = "Project Nemesis, end chest; Masterminds of Sharn saga: Epic end reward; rare drop in any legendary Sharn quest"
+icon = "Necklace_28"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"
+
+[[source]]
+kind = "saga"
+name = "Masterminds of Sharn"
+tier = "epic"

@@ -1,0 +1,34 @@
+name = "Legendary Gloves of the Falcon"
+description = """
+Leather gloves modeled after a falconer's gloves. These gloves give the wearer
+dramatically increased visual acuity as well as increased dexterity."""
+drop_location = "Legendary version of Epic Gloves of the Falcon"
+icon = "Gloves_1d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Hands"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 20
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "True Seeing"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "yellow"

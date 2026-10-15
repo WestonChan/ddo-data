@@ -1,0 +1,10 @@
+name = "Dr. Rushmore's Mansion - Moving Targets - EPIC"
+difficulties = []
+is_challenge = true
+max_level = 25
+pack = "Secrets of the Artificers"
+patron = "House Cannith"
+
+[[run]]
+tier = "heroic"
+level = 21

@@ -1,0 +1,3 @@
+name = "Bloodrage Defense"
+description_template = "When you are holding a two-handed weapon, you gain a +10 Profane bonus to Physical and Magical Resistance Rating."
+verbose_name_template = "Bloodrage Defense"

@@ -1,0 +1,188 @@
+name = "Eminence of Winter"
+icon = "EminenceOfWinter"
+
+[[item]]
+name = "Adamantine Bracers"
+
+[[item]]
+name = "Chainmail of the First Snow"
+
+[[item]]
+name = "Direwolf Belt"
+
+[[item]]
+name = "Hyrsam's Fiddle"
+
+[[item]]
+name = "Icon of the Bitterwind"
+
+[[item]]
+name = "Legendary Bittersnow"
+
+[[item]]
+name = "Legendary Bulwark of Snow"
+
+[[item]]
+name = "Legendary Cloak of Winter"
+
+[[item]]
+name = "Legendary Cold Iron Bracers"
+
+[[item]]
+name = "Legendary Crown of Snow"
+
+[[item]]
+name = "Legendary Deepsnow Boots"
+
+[[item]]
+name = "Legendary Direbear Belt"
+
+[[item]]
+name = "Legendary Necronomicannon"
+
+[[item]]
+name = "Legendary Nocturne Ring"
+
+[[item]]
+name = "Legendary Plate of the Winter Solstice"
+
+[[item]]
+name = "Legendary Ring of Winter's Chill"
+
+[[item]]
+name = "Legendary Snowscale"
+
+[[item]]
+name = "Legendary Winter Court Necklace"
+
+[[item]]
+name = "Rune Lodestone"
+
+[[item]]
+name = "Sphere of Souls"
+
+[[item]]
+name = "Strap of Autumn Leaves"
+
+[[item]]
+name = "The Heart of the Prince"
+
+[[item]]
+name = "The Prince's Gauntlet"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Legendary"
+effect = "Maximum Hit Points"
+effect_type = "HitpointsPercent"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = 100
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Threat Generation"
+value = 100
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell Threat Generation"
+value = 100
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Artifact"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]
+
+[[tier]]
+equipped_count = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Constitution"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[tier]]
+equipped_count = 7
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"

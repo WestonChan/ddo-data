@@ -1,0 +1,155 @@
+name = "Tainted Helm of Mystery"
+description = """
+Favored by those of a darker nature, this helm offers a mysterious bonus to
+those who wear it."""
+drop_location = "Special event items, Emerald Claw Conspiracy"
+icon = "Helmet_34b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 5
+slot = "Head"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Dexterity +3 and Resistance +3"
+description = """
+Dexterity +3: This item makes the wearer more nimble and dexterous, granting a
++3 enhancement bonus to Dexterity.
+Resistance +3: Passive: +3 Resistance bonus to Fortitude, Reflex, and Will Saving Throws."""
+icon = "Variant"
+min_level = 5
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Resistance"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option]]
+name = "Charisma +3 and Fortification +75%"
+description = """
+Charisma +3: This item makes the wearer have more flair, granting a +3 enhancement
+bonus to Charisma.
+Fortification +75%: +75% Enhancement bonus to reduced chance of taking critical
+damage on a critical hit."""
+icon = "Variant"
+min_level = 5
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification"
+value = 75
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [75]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[socket.option]]
+name = "Strength +3 and Protection +3"
+description = """
+Strength +3: This item gives the wearer the power of Ogre Strength, granting a
++3 enhancement bonus to Strength.
+Protection +3: Passive: +3 Deflection bonus to Armor Class."""
+icon = "Variant"
+min_level = 5
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Deflection"
+effect = "Armor Class"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket.option]]
+name = "Constitution +3 and Spell Penetration I"
+description = """
+Constitution +3: This item gives the wearer improved health, granting a +3
+enhancement bonus to Constitution.
+Spell Penetration I: Passive: +1 Equipment bonus to Spell Penetration checks."""
+icon = "Variant"
+min_level = 5
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+value = 1
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+targets = ["All"]

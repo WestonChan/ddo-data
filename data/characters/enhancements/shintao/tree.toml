@@ -1,0 +1,1642 @@
+name = "Shintao"
+background = "MonkBackground"
+icon = "Monk"
+kind = "class"
+version = 2
+
+[[enhancement]]
+name = "Shintao: Bastion of Purity"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+For each Core enhancement in the Shintao tree, including this one, grants you
+the following passive effects:
+
++10 Positive Energy Spell Power
++10 Positive Healing Amplification
+
+Antirequisite: This enhancement cannot be taken at the same time as Improved
+Recovery I or II in the Half-Elf tree."""
+variant = "v2"
+icon = "ShintaoBastionOfPurity"
+internal_name = "ShintaoCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["HalfElfImprovedRecoveryI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = ["HalfElfImprovedRecoveryII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shintao: Protection from Tainted Creatures"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain a +1 bonus to Armor Class and a +1 bonus to saving throws.
+These bonuses stack with all other bonuses to armor class and saving throws.
+Your attacks while Centered gain the Byeshk damage trait."""
+variant = "v2"
+icon = "ShintaoProtectionFromTaintedCreatures"
+internal_name = "ShintaoCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Byeshk"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["ShintaoCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Shintao: Iron Hand"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Your attacks while Centered gain the Cold Iron damage trait."
+variant = "v2"
+icon = "ShintaoIronHand"
+internal_name = "ShintaoCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Cold Iron"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["ShintaoCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Shintao: Argent Fist"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain an additional +1 bonus to Armor Class and a +1 bonus to saving
+throws. Your attacks while Centered gain the Silver damage trait."""
+variant = "v2"
+icon = "ShintaoArgentFist"
+internal_name = "ShintaoCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Silver"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["ShintaoCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Shintao: Touch the Void Dragon"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Ki Activate: Spend 30 Ki to gain a 1d4+1 bonus to all ability scores
+for one minute (Cooldown: 3 minute).
+Passive: +5 Melee Power, +1[W] while Centered."""
+variant = "v2"
+icon = "ShintaoTouchOfTheVoidDragon"
+internal_name = "ShintaoCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["ShintaoCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Shintao: To Seek Perfection"
+cost_per_rank = [1]
+description = """
+You continually seek physical and spiritual betterment, reaping many benefits.
+You gain +4 Wisdom. +15 Melee Power. You gain an additional +1 bonus to Armor
+Class and a +1 bonus to saving throws. +2[W] while Centered.
+If you have Meditation of War, +10 Melee and Ranged Power."""
+variant = "v2"
+icon = "ShintaoToSeekPerfection"
+internal_name = "ShintaoCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "ShintaoCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+display_name = "To Seek Perfection + Meditation of War"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.requirement]]
+items = ["ShintaoCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "ShintaoCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Shintao: Shintao Studies I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to Attack and Damage while Centered."
+icon = "ShintaoStudiesI"
+internal_name = "ShintaoStudiesI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["HMHenshinTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = ["NSNinjutsuI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shintao: Reed in the Wind"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+Cooldown: 15 seconds
+Ki Melee Attack: If you successfully damage your target you gain a +9%
+Insight bonus to Dodge for 6 seconds."""
+variant = "v2"
+icon = "ShintaoReedInTheWind"
+internal_name = "ShintaoReedInTheWind"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = ["Dodge"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Shintao: Disciplined Training"
+cost_per_rank = [1]
+description = "Select an option."
+icon = "ShintaoDeftStrikes"
+internal_name = "ShintaoDisciplinedTraining"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Deft Strikes"
+cost_per_rank = [1]
+description = """
+You gain +[3/6/10]% chance to make offhand attacks while Centered and wielding
+two weapons or fighting unarmed."""
+icon = "ShintaoDeftStrikes"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Handwraps"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Improved Second Strikes"
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "ShintaoImprovedSecondStrikes"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement]]
+name = "Shintao: Fast Hands"
+cost_per_rank = [1]
+description = "Select an option."
+icon = "FastHands"
+internal_name = "ShintaoFastHands"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Melee"
+cost_per_rank = [1]
+description = "+[1/2/3]% Doublestrike."
+icon = "FastHands"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.selection]]
+name = "Ranged"
+cost_per_rank = [1]
+description = "+[1/2/3]% Doubleshot"
+icon = "FastHandsRanged"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Doubleshot"
+
+[[enhancement]]
+name = "Shintao: Negotiator"
+cost_per_rank = [1]
+description = """
++[1/2/3] Bluff, Diplomacy, and Intimidate.
+Rank 3: The cooldown for Bluff, Diplomacy, and Intimidate are reduced by 10%."""
+icon = "HMNegotiator"
+internal_name = "ShintaoNegotiator"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Intimidate",
+]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Shintao: Shintao Studies II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to Attack and +2 Damage while Centered."
+icon = "ShintaoStudiesI"
+internal_name = "ShintaoStudiesII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["ShintaoStudiesI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shintao: Smite Tainted Creature"
+cost_per_rank = [2]
+description = """
+Ki Melee Attack: You have the ability to expend Ki to deal devastating blows in
+melee. You gain twice your Wisdom modifier to your attack roll and a damage
+bonus based on your Monk level. Targets will be locked in a tomb of jade on
+vorpal attacks (attack roll of 20 followed by critical confirmation) on a
+failed Will save (DC = 10 + Wisdom modifier + your Monk level + stun bonuses).
+Extraplanar creatures, Aberrations, and Undead must succeed at two consecutive
+Will saves to avoid their fate.
+Activation Cost: 15 Ki.
+Cooldown: 15 seconds"""
+variant = "v2"
+icon = "ShintaoSmiteTaintedCreature"
+internal_name = "ShintaoSmiteTaintedCreature"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.dc]]
+name = "Shintao: Smite Tainted Creature"
+amount = [10]
+base_class_level = "Monk"
+dc_type = "Smite Tainted Creature"
+dc_versus = "Will"
+description = """
+Ki Melee Attack: You have the ability to expend Ki to deal devastating blows in
+melee. You gain twice your Wisdom modifier to your attack roll and a damage
+bonus based on your Monk level. Targets will be locked in a tomb of jade on
+vorpal attacks (attack roll of 20 followed by critical confirmation) on a
+failed Will save (DC = 10 + Wisdom modifier + your Monk level + stun bonuses).
+Extraplanar creatures, Aberrations, and Undead must succeed at two consecutive
+Will saves to avoid their fate."""
+icon = "ShintaoSmiteTaintedCreature"
+mod_ability = ["Wisdom"]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Shintao: Iron Skin"
+cost_per_rank = [1]
+description = "While centered, you gain an additional [5/10/20] Physical Resistance Rating."
+variant = "v2"
+icon = "ShintaoIronSkin"
+internal_name = "ShintaoIronSkin"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Shintao: Elemental Ki Strikes"
+cost_per_rank = [2]
+description = """
+Select one of four attacks that have secondary after effects:
+(Activation Cost: 5 Ki. Cooldown: 3 seconds)"""
+variant = "v2"
+icon = "HMElementalKiStrikes"
+internal_name = "ShintaoElementalKiStrikes"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Eagle Claw Attack"
+cost_per_rank = [2]
+description = """
+Deals +20% Damage
+Cooldown: 3 seconds
+Fire Ki Melee Attack: Your attacks can shatter objects. You strike at weak points
+in your opponents armor or hide, applying four stacks of Armor Destruction.
+(Each stack reduces Armor Class by 1 and Fortification by 1% for 20 seconds.
+This effect can stack up to 15 times.)"""
+icon = "HMEagleClawAttack"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Fists of Iron"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
++1 Critical Multiplier
++1 Critical Threat Range
+Cooldown: 3 seconds
+Ki Melee Attack: You have imbued your attacks with extra force."""
+icon = "ShintaoFistsOfIron"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Knock on the Sky"
+cost_per_rank = [2]
+description = """
+Deals +10% Damage
+Cooldown: 3 seconds
+Ki Melee Attack: You strike your opponent, deflecting their momentum.
+Your enemy deals 4% less physical damage for 30 seconds. This effect can stack up
+to 5 times."""
+icon = "HMKnockOnTheSky"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Unbalancing Strike"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 3 seconds
+Ki Melee Attack: You have learned several joint strikes. You can attack these
+weak points of your opponent, throwing them off balance for a short period
+of time. This reduces their armor class by 2, applies a -10 penalty to their
+Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
+save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
+The target receives periodic saves to attempt to break free of this effect."""
+icon = "HMUnbalancingStrike"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Shintao: Unbalancing Strike"
+amount = [10]
+dc_type = "Sneak Attack Vulnerability"
+dc_versus = "Reflex"
+description = """
+Deals +30% Damage
+Cooldown: 3 seconds
+Water Ki Melee Attack: You have learned several joint strikes. You can attack
+these weak points of your opponent, throwing them off balance for a short period
+of time. This reduces their armor class by 2, applies a -10 penalty to their
+Balance skill, and renders them vulnerable to sneak attacks. A successful Reflex
+save negates this effect (DC 10 + Half Monk Level + Wisdom modifier + Trip modifiers).
+The target receives periodic saves to attempt to break free of this effect."""
+icon = "HMUnbalancingStrike"
+mod_ability = ["Wisdom"]
+tactical = "Trip"
+
+[[enhancement]]
+name = "Shintao: Quick Strike"
+cost_per_rank = [2]
+description = """
+Deals +30% Damage
+Cooldown: 12 seconds
+Centered Melee Attack: You gain a 25% Morale bonus to Doublestrike for
+10 seconds."""
+icon = "HMQuickStrike"
+internal_name = "ShintaoQuickStrike"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Morale"
+effect_type = "Doublestrike"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Shintao: Shintao Studies III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to Attack and + 2 to Damage while Centered."
+icon = "ShintaoStudiesI"
+internal_name = "ShintaoStudiesIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["ShintaoStudiesII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shintao: Jade Strike"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Ki Melee Attack: You perform a melee attack that is especially powerful against
+tainted creatures. On hitting a target, this attack increases their physical
+damage vulnerability by 10% and reduces their fortification by 25%.
+A successful Will save negates this effect
+(DC = 10 + Wisdom modifier + your Monk level + Stun DC bonuses).
+
+Aberrations, extraplanar creatures that are not classified as 'Lawful Outsiders',
+and Undead receive double this effect. On critical hits, a target will be
+locked in a tomb of jade on a failed Will save
+(DC = 10 + Wisdom modifier + your Monk level + stun bonuses).
+Extraplanar creatures, Aberrations, and Undead must succeed at two consecutive
+Will saves to avoid their fate.
+
+Activation Cost: 10 Ki.
+Cooldown: 15 seconds"""
+variant = "v2"
+icon = "ShintaoJadeStrike"
+internal_name = "ShintaoJadeStrike"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.dc]]
+name = "Shintao: Jade Strike"
+amount = [10]
+base_class_level = "Monk"
+dc_type = "Damage Vulnerability"
+dc_versus = "Will"
+description = """
+Ki Melee Attack: You perform a melee attack that is anathema to tainted creatures,
+that increases their physical damage vulnerability by 10% and reduces their
+fortification by 25%. A successful Will save negates this effect."""
+icon = "ShintaoJadeStrike"
+mod_ability = ["Wisdom"]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Shintao: Hands of Mercy"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Select an option."
+icon = "ShintaoHandsOfMercy"
+internal_name = "ShintaoHandsOfMercy"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Hand of Harm"
+cost_per_rank = [2]
+description = """
++20 Critical Threat Range
+Cooldown: 9 seconds
+Melee Attack: You strike your opponent down with a terrible curse, halving all
+positive energy healing done to the target, reducing its fortification by 25%.
+This attack automatically counts as a Critical Hit.
+Periodic Fortitude saves (14 + [Str/Dex/Wis] Modifier + Monk Level + Stun bonuses)
+to negate."""
+icon = "HandOfHarm"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Path of Inevitable Dominion: Fists of Darkness"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51GrandmasterOfFlowersCore4",
+    "Disciple of Philosophy: Dark",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Hand of Healing"
+cost_per_rank = [2]
+description = """
+You heal all nearby allies for 1d4 plus 1d4 per Monk level.
+Cooldown: 9 seconds."""
+icon = "ShintaoHandsOfMercy"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Path of Harmonious Balance: Fists of Light"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51GrandmasterOfFlowersCore4",
+    "Disciple of Philosophy: Light",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shintao: Fists of Light"
+cost_per_rank = [1]
+description = "Choose an option"
+icon = "ShintaoFistsOfLight"
+internal_name = "ShintaoFistsOfLight"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Dismissing Strike"
+cost_per_rank = [1]
+description = """
+Ki Melee Attack: You perform a melee attack that attempts to force an extra
+planar enemy back to its proper plane. A successful Will save negates this
+effect (DC = 10 + Wisdom Modifier + Monk level + Stun bonuses).
+Cost: 25 Ki
+Cooldown: 15 seconds"""
+icon = "ShintaoDismissingStrike"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Shintao: Dismissing Strike"
+amount = [10]
+base_class_level = "Monk"
+dc_type = "Dismissal"
+dc_versus = "Will"
+description = """
+Ki Melee Attack: You perform a melee attack that attempts to force an extra
+planar enemy back to its proper plane. A successful Will save negates this
+effect (DC = 10 + Wisdom Modifier + Monk level + Stun bonuses).
+Cost: 25 Ki
+Cooldown: 15 seconds"""
+icon = "ShintaoDismissingStrike"
+mod_ability = ["Wisdom"]
+tactical = "Stun"
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Path of Inevitable Dominion: Fists of Darkness"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51GrandmasterOfFlowersCore4",
+    "Disciple of Philosophy: Dark",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Fists of Light"
+cost_per_rank = [1]
+description = """
+Deals: +15% Damage
+Cooldown: 3 seconds
+You have chosen to follow the path if light. You seek to be in harmony with
+the world, and your training will reflect your philosophy. You can activate
+this ability to channel energy into your attack, dealing 4 to 24 additional
+Light damage, and applying a healing shield to your target which heals your
+allies that strike your target. On a vorpal strike (natural 20 followed by
+critical confirmation), you deal an additional 1 to 50 positive energy damage
+to undead. Both sets of damage scale with melee power.
+
+D&D Dice: Activate this ability to deal 4d6 additional Light damage plus
+another 1d50 to Undead on Vorpal."""
+icon = "ShintaoFistsOfLight"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Path of Harmonious Balance: Fists of Light"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51GrandmasterOfFlowersCore4",
+    "Disciple of Philosophy: Light",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shintao: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Constitution or Wisdom"
+variant = "v2"
+icon = "ConWis"
+internal_name = "ShintaoAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Shintao: Shintao Studies IV"
+cost_per_rank = [2]
+description = "+1 to Attack and +2 to Damage while Centered."
+icon = "ShintaoStudiesI"
+internal_name = "ShintaoStudiesIV"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ShintaoStudiesIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shintao: Tomb of Jade"
+cost_per_rank = [2]
+description = """
+Ki Melee Attack: You perform an attack that encases a target in a tomb of jade
+on a failed Will save (DC = 10 + Wisdom modifier + Monk level + stun bonuses).
+Extraplanar creatures, Aberrations, and Undead must succeed at two consecutive
+Will saves to avoid this fate.
+Activation Cost: 25 Ki.
+Cooldown: 1 minute"""
+variant = "v2"
+icon = "ShintaoTombOfJade"
+internal_name = "ShintaoTombOfJade"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.dc]]
+name = "Shintao: Tomb of Jade"
+amount = [10]
+base_class_level = "Monk"
+dc_type = "Tomb of Jade"
+dc_versus = "Will"
+description = """
+Ki Melee Attack: You perform an attack that encases a target in a tomb of jade
+on a failed Will save (DC = 10 + Wisdom modifier + Monk level + stun bonuses).
+Extraplanar creatures, Aberrations, and Undead must succeed at two consecutive
+Will saves to avoid this fate."""
+icon = "ShintaoTombOfJade"
+mod_ability = ["Wisdom"]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ShintaoJadeStrike"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shintao: Greater Hands of Mercy"
+cost_per_rank = [1]
+description = "Select an option."
+icon = "ShintaoGreaterHandsOfMercy"
+internal_name = "ShintaoGreaterHandsOfMercy"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ShintaoHandsOfMercy"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Greater Hand of Harm"
+cost_per_rank = [1]
+description = "Targets affected by your Hand of Harm are also Blinded and Nauseated until they save."
+icon = "GreaterHandOfHarm"
+
+[[enhancement.selection.requirement]]
+items = [
+    "ShintaoHandsOfMercy",
+    "Hand of Harm",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Greater Hand of Healing"
+cost_per_rank = [1]
+description = """
+Your hand of Healing now applies a Lesser Restoration effect and removes Blindness,
+Curses, and Diseases."""
+icon = "ShintaoGreaterHandsOfMercy"
+
+[[enhancement.selection.requirement]]
+items = [
+    "ShintaoHandsOfMercy",
+    "Hand of Healing",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shintao: Instinctive Defense"
+cost_per_rank = [1]
+description = """
+You take [5/10/15]% less extra damage when struck while helpless.
+(Additional damage while helpless varies by difficulty setting from 5% to 25%.)"""
+variant = "v2"
+icon = "ShintaoInstinctiveDefense"
+internal_name = "ShintaoInstinctiveDefense"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamageReduction"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Shintao: Ability II"
+cost_per_rank = [2]
+description = "Choose either Constitution or Wisdom"
+variant = "v2"
+icon = "ConWis"
+internal_name = "ShintaoAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ShintaoAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Shintao: Shintao Mastery"
+cost_per_rank = [1]
+description = """
+While you are Centered, you gain a +1 Competence bonus to Critical Threat Range
+and Multiplier.
+Passive: You gain a +25% Competence bonus to Maximum Hit Points."""
+variant = "v2"
+icon = "ShintaoEmptyHandMastery"
+internal_name = "ShintaoEmptyHandMastery"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalMultiplier"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Shintao: Kukan-Do"
+cost_per_rank = [1]
+description = """
+Ki Activate: You lock gazes with an enemy, stunning them for a short period
+of time on a failed Will save (DC 14 + Wisdom modifier + Monk level).
+Any effects that modify your Stunning Blow or Stunning Fist DC's also affect this
+ability. Sightless creatures are unaffected by this ability.
+Activation Cost: 25 Ki.
+Cooldown: 15 seconds"""
+variant = "v2"
+icon = "ShintaoKukanDo"
+internal_name = "ShintaoKukanDo"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.dc]]
+name = "Shintao: Kukan-Do"
+amount = [14]
+base_class_level = "Monk"
+dc_type = "Stun"
+dc_versus = "Will"
+description = """
+Ki Activate: You lock gazes with an enemy, stunning them for a short period
+of time on a failed Will save. Any effects that modify your Stunning Blow or
+Stunning Fist DC's also affect this ability. Sightless creatures are unaffected
+by this ability."""
+icon = "ShintaoKukanDo"
+mod_ability = ["Wisdom"]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Shintao: Violence Begets Violence"
+cost_per_rank = [1]
+description = """
+While Centered, when an opponent misses you in melee, you gain +1 critical
+threat range for 6 seconds. This stacks up to 5 times and is reset if you
+critically hit."""
+variant = "v2"
+icon = "ShintaoViolenceBegetsViolence"
+internal_name = "ShintaoViolenceBegetsViolence"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Shintao: Meditation of War"
+cost_per_rank = [1]
+description = """
+Toggle: You gain +3 to Attack and Damage, as well as additional benefits in
+different stances:
+Air Stance: +2 to hit, +10% bonus to off-hand attack chance.
+Fire Stance: +2 to damage and to the DC's of your Stun, Sunder, and Trip abilities.
+Earth Stance: +10 to Physical Resistance and a +10% Quality bonus to Maximum Hit Points.
+Water Stance: +5 Maximum Dodge Bonus.
+
+Note: Mutually exclusive with Stalwart stance and Sacred stance."""
+variant = "v2"
+icon = "ShintaoMeditationOfWar"
+internal_name = "ShintaoMeditationOFWar"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "ShintaoMeditationOFWar"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image ShintaoMeditationOfWar.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Meditation of War"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Wind Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Meditation of War"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Wind Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Sun Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sun Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus_type = "Quality"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier.requirement]]
+items = ["Mountain Stance"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Ocean Stance"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.stance]]
+name = "Meditation of War"
+description = """
+Toggle: You gain +3 to Attack and Damage, as well as additional benefits in
+different stances:
+Air Stance: +2 to hit, +10% bonus to off-hand attack chance.
+Fire Stance: +2 to damage and to the DC's of your Stun, Sunder, and Trip abilities.
+Earth Stance: +10 to Physical Resistance and a +10% Quality bonus to Maximum Hit Points.
+Water Stance: +5 Maximum Dodge Bonus"""
+icon = "ShintaoMeditationOfWar"
+
+[[enhancement.stance.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "ShintaoMeditationOFWar"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image ShintaoMeditationOfWar.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement]]
+name = "Shintao: Rise of the Phoenix"
+cost_per_rank = [2]
+description = """
+Activate While Dead: The spirit of a phoenix burns within you.
+You may bring yourself back from death's door, as if affected by the Resurrection
+spell. This ability may only be used once per rest.
+Cooldown: 15 minutes"""
+variant = "v2"
+icon = "ShintaoRiseOfThePhoenix"
+internal_name = "ShintaoRiseOfThePhoenix"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Monk"]
+req_type = "BaseClass"

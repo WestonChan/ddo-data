@@ -1,0 +1,47 @@
+name = "Doctor LeRoux's Curious Implant"
+description = """
+This is an intricate mechanical heart that oozes a black, oily liquid. It's
+possible to channel magical energies through it...but at what cost? LeRoux's
+plans with this device must have been uniquely sinister."""
+drop_location = "The Soul Splitter, any legendary end chest"
+icon = "Necklace_26"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Force"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Equipped Healing Amplification"
+bonus_type = "Equipment"
+value = 29
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "any legendary end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "The Soul Splitter"

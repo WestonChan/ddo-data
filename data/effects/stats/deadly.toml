@@ -1,0 +1,5 @@
+name = "Deadly"
+category = "martial"
+description_template = "{1} %b1 bonus to weapon damage."
+home_bonus_type = "Competence"
+verbose_name_template = "%b1 Deadly +{1}"

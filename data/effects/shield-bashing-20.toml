@@ -1,0 +1,3 @@
+name = "Shield Bashing +20%"
+description_template = "+20% Enhancement bonus to your chance of a Secondary Shield Bash. This stacks with bonuses granted by any relevant feats."
+verbose_name_template = "Shield Bashing +20%"

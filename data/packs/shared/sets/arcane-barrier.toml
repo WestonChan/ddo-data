@@ -1,0 +1,21 @@
+name = "Arcane Barrier"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Arcane Barrier"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating Cap"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Stacking"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"

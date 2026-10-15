@@ -1,0 +1,20 @@
+name = "Blademaster Bracers"
+description = "These bracers are crafted for powerful hobgoblin warriors known as Blademasters."
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 5
+slot = "Wrists"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

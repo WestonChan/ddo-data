@@ -1,0 +1,64 @@
+name = "Pendant of the Stormreaver"
+description = """
+This pendant once hung around the neck of the Stormreaver, messiah of the Xen'drik
+giants. Wearing it causes the thunderous power of a Storm Giant to flow through
+you."""
+drop_location = "The Fall of Truth, warded chest"
+icon = "Necklace_10"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 25
+slot = "Neck"
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 7
+
+[[effect]]
+name = "Thunderstruck"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Adds a Yellow Augment Slot"
+description = "Adds a Yellow Augment Slot"
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Adds Electric Resistance +50"
+description = "Electric Resistance +50: Passive: +50 Enhancement bonus to your Electric Resistance."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+value = 50
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Fall of Truth"

@@ -1,0 +1,43 @@
+name = "Solar Gem of Healing Amplification (Legendary)"
+description = """
++30 Artifact Bonus to Healing Amplification.
+Drops in: The Zulkir's Plan, end chest
+The Cerulean Hills, Romira and Juvian's chest (requires completion of Sleeping with the Fishes)
+Ruins of Myth Drannor, Romira and Juvian's right chest (requires completion of Sleeping with the Fishes)
+The Wish, unknown optional chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Artifact"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "romira and juvian's right chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "unknown optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wish"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Zulkir's Plan"

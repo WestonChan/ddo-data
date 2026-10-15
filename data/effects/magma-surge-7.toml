@@ -1,0 +1,3 @@
+name = "Magma Surge 7"
+description_template = "Strikes with this weapon have a small chance to call forth a surge of superheated magma, dealing 7d20+72 fire damage."
+verbose_name_template = "Magma Surge 7"

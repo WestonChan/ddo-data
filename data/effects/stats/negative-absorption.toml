@@ -1,0 +1,4 @@
+name = "Negative Absorption"
+category = "defensive"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Negative Absorption +{1}"

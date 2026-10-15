@@ -1,0 +1,1695 @@
+name = "Machrotechnic"
+background = "DestinyArcane"
+icon = "Machrotechnic"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Machrotechnic: Maker's Touch"
+cost_per_rank = [1]
+description = """
+Each Core ability in this tree, including this one, grants the following:
+
++1 Epic bonus to all Spell DCs
++15 Hit Points
++25 Spell Points
++5 Melee power
++5 Ranged Power
++5 Electric, Sonic, Rust, Repair, and Universal Spell Power."""
+icon = "MachroCore1"
+internal_name = "MachrotechnicCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Machrotechnic: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Sonic",
+    "Rust",
+    "Repair",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Machrotechnic: Metamagic Capacitors"
+cost_per_rank = [1]
+description = """
++15% Fortification and +3 to each Healing Amplification. Your Rune Arms now
+benefit from the Maximize, Empower, and Intensify Spell Metamagics if you own
+those feats. This does not cost Spell Points, and you do not need the Feats
+toggled on to gain their effects on Rune Arms."""
+icon = "MachroCore2"
+internal_name = "MachrotechnicCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Machrotechnic: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Sonic",
+    "Rust",
+    "Repair",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["MachrotechnicCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Machrotechnic: Warding Inscriptions"
+cost_per_rank = [1]
+description = """
++15% Fortification and +3 to each Healing Amplification. Your Ablative Armor
+spell now blocks 20 points of damage per caster level with no cap."""
+icon = "MachroCore3"
+internal_name = "MachrotechnicCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Machrotechnic: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Sonic",
+    "Rust",
+    "Repair",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["MachrotechnicCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Machrotechnic: Armored Augmentation"
+cost_per_rank = [1]
+description = """
++15% Fortification and +3 to each Healing Amplification. +15% Exceptional Bonus
+to Armor Class. Your caster level with Rune Arm shots now factors in bonuses from
+your Epic and Legendary Knowledge feats."""
+icon = "MachroCore4"
+internal_name = "MachrotechnicCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "HealingAmplification"
+extra_types = [
+    "RepairAmplification",
+    "NegativeHealingAmplification",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Exceptional"
+effect_type = "ACPercent"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Machrotechnic: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Sonic",
+    "Rust",
+    "Repair",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["MachrotechnicCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Machrotechnic: Sprockets"
+cost_per_rank = [1]
+description = """
++[5/10/15] Repair Amplification.
+Rank 3: If you have the Construct Exemplar feat, you gain +10 Physical Resistance
+Rating."""
+icon = "MachroSprockets"
+internal_name = "MachroSprockets"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "RepairAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    10,
+]
+bonus_type = "Destiny"
+display_name = "Machrotechnic: Sprockets + Construct Exemplar"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Machrotechnic: Solid Footing"
+cost_per_rank = [1]
+description = "+[2/4/6] Armor Class and Physical Resistance Rating."
+icon = "MachroSolidFooting"
+internal_name = "MachroSolidFooting"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+extra_types = ["PRR"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Machrotechnic: Tinker Tailoring"
+cost_per_rank = [1]
+description = "+[1/2/3] Spellcraft and Use Magic Device. Your Rune Arms charge [5/10/15]% faster."
+icon = "MachroTinkerTailoring"
+internal_name = "MachroTinkerTailoring"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = [
+    "Spellcraft",
+    "Use Magic Device",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "RuneArmChargeRate"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Machrotechnic: Epic Strike"
+cost_per_rank = [2]
+description = "Select an Epic Strike!"
+icon = "MachroEpicStrike"
+internal_name = "MachroEpicStrike"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Galvanic Blast"
+cost_per_rank = [2]
+description = """
+Epic Strike: A storm of fearsome Electricity explodes from within you, dealing
+1d6+6 Electric damage per caster level to all enemies nearby. This damage has no
+save, but secondary effects from your drives do.
+Metamagic: Empower, Maximize, Quicken, Heighten, Embolden, Intensify
+Spell Resistance: No
+Spell Point Cost: 20
+Cooldown: 10 seconds.
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "MachroEpicStrike"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Mending Burst"
+cost_per_rank = [2]
+description = """
+Epic Strike: A field of magical energy explodes from within you, repairing all
+allies nearby for 3d6+6 Repair healing +1 per caster level.
+Metamagic: Empower, Maximize, Quicken, heighten, Embolden, Intensify
+Spell Resistance: No
+Spell Point Cost: 20
+Cooldown: 6 seconds.
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "MachroMendingBurst"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Sonic Boom"
+cost_per_rank = [2]
+description = """
+Epic Strike: A wave of concussive sound explodes from within you, dealing 1d6+6
+Sonic damage per caster level to all enemies nearby. This damage has no save,
+but secondary effects from your drives do.
+Metamagic: Empower, Maximize, Quicken, heighten, Embolden, Intensify
+Spell Resistance: No
+Spell Point Cost: 20
+Cooldown: 10 seconds.
+
+Every Epic Strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "MachroSonicBoom"
+is_clickie = true
+
+[[enhancement]]
+name = "Machrotechnic: Blast Shields"
+cost_per_rank = [1]
+description = """
++[2/4/6] Reflex Saving throws.
+Rank 3: You no longer automatically fail Reflex saving throws on a natural 1."""
+icon = "MachroBlastShields"
+internal_name = "MachroBlastShields"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SaveNoFailOn1"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Machrotechnic: Fluidity"
+cost_per_rank = [2]
+description = "Your Armor and/or Body type no longer contributes to Arcane Spell Failure."
+icon = "MachroFluidity"
+internal_name = "MachroFluidity"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [-50]
+bonus_type = "Destiny"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Machrotechnic: Radiant Prison"
+cost_per_rank = [2]
+description = """
+Target non-boss foe is sealed away for 8 seconds in an Unbreakable Forcefield
+with no save. In this Forcefield, they cannot act, but take 95% less damage and
+healing from all sources (except Untyped)."""
+icon = "MachroRadiantPrison"
+internal_name = "MachroRadiantPrison"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Machrotechnic: Rune Arm Use"
+cost_per_rank = [2]
+description = """
+You gain the Rune Arm Use feat. Your Caster Level with Rune Arms is now based on
+the higher of half your Character Level versus your Artificer Level, and you use
+the highest of Intelligence, Wisdom, or Charisma to calculate its DCs. If you
+already had the Rune Arm Use feat, +1 Stable Charge Tier."""
+icon = "MachroRuneArmUse"
+internal_name = "MachroRuneArmUse"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Artificer Rune Arm Use"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "RuneArmStableCharge"
+
+[[enhancement.modifier.requirement]]
+items = ["Artificer Rune Arm Use"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Machrotechnic: Hammer Time!"
+cost_per_rank = [2]
+description = "Select a Hammer Spell!"
+icon = "MachroHammerTime"
+internal_name = "MachroHammerTime"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Tonquin's Lightning Hammer"
+cost_per_rank = [2]
+description = """
+Form a hammer of pure lightning to strike foes in an area, dealing 1d6+6 Electric
+damage per caster level.
+Metamagic: Empower, Maximize, Quicken, Heighten, Embolden, Intensify
+Spell Resistance: No
+Spell Point Cost: 12
+Cooldown: 15 seconds."""
+icon = "MachroHammerTime"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Tonquin's Thunder Hammer"
+cost_per_rank = [2]
+description = """
+Form a hammer of pure thunder to strike foes in an area, dealing 1d6+6 Sonic
+damage per caster level.
+Metamagic: Empower, Maximize, Quicken, Heighten, Embolden, Intensify
+Spell Resistance: No
+Spell Point Cost: 12
+Cooldown: 15 seconds."""
+icon = "MachroThunderHammer"
+is_clickie = true
+
+[[enhancement]]
+name = "Machrotechnic: Forcefield Generator"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Machrotechnic Destiny Mantle: You create a small animated object that floats with
+you. While active, you gain +15 Repair Amplification, and you absorb 10% of all
+Force, Piercing, Bludgeoning, Slashing, Electric, Sonic, and Rust damage you take.
+This is increased to 15% if you are wearing a Rune Arm."""
+icon = "MachroForcefieldGenerator"
+internal_name = "MachroAnimatedAegis"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "RepairAmplification"
+
+[[enhancement.modifier.requirement]]
+items = ["Machrotechnic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Force",
+    "Pierce",
+    "Bludgeon",
+    "Slash",
+    "Electric",
+    "Sonic",
+    "Rust",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Machrotechnic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+display_name = "Machrotechnic: Forcefield Generator I + Rune Arm"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Force",
+    "Pierce",
+    "Bludgeon",
+    "Slash",
+    "Electric",
+    "Sonic",
+    "Rust",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Machrotechnic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Rune Arm"]
+req_type = "WeaponTypesEquipped"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Machrotechnic Destiny Mantle"
+description = """
+Machrotechnic Destiny Mantle: You create a small animated object that floats with
+you. While active, you gain +15 Repair Amplification, and you absorb 10% of all
+Force, Piercing, Bludgeoning, Slashing, Electric, Sonic, and Rust damage you take.
+This is increased to 15% if you are wearing a Rune Arm."""
+group_name = "Mantle"
+icon = "MachroForcefieldGenerator"
+
+[[enhancement]]
+name = "Machrotechnic: Spell Focus"
+cost_per_rank = [1]
+description = "Select a Spell School to enhance."
+icon = "MachroSpellSchoolFocusAbjuration"
+internal_name = "MachroSpellFocus"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Abjuration"
+cost_per_rank = [1]
+description = "+[1/2/3] Abjuration Spell DCs."
+icon = "MachroSpellSchoolFocusAbjuration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "MachroSpellFocus",
+    "Destiny Abjuration",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "MachroSpellFocus",
+    "Destiny Abjuration",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Conjuration"
+cost_per_rank = [1]
+description = "+[1/2/3] Conjuration Spell DCs."
+icon = "MachroSpellSchoolFocusConjuration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "MachroSpellFocus",
+    "Destiny Conjuration",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "MachroSpellFocus",
+    "Destiny Conjuration",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Evocation"
+cost_per_rank = [1]
+description = "+[1/2/3] Evocation Spell DCs."
+icon = "MachroSpellSchoolFocusEvocation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "MachroSpellFocus",
+    "Destiny Evocation",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "MachroSpellFocus",
+    "Destiny Evocation",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Transmutation"
+cost_per_rank = [1]
+description = "+[1/2/3] Transmutation Spell DCs."
+icon = "MachroSpellSchoolFocusTransmutation"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "MachroSpellFocus",
+    "Destiny Transmutation",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "MachroSpellFocus",
+    "Destiny Transmutation",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Machrotechnic: Technique Drive"
+cost_per_rank = [1]
+description = "Install a Drive to enhance your combat techniques."
+icon = "MachroTechniqueDrive"
+internal_name = "MachroTechniqueDrive"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Efficiency Drive"
+cost_per_rank = [1]
+description = "+[3/6/9]% Spell Cost Reduction."
+icon = "MachroTechniqueDrive"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    9,
+]
+bonus_type = "Destiny"
+effect_type = "SpellCostReduction"
+percent = true
+
+[[enhancement.selection]]
+name = "Flash Drive"
+cost_per_rank = [1]
+description = "+[150/300/450]% more threat with all damage types."
+icon = "MachroFlashDrive"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    150,
+    300,
+    450,
+]
+bonus_type = "Destiny"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]
+
+[[enhancement.selection]]
+name = "Speed Drive"
+cost_per_rank = [1]
+description = "+[2/4/6]% Doublestrike and Doubleshot."
+icon = "MachroSpeedDrive"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement]]
+name = "Machrotechnic: Storm Core"
+cost_per_rank = [1]
+description = """
++[1/2/3] Rune Arm DCs.
+Rank 3: +5 Sonic, Electric, Repair, Rust, and Universal Spell Power."""
+icon = "MachroStormCore"
+internal_name = "MachroStormCore"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Rune Arm"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+rank = 3
+targets = [
+    "Sonic",
+    "Electric",
+    "Repair",
+    "Rust",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+rank = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Machrotechnic: Arcane Imbuement"
+cost_per_rank = [1]
+description = "+[1/2/3] bonus Imbue dice."
+icon = "MachroArcaneImbuement"
+internal_name = "MachroArcaneImbuement"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Machrotechnic: Improved Aegis"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+While using your Machrotechnic Destiny Mantle, you gain +5 Physical and Magical
+Resistance Rating. If you are wearing a Rune Arm, gain +10 instead."""
+icon = "MachroImprovedAegis"
+internal_name = "MachroImprovedAegis"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier.requirement]]
+items = ["Machrotechnic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+display_name = "Machrotechnic: Improved Aegis + Rune Arm"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.modifier.requirement]]
+items = ["Machrotechnic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["MachroAnimatedAegis"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Machrotechnic: Galvanic Attunement"
+cost_per_rank = [2]
+description = "+10 Sonic, Electric, Repair, Rust, and Universal Spell Power."
+icon = "MachroGalvanicAttunement"
+internal_name = "MachroGalvanicAttunement"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Sonic",
+    "Electric",
+    "Repair",
+    "Rust",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Machrotechnic: Strike Drive"
+cost_per_rank = [2]
+description = "Install a Drive to enhance your Epic Strike."
+icon = "MachroStrikeDrive"
+internal_name = "MachroStrikeDrive"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Blast Drive"
+cost_per_rank = [2]
+description = """
+Your Machrotechnic Epic Strike now Stuns enemies struck for 3 seconds,
+assuming they fail a Fortitude save (DC 20 + Highest of INT/WIS/CHA mod +
+Evocation DCs + bonus Rune Arm DCs)
+
+If you are using the Electric Epic or Sonic Epic Strikes, their damage is
+increased to 1d6+8 per caster level.
+
+If you are using the Electric Epic Strike, this also Supercharges you.
+
+Supercharge: +30% Action boost bonus to Movement speed. Duration: 5 seconds."""
+icon = "MachroStrikeBlastDrive"
+
+[[enhancement.selection]]
+name = "Dissonance Drive"
+cost_per_rank = [2]
+description = """
+Your Machrotechnic Epic Strike now confuses enemies struck for 6 seconds,
+assuming they fail a Fortitude save (DC 20 + Highest of INT/WIS/CHA mod +
+Evocation DCs + bonus Rune Arm DCs).
+
+If you are using the Electric Epic or Sonic Epic Strikes, their damage is
+increased to 1d6+8 per caster level.
+
+If you are using the Sonic Epic Strike, they also take 3 stacks of Vulnerability
+and 3 stacks of Armor Destruction."""
+icon = "MachroStrikeDissonanceDrive"
+
+[[enhancement.selection]]
+name = "Ruin Drive"
+cost_per_rank = [2]
+description = """
+Your Machrotechnic Epic Strike now disassembles enemy constructs, dealing
+1d6+6 bonus Rust damage per caster level.
+
+If you are using the Electric Epic or Sonic Epic Strikes, their damage is
+increased to 1d6+8 per caster level.
+
+If you are using the Repair Epic Strike, this also Supercharges you.
+
+Supercharge: -1 to each of your Metamagic costs. Duration: 5 seconds."""
+icon = "MachroStrikeRuinDrive"
+
+[[enhancement]]
+name = "Machrotechnic: Boost Drive"
+cost_per_rank = [2]
+description = "Install a Drive to enhance your Rune Arm blasts."
+icon = "MachroBoostDrive"
+internal_name = "MachroBoostDrive"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Echo Drive"
+cost_per_rank = [2]
+description = """
+Once per second, an enemy hit by your Rune Arm spells take an additional 1d4
+bonus Sonic damage per caster level, scaling with Spell Power."""
+icon = "MachroEchoDrive"
+
+[[enhancement.selection]]
+name = "Spark Drive"
+cost_per_rank = [2]
+description = """
+Once per second, an enemy hit by your Rune Arm spells take an additional 1d4
+bonus Electric damage per caster level, scaling with Spell Power."""
+icon = "MachroBoostDrive"
+
+[[enhancement]]
+name = "Machrotechnic: Epic Metamagic"
+cost_per_rank = [1]
+description = "Select a Metamagic to focus on."
+icon = "MachroEpicMetamagic"
+internal_name = "MachroEpicMetamagic"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.selection]]
+name = "Epic Improved Empower"
+cost_per_rank = [1]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "MachroEpicMetamagic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Epic Improved Intensify"
+cost_per_rank = [1]
+description = "Using the Intensify Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "MachroEpicImprovedIntensify"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostIntensify"
+
+[[enhancement.selection.requirement]]
+items = ["Intensify Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Epic Improved Maximize"
+cost_per_rank = [1]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "MachroEpicImprovedMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Destiny"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Machrotechnic: Magical Recoil"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++5 Electric, Sonic, Rust, Repair, and Universal Spell Power.
+While using your Machrotechnic Destiny Mantle, firing a Rune Arm grants you spell
+resistance equal to your character level for 10 seconds."""
+icon = "MachroMagicalRecoil"
+internal_name = "MachroMagicalRecoil"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Sonic",
+    "Rust",
+    "Repair",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Machrotechnic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.modifier.requirement]]
+items = ["Machrotechnic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["MachroImprovedAegis"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Machrotechnic: Spell DCs"
+cost_per_rank = [1]
+description = "+[1/2/3] to all Spell DCs."
+icon = "MachroSpellDCs"
+internal_name = "MachroSpellDCs"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Machrotechnic: Critical Connection"
+cost_per_rank = [1]
+description = "+1 Critical Multiplier on a roll of 19-20 with weapons while wearing a Rune Arm."
+icon = "MachroCriticalConnection"
+internal_name = "MachroCriticalConnection"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Rune Arm"]
+req_type = "WeaponTypesEquipped"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Machrotechnic: Armor of Legends"
+cost_per_rank = [1]
+description = """
+The Epic Mage Armor feat's bonus is now untyped and grants you +1 AC per character
+level. Furthermore, based on your installed Drives, you gain the following bonuses:
+
+Speed Drive: +5% Action boost bonus to Attack Speed.
+Efficiency Drive: +5% Action boost bonus to  Movement Speed.
+Flash Drive: +10 Action boost bonus to Physical and Magical Resistance Rating.
+Ruin Drive: +10 Action boost bonus to Spell Power.
+Blast Drive: +3 Action boost bonus to Saves.
+Dissonance Drive: +3 Action boost bonus to Tactics DCs.
+Spark Drive: +10 Action boost bonus to Energy Resistance.
+Echo Drive: +1 Action boost bonus to Imbue Dice."""
+icon = "MachroArmorOfLegends"
+internal_name = "MachroArmorOfLegends"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    20,
+    0,
+    0,
+]
+bonus_type = "Armor"
+display_name = "Epic Mage Armor"
+effect_type = "ACBonus"
+extra_types = ["ACBonus"]
+
+[[enhancement.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Untyped"
+display_name = "Epic Mage Armor and Armor of Legends"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Epic Mage Armor"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Action Boost"
+display_name = "Speed Drive + Armor of Legends"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "MachroTechniqueDrive",
+    "Speed Drive",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Action Boost"
+display_name = "Efficiency Drive + Armor of Legends"
+effect_type = "MovementSpeed"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "MachroTechniqueDrive",
+    "Efficiency Drive",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Action Boost"
+display_name = "Flash Drive + Armor of Legends"
+effect_type = "PRR"
+extra_types = ["MRR"]
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "MachroTechniqueDrive",
+    "Flash Drive",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Action Boost"
+display_name = "Ruin Drive + Armor of Legends"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "MachroStrikeDrive",
+    "Ruin Drive",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Action Boost"
+display_name = "Blast Drive + Armor of Legends"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "MachroStrikeDrive",
+    "Blast Drive",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Action Boost"
+display_name = "Dissonance Drive + Armor of Legends"
+effect_type = "TacticalDC"
+targets = [
+    "Assassinate",
+    "Rune Arm",
+    "Stun",
+    "Sunder",
+    "Trip",
+]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "MachroStrikeDrive",
+    "Dissonance Drive",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Action Boost"
+display_name = "Spark Drive + Armor of Legends"
+effect_type = "EnergyResistance"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = [
+    "MachroBoostDrive",
+    "Spark Drive",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Action Boost"
+display_name = "Echo Drive + Armor of Legends"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier.requirement]]
+items = [
+    "MachroBoostDrive",
+    "Echo Drive",
+]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Machrotechnic: Maximum Overdrive"
+cost_per_rank = [1]
+description = """
+Epic Moment: Shift into MAXIMUM OVERDRIVE. You gain a 100% boost to Rune Arm
+Charge Speed and Cooldown Speed, a 50% reduction in Spell Cooldowns, a 30% Action
+Boost bonus to Attack Speed, and a 50% Action Boost bonus to movement speed for
+30 seconds.
+Cooldown: 5 minutes."""
+icon = "MachroMaximumOverdrive"
+internal_name = "MachroMaximumOverdrive"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Machrotechnic: Forcefield Generator"
+cost_per_rank = [1]
+description = """
+While using your Machrotechnic Destiny Mantle, you gain a +10% Insight bonus to
+Maximum Hit Points. While you have a Rune Arm equipped, increase this bonus to 20%."""
+icon = "MachroForcefieldGenerator2"
+internal_name = "MachroForcefieldGenerator"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier.requirement]]
+items = ["Machrotechnic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Machrotechnic: Forcefield Generator + Rune Arm"
+effect_type = "HitpointsPercent"
+
+[[enhancement.modifier.requirement]]
+items = ["Machrotechnic Destiny Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.requirement]]
+items = ["MachroMagicalRecoil"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Machrotechnic"]
+req_type = "Feat"

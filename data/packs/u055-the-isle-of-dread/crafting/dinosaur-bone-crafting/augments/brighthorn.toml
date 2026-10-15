@@ -1,0 +1,8 @@
+name = "Brighthorn"
+description = "Attacks and offensive spells can grant you 1000 temporary HP."
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[slot]]
+slot = "isle of dread: horn (weapon)"

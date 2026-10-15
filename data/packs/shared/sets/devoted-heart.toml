@@ -1,0 +1,33 @@
+name = "Devoted Heart"
+icon = "Devoted Heart"
+
+[[item]]
+name = "Devoted Goggles"
+
+[[item]]
+name = "Devoted Necklace"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 24
+reason = "The wiki gives Positive Spell Power +36 Equipment at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Positive Spell Power / Equipment"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+value = 36
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [24]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]

@@ -1,0 +1,46 @@
+name = "Legendary Green Steel Shortbow"
+description = "A smaller wooden bow with a shorter firing distance."
+drop_location = "Altar of Fecundity, Manufactured Ingredient Recipes"
+enhancement_bonus = 14
+icon = "Shortbow_1e"
+item_category = "Weapon"
+item_type = "Shortbow"
+material = "Steel"
+minimum_level = 26
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 1"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 2"
+
+[[socket]]
+slot = "crafting: greensteel weapon tier 3"
+
+[[socket]]
+slot = "crafting: greensteel weapon active"
+
+[[source]]
+kind = "crafting_system"
+name = "Legendary Green Steel items"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 4.2
+handedness = "Two-handed"
+weapon_type = "Shortbow"

@@ -1,0 +1,21 @@
+name = "From Beyond the Grave"
+bestowed_by = "Micah d'Jorasco"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Delera's Tomb"
+patron = "House Jorasco"
+zone = "Penitent's Rest"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/From_Beyond_the_Grave"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11

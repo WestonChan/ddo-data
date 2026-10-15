@@ -1,0 +1,20 @@
+name = "False Life +50"
+description = "Legendary False Life bonus to Hitpoints"
+family = "Slavelords_Legendary"
+icon = "SlavelordsPrefix"
+min_level = 28
+
+[[effect]]
+name = "False Life"
+bonus_type = "Legendary"
+value = 50
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Legendary"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[slot]]
+slot = "crafting: legendary slavelords prefix"

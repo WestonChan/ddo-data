@@ -1,0 +1,26 @@
+name = "Epic Deadly Diabolist"
+icon = "DeadlyDiabolist"
+
+[[item]]
+name = "Epic Diabolist's Docent"
+
+[[item]]
+name = "Epic Diabolist's Ring"
+
+[[item]]
+name = "Epic Diabolist's Robe"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Hireling Abilities"
+value = 8
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Hireling Abilities"
+effect_type = "HirelingAbilityBonus"

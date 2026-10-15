@@ -1,0 +1,64 @@
+name = "Mirana of the Flame"
+accepts_sentience = true
+description = "FEYTWISTED form of Valorius, the Flameblade \n\nA blazing beam of red hot fire that sprang forth from your hands... Although\nit's not quite clear what has conjured it. The flames respond to the willpower\nand intuition of the wielder. As the Flame Blade is not physical, monks may\nuse it without becoming uncentered."
+drop_location = "The Dryad and the Demigod, Greater feytwisted chest"
+enhancement_bonus = 15
+icon = "Falchion_1g"
+item_category = "Weapon"
+item_type = "Falchion"
+material = "Fire"
+minimum_level = 29
+slot = "Main Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Flameblade"
+
+[[effect]]
+name = "Fiery 6"
+
+[[effect]]
+name = "Flaming Blast VI"
+
+[[effect]]
+name = "Overwhelming Incineration"
+
+[[effect]]
+name = "Legendary Blinding Embers"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Falchion",
+]
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "greater feytwisted chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+attack_modifier = "Wisdom"
+base_dice_bonus = 6
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Wisdom"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Falchion"

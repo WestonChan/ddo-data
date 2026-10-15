@@ -1,0 +1,59 @@
+name = "Legendary Axe of Savaran"
+accepts_sentience = true
+description = """
+A fragment of the Blue Dragon's power that arcs through the air like bolt of
+lightning."""
+drop_location = "Thrall of Duty, end chest"
+enhancement_bonus = 4
+icon = "ThrowingAxe_1b"
+item_category = "Weapon"
+item_type = "Throwing Axe"
+material = "Steel"
+minimum_level = 34
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Electrifying 7"
+
+[[effect]]
+name = "Jolting 16"
+
+[[effect]]
+name = "Limb Chopper"
+
+[[effect]]
+name = "Dragon's Edge 7"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thrall of Duty"
+
+[[weapon]]
+attack_modifier = "Strength, Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength, Dexterity"
+damage_multiplier = 5.8
+handedness = "Thrown"
+weapon_type = "Throwing Axe"

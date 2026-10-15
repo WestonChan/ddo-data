@@ -1,0 +1,3 @@
+name = "Heroic Inspiration"
+description_template = "This item inspires you to acts of great heroism, granting a +5% bonus to experience points granted by completing quests while it is equipped. This stacks with experience boosting effects from elixirs but does not stack with experience boosting effects from other equippable items."
+verbose_name_template = "Heroic Inspiration"

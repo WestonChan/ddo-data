@@ -1,0 +1,114 @@
+name = "Seal of House Avithoul"
+description = """
+This ring bears an iron circle with eight spikes thrusting from the sides, reminiscent
+of the legs of a spider. A small chain is attached to it."""
+drop_location = "The House of Broken Chains, Magroph Avithoul chest"
+icon = "Ring_36"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 21
+slot = "Ring"
+
+[[effect]]
+name = "Sneak Attack Bonus"
+bonus_type = "Enhancement"
+value = 5
+value2 = 8
+
+[[effect]]
+name = "Sneak Attack Bonus"
+bonus_type = "Insight"
+value = 3
+value2 = 5
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "crafting: variant ability"
+
+[[socket.option]]
+name = "Dexterity +7"
+description = "Dexterity +7: This item makes the wearer more nimble and dexterous, granting a +7 enhancement bonus to Dexterity."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "Insightful Dexterity +2"
+description = "+2 Insight bonus to Dexterity"
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "Wisdom +7"
+description = "Wisdom +7: This item makes the wearer more in tune with her surroundings, granting a +7 enhancement bonus to Wisdom."
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 7
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Insightful Wisdom +2"
+description = "+2 Insight bonus to Wisdom"
+icon = "Variant"
+min_level = 21
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[source]]
+chest = "magroph avithoul chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Broken Chains"

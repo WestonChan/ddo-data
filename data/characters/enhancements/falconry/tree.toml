@@ -1,0 +1,1355 @@
+name = "Falconry"
+background = "Universal"
+icon = "Falconry"
+kind = "universal"
+version = 1
+
+[[enhancement]]
+name = "Falconry: Summon Falcon"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Choose a Falconry Familiar"
+icon = "SummonFalcon"
+internal_name = "FalconCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Listen",
+]
+
+[[enhancement.selection]]
+name = "Summon Falcon"
+cost_per_rank = [1]
+description = """
+Summons a Falcon companion as your Hunting Bird.
+While your Hunting Bird is by your side, it grants you a +2 bonus to Spot and Listen Checks."""
+icon = "FalconrySummonFalcon"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Summon Grey Owl"
+cost_per_rank = [1]
+description = """
+Summons a Grey Owl companion as your Hunting Bird.
+While your Hunting Bird is by your side, it grants you a +2 bonus to Spot and Listen Checks."""
+icon = "FalconrySummonGreyOwl"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Summon Raven"
+cost_per_rank = [1]
+description = """
+Summons a Raven companion as your Hunting Bird.
+While your Hunting Bird is by your side, it grants you a +2 bonus to Spot and Listen Checks."""
+icon = "FalconrySummonRaven"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Summon Snow Owl"
+cost_per_rank = [1]
+description = """
+Summons a Snow Owl companion as your Hunting Bird.
+While your Hunting Bird is by your side, it grants you a +2 bonus to Spot and Listen Checks."""
+icon = "FalconrySummonSnowOwl"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Summon White Falcon"
+cost_per_rank = [1]
+description = """
+Summons a White Falcon companion as your Hunting Bird.
+While your Hunting Bird is by your side, it grants you a +2 bonus to Spot and Listen Checks."""
+icon = "FalconrySummonWhiteFalcon"
+is_clickie = true
+
+[[enhancement]]
+name = "Falconry: Ability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose an ability to improve"
+icon = "AllAbility"
+internal_name = "FalconCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.requirement]]
+items = ["FalconCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Falconry: Well Rounded I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain +3 Melee Power, Ranged Power, Physical Resistance Rating and Magical Resistance Rating.
+You gain +2 to Spot and Listen."""
+icon = "FalconWellRounded"
+internal_name = "FalconCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Listen",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 6
+
+[[enhancement.requirement]]
+items = ["FalconCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Falconry: Ability II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose an ability to improve"
+icon = "AllAbility"
+internal_name = "FalconCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["FalconCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Falconry: Well Rounded II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain +3 Melee Power, Ranged Power, Physical Resistance Rating and Magical Resistance Rating.
+You gain +2 to Spot and Listen."""
+icon = "FalconWellRounded"
+internal_name = "FalconCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Listen",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 18
+
+[[enhancement.requirement]]
+items = ["FalconCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Falconry: Master Falconer"
+cost_per_rank = [1]
+description = """
+You gain +2 to all ability scores and benefit from the spell Freedom of Movement.
+Your active Falcon attacks have a chance to reset the cooldown on Death From Above."""
+icon = "FalconWellRounded"
+internal_name = "FalconCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FalconCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["FalconCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "FalconCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Falconry: Rugged"
+cost_per_rank = [1]
+description = "Gain +[2/4/6] Physical Resistance Rating."
+icon = "FalconRugged"
+internal_name = "FalconRugged"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement]]
+name = "Falconry: Practiced Accuracy"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] to hit with weapons and +[1/2/3] to confirm critical attacks."
+icon = "FalconPracticedAccuracy"
+internal_name = "FalconPracticedAccuracy"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+extra_types = ["Weapon_AttackCritical"]
+targets = ["All"]
+
+[[enhancement]]
+name = "Falconry: Hunter's Knowledge"
+cost_per_rank = [1]
+description = "You gain Animals as a favored enemy."
+icon = "FalconHuntersKnowledge"
+internal_name = "FalconHuntersKnowledge"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Animal"]
+
+[[enhancement]]
+name = "Falconry: Out in Nature"
+cost_per_rank = [1]
+description = "Gain +[5/10/15] to Healing Amplification"
+icon = "FalconOutInNature"
+internal_name = "FalconOutInNature"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement]]
+name = "Falconry: Wanderlust"
+cost_per_rank = [1]
+description = """
+You gain a +[1/2/3] bonus to Balance, Jump and Swim.
+Rank 3: You gain +1 to Fortitude saving throws."""
+icon = "FalconWanderlust"
+internal_name = "FalconWanderlust"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Swim",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Fortitude"]
+
+[[enhancement]]
+name = "Falconry: Killer Instinct I"
+cost_per_rank = [2]
+description = "You can use your Wisdom modifier to hit with Melee and Missile weapons."
+icon = "Wisdom"
+internal_name = "FalconKillerInstinctI"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Wisdom",
+    "All",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Falconry: Watch the Center"
+cost_per_rank = [1]
+description = "Grants a +[1/2/3] bonus to Assassinate DC's."
+icon = "FalconWatchTheCenter"
+internal_name = "FalconWatchTheCenter"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Falconry: Diving Attack"
+cost_per_rank = [2]
+description = """
+Choose between a Melee and Ranged attack.
+You and your Hunting Bird attack as one against a single target.
+Activate this ability to attack for +30% damage against a single target.
+Your Hunting Bird will follow up for an additional 10d6 damage that scales with
+200% of melee or ranged power, whichever is higher. Your Hunting Bird also
+trips the target, causing them to become Helpless. Your target is slowed by 30%
+for 10 seconds whether they make the saving throw or not.
+
+Trip DC: 10 + Character Level + Wisdom Modifier + Assassinate bonuses."""
+icon = "FalconDivingStrike"
+internal_name = "FalconDivingShot"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement.selection]]
+name = "Diving Shot"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Ranged Falconer Attack: You and your Hunting Bird attack as one against a single
+target. Your Hunting Bird will follow up for an additional 10d6 damage that
+scales with 200% of melee or ranged power, whichever is higher. Your Hunting Bird
+also trips the target, causing them to become Helpless. Your target is slowed by
+30% for 10 seconds whether they make the saving throw or not.
+
+Trip DC: 10 + Character Level + Wisdom Modifier + Assassinate bonuses."""
+icon = "FalconDivingShot"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Falconry: Diving Shot"
+amount = [10]
+class_level = "All"
+dc_type = "Trip"
+dc_versus = "Balance"
+description = """
+Deals: +30% Damage
+Ranged Falconer Attack: You and your Hunting Bird attack as one against a single
+target. Your Hunting Bird will follow up for an additional 10d6 damage that
+scales with 200% of melee or ranged power, whichever is higher. Your Hunting Bird
+also trips the target, causing them to become Helpless. Your target is slowed by
+30% for 10 seconds whether they make the saving throw or not."""
+icon = "FalconDivingShot"
+mod_ability = ["Wisdom"]
+tactical = "Assassinate"
+
+[[enhancement.selection]]
+name = "Diving Strike"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Falconer Attack: You and your Hunting Bird attack as one against a single
+target. Your Hunting Bird will follow up for an additional 10d6 damage that
+scales with 200% of melee or ranged power, whichever is higher. Your Hunting Bird
+also trips the target, causing them to become Helpless. Your target is slowed by
+30% for 10 seconds whether they make the saving throw or not.
+
+Trip DC: 10 + Character Level + Wisdom Modifier + Assassinate bonuses."""
+icon = "FalconDivingStrike"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Falconry: Diving Strike"
+amount = [10]
+class_level = "All"
+dc_type = "Trip"
+dc_versus = "Balance"
+description = """
+Deals: +30% Damage
+Melee Falconer Attack: You and your Hunting Bird attack as one against a single
+target. Your Hunting Bird will follow up for an additional 10d6 damage that
+scales with 200% of melee or ranged power, whichever is higher. Your Hunting Bird
+also trips the target, causing them to become Helpless. Your target is slowed by
+30% for 10 seconds whether they make the saving throw or not."""
+icon = "FalconDivingStrike"
+mod_ability = ["Wisdom"]
+tactical = "Assassinate"
+
+[[enhancement]]
+name = "Falconry: Meticulous Weaponry"
+cost_per_rank = [1]
+description = "Protect your items or increase your chance of recovering ammunition."
+icon = "FalconMeticulousWeaponry"
+internal_name = "FalconMeticulousWeaponry"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement.selection]]
+name = "Meticulous Fletching"
+cost_per_rank = [1]
+description = """
+You are skilled at enhancing, salvaging, and re-purposing your arrows, bolts and throwing weapons.
+Your ammunition gains a [50/65/80]% chance of returning."""
+icon = "FalconMeticulousFletching"
+
+[[enhancement.selection]]
+name = "Meticulous Weaponry"
+cost_per_rank = [1]
+description = "You have a [25/50/75]% chance to negate potential item wear."
+icon = "FalconMeticulousWeaponry"
+
+[[enhancement]]
+name = "Falconry: Action Boost: Sprint"
+cost_per_rank = [2]
+description = """
++45% Action Boost bonus to movement speed for 20 seconds.
+Cooldown: 30 seconds"""
+icon = "FalconActionBoostSprint"
+internal_name = "FalconActionBoostSprint"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Falconry: Killer Instinct II"
+cost_per_rank = [2]
+description = "You can use your Wisdom modifier for damage with Melee and Missile weapons."
+icon = "Wisdom"
+internal_name = "FalconKillerInstinctII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Wisdom",
+    "All",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Falconry: Tear Flesh"
+cost_per_rank = [2]
+description = """
+Your bird attacks now also cause a bleed effect.
+Bleed: Do 1d6 damage every 2 seconds for 60 seconds.
+This stacks up to 10 times and scales with 200% Melee or Ranged Power."""
+icon = "FalconTearFlesh"
+internal_name = "FalconTearFlesh"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Falconry: Go for the Eyes"
+cost_per_rank = [2]
+description = """
+Choose between a melee or ranged attack that will cause your bird to strike the
+target for damage, blind them and make them helpless."""
+icon = "FalconStrikeForTheEyes"
+internal_name = "FalconStrikeForTheEyes"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.selection]]
+name = "Go for the Eyes Shot"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Ranged Falconer Attack: You and your Hunting Bird attack as one against a single
+target. Your Hunting Bird will follow up for an additional 10d6 damage that
+scales with 200% of melee or ranged power, whichever is higher. Your Hunting Bird
+also attempts to Blind the target, causing them to become Helpless. Your target is
+slowed by 30% for 10 seconds whether they make the saving throw or not.
+
+Blind DC: 10 + Character Level + Wisdom Modifier + Assassinate bonuses."""
+icon = "FalconShootForTheEyes"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Falconry: Go for the Eyes Shot"
+amount = [10]
+class_level = "All"
+dc_type = "Blindness"
+dc_versus = "?"
+description = """
+Ranged Falconer Attack: You and your Hunting Bird attack as one against a single target.
+Activate this ability to attack for +3[W] against a single target.
+Your Hunting Bird will follow up for an additional 10d6 damage that scales with
+200% of melee or ranged power, whichever is higher. Your Hunting Bird also
+attempts to Blind the target, causing them to become Helpless."""
+icon = "FalconDivingStrike"
+mod_ability = ["Wisdom"]
+tactical = "Assassinate"
+
+[[enhancement.selection]]
+name = "Go for the Eyes Strike"
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Falconer Attack: You and your Hunting Bird attack as one against a single
+target. Your Hunting Bird will follow up for an additional 10d6 damage that
+scales with 200% of melee or ranged power, whichever is higher. Your Hunting Bird
+also attempts to Blind the target, causing them to become Helpless. Your target is
+slowed by 30% for 10 seconds whether they make the saving throw or not.
+
+Blind DC: 10 + Character Level + Wisdom Modifier + Assassinate bonuses."""
+icon = "FalconStrikeForTheEyes"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Falconry: Go for the Eyes Strike"
+amount = [10]
+class_level = "All"
+dc_type = "Blindness"
+dc_versus = "?"
+description = """
+Deals: +30% Damage
+Melee Falconer Attack: You and your Hunting Bird attack as one against a single
+target. Your Hunting Bird will follow up for an additional 10d6 damage that
+scales with 200% of melee or ranged power, whichever is higher. Your Hunting Bird
+also attempts to Blind the target, causing them to become Helpless. Your target is
+slowed by 30% for 10 seconds whether they make the saving throw or not."""
+icon = "FalconDivingStrike"
+mod_ability = ["Wisdom"]
+tactical = "Assassinate"
+
+[[enhancement]]
+name = "Falconry: Conditioning"
+cost_per_rank = [2]
+description = "You gain +5% Quality bonus to your hit points."
+icon = "FalconConditioning"
+internal_name = "FalconConditioning"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Quality"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Falconry: Eyes of the Eagle"
+cost_per_rank = [2]
+description = "You gain True Seeing."
+icon = "FalconEyesOfTheEagle"
+internal_name = "FalconEyesOfTheEagle"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "TrueSeeing"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Falconry: Deadly Instinct"
+cost_per_rank = [2]
+description = """
+Trance: You gain an Insight bonus to damage and the DC of tactical feats equal
+to 1/2 of your Wisdom modifier for 120 seconds. 5 Charges per rest.
+Each attack from your Hunting Bird has a chance to reset 1 charge.
+
+Antirequisite: This ability can not be trained if you have any other Trance abilities."""
+icon = "FalconDeadlyInstinct"
+internal_name = "FalconDeadlyInstinct"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FalconDeadlyInstinct",
+    "Battle Trance",
+]
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Falconry: Deadly Instinct (Wis Mod / 2)"
+effect_type = "TacticalDC"
+stack_source = "SnapshotWisdom"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Deadly Instinct"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Falconry: Deadly Instinct (Wis Mod / 2)"
+effect_type = "Weapon_Damage"
+stack_source = "SnapshotWisdom"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Deadly Instinct"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = [
+    "FalconDeadlyInstinct",
+    "Battle Trance",
+]
+req_type = "Exclusive"
+
+[[enhancement.stance]]
+name = "Deadly Instinct"
+description = """
+Trance: You gain an Insight bonus to damage and the DC of tactical feats equal
+to 1/2 of your Wisdom modifier for 120 seconds. 5 Charges per rest.
+Each attack from your Hunting Bird has a chance to reset 1 charge."""
+group_name = "Battle Trance"
+icon = "FalconDeadlyInstinct"
+
+[[enhancement]]
+name = "Falconry: No Mercy"
+cost_per_rank = [1]
+description = "You deal +[10/20/30]% additional damage to helpless opponents."
+icon = "FalconNoMercy"
+internal_name = "FalconNoMercy"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamage"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Falconry: Coordinated Strikes"
+cost_per_rank = [1]
+description = """
+Choose between a melee or ranged attacks that will cause your bird to rain
+attacks over an area, damaging and blinding all foes in the area.
+Cooldown: 25 seconds"""
+icon = "FalconryCoordinatedStrike"
+internal_name = "FalconCoordinatedStrikes"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "Coordinated Strike"
+cost_per_rank = [1]
+description = """
+Deals: +20% Damage
+Melee Falconer Cleave Attack: You cleave all opponents near you as your Hunting
+Bird descends to frenzy in a large area for an additional 10d6 damage that scales
+with Melee and Ranged power, whichever is higher. Your Hunting Bird also attempts
+to blind each opponent struck.
+
+Blind DC: 10 + Character Level + Wisdom Modifier + Assassinate bonuses.
+Cooldown: 25 seconds"""
+icon = "FalconryCoordinatedStrike"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Falconry: Coordinated Strike"
+amount = [10]
+class_level = "All"
+dc_type = "Blindness"
+dc_versus = "?"
+description = """
+Deals: +20% Damage
+Melee Falconer Cleave Attack: You cleave all opponents near you as your Hunting
+Bird descends to frenzy in a large area for an additional 10d6 damage that scales
+with Melee and Ranged power, whichever is higher. Your Hunting Bird also attempts
+to blind each opponent struck."""
+icon = "FalconryCoordinatedStrike"
+mod_ability = ["Wisdom"]
+tactical = "Assassinate"
+
+[[enhancement.selection]]
+name = "Coordinated Shot"
+cost_per_rank = [1]
+description = """
+Deals: +20% Damage
+Ranged Falconer Attack: You make a ranged attack as your Hunting Bird descends
+to frenzy in a large area for an additional 10d6 damage that scales with Melee
+and Ranged power, whichever is higher. Your Hunting Bird also attempts to blind
+each opponent struck.
+
+Blind DC: 10 + Character Level + Wisdom Modifier + Assassinate bonuses.
+Cooldown: 25 seconds"""
+icon = "FalconryCoordinatedShot"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Falconry: Coordinated Shot"
+amount = [10]
+class_level = "All"
+dc_type = "Blindness"
+dc_versus = "?"
+description = """
+Deals: +20% Damage
+Ranged Falconer Attack: You make a ranged attack as your Hunting Bird descends
+to frenzy in a large area for an additional 10d6 damage that scales with Melee
+and Ranged power, whichever is higher. Your Hunting Bird also attempts to blind
+each opponent struck."""
+icon = "FalconryCoordinatedShot"
+mod_ability = ["Wisdom"]
+tactical = "Assassinate"
+
+[[enhancement]]
+name = "Falconry: Expose Weakness"
+cost_per_rank = [1]
+description = "Attacks from your Hunting Bird also reduce your target's fortification by 50%."
+icon = "FalconExposeWeakness"
+internal_name = "FalconExposeWeakness"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Enhancement"
+effect_type = "FortificationBypass"
+
+[[enhancement.modifier.requirement]]
+items = ["Bird Attack"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Falconry: Shared Vision"
+cost_per_rank = [2]
+description = "You are immune to Blindness effects."
+icon = "FalconSharedVision"
+internal_name = "FalconSharedVision"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Blindness"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Falconry: Dangerous"
+cost_per_rank = [2]
+description = "Choose between Dangerous or Swift"
+icon = "FalconDangerous"
+internal_name = "FalconDangerous"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Dangerous"
+cost_per_rank = [2]
+description = "+10 Melee power, +25% Competence bonus to hit points."
+icon = "FalconDangerous"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection]]
+name = "Swift"
+cost_per_rank = [2]
+description = "+3 Reflex saves, 10 Ranged power."
+icon = "FalconrySummonGreyOwl"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "RangedPower"
+
+[[enhancement]]
+name = "Falconry: Death From Above"
+cost_per_rank = [2]
+description = """
+Choose between a Melee and Ranged attack that will cause your bird to attempt
+to slay your foes."""
+icon = "FalconDeathFromAboveCombined"
+internal_name = "FalconDeathFromAbove"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Death From Above Strike"
+cost_per_rank = [2]
+description = """
+Deals: +50% Damage
+Melee Falconer Attack: Your Hunting Bird swoops down and attempts to end
+someone's life, dealing 200 points of damage that scales with 200% of
+Melee or Ranged Power, whichever is higher. The target struck makes a Fortitude
+Saving Throw, and on a failed save, dies.
+
+DC: 10 + Character level + Wisdom bonus + Assassinate bonuses."""
+icon = "FalconDeathFromAbove"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Falconry: Death From Above Strike"
+amount = [10]
+class_level = "All"
+dc_type = "Death"
+dc_versus = "Fortitude"
+description = """
+Deals: +50% Damage
+Melee Falconer Attack: Your Hunting Bird swoops down and attempts to end
+someone's life, dealing 200 points of damage that scales with 200% of
+Melee or Ranged Power, whichever is higher. The target struck makes a Fortitude
+Saving Throw, and on a failed save, dies."""
+icon = "FalconDeathFromAbove"
+mod_ability = ["Wisdom"]
+tactical = "Assassinate"
+
+[[enhancement.selection]]
+name = "Death From Above Shot"
+cost_per_rank = [2]
+description = """
+Deals: +50% Damage
+Ranged Falconer Attack: Your Hunting Bird swoops down and attempts to end
+someone's life, dealing 200 points of damage that scales with 200% of
+Melee or Ranged Power, whichever is higher. The target struck makes a Fortitude
+Saving Throw, and on a failed save, dies.
+
+DC: 10 + Character level + Wisdom bonus + Assassinate bonuses."""
+icon = "FalconDeathFromAboveShot"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Falconry: Death From Above Shot"
+amount = [10]
+class_level = "All"
+dc_type = "Death"
+dc_versus = "Fortitude"
+description = """
+Deals: +50% Damage
+Ranged Falconer Attack: Your Hunting Bird swoops down and attempts to end
+someone's life, dealing 200 points of damage that scales with 200% of
+Melee or Ranged Power, whichever is higher. The target struck makes a Fortitude
+Saving Throw, and on a failed save, dies."""
+icon = "FalconDeathFromAbove"
+mod_ability = ["Wisdom"]
+tactical = "Assassinate"
+
+[[enhancement]]
+name = "Falconry: Thrill of the Hunt"
+cost_per_rank = [2]
+description = "Choose between a Melee and Ranged attack."
+icon = "FalconThrillOfTheHunt"
+internal_name = "FalconThrillOfTheHunt"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Thrill of the Hunt Strike"
+cost_per_rank = [2]
+description = """
+Deals: +50% Damage
+Melee Falconer Attack: On Hit: You also heal for 20% of your total hit
+points in Positive Healing. Healing Amplification applies to the heal, but Spell
+Power does not.
+Cooldown: 30 Seconds"""
+icon = "FalconThrillOfTheHunt"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Thrill of the Hunt Shot"
+cost_per_rank = [2]
+description = """
+Deals: +50% Damage
+Ranged Falconer Attack: On Hit: You also heal for 20% of your total hit
+points in Positive Healing. Healing Amplification applies to the heal, but Spell
+Power does not.
+Cooldown: 30 Seconds"""
+icon = "FalconThrillOfTheHuntShot"
+is_clickie = true
+
+[[enhancement]]
+name = "Falconry: Mark the Prey Strike"
+cost_per_rank = [1]
+description = """
+Choose between a melee or ranged attack that causes your bird to strike the target
+and mark them, making them more vulnerable to damage for a short period of time."""
+icon = "FalconMarkThePreyBoth"
+internal_name = "FalconMarkThePrey"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Mark the Prey Strike"
+cost_per_rank = [1]
+description = """
+Melee Attack: You have learned how to spot weaknesses in even the mightiest
+of foes, marking it as prey. The marked target takes 10% extra damage from you
+and your allies for 10 seconds.
+Cooldown: 3 minutes"""
+icon = "FalconMarkThePrey"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Mark the Prey Shot"
+cost_per_rank = [1]
+description = """
+Deals: +50% Damage
+Ranged Attack: You have learned how to spot weaknesses in even the mightiest of
+foes, marking it as prey. The marked target takes 10% extra damage from you and
+your allies for 10 seconds.
+Cooldown: 3 minutes"""
+icon = "FalconMarkThePreyShot"
+is_clickie = true
+
+[[requirement_group]]
+kind = "one_of"
+
+[[requirement_group.requirement]]
+items = ["Falconry Tree"]
+req_type = "Feat"
+
+[[requirement_group.requirement]]
+items = ["The Free Agents Favor Rewards"]
+req_type = "Feat"
+value = 4

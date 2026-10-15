@@ -1,0 +1,51 @@
+name = "Tira's Splendor"
+description = """
+Tira Miron gave her life to defeat a powerful demon lord long ago, joining her
+soul with the Silver Flame to become its voice. This rune arm was created as
+a tribute to her sacrifice."""
+drop_location = "The Subterrane - Central, Garamol chest"
+icon = "RuneArm_1f"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 15
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Equipment"
+value = 40
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Tira's Splendor"
+
+[[effect]]
+name = "Embodiment of Law"
+
+[[effect]]
+name = "Rune Arm Imbue - Light IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Light Spirals",
+    "None",
+]
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

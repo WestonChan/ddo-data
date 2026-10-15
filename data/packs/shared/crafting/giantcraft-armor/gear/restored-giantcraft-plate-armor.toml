@@ -1,0 +1,35 @@
+name = "Restored Giantcraft Plate Armor"
+description = "Plate armor imbued with the magic of the ancient giant empire."
+drop_location = "Giantcraft Armor, Turn in 10 Restored Giant Relics"
+enhancement_bonus = 6
+icon = "HeavyArmor_1"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Adamantine"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 20
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Haste Guard"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Adamantine"
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

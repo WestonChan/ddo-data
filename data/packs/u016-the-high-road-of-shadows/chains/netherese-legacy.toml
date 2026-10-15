@@ -1,0 +1,13 @@
+name = "Netherese Legacy"
+pack = "The High Road of Shadows"
+quests = [
+    "Detour",
+    "Rest Stop",
+    "Lost in the Swamp",
+    "A Stay at the Inn",
+    "The End of the Road",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Netherese_Legacy"
+read = "2026-10-02"

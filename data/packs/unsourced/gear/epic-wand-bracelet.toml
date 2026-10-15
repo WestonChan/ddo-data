@@ -1,0 +1,10 @@
+name = "Epic Wand Bracelet"
+description = """
+A special bracelet that can store wands and scrolls. It will take on the properties
+of an item you fuse with it, and allow you to activate similar abilities daily."""
+drop_location = "Mythic Boost"
+icon = "Bracers_3c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Wrists"

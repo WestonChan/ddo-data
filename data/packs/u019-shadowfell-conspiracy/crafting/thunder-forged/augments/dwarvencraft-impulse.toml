@@ -1,0 +1,114 @@
+name = "Dwarvencraft Impulse"
+adds_augment = "Thunderforged Tier 2"
+description = "Passive: +150 Equipment Bonus to Impulse Spell Power."
+family = "Thunderforged"
+min_level = 24
+
+[[effect]]
+name = "Force Spell Power"
+bonus_type = "Equipment"
+value = 150
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Equipment"
+display_name = "Dwarvencraft Impulse"
+effect = "Force Spell Power"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+display_name = "Dwarvencraft Minor Focus"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Bane"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "Bane of Dragons"
+effect_type = "WeaponOtherDamageBonus"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Dragon"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Bane"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "Bane of Dragons"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Dragon"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: thunderforged tier 1"

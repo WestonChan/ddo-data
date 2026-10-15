@@ -1,0 +1,31 @@
+name = "Sage's Skullcap (Level 27)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Breaking the Ranks, End reward"
+icon = "Helmet_47"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 27
+slot = "Head"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 110
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 19
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 132
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Breaking the Ranks"

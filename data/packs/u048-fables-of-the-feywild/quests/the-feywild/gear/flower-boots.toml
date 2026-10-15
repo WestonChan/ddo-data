@@ -1,0 +1,44 @@
+name = "Flower Boots"
+description = "FEYTWISTED form of Thorn Boots \n\nA pair of boots with living vines and calm flowers wound around them."
+drop_location = "The Feywild, Feytwisted chests"
+icon = "Boots_11"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 29
+slot = "Feet"
+
+[[effect]]
+name = "Nymph's Healing Empowerment"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Quality"
+value = 35
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Enhancement"
+value = 45
+
+[[note]]
+kind = "item_bonus"
+field = "bonus_type"
+reason = "The wiki's Elemental Resistance +45 on these boots is a +45 Enhancement bonus; his buff has no bonus type."
+url = "https://ddowiki.com/page/Item:Flower_Boots"
+read = "2026-10-02"
+qualifier = "Elemental Resistance / null"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"

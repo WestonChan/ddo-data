@@ -1,0 +1,29 @@
+name = "Thrall of Duty"
+bestowed_by = "Iornax the Tireless"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Dragons' Hand"
+patron = "Agents of Argonnessen"
+zone = "Savaran's Fortress"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Thrall_of_Duty"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10
+
+[[run]]
+tier = "epic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

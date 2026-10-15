@@ -1,0 +1,3 @@
+name = "Scallywag's Luck VI"
+description_template = "While in Smuggler's Rest, you gain 35% additional doubloons when fighting pirates."
+verbose_name_template = "Scallywag's Luck VI"

@@ -1,0 +1,104 @@
+name = "Cloak of Flames (level 7)"
+description = """
+Imbued with the power of a bound Fire Elemental, this smooth cloak of crimson
+fabric absorbs harmful flames and makes your fire spells stronger."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Cloak_15"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Back"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 69
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Combustion +74, Fire Lore +11%"
+description = """
+Combustion +74: Passive: +74 Equipment bonus to Fire Spell Power.
+Fire Lore +11: Passive: Your Fire spells gain a 11% Equipment bonus to their chance to critical hit."""
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 74
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 11
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [74]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Combustion +79, Fire Lore +12% and a Green Augment Slot"
+description = """
+Combustion +79: Passive: +79 Equipment bonus to Fire Spell Power.
+Fire Lore +12: Passive: Your Fire spells gain a 12% Equipment bonus to their chance to critical hit."""
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 79
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 12
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [79]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

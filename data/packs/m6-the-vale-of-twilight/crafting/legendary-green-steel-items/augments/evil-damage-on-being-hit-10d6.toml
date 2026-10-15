@@ -1,0 +1,10 @@
+name = "Evil damage on being hit - 10d6"
+description = "Material/Dominion: Any successful attack against you deals 10d6 Evil damage to your foe."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Dominion"""
+
+[[slot]]
+slot = "crafting: equipment tier 2"

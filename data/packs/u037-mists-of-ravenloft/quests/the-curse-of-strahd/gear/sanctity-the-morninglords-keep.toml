@@ -1,0 +1,75 @@
+name = "Sanctity, the Morninglord's Keep"
+accepts_sentience = true
+description = """
+It alone will judge you.
+
+This blade becomes more powerful when used by those who are devoted to Law,
+and its power increases even further when a paladin wields it."""
+drop_location = "The Curse of Strahd, Raid Chest"
+enhancement_bonus = 15
+icon = "Greatsword_1m"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Cold Iron"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Holy 6"
+
+[[effect]]
+name = "Axiomatic 6"
+
+[[effect]]
+name = "Cold Iron"
+
+[[effect]]
+name = "Ghostbane 6"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Coruscating 6"
+
+[[effect]]
+name = "Metalline"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Two-handed"
+weapon_type = "Great Sword"

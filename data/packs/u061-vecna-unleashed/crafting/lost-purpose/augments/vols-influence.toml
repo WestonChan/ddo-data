@@ -1,0 +1,9 @@
+name = "Vol's Influence"
+description = "Adds the Vol's Influence set bonus to this item"
+family = "LostPurpose"
+icon = "WrathOfSoraKell"
+min_level = 18
+set_bonus = "Vol's Influence"
+
+[[slot]]
+slot = "crafting: lost purpose"

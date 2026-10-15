@@ -1,0 +1,4 @@
+name = "Turn Undead Max Dice"
+category = "other"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Turn Undead Max Dice +{1}"

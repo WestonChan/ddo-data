@@ -1,0 +1,36 @@
+name = "Gravekeeper's Stoic Cloak"
+description = "Even the upright and stoic eventually find themselves in the grave."
+drop_location = "Land of Lamordia, Fangs of Winter 's chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 8
+slot = "Back"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "fangs of winter 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

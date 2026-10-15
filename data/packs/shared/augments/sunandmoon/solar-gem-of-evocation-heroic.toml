@@ -1,0 +1,45 @@
+name = "Solar Gem of Evocation (Heroic)"
+description = """
+Artifact Evocation Focus +2
+Drops in: Locked Away (Part One), end chest (rare)
+The Chill of Ravenloft (Heroic), any difficulty
+A Blood Pact, end chest (rare)
+Terror of Demogorgon (Heroic), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Evocation_(Heroic)"
+read = "2026-09-29"
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Artifact"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "A Blood Pact"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part One)"

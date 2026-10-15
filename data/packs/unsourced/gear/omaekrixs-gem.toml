@@ -1,0 +1,10 @@
+name = "Omaekrix's Gem"
+description = """
+This blue gem is infused with a great deal of power from an ancient source.
+It may be able to be used as a component for a ritual."""
+drop_location = "Soami Gardens, possible drop from Rare Encounter chest"
+icon = "Trinket_3a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Trinket"

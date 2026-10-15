@@ -1,0 +1,92 @@
+name = "Wizardry"
+choose_level = true
+description = "Your gain an Enhancement bonus points to Spell Points"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    19,
+    33,
+    41,
+    60,
+    71,
+    79,
+    88,
+    96,
+    104,
+    112,
+    121,
+    129,
+    137,
+    145,
+    154,
+    162,
+    170,
+    178,
+    187,
+    195,
+    203,
+    211,
+    220,
+    228,
+    236,
+    244,
+    253,
+    261,
+    269,
+    277,
+    286,
+    294,
+    302,
+    310,
+    319,
+    327,
+    327,
+    327,
+    327,
+    327,
+]
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Enhancement"
+value = 310
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [310]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: cannith gloves prefix"
+
+[[slot]]
+slot = "crafting: cannith helmet prefix"
+
+[[slot]]
+slot = "crafting: cannith ring prefix"
+
+[[slot]]
+slot = "crafting: cannith shield suffix"
+
+[[slot]]
+slot = "crafting: cannith orb suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random gloves prefix"
+
+[[slot]]
+slot = "crafting: random helmet prefix"
+
+[[slot]]
+slot = "crafting: random ring prefix"
+
+[[slot]]
+slot = "crafting: random shield suffix"

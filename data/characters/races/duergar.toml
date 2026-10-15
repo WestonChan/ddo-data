@@ -1,0 +1,42 @@
+name = "Duergar"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = "Duergar are..."
+short_name = "Duergar"
+starting_world = "Forgotten Realms"
+
+[[ability_modifier]]
+modifier = 1
+stat = "Strength"
+
+[[ability_modifier]]
+modifier = 1
+stat = "Constitution"
+
+[[granted_feat]]
+feat = "Spell Save Bonus"
+
+[[granted_feat]]
+feat_name = "Dwarven Stability"
+
+[[granted_feat]]
+feat_name = "Dwarven Stonecutting"
+
+[[granted_feat]]
+feat_name = "Orc and Goblin Bonus"
+
+[[granted_feat]]
+feat_name = "Poison Save Bonus"
+
+[[granted_feat]]
+feat = "Enlarge Self"
+
+[[granted_feat]]
+feat = "Reduce Self"
+
+[[granted_feat]]
+feat = "Dispel Size Change"

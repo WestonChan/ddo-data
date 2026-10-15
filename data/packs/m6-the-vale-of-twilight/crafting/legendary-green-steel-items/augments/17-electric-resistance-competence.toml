@@ -1,0 +1,23 @@
+name = "+17 Electric Resistance (Competence)"
+description = "Material/Opposition: +17 Competence bonus to Electric Resistance."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Competence"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Competence"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[slot]]
+slot = "crafting: equipment tier 3"

@@ -1,0 +1,11 @@
+name = "False Life"
+default_value = 10
+description_template = "{1} %b1 bonus to hit points."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 False Life +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Hit Points"

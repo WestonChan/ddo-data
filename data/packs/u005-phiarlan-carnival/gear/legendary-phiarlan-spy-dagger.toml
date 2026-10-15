@@ -1,0 +1,55 @@
+name = "Legendary Phiarlan Spy Dagger"
+accepts_sentience = true
+description = """
+House Phiarlan assassins and spies carry daggers like this when they need to
+carry out a mission efficiently and from the shadows. This particular blade
+drips acid when drawn and can lure foes into letting down their guard."""
+drop_location = "Legendary version of Epic Phiarlan Spy Dagger"
+enhancement_bonus = 15
+icon = "Dagger_1q"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Acid Blast 6"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Enhanced Ghostly"
+
+[[effect]]
+name = "Critical Weakening 3"
+
+[[effect]]
+name = "Legendary Paralysis"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "One-handed"
+weapon_type = "Dagger"

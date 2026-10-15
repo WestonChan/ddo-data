@@ -1,0 +1,984 @@
+name = "Shifter"
+background = "Half-OrcBackground"
+icon = "Shifter"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Shifter: Extra Shifting I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1 Rage uses per rest. (You expend Rage uses to activate your Shifting)."
+icon = "RazorclawExtraShifting"
+internal_name = "ShifterCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Shifter: Ability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose between +1 Constitution, Dexterity, Strength or Wisdom"
+icon = "Constitution"
+internal_name = "ShifterCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ShifterCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Shifter: Extra Shifting II"
+cost_per_rank = [1]
+description = "+2 Rage uses per rest."
+icon = "RazorclawExtraShifting2"
+internal_name = "ShifterCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["ShifterCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shifter: Ability II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose between +1 Constitution, Dexterity, Strength or Wisdom"
+icon = "Constitution"
+internal_name = "ShifterCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["ShifterCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Shifter: Regenerating Shift"
+cost_per_rank = [1]
+description = "You regenerate 1 Rage use every 90 seconds."
+icon = "RazorclawRegeratingShift"
+internal_name = "ShifterCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["ShifterCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shifter: Brute Fighting"
+cost_per_rank = [1]
+description = "Select an option"
+icon = "ShifterBruteFighting"
+internal_name = "ShifterBruteFighting"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.selection]]
+name = "Brutal Spellcasting"
+cost_per_rank = [1]
+description = """
+Your damaging spells generate 75% more hate than they normally would,
+making enemies more likely to attack you. Cooldown: 2 seconds"""
+icon = "ShifterBrutalSpellcasting"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusSpell"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Brutal Spellcasting"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Brutal Spellcasting"
+description = """
+Activate this ability to cause your melee attacks to generate 75% more
+hate, making enemies more likely to attack you."""
+icon = "ShifterBrutalSpellcasting"
+
+[[enhancement.selection]]
+name = "Brutal Fighting"
+cost_per_rank = [1]
+description = """
+Activate this ability to cause your melee attacks to generate 75% more
+hate, making enemies more likely to attack you. Cooldown: 2 seconds"""
+icon = "ShifterBruteFighting"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Brute Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Brute Fighting"
+description = """
+Activate this ability to cause your melee attacks to generate 75% more
+hate, making enemies more likely to attack you."""
+icon = "ShifterBruteFighting"
+
+[[enhancement]]
+name = "Shifter: Hunt & Track"
+cost_per_rank = [1]
+description = "+[1/2/3] Spot, Listen and Intimidate"
+icon = "RazorclawHuntAndTrack"
+internal_name = "ShifterHuntAndTrack"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Listen",
+    "Intimidate",
+]
+
+[[enhancement]]
+name = "Shifter: Extend Shifting"
+cost_per_rank = [1]
+description = "Your Shifting and Barbarian rages last [25/50/75]% longer."
+icon = "RazorclawExtendShifting"
+internal_name = "ShifterExtendShifting"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement]]
+name = "Shifter: Hardy Shifting"
+cost_per_rank = [1]
+description = "+[1/2/3] Constitution while Shifting or Raging."
+icon = "RazorclawHardyShifting"
+internal_name = "ShifterHardyShifting"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Shifter: Self Reliant"
+cost_per_rank = [1]
+description = "+[1/2/3] Will Saving Throws"
+icon = "ShifterSelfReliant"
+internal_name = "ShifterSelfReliant"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement]]
+name = "Shifter: Shifted Defenses"
+cost_per_rank = [1]
+description = "Choose an upgrade based on your subrace"
+icon = "ShifterShiftedDefenses"
+internal_name = "ShifterShiftedDefenses"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.selection]]
+name = "Shifted Defenses"
+cost_per_rank = [1]
+description = "+[4/8/12] Physical Resistance Rating while Raging"
+icon = "ShifterShiftedDefenses"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    8,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = ["Beasthide Shifter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Shifted Senses"
+cost_per_rank = [1]
+description = "+[3/6/10] Spot and +[2/4/6]% Dodge while Raging"
+icon = "ShifterShiftedSenses"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Spot"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = ["Wildhunt Shifter"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Shifter: Natural Armor"
+cost_per_rank = [1]
+description = "+[2/4/6] Natural Armor"
+icon = "RazorclawNaturalArmor"
+internal_name = "ShifterNaturalArmor"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "NaturalArmor"
+
+[[enhancement]]
+name = "Shifter: Howl"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose an effect."
+icon = "ShifterHowl"
+internal_name = "ShifterHowl"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.selection]]
+name = "Beasthide Howl"
+cost_per_rank = [2]
+description = """
+Release a mighty howl, granting nearby allies +2 Action Boost Bonus to
+PRR and MRR, plus an additional 2 per 5 Character Levels you have for 20 seconds."""
+icon = "ShifterHowl"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = ["Beasthide Shifter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Wildhunt Howl"
+cost_per_rank = [2]
+description = """
+Release a mighty howl, granting nearby allies +1 Action Boost Bonus to
+Saving Throws, plus an additional 1 per 10 Character Levels you have for 20 seconds."""
+icon = "ShifterWildhuntHowl"
+is_clickie = true
+
+[[enhancement.selection.requirement]]
+items = ["Wildhunt Shifter"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Shifter: Magic Fang"
+cost_per_rank = [1]
+description = """
+Increases the Enhancement Bonus of the target's natural weapon by 1, plus 1 per
+five caster levels. An item can have only one temporary item enhancement at a time.
+Only works on players, hirelings, or pets, and only if they are Animals, Vermin,
+Magical Beats, Dragons, or Fey. Equipping a new weapon cancels the effect.
+Cost: 8 Hitpoints
+Cooldown: 20 seconds"""
+icon = "RazorclawMagicFang"
+internal_name = "ShifterMagicFang"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    9,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+targets = ["All"]
+
+[[enhancement]]
+name = "Shifter: Maul"
+cost_per_rank = [2]
+description = """
+Melee Attack: Requires an equipped Melee weapon. Make an attack similar to
+the Druid Spell Maul.
+This attack deals an extra 2[W] to the target, and applies a bleeding effect that
+deals 1d4 slash damage every 2 seconds for 8 seconds. Striking the target successfully
+may also intimidate the target based on the player's intimidate skill."""
+icon = "ShifterMaul"
+internal_name = "ShifterMaul"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement]]
+name = "Shifter: Empowered by Nature"
+cost_per_rank = [1]
+description = "Choose an upgrade based on your subrace"
+icon = "ShifterEmpoweredByNature"
+internal_name = "ShifterEmpoweredByNature"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.selection]]
+name = "Empowered by Nature: Beasthide"
+cost_per_rank = [1]
+description = """
++[10/20/30] Positive Healing Amplification.
+You are now immune to Fatigue, including Fatigue from Shifting."""
+icon = "ShifterEmpoweredByNature"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection.requirement]]
+items = ["Beasthide Shifter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Empowered by Nature: Wildhide"
+cost_per_rank = [1]
+description = """
++[25/50/100] Maximum Spell Points. You can now cast while Raging.
+You are now immune to Fatigue, including Fatigue from Shifting."""
+icon = "ShifterEmpoweredByNatureWildhunt"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Wildhunt Shifter"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Shifter: Augment Summoning"
+cost_per_rank = [1]
+description = """
+Grants the Augment Summoning feat: Your summoned creatures, charmed minions,
+pets, and hirelings have +4 to all ability scores, increased health, and increased
+fortification."""
+icon = "RazorclawAugmentSummoning"
+internal_name = "ShifterAugmentSummoning"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Augment Summoning"]
+
+[[enhancement]]
+name = "Shifter: Stronger Howl"
+cost_per_rank = [2]
+description = "Choose an effect."
+icon = "ShifterStrongerHowl"
+internal_name = "ShifterStrongerHowl"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["ShifterHowl"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Stronger Howl: Beasthide"
+cost_per_rank = [2]
+description = """
+When you Howl, nearby enemies take -2 to Attack, minus an additional 2 per per 5
+Character Levels you have for 20 seconds."""
+icon = "ShifterStrongerHowl"
+
+[[enhancement.selection.requirement]]
+items = ["Beasthide Shifter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Stronger Howl: Wildhunt"
+cost_per_rank = [2]
+description = """
+When you Howl, nearby enemies take -1 to Saving Throws, minus an additional 1
+per 5 Character Levels you have for 20 seconds."""
+icon = "ShifterStrongerHowlWildhunt"
+
+[[enhancement.selection.requirement]]
+items = ["Wildhunt Shifter"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Shifter: Favored Enemy"
+cost_per_rank = [2]
+description = "Choose a Favored Enemy"
+icon = "RazorclawFavoredEnemy"
+internal_name = "ShifterFavoredEnemy"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.selection]]
+name = "Favored Enemy: Animal"
+cost_per_rank = [2]
+description = """
+You receive the Favored Enemy: Animal feat: You receive a damage bonus when
+attacking animals."""
+icon = "RazorclawFavoredEnemy"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Animal"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Fey"
+cost_per_rank = [2]
+description = """
+You receive the Favored Enemy: Fey feat: You receive a damage bonus when
+attacking fey creatures."""
+icon = "RazorclawFavoredEnemyFey"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Fey"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Magical Beast"
+cost_per_rank = [2]
+description = """
+You receive the Favored Enemy: Magical Beast feat: You receive a damage
+bonus when attacking magical beats."""
+icon = "RazorclawFavoredEnemyMagicalBeast"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Magical Beast"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Plant"
+cost_per_rank = [2]
+description = """
+You receive the Favored Enemy: Plant feat: You receive a damage bonus when
+attacking plants."""
+icon = "RazorclawFavoredEnemyPlant"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Plant"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Reptilian"
+cost_per_rank = [2]
+description = """
+You receive the Favored Enemy: Reptilian feat: You receive a damage bonus
+when attacking reptilian creatures."""
+icon = "RazorclawFavoredEnemyReptilian"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Reptilian"]
+
+[[enhancement.selection]]
+name = "Favored Enemy: Vermin"
+cost_per_rank = [2]
+description = """
+You receive the Favored Enemy: Vermin feat: You receive a damage bonus when
+attacking vermin."""
+icon = "RazorclawFavoredEnemyVermin"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Vermin"]
+
+[[enhancement]]
+name = "Shifter: Exceptional Shifting"
+cost_per_rank = [1]
+description = "Choose an effect based on your subrace"
+icon = "ShifterThreateningShift"
+internal_name = "ShifterThreateningShift"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.selection]]
+name = "Threatening Shift"
+cost_per_rank = [1]
+description = "While raging, +20% to Threat Generation and +5% Quality Bonus to Maximum Hit Points."
+icon = "ShifterThreateningShift"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Quality"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = ["Beasthide Shifter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Wild Magic"
+cost_per_rank = [1]
+description = """
+While raging, gain Lesser Displacement. When you activate a Rage, you gain
+Temporary Spell Points equal to 5 + double your Character Level. These last
+for 5 minutes, until you dismiss or activate another rage, or until used."""
+icon = "ShifterCamouflagedShift"
+
+[[enhancement.selection.requirement]]
+items = ["Wildhunt Shifter"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Shifter: True Hunter"
+cost_per_rank = [2]
+description = """
+You gain +2 to Saves vs. Enchantments and Illusions, Freedom of Movement and
++10 to Spot."""
+icon = "RazorclawTrueHunter"
+internal_name = "ShifterTrueHunter"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Enchantment",
+    "Illusion",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Spot"]
+
+[[enhancement]]
+name = "Shifter: Howl of Terror"
+cost_per_rank = [2]
+description = """
+You utter a terrifying howl, filling your foes with a paralyzing fear.
+Foes around you are paralyzed for 6 to 24 seconds.
+Will save (18 + Wis Mod + Enchantment bonuses) negates.
+This can be cast while Raging.
+Cost: 30 SP
+Cooldown: 10 seconds"""
+icon = "RazorclawHowlOfTerror"
+internal_name = "ShifterHowlOfTerror"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[requirement]]
+items = ["Shifter"]
+req_type = "Race"

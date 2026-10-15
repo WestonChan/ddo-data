@@ -1,0 +1,32 @@
+name = "Mindcleaver's Armor"
+description = "Finely crafted armor for a champion of the Underdark."
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 4
+icon = "HeavyArmor_21"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 15
+race_required = "Duergar Mindcleaver"
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 14
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 2
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

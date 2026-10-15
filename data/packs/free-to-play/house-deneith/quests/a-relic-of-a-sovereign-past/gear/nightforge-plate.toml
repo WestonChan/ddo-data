@@ -1,0 +1,34 @@
+name = "Nightforge Plate"
+description = """
+Brutal and regal plates of interlocking adamantine, the 'Immortal Skin' is the
+pinnacle of any Duergar armorsmith's craft."""
+drop_location = "A Relic of a Sovereign Past, Turn in 15 Adamantine Ore"
+enhancement_bonus = 5
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Adamantine"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 12
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "turn in 15 adamantine ore"
+kind = "quest"
+loot_type = "chest"
+name = "A Relic of a Sovereign Past"

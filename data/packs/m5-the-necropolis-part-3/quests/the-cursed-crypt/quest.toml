@@ -1,0 +1,21 @@
+name = "The Cursed Crypt"
+bestowed_by = "Sir Pythias the Radiant"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The Necropolis, Part 3"
+patron = "The Silver Flame"
+zone = "The Cursed Crypt"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Cursed_Crypt"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12

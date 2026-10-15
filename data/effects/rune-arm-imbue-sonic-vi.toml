@@ -1,0 +1,3 @@
+name = "Rune Arm Imbue - Sonic VI"
+description_template = "Wearing this Rune Arm will imbue any weapon you wield, dealing 2d10 points of untyped damage per hit. Fire creatures take double damage. This damage scales with 200% Melee or Ranged power (whichever is higher)."
+verbose_name_template = "Rune Arm Imbue - Sonic VI"

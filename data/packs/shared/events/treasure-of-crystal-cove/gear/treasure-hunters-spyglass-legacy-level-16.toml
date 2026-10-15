@@ -1,0 +1,87 @@
+name = "Treasure Hunter's Spyglass (legacy) (level 16)"
+description = """
+A tool such as this is a great aid to the treasure-seeking pirate, for it allows
+him or her to locate small details, find secret passages and notice any traps
+that might be lurking along the way."""
+drop_location = "Treasure of Crystal Cove, Turn in 1000 Copper Doubloon 500 Silver Doubloon 30 Stolen Sapphire at Dusty Old Treasure of Crystal Cove"
+icon = "Trinket_17"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 16
+slot = "Trinket"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[socket]]
+slot = "crafting: upgradeable tier 2"
+
+[[socket.option]]
+name = "Spot +15 and Search +15"
+description = """
+Spot +15: Passive: +15 Competence bonus to the Spot skill.
+Search +15: Passive: +15 Competence bonus to the Search skill."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Spot"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Search"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Search",
+]
+
+[[socket]]
+slot = "crafting: upgradeable tier 3"
+
+[[socket.option]]
+name = "Add Exceptional Intelligence +1"
+description = """
+Exceptional Intelligence +1: This item focuses the power of the wearer's mind, granting a
++1 Exceptional bonus to Intelligence."""
+min_level = 16
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Intelligence"
+value = 1
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

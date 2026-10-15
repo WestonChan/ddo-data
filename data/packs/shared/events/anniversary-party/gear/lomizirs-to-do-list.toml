@@ -1,0 +1,27 @@
+name = "Lomizir's To-Do List"
+description = "Fear its terrible wrath!"
+drop_location = "Anniversary Party, Turn in 20 Party Favors"
+icon = "Trinket_32a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[clickie]]
+name = "Order's Wrath"
+clickie = "Order's Wrath"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Order's Wrath"]
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"

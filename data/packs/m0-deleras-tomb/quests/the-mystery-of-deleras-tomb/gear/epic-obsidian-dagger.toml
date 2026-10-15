@@ -1,0 +1,64 @@
+name = "Epic Obsidian Dagger"
+accepts_sentience = true
+description = """
+A weapon cut from volcanic glass, once used by elven necromancers once to cut
+away the souls of the departed."""
+drop_location = "The Mystery of Delera's Tomb, End chest"
+enhancement_bonus = 8
+icon = "Dagger_19"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Stone"
+minimum_level = 25
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 25
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 19
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 128
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 39
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Quality"
+value = 12
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Mystery of Delera's Tomb"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 3
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "One-handed"
+weapon_type = "Dagger"

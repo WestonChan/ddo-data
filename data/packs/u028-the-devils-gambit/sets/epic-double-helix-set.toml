@@ -1,0 +1,24 @@
+name = "Epic Double Helix Set"
+icon = "DoubleHelixSet"
+
+[[item]]
+name = "Epic Ivy Helix"
+
+[[item]]
+name = "Epic Laurel Helix"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Sheltering"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "PRR"
+extra_types = ["MRR"]

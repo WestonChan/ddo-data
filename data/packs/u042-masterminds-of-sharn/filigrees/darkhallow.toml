@@ -1,0 +1,161 @@
+[[row]]
+name = "Darkhallow: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "DarkHallow"
+menu = "Masterminds of Sharn"
+set = "Darkhallow"
+
+[[row.note]]
+kind = "filigree"
+field = "icon"
+upstream = "Darkhallow"
+reason = "DDOBuilderV2's FiligreeImages folder spells the image DarkHallow.png."
+url = "Output/DataFiles/FiligreeImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Darkhallow: +1 Constitution: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Darkhallow: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "DarkHallow"
+menu = "Masterminds of Sharn"
+set = "Darkhallow"
+
+[[row.note]]
+kind = "filigree"
+field = "icon"
+upstream = "Darkhallow"
+reason = "DDOBuilderV2's FiligreeImages folder spells the image DarkHallow.png."
+url = "Output/DataFiles/FiligreeImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Darkhallow: Intelligence: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Darkhallow: +20 Negative Amplification"
+description = """
++20 Negative Healing Amplification
+Rare: +2 PRR"""
+icon = "DarkHallow"
+menu = "Masterminds of Sharn"
+set = "Darkhallow"
+
+[[row.note]]
+kind = "filigree"
+field = "icon"
+upstream = "Darkhallow"
+reason = "DDOBuilderV2's FiligreeImages folder spells the image DarkHallow.png."
+url = "Output/DataFiles/FiligreeImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect_type = "NegativeHealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Darkhallow: Negative Amplification: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Darkhallow: +5% Light Absorption"
+description = """
++5% Light Absorption
+Rare: +2 MRR"""
+icon = "DarkHallow"
+menu = "Masterminds of Sharn"
+set = "Darkhallow"
+
+[[row.note]]
+kind = "filigree"
+field = "icon"
+upstream = "Darkhallow"
+reason = "DDOBuilderV2's FiligreeImages folder spells the image DarkHallow.png."
+url = "Output/DataFiles/FiligreeImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "EnergyAbsorbance"
+targets = ["Light"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Darkhallow: Light Absorption: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Darkhallow: +9 Negative/Poison Spell Power"
+description = """
++9 Negative/Poison Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "DarkHallow"
+menu = "Masterminds of Sharn"
+set = "Darkhallow"
+
+[[row.note]]
+kind = "filigree"
+field = "icon"
+upstream = "Darkhallow"
+reason = "DDOBuilderV2's FiligreeImages folder spells the image DarkHallow.png."
+url = "Output/DataFiles/FiligreeImages"
+read = "2026-10-08"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Darkhallow: Negative Spell Power: +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

@@ -1,0 +1,27 @@
+name = "Insightful Charisma +7"
+description = """
+Insightful Charisma +7: This item makes the wearer have more flair, granting
+a +7 Insightful bonus to Charisma."""
+family = "SealedInUndeath"
+icon = "Charisma"
+min_level = 32
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "crafting: sealed in undeath"
+
+[[slot]]
+slot = "crafting: sealed in gloom"

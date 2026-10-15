@@ -1,0 +1,35 @@
+name = "Topaz of Spell Focus: Evocation"
+choose_level = true
+description = "Equipment bonus to Evocation DC"
+family = "Topaz"
+icon = "Topaz"
+level_values = [
+    5,
+    6,
+]
+levels = [
+    16,
+    24,
+]
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

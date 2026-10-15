@@ -1,0 +1,13 @@
+name = "Legendary Magma"
+description = """
+Requires Earth and Fire only
+Attacks and offensive spells deals fire damage over time on
+hit or spellcast, and slow enemy movement [100% chance to proc,
+20-50 damage pear a stack, maximum 5 stacks, 3 ticks within 4
+seconds duration for each stack, slow movement seems to be A
+quarter-second cooldown."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

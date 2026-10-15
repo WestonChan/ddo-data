@@ -1,0 +1,24 @@
+name = "Horn: Sacred DCs"
+description = "+2 Sacred bonus to Spell DCs"
+family = "DinosaurBone"
+icon = "Horn"
+min_level = 31
+
+[[effect]]
+name = "Spell DCs"
+bonus_type = "Sacred"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Sacred"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[slot]]
+slot = "isle of dread: horn (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact horn (accessory)"

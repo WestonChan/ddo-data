@@ -1,0 +1,32 @@
+name = "Ethereal Bracers"
+description = """
+These bracers seem to be slightly blurry and somewhat translucent. When the
+bracers are equipped these properties are transferred to the wearer's hands
+and weapons allowing incorporeal creatures to be easily hit as well as granting
+some defensive benefits."""
+drop_location = "Ghosts of Perdition, End chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Glass"
+minimum_level = 13
+slot = "Wrists"
+
+[[effect]]
+name = "Ethereal"
+
+[[effect]]
+name = "Parrying I"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ghosts of Perdition"

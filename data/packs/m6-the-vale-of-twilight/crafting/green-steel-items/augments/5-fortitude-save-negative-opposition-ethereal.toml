@@ -1,0 +1,25 @@
+name = "+5 Fortitude Save"
+adds_augment = "Accessory Subjugation"
+variant = "Negative:Opposition:Ethereal"
+description = """
+Fortitude Save +5: +5 Resistance bonus to your Fortitude save.
+Negative:Opposition:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Resistance"
+effect = "Fortitude Save"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[slot]]
+slot = "crafting: accessory invasion"

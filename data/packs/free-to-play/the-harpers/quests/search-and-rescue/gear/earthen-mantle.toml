@@ -1,0 +1,37 @@
+name = "Earthen Mantle"
+description = "It smells faintly of wet dirt and freshly cut grass."
+drop_location = "Search and Rescue, Drow Priestess chest"
+icon = "Cloak_21"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 15
+slot = "Back"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 101
+
+[[effect]]
+name = "Balance"
+bonus_type = "Quality"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "drow priestess chest"
+kind = "quest"
+loot_type = "chest"
+name = "Search and Rescue"

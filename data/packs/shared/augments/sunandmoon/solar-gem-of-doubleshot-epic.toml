@@ -1,0 +1,20 @@
+name = "Solar Gem of Doubleshot (Epic)"
+description = "+10% Artifact Bonus to Doubleshot."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Artifact"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Doubleshot"
+effect_type = "Doubleshot"
+
+[[slot]]
+slot = "sun"

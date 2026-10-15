@@ -1,0 +1,20 @@
+name = "+2 Dexterity (Exceptional)"
+description = "Escalation/Air or Fire: +2 Exceptional bonus to Dexterity"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

@@ -1,0 +1,29 @@
+name = "A Sharn Welcome"
+bestowed_by = "Anton Westmore"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Masterminds of Sharn"
+patron = "Sharn City Council"
+zone = "The Grandview Arms"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/A_Sharn_Welcome"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 15
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

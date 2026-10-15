@@ -1,0 +1,27 @@
+name = "Memory of Animated Objects"
+description_template = "You recall bringing life to lifeless forms, and control you had over the inanimate. +171 Equipment Bonus to Rust and Repair Spell Power, +24% Equipment Bonus to Rust and Repair Spell Crit Chance, and +25% Enhancement Bonus to Rust and Repair Spell Crit Damage."
+verbose_name_template = "Memory of Animated Objects"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Equipment"
+constant = 171
+rounding = "down"
+scale = 1.0
+target = "Repair Spell Power"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Equipment"
+constant = 24
+rounding = "down"
+scale = 1.0
+target = "Repair Spell Lore"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Enhancement"
+constant = 25
+rounding = "down"
+scale = 1.0
+target = "Repair Spell Critical Damage"

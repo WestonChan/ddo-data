@@ -1,0 +1,20 @@
+name = "Fang: Healing Amplification +56"
+description = "+56 Competence bonus to Healing Amplification"
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 56
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [56]
+bonus_type = "Competence"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "isle of dread: fang (accessory)"

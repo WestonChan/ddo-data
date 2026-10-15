@@ -1,0 +1,21 @@
+name = "Lunar Gem of Charisma (Epic)"
+description = "+3 Profane Bonus to Charisma"
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Profane"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[slot]]
+slot = "moon"

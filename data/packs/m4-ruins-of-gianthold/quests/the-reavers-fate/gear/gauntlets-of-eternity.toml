@@ -1,0 +1,85 @@
+name = "Gauntlets of Eternity"
+description = """
+After their forging, each plate in these complex gauntlets was quenched in a
+fountain of life-giving elixir. Perhaps this helped preserve the gauntlets
+themselves, long after most of the Lost Empire's handiwork crumbled to dust."""
+drop_location = "The Reaver's Fate, Warded Chest"
+icon = "Gloves_13"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Hands"
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Repair"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 60
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Eternal Faith"
+
+[[socket]]
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[socket.option]]
+name = "Heal +15, Repair +15, Devotion +72"
+description = """
+Heal +15: Passive: +15 Competence bonus to the Heal skill.
+Repair +15: Passive: +15 Competence bonus to the Repair skill.
+Devotion +72: Passive: +72 Equipment bonus to Positive (Healing) Spell Power."""
+icon = "Stormreaver"
+min_level = 13
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Heal"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Repair"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+value = 72
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Repair",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [72]
+bonus_type = "Equipment"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"

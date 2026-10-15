@@ -1,0 +1,3 @@
+name = "Lightning Strike Weapons"
+description_template = "While wearing this item, your melee and ranged weapons gain Hit Effect: This weapon stores the Power of a volatile thunderstorm deep within. Occasionally, this dynamic Power comes to the surface, devastating enemies with a massive lightning strike."
+verbose_name_template = "Lightning Strike Weapons"

@@ -1,0 +1,11 @@
+name = "Invisibility"
+description_template = "This item bends light around the wearer, allowing them to cast invisibility as per the spell on themselves. Just equipping the item will give the wearer a +2 Deflection bonus to AC."
+home_bonus_type = "Deflection"
+verbose_name_template = "Invisibility +2"
+
+[[bonus]]
+amount_from = 0
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Armor Class"

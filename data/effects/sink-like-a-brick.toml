@@ -1,0 +1,3 @@
+name = "Sink Like a Brick"
+description_template = "These boots are made of concrete. You sink in water."
+verbose_name_template = "Sink Like a Brick"

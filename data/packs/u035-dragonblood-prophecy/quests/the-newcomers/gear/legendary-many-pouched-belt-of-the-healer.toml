@@ -1,0 +1,39 @@
+name = "Legendary Many-Pouched Belt of the Healer"
+description = """
+The numerous pouches on this belt contain strange and wondrous components that
+aid in both magical and mundane healing."""
+drop_location = "The Newcomers, end chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 28
+slot = "Waist"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Quality"
+value = 35
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Newcomers"

@@ -1,0 +1,3 @@
+name = "Potency for Low-Level Spells"
+description_template = "+{1}% damage to 4th level and lower spells"
+verbose_name_template = "Potency for Low-Level Spells"

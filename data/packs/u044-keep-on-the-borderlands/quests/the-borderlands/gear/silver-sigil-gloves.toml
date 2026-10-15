@@ -1,0 +1,34 @@
+name = "Silver Sigil Gloves"
+description = "The sigils along the wrist help reflect and redirect harmful spells."
+drop_location = "The Borderlands, chest (Rare Encounters)"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 21
+slot = "Hands"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Borderlands"

@@ -1,0 +1,40 @@
+name = "Bracers of the Hidden Blade"
+description = """
+Once used in a failed assassination attempt against a Giant chieftain that resided
+here. Perhaps your fate will be better than theirs."""
+drop_location = "The Newcomers, End chest"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 10
+slot = "Wrists"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Deception"
+bonus_type = "Quality"
+value = 1
+value2 = 2
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Newcomers"

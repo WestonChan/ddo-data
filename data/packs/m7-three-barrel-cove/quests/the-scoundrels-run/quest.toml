@@ -1,0 +1,22 @@
+name = "The Scoundrel's Run"
+bestowed_by = "Rosie the Jinx"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Three-Barrel Cove"
+patron = "The Free Agents"
+zone = "Scoundrel's Run"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Scoundrel%27s_Run"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 7

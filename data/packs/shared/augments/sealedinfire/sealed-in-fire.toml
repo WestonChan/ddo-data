@@ -1,0 +1,11 @@
+name = "Sealed in Fire"
+description = """
+Sealed in Fire: This weapon burns with a sealed power.
+It can have its power unsealed at the Ritual Table, adding one effect.
+Attempting to add another will remove the original."""
+family = "SealedInFire"
+icon = "ChaoticAmbition"
+min_level = 32
+
+[[slot]]
+slot = "crafting: sealed in fire"

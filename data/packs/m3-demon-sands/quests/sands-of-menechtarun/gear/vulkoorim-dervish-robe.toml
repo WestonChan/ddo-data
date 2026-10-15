@@ -1,0 +1,52 @@
+name = "Vulkoorim Dervish Robe"
+description = """
+The Vulkoorim Dervish use silk robes to cover their Drow bodies from the baking
+heat of the desert."""
+drop_location = "Sands of Menechtarun, Drow Area: Mendexethazz ' Chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 6
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 77
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Exceptional"
+value = 15
+
+[[effect]]
+name = "Efficient Metamagic - Maximize I"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Disintegration Guard"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "drow area: mendexethazz ' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

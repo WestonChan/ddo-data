@@ -1,0 +1,21 @@
+name = "Paragon Guard"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Paragon Guard"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"

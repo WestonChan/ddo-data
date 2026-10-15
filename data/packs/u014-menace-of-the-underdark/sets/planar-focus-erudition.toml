@@ -1,0 +1,44 @@
+name = "Planar Focus: Erudition"
+icon = "EruditionPlanarConfluxSetBonus"
+
+[[item]]
+name = "Planar Focus of Erudition"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Penetration"
+value = 9
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+value = 250
+
+[[tier.effect]]
+bonus_type = "Psionic"
+effect = "Universal Spell Power"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Enhancement"
+effect = "Universal Spell Power"
+effect_type = "SpellPenetrationBonus"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [250]
+bonus_type = "Enhancement"
+effect = "Universal Spell Power"
+effect_type = "SpellPoints"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Psionic"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"

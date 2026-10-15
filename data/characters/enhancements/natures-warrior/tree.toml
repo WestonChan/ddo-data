@@ -1,0 +1,1863 @@
+name = "Nature's Warrior"
+background = "DruidBackground"
+icon = "Druid"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Nature's Warrior: Natural Adept"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain 8 hit points, +1 to hit and damage in Wolf and Bear Forms for this and
+every other core in the tree. In Wolf Form also gain 1 sneak attack die for this
+and every other core taken."""
+icon = "NWNaturalAdept"
+internal_name = "NWCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Nature's Warrior: Nature's Senses"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your attacks penetrate 10% of your target's fortification.
+You gain a +3 bonus to Spot, Listen and Search."""
+icon = "NWNaturesSenses"
+internal_name = "NWCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "FortificationBypass"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Listen",
+    "Search",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["NWCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Warrior: Nature's Bounty"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You have mastered the art of wielding divine magic in animal form, and using it to
+empower your body in physical combat. While in animal form, the cooldown penalty
+for non-animal form spells is reduced from 2.5 times the usual length to 2.0.
+
+This benefit will not stack with the Magical Beast enhancement in the Nature's
+Protector tree."""
+icon = "NWNaturesBounty"
+internal_name = "NWCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["NWCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Warrior: A True Hunter"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While in Wolf or Bear form you gain a +1 Competence bonus to Critical Multiplier.
+You must have a weapon equipped to gain this benefit."""
+icon = "NWATrueHunter"
+internal_name = "NWCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["NWCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Warrior: Howl of the Hunter"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Casting Howl of Terror now grants you the effect Howl of the Hunter for 10 seconds
+which grants +10 Exceptional bonus to Doublestrike, 5% bonus to spell critical
+and 15% to spell critical damage to all spells. This will only occur once every
+30 seconds.
+
+You gain a +5% Primal bonus to Maximum Hit Points."""
+icon = "NWHowlOfWinter"
+internal_name = "NWCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Exceptional"
+effect_type = "Doublestrike"
+
+[[enhancement.modifier.requirement]]
+items = ["Howl of Terror"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Howl of Terror"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "SpellCriticalDamage"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Howl of Terror"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Primal"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["NWCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Warrior: Beast Form Mastery"
+cost_per_rank = [1]
+description = """
+You have mastered the art of wielding divine magic in animal form and using it to
+empower your body in physical combat. While in animal form, the cooldown penalty
+for non-animal form spells is reduced from 2.5 times the usual length to 1.5.
+Does not stack with Nature's Protector cores.
+
+Passive: You gain +2 Strength and Wisdom and +10% Doublestrike and +10 PRR."""
+icon = "NWBeastFormMastery"
+internal_name = "NWCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "NWCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Strength",
+    "Wisdom",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = ["PRR"]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["NWCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "NWCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Nature's Warrior: Extra Wild Empathy or Dead Nerves"
+cost_per_rank = [1]
+description = "Become close to nature or dead to the world."
+icon = "NWExtraWildEmpathy"
+internal_name = "NWExtraWildEmpathy"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Dead Nerves"
+cost_per_rank = [1]
+description = "Gain +[5/10/15] Maximum Hit Points"
+icon = "NWDeadNerves"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.selection]]
+name = "Extra Wild Empathy"
+cost_per_rank = [1]
+description = """
++[1/2/3] Wild Empathy use per rest.
++[1/2/3] Improved Wild Empathy use per rest (if you have this ability).
++[5/10/15] Positive Spell power."""
+icon = "NWExtraWildEmpathy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraWildEmpathy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement]]
+name = "Nature's Warrior: Snapping Jaws"
+cost_per_rank = [1]
+description = """
+Whenever you Bluff or use an ability that triggers a Bluff check such as Baiting
+Bite, your target is debuffed losing -[2/4/6] AC, and you gain a stack of Snapping
+Jaw for +[2/4/6] AC for 15 seconds."""
+icon = "NWSnappingJaws"
+internal_name = "NWSnappingJaws"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Nature's Warrior: Take Down"
+cost_per_rank = [1]
+description = "Increase Trip DCs by +[1/2/3]"
+icon = "NWTakeDown"
+internal_name = "NWTakeDown"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Nature's Warrior: Bestial Nature"
+cost_per_rank = [1]
+description = "Your Reflex and Fortitude Saves are increased by +[1/2]."
+icon = "NWBestialNature"
+internal_name = "NWBestialNature"
+min_spent = 1
+ranks = 2
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = [
+    "Reflex",
+    "Fortitude",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Nature's Warrior: Athletic Hunter"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Balance, Jump, Move Silently and Hide Skills.
+Rank 3: You gain a +1 bonus to Reflex and Fortitude saves."""
+icon = "NWAthleticHunter"
+internal_name = "NWAthleticHunter"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Move Silently",
+    "Hide",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = [
+    "Fortitude",
+    "Reflex",
+]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Nature's Warrior: Flight or Play Dead"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose between Flight or Play Dead."
+icon = "NWFlight"
+internal_name = "NWFlight"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Flight"
+cost_per_rank = [2]
+description = """
+Gain a +20% Dodge bonus for 30 seconds that ignores your dodge cap.
+Costs 1 Wild Empathy.
+Cooldown: 90 seconds."""
+icon = "NWFlight"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Play Dead"
+cost_per_rank = [2]
+description = "+30 Unconsciousness Range."
+icon = "NWPlayDead"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [-30]
+bonus_type = "Enhancement"
+effect_type = "UnconsciousRange"
+
+[[enhancement]]
+name = "Nature's Warrior: Improved Dodge"
+cost_per_rank = [1]
+description = "+[1/2/3]% Dodge"
+icon = "NWImprovedDodge"
+internal_name = "NWImprovedDodge"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Nature's Warrior: Ghost Wolf"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Passive: Gain Ghost Touch while in Wolf Forms on your melee attacks."
+icon = "NWGhostWolf"
+internal_name = "NWGhostWolf"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Nature's Warrior: Brother Wolf or Lone Wolf"
+cost_per_rank = [1]
+description = "What kind of wolf are you?"
+icon = "NWBrotherWolf"
+internal_name = "NWBrotherWolf"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Brother Wolf"
+cost_per_rank = [1]
+description = """
+While your wolf pet is alive and within 40 meters, it gains 15 hit points
+every [12/9/6] seconds and [10/15/20] MRR and PRR and you also gain +[1/2/3]
+to hit and damage."""
+icon = "NWBrotherWolf"
+
+[[enhancement.selection]]
+name = "Lone Wolf"
+cost_per_rank = [1]
+description = "You gain +[1/2/3] bonus to hit, and +[1/2/3] Physical and Magical Resistance Rating."
+icon = "NWLoneWolf"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement]]
+name = "Nature's Warrior: Action Boost: Double Strike"
+cost_per_rank = [2]
+description = """
+Gain +30% Action Boost bonus to Doublestrike for 20 seconds.
+Cooldown: 30 seconds"""
+icon = "NWActionBoostDoublestrike"
+internal_name = "NWActionBoostDoublestrike"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Nature's Warrior: Fight"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] base melee damage and +[1/2/3] AC while in any Bear or Wolf form."
+icon = "NWFight"
+internal_name = "NWFight"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["NWFlight"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Warrior: Prey on the Weak"
+cost_per_rank = [1]
+description = "You gain a +[8/15]% damage bonus on helpless targets."
+icon = "NWPreyOnTheWeak"
+internal_name = "NWPreyOnTheWeak"
+min_spent = 10
+ranks = 2
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    8,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamage"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Nature's Warrior: Ghost Wolf Pack"
+cost_per_rank = [1]
+description = """
+Deals +20% Damage
++2 Critical Threat Range
+Cooldown: 1 minute
+Wolf Form Melee Attack: When you trigger this, spectral pack mates appear to
+assault all foes before you. On Hit: applies a 5 second confusion effect with
+no save. Bosses are immune to the confusion. When you activate this attack,
+you gain 35% Incorporeal defense for 10 seconds."""
+icon = "NWGhostWolfPack"
+internal_name = "NWGhostWolfPack"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [35]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Incorporeality"
+
+[[enhancement.modifier.requirement]]
+items = ["Ghost Wolf Pack"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["NWGhostWolf"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Warrior: Essence of the Shrike"
+cost_per_rank = [1]
+description = """
+Striking a blow focuses your mind and body. When you critically hit an enemy while
+in any Wolf or Bear form, you gain [10/20] temporary spell points for 8 seconds.
+Note: Effect is also granted when your animal companion critically hits.
+Passive: +[5/10] Positive Spell power."""
+icon = "NWEssenceOfTheShrike"
+internal_name = "NWEssenceOfTheShrike"
+min_spent = 10
+ranks = 2
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Nature's Warrior: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Strength or Wisdom"
+icon = "StrWis"
+internal_name = "NWAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Nature's Warrior: Fatal Harrier"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Killing an enemy grants you a 5% Enchantment bonus to attack speed for 20 seconds.
+You also gain a +1 bonus to Reflex saves. This stacks [1/3/5] times.
+
+Enemies your own level or higher have a 100% chance of inspiring your Ferocity
+to greater heights. For every level below you, the chances are reduced by 20%.
+A monster two levels below you only has a 60% chance of creating this effect."""
+icon = "NWFatalHarrier"
+internal_name = "NWFatalHarrier"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Fatal Harrier"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+stack_source = "Fatal Harrier"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    5,
+    5,
+]
+bonus_type = "Enchantment"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Enemy Kill"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NWFight"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Warrior: Four Legs Good"
+cost_per_rank = [1]
+description = """
+You ignore most effects that would knock you down.
+Requires: Any Wolf, Bear or Tree form."""
+icon = "NWFourLegsGood"
+internal_name = "NWFourLegsGood"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Knockdown"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Nature's Warrior: Ferocity"
+cost_per_rank = [1]
+description = """
+Gain +[2/4/6] Melee Power in Wolf or Bear form.
+Double this bonus if using Barbarian Rage or Rage of the Beast."""
+icon = "NWFerocity"
+internal_name = "NWFerocity"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+display_name = "Nature's Warrior: Ferocity - Raged"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Nature's Warrior: Great White Wolf or Bad Wolf"
+cost_per_rank = [2]
+description = "Increase the power of your Wolf Form."
+icon = "NWGreatWhiteWolf"
+internal_name = "NWGreatWhiteWolf"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Bad Wolf"
+cost_per_rank = [2]
+description = """
+Gain +15 Acid and Poison Spell power.
+In Plague or Blighted Wolf Form gain 30% Acid Absorption."""
+icon = "NWBadWolf"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Poison",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Acid"]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Great White Wolf"
+cost_per_rank = [2]
+description = """
+Gain +30 Cold spell power.
+In Winter Wolf form gain 30% Cold absorption."""
+icon = "NWGreatWhiteWolf"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Nature's Warrior: Ability II"
+cost_per_rank = [2]
+description = "Choose either Strength or Wisdom"
+icon = "StrWis"
+internal_name = "NWAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NWAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Nature's Warrior: Alpha Strike"
+cost_per_rank = [2]
+description = """
+Deals +50% Damage
+Spell Point Cost: 6
+Cooldown: 12 seconds
+Cleave Attack: You fight for leadership amongst your foes. On Hit: targets
+above 85% health it reduce their attack Melee, Range, and Universal Spell Power
+by 25 for 15 seconds.
+
+Requires: Any Wolf, Bear or Tree form."""
+icon = "NWAlphaStrike"
+internal_name = "NWAlphaStrike"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["NWFatalHarrier"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nature's Warrior: Swift Hunter"
+cost_per_rank = [2]
+description = """
+While in Wolf form you gain Evasion. Armor restrictions apply as normal.
+
+While in Wolf or Plague Wolf Form, your Combat Speed Bonus to Attack Speed is
+improved to 15%.
+
+While in Blighted Wolf Form, your Combat Speed Bonus to Attack Speed is
+improved to 25%.
+
+While in Winter Wolf Form, Your Combat Speed Bonus to Attack Speed is improved
+to 30%."""
+icon = "NWSwiftHunter"
+internal_name = "NWSwiftHunter"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Evasion"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Combat Style"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Nature's Warrior: Throat Rip"
+cost_per_rank = [1]
+description = """
+Requires Wolf Form. Melee attack that strikes 3 times, adds 6 sneak attack dice
+on each attack. Each hit on a living target inflicts a Bleed which causes 1d6
+every 3 seconds for 18 seconds. Bleed stacks up to 10 times and scales with 200%
+melee power.
+Target must also make a Fortitude save or will be silenced for 15 seconds.
+Bosses are immune to Silence but take a 25 point spell power debuff.
+Cooldown: 15 seconds.
+
+Stun vs Fortitude DC: 10 + Druid Level + Max(Str, Wis) + Stun bonuses."""
+icon = "NWThroatRip"
+internal_name = "NWThroatRip"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.dc]]
+name = "Nature's Warrior: Throat Rip"
+amount = [10]
+base_class_level = "Druid"
+dc_type = "Silence"
+dc_versus = "Fortitude"
+description = """
+Requires Wolf Form. Melee attack that strikes 3 times, adds 6 sneak attack dice
+on each attack. Each hit on a living target inflicts a Bleed which causes 1d6
+every 3 seconds for 18 seconds. Bleed stacks up to 10 times and scales with 200%
+melee power.
+
+Target must also make a Fortitude save or will be silenced for 15 seconds."""
+icon = "NWThroatRip"
+mod_ability = [
+    "Strength",
+    "Wisdom",
+]
+tactical = "Stun"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Nature's Warrior: Jaws of the Wolf"
+cost_per_rank = [2]
+description = """
+After using Jaws of Winter or Jaws of Doom you gain 10 times your character level
+in temporary hit points for 30 seconds."""
+icon = "NWJawsOfIce"
+internal_name = "NWJawsOfIce"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Nature's Warrior: Go for the Kill"
+cost_per_rank = [1]
+description = """
+Deals +40% Damage
++1 Critical Multiplier
++5 Critical Threat Range
+Cost: 15 Spell points.
+Cooldown: 20 seconds.
+Requires Wolf form. You charge your target and strike them in an attempt to
+knock them down. This also grants yourself a +15 melee power boost for 30 seconds.
+
+Charging from a distance of over 10 meters the melee power bonus is doubled.
+Deals an additional 50 points of damage to helpless targets. Scales with
+melee power. A successful Balance check negates Knockdown.
+
+Trip vs Balance DC: 10 + Druid Level + Max(Str, Wis) + Trip bonuses."""
+icon = "NWGoForTheKill"
+internal_name = "NWGoForTheKill"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.dc]]
+name = "Nature's Warrior: Go for the Kill"
+amount = [10]
+base_class_level = "Druid"
+dc_type = "Knockdown"
+dc_versus = "Balance"
+description = """
+Requires Wolf form. You charge your target and strike them in an attempt to
+knock them down. This also grants yourself a +15 melee power boost for 30 seconds.
+
+Charging from a distance of over 10 meters the melee power bonus is doubled.
+Deals an additional 50 points of damage to helpless targets. Scales with
+melee power. A successful Balance check negates Knockdown."""
+icon = "NWThroatRip"
+mod_ability = [
+    "Strength",
+    "Wisdom",
+]
+tactical = "Trip"
+
+[[enhancement.requirement]]
+items = ["Druid"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Druid"]
+req_type = "BaseClass"

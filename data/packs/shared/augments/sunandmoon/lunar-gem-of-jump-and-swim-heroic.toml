@@ -1,0 +1,36 @@
+name = "Lunar Gem of Jump and Swim (Heroic)"
+description = """
++2 Profane Bonus to Jump and Swim
+Drops in: Cold Snap, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Jump"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Swim"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect_type = "SkillBonus"
+targets = [
+    "Jump",
+    "Swim",
+]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"

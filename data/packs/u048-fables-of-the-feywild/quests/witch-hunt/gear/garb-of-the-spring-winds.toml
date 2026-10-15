@@ -1,0 +1,45 @@
+name = "Garb of the Spring Winds"
+description = "This outfit seems to have been inspired by the clothing of the Eladrin."
+drop_location = "Witch Hunt, End chest"
+enhancement_bonus = 2
+icon = "Cloth_4"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 5
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 59
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 14
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Witch Hunt"

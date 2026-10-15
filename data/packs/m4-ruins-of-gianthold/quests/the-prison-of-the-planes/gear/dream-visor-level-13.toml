@@ -1,0 +1,30 @@
+name = "Dream Visor (Level 13)"
+description = """
+The world as seen through this visor is a very strange place. People and things
+are distorted and almost ethereal. Things that were previously hidden are now
+visible."""
+drop_location = "The Prison of the Planes, Dal Quor room's chest (Heroic Hard)"
+icon = "Goggles_12a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Goggles"
+
+[[effect]]
+name = "Dream Vision"
+bonus_type = "Competence"
+value = 1
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 13
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "dal quor room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"

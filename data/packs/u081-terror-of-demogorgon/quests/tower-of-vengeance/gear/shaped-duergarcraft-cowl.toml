@@ -1,0 +1,38 @@
+name = "Shaped Duergarcraft Cowl"
+description = "A coal made by Duergar craftspeople, combining metal parts and fine cloth."
+drop_location = "Tower of Vengeance, Cormoran Stoneboots ' chest"
+icon = "Helmet_1"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 11
+slot = "Head"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Quality"
+value = 2
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "cormoran stoneboots ' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Tower of Vengeance"

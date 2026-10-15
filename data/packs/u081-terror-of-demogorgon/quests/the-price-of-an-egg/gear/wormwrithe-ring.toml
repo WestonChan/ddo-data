@@ -1,0 +1,37 @@
+name = "Wormwrithe Ring"
+description = """
+You would swear that this ring, made from the desiccated tendrils of a Purple
+Worm, moves on its own once in a great while."""
+drop_location = "The Price of an Egg, end chest"
+icon = "Ring_24"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Ring"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 6
+
+[[socket]]
+slot = "crafting: nearly complete: healing amplification (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Price of an Egg"

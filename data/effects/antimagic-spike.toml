@@ -1,0 +1,3 @@
+name = "Antimagic Spike"
+description_template = "This item was made from powerful antimagic materials. When scoring a critical hit on an enemy with your ranged or melee weapons, the target must make a DC 28 Fortitude save or be unable to cast spells for a brief duration."
+verbose_name_template = "Antimagic Spike"

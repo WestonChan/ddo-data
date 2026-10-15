@@ -1,0 +1,11 @@
+name = "Greater Elemental Spell Power"
+description_template = "Harnessing a small amount of the power and potential of the raw elements, this item gives you a +100 bonus to your maximum spell points. This stacks with all other bonuses except Greater Elemental Spell Power."
+home_bonus_type = "Greater Elemental Spell Power"
+verbose_name_template = "Greater Elemental Spell Power +100"
+
+[[bonus]]
+amount_from = 0
+constant = 100
+rounding = "down"
+scale = 1.0
+target = "Spell Points"

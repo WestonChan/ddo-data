@@ -1,0 +1,30 @@
+name = "If It Wasn't For Bad Luck"
+bestowed_by = "Ervo the Curious"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+zone = "Abandoned Dwarven Temple"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/If_It_Wasn%27t_For_Bad_Luck"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 37
+
+[[run]]
+tier = "legendary"
+level = 37

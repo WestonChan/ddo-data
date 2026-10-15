@@ -1,0 +1,29 @@
+name = "Death's Door (trinket)"
+description = """
+A shiny mirrored shard of glass that holds the reflection of a glowing white
+door no matter from which angle it is viewed."""
+drop_location = "The Shadow Crypt"
+icon = "Trinket_71"
+item_category = "Jewelry"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Dimension Door"
+clickie = "Dimension Door"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Dimension Door"]
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Shadow Crypt"

@@ -1,0 +1,802 @@
+name = "Eladrin Chaos Mage"
+background = "ElfBackground"
+icon = "Eladrin"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Wild Magic I"
+cost_per_rank = [1]
+description = """
+You gain a +2 bonus to your Wild Surge Luck, increasing your chances of positive
+outcomes."""
+icon = "WMStudentOfChaosI"
+internal_name = "EladrinWMCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Ability I"
+cost_per_rank = [2]
+description = "Choose between Intelligence, Wisdom, or Charisma."
+icon = "IntWisCha"
+internal_name = "EladrinWMCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+items = ["EladrinWMCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Wild Magic II"
+cost_per_rank = [1]
+description = "Your Wild Surge Luck bonus is increased to 3."
+icon = "WMStudentOfChaosII"
+internal_name = "EladrinWMCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.requirement]]
+items = ["EladrinWMCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Ability II"
+cost_per_rank = [2]
+description = "Choose between Intelligence, Wisdom, or Charisma."
+icon = "IntWisCha"
+internal_name = "EladrinWMCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+items = ["EladrinWMCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Wild Magic III"
+cost_per_rank = [1]
+description = "Your Wild Surge Luck bonus is increased to 5."
+icon = "WMStudentOfChaosIII"
+internal_name = "EladrinWMCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.requirement]]
+items = ["EladrinWMCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Nothing is Hidden"
+cost_per_rank = [1]
+description = """
+Your senses are so acute that you no longer need to spend time searching for
+the obvious. You will automatically perform a Search check to locate traps and
+secret doors when you are in range to Spot them, although this Search check occurs
+at a -[12/8/4] penalty."""
+icon = "ElfNothingIsHidden"
+internal_name = "EladrinWMNothingIsHidden"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["EladrinWMKeenSenses"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Keen Senses"
+arrows = ["ArrowLeft"]
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, and Spot."
+icon = "ElfKeenSenses"
+internal_name = "EladrinWMKeenSenses"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Chaos Control I"
+cost_per_rank = [2]
+description = "Very bad Wild Magic Surges shift to just bad for you."
+icon = "EladrinWMChaosControlI"
+internal_name = "EladrinWMChaosControlI"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Arcane Fey Step"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = """
+Disappear and reappear several feet in front of you. You start with 2 charges
+per Rest. Based on your season, this has an additional effect:
+
+Spring: You gain a +3 to Universal Spell Power per Character Level, for 10 seconds.
+
+Summer: You gain a +20% bonus to Spell Cost Reduction for 10 seconds.
+
+Autumn: You gain +5 bonus to Magical Resistance Rating and Magical Resistance
+Rating Cap, +1 per Character Level for 10 seconds.
+
+Winter: You gain a +2 bonus to Spell Penetration, with an additional +1 per 5
+Character Levels, for 10 seconds."""
+icon = "EladrinFeyStep"
+internal_name = "EladrinWMArcaneFeyStep"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Step Through The Fade"
+cost_per_rank = [1]
+description = "+[1/2/3] charges of Fey Step per rest."
+icon = "EladrinStepThroughTheFade"
+internal_name = "EladrinWMStepThroughTheFade"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.requirement]]
+items = ["EladrinWMArcaneFeyStep"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Minor Spring Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[3/5/10] Electric and Sonic Spell Power. Your Spring Affinity grants you an additional
++[3/5/10] Electric and Sonic Spell Power."""
+icon = "EladrinMinorSpringAttunement"
+internal_name = "EladrinWMMinorSpringAttunement"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    5,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Sonic",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    5,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Electric",
+    "Sonic",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Spring Affinity"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Minor Summer Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[3/5/10] Fire and Light Spell Power. Your Summer Affinity grants you an additional
++[3/5/10] Fire and Light Spell Power."""
+icon = "EladrinMinorSummerAttunement"
+internal_name = "EladrinWMMinorSummerAttunement"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    5,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    5,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Summer Affinity"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Arcanum"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+[25/50/100] spell points and +[1/2/3] spell penetration."
+icon = "Arcanum"
+internal_name = "EladrinWMArcanum"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Minor Autumn Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[3/5/10] Acid and Poison Spell Power. Your Autumn Affinity grants you an additional
++[3/5/10] Acid and Poison Spell Power."""
+icon = "EladrinMinorAutumnAttunement"
+internal_name = "EladrinWMMinorAutumnAttunement"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    5,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Poison",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    5,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Acid",
+    "Poison",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Autumn Affinity"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Minor Winter Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[3/5/10] Cold and Negative Spell Power. Your Winter Affinity grants you an additional
++[3/5/10] Cold and Negative Spell Power."""
+icon = "EladrinMinorWinterAttunement"
+internal_name = "EladrinWMMinorWinterAttunement"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    5,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Negative",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    5,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Cold",
+    "Negative",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Winter Affinity"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Major Spring Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+the Quicken Metamagic costs 1 SP less.
+Your Spring Affinity grants an additional +1 Charisma."""
+icon = "EladrinMajorSpringAttunement"
+internal_name = "EladrinWMMajorSpringAttunement"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier.requirement]]
+items = ["Spring Affinity"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["EladrinWMMinorSpringAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Major Summer Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+The Maximize Metamagic costs 1 SP less.
+Your Summer Affinity grants an additional +1 Strength."""
+icon = "EladrinMajorSummerAttunement"
+internal_name = "EladrinWMMajorSummerAttunement"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement]]
+items = ["Summer Affinity"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["EladrinWMMinorSummerAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Fey Sight"
+cost_per_rank = [2]
+description = """
+While you have 100 or more spell points, you can see things as they truly are.
+You are able to see invisible creatures and pierce illusions."""
+icon = "ElfFeySight"
+internal_name = "EladrinWMFeySight"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["EladrinWMArcanum"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Major Autumn Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+The Empower Metamagic costs 1 SP less.
+Your Autumn Affinity grants an additional +1 Wisdom."""
+icon = "EladrinMajorAutumnAttunement"
+internal_name = "EladrinWMMajorAutumnAttunement"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.modifier.requirement]]
+items = ["Autumn Affinity"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["EladrinWMMinorAutumnAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Major Winter Attunement"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+The Heighten Metamagic costs 1 SP less.
+Your Winter Affinity grants an additional +1 Intelligence."""
+icon = "EladrinMajorWinterAttunement"
+internal_name = "EladrinWMMajorWinterAttunement"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.modifier.requirement]]
+items = ["Winter Affinity"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["EladrinWMMinorWinterAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Spring Storm"
+cost_per_rank = [2]
+description = """
+A spell-Like Ability that creates dark storm cloud over the target which blasts
+it and nearby enemies with lightning for 1d6+2 electric damage for every caster
+level. If targets are immune to electric damage they become vulnerable to it for
+15 seconds. Max caster level 20. Evocation DC using the highest of Intelligence,
+Charisma or Wisdom.
+Cost: 5 Spell Points
+Cooldown: 10 seconds
+
+Can only be used if you have Spring Affinity Active."""
+icon = "EladrinWMSpringStorm"
+internal_name = "EladrinWMSpringStorm"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Spring Storm",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["EladrinWMMajorSpringAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Scorching Summer"
+cost_per_rank = [2]
+description = """
+A spell-Like Ability that sends out a blast of fire from the caster striking
+nearby enemies for 1d6+2 Fire damage for every caster level. If targets are immune
+to fire damage they become vulnerable to it for 15 seconds. Max caster level 20.
+Evocation DC using the highest of Intelligence, Charisma or Wisdom.
+Cost: 5 Spell Points
+Cooldown: 10 seconds
+
+Can only be used if you have Summer Affinity Active."""
+icon = "EladrinWMScorchingSummer"
+internal_name = "EladrinWMScorchingSummer"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Scorching Summer",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["EladrinWMMajorSummerAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Eladrin Chaos Control II"
+cost_per_rank = [2]
+description = "Bad Wild Magic Surges shift to just neutral for you."
+icon = "EladrinWChaosControlII"
+internal_name = "EladrinWChaosControlII"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Autumn Decay"
+cost_per_rank = [2]
+description = """
+A spell-Like Ability that sends out a wind of acidic decay from the caster striking
+nearby enemies for 1d6+2 Acid damage for every caster level. If targets are immune
+to Acid damage they become vulnerable to it for 15 seconds. Max caster level 20.
+Evocation DC using the highest of Intelligence, Charisma or Wisdom.
+Cost: 5 Spell Points
+Cooldown: 10 seconds
+
+Can only be used if you have Autumn Affinity Active."""
+icon = "EladrinWMAutumnDecay"
+internal_name = "EladrinWMAutumnDecay"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Autumn Decay",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["EladrinWMMajorAutumnAttunement"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Eladrin Chaos Mage: Winter Hail"
+cost_per_rank = [2]
+description = """
+A spell-Like Ability that pounds a location with hail causing 1d6+2 Cold damage
+for every caster level. If targets are immune to cold damage they become vulnerable
+to it for 15 seconds. Max caster level 20. Evocation DC using the highest of
+Intelligence, Charisma or Wisdom.
+Cost: 5 Spell Points
+Cooldown: 10 seconds
+
+Can only be used if you have Winter Affinity Active."""
+icon = "EladrinWMWinterHail"
+internal_name = "EladrinWMWinterHail"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    5,
+    20,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Winter Hail",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["EladrinWMMajorWinterAttunement"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Eladrin Chaosmancer"]
+req_type = "Race"

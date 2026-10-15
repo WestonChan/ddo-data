@@ -1,0 +1,60 @@
+name = "Legendary Duelist's Epee"
+accepts_sentience = true
+description = "This Rapier is ideal for any who fancy themselves a duelist."
+drop_location = "The Haunting of Saltmarsh, end chest, or Legendary version of Epic Duelist's Epee"
+enhancement_bonus = 15
+icon = "Rapier_1j"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Flametouched Iron"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Humanoid Bane 6"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Mortal Strike"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest, or legendary version of epic duelist's epee"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunting of Saltmarsh"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "One-handed"
+weapon_type = "Rapier"

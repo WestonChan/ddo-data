@@ -1,0 +1,26 @@
+name = "The Master's Gift"
+description = "+5% Enhancement bonus to all earned Experience Points"
+family = "Named"
+icon = "TheMastersGift"
+min_level = 1
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

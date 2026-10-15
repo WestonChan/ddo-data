@@ -1,0 +1,20 @@
+name = "Boots of Striding and Springing"
+description = """
+These boots increase the wearer's land speed by +15% and give a +5 competence
+bonus to the Jump skill."""
+drop_location = "Random, rare drop in any Loot Level 9 Chest/Reward"
+icon = "Boots_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Feet"
+
+[[effect]]
+name = "Striding"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 5

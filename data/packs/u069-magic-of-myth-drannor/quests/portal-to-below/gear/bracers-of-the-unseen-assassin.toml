@@ -1,0 +1,43 @@
+name = "Bracers of the Unseen Assassin"
+description = """
+An assassin's job is to remain silent, and Elven assassins took that charge
+seriously."""
+drop_location = "Portal to Below, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Wrists"
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Assassinate"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 5
+value2 = 8
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Portal to Below"

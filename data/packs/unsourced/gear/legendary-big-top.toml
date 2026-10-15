@@ -1,0 +1,48 @@
+name = "Legendary Big Top"
+description = """
+This is the strange, formal hat that Malicia was wearing when she was defeated.
+Placing it atop one's head confers a greater understanding of all things magical."""
+drop_location = "Legendary version of Epic Big Top"
+icon = "Helmet_14a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Head"
+
+[[clickie]]
+name = "Otto's Irresistible Dance"
+clickie = "Otto's Irresistible Dance"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Otto's Irresistible Dance"]
+
+[[socket]]
+slot = "colorless"

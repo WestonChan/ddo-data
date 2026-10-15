@@ -1,0 +1,35 @@
+name = "Green Steel Greatclub"
+description = """
+A more formidable version of a simple club, this two-handed weapon is occasionally
+reinforced with spikes or bands of iron."""
+drop_location = "Special event items, Festivult (Gold Coin Rewards)"
+enhancement_bonus = 5
+icon = "GreatClub_1l"
+item_category = "Weapon"
+item_type = "Great Club"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[socket]]
+slot = "crafting: weapon invasion"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Great Club"

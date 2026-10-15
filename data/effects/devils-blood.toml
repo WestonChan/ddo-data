@@ -1,0 +1,3 @@
+name = "Devil's Blood"
+description_template = "This artifact, while equipped, grants you some of the innate protections of a Horned Devil. You are warded against Curses, Poison, and Fear."
+verbose_name_template = "Devil's Blood"

@@ -1,0 +1,969 @@
+name = "Aasimar"
+background = "HumanBackground"
+icon = "Aasimar"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Aasimar: Stronger Bonds I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1 use of Healing Hands per rest."
+icon = "StrongerBondsI"
+internal_name = "AasimarCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Racial"
+effect_type = "SLACharge"
+targets = ["Healing Hands"]
+
+[[enhancement]]
+name = "Aasimar: Ability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose either Strength, Wisdom or Charisma"
+icon = "StrWisCha"
+internal_name = "AasimarCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AasimarCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection.requirement]]
+items = ["AasimarCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection.requirement]]
+items = ["AasimarCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection.requirement]]
+items = ["AasimarCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar: Stronger Bonds II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Protector Bond now grants +2% Dodge.
+Fallen Bond now grants +2 to Tactics DCs."""
+icon = "StrongerBondsII"
+internal_name = "AasimarCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Aasimar: Protector Bond"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Aasimar: Fallen Bond"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["AasimarCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar: Ability II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose either Strength, Wisdom or Charisma"
+icon = "StrWisCha"
+internal_name = "AasimarCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["AasimarCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.selection.requirement]]
+items = ["AasimarCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.selection.requirement]]
+items = ["AasimarCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.selection.requirement]]
+items = ["AasimarCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar: Stronger Bonds III"
+cost_per_rank = [1]
+description = "+2 more uses of Healing Hands per rest."
+icon = "StrongerBondsIII"
+internal_name = "AasimarCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Racial"
+effect_type = "SLACharge"
+targets = ["Healing Hands"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["AasimarCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar: Fight the Wicked I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to hit and damage vs. Evil creatures."
+icon = "FightTheWickedI"
+internal_name = "FightTheWickedI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Enemy"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Aasimar: Counsel"
+cost_per_rank = [1]
+description = "+[1/2/3] to the Heal, Listen, and Spot skills"
+icon = "Counsel"
+internal_name = "Counsel"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Listen",
+    "Spot",
+]
+
+[[enhancement]]
+name = "Aasimar: True Resilience"
+cost_per_rank = [1]
+description = "+[1/2/3] to your Will or Reflex Saving Throws"
+icon = "TrueResilience"
+internal_name = "TrueResilience"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.selection]]
+name = "Protector"
+cost_per_rank = [1]
+description = "+[1/2/3] to your Will Saving Throw"
+icon = "TrueResilience"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.selection.requirement]]
+items = ["Aasimar: Protector Bond"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Fallen"
+cost_per_rank = [1]
+description = "+[1/2/3] to your Reflex Saving Throw"
+icon = "TrueResilienceFallen"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.selection.requirement]]
+items = ["Aasimar: Fallen Bond"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Aasimar: Bold"
+cost_per_rank = [1]
+description = """
+You overcome fear quickly.
+Fear and shaken effects are removed from you after [12/6/3] seconds."""
+icon = "Bold"
+internal_name = "Bold"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement]]
+name = "Aasimar: Improved Recovery I"
+arrows = ["LongArrowUp"]
+cost_per_rank = [2]
+description = "+20 Healing Amplification"
+icon = "HumanImprovedRecovery"
+internal_name = "ImprovedRecoveryI"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement]]
+name = "Aasimar: Fight the Wicked II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to hit and damage vs. Evil creatures."
+icon = "FightTheWickedII"
+internal_name = "FightTheWickedII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Enemy"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["FightTheWickedI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar: Arcanum"
+cost_per_rank = [2]
+description = "+[25/50/100] spell points and +[1/2/3] spell penetration."
+icon = "Arcanum"
+internal_name = "AasimarArcanum"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Aasimar: Divine Purpose"
+cost_per_rank = [1]
+description = """
+Gain an active ability with one charge per rest.
+Must have your Bond Feat active to use."""
+icon = "DivinePurpose"
+internal_name = "DivinePurpose"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.selection]]
+name = "Divine Purpose: Protector"
+cost_per_rank = [1]
+description = """
+You sprout ethereal wings, the marks of the Protector.
+For one minute, you gain a Determination Bonus to Healing Amplification and
+Positive Spell Power equal to your Character Level."""
+icon = "DivinePurpose"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Determination"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Divine Purpose"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+]
+bonus_type = "Determination"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Divine Purpose"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = ["Aasimar: Protector Bond"]
+req_type = "Feat"
+
+[[enhancement.selection.stance]]
+name = "Aasimar: Divine Purpose"
+description = """
+You sprout ethereal wings, the marks of the Protector.
+For one minute, you gain a Determination Bonus to Healing Amplification and
+Positive Spell Power equal to your Character Level."""
+icon = "DivinePurpose"
+
+[[enhancement.selection]]
+name = "Divine Purpose: Fallen"
+cost_per_rank = [1]
+description = """
+You sprout weird wings of a Fallen Aasimar.
+For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Doublestrike."""
+icon = "Fallen"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Primal"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Divine Purpose"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Primal"
+effect_type = "Doublestrike"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Divine Purpose"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = ["Aasimar: Fallen Bond"]
+req_type = "Feat"
+
+[[enhancement.selection.stance]]
+name = "Aasimar: Divine Purpose"
+description = """
+You sprout weird wings of a Fallen Aasimar.
+For one minute, you gain +2 Primal bonus to Strength and +5% Primal bonus to Doublestrike."""
+icon = "Fallen"
+
+[[enhancement]]
+name = "Aasimar: Divine Resolve"
+cost_per_rank = [1]
+description = "Select between Charisma and Strength while your Divine Purpose is active."
+icon = "DivineResolve"
+internal_name = "DivineResolve"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.selection]]
+name = "Charisma"
+cost_per_rank = [1]
+description = "+[1/2/3] Charisma while your Divine Purpose is active."
+icon = "DivineResolve"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Divine Purpose"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Strength"
+cost_per_rank = [1]
+description = "+[1/2/3] Strength while your Divine Purpose is active."
+icon = "DivineResolveStr"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Divine Purpose"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Aasimar: Fight The Wicked III"
+cost_per_rank = [1]
+description = "+1 to hit and damage vs. Evil creatures."
+icon = "FightTheWickedIII"
+internal_name = "FightTheWickedIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Evil Enemy"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["FightTheWickedII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar: Divine Charge"
+cost_per_rank = [1]
+description = "+[1/2/3] Purpose Charges"
+icon = "DivineCharge"
+internal_name = "DivineCharge"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement]]
+name = "Aasimar: Blessing"
+cost_per_rank = [1]
+description = "+[10/20/30] Positive Spellpower"
+icon = "Blessing"
+internal_name = "Blessing"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement]]
+name = "Aasimar: Improved Recovery II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+20 Healing Amplification"
+icon = "HumanImprovedRecovery"
+internal_name = "ImprovedRecoveryII"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["ImprovedRecoveryI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Aasimar: Celestial Tutelage"
+cost_per_rank = [1]
+description = "Choose one of the following."
+icon = "CelestialTutelage"
+internal_name = "CelestialTutelage"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.selection]]
+name = "Tower Shield Proficiency"
+cost_per_rank = [1]
+description = "You are proficient with Tower Shields"
+icon = "TowerShield"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Tower Shield Proficiency"]
+
+[[enhancement.selection]]
+name = "Bastard Sword Proficiency"
+cost_per_rank = [1]
+description = "You are proficient with Bastard Swords"
+icon = "CelestialTutelage"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Exotic Weapon Proficiency: Bastard Sword"]
+
+[[enhancement.selection]]
+name = "Magical Training"
+cost_per_rank = [1]
+description = "You gain the benefits of the Magical Training feat"
+icon = "MagicalTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Magical Training"]
+
+[[enhancement.selection]]
+name = "Quick Draw"
+cost_per_rank = [1]
+description = "You gain the Quick Draw feat"
+icon = "QuickDraw"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Quick Draw"]
+
+[[enhancement]]
+name = "Aasimar: Ascendant Bond"
+cost_per_rank = [1]
+description = """
+Toggle: 30sp, toggles off on rest.
+Must have your Bond Feat active to use. Mutually exclusive with Form feats (PM, Druid, etc)."""
+icon = "DivineFormProtector"
+internal_name = "DivineForm"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.selection]]
+name = "Protector"
+cost_per_rank = [1]
+description = """
+You gain +3 stacking bonus to all Saving Throws,
+5% Sacred Bonus to Max HP, and a +10 Determination Bonus to PRR and MRR."""
+icon = "DivineFormProtector"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Ascendant Bond: Protector"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+apply_as_item_effect = true
+bonus_type = "Sacred"
+effect_type = "HitpointsPercent"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Ascendant Bond: Protector"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Determination"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Ascendant Bond: Protector"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = ["Aasimar: Protector Bond"]
+req_type = "Feat"
+
+[[enhancement.selection.stance]]
+name = "Aasimar: Ascendant Bond: Protector"
+description = """
+You gain +3 stacking bonus to all Saving Throws,
+5% Sacred Bonus to Max HP, and a +10 Determination Bonus to PRR and MRR.
+
+You must have Protectors Bond active to use its Ascendant Form. This is not
+compatible with other major Form toggles, such as Wild Shape or Celestial Spirit."""
+group_name = "Major Form"
+icon = "DivineFormProtector"
+
+[[enhancement.selection]]
+name = "Fallen"
+cost_per_rank = [1]
+description = """
+You gain immunity to Fear, a +10 Determination bonus to Melee Power and Ranged Power,
+and your melee weapon attacks add a stack of Vulnerability once per second.
+
+You must have Bond of the Fallen active to use its Ascendant Form. This is not
+compatible with other major Form toggles, such as Wild Shape or Celestial Spirit."""
+icon = "DivineFormFallen"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Ascendant Bond: Fallen"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Determination"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Aasimar: Ascendant Bond: Fallen"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+items = ["Aasimar: Fallen Bond"]
+req_type = "Feat"
+
+[[enhancement.selection.stance]]
+name = "Aasimar: Ascendant Bond: Fallen"
+description = """
+You gain immunity to Fear, a +10 Determination bonus to Melee Power and Ranged Power,
+and your melee weapon attacks add a stack of Vulnerability once per second."""
+group_name = "Major Form"
+icon = "DivineFormFallen"
+
+[[enhancement]]
+name = "Aasimar: Improved Recovery III"
+cost_per_rank = [2]
+description = "+20 Healing Amplification"
+icon = "HumanImprovedRecovery"
+internal_name = "ImprovedRecoveryIII"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["ImprovedRecoveryII"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Aasimar"]
+req_type = "Race"

@@ -1,0 +1,992 @@
+name = "Wood Elf"
+background = "ElfBackground"
+icon = "WoodElf"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Wood Elf: Accuracy I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks.\nYour Point Blank Shot and Ranged Sneak Attack range is increased by 2 meters for \neach Elven Core Ability you possess from this tree."
+icon = "ElfElvenAccuracy"
+internal_name = "WoodElfCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Wood Elf: Nature I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose between +1 Dexterity or +1 Strength"
+icon = "StrDex"
+internal_name = "WoodElfCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["WoodElfCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Wood Elf: Accuracy II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks."
+icon = "ElfElvenAccuracy"
+internal_name = "WoodElfCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["WoodElfCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wood Elf: Nature II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose between +1 Dexterity or +1 Strength"
+icon = "StrDex"
+internal_name = "WoodElfCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["WoodElfCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement]]
+name = "Wood Elf: Accuracy III"
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks."
+icon = "ElfElvenAccuracy"
+internal_name = "WoodElfCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["WoodElfCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wood Elf: Adept of Trees"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Tumble and Hide skills
++[1/2/3] to Saves versus Poison and Disease"""
+icon = "WoodElfAdeptOfTrees"
+internal_name = "WoodElfAdeptOfTrees"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Disease"]
+
+[[enhancement]]
+name = "Wood Elf: Child of Nature"
+cost_per_rank = [1]
+description = """
+You are able to produce an Entangle effect using a drop of your blood.
+Cost: 1 HP and 10 spell points.
+Primal magic awakens plants and vines to grasp at the caster's enemies.
+Entangled creatures suffer a 90% penalty to movement speed, a 50% attack
+speed penalty and a -1 penalty to attack rolls, AC and Reflex.
+A successful Reflex save (DC: 10 + Half Character Level + Wisdom Modifier)
+negates the effect. Entangled creatures may leave the affected area to
+escape it's effects, or attempt to  make a Strength check every 2 seconds
+to negate. Area of effect fire spells will destroy these vines and free
+any entangled creatures. Incorporeal creatures and oozes are naturally immune.
+Fire elementals and other fire creatures are immune because they burn
+through the plants."""
+icon = "ElfChildOfNature"
+internal_name = "WoodElfChildOfNature"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Entangle",
+    "None",
+]
+
+[[enhancement]]
+name = "Wood Elf: Keen Senses"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, and Spot."
+icon = "ElfKeenSenses"
+internal_name = "WoodElfKeenSenses"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement]]
+name = "Wood Elf: Weapon Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Grants +1 to hit and damage with Longswords, Rapiers, Scimitars, Shortbows,
+and Longbows, as well as +1 to hit and +2 to damage with Falchions."""
+icon = "WoodElfElvenWeaponTraining"
+internal_name = "WoodElfElvenWeaponTrainingI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longsword",
+    "Rapier",
+    "Scimitar",
+    "Shortbow",
+    "Longbow",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Falchion"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Falchion"]
+
+[[enhancement]]
+name = "Wood Elf: Arcane Fluidity"
+cost_per_rank = [1]
+description = """
+Your arcane spell failure chance while wearing armor is decreased by [5/10/15]%.
+(This has no effect on arcane spell failure from shields.)"""
+icon = "ElfArcaneFluidity"
+internal_name = "WoodElfArcaneFluidity"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement]]
+name = "Wood Elf: Wild Step"
+cost_per_rank = [1]
+description = """
+Passive: +5 to Tumble.
+When you tumble, you gain a +10% Action Boost bonus to movement speed and a 10%
+Action Boost bonus to Missile Deflection for 10 seconds.
+Cooldown: 30 seconds."""
+icon = "WoodElfWildStep"
+internal_name = "WoodElfWildStep"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Tumble"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MovementSpeed"
+
+[[enhancement.modifier.requirement]]
+items = ["ActionBoost"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MissileDeflection"
+
+[[enhancement.modifier.requirement]]
+items = ["ActionBoost"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Wood Elf: Enchantment Lore"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[2/4/6] saves vs. Enchantments.
+Rank 3: You also gain +1 Enchantment spell DC"""
+icon = "ElfEnchantmentLore"
+internal_name = "WoodElfEnchantmentLore"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Enchantment"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+rank = 3
+targets = ["Enchantment"]
+
+[[enhancement]]
+name = "Wood Elf: Nothing is Hidden"
+cost_per_rank = [1]
+description = """
+Your senses are so acute that you no longer need to spend time searching for
+the obvious. You will automatically perform a Search check to locate traps and
+secret doors when you are in range to Spot them, although this Search check occurs
+at a -[12/8/4] penalty."""
+icon = "ElfNothingIsHidden"
+internal_name = "WoodElfNothingIsHidden"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["WoodElfKeenSenses"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wood Elf: Weapon Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Grants +1 to hit and damage with Longswords, Rapiers, Scimitars, Shortbows,
+and Longbows, as well as +1 to hit and +2 to damage with Falchions."""
+icon = "WoodElfElvenWeaponTraining"
+internal_name = "WoodElfElvenWeaponTrainingII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longsword",
+    "Rapier",
+    "Scimitar",
+    "Shortbow",
+    "Longbow",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Falchion"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Falchion"]
+
+[[enhancement.requirement]]
+items = ["WoodElfElvenWeaponTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wood Elf: Arcanum"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+[25/50/100] spell points and +[1/2/3] spell penetration."
+icon = "Arcanum"
+internal_name = "WoodElfArcanum"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Wood Elf: Forest Origins"
+cost_per_rank = [1]
+description = "Choose an option:"
+icon = "WoodElfForestOrigins"
+internal_name = "WoodElfForestOrigins"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.selection]]
+name = "Faith of the Forest"
+cost_per_rank = [1]
+description = "You now count Rapiers, Falchions, and Shortbows as Favored Weapons, regardless of your Deity."
+icon = "WoodElfFaithOfTheForest"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Favored Weapon",
+    "Rapier",
+    "Falchion",
+    "Shortsword",
+]
+
+[[enhancement.selection]]
+name = "Oath of the Wild"
+cost_per_rank = [1]
+description = """
+You take an oath to forgo metal armor, metal shields, and Rune Arms.
+As long as you do not have these equipped, you gain +10 PRR."""
+icon = "WoodElfOathOfTheWild"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rune Arm"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Metal Armor"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Metal Shield"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Rugged Upbringing"
+cost_per_rank = [1]
+description = "While raging, you gain +5% Doublestrike with Longswords, Rapiers, Scimitars and Falchions."
+icon = "WoodElfForestOrigins"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Longsword"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rapier"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Scimitar"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Falchion"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Wood Elf: Fey Energy Tap"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = """
+Activate: A drop of blood lets you tap into the endless energy of the realm
+of the fey, giving yourself or an ally temporary spell points, 10% incorporeality,
+and a -2 penalty to Will saving throws while they last. This ability can be used
+5 times per rest."""
+icon = "ElfFeyEnergyTap"
+internal_name = "WoodElfFeyEnergyTap"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fey Energy Tap",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["WoodElfEnchantmentLore"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wood Elf: Fey Sight"
+cost_per_rank = [2]
+description = """
+While you have 100 or more spell points, you can see things as they truly are.
+You are able to see invisible creatures and pierce illusions."""
+icon = "ElfFeySight"
+internal_name = "WoodElfFeySight"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["WoodElfFeyEnergyTap"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wood Elf: Weapon Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Grants +1 to hit and damage with Longswords, Rapiers, Scimitars, Shortbows,
+and Longbows, as well as +1 to hit and +2 to damage with Falchions."""
+icon = "WoodElfElvenWeaponTraining"
+internal_name = "WoodElfElvenWeaponTrainingIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longsword",
+    "Rapier",
+    "Scimitar",
+    "Shortbow",
+    "Longbow",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Falchion"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Falchion"]
+
+[[enhancement.requirement]]
+items = ["WoodElfElvenWeaponTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wood Elf: Arcane Archer"
+cost_per_rank = [4]
+description = "You gain access to the Arcane Archer enhancement tree."
+icon = "ElfArcaneArcher"
+internal_name = "WoodElfArcaneArcher"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "EnhancementTree"
+
+[[enhancement.requirement]]
+items = ["WoodElfArcanum"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wood Elf: Forest's Versatility"
+cost_per_rank = [1]
+description = "Choose an option:"
+icon = "WoodElfForestsVersatility"
+internal_name = "WoodElfForestsVersatility"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.selection]]
+name = "Drive Them Back"
+cost_per_rank = [1]
+description = "+10% Chance of Shield Bash with non-metal shields."
+icon = "WoodElfDriveThemBack"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SecondaryShieldBash"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Metal Shield"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Ferocity"
+cost_per_rank = [1]
+description = "+3 to Damage while using Two Handed Weapons."
+icon = "WoodElfFerocity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Two Handed"]
+
+[[enhancement.selection]]
+name = "Like a Leaf"
+cost_per_rank = [1]
+description = "+2 to Attack and Damage while Single Weapon Fighting."
+icon = "WoodElfLikeALeaf"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Single Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Through the Branches"
+cost_per_rank = [1]
+description = "+3% Doubleshot with Longbows and Shortbows."
+icon = "WoodElfThroughTheBranches"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doubleshot"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Longbow"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Shortbow"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Vigor"
+cost_per_rank = [1]
+description = """
+Vigor SLA: A positive energy conjuration that heals 1d6,
++1 per 3 caster levels (max +3 at caster level 9), every 2 seconds for 8 seconds.
+When the initial effect expires, a smaller healing effect that heals 1 HP every
+5 seconds for 30 seconds is applied."""
+icon = "WoodElfVigor"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Vigor",
+    "None",
+]
+
+[[enhancement.selection]]
+name = "Wild Swings"
+cost_per_rank = [1]
+description = "+5% Offhand Strike Chance."
+icon = "WoodElfWildSwings"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement]]
+name = "Wood Elf: Forest's Finesse"
+cost_per_rank = [1]
+description = "You may use Dexterity modifier for To Hit and Damage on all weapons."
+icon = "WoodElfForestsFinesse"
+internal_name = "WoodElfForestsFinesse"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+extra_types = ["Weapon_DamageAbility"]
+targets = [
+    "Dexterity",
+    "All",
+]
+
+[[enhancement]]
+name = "Wood Elf: Weapon Training IV"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = """
+Grants +1 to hit and damage with Longswords, Rapiers, Scimitars, Shortbows,
+and Longbows, as well as +1 to hit and +2 to damage with Falchions."""
+icon = "WoodElfElvenWeaponTraining"
+internal_name = "WoodElfElvenWeaponTrainingIV"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longsword",
+    "Rapier",
+    "Scimitar",
+    "Shortbow",
+    "Longbow",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["Falchion"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Falchion"]
+
+[[enhancement.requirement]]
+items = ["WoodElfElvenWeaponTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Wood Elf: Skill"
+cost_per_rank = [1]
+description = "+3% Doublestrike, +3% Doubleshot, +3% dodge, and bypass 3% dodge."
+icon = "ElfSkill"
+internal_name = "WoodElfSkill"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = [
+    "Doubleshot",
+    "DodgeBonus",
+    "DodgeBypass",
+]
+
+[[enhancement.requirement]]
+items = ["WoodElfElvenWeaponTrainingIV"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Wood Elf"]
+req_type = "Race"

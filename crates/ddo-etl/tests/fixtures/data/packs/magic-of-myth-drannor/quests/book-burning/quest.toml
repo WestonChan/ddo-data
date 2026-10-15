@@ -1,0 +1,27 @@
+name = "Book Burning"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Magic of Myth Drannor"
+patron = "Cormanthor Elves"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-28"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 35

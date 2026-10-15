@@ -1,0 +1,21 @@
+name = "+15% Fire Absorption"
+description = "Fire Absorption +15%: Passive: +15% Equipment Bonus to Fire Absorption."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Equipment"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[slot]]
+slot = "crafting: incredible potential"

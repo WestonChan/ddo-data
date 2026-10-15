@@ -1,0 +1,23 @@
+name = "Scary Festival Mask"
+description = "This is a scary festival mask."
+drop_location = "Special event items, Trivia Contest reward for Correct Answer"
+icon = "Helmet_72"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Head"
+
+[[clickie]]
+name = "Scare"
+clickie = "Scare"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    8,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Scare"]

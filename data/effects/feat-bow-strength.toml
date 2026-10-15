@@ -1,0 +1,3 @@
+name = "Feat - Bow Strength"
+description_template = "While equipped this item grants the feat Bow Strength, allowing you to apply your Strength bonus to ranged attacks made with bows."
+verbose_name_template = "Feat - Bow Strength"

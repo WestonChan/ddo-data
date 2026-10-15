@@ -1,0 +1,11 @@
+name = "Fire Guard VIII"
+description_template = "When Hit in Melee: Deals 8 to 32 Fire damage to your attacker."
+verbose_name_template = "Fire Guard VIII"
+
+[[note]]
+kind = "effect"
+field = "verbose_name_template"
+upstream = "Fire Guard II"
+reason = "The wiki line uses this effect title; Maetrim copied an unrelated title into the template."
+url = "https://ddowiki.com/page/Item:Guardian%27s_Bracers_(level_26)"
+read = "2026-10-05"

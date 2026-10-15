@@ -1,0 +1,12 @@
+name = "Dolorous Shadows (Legendary)"
+description = """
+Your attacks and offensive spells have a chance to apply a Curse that deals
+significant Untyped damage over time.
+(Undocumented: Like Legendary Steam with 6d6+6 damage every 2 seconds for 12 sec,
+consecutive attacks extend duration to 1 min 25 sec)"""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

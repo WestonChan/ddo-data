@@ -1,0 +1,43 @@
+name = "Ethereal Kukri"
+description = """
+A subtle mist surrounds this weapon. It is likely quite useful against certain
+Undead foes that other weapons have a hard time connecting with."""
+drop_location = "Morten Edgewright, Turn in 1 Ethereal Ingot"
+enhancement_bonus = 1
+icon = "Kukri_1j"
+item_category = "Weapon"
+item_type = "Kukri"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Morten Edgewright"
+
+[[source.price]]
+ingredient = "Ethereal Ingot"
+quantity = 1
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Kukri"

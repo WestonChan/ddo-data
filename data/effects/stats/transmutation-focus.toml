@@ -1,0 +1,5 @@
+name = "Transmutation Focus"
+category = "magical"
+description_template = "{1} %b1 bonus to the DC of Transmutation spells."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Transmutation Focus +{1}"

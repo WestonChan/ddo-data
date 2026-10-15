@@ -1,0 +1,3 @@
+name = "Max Dex Bonus (Armor)"
+category = "defensive"
+verbose_name_template = "%b1 Max Dex Bonus (Armor) +{1}"

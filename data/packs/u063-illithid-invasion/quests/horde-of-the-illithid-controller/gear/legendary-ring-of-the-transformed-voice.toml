@@ -1,0 +1,42 @@
+name = "Legendary Ring of the Transformed Voice"
+description = """
+Those who wear this ring find their words have become more authoritative, though
+the effect can be unsettling."""
+drop_location = "Horde of the Illithid Controller, end chest"
+icon = "Ring_26a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 32
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Quality"
+value = 37
+
+[[effect]]
+name = "Universal Spell Lore"
+bonus_type = "Exceptional"
+value = 5
+
+[[effect]]
+name = "Enchantment Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Horde of the Illithid Controller"

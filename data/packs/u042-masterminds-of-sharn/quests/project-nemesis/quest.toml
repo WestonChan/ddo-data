@@ -1,0 +1,26 @@
+name = "Project Nemesis"
+bestowed_by = "Lieutenant Zaira Dane"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 10
+is_raid = true
+pack = "Masterminds of Sharn"
+patron = "Sharn City Council"
+zone = "Hazardous Prototype Repository"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Project_Nemesis"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

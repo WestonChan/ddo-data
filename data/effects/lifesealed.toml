@@ -1,0 +1,18 @@
+name = "Lifesealed"
+description_template = "You are immune to magical effects that cause instant death. In addition, you have a +{1}% enhancement bonus to Negative Energy Absorption."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Lifesealed +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Negative Absorption"
+
+[[note]]
+kind = "effect"
+field = "description_template"
+upstream = "You are immune to magical effects that cause instant death. In addition, you have a {1} %b1 bonus to Negative Energy Absorption."
+reason = "The wiki tooltip measures Lifesealed's Negative Energy Absorption as a percentage."
+url = "https://ddowiki.com/page/Item:Legendary_Lolth%27s_Protection"
+read = "2026-10-05"

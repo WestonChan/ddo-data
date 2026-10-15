@@ -1,0 +1,5 @@
+name = "Dodge"
+category = "defensive"
+description_template = "{1} %b1 bonus to Dodge."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Dodge +{1}%"

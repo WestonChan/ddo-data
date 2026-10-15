@@ -1,0 +1,25 @@
+name = "Sheltering +33"
+description = "Legendary Enhancement bonus to Sheltering (PRR/MRR)"
+family = "Slavelords_Legendary"
+icon = "SlavelordsPrefix"
+min_level = 28
+
+[[effect]]
+name = "Physical Resistance Rating"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Enhancement"
+value = 33
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [33]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[slot]]
+slot = "crafting: legendary slavelords prefix"

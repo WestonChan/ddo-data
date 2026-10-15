@@ -1,0 +1,23 @@
+name = "Band of Light"
+description = "Let light spread throughout the world."
+drop_location = "Advance to level 15, End reward"
+icon = "Ring_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 15
+race_required = "Sun Elf"
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 13
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

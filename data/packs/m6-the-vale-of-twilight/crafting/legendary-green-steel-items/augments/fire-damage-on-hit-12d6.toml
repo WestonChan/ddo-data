@@ -1,0 +1,27 @@
+name = "Fire damage on hit - 12d6"
+description = "Dominion/Fire: This weapon does an additional 12d6 Fire damage on any hit."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Fire"
+dice_number = [12]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_damage = "Fire"
+dice_number = [12]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

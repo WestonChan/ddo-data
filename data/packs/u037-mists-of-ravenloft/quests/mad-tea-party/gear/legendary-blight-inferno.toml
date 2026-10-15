@@ -1,0 +1,60 @@
+name = "Legendary Blight Inferno"
+drop_location = "Mad Tea Party, End Chest"
+icon = "RuneArm_1b"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 29
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Quality"
+value = 35
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Tira's Splendor"
+
+[[effect]]
+name = "Rune Arm Imbue - Fire IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Corrupted Fire Blast",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Mad Tea Party"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

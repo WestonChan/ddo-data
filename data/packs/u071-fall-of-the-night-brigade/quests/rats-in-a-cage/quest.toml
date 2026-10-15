@@ -1,0 +1,30 @@
+name = "Rats in a Cage"
+bestowed_by = "Ryndalla Cuttail"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Fall of the Night Brigade"
+patron = "The Harpers"
+zone = "The Battlemaster's Arenas"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Rats_in_a_Cage"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4
+
+[[run]]
+tier = "epic"
+level = 35
+
+[[run]]
+tier = "legendary"
+level = 34

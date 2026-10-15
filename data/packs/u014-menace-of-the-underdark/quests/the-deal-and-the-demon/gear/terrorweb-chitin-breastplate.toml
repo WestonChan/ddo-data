@@ -1,0 +1,181 @@
+name = "Terrorweb Chitin Breastplate"
+description = """
+This breastplate has been fashioned from the hide and chitin of the vicious
+Terrorweb spiders."""
+drop_location = "The Deal and the Demon, Yugoloth Mercenaries chest"
+enhancement_bonus = 6
+icon = "MediumArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritcraft Leather"
+minimum_level = 22
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 15
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[effect]]
+name = "Superior Nimbleness"
+bonus_type = "Stacking"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "+8 Strength"
+description = "+8 Enhancement bonus to Strength"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "Insightful Strength +3"
+description = "+3 Insightful bonus to Strength"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Strength"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+8 Constitution"
+description = "+8 Enhancement bonus to Constitution"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "Insightful Constitution +3"
+description = "+3 Insightful bonus to Constitution"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "+8 Wisdom"
+description = "+8 Enhancement bonus to Wisdom"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Insightful Wisdom +3"
+description = "+3 Insightful bonus to Wisdom"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket]]
+slot = "crafting: upgrade"
+
+[[socket.option]]
+name = "Adds Amaunator's Blessing"
+description = """
+Amaunator's Blessing: When all three items from the set are equipped, you will
+gain a 10% Enhancement discount to the Spell Point cost of all your spells."""
+min_level = 22
+
+[[socket.option.set]]
+set = "Amaunator's Blessing"
+
+[[socket.option]]
+name = "Adds Knight's Loyalty"
+description = """
+Knight's Loyalty: When all three items from the set are equipped, you will gain
+a +3 artifact bonus to your To-Hit and Damage rolls, and a +3 Insight bonus to
+Natural Armor."""
+min_level = 22
+
+[[socket.option.set]]
+set = "Knight's Loyalty"
+
+[[source]]
+chest = "yugoloth mercenaries chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Deal and the Demon"

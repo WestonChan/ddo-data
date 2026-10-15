@@ -1,0 +1,3 @@
+name = "Spell Turmoil"
+description_template = "When casting any damaging Fire, Cold, Acid or Electric spells, there is a chance that you will gain a +20 Alchemical bonus to Spell Power to one of those energy types for 30 seconds."
+verbose_name_template = "Spell Turmoil"

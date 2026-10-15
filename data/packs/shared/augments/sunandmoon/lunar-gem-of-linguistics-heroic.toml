@@ -1,0 +1,43 @@
+name = "Lunar Gem of Linguistics (Heroic)"
+description = """
++2 Profane Bonus to Diplomacy, Intimidate and Bluff
+Drops in: The Body Snatchers, end chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Intimidate",
+    "Bluff",
+]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Body Snatchers"

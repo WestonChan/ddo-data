@@ -1,0 +1,49 @@
+name = "Legendary Cape of the Roc"
+description = """
+This elaborate garment is decorated with images of black-feathered rocs, giant
+birds rumored to live in far-off lands."""
+drop_location = "Legendary version of Epic Cape of the Roc"
+icon = "Cloak_3"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 30
+slot = "Back"
+
+[[clickie]]
+name = "Roc's Strength"
+clickie = "Roc's Strength"
+
+[[effect]]
+name = "Feather Falling"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    8,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Roc's Strength"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"

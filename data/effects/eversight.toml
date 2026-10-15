@@ -1,0 +1,3 @@
+name = "Eversight"
+description_template = "You benefit from the spell True Seeing and are Immune to Blindness."
+verbose_name_template = "Eversight"

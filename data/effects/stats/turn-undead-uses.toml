@@ -1,0 +1,4 @@
+name = "Turn Undead Uses"
+category = "other"
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Turn Undead Uses +{1}"

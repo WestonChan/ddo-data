@@ -1,0 +1,39 @@
+name = "Epic Skeleton Key"
+description = """
+An alabaster bone carved into a delicate, key-like shape. It appears to be nearly
+translucent and quite fragile."""
+drop_location = "Thrall of the Necromancer, End chest"
+icon = "Trinket_74"
+item_category = "Jewelry"
+material = "Bone"
+minimum_level = 25
+slot = "Trinket"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 19
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Thrall of the Necromancer"

@@ -1,0 +1,3 @@
+name = "Ghostbane II"
+description_template = "On Hit: 2 to 8 Bane Damage vs Undead. (Bane damage cannot be resisted.) Passive: Attacks from this weapon bypass the miss chance of incorporeal creatures, such as ghosts, shadows, and wraiths."
+verbose_name_template = "Ghostbane II"

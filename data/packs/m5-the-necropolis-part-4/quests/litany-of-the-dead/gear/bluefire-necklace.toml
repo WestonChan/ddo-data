@@ -1,0 +1,36 @@
+name = "Bluefire Necklace"
+description = "Soft blue pearls have been strung along a fire red strand."
+drop_location = "Litany of the Dead, Cinnis ' chest"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Neck"
+
+[[clickie]]
+name = "Fire Shield (Fire)"
+clickie = "Fire Shield (Fire)"
+
+[[effect]]
+name = "Greater Fire Resistance"
+bonus_type = "Enhancement"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Fire Shield (Fire)"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "cinnis ' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Litany of the Dead"

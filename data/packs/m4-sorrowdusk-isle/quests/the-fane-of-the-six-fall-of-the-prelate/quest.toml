@@ -1,0 +1,22 @@
+name = "The Fane of the Six: Fall of the Prelate"
+bestowed_by = "Lord Hragg of Grey Moon"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Sorrowdusk Isle"
+patron = "House Deneith"
+zone = "Sorrowdusk Temple"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Fane_of_the_Six:_Fall_of_the_Prelate"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

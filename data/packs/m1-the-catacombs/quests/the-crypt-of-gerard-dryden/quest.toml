@@ -1,0 +1,26 @@
+name = "The Crypt of Gerard Dryden"
+bestowed_by = "Thaddeus Graylight"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Catacombs"
+patron = "The Silver Flame"
+zone = "Dryden Family Tomb"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Crypt_of_Gerard_Dryden"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 23

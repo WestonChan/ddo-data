@@ -1,0 +1,39 @@
+name = "Epic Hruvayah's Medallion"
+description = """
+This heavy pendant bears the likeness of a many-armed woman with a serpentine
+body."""
+drop_location = "Epic version of Hruvayah's Medallion"
+icon = "Necklace_6a"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Poison Resistance"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 32
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"

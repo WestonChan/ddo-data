@@ -1,0 +1,45 @@
+name = "Downcast Robe"
+description = """
+Experimental socketry is integrated well into this garment, allowing it to push
+past its normal limits."""
+drop_location = "A Miner Sacrifice, end chest (rare)"
+enhancement_bonus = 4
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Exceptional"
+value = 3
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "lamordia: woeful (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "A Miner Sacrifice"

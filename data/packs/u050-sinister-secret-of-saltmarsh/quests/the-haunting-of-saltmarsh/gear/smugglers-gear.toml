@@ -1,0 +1,49 @@
+name = "Smuggler's Gear"
+description = "A good smuggler dresses light to stay quick on their feet."
+drop_location = "The Haunting of Saltmarsh, end chest"
+enhancement_bonus = 2
+icon = "LightArmor_8"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 3
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 2
+
+[[clickie]]
+name = "Blur"
+spell = "Blur"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Haste Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Blur"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunting of Saltmarsh"

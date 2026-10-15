@@ -1,0 +1,33 @@
+name = "Nightsinger's Mantle (Level 15)"
+description = """
+This dark cloak is woven with the magic of the shadow weave, imbuing necromantic
+effects into the wearer's sonic spells."""
+drop_location = "Shadow of a Doubt, End chest (Heroic Elite)"
+icon = "Cloak_3a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 15
+slot = "Back"
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Nightsinger"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Shadow of a Doubt"

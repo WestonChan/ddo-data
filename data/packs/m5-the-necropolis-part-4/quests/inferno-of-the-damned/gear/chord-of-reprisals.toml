@@ -1,0 +1,30 @@
+name = "Chord of Reprisals"
+description = """
+This cloth cord belt appears to have flames dancing down its length. When struck,
+this belt lashes out at the attacker with the intensity of the fires of hell."""
+drop_location = "Inferno of the Damned, end chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Waist"
+
+[[effect]]
+name = "Fire Guard II"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Inferno of the Damned"

@@ -1,0 +1,38 @@
+name = "The Only Exception (level 20)"
+description = "Mithral's a lot harder to come by these days."
+drop_location = "Anniversary Party, Turn in 60"
+enhancement_bonus = 6
+icon = "MediumArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 14
+armor_type = "Medium"
+max_dex_bonus = 14
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 15
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"

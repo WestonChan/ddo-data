@@ -1,0 +1,95 @@
+name = "Legendary Cooking By the Book"
+icon = "CookingByTheBook"
+
+[[item]]
+name = "Legendary Capelet of Cuisine"
+
+[[item]]
+name = "Legendary Cook's Coat"
+
+[[item]]
+name = "Legendary Feast of the Four Fighters Commemorative Cookbook"
+
+[[item]]
+name = "Legendary First Course Finder"
+
+[[item]]
+name = "Legendary Fried Sword Fish"
+
+[[item]]
+name = "Legendary Frozen Sword Fish"
+
+[[item]]
+name = "Legendary Hat of the Head Chef"
+
+[[item]]
+name = "Legendary Sword Fish"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "UniversalSpellPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Universal Spell Critical Damage"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]

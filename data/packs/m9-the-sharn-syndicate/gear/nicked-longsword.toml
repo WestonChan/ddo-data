@@ -1,0 +1,47 @@
+name = "Nicked Longsword"
+description = """
+A classic straight-bladed sword usable in one hand. This weapon is commonly
+associated with knighthood and valor. The pommel appears to have had a symbol
+that has been battered with a hammer."""
+drop_location = "The Sharn Syndicate, End reward"
+enhancement_bonus = 2
+icon = "Longsword_1l"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Chilling 2"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest_chain"
+name = "The Sharn Syndicate"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Longsword"

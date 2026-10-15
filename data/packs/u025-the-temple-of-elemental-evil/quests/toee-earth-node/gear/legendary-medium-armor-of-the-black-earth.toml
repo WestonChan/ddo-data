@@ -1,0 +1,45 @@
+name = "Legendary Medium Armor of the Black Earth"
+description = "Armor from deep within the Temple of Elemental Evil."
+drop_location = "ToEE: Earth Node, end chest and random locked chest"
+enhancement_bonus = 15
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 18
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 149
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest and random locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Earth Node"

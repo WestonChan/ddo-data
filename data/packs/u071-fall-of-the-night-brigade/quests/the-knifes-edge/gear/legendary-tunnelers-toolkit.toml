@@ -1,0 +1,45 @@
+name = "Legendary Tunneler's Toolkit"
+description = """
+The aspiring tunnel rat or sneaky scamp need look no further than the tools
+on this belt."""
+drop_location = "The Knife's Edge, end chest"
+icon = "Belt_14c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 33
+slot = "Waist"
+
+[[effect]]
+name = "Search"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Jump"
+bonus_type = "Quality"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Knife's Edge"

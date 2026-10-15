@@ -1,0 +1,31 @@
+name = "Intricate Field Optics (historic)"
+description = """
+These field optics are of too precise a workmanship for the ancient giants to
+have created them. They must have been assembled by elven artisans in the presence
+of a giant master."""
+drop_location = "Gianthold Tor, White Dragon 's chest"
+icon = "Goggles_5b"
+is_legacy = true
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 13
+slot = "Goggles"
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Secret Door Detection"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 2
+
+[[source]]
+chest = "white dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

@@ -1,0 +1,36 @@
+name = "Restored Dragoncraft Docent"
+description = "Ancient dragon magics have been incorporated into this docent."
+drop_location = "Dragoncraft Armor, Turn in 10 Restored Dragon Relics"
+enhancement_bonus = 6
+icon = "Docent_1g"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 23
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 20
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 9
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 7
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 6
+
+[[source]]
+kind = "crafting_system"
+name = "Dragoncraft Armor"

@@ -1,0 +1,117 @@
+[[row]]
+name = "Aussircaex's Defiance"
+acquire = "Train"
+description = """
+Minor Draconic Aura: You have taken on a small aspect of Aussircaex, the frozen
+foe of Korthos, which is reflected in your leadership. You and allies close to
+you get a +2 Morale Bonus to Saving Throws. You may have only one Minor Draconic
+Aura."""
+icon = "AussircaexsDefiance"
+source_name = "Dragon Lord"
+
+[[row.group]]
+group_name = "Minor Draconic Aura"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aussircaex's Defiance"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Dragon Lord"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[row]]
+name = "Nevalarich's Hunger"
+acquire = "Train"
+description = """
+Minor Draconic Aura: You have taken on a small aspect of Nevalarich, scourge of
+the Thunder Peaks, which is reflected in your leadership. You and allies close
+to you get a +2 Morale Bonus to Attack Rolls. You may have only one Minor Draconic
+Aura."""
+icon = "NevalarichsHunger"
+source_name = "Dragon Lord"
+
+[[row.group]]
+group_name = "Minor Draconic Aura"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Nevalarich's Hunger"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Dragon Lord"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[row]]
+name = "Thraxata's Instinct"
+acquire = "Train"
+description = """
+Minor Draconic Aura: You have taken on a small aspect of Thraxata, scourge of
+the Thunder Peaks, which is reflected in your leadership. You and allies close
+to you get a +2 Morale Bonus to Tactical Feat DCs. You may have only one Minor
+Draconic Aura."""
+icon = "ThraxatasInstinct"
+source_name = "Dragon Lord"
+
+[[row.group]]
+group_name = "Minor Draconic Aura"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    0,
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    7,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Thraxata's Instinct"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Stun",
+    "Sunder",
+]
+
+[[row.requirement]]
+items = ["Dragon Lord"]
+req_type = "ClassMinLevel"
+value = 1

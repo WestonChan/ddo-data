@@ -1,0 +1,15 @@
+name = "Pearl of Power V"
+description = """
+This seemingly normal pearl of average size and luster is a potent aid to all
+spell casters."""
+drop_location = "Random, level ~7 chests/rewards"
+icon = "Trinket_3"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 7
+slot = "Trinket"
+
+[[effect]]
+name = "Power V"
+bonus_type = "Enhancement"
+value = 50

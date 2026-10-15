@@ -1,0 +1,34 @@
+name = "Aspect of Mineral II"
+description = """
+Protection +5 and Fortification +100%
+Earth:Positive:Earth+Positive"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[effect]]
+name = "Armor Class"
+bonus_type = "Deflection"
+value = 5
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Equipment"
+value = 100
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Deflection"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Equipment"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

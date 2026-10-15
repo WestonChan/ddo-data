@@ -1,0 +1,29 @@
+name = "+25 Negative Resistance (Enhancement) and Deathblock"
+description = "Material/Opposition: +25 Enhancement bonus to Negative Resistance and Deathblock"
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Negative Resistance"
+bonus_type = "Enhancement"
+value = 25
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect = "Negative Resistance"
+effect_type = "EnergyResistance"
+targets = ["Negative"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Death Effects"]
+
+[[slot]]
+slot = "crafting: equipment tier 3"

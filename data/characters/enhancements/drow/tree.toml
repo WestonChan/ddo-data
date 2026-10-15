@@ -1,0 +1,719 @@
+name = "Drow"
+background = "DrowBackground"
+icon = "Drow"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Drow: Spell Resistance I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Your Spell Resistance increases by +2."
+icon = "DrowSpellResistance"
+internal_name = "DrowCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellResistance"
+
+[[enhancement]]
+name = "Drow: Ability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose either Dexterity, Intelligence or Charisma"
+icon = "DexChaInt"
+internal_name = "DrowCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+items = ["DrowCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Drow: Spell Resistance II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Your Spell Resistance increases by +2."
+icon = "DrowSpellResistance"
+internal_name = "DrowCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellResistance"
+
+[[enhancement.requirement]]
+items = ["DrowCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement]]
+name = "Drow: Ability II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Choose either Dexterity, Intelligence or Charisma"
+icon = "DexChaInt"
+internal_name = "DrowCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+items = ["DrowCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Drow: Spell Resistance III"
+cost_per_rank = [1]
+description = "Your Spell Resistance increases by +2."
+icon = "DrowSpellResistance"
+internal_name = "DrowCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellResistance"
+
+[[enhancement.requirement]]
+items = ["DrowCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement]]
+name = "Drow: Faerie Fire"
+cost_per_rank = [2]
+description = "Spell like Ability: Faerie Fire."
+icon = "DrowFaerieFire"
+internal_name = "DrowFaerieFire"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Faerie Fire",
+    "None",
+]
+
+[[enhancement]]
+name = "Drow: Vermin Lore"
+cost_per_rank = [1]
+description = """
+You gain a +[1/3/6] bonus to hit and to saving throws when fighting
+Vermin and vermin-like creatures, including Arachnids, Driders, Scorpions, Scorrows,
+and Spiders."""
+icon = "DrowVerminLore"
+internal_name = "DrowVerminLore"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement]]
+name = "Drow: Keen Senses"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, and Spot"
+icon = "DrowKeenSenses"
+internal_name = "DrowKeenSenses"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement]]
+name = "Drow: Xen'drik Weapon Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and damage with Rapiers, Shortswords, and Shuriken."
+icon = "DrowXendrikWeaponTraining"
+internal_name = "DrowXendrikWeaponTrainingI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Rapier",
+    "Shortsword",
+    "Shuriken",
+]
+
+[[enhancement]]
+name = "Drow: Arcane Fluidity"
+cost_per_rank = [1]
+description = "Your arcane spell failure chance while wearing armor is decreased by [5/10/15]%."
+icon = "DrowArcaneFluidity"
+internal_name = "DrowArcaneFluidity"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement]]
+name = "Drow: Enchantment Lore"
+cost_per_rank = [1]
+description = """
++[2/4/6] saves vs. Enchantments.
+Rank 3: You also gain +1 Enchantment spell DC"""
+icon = "DrowEnchantmentLore"
+internal_name = "DrowEnchantmentLore"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Enchantment"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+rank = 3
+targets = ["Enchantment"]
+
+[[enhancement]]
+name = "Drow: Venom Lore"
+arrows = ["LongArrowUp"]
+cost_per_rank = [1]
+description = """
++[1/2/3] Heal and Saves against Poison.
++[2/4/6] Poison Resistance against hit point damaging poisons."""
+icon = "DrowVenomLore"
+internal_name = "DrowVenomLore"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Heal"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Poison"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Poison"]
+
+[[enhancement]]
+name = "Drow: Nothing is Hidden"
+cost_per_rank = [1]
+description = """
+Your senses are so acute that you no longer need to spend time searching
+for the obvious. You will automatically perform a Search check to locate traps and
+secret doors when you are in range to Spot them, although this Search check occurs
+at a -[12/8/4] penalty."""
+icon = "DrowNothingIsHidden"
+internal_name = "DrowNothingIsHidden"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["DrowKeenSenses"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Drow: Xen'drik Weapon Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and damage with Rapiers, Shortswords, and Shuriken."
+icon = "DrowXendrikWeaponTraining"
+internal_name = "DrowXendrikWeaponTrainingII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Rapier",
+    "Shortsword",
+    "Shuriken",
+]
+
+[[enhancement.requirement]]
+items = ["DrowXendrikWeaponTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Drow: Ambidexterity"
+cost_per_rank = [1]
+description = """
+You gain +1 to hit when dual-wielding or fighting unarmed.
+Tier 2: Also gains +1% Dodge.
+Tier 3: Also gains +1 damage."""
+icon = "DrowAmbidexterity"
+internal_name = "DrowAmbidexterity"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Unarmed"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Handwraps"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+rank = 2
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Unarmed"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Handwraps"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+rank = 3
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Unarmed"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Handwraps"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Two Weapon Fighting"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Drow: Darkfire"
+cost_per_rank = [2]
+description = """
+Spell-like Ability: Fires a bolt of darkness that deals 1d12 damage per character
+level, Reflex DC (10 + Half Character Level + Charisma Modifier) Half Damage.
+At levels 11 and 21 an additional bolt is fired. Effects that grant Action Boost
+uses give you additional uses per rest of this ability."""
+icon = "DrowDarkfire"
+internal_name = "DrowDarkfire"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.dc]]
+name = "Drow: Darkfire"
+amount = [10]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+description = "Spell-like Ability: Fires a bolt of darkness that deals 1d12 damage per character level."
+icon = "DrowDarkfire"
+mod_ability = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Drow Dark Fire",
+    "None",
+]
+
+[[enhancement]]
+name = "Drow: Improved Dodge"
+cost_per_rank = [1]
+description = "+[1/2/3]% Dodge when wearing light or no armor."
+icon = "DrowImprovedDodge"
+internal_name = "DrowImprovedDodge"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Dodge"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Drow: Xen'drik Weapon Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to hit and damage with Rapiers, Shortswords, and Shuriken."
+icon = "DrowXendrikWeaponTraining"
+internal_name = "DrowXendrikWeaponTrainingIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Rapier",
+    "Shortsword",
+    "Shuriken",
+]
+
+[[enhancement.requirement]]
+items = ["DrowXendrikWeaponTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Drow: Imbue I"
+cost_per_rank = [1]
+description = "+1 Imbue Dice"
+icon = "DrowVenemousImbue"
+internal_name = "DrowImbueI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement]]
+name = "Drow: Venomed Blades"
+cost_per_rank = [2]
+description = """
+Poison Stance: On Hit: 1d8 Poison damage with weapon attacks.
+(This enhancement cannot be taken at the same time as Venomed Blades in the Assassin tree.)"""
+icon = "DrowVenomedBlades"
+internal_name = "DrowVenomedBlades"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DrowVenomLore"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["AssVenomedBlades"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "DrowVenomedBlades Blades"
+description = "On hit: 1d8 poison damage per Imbue Dice scaling with Melee or Ranged power."
+group_name = "Imbue"
+icon = "AssVenomedBlades"
+
+[[enhancement]]
+name = "Drow: Xen'drik Weapon Training IV"
+cost_per_rank = [2]
+description = "+1 to hit and damage with Rapiers, Shortswords, and Shuriken."
+icon = "DrowXendrikWeaponTraining"
+internal_name = "DrowXendrikWeaponTrainingIV"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Rapier",
+    "Shortsword",
+    "Shuriken",
+]
+
+[[enhancement.requirement]]
+items = ["DrowXendrikWeaponTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Drow: Imbue II"
+cost_per_rank = [1]
+description = "+1 Imbue Dice"
+icon = "DrowVenemousImbue"
+internal_name = "DrowImbueII"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[requirement]]
+items = ["Drow"]
+req_type = "Race"

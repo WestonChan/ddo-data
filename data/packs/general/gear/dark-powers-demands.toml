@@ -1,0 +1,49 @@
+name = "Dark Powers' Demands"
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 3
+icon = "Sickle_1"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Steel"
+minimum_level = 15
+race_required = "Dhampir Dark Bargainer"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 2
+
+[[note]]
+kind = "item"
+field = "name"
+upstream = "Dark Power's Demands"
+reason = "The wiki spells it Dark Powers' Demands."
+url = "https://ddowiki.com/page/Item:Dark_Powers%27_Demands"
+read = "2026-09-30"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Sickle"

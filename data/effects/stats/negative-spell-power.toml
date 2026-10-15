@@ -1,0 +1,4 @@
+name = "Negative Spell Power"
+category = "magical"
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Negative Spell Power +{1}"

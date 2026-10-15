@@ -1,0 +1,31 @@
+name = "Rakhat's Spangle"
+description = "A faint whispering sound surrounds this glowing purple gem."
+drop_location = "Durk's Got A Secret, Witch Doctor Rakhat 's Chest"
+icon = "Trinket_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 1
+
+[[removed]]
+kind = "item"
+name = "Rahkat's Spangle"
+reason = "The wiki and his own drop text spell the witch doctor Rakhat; his Rahkat's Spangle repeats Rakhat's Spangle's bonuses, level and drop."
+url = "https://ddowiki.com/page/Durk%27s_Got_a_Secret"
+read = "2026-10-01"
+
+[[source]]
+chest = "witch doctor rakhat 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Durk's Got a Secret"

@@ -1,0 +1,21 @@
+name = "Enter the Kobold"
+bestowed_by = "Khiin"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "The Reaver's Reach"
+patron = "Agents of Argonnessen"
+zone = "Volcanic Mine"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Enter_the_Kobold"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

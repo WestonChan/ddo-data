@@ -1,0 +1,28 @@
+name = "Curative Cloak"
+description = "This light cloak is rumored to help those in need."
+drop_location = "Redemption (quest), End reward"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 1
+slot = "Back"
+
+[[clickie]]
+name = "Cure Light Wounds"
+clickie = "Cure Light Wounds"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cure Light Wounds"]
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Redemption"

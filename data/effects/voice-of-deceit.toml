@@ -1,0 +1,36 @@
+name = "Voice of Deceit"
+description_template = "Passive: +20 Competence bonus to Bluff, Diplomacy, Haggle, and Perform skills."
+home_bonus_type = "Competence"
+verbose_name_template = "Voice of Deceit +20"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Competence"
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Bluff"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Competence"
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Diplomacy"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Competence"
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Haggle"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Competence"
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Perform"

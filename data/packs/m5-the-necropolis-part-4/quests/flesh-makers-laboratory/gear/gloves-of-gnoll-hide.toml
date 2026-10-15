@@ -1,0 +1,32 @@
+name = "Gloves of Gnoll Hide"
+description = """
+These gloves have a soft, tender feel to them; you hardly realize they're made
+of the flesh of a gnoll."""
+drop_location = "Flesh Maker's Laboratory, End chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Hands"
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 13
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flesh Maker's Laboratory"

@@ -1,0 +1,41 @@
+name = "Legendary Snakeskin Belt"
+description = "The fangs on this belt buckle are a little sharper than they need to be."
+drop_location = "Danger at Dunwater, end chest, or Legendary version of Epic Snakeskin Belt"
+icon = "Belt_14b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 30
+slot = "Waist"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Underwater Action"
+
+[[effect]]
+name = "Swim like a Fish"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic snakeskin belt"
+kind = "quest"
+loot_type = "chest"
+name = "Danger at Dunwater"

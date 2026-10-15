@@ -1,0 +1,39 @@
+name = "Mind and Matter"
+icon = "MindAndMatter"
+
+[[item]]
+name = "Legendary Omniscience"
+
+[[item]]
+name = "Legendary Ring of Thelis"
+
+[[item]]
+name = "Legendary Tumbleweed"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sheltering"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating Cap"
+effect_type = "MRRCap"

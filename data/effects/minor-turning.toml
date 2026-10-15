@@ -1,0 +1,11 @@
+name = "Minor Turning"
+description_template = "Increases total number of Turn Undead uses by 1, once wielder rests. If you unequip the item you will lose these turns."
+home_bonus_type = "Equipment"
+verbose_name_template = "Minor Turning +1"
+
+[[bonus]]
+amount_from = 0
+constant = 1
+rounding = "down"
+scale = 1.0
+target = "Turn Undead Uses"

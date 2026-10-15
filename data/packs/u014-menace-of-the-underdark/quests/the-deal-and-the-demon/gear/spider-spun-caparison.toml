@@ -1,0 +1,140 @@
+name = "Spider-spun Caparison"
+description = """
+The cloth of this outfit is spun entirely from the silk of some arachnid. It
+is strong, flexible, and nearly weightless."""
+drop_location = "The Deal and the Demon, Mercenary Chest"
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 22
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 9
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Reinforced Fists"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[note]]
+kind = "item_socket"
+field = "add"
+reason = "The wiki's Mikrom Sum upgrades Spider-spun Caparison into the Way of the Sun Soul set; his item has no upgrade socket."
+url = "https://ddowiki.com/page/Mikrom_Sum"
+read = "2026-09-30"
+qualifier = "crafting: upgrade"
+
+[[socket]]
+slot = "crafting: variant ability"
+
+[[socket.option]]
+name = "Dexterity +8"
+description = "Dexterity +8: This item makes the wearer more nimble and dexterous, granting a +8 enhancement bonus to Dexterity."
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "Insightful Dexterity +3"
+description = "+3 Insight bonus to Dexterity"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "Wisdom +8"
+description = "Wisdom +8: This item makes the wearer more in tune with her surroundings, granting a +8 enhancement bonus to Wisdom."
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Insightful Wisdom +3"
+description = "+3 Insight bonus to Wisdom"
+icon = "Variant"
+min_level = 22
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket]]
+slot = "crafting: upgrade"
+
+[[source]]
+chest = "mercenary chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Deal and the Demon"

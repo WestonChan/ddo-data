@@ -1,0 +1,39 @@
+name = "Lamordian Robe"
+description = "Timeless style, meant to protect from the bitter colds."
+drop_location = "Zoo Creeper, Lacheln 's chest"
+enhancement_bonus = 4
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 70
+
+[[socket]]
+slot = "lamordia: melancholic (armor)"
+
+[[socket]]
+slot = "lamordia: dolorous (armor)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "lacheln 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Zoo Creeper"

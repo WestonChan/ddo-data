@@ -17,8 +17,12 @@ pub(super) fn router() -> OpenApiRouter<AppState> {
     OpenApiRouter::new().routes(routes!(bonus_types)).routes(routes!(effects)).routes(routes!(effect_detail))
 }
 
-const BONUS_TYPES_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("stacks_with_self", "listed.stacks_with_self")];
+const BONUS_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("slug", "listed.name"),
+    ("id", "listed.id"),
+    ("stacks_with_self", "listed.stacks_with_self"),
+];
 
 declare_list_parameters!(BonusTypesParameters, BONUS_TYPES_SORT_FIELDS, "");
 
@@ -40,7 +44,7 @@ async fn bonus_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuery
             select_sql: "SELECT id, name, stacks_with_self FROM bonus_types",
             rows_key: "bonus_types",
             name_column: "listed.name",
-            default_order: "listed.id",
+            default_order: "listed.name",
             sortable_fields: BONUS_TYPES_SORT_FIELDS,
             flag_columns: &["stacks_with_self"],
         },
@@ -70,6 +74,7 @@ const EFFECT_TYPES_SQL: &str = "
 
 const EFFECTS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("kind", "listed.kind"),
     ("detail_path", "listed.detail_path"),
@@ -212,12 +217,14 @@ fn carrier_pages(
             db,
             "SELECT ob.owner_kind, ob.owner_id, ob.effect_link_order,
                     s.name AS stat, s.category AS stat_category, bt.name AS bonus_type,
-                    ob.amount AS value, ob.amount_source, ob.scale, g.id AS group_id, g.name AS group_name
+                    ob.amount AS value, ob.amount_source, ob.scale, g.id AS group_id, g.name AS group_name,
+                    g.slug AS group_slug
                FROM owner_bonuses ob JOIN effects s ON s.id = ob.stat_id
                LEFT JOIN effects g ON g.id = ob.group_effect_id
                LEFT JOIN bonus_types bt ON bt.id = ob.bonus_type_id
               WHERE (ob.via_effect_id = ?1 AND ?2 = 'effect') OR (ob.group_effect_id = ?1 AND ?2 = 'group')
-              ORDER BY ob.owner_kind, ob.owner_id, ob.effect_link_order, ob.stat_id",
+              ORDER BY ob.owner_kind, ob.owner_id, ob.effect_link_order,
+                       ob.effect_bonus_order, ob.group_member_order",
             rusqlite::params![id, kind],
         )? {
             let owner_kind = bonus["owner_kind"].as_str().unwrap_or("").to_string();
@@ -229,7 +236,12 @@ fn carrier_pages(
             object.remove("effect_link_order");
             let group_id = object.remove("group_id").unwrap_or(Value::Null);
             let group_name = object.remove("group_name").unwrap_or(Value::Null);
-            let group = if group_id.is_null() { Value::Null } else { json!({"id": group_id, "name": group_name}) };
+            let group_slug = object.remove("group_slug").unwrap_or(Value::Null);
+            let group = if group_id.is_null() {
+                Value::Null
+            } else {
+                json!({"id": group_id, "name": group_name, "slug": group_slug})
+            };
             object.insert("group".to_string(), group);
             bonuses_by_link.entry((owner_kind, owner_id, link_order)).or_default().push(bonus);
         }
@@ -273,19 +285,23 @@ fn carrier_pages(
     let current_items = if pages.include_legacy == Some(true) { "" } else { "WHERE NOT i.is_legacy" };
     let distinct = if kind == "group" { "DISTINCT" } else { "" };
     let items_sql = format!(
-        "SELECT {distinct} i.id, i.name, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
+        "SELECT {distinct} i.id, i.slug, i.name, '' AS owner_family, i.minimum_level AS owner_level,
+                i.description AS owner_description, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
            FROM item_effects j JOIN items i ON i.id = j.item_id {match_join}
           {current_items} ORDER BY i.name, j.sort_order",
         match_join = join_for("item", "item_id")
     );
     let augments_sql = format!(
-        "SELECT {distinct} a.id, a.name, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
+        "SELECT {distinct} a.id, a.slug, a.name, a.family AS owner_family, a.min_level AS owner_level,
+                a.description AS owner_description, {carrier_columns}, {match_id} AS match_id, j.sort_order AS link_order
            FROM augment_effects j JOIN augments a ON a.id = j.augment_id {match_join}
-          ORDER BY a.name, j.sort_order",
+          ORDER BY a.name, a.family, a.min_level, a.description, j.sort_order",
         match_join = join_for("augment", "augment_id")
     );
     let tiers_sql = format!(
-        "SELECT {distinct} t.id, s.id AS set_id, s.name AS set_name, t.equipped_count, {carrier_columns}, {match_id} AS match_id,
+        "SELECT {distinct} t.id, s.id AS set_id, s.name AS set_name, t.equipped_count,
+                s.name AS owner_family, t.equipped_count AS owner_level, '' AS owner_description,
+                {carrier_columns}, {match_id} AS match_id,
                 j.sort_order AS link_order,
                 s.name || ' (' || t.equipped_count || ')' AS name
            FROM set_bonus_tier_effects j JOIN set_bonus_tiers t ON t.id = j.tier_id
@@ -303,7 +319,8 @@ fn carrier_pages(
             db,
             &format!(
                 "SELECT * FROM ({links_sql}) listed WHERE listed.match_id = ?1
-                  ORDER BY listed.name, listed.id, listed.link_order"
+                  ORDER BY listed.name, listed.owner_family, listed.owner_level,
+                           listed.owner_description, listed.id, listed.link_order"
             ),
             [id],
         )?;
@@ -359,12 +376,13 @@ fn carrier_pages(
         }
         Ok(ListPage { total, limit, offset, rows })
     };
-    let items = page(items_sql, &["id", "name"], "item", pages.items_limit, pages.items_offset)?.into_json("items");
-    let augments = page(augments_sql, &["id", "name"], "augment", pages.augments_limit, pages.augments_offset)?
+    let items =
+        page(items_sql, &["id", "slug", "name"], "item", pages.items_limit, pages.items_offset)?.into_json("items");
+    let augments = page(augments_sql, &["id", "slug", "name"], "augment", pages.augments_limit, pages.augments_offset)?
         .into_json("augments");
     let tiers = page(
         tiers_sql,
-        &["id", "set_id", "set_name", "equipped_count", "name"],
+        &["set_id", "set_name", "equipped_count", "name"],
         "set_bonus_tier",
         pages.set_tiers_limit,
         pages.set_tiers_offset,

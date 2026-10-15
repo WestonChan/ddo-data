@@ -1,0 +1,25 @@
+name = "Dink's Leather Wraps"
+description = "This magical armor, a trophy of battle, is magically enhanced."
+drop_location = "Irestone Inlet, Dinks ' Chest"
+enhancement_bonus = 1
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 1
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 3
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "dinks ' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Irestone Inlet"

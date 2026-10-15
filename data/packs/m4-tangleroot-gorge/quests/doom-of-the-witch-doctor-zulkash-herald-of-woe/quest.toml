@@ -1,0 +1,30 @@
+name = "Doom of the Witch-doctor: Zulkash, Herald of Woe"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Tangleroot Gorge"
+patron = "House Phiarlan"
+zone = "Inner Splinterskull Fortress"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_Zulkash,_Herald_of_Woe"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "Doom Of The Witch Doctor: Zulkash, Herald Of Woe"
+reason = "The wiki titles the quest Doom of the Witch-doctor: Zulkash, Herald of Woe."
+url = "https://ddowiki.com/page/Doom_of_the_Witch-doctor:_Zulkash,_Herald_of_Woe"
+read = "2026-10-02"
+
+[[run]]
+tier = "heroic"
+level = 6

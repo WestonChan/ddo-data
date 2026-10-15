@@ -1,0 +1,14 @@
+name = "The Cursed Crypt"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "The Necropolis, Part 3"
+patron = "The Silver Flame"
+
+[[run]]
+tier = "heroic"
+level = 12

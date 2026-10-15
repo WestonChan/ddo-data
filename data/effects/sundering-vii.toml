@@ -1,0 +1,11 @@
+name = "Sundering VII"
+description_template = "On Hit: Your target suffers a -1 Penalty to Fortitude Saving Throws for 6 seconds. This effect stacks up to 5 times. This effect may only occur on-hit once every three seconds. Passive: The DC of the saving throw to resist your Sunder combat feats is increased by 12."
+home_bonus_type = "Equipment"
+verbose_name_template = "Sundering VII +12"
+
+[[bonus]]
+amount_from = 0
+constant = 12
+rounding = "down"
+scale = 1.0
+target = "Sunder DC"

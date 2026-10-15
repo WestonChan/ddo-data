@@ -1,0 +1,37 @@
+name = "Leather Gloves of the Snake"
+description = "These gloves are emblazoned with a green serpent."
+drop_location = "Kind of a Big Deal, End chest"
+icon = "Gloves_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 6
+slot = "Hands"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 8
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 8
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 8
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Kind of a Big Deal"

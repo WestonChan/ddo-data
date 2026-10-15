@@ -1,0 +1,86 @@
+name = "Legendary Docent of Shadow (Level 32)"
+description = """
+This docent is as dark as the night sky and almost seems to crawl visibly with
+moving shadows. It boosts the power of its wearer's negative energy magic,
+and grants a measure of necromantic protection against enemy attacks."""
+drop_location = "The Night Revels, Turn in Docent of Shadow (level 28) \n and 300 Piece of Darkest Chocolate; obtained in the Graveyard mob slayer, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 120 Shadowy Caramel; obtained in The Kobolds' Newest Ringleader, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 100 Pinch of Sinister Cinnamon; obtained in The Snitch and the Lich, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace"
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 32
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 32
+armor_bonus = 6
+armor_type = "Docent"
+mithral_body = 15
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 153
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Superior False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Boon of Undeath"
+
+[[effect]]
+name = "Nightshield"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[note]]
+kind = "item"
+field = "name"
+upstream = "Docent of Shadow (level 32)"
+reason = "The wiki titles this variant with the Legendary prefix."
+url = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
+read = "2026-09-29"
+
+[[note]]
+kind = "item_effect"
+original_name = "Docent of Shadow (level 32)"
+field = "add"
+reason = "The wiki item carries Nightshield with five charges."
+url = "https://ddowiki.com/page/Item:Legendary_Docent_of_Shadow_%28level_32%29"
+read = "2026-09-29"
+qualifier = "Nightshield"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[source]]
+chest = "the lich, hayweird foundry, or getting ahead in lordsmarch palace"
+kind = "quest"
+loot_type = "chest"
+name = "The Snitch"

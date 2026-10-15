@@ -1,0 +1,30 @@
+name = "Bracers of Spiderkind"
+description = "These drow-made bracers feature cobwebs and spider designs sewn into the leather."
+drop_location = "The Abandoned Excavation, End reward"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 9
+slot = "Wrists"
+
+[[clickie]]
+name = "Summon Monster IV"
+clickie = "Summon Monster IV"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Monster IV"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

@@ -1,0 +1,31 @@
+name = "Ring of Shadows (historic)"
+description = """
+You can just barely make out the outline of this ring as you hold it in your
+hand. It seems almost as if it has been formed out of dark clouds."""
+drop_location = "The Prison of the Planes, Mabar room chest"
+icon = "Ring_11"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Ring"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[source]]
+chest = "mabar room chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"

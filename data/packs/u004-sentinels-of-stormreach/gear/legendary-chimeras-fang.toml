@@ -1,0 +1,64 @@
+name = "Legendary Chimera's Fang"
+accepts_sentience = true
+description = """
+This fine bastard sword was forged for the dragonmarked of House Deneith. It
+it rumored to have powers that can only be used by those that bear the Mark
+of Sentinel."""
+drop_location = "Legendary version of Epic Chimera's Fang"
+enhancement_bonus = 15
+icon = "BastardSword_6b"
+item_category = "Weapon"
+item_type = "Bastard Sword"
+material = "Silver"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Shocking Blast VI"
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Utter Disintegration"
+
+[[effect]]
+name = "Legendary Chimera's Ferocity"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "One-handed"
+weapon_type = "Bastard Sword"

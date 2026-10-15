@@ -1,0 +1,67 @@
+name = "Hyrsam's Fiddle"
+description = """
+It seems Hyrsam's plot is foiled, for now. But what if, instead of turning this
+over to the Gatekeepers, you were to take his fiddle and use it as your own?
+Ohoho, delightfully devilish, adventurer."""
+drop_location = "The Dryad and the Demigod, End chest and optional chest"
+icon = "Orb_6"
+is_minor_artifact = true
+item_category = "Weapon"
+item_type = "Orb"
+material = "Wood"
+minimum_level = 29
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[effect]]
+name = "Sounding"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 5
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Insight"
+value = 77
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Quality"
+value = 38
+
+[[effect]]
+name = "Inspiration of the Inferno"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

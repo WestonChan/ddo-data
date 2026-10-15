@@ -1,0 +1,10 @@
+name = "Rough Hide"
+description_template = "This item fuses with your body and toughens your skin, providing a {1} %b1 bonus to your natural armor."
+home_bonus_type = "Primal"
+verbose_name_template = "%b1 Rough Hide +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"

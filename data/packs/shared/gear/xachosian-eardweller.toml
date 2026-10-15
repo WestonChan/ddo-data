@@ -1,0 +1,70 @@
+name = "Xachosian Eardweller"
+description = """
+A foul insectoid parasite that crawls into a host's ear, dramatically increasing
+their host's mental abilities. Terrible rumors abound about what happens when
+the eggs hatch."""
+drop_location = "Eye of the Titan, I Dream of Jeets, Finding the Path, and The Dreaming Dark : Random spawn after opening any chest. Default spawn rate is 0% on Normal, 2.5% on Hard, and 5% on Elite."
+icon = "Trinket_100"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 18
+slot = "Trinket"
+
+[[clickie]]
+name = "Xachosian Spell Frenzy"
+clickie = "Xachosian Spell Frenzy"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Listen"
+bonus_type = "Penalty"
+value = -7
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    18,
+    3,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Xachosian Spell Frenzy"]
+
+[[source]]
+chest = "random spawn after opening any chest. default spawn rate is 0% on normal, 2.5% on hard, and 5% on elite"
+kind = "quest"
+loot_type = "chest"
+name = "Eye of the Titan"
+
+[[source]]
+chest = "random spawn after opening any chest. default spawn rate is 0% on normal, 2.5% on hard, and 5% on elite"
+kind = "quest"
+loot_type = "chest"
+name = "Finding the Path"
+
+[[source]]
+chest = "random spawn after opening any chest. default spawn rate is 0% on normal, 2.5% on hard, and 5% on elite"
+kind = "quest"
+loot_type = "chest"
+name = "I Dream of Jeets"
+
+[[source]]
+chest = "random spawn after opening any chest. default spawn rate is 0% on normal, 2.5% on hard, and 5% on elite"
+kind = "quest"
+loot_type = "chest"
+name = "The Dreaming Dark"

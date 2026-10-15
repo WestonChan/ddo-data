@@ -1,0 +1,37 @@
+name = "Razorclaw Shifter"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Razorclaw Shifter is an Eberron Iconic (starting in Sharn) that represents a
+third Sub-race of Shifter, one focused on attacking things with claws. They get
+a unique set of attack animations when using Handwraps. This animation set is
+timed similar to Monk Handwrap animations.
+
+Starts with 1 level of: Barbarian"""
+iconic_class = "Barbarian"
+short_name = "Razorclaw"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Strength"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Intelligence"
+
+[[granted_feat]]
+feat = "Dismiss Rage"
+
+[[granted_feat]]
+feat = "Exotic Weapon Proficiency: Handwraps"
+
+[[granted_feat]]
+feat = "Razorclaw Shifter"
+
+[[granted_feat]]
+feat = "Razorclaw Shifter Traits"

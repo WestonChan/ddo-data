@@ -1,0 +1,41 @@
+name = "Legendary Cracked Symbol of Lolth"
+description = """
+This symbol was worn by a Devotee of Lolth into battle. Their faith was not
+enough to save them."""
+drop_location = "Stealing from Sorcere, end chest"
+icon = "Necklace_30b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 35
+slot = "Neck"
+
+[[effect]]
+name = "Void Intensity"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 24
+
+[[effect]]
+name = "Legendary Virulent Poison Guard"
+
+[[socket]]
+slot = "crafting: nearly complete: spell focus (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stealing from Sorcere"

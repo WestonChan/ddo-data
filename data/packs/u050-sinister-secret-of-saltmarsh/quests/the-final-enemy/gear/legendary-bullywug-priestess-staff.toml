@@ -1,0 +1,79 @@
+name = "Legendary Bullywug Priestess' Staff"
+accepts_sentience = true
+description = """
+This Quarterstaff is imbued with the Cold light of the depths. It appears to
+be attuned to profane magic."""
+drop_location = "The Final Enemy, end chest, or Legendary version of Epic Bullywug Priestess' Staff"
+enhancement_bonus = 15
+icon = "Quarterstaff_1i"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Flametouched Iron"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Frozen Depths Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Power of the Frozen Depths"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Bless Ward"
+
+[[effect]]
+name = "Bane of the Depths"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest, or legendary version of epic bullywug priestess' staff"
+kind = "quest"
+loot_type = "chest"
+name = "The Final Enemy"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

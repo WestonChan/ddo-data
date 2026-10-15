@@ -1,0 +1,71 @@
+name = "Raellia, the Frostblade"
+accepts_sentience = true
+description = """
+A razor-sharp column of stinging ice that sprang forth from your hands... Although
+it's not quite clear what has conjured it. The ice responds to the willpower
+and intuition of the wielder. As the Frost Blade is not physical, monks may
+use it without becoming uncentered."""
+drop_location = "The Dryad and the Demigod, End chest and optional chest"
+enhancement_bonus = 15
+icon = "Dagger_1l"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Ice"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Frostblade"
+
+[[effect]]
+name = "Chilling 6"
+
+[[effect]]
+name = "Icy Blast 6"
+
+[[effect]]
+name = "Legendary Freezing Ice"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Dagger",
+]
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"
+
+[[weapon]]
+attack_modifier = "Wisdom"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Wisdom"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Dagger"

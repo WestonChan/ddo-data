@@ -1,0 +1,3 @@
+name = "Undersun"
+description_template = "While this item is equipped in areas with Underdark radiation, your sight is augmented to allow you to discern your surroundings even with little or no light."
+verbose_name_template = "Undersun"

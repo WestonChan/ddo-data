@@ -1,0 +1,41 @@
+name = "Tail of the Demogorgon"
+description = """
+A piece of Demogorgon's forked tail. Its life-draining energy does not seem
+to be maintained in it, but it does seem to have interesting effects on ranged
+weapons."""
+drop_location = "Back to the Abyss, end chest"
+icon = "Trinket_112"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 11
+slot = "Trinket"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Marksmanship"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Back to the Abyss"

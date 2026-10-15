@@ -1,0 +1,27 @@
+name = "Archivist's Necklace"
+description = "This necklace is infused with the spirit of a mighty sorcerer."
+drop_location = "The Salvation of Korthos, End reward"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 1
+slot = "Neck"
+
+[[clickie]]
+name = "Minor Mnemonic Aid"
+clickie = "Minor Mnemonic Aid"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Minor Mnemonic Aid"]
+
+[[source]]
+kind = "quest_chain"
+name = "The Salvation of Korthos"

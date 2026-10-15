@@ -1,0 +1,4 @@
+name = "Spell Points"
+category = "magical"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Spell Points +{1}"

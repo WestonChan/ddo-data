@@ -1,0 +1,37 @@
+name = "Legendary Clockwork Boots"
+description = "These carry a subtle heat, as if they were still warm from the forge."
+drop_location = "Heart of the Problem, end chest"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Copper"
+minimum_level = 29
+slot = "Feet"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 142
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Heart of the Problem"

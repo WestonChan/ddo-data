@@ -1,0 +1,39 @@
+name = "Legendary Bracers of Order and Chaos"
+description = """
+A set of Bracers: One glowing faintly with the light of Order, the other smouldering
+in Chaos."""
+drop_location = "Lost at Sea, End chest (Right)"
+icon = "Bracers_6"
+item_category = "Clothing"
+material = "Stone"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Law Absorption"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 53
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 10
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Lost at Sea"

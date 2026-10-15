@@ -1,0 +1,40 @@
+name = "University Defender's Cloak"
+description = "This thick capelet has seen better days, but could likely be restored to glory."
+drop_location = "Grand Theft Aureon, End chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 18
+slot = "Back"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 35
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 26
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Grand Theft Aureon"

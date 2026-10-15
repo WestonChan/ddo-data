@@ -1,0 +1,27 @@
+name = "Sparkring"
+description = "This silver ring contains a single, magical topaz."
+drop_location = "The Hobgoblin Horde, End Chest"
+icon = "Ring_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Ring"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 38
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 19
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Hobgoblin Horde"

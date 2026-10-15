@@ -1,0 +1,42 @@
+name = "Magmatic Grasp"
+description = "Crush them with your fists."
+drop_location = "Fables of the Feywild, any chest"
+icon = "Gloves_7c"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Fire"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Alchemical Fire Attunement"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "any chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Fables of the Feywild"

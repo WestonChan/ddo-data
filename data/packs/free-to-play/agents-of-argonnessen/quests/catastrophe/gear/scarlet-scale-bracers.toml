@@ -1,0 +1,39 @@
+name = "Scarlet Scale Bracers"
+description = """
+These scales don't have the same power as true Red Dragonscales, but lingering
+Transmutation magic has left them useful nonetheless."""
+drop_location = "Catastrophe, End chest"
+icon = "Bracers_3e"
+item_category = "Clothing"
+material = "Red Dragonscale"
+minimum_level = 4
+slot = "Wrists"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Catastrophe"

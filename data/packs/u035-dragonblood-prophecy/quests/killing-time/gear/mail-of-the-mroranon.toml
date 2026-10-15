@@ -1,0 +1,49 @@
+name = "Mail of the Mroranon"
+description = """
+This powerful armor is an ancient keepsake of the Mroranon Clan of the Ironroot
+Mountains."""
+drop_location = "Killing Time, end chest"
+enhancement_bonus = 15
+icon = "MediumArmor_4a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritcraft Leather"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 16
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 145
+
+[[effect]]
+name = "Raging Inferno"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Killing Time"

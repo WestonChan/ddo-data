@@ -1,0 +1,27 @@
+name = "Asbestos Booties"
+description = """
+Heavy, cumbersome boots that enable their wearer to trod red-hot coals and other
+burning debris."""
+drop_location = "The Abandoned Excavation, End reward"
+icon = "Boots_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Feet"
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = -2
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

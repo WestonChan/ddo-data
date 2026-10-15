@@ -1,0 +1,3 @@
+name = "Superior Undead Guard"
+description_template = "This armor burns those Undead that attack the wearer, causing 7d8 Good damage on a successful melee attack."
+verbose_name_template = "Superior Undead Guard"

@@ -1,0 +1,35 @@
+name = "Heavy Warfare"
+icon = "HeavyWarfare"
+
+[[item]]
+name = "Beacon of Day"
+
+[[item]]
+name = "Beacon of Night"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Power"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+effect_type = "MeleePower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+effect_type = "Doublestrike"

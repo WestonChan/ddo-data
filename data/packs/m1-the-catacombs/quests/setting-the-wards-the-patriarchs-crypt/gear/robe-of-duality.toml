@@ -1,0 +1,33 @@
+name = "Robe of Duality"
+description = "This tattered robe was worn by Marguerite in her final hours of darkness."
+drop_location = "Setting the Wards: The Patriarchs' Crypt, End chest"
+enhancement_bonus = 2
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Arcane Augmentation I"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Setting the Wards: The Patriarchs' Crypt"

@@ -1,0 +1,25 @@
+name = "Through a Mirror Darkly"
+bestowed_by = "Jacinta Last"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Shadowfell Conspiracy"
+patron = "Purple Dragon Knights"
+zone = "Oldstone Hall"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Through_a_Mirror_Darkly"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 26

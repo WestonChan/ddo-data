@@ -1,0 +1,3 @@
+name = "Energy Absorption Negative"
+description_template = "This effect absorbs {1}% of all Negative damage the character would have taken, after all other protections have been penetrated."
+verbose_name_template = "Negative Energy Absorption +{1}%"

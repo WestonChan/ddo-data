@@ -1,0 +1,45 @@
+name = "Iron Mitts"
+description = """
+Some pirates prefer to brawl with their bare hands. These strength-enhancing
+gloves are perfect for their fighting style."""
+drop_location = "Prove Your Worth (epic), End chest; Three-Barrel Cove (epic), all rare encounters"
+icon = "Gloves_6"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 24
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 60
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 40
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "all rare encounters"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Three-Barrel Cove"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Prove Your Worth"

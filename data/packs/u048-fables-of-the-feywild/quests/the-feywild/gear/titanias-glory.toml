@@ -1,0 +1,35 @@
+name = "Titania's Glory"
+description = "FEYTWISTED form of Legendary Crown of Butterflies \n\nDelightful butterflies flutter around your head. It seems Titania herself\nis protecting you from harm."
+drop_location = "The Feywild, Feytwisted chests"
+icon = "Helmet_2a"
+item_category = "Clothing"
+material = "Light"
+minimum_level = 29
+slot = "Head"
+
+[[effect]]
+name = "Crown of Summer"
+
+[[effect]]
+name = "Crown of Summer (power)"
+
+[[effect]]
+name = "Extra Smites"
+value = 2
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Eternal Holy Burst"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "feytwisted chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Feywild"

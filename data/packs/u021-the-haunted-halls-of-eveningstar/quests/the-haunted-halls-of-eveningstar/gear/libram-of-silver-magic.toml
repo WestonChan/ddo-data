@@ -1,0 +1,69 @@
+name = "Libram of Silver Magic"
+description = """
+A tome written in silver ink, this mystic text is greatly beneficial to good
+wizards, most baneful to evil ones."""
+drop_location = "The Haunted Halls of Eveningstar, Miior or Dragon chest"
+icon = "Orb_8"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 26
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 8
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Spell Lore I"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 20
+
+[[note]]
+kind = "item_socket"
+field = "add"
+reason = "The wiki's Libram of Silver Magic is Zhentarim Attuned; his item has no Zhentarim Attuned socket."
+url = "https://ddowiki.com/page/Zhentarim_Attuned"
+read = "2026-09-30"
+qualifier = "crafting: zhentarim attuned"
+
+[[socket]]
+slot = "crafting: zhentarim attuned"
+
+[[source]]
+chest = "miior or dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunted Halls of Eveningstar"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Charisma"
+damage_multiplier = 2.0
+handedness = "Off-hand"
+weapon_type = "Orb"

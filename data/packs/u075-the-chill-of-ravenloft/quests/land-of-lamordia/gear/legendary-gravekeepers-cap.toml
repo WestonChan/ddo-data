@@ -1,0 +1,39 @@
+name = "Legendary Gravekeeper's Cap"
+description = "A well-made cap meant for those digging graves."
+drop_location = "Land of Lamordia, Experiment Y 's chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 34
+slot = "Head"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 57
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "experiment y 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Land of Lamordia"

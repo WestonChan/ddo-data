@@ -1,0 +1,26 @@
+name = "Dinosaur Crisis"
+bestowed_by = "Regina Vencyl"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Free Agents"
+zone = "Horde Gathering Place"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Dinosaur_Crisis"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 28

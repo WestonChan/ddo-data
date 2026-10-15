@@ -1,0 +1,36 @@
+name = "Solar Gem of Threat Decrease (Heroic)"
+description = """
++10% Artifact Bonus to Melee Threat Reduction.
+Drops in: Ruins of Myth Drannor, Yegora rare encounter chest
+Romira and Juvian's right chest (requires completion of Sleeping with the Fishes)
+Snowfall and Sunlight, Potion Paw's chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Melee Threat Generation"
+bonus_type = "Artifact"
+value = -10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+effect_type = "ThreatBonusMelee"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "yegora rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "potion paw's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

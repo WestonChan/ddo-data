@@ -1,0 +1,30 @@
+name = "Legendary Ruby of Maiming"
+description = "Maiming: This weapon has a twisted haft or grip and spikes along its blade, head,\nor point. Whenever you score a critical hit with this weapon it deals an amount\nof extra untyped damage depending on its critical multiplier: x2 - 8 to 48,\nx3 - 12 to 72, x4 - 16 to 96. \nDrops in: ToEE: First Level and Earth Temple, and ToEE: Lower Temple Complex,\nrare encounter chests"
+family = "Ruby"
+icon = "Ruby"
+min_level = 30
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"
+
+[[source]]
+chest = "any rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: First Level and Earth Temple"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Lower Temple Complex"

@@ -1,0 +1,2 @@
+name = "Caster Level (Sacred Fist)"
+verbose_name_template = "Caster Level +{1} (Sacred Fist)"

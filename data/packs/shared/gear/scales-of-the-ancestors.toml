@@ -1,0 +1,42 @@
+name = "Scales of the Ancestors"
+description = """
+This suit of Scale Mail was often raised over the entrance to Clan Tunnelworm
+to keep the Gnashtooth clan at bay. The Tunnelworms claimed it was given to
+them by a powerful Green Dragon."""
+drop_location = "The Lost Seekers, End reward"
+enhancement_bonus = 2
+icon = "MediumArmor_2"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 20
+armor_bonus = 5
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 4
+
+[[clickie]]
+name = "Scare"
+clickie = "Scare"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Scare"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

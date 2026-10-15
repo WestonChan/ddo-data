@@ -1,0 +1,31 @@
+name = "Scepter of Siberys"
+accepts_sentience = true
+description = """
+In honor of those who have performed in the highest standings, the Coin Lords
+award the Scepter of Siberys, a symbol of high achievement in dedication to
+the glory of Stormreach."""
+drop_location = "Special event items, Hide and Seek"
+icon = "Club_6"
+item_category = "Weapon"
+item_type = "Club"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 1
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 1
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

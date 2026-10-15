@@ -1,0 +1,19 @@
+name = "Combatting Corruption"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "Fables of the Feywild"
+patron = "The Summer Court"
+
+[[run]]
+tier = "heroic"
+level = 5
+
+[[run]]
+tier = "epic"
+level = 32

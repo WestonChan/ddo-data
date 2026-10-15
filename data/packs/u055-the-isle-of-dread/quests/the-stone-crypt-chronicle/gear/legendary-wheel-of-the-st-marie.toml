@@ -1,0 +1,65 @@
+name = "Legendary Wheel of the St. Marie"
+description = """
+The St. Marie was the flagship galleon in its fleet, but met its untimely end
+when it was boarded and raided by bloodthirsty pirates. This must have been
+a particularly unique souvenir."""
+drop_location = "The Stone Crypt Chronicle, end chest"
+enhancement_bonus = 15
+icon = "Shield_2"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Wood"
+minimum_level = 31
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 23
+max_dex_bonus = 2
+shield_bonus = 25
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 17
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Stone Crypt Chronicle"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

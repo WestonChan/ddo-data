@@ -1,0 +1,20 @@
+name = "Sovereign Rune of Power"
+description = "Potency +56: Passive: +56 Equipment bonus to Universal Spell Power."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 56
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [56]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "UniversalSpellPower"
+
+[[slot]]
+slot = "crafting: sovereign rune"

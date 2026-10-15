@@ -1,0 +1,42 @@
+name = "Manacles of Ceaseless Toil (Level 23)"
+description = """
+These cuffs were symbols of authority given to the overseers of elven slave-bands.
+Bolstered by potent, compulsory magic, the cuff-wearers guided intricate work
+for weeks on end without complaint or loss of perception."""
+drop_location = "Return to Gianthold Tor, Black Dragon chest (Epic Normal)"
+icon = "Bracers_15c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 23
+slot = "Wrists"
+
+[[clickie]]
+name = "Remove Exhaustion"
+clickie = "Remove Exhaustion"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 7
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Remove Exhaustion"]
+
+[[source]]
+chest = "black dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

@@ -1,0 +1,36 @@
+name = "Epic Helm of the Mroranon"
+description = """
+This powerful helm is an ancient keepsake of the Mroranon Clan of the Ironroot
+Mountains."""
+drop_location = "Epic version of Helm of the Mroranon"
+icon = "Helmet_7a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 20
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 91
+
+[[effect]]
+name = "Command"
+value = 5
+value2 = -6
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[socket]]
+slot = "yellow"

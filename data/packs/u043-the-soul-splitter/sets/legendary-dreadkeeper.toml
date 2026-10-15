@@ -1,0 +1,109 @@
+name = "Legendary Dreadkeeper"
+icon = "Dreadkeeper"
+
+[[item]]
+name = "Legendary Necromancer's Bracers"
+
+[[item]]
+name = "Legendary Robes of the Dreadkeeper"
+
+[[item]]
+name = "Legendary Sinsoul"
+
+[[item]]
+name = "Legendary Skin-tight Gloves"
+
+[[item]]
+name = "The Legendary Blackmail"
+
+[[item]]
+name = "The Legendary Grey Leathers"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative and Poison Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Force Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Negative and Poison Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Force Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Intelligence"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Physical Resistance Rating"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellLore"
+targets = [
+    "Negative",
+    "Poison",
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "PRR"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]

@@ -1,0 +1,43 @@
+name = "The Winter Solstice"
+description = """
+The moon's might at its most prominent, the power of Winter at its fullest is
+channeled here."""
+drop_location = "The House of Gems, end chest (rare)"
+icon = "Ring_21g"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 33
+slot = "Ring"
+
+[[effect]]
+name = "Alchemical Water Attunement"
+
+[[effect]]
+name = "Legendary Freezing Gale"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 22
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The House of Gems"

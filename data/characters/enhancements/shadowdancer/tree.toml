@@ -1,0 +1,1646 @@
+name = "Shadowdancer"
+background = "DestinyMartial"
+icon = "Shadowdancer"
+kind = "destiny"
+version = 1
+
+[[enhancement]]
+name = "Shadowdancer: Shadow Training"
+cost_per_rank = [1]
+description = """
+Each core ability in this tree, including this one, grants the following:
+
++1 Epic bonus to all Spell DCs
++15 Maximum Hit points
++25 Maximum Spell Points
++5 Melee Power
++5 Ranged Power
++1 Sneak Attack Dice
++5 Force Spell Power and +5 Universal Spell Power."""
+icon = "ShadowTrainingI"
+internal_name = "U51ShadowdancerCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Shadowdancer: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shadowdancer: Step Through Shadows"
+cost_per_rank = [1]
+description = """
+Activate this ability to conjure a door of pure Shadow, which can take you and your
+party members to the entrance of the current dungeon.
+Cooldown: 2 minutes."""
+icon = "StepThroughShadow"
+internal_name = "U51ShadowdancerCore2"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    120,
+]
+bonus_type = "Destiny"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Dimension Door",
+    "None",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Shadowdancer: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51ShadowdancerCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shadowdancer: The Darkest Luck"
+cost_per_rank = [1]
+description = """
+You gain the Evasion feat (normal Evasion rules apply). If you already have Evasion,
+you gain the Improved Evasion feat. If you already have Improved Evasion, you no
+longer fail Reflex Saves automatically by rolling a 1.
+
+Temporarily acquired versions of these feats from other sources will not cause
+this enhancement to give you greater bonuses."""
+icon = "TheDarkestLuck"
+internal_name = "U51ShadowdancerCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Evasion"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Evasion"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Improved Evasion"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "all"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Evasion"]
+req_type = "Feat"
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Improved Evasion"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+targets = ["Reflex no fail on a 1"]
+
+[[enhancement.modifier.requirement]]
+items = ["Improved Evasion"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Shadowdancer: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51ShadowdancerCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shadowdancer: Cut to the Soul"
+cost_per_rank = [1]
+description = """
++3% Dodge Bypass, +3% Fortification Bypass, +3% Damage versus the Helpless.
+When you cast the spell Trap the Soul, it automatically applies 3 stacks of the
+Darkness debuff even if the enemy survives the spell.
+
+Darkness debuff: You are vulnerable to Sneak Attacks. -3 Spell Resistance, -3 PRR
+and -3 MRR per stack. Lasts 12 seconds, stacks drop 1 at a time. Max 3 stacks."""
+icon = "CutToTheSoul"
+internal_name = "U51ShadowdancerCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "DodgeBypass"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "FortificationBypass"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Destiny"
+effect_type = "HelplessDamage"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Epic"
+display_name = "Shadowdancer: Epic Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "RangedPower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Destiny"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Destiny"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 32
+
+[[enhancement.requirement]]
+items = ["U51ShadowdancerCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shadowdancer: Stealthy"
+cost_per_rank = [1]
+description = """
++[1/2/3] Reflex Saving Throws, +[2/4/6] Hide and Move Silently.
+Rank 3: You gain the Hide in Plain Sight feat."""
+icon = "Stealthy"
+internal_name = "U51ShadowdancerStealthy"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "GrantFeat"
+rank = 3
+targets = ["Hide in Plain Sight"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shadowdancer: Cover of Darkness"
+cost_per_rank = [1]
+description = """
+-[10/20/30]% less threat from all sources.
+Rank 3: You gain the benefits of the Nightshield spell."""
+icon = "Untouchable"
+internal_name = "U51ShadowdancerCoverOfDarkness"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -10,
+    -20,
+    -30,
+]
+bonus_type = "Destiny"
+effect_type = "ThreatBonusMelee"
+extra_types = [
+    "ThreatBonusRanged",
+    "ThreatBonusSpell",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 3
+targets = ["Magic Missiles"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+apply_as_item_effect = true
+bonus_type = "Resistance"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shadowdancer: Well of Darkness"
+cost_per_rank = [1]
+description = """
++[30/60/100] Spell Points
+Rank 3: +5 Force and Universal Spell Power"""
+icon = "WellOfDarkness"
+internal_name = "U51ShadowdancerWellOfDarkness"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    100,
+]
+bonus_type = "Feat"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shadowdancer: Assassinate"
+cost_per_rank = [1]
+description = "+[2/4/6] Assassinate DCs."
+icon = "Assassinate"
+internal_name = "U51ShadowdancerAssassinate"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shadowdancer: Technician"
+cost_per_rank = [1]
+description = """
++[2/4/6] to Search, Spot, Disable Device, and Open Lock.
+Rank 3: If you have the Nimble Fingers feat, you gain +1 Sneak Attack Dice."""
+icon = "Technician"
+internal_name = "U51ShadowdancerTechnician"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+    "Search",
+    "Spot",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+display_name = "Shadowdancer: Technician with Nimble Fingers"
+effect_type = "SneakAttackDice"
+rank = 3
+
+[[enhancement.modifier.requirement]]
+items = ["Nimble Fingers"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shadowdancer: Sleight of Hand"
+cost_per_rank = [1]
+description = """
++[2/4/6] Use Magic Device. +[25/50/75]% damage and healing of your wands, scrolls
+and other items that cast spells. Adds +[1/2/3] to the saves DC's of your
+offensive wands."""
+icon = "U51SleightOfHand"
+internal_name = "U51ShadowdancerSleightOfHand"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SkillBonus"
+targets = ["Use Magic Device"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "TacticalDC"
+targets = ["Wands"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shadowdancer: Dance in the Dark"
+cost_per_rank = [1]
+description = "+[1/2/3] Sneak Attack Dice"
+icon = "DanceInTheDark"
+internal_name = "U51ShadowdancerDanceInTheDark"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SneakAttackDice"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shadowdancer: Shadowform"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Shadowdancer Destiny Mantle: Grants +30% Enhancement bonus to Movement Speed,
+25% Insight bonus to Sneak Speed, and a 25% Insight bonus to Casting Movement
+Speed. Your attacks gain Ghost Touch, and may bypass the Incorporeality of
+monsters."""
+icon = "ShadowForm"
+internal_name = "U51ShadowdancerShadowform"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "MovementSpeed"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadowform Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shadowform Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.stance]]
+name = "Shadowform Mantle"
+description = """
+Shadowdancer Destiny Mantle: Grants +30% Enhancement bonus to Movement Speed,
+25% Insight bonus to Sneak Speed, and a 25% Insight bonus to Casting Movement
+Speed. Your attacks gain Ghost Touch, any may bypass the Incorporeality of
+monsters."""
+group_name = "Mantle"
+icon = "ShadowForm"
+
+[[enhancement]]
+name = "Shadowdancer: Lithe"
+cost_per_rank = [1]
+description = """
++[2/4/6] Reflex Saving Throws, Armor Class, and Light Armor Max Dex Bonus.
+Rank 3: +5 Force and Universal Spell Power."""
+icon = "Lithe"
+internal_name = "U51ShadowdancerLithe"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Destiny"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement]]
+name = "Shadowdancer: Epic Strike"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Select an Epic Strike."
+icon = "ShadowdancerEpicStrike"
+internal_name = "U51ShadowdancerEpicStrike"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.selection]]
+name = "Nightmare Lance"
+cost_per_rank = [2]
+description = """
+Epic Strike: Conjure a lance of pure nightmares to impale your foes, dealing
+1d6+6 Force damage per character level to all enemies in a line. On hit, opponent
+must make a Fortitude Save vs (20 + highest INT/WiS/CHA mod + illusion bonuses)
+or be cursed with Shadow Loss. Cooldown: 8 seconds.
+
+Shadow Loss: You no longer cast a shadow. In addition, you have -5 Physical and
+Magical Resistance Rating, and -5 Spell Resistance."""
+icon = "NightmareLance"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Shadowstrike (Melee)"
+cost_per_rank = [2]
+description = """
+Deals +50% Damage
++3 Critical Multiplier
++3 Critical Threat Range
+Cooldown: 8 seconds
+
+Epic Strike: Melee Attack: On hit, opponent must make a Fortitude Save vs
+(DC 20 + Highest Ability Score Modifier + Assassinate bonuses) or be cursed with
+Shadow Loss.
+
+Shadow Loss: You no longer cast a shadow. In addition, you have -5 Physical and
+Magical Resistance Rating, and -5 Spell Resistance.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "Shadowstrike"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Shadowstrike (Ranged)"
+cost_per_rank = [2]
+description = """
+Deals +25% Damage
++3 Critical Multiplier
++3 Critical Threat Range
+Cooldown: 8 seconds
+
+Epic Strike: AOE Ranged Attack: Fire a single shot, hitting every enemy in an area
+around where the shot hits. On hit, opponent must make a Fortitude Save vs
+(DC 20 + Highest Ability Score Modifier + Assassinate bonuses) or be cursed with
+Shadow Loss.
+
+Shadow Loss: You no longer cast a shadow. In addition, you have -5 Physical and
+Magical Resistance Rating, and -5 Spell Resistance.
+
+Every Epic strike shares a cooldown with every other Epic Strike. Using this
+ability will put every Epic Strike onto this ability's cooldown."""
+icon = "ShadowstrikeRanged"
+is_clickie = true
+
+[[enhancement]]
+name = "Shadowdancer: Grim Precision"
+cost_per_rank = [1]
+description = "+[1/2/3] Spell Penetration, and you bypass +[5/10/15]% enemy Fortification."
+icon = "GrimPrecision"
+internal_name = "U51ShadowdancerGrimPrecision"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "FortificationBypass"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement]]
+name = "Shadowdancer: Shadowcaster"
+cost_per_rank = [2]
+description = "Choose"
+icon = "Shadowcaster"
+internal_name = "U51ShadowdancerShadowcaster"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+targets = ["Energy Drain"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Shadowcaster"
+cost_per_rank = [2]
+description = "-10% Spell Cooldowns. You are immune to Energy Drain."
+icon = "Shadowcaster"
+
+[[enhancement.selection]]
+name = "Shadowstriker"
+cost_per_rank = [2]
+description = "+5% Doublestrike and Doubleshot. You are immune to Energy Drain."
+icon = "Shadowstriker"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement]]
+name = "Shadowdancer: Depths of Darkness"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Cloak yourself in magic and assume the form of an illusory Shadow.
+Your Shadowdancer Destiny Mantle now grants you +25% Incorporeality and +25%
+Concealment, and allows you to float as if you had Feather Fall. You no longer
+trigger pressure plate or bear traps. The Incorporeality potion does not stack
+with Alternate Forms bonuses such as from Wraith form."""
+icon = "DepthsOfDarkness"
+internal_name = "U51ShadowdancerDepthsOfDarkness"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Incorporeality"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadowform Mantle"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Destiny"
+effect_type = "Displacement"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadowform Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51ShadowdancerShadowform"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shadowdancer: Spell Focus"
+cost_per_rank = [1]
+description = "Select a Spell School to enhance."
+icon = "ShadowdancerSpellFocus"
+internal_name = "U51ShadowdancerSpellFocus"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.selection]]
+name = "Abjuration"
+cost_per_rank = [1]
+description = "+[1/2/3] Abjuration Spell DCs."
+icon = "ShadowDancerSpellFocusAbjuration"
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "ShadowdancerSpellFocusAbjuration"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image ShadowDancerSpellFocusAbjuration.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Abjuration"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51ShadowdancerSpellFocus",
+    "Destiny Abjuration",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShadowdancerSpellFocus",
+    "Destiny Abjuration",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Enchantment"
+cost_per_rank = [1]
+description = "+[1/2/3] Enchantment Spell DCs."
+icon = "ShadowDancerSpellFocusEnchantment"
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "ShadowdancerSpellFocusEnchantment"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image ShadowDancerSpellFocusEnchantment.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51ShadowdancerSpellFocus",
+    "Destiny Enchantment",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShadowdancerSpellFocus",
+    "Destiny Enchantment",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Illusion"
+cost_per_rank = [1]
+description = "+[1/2/3] Illusion Spell DCs."
+icon = "ShadowDancerSpellFocusIllusion"
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "ShadowdancerSpellFocusIllusion"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image ShadowDancerSpellFocusIllusion.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51ShadowdancerSpellFocus",
+    "Destiny Illusion",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShadowdancerSpellFocus",
+    "Destiny Illusion",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Necromancy"
+cost_per_rank = [1]
+description = "+[1/2/3] Necromancy Spell DCs."
+icon = "ShadowDancerSpellFocusNecromancy"
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "ShadowdancerSpellFocusNecromancy"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image ShadowDancerSpellFocusNecromancy.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "ExclusionGroup"
+targets = [
+    "U51ShadowdancerSpellFocus",
+    "Destiny Necromancy",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "U51ShadowdancerSpellFocus",
+    "Destiny Necromancy",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Shadowdancer: Epic Strike Upgrade I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Select an upgrade for your Epic Strike."
+icon = "ShadowdancerEpicStrikeUpgrade"
+internal_name = "U51ShadowdancerEpicStrikeUpgrade"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 23
+
+[[enhancement.requirement]]
+items = ["U51ShadowdancerEpicStrike"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Dark Imbuement"
+cost_per_rank = [2]
+description = """
+When you activate your Shadowdancer Epic Strike, you imbue your weapons and
+spells with Evil energies for 10 seconds. You deal 1d6 per Sneak Attack Dice in
+Untyped damage on hit (scaling with Melee or Ranged Power), and on a vorpal
+strike, your attacks blind enemies with no save. This blind lasts 5 seconds and
+can only apply to each monster once per 60 seconds."""
+icon = "DarkImbuement"
+
+[[enhancement.selection]]
+name = "Meld into Darkness"
+cost_per_rank = [2]
+description = """
+When you activate your Shadowdancer Epic Strike, you 10% Dodge that is not
+affected by your Dodge Cap for 10 seconds.
+Also adds +2% Doublestrike and Doubleshot (hidden feature)"""
+icon = "ShadowdancerEpicStrikeUpgrade"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Destiny"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.selection]]
+name = "Paranoia"
+cost_per_rank = [2]
+description = """
+When you activate your Shadowdancer Epic Strike, you imbue your weapons and
+spells with Evil energies for 10 seconds. You deal per 1d6 Sneak Attack Dice in
+Untyped damage on hit (scaling with Force Spellpower), and on a vorpal strike,
+your attacks blind enemies with no save. This blind lasts 5 seconds and can only
+apply to each monster once per 60 seconds."""
+icon = "Paranoia"
+
+[[enhancement]]
+name = "Shadowdancer: Pierce the Gloom"
+cost_per_rank = [1]
+description = """
++[1/2/3] to hit and for Sneak attacks, and to-hit while Flanking.
+Rank 3: You gain Immunity to Silence, Quell, and Blindness."""
+icon = "U51PierceTheGloom"
+internal_name = "U51ShadowdancerPierceTheGloom"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SneakAttackAttack"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+rank = 3
+targets = ["Silence"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+rank = 3
+targets = ["Quell"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Destiny"
+effect_type = "Immunity"
+rank = 3
+targets = ["Blindness"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Shadowdancer: From the Shadows"
+cost_per_rank = [2]
+description = """
+From-Stealth Active: From a stealthed position, dissolve into shadows, before
+appearing some distance in front of you. This grants you the buffs from your
+Shadowdancer Epic strike if you have them trained."""
+icon = "FromTheShadows"
+internal_name = "U51ShadowdancerFromTheShadows"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Shadowdancer: Dark Mercy"
+cost_per_rank = [1]
+description = "Your Shadowdancer Destiny Mantle now grants +[5/10/15]% damage versus the Helpless."
+icon = "DarkMercy"
+internal_name = "U51ShadowdancerDarkMercy"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Destiny"
+effect_type = "HelplessDamage"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadowform Mantle"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51ShadowdancerDepthsOfDarkness"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Shadowdancer: Bring Darkness"
+cost_per_rank = [2]
+description = """
+When you roll a natural 20 on a Melee or Ranged attack, you envelop the target
+in shadow, applying a stack of Darkness.
+
+If you have the feat First Blood, the trigger of First Blood, it now triggers off
+of your harmful spellcasts, and when it procs, it also applies a stack of Darkness.
+
++1 Sneak Attack Dice (Hidden feature)
+
+Darkness debuff: You are vulnerable to Sneak Attacks. -3 Spell Resistance,
+-3 Physical Resistance Rating and -3 Magical Resistance Rating per stack.
+Lasts 12 seconds, stacks drop 1 at a time. Max 3 stacks."""
+icon = "BringDarkness"
+internal_name = "U51ShadowdancerBringDarkness"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "SneakAttackDice"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement]]
+name = "Shadowdancer: Epic Strike Upgrade II"
+cost_per_rank = [1]
+description = "Select an upgrade for your Epic Strike."
+icon = "ShadowdancerEpicStrikeUpgradeII"
+internal_name = "U51ShadowdancerEpicStrikeUpgradeII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 26
+
+[[enhancement.requirement]]
+items = ["U51ShadowdancerEpicStrike"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["U51ShadowdancerEpicStrikeUpgrade"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Improved Imbuement"
+cost_per_rank = [1]
+description = "Your Epic Strike upgrade now increases your Melee range."
+icon = "ImprovedImbuement"
+
+[[enhancement.selection]]
+name = "Improved Meld"
+cost_per_rank = [1]
+description = """
+Your Epic Strike upgrade now grants an additional 5% Dodge that is not
+affected by your Dodge Cap. When enemies miss you in combat while this is active,
+they are blinded by shadows with no save. This blind lasts 5 seconds and can only
+apply to each monster once per 60 seconds."""
+icon = "ImprovedMeld"
+
+[[enhancement.selection]]
+name = "Improved Paranoia"
+cost_per_rank = [1]
+description = "Your Epic Strike upgrade now reduces the cost of all of your Metamagics by 1 each."
+icon = "ImprovedParanoia"
+
+[[enhancement]]
+name = "Shadowdancer: Weird or Consume Shadow"
+cost_per_rank = [1]
+description = "Choose between Weird or Consume Shadow"
+icon = "Weird"
+internal_name = "U51ShadowdancerWeird"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement.selection]]
+name = "Shadow Expulsion"
+cost_per_rank = [1]
+description = """
+Stealth Action: Your shadow courses out from you, cursing nearby monsters
+with Illusory Panic, Shadow Loss, and 3 stacks of Darkness if they fail a Fortitude
+save versus (DC 20 + highest ability score mod + Assassinate bonuses).
+Cooldown: 1 minute
+
+Illusory Panic: Your Armor Class set to 0. When you are struck, you take a stack
+of Vulnerability, taking 1% more damage.
+
+Shadow Loss: You no longer cast a shadow. In addition, you have -5 Physical and
+Magical Resistance Rating, and -5 Spell Resistance.
+
+Darkness debuff: You are vulnerable to Sneak Attacks. -3 Spell Resistance,
+-3 Physical Resistance Rating and -3 Magical Resistance Rating per stack.
+Lasts 12 seconds, stacks drop 1 at a time. Max 3 stacks."""
+icon = "ConsumedByShadows"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Weird"
+cost_per_rank = [2]
+description = """
+Spell Point Cost: 30
+Cooldown: 60 seconds
+A targeted foe and all nearby enemies are subject to a Phantasmal Killer
+effect. They must succeed on a Will saving throw to prevent their death.
+(DC20 + highest of INT/WIS/CHA mod + Illusion spell bonuses)"""
+icon = "Weird"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    30,
+    0,
+    60,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Weird",
+    "Unknown",
+]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Shadowdancer: Just a Taste"
+cost_per_rank = [1]
+description = """
+You have +1 Critical Multiplier on a roll of 19-20 with Bows, Thrown Weapons,
+Crossbows, Quarterstaves, and Finesseable Melee weapons."""
+icon = "JuastATaste"
+internal_name = "U51ShadowdancerJustATaste"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Destiny"
+effect_type = "Weapon_CriticalMultiplier19To20"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Bows"]
+req_type = "GroupMember"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Thrown"]
+req_type = "GroupMember"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Crossbow"]
+req_type = "GroupMember"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Quarterstaff"]
+req_type = "WeaponTypesEquipped"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Finesseable"]
+req_type = "GroupMember"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Shadowdancer: Unholy Feeding"
+cost_per_rank = [1]
+description = """
+You gain +10 Force and Universal Spell Power. When you kill an enemy, you gain
+5 Temporary Hit Points per Sneak Attack Dice. Your steps are ethereal, so you
+will not trigger Pressure Plates and Bear Traps."""
+icon = "GreaterShadowform"
+internal_name = "U51ShadowdancerGreaterShadowform"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Destiny"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Shadowdancer: Greater Shadowdancer Spell Focus"
+cost_per_rank = [1]
+description = "+[1/2/3] to all Spell DCs"
+icon = "ShadowdancerSpellFocus"
+internal_name = "U51ShadowdancerGreaterShadowdancerSpellFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Destiny"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Shadowdancer: Shadow Mastery"
+cost_per_rank = [2]
+description = """
+Epic Moment: Dissolve into a whorl of shadow for 20 seconds, leaving your corporeal
+form behind. While in this form, you are considered Sneaking and Invisible regardless
+of what you do. You also gain 3d6 Sneak Attack Dice, 50% Incorporeality, as well
+as the effects of Dark Imbuement, Paranoia, and Meld into Darkness as if they had
+been fully trained and upgraded. your Epic Strike as if they had been fully trained
+and upgraded. When non-boss enemies miss you in this state, they are slain by their
+fear, automatically taking a Phantasmal Killer effect with no save.
+Duration: 20 seconds.
+Cooldown: 5 minutes."""
+icon = "U51ShadowMastery"
+internal_name = "U51ShadowdancerShadowMastery"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[requirement]]
+items = ["Shadowdancer"]
+req_type = "Feat"

@@ -1,0 +1,623 @@
+name = "Legendary Gem of Many Facets"
+description = """
+From this chain hangs a gem that is very finely cut, giving it countless glittering
+faces. It can take the place of various other items for the purpose of activating
+certain set bonuses."""
+drop_location = "The Chronoscope (Legendary), end chest, or Legendary version of Epic Gem of Many Facets"
+icon = "Trinket_29a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 30
+slot = "Trinket"
+
+[[socket]]
+slot = "crafting: set bonus 1"
+
+[[socket.option]]
+name = "Might of the Abishai"
+description = "Might of the Abishai"
+icon = "MightOfTheAbishai"
+min_level = 5
+
+[[socket.option.set]]
+set = "Might of the Abishai"
+
+[[socket.option]]
+name = "Menechtarun Scavenger"
+description = "Menechtarun Scavenger"
+icon = "Menechtarun"
+min_level = 5
+
+[[socket.option.set]]
+set = "Menechtarun Scavenger"
+
+[[socket.option]]
+name = "The Desert's Starless Nights"
+description = "The Desert's Starless Nights"
+icon = "Menechtarun"
+min_level = 5
+
+[[socket.option.set]]
+set = "The Desert's Starless Nights"
+
+[[socket.option]]
+name = "Vulkoor's Chosen"
+description = "Vulkoor's Chosen"
+icon = "Menechtarun"
+min_level = 5
+
+[[socket.option.set]]
+set = "Vulkoor's Chosen"
+
+[[socket.option]]
+name = "Oasis of Morality"
+description = "Oasis of Morality"
+icon = "Menechtarun"
+min_level = 5
+
+[[socket.option.set]]
+set = "Oasis of Morality"
+
+[[socket.option]]
+name = "The Desert's Biting Sands"
+description = "The Desert's Biting Sands"
+icon = "Menechtarun"
+min_level = 5
+
+[[socket.option.set]]
+set = "The Desert's Biting Sands"
+
+[[socket.option]]
+name = "The Desert's Writhing Storm"
+description = "The Desert's Writhing Storm"
+icon = "Menechtarun"
+min_level = 5
+
+[[socket.option.set]]
+set = "The Desert's Writhing Storm"
+
+[[socket.option]]
+name = "Windlasher's Ferocity"
+description = "Windlasher's Ferocity"
+icon = "Menechtarun"
+min_level = 5
+
+[[socket.option.set]]
+set = "Windlasher's Ferocity"
+
+[[socket.option]]
+name = "Epic Might of the Abishai"
+description = "Epic Might of the Abishai"
+icon = "MightOfTheAbishai"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Might of the Abishai"
+
+[[socket.option]]
+name = "Epic Menechtarun Scavenger"
+description = "Epic Menechtarun Scavenger"
+icon = "Menechtarun"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Menechtarun Scavenger"
+
+[[socket.option]]
+name = "The Epic Desert's Starless Nights"
+description = "The Epic Desert's Starless Nights"
+icon = "Menechtarun"
+min_level = 20
+
+[[socket.option.set]]
+set = "The Epic Desert's Starless Nights"
+
+[[socket.option]]
+name = "Epic Vulkoor's Chosen"
+description = "Epic Vulkoor's Chosen"
+icon = "Menechtarun"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Vulkoor's Chosen"
+
+[[socket.option]]
+name = "Epic Oasis of Morality"
+description = "Epic Oasis of Morality"
+icon = "Menechtarun"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Oasis of Morality"
+
+[[socket.option]]
+name = "The Epic Desert's Biting Sands"
+description = "The Epic Desert's Biting Sands"
+icon = "Menechtarun"
+min_level = 20
+
+[[socket.option.set]]
+set = "The Epic Desert's Biting Sands"
+
+[[socket.option]]
+name = "The Epic Desert's Writhing Storm"
+description = "The Epic Desert's Writhing Storm"
+icon = "Menechtarun"
+min_level = 20
+
+[[socket.option.set]]
+set = "The Epic Desert's Writhing Storm"
+
+[[socket.option]]
+name = "The Epic Desert's Burning Sun"
+description = "The Epic Desert's Burning Sun"
+icon = "Menechtarun"
+min_level = 20
+
+[[socket.option.set]]
+set = "The Epic Desert's Burning Sun"
+
+[[socket.option]]
+name = "Epic Windlasher's Ferocity"
+description = "Epic Windlasher's Ferocity"
+icon = "Menechtarun"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Windlasher's Ferocity"
+
+[[socket.option]]
+name = "Legendary Might of the Abishai"
+description = "Legendary Might of the Abishai"
+icon = "MightOfTheAbishai"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Might of the Abishai"
+
+[[socket.option]]
+name = "Legendary Menechtarun Scavenger"
+description = "Legendary Menechtarun Scavenger"
+icon = "Menechtarun"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Menechtarun Scavenger"
+
+[[socket.option]]
+name = "The Legendary Desert's Starless Nights"
+description = "The Legendary Desert's Starless Nights"
+icon = "Menechtarun"
+min_level = 30
+
+[[socket.option.set]]
+set = "The Legendary Desert's Starless Nights"
+
+[[socket.option]]
+name = "Legendary Vulkoor's Chosen"
+description = "Legendary Vulkoor's Chosen"
+icon = "Menechtarun"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Vulkoor's Chosen"
+
+[[socket.option]]
+name = "Legendary Oasis of Morality"
+description = "Legendary Oasis of Morality"
+icon = "Menechtarun"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Oasis of Morality"
+
+[[socket.option]]
+name = "The Legendary Desert's Biting Sands"
+description = "The Legendary Desert's Biting Sands"
+icon = "Menechtarun"
+min_level = 30
+
+[[socket.option.set]]
+set = "The Legendary Desert's Biting Sands"
+
+[[socket.option]]
+name = "The Legendary Desert's Writhing Storm"
+description = "The Legendary Desert's Writhing Storm"
+icon = "Menechtarun"
+min_level = 30
+
+[[socket.option.set]]
+set = "The Legendary Desert's Writhing Storm"
+
+[[socket.option]]
+name = "The Legendary Desert's Burning Sun"
+description = "The Legendary Desert's Burning Sun"
+icon = "Menechtarun"
+min_level = 30
+
+[[socket.option.set]]
+set = "The Legendary Desert's Burning Sun"
+
+[[socket.option]]
+name = "Legendary Windlasher's Ferocity"
+description = "Legendary Windlasher's Ferocity"
+icon = "Menechtarun"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Windlasher's Ferocity"
+
+[[socket]]
+slot = "crafting: set bonus 2"
+
+[[socket.option]]
+name = "Silver Concord's Subtlety"
+description = "Silver Concord's Subtlety"
+icon = "Kundarak"
+min_level = 5
+
+[[socket.option.set]]
+set = "Silver Concord's Subtlety"
+
+[[socket.option]]
+name = "Mroranon's Might"
+description = "Mroranon's Might"
+icon = "Kundarak"
+min_level = 5
+
+[[socket.option.set]]
+set = "Mroranon's Might"
+
+[[socket.option]]
+name = "Kundarak Delving Equipment"
+description = "Kundarak Delving Equipment"
+icon = "Kundarak"
+min_level = 5
+
+[[socket.option.set]]
+set = "Kundarak Delving Equipment"
+
+[[socket.option]]
+name = "Shaman's Fury"
+description = "Shaman's Fury"
+icon = "ShamansFury"
+min_level = 5
+
+[[socket.option.set]]
+set = "Shaman's Fury"
+
+[[socket.option]]
+name = "Marshwalker"
+description = "Marshwalker"
+icon = "Marshwalker"
+min_level = 5
+
+[[socket.option.set]]
+set = "Marshwalker"
+
+[[socket.option]]
+name = "Raven's Eye"
+description = "Raven's Eye"
+icon = "RavensEye"
+min_level = 5
+
+[[socket.option.set]]
+set = "Raven's Eye"
+
+[[socket.option]]
+name = "Siren's Ward"
+description = "Siren's Ward"
+icon = "SirensWard"
+min_level = 5
+
+[[socket.option.set]]
+set = "Siren's Ward"
+
+[[socket.option]]
+name = "Divine Blessing"
+description = "Divine Blessing"
+icon = "DivineBlessing"
+min_level = 5
+
+[[socket.option.set]]
+set = "Divine Blessing"
+
+[[socket.option]]
+name = "Vulkoor's Cunning"
+description = "Vulkoor's Cunning"
+icon = "VulkoorsCunning"
+min_level = 5
+
+[[socket.option.set]]
+set = "Vulkoor's Cunning"
+
+[[socket.option]]
+name = "Vulkoor's Might"
+description = "Vulkoor's Might"
+icon = "VulkoorsMight"
+min_level = 5
+
+[[socket.option.set]]
+set = "Vulkoor's Might"
+
+[[socket.option]]
+name = "Elder's Knowledge"
+description = "Elder's Knowledge"
+icon = "EldersKnowledge"
+min_level = 5
+
+[[socket.option.set]]
+set = "Elder's Knowledge"
+
+[[socket.option]]
+name = "Wards of House Kundarak"
+description = "Wards of House Kundarak"
+icon = "Kundarak"
+min_level = 5
+
+[[socket.option.set]]
+set = "Wards of House Kundarak"
+
+[[socket.option]]
+name = "Draconic Prophecy"
+description = "Draconic Prophecy"
+icon = "Kundarak"
+min_level = 5
+
+[[socket.option.set]]
+set = "Draconic Prophecy"
+
+[[socket.option]]
+name = "Epic Silver Concord's Subtlety"
+description = "Epic Silver Concord's Subtlety"
+icon = "Kundarak"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Silver Concord's Subtlety"
+
+[[socket.option]]
+name = "Epic Mroranon's Might"
+description = "Epic Mroranon's Might"
+icon = "Kundarak"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Mroranon's Might"
+
+[[socket.option]]
+name = "Epic Kundarak Delving Equipment"
+description = "Epic Kundarak Delving Equipment"
+icon = "Kundarak"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Kundarak Delving Equipment"
+
+[[socket.option]]
+name = "Epic Shaman's Fury"
+description = "Epic Shaman's Fury"
+icon = "ShamansFury"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Shaman's Fury"
+
+[[socket.option]]
+name = "Epic Marshwalker"
+description = "Epic Marshwalker"
+icon = "Marshwalker"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Marshwalker"
+
+[[socket.option]]
+name = "Epic Raven's Eye"
+description = "Epic Raven's Eye"
+icon = "RavensEye"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Raven's Eye"
+
+[[socket.option]]
+name = "Epic Siren's Ward"
+description = "Epic Siren's Ward"
+icon = "SirensWard"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Siren's Ward"
+
+[[socket.option]]
+name = "Epic Divine Blessing"
+description = "Epic Divine Blessing"
+icon = "DivineBlessing"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Divine Blessing"
+
+[[socket.option]]
+name = "Epic Vulkoor's Cunning"
+description = "Epic Vulkoor's Cunning"
+icon = "VulkoorsCunning"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Vulkoor's Cunning"
+
+[[socket.option]]
+name = "Epic Vulkoor's Might"
+description = "Epic Vulkoor's Might"
+icon = "VulkoorsMight"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Vulkoor's Might"
+
+[[socket.option]]
+name = "Epic Elder's Knowledge"
+description = "Epic Elder's Knowledge"
+icon = "EldersKnowledge"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Elder's Knowledge"
+
+[[socket.option]]
+name = "Epic Wards of House Kundarak"
+description = "Epic Wards of House Kundarak"
+icon = "Kundarak"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Wards of House Kundarak"
+
+[[socket.option]]
+name = "Epic Draconic Prophecy"
+description = "Epic Draconic Prophecy"
+icon = "Kundarak"
+min_level = 20
+
+[[socket.option.set]]
+set = "Epic Draconic Prophecy"
+
+[[socket.option]]
+name = "Legendary Silver Concord's Subtlety"
+description = "Legendary Silver Concord's Subtlety"
+icon = "Kundarak"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Silver Concord's Subtlety"
+
+[[socket.option]]
+name = "Legendary Mroranon's Might"
+description = "Legendary Mroranon's Might"
+icon = "Kundarak"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Mroranon's Might"
+
+[[socket.option]]
+name = "Legendary Kundarak Delving Equipment"
+description = "Legendary Kundarak Delving Equipment"
+icon = "Kundarak"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Kundarak Delving Equipment"
+
+[[socket.option]]
+name = "Legendary Shaman's Fury"
+description = "Legendary Shaman's Fury"
+icon = "ShamansFury"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Shaman's Fury"
+
+[[socket.option]]
+name = "Legendary Marshwalker"
+description = "Legendary Marshwalker"
+icon = "Marshwalker"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Marshwalker"
+
+[[socket.option]]
+name = "Legendary Raven's Eye"
+description = "Legendary Raven's Eye"
+icon = "RavensEye"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Raven's Eye"
+
+[[socket.option]]
+name = "Legendary Siren's Ward"
+description = "Legendary Siren's Ward"
+icon = "SirensWard"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Siren's Ward"
+
+[[socket.option]]
+name = "Legendary Divine Blessing"
+description = "Legendary Divine Blessing"
+icon = "DivineBlessing"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Divine Blessing"
+
+[[socket.option]]
+name = "Legendary Vulkoor's Cunning"
+description = "Legendary Vulkoor's Cunning"
+icon = "VulkoorsCunning"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Vulkoor's Cunning"
+
+[[socket.option]]
+name = "Legendary Vulkoor's Might"
+description = "Legendary Vulkoor's Might"
+icon = "VulkoorsMight"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Vulkoor's Might"
+
+[[socket.option]]
+name = "Legendary Elder's Knowledge"
+description = "Legendary Elder's Knowledge"
+icon = "EldersKnowledge"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Elder's Knowledge"
+
+[[socket.option]]
+name = "Legendary Wards of House Kundarak"
+description = "Legendary Wards of House Kundarak"
+icon = "Kundarak"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Wards of House Kundarak"
+
+[[socket.option]]
+name = "Legendary Draconic Prophecy"
+description = "Legendary Draconic Prophecy"
+icon = "Kundarak"
+min_level = 30
+
+[[socket.option.set]]
+set = "Legendary Draconic Prophecy"
+
+[[socket]]
+slot = "crafting: cannith trinket prefix"
+
+[[socket]]
+slot = "crafting: cannith trinket suffix"
+
+[[socket]]
+slot = "crafting: cannith trinket extra"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, or legendary version of epic gem of many facets"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

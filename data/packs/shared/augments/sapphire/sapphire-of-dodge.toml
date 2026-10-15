@@ -1,0 +1,50 @@
+name = "Sapphire of Dodge"
+choose_level = true
+description = "Grants an Enhancement bonus to your Dodge"
+family = "Sapphire"
+icon = "Sapphire"
+level_values = [
+    1,
+    3,
+    5,
+    6,
+    8,
+    9,
+    11,
+    12,
+    14,
+    16,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+]
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 17
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "green"

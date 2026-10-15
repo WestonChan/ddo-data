@@ -1,0 +1,34 @@
+name = "Adamantine Cloak of the Dragon"
+description = """
+This cloak has threads of magically-conductive enchanted iron wire woven into
+it."""
+drop_location = "Eveningstar Challenge Pack, Turn in various ingredients"
+icon = "Cloak_12"
+item_category = "Clothing"
+material = "Adamantine"
+minimum_level = 24
+slot = "Back"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 18
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 76
+
+[[effect]]
+name = "Spell Focus II"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Stealth Strike"
+
+[[source]]
+chest = "turn in various ingredients"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

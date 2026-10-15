@@ -1,0 +1,38 @@
+name = "Lamordian Heavy Cloak"
+description = """
+Sturdier than other cloaks of its make, this is useful for when you anticipate
+the knives coming out."""
+drop_location = "Cold Snap, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 8
+slot = "Back"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"

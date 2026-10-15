@@ -1,0 +1,53 @@
+name = "Shadowscale Docent"
+description = "This docent is armored with the scales of a shadow dragon."
+drop_location = "Magma Forge, Crafted from various ingredients"
+enhancement_bonus = 11
+icon = "Docent_8"
+item_category = "Armor"
+item_type = "Docent"
+material = "Black Dragonscale"
+minimum_level = 26
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 25
+armor_bonus = -6
+armor_type = "Docent"
+mithral_body = 13
+
+[[clickie]]
+name = "Shadow Phase"
+clickie = "Shadow Phase"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 130
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "From The Shadows"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shadow Phase"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Thunder-Forged"

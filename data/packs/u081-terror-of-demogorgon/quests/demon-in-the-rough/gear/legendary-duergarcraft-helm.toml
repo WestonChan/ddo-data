@@ -1,0 +1,41 @@
+name = "Legendary Duergarcraft Helm"
+description = "A fine helm constructed by Duergar smiths."
+drop_location = "Demon in the Rough, end chest"
+icon = "Helmet_12"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 35
+slot = "Head"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 81
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 19
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 19
+
+[[socket]]
+slot = "crafting: nearly complete: quality ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon in the Rough"

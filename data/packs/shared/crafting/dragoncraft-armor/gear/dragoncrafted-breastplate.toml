@@ -1,0 +1,38 @@
+name = "Dragoncrafted Breastplate"
+description = """
+A Breastplate imbued with the power of the ancient dragons for the few humanoids
+they favored."""
+drop_location = "Dragoncraft Armor, Turn in 10 Ancient Dragon Relics"
+enhancement_bonus = 4
+icon = "MediumArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Steel"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 8
+armor_check_penalty = -3
+armor_type = "Medium"
+max_dex_bonus = 4
+
+[[clickie]]
+name = "Cure Serious Wounds"
+clickie = "Cure Serious Wounds"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    7,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cure Serious Wounds"]
+
+[[source]]
+kind = "crafting_system"
+name = "Dragoncraft Armor"

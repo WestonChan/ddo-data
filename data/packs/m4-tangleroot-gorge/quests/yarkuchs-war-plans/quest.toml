@@ -1,0 +1,30 @@
+name = "Yarkuch's War-plans"
+bestowed_by = "Chief Ungurz"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Tangleroot Gorge"
+patron = "House Phiarlan"
+zone = "Outer Splinterskull Fortress"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Yarkuch%27s_War-plans"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "Yarkuch's War Plans"
+reason = "The wiki titles the quest Yarkuch's War-plans."
+url = "https://ddowiki.com/page/Yarkuch%27s_War-plans"
+read = "2026-10-02"
+
+[[run]]
+tier = "heroic"
+level = 4

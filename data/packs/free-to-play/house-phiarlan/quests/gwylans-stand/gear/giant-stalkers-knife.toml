@@ -1,0 +1,41 @@
+name = "Giant Stalker's Knife"
+description = """
+This heavy, curved knife was created by the elves of Xen'drik to us in their
+rebellion against the giants."""
+drop_location = "Gwylan's Stand, Suropox 's chest"
+enhancement_bonus = 3
+icon = "Kukri_1"
+item_category = "Weapon"
+item_type = "Kukri"
+material = "Steel"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Greater Giant Bane"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "suropox 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gwylan's Stand"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Kukri"

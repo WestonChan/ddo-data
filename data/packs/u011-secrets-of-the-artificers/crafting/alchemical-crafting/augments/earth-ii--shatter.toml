@@ -1,0 +1,23 @@
+name = "Earth II: Shatter"
+adds_augment = "Legendary Alchemical T3"
+description = "Combine T1 item with 100 threads and stabilizing compound."
+effect_description = "Shatter +15: This effect gives a +15 Enhancement bonus to the DC to resist Sunder and Improved Sunder attempts."
+family = "Alchemical"
+icon = "Diamond"
+min_level = 29
+
+[[effect]]
+name = "Sunder DC"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Sunder DC"
+effect_type = "TacticalDC"
+targets = ["Sunder"]
+
+[[slot]]
+slot = "crafting: legendary alchemical tier 2"

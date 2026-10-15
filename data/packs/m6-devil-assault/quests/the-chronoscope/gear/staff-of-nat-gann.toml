@@ -1,0 +1,60 @@
+name = "Staff of Nat Gann"
+description = """
+This weapon belonged to the famed performer Nat Gann. Though he remains lost
+to time, his staff lives on in his memory, and is an ideal tool for the aspiring
+acrobat."""
+drop_location = "The Chronoscope, End reward"
+enhancement_bonus = 2
+icon = "Quarterstaff_2c"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Silver"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 2
+value2 = 3
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[weapon]]
+attack_modifier = "Strength, Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength, Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

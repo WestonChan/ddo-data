@@ -1,0 +1,88 @@
+name = "Baz'Morath, the Curator of Decay"
+accepts_sentience = true
+description = """
+This unholy greataxe was wielded against you by Rudus Caskrage, a powerful Minotaur.
+It can tear the limbs from your enemies' forms and their souls from their bodies.
+Its terrible plague will drive your enemies to madness."""
+drop_location = "Project Nemesis, End Chest"
+enhancement_bonus = 15
+icon = "GreatAxe_1b"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Disease - Unholy Tear"
+
+[[effect]]
+name = "Limb Chopper"
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Purple Augment Slot"
+description = "Adds a Purple Augment slot to your weapon"
+min_level = 1
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket]]
+slot = "crafting: almost there"
+
+[[socket.option]]
+name = "Fetters of Unreality"
+description = """
+This item is cruel and deadly, and leaves behind wounds that affect both the body and the soul.
+This weapon has a chance to inflict multiple stacks of Vulnerable.
+Vulnerable: You take 1% more damage for 3 seconds.
+This effect stacks up to 20 times, and loses one stack on expiration."""
+min_level = 1
+
+[[socket]]
+slot = "crafting: finishing touch"
+
+[[socket.option]]
+name = "Completed Weapon"
+description = "This item is fully completed, and as a result deals an additional 0.5[W] damage."
+min_level = 1
+
+[[socket.option.modifier]]
+amounts = [0.5]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Project Nemesis"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Great Axe"

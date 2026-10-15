@@ -1,0 +1,191 @@
+[[row]]
+name = "Old Sully's Grog Cellar"
+description = "+2 Charisma and +2 Constitution"
+guild_level = 17
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "AbilityBonus"
+targets = [
+    "Constitution",
+    "Charisma",
+]
+
+[[row]]
+name = "Sign of the Silver Flame I"
+description = "+[5/10/15] Guild bonus to Fire Resistance, and Fire/Light Spell Power at levels [1/7/11]"
+guild_level = 10
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    10,
+    10,
+    10,
+    10,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+bonus_type = "Guild"
+effect_type = "SpellPower"
+targets = [
+    "Fire",
+    "Light/Alignment",
+]
+
+[[row]]
+name = "Tactical Training Room"
+description = """
++[2/4/6] Damage on critical hits (before multiplier)
++1 bonus to the DC of Trip, Sunder, and Slicing blow feats
++2 To-Hit with physical attacks."""
+guild_level = 21
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    2,
+    2,
+    2,
+    2,
+    2,
+    2,
+    4,
+    4,
+    4,
+    4,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+]
+bonus_type = "Guild"
+effect_type = "Weapon_DamageCritical"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Guild"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Guild"
+effect_type = "Weapon_Attack"
+targets = ["All"]

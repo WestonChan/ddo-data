@@ -1,0 +1,51 @@
+name = "Raiment of the Fervent"
+description = """
+This emerald and blood brown robe is ornately decorated with intricate patterns
+and designs. Both the claw and the roaring mouth can be seen in several various
+locations."""
+drop_location = "Emerald Claw Nugget, End reward"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 7
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 2
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

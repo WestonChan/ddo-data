@@ -1,0 +1,23 @@
+name = "Sage's Shoes (Level 19)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Lines of Supply, End reward"
+icon = "Boots_17a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 19
+slot = "Feet"
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Lines of Supply"

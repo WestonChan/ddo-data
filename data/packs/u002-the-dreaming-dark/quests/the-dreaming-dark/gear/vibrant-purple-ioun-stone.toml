@@ -1,0 +1,21 @@
+name = "Vibrant Purple Ioun Stone"
+description = "A scarlet and blue gem about 1 inch in diameter."
+drop_location = "Random, Highest drop rate from The Dreaming Dark"
+icon = "Trinket_1"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 2
+slot = "Trinket"
+
+[[effect]]
+name = "Power III"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Suppressed Power"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Dreaming Dark"

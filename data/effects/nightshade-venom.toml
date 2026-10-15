@@ -1,0 +1,3 @@
+name = "Nightshade Venom"
+description_template = "Any creature struck by this weapon must succeed on a Difficulty Check 22 Fortitude save or fall unconscious. The target may attempt a new save to end the effect every several seconds; otherwise the sleep lasts for 20 seconds."
+verbose_name_template = "Nightshade Venom"

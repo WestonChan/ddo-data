@@ -1,0 +1,36 @@
+name = "Bodysnatcher's Bracers"
+description = "Standard issue for working the graveyard shift."
+drop_location = "Beneath the City Streets, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 8
+slot = "Wrists"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Legendary"
+value = 1
+
+[[effect]]
+name = "Undying"
+bonus_type = "Enhancement"
+value = 65
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"

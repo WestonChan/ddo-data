@@ -1,0 +1,84 @@
+name = "Illusion Resistance"
+choose_level = true
+description = "You have a Resistance bonus to saves versus Illusion"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    2,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    9,
+    9,
+    9,
+    9,
+    10,
+    10,
+    10,
+    11,
+    11,
+    11,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+    12,
+]
+
+[[effect]]
+name = "Illusion Save"
+bonus_type = "Resistance"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Resistance"
+effect = "Illusion Save"
+effect_type = "SaveBonus"
+targets = ["Illusion"]
+
+[[slot]]
+slot = "crafting: cannith bracers prefix"
+
+[[slot]]
+slot = "crafting: cannith cloak prefix"
+
+[[slot]]
+slot = "crafting: cannith necklace prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: random cloak suffix"
+
+[[slot]]
+slot = "crafting: random necklace prefix"
+
+[[slot]]
+slot = "crafting: random ring extra"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

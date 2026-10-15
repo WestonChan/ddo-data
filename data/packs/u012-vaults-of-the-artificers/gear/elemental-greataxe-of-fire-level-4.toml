@@ -1,0 +1,42 @@
+name = "Elemental Greataxe of Fire (Level 4)"
+description = """
+This greataxe is part of a mass-produced line of House Cannith weapons with
+elementals bound to them. This one is infused with fire and burns enemies as
+a result."""
+drop_location = "Vaults of the Artificers, Turn in various challenge ingredients"
+enhancement_bonus = 1
+icon = "GreatAxe_2d"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Flaming"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 11
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Axe"

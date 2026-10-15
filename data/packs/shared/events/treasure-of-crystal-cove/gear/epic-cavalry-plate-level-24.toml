@@ -1,0 +1,76 @@
+name = "Epic Cavalry Plate (level 24)"
+description = """
+High-seas pirates plundered this richly-decorated plate mail from naval cavalry
+officers. Although it did not suit the pirates well, a fighter looking for
+better protection may benefit from it."""
+drop_location = "Treasure of Crystal Cove, Turn in 1250 Silver Doubloon 500 Golden Doubloon 40 Stolen Opal 800 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 6
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Mithral"
+minimum_level = 24
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Demonic Shield"
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "DR 13/Chaotic"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 7
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "crafting: upgradeable tier 2"
+
+[[socket.option]]
+name = "+6 Enhancement Bonus -> +7 Enhancement Bonus, Greater False Life -> Superior False Life, DR 13/Chaotic -> DR 14/Chaotic"
+description = """
++7 Enhancement Bonus: +7 Enhancement bonus to Armor Class.
+Superior False Life: This item grants the wearer +40 maximum health.
+DR Damage Reduction 14/Chaotic: Reduces physical damage by 14, except from Chaotic attacks."""
+min_level = 24
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "False Life"
+value = 40
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[socket]]
+slot = "crafting: upgradeable tier 3"
+
+[[socket.option]]
+name = "Adds a Blue Augment Slot"
+description = "Adds a Blue Augment Slot"
+min_level = 24
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"

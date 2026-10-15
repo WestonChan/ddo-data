@@ -1,0 +1,42 @@
+name = "Legendary Goggles of the Warrior"
+description = "These lenses grant sight to those who would wage war for a just cause."
+drop_location = "Seeds of Decay, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 33
+slot = "Goggles"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Sight Beyond Sight"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Seeds of Decay"

@@ -1,0 +1,44 @@
+name = "Heavy Warfare (Legendary)"
+icon = "HeavyWarfare"
+
+[[item]]
+name = "Legendary Beacon of Day"
+
+[[item]]
+name = "Legendary Beacon of Night"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 10
+reason = "The wiki gives Doublestrike +15 Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Doublestrike / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+effect_type = "MeleePower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+effect_type = "Doublestrike"

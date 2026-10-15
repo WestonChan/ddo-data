@@ -1,0 +1,62 @@
+name = "Dawnbringer (level 28)"
+accepts_sentience = true
+description = "The first star shines the brightest."
+drop_location = "The Devil's Details, End chest"
+enhancement_bonus = 12
+icon = "Shuriken_1"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Flametouched Iron"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Returning"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Bloodletter VII"
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Devil's Details"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.1
+handedness = "Thrown"
+weapon_type = "Shuriken"

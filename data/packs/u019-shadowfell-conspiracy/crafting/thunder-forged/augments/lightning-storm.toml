@@ -1,0 +1,50 @@
+name = "Lightning Storm"
+description = "Lightning Storm: Blue Dragon Breath (3 uses per rest): Like a blue dragon, you can breathe a powerful bolt of lightning that deals 1d15 + 15 electric damage per caster level (Reflex save for half) to enemies within its area of effect. You can use this ability 5 times per rest. (Text says 5 times, charge bar says 3 / 3 Charges) caster level: 30"
+family = "Thunderforged"
+min_level = 28
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lightning Storm: Blue Dragon Breath",
+    "None",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: thunderforged tier 3"

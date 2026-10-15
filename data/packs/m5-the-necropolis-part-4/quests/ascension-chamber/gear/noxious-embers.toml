@@ -1,0 +1,70 @@
+name = "Noxious Embers"
+description = """
+This small glass phial is attached to a necklace of blood red hair and filled
+with the ashes of Salasso's warped and twisted heart."""
+drop_location = "Ascension Chamber, Raid Warded chest"
+icon = "Necklace_24"
+item_category = "Jewelry"
+material = "Bone"
+minimum_level = 13
+slot = "Neck"
+
+[[clickie]]
+name = "Lesser Maximize"
+clickie = "Lesser Maximize"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 78
+
+[[effect]]
+name = "Efficient Metamagic - Enlarge I"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Spell Lore III"
+bonus_type = "Equipment"
+value = 3
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Lesser Maximize"]
+
+[[socket]]
+slot = "crafting: upgradeable item (black abbot)"
+
+[[socket.option]]
+name = "Lesser maximize get 5 charges and Spell Lore VI"
+description = """
+Lesser Maximize: 5 / Day
+Spell Lore VI: Passive: All of your spells gain a 6% Equipment bonus to their
+chance to critical hit."""
+icon = "BlackAbbot"
+min_level = 13
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+value = 6
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Equipment"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"

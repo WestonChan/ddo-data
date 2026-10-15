@@ -1,0 +1,31 @@
+name = "Pain and Suffering"
+icon = "PainAndSuffering"
+
+[[item]]
+name = "Pain, the Half of Whole"
+
+[[item]]
+name = "Suffering, the Half of Whole"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "Gain +2[W] to each of your daggers"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "Gain +0.5[W] to each dagger."
+
+[[tier.effect]]
+effect = "Dagger Damage Dice"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Weapon_BaseDamage"
+targets = ["Dagger"]

@@ -1,0 +1,53 @@
+name = "Globe of Imperial Blood (historic)"
+description = """
+A fist-sized globule of bright-red blood, suspended in a crystalline sphere.
+It is thought that such globes were used by the giants to prove imperial descent,
+but the secret of the test is now forgotten."""
+drop_location = "Gianthold Tor, Black Dragon 's chest"
+icon = "Trinket_75"
+is_legacy = true
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 13
+slot = "Trinket"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Wizardry II"
+bonus_type = "Enhancement"
+value = 50
+
+[[source]]
+chest = "black dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

@@ -1,0 +1,56 @@
+name = "Deadly Rain"
+icon = "DeadlyRain"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+5 Ranged Power"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+effect = "+2 Damage"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+effect = "+3% Chance to Deflect Missiles"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MissileDeflection"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+effect = "Ranged Power on Action Boost"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [20]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[tier.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"

@@ -1,0 +1,36 @@
+name = "Dread Stalker's Cloak"
+description = "This fine cloth cloak befits a pirate's devilish skulking."
+drop_location = "Captive of the Hidden God, end chest"
+icon = "Cloak_21a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 7
+slot = "Back"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 1
+value2 = 2
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Captive of the Hidden God"

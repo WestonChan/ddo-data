@@ -1,0 +1,23 @@
+name = "Scoundrel's Half-Cloak"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Cloak_26"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 15
+race_required = "Tiefling Scoundrel"
+slot = "Back"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 5
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

@@ -1,0 +1,53 @@
+name = "Riftmaker"
+description = """
+There was once forged an axe so sharp, the very fabric of reality tore around
+it."""
+drop_location = "The Devil's Details, End chest"
+enhancement_bonus = 5
+icon = "GreatAxe_4d"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Flametouched Iron"
+minimum_level = 13
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Force Burst"
+
+[[effect]]
+name = "Banishing"
+
+[[effect]]
+name = "Bloodletter III"
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Devil's Details"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 4
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.6
+handedness = "Two-handed"
+weapon_type = "Great Axe"

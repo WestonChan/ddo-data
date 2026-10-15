@@ -1,0 +1,29 @@
+name = "Sunrise"
+bestowed_by = "Ireena Kolyana"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "The Abbey of Saint Markovia"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Sunrise"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 31

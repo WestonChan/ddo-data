@@ -1,0 +1,1560 @@
+name = "Ninja Spy"
+background = "MonkBackground"
+icon = "Monk"
+kind = "class"
+version = 2
+
+[[enhancement]]
+name = "Ninja Spy: Basic Ninja Training"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While you are centered, you can use your Dexterity modifier to hit.
+You are proficient with short swords and treat them as Ki weapons.
+
+If another ability allows you to remain centered while wielding other types of
+melee weapon, then those weapons will also get the benefit of Ninja Training."""
+variant = "v2"
+icon = "NSBasicNinjaTraining"
+internal_name = "NSCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Shortsword",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Centered",
+    "Shortsword",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+targets = [
+    "Dexterity",
+    "All",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Ninja Spy: Advanced Ninja Training"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+While you are centered, you can use your Dexterity modifier for damage.
+You also gain Doubleshot equal to half your Dexterity score while wielding a Shuriken
+(Caps at 50%).
+
+If another ability allows you to remain centered while wielding other types of
+melee weapon, then those weapons will also get the benefit of Advanced Ninja Training."""
+variant = "v2"
+icon = "NSAdvancedNinjaTraining"
+internal_name = "NSCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_DamageAbility"
+targets = [
+    "Dexterity",
+    "All",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityTotal"
+bonus_type = "Enhancement"
+cap = "50"
+effect_type = "Doubleshot"
+stack_source = "Dexterity"
+
+[[enhancement.modifier.requirement]]
+items = ["Shuriken"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["NSCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Ninja Spy: Shadow Veil"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Ki Activate: You focus your Ki and draw shadows around you.
+You become invisible and 25% incorporeal for one minute.
+Actions that break invisibility do not remove the incorporeality portion
+of this effect.
+Activation Cost: 15 Ki.
+Cooldown: 6 seconds."""
+variant = "v2"
+icon = "NSShadowVeil"
+internal_name = "NSCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Incorporeality"
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Veil"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["NSCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement.stance]]
+name = "Shadow Veil"
+description = """
+You become invisible and 25% incorporeal for one minute.
+Actions that break invisibility do not remove the incorporeality portion
+of this effect. (Activation Cost: 15 Ki. Cooldown: 6 seconds)."""
+icon = "NSShadowVeil"
+
+[[enhancement]]
+name = "Ninja Spy: Poisoned Darts"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Ki Activate: You spit poisoned darts in a cone before you.
+Nearby enemies are affected by between 4 and 8 stacks of Ninja Poison.
+
+Ninja Poison: Magical Poison: Target takes 1d4 points of Poison damage (which
+scales with Melee Power) every 3 seconds for 15 seconds. The target's
+vulnerability to poison is increased by 5%. This ability can stack up to 20 times.
+On timer expiration, 4 stacks of Ninja Poison are removed at a time.
+Activation Cost: 15 Ki.
+Cooldown: 15 seconds"""
+variant = "v2"
+icon = "NSPoisonedDarts"
+internal_name = "NSCore4"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+items = ["NSCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Ninja Spy: Diversion"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Ki Activate: You turn yourself invisible for 1 minute, and create a dummy that
+attracts the attention of nearby enemies for 30 seconds. For the next 20 seconds,
+you also gain +5 Sneak Attack Dice and +5 Assassinate DCs.
+Activation Cost: 50 Ki.
+Cooldown: 3 minutes
+
+Passive: +5 Melee and Ranged Power"""
+variant = "v2"
+icon = "NSDiversion"
+internal_name = "NSCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.modifier.requirement]]
+items = ["Diversion"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.modifier.requirement]]
+items = ["Diversion"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.requirement]]
+items = ["NSCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Ninja Spy: Ninja Master"
+cost_per_rank = [1]
+description = """
+You gain +2 Dexterity and +2 Wisdom, +15 Melee and Ranged Power, +5 Sneak Attack Dice,
+and +10% Fortification Bypass. Any weapon you wield while Centered gains the
+Vorpal effect. If you have Self Defense, +10 additional Melee Power.
+
+If another ability allows you to remain centered while wielding other types
+of melee weapon, then those weapons will also gain these effects."""
+variant = "v2"
+icon = "NSNinjaMaster"
+internal_name = "NSCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "NSCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = [
+    "Dexterity",
+    "Wisdom",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+display_name = "Ninja Spy: Ninja Master = Self Defense"
+effect_type = "MeleePower"
+
+[[enhancement.modifier.requirement]]
+items = [
+    "NSSelfDefense",
+    "Self Defense",
+]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.requirement]]
+items = ["NSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "NSCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Ninja Spy: Ninjutsu I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to Attack and Damage while Centered."
+variant = "v2"
+icon = "NSNinjutsu"
+internal_name = "NSNinjutsuI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["HMHenshinTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group.requirement]]
+items = ["ShintaoStudiesI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ninja Spy: Stealthy"
+cost_per_rank = [1]
+description = """
++[1/2/3] Hide and Move Silently.
++[20/35/50]% enhancement movement speed bonus while sneaking.
+Rank 3: While centered and Sneaking, your passive Ki regeneration is increased by 1."""
+variant = "v2"
+icon = "NSStealthy"
+internal_name = "NSStealthy"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "KiPassive"
+rank = 3
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement]]
+items = ["Sneaking"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Ninja Spy: Sneak Attack Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks."
+variant = "v2"
+icon = "NSSneakAttackTraining"
+internal_name = "NSSneakAttackTrainingI"
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+extra_types = ["SneakAttackDice"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Ninja Spy: Subtlety"
+cost_per_rank = [1]
+description = "-[20/30/40]% threat generation with melee and ranged attacks."
+variant = "v2"
+icon = "NSSubtlety"
+internal_name = "NSFasterSneakingI"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "NSFasterSneakingI",
+    "Melee Subtlety",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -20,
+    -30,
+    -40,
+]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusRanged"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = [
+    "NSFasterSneakingI",
+    "Melee Subtlety",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Ninja Spy: Acrobatic"
+cost_per_rank = [1]
+description = "+[1/2/3] Balance, Jump, and Tumble. +[1/2/3]% Dodge."
+variant = "v2"
+icon = "NSAcrobatic"
+internal_name = "NSAcrobatic"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Tumble",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement]]
+name = "Ninja Spy: Ninjutsu II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to Attack and +2 Damage while Centered."
+variant = "v2"
+icon = "NSNinjutsu"
+internal_name = "NSNinjutsuII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["NSNinjutsuI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ninja Spy: Agility"
+cost_per_rank = [1]
+description = "+[1/2/3] Concentration, Reflex Saves, and Maximum Dodge bonus."
+variant = "v2"
+icon = "NSAgility"
+internal_name = "NSAgility"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Concentration"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Ninja Spy: Sneak Attack Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks."
+variant = "v2"
+icon = "NSSneakAttackTraining"
+internal_name = "NSSneakAttackTrainingII"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+extra_types = ["SneakAttackDice"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["NSSneakAttackTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ninja Spy: Extra Action Boost"
+cost_per_rank = [2]
+description = "+[1/2/3] extra action boost."
+icon = "NSExtraActionBoost"
+internal_name = "NSExtraActionBoost"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Ninja Spy: Action Boost Selection"
+cost_per_rank = [2]
+description = "Choose between Haste and Power"
+variant = "v2"
+icon = "NSActionBoost"
+internal_name = "NSActionBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Melee/Ranged Power"
+cooldown_seconds = 30
+cost_per_rank = [2]
+description = "Activate to gain a +30 Action Boost bonus to Melee/Ranged Power for 20 seconds."
+duration_seconds = 20
+icon = "NSActionBoost"
+is_clickie = true
+
+[[enhancement.selection.attack]]
+name = "Ninja Spy: Melee/Ranged Power"
+cooldown_seconds = 30
+description = "Activate to gain +30% Action Boost bonus to Melee/Ranged power for 20 seconds."
+duration_seconds = 20
+icon = "KenseiHasteBoost"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+effect_type = "BonusMeleePower"
+phase = "follow_on"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+effect_type = "BonusRangedPower"
+phase = "follow_on"
+
+[[enhancement.selection]]
+name = "Haste Boost"
+cooldown_seconds = 30
+cost_per_rank = [2]
+description = "Activate to gain a +30% Action Boost bonus to attack speed for 20 seconds."
+duration_seconds = 20
+icon = "KenseiHasteBoost"
+is_clickie = true
+
+[[enhancement.selection.attack]]
+name = "Ninja Spy: Haste Boost"
+cooldown_seconds = 30
+description = "Activate to gain +30% Action Boost bonus to attack speed for 20 seconds."
+duration_seconds = 20
+icon = "KenseiHasteBoost"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+effect_type = "BonusAlacrity"
+phase = "follow_on"
+
+[[enhancement]]
+name = "Ninja Spy: Ninjutsu III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to Attack and + 2 to Damage while Centered."
+variant = "v2"
+icon = "NSNinjutsu"
+internal_name = "NSNinjutsuIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["NSNinjutsuII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ninja Spy: Shadow Arts"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Gain an ability depending on your Light or Dark Path"
+icon = "NSShadowArts"
+internal_name = "NSShadowArts"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Flash Bang"
+cost_per_rank = [2]
+description = """
+Ki Bomb Spell-Like Ability: Throws a fragile eggshell imbued with ninja magic
+that explodes into light, blinding opponents for 6 seconds on a failed Reflex
+save and momentarily dazing opponents on a failed Fortitude save. Both saving
+throws have DC equal to (18 + Monk Level + [Str/Dex/Wis] Modifier + Assassinate DCs).
+Activation Cost: 20 Ki.
+Cooldown: 9 seconds"""
+icon = "NSShadowArts"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Ninja Spy: Flash Bang (Blind)"
+amount = [18]
+base_class_level = "Monk"
+dc_type = "Dazzle"
+dc_versus = "Reflex"
+description = """
+Ki Bomb Spell-Like Ability: Throws a fragile eggshell imbued with ninja magic
+that explodes into light, blinding opponents for 6 seconds on a failed Reflex
+save and momentarily dazing opponents on a failed Fortitude save."""
+icon = "HMUnbalancingStrike"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Wisdom",
+]
+tactical = "Assassinate"
+
+[[enhancement.selection.dc]]
+name = "Ninja Spy: Flash Bang (Daze)"
+amount = [18]
+base_class_level = "Monk"
+dc_type = "Dazzle"
+dc_versus = "Fortitude"
+description = """
+Ki Bomb Spell-Like Ability: Throws a fragile eggshell imbued with ninja magic
+that explodes into light, blinding opponents for 6 seconds on a failed Reflex
+save and momentarily dazing opponents on a failed Fortitude save."""
+icon = "HMUnbalancingStrike"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Wisdom",
+]
+tactical = "Assassinate"
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Path of Harmonious Balance: Fists of Light"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51GrandmasterOfFlowersCore4",
+    "Disciple of Philosophy: Light",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Shadow Flurry"
+cost_per_rank = [2]
+description = """
+Deals +20% Damage
++2 Critical Multiplier
+Cooldown: 9 seconds
+Melee Attack: +20% damage, +2 Critical Multiplier. Target must make a saving
+throw equal to (18 + Monk Level + [Str/Dex/Wis] Modifier + Assassinate DCs) or
+have some of their energy temporarily sealed, rendering it unable to cast spells.
+The enemy makes recurring Fortitude saves to shake the effect."""
+icon = "ShadowFlurry"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Ninja Spy: Shadow Flurry"
+amount = [18]
+base_class_level = "Monk"
+dc_type = "Sealed energy"
+dc_versus = "Fortitude"
+description = """
+Melee Attack: +20% damage, +2 Critical Multiplier. Target must make a saving
+throw equal to (18 + Monk Level + [Str/Dex/Wis] Modifier + Assassinate DCs) or
+have some of their energy temporarily sealed, rendering it unable to cast spells.
+The enemy makes recurring Fortitude saves to shake the effect."""
+icon = "ActiveStub"
+mod_ability = [
+    "Strength",
+    "Dexterity",
+    "Wisdom",
+]
+tactical = "Assassinate"
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Path of Inevitable Dominion: Fists of Darkness"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "U51GrandmasterOfFlowersCore4",
+    "Disciple of Philosophy: Dark",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ninja Spy: Sneak Attack Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks."
+variant = "v2"
+icon = "NSSneakAttackTraining"
+internal_name = "NSSneakAttackTrainingIII"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+extra_types = ["SneakAttackDice"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["NSSneakAttackTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ninja Spy: Sting of the Ninja"
+cost_per_rank = [2]
+description = """
+Imbue Toggle: You poison your weapon with a secret mixture. While you are
+centered, you deal an additional 1d6 Poison damage on hit scaling with 150% of
+the higher of Melee or Ranged power, any shortsword, kama, or shuriken you wield
+will inflict your foes with a stack of Ninja Poison on critical hits.
+(Magical Poison: Target takes 1d4 points of Poison damage every 3 seconds for 15
+seconds. The target's vulnerability to poison is increased by 5%. This ability
+can stack up to 20 times. On timer expiration, 5 stacks of Ninja Poison are
+removed at a time.)
+
+If another ability allows you to remain centered while wielding other types of
+melee weapon, then those weapons will also get the benefit of Sting of the Ninja
+if they are normally Piercing or Slashing weapons. Cooldown: 3 seconds."""
+variant = "v2"
+icon = "NSStingOfTheNinja"
+internal_name = "NSStingOfTheNinja"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.stance]]
+name = "Ninja Spy: Sting of the Ninja"
+description = """
+Imbue Toggle: You poison your weapon with a secret mixture. While you are
+centered, you deal an additional 1d6 Poison damage on hit scaling with 150% of
+the higher of Melee or Ranged power, any shortsword, kama, or shuriken you wield
+will inflict your foe with a stack of Ninja Poison on critical hits.
+(Magical Poison: Target takes 1d4 points of Poison damage every 3 seconds for 15
+seconds. The target's vulnerability to poison is increased by 5%. This ability
+can stack up to 20 times. On timer expiration, 5 stacks of Ninja Poison are
+removed at a time.)"""
+group_name = "Imbue"
+icon = "NSStingOfTheNinja"
+
+[[enhancement]]
+name = "Ninja Spy: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Dexterity or Wisdom"
+variant = "v2"
+icon = "DexWis"
+internal_name = "NSAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Ninja Spy: Ninjutsu IV"
+cost_per_rank = [2]
+description = "+1 to Attack and +2 to Damage while Centered."
+variant = "v2"
+icon = "NSNinjutsu"
+internal_name = "NSNinjutsuIV"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NSNinjutsuIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ninja Spy: Shadow Arts Upgrade"
+cost_per_rank = [1]
+description = "Upgrade the Light or Dark Path Ability."
+icon = "ShintaoStudiesII"
+internal_name = "NSShadowArtsUpgrade"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NSShadowArts"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Cloak of Shadows"
+cost_per_rank = [1]
+description = """
+After using Flash Bang, you become invisible for 3 seconds which is not broken
+by actions."""
+icon = "CloakOfShadows2"
+
+[[enhancement.selection.requirement]]
+items = [
+    "NSShadowArts",
+    "Flash Bang",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Poison Exploit"
+cost_per_rank = [1]
+description = """
+On a failed saving throw, your Shadow Flurry purges an enemy of Ninja Poison,
+dealing 1d20 + 20 Poison damage per stack of Ninja Poison removed. Scales with
+higher of Melee/Ranged Power."""
+icon = "PoisonExploit"
+
+[[enhancement.selection.requirement]]
+items = [
+    "NSShadowArts",
+    "Shadow Flurry",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ninja Spy: Sneak Attack Training IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants +1 Sneak Attack die and +1 to hit when performing Sneak Attacks."
+variant = "v2"
+icon = "NSSneakAttackTraining"
+internal_name = "NSSneakAttackTrainingIV"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+extra_types = ["SneakAttackDice"]
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NSSneakAttackTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ninja Spy: No Mercy"
+cost_per_rank = [1]
+description = "You deal +[10/20/30]% additional damage to helpless opponents."
+variant = "v2"
+icon = "NSNoMercy"
+internal_name = "NSNoMercy"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamage"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Ninja Spy: Ability II"
+cost_per_rank = [2]
+description = "Choose either Dexterity or Wisdom"
+variant = "v2"
+icon = "DexWis"
+internal_name = "NSAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["NSAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Ninja Spy: Touch of Death"
+cost_per_rank = [1]
+description = """
+Deals +30% Damage
+Activation Cost: 50 Ki.
+Cooldown: 15 seconds
+
+Ki Melee Attack: You strike a living opponent down with twisted Ki, dealing
+500 additional Poison energy damage that scales with 200% Melee Power.
+Your opponent takes half damage on a successful Fortitude save
+(DC = 10 + Monk level + [Dex/Wis] Modifier + Assassinate DCs).
+
+Passive: +3 to Hit and Damage while Centered."""
+variant = "v2"
+icon = "NSTouchOfDeath"
+internal_name = "NSTouchOfDeath"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.dc]]
+name = "Ninja Spy: Touch of Death"
+amount = [10]
+base_class_level = "Monk"
+dc_type = "Half Damage"
+dc_versus = "Fortitude"
+description = """
+Deals +30% Damage
+Activation Cost: 50 Ki.
+Cooldown: 15 seconds
+
+Ki Melee Attack: You strike a living opponent down with twisted Ki, dealing
+500 additional negative energy damage that scales with 200% Melee Power.
+Your opponent takes half damage on a successful Fortitude save
+(DC = 10 + Monk level + [Dex/Wis] Modifier + Assassinate DCs)."""
+icon = "NSTouchOfDeath"
+mod_ability = [
+    "Dexterity",
+    "Wisdom",
+]
+tactical = "Assassinate"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Ninja Spy: Deadly Striker"
+cost_per_rank = [1]
+description = """
+While you are centered, you gain a +1 Competence bonus to Critical Threat Range
+and Multiplier. Kamas, Shortswords, and Shuriken gain an additional +1 Critical
+Threat Range."""
+variant = "v2"
+icon = "NSDeadlyStriker"
+internal_name = "NSDeadlyStriker"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = [
+    "Bastard Sword",
+    "Battle Axe",
+    "Club",
+    "Dagger",
+    "Dart",
+    "Dwarven Axe",
+    "Falchion",
+    "Great Crossbow",
+    "Great Axe",
+    "Great Club",
+    "Great Sword",
+    "Hand Axe",
+    "Heavy Crossbow",
+    "Heavy Mace",
+    "Heavy Pick",
+    "Khopesh",
+    "Kukri",
+    "Light Crossbow",
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Longbow",
+    "Longsword",
+    "Maul",
+    "Morningstar",
+    "Rapier",
+    "Repeating Heavy Crossbow",
+    "Repeating Light Crossbow",
+    "Scimitar",
+    "Shortbow",
+    "Sickle",
+    "Throwing Axe",
+    "Throwing Dagger",
+    "Throwing Hammer",
+    "Unarmed",
+    "Warhammer",
+    "Buckler",
+    "Small Shield",
+    "Large Shield",
+    "Tower Shield",
+    "Orb",
+    "Rune Arm",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = [
+    "Kama",
+    "Shortsword",
+    "Shuriken",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Ninja Spy: Crippling Strike"
+cost_per_rank = [1]
+description = """
+You gain +3 Assassinate DCs and the Rogue ability Crippling Strike.
+(On Sneak Attack: 2 Strength damage.)"""
+variant = "v2"
+icon = "NSCripplingStrike"
+internal_name = "NSCripplingStrike"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Crippling Strike"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement_group.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement_group.requirement]]
+items = ["NSSneakAttackTrainingIV"]
+req_type = "Enhancement"
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Crippling Strike"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Ninja Spy: Archer's Focus or Self Defense"
+cost_per_rank = [1]
+description = "Select between Improved Archer's Focus or Self Defense."
+variant = "v2"
+icon = "SelfDefense"
+internal_name = "NSSelfDefense"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Improved Archer's Focus"
+cost_per_rank = [1]
+description = """
+Your Archer's Focus stance can now stack up to 25 times instead of 15.
+Passive: +10 Ranged Power."""
+icon = "ShintaoStudiesII"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "RangedPower"
+
+[[enhancement.selection]]
+name = "Self Defense"
+cost_per_rank = [1]
+description = """
+Grants +5 Magical Resistance Rating and Magical Resistance Cap.
+You gain a +25% Competence bonus to Max Hit Points."""
+icon = "SelfDefense"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+extra_types = ["MRRCap"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement]]
+name = "Ninja Spy: Shadow Double"
+cost_per_rank = [1]
+description = """
+Activate: You gain +50% Doublestrike, +50% Doubleshot, and +5 Assassinate DCs
+for 12 seconds (Morale bonuses).
+Activation cost: 30 Ki
+Cooldown: 20 seconds."""
+variant = "v2"
+icon = "NSShadowDouble"
+internal_name = "NSShadowDouble"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Morale"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Double"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Morale"
+effect_type = "TacticalDC"
+targets = ["Assassinate"]
+
+[[enhancement.modifier.requirement]]
+items = ["Shadow Double"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Monk"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.stance]]
+name = "Shadow Double"
+description = "Activate: You gain +50% Doublestrike, +50% Doubleshot, and +5 Assassinate DCs for 12 seconds."
+icon = "NSShadowDouble"
+
+[[requirement]]
+items = ["Monk"]
+req_type = "BaseClass"

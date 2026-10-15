@@ -1,0 +1,24 @@
+name = "Miserable Humanoid Bane (Heroic)"
+description = """
+This weapon is attuned specifically to those that walk among us, dealing an
+additional 2d10 bane damage vs. Humanoids"""
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus = "Not Set"
+dice_damage = "Bane"
+dice_number = [2]
+dice_sides = [10]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Humanoid"]
+req_type = "EnemyType"
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

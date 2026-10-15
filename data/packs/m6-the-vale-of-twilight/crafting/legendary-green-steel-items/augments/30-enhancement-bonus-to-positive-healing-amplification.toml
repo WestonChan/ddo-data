@@ -1,0 +1,19 @@
+name = "+30 Enhancement bonus to Positive Healing Amplification"
+description = "Opposition/Positive: +30 Enhancement bonus to positive healing amplification"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Enhancement"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 1"

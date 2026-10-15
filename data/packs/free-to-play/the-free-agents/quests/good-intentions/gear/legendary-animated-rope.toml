@@ -1,0 +1,38 @@
+name = "Legendary Animated Rope"
+description = "This rope seems to grip without you even needing to tie it."
+drop_location = "Good Intentions, End Chest"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 28
+slot = "Waist"
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 10
+value2 = 15
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Good Intentions"

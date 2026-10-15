@@ -1,0 +1,9 @@
+name = "Deception"
+description = "Enhancement bonus to Deception"
+enter_value = true
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 28
+
+[[slot]]
+slot = "crafting: random weapon suffix"

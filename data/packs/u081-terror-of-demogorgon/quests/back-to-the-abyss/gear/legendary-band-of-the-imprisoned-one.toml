@@ -1,0 +1,40 @@
+name = "Legendary Band of the Imprisoned One"
+description = """
+The long imprisonment may have ended, but this band retains the memories, desperation,
+and rage."""
+drop_location = "Back to the Abyss, end chest"
+icon = "Ring_16d"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 35
+slot = "Ring"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 45
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Back to the Abyss"

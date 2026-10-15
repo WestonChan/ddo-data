@@ -1,0 +1,3 @@
+name = "Tchurvul's Touch"
+description_template = "This weapon causes running sores that make the target of its blows extremely irritable. There is a small chance that creatures lose -1 Charisma when hit by this weapon."
+verbose_name_template = "Tchurvul's Touch"

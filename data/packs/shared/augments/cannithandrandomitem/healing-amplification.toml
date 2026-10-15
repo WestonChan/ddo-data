@@ -1,0 +1,74 @@
+name = "Healing Amplification"
+choose_level = true
+description = "All incoming positive energy healing gains a Competence bonus"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    4,
+    7,
+    8,
+    12,
+    14,
+    16,
+    17,
+    19,
+    21,
+    22,
+    24,
+    25,
+    27,
+    29,
+    30,
+    32,
+    33,
+    35,
+    37,
+    38,
+    40,
+    41,
+    43,
+    45,
+    46,
+    48,
+    49,
+    51,
+    53,
+    54,
+    56,
+    57,
+    59,
+    61,
+    62,
+    64,
+    64,
+    64,
+    64,
+    64,
+]
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 61
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [61]
+bonus_type = "Competence"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "crafting: cannith armor suffix"
+
+[[slot]]
+slot = "crafting: cannith gloves suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random armor suffix"
+
+[[slot]]
+slot = "crafting: random gloves suffix"

@@ -1,0 +1,52 @@
+name = "Stolen Signet of ir'Wynarn"
+description = """
+This signet ring once belonged to Queen Aurala ir'Wynarn of Aundair, and has
+since been stolen and smuggled across the whole of Khorvaire."""
+drop_location = "Too Hot to Handle, end chest; Masterminds of Sharn saga: Epic, end reward; rare drop in any legendary Sharn quest"
+icon = "Ring_38"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Exceptional"
+value = 10
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 26
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Enhancement"
+value = 37
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "raid"
+name = "Too Hot to Handle"
+
+[[source]]
+kind = "saga"
+name = "Masterminds of Sharn"
+tier = "epic"

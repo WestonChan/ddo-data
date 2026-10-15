@@ -1,0 +1,46 @@
+name = "Spell Power Light +70"
+description = "Equipment bonus to spell power"
+family = "Slavelords_Heroic"
+icon = "SlavelordsSuffix"
+min_level = 8
+
+[[effect]]
+name = "Light Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[effect]]
+name = "Chaos Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[effect]]
+name = "Evil Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[effect]]
+name = "Good Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[effect]]
+name = "Law Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Light/Alignment",
+    "Chaos",
+    "Evil",
+    "Good",
+    "Lawful",
+]
+
+[[slot]]
+slot = "crafting: slavelords suffix"

@@ -1,0 +1,3 @@
+name = "From The Shadows"
+description_template = "On Being Missed in Combat: Chance to do 10 to 60 Negative Energy Damage to the Attacker."
+verbose_name_template = "From The Shadows"

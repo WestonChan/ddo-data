@@ -1,0 +1,50 @@
+name = "Quorforged Docent of Victory (Level 24)"
+description = "Time-Twisted version of Quorforged Docent of Battle This docent belongs to the servants of the Quori that still run Stormreach to this day."
+drop_location = "Timeline Fragment Exchange, Turn in 50 Timeline Fragments"
+enhancement_bonus = 7
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 24
+slot = "Body"
+wiki_url = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_24%29"
+
+[[armor]]
+armor_type = "Docent"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Quorforged_Docent_of_Victory_%28level_24%29"
+read = "2026-09-29"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 10
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Quality"
+value = 30
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "event"
+name = "Timeline Fragment Exchange"

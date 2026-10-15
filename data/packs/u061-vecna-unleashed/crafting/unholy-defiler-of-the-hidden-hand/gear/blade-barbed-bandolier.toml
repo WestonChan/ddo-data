@@ -1,0 +1,43 @@
+name = "Blade-Barbed Bandolier"
+description = "Pain and suffering. All must feel it, yours will be used to control it all."
+drop_location = "Unholy Defiler of the Hidden Hand, defiled version of Legendary Bladesworn Bandolier"
+icon = "Belt_14d"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 32
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 52
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 9
+
+[[effect]]
+name = "Utter Disintegration"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Unholy Defiler of the Hidden Hand"

@@ -1,0 +1,96 @@
+name = "Awanahu Sash"
+description = """
+This darkened leather belt is well worn. The feared assassin, Awanahu, wore
+this item when he slew a powerful member of the twelve."""
+drop_location = "Sins of Attrition, Any chest ; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Assassin"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Assassin - 2 Piece bonus"
+effect_type = "SneakAttackAttack"
+extra_types = ["SneakAttackAttack"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    5,
+    5,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Assassin - 2 Piece bonus"
+effect_type = "SneakAttackDamage"
+extra_types = ["SneakAttackDamage"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    -20,
+    -20,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Assassin - 2 Piece bonus"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusMelee"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    3,
+    3,
+    3,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Assassin - 3 Piece bonus"
+effect_type = "NotModeled"
+extra_types = ["NotModeled"]
+targets = ["All"]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sins of Attrition"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

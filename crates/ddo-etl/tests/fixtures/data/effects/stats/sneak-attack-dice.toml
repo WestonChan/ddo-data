@@ -1,0 +1,3 @@
+name = "Sneak Attack Dice"
+category = "martial"
+verbose_name_template = "%b1 Sneak Attack Dice +{1}"

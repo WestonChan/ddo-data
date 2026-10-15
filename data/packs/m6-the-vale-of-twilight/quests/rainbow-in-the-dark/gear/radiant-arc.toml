@@ -1,0 +1,87 @@
+name = "Radiant Arc"
+description = """
+Light emits from a crystal situated at the head of this scepter. It ceases to
+function when beyond the influence of a magically bound receptor pedestal."""
+drop_location = "Rainbow in the Dark"
+enhancement_bonus = 5
+icon = "Club_2"
+item_category = "Weapon"
+item_type = "Club"
+material = "Blueshine"
+minimum_level = 14
+slot = "Main Hand"
+
+[[clickie]]
+name = "Blinding Flash"
+clickie = "Blinding Flash"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Light"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Everbright"
+
+[[effect]]
+name = "Archmagi"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 56
+
+[[effect]]
+name = "Metalline"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Blinding Flash"]
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Rainbow in the Dark"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

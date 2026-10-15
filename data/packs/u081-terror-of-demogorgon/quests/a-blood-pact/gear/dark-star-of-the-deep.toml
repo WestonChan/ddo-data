@@ -1,0 +1,55 @@
+name = "Dark Star of the Deep"
+description = "At a certain angle, these stars shine an uncanny light."
+enhancement_bonus = 5
+icon = "Shuriken_1m"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Unholy 3"
+
+[[effect]]
+name = "Penalty Good"
+
+[[effect]]
+name = "Crushing 7"
+
+[[effect]]
+name = "Disintegrate 2"
+
+[[effect]]
+name = "Vampirism 1"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "A Blood Pact"
+
+[[weapon]]
+attack_modifier = "Strength, Dexterity"
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength, Dexterity"
+damage_multiplier = 1.5
+handedness = "Thrown"
+weapon_type = "Shuriken"

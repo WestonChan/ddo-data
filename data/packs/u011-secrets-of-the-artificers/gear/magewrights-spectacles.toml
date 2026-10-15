@@ -1,0 +1,60 @@
+name = "Magewright's Spectacles"
+description = """
+A pair of spectacles often worn by House Cannith magewrights. It enhances the
+functions of one's brain, improving the ability of the wearer to focus his
+or her energies."""
+drop_location = "House Cannith Manufactury, Stellite 's Chest (Rare encounter)"
+icon = "Goggles_5b"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 18
+slot = "Goggles"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Spell Penetration III"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Spell Focus I"
+bonus_type = "Equipment"
+value = 25
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Adds Magewrite's Expertise"
+description = """
+Magewright's Expertise: Spell Focus I: +1 to DCs for all spells.
+Magewright's Quick Wits: Chance to gain a 10 second buff of +12 Alchemical bonus
+to Universal Spell Power each time the wearer is hit by a physical attack."""
+min_level = 18
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+value = 1
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]

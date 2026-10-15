@@ -1,0 +1,48 @@
+name = "Shiona's Pendant"
+description = "This slim silver necklace once belonged to the renowned Spell Singer, Shiona."
+drop_location = "A New Invasion, Any chest ; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 48
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Spell Singer"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Spell Singer - 2 Piece bonus"
+effect_type = "SongCount"
+extra_types = ["SongCount"]
+targets = ["All"]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "A New Invasion"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

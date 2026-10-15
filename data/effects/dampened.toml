@@ -1,0 +1,3 @@
+name = "Dampened"
+description_template = "This item has been in a wet environment for too long and its original power has been weakened. Combine it with a Token of Vulkoor at the Altar of Vulkoor in the Red Fens to restore it back to its former glory."
+verbose_name_template = "Dampened"

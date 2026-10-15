@@ -1,0 +1,46 @@
+name = "Scoundrel's Cutlass"
+description = """
+A pirate classic. Great for a ship-to-ship boarding action. Plus, it makes you
+look positively frightening when you wave it around at people."""
+drop_location = "Three-Barrel Cove (heroic), End reward"
+enhancement_bonus = 2
+icon = "Scimitar_15b"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 6
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Chaotic"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Frost"
+
+[[effect]]
+name = "Anarchic"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "reward"
+name = "Three-Barrel Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

@@ -1,0 +1,34 @@
+name = "Gleaming Plate"
+description = """
+The armor of a Morninglord represents a commitment to the principles of Amaunator's
+faith."""
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 4
+icon = "HeavyArmor_18"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 15
+race_required = "Sun Elf"
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 14
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 4
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

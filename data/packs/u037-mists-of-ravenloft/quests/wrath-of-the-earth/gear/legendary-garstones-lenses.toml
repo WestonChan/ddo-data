@@ -1,0 +1,35 @@
+name = "Legendary Garstone's Lenses"
+description = "These blast-grade lenses come with etched targeting sights."
+drop_location = "Wrath of the Earth, End Chest"
+icon = "Goggles_3"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Goggles"
+
+[[effect]]
+name = "Rune Arm Spell Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Greater Auto-Repair"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 142
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wrath of the Earth"

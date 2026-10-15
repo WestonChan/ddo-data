@@ -1,0 +1,35 @@
+name = "Elfcrafted Robe"
+description = """
+An ancient robe imbued with the power of the elven slaves of the giants millennia
+ago."""
+drop_location = "Elfcraft Armor, Turn in 10 Ancient Elven Relics"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 3
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Arcane Lore"
+
+[[effect]]
+name = "Minor Spell Penetration VII"
+bonus_type = "Equipment"
+
+[[source]]
+kind = "crafting_system"
+name = "Elfcraft Armor"

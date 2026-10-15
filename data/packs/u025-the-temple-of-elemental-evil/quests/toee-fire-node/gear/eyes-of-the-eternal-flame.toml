@@ -1,0 +1,37 @@
+name = "Eyes of the Eternal Flame"
+description = "The fires of the Eternal Flame, put to a more honorable purpose."
+drop_location = "ToEE: Fire Node, end chest and random locked chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 8
+slot = "Goggles"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 96
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 4
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest and random locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Fire Node"

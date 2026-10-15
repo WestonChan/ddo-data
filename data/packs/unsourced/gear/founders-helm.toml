@@ -1,0 +1,14 @@
+name = "Founder's Helm"
+description = """
+This helm commemorates the Founding of Stormreach, the day that the Coin Lords
+first allowed adventurers free run of the city."""
+drop_location = "Special event items, must own a Founder's Account - see tips"
+icon = "Helmet_62"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Lesser False Life"
+bonus_type = "Enhancement"

@@ -1,0 +1,3 @@
+name = "Bluff on Hit"
+description_template = "Your attacks gain a 5% Chance on Hit to Bluff your target for four seconds."
+verbose_name_template = "Bluff on Hit"

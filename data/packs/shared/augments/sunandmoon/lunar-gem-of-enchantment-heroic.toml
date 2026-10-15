@@ -1,0 +1,36 @@
+name = "Lunar Gem of Enchantment (Heroic)"
+description = """
++2 Profane Bonus to Enchantment DCs
+Drops in: A Light in the Attic, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Profane"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"
+
+[[source]]
+chest = "red-named rare encounter chests"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

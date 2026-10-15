@@ -1,0 +1,40 @@
+name = "Periapt of Wisdom (Myth Drannor)"
+description = "A mark of wisdom, recognizing the bearer's discipline and give them deeper understanding."
+drop_location = "Times Long Past, end chest"
+icon = "Trinket_101"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 13
+slot = "Trinket"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 4
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Times Long Past"

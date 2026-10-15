@@ -1,0 +1,45 @@
+name = "Troubleshooter"
+icon = "Troubleshooter"
+
+[[item]]
+name = "Troubleshooter's Goggles"
+
+[[item]]
+name = "Troubleshooter's Necklace"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 1
+
+[[tier.effect]]
+bonus_type = "Competence"
+effect = "Disable Device"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Competence"
+effect = "Open Lock"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]

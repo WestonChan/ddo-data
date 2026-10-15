@@ -1,0 +1,62 @@
+name = "Elyd Edge"
+description = """
+Elven script on this fine silver blade reads 'Anthem of the heart; Anthem of
+the mind'."""
+drop_location = "The Tide Turns, End chest"
+enhancement_bonus = 2
+icon = "Rapier_1l"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 5
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 5
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Anthem"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tide Turns"
+
+[[weapon]]
+attack_modifier = "Strength, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Rapier"

@@ -1,0 +1,101 @@
+name = "Crypt Raider Set (Legendary)"
+icon = "CryptRaiderSet"
+
+[[item]]
+name = "Bloodrage Chrism"
+
+[[item]]
+name = "Coat of Van Richten"
+
+[[item]]
+name = "Legendary Coat of the Traveler"
+
+[[item]]
+name = "Legendary Cursebane Focus"
+
+[[item]]
+name = "Legendary Ward-Inscribed Pendant"
+
+[[item]]
+name = "Memory of a Tailor's Duress"
+
+[[item]]
+name = "Storm in a Bottle"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+effect = "+5 Artifact bonus to hit and damage versus Evil creatures"
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Saving Throws"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee Threat Generation"
+value = -20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Ranged Threat Generation"
+value = -20
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[tier.modifier.requirement]]
+items = ["Evil Creature"]
+req_type = "EnemyType"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[tier.modifier.requirement]]
+items = ["Evil Creature"]
+req_type = "Stance"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [-20]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "ThreatBonusMelee"
+extra_types = ["ThreatBonusRanged"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"

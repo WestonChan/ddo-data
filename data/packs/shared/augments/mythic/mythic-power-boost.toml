@@ -1,0 +1,45 @@
+name = "Mythic Power Boost"
+description = "Mythic bonus to Melee, Ranged and Universal Spell Power"
+enter_value = true
+family = "Mythic"
+icon = "Mythic"
+min_level = 1
+
+[[effect]]
+name = "Melee Power"
+bonus_type = "Mythic"
+value = 1
+
+[[effect]]
+name = "Ranged Power"
+bonus_type = "Mythic"
+value = 1
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Mythic"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Mythic"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Mythic"
+effect = "Ranged Power"
+effect_type = "RangedPower"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Mythic"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[slot]]
+slot = "crafting: mythic"

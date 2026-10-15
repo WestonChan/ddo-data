@@ -1,0 +1,48 @@
+name = "Infectious War Axe"
+description = """
+This war axe, infused with the fury of the Droaam ogre brutes, can now confer
+a deadly disease to the wielder's foes."""
+drop_location = "Cauldron of Sora Katra, upgraded version of Ogrish War Axe"
+enhancement_bonus = 5
+icon = "GreatAxe_9"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Vengeful"
+
+[[effect]]
+name = "Humanoid Bane 3"
+
+[[effect]]
+name = "Gashing 7"
+
+[[effect]]
+name = "Demon Fever"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Great Axe"

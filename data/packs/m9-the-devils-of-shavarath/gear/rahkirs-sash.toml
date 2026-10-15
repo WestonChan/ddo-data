@@ -1,0 +1,59 @@
+name = "Rahkir's Sash"
+description = """
+This fine cloth sash courses with magical energy. It belonged to Rahkir, a famous
+Archmage who disappeared while investigating a portal to Shavarath."""
+drop_location = "A New Invasion, Any chest; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[clickie]]
+name = "Greater Efficacy"
+clickie = "Greater Efficacy"
+
+[[effect]]
+name = "Archmagi"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Archmage"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Greater Efficacy"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Artifact"
+display_name = "Archmage - 2 Piece bonus"
+effect_type = "SpellLore"
+extra_types = ["SpellLore"]
+targets = ["All"]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "A New Invasion"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

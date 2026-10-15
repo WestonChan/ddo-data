@@ -1,0 +1,35 @@
+name = "Flightfoot Greaves"
+description = "Be the wind in the trees."
+drop_location = "Death House, End chest"
+icon = "Boots_2"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 10
+slot = "Feet"
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Speed"
+value = 20
+value2 = 7
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 6
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 6
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Death House"

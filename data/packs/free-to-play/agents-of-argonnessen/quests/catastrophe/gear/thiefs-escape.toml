@@ -1,0 +1,36 @@
+name = "Thief's Escape"
+description = "For when one must go quickly."
+drop_location = "Catastrophe, End chest"
+icon = "Boots_22"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 4
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 15
+value2 = 5
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Catastrophe"

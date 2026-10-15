@@ -1,0 +1,20 @@
+name = "+2 Strength (Exceptional)"
+description = "Escalation/Water or Negative: +2 Exceptional bonus to Strength"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Strength"
+bonus_type = "Exceptional"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

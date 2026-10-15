@@ -1,0 +1,41 @@
+name = "Legendary Cloak of Moonlight"
+description = "Magic of old still resonates in this cloak's silver and blue threads."
+drop_location = "The Zulkir's Plan, end chest"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 33
+slot = "Back"
+
+[[effect]]
+name = "Elemental Resistance"
+bonus_type = "Competence"
+value = 15
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 302
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Zulkir's Plan"

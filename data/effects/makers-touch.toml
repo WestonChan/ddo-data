@@ -1,0 +1,3 @@
+name = "Maker's Touch"
+description_template = "Casting a Repair spell on yourself or allies leaves a lingering defensive buff that increases the AC and Physical Resistance Rating of your target by +3 for 12 seconds."
+verbose_name_template = "Maker's Touch"

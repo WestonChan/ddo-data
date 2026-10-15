@@ -1,0 +1,25 @@
+name = "Drow Hunter's Armor"
+description = """
+The breastplate and shoulder protectors of this armor are made of leather that
+has been stiffened by being boiled in oil. The rest of the armor is made of
+softer and more flexible leather."""
+drop_location = "Redwillow's Ruins, Ker'xxan T'korcha 's Chest"
+enhancement_bonus = 4
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 3
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[source]]
+chest = "ker'xxan t'korcha 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Redwillow's Ruins"

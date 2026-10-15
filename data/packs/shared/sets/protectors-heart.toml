@@ -1,0 +1,45 @@
+name = "Protector's Heart"
+icon = "ProtectorsHeart"
+
+[[item]]
+name = "Protector's Brooch"
+
+[[item]]
+name = "Protector's Gloves"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "bonus_type"
+upstream = "Stacking"
+reason = "The wiki types Fortification as Enhancement at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Fortification / Stacking"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Fortification"
+value = 25
+
+[[tier.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Stacking"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"

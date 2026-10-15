@@ -1,0 +1,20 @@
+name = "Quality False Life +4"
+description = "Quality bonus to Hitpoints"
+family = "Slavelords_Heroic"
+icon = "SlavelordsBonus"
+min_level = 8
+
+[[effect]]
+name = "False Life"
+bonus_type = "Quality"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Quality"
+effect = "False Life"
+effect_type = "FalseLife"
+
+[[slot]]
+slot = "crafting: slavelords bonus"

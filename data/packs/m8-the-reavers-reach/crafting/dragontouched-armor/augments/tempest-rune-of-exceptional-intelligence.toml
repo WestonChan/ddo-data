@@ -1,0 +1,23 @@
+name = "Tempest Rune of Exceptional Intelligence"
+description = """
+Exceptional Intelligence +1: This item focuses the power of the wearer's mind,
+granting a +1 exceptional bonus to Intelligence."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[slot]]
+slot = "crafting: tempest rune"

@@ -1,0 +1,53 @@
+name = "Legendary Sirocco"
+accepts_sentience = true
+description = """
+A desert spirit bound to this sword summons a tiny sandstorm around its target
+on each hit. This sandstorm can blind and even knock down your opponent."""
+drop_location = "Legendary version of Epic Sirocco"
+enhancement_bonus = 15
+icon = "Longsword_1h"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Legendary Telekinetic"
+
+[[effect]]
+name = "Force Blast 6"
+
+[[effect]]
+name = "Legendary Sirocco"
+
+[[effect]]
+name = "Smoke Screen +20"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Legendary Air Guard"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "One-handed"
+weapon_type = "Longsword"

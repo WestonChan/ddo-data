@@ -1,0 +1,44 @@
+name = "Firebreak (level 23)"
+description = "This light suit of plate armor has been enchanted to repel flames."
+drop_location = "The Druid's Curse, Drow chest (Epic Hard)"
+enhancement_bonus = 6
+icon = "HeavyArmor_6"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 23
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 17
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 5
+
+[[effect]]
+name = "Fire Shield (Cold)"
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Greater Regeneration"
+
+[[source]]
+chest = "drow chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Druid's Curse"

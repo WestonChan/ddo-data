@@ -1,0 +1,62 @@
+name = "Ancient Vulkoorim Dagger"
+description = """
+An ancient dagger forged in the days of the elven revolt against the giants.
+This dagger has a small chance to kill any giant outright."""
+drop_location = "An Offering of Blood, any chest after 2nd Aspect"
+enhancement_bonus = 5
+icon = "Dagger_3"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Adamantine"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Poison Blast 3"
+
+[[effect]]
+name = "Giant Slayer"
+
+[[effect]]
+name = "Giant Bane 3"
+
+[[effect]]
+name = "Wounding 2"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "any chest after 2nd aspect"
+kind = "quest"
+loot_type = "chest"
+name = "An Offering of Blood"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Dagger"

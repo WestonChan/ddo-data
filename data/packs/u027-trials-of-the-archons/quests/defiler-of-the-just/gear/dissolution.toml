@@ -1,0 +1,41 @@
+name = "Dissolution"
+description = """
+Made from the carapace of a fiendish worm, these bracers still ooze with strange
+acidic liquids."""
+drop_location = "Defiler of the Just, Warded chest"
+icon = "Bracers_1a"
+item_category = "Clothing"
+minimum_level = 26
+slot = "Wrists"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

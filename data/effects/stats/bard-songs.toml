@@ -1,0 +1,3 @@
+name = "Bard Songs"
+category = "other"
+verbose_name_template = "%b1 Bard Songs +{1}"

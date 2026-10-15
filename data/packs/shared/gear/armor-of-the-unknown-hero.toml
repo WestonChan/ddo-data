@@ -1,0 +1,32 @@
+name = "Armor of the Unknown Hero"
+description = """
+The Stormreach Guards held onto this impressive-looking suit of half-plate.
+It belonged to a young unknown hero who went down into the sewers to battle
+undead, and never returned."""
+drop_location = "The Lost Seekers, End reward"
+enhancement_bonus = 2
+icon = "HeavyArmor_6"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 2
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 7
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 2
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

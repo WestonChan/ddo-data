@@ -1,0 +1,40 @@
+name = "Bell of Warding"
+description = "Its echoing tone of this bell reverberates for minutes after it is struck."
+drop_location = "The Curse of Strahd, raid chest"
+icon = "Trinket_15"
+item_category = "Jewelry"
+material = "Copper"
+minimum_level = 28
+slot = "Trinket"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 145
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"

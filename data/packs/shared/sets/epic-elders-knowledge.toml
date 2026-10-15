@@ -1,0 +1,36 @@
+name = "Epic Elder's Knowledge"
+icon = "EldersKnowledge"
+
+[[item]]
+name = "Epic Elder's Cap"
+
+[[item]]
+name = "Epic Elder's Focus"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Lore"
+value = 4
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellLore"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]

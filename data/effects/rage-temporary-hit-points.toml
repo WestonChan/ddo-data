@@ -1,0 +1,3 @@
+name = "Rage Temporary Hit Points"
+description_template = "When you activate Rage: Gain 100 Temporary Hit Points per character Epic Level."
+verbose_name_template = "Rage Temporary Hit Points"

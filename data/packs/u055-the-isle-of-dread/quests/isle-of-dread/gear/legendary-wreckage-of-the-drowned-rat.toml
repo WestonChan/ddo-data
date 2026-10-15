@@ -1,0 +1,68 @@
+name = "Legendary Wreckage of the Drowned Rat"
+description = """
+The Drowned Rat was a fiesty galleon, an expert at plundering and daring escapes.
+Alas, it met its end against the volcanic rocks under the terrible weight of
+a fearsome storm."""
+drop_location = "Isle of Dread (wilderness), rare encounter chest"
+enhancement_bonus = 15
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Wood"
+minimum_level = 31
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 19
+max_dex_bonus = 0
+shield_bonus = 19
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 47
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 56
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.2
+handedness = "Off-hand"
+weapon_type = "Small Shield"

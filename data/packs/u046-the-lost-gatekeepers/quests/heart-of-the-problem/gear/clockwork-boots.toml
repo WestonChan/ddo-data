@@ -1,0 +1,27 @@
+name = "Clockwork Boots"
+description = "These carry a subtle heat, as if they were still warm from the forge."
+drop_location = "Heart of the Problem, end chest"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Copper"
+minimum_level = 3
+slot = "Feet"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Heart of the Problem"

@@ -1,0 +1,61 @@
+name = "Grave Wrappings"
+accepts_sentience = true
+description = """
+These strips of cloth previously adorned a denizen of Eveningstar's Deep Glen
+Graveyard. After being exposed to Drow necromancy, they are left imbued with
+a powerful and evil energy."""
+drop_location = """
+The Unquiet Graves, End chest ;
+Menace of the Underdark: The Darkening, Quest chain end reward"""
+enhancement_bonus = 6
+icon = "HandWraps_1"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Entropic"
+
+[[effect]]
+name = "Soul Eating"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Taint of Evil"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Unquiet Graves"
+
+[[source]]
+kind = "saga"
+name = "Menace of the Underdark"
+tier = "any"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

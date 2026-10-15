@@ -1,0 +1,13 @@
+name = "Isle of Dread"
+difficulties = []
+favor = 0
+pack = "The Isle of Dread"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Isle_of_Dread_(wilderness)"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 1

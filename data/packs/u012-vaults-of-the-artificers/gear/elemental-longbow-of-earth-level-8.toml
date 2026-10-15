@@ -1,0 +1,99 @@
+name = "Elemental Longbow of Earth (level 8)"
+description = """
+This longbow is part of a mass-produced line of House Cannith weapons with elementals
+bound to them. This one is infused with earth and deals acid damage as a result."""
+drop_location = "Vaults of the Artificers, Crafted from various challenge ingredients"
+enhancement_bonus = 2
+icon = "Longbow_6a"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Acid"
+
+[[effect]]
+name = "Acid Arrow"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 18
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "+3 Enhancement Bonus and Acid Resistance 20"
+description = """
++3 Enhancement Bonus: +3 Enhancement bonus to attack and damage rolls.
+Acid Resistance +20: Passive: +20 Enhancement bonus to your Acid Resistance."""
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Acid Resistance"
+value = 20
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect = "Acid Resistance"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Adds a Purple augment slot and Acid Resistance 22"
+description = """
+Adds a Purple augment slot to this item
+Acid Resistance +22: Passive: +22 Enhancement bonus to your Acid Resistance."""
+min_level = 8
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Acid Resistance"
+value = 22
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Enhancement"
+effect = "Acid Resistance"
+effect_type = "EnergyResistance"
+targets = ["Acid"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

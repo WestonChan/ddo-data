@@ -1,0 +1,21 @@
+name = "Deep Red Ioun Stone"
+description = "A deep red gem about 1 inch in diameter."
+drop_location = "Random, Highest drop rate from The Dreaming Dark"
+icon = "Trinket_5b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 2
+slot = "Trinket"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Suppressed Power"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Dreaming Dark"

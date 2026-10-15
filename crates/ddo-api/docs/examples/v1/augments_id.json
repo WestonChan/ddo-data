@@ -22,7 +22,7 @@
       ],
       "damage": [],
       "description": null,
-      "effect_id": 14,
+      "effect_id": 2476223613212715,
       "name": "Physical Resistance Rating",
       "tier": null,
       "value": 10,
@@ -34,7 +34,7 @@
   "family": "SunAndMoon",
   "grants_augment": null,
   "icon": "HistoryBookWhite",
-  "id": 1902,
+  "id": 5232143457338569,
   "level_values": null,
   "level_values2": null,
   "levels": null,
@@ -57,7 +57,6 @@
       "display_name": null,
       "effect_type": "PRR",
       "extra_types": null,
-      "id": 15024,
       "is_item_specific": false,
       "is_rare": false,
       "percent": false,
@@ -79,7 +78,7 @@
         "elite"
       ],
       "epic_level": 35,
-      "id": 360,
+      "id": 7826289367013418,
       "is_free_to_play": false,
       "is_raid": false,
       "is_rare": false,
@@ -87,7 +86,8 @@
       "loot_type": "chest",
       "name": "Secrets of the Red Wizards",
       "pack": "Magic of Myth Drannor",
-      "patron": "Cormanthor Elves"
+      "patron": "Cormanthor Elves",
+      "slug": "secrets-of-the-red-wizards"
     },
     {
       "chest": "optional chest",
@@ -97,7 +97,7 @@
         "hard"
       ],
       "epic_level": 35,
-      "id": 104,
+      "id": 4866425253067675,
       "is_free_to_play": false,
       "is_raid": false,
       "is_rare": false,
@@ -105,7 +105,8 @@
       "loot_type": "chest",
       "name": "The Covered Culvert",
       "pack": "Tavern Tales",
-      "patron": "The Free Agents"
+      "patron": "The Free Agents",
+      "slug": "the-covered-culvert"
     },
     {
       "chest": "end chest",
@@ -115,7 +116,7 @@
         "hard"
       ],
       "epic_level": 35,
-      "id": 103,
+      "id": 2107131191139952,
       "is_free_to_play": false,
       "is_raid": false,
       "is_rare": false,
@@ -123,23 +124,27 @@
       "loot_type": "chest",
       "name": "The Darkness and the Light",
       "pack": "Fall of the Night Brigade",
-      "patron": "The Harpers"
+      "patron": "The Harpers",
+      "slug": "the-darkness-and-the-light"
     }
   ],
   "set_bonus": null,
   "slots": [
     "sun"
   ],
+  "slug": "solar-gem-of-physical-resistance-rating-heroic",
   "sources": [
     {
       "character_level": null,
       "chest": "end chest",
       "cost": null,
-      "id": 360,
+      "id": 7826289367013418,
       "is_rare": false,
       "kind": "quest",
       "loot_type": "chest",
       "name": "Secrets of the Red Wizards",
+      "price": [],
+      "slug": "secrets-of-the-red-wizards",
       "tier": null,
       "wiki_url": "https://ddowiki.com/page/Secrets_of_the_Red_Wizards"
     },
@@ -147,11 +152,13 @@
       "character_level": null,
       "chest": "optional chest",
       "cost": null,
-      "id": 104,
+      "id": 4866425253067675,
       "is_rare": false,
       "kind": "quest",
       "loot_type": "chest",
       "name": "The Covered Culvert",
+      "price": [],
+      "slug": "the-covered-culvert",
       "tier": null,
       "wiki_url": "https://ddowiki.com/page/The_Covered_Culvert"
     },
@@ -159,11 +166,13 @@
       "character_level": null,
       "chest": "end chest",
       "cost": null,
-      "id": 103,
+      "id": 2107131191139952,
       "is_rare": false,
       "kind": "quest",
       "loot_type": "chest",
       "name": "The Darkness and the Light",
+      "price": [],
+      "slug": "the-darkness-and-the-light",
       "tier": null,
       "wiki_url": "https://ddowiki.com/page/The_Darkness_and_the_Light"
     }

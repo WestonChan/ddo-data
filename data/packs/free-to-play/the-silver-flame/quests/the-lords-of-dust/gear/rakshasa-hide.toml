@@ -1,0 +1,47 @@
+name = "Rakshasa Hide"
+description = """
+Crafted from the tanned hide of a Rakshasa, this armor is lightweight and grants
+many of the magical traits and supernatural senses that Rakshasa possesses."""
+drop_location = "The Lords of Dust, Tahmael's chest"
+enhancement_bonus = 4
+icon = "MediumArmor_11"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 5
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 13
+
+[[effect]]
+name = "Rough Hide"
+bonus_type = "Primal"
+value = 3
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Greater Nimbleness"
+bonus_type = "Stacking"
+
+[[effect]]
+name = "Roar"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 12
+
+[[source]]
+chest = "tahmael's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Lords of Dust"

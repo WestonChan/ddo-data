@@ -1,0 +1,3 @@
+name = "Henshin Mystic"
+description_template = "This item in one of two pieces of the Henshin Mystic set. When both items are equipped you will inflict 1 to 6 additional fire damage per attack. (Not modeled)"
+verbose_name_template = "Henshin Mystic"

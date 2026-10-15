@@ -1,0 +1,37 @@
+name = "Belt of Wicked Insanity"
+description = "Display your wickedness."
+drop_location = "Treasure Hunt, end chest"
+icon = "Belt_1"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 21
+slot = "Waist"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 25
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 38
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Treasure Hunt"

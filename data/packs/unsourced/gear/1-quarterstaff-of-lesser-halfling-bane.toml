@@ -1,0 +1,35 @@
+name = "-1 Quarterstaff of Lesser Halfling Bane"
+description = """
+A long, stout staff used as a simple weapon. Often favored by wizards or common
+folk."""
+drop_location = "Cannith Crafting Tutorial, End reward"
+icon = "Quarterstaff_15"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[effect]]
+name = "Weapon Enchantment Bad"
+
+[[effect]]
+name = "Lesser Halfling Bane"
+
+[[effect]]
+name = "Curse of Weakness"
+bonus_type = "Penalty"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

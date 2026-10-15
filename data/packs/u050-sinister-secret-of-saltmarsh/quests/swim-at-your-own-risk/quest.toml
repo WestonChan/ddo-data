@@ -1,0 +1,30 @@
+name = "Swim at Your Own Risk"
+bestowed_by = "Sauriv"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "Sinister Secret of Saltmarsh"
+patron = "The Gatekeepers"
+zone = "Thousand-Teeth's Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Swim_at_Your_Own_Risk"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

@@ -1,0 +1,19 @@
+name = "+9 Exceptional bonus to MRR"
+description = "Opposition/Any: +9 Exceptional bonus to MRR."
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Exceptional"
+value = 9
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Exceptional"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

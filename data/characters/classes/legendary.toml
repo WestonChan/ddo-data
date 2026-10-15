@@ -1,0 +1,141 @@
+name = "Legendary"
+alignments = ["Legendary"]
+bab = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+description = "Standard Legendary level"
+fortitude = "none"
+hit_points = 10
+large_icon = "Legendary"
+not_heroic = true
+reflex = "none"
+skill_points = 0
+small_icon = "Legendary_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+will = "none"
+
+[[auto_feat]]
+level = 1
+feat = "Legendary Power"
+
+[[auto_feat]]
+level = 2
+feat = "Legendary Knowledge"
+
+[[auto_feat]]
+level = 2
+feat = "Legendary Power"
+
+[[auto_feat]]
+level = 3
+feat = "Legendary Power"
+
+[[auto_feat]]
+level = 4
+feat = "Legendary Knowledge"
+
+[[auto_feat]]
+level = 4
+feat = "Legendary Power"
+
+[[auto_feat]]
+level = 5
+feat = "Legendary Power"
+
+[[auto_feat]]
+level = 6
+feat = "Legendary Knowledge"
+
+[[auto_feat]]
+level = 6
+feat = "Legendary Power"
+
+[[auto_feat]]
+level = 7
+feat = "Legendary Power"
+
+[[auto_feat]]
+level = 8
+feat = "Legendary Knowledge"
+
+[[auto_feat]]
+level = 8
+feat = "Legendary Power"
+
+[[auto_feat]]
+level = 9
+feat = "Legendary Power"
+
+[[auto_feat]]
+level = 10
+feat = "Legendary Knowledge"
+
+[[auto_feat]]
+level = 10
+feat = "Legendary Power"
+
+[[feat_slot]]
+feat_type = "Epic Destiny Feat"
+level = 1
+
+[[feat_slot]]
+feat_type = "Epic Feat"
+level = 3
+
+[[feat_slot]]
+feat_type = "Epic Destiny Feat"
+level = 4
+
+[[feat_slot]]
+feat_type = "Epic Feat"
+level = 6
+
+[[feat_slot]]
+feat_type = "Epic Destiny Feat"
+level = 7
+
+[[feat_slot]]
+feat_type = "Epic Feat"
+level = 9

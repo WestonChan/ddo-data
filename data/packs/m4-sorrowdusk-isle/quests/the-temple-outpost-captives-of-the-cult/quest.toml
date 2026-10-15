@@ -1,0 +1,22 @@
+name = "The Temple Outpost: Captives of the Cult"
+bestowed_by = "Bruku"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "Sorrowdusk Isle"
+patron = "House Deneith"
+zone = "The Temple Outpost"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Temple_Outpost:_Captives_of_the_Cult"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8

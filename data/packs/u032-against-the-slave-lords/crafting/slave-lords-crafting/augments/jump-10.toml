@@ -1,0 +1,21 @@
+name = "Jump +10"
+description = "Competence bonus to Jump"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect = "Jump"
+effect_type = "SkillBonus"
+targets = ["Jump"]
+
+[[slot]]
+slot = "crafting: slavelords extra"

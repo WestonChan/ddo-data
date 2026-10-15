@@ -1,0 +1,5 @@
+name = "No Augment"
+description = "Clears the current augment selection"
+family = "Other"
+icon = "NoAugment"
+min_level = 1

@@ -1,0 +1,3 @@
+name = "Rune Arm Imbue - Force I"
+description_template = "Wearing this Rune Arm will imbue any weapon you wield, dealing 1d2 points of force damage per hit. This damage scales with 200% Melee or Ranged power (whichever is higher)."
+verbose_name_template = "Rune Arm Imbue - Force I"

@@ -1,0 +1,10 @@
+name = "Spell Focus"
+description_template = "{1} %b1 bonus to the DC of all spells."
+home_bonus_type = "Profane"
+verbose_name_template = "%b1 Spell Focus +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Spell DCs"

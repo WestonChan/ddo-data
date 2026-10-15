@@ -1,0 +1,14 @@
+name = "Topaz of Minor Smiting"
+description = "Upgrade an item to grant +1 Smite Evil charges."
+family = "Alchemical"
+icon = "Topaz"
+min_level = 4
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"

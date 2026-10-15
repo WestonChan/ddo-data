@@ -1,0 +1,21 @@
+name = "Fang: Accuracy +23"
+description = "Accuracy +23"
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 23
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Competence"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[slot]]
+slot = "isle of dread: artifact fang (accessory)"

@@ -1,0 +1,27 @@
+name = "Ancient Band (historic)"
+description = """
+This metallic band has suffered through thousands of years of wear. The scratches
+on its surface are so numerous that any shine the metal once had is gone forever."""
+drop_location = "Madstone Crater, end chest"
+icon = "Ring_12"
+is_legacy = true
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Ring"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 100
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 3
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Madstone Crater"

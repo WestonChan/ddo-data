@@ -1,0 +1,55 @@
+name = "Legendary Mycelic Mauler"
+accepts_sentience = true
+description = """
+Fungi are frequently found sprouting from the handle and head of this mighty
+Maul."""
+drop_location = "A Long Way to Mushrooms, end chest"
+enhancement_bonus = 16
+icon = "Maul_1j"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Acidic 7"
+
+[[effect]]
+name = "Corroding 16"
+
+[[effect]]
+name = "Staggering 117"
+
+[[effect]]
+name = "Crippling"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Long Way to Mushrooms"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "Two-handed"
+weapon_type = "Maul"

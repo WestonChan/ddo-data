@@ -1,0 +1,47 @@
+name = "Kron'zek's Cruelty"
+description = """
+A scimitar imbued with the essence of a powerful blue abishai . Sparks fly from
+its edge, and it delivers grievous wounds on critical hits ."""
+drop_location = "Under the Big Top, Kron'zek 's chest"
+enhancement_bonus = 2
+icon = "Scimitar_6"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Electrifying 2"
+
+[[effect]]
+name = "Maiming 2"
+
+[[effect]]
+name = "Bleeding 2"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "kron'zek 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Big Top"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

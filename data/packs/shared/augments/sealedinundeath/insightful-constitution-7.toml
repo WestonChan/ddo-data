@@ -1,0 +1,27 @@
+name = "Insightful Constitution +7"
+description = """
+Insightful Constitution +7: This item gives the wearer improved health, granting
+a +7 Insightful bonus to Constitution."""
+family = "SealedInUndeath"
+icon = "Constitution"
+min_level = 32
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 7
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [7]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[slot]]
+slot = "crafting: sealed in undeath"
+
+[[slot]]
+slot = "crafting: sealed in gloom"

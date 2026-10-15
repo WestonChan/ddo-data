@@ -1,0 +1,47 @@
+name = "Dhovras' Armlet"
+drop_location = "Toil and Trouble, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 5
+slot = "Wrists"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 35
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 4
+
+[[removed]]
+kind = "item"
+name = "Dhovras' Amulet"
+reason = "A misnamed duplicate of his Dhovras' Armlet, identical except the name; the Toil and Trouble page lists Dhovras' Armlet."
+url = "https://ddowiki.com/page/Toil_and_Trouble"
+read = "2026-10-01"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

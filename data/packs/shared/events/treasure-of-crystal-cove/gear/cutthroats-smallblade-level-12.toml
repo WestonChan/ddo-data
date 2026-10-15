@@ -1,0 +1,93 @@
+name = "Cutthroat's Smallblade (level 12)"
+description = """
+When a cutlass is simply too big for the job, a pirate will turn instead to
+a trusty smallblade. This one is serrated and quite adept at inflicting painful
+wounds on living creatures."""
+drop_location = "Treasure of Crystal Cove, Turn in 500 Silver Doubloon 200 Golden Doubloon 25 Stolen Amethyst 500 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 3
+icon = "Shortsword_3"
+item_category = "Weapon"
+item_type = "Shortsword"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Slicing"
+
+[[effect]]
+name = "Bleed"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 11
+
+[[socket]]
+slot = "crafting: upgradeable tier 2"
+
+[[socket.option]]
+name = "+4 Enhancement Bonus"
+description = "+4 Enhancement Bonus: +4 enhancement bonus to attack and damage rolls."
+min_level = 12
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Enchantment"
+
+[[socket]]
+slot = "crafting: upgradeable tier 3"
+
+[[socket.option]]
+name = "Adds Doublestrike 6% and Red Augment Slot"
+description = "Doublestrike 6%: Passive: 6% Enhancement bonus to Doublestrike. Doublestrike is a chance to score an additional hit with a melee attack."
+min_level = 12
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 6
+
+[[socket.option.grant]]
+slot = "red"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+targets = ["All"]
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Shortsword"

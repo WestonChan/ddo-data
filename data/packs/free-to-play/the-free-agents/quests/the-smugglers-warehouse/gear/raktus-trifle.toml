@@ -1,0 +1,29 @@
+name = "Raktu's Trifle"
+description = "A faint whispering sound surrounds this silver chain."
+drop_location = "The Smuggler's Warehouse, Witch Doctor Raktu 's chest"
+icon = "Trinket_69"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Absorbs Magic Missiles"
+clickie = "Absorbs Magic Missiles"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    20,
+    20,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Absorbs Magic Missiles"]
+
+[[source]]
+chest = "witch doctor raktu 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Smuggler's Warehouse"

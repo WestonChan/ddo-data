@@ -1,0 +1,23 @@
+name = "The Lair of Summoning"
+bestowed_by = "Lorridan Silvermantle"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Kundarak"
+zone = "Lair of Summoning"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Lair_of_Summoning"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5

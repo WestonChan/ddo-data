@@ -1,0 +1,41 @@
+name = "Blue Dragonscale Docent"
+description = "This docent was crafted from the scales of a blue dragon."
+drop_location = "Blue Dragonscale Armor, Turn in 20 Blue Dragon Scales"
+enhancement_bonus = 5
+icon = "Docent_6"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 14
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 17
+armor_bonus = -2
+armor_type = "Docent"
+mithral_body = 8
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Spell Lore VI"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 52
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "crafting_system"
+name = "Dragonscale Armor"

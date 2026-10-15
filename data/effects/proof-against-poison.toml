@@ -1,0 +1,10 @@
+name = "Proof Against Poison"
+description_template = "This item grants its wearer immunity to natural poisons. This item also grants a {1} %b1 bonus to saving throws against magical poisons, and the wearer does not fail saving throws against them on a roll of a natural 1 (this renders the wearer immune to magical poisons with a DC of less than 11 + their Fortitude save)."
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Proof Against Poison +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Poison Save"

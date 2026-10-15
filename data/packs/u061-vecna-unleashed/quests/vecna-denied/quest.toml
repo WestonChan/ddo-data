@@ -1,0 +1,29 @@
+name = "Vecna Denied"
+bestowed_by = "Vigilance"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Vecna Unleashed"
+patron = "Morgrave University"
+zone = "The Traveler's Astral Fortress"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Vecna_Denied"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

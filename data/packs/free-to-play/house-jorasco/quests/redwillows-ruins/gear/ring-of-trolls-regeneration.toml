@@ -1,0 +1,20 @@
+name = "Ring of Troll's Regeneration"
+description = "This ring grants a limited ability to regenerate health using positive energy."
+drop_location = "Redwillow's Ruins, Harblimar 's Chest"
+icon = "Ring_48"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 5
+slot = "Ring"
+
+[[effect]]
+name = "Regeneration"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "harblimar 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Redwillow's Ruins"

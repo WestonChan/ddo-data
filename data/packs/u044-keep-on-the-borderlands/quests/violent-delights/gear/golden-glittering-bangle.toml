@@ -1,0 +1,37 @@
+name = "Golden Glittering Bangle"
+description = "Subtle as smoke"
+drop_location = "Violent Delights, End chest"
+icon = "Bracers_10"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 21
+slot = "Wrists"
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 18
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Violent Delights"

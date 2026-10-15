@@ -1,0 +1,3 @@
+name = "Legendary Slowburst"
+description_template = "This weapon has an image of a snail worked into its hilt or grip, and it feels cold to the touch. Whenever you score a critical hit with this weapon, the target is slowed for 30 seconds. A DC 100 Will save negates this effect."
+verbose_name_template = "Legendary Slowburst"

@@ -1,0 +1,28 @@
+name = "Hidden Effect All Threat"
+description_template = "Increases spellcasting, melee, and ranged threat by 15%"
+home_bonus_type = "Penalty"
+verbose_name_template = "Hidden Effect +15"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Penalty"
+constant = 15
+rounding = "down"
+scale = 1.0
+target = "Melee Threat Generation"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Penalty"
+constant = 15
+rounding = "down"
+scale = 1.0
+target = "Ranged Threat Generation"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Penalty"
+constant = 15
+rounding = "down"
+scale = 1.0
+target = "Spell Threat Generation"

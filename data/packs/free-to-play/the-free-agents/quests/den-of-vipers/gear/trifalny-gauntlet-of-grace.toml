@@ -1,0 +1,43 @@
+name = "Trifalny, Gauntlet of Grace"
+description = "TBD"
+drop_location = "Den of Vipers, end chest"
+icon = "Gloves_7p"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 33
+slot = "Hands"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Greater Marksmanship"
+
+[[socket]]
+slot = "crafting: sealed in gloom"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Den of Vipers"

@@ -1,0 +1,36 @@
+name = "Pendant of Quiet Movements"
+description = "This strange bauble seems to absorb the sound of footsteps."
+drop_location = "Demon Assault, End chest"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 13
+slot = "Neck"
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Demon Assault"

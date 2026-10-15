@@ -1,0 +1,42 @@
+name = "Beholder Plate Armor"
+description = """
+Some beholders of Xoriat are fitted with resilient metal plates to bolster their
+weak physical defenses. Metal from those same plates was used in crafting this
+suit of armor, granting it wondrous Antimagic properties."""
+drop_location = "The Lord of Eyes, Opuloxx chest; \n Harbinger of Madness, Quest chain end reward"
+enhancement_bonus = 5
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Magesteel"
+minimum_level = 14
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 16
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Antimagic Spike"
+
+[[effect]]
+name = "Telekinesis Guard"
+
+[[effect]]
+name = "Metal Fatigue"
+
+[[socket]]
+slot = "crafting: trace of madness"
+
+[[source]]
+chest = "opuloxx chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Lord of Eyes"
+
+[[source]]
+kind = "quest_chain"
+name = "Harbinger of Madness"

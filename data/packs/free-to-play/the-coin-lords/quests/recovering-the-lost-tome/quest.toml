@@ -1,0 +1,23 @@
+name = "Recovering the Lost Tome"
+bestowed_by = "Dalsamira Courdry"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "Fallowcrest Library"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Recovering_the_Lost_Tome"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 2

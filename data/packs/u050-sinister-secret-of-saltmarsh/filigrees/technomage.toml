@@ -1,0 +1,197 @@
+[[row]]
+name = "Technomage: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "Technomage"
+menu = "Sinister Secret of Saltmarsh"
+set = "Technomage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Technomage: Constitution: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Technomage: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "Technomage"
+menu = "Sinister Secret of Saltmarsh"
+set = "Technomage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Technomage: Intelligence: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Technomage: +1 Rune Arm DC"
+description = """
++1 Rune Arm DC
+Rare: +2 PRR"""
+icon = "Technomage"
+menu = "Sinister Secret of Saltmarsh"
+set = "Technomage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "TacticalDC"
+targets = ["Rune Arm"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Technomage: Rune Arm DC: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Technomage: +3 MRR"
+description = """
++3 Magical Resistance Rating
+Rare: +2 PRR"""
+icon = "Technomage"
+menu = "Sinister Secret of Saltmarsh"
+set = "Technomage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Technomage: MRR: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Technomage: +3 PRR"
+description = """
++3 Physical Resistance Rating
+Rare: +2 MRR (Bugged, live says PRR, but its MRR)"""
+icon = "Technomage"
+menu = "Sinister Secret of Saltmarsh"
+set = "Technomage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Technomage: PRR: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Technomage: +4 Armor Class"
+description = """
++4 Armor Class
+Rare: +2 PRR"""
+icon = "Technomage"
+menu = "Sinister Secret of Saltmarsh"
+set = "Technomage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+effect_type = "ACBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Technomage: Armor Class: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Technomage: +9 Electric Spell Power"
+description = """
++9 Electric Spell Power
+Rare: +4 Universal Spell Power
+Rare Hidden: +2 PRR"""
+icon = "Technomage"
+menu = "Sinister Secret of Saltmarsh"
+set = "Technomage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Technomage: Electric Spell Power: Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Technomage: Electric Spell Power: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Technomage: +9 Sonic Spell Power"
+description = """
++9 Sonic Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "Technomage"
+menu = "Sinister Secret of Saltmarsh"
+set = "Technomage"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Technomage: Sonic Spell Power: Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

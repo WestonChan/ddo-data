@@ -1,0 +1,38 @@
+name = "Mythic Minos Legens"
+drop_location = "Flesh Maker's Laboratory (epic), end chest"
+icon = "Helmet_35"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 27
+slot = "Head"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 45
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 3
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Flesh Maker's Laboratory"

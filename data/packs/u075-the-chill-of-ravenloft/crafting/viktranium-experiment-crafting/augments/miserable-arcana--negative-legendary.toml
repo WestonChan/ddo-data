@@ -1,0 +1,28 @@
+name = "Miserable Arcana: Negative (Legendary)"
+description = "+159 Equipment bonus to Negative Spellpower."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Negative Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[effect]]
+name = "Poison Spell Power"
+bonus_type = "Equipment"
+value = 159
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [159]
+bonus_type = "Equipment"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

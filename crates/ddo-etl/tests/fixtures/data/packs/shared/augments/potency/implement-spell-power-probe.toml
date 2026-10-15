@@ -1,0 +1,20 @@
+name = "Implement Spell Power Probe"
+description = "Implement bonus to Universal Spell Power."
+family = "Potency"
+min_level = 30
+
+[[effect]]
+name = "Universal Spell Power"
+bonus_type = "Implement"
+value = 28
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [28]
+bonus_type = "Implement"
+effect = "Universal Spell Power"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[slot]]
+slot = "yellow"

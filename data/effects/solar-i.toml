@@ -1,0 +1,3 @@
+name = "Solar I"
+description_template = "On Hit: 1 to 6 Light Damage."
+verbose_name_template = "Solar I"

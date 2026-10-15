@@ -1,0 +1,54 @@
+name = "Diabolist's Robe"
+description = """
+This infernal robe is connected to the devils of Shavarath somehow, though the
+exact nature of the link is unclear. It can summon evil creatures to the wearer's
+aid, and facilitates the casting of conjuration-based magic."""
+drop_location = "The Chronoscope, End reward"
+enhancement_bonus = 2
+icon = "Cloth_1f"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Summon Monster III"
+clickie = "Summon Monster III"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Monster III"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"

@@ -1,0 +1,45 @@
+name = "Necklace of Bottled Sunlight"
+description = "This tiny glass bottle contains a drop of sunlight within."
+drop_location = "The Endless Revels, End Chest"
+icon = "Necklace_11"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 5
+slot = "Neck"
+
+[[clickie]]
+name = "Good Hope"
+clickie = "Good Hope"
+
+[[effect]]
+name = "High Spirits"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 14
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Good Hope"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Endless Revels"

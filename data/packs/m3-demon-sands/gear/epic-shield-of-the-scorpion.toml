@@ -1,0 +1,63 @@
+name = "Epic Shield of the Scorpion"
+description = """
+A shield awarded to exceptional Scorrow raiders by the Vulkoorim Priests. The
+shield offers exceptional protection from arrows."""
+drop_location = "Epic version of Shield of the Scorpion"
+enhancement_bonus = 6
+icon = "Shield_4k"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 12
+max_dex_bonus = 0
+shield_bonus = 13
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 2
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 32
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Insight"
+value = 14
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Quality"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

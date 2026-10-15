@@ -1,0 +1,76 @@
+name = "Machination of Madness"
+description = """
+With this strange device attached to your arm, a whole world of new ideas is
+open to you. How did you never see the possibilities before?"""
+drop_location = "Legendary Hound of Xoriat, Raid chest"
+icon = "RuneArm_1g"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 27
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Taint of Chaos"
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 141
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 13
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Insight"
+value = 26
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Rune Arm Imbue - Knife Shot VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Bee Shot",
+    "None",
+]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Hound of Xoriat"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

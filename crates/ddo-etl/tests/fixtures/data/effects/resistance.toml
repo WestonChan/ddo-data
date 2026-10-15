@@ -1,0 +1,9 @@
+name = "Resistance"
+home_bonus_type = "Resistance"
+verbose_name_template = "Resistance +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Saving Throws"

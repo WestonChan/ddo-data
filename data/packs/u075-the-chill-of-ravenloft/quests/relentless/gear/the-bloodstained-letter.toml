@@ -1,0 +1,34 @@
+name = "The Bloodstained Letter"
+drop_location = "Relentless, end chest"
+icon = "Trinket_22"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 34
+slot = "Trinket"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "lamordia: woeful (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Relentless"

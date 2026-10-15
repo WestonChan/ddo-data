@@ -1,0 +1,29 @@
+name = "Mystic Band"
+description = """
+Ghola-Fan contracted a treasure seeker to bring him treasures from all over
+Eberron. The origin of this piece is unknown because Ghola-Fan killed the treasure
+seeker before he learned it. He quickly discovered that the band would not
+fit and tossed it into his vault."""
+drop_location = "Bring Me the Head of Ghola-Fan!, treasure room end chest"
+icon = "Helmet_18b"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 9
+slot = "Head"
+
+[[effect]]
+name = "Spell Penetration II"
+bonus_type = "Equipment"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "treasure room end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Bring Me the Head of Ghola-Fan!"

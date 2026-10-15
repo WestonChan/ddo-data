@@ -1,0 +1,48 @@
+name = "Menzoberranzan's Memory"
+description = "No one is sure who made this scimitar, just that it reminds them of someone."
+drop_location = "Stealing from Sorcere, end chest"
+enhancement_bonus = 5
+icon = "Scimitar_1k"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 11
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Chilling 3"
+
+[[effect]]
+name = "Freezing 7"
+
+[[effect]]
+name = "Freezing Ice"
+
+[[effect]]
+name = "Antimagic Spike"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stealing from Sorcere"
+
+[[weapon]]
+attack_modifier = "Strength, Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength, Dexterity"
+damage_multiplier = 1.2
+handedness = "One-handed"
+weapon_type = "Scimitar"

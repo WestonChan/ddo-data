@@ -1,0 +1,62 @@
+name = "Azure Buckler"
+description = "The blue shine of this shield resembles that of the clear blue skies over Sharn."
+drop_location = "Party 101, End chest"
+enhancement_bonus = 5
+icon = "Shield_18d"
+item_category = "Shield"
+item_type = "Buckler"
+material = "Steel"
+minimum_level = 18
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 9
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Feat Elusive Target"
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Party 101"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "Off-hand"
+weapon_type = "Buckler"

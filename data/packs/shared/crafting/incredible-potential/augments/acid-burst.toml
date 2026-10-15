@@ -1,0 +1,43 @@
+name = "Acid Burst"
+description = """
+Acid Burst: This weapon is sheathed in corrosive acid, and does 1 to 6 acid damage
+each hit. Critical hits deal an additional 1 to 10 acid damage for weapons with
+a x2 critical multiplier, 2 to 20 for a x3 multiplier and 3 to 30 for a x4 multiplier."""
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[modifier]]
+amount_type = "Dice"
+bonus_type = "Equipment"
+dice_damage = "Acid"
+dice_number = [1]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Dice"
+bonus_type = "Equipment"
+dice_damage = "Acid"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: incredible potential"

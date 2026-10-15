@@ -1,0 +1,67 @@
+name = "Legendary Temple's Tempest"
+icon = "TemplesTempest"
+
+[[item]]
+name = "Legendary Docent of the Howling Hatred"
+
+[[item]]
+name = "Legendary Eyes of the Howling Hatred"
+
+[[item]]
+name = "Legendary Heavy Armor of the Howling Hatred"
+
+[[item]]
+name = "Legendary Hurricane Insignia"
+
+[[item]]
+name = "Legendary Light Armor of the Howling Hatred"
+
+[[item]]
+name = "Legendary Medium Armor of the Howling Hatred"
+
+[[item]]
+name = "Legendary Robes of the Howling Hatred"
+
+[[item]]
+name = "Legendary The Earth and the Sky"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Electric Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+value = 30
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"

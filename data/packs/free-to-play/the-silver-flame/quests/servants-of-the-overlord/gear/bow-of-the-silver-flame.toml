@@ -1,0 +1,63 @@
+name = "Bow of the Silver Flame"
+description = """
+When Templars of the Silver Flame requested a powerful bow for use against the
+undead, the Bow of the Silver Flame was the answer. It blunts the ammunition
+used with it such that even skeletons will crumble beneath its assault."""
+drop_location = "Servants of the Overlord, Drow Ritual chest"
+enhancement_bonus = 5
+icon = "Longbow_1"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Silver, Alchemical"
+
+[[effect]]
+name = "Holy Burst 4"
+
+[[effect]]
+name = "Evil Characters"
+
+[[effect]]
+name = "Undead Bane 4"
+
+[[effect]]
+name = "Weaken Undead"
+
+[[effect]]
+name = "Blunted Ammunition"
+
+[[source]]
+chest = "drow ritual chest"
+kind = "quest"
+loot_type = "chest"
+name = "Servants of the Overlord"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 2.2
+handedness = "Two-handed"
+weapon_type = "Longbow"

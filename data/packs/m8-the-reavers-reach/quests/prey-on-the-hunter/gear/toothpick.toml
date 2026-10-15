@@ -1,0 +1,37 @@
+name = "Toothpick"
+description = """
+A long, thin, slightly rusted sword with a fine point. It appears to be encrusted
+with small chunks of an unknown material."""
+drop_location = "Prey on the Hunter, End chest"
+icon = "Rapier_7a"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Masterwork Weapon"
+
+[[effect]]
+name = "Greater Giant Bane"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Prey on the Hunter"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Rapier"

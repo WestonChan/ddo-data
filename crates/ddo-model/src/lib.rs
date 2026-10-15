@@ -1,7 +1,9 @@
 pub mod effect_amount;
 pub mod enums;
+pub mod identity;
 pub mod schema;
 pub mod seeds;
+pub mod sources;
 pub mod stats;
 
 pub use schema::{ddl, SCHEMA_VERSION};

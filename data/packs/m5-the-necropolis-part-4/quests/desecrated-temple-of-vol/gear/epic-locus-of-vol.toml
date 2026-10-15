@@ -1,0 +1,72 @@
+name = "Epic Locus of Vol"
+description = """
+This amulet looks nearly identical to the symbol of Vol, with a vial of real
+blood flowing in the center. Rumors persist that these ancient amulets allowed
+Vol to influence her followers directly."""
+drop_location = "Desecrated Temple of Vol (epic), end chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 27
+slot = "Neck"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[effect]]
+name = "Fearsome"
+
+[[effect]]
+name = "Blood Rage"
+
+[[effect]]
+name = "Manslayer"
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 40
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 20
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 27
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Desecrated Temple of Vol"

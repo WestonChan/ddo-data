@@ -1,0 +1,36 @@
+name = "Epic Cloak of Night (Level 24)"
+description = "This cloak is as smooth and dark as the most pitch-black of nights. Wearing it makes you difficult to spot and attack, and by awakening its powers you will enable it to aid you against creatures native to the darkness."
+drop_location = "The Night Revels, Turn in Cloak of Night (level 20) and 200 Piece of Darkest Chocolate, 100 Spooky Almond, 60 Black Apple at Joe Candymaker"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 24
+slot = "Back"
+wiki_url = "https://ddowiki.com/page/Item:Epic_Cloak_of_Night_%28level_24%29"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Epic_Cloak_of_Night_%28level_24%29"
+read = "2026-09-29"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Invisibility Guard"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Nightmare Guard"
+
+[[effect]]
+name = "DR 10/Good"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

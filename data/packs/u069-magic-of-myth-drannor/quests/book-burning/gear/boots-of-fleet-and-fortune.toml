@@ -1,0 +1,42 @@
+name = "Boots of Fleet and Fortune"
+description = """
+Discarded by an adventurer who thought the Ruins would be an easy ticket to
+riches, these boots may give a new bearer a kinder fate."""
+drop_location = "Book Burning, end chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Feet"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 2
+
+[[effect]]
+name = "Exceptional Nimble Skills Bonus"
+bonus_type = "Exceptional"
+value = 7
+
+[[effect]]
+name = "Quality Nimble Skills Bonus"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Insightful Nimble Skills Bonus"
+bonus_type = "Insight"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Book Burning"

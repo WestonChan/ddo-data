@@ -1,0 +1,8 @@
+name = "Dragontouched"
+description_template = """
+This mythical material was created by combining an unknown metal with
+ancient enchantments known only by the dragons. This material is said to enchant
+the wielder as if they were protected by +5 armor enchantment. Additionally it
+provides leather items with additional flexibility and metal armors additional
+protection."""
+verbose_name_template = "Dragontouched"

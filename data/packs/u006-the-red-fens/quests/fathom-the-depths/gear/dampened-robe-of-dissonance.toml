@@ -1,0 +1,42 @@
+name = "Dampened Robe of Dissonance"
+description = """
+This vibrant robe hums faintly with two separate yet intertwined forces. The
+magical field it projects punishes enemies who attempt to attack the wearer,
+as well as strengthening his or her sonic-based and force-based spells."""
+drop_location = "Fathom the Depths, End Chest"
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 7
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Dampened"
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Sonic Guard"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 48
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 48
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Fathom the Depths"

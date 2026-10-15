@@ -1,0 +1,55 @@
+name = "Ring of Deceit"
+description = """
+This ring is a potent facilitator of deceptions and falsehoods, but it is risky
+to use. Not only may the weak-minded be seduced by their own inventions, but
+the ring constantly suggests new and profitable lies to its wearer, often leading
+to addiction and ruin."""
+drop_location = "The Fall of Truth, warded chest (Epic Normal)"
+icon = "Ring_11b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 25
+slot = "Ring"
+
+[[effect]]
+name = "Voice of Deceit"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 1"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Adds a Yellow augment slot to this item."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: attuned by heroism: tier 2"
+
+[[socket.option]]
+name = "Colorless Augment Slot"
+description = "Adds a Colorless augment slot to this item."
+icon = "Heroism"
+min_level = 25
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Fall of Truth"

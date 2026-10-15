@@ -1,0 +1,3 @@
+name = "Holy 6"
+description_template = "This weapon is wielded by the pure to smite the wicked, dealing an additional 6d6 good damage on each hit. This effect makes the weapon good aligned. Evil characters wielding this weapon will suffer one negative level."
+verbose_name_template = "Holy 6"

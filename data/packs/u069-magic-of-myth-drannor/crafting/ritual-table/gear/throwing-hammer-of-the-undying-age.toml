@@ -1,0 +1,50 @@
+name = "Throwing Hammer of the Undying Age"
+accepts_sentience = true
+description = "The ritual's power has imbued this weapon with an immortal fire and unholy purpose."
+drop_location = "Ritual Table, Turn in \nLegendary Throwing Hammer of the Golden Age \n120 Barrier Fragments"
+enhancement_bonus = 15
+icon = "ThrowingHammer_1b"
+item_category = "Weapon"
+item_type = "Throwing Hammer"
+material = "Steel"
+minimum_level = 33
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Dripping with Magma"
+
+[[effect]]
+name = "3rd Degree Burns"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[socket]]
+slot = "crafting: sealed in fire"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Ritual Table"
+
+[[weapon]]
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.1
+handedness = "Thrown"
+weapon_type = "Throwing Hammer"

@@ -1,0 +1,60 @@
+name = "Wreckage of the Beachcomber"
+description = """
+The Beachcomber was a ship so fast - legends say the crew that manned it didn't
+carry cannons for fear of weighing it down."""
+drop_location = "Wild Thing, end chest"
+enhancement_bonus = 3
+icon = "Shield_3"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Wood"
+minimum_level = 7
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 7
+max_dex_bonus = 0
+shield_bonus = 10
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield Spikes 2 D 6"
+
+[[effect]]
+name = "Lesser Boneshatter"
+
+[[effect]]
+name = "Bashing"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wild Thing"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

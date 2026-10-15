@@ -1,0 +1,45 @@
+name = "Coldharbor Cladding"
+description = """
+This armor is cold to the touch, and if you don it, enchanted flames surround
+you."""
+drop_location = "The Price of Freedom, End chest"
+enhancement_bonus = 3
+icon = "MediumArmor_4"
+item_category = "Armor"
+item_type = "Medium"
+material = "Spiritcraft Leather"
+minimum_level = 6
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 12
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 8
+
+[[effect]]
+name = "Fire Shield (Cold)"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 12
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Price of Freedom"

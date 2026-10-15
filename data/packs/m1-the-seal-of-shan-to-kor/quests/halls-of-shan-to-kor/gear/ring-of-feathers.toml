@@ -1,0 +1,17 @@
+name = "Ring of Feathers"
+description = "This gold band is engraved with feathers."
+drop_location = "Halls of Shan-To-Kor, end chest"
+icon = "Ring_46"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 1
+slot = "Ring"
+
+[[effect]]
+name = "Feather Falling"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Halls of Shan-To-Kor"

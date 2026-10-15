@@ -1,0 +1,39 @@
+name = "Legendary Alchemical Dwarven Waraxe"
+accepts_sentience = true
+description = "This intricate weapon bears the mark of House Cannith."
+drop_location = "Legendary Lord of Blades, Either End chest"
+enhancement_bonus = 15
+icon = "DwarvenWaraxe_6"
+item_category = "Weapon"
+item_type = "Dwarven Axe"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[socket]]
+slot = "crafting: legendary alchemical material"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "either end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Lord of Blades"
+
+[[weapon]]
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 1
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Dwarven Axe"

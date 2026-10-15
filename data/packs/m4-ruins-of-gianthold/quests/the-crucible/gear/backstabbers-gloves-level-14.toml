@@ -1,0 +1,28 @@
+name = "Backstabber's Gloves (Level 14)"
+description = """
+These leather gloves were once worn by Vrall the Fearless of the Cloven-Jaw.
+They are soaked with the blood of his enemies... or perhaps his allies."""
+drop_location = "The Crucible, Harza Ghost Waker 's chest (Heroic Elite)"
+icon = "Gloves_2"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 14
+slot = "Hands"
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "harza ghost waker 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crucible"

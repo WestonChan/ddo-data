@@ -1,0 +1,30 @@
+name = "The Thornwright"
+bestowed_by = "Mulberry"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Fables of the Feywild"
+patron = "The Summer Court"
+zone = "The Thornwright's Workshop"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Thornwright"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

@@ -1,0 +1,23 @@
+name = "Tempest Rune of Dexterity"
+description = """
+Dexterity +6: This item makes the wearer more nimble and dexterous, granting a
++6 enhancement bonus to Dexterity."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "crafting: tempest rune"

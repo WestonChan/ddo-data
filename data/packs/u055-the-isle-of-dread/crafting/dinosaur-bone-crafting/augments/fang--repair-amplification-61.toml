@@ -1,0 +1,20 @@
+name = "Fang: Repair Amplification +61"
+description = "+61 Enhancement bonus to Repair Amplification"
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Enhancement"
+value = 61
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [61]
+bonus_type = "Enhancement"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[slot]]
+slot = "isle of dread: artifact fang (accessory)"

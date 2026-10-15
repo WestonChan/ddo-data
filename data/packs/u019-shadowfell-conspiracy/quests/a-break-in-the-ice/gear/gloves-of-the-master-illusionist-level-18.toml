@@ -1,0 +1,29 @@
+name = "Gloves of the Master Illusionist (Level 18)"
+description = """
+Perception is as good as reality.
+-Motto of the Thultanthar Academy of the Illusionary Arts"""
+drop_location = "A Break In the Ice, End chest (Heroic Hard)"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Hands"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Break in the Ice"

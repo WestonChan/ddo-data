@@ -1,0 +1,24 @@
+name = "Tattered Gloves"
+description = "This pair of singed leather gloves are tattered and worn through from use."
+drop_location = "The Captives, Parnash 's chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 2
+slot = "Hands"
+
+[[effect]]
+name = "Power II"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[source]]
+chest = "parnash 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Captives"

@@ -1,11 +1,10 @@
 use crate::enums::{
     AbilityOwner, ArmorType, CorrectionKind, CraftingTier, EnhancementTreeKind, FeatSource, Handedness, ItemCategory,
     LootType, ModifierSource, Provenance, RequirementGroupKind, RequirementOwner, SagaTier, SaveProgression,
-    SourceKind,
 };
 use std::sync::LazyLock;
 
-pub const SCHEMA_VERSION: i64 = 32;
+pub const SCHEMA_VERSION: i64 = 37;
 
 fn sql_in_clause<'a>(allowed_values: impl Iterator<Item = &'a str>) -> String {
     let quoted_values: Vec<String> = allowed_values.map(|value| format!("'{value}'")).collect();
@@ -27,18 +26,6 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     let requirement_group = sql_in_clause(RequirementGroupKind::ALL.iter().map(|g| g.as_str()));
     let crafting_tier = sql_in_clause(CraftingTier::ALL.iter().map(|t| t.as_str()));
     let correction_kind = sql_in_clause(CorrectionKind::ALL.iter().map(|k| k.as_str()));
-    let source_kind = sql_in_clause(SourceKind::ALL.iter().map(|k| k.as_str()));
-    let source_id_for_kind: Vec<String> = SourceKind::ALL
-        .iter()
-        .map(|kind| format!("WHEN '{}' THEN {} IS NOT NULL", kind.as_str(), kind.identifying_column()))
-        .collect();
-    let source_id_for_kind = source_id_for_kind.join(" ");
-    let source_id_count: Vec<String> =
-        SourceKind::identifying_columns().iter().map(|column| format!("({column} IS NOT NULL)")).collect();
-    let source_id_count = source_id_count.join(" + ");
-    let kinds_with_loot_type =
-        sql_in_clause(SourceKind::ALL.iter().filter(|kind| kind.has_loot_type()).map(|kind| kind.as_str()));
-    let source_ids = SourceKind::identifying_columns().join(", ");
     let saga_tier = sql_in_clause(SagaTier::ALL.iter().map(|t| t.as_str()));
     let quest_series_columns = format!(
         "name     TEXT    NOT NULL UNIQUE,
@@ -48,6 +35,15 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
     );
     let quest_series_quest_columns = "quest_id   INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
     sort_order INTEGER NOT NULL,";
+    let source_owner_indexes = crate::enums::SourceKind::ALL.iter().filter(|kind| **kind != crate::enums::SourceKind::Vendor)
+        .flat_map(|kind| ["item", "augment"].map(|owner| format!("CREATE INDEX IF NOT EXISTS idx_{}_{owner} ON {}(CASE owner_kind WHEN '{owner}' THEN owner_id END);", kind.table_name(), kind.table_name())))
+        .collect::<Vec<_>>().join("\n");
+    let source_owner_deletions = [("items", "item"), ("augments", "augment")].map(|(owner_table, owner_kind)| {
+        let deletions = crate::enums::SourceKind::ALL.iter().filter(|kind| **kind != crate::enums::SourceKind::Vendor)
+            .map(|kind| format!("DELETE FROM {} WHERE owner_kind = '{owner_kind}' AND owner_id = OLD.id;", kind.table_name()))
+            .collect::<Vec<_>>().join("\n");
+        format!("CREATE TRIGGER IF NOT EXISTS {owner_table}_delete_sources AFTER DELETE ON {owner_table} BEGIN {deletions} END;")
+    }).join("\n");
     let owner_links = [
         ("item", "item_effects", "item_id"),
         ("augment", "augment_effects", "augment_id"),
@@ -69,7 +65,8 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
          SELECT j.owner_kind, j.owner_id, e.id AS stat_id, j.bonus_type_id,
                 COALESCE(j.value, e.default_value) AS amount, NULL AS via_effect_id,
                 CASE WHEN j.value IS NOT NULL THEN 'owner' ELSE 'default' END AS amount_source,
-                1.0 AS scale, j.effect_link_order, NULL AS group_effect_id
+                1.0 AS scale, j.effect_link_order, NULL AS group_effect_id,
+                0 AS effect_bonus_order, 0 AS group_member_order
            FROM links j JOIN effects e ON e.id = j.effect_id
           WHERE e.is_stat = 1 AND COALESCE(j.value, e.default_value) IS NOT NULL
             AND COALESCE(j.value, e.default_value) <> 0
@@ -82,7 +79,8 @@ static DDL: LazyLock<String> = LazyLock::new(|| {
                      WHEN eb.amount_from = 2 AND j.value2 IS NULL THEN 'default'
                      ELSE 'owner' END AS amount_source,
                 eb.scale, j.effect_link_order,
-                CASE WHEN e.is_group = 1 THEN e.id WHEN target.is_group = 1 THEN target.id END AS group_effect_id
+                CASE WHEN e.is_group = 1 THEN e.id WHEN target.is_group = 1 THEN target.id END AS group_effect_id,
+                eb.sort_order AS effect_bonus_order, COALESCE(member.sort_order, 0) AS group_member_order
            FROM links j JOIN effects e ON e.id = j.effect_id
            JOIN effect_bonuses eb ON eb.effect_id = e.id
            JOIN effects target ON target.id = eb.target_effect_id
@@ -105,10 +103,85 @@ CREATE TABLE IF NOT EXISTS dataset_version (
     built_at     TEXT NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS citations (
+    owner_kind TEXT NOT NULL,
+    owner_id INTEGER NOT NULL,
+    field TEXT NOT NULL,
+    url TEXT NOT NULL,
+    read TEXT NOT NULL,
+    PRIMARY KEY (owner_kind, owner_id, field, url)
+);
+
+CREATE TABLE IF NOT EXISTS removed_entities (
+    owner_kind TEXT NOT NULL,
+    owner_id INTEGER NOT NULL,
+    kind TEXT NOT NULL,
+    name TEXT NOT NULL,
+    reason TEXT NOT NULL,
+    url TEXT NOT NULL,
+    read TEXT NOT NULL,
+    PRIMARY KEY (owner_kind, owner_id, kind, name)
+);
+
+CREATE TABLE IF NOT EXISTS entity_notes (
+    owner_kind TEXT NOT NULL,
+    owner_id INTEGER NOT NULL,
+    note_index INTEGER NOT NULL,
+    kind TEXT NOT NULL,
+    original_name TEXT,
+    field TEXT NOT NULL,
+    added_as_name INTEGER,
+    upstream TEXT,
+    reason TEXT NOT NULL,
+    url TEXT NOT NULL,
+    read TEXT NOT NULL,
+    qualifier TEXT NOT NULL DEFAULT '',
+    PRIMARY KEY (owner_kind, owner_id, note_index)
+);
+
+CREATE TABLE IF NOT EXISTS pack_exceptions (
+    pack_name TEXT NOT NULL,
+    rule TEXT NOT NULL,
+    row_index INTEGER NOT NULL,
+    entity_kind TEXT NOT NULL,
+    entity_name TEXT NOT NULL,
+    reason TEXT,
+    url TEXT NOT NULL,
+    read TEXT,
+    PRIMARY KEY (pack_name, rule, entity_kind, entity_name)
+);
+
+CREATE TABLE IF NOT EXISTS source_aliases (
+    kind TEXT NOT NULL,
+    row_index INTEGER NOT NULL,
+    text TEXT NOT NULL,
+    target_name TEXT NOT NULL,
+    contains TEXT,
+    min_minimum_level INTEGER,
+    max_minimum_level INTEGER,
+    placement_only INTEGER NOT NULL DEFAULT 0 CHECK (placement_only IN (0, 1)),
+    reason TEXT NOT NULL,
+    url TEXT,
+    read TEXT,
+    PRIMARY KEY (kind, text, target_name)
+);
+
+CREATE TABLE IF NOT EXISTS entity_identity (
+    kind TEXT NOT NULL,
+    entity_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    slug TEXT NOT NULL,
+    PRIMARY KEY (kind, entity_id),
+    UNIQUE (kind, slug)
+);
+CREATE INDEX IF NOT EXISTS idx_entity_identity_row ON entity_identity(entity_id, name);
+
 -- Seed tables ----------------------------------------------------------------
 
 CREATE TABLE IF NOT EXISTS bonus_types (
     id               INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name             TEXT    NOT NULL UNIQUE,
     stacks_with_self INTEGER NOT NULL DEFAULT 0 CHECK (stacks_with_self IN (0, 1))
 );
@@ -120,6 +193,8 @@ CREATE TABLE IF NOT EXISTS bonus_type_aliases (
 
 CREATE TABLE IF NOT EXISTS equipment_slots (
     id         INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name       TEXT    NOT NULL UNIQUE,
     sort_order INTEGER NOT NULL,
     category   TEXT    NOT NULL
@@ -127,11 +202,14 @@ CREATE TABLE IF NOT EXISTS equipment_slots (
 
 CREATE TABLE IF NOT EXISTS weapon_proficiencies (
     id   INTEGER PRIMARY KEY,
-    name TEXT    NOT NULL UNIQUE
+    name TEXT    NOT NULL UNIQUE,
+    sort_order INTEGER NOT NULL DEFAULT 0 CHECK (sort_order >= 0)
 );
 
 CREATE TABLE IF NOT EXISTS weapon_types (
     id             INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name           TEXT    NOT NULL UNIQUE,
     proficiency_id INTEGER REFERENCES weapon_proficiencies(id),
     is_shield      INTEGER NOT NULL DEFAULT 0 CHECK (is_shield IN (0, 1))
@@ -139,6 +217,8 @@ CREATE TABLE IF NOT EXISTS weapon_types (
 
 CREATE TABLE IF NOT EXISTS damage_types (
     id       INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name     TEXT    NOT NULL UNIQUE,
     category TEXT    NOT NULL
 );
@@ -146,20 +226,23 @@ CREATE TABLE IF NOT EXISTS damage_types (
 CREATE TABLE IF NOT EXISTS triggers (
     id          INTEGER PRIMARY KEY,
     name        TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> ''),
-    description TEXT
+    description TEXT,
+    sort_order INTEGER NOT NULL DEFAULT 0 CHECK (sort_order >= 0)
 );
 
 -- Vocabularies filled from the data ------------------------------------------
 
 CREATE TABLE IF NOT EXISTS item_materials (
     id   INTEGER PRIMARY KEY,
-    name TEXT    NOT NULL UNIQUE                      -- <Material>, normalised
+    name TEXT    NOT NULL UNIQUE,
+    sort_order INTEGER NOT NULL DEFAULT 0 CHECK (sort_order >= 0)
 );
 
 -- A socket an item can carry: a gem colour, or one crafting family's slot. `label` is what the
 -- UI shows; family/variant/qualifier are its decomposition so nothing parses a label.
 CREATE TABLE IF NOT EXISTS augment_slot_types (
     id        INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
     label     TEXT NOT NULL UNIQUE,                   -- computed from <ItemAugment><Type>
     family    TEXT NOT NULL,                          -- 'standard', 'dino', 'lamordia', 'slavers', 'upgrade', 'crafting'
     variant   TEXT NOT NULL,                          -- the colour, tier, or family parameter
@@ -168,17 +251,25 @@ CREATE TABLE IF NOT EXISTS augment_slot_types (
 
 CREATE TABLE IF NOT EXISTS adventure_packs (
     id              INTEGER PRIMARY KEY,
+    "update" TEXT,
+    released TEXT CHECK (released IS NULL OR (released GLOB '[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]' AND date(released, '+0 days') IS released)),
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name            TEXT    NOT NULL UNIQUE,          -- <Quest><AdventurePack>
     is_free_to_play INTEGER NOT NULL DEFAULT 0 CHECK (is_free_to_play IN (0, 1))
 );
 
 CREATE TABLE IF NOT EXISTS patrons (
     id   INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name TEXT    NOT NULL UNIQUE                      -- <Patron><Name>
 );
 
 CREATE TABLE IF NOT EXISTS quests (
     id         INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name       TEXT    NOT NULL UNIQUE,               -- <Quest><Name>
     pack_id    INTEGER REFERENCES adventure_packs(id),
     patron_id  INTEGER REFERENCES patrons(id),
@@ -210,6 +301,8 @@ CREATE TABLE IF NOT EXISTS excluded_items (
 
 CREATE TABLE IF NOT EXISTS items (
     id                INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name              TEXT    NOT NULL UNIQUE CHECK (TRIM(name) <> ''),  -- <Name>
     slot_id           INTEGER NOT NULL REFERENCES equipment_slots(id),  -- computed from <EquipmentSlot>
     item_category     TEXT    NOT NULL CHECK (item_category {item_category}),  -- computed
@@ -274,6 +367,8 @@ CREATE TABLE IF NOT EXISTS effect_tier_groups (
 
 CREATE TABLE IF NOT EXISTS effects (
     id                   INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name                 TEXT NOT NULL UNIQUE CHECK (TRIM(name) <> ''),
     is_stat              INTEGER NOT NULL DEFAULT 0 CHECK (is_stat IN (0, 1)),
     is_group             INTEGER NOT NULL DEFAULT 0 CHECK (is_group IN (0, 1)),
@@ -458,6 +553,8 @@ CREATE INDEX IF NOT EXISTS idx_item_augment_slot_option_effects_effect
 -- the name, quest link and reward columns are shared and only a saga reward carries a tier.
 CREATE TABLE IF NOT EXISTS quest_chains (
     id       INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     {quest_series_columns}
 );
 
@@ -470,6 +567,8 @@ CREATE INDEX IF NOT EXISTS idx_quest_chain_quests_quest ON quest_chain_quests(qu
 
 CREATE TABLE IF NOT EXISTS sagas (
     id       INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     {quest_series_columns}
 );
 
@@ -483,6 +582,8 @@ CREATE INDEX IF NOT EXISTS idx_saga_quests_quest ON saga_quests(quest_id);
 -- An NPC or place that sells or trades items, from data/wiki vendors files; his files have none.
 CREATE TABLE IF NOT EXISTS vendors (
     id         INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name       TEXT    NOT NULL UNIQUE,
     location   TEXT,                                   -- where the vendor stands, free text as the wiki writes it
     pack_id    INTEGER REFERENCES adventure_packs(id),
@@ -493,63 +594,353 @@ CREATE TABLE IF NOT EXISTS vendors (
 -- A festival or limited-time event whose rewards are items, from data/wiki events files; his files have none.
 CREATE TABLE IF NOT EXISTS events (
     id         INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name       TEXT    NOT NULL UNIQUE,
     provenance TEXT    NOT NULL CHECK (provenance {provenance}),
     wiki_url   TEXT    NOT NULL
 );
 
--- Every place an item or augment drops or is given, one row per source, loot and loot type (and saga tier):
--- a quest's chest, raid or end-reward loot, read from Maetrim's <DropLocation> and "Drops in" description text and
--- data/wiki quest_loot; a quest chain's or saga's end reward, from data/wiki quest_chains and sagas and the drop
--- text crediting one; loot any quest of an adventure pack drops, from drop text naming the pack and no quest; a
--- challenge pack's turn-in reward (pack_id), a wiki crafting system's output, a vendor's or an event's item, from
--- drop text naming them (or a data/source_aliases.toml text) and data/wiki vendors and events; and an iconic
--- character's starter item, from "Advance to level N", with that character_level.
--- loot_type is set exactly on quest and pack drops; chest is the lower-cased phrase after the quest or pack
--- name, never on a reward; tier is the saga reward list, null when the source names none and on every other kind;
--- cost is what a vendor asks, as the wiki writes it.
-CREATE TABLE IF NOT EXISTS sources (
-    id          INTEGER PRIMARY KEY,
-    kind        TEXT    NOT NULL CHECK (kind {source_kind}),
-    quest_id    INTEGER REFERENCES quests(id) ON DELETE CASCADE,
-    chain_id    INTEGER REFERENCES quest_chains(id) ON DELETE CASCADE,
-    saga_id     INTEGER REFERENCES sagas(id) ON DELETE CASCADE,
-    pack_id     INTEGER REFERENCES adventure_packs(id) ON DELETE CASCADE,
-    crafting_system_id INTEGER REFERENCES crafting_systems(id) ON DELETE CASCADE,
-    vendor_id   INTEGER REFERENCES vendors(id) ON DELETE CASCADE,
-    event_id    INTEGER REFERENCES events(id) ON DELETE CASCADE,
-    character_level INTEGER CHECK (character_level IS NULL OR character_level >= 1),
-    item_id     INTEGER REFERENCES items(id) ON DELETE CASCADE,
-    augment_id  INTEGER REFERENCES augments(id) ON DELETE CASCADE,
-    loot_type   TEXT    CHECK (loot_type {loot_type}),
-    chest       TEXT,
-    is_rare     INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
-    tier        TEXT    CHECK (tier {saga_tier}),
-    cost        TEXT,
+CREATE TABLE IF NOT EXISTS quest_drops (
+    id INTEGER PRIMARY KEY,
+    quest_id INTEGER NOT NULL REFERENCES quests(id) ON DELETE CASCADE,
+    owner_kind TEXT NOT NULL CHECK (owner_kind IN ('item', 'augment')),
+    owner_id INTEGER NOT NULL,
+    loot_type TEXT NOT NULL CHECK (loot_type {loot_type}),
+    chest TEXT,
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
     drop_text_segment TEXT,
     source_match TEXT,
     CHECK ((drop_text_segment IS NULL) = (source_match IS NULL)),
-    CHECK ({source_id_count} = 1),
-    CHECK (CASE kind {source_id_for_kind} ELSE 0 END),
-    CHECK ((item_id IS NOT NULL) + (augment_id IS NOT NULL) = 1),
-    CHECK ((loot_type IS NOT NULL) = (kind {kinds_with_loot_type})),
-    CHECK (chest IS NULL OR COALESCE(loot_type, 'reward') <> 'reward'),
-    CHECK (chest IS NULL OR chest NOT LIKE '%reward%'),
-    CHECK (tier IS NULL OR kind = 'saga'),
-    CHECK (cost IS NULL OR kind = 'vendor')
+    CHECK (chest IS NULL OR loot_type IN ('chest', 'raid')),
+    CHECK (chest IS NULL OR chest NOT LIKE '%reward%')
 );
-CREATE UNIQUE INDEX IF NOT EXISTS idx_sources_source_loot ON sources(
-    kind, COALESCE({source_ids}), COALESCE(item_id, 0), COALESCE(augment_id, 0),
-    COALESCE(loot_type, ''), COALESCE(chest, ''), is_rare, COALESCE(tier, ''),
-    COALESCE(character_level, 0), COALESCE(cost, '')
+CREATE UNIQUE INDEX IF NOT EXISTS idx_quest_drops_source_owner ON quest_drops(quest_id, owner_kind, owner_id, loot_type, COALESCE(chest, ''), is_rare);
+CREATE INDEX IF NOT EXISTS idx_quest_drops_owner ON quest_drops(owner_kind, owner_id);
+
+CREATE TABLE IF NOT EXISTS quest_chain_rewards (
+    id INTEGER PRIMARY KEY,
+    chain_id INTEGER NOT NULL REFERENCES quest_chains(id) ON DELETE CASCADE,
+    owner_kind TEXT NOT NULL CHECK (owner_kind IN ('item', 'augment')),
+    owner_id INTEGER NOT NULL,
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    drop_text_segment TEXT,
+    source_match TEXT,
+    CHECK ((drop_text_segment IS NULL) = (source_match IS NULL))
 );
-CREATE INDEX IF NOT EXISTS idx_sources_item ON sources(item_id) WHERE item_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_sources_augment ON sources(augment_id) WHERE augment_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_sources_quest ON sources(quest_id) WHERE quest_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_sources_pack ON sources(pack_id) WHERE pack_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_sources_crafting_system ON sources(crafting_system_id) WHERE crafting_system_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_sources_vendor ON sources(vendor_id) WHERE vendor_id IS NOT NULL;
-CREATE INDEX IF NOT EXISTS idx_sources_event ON sources(event_id) WHERE event_id IS NOT NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS idx_quest_chain_rewards_source_owner ON quest_chain_rewards(chain_id, owner_kind, owner_id);
+CREATE INDEX IF NOT EXISTS idx_quest_chain_rewards_owner ON quest_chain_rewards(owner_kind, owner_id);
+
+CREATE TABLE IF NOT EXISTS saga_rewards (
+    id INTEGER PRIMARY KEY,
+    saga_id INTEGER NOT NULL REFERENCES sagas(id) ON DELETE CASCADE,
+    owner_kind TEXT NOT NULL CHECK (owner_kind IN ('item', 'augment')),
+    owner_id INTEGER NOT NULL,
+    tier TEXT NOT NULL DEFAULT 'any' CHECK (tier {saga_tier}),
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    drop_text_segment TEXT,
+    source_match TEXT,
+    CHECK ((drop_text_segment IS NULL) = (source_match IS NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_saga_rewards_source_owner ON saga_rewards(saga_id, owner_kind, owner_id, tier);
+CREATE INDEX IF NOT EXISTS idx_saga_rewards_owner ON saga_rewards(owner_kind, owner_id);
+
+CREATE TABLE IF NOT EXISTS pack_drops (
+    id INTEGER PRIMARY KEY,
+    pack_id INTEGER NOT NULL REFERENCES adventure_packs(id) ON DELETE CASCADE,
+    owner_kind TEXT NOT NULL CHECK (owner_kind IN ('item', 'augment')),
+    owner_id INTEGER NOT NULL,
+    loot_type TEXT NOT NULL CHECK (loot_type {loot_type}),
+    chest TEXT,
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    drop_text_segment TEXT,
+    source_match TEXT,
+    CHECK ((drop_text_segment IS NULL) = (source_match IS NULL)),
+    CHECK (chest IS NULL OR loot_type IN ('chest', 'raid')),
+    CHECK (chest IS NULL OR chest NOT LIKE '%reward%')
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_pack_drops_source_owner ON pack_drops(pack_id, owner_kind, owner_id, loot_type, COALESCE(chest, ''), is_rare);
+CREATE INDEX IF NOT EXISTS idx_pack_drops_owner ON pack_drops(owner_kind, owner_id);
+
+CREATE TABLE IF NOT EXISTS challenge_rewards (
+    id INTEGER PRIMARY KEY,
+    pack_id INTEGER NOT NULL REFERENCES adventure_packs(id) ON DELETE CASCADE,
+    owner_kind TEXT NOT NULL CHECK (owner_kind IN ('item', 'augment')),
+    owner_id INTEGER NOT NULL,
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    drop_text_segment TEXT,
+    source_match TEXT,
+    CHECK ((drop_text_segment IS NULL) = (source_match IS NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_challenge_rewards_source_owner ON challenge_rewards(pack_id, owner_kind, owner_id);
+CREATE INDEX IF NOT EXISTS idx_challenge_rewards_owner ON challenge_rewards(owner_kind, owner_id);
+
+CREATE TABLE IF NOT EXISTS crafting_outputs (
+    id INTEGER PRIMARY KEY,
+    crafting_system_id INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    owner_kind TEXT NOT NULL CHECK (owner_kind IN ('item', 'augment')),
+    owner_id INTEGER NOT NULL,
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    drop_text_segment TEXT,
+    source_match TEXT,
+    CHECK ((drop_text_segment IS NULL) = (source_match IS NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_crafting_outputs_source_owner ON crafting_outputs(crafting_system_id, owner_kind, owner_id);
+CREATE INDEX IF NOT EXISTS idx_crafting_outputs_owner ON crafting_outputs(owner_kind, owner_id);
+
+CREATE TABLE IF NOT EXISTS vendor_offers (
+    id INTEGER PRIMARY KEY,
+    vendor_id INTEGER NOT NULL REFERENCES vendors(id) ON DELETE CASCADE,
+    item_id INTEGER NOT NULL REFERENCES items(id) ON DELETE CASCADE,
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    drop_text_segment TEXT,
+    source_match TEXT,
+    CHECK ((drop_text_segment IS NULL) = (source_match IS NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_vendor_offers_source_owner ON vendor_offers(vendor_id, item_id);
+CREATE INDEX IF NOT EXISTS idx_vendor_offers_owner ON vendor_offers(item_id);
+
+CREATE TABLE IF NOT EXISTS event_rewards (
+    id INTEGER PRIMARY KEY,
+    event_id INTEGER NOT NULL REFERENCES events(id) ON DELETE CASCADE,
+    owner_kind TEXT NOT NULL CHECK (owner_kind IN ('item', 'augment')),
+    owner_id INTEGER NOT NULL,
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    drop_text_segment TEXT,
+    source_match TEXT,
+    CHECK ((drop_text_segment IS NULL) = (source_match IS NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_event_rewards_source_owner ON event_rewards(event_id, owner_kind, owner_id);
+CREATE INDEX IF NOT EXISTS idx_event_rewards_owner ON event_rewards(owner_kind, owner_id);
+
+CREATE TABLE IF NOT EXISTS starter_gear (
+    id INTEGER PRIMARY KEY,
+    character_level INTEGER NOT NULL CHECK (character_level >= 1),
+    owner_kind TEXT NOT NULL CHECK (owner_kind IN ('item', 'augment')),
+    owner_id INTEGER NOT NULL,
+    is_rare INTEGER NOT NULL DEFAULT 0 CHECK (is_rare IN (0, 1)),
+    drop_text_segment TEXT,
+    source_match TEXT,
+    CHECK ((drop_text_segment IS NULL) = (source_match IS NULL))
+);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_starter_gear_source_owner ON starter_gear(character_level, owner_kind, owner_id);
+CREATE INDEX IF NOT EXISTS idx_starter_gear_owner ON starter_gear(owner_kind, owner_id);
+
+CREATE TABLE IF NOT EXISTS vendor_currencies (
+    id INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    name TEXT NOT NULL UNIQUE,
+    sort_order INTEGER NOT NULL CHECK (sort_order >= 0)
+);
+
+CREATE TABLE IF NOT EXISTS vendor_offer_costs (
+    offer_id INTEGER NOT NULL REFERENCES vendor_offers(id) ON DELETE CASCADE,
+    ingredient_kind TEXT NOT NULL CHECK (ingredient_kind IN ('vendor_currency', 'crafting_ingredient')),
+    ingredient_id INTEGER NOT NULL,
+    quantity INTEGER NOT NULL CHECK (quantity > 0),
+    sort_order INTEGER NOT NULL CHECK (sort_order >= 0),
+    PRIMARY KEY (offer_id, sort_order),
+    UNIQUE (offer_id, ingredient_kind, ingredient_id)
+);
+
+-- The read-only source union exposes the one identifying column of its kind; other identifying columns are null.
+-- Exactly one of item_id and augment_id is set. Only quest and pack drops have loot_type and chest.
+-- Every kind preserves rarity; only sagas have tier, only vendors have a generated cost string.
+-- Unpriced vendor offers have null cost. Absent drop-text provenance is a paired null on every kind.
+CREATE VIEW IF NOT EXISTS sources AS
+SELECT owned.id * 9 + 0 AS id,
+       'quest' AS kind,
+       owned.quest_id AS quest_id,
+       NULL AS chain_id,
+       NULL AS saga_id,
+       NULL AS pack_id,
+       NULL AS crafting_system_id,
+       NULL AS vendor_id,
+       NULL AS event_id,
+       NULL AS character_level,
+       CASE owned.owner_kind WHEN 'item' THEN owned.owner_id END AS item_id,
+       CASE owned.owner_kind WHEN 'augment' THEN owned.owner_id END AS augment_id,
+       owned.loot_type AS loot_type,
+       owned.chest AS chest,
+       owned.is_rare AS is_rare,
+       NULL AS tier,
+       NULL AS cost,
+       owned.drop_text_segment AS drop_text_segment,
+       owned.source_match AS source_match
+FROM quest_drops owned
+UNION ALL
+SELECT owned.id * 9 + 1,
+       'quest_chain',
+       NULL,
+       owned.chain_id,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       CASE owned.owner_kind WHEN 'item' THEN owned.owner_id END,
+       CASE owned.owner_kind WHEN 'augment' THEN owned.owner_id END,
+       NULL,
+       NULL,
+       owned.is_rare,
+       NULL,
+       NULL,
+       owned.drop_text_segment,
+       owned.source_match
+FROM quest_chain_rewards owned
+UNION ALL
+SELECT owned.id * 9 + 2,
+       'saga',
+       NULL,
+       NULL,
+       owned.saga_id,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       CASE owned.owner_kind WHEN 'item' THEN owned.owner_id END,
+       CASE owned.owner_kind WHEN 'augment' THEN owned.owner_id END,
+       NULL,
+       NULL,
+       owned.is_rare,
+       owned.tier,
+       NULL,
+       owned.drop_text_segment,
+       owned.source_match
+FROM saga_rewards owned
+UNION ALL
+SELECT owned.id * 9 + 3,
+       'adventure_pack',
+       NULL,
+       NULL,
+       NULL,
+       owned.pack_id,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       CASE owned.owner_kind WHEN 'item' THEN owned.owner_id END,
+       CASE owned.owner_kind WHEN 'augment' THEN owned.owner_id END,
+       owned.loot_type,
+       owned.chest,
+       owned.is_rare,
+       NULL,
+       NULL,
+       owned.drop_text_segment,
+       owned.source_match
+FROM pack_drops owned
+UNION ALL
+SELECT owned.id * 9 + 4,
+       'challenge',
+       NULL,
+       NULL,
+       NULL,
+       owned.pack_id,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       CASE owned.owner_kind WHEN 'item' THEN owned.owner_id END,
+       CASE owned.owner_kind WHEN 'augment' THEN owned.owner_id END,
+       NULL,
+       NULL,
+       owned.is_rare,
+       NULL,
+       NULL,
+       owned.drop_text_segment,
+       owned.source_match
+FROM challenge_rewards owned
+UNION ALL
+SELECT owned.id * 9 + 5,
+       'crafting_system',
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       owned.crafting_system_id,
+       NULL,
+       NULL,
+       NULL,
+       CASE owned.owner_kind WHEN 'item' THEN owned.owner_id END,
+       CASE owned.owner_kind WHEN 'augment' THEN owned.owner_id END,
+       NULL,
+       NULL,
+       owned.is_rare,
+       NULL,
+       NULL,
+       owned.drop_text_segment,
+       owned.source_match
+FROM crafting_outputs owned
+UNION ALL
+SELECT owned.id * 9 + 6,
+       'vendor',
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       owned.vendor_id,
+       NULL,
+       NULL,
+       owned.item_id,
+       NULL,
+       NULL,
+       NULL,
+       owned.is_rare,
+       NULL,
+       (SELECT group_concat(cost.quantity || ' ' || CASE cost.ingredient_kind
+                WHEN 'vendor_currency' THEN currency.name ELSE ingredient.name END, ', ' ORDER BY cost.sort_order)
+            FROM vendor_offer_costs cost
+            LEFT JOIN vendor_currencies currency ON cost.ingredient_kind = 'vendor_currency' AND currency.id = cost.ingredient_id
+            LEFT JOIN crafting_ingredients ingredient ON cost.ingredient_kind = 'crafting_ingredient' AND ingredient.id = cost.ingredient_id
+            WHERE cost.offer_id = owned.id),
+       owned.drop_text_segment,
+       owned.source_match
+FROM vendor_offers owned
+UNION ALL
+SELECT owned.id * 9 + 7,
+       'event',
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       owned.event_id,
+       NULL,
+       CASE owned.owner_kind WHEN 'item' THEN owned.owner_id END,
+       CASE owned.owner_kind WHEN 'augment' THEN owned.owner_id END,
+       NULL,
+       NULL,
+       owned.is_rare,
+       NULL,
+       NULL,
+       owned.drop_text_segment,
+       owned.source_match
+FROM event_rewards owned
+UNION ALL
+SELECT owned.id * 9 + 8,
+       'starter',
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       NULL,
+       owned.character_level,
+       CASE owned.owner_kind WHEN 'item' THEN owned.owner_id END,
+       CASE owned.owner_kind WHEN 'augment' THEN owned.owner_id END,
+       NULL,
+       NULL,
+       owned.is_rare,
+       NULL,
+       NULL,
+       owned.drop_text_segment,
+       owned.source_match
+FROM starter_gear owned;
 
 -- Modifiers and requirements: the two grammars every family shares ---------------
 --
@@ -606,6 +997,8 @@ CREATE INDEX IF NOT EXISTS idx_requirements_owner ON requirements(owner_kind, ow
 -- the standard list.
 CREATE TABLE IF NOT EXISTS feats (
     id                INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name              TEXT    NOT NULL,               -- <Name>
     source_kind       TEXT    NOT NULL CHECK (source_kind {feat_source}),
     source_id         INTEGER,                        -- classes.id or races.id
@@ -656,6 +1049,8 @@ CREATE TABLE IF NOT EXISTS feat_effects (
 -- A toggled or automatic combat stance an ability provides, or one of Stances.xml's standalone stances.
 CREATE TABLE IF NOT EXISTS stances (
     id              INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     owner_kind      TEXT    NOT NULL CHECK (owner_kind {ability_owner}),
     owner_id        INTEGER NOT NULL,                 -- 0 for 'standalone' (Stances.xml)
     sort_order      INTEGER NOT NULL,
@@ -703,6 +1098,8 @@ CREATE TABLE IF NOT EXISTS attacks (
 
 CREATE TABLE IF NOT EXISTS races (
     id             INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name           TEXT    NOT NULL UNIQUE,           -- <Name>
     short_name     TEXT,                              -- <ShortName>
     description    TEXT,
@@ -718,6 +1115,7 @@ CREATE TABLE IF NOT EXISTS race_ability_modifiers (
     race_id  INTEGER NOT NULL REFERENCES races(id) ON DELETE CASCADE,
     stat_id  INTEGER NOT NULL REFERENCES effects(id),   -- <Strength>+2 etc.
     modifier INTEGER NOT NULL,
+    sort_order INTEGER NOT NULL,
     PRIMARY KEY (race_id, stat_id)
 );
 
@@ -756,6 +1154,8 @@ CREATE TABLE IF NOT EXISTS race_auto_buy_skills (
 
 CREATE TABLE IF NOT EXISTS classes (
     id                        INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name                      TEXT    NOT NULL UNIQUE,
     base_class                TEXT,                   -- <BaseClass>: archetypes name their parent
     base_class_id             INTEGER REFERENCES classes(id),
@@ -809,6 +1209,7 @@ CREATE TABLE IF NOT EXISTS class_spells (
 CREATE TABLE IF NOT EXISTS class_feat_slots (
     id            INTEGER PRIMARY KEY,
     class_id      INTEGER NOT NULL REFERENCES classes(id) ON DELETE CASCADE,
+    sort_order    INTEGER NOT NULL DEFAULT 0,
     level         INTEGER NOT NULL,
     feat_type     TEXT    NOT NULL,
     auto_populate INTEGER NOT NULL DEFAULT 0 CHECK (auto_populate IN (0, 1)),
@@ -828,6 +1229,8 @@ CREATE TABLE IF NOT EXISTS class_auto_feats (
 
 CREATE TABLE IF NOT EXISTS enhancement_trees (
     id         INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name       TEXT    NOT NULL UNIQUE,               -- <Name>
     version    INTEGER,                               -- <Version>
     kind       TEXT    NOT NULL CHECK (kind {tree_kind}),  -- from <IsRacialTree/> etc.; default class
@@ -838,6 +1241,8 @@ CREATE TABLE IF NOT EXISTS enhancement_trees (
 
 CREATE TABLE IF NOT EXISTS enhancements (
     id            INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     tree_id       INTEGER NOT NULL REFERENCES enhancement_trees(id) ON DELETE CASCADE,
     internal_name TEXT    NOT NULL,                   -- <InternalName>; requirements reference these
     name          TEXT    NOT NULL,
@@ -859,6 +1264,7 @@ CREATE TABLE IF NOT EXISTS enhancements (
 -- One of the choices a selector enhancement offers.
 CREATE TABLE IF NOT EXISTS enhancement_selections (
     id             INTEGER PRIMARY KEY,
+    slug           TEXT NOT NULL UNIQUE,
     enhancement_id INTEGER NOT NULL REFERENCES enhancements(id) ON DELETE CASCADE,
     sort_order     INTEGER NOT NULL,
     name           TEXT    NOT NULL,
@@ -884,6 +1290,8 @@ CREATE TABLE IF NOT EXISTS enhancement_selector_exclusions (
 
 CREATE TABLE IF NOT EXISTS spells (
     id               INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name             TEXT    NOT NULL UNIQUE,
     description      TEXT,
     icon             TEXT,
@@ -924,6 +1332,8 @@ CREATE TABLE IF NOT EXISTS spell_dcs (
 
 CREATE TABLE IF NOT EXISTS augments (
     id                 INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name               TEXT    NOT NULL,               -- <Name>
     family             TEXT    NOT NULL,               -- source file stem: 'Ruby', 'Cannith and random item', …
     description        TEXT,                           -- <Description>
@@ -970,6 +1380,8 @@ CREATE TABLE IF NOT EXISTS augment_effects (
 -- A crafting system as one wiki page describes it. Its options are Maetrim's augments in `families`.
 CREATE TABLE IF NOT EXISTS crafting_systems (
     id      INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name    TEXT    NOT NULL UNIQUE,
     page    TEXT    NOT NULL,                          -- the ddowiki page read
     pack_id INTEGER REFERENCES adventure_packs(id),
@@ -984,7 +1396,10 @@ CREATE TABLE IF NOT EXISTS crafting_system_families (
 
 CREATE TABLE IF NOT EXISTS crafting_ingredients (
     id        INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     system_id INTEGER NOT NULL REFERENCES crafting_systems(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL DEFAULT 0,
     name      TEXT    NOT NULL,
     tier      TEXT    NOT NULL CHECK (tier {crafting_tier}),
     bind      TEXT,                                    -- as the wiki writes it
@@ -1001,6 +1416,7 @@ CREATE TABLE IF NOT EXISTS crafting_recipes (
     grants_slot_id INTEGER REFERENCES augment_slot_types(id),   -- the socket the row adds to the item
     option         TEXT    NOT NULL,                            -- the wiki's label for the row
     note           TEXT,
+    focus_path     TEXT,
     sort_order     INTEGER NOT NULL                             -- position in the system's file entry
 );
 CREATE INDEX IF NOT EXISTS idx_crafting_recipes_system ON crafting_recipes(system_id, sort_order);
@@ -1008,6 +1424,7 @@ CREATE INDEX IF NOT EXISTS idx_crafting_recipes_system ON crafting_recipes(syste
 CREATE TABLE IF NOT EXISTS crafting_recipe_augments (
     recipe_id  INTEGER NOT NULL REFERENCES crafting_recipes(id) ON DELETE CASCADE,
     augment_id INTEGER NOT NULL REFERENCES augments(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (recipe_id, augment_id)
 );
 CREATE INDEX IF NOT EXISTS idx_crafting_recipe_augments_augment ON crafting_recipe_augments(augment_id);
@@ -1015,6 +1432,7 @@ CREATE INDEX IF NOT EXISTS idx_crafting_recipe_augments_augment ON crafting_reci
 CREATE TABLE IF NOT EXISTS crafting_recipe_ingredients (
     recipe_id     INTEGER NOT NULL REFERENCES crafting_recipes(id) ON DELETE CASCADE,
     ingredient_id INTEGER NOT NULL REFERENCES crafting_ingredients(id) ON DELETE CASCADE,
+    sort_order INTEGER NOT NULL DEFAULT 0,
     quantity      INTEGER NOT NULL CHECK (quantity > 0),
     PRIMARY KEY (recipe_id, ingredient_id)
 );
@@ -1041,6 +1459,8 @@ CREATE INDEX IF NOT EXISTS idx_corrections_kind_name ON corrections(kind, name);
 
 CREATE TABLE IF NOT EXISTS set_bonuses (
     id              INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name            TEXT    NOT NULL UNIQUE,           -- <SetBonus><Type>
     icon            TEXT,                              -- <Icon>
     is_filigree_set INTEGER NOT NULL DEFAULT 0 CHECK (is_filigree_set IN (0, 1))
@@ -1082,6 +1502,8 @@ CREATE INDEX IF NOT EXISTS idx_set_bonus_augments_augment ON set_bonus_augments(
 
 CREATE TABLE IF NOT EXISTS filigrees (
     id          INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name        TEXT    NOT NULL UNIQUE,               -- <Filigree><Name>
     description TEXT,                                  -- <Description>
     icon        TEXT,                                  -- <Icon>
@@ -1095,6 +1517,8 @@ CREATE TABLE IF NOT EXISTS filigrees (
 -- amount_type 'TotalLevel' and one amount per character level.
 CREATE TABLE IF NOT EXISTS guild_buffs (
     id          INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name        TEXT    NOT NULL UNIQUE,               -- GuildBuffs.xml <GuildBuff><Name>
     description TEXT,
     guild_level INTEGER                                -- <Level>: the guild level that unlocks it
@@ -1104,6 +1528,8 @@ CREATE TABLE IF NOT EXISTS guild_buffs (
 -- are modifiers with source_kind 'optional_buff'.
 CREATE TABLE IF NOT EXISTS optional_buffs (
     id          INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name        TEXT    NOT NULL UNIQUE,               -- <OptionalBuff><Name>
     icon        TEXT,
     description TEXT
@@ -1112,6 +1538,8 @@ CREATE TABLE IF NOT EXISTS optional_buffs (
 -- A sentient jewel: the personality a sentient weapon's filigrees slot into.
 CREATE TABLE IF NOT EXISTS sentient_gems (
     id          INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name        TEXT    NOT NULL UNIQUE,               -- Sentient.gems.xml <Gem><Name>
     icon        TEXT,                                  -- SentientGemImages/<icon>.png
     description TEXT                                   -- <Description>: the voice actor credit
@@ -1121,6 +1549,8 @@ CREATE TABLE IF NOT EXISTS sentient_gems (
 
 CREATE TABLE IF NOT EXISTS clickies (
     id          INTEGER PRIMARY KEY,
+    slug TEXT NOT NULL UNIQUE,
+    variant TEXT,
     name        TEXT    NOT NULL UNIQUE,               -- ItemClickies.xml <Spell><Name>
     description TEXT,
     icon        TEXT,
@@ -1148,6 +1578,8 @@ LEFT JOIN crafting_systems crafting_system ON crafting_system.id = loot.crafting
 LEFT JOIN vendors vendor ON vendor.id = loot.vendor_id
 JOIN adventure_packs pack ON pack.id = COALESCE(loot.pack_id, quest.pack_id, crafting_system.pack_id, vendor.pack_id);
 {owner_bonuses_sql}
+{source_owner_deletions}
+{source_owner_indexes}
 "#
     )
 });

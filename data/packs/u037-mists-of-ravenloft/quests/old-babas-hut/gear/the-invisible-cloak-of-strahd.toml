@@ -1,0 +1,40 @@
+name = "The Invisible Cloak of Strahd"
+description = """
+This cloak is perfectly tailored and incredibly comfortable. Pity you can't
+see it. It appears Strahd enchanted it to render itself invisible in the event
+of his demise."""
+drop_location = "Old Baba's Hut, Raid Chest"
+icon = "Cloak_2a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 28
+slot = "Back"
+
+[[effect]]
+name = "Invisibility Guard"
+
+[[effect]]
+name = "Nightmare Guard"
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 11
+value2 = 17
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 34
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "Old Baba's Hut"

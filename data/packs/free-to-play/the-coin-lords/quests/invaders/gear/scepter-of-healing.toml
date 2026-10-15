@@ -1,0 +1,60 @@
+name = "Scepter of Healing"
+description = "This Flametouched iron scepter has been enchanted to focus healing powers"
+drop_location = "Invasion Tokens, Turn in 25 Outsider Tokens"
+enhancement_bonus = 5
+icon = "HeavyMace_3f"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Flametouched Iron"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 15
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Flametouched Iron"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Invasion Tokens"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Invaders!"
+
+[[weapon]]
+attack_modifier = "Wisdom, Charisma"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Wisdom, Charisma"
+damage_multiplier = 1.25
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

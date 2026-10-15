@@ -1,0 +1,26 @@
+name = "The Prison of the Planes"
+bestowed_by = "Nimbus Ar'Yorg"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+epic_name = "Return to Prison of the Planes"
+favor = 6
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "The Prison of the Planes"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Prison_of_the_Planes"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 24

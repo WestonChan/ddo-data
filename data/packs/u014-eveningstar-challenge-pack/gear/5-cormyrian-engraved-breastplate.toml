@@ -1,0 +1,22 @@
+name = "+5 Cormyrian Engraved Breastplate"
+description = """
+This exquisite breastplate is one that any knight would be proud to own. The
+smithies of Cormyr are renowned for the quality of their work, and equipment
+intended for use in service to the kingdom is layered with powerful enchantments
+by the War Wizards."""
+drop_location = "Eveningstar Challenge Pack"
+enhancement_bonus = 5
+icon = "MediumArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Dwarven Iron"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Medium"
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

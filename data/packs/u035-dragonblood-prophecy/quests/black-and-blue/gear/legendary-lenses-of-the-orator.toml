@@ -1,0 +1,37 @@
+name = "Legendary Lenses of the Orator"
+description = """
+The fine lenses of these goggles were once part of a gem held by Kor Kaza, imbued
+with potent persuasive power."""
+drop_location = "Black and Blue, end chest"
+icon = "Goggles_3"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 28
+slot = "Goggles"
+
+[[effect]]
+name = "Linguistics 10%"
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Quality"
+value = 5
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Black and Blue"

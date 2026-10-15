@@ -1,0 +1,34 @@
+name = "Haywire Foundry"
+bestowed_by = "Arlsie Forr"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Vault of Night"
+patron = "House Kundarak"
+zone = "The Haywire Foundry"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Haywire_Foundry"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "epic_level"
+upstream = 21
+reason = "The wiki's quest index gives an epic level of 22; his Quests.xml gives 21."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 9
+
+[[run]]
+tier = "epic"
+level = 22

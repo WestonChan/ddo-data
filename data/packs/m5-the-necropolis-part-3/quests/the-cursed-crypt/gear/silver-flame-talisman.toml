@@ -1,0 +1,38 @@
+name = "Silver Flame Talisman"
+description = """
+This Talisman of the Silver Flame has been transformed by the altars of blood,
+darkness and damnation."""
+drop_location = "The Cursed Crypt, Altar; upgraded from the Silver Flame Pendant"
+icon = "Necklace_5"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 11
+slot = "Neck"
+
+[[clickie]]
+name = "Negative Energy Absorption"
+clickie = "Negative Energy Absorption"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Protection from Evil"
+bonus_type = "Deflection"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    10,
+    10,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Negative Energy Absorption"]
+
+[[source]]
+chest = "altar"
+kind = "quest"
+loot_type = "chest"
+name = "The Cursed Crypt"

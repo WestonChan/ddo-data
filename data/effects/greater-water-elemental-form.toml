@@ -1,0 +1,3 @@
+name = "Greater Water Elemental Form"
+description_template = "If you are a Water Elemental (either from a Druid Form or from Sorcerer's Elemental Apotheosis), you benefit from 5 additional caster levels for your Cold spells, as well as 50 Exceptional Cold Spell Power and 5% Exceptional Cold Spell Critical damage."
+verbose_name_template = "Greater Water Elemental Form"

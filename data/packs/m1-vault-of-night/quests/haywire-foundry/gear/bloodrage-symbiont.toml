@@ -1,0 +1,53 @@
+name = "Bloodrage Symbiont"
+description = """
+This grotesque item resembles a wriggling leech with an eyeless head and a maw
+of sharp, hook-like teeth. It twists in your grasp, seeking something warm
+and living upon which to feast."""
+drop_location = "Haywire Foundry, drops from a breakable"
+icon = "Trinket_61"
+item_category = "Jewelry"
+material = "Flesh"
+minimum_level = 7
+slot = "Trinket"
+
+[[clickie]]
+name = "Rage"
+clickie = "Rage"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = -2
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = -2
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Rage"]
+
+[[source]]
+chest = "drops from a breakable"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Haywire Foundry"

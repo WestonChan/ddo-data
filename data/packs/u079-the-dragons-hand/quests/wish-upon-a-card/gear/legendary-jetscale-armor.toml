@@ -1,0 +1,53 @@
+name = "Legendary Jetscale Armor"
+description = """
+Small parts of this suit of armor were made with fallen Dragonscales - Just
+enough to confer some of their elemental resistances."""
+drop_location = "Wish Upon a Card, end chest"
+enhancement_bonus = 15
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Black Dragonscale"
+minimum_level = 34
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 34
+armor_type = "Light"
+max_dex_bonus = 20
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 57
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 38
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 15
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Wish Upon a Card"

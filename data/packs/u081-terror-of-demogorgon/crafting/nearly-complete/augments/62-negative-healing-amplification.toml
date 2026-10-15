@@ -1,0 +1,37 @@
+name = "+62 Negative Healing Amplification"
+description = "+62 Profane bonus to Negative Healing Amplification"
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Negative Healing Amplification"
+bonus_type = "Profane"
+value = 62
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [62]
+bonus_type = "Enhancement"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[note]]
+kind = "augment"
+field = "description"
+upstream = "+62 Enhancement bonus to Negative Healing Amplification"
+reason = "The wiki gives the Nearly Complete negative amplification a Profane bonus, not Enhancement."
+url = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment_bonus"
+field = "bonus_type"
+upstream = "Enhancement"
+reason = "The wiki gives the Nearly Complete negative amplification a Profane bonus, not Enhancement."
+url = "https://ddowiki.com/page/Nearly_Complete"
+read = "2026-09-30"
+qualifier = "Negative Healing Amplification / Enhancement"
+
+[[slot]]
+slot = "crafting: nearly complete: healing amplification (legendary)"

@@ -1,0 +1,21 @@
+name = "Tumble +20"
+description = "Legendary Competence bonus to Tumble"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Competence"
+effect = "Tumble"
+effect_type = "SkillBonus"
+targets = ["Tumble"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

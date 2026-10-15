@@ -1,0 +1,73 @@
+name = "Legendary Oasis of Morality"
+icon = "Menechtarun"
+
+[[item]]
+name = "Legendary Adherent's Pendant"
+
+[[item]]
+name = "Legendary Bejeweled Letter Opener"
+
+[[item]]
+name = "Legendary Chainmail Coif"
+
+[[item]]
+name = "Legendary Coronation Shield"
+
+[[item]]
+name = "Legendary Shining Crest of St. Markus"
+
+[[item]]
+name = "Legendary Vambraces of Inner Light"
+
+[[item]]
+name = "Legendary Ward of Undeath"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 10
+reason = "The wiki gives Fortification Bypass +15 Artifact at 2 pieces."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Fortification Bypass / Artifact"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Lore"
+value = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Positive Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "SpellLore"
+targets = ["Positive"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"

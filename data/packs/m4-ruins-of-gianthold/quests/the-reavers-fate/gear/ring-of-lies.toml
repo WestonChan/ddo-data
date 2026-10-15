@@ -1,0 +1,122 @@
+name = "Ring of Lies"
+description = """
+This ring is a potent facilitator of deceptions and falsehoods, but it is risky
+to use. Not only may the weak-minded be seduced by their own inventions, but
+the ring constantly suggests new and profitable lies to its wearer, often leading
+to addiction and ruin."""
+drop_location = "The Reaver's Fate, Raid Warded chest"
+icon = "Ring_11b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Perform"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Deception +3"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Hidden Effect All Threat"
+
+[[socket]]
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[socket.option]]
+name = "Adds +2 Exceptional Charisma Skills and Improved Deception"
+description = """
+Charisma Skills - Exceptional Bonus +2: Passive +2 Exceptional bonus to the Charisma
+based skills of: Bluff, Diplomacy, Haggle, Intimidate, Perform and Use Magic Device (UMD)
+Improved Deception: This item makes your weapons hard to focus upon and thus provides
+a +5 enhancement bonus to Bluff checks. In addition, while using this item your
+weapons have a chance to envelop the target in darkness, making them vulnerable
+to sneak attacks for a short time."""
+icon = "Stormreaver"
+min_level = 13
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Bluff"
+value = 2
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Diplomacy"
+value = 2
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Haggle"
+value = 2
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Intimidate"
+value = 2
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Perform"
+value = 2
+
+[[socket.option.effect]]
+bonus_type = "Exceptional"
+effect = "Use Magic Device"
+value = 2
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Bluff"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Exceptional"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Intimidate",
+    "Perform",
+    "Use Magic Device",
+]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Bluff"
+effect_type = "SkillBonus"
+targets = ["Bluff"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"

@@ -1,0 +1,64 @@
+name = "The Legendary Prince's Sceptre"
+accepts_sentience = true
+description = """
+This weapon seems to be sensitive to Cold, and bears a small seal of the Pale
+Prince."""
+drop_location = "Fables of the Feywild, any chest, or turn in 20 Legendary Chunks of Ferrocrystal at the Cauldron of Cadence"
+enhancement_bonus = 15
+icon = "Club_2"
+item_category = "Weapon"
+item_type = "Club"
+material = "Cold Iron"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "any chest, or turn in 20 legendary chunks of ferrocrystal at the cauldron of cadence"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Fables of the Feywild"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Cadence"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "One-handed"
+weapon_type = "Club"

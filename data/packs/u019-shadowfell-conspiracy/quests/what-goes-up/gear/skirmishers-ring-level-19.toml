@@ -1,0 +1,21 @@
+name = "Skirmisher's Ring (Level 19)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "What Goes Up, End reward"
+icon = "Ring_4"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 19
+slot = "Ring"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "What Goes Up"

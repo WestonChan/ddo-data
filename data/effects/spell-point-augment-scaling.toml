@@ -1,0 +1,3 @@
+name = "Spell Point Augment Scaling"
+description_template = "With 2–6 augments, gain a 5%–9% Legendary bonus to Spell Points."
+verbose_name_template = "Spell Point Augment Scaling"

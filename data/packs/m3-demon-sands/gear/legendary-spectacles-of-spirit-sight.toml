@@ -1,0 +1,37 @@
+name = "Legendary Spectacles of Spirit Sight"
+description = """
+These spectacles enable the wearer to see the spiritual aura around all things.
+This knowledge allows a spell caster to be more effective with spells that
+affect the will or life force of the target."""
+drop_location = "Legendary version of Epic Spectacles of Spirit Sight"
+icon = "Goggles_1a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Goggles"
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 39
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"

@@ -1,0 +1,29 @@
+name = "Night Falls on Stormreach"
+bestowed_by = "Bril Norgate"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "Disciples of Rage"
+patron = "House Jorasco"
+zone = "The Night Market"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Night_Falls_on_Stormreach"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 14
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

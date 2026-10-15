@@ -1,0 +1,4 @@
+name = "Threat Reduction"
+category = "martial"
+home_bonus_type = "Enhancement"
+verbose_name_template = "%b1 Threat Reduction +{1}"

@@ -1,0 +1,29 @@
+name = "Half-Orc"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Half-Orcs are extremely strong and have a bonus modifier to Strength.
+Half-Orcs also have a penalty to Charisma and Intelligence, and generally they
+have less charisma and intelligence than most other races. Half-Orcs excel in
+melee combat and Half-Orc favored class is Barbarian."""
+short_name = "Half-Orc"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Strength"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Intelligence"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Charisma"
+
+[[granted_feat]]
+feat = "Half-Orc Orc Blood"

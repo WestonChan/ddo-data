@@ -1,0 +1,28 @@
+name = "Rock Boots (level 3)"
+description = """
+These boots are encased in a stony shell, bolstered by the power of a bound
+Earth Elemental. They allow the user to execute a ferocious stomp that knocks
+nearby enimes over, as well as turning your attackers to stone on occasion."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Boots_12"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 3
+slot = "Feet"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 54
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Lesser Stone Prison Guard"
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

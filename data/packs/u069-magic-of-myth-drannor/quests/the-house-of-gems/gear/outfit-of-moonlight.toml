@@ -1,0 +1,45 @@
+name = "Outfit of Moonlight"
+description = "The moon's beams embolden those who seek them."
+drop_location = "The House of Gems, end chest"
+enhancement_bonus = 5
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 13
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Mystic Incite"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Mystic Incite"
+bonus_type = "Insight"
+value = 9
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Gems"

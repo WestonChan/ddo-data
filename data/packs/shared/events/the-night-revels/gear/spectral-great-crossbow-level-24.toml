@@ -1,0 +1,47 @@
+name = "Spectral Great Crossbow (level 24)"
+description = """
+The residual power left behind as thousands of Spectral Dragon Scales crumbled
+to dust formed this ethereal weapon."""
+drop_location = "The Night Revels, Turn in various ingredients to Joe Candymaker"
+enhancement_bonus = 7
+icon = "GreatCrossbow_3"
+item_category = "Weapon"
+item_type = "Great Crossbow"
+material = "Force"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Ghostbane 5"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Evil Outsider Bane 5"
+
+[[effect]]
+name = "Greater Vorpal"
+
+[[effect]]
+name = "Crushing 12"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_multiplier = 4.3
+handedness = "Two-handed"
+weapon_type = "Great Crossbow"

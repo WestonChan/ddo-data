@@ -1,0 +1,34 @@
+name = "Legendary Gloves of Tranquility"
+description = "Peace fills your mind when you channel magic through these gloves."
+drop_location = "The Icemount Curse, End chest"
+icon = "Gloves_7a"
+item_category = "Clothing"
+material = "Mithral"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Strength of Purpose"
+bonus_type = "Enhancement"
+value = 128
+
+[[effect]]
+name = "Improved Quelling Strikes"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Icemount Curse"

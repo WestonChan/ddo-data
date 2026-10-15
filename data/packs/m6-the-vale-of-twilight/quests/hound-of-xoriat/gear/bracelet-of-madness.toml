@@ -1,0 +1,32 @@
+name = "Bracelet of Madness"
+description = """
+This bracelet enhances your spellcasting power, but it seems to whisper to you,
+urging you to seek out other items touched by Xoriat. Wear it with other items
+affected by the Plane of Madness to gain further power."""
+drop_location = "Hound of Xoriat, Side chest (Hard/Elite)"
+icon = "Bracers_9"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 20
+slot = "Wrists"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 48
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[source]]
+chest = "side chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hound of Xoriat"

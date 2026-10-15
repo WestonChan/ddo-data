@@ -1,0 +1,21 @@
+name = "Lunar Gem of Strength (Epic)"
+description = "+3 Profane Bonus to Strength"
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Strength"
+bonus_type = "Profane"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Profane"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[slot]]
+slot = "moon"

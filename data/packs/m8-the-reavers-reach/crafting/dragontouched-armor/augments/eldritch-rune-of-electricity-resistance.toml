@@ -1,0 +1,21 @@
+name = "Eldritch Rune of Electricity Resistance"
+description = "Electric Resistance +30: Passive: +30 Enhancement bonus to your Electric Resistance."
+family = "Dragontouched_EldritchRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect = "Electric Resistance"
+effect_type = "EnergyResistance"
+targets = ["Electric"]
+
+[[slot]]
+slot = "crafting: eldritch rune"

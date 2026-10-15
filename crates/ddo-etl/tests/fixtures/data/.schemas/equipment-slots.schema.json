@@ -1,0 +1,36 @@
+{
+  "$defs": {
+    "EquipmentSlot": {
+      "additionalProperties": false,
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "category",
+        "name"
+      ],
+      "type": "object",
+      "x-table": "equipment_slots"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "row": {
+      "items": {
+        "$ref": "#/$defs/EquipmentSlot"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "row"
+  ],
+  "title": "EquipmentSlotsFile",
+  "type": "object"
+}

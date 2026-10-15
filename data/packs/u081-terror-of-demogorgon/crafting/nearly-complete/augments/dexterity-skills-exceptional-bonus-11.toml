@@ -1,0 +1,23 @@
+name = "Dexterity Skills - Exceptional Bonus +11"
+description = """
+Exceptional Bonus +11 to the Dexterity based skills of: Balance, Hide,
+Move Silently, Open Lock, and Tumble."""
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Dexterity Skills"
+bonus_type = "Exceptional"
+value = 11
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Exceptional"
+effect = "Dexterity Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Dexterity"]
+
+[[slot]]
+slot = "crafting: nearly complete: exceptional skills (legendary)"

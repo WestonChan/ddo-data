@@ -1,0 +1,32 @@
+name = "Gloves of Tranquility"
+description = "Peace fills your mind when you channel magic through these gloves."
+drop_location = "The Icemount Curse, End chest"
+icon = "Gloves_7a"
+item_category = "Clothing"
+material = "Mithral"
+minimum_level = 5
+slot = "Hands"
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Regeneration"
+
+[[effect]]
+name = "Improved Quelling Strikes"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 4
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Icemount Curse"

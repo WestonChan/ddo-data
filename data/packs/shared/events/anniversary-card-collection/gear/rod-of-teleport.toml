@@ -1,0 +1,48 @@
+name = "Rod of Teleport"
+description = """
+A sceptre containing multiple charges of Teleport . This spell can instantly
+transport you to a variety of locations."""
+drop_location = "Anniversary Card Collection, Turn in Card III: Kuo-toa &amp; Card IV: Mimic for 2; Fast Travel from the DDO Store; or as a Festival of the Traveler 2010 Special event common reward"
+enhancement_bonus = 1
+icon = "Club_19"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[clickie]]
+name = "Teleport"
+clickie = "Teleport"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    50,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Teleport"]
+
+[[source]]
+kind = "event"
+name = "Anniversary Card Collection"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

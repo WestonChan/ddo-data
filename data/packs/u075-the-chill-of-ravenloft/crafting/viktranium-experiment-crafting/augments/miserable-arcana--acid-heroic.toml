@@ -1,0 +1,21 @@
+name = "Miserable Arcana: Acid (Heroic)"
+description = "+70 Equipment bonus to Acid Spellpower."
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Acid Spell Power"
+bonus_type = "Equipment"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

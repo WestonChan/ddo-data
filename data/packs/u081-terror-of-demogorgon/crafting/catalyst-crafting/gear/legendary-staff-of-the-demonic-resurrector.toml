@@ -1,0 +1,62 @@
+name = "Legendary Staff of the Demonic Resurrector"
+accepts_sentience = true
+description = "Fallen Demons have a curious habit of returning."
+drop_location = "Catalyst Crafting, Turn in Staff of the Necromancer, its Legendary Abyssal Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 16
+icon = "Quarterstaff_2"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Steel"
+minimum_level = 35
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 35
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Blighted Lore"
+bonus_type = "Equipment"
+value = 25
+
+[[effect]]
+name = "Power of the Blight"
+bonus_type = "Equipment"
+value = 169
+
+[[effect]]
+name = "Arcane Augmentation IX"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

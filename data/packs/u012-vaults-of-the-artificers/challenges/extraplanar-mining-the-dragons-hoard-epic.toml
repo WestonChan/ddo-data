@@ -1,0 +1,27 @@
+name = "Extraplanar Mining - The Dragon's Hoard - EPIC"
+difficulties = []
+is_challenge = true
+max_level = 25
+pack = "Vaults of the Artificers"
+patron = "House Cannith"
+
+[[note]]
+kind = "quest"
+original_name = "Extraplanar Mining - The Dragon's Horde - EPIC"
+field = "pack"
+upstream = "Free to Play"
+reason = "The Cannith challenge belongs to the Vaults of the Artificers adventure pack; free daily tokens do not change its pack."
+url = "https://ddowiki.com/page/Vaults_of_the_Artificers"
+read = "2026-10-05"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "Extraplanar Mining - The Dragon's Horde - EPIC"
+reason = "The wiki spells the challenge name The Dragon's Hoard."
+url = "https://ddowiki.com/page/Extraplanar_Palace:_The_Dragon%27s_Hoard_-_EPIC"
+read = "2026-10-05"
+
+[[run]]
+tier = "heroic"
+level = 21

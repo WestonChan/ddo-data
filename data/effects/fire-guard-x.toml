@@ -1,0 +1,3 @@
+name = "Fire Guard X"
+description_template = "When Hit in Melee: Deals 10 to 40 Fire damage to your attacker."
+verbose_name_template = "Fire Guard X"

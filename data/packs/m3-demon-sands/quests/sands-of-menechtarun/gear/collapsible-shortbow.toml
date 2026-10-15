@@ -1,0 +1,65 @@
+name = "Collapsible Shortbow"
+description = """
+A small bow ingeniously jointed to collapse into a small pack. Wielding this
+bow, allows a rogue to perform prodigious athletic feats."""
+drop_location = "Sands of Menechtarun, Firebrand Area: Lieutenant Ayurro 's chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+enhancement_bonus = 5
+icon = "Shortbow_5"
+item_category = "Weapon"
+item_type = "Shortbow"
+material = "Wood"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Swim"
+bonus_type = "Competence"
+value = 12
+
+[[effect]]
+name = "Tumble"
+bonus_type = "Competence"
+value = 12
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "firebrand area: lieutenant ayurro 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Shortbow"

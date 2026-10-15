@@ -1,0 +1,20 @@
+name = "Touch of Immortality"
+description_template = "Passive: While this item is equipped, you gain a +20 Competence Bonus to the Heal and Repair skills, and you regenerate 2-4 Hit Points every 15 seconds."
+home_bonus_type = "Competence"
+verbose_name_template = "Touch of Immortality +20"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Competence"
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Heal"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Competence"
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Repair"

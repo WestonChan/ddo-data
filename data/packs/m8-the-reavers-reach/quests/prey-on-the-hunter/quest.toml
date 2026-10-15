@@ -1,0 +1,21 @@
+name = "Prey on the Hunter"
+bestowed_by = "H'rosin"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 8
+pack = "The Reaver's Reach"
+patron = "Agents of Argonnessen"
+zone = "Dragon Sanctuary"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Prey_on_the_Hunter"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

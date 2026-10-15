@@ -1,0 +1,50 @@
+name = "Ring of the Kraken"
+description = "A swirling squid tentacle is engraved upon this ring."
+drop_location = "Saltmarsh, any legendary chest; or The Haunting of Saltmarsh (Epic) saga end reward"
+icon = "Ring_18a"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Nullmagic Guard"
+
+[[effect]]
+name = "Energy Siphon XII"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "any legendary chest"
+kind = "quest"
+loot_type = "chest"
+name = "Saltmarsh"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Haunting of Saltmarsh"
+
+[[source]]
+kind = "saga"
+name = "The Haunting of Saltmarsh"
+tier = "epic"

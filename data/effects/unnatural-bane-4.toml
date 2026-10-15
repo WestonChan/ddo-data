@@ -1,0 +1,3 @@
+name = "Unnatural Bane 4"
+description_template = "This weapon is attuned specifically to hunt beings that should not exist, dealing an additional 4d10 bane damage vs. Aberrations, Monstrous Humanoids, and Undead."
+verbose_name_template = "Unnatural Bane 4"

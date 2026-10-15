@@ -1,0 +1,32 @@
+name = "Acid Lore V"
+adds_augment = "Accessory Aspect II"
+description = """
+Acid Lore V: Passive: Your Acid spells gain a 12% Equipment bonus
+to their chance to critical hit and a 0.25 spell critical damage bonus.
+Earth:Dominion:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[effect]]
+name = "Acid Spell Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [0.25]
+bonus_type = "Equipment"
+effect_type = "SpellCriticalDamage"
+targets = ["Acid"]
+
+[[slot]]
+slot = "crafting: accessory devastation"

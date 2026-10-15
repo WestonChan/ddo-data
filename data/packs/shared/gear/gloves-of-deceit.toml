@@ -1,0 +1,23 @@
+name = "Gloves of Deceit"
+description = """
+Used by Gnashtooth Kobolds when they come up to the surface to steal trinkets,
+these gloves contain tiny pockets that disperse a small cloud of distracting
+dust."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Hands"
+
+[[effect]]
+name = "Bluff"
+bonus_type = "Competence"
+value = 7
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

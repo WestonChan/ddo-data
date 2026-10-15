@@ -1,0 +1,34 @@
+name = "Thick Skin (level 20)"
+description = "Sticks and stones may break these bones, but the outside is sturdy as leather."
+drop_location = "Anniversary Party, Turn in 60"
+enhancement_bonus = 6
+icon = "Docent_1"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 20
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_bonus = 0
+armor_type = "Docent"
+mithral_body = 14
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 11
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 55
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"

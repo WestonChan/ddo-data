@@ -1,0 +1,13 @@
+name = "The Druid's Deep"
+pack = "The Druid's Deep"
+wiki_url = "https://ddowiki.com/page/The_Druid%27s_Deep"
+quests = [
+    "Outbreak",
+    "Thorn and Paw",
+    "Overgrowth",
+    "The Druid's Curse",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Druid%27s_Deep"
+read = "2026-10-02"

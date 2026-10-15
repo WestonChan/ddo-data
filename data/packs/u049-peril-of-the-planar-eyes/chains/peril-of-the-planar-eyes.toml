@@ -1,0 +1,12 @@
+name = "Peril of the Planar Eyes"
+pack = "Peril of the Planar Eyes"
+quests = [
+    "An Element of Chaos",
+    "Eye Know Whodunnit",
+    "Seizing the Dawn",
+    "Beautiful Nightmares",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Peril_of_the_Planar_Eyes"
+read = "2026-10-02"

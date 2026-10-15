@@ -1,0 +1,89 @@
+name = "Legendary Sunken Chains"
+description = "Heavy and rusted."
+drop_location = "Members Only, End chest"
+icon = "Bracers_25"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 29
+slot = "Wrists"
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 15
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "+3 Quality Strength"
+description = "+3 Quality bonus to Strength"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Strength"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "+3 Quality Dexterity"
+description = "+3 Quality bonus to Dexterity"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Dexterity"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "+3 Quality Intelligence"
+description = "+3 Quality bonus to Intelligence"
+min_level = 29
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Intelligence"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Quality"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Members Only"

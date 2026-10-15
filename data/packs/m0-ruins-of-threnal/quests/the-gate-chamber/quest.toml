@@ -1,0 +1,22 @@
+name = "The Gate Chamber"
+bestowed_by = "Auto-bestowed"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Ruins of Threnal"
+patron = "House Phiarlan"
+zone = "The Gate of the Black Moon"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Gate_Chamber"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 10

@@ -1,0 +1,40 @@
+name = "Katra's Wit"
+description = """
+A ring said to have been originally crafted for the hag queen Sora Katra. It
+makes its wearer glowingly charismatic, and allows him or her to sway others
+with words alone."""
+drop_location = "Diplomatic Impunity, end chests"
+icon = "Ring_44"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 11
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Battle-Scarred"
+
+[[source]]
+chest = "end chests"
+kind = "quest"
+loot_type = "chest"
+name = "Diplomatic Impunity"

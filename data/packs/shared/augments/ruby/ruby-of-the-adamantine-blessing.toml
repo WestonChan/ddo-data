@@ -1,0 +1,24 @@
+name = "Ruby of the Adamantine Blessing"
+description = """
+Adamantine: Adamantine weapons may bypass the damage reduction of certain items and creatures.
+Drops in: Euphonia's Barter Box"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Adamantine"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

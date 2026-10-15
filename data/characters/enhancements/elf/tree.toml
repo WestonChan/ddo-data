@@ -1,0 +1,869 @@
+name = "Elf"
+background = "ElfBackground"
+icon = "Elf"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Elf: Elven Accuracy I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain +2% to hit with all attacks. Your Point Blank Shot and Ranged Sneak
+Attack range is increased by 2 meters for each Elven Core Ability you possess
+from this tree."""
+icon = "ElfElvenAccuracy"
+internal_name = "ElfCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Elf: Elven Dexterity I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+internal_name = "ElfCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["ElfCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Elven Accuracy II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks."
+icon = "ElfElvenAccuracy"
+internal_name = "ElfCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["ElfCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Elven Dexterity II"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+internal_name = "ElfCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["ElfCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Elven Accuracy III"
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks."
+icon = "ElfElvenAccuracy"
+internal_name = "ElfCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+extra_types = ["PointBlankShotRange"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["ElfCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Phiarlan Dragonmark Focus"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark use per day, +[1/2/3] Hide"
+icon = "ElfPhiarlanDragonmarkFocus"
+internal_name = "ElfPhiarlanDragonmarkFocus"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DragonmarkUse"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Hide"]
+
+[[enhancement.requirement]]
+items = ["Least Dragonmark of Shadow"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Elf: Child of Nature"
+cost_per_rank = [1]
+description = """
+You are able to produce an Entangle effect using a drop of your blood (1 HP)
+and 10 spell points. Primal magic awakens plants and vines to grasp at the caster's
+enemies. Entangled creatures suffer a 90% penalty to movement speed, a 50% attack
+speed penalty, and a -1 penalty to attack rolls, AC, and Reflex. A successful
+Reflex save (DC: 10 + Half Character Level + Wisdom modifier) negates this effect.
+Entangled creatures may leave the affected area to go escape it's effects, or
+attempt to make a Strength check every 2 seconds to negate. Area of effect Fire
+spells will destroy these vines and free any entangled creatures. Incorporeal
+creatures and oozes are naturally immune. Fire elementals and other fire creatures
+are immune because they burn through the plants."""
+icon = "ElfChildOfNature"
+internal_name = "ElfChildOfNature"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Entangle",
+    "None",
+]
+
+[[enhancement]]
+name = "Elf: Keen Senses"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, and Spot."
+icon = "ElfKeenSenses"
+internal_name = "ElfKeenSenses"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement]]
+name = "Elf: Elven Weapon Training I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants bonuses to hit and damage with a chosen set of weapons."
+icon = "ElfElvenWeaponTraining"
+internal_name = "ElfElvenWeaponTrainingI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.selection]]
+name = "Aerenal Weapon Training"
+cost_per_rank = [2]
+description = "+1 to hit and damage with Longswords, Rapiers, and Longbows."
+icon = "ElfAerenalWeaponTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longsword",
+    "Rapier",
+    "Longbow",
+]
+
+[[enhancement.selection]]
+name = "Valenar Weapon Training"
+cost_per_rank = [2]
+description = "+1 to hit and damage with Scimitars, Falchions, and Shortbows."
+icon = "ElfValenarWeaponTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Scimitar",
+    "Falchion",
+    "Shortbow",
+]
+
+[[enhancement]]
+name = "Elf: Arcane Fluidity"
+cost_per_rank = [1]
+description = """
+Your arcane spell failure chance while wearing armor is decreased by [5/10/15]%.
+(This has no effect on arcane spell failure from shields.)"""
+icon = "ElfArcaneFluidity"
+internal_name = "ElfArcaneFluidity"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement]]
+name = "Elf: Lesser Dragonmark of Shadow"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Lesser Dragonmark Spell: Shadow Walk
+Cooldown: 3 seconds
+Transports you to the edge of the Material Plane where it borders the Plane of
+Shadow. While this spell is active, you move much faster than normal and your
+outline appears faint and you are harder to hit. Attacking another creature or
+otherwise interacting with objects shunts you back to the Material Plane."""
+icon = "ElfLesserDragonmarkOfShadow"
+internal_name = "ElfLesserDragonmarkOfShadow"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shadow Walk",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["ElfPhiarlanDragonmarkFocus"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Enchantment Lore"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++[2/4/6] saves vs. Enchantments.
+Rank 3: You also gain +1 Enchantment spell DC"""
+icon = "ElfEnchantmentLore"
+internal_name = "ElfEnchantmentLore"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Enchantment"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+rank = 3
+targets = ["Enchantment"]
+
+[[enhancement]]
+name = "Elf: Nothing is Hidden"
+cost_per_rank = [1]
+description = """
+Your senses are so acute that you no longer need to spend time searching for
+the obvious. You will automatically perform a Search check to locate traps and
+secret doors when you are in range to Spot them, although this Search check occurs
+at a -[12/8/4] penalty."""
+icon = "ElfNothingIsHidden"
+internal_name = "ElfNothingIsHidden"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["ElfKeenSenses"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Elven Weapon Training II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants bonuses to hit and damage with a chosen set of weapons."
+icon = "ElfElvenWeaponTraining"
+internal_name = "ElfElvenWeaponTrainingII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["ElfElvenWeaponTrainingI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Aerenal Weapon Training"
+cost_per_rank = [2]
+description = "+1 to hit and damage with Longswords, Rapiers, and Longbows."
+icon = "ElfAerenalWeaponTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longsword",
+    "Rapier",
+    "Longbow",
+]
+
+[[enhancement.selection]]
+name = "Valenar Weapon Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with Scimitars and Shortbows.
++1 to hit and +2 to damage with Falchions."""
+icon = "ElfValenarWeaponTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Scimitar",
+    "Falchion",
+    "Shortbow",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Scimitar",
+    "Shortbow",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Falchion"]
+
+[[enhancement]]
+name = "Elf: Arcanum"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+[25/50/100] spell points and +[1/2/3] spell penetration."
+icon = "Arcanum"
+internal_name = "ElfArcanum"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Elf: Greater Dragonmark of Shadow"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Greater Dragonmark Spell: Displacement
+Your appearance becomes extremely blurred, giving enemies a 50% miss chance
+when attacking."""
+icon = "ElfGreaterDragonmarkOfShadow"
+internal_name = "ElfGreaterDragonmarkOfShadow"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Displacement",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["ElfLesserDragonmarkOfShadow"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Fey Energy Tap"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = """
+Activate: A drop of blood lets you tap into the endless energy of the realm
+of the fey, giving yourself or an ally temporary spell points (24 Spell points
++6 per level), 10% incorporeality, and a -2 penalty to Will saving throws while
+they last. This ability can be used 5 times per rest.
+Activation Cost: 1 HP.
+Cooldown: 2 minutes"""
+icon = "ElfFeyEnergyTap"
+internal_name = "ElfFeyEnergyTap"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    1,
+    0,
+    120,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fey Energy Tap",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["ElfEnchantmentLore"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Fey Sight"
+cost_per_rank = [2]
+description = """
+While you have 100 or more spell points, you can see things as they truly are.
+You are able to see invisible creatures and pierce illusions."""
+icon = "ElfFeySight"
+internal_name = "ElfFeySight"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["ElfFeyEnergyTap"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Elven Weapon Training III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Grants bonuses to hit and damage with a chosen set of weapons."
+icon = "ElfElvenWeaponTraining"
+internal_name = "ElfElvenWeaponTrainingIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["ElfElvenWeaponTrainingII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Aerenal Weapon Training"
+cost_per_rank = [2]
+description = "+1 to hit and damage with Longswords, Rapiers, and Longbows."
+icon = "ElfAerenalWeaponTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longsword",
+    "Rapier",
+    "Longbow",
+]
+
+[[enhancement.selection]]
+name = "Valenar Weapon Training"
+cost_per_rank = [2]
+description = "+1 to hit and damage with Scimitars, Falchions and Shortbows."
+icon = "ElfValenarWeaponTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Scimitar",
+    "Falchion",
+    "Shortbow",
+]
+
+[[enhancement]]
+name = "Elf: Arcane Archer"
+cost_per_rank = [4]
+description = """
+You gain access to the Arcane Archer enhancement tree.
+The Elf: Arcane Archer tree uses your total character level instead of Ranger
+level, but advances Core Abilities at a slower rate. You cannot spend action
+points in both the Ranger: Arcane Archer and Elf: Arcane Archer trees."""
+icon = "ElfArcaneArcher"
+internal_name = "ElfArcaneArcher"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "EnhancementTree"
+
+[[enhancement.requirement]]
+items = ["ElfArcanum"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Binding Shadows"
+cost_per_rank = [1]
+description = """
+Greater Dragonmark Spell: Dark shadows wrap around an enemy, slowing it and
+draining its life force, applying 2d4 negative levels."""
+icon = "ElfbindingShadows"
+internal_name = "ElfBindingShadows"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "ElfBindingShadows"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image ElfbindingShadows.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Binding Shadows",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["ElfGreaterDragonmarkOfShadow"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Elf: Grace"
+cost_per_rank = [1]
+description = "You may use Dexterity modifier to determine To Hit and Damage on all weapons."
+icon = "ElfGrace"
+internal_name = "ElfGrace"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAbility"
+extra_types = ["Weapon_DamageAbility"]
+targets = [
+    "Dexterity",
+    "All",
+]
+
+[[enhancement]]
+name = "Elf: Elven Weapon Training IV"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = "Grants bonuses to hit and damage with a chosen set of weapons."
+icon = "ElfElvenWeaponTraining"
+internal_name = "ElfElvenWeaponTrainingIV"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["ElfElvenWeaponTrainingIII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Aerenal Weapon Training"
+cost_per_rank = [2]
+description = "+1 to hit and damage with Longswords, Rapiers, and Longbows."
+icon = "ElfAerenalWeaponTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longsword",
+    "Rapier",
+    "Longbow",
+]
+
+[[enhancement.selection]]
+name = "Valenar Weapon Training"
+cost_per_rank = [2]
+description = """
++1 to hit and damage with Scimitars and Shortbows.
++1 to hit and +2 to damage with Falchions."""
+icon = "ElfValenarWeaponTraining"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = [
+    "Scimitar",
+    "Falchion",
+    "Shortbow",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Scimitar",
+    "Shortbow",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["Falchion"]
+
+[[enhancement]]
+name = "Elf: Skill"
+cost_per_rank = [1]
+description = """
++3% Doublestrike, +3% Doubleshot, +3% Dodge, and bypass 3% Dodge.
+
+Doublestrike: Your main hand melee attacks gain a percent chance to strike twice.
+
+Doubleshot: Your ranged attacks, including throw attacks, gain a percent chance
+to attack with an extra projectile. Repeating Crossbows have a reduced chance to
+produce extra shots."""
+icon = "ElfSkill"
+internal_name = "ElfSkill"
+min_spent = 15
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Doublestrike"
+extra_types = [
+    "Doubleshot",
+    "DodgeBonus",
+    "DodgeBypass",
+]
+
+[[enhancement.requirement]]
+items = ["ElfElvenWeaponTrainingIV"]
+req_type = "Enhancement"
+
+[[requirement]]
+items = ["Elf"]
+req_type = "Race"

@@ -1,0 +1,3 @@
+name = "Roar"
+description_template = "This item emits a frightening roar when melee attackers score a critical hit on the wearer, causing them to resist or be shaken with fear."
+verbose_name_template = "Roar"

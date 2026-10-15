@@ -1,0 +1,36 @@
+name = "Melancholic Converter (Heroic)"
+description = """
++19 Competence bonus to Positive Healing Amplification
++19 Enhancement bonus to Repair Healing Amplification
++19 Profane bonus to Negative Healing Amplification"""
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Negative Healing Amplification"
+bonus_type = "Competence"
+value = 19
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 19
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [19]
+bonus_type = "Competence"
+effect_type = "HealingAmplification"
+extra_types = [
+    "NegativeHealingAmplification",
+    "RepairAmplification",
+]
+
+[[slot]]
+slot = "lamordia: melancholic (armor)"

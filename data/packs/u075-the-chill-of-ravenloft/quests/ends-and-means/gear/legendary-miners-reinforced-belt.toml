@@ -1,0 +1,39 @@
+name = "Legendary Miner's Reinforced Belt"
+description = "Stone plates ring this belt, absorbing impact."
+drop_location = "Ends and Means, end chest"
+icon = "Belt_4c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 34
+slot = "Waist"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Profane"
+value = 3
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 23
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"

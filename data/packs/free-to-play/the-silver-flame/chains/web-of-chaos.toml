@@ -1,0 +1,11 @@
+name = "Web of Chaos"
+quests = [
+    "The Lords of Dust",
+    "Servants of the Overlord",
+    "The Spinner of Shadows",
+    "Beyond the Rift",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Web_of_Chaos"
+read = "2026-10-02"

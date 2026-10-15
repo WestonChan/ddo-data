@@ -1,0 +1,35 @@
+name = "Attunement Gauntlets"
+description = "Are these... glowing?"
+drop_location = "The Same Old Song, End chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 15
+slot = "Hands"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 94
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Feat: Quick Draw"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Same Old Song"

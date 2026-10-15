@@ -1,0 +1,41 @@
+name = "Legendary Bulette-Armored Boots"
+description = """
+Pieces of Bulette plate are formed around these boots, making them nearly unbreakable
+to mundane weapons."""
+drop_location = "The Darklake, Depthdigger 's chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Feet"
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 9
+
+[[effect]]
+name = "Acid Absorption"
+bonus_type = "Enhancement"
+value = 39
+
+[[effect]]
+name = "Ram's Might"
+
+[[socket]]
+slot = "crafting: nearly complete: exceptional skills (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "depthdigger 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

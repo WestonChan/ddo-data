@@ -1,0 +1,64 @@
+name = "Technomage"
+icon = "Technomage"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Rune Arm DC"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect = "Rune Arm DC"
+effect_type = "TacticalDC"
+targets = ["Rune Arm"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Sheltering"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Armor Class Percentage"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Armor Class Percentage"
+effect_type = "ACPercent"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Rune Arm Charge Rate"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect = "Rune Arm Charge Rate"
+effect_type = "RuneArmChargeRate"

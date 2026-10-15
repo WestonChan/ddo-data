@@ -1,0 +1,35 @@
+name = "Heartshard"
+description = "This crystalline fragment pulses in your hands."
+drop_location = "Snowfall and Sunlight, end chest (rare)"
+icon = "Trinket_107"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 8
+slot = "Trinket"
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 16
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Snowfall and Sunlight"

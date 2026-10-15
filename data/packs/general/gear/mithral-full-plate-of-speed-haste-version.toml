@@ -1,0 +1,37 @@
+name = "Mithral Full Plate of Speed (Haste version)"
+description = """
+This mithral full plate is a masterpiece of armorsmithing. It has also been
+enchanted to Haste the wearer twice between rest periods."""
+drop_location = "Random, Low level chests/rewards"
+enhancement_bonus = 1
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 8
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[clickie]]
+name = "Haste"
+clickie = "Haste"
+
+[[effect]]
+name = "Mithral"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    2,
+    2,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Haste"]

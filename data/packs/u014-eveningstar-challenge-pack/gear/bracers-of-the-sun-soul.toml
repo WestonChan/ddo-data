@@ -1,0 +1,30 @@
+name = "Bracers of the Sun Soul"
+description = """
+The Order of the Sun Soul is a monastic order dedicated to the welfare of the
+common folk of FaerÃ»n. These bracers are designed to allow an unarmed warrior
+to safely parry or deflect enemy blows."""
+drop_location = "Eveningstar, Turn in 5 Commendations: Villagers of Eveningstar Commendation: Villagers of Eveningstar : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Villagers of Eveningstar. You can exchange it in Eveningstar for powerful equipment."
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Spiritcraft Leather"
+minimum_level = 20
+slot = "Wrists"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Parrying VIII"
+bonus_type = "Insight"
+value = 4
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

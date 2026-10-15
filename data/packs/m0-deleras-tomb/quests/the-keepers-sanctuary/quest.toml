@@ -1,0 +1,23 @@
+name = "The Keeper's Sanctuary"
+bestowed_by = "Archin Muriose"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+flagging = "This quest has Haunted Library as a prerequisite"
+pack = "Delera's Tomb"
+patron = "House Phiarlan"
+zone = "Keeper's Sanctuary"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Keeper%27s_Sanctuary"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 9

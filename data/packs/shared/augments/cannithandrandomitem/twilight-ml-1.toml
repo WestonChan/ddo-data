@@ -1,0 +1,23 @@
+name = "Twilight"
+variant = "ml-1"
+description = """
+This suit of armor favored by eladrin spell casters, becomes semi-incorporeal when donned.
+The twilight armor reduces the chance of arcane spell failure by -10%."""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[effect]]
+name = "Arcane Spell Failure"
+bonus_type = "Enhancement"
+value = -10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Enhancement"
+effect = "Arcane Spell Failure"
+effect_type = "ArcaneSpellFailure"
+
+[[slot]]
+slot = "crafting: cannith armor prefix"

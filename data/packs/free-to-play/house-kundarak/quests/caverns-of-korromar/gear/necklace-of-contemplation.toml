@@ -1,0 +1,31 @@
+name = "Necklace of Contemplation"
+description = """
+This magical necklace gives the wearer a sense of calm, allowing them to concentrate
+more easily in battle, increasing his vitality, and his ability to hit slightly."""
+drop_location = "Caverns of Korromar, R'zzix the Beholder and Oglethorpe the Prospector chests"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 1
+slot = "Neck"
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "False Life"
+bonus_type = "False Life"
+value = 10
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+chest = "r'zzix the beholder and oglethorpe the prospector chests"
+kind = "quest"
+loot_type = "chest"
+name = "Caverns of Korromar"

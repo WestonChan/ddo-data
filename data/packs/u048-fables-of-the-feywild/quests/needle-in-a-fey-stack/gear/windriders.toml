@@ -1,0 +1,27 @@
+name = "Windriders"
+description = "Ride the wind."
+drop_location = "Needle in a Fey Stack, End chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 5
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 15
+value2 = 5
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Needle in a Fey Stack"

@@ -1,0 +1,42 @@
+name = "Thunder-Forged Orb"
+description = "An orb forged from metals long in proximity to dragons under Thunderholme."
+drop_location = "Magma Forge, Crafted from various ingredients"
+icon = "Orb_10"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Adamantine"
+minimum_level = 22
+slot = "Off Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[socket]]
+slot = "crafting: thunderforged tier 1"
+
+[[source]]
+kind = "crafting_system"
+name = "Thunder-Forged"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 3.5
+handedness = "Off-hand"
+weapon_type = "Orb"

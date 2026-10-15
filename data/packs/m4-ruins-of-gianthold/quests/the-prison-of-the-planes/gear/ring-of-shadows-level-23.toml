@@ -1,0 +1,40 @@
+name = "Ring of Shadows (Level 23)"
+description = """
+You can just barely make out the outline of this ring as you hold it in your
+hand. It seems almost as if it has been formed out of dark clouds."""
+drop_location = "Return to Prison of the Planes, Mabar room's chest (Epic Normal); Return to Gianthold, quest chain end reward"
+icon = "Ring_11"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 23
+slot = "Ring"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "mabar room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"
+
+[[source]]
+kind = "quest_chain"
+name = "Return to Gianthold"

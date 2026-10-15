@@ -1,0 +1,48 @@
+name = "Legendary Mask of Comedy"
+description = """
+A mask crafted for and used by the actors of Livewood Theater. It represents
+happiness and high spirits, and is invested with magic to match."""
+drop_location = "Legendary version of Epic Mask of Comedy"
+icon = "Helmet_33a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Head"
+
+[[clickie]]
+name = "Good Hope"
+clickie = "Good Hope"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 146
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 100
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Good Hope"]
+
+[[socket]]
+slot = "yellow"

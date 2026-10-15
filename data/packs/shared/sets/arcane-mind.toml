@@ -1,0 +1,24 @@
+name = "Arcane Mind"
+icon = "ArcaneMind"
+
+[[item]]
+name = "Arcane Goggles"
+
+[[item]]
+name = "Arcane Necklace"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Equipment"
+effect = "Potency"
+value = 24
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [24]
+bonus_type = "Equipment"
+effect = "Potency"
+effect_type = "SpellPower"
+targets = ["All"]

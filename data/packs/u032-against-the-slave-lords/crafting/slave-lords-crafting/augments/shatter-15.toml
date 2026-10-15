@@ -1,0 +1,21 @@
+name = "Shatter +15"
+description = "Legendary enhancement bonus to Shatter"
+family = "Slavelords_Legendary"
+icon = "SlavelordsExtra"
+min_level = 28
+
+[[effect]]
+name = "Sunder DC"
+bonus_type = "Enhancement"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Sunder DC"
+effect_type = "TacticalDC"
+targets = ["Sunder"]
+
+[[slot]]
+slot = "crafting: legendary slavelords extra"

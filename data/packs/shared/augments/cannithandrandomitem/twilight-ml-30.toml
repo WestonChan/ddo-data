@@ -1,0 +1,21 @@
+name = "Twilight"
+variant = "ml-30"
+description = "The twilight armor reduces the chance of arcane spell failure by -10%."
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 30
+
+[[effect]]
+name = "Arcane Spell Failure"
+bonus_type = "Equipment"
+value = -10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Equipment"
+effect = "Arcane Spell Failure"
+effect_type = "ArcaneSpellFailure"
+
+[[slot]]
+slot = "crafting: cannith armor prefix"

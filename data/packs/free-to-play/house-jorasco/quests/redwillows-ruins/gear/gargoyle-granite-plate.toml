@@ -1,0 +1,31 @@
+name = "Gargoyle Granite Plate"
+description = """
+This armor consists of shaped and fitted metal plates riveted and interlocked
+to cover the entire body."""
+drop_location = "Redwillow's Ruins, Toligath 's Chest"
+enhancement_bonus = 2
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Steel"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 8
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "DR 2/-"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "toligath 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Redwillow's Ruins"

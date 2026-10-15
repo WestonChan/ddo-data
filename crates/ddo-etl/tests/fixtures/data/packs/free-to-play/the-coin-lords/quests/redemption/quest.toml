@@ -1,0 +1,14 @@
+name = "Redemption"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+]
+favor = 3
+pack = "Free to Play"
+patron = "The Coin Lords"
+
+[[run]]
+tier = "heroic"
+level = 1

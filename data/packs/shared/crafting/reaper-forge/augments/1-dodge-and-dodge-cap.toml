@@ -1,0 +1,25 @@
+name = "+1 Dodge and Dodge Cap"
+description = "+1 Reaper bonus to Dodge and Dodge Cap"
+family = "Reaper"
+icon = "Reaper"
+min_level = 1
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Reaper"
+value = 1
+
+[[effect]]
+name = "Dodge Cap"
+bonus_type = "Reaper"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "DodgeBonus"
+extra_types = ["DodgeCapBonus"]
+
+[[slot]]
+slot = "crafting: reaper cloak"

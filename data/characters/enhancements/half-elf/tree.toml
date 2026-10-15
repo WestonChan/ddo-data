@@ -1,0 +1,2705 @@
+name = "Half-Elf"
+background = "Half-ElfBackground"
+icon = "Half-Elf"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Half-Elf: Half Elven Versatile Nature"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+As a Half-Elf you can choose which heritage you take after, giving you the
+choice of Human or Elven Core Abilities as you progress through the tree.
+Your Point Blank Shot and Ranged Sneak Attack range is increased by 2
+meters for every Elven Core Ability you select."""
+icon = "HalfElfHalfElvenVersatileNature"
+internal_name = "HalfElfCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Half-Elf: Elven Dexterity / Human Adaptability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = """
+Select an ability score increase, choosing whether to be more elven or human.
+Your selection here will affect your selection at level 11."""
+icon = "HalfElfAbility"
+internal_name = "HalfElfCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["HalfElfCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Elven Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Half-Elf: Elven Accuracy / Human versatility"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Choose a racial ability, and whether to be more elven or human.
+Your selection here will affect your selection at level 16."""
+icon = "HalfElfHalfElvenVersatileNature"
+internal_name = "HalfElfCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["HalfElfCore2"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Elven Accuracy"
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks"
+icon = "HalfElfElvenAccuracy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+
+[[enhancement.selection]]
+name = "Attack Boost"
+cost_per_rank = [1]
+description = "Active to gain a +6 Action Boost bonus to hit for 20 seconds."
+icon = "AttackBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Damage Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +20% Action Boost to weapon damage for 20 seconds."
+icon = "DamageBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Defense Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating
+for 20 seconds."""
+icon = "DefenseBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Saves Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds.
+While under this effect you do not automatically fail Saving Throws on a roll
+of a Natural 1."""
+icon = "SavesBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Skill Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +4 Action Boost to all skills for 20 seconds."
+icon = "SkillBoost"
+is_clickie = true
+
+[[enhancement.selection]]
+name = "Spell Power Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds."
+icon = "SpellPowerBoost"
+is_clickie = true
+
+[[enhancement]]
+name = "Half-Elf: Elven Dexterity / Human Adaptability"
+arrows = ["ArrowRight"]
+cost_per_rank = [2]
+description = """
+Choose an ability score.
+Your elven or human decisions at level 4 will restrict this choice.
+(As if you were an Elf or an Human)"""
+icon = "HalfElfAbility"
+internal_name = "HalfElfCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "halfElfAbility"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image HalfElfAbility.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["HalfElfCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Elven Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+
+[[enhancement.selection.requirement]]
+items = [
+    "HalfElfCore2",
+    "Elven Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Elven Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Human Adaptability: +1 Strength",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Elven Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Human Adaptability: +1 Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Elven Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Human Adaptability: +1 Constitution",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Elven Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Human Adaptability: +1 Intelligence",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Elven Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Human Adaptability: +1 Wisdom",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Human Adaptability: +1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Elven Dexterity",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore2",
+    "Human Adaptability: +1 Charisma",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Elf: Elven Accuracy / Human versatility II"
+cost_per_rank = [1]
+description = """
+Choose a racial ability.
+Your elven or human decisions at level 7 will restrict this choice.
+(As if you were an Elf or an Human)"""
+icon = "HalfElfHalfElvenVersatileNature"
+internal_name = "HalfElfCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["HalfElfCore4"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Elven Accuracy"
+cost_per_rank = [1]
+description = "You gain +2% to hit with all attacks"
+icon = "HalfElfElvenAccuracy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+percent = true
+targets = ["All"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackRange"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "PointBlankShotRange"
+
+[[enhancement.selection.requirement]]
+items = [
+    "HalfElfCore3",
+    "Elven Accuracy",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Attack Boost"
+cost_per_rank = [1]
+description = "Active to gain a +6 Action Boost bonus to hit for 20 seconds."
+icon = "AttackBoost"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Elven Accuracy",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Attack Boost",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Damage Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +20% Action Boost to weapon damage for 20 seconds."
+icon = "DamageBoost"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Elven Accuracy",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Damage Boost",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Defense Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +10 Action Boost to Armor Class and Physical Resistance Rating
+for 20 seconds."""
+icon = "DefenseBoost"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Elven Accuracy",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Defense Boost",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Saves Boost"
+cost_per_rank = [1]
+description = """
+Activate to gain a +4 Action Boost to all Saving Throws for 20 seconds.
+While under this effect you do not automatically fail Saving Throws on a roll
+of a Natural 1."""
+icon = "SavesBoost"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Elven Accuracy",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Saves Boost",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Skill Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +4 Action Boost to all skills for 20 seconds."
+icon = "SkillBoost"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Elven Accuracy",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Skill Boost",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Spell Power Boost"
+cost_per_rank = [1]
+description = "Activate to gain a +20 Action Boost to Universal Spell Power for 20 seconds."
+icon = "SpellPowerBoost"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Elven Accuracy",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = [
+    "HalfElfCore3",
+    "Spell Power Boost",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Elf: Lyrandar Dragonmark Focus"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] dragonmark uses per day, +[1/2/3] Balance."
+icon = "HalfElfLyrandarDragonmarkFocus"
+internal_name = "HalfElfLyrandarDragonmarkFocus"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Balance"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DragonmarkUse"
+
+[[enhancement.requirement]]
+items = ["Least Dragonmark of Storm"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Half-Elf: Diplomatic Immunity"
+cost_per_rank = [2]
+description = """
+Activate: Reduce physical damage you take by 25% for 15 seconds or until you
+attack. Until you rest you have -2 Diplomacy (stacks up to 100 times).
+On a shared cooldown with Half-Elven Social Graces, and your total Diplomacy
+score must be positive to use this ability. (Cooldown: 2 minute)."""
+icon = "HalfElfDiplomaticImmunity"
+internal_name = "HalfElfDiplomaticImmunity"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement]]
+name = "Half-Elf: Skill Focus"
+cost_per_rank = [1]
+description = "Choose between a number of different skill to focus on:"
+icon = "EnhancementSkillFocus"
+internal_name = "HalfElfSkillFocus"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.selection]]
+name = "Athletic"
+cost_per_rank = [1]
+description = "+[1/2/3] Balance, Jump, Swim, and Tumble."
+icon = "SkillFocusAthletic"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Swim",
+    "Tumble",
+]
+
+[[enhancement.selection]]
+name = "Awareness"
+cost_per_rank = [1]
+description = "+[1/2/3] Listen, Search, and Spot."
+icon = "Awareness"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Listen",
+    "Search",
+    "Spot",
+]
+
+[[enhancement.selection]]
+name = "Focused"
+cost_per_rank = [1]
+description = "+[1/2/3] Concentration and Intimidate."
+icon = "SkillFocusFocused"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Intimidate",
+]
+
+[[enhancement.selection]]
+name = "Negotiator"
+cost_per_rank = [1]
+description = "+[1/2/3] Bluff, Diplomacy, Haggle and Perform."
+icon = "SkillFocusNegotiator"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Bluff",
+    "Diplomacy",
+    "Haggle",
+    "Perform",
+]
+
+[[enhancement.selection]]
+name = "Nimble Fingers"
+cost_per_rank = [1]
+description = "+[1/2/3] Disable Device and Open Lock."
+icon = "SkillFocusNimbleFingers"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[enhancement.selection]]
+name = "Self Sufficient"
+cost_per_rank = [1]
+description = "+[1/2/3] Heal and Repair."
+icon = "SkillFocusSelfSufficient"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Repair",
+]
+
+[[enhancement.selection]]
+name = "Stealthy"
+cost_per_rank = [1]
+description = "+[1/2/3] Hide and Move Silently."
+icon = "SkillFocusStealthy"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[enhancement]]
+name = "Half-Elf: Improved Dilettante I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "Improves your Dilettante feat."
+icon = "HalfElfImprovedDilettante"
+internal_name = "HalfElfImprovedDilettanteI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Alchemist"
+cost_per_rank = [1]
+description = """
++30 Maximum Spell Points. For item use purposes you are now treated as
+a third level Alchemist (or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteAlchemist"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Alchemist"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Artificer"
+cost_per_rank = [1]
+description = """
+Your knowledge of magical items has improved, and now extends to potions.
+For item purposes you are now treated as a second level Artificer
+(or your character level, whichever is lower). +30 Spell Points."""
+icon = "HalfElfImprovedDilettanteArtificer"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Artificer"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Barbarian"
+cost_per_rank = [1]
+description = "You become more resilient and gain +10 Hit Points."
+icon = "HalfElfImprovedDilettanteBarbarian"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Barbarian"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Bard"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a third level Bard
+(or your total character level, whichever is lower). +30 Spell Points."""
+icon = "HalfElfImprovedDilettanteBard"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Bard"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Cleric"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a third level Cleric
+(or your total character level, whichever is lower). +30 Spell Points."""
+icon = "HalfElfImprovedDilettanteCleric"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Cleric"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Druid"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a third level Druid
+(or your total character level, whichever is lower). +30 Spell Points."""
+icon = "HalfElfImprovedDilettanteDruid"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Druid"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Favored Soul"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a third level Favored Soul
+(or your total character level, whichever is lower). +30 Spell Points."""
+icon = "HalfElfImprovedDilettanteFavoredSoul"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Favored Soul"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Fighter"
+cost_per_rank = [1]
+description = "Your skill with arms is improved and you gain +1 to hit and +1 weapon damage."
+icon = "HalfElfImprovedDilettanteFighter"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Fighter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Monk"
+cost_per_rank = [1]
+description = """
+Your defensive skills have improved, and at level 2 or higher you are
+able to add up to 3 points of your Wisdom bonus to your armor class."""
+icon = "HalfElfImprovedDilettanteMonk"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Monk"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Paladin"
+cost_per_rank = [1]
+description = """
+Your Lesser Divine Grace has improved and at level 2 or higher you may add
+up to 3 points of your charisma bonus to your saves.
+For item use purposes you are now treated as a second level Paladin
+(or your total character level, whichever is lower)"""
+icon = "HalfElfImprovedDilettantePaladin"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [0]
+bonus_type = "Feat"
+effect_type = "DivineGrace"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Paladin"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Ranger"
+cost_per_rank = [1]
+description = """
+Your Lesser Bow Strength has improved and at level 2 or higher are able
+to add up to 4 points of your strength bonus to attacks with bows.
+For item use purposes you are now treated as a second level Ranger
+(or your total character level, whichever is lower)"""
+icon = "HalfElfImprovedDilettanteRanger"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Ranger"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Rogue"
+cost_per_rank = [1]
+description = "You practice stealthy attacks and gain +2 to hit with Sneak Attacks"
+icon = "HalfElfImprovedDilettanteRogue"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackAttack"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Rogue"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Sorcerer"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a third level Sorcerer
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteSorcerer"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Sorcerer"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Warlock"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a third level Warlock
+(or your total character level, whichever is lower). +30 Spell Points."""
+icon = "HalfElfImprovedDilettanteWarlock"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Warlock"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Wizard"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a third level Wizard
+(or your total character level, whichever is lower). +30 Spell Points."""
+icon = "HalfElfImprovedDilettanteWizard"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Wizard"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Half-Elf: Arcane Fluidity"
+cost_per_rank = [1]
+description = """
+Your arcane spell failure chance while wearing armor is decreased by [5/10/15]%.
+(This has no effect on arcane spell failure from shields.)"""
+icon = "HalfElfArcaneFluidity"
+internal_name = "HalfElfArcaneFluidity"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "ArcaneSpellFailure"
+
+[[enhancement]]
+name = "Half-Elf: Lesser Dragonmark of Storm"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Lesser Dragonmark Spell: Electric Loop"
+icon = "HalfElfLesserDragonmarkOfStorm"
+internal_name = "HalfElfLesserDragonmarkOfStorm"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    3,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Electric Loop",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["HalfElfLyrandarDragonmarkFocus"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Elf: Improved Recovery I"
+arrows = ["LongArrowUp"]
+cost_per_rank = [2]
+description = "+20 Positive Healing Amplification"
+icon = "HalfElfImprovedRecovery"
+internal_name = "HalfElfImprovedRecoveryI"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement]]
+name = "Half-Elf: Dilettante Special Ability I"
+cost_per_rank = [2]
+description = "Gain abilities from your Dilettante Class Enhancements"
+icon = "HalfElfDilettanteSpecialAbility"
+internal_name = "HalfElfDilettanteSpecialAbilityI"
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["HalfElfImprovedDilettanteII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Armor Mastery"
+cost_per_rank = [2]
+description = """
++2 Armor Class and +2 Maximum Dexterity Bonus when wearing Armor.
+This enhancement cannot be taken if you possess the Armor Mastery enhancement
+from the Stalwart Defender tree"""
+icon = "HalfElfArmorMastery"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+extra_types = ["MaxDexBonus"]
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Fighter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Conjure Arrows"
+cost_per_rank = [2]
+description = """
+Activate to create a stack of returning +1 arrows.
+These arrows are destroyed when you log out.
+This enhancement cannot be taken if you possess the Conjure Arrows enhancement
+from the Arcane Archer tree."""
+icon = "HalfElfConjureArrows"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "HalfElfDilettanteSpecialAbilityI",
+    "Conjure Arrows",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Ranger"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement]]
+items = [
+    "HalfElfDilettanteSpecialAbilityI",
+    "Conjure Arrows",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Improved Damage Reduction I"
+cost_per_rank = [2]
+description = """
+Your Dilettante: Barbarian DR damage reduction is increased by 1/-.
+This enhancement cannot be taken if you possess the Resistance enhancement
+from Occult Slayer tree."""
+icon = "HalfElfImprovedDamageReduction"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+display_name = "Half-Elf Dilettante: Barbarian DR"
+effect_type = "DR"
+targets = ["-"]
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Barbarian"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["OSCore2"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Improved Recovery I"
+cost_per_rank = [2]
+description = """
++10% Positive Energy Healing.
+This enhancement cannot be taken if you possess the Bastion of Purity
+enhancement from the Shintao Monk tree."""
+icon = "HalfElfImprovedRecovery"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Monk"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["ShintaoCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Improved Spellcasting I"
+cost_per_rank = [2]
+description = "+5 Universal Spell Power"
+icon = "HalfElfImprovedSpellcasting"
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "HalfElfImprovedSpellCasting"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image HalfElfImprovedSpellcasting.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Alchemist"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Artificer"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Bard"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Cleric"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Druid"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Favored Soul"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Warlock"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Wizard"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Lesser Divine Health"
+cost_per_rank = [2]
+description = """
+You are immune to Natural diseases, and gain +4 to saving throws against
+Magical disease and do not automatically fail saving throws against them on a
+roll of a natural 1."""
+icon = "HalfElfLesserDivineHealth"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Natural Diseases"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Disease"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveNoFailOn1"
+targets = ["Disease"]
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Paladin"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Sly Flourish"
+cost_per_rank = [2]
+description = """
+Melee Attack: Deals +1[W] damage with +1 critical threat range, and reduces
+your threat with nearby enemies by 100.
+On Sneak Attack: Intelligent target also gains a -1 penalty to Balance, Reflex,
+and Will saves for 20 seconds. (Stack 5 times.)
+This enhancement cannot be taken if you possess the Sly Flourish enhancement
+from the Thief-Acrobat tree. (Cooldown: 12 seconds)"""
+icon = "HalfElfSlyFlourish"
+is_clickie = true
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Rogue"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["TASlyFlourish"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Elf: Improved Dilettante II"
+arrows = [
+    "ArrowLeft",
+    "ArrowUp",
+]
+cost_per_rank = [1]
+description = "Improves your Dilettante feat."
+icon = "HalfElfImprovedDilettante"
+internal_name = "HalfElfImprovedDilettanteII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["HalfElfImprovedDilettanteI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Alchemist"
+cost_per_rank = [1]
+description = """
++30 Maximum Spell Points. For item use purposes you are now treated as
+a sixth level Alchemist (or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteAlchemist"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Alchemist"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Artificer"
+cost_per_rank = [1]
+description = """
+Knowledge of magical items has improved, and now extends to wands.
+For item purposes you are now treated as a third level Artificer
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteArtificer"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Artificer"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Barbarian"
+cost_per_rank = [1]
+description = "You become more resilient and gain +5 hp."
+icon = "HalfElfImprovedDilettanteBarbarian"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Barbarian"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Bard"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a sixth level Bard
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteBard"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Bard"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Cleric"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a sixth level Cleric
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteCleric"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Cleric"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Druid"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a sixth level Druid
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteDruid"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Druid"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Favored Soul"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a sixth level Favored Soul
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteFavoredSoul"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Favored Soul"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Fighter"
+cost_per_rank = [1]
+description = "Your skill with arms is improved and you gain +1 weapon damage."
+icon = "HalfElfImprovedDilettanteFighter"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Fighter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Monk"
+cost_per_rank = [1]
+description = """
+Your defensive skills have improved, and at level 3 or higher you are
+able to add up to 4 points of your Wisdom bonus to your armor class."""
+icon = "HalfElfImprovedDilettanteMonk"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Monk"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Paladin"
+cost_per_rank = [1]
+description = """
+Your Lesser Divine Grace has improved and at level 3 or higher you may
+add up to 4 points of your charisma bonus to your saves.
+For item use purposes you are now treated as a third level Paladin
+(or your total character level, whichever is lower)"""
+icon = "HalfElfImprovedDilettantePaladin"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [0]
+bonus_type = "Feat"
+effect_type = "DivineGrace"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Paladin"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Ranger"
+cost_per_rank = [1]
+description = """
+You have an additional +1 to Damage with Longbows and Shortbows.
+For item use purposes you are now treated as a third level Ranger
+(or your total character level, whichever is lower)"""
+icon = "HalfElfImprovedDilettanteRanger"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Longbow",
+    "Shortbow",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Ranger"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Rogue"
+cost_per_rank = [1]
+description = "You practice stealthy attacks and gain +1d6 Sneak Attack"
+icon = "HalfElfImprovedDilettanteRogue"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Rogue"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Sorcerer"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a sixth level Sorcerer
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteSorcerer"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Sorcerer"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Warlock"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a sixth level Warlock
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteWarlock"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Warlock"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Wizard"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a sixth level Wizard
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteWizard"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Wizard"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Half-Elf: Arcanum"
+cost_per_rank = [2]
+description = "+[25/50/100] spell points and +[1/2/3] spell penetration."
+icon = "Arcanum"
+internal_name = "HalfElfArcanum"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Half-Elf: Greater Dragonmark of Storm"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Greater Dragonmark Spell: Call Lightning Storm"
+icon = "HalfElfGreaterDragonmarkOfStorm"
+internal_name = "HalfElfGreaterDragonmarkOfStorm"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Call Lightning Storm",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["HalfElfLesserDragonmarkOfStorm"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Elf: Action Surge"
+cost_per_rank = [1]
+description = "Action Boosts also increase an ability score of your choice."
+icon = "HalfElfActionSurge"
+internal_name = "HalfElfActionSurge"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.selection]]
+name = "Action Surge: Strength"
+cost_per_rank = [1]
+description = "While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost bonus to Strength."
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Action Surge: Dexterity"
+cost_per_rank = [1]
+description = "While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost bonus to Dexterity."
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Action Surge: Constitution"
+cost_per_rank = [1]
+description = "While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost bonus to Constitution."
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Action Surge: Intelligence"
+cost_per_rank = [1]
+description = "While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost bonus to Intelligence."
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Action Surge: Wisdom"
+cost_per_rank = [1]
+description = "While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost bonus to Wisdom."
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Action Surge: Charisma"
+cost_per_rank = [1]
+description = "While under the effect of any Action Boost, you gain a +[1/2/3] Action Boost bonus to Charisma."
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Action Boost"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Half-Elf: Dilettante Ability Score"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to an Ability based on your Dilettante feat."
+icon = "HalfElfAbility"
+internal_name = "HalfElfDilettanteAbilityScore"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["HalfElfImprovedDilettanteII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Barbarian"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Fighter"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Paladin"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Ranger"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "+1 Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Artificer"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Bard"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Monk"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Ranger"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Rogue"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Barbarian"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Druid"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Fighter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [2]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Alchemist"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Artificer"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Rogue"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Wizard"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Cleric"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Druid"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Favored Soul"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Monk"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Bard"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Cleric"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Favored Soul"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Paladin"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Sorcerer"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Warlock"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Half-Elf: Arcane Archer"
+cost_per_rank = [4]
+description = """
+You gain access to the Arcane Archer enhancement tree.
+(The Elf: Arcane Archer tree uses your total character level instead of Ranger
+level, but advances Core Abilities at a slower rate. You cannot spend action
+points in both the Ranger: Arcane Archer and Elf: Arcane Archer trees.)"""
+icon = "HalfElfArcaneArcher"
+internal_name = "HalfElfArcaneArcher"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "EnhancementTree"
+
+[[enhancement]]
+name = "Half-Elf: Power of the Storm"
+cost_per_rank = [1]
+description = """
+Greater Dragonmark activate:
+Your attacks gain Shocking, +25 Electrical Spell Power, and you gain 10 temporary
+spell points any time you take electrical damage from a spell.
+You also gain +2 bonus to Reflex save, but suffer a -2 penalty to Caster Levels
+of Earth spells and -2 to your Fortitude Saves. This effect lasts for 2 seconds
+per point of Concentration skill you have. (Cooldown: 1 minute)"""
+icon = "HalfElfPowerOfTheStorm"
+internal_name = "HalfElfPowerOfTheStorm"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    60,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Power of the Storm",
+    "None",
+]
+
+[[enhancement.requirement]]
+items = ["HalfElfGreaterDragonmarkOfStorm"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Elf: Improved Recovery II"
+cost_per_rank = [2]
+description = "+20 Positive Healing Amplification."
+icon = "HalfElfImprovedRecovery"
+internal_name = "HalfElfImprovedRecoveryII"
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["HalfElfImprovedRecoveryI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Elf: Dilettante Special Ability II"
+cost_per_rank = [2]
+description = "Gain abilities from your Dilettante Class Enhancements"
+icon = "HalfElfDilettanteSpecialAbility"
+internal_name = "HalfElfDilettanteSpecialAbilityII"
+min_spent = 15
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["HalfElfImprovedDilettanteIII"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Improved Damage Reduction II"
+cost_per_rank = [2]
+description = """
+Your Dilettante: Barbarian DR damage reduction is increased by 1/-.
++10 Hit Points. This enhancement cannot be taken if you possess the Resistance
+enhancement from Occult Slayer tree."""
+icon = "HalfElfImprovedDamageReduction"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+display_name = "Half-Elf Dilettante: Barbarian DR"
+effect_type = "DR"
+targets = ["-"]
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Barbarian"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["OSCore2"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Improved Recovery II"
+cost_per_rank = [2]
+description = """
++10% Positive Energy Healing.
+This enhancement cannot be taken if you possess the Bastion of Purity
+enhancement from the Shintao Monk tree."""
+icon = "HalfElfImprovedRecovery"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Monk"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["ShintaoCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Improved Spellcasting II"
+cost_per_rank = [2]
+description = "+5 Universal Spellpower"
+icon = "HalfElfImprovedSpellcasting"
+
+[[enhancement.selection.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "HalfElfImprovedSpellCasting"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image HalfElfImprovedSpellcasting.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.selection.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Alchemist"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Artificer"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Bard"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Cleric"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Druid"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Favored Soul"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Sorcerer"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Warlock"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Wizard"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Lesser Courage"
+cost_per_rank = [2]
+description = """
+You gain +4 to saving throws against fear and do not automatically
+fail saving throws against fear on a roll of a natural 1."""
+icon = "HalfElfLesserCourage"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fear"]
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveNoFailOn1"
+targets = ["Fear"]
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Paladin"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Master Tactics"
+cost_per_rank = [2]
+description = """
++2 to the DC's of your Tactical abilities. This enhancement cannot be taken if you possess the
+Tactics enhancement from the Kensei tree."""
+icon = "HalfElfMasterTactics"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Fighter"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["KenseiTactics"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Tanglefoot"
+cost_per_rank = [2]
+description = """
+Alchemical Trap Activate: Throws a cask of caustic liquid at your enemy,
+which explodes into a sticky mess. Enemies within the area of the goo puddle
+take 4d6 acid damage every 2 seconds and are slowed
+(Reflex DC 10 + Half Character Level + Intelligence Modifier Half).
+Cooldown: 30 seconds.
+This enhancement cannot be taken if you possess the Tanglefoot enhancement
+from the Mechanic tree."""
+icon = "HalfElfTanglefoot"
+is_clickie = true
+
+[[enhancement.selection.dc]]
+name = "Half-Elf: Tanglefoot"
+amount = [10]
+dc_type = "Slow"
+dc_versus = "Reflex"
+description = """
+Alchemical Trap Activate: Throws a cask of caustic liquid at your enemy,
+which explodes into a sticky mess. Enemies within the area of the goo puddle
+take 4d6 acid damage every 2 seconds and are slowed"""
+icon = "FalconDeathFromAbove"
+mod_ability = ["Intelligence"]
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Rogue"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["MechCore2"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Tempest"
+cost_per_rank = [2]
+description = """
+You gain +10% chance to make off-hand attacks when dual wielding.
+This enhancement cannot be taken if you possess the Tempest enhancement from
+the Tempest tree."""
+icon = "HalfElfTempest"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.selection.requirement_group]]
+kind = "all"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["Half-Elf Dilettante: Ranger"]
+req_type = "Feat"
+
+[[enhancement.selection.requirement_group]]
+kind = "none_of"
+
+[[enhancement.selection.requirement_group.requirement]]
+items = ["TempestCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Half-Elf: Improved Dilettante III"
+arrows = ["ArrowLeft"]
+cost_per_rank = [1]
+description = "Improves your Dilettante feat."
+icon = "HalfElfImprovedDilettante"
+internal_name = "HalfElfImprovedDilettanteIII"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["HalfElfDilettanteAbilityScore"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Alchemist"
+cost_per_rank = [1]
+description = """
++30 Maximum Spell Points. For item use purposes you are now treated as
+a tenth level Alchemist (or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteAlchemist"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Alchemist"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Artificer"
+cost_per_rank = [1]
+description = """
+Your knowledge of magical items has improved, and now extends to magical arms and armor.
+For item purposes you are now treated as a fourth level Artificer (or your
+total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteArtificer"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Artificer"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Barbarian"
+cost_per_rank = [1]
+description = "You become more resilient and gain +5 Hitpoints."
+icon = "HalfElfImprovedDilettanteBarbarian"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Barbarian"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Bard"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a tenth level Bard (or your total character level,
+whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteBard"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Bard"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Cleric"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a tenth level Cleric (or your total character level,
+whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteCleric"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Cleric"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Druid"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a tenth level Druid (or your total character level,
+whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteDruid"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Druid"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Favored Soul"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a tenth level Favored Soul
+(or your total character level, whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteFavoredSoul"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Favored Soul"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Fighter"
+cost_per_rank = [1]
+description = "Your skill with arms is improved and you gain +1 weapon damage."
+icon = "HalfElfImprovedDilettanteFighter"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Fighter"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Monk"
+cost_per_rank = [1]
+description = """
+Your defensive skills have improved, and at level 4 or higher you are able to add up to 5 points
+of your Wisdom bonus to your armor class."""
+icon = "HalfElfImprovedDilettanteMonk"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Monk"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Paladin"
+cost_per_rank = [1]
+description = """
+Your Lesser Divine Grace has improved and at level 4 or higher you may add up to 5 points of your
+charisma bonus to your saves. For item use purposes you are now treated as a
+fourth level Paladin (or your total character level, whichever is lower)"""
+icon = "HalfElfImprovedDilettantePaladin"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Paladin"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Ranger"
+cost_per_rank = [1]
+description = """
+You add an additional +1 to Damage with Longbows and Shortbows. For item use purposes you are now
+treated as a fourth level Ranger (or your total character level, whichever is lower)"""
+icon = "HalfElfImprovedDilettanteRanger"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Longbow",
+    "Shortbow",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Ranger"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Rogue"
+cost_per_rank = [1]
+description = "You practice stealthy attacks and gain +1d6 Sneak Attack"
+icon = "HalfElfImprovedDilettanteRogue"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SneakAttackDice"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Rogue"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Sorcerer"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a tenth level Sorcerer (or your total character level,
+whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteSorcerer"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Sorcerer"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Warlock"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a tenth level Warlock (or your total character level,
+whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteWarlock"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Warlock"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Improved Dilettante: Wizard"
+cost_per_rank = [1]
+description = """
+For item use purposes you are now treated as a tenth level Wizard (or your total character level,
+whichever is lower.)"""
+icon = "HalfElfImprovedDilettanteWizard"
+
+[[enhancement.selection.requirement]]
+items = ["Half-Elf Dilettante: Wizard"]
+req_type = "Feat"
+
+[[requirement]]
+items = ["Half-Elf"]
+req_type = "Race"

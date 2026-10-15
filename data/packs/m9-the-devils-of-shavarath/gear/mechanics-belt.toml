@@ -1,0 +1,77 @@
+name = "Mechanic's Belt"
+description = """
+This leather belt has a number of small pouches holding various tools. It was
+worn by the master Mechanic, Rotas."""
+drop_location = "A New Invasion, Any chest ; Tower of Despair, Nythirios chest"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Mechanic"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    15,
+    15,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+display_name = "Mechanic - 2 Piece bonus"
+effect_type = "SkillBonus"
+targets = [
+    "Disable Device",
+    "Open Lock",
+]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Mechanic - 2 Piece bonus"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Hide",
+    "Move Silently",
+    "Open Lock",
+    "Tumble",
+]
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "A New Invasion"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

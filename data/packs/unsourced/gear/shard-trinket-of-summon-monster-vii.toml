@@ -1,0 +1,23 @@
+name = "Shard Trinket of Summon Monster VII"
+description = "This trinket periodically casts summon monster VII."
+drop_location = "The Marketplace, Turn in 3 Medium Eberron Dragonshards to Yannick Drumdoom ."
+icon = "Trinket_2"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Summon Monster VII"
+clickie = "Summon Monster VII"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    25,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Monster VII"]

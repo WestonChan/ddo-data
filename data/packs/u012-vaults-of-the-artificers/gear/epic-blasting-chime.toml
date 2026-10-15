@@ -1,0 +1,117 @@
+name = "Epic Blasting Chime"
+description = """
+A small set of chimes that greatly amplifies any sonic energy channeled through
+it."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Trinket_26"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 20
+slot = "Trinket"
+
+[[effect]]
+name = "Weaken Construct Defense"
+
+[[effect]]
+name = "Sonic Lore"
+bonus_type = "Equipment"
+value = 16
+
+[[effect]]
+name = "Cacophonic Guard"
+
+[[effect]]
+name = "Resonance"
+bonus_type = "Equipment"
+value = 110
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Anthem"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Upgrades Sonic Lore to 17% and Resonance to 116 and a Colorless augment slot"
+description = """
+Sonic Lore +17: Passive: Your Sonic spells gain a 17% Equipment bonus to their
+chance to critical hit.
+Resonance +116: Passive: +116 Equipment bonus to Sonic Spell Power."""
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+value = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+value = 116
+
+[[socket.option.grant]]
+slot = "colorless"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+effect_type = "SpellLore"
+targets = ["Sonic"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [116]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Upgrades Sonic Lore to 18% and Resonance to 122 and a Green augment slot"
+description = "Adds a Purple augment slot to this item"
+icon = "Upgrade"
+min_level = 20
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+value = 18
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+value = 122
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [18]
+bonus_type = "Equipment"
+effect = "Sonic Spell Lore"
+effect_type = "SpellLore"
+targets = ["Sonic"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [122]
+bonus_type = "Equipment"
+effect = "Sonic Spell Power"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

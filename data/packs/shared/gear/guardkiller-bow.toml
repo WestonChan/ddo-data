@@ -1,0 +1,39 @@
+name = "Guardkiller Bow"
+description = """
+Krung the Guard-Killer was feared by the Stormreach Guards. Not anymore. His
+legacy, however, lives on in the fearsome bow."""
+drop_location = "The Lost Seekers, End reward"
+enhancement_bonus = 2
+icon = "Longbow_11d"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Lesser Human Bane"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

@@ -1,0 +1,23 @@
+name = "Sage's Cuffs (Level 26)"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Army of Shadow, End reward"
+icon = "Bracers_16"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 26
+slot = "Wrists"
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 20
+
+[[effect]]
+name = "Spell Penetration IV"
+bonus_type = "Equipment"
+value = 4
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Army of Shadow"

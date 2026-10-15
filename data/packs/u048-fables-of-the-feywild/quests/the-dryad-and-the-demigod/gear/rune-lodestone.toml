@@ -1,0 +1,40 @@
+name = "Rune Lodestone"
+description = """
+The runic insignia inscribed upon this stone seems to banish all fables from
+your eyes."""
+drop_location = "The Dryad and the Demigod, End chest and optional chest"
+icon = "Necklace_11b"
+item_category = "Jewelry"
+material = "Cold Iron"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Sight Beyond Sight"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Eversight"
+
+[[effect]]
+name = "Pierce Cold Iron"
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"

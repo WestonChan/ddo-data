@@ -1,0 +1,35 @@
+name = "+6 Intelligence Skills, +75 Spell Points"
+description = "Ethereal/Escalation: +6 Quality bonus to Intelligence based skills. +75 Quality spell points"
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Escalation"""
+
+[[effect]]
+name = "Intelligence Skills"
+bonus_type = "Quality"
+value = 6
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Quality"
+value = 75
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Quality"
+effect = "Intelligence Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Intelligence"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [75]
+bonus_type = "Quality"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: equipment tier 3"

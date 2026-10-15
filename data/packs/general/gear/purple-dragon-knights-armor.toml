@@ -1,0 +1,27 @@
+name = "Purple Dragon Knight's Armor"
+description = """
+The armor of a Purple Dragon Knight of Cormyr, this armor commands the instant
+respect of those who recognize it."""
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 5
+icon = "HeavyArmor_20"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 15
+race_required = "Purple Dragon Knight"
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 14
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 4
+
+[[effect]]
+name = "DR 3/-"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

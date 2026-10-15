@@ -1,0 +1,83 @@
+name = "Necklace of Mystic Eidolons"
+description = """
+These necklaces vary in appearance, but to the wearer, they always appear as
+plain metal chains adorned with rock pendants. If no blood touches a detached
+pendant within one turn, it dwindles away and is lost."""
+drop_location = "The Haunted Halls of Eveningstar, Miior or Dragon chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Neck"
+
+[[effect]]
+name = "Eidolon Summons"
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "crafting: zhentarim attuned"
+
+[[socket.option]]
+name = "Faster Eidolon Summons, Insightful Dex/Con +4 and Augment Summoning"
+description = """
+Eidolon Summons: On Being Damaged: Animates a portion of the wearer's shadow to
+support them in battle. The shadow remains animate for 30 seconds and can be
+created once every 80 seconds.
+Insightful Constitution +4: This item gives the wearer improved health, granting
+a +4 insight bonus to Constitution.
+Insightful Dexterity +4: This item makes the wearer more nimble and dexterous,
+granting a +4 insight bonus to Dexterity.
+Adds Augment Summoning"""
+icon = "Upgrade"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Constitution"
+value = 4
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Dexterity"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect_type = "AbilityBonus"
+targets = [
+    "Constitution",
+    "Dexterity",
+]
+
+[[socket.option.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Augment Summoning"]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "miior or dragon chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Haunted Halls of Eveningstar"

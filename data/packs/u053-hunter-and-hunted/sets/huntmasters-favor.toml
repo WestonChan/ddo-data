@@ -1,0 +1,62 @@
+name = "Huntmaster's Favor"
+icon = "HuntmastersFavor"
+
+[[item]]
+name = "Cloak of the Hunter"
+
+[[item]]
+name = "Helm of the Hunter"
+
+[[item]]
+name = "Hide of the Hunter"
+
+[[item]]
+name = "Shield of the Hunter"
+
+[[item]]
+name = "Spear of the Hunter"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"

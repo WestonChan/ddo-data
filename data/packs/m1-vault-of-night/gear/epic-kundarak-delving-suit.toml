@@ -1,0 +1,49 @@
+name = "Epic Kundarak Delving Suit"
+description = """
+This armor is Kundarak-forged and useful for exploring (and infiltrating) secure
+spaces."""
+drop_location = "Epic version of Kundarak Delving Suit"
+enhancement_bonus = 6
+icon = "LightArmor_9e"
+item_category = "Armor"
+item_type = "Light"
+material = "Mithral"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_bonus = 9
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 13
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 7
+value2 = 11
+
+[[effect]]
+name = "Search"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Spot"
+bonus_type = "Insight"
+value = 8
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[effect]]
+name = "Mithral"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "blue"

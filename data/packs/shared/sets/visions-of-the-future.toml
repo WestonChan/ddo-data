@@ -1,0 +1,22 @@
+name = "Visions of the Future"
+icon = "ColorlessRaidItemEssence"
+
+[[augment]]
+name = "Visions of the Beyond"
+family = "Named"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Wisdom"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]

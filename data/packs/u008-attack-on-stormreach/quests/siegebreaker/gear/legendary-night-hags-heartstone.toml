@@ -1,0 +1,47 @@
+name = "Legendary Night Hag's Heartstone"
+description = """
+The night hags of Droaam carry these vile gems with them wherever they go, which
+allow them to enter the dreams of others. This particular specimen contains
+great potential for spellcasting, and are often used to twist the mines of
+their foes."""
+drop_location = "Siegebreaker, end chest"
+icon = "Trinket_70a"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Trinket"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[effect]]
+name = "Efficient Metamagic - Embolden II"
+bonus_type = "Equipment"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Siegebreaker"

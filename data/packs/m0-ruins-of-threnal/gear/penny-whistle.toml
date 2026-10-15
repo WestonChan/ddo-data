@@ -1,0 +1,33 @@
+name = "Penny Whistle"
+description = "A pennywhistle stamped out of cheap tin."
+drop_location = "The Abandoned Excavation, End reward"
+icon = "Trinket_46"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 9
+slot = "Trinket"
+
+[[clickie]]
+name = "Summon Monster III"
+clickie = "Summon Monster III"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Monster III"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

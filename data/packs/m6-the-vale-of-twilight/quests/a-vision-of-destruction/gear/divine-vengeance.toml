@@ -1,0 +1,71 @@
+name = "Divine Vengeance"
+description = """
+This shining, divine blade is of legendary repute, and is said to have been
+used by a paladin who ventured into the Subterrane to battle its denizens.
+It becomes more powerful when used by those who are devoted to Law, and its
+power increases even further when a paladin wields it."""
+drop_location = "A Vision of Destruction, End chest"
+enhancement_bonus = 5
+icon = "Longsword_3a"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Cold Iron"
+minimum_level = 18
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Cold Iron"
+
+[[effect]]
+name = "Holy"
+
+[[effect]]
+name = "Axiomatic"
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Greater Dispelling"
+
+[[effect]]
+name = "Radiance Attack"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "A Vision of Destruction"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "One-handed"
+weapon_type = "Longsword"

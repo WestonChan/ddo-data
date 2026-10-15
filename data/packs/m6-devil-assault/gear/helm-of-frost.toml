@@ -1,0 +1,61 @@
+name = "Helm of Frost"
+description = """
+This helm has a chill about it and is cold where it touches your skin. Nevertheless
+it will protect you from harmful cold magic, and allows you to release some
+of that energy against foes."""
+drop_location = "The Chronoscope, end chest, and The Chronoscope (Legendary), heroic chest"
+icon = "Helmet_10a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Head"
+
+[[clickie]]
+name = "Frost Lance"
+clickie = "Frost Lance"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 59
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 14
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Frost Lance"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope"
+
+[[source]]
+chest = "heroic chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

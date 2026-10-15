@@ -1,0 +1,69 @@
+name = "Echo of the Warblade"
+description = """
+An echo of the legendary elven longsword Warblade. This echo broke off of the
+Warblade's mind in defiance of the Blade-rite's draconian tendencies, and is
+open to being wielded by anyone."""
+drop_location = "The Key to the Mythal, end chest (rare)"
+enhancement_bonus = 5
+icon = "Longsword_1"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 13
+slot = "Main Hand"
+
+[[clickie]]
+name = "Blade Barrier"
+clickie = "Blade Barrier"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Legendary"
+value = 2
+
+[[effect]]
+name = "Slashing 4"
+
+[[effect]]
+name = "Gashing 8"
+
+[[effect]]
+name = "Fiery 4"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Blade Barrier"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Key to the Mythal"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 4
+damage_modifier = "Strength"
+damage_multiplier = 1.6
+handedness = "One-handed"
+weapon_type = "Longsword"

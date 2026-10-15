@@ -1,0 +1,17 @@
+name = "Command"
+description_template = "Passive: {1} Insightful bonus on Charisma based skill checks. Command armor and command shields make their owners very noticeable, imposing a {2} penalty on Hide checks."
+verbose_name_template = "Command +{1}"
+
+[[bonus]]
+amount_from = 1
+bonus_type = "Insight"
+rounding = "down"
+scale = 1.0
+target = "Charisma Skills"
+
+[[bonus]]
+amount_from = 2
+bonus_type = "Penalty"
+rounding = "down"
+scale = 1.0
+target = "Hide"

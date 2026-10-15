@@ -1,0 +1,76 @@
+name = "Heart of Blades"
+icon = "WrathOfSoraKell"
+
+[[augment]]
+name = "Heart of Blades"
+family = "LostPurpose"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "value"
+upstream = 5
+reason = "The wiki gives Melee and Ranged Power +10 Artifact at 3 pieces; his tier gives +5 to both."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Melee and Ranged Power / Artifact"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Healing Amplification"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Amplification"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Repair Spell Power"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Strikethrough"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Strikethrough"
+effect_type = "HealingAmplification"
+extra_types = ["RepairAmplification"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Strikethrough"
+effect_type = "SpellPower"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Strikethrough"
+effect_type = "Strikethrough"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

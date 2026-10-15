@@ -1,0 +1,13 @@
+name = "Legendary Ash"
+variant = "legendary-green-steel-items"
+description = """
+Requires Negative and Fire only
+Attacks and offensive spells have a 50% chance to reduce enemy
+MRR and Universal Spell Power. This penalty stacks. -7MRR
+and -20USP, MRR does not go negative, so it provides no additional
+magic damage on most enemies. 12 seconds duration."""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[slot]]
+slot = "crafting: greensteel weapon active"

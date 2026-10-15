@@ -1,0 +1,17 @@
+name = "Bottle of Air"
+description = "A dark bottle, sealed with a cork."
+drop_location = "Random, any level-appropriate location; Hiding in Plain Sight beneath the large underwater trap"
+icon = "Trinket_63"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Underwater Action"
+
+[[source]]
+chest = "beneath the large underwater trap"
+kind = "quest"
+loot_type = "chest"
+name = "Hiding in Plain Sight"

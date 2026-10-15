@@ -1,0 +1,16 @@
+name = "Golem's Heart"
+description = """
+2% chance on your being hit to heal you for 20 to 120 Hit Points and
+deal 50 to 300 Electric damage to your surrounding enemies."""
+family = "Named"
+icon = "GolemsHeart"
+min_level = 28
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

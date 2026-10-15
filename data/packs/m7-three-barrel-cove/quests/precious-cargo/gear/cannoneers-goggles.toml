@@ -1,0 +1,34 @@
+name = "Cannoneer's Goggles"
+description = """
+Cannith safety guidelines recommend wearing these when operating any of their
+ship-grade magical munitions equipment."""
+drop_location = "Precious Cargo, end chest; Pirates of the Thunder Sea (epic), quest chain end reward"
+icon = "Goggles_6a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 24
+slot = "Goggles"
+
+[[effect]]
+name = "Wizardry IX"
+bonus_type = "Enhancement"
+value = 225
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 114
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Precious Cargo"

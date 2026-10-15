@@ -1,0 +1,942 @@
+name = "Horizon Walker"
+background = "Universal"
+icon = "HorizonWalker"
+kind = "universal"
+version = 1
+
+[[enhancement]]
+name = "Horizon Walker: Mark Target"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
++1 to Spot and Listen. You gain the ability to Mark one target at a time.
+Targets you Mark have -2 AC. (Debuffs to Marked Targets from these Core abilities
+do not stack with other players' Marks - Only the highest set of debuffs will apply.)
+Cooldown: 4 Seconds."""
+icon = "HWMarkTarget"
+internal_name = "HWCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Listen",
+]
+
+[[enhancement]]
+name = "Horizon Walker: Improved Marking"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your Marked Targets get -10% Fortification.
+The AC penalty your Marked Targets take increases to -4.
+You also gain +3 to Maximum Dexterity Bonus while wearing Light armor."""
+icon = "HWImprovedMarking"
+internal_name = "HWCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MaxDexBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Light Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.requirement]]
+items = ["HWCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Horizon Walker: Greater Marking"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your Marked Targets get -2 to Saving Throws.
+Their Fortification penalty increases to -20%, and AC penalty increases to -6.
+
+In addition you gain Haste SLA: 0 SP cost, 2 minute cooldown"""
+icon = "HWHaste"
+internal_name = "HWCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    120,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Haste",
+    "None",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 6
+
+[[enhancement.requirement]]
+items = ["HWCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Horizon Walker: Dauntless Marking"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Your Marked Target's Saving Throw penalty increases to -4, Fortification penalty \nincreases to -25%, and AC penalty increases to -10.\nYou gain +3 Maximum Dodge."
+icon = "HWDauntlessMarking"
+internal_name = "HWCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "DodgeCapBonus"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["HWCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Horizon Walker: Dimension Door"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Once per rest, you can cast Dimension Door.
+Activation Cost: 0 Spell Points.
+Cooldown: 10 Minutes.
+Passive: Your Marked Targets get -20% to movement speed."""
+icon = "HWDimensionDoor"
+internal_name = "HWCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    600,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Dimension Door",
+    "None",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 18
+
+[[enhancement.requirement]]
+items = ["HWCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Horizon Walker: Horizon"
+cost_per_rank = [1]
+description = """
++2 to all Ability Scores. You gain +10 Ranged Power.
+You gain Favored Enemy: Marked Target: You always consider Marked Targets to be
+Favored Enemies, and deal extra damage against them.
+(Note: If your Marked target is also a Favored Enemy type you have from another
+Feat, you get Favored Enemy bonuses twice.)"""
+icon = "HWHorizon"
+internal_name = "HWCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "HWCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "RangedPower"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 20
+
+[[enhancement.requirement]]
+items = ["HWCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "HWCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Horizon Walker: Eye for Accuracy"
+cost_per_rank = [1]
+description = "+[1/2/3] to Attack with Weapons."
+icon = "HWEyeForAccuracy"
+internal_name = "HWEyeForAccuracy"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement]]
+name = "Horizon Walker: Opening Shot"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++3[W] Bow Attack. Adds 3d6 Force damage on hit.
+This damage scales with Ranged Power.
+Cooldown: 6 seconds."""
+icon = "HWOpeningShot"
+internal_name = "HWOpeningShot"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement]]
+name = "Horizon Walker: Planar Dodge"
+cost_per_rank = [1]
+description = "+[1/2/3]% Dodge."
+icon = "HWPlanarDodge"
+internal_name = "HWPlanarDodge"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "DodgeBonus"
+
+[[enhancement]]
+name = "Horizon Walker: Skills"
+cost_per_rank = [1]
+description = "+[1/2/3] to Tumble, Spot and Listen."
+icon = "HWSkills"
+internal_name = "HWSkills"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spot",
+    "Listen",
+    "Tumble",
+]
+
+[[enhancement]]
+name = "Horizon Walker: Conjure Arrow"
+cost_per_rank = [2]
+description = """
+Activate to create a stack of returning +1 arrows.
+These arrows are destroyed when you log out for an extended period of time.
+
+Anti-requisite: This enhancement cannot be taken at the same time as Conjure
+Arrows in other trees."""
+icon = "HWConjureArrow"
+internal_name = "HWConjureArrow"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "HWConjureArrow",
+    "Conjure Arrows",
+]
+
+[[enhancement.requirement]]
+items = [
+    "HWConjureArrow",
+    "Conjure Arrows",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Horizon Walker: Walker Training I"
+cost_per_rank = [1]
+description = "+1 to Attack and Damage with Longbows and Shortbows."
+icon = "HWWalkerTrainingI"
+internal_name = "HWWalkerTrainingI"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longbow",
+    "Shortbow",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Horizon Walker: Take the Opening"
+cost_per_rank = [2]
+description = """
+If Opening Shot hits a creature that is at 100% of their hitpoints, it deals
+an extra 1d10 Force damage per Character level. This damage scales with 200%
+Ranged Power. Additionally, your Force damage from Opening Shot is now applied
+twice when used against Marked Targets."""
+icon = "HWTakeTheOpening"
+internal_name = "HWTakeTheOpening"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement.requirement]]
+items = ["HWOpeningShot"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Horizon Walker: Protection from Evil and Good"
+cost_per_rank = [
+    1,
+    1,
+    2,
+]
+description = """
+Rank 1: You permanently gain +2 deflection bonus to Armor Class and a +2 resistance
+bonus to saves versus attacks from Evil creatures.
+Rank 2: You permanently gain this for Good creatures as well.
+Rank 3 You are also warded from magical mental control and compulsions from both
+Evil and Good creatures."""
+icon = "HWProtectionFromEvilAndGood"
+internal_name = "HWProtectionFromEvilAndGood"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Horizon Walker: Skilled Navigator"
+cost_per_rank = [1]
+description = "+[2/4/6] to Saving Throws vs. Traps"
+icon = "HWSkilledNavigator"
+internal_name = "HWSkilledNavigator"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Traps"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Horizon Walker: Favored Enemy: Evil Outsider"
+cost_per_rank = [1]
+description = "Gain the Feat: Favored Enemy: Evil Outsider"
+icon = "HWFavoredEnemy"
+internal_name = "HWFavoredEnemy"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Favored Enemy: Evil Outsider"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 2
+
+[[enhancement]]
+name = "Horizon Walker: No Step Missed"
+cost_per_rank = [2]
+description = """
+Battle Trance. Cooldown: 20 Seconds. Anti-requisite: Other Trances. Charges: 5.
+Expend 1 Charge: You gain an Insight bonus to damage and the DC of tactical feats
+equal to 1/2 of your Dexterity modifier for 120 seconds.
+On a Vorpal weapon hit, have a chance to restore 1 Charge."""
+icon = "HWNoStepMissed"
+internal_name = "HWNoStepMissed"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "HWNoStepMissed",
+    "Battle Trance",
+]
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Horizon Walker: No Step Missed (Dex Mod / 2)"
+effect_type = "TacticalDC"
+stack_source = "SnapshotDexterity"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["No Missed Step"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "HalfAbilityMod"
+apply_as_item_effect = true
+bonus = "Insightful"
+bonus_type = "Insight"
+display_name = "Horizon Walker: No Step Missed (Dex Mod / 2)"
+effect_type = "Weapon_Damage"
+stack_source = "SnapshotDexterity"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["No Missed Step"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.requirement]]
+items = [
+    "HWNoStepMissed",
+    "Battle Trance",
+]
+req_type = "Exclusive"
+
+[[enhancement.stance]]
+name = "No Missed Step"
+description = """
+Trance: You gain an Insight bonus to damage and the DC of tactical feats
+equal to 1/2 of your Dexterity modifier for 120 seconds."""
+group_name = "Battle Trance"
+icon = "HWNoStepMissed"
+
+[[enhancement]]
+name = "Horizon Walker: Two Places At Once"
+cost_per_rank = [2]
+description = "When you use Manyshot or Scattershot, you gain Displacement for 12 seconds."
+icon = "HWTwoPlacesAtOnce"
+internal_name = "HWTwoPlacesAtOnce"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Horizon Walker: Hunter's Focus"
+cost_per_rank = [1]
+description = """
+If Archer's Focus is enabled, remaining stationary for 6 seconds grants
+you 1d4+4 stacks of Archer's Focus. This can trigger once per time you remain
+stationary."""
+icon = "HWHuntersFocus"
+internal_name = "HWHuntersFocus"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement]]
+name = "Horizon Walker: Tenacious Hunter"
+cost_per_rank = [1]
+description = """
+Against Extra-planar creatures and Marked Targets (regardless of whether or not
+they are extra-planar), you deal an additional +[2/4/6] damage with Longbows and
+Shortbows"""
+icon = "HWTenaciousHunter"
+internal_name = "HWTenaciousHunter"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = [
+    "Longbow",
+    "Shortbow",
+]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Marked Target"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Extra-planar"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Horizon Walker: Ability I"
+cost_per_rank = [2]
+description = "Choose between Dexterity or Wisdom"
+icon = "DexWis"
+internal_name = "HWAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 3
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Horizon Walker: Walker Training II"
+cost_per_rank = [1]
+description = "+2 to Attack and Damage with Longbows and Shortbows."
+icon = "HWWalkerTrainingII"
+internal_name = "HWWalkerTrainingII"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = [
+    "Longbow",
+    "Shortbow",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Horizon Walker: Corner the Quarry"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++4[W] Bow Attack. If this is used against your Marked Target, they must
+make a Reflex Save (d20+your Listen skill) or be immobilized for 12 seconds.
+On a Vorpal hit, the target is also Stunned with no save (20sec cooldown).
+On bosses, this does not immobilize or stun."""
+icon = "HWCornerTheQuarry"
+internal_name = "HWCornerTheQuarry"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Horizon Walker: Walker's Guidance"
+cost_per_rank = [1]
+description = """
+You and targeted ally gain Evasion, Improved Evasion, and +5 to Saving Throws vs.
+Traps for 12 seconds. 60 second cooldown."""
+icon = "HWWalkersGuidance"
+internal_name = "HWWalkersGuidance"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Horizon Walker: Scattershot"
+cost_per_rank = [2]
+description = """
+Ranged Bow Attack: Expend one charge to randomly select up to three different
+enemies at close range and shoot one arrow at each of them. Each of these shots
+can Doubleshot and have +2 Critical Threat Range and Multiplier.
+8 second cooldown."""
+icon = "HWScattershot"
+internal_name = "HWScattershot"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Horizon Walker: Ability II"
+cost_per_rank = [2]
+description = "Choose between Dexterity or Wisdom"
+icon = "DexWis"
+internal_name = "HWAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "Dexterity"
+cost_per_rank = [2]
+description = "+1 Dexterity"
+icon = "Dexterity"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[enhancement.selection]]
+name = "Wisdom"
+cost_per_rank = [2]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement]]
+name = "Horizon Walker: Feywild Attunement"
+cost_per_rank = [1]
+description = """
++1 Competence Bonus to Threat Range and Multiplier with Longbows and Shortbows.
+You have Base Attack Bonus equal to your Character Level while using Longbows
+and Shortbows."""
+icon = "HWFeywildAttunement"
+internal_name = "HWFeywildAttunement"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+extra_types = ["Weapon_CriticalMultiplier"]
+targets = [
+    "Longbow",
+    "Shortbow",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "OverrideBAB"
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Longbow"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Shortbow"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Horizon Walker: Banish the Quarry"
+cost_per_rank = [1]
+description = """
+If Corner the Quarry is used against a Marked Target, they take an additional
+1d10 Force Damage per Character Level. This damage scales with 200% Ranged Power.
+If the creature is Extra-planar, it must make a Will Save (d20+your Listen skill)
+or be Banished. (Bosses cannot be banished)."""
+icon = "HWBanishTheQuarry"
+internal_name = "HWBanishTheQuarry"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["HWCornerTheQuarry"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Horizon Walker: Misty Step"
+cost_per_rank = [1]
+description = """
+Rush forward. You have +5 to Reflex Saves and 20% stacking incorporeality while Stepping.
+(Shares a cooldown with other abundant steps). 12 second cooldown.
+Additionally, when you tumble or use Misty Step, you gain Ranged Power equal to
+your Character Level for 12 seconds. 12 second cooldown."""
+icon = "HWMistyStep"
+internal_name = "HWMistyStep"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    12,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Misty Step",
+    "None",
+]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Horizon Walker: Powershot"
+cost_per_rank = [1]
+description = """
+Whenever you Critically Hit an enemy with Manyshot or Scattershot, that enemy
+takes 1d10 Force Damage per Character Level that scales with 200% Ranged Power."""
+icon = "HWPowershot"
+internal_name = "HWPowershot"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Horizon Walker: Improved Archer's Focus"
+cost_per_rank = [2]
+description = """
+Your Archer's Focus stance can now stack up to 25 times instead of 15.
+Passive: +10% Doubleshot."""
+icon = "HWImprovedArchersFocus"
+internal_name = "HWImprovedArchersFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Doubleshot"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement_group]]
+kind = "one_of"
+
+[[requirement_group.requirement]]
+items = ["Horizon Walker Tree"]
+req_type = "Feat"
+
+[[requirement_group.requirement]]
+items = ["Gate Keepers Favor Rewards"]
+req_type = "Feat"
+value = 3

@@ -1,0 +1,809 @@
+name = "Dragonborn"
+background = "HarperBackground"
+icon = "Dragonborn"
+kind = "racial"
+version = 1
+
+[[enhancement]]
+name = "Dragonborn: Hardy I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1 Fortitude"
+icon = "DragonbornHardy"
+internal_name = "DragonbornCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 1
+
+[[enhancement]]
+name = "Dragonborn: Ability I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Choose either Strength or Charisma"
+icon = "StrCha"
+internal_name = "DragonbornCore2"
+min_spent = 0
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.requirement]]
+items = ["DragonbornCore1"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Dragonborn: Hardy II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+1 Fortitude"
+icon = "DragonbornHardy"
+internal_name = "DragonbornCore3"
+min_spent = 0
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 7
+
+[[enhancement.requirement]]
+items = ["DragonbornCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragonborn: Ability II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Choose either Strength or Charisma"
+icon = "StrCha"
+internal_name = "DragonbornCore4"
+min_spent = 0
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 11
+
+[[enhancement.requirement]]
+items = ["DragonbornCore3"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Dragonborn: Hardy III"
+cost_per_rank = [1]
+description = "+1 Fortitude"
+icon = "DragonbornHardy"
+internal_name = "DragonbornCore5"
+min_spent = 0
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 16
+
+[[enhancement.requirement]]
+items = ["DragonbornCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragonborn: Resilience I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+10 Maximum Hit Points"
+icon = "DragonbornResilience"
+internal_name = "DragonbornResilienceI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement]]
+name = "Dragonborn: Hard Scales"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[2/4/6] Natural Armor"
+icon = "DragonbornHardScales"
+internal_name = "DragonbornHardScales"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "NaturalArmor"
+
+[[enhancement]]
+name = "Dragonborn: Brutality"
+cost_per_rank = [2]
+description = "Choose one of..."
+icon = "DragonbornBruteFighting"
+internal_name = "DragonbornBrutality"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.selection]]
+name = "Brutal Spellcasting"
+cost_per_rank = [2]
+description = """
+Your damaging spells generate 75% more hate than they normally would,
+making enemies more likely to attack you."""
+icon = "DragonbornBrutalSpellcasting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusSpell"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dragonborn: Brutal Spellcasting"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Dragonborn: Brutal Spellcasting"
+description = """
+Your damaging spells generate 75% more hate than they normally would,
+making enemies more likely to attack you."""
+icon = "DragonbornBrutalSpellcasting"
+
+[[enhancement.selection]]
+name = "Brute Fighting"
+cost_per_rank = [2]
+description = """
+Your melee attacks generate 75% more hate than they normally would,
+making enemies more likely to attack you."""
+icon = "DragonbornBruteFighting"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [75]
+bonus_type = "Enhancement"
+effect_type = "ThreatBonusMelee"
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Dragonborn: Brute Fighting"]
+req_type = "Stance"
+
+[[enhancement.selection.stance]]
+name = "Dragonborn: Brute Fighting"
+description = """
+Your melee attacks generate 75% more hate than they normally would,
+making enemies more likely to attack you."""
+icon = "DragonbornBrutalSpellcasting"
+
+[[enhancement]]
+name = "Dragonborn: Draconic Visage"
+cost_per_rank = [1]
+description = "+[1/2/3] Intimidate, Spellcraft, and Haggle"
+icon = "DragonbornDraconicVisage"
+internal_name = "DragonbornDraconicVisage"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Intimidate",
+    "Spellcraft",
+    "Haggle",
+]
+
+[[enhancement]]
+name = "Dragonborn: Undaunted"
+cost_per_rank = [1]
+description = "+[1/2/3] Fortitude"
+icon = "DragonbornUndaunted"
+internal_name = "DragonbornUndaunted"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement]]
+name = "Dragonborn: Resilience II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+10 Maximum Hit Points and +10 Healing Amplification"
+icon = "DragonbornResilience"
+internal_name = "DragonbornResilienceII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+extra_types = ["HealingAmplification"]
+
+[[enhancement.requirement]]
+items = ["DragonbornResilienceI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragonborn: Harder Scales"
+cost_per_rank = [1]
+description = "+[2/4/6] PRR"
+icon = "DragonbornHardScales"
+internal_name = "DragonbornHarderScales"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["DragonbornHardScales"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragonborn: Dragon Breath"
+cost_per_rank = [2]
+description = """
+Active Ability: (Cooldown 30s)
+Cone that deals 1d6 + 3 [red fire/white cold/black acid/blue electric] damage per
+caster level (Reflex save for half). Counts as Evocation spell; gets full Metamagic
+feats, No SR, DC 10 + CHA mod + Evocation bonuses + Breath Weapon bonuses.
+Scales with 50% of spell power."""
+icon = "DragonbornDragonBreath"
+internal_name = "DragonbornDragonBreath"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.dc]]
+name = "Dragonborn: Dragon Breath"
+amount = [10]
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+description = """
+Cone that deals 1d6 + 3 [red fire/white cold/black acid/blue electric] damage per
+caster level (Reflex save for half). Counts as Evocation spell; gets full Metamagic
+feats, No SR, Scales with 50% of spell power."""
+icon = "DragonbornDragonBreath"
+mod_ability = ["Charisma"]
+tactical = "Breath Weapon"
+
+[[enhancement]]
+name = "Dragonborn: Extra Action Boost"
+cost_per_rank = [2]
+description = """
+Dragonborn keep fighting long after other races tire.
+You can use each of your action boosts [1/2/3] additional time per rest."""
+icon = "DragonbornExtraActionBoost"
+internal_name = "DragonbornExtraActionBoost"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraActionBoost"
+
+[[enhancement]]
+name = "Dragonborn: Arcanum"
+cost_per_rank = [2]
+description = "+[25/50/100] Spell Points and +[1/2/3] Spell Penetration."
+icon = "Arcanum"
+internal_name = "DragonbornArcanum"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    25,
+    50,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Dragonborn: Resilience III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+10 Maximum Hit Points"
+icon = "DragonbornResilience"
+internal_name = "DragonbornResilienceIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.requirement]]
+items = ["DragonbornResilienceII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragonborn: Dragon Heritage"
+cost_per_rank = [1]
+description = "+[10/20/30] spell power with the element associated with selected Draconic Ancestry."
+icon = "DragonbornDragonHeritage"
+internal_name = "DragonbornDragonHeritage"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: Black"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: White"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: Blue"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    10,
+    20,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: Red"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+items = ["DragonbornPowerInBreath"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragonborn: Power in Breath"
+arrows = [
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowUp",
+]
+cost_per_rank = [1]
+description = "+[1/2/3] DC's of Breath Attacks."
+icon = "DragonbornPowerInBreath"
+internal_name = "DragonbornPowerInBreath"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Breath Weapon"]
+
+[[enhancement]]
+name = "Dragonborn: Draconic Knowledge"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
++1 Caster Level and +1 Max Caster Level with the element spell associated
+with selected Draconic Ancestry."""
+icon = "DragonbornDraconicKnowledge"
+internal_name = "DragonbornDraconicKnowledge"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: Black"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: White"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: Blue"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevel"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: Red"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevel"
+targets = ["Acid"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: Black"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevel"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: White"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevel"
+targets = ["Electric"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: Blue"]
+req_type = "Feat"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "MaxCasterLevel"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["Draconic Ancestry: Red"]
+req_type = "Feat"
+
+[[enhancement.requirement]]
+items = ["DragonbornPowerInBreath"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragonborn: Resilience IV"
+cost_per_rank = [2]
+description = "+10 Maximum Hit Points and +10 Healing Amplification"
+icon = "DragonbornResilience"
+internal_name = "DragonbornResilienceIV"
+min_spent = 15
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+extra_types = ["HealingAmplification"]
+
+[[enhancement.requirement]]
+items = ["DragonbornResilienceIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragonborn: Memory of Flight"
+cost_per_rank = [2]
+description = """
+Activate: Memories of flight lie within you. You are able to leap through the
+air to bring the fight to your enemies or traverse chasms that make normal
+adventure balk."""
+icon = "DragonbornMemoryOfFlight"
+internal_name = "DragonbornMemoryOfFlight"
+is_clickie = true
+min_spent = 15
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Memory of Flight",
+    "None",
+]
+
+[[enhancement]]
+name = "Dragonborn: True Power"
+cost_per_rank = [1]
+description = "+[1/2/3] to Conjuration and Evocation DC's"
+icon = "DragonbornTruePower"
+internal_name = "DragonbornTruePower"
+min_spent = 15
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Conjuration",
+    "Evocation",
+]
+
+[[enhancement.requirement]]
+items = ["DragonbornPowerInBreath"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Dragonborn: Augmented Breath"
+cost_per_rank = [2]
+description = "Select from"
+icon = "DragonbornAugmentedBreath"
+internal_name = "DragonbornAugmentedBreath"
+min_spent = 15
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["DragonbornDraconicKnowledge"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Constricting Breath"
+cost_per_rank = [2]
+description = "20% chance that enemies will be slowed by 50% when affected by your Breath Attacks."
+icon = "DragonbornConstrictingBreath"
+
+[[enhancement.selection]]
+name = "Dazing Breath"
+cost_per_rank = [2]
+description = "5% chance that enemies will be Dazed when affected by your Breath Attacks."
+icon = "DragonbornDazingBreath"
+
+[[enhancement.selection]]
+name = "Lulling Breath"
+cost_per_rank = [2]
+description = "10% chance that enemies will fall asleep when affected by your Breath Attacks."
+icon = "DragonbornLullingBreath"
+
+[[enhancement.selection]]
+name = "Relentless Breath"
+cost_per_rank = [2]
+description = "8% chance that enemies will be knocked down when affected by your Breath Attacks."
+icon = "DragonbornRelentlessBreath"
+
+[[requirement]]
+items = ["Dragonborn"]
+req_type = "Race"

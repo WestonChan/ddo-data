@@ -1,0 +1,65 @@
+name = "Legendary Warsword Shield"
+description = "Defend yourself against the unknown."
+drop_location = "Into the Mists, End chest"
+enhancement_bonus = 15
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Densewood"
+minimum_level = 29
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 19
+max_dex_bonus = 0
+shield_bonus = 20
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Incite"
+bonus_type = "Enhancement"
+value = 120
+
+[[effect]]
+name = "Riposte"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Into the Mists"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 4.8
+handedness = "Off-hand"
+weapon_type = "Small Shield"

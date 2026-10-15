@@ -1,0 +1,36 @@
+name = "Epic Siren's Belt"
+description = """
+This rare belt is enchanted with the protective magic of a water spirit and
+is capable of defending the wearer from harm."""
+drop_location = "Epic version of Siren's Belt"
+icon = "Belt_11a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Waist"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 9
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 8
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 9
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 6
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

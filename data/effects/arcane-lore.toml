@@ -1,0 +1,3 @@
+name = "Arcane Lore"
+description_template = "All spells gain a +6% chance to critical hit. All spell critical damage is increased by adding 0.25 to the spell critical damage multiplier. This effect does not stack with other item effects or potions."
+verbose_name_template = "Arcane Lore"

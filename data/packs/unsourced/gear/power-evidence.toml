@@ -1,0 +1,22 @@
+name = "Power Evidence"
+description = "A finely crafted ornament that enhances the wearer's physical statistics."
+drop_location = "Special event items, Steam DDO: Half-Orc Pack"
+icon = "Trinket_38a"
+item_category = "Jewelry"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 1

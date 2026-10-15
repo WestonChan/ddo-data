@@ -1,0 +1,45 @@
+name = "Hull-Wrecker's Hammer (level 12)"
+description = """
+Sometimes, the best tool for putting holes in the enemy's hull is a big ol'
+hammer."""
+drop_location = "Treasure of Crystal Cove, Turn in 500 Silver Doubloon 200 Golden Doubloon 25 Stolen Amethyst 500 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 4
+icon = "Warhammer_5a"
+item_category = "Weapon"
+item_type = "Warhammer"
+material = "Steel"
+minimum_level = 12
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Bludgeoning 3"
+
+[[effect]]
+name = "Construct Bane 3"
+
+[[effect]]
+name = "Destruction"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "One-handed"
+weapon_type = "Warhammer"

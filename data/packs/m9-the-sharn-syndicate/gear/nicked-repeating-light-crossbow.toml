@@ -1,0 +1,45 @@
+name = "Nicked Repeating Light Crossbow"
+description = """
+A complex weapon consisting of a light crossbow and a clip for bolts that is
+loaded by pulling the reloading lever."""
+drop_location = "The Sharn Syndicate, End reward"
+enhancement_bonus = 2
+icon = "RepeatingLightCrossbow_8"
+item_category = "Weapon"
+item_type = "Repeating Light Crossbow"
+material = "Wood"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Chilling 2"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 3
+
+[[source]]
+kind = "quest_chain"
+name = "The Sharn Syndicate"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Repeating Light Crossbow"

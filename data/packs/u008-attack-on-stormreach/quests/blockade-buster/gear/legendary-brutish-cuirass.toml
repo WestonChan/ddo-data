@@ -1,0 +1,53 @@
+name = "Legendary Brutish Cuirass"
+description = """
+This suit of armor seems to have been crafted for Droaam troops to enhance their
+aggressive tendencies. It invests the wearer's attacks with great fervor, causing
+them to stun enemies occasionally."""
+drop_location = "Blockade Buster, Bash's Chest"
+enhancement_bonus = 15
+icon = "HeavyArmor_15"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Adamantine"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Unstoppable Staggering Blow"
+
+[[effect]]
+name = "Doublestrike"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "bash's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Blockade Buster"

@@ -1,0 +1,25 @@
+name = "Rest Stop"
+bestowed_by = "Freda Gambosi"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "The High Road of Shadows"
+patron = "The Harpers"
+zone = "Beckside Castle Ruins"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Rest_Stop"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 18
+
+[[run]]
+tier = "epic"
+level = 24

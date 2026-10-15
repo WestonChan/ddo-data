@@ -1,0 +1,22 @@
+name = "A Relic of a Sovereign Past"
+bestowed_by = "Sir Kinze MacDunnam"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Deneith"
+zone = "Black Anvil Mines"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/A_Relic_of_a_Sovereign_Past"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12

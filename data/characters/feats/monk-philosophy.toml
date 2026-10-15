@@ -1,0 +1,51 @@
+[[row]]
+name = "Path of Harmonious Balance: Fists of Light"
+acquire = "Train"
+description = """
+You have chosen to follow the path of light.
+You seek to be at harmony with the world and your training will reflect your
+philosophy. You can activate this ability to channel positive energy into your
+attack, dealing 4 to 24 additional damage against undead and applying a healing
+shield to your target which heals your allies that strike your target.
+On a vorpal strike (natural 20 followed by critical confirmation), you deal an
+additional 1 to 50 positive energy damage to undead.
+D&D Dice: Activate this ability to deal 4d6 additional damage to undead
+plus another 1d50 to undead on vorpal."""
+icon = "PathOfHarmoniousBalance"
+source_name = "Monk"
+
+[[row.group]]
+group_name = "Monk Philosophy"
+
+[[row]]
+name = "Path of Inevitable Dominion: Fists of Darkness"
+acquire = "Train"
+description = """
+You have chosen to follow the path of darkness.
+You seek to dominate the world and your training will reflect your philosophy.
+You can activate this ability to channel negative energy into your attack,
+dealing 2 to 20 additional damage against living creatures and then rendering
+the target shaken. (A successful DC 10 + Monk Level + Wisdom Mod Will save
+negate the shaken effect.)
+On a vorpal strike (Natural 20 followed by critical confirmation), you deal an
+additional 1 to 50 negative energy damage.
+D&D Dice: Activate this ability to deal 2d10 additional damage to living
+creatures plus another 1d50 damage on vorpal."""
+icon = "PathOfInevitableDominion"
+source_name = "Monk"
+
+[[row.dc]]
+name = "Path of Inevitable Dominion: Fists of Darkness"
+amount = [10]
+class_level = "Monk"
+dc_type = "Shaken"
+dc_versus = "Will"
+description = """
+You can activate this ability to channel negative energy into your attack,
+dealing 2 to 20 additional damage against living creatures and then rendering
+the target shaken.(A successful Will save negate the shaken effect."""
+icon = "PathOfInevitableDominion"
+mod_ability = ["Wisdom"]
+
+[[row.group]]
+group_name = "Monk Philosophy"

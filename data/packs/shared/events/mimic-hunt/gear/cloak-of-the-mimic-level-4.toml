@@ -1,0 +1,31 @@
+name = "Cloak of the Mimic (Level 4)"
+description = """
+This cloak seems to be made of a slightly irregular leather surface. When struck
+it sometimes exudes a substance that encases the attacker in goo."""
+drop_location = "Mimic Hunt, Turn in 80 Mimic Tokens"
+icon = "Cloak_2"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 4
+slot = "Back"
+
+[[effect]]
+name = "Sticky Goo Guard"
+
+[[effect]]
+name = "Deathblock"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 55
+
+[[effect]]
+name = "DR 5/Lawful"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "Mimic Hunt"

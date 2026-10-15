@@ -1,0 +1,59 @@
+name = "Darksphere"
+description = "This cursed orb spells the doom of those who would oppose its wielder."
+drop_location = "Total Chaos, End chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Glass"
+minimum_level = 21
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 21
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 6
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 17
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 115
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Insight"
+value = 57
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 6
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Total Chaos"
+
+[[weapon]]
+attack_modifier = "Intelligence"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

@@ -1,0 +1,45 @@
+name = "Desolation Spectacles"
+description = """
+The knowledge of Morgrave's library, defiled to a new purpose; what you can
+see through them is power, and how to get it."""
+drop_location = "Unholy Defiler of the Hidden Hand, defiled version of Legendary Study Spectacles"
+icon = "Goggles_19a"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 32
+slot = "Goggles"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 28
+
+[[effect]]
+name = "Spell Lore V"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Utter Disintegration"
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Unholy Defiler of the Hidden Hand"

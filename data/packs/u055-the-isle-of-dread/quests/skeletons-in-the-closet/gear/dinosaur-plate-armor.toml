@@ -1,0 +1,44 @@
+name = "Dinosaur Plate Armor"
+description = "This armor is expertly crafted of impossibly strong Dinosaur Bone."
+drop_location = "Skeletons in the Closet, The Mountain Keeper chest, end chest"
+enhancement_bonus = 15
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Bone"
+minimum_level = 31
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 25
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[socket]]
+slot = "isle of dread: scale (armor)"
+
+[[socket]]
+slot = "isle of dread: fang (armor)"
+
+[[socket]]
+slot = "isle of dread: claw (accessory)"
+
+[[socket]]
+slot = "isle of dread: horn (accessory)"
+
+[[socket]]
+slot = "isle of dread: set bonus"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "the mountain keeper chest, end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Skeletons in the Closet"

@@ -1,0 +1,71 @@
+name = "Goatskin Boots (Level 26)"
+description = "Before it met its end, this animal had only one thought. Escape."
+drop_location = "What Goes Up, end chest, jeweled key chest (epic normal); The Secret of the Storm Horns, quest chain end reward (epic)"
+icon = "Boots_7"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Feet"
+
+[[effect]]
+name = "Speed XII"
+value = 30
+value2 = 12
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 115
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Enhancement"
+value = 40
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest, jeweled key chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Goes Up"
+
+[[source]]
+kind = "quest_chain"
+name = "The Secret of the Storm Horns"

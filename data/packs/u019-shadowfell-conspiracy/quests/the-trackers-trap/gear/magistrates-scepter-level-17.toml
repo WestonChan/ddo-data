@@ -1,0 +1,303 @@
+name = "Magistrate's Scepter (Level 17)"
+description = "The weight of justice."
+drop_location = """
+The Tracker's Trap, End Chest (Heroic Normal);
+ The Secret of the Storm Horns, Quest chain end reward (Heroic)"""
+enhancement_bonus = 3
+icon = "HeavyMace_3"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 17
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Axiomatic II"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Dazing V"
+description = """
+Dazing V: On Hit: Your target suffers a -1 Penalty to Will Saving Throws for 6
+seconds. This effect stacks up to 5 times. This effect may only occur on-hit
+once every three seconds.
+Passive: The DC of the saving throw to resist your Stunning Blow and Stunning
+Fist combat feats is increased by 10."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option]]
+name = "Deception V"
+description = """
+Deception V: 5% Chance on Hit: Your target becomes Bluffed for four seconds.
+Bluffed enemies can be affected by Sneak Attacks even while targeting you.
+On sneak attack: +5 to Attack Rolls, +10 to Damage."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sneak Attack Hit"
+value = 5
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Sneak Attack Damage"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Equipment"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[socket.option]]
+name = "Doublestrike 5%"
+description = """
+Doublestrike 5%: Passive: 5% Enhancement bonus to Doublestrike.
+Doublestrike is a chance to score an additional hit with a melee attack."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[socket.option]]
+name = "Draining V"
+description = """
+Draining V: On Vorpal Hit: Your target incurs one Negative Level, and you
+gain +10 Temporary Spell Points. (These Temporary Spell Points last for one
+minute, or until used to reduce the cost of your next spell.)"""
+icon = "Variant"
+min_level = 17
+
+[[socket.option]]
+name = "Feeding V"
+description = """
+Feeding V: On Vorpal Hit: Your target incurs one Negative Level, and you gain
++25 Temporary Hit Points. (These Temporary Hit Points last for one minute, or
+until used to negate incoming damage.)"""
+icon = "Variant"
+min_level = 17
+
+[[socket.option]]
+name = "Ghostbane V"
+description = """
+Ghostbane V: On Hit: 5 to 20 Bane Damage vs Undead. (Bane damage cannot be resisted.)
+Passive: Attacks from this weapon bypass the miss chance of incorporeal creatures,
+such as ghosts, shadows, and wraiths."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [5]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Undead"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Humanoid Bane V"
+description = """
+Humanoid Bane V: On Hit: 5 to 20 Bane Damage vs Humanoids and Giants.
+(Bane damage cannot be resisted.)"""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [5]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Humanoid"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Improved Destruction"
+description = """
+Improved Destruction: On Hit: Your target gains a stack of Armor Destruction.
+(-1 penalty to Armor Class, -1% of its Fortification. 20 Second Duration.
+Stacks up to 15 times.) This effect may trigger once every second."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option]]
+name = "Natural Bane V"
+description = """
+Natural Bane V: On Hit: 5 to 20 Bane Damage vs Animals, Vermin, Magical Beasts,
+Plants and Fey. (Bane damage cannot be resisted.)"""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bane"
+dice_number = [5]
+dice_sides = [4]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option.modifier.requirement]]
+items = ["Natural"]
+req_type = "EnemyType"
+
+[[socket.option]]
+name = "Ribcracker V"
+description = """
+Ribcracker V: On Critical Hit: 11 to 66 Bludgeoning damage from weapons with
+a x2 Critical Multiplier, 11 to 88 Bludgeoning damage from weapons with
+a x3 Critical Multiplier, and 11 to 110 Bludgeoning damage from weapons with
+a x4 or greater Critical Multiplier."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.modifier]]
+bonus_type = "Equipment"
+dice_damage = "Bludgeon"
+dice_number = [11]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+targets = ["All"]
+
+[[socket.option]]
+name = "Riposte V"
+description = """
+Riposte V: When Missed by an attack: Deals 5 to 20 damage to your attacker.
+Passive: +3 Insight bonus to Armor Class, +2 Insight bonus to Fortitude, Reflex,
+and Will Saving Throws."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 3
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Saving Throws"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[socket.option]]
+name = "Stumbling V"
+description = """
+Stumbling V: On Hit: Your target suffers a -1 Penalty to Reflex Saving Throws
+for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Trip combat feats is increased by 10."""
+icon = "Variant"
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Trip DC"
+value = 10
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Equipment"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[socket.option]]
+name = "Sundering V"
+description = """
+Sundering V: On Hit: Your target suffers a -1 Penalty to Fortitude Saving Throws
+for 6 seconds. This effect stacks up to 5 times. This effect may only occur
+on-hit once every three seconds.
+Passive: The DC of the saving throw to resist your Sunder combat feats is
+increased by 10."""
+icon = "Variant"
+min_level = 17
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tracker's Trap"
+
+[[source]]
+kind = "quest_chain"
+name = "The Secret of the Storm Horns"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

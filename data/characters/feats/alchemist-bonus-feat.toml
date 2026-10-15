@@ -1,0 +1,369 @@
+[[row]]
+name = "Advanced Alchemical Studies: Orchidium"
+acquire = "Train"
+description = "+1 Caster Level with Crimsonite and Ceruleite spells."
+icon = "AdvancedAlchemicalStudiesOrchidium"
+source_name = "Alchemist"
+
+[[row.effect]]
+effect = "Caster Level (Crimsonite, Ceruleite)"
+value = 1
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Caster Level (Crimsonite, Ceruleite)"
+effect_type = "CasterLevel"
+targets = [
+    "Crimsonite",
+    "Ceruleite",
+]
+
+[[row.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 16
+
+[[row.requirement]]
+items = ["Alchemical Studies: Orchidium"]
+req_type = "Feat"
+
+[[row]]
+name = "Advanced Alchemical Studies: Pyrite"
+acquire = "Train"
+description = "+1 Caster Level with Crimsonite and Gildleaf spells."
+icon = "AdvancedAlchemicalStudiesPyrite"
+source_name = "Alchemist"
+
+[[row.effect]]
+effect = "Caster Level (Crimsonite, Gildleaf)"
+value = 1
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Caster Level (Crimsonite, Gildleaf)"
+effect_type = "CasterLevel"
+targets = [
+    "Crimsonite",
+    "Gildleaf",
+]
+
+[[row.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 16
+
+[[row.requirement]]
+items = ["Alchemical Studies: Pyrite"]
+req_type = "Feat"
+
+[[row]]
+name = "Advanced Alchemical Studies: Verudite"
+acquire = "Train"
+description = "+1 Caster Level with Gildleaf and Ceruleite spells."
+icon = "AdvancedAlchemicalStudiesVerudite"
+source_name = "Alchemist"
+
+[[row.effect]]
+effect = "Caster Level (Gildleaf, Ceruleite)"
+value = 1
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Caster Level (Gildleaf, Ceruleite)"
+effect_type = "CasterLevel"
+targets = [
+    "Gildleaf",
+    "Ceruleite",
+]
+
+[[row.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 16
+
+[[row.requirement]]
+items = ["Alchemical Studies: Verudite"]
+req_type = "Feat"
+
+[[row]]
+name = "Alchemical Studies: Orchidium"
+acquire = "Train"
+description = "+1 Caster Level with Crimsonite and Ceruleite spells."
+icon = "AlchemicalStudiesOrchidium"
+source_name = "Alchemist"
+
+[[row.effect]]
+effect = "Caster Level (Crimsonite, Ceruleite)"
+value = 1
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Caster Level (Crimsonite, Ceruleite)"
+effect_type = "CasterLevel"
+targets = [
+    "Crimsonite",
+    "Ceruleite",
+]
+
+[[row.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 4
+
+[[row]]
+name = "Alchemical Studies: Pyrite"
+acquire = "Train"
+description = "+1 Caster Level with Crimsonite and Gildleaf spells."
+icon = "AlchemicalStudiesPyrite"
+source_name = "Alchemist"
+
+[[row.effect]]
+effect = "Caster Level (Crimsonite, Gildleaf)"
+value = 1
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Caster Level (Crimsonite, Gildleaf)"
+effect_type = "CasterLevel"
+targets = [
+    "Crimsonite",
+    "Gildleaf",
+]
+
+[[row.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 4
+
+[[row]]
+name = "Alchemical Studies: Verudite"
+acquire = "Train"
+description = "+1 Caster Level with Gildleaf and Ceruleite spells."
+icon = "AlchemicalStudiesVerudite"
+source_name = "Alchemist"
+
+[[row.effect]]
+effect = "Caster Level (Gildleaf, Ceruleite)"
+value = 1
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Caster Level (Gildleaf, Ceruleite)"
+effect_type = "CasterLevel"
+targets = [
+    "Gildleaf",
+    "Ceruleite",
+]
+
+[[row.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 4
+
+[[row]]
+name = "Battalion Brew"
+acquire = "Train"
+description = "You can use your Intelligence bonus instead of Strength or Dexterity bonus to determine bonus to attack and damage with Simple Weapons it if is higher."
+icon = "BattalionBrew"
+source_name = "Alchemist"
+
+[[row.effect]]
+effect = "Caster Level (Crimsonite, Ceruleite)"
+value = 1
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Caster Level (Crimsonite, Ceruleite)"
+effect_type = "CasterLevel"
+targets = [
+    "Crimsonite",
+    "Ceruleite",
+]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponAttackAbilityClass"
+targets = [
+    "Intelligence",
+    "Simple",
+]
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageAbilityClass"
+targets = [
+    "Intelligence",
+    "Simple",
+]
+
+[[row.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 4
+
+[[row]]
+name = "Insightful Courage"
+acquire = "Train"
+description = "Adds your Intelligence modifier to Will saves instead of your Wisdom modifier."
+icon = "InsightfulCourage"
+source_name = "Alchemist"
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "SaveBonusAbility"
+targets = [
+    "Intelligence",
+    "Will",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 8
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Insightful Fortitude"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["Force of Personality"]
+req_type = "Feat"
+
+[[row]]
+name = "Insightful Fortitude"
+acquire = "Train"
+description = "Adds your Intelligence modifier to Fortitude saves instead of your Constitution modifier."
+icon = "InsightfulForitude"
+source_name = "Alchemist"
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "SaveBonusAbility"
+targets = [
+    "Intelligence",
+    "Fortitude",
+]
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 8
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Insightful Courage"]
+req_type = "Feat"
+
+[[row]]
+name = "Liquid Luck"
+acquire = "Train"
+description = "You gain Evasion. When you make a successful Reflex save to avoid damage, you suffer no damage instead of half damage."
+icon = "LiquidLuck"
+source_name = "Alchemist"
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Evasion"]
+
+[[row.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 12
+
+[[row]]
+name = "Tonic of Toxins"
+acquire = "Train"
+description = "You absorb 50% of all Poison damage, and are immune to Natural and Supernatural poisons."
+icon = "TonicOfToxins"
+source_name = "Alchemist"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Poison Absorption"
+value = 50
+
+[[row.group]]
+group_name = "Alchemist Bonus Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = [
+    "Natural Poison",
+    "Supernatural Poison",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Feat"
+effect = "Poison Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Poison"]
+
+[[row.requirement]]
+items = ["Alchemist"]
+req_type = "Class"
+value = 8

@@ -1,0 +1,47 @@
+name = "Burning Emptiness"
+description = "Burning Emptiness: On Vorpal: 55 to 110 Fire Damage every 2 seconds for 10 seconds. On Crit: 108 to 260 Negative Energy Damage."
+family = "Thunderforged"
+min_level = 28
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_bonus = [89]
+dice_damage = "Negative"
+dice_number = [19]
+dice_sides = [8]
+display_name = "Burning Emptiness"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: thunderforged tier 3"

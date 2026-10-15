@@ -23,7 +23,7 @@
           ],
           "damage": [],
           "description": "+2 Artifact bonus to the DC of Abjuration spells.",
-          "effect_id": 92,
+          "effect_id": 8173522954163380,
           "name": "Abjuration Focus",
           "tier": null,
           "value": 2,
@@ -35,7 +35,7 @@
       "family": "SunAndMoon",
       "grants_augment": null,
       "icon": "HistoryBookWhite",
-      "id": 1961,
+      "id": 6098630551731069,
       "level_values": null,
       "level_values2": null,
       "levels": null,
@@ -45,6 +45,7 @@
       "slots": [
         "sun"
       ],
+      "slug": "solar-gem-of-abjuration-heroic",
       "suppress_set_bonus": false,
       "weapon_class": null
     },
@@ -71,7 +72,7 @@
           ],
           "damage": [],
           "description": "+4 Artifact bonus to the DC of Abjuration spells.",
-          "effect_id": 92,
+          "effect_id": 8173522954163380,
           "name": "Abjuration Focus",
           "tier": null,
           "value": 4,
@@ -83,7 +84,7 @@
       "family": "SunAndMoon",
       "grants_augment": null,
       "icon": "HistoryBookWhite",
-      "id": 2121,
+      "id": 4636400578114319,
       "level_values": null,
       "level_values2": null,
       "levels": null,
@@ -93,6 +94,7 @@
       "slots": [
         "sun"
       ],
+      "slug": "solar-gem-of-abjuration-legendary",
       "suppress_set_bonus": false,
       "weapon_class": null
     }

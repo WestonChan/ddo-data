@@ -1,0 +1,93 @@
+name = "Knives Eternal"
+description = """
+This Rune Arm belonged to an intrepid House Cannith Artificer who once tried
+(and failed) to stop the Abbot's plans. No one knows where the knives it conjures
+come from, or where they go when they disappear, but there always seem to be
+more."""
+drop_location = "The Mark of Death, Warded chest"
+icon = "RuneArm_3f"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 26
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Spike Guard"
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Spiked"
+
+[[effect]]
+name = "Rune Arm Imbue - Knife Shot VI"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Knife Shot",
+    "None",
+]
+
+[[socket]]
+slot = "crafting: upgradeable - primary augment"
+
+[[socket.option]]
+name = "Blue Augment Slot"
+description = "Add a Blue augment slot to this item"
+icon = "Heroism"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "blue"
+
+[[socket.option]]
+name = "Yellow Augment Slot"
+description = "Add a Yellow augment slot to this item"
+icon = "Heroism"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "yellow"
+
+[[socket]]
+slot = "crafting: upgradeable - secondary augment"
+
+[[socket.option]]
+name = "Green Augment Slot"
+description = "Add a Green augment slot to this item"
+icon = "Heroism"
+min_level = 26
+
+[[socket.option.grant]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Mark of Death"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

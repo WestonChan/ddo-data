@@ -1,0 +1,4 @@
+name = "Rune Arm Spell Focus"
+category = "magical"
+home_bonus_type = "Equipment"
+verbose_name_template = "Rune Arm Spell Focus +{1}"

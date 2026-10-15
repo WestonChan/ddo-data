@@ -1,0 +1,70 @@
+name = "Staff of Arcane Power"
+description = """
+This staff began as a ceremonial weapon created by the gnolls of the desert.
+Long years of use by powerful shaman have gradually increased the staff's power.
+This process has accelerated lately as the staff has been involved in powerful
+summoning ritual."""
+drop_location = "Zawabi's Revenge, Raid Warded chest"
+enhancement_bonus = 5
+icon = "Quarterstaff_6"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[clickie]]
+name = "Staff of Arcane Power: Spell Selection"
+clickie = "Staff of Arcane Power: Spell Selection"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 2
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 129
+
+[[effect]]
+name = "Lesser Arcane Augmentation IX"
+
+[[effect]]
+name = "Good Luck"
+bonus_type = "Luck"
+value = 2
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    25,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Staff of Arcane Power: Spell Selection"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

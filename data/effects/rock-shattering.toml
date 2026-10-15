@@ -1,0 +1,3 @@
+name = "Rock Shattering"
+description_template = "When striking stone-like creatures (such as gargoyles and earth elementals ) or creatures that have been turned to stone, there is a chance this weapon will instantly shatter and destroy the target."
+verbose_name_template = "Rock Shattering"

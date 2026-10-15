@@ -1,0 +1,26 @@
+name = "Servants of the Overlord"
+bestowed_by = "Felnis"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Silver Flame"
+zone = "The Road to Tarath Marad"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Servants_of_the_Overlord"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 16
+
+[[run]]
+tier = "epic"
+level = 21

@@ -1,0 +1,3 @@
+name = "Mithral"
+description_template = "Mithral armor is one type lighter then normal. Arcane Spell Failure decreased by 10%. Maximum dexterity bonus increased by 2. Armor check penalty reduced by 3."
+verbose_name_template = "Mithral"

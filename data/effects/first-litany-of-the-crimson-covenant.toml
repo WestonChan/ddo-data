@@ -1,0 +1,3 @@
+name = "First Litany of the Crimson Covenant"
+description_template = '"Look not to the skies, nor the depths below, nor even the distant past or future." On Hit: 6d6 Evil damage and 6d8 bleeding damage to those that are vulnerable to it.'
+verbose_name_template = "First Litany of the Crimson Covenant"

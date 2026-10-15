@@ -1,0 +1,36 @@
+name = "Epic Mask of the Asylum"
+drop_location = "The Old Archives, End Chest"
+icon = "Helmet_23"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 23
+slot = "Head"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 18
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Old Archives"

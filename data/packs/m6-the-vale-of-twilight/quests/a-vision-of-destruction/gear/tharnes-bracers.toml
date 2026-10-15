@@ -1,0 +1,17 @@
+name = "Tharne's Bracers"
+description = """
+This pair of bracers was once worn by Tharne. These bracers are scarred from
+a variety of weapons, and are said to match a pair of goggles that he discovered
+during his adventures."""
+drop_location = "A Vision of Destruction, End chest"
+icon = "Bracers_1a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Wrists"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "A Vision of Destruction"

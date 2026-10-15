@@ -1,0 +1,57 @@
+name = "Epic Diabolist's Robe"
+description = """
+This infernal robe is connected to the devils of Shavarath somehow, though the
+exact nature of the link is unclear. It can summon evil creatures to the wearer's
+aid, and facilitates the casting of conjuration-based magic."""
+drop_location = "Epic version of Diabolist's Robe"
+enhancement_bonus = 6
+icon = "Cloth_1h"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Summon Monster IX"
+clickie = "Summon Monster IX"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 28
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    20,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Summon Monster IX"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"

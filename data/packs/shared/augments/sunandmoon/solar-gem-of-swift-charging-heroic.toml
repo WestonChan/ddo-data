@@ -1,0 +1,50 @@
+name = "Solar Gem of Swift Charging (Heroic)"
+description = """
++5% Artifact Bonus to Rune Arm Charge Speed.
+Drops in: Magic of Myth Drannor (Heroic), Elite and True Elite
+The Safehold, end chest (rare)
+The Covered Culvert, end chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Artifact"
+value = 5
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect = "Rune Arm Charge Rate"
+effect_type = "RuneArmChargeRate"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Stealing from Sorcere"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Covered Culvert"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Safehold"

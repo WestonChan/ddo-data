@@ -1,0 +1,269 @@
+{
+  "$defs": {
+    "Citation": {
+      "additionalProperties": false,
+      "properties": {
+        "field": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "citations"
+    },
+    "CraftingSystemFamily": {
+      "additionalProperties": false,
+      "properties": {
+        "family": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "family"
+      ],
+      "type": "object",
+      "x-table": "crafting_system_families"
+    },
+    "CraftingSystemIngredient": {
+      "additionalProperties": false,
+      "properties": {
+        "bind": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "drop_location": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "tier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name",
+        "tier"
+      ],
+      "type": "object",
+      "x-table": "crafting_ingredients"
+    },
+    "CraftingSystemRecipe": {
+      "additionalProperties": false,
+      "properties": {
+        "augment": {
+          "items": {
+            "$ref": "#/$defs/CraftingSystemRecipeAugment"
+          },
+          "type": "array"
+        },
+        "focus_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "grants_slot": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "augment_slot_types"
+        },
+        "ingredient": {
+          "items": {
+            "$ref": "#/$defs/CraftingSystemRecipeIngredient"
+          },
+          "type": "array"
+        },
+        "note": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "option": {
+          "type": "string"
+        },
+        "slot": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "augment_slot_types"
+        },
+        "tier": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "option",
+        "tier"
+      ],
+      "type": "object",
+      "x-table": "crafting_recipes"
+    },
+    "CraftingSystemRecipeAugment": {
+      "additionalProperties": false,
+      "properties": {
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "family": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "level": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string",
+          "x-reference-kind": "augments"
+        }
+      },
+      "required": [
+        "name",
+        "level"
+      ],
+      "type": "object",
+      "x-table": "crafting_recipe_augments"
+    },
+    "CraftingSystemRecipeIngredient": {
+      "additionalProperties": false,
+      "properties": {
+        "ingredient": {
+          "type": "string",
+          "x-reference-kind": "crafting_ingredients"
+        },
+        "quantity": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "tier": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "ingredient",
+        "quantity"
+      ],
+      "type": "object",
+      "x-table": "crafting_recipe_ingredients"
+    },
+    "RemovedEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "read": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "name",
+        "reason",
+        "url",
+        "read"
+      ],
+      "type": "object",
+      "x-table": "removed_entities"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "citation": {
+      "items": {
+        "$ref": "#/$defs/Citation"
+      },
+      "type": "array"
+    },
+    "family": {
+      "items": {
+        "$ref": "#/$defs/CraftingSystemFamily"
+      },
+      "type": "array"
+    },
+    "ingredient": {
+      "items": {
+        "$ref": "#/$defs/CraftingSystemIngredient"
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "npc": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "pack": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "x-reference-kind": "adventure_packs"
+    },
+    "page": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "recipe": {
+      "items": {
+        "$ref": "#/$defs/CraftingSystemRecipe"
+      },
+      "type": "array"
+    },
+    "removed": {
+      "items": {
+        "$ref": "#/$defs/RemovedEntry"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "name",
+    "citation"
+  ],
+  "title": "CraftingSystemFile",
+  "type": "object",
+  "x-table": "crafting_systems"
+}

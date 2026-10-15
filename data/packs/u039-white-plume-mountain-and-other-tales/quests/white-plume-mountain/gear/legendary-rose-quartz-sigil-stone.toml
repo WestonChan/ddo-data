@@ -1,0 +1,49 @@
+name = "Legendary Rose Quartz Sigil Stone"
+description = """
+This necklace, fashioned out of a Rose Quartz and emblazoned with a protective
+rune, tingles with magical power."""
+drop_location = "White Plume Mountain, Bluto's chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Crystal"
+minimum_level = 29
+slot = "Neck"
+
+[[clickie]]
+name = "Death Ward, Mass"
+spell = "Death Ward, Mass"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    15,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Death Ward, Mass"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "bluto's chest"
+kind = "quest"
+loot_type = "chest"
+name = "White Plume Mountain"

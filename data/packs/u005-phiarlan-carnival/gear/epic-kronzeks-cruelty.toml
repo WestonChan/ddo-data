@@ -1,0 +1,51 @@
+name = "Epic Kron'zek's Cruelty"
+accepts_sentience = true
+description = """
+A scimitar imbued with the essence of a powerful blue abishai. Sparks fly from
+its edge, and it delivers grievous wounds on critical hits."""
+drop_location = "Epic version of Kron'zek's Cruelty"
+enhancement_bonus = 6
+icon = "Scimitar_6f"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 20
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Shocking Blast IV"
+
+[[effect]]
+name = "Lightning Strike"
+
+[[effect]]
+name = "Maiming 4"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 3.0
+handedness = "One-handed"
+weapon_type = "Scimitar"

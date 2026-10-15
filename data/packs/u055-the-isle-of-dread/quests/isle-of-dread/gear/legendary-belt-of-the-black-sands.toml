@@ -1,0 +1,34 @@
+name = "Legendary Belt of the Black Sands"
+description = "The volcanic Black Sands of the Isle of Dread are rumored to have mystical properties."
+drop_location = "Isle of Dread (wilderness), rare encounter chest"
+icon = "Belt_4c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 31
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Invisibility Guard"
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "isle of dread: claw (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "rare encounter chest"
+kind = "quest"
+loot_type = "chest"
+name = "Isle of Dread"

@@ -1,0 +1,56 @@
+name = "Legendary Robe of Shadow (Level 32)"
+description = "This robe is as dark as the night sky and almost seems to crawl visibly with moving shadows. It boosts the power of the wearer's negative energy magic, and grants a measure of necromantic protection against enemy attacks."
+drop_location = "The Night Revels, Turn in Upgrade of Robe of Shadow (level 28)"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 32
+slot = "Body"
+wiki_url = "https://ddowiki.com/page/Item:Legendary_Robe_of_Shadow_%28level_32%29"
+
+[[armor]]
+armor_bonus = 0
+armor_type = "Cloth"
+
+[[citation]]
+url = "https://ddowiki.com/page/Item:Legendary_Robe_of_Shadow_%28level_32%29"
+read = "2026-09-29"
+
+[[effect]]
+name = "Negative Spell Power"
+bonus_type = "Equipment"
+value = 153
+
+[[effect]]
+name = "Poison Spell Power"
+bonus_type = "Equipment"
+value = 153
+
+[[effect]]
+name = "Negative Spell Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Poison Spell Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Nightshield"
+
+[[effect]]
+name = "Superior False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Boon of Undeath"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"

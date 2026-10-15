@@ -1,0 +1,43 @@
+name = "Guardian's Dagger"
+description = """
+This menacing sword was found on the body of the Guardian of Shan-To-Kor . To
+him, it was a tiny dagger, great for throwing with precision at unwary adversaries.
+To you, it is a razor-sharp Great Sword."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+enhancement_bonus = 2
+icon = "Greatsword_13a"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Sword"

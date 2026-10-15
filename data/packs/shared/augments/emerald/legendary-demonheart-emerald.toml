@@ -1,0 +1,11 @@
+name = "Legendary Demonheart Emerald"
+description = """
+Improved Demonic Shield. Each time you are hit in melee combat there is a
+chance that a shield of demonic energy will grant you a +120 Profane bonus to
+temporary hit points."""
+family = "Emerald"
+icon = "Emerald"
+min_level = 30
+
+[[slot]]
+slot = "green"

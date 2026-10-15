@@ -1,0 +1,33 @@
+name = "Brothers of the Forge"
+bestowed_by = "Talbron Tewn"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Cannith"
+zone = "Cannith Training Facility No. 14"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Brothers_of_the_Forge"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "epic_level"
+reason = "The wiki's quest index gives an epic level of 28; his Quests.xml gives none."
+url = "https://ddowiki.com/page/Quests_by_level_and_XP"
+read = "2026-09-30"
+
+[[run]]
+tier = "heroic"
+level = 28
+
+[[run]]
+tier = "epic"
+level = 28

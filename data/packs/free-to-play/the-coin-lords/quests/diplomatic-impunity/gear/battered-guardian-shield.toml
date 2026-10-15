@@ -1,0 +1,55 @@
+name = "Battered Guardian Shield"
+description = """
+A sun and water design is just barely visible on the surface of this rusted,
+battle-worn shield. Perhaps there is some way to make the image clear again
+by combining this shield with another Harbor shield that is in better shape."""
+drop_location = "Diplomatic Impunity, Kukennama /Eliminate the Clan chest"
+enhancement_bonus = 3
+icon = "Shield_28"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Steel"
+minimum_level = 10
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 6
+max_dex_bonus = 0
+shield_bonus = 6
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Life Shield"
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 2
+
+[[source]]
+chest = "kukennama /eliminate the clan chest"
+kind = "quest"
+loot_type = "chest"
+name = "Diplomatic Impunity"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

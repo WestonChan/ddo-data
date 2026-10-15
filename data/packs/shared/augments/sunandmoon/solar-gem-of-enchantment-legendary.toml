@@ -1,0 +1,45 @@
+name = "Solar Gem of Enchantment (Legendary)"
+description = """
+Artifact Enchantment Focus +4
+Drops in: Beneath the City Streets, end chest (rare)
+The Chill of Ravenloft (Legendary), any difficulty
+Demon in the Rough, end chest (rare)
+Terror of Demogorgon (Legendary), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[citation]]
+field = "description"
+url = "https://ddowiki.com/page/Item:Solar_Gem_of_Enchantment_(Legendary)"
+read = "2026-09-29"
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Artifact"
+value = 4
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Artifact"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Beneath the City Streets"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Demon in the Rough"

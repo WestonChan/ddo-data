@@ -1,0 +1,106 @@
+name = "Legendary Slave Master's Staff"
+accepts_sentience = true
+description = """
+This staff contains the power of Fire, the wrath of Electricity, and the corruption
+of Acid."""
+drop_location = "Assault on the Aerie of the Slave Lords, End chest"
+enhancement_bonus = 14
+icon = "Quarterstaff_1"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Steel"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 28
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 269
+
+[[effect]]
+name = "Elemental Resonance"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "crafting: against the slave lords set bonus"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Might Set bonus"
+icon = "SlavelordsMight"
+min_level = 28
+
+[[socket.option.set]]
+set = "Legendary Slavelords Might"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Sorcery Set bonus"
+icon = "SlavelordsSorcery"
+min_level = 28
+
+[[socket.option.set]]
+set = "Legendary Slavelords Sorcery"
+
+[[socket.option]]
+name = "Adds the Slave Lord's Endurance Set bonus"
+icon = "SlavelordsEndurance"
+min_level = 28
+
+[[socket.option.set]]
+set = "Legendary Slavelords Endurance"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Assault on the Aerie of the Slave Lords"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

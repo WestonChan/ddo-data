@@ -1,0 +1,22 @@
+name = "Glacial Casque"
+description = """
+This steel casque radiates cold and is covered by a thin layer of frost, no
+matter what the weather."""
+drop_location = "The Abandoned Excavation, End reward"
+icon = "Helmet_12"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Head"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 54
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"

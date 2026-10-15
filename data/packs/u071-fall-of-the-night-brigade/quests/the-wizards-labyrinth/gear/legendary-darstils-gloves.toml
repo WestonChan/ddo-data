@@ -1,0 +1,45 @@
+name = "Legendary Darstil's Gloves"
+description = """
+The gloves of Darstil Vurusk, Grand Arcanist of the Night Brigade, intricately
+sewn to allow the free flow of spellcasting."""
+drop_location = "The Wizard's Labyrinth, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 33
+slot = "Hands"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 26
+
+[[effect]]
+name = "Spell Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 9
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Wizard's Labyrinth"

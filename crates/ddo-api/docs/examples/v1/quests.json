@@ -13,7 +13,7 @@
       "epic_name": null,
       "favor": 6,
       "flagging": null,
-      "id": 310,
+      "id": 2798824175324297,
       "is_challenge": false,
       "is_free_to_play": false,
       "is_raid": false,
@@ -23,6 +23,7 @@
       "name": "A Blood Pact",
       "pack": "Terror of Demogorgon",
       "patron": "Battlehammer Expedition",
+      "slug": "a-blood-pact",
       "zone": "The Sanguine Labyrinth"
     },
     {
@@ -36,7 +37,7 @@
       "epic_name": null,
       "favor": 7,
       "flagging": null,
-      "id": 510,
+      "id": 2321957962164905,
       "is_challenge": false,
       "is_free_to_play": false,
       "is_raid": false,
@@ -46,6 +47,7 @@
       "name": "A Break in the Ice",
       "pack": "Shadowfell Conspiracy",
       "patron": "The Harpers",
+      "slug": "a-break-in-the-ice",
       "zone": "Mountain Glacier"
     },
     {
@@ -59,7 +61,7 @@
       "epic_name": "Return to Cabal for One",
       "favor": 6,
       "flagging": null,
-      "id": 380,
+      "id": 2298807245896371,
       "is_challenge": false,
       "is_free_to_play": false,
       "is_raid": false,
@@ -69,6 +71,7 @@
       "name": "A Cabal for One",
       "pack": "Ruins of Gianthold",
       "patron": "Agents of Argonnessen",
+      "slug": "a-cabal-for-one",
       "zone": "Hobgoblin Lair"
     }
   ],

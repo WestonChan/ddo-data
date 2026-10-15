@@ -1,0 +1,11 @@
+name = "Magical Null"
+description_template = "The nullcloth that this robe is made from absorbs spell energies making it difficult for all spell casters, even Divine casters, to complete their spells. +15% Spell Failure chance."
+home_bonus_type = "Penalty"
+verbose_name_template = "Magical Null +15"
+
+[[bonus]]
+amount_from = 0
+constant = 15
+rounding = "down"
+scale = 1.0
+target = "Arcane Spell Failure"

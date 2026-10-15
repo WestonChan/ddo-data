@@ -1,0 +1,87 @@
+name = "Master Transmuter's Staff"
+description = """
+This magnificent staff was very likely a relic created by Mordain the Fleshweaver.
+It was probably shattered at some point long ago, with its two halves being
+scattered across Droaam until they were reforged into a single weapon again."""
+drop_location = "Cauldron of Sora Katra, upgraded of Scepter of the Fleshweaver + Scepter of the Ogre Magi + Mark of Tzaryan Rrac"
+enhancement_bonus = 5
+icon = "Quarterstaff_6d"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 12
+slot = "Main Hand"
+
+[[clickie]]
+name = "Disintegrate"
+clickie = "Disintegrate"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 12
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 84
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 52
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 14
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    11,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Disintegrate"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Cauldron of Sora Katra"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

@@ -1,0 +1,37 @@
+name = "Bronze Dragonscale Belt"
+description = "This gleaming bronze belt contains powerful defensive magic."
+drop_location = "Security Detail, End Chest"
+icon = "Belt_1"
+item_category = "Clothing"
+material = "Red Dragonscale"
+minimum_level = 15
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 30
+
+[[effect]]
+name = "False Life"
+bonus_type = "Insight"
+value = 14
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 24
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Security Detail"

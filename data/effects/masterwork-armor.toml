@@ -1,0 +1,11 @@
+name = "Masterwork Armor"
+description_template = "This armor is more finely crafted than normal, reducing the Armor Check Penalty by 1."
+home_bonus_type = "Equipment"
+verbose_name_template = "Masterwork +1"
+
+[[bonus]]
+amount_from = 0
+constant = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Check Penalty"

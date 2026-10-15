@@ -1,0 +1,168 @@
+name = "Eminence of Autumn"
+icon = "EminenceOfAutumn"
+
+[[item]]
+name = "Bottled Rainstorm"
+
+[[item]]
+name = "Celestial Insignia"
+
+[[item]]
+name = "Cladding of Dead Leaves"
+
+[[item]]
+name = "Driftwood"
+
+[[item]]
+name = "Faedark Faerielights"
+
+[[item]]
+name = "Gloryborne Gloves"
+
+[[item]]
+name = "Legendary Amber Pendant"
+
+[[item]]
+name = "Legendary Cloak of Autumn"
+
+[[item]]
+name = "Legendary Crown of Leaves"
+
+[[item]]
+name = "Legendary Darkmoss"
+
+[[item]]
+name = "Legendary Deadringers"
+
+[[item]]
+name = "Legendary Duskbone Ring"
+
+[[item]]
+name = "Legendary Green Dragonscale Bracers"
+
+[[item]]
+name = "Legendary Hallowsphere"
+
+[[item]]
+name = "Legendary Ring of Fall's Decay"
+
+[[item]]
+name = "Legendary Robe of the Autumn Winds"
+
+[[item]]
+name = "Legendary Windriders"
+
+[[item]]
+name = "Rosethorn Necklace"
+
+[[item]]
+name = "Strap of Autumn Leaves"
+
+[[item]]
+name = "The Legendary Leaf Mail"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+value = 25
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Artifact"
+effect = "Universal Spell Power"
+effect_type = "UniversalSpellPower"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Universal Spell Lore"
+value = 6
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Artifact"
+effect = "Universal Spell Lore"
+effect_type = "UniversalSpellLore"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Spell Points"
+value = 10
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Legendary"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+percent = true
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Intelligence"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Wisdom"
+value = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Charisma"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect_type = "AbilityBonus"
+targets = [
+    "Intelligence",
+    "Wisdom",
+    "Charisma",
+]
+
+[[tier]]
+equipped_count = 6
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+value = 3
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Artifact"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 7
+
+[[tier.effect]]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+effect_type = "UniversalSpellCriticalDamage"

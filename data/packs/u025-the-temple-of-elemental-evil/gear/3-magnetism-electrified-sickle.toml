@@ -1,0 +1,98 @@
+name = "+3 Magnetism Electrified Sickle"
+description = "A weapon found deep within the Temple of Elemental Evil."
+drop_location = "Temple of Elemental Evil Part One, and Temple of Elemental Evil Part Two any chest"
+enhancement_bonus = 3
+icon = "Sickle_1f"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Steel"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 9
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Enhancement"
+value = 54
+
+[[socket]]
+slot = "upgrade: tier 1"
+
+[[socket.option]]
+name = "Spell Penetration I and Riposte I"
+description = """
++1 Equipment bonus to Spell Penetration.
+Riposte I: When Missed by an attack: Deals 1 to 4 damage to your attacker.
+Passive: +1 Insight bonus to Armor Class."""
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+value = 1
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Armor Class"
+value = 1
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Armor Class"
+effect_type = "ACBonus"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Adds Lightning Lore III and a Purple Augment slot."
+description = "Lightning Lore III: Passive: Your Electric spells gain a 13% Equipment bonus to their chance to critical hit."
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 13
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Sickle"

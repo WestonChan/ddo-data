@@ -1,0 +1,22 @@
+name = "The Cannith Crystal"
+bestowed_by = "Baldar the Bold"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+]
+favor = 2
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Deneith"
+zone = "Korthos Hall"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Cannith_Crystal"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 1

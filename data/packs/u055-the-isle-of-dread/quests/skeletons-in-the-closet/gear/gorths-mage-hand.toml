@@ -1,0 +1,38 @@
+name = "Gorth's Mage Hand"
+description = "An arcane device long lost to time."
+drop_location = "Skeletons in the Closet, Free Yarrow optional chest"
+icon = "Gloves_7e"
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 31
+slot = "Hands"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 155
+
+[[effect]]
+name = "Feat: Elusive Target"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "free yarrow optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "Skeletons in the Closet"

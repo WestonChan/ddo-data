@@ -1,0 +1,3 @@
+name = "Lesser Evocation Augmentation IX"
+description_template = "Increases the wearer's caster level when casting ninth level or lower Evocation spells by one."
+verbose_name_template = "Lesser Evocation Augmentation IX"

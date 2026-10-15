@@ -1,0 +1,20 @@
+name = "Solar Gem of Cruelty (Epic)"
+description = "+10% Artifact Bonus to Damage to helpless enemies."
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Helpless Damage"
+bonus_type = "Artifact"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"
+
+[[slot]]
+slot = "sun"

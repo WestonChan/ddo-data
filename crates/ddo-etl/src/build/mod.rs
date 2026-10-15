@@ -3,10 +3,12 @@ mod bonus_types;
 mod buffs;
 mod characters;
 mod corrections;
+pub(crate) use corrections::data_correction_value;
 mod drop_text;
-mod effect_vocabulary;
+pub(crate) mod effect_vocabulary;
 mod effects;
 mod items;
+pub(crate) use items::weapon_damage_text;
 mod modifiers;
 mod quest_series;
 mod sets;
@@ -14,7 +16,7 @@ mod trees_spells;
 mod vendors_and_events;
 mod wiki;
 
-use crate::corrections::Corrections;
+use crate::corrections::{Correction, Corrections};
 use crate::map::augment_slot::AugmentSlotType;
 use crate::map::buff::BuffResolver;
 use crate::map::drop_location::{names_saga, reward_giver_name, segment_head};
@@ -27,7 +29,7 @@ use crate::xml::challenges::{self, Challenge};
 use crate::xml::items::parse_item_file;
 use crate::xml::quests::Quest;
 use crate::xml::{classes, clickies, item_buffs, patrons, quests, spells};
-use anyhow::{Context, Result};
+use anyhow::{ensure, Context, Result};
 use bonus_types::{BonusOrigin, UntypedBonusCorrections};
 use ddo_model::enums::{BonusType, CorrectionKind, FeatSource, ModifierSource};
 use ddo_model::{seeds, DatasetVersion, SCHEMA_VERSION};
@@ -199,7 +201,10 @@ pub fn build_database(
     )?;
 
     for patron in &parsed_patrons {
-        transaction.execute("INSERT OR IGNORE INTO patrons (name) VALUES (?1)", params![patron.name.trim()])?;
+        transaction.execute(
+            "INSERT INTO patrons (name, slug) VALUES (?1, ?2) ON CONFLICT(name) DO NOTHING",
+            params![patron.name.trim(), crate::tree::xml_entity_slug("patrons", None, patron.name.trim(), None)],
+        )?;
     }
     for alias in source_aliases.challenges.iter().filter(|alias| alias.source.is_some()) {
         ensure_adventure_pack(&transaction, Some(&alias.pack), &source_aliases)?;
@@ -209,11 +214,27 @@ pub fn build_database(
     corrections::apply_quest_corrections(&transaction, corrections, &mut report)?;
     wiki::write_wiki_quests(&transaction, &wiki_overrides.quests, &mut report)?;
     quest_series::write_wiki_quest_series(&transaction, wiki_overrides, &mut report)?;
+    crate::tree::insert_xml_vendor_currencies(&transaction)?;
     wiki::write_wiki_crafting_systems(&transaction, wiki_overrides)?;
     vendors_and_events::write_wiki_vendors_and_events(&transaction, wiki_overrides, &mut report)?;
     let drop_text_linker =
         DropTextLinker::from_written_tables(&transaction, &LegacyDropSources::embedded()?, &source_aliases)?;
     report.unresolved_source_aliases = drop_text_linker.unresolved_alias_texts().to_vec();
+
+    let parsed_trees = files_with_extension(&data_files_dir.join("EnhancementTrees"), "xml")?
+        .into_iter()
+        .filter(|path| path.file_name().is_some_and(|name| name.to_string_lossy().ends_with(".tree.xml")))
+        .map(|path| crate::xml::trees::parse(&path).map(|tree| (path, tree)))
+        .collect::<Result<Vec<_>>>()?;
+    let mut enhancement_name_counts = HashMap::<String, usize>::new();
+    let mut counted_trees = HashSet::new();
+    for (_, tree) in &parsed_trees {
+        if counted_trees.insert(&tree.name) {
+            for enhancement in &tree.enhancements {
+                *enhancement_name_counts.entry(enhancement.internal_name.clone()).or_default() += 1;
+            }
+        }
+    }
 
     let mut writer = TableWriter {
         transaction: &transaction,
@@ -223,6 +244,13 @@ pub fn build_database(
         untyped_bonus_corrections: UntypedBonusCorrections::from_corrections(corrections)?,
         effects: effects::EffectCache::new(&transaction),
         written: WrittenRows::default(),
+        socket_label_corrections: corrections
+            .entries
+            .iter()
+            .filter(|correction| correction.kind == CorrectionKind::SocketLabel && correction.field == "name")
+            .map(|correction| (correction.name.as_str(), correction))
+            .collect(),
+        applied_socket_label_corrections: Vec::new(),
         pending_set_item_links: Vec::new(),
         pending_set_augment_links: Vec::new(),
         pending_set_option_links: Vec::new(),
@@ -237,11 +265,10 @@ pub fn build_database(
         writer.write_class_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
     }
     writer.link_base_classes()?;
-    for path in files_with_extension(&data_files_dir.join("EnhancementTrees"), "xml")?
-        .into_iter()
-        .filter(|p| p.file_name().is_some_and(|n| n.to_string_lossy().ends_with(".tree.xml")))
-    {
-        writer.write_tree_file(&path, &mut report).with_context(|| format!("{}", path.display()))?;
+    for (path, tree) in &parsed_trees {
+        writer
+            .write_tree(tree, &enhancement_name_counts, &mut report)
+            .with_context(|| format!("{}", path.display()))?;
     }
     writer.write_spells(&parsed_spells, &mut report)?;
 
@@ -292,6 +319,7 @@ pub fn build_database(
     writer.write_optional_buffs(&data_files_dir.join("SelfAndPartyBuffs.xml"), &mut report)?;
     let mut corrections_applied_while_writing = writer.untyped_bonus_corrections.applied_corrections();
     corrections_applied_while_writing.extend(applied_drop_location_corrections);
+    corrections_applied_while_writing.extend(&writer.applied_socket_label_corrections);
     corrections::record_corrections_applied_while_writing(
         &transaction,
         &corrections_applied_while_writing,
@@ -306,9 +334,23 @@ pub fn build_database(
         &buff_resolver,
         &mut report,
     )?;
+    corrections::record_final_set_names(&transaction)?;
     wiki::apply_wiki_overrides(&transaction, wiki_overrides, &drop_text_linker, &mut report)?;
     quest_series::write_wiki_quest_series_rewards(&transaction, wiki_overrides, &mut report)?;
     vendors_and_events::write_wiki_vendor_and_event_items(&transaction, wiki_overrides, &mut report)?;
+    for (table, owner_column) in [
+        ("item_effects", "item_id"),
+        ("augment_effects", "augment_id"),
+        ("feat_effects", "feat_id"),
+        ("set_bonus_tier_effects", "tier_id"),
+        ("item_augment_slot_option_effects", "option_id"),
+    ] {
+        remove_duplicate_effect_links(&transaction, table, owner_column)?;
+    }
+    remove_duplicate_modifiers(&transaction)?;
+    for (table, owners) in [("effect_bonuses", "effect_id"), ("modifiers", "source_kind, source_id")] {
+        compact_sort_orders(&transaction, table, owners)?;
+    }
     effects::insert_tier_groups(&writer.effects, &crate::map::effect_map::EFFECT_MAP.tier_groups)?;
     effect_vocabulary::insert_effect_vocabulary(&transaction)?;
     transaction.execute_batch(
@@ -346,10 +388,111 @@ pub fn build_database(
     report.augment_slot_type_count =
         transaction.query_row("SELECT COUNT(*) FROM augment_slot_types", [], |r| r.get::<_, i64>(0))? as usize;
     report.set_bonus_count = writer.written.set_bonus_ids_by_name.len();
-    report.modifier_count = writer.written.modifier_count;
+    report.modifier_count =
+        transaction.query_row("SELECT COUNT(*) FROM modifiers", [], |row| row.get::<_, i64>(0))? as usize;
     report.unmapped_effect_type_counts = effect_resolver.unmapped_type_counts();
+    for table in ["item_materials", "triggers", "weapon_proficiencies"] {
+        transaction.execute_batch(&format!(
+            "WITH positions AS (SELECT id, ROW_NUMBER() OVER (ORDER BY name) - 1 AS position FROM {table})
+             UPDATE {table} SET sort_order = (SELECT position FROM positions WHERE positions.id = {table}.id)"
+        ))?;
+    }
+    crate::tree::assign_xml_entity_slugs(&transaction)?;
+    corrections::record_built_item_effect_values(&transaction)?;
+    crate::tree::store_xml_annotations(&transaction, wiki_overrides)?;
+    crate::loot_sources::reject_missing_source_references(&transaction)?;
     transaction.commit()?;
     Ok(report)
+}
+
+fn compact_sort_orders(transaction: &Transaction<'_>, table: &str, owners: &str) -> Result<()> {
+    let partition = if owners.is_empty() { String::new() } else { format!("PARTITION BY {owners} ") };
+    transaction.execute_batch(&format!(
+        "WITH ranks AS (
+            SELECT rowid AS row_id, ROW_NUMBER() OVER ({partition}ORDER BY sort_order, rowid) - 1 AS position
+              FROM {table}
+         )
+         UPDATE {table} SET sort_order = (SELECT position FROM ranks WHERE ranks.row_id = {table}.rowid)"
+    ))?;
+    Ok(())
+}
+
+fn remove_duplicate_effect_links(
+    transaction: &rusqlite::Transaction<'_>,
+    table: &str,
+    owner_column: &str,
+) -> Result<()> {
+    transaction.execute_batch(&format!(
+        "DELETE FROM {table} WHERE rowid IN (
+            SELECT rowid FROM (
+                SELECT rowid, ROW_NUMBER() OVER (
+                    PARTITION BY {owner_column}, effect_id, bonus_type_id, value, value2
+                    ORDER BY sort_order, rowid
+                ) AS duplicate_number FROM {table}
+            ) WHERE duplicate_number > 1
+        );
+        UPDATE {table} SET sort_order = -sort_order - 1;
+        WITH ordered AS (
+            SELECT rowid, ROW_NUMBER() OVER (
+                PARTITION BY {owner_column} ORDER BY sort_order DESC, rowid
+            ) - 1 AS position FROM {table}
+        )
+        UPDATE {table} SET sort_order = (SELECT position FROM ordered WHERE ordered.rowid = {table}.rowid);"
+    ))?;
+    Ok(())
+}
+
+fn remove_duplicate_modifiers(transaction: &Transaction<'_>) -> Result<()> {
+    let mut columns_query = transaction.prepare("PRAGMA table_info(modifiers)")?;
+    let columns = columns_query.query_map([], |row| row.get::<_, String>(1))?.collect::<rusqlite::Result<Vec<_>>>()?;
+    let key_columns =
+        columns.into_iter().filter(|column| !matches!(column.as_str(), "id" | "sort_order")).collect::<Vec<_>>();
+    let grouped_ids = transaction
+        .prepare(&format!(
+            "SELECT GROUP_CONCAT(id) FROM modifiers GROUP BY {} HAVING COUNT(*) > 1",
+            key_columns.join(", ")
+        ))?
+        .query_map([], |row| row.get::<_, String>(0))?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    for group in grouped_ids {
+        let mut ids = group.split(',').map(str::parse::<i64>).collect::<std::result::Result<Vec<_>, _>>()?;
+        ids.sort_unstable();
+        let mut seen_requirements = Vec::new();
+        for id in ids {
+            let requirements = transaction
+                .prepare(
+                    "SELECT group_kind, group_index, sort_order, req_type, items, value
+                       FROM requirements WHERE owner_kind = 'modifier' AND owner_id = ?1
+                      ORDER BY group_index, sort_order",
+                )?
+                .query_map([id], |row| {
+                    Ok((
+                        row.get::<_, String>(0)?,
+                        row.get::<_, i64>(1)?,
+                        row.get::<_, i64>(2)?,
+                        row.get::<_, String>(3)?,
+                        row.get::<_, Option<String>>(4)?,
+                        row.get::<_, Option<String>>(5)?,
+                    ))
+                })?
+                .collect::<rusqlite::Result<Vec<_>>>()?;
+            if seen_requirements.contains(&requirements) {
+                transaction
+                    .execute("DELETE FROM requirements WHERE owner_kind = 'modifier' AND owner_id = ?1", [id])?;
+                transaction.execute("DELETE FROM modifiers WHERE id = ?1", [id])?;
+            } else {
+                seen_requirements.push(requirements);
+            }
+        }
+    }
+    transaction.execute_batch(
+        "WITH ordered AS (
+            SELECT id, ROW_NUMBER() OVER (PARTITION BY source_kind, source_id ORDER BY sort_order, id) - 1 AS position
+              FROM modifiers
+        )
+        UPDATE modifiers SET sort_order = (SELECT position FROM ordered WHERE ordered.id = modifiers.id);",
+    )?;
+    Ok(())
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -466,8 +609,12 @@ fn ensure_adventure_pack(
     };
     let pack_name = source_aliases.pack_name(pack_name);
     transaction.execute(
-        "INSERT OR IGNORE INTO adventure_packs (name, is_free_to_play) VALUES (?1, ?2)",
-        params![pack_name, pack_name == "Free to Play"],
+        "INSERT INTO adventure_packs (name, is_free_to_play, slug) VALUES (?1, ?2, ?3) ON CONFLICT(name) DO NOTHING",
+        params![
+            pack_name,
+            pack_name == "Free to Play",
+            crate::tree::xml_entity_slug("adventure_packs", None, pack_name, None)
+        ],
     )?;
     Ok(Some(transaction.query_row("SELECT id FROM adventure_packs WHERE name = ?1", params![pack_name], |r| r.get(0))?))
 }
@@ -484,19 +631,8 @@ fn patron_id(transaction: &Transaction, patron_name: Option<&str>) -> Result<Opt
 fn write_quests(transaction: &Transaction, quests: &[Quest], source_aliases: &SourceAliases) -> Result<usize> {
     for quest in quests {
         transaction.execute(
-            "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, epic_name, difficulties)
-             VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9)",
-            params![
-                quest.name,
-                ensure_adventure_pack(transaction, quest.adventure_pack.as_deref(), source_aliases)?,
-                patron_id(transaction, quest.patron.as_deref())?,
-                quest.levels.first(),
-                quest.levels.get(1),
-                quest.favor,
-                quest.is_raid,
-                quest.epic_name,
-                serde_json::to_string(&quest.difficulties.iter().map(|d| d.as_str()).collect::<Vec<_>>())?,
-            ],
+            "INSERT INTO quests (name, pack_id, patron_id, level, epic_level, favor, is_raid, epic_name, difficulties, slug) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10) ON CONFLICT(name) DO NOTHING",
+            params![quest.name, ensure_adventure_pack(transaction, quest.adventure_pack.as_deref(), source_aliases)?, patron_id(transaction, quest.patron.as_deref())?, quest.levels.first(), quest.levels.get(1), quest.favor, quest.is_raid, quest.epic_name, serde_json::to_string(&quest.difficulties.iter().map(|d| d.as_str()).collect::<Vec<_>>())?, crate::tree::xml_entity_slug("quests", None, &quest.name, None)],
         )?;
     }
     Ok(quests.len())
@@ -510,14 +646,8 @@ fn write_challenges(
     let mut inserted_count = 0;
     for challenge in challenges {
         inserted_count += transaction.execute(
-            "INSERT OR IGNORE INTO quests (name, pack_id, patron_id, level, max_level, is_challenge) VALUES (?1, ?2, ?3, ?4, ?5, 1)",
-            params![
-                challenge.name,
-                ensure_adventure_pack(transaction, challenge.adventure_pack.as_deref(), source_aliases)?,
-                patron_id(transaction, challenge.patron.as_deref())?,
-                challenge.level_range.first(),
-                challenge.level_range.get(1),
-            ],
+            "INSERT INTO quests (name, pack_id, patron_id, level, max_level, is_challenge, slug) VALUES (?1, ?2, ?3, ?4, ?5, 1, ?6) ON CONFLICT(name) DO NOTHING",
+            params![challenge.name, ensure_adventure_pack(transaction, challenge.adventure_pack.as_deref(), source_aliases)?, patron_id(transaction, challenge.patron.as_deref())?, challenge.level_range.first(), challenge.level_range.get(1), crate::tree::xml_entity_slug("quests", None, &challenge.name, None)],
         )?;
     }
     Ok(inserted_count)
@@ -527,14 +657,16 @@ type FeatKey = (String, FeatSource, Option<i64>);
 
 #[derive(Default)]
 pub(crate) struct WrittenRows {
+    feat_count: i64,
     material_ids_by_name: HashMap<String, i64>,
     augment_slot_type_ids_by_label: HashMap<String, i64>,
+    augment_slot_labels_by_slug: HashMap<String, String>,
+    augment_slugs: HashSet<String>,
     clickie_ids_by_name: HashMap<String, i64>,
     set_bonus_ids_by_name: HashMap<String, i64>,
     feat_ids_by_key: HashMap<FeatKey, i64>,
     set_tier_descriptions_by_id: HashMap<i64, String>,
     written_effect_defaults: HashSet<(i64, Option<i64>, Option<i64>)>,
-    modifier_count: usize,
 }
 
 pub(crate) struct PendingDerivedEffects {
@@ -553,6 +685,8 @@ pub(crate) struct TableWriter<'a> {
     untyped_bonus_corrections: UntypedBonusCorrections<'a>,
     effects: effects::EffectCache<'a>,
     written: WrittenRows,
+    socket_label_corrections: HashMap<&'a str, &'a Correction>,
+    applied_socket_label_corrections: Vec<&'a Correction>,
     pending_set_item_links: Vec<(i64, String)>,
     pending_set_augment_links: Vec<(i64, String)>,
     pending_set_option_links: Vec<(i64, String)>,
@@ -582,11 +716,36 @@ impl TableWriter<'_> {
         if let Some(id) = self.written.augment_slot_type_ids_by_label.get(&slot_type.label) {
             return Ok(*id);
         }
+        let identity = crate::tree::slug(&slot_type.label);
+        if let Some(existing_label) = self.written.augment_slot_labels_by_slug.get(&identity).cloned() {
+            let correction = [slot_type.label.as_str(), existing_label.as_str()].into_iter()
+                .filter_map(|label| self.socket_label_corrections.get(label).copied())
+                .find(|correction| correction.from.as_text() == Some(correction.name.as_str()) &&
+                    correction.to.as_text().is_some_and(|target| target == slot_type.label || target == existing_label))
+                .with_context(|| format!("socket labels {existing_label:?} and {:?} share slug {identity:?} without a correction joining them", slot_type.label))?;
+            let target = correction.to.as_text().context("a socket label rename has a target")?;
+            ensure!(target != correction.name, "socket label correction must change the label");
+            let id = self.written.augment_slot_type_ids_by_label[&existing_label];
+            if existing_label != target {
+                corrections::rename_socket_label(self.transaction, id, target)?;
+            }
+            self.written.augment_slot_labels_by_slug.insert(identity, target.to_string());
+            self.written.augment_slot_type_ids_by_label.insert(slot_type.label, id);
+            self.applied_socket_label_corrections.push(correction);
+            return Ok(id);
+        }
         self.transaction.execute(
-            "INSERT INTO augment_slot_types (label, family, variant, qualifier) VALUES (?1, ?2, ?3, ?4)",
-            params![slot_type.label, slot_type.family, slot_type.variant, slot_type.qualifier],
+            "INSERT INTO augment_slot_types (label, family, variant, qualifier, slug) VALUES (?1, ?2, ?3, ?4, ?5)",
+            params![
+                slot_type.label,
+                slot_type.family,
+                slot_type.variant,
+                slot_type.qualifier,
+                crate::tree::xml_entity_slug("augment_slot_types", None, &slot_type.label, None)
+            ],
         )?;
         let id = self.transaction.last_insert_rowid();
+        self.written.augment_slot_labels_by_slug.insert(identity, slot_type.label.clone());
         self.written.augment_slot_type_ids_by_label.insert(slot_type.label, id);
         Ok(id)
     }
@@ -594,12 +753,13 @@ impl TableWriter<'_> {
     fn write_clickie(&mut self, clickie: &clickies::Clickie) -> Result<()> {
         let name = clickie.name.trim();
         self.transaction.execute(
-            "INSERT OR IGNORE INTO clickies (name, description, icon, school) VALUES (?1, ?2, ?3, ?4)",
+            "INSERT INTO clickies (name, description, icon, school, slug) VALUES (?1, ?2, ?3, ?4, ?5) ON CONFLICT(name) DO NOTHING",
             params![
                 name,
                 trimmed_non_empty(clickie.description.as_deref()),
                 trimmed_non_empty(clickie.icon.as_deref()),
-                trimmed_non_empty(clickie.school.as_deref())
+                trimmed_non_empty(clickie.school.as_deref()),
+                crate::tree::xml_entity_slug("clickies", None, name, None)
             ],
         )?;
         let id: i64 =
@@ -638,5 +798,115 @@ pub(crate) fn json_string_array(strings: &[String]) -> Option<String> {
         None
     } else {
         serde_json::to_string(strings).ok()
+    }
+}
+
+#[cfg(test)]
+mod duplicate_effect_link_tests {
+    use rusqlite::Connection;
+
+    #[test]
+    fn identical_links_are_removed_and_remaining_order_is_contiguous() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(
+            "CREATE TABLE item_effects (
+                item_id INTEGER NOT NULL,
+                effect_id INTEGER NOT NULL,
+                bonus_type_id INTEGER,
+                value INTEGER,
+                value2 INTEGER,
+                sort_order INTEGER NOT NULL,
+                PRIMARY KEY (item_id, sort_order)
+            );
+            INSERT INTO item_effects VALUES (1, 10, NULL, NULL, NULL, 0);
+            INSERT INTO item_effects VALUES (1, 11, NULL, NULL, NULL, 1);
+            INSERT INTO item_effects VALUES (1, 10, NULL, NULL, NULL, 2);
+            INSERT INTO item_effects VALUES (2, 10, NULL, NULL, NULL, 0);",
+        )
+        .unwrap();
+        let transaction = db.transaction().unwrap();
+        super::remove_duplicate_effect_links(&transaction, "item_effects", "item_id").unwrap();
+        transaction.commit().unwrap();
+        let mut query =
+            db.prepare("SELECT item_id, effect_id, sort_order FROM item_effects ORDER BY item_id, sort_order").unwrap();
+        let rows = query
+            .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?, row.get::<_, i64>(2)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(rows, vec![(1, 10, 0), (1, 11, 1), (2, 10, 0)]);
+    }
+}
+
+#[cfg(test)]
+mod duplicate_modifier_tests {
+    use rusqlite::Connection;
+
+    #[test]
+    fn equal_modifiers_and_requirements_collapse_but_distinct_requirements_remain() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(
+            "CREATE TABLE modifiers (
+                id INTEGER PRIMARY KEY,
+                source_kind TEXT NOT NULL,
+                source_id INTEGER NOT NULL,
+                sort_order INTEGER NOT NULL,
+                effect_type TEXT NOT NULL
+            );
+            CREATE TABLE requirements (
+                owner_kind TEXT NOT NULL,
+                owner_id INTEGER NOT NULL,
+                group_kind TEXT NOT NULL,
+                group_index INTEGER NOT NULL,
+                sort_order INTEGER NOT NULL,
+                req_type TEXT NOT NULL,
+                items TEXT,
+                value TEXT
+            );
+            INSERT INTO modifiers VALUES (1, 'item', 10, 0, 'Strength');
+            INSERT INTO modifiers VALUES (2, 'item', 10, 1, 'Strength');
+            INSERT INTO modifiers VALUES (3, 'item', 10, 2, 'Strength');
+            INSERT INTO requirements VALUES ('modifier', 3, 'all', 0, 0, 'Stance', '[\"Power Attack\"]', NULL);",
+        )
+        .unwrap();
+        let transaction = db.transaction().unwrap();
+        super::remove_duplicate_modifiers(&transaction).unwrap();
+        transaction.commit().unwrap();
+        let ids = db
+            .prepare("SELECT id, sort_order FROM modifiers ORDER BY sort_order")
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(ids, vec![(1, 0), (3, 1)]);
+        let requirement_count: i64 = db.query_row("SELECT COUNT(*) FROM requirements", [], |row| row.get(0)).unwrap();
+        assert_eq!(requirement_count, 1);
+    }
+}
+
+#[cfg(test)]
+mod compact_sort_order_tests {
+    use rusqlite::Connection;
+
+    #[test]
+    fn gaps_compact_within_each_owner_without_reordering_rows() {
+        let mut db = Connection::open_in_memory().unwrap();
+        db.execute_batch(
+            "CREATE TABLE effect_bonuses (effect_id INTEGER, name TEXT, sort_order INTEGER);
+             INSERT INTO effect_bonuses VALUES (1, 'first', 0), (1, 'second', 6), (2, 'other', 4);",
+        )
+        .unwrap();
+        let transaction = db.transaction().unwrap();
+        super::compact_sort_orders(&transaction, "effect_bonuses", "effect_id").unwrap();
+        transaction.commit().unwrap();
+        let rows = db
+            .prepare("SELECT effect_id, name, sort_order FROM effect_bonuses ORDER BY effect_id, sort_order")
+            .unwrap()
+            .query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?, row.get::<_, i64>(2)?)))
+            .unwrap()
+            .collect::<rusqlite::Result<Vec<_>>>()
+            .unwrap();
+        assert_eq!(rows, vec![(1, "first".to_string(), 0), (1, "second".to_string(), 1), (2, "other".to_string(), 0)]);
     }
 }

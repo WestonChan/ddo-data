@@ -1,0 +1,3 @@
+name = "Immunity to Slippery Surfaces"
+description_template = "The wearer of this item is not affected when walking on slippery surfaces."
+verbose_name_template = "Immunity to Slippery Surfaces"

@@ -1,0 +1,3 @@
+name = "Life Shield"
+description_template = "Every time you are hit while wearing a Life Shield item there is a 10% chance you gain 15 temporary hitpoints that last for up to 1 minute."
+verbose_name_template = "Life Shield"

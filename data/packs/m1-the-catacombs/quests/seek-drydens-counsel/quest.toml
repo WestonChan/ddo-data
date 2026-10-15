@@ -1,0 +1,34 @@
+name = "Seek Dryden's Counsel"
+bestowed_by = "Friar Renau"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 0
+pack = "The Catacombs"
+patron = "The Silver Flame"
+zone = "Dryden's Chamber"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Seek_Dryden%27s_Counsel"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "To Find a Witness: Archbishop Dryden"
+reason = "The wiki titles the quest Seek Dryden's Counsel."
+url = "https://ddowiki.com/page/Seek_Dryden%27s_Counsel"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 23

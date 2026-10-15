@@ -1,0 +1,92 @@
+name = "The Shattered Onyx"
+description = "This onyx was shattered by some unknown force."
+drop_location = "Reach for the Sky, End chest"
+icon = "Ring_19"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 15
+slot = "Ring"
+
+[[effect]]
+name = "Spell Focus I"
+bonus_type = "Profane"
+value = 1
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Insightful Intelligence +3"
+description = "Insightful Intelligence +3: This item focuses the power of the wearer's mind, granting a +3 insight bonus to Intelligence."
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Intelligence"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Insightful Wisdom +3"
+description = "Insightful Wisdom +3: This item makes the wearer more in tune with her surroundings, granting a +3 insight bonus to Wisdom."
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Wisdom"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Insightful Charisma +3"
+description = "Insightful Charisma +3: This item makes the wearer have more flair, granting a +3 insight bonus to Charisma."
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Charisma"
+value = 3
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Reach for the Sky"

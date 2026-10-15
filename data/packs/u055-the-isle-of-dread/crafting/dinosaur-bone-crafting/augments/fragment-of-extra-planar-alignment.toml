@@ -1,0 +1,42 @@
+name = "Fragment of Extra-planar Alignment"
+description = """
++23% Enhancement bonus to Alignment absorption, which includes Law, Chaos, Good, and
+Evil damage."""
+family = "DinosaurBone"
+icon = "ScaleLightOrange"
+min_level = 31
+
+[[effect]]
+name = "Law Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Chaos Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Good Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Evil Absorption"
+bonus_type = "Enhancement"
+value = 23
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = [
+    "Lawful",
+    "Chaos",
+    "Good",
+    "Evil",
+]
+
+[[slot]]
+slot = "isle of dread: scale (armor)"

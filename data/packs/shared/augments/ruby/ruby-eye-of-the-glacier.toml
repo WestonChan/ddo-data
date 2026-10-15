@@ -1,0 +1,16 @@
+name = "Ruby Eye of the Glacier"
+description = """
+2% Chance On-Hit to cause a blast of cold that deals 7 to 14 points of cold damage
+per minimum level of the upgraded weapon to all nearby enemies."""
+family = "Ruby"
+icon = "RubyEye"
+min_level = 1
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

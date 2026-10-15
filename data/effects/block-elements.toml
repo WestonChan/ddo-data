@@ -1,0 +1,3 @@
+name = "Block Elements"
+description_template = "On Shield Block: Gain 15% damage absorption versus acid, cold, electric, fire, and sonic damage."
+verbose_name_template = "Block Elements"

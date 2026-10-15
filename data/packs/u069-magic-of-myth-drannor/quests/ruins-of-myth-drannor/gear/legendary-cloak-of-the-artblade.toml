@@ -1,0 +1,45 @@
+name = "Legendary Cloak of the Artblade"
+description = """
+When the Echo broke off from the Artblade, the force of its defiance manifested
+this cloak, and shares its clarity of purpose."""
+drop_location = "Ruins of Myth Drannor, Goranathanil 's chest (rare)"
+icon = "Cloak_5"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 33
+slot = "Back"
+
+[[effect]]
+name = "Power of the Firestorm"
+value = 156
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 37
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 18
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 302
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "goranathanil 's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

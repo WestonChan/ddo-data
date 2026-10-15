@@ -1,0 +1,15 @@
+name = "Curse of Major Breath"
+description = "+2 Fortune Bonus to Breath Attack DCs"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect_type = "TacticalDC"
+targets = ["Breath Weapon"]
+
+[[slot]]
+slot = "crafting: deck curse"

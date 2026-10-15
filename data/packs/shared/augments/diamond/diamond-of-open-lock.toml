@@ -1,0 +1,61 @@
+name = "Diamond of Open Lock"
+choose_level = true
+description = "Competence bonus to Open Lock"
+family = "Diamond"
+icon = "Diamond"
+level_values = [
+    5,
+    10,
+    13,
+    15,
+    17,
+    18,
+    19,
+    20,
+    22,
+]
+levels = [
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+]
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Competence"
+effect = "Open Lock"
+effect_type = "SkillBonus"
+targets = ["Open Lock"]
+
+[[slot]]
+slot = "colorless"
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "yellow"

@@ -1,0 +1,43 @@
+name = "Strange Tidings"
+description = """
+Those who bear this ring have a knack for finding information no one was ever
+meant to know."""
+drop_location = "Defiler of the Just, warded chest"
+icon = "Ring_25c"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 26
+slot = "Ring"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Deception"
+bonus_type = "Enhancement"
+value = 0
+value2 = 0
+
+[[effect]]
+name = "Use Magic Device"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 20
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

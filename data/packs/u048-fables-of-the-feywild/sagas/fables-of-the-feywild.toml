@@ -1,0 +1,22 @@
+name = "Fables of the Feywild"
+pack = "Fables of the Feywild"
+wiki_url = "https://ddowiki.com/page/Fables_of_the_Feywild_(Legendary)"
+quests = [
+    "A Frosty Reception",
+    "Combatting Corruption",
+    "Immortality Lessons",
+    "Make Believe",
+    "Needle in a Fey Stack",
+    "Quid Pro Quo",
+    "The Endless Revels",
+    "The Icemount Curse",
+    "The Knight Who Cried Windmill",
+    "The Legend of the Lost Locket",
+    "The Thornwright",
+    "Wake Me Up Inside",
+    "Witch Hunt",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Fables_of_the_Feywild_(Legendary)"
+read = "2026-10-02"

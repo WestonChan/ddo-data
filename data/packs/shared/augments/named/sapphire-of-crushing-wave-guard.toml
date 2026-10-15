@@ -1,0 +1,14 @@
+name = "Sapphire of Crushing Wave Guard"
+description = "The item gains Crushing Wave Guard"
+family = "Named"
+icon = "Sapphire"
+min_level = 20
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "green"
+
+[[slot]]
+slot = "purple"

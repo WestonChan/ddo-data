@@ -1,0 +1,57 @@
+name = "Flicker"
+description = "The faint crackle of static surrounds this Rune Arm."
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "RuneArm_6"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 3
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier II"
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 2
+
+[[effect]]
+name = "Power II"
+bonus_type = "Enhancement"
+value = 20
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical I"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Electrical Lash",
+    "None",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

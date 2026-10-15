@@ -1,0 +1,3 @@
+name = "Coruscating 6"
+description_template = "This effect causes the edges of this weapon to coruscate, dealing 6d6 Light damage on each hit."
+verbose_name_template = "Coruscating 6"

@@ -1,0 +1,117 @@
+[[row]]
+name = "Voltaic Experiment: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "VoltaicExperiment"
+menu = "Masterminds of Sharn"
+set = "Voltaic Experiment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Voltaic Experiment: Intelligence: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Voltaic Experiment: +1% Doubleshot"
+description = """
++1% Doubleshot
+Rare: +2 Ranged Power"""
+icon = "VoltaicExperiment"
+menu = "Masterminds of Sharn"
+set = "Voltaic Experiment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Doubleshot"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Voltaic Experiment: Doubleshot: +2 Ranged Power"
+effect_type = "RangedPower"
+is_rare = true
+
+[[row]]
+name = "Voltaic Experiment: +1% Doublestrike"
+description = """
++1% Doublestrike
+Rare: +2 Melee Power"""
+icon = "VoltaicExperiment"
+menu = "Masterminds of Sharn"
+set = "Voltaic Experiment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Doublestrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Voltaic Experiment: Doublestrike: +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "Voltaic Experiment: +9 Acid Spell Power"
+description = """
++9 Acid Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "VoltaicExperiment"
+menu = "Masterminds of Sharn"
+set = "Voltaic Experiment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Voltaic Experiment: Acid Spell Power: +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true
+
+[[row]]
+name = "Voltaic Experiment: +9 Electric Spell Power"
+description = """
++9 Electric Spell Power
+Rare: +4 Universal Spell Power"""
+icon = "VoltaicExperiment"
+menu = "Masterminds of Sharn"
+set = "Voltaic Experiment"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "Voltaic Experiment: Electric Spell Power: +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

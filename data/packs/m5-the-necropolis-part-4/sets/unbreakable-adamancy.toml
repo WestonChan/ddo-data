@@ -1,0 +1,71 @@
+name = "Unbreakable Adamancy"
+icon = "UnbreakableAdamancy"
+
+[[item]]
+name = "Epic Chain of Conviction"
+
+[[item]]
+name = "Epic Death's Rampart"
+
+[[item]]
+name = "Epic Emerald Gaze"
+
+[[item]]
+name = "Epic Emerald Guard"
+
+[[item]]
+name = "Epic Minos Legens"
+
+[[item]]
+name = "Epic Scales of Surety"
+
+[[item]]
+name = "Epic Seraphim"
+
+[[item]]
+name = "Mythic Emerald Gaze"
+
+[[item]]
+name = "Mythic Minos Legens"
+
+[[item]]
+name = "Mythic Seraphim"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Physical Resistance Rating +5 Luck at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Physical Resistance Rating / Luck"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "add"
+reason = "The wiki gives Magical Resistance Rating +5 Luck at 2 pieces; his tier lacks it."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2, Magical Resistance Rating / Luck"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "Gain a +5 Luck bonus to PRR and MRR"
+
+[[tier.effect]]
+bonus_type = "Luck"
+effect = "Physical Resistance Rating"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Luck"
+effect = "Magical Resistance Rating"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [5]
+bonus_type = "Luck"
+effect_type = "PRR"
+extra_types = ["MRR"]

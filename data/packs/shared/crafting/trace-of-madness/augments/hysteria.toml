@@ -1,0 +1,8 @@
+name = "Hysteria"
+description = "Hysteria Guard: When being hit there is a chance for the opponent to have Bestow Curse cast on them."
+family = "Other"
+icon = "Hysteria"
+min_level = 1
+
+[[slot]]
+slot = "crafting: trace of madness"

@@ -1,0 +1,340 @@
+name = "The Changestone"
+description = "This curious trinket seems to be slightly different whenever you look at it."
+drop_location = "The Dryad and the Demigod, End chest and optional chest"
+icon = "Trinket_40"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 29
+slot = "Trinket"
+
+[[socket]]
+slot = "crafting: changestone ability"
+
+[[socket.option]]
+name = "Strength +13"
+description = "Enhancement bonus to Strength"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Strength"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Strength"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[socket.option]]
+name = "Intelligence +13"
+description = "Enhancement bonus to Intelligence"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Dexterity +13"
+description = "Enhancement bonus to Dexterity"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Dexterity"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[socket.option]]
+name = "Constitution +13"
+description = "Enhancement bonus to Constitution"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Constitution"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[socket.option]]
+name = "Wisdom +13"
+description = "Enhancement bonus to Wisdom"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Charisma +13"
+description = "Enhancement bonus to Charisma"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Charisma"
+value = 13
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "crafting: changestone option"
+
+[[socket.option]]
+name = "Doubleshot +8%"
+description = "Enhancement bonus to Doubleshot"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doubleshot"
+value = 8
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Enhancement"
+effect = "Doubleshot"
+effect_type = "Doubleshot"
+
+[[socket.option]]
+name = "Doublestrike +15%"
+description = "Enhancement bonus to Doublestrike"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[socket.option]]
+name = "Accuracy +21"
+description = "Competence bonus to Accuracy"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Attack Bonus"
+value = 21
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [21]
+bonus_type = "Competence"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: changestone damage"
+
+[[socket.option]]
+name = "Seeker +13"
+description = "Enhancement bonus to critical damage"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[socket.option]]
+name = "Deception 11"
+description = "+11 Enhancement bonus to hit and +17 Damage for Sneak Attacks."
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+value = 11
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+value = 17
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [17]
+bonus_type = "Enhancement"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"
+
+[[socket.option]]
+name = "Deadly +11"
+description = "Competence bonus to damage"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Competence"
+effect = "Damage Bonus"
+value = 11
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Competence"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: changestone other"
+
+[[socket.option]]
+name = "Speed +30%"
+description = "This item increases your speed giving you a +30% Enhancement bonus to Movement Speed and a +15% bonus to Attack Speed."
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+value = 30
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Melee Attack Speed"
+value = 15
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Ranged Attack Speed"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]
+
+[[socket.option]]
+name = "Insightful Deadly +5"
+description = "Insightful bonus to damage"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Damage Bonus"
+value = 5
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Damage Bonus"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[socket.option]]
+name = "Insightful Accuracy +9"
+description = "Insightful bonus to attack"
+icon = "Diamond"
+min_level = 1
+
+[[socket.option.effect]]
+bonus_type = "Insight"
+effect = "Attack Bonus"
+value = 9
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest and optional chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Dryad and the Demigod"

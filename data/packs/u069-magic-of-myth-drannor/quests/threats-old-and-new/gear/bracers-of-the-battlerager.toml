@@ -1,0 +1,41 @@
+name = "Bracers of the Battlerager"
+description = "Bearing the mark of the Eternal Brigade, these bracers offer unparalleled protection."
+drop_location = "Threats Old and New, Raid Warded chest"
+icon = "Bracers_5c"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 33
+slot = "Wrists"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 162
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 81
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Quality"
+value = 40
+
+[[socket]]
+slot = "crafting: sealed in undeath"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Threats Old and New"

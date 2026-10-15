@@ -1,0 +1,3 @@
+name = "Confounding Enchantment"
+description_template = "The shifting nature of the magic that enchants this ring makes the effect hard to determine. Random: +1 Exceptional bonus to one of Strength, Dexterity, Constitution, Intelligence, Wisdom or Charisma. (Not modeled)"
+verbose_name_template = "Confounding Enchantment"

@@ -1,0 +1,39 @@
+name = "Kundarak Delving Boots"
+description = """
+These boots are Kundarak-forged and useful for exploring (and infiltrating)
+secure spaces."""
+drop_location = "Plane of Night, Warded Chest"
+icon = "Boots_6d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 9
+slot = "Feet"
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Speed"
+value = 19
+value2 = 6
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Competence"
+value = 11
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Plane of Night"
+
+[[source]]
+is_rare = true
+kind = "quest_chain"
+name = "The Lost Seekers"

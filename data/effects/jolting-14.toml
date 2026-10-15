@@ -1,0 +1,3 @@
+name = "Jolting 14"
+description_template = "This effect causes the edges of this weapon to arc with electricity, dealing 14d6 Lightning damage on each critical hit."
+verbose_name_template = "Jolting 14"

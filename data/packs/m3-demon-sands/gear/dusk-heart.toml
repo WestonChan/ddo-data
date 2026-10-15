@@ -1,0 +1,47 @@
+name = "Dusk Heart"
+description = """
+A featureless blood red stone. Visions of a ghostly beating heart overcome you
+the first time you pick up the Dusk Heart."""
+drop_location = "Sands of Menechtarun, The Thirsty One 's or Palumak the Scourer 's chest (Rare Encounters) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens ; Zawabi's Revenge (end chest)"
+icon = "Trinket_5b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Trinket"
+
+[[effect]]
+name = "Dusk"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 23
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 5
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "the thirsty one 's or palumak the scourer 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "quest"
+loot_type = "raid"
+name = "Zawabi's Revenge"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

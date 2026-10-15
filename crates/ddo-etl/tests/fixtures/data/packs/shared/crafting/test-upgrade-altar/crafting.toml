@@ -1,0 +1,29 @@
+name = "Test Upgrade Altar"
+npc = "Test Altar Keeper"
+
+[[ingredient]]
+name = "Test Upgrade Token"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Test_Upgrade_Altar"
+read = "2026-09-29"
+
+[[recipe]]
+grants_slot = "upgrade: tier 2"
+option = "Test tier 2 upgrade"
+tier = "heroic"
+
+[[recipe.ingredient]]
+ingredient = "Test Upgrade Token"
+quantity = 2
+
+[[recipe]]
+grants_slot = "colorless"
+note = "Test note: adds a socket, never an augment."
+option = "Test Colorless Augment Slot"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Test Upgrade Token"
+quantity = 3

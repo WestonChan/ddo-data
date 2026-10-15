@@ -1,0 +1,46 @@
+name = "Topaz of Power"
+choose_level = true
+description = "Enhancement bonus to Spell points"
+family = "Topaz"
+icon = "Topaz"
+level_values = [
+    19,
+    60,
+    96,
+    129,
+    162,
+    195,
+    228,
+    261,
+]
+levels = [
+    1,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+]
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Enhancement"
+value = 200
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [200]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "yellow"
+
+[[slot]]
+slot = "orange"
+
+[[slot]]
+slot = "green"

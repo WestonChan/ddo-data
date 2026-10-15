@@ -1,0 +1,69 @@
+name = "The Epic Astral Projector"
+description = """
+"Who you gonna call?
+
+A necromancer.
+Definitely a necromancer.""""
+drop_location = """
+The Night Revels, Turn in Joe Candymaker,
+120 Piece of Darkest Chocolate; obtained in the Graveyard mob slayer, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 50 Black Apple; obtained in Haverdashed, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 50 Shadowy Caramel; obtained in The Kobolds' Newest Ringleader, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 50 Pinch of Sinister Cinnamon; obtained in The Snitch and the Lich, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 50 Spooky Almond, obtained in Under New Ravagement, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace"""
+icon = "RuneArm_7b"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Force"
+minimum_level = 21
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 115
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 28
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "Disrupting Weapons"
+
+[[effect]]
+name = "Rune Arm Imbue - Evil Shot IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Ghost Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[source]]
+chest = "the lich, hayweird foundry, or getting ahead in lordsmarch palace 50 spooky almond, obtained in under new ravagement, hayweird foundry, or getting ahead in lordsmarch palace"
+kind = "quest"
+loot_type = "chest"
+name = "The Snitch"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

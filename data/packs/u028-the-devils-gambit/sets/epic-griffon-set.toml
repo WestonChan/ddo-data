@@ -1,0 +1,24 @@
+name = "Epic Griffon Set"
+icon = "GriffonSet"
+
+[[item]]
+name = "Epic Eagle's Eye"
+
+[[item]]
+name = "Epic Lion's Mane"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "Constitution"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Quality"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]

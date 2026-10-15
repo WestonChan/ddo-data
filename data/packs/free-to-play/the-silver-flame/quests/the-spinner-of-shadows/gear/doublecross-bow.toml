@@ -1,0 +1,49 @@
+name = "Doublecross Bow"
+description = """
+The drow of Faerun's Underdark favor small handcrossbows that can be used quickly,
+silently, and with poisoned ammunition. The bolts fired from this light repeating
+weapon will inject a struck target with a venom that may put it to sleep instantly."""
+drop_location = "The Spinner of Shadows, End Chest (to the right of The Silver Flame)"
+enhancement_bonus = 5
+icon = "RepeatingLightCrossbow_1f"
+item_category = "Weapon"
+item_type = "Repeating Light Crossbow"
+material = "Wood"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Poison Blast 4"
+
+[[effect]]
+name = "Crippling"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Nightshade Venom"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Spinner of Shadows"
+
+[[weapon]]
+attack_modifier = "Intelligence, Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 2.2
+handedness = "Two-handed"
+weapon_type = "Repeating Light Crossbow"

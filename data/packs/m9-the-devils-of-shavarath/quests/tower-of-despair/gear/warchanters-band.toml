@@ -1,0 +1,76 @@
+name = "Warchanter's Band"
+description = """
+This carved ring was worn by the Warchanter Torin. His prowess with blade and
+song was the stuff of inspiration."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Strength"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Warchanter"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+bonus_type = "Stacking"
+display_name = "Warchanter - 2 Piece bonus"
+effect_type = "SongCount"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    -4,
+    -4,
+]
+bonus_type = "Equipment"
+display_name = "Warchanter - 2 Piece bonus"
+effect_type = "MetamagicCostMaximize"
+
+[[modifier.requirement]]
+items = ["Maximize"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    -1,
+    -1,
+]
+bonus_type = "Equipment"
+display_name = "Warchanter - 2 Piece bonus"
+effect_type = "MetamagicCostExtend"
+
+[[modifier.requirement]]
+items = ["Extend"]
+req_type = "Stance"
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

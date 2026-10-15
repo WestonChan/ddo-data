@@ -1,0 +1,3 @@
+name = "Identity Crisis"
+description_template = "Enemies hit by this weapon are plagued by visions of their past and future selves, significantly slowing their movement."
+verbose_name_template = "Identity Crisis"

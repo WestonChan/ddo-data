@@ -1,0 +1,16 @@
+name = "Hall of the Mark"
+bestowed_by = "Lockania"
+difficulties = ["solo"]
+favor = 0
+is_free_to_play = true
+pack = "Free to Play"
+zone = "Hall of the Mark"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Hall_of_the_Mark"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 1

@@ -1,0 +1,42 @@
+name = "Rod of Heal Moderate Wounds"
+description = "A sceptre containing multiple charges of Heal Moderate Wounds."
+drop_location = "DDO Store"
+enhancement_bonus = 1
+icon = "Club_19"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 3
+slot = "Main Hand"
+
+[[clickie]]
+name = "Heal Moderate Wounds"
+clickie = "Heal Moderate Wounds"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    50,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Heal Moderate Wounds"]
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

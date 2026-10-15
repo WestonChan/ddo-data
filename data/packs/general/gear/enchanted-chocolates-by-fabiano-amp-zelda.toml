@@ -1,0 +1,24 @@
+name = "Enchanted Chocolates by Fabiano &amp; Zelda"
+description = """
+This small decorative box contains four types of delicious chocolate candies.
+Each type not only has its own unique flavor but also conveys a helpful enchantment."""
+drop_location = "DDO Store, Seasonal Items"
+icon = "Trinket_73"
+item_category = "Jewelry"
+minimum_level = 1
+slot = "Trinket"
+
+[[clickie]]
+name = "Selection of Enchanted Chocolates"
+clickie = "Selection of Enchanted Chocolates"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    10,
+    10,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Selection of Enchanted Chocolates"]

@@ -1,0 +1,46 @@
+name = "Rahkir's Ring"
+description = """
+This ring courses with magical energy. It belonged to Rahkir, a famous Archmage
+and member of the Twelve. He disappeared while investigating a portal to Shavarath."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5c"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Archmage"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+apply_as_item_effect = true
+bonus_type = "Artifact"
+display_name = "Archmage - 2 Piece bonus"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

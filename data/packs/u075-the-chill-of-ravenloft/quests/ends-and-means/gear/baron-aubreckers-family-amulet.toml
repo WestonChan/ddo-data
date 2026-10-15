@@ -1,0 +1,38 @@
+name = "Baron Aubrecker's Family Amulet"
+description = """
+The power this amulet confers appears to be of a much higher quality than the
+amulet itself."""
+drop_location = "Ends and Means, end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 8
+slot = "Neck"
+
+[[effect]]
+name = "Power in Pact"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 2
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"

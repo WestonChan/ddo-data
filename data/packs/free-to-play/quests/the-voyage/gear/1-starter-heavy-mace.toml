@@ -1,0 +1,44 @@
+name = "+1 Starter Heavy Mace"
+description = """
+A simple weapon comprised of a solid blunt head attached to a haft. A religious
+symbol appears to have been defaced on the head of the weapon."""
+drop_location = "The Voyage, End reward"
+enhancement_bonus = 1
+icon = "HeavyMace_2b"
+item_category = "Weapon"
+item_type = "Heavy Mace"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 3
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 30
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "The Voyage"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Heavy Mace"

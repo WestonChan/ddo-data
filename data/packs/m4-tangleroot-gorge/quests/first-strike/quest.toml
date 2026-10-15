@@ -1,0 +1,22 @@
+name = "First Strike"
+bestowed_by = "Chief Ungurz"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "Tangleroot Gorge"
+patron = "House Phiarlan"
+zone = "Outer Splinterskull Fortress"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/First_Strike"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3

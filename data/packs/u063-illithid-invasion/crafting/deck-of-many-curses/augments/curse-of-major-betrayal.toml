@@ -1,0 +1,20 @@
+name = "Curse of Major Betrayal"
+description = "+2 Fortune Bonus to Sneak Attack Dice"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Sneak Attack Dice"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Sneak Attack Dice"
+effect_type = "SneakAttackDice"
+
+[[slot]]
+slot = "crafting: deck curse"

@@ -1,0 +1,54 @@
+name = "Sapphire of Heroism"
+description = """
++2 Morale Bonus to Attack Rolls, Saving Throws, and Skill Checks.
+Drops in U48 Quest: Immortality Lessons"""
+family = "Sapphire"
+icon = "Sapphire"
+min_level = 6
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Morale"
+value = 2
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Morale"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Morale"
+effect = "Attack Bonus"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Morale"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Morale"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[slot]]
+slot = "blue"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "green"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "Immortality Lessons"

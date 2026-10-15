@@ -1,0 +1,44 @@
+name = "Epic Robe of Insight"
+description = """
+The lavish fabric exudes the feeling of a deep understanding of the underlying
+connections that bind the world together."""
+drop_location = "Multitude of Menace, End chest"
+enhancement_bonus = 12
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Wizardry V"
+bonus_type = "Insight"
+value = 125
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Multitude of Menace"

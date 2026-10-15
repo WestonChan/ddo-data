@@ -1,0 +1,51 @@
+name = "Burning Blade of Estelar"
+description = """
+A fragment of the Red Dragon's power that manifested in his hoard. It burns
+to the touch, but causes no damage to its wielder."""
+drop_location = "Burning Down the House, end chest"
+enhancement_bonus = 5
+icon = "Longsword_13"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Fiery 3"
+
+[[effect]]
+name = "Flaming 6"
+
+[[effect]]
+name = "Vorpal"
+
+[[effect]]
+name = "Dragon's Edge 2"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Burning Down the House"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Longsword"

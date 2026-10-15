@@ -1,0 +1,3 @@
+name = "Centered Attack and Damage"
+description_template = "In a centered state, you will gain +2 To-Hit and Damage rolls. In addition, when you roll a natural 20 on an attack that is confirmed as a critical hit, you will gain a temporary benefit based on the elemental stance you are in, if any."
+verbose_name_template = "Centered Attack and Damage"

@@ -1,0 +1,50 @@
+name = "Madstone Rod"
+description = """
+Any arcane caster can activate this Rod to remove the deleterious effects of
+Madstone. This rod will crumble into dust when the final charge is used."""
+drop_location = "Gianthold Tor, At the end of each dragon fight"
+enhancement_bonus = 1
+icon = "Club_15"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[clickie]]
+name = "Dispel Madstone Effects"
+clickie = "Dispel Madstone Effects"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    50,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Dispel Madstone Effects"]
+
+[[source]]
+chest = "at the end of each dragon fight"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

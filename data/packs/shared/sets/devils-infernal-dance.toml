@@ -1,0 +1,76 @@
+name = "Devils' Infernal Dance"
+icon = "WrathOfSoraKell"
+
+[[augment]]
+name = "Devils' Infernal Dance"
+family = "LostPurpose"
+
+[[note]]
+kind = "set_bonus"
+field = "name"
+upstream = "Devil's Infernal Dance"
+reason = "The wiki spells the set Devils' Infernal Dance, as the augment correction already does."
+url = "https://ddowiki.com/page/Lost_Purpose"
+read = "2026-10-02"
+
+[[note]]
+kind = "set_tier_bonus"
+original_name = "Devil's Infernal Dance"
+field = "remove"
+upstream = 10
+reason = "The tier grants Doubleshot +5 Artifact; his Fortification Bypass effect also names Doubleshot as a second Type and incorrectly grants +10."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Doubleshot / Artifact / 10"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+value = 1
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Doublestrike and Doubleshot"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Melee and Ranged Power"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Artifact"
+effect = "All Ability Scores"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Artifact"
+effect_type = "FortificationBypass"
+extra_types = ["Doubleshot"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Artifact"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]

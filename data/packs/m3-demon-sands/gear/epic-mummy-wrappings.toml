@@ -1,0 +1,41 @@
+name = "Epic Mummy Wrappings"
+description = "A suit of padded armor made using the wrappings from several mummies."
+drop_location = "Epic version of Mummy Wrappings"
+enhancement_bonus = 6
+icon = "LightArmor_10b"
+item_category = "Armor"
+item_type = "Light"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_bonus = 6
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 16
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 32
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 24
+
+[[effect]]
+name = "Immunity to Fear"
+
+[[effect]]
+name = "Fearsome"
+
+[[socket]]
+slot = "blue"

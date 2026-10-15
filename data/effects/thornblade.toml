@@ -1,0 +1,3 @@
+name = "Thornblade"
+description_template = "This blade is made of acidic thorns that drip with an etheric poison. It bypasses the Incorporeal chances of Ethereal monsters innately."
+verbose_name_template = "Thornblade"

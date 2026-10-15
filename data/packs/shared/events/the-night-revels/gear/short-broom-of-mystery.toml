@@ -1,0 +1,42 @@
+name = "Short Broom of Mystery"
+description = "This short broom is home to some dark energies."
+drop_location = "The Night Revels, Turn in Joe Candymaker,"
+icon = "Club_23"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[clickie]]
+name = "Purple Faerie Fire"
+clickie = "Purple Faerie Fire"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    3,
+    3,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Purple Faerie Fire"]
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

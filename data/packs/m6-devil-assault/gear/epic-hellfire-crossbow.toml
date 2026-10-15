@@ -1,0 +1,59 @@
+name = "Epic Hellfire Crossbow"
+accepts_sentience = true
+description = """
+This crossbow has much in common with an orthon warrior's ranged weaponry. It
+invests the ammunition it launches with powerful, fiery energy."""
+drop_location = "Epic version of Hellfire Crossbow"
+enhancement_bonus = 6
+icon = "RepeatingHeavyCrossbow_2"
+item_category = "Weapon"
+item_type = "Repeating Heavy Crossbow"
+material = "Wood"
+minimum_level = 20
+slot = "Main Hand"
+
+[[clickie]]
+name = "Meteor Swarm"
+clickie = "Meteor Swarm"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Flamebitten"
+
+[[effect]]
+name = "Flaming Blast IV"
+
+[[effect]]
+name = "Incineration"
+
+[[effect]]
+name = "Feat - Precise Shot"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    17,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Meteor Swarm"]
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 3.0
+handedness = "Two-handed"
+weapon_type = "Repeating Heavy Crossbow"

@@ -1,0 +1,50 @@
+name = "Duality, The Moral Compass"
+accepts_sentience = true
+description = "Be better than you ever were."
+drop_location = "The Curse of Strahd, Raid chest"
+enhancement_bonus = 15
+icon = "HandWraps_1o"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 28
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "The Moral Compass"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Vampirism 3"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "raid chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Curse of Strahd"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 3
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "Two-handed"
+weapon_type = "Handwraps"

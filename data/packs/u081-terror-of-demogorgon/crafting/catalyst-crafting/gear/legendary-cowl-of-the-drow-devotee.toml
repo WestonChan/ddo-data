@@ -1,0 +1,37 @@
+name = "Legendary Cowl of the Drow Devotee"
+description = "A covering made for those devoted to Lolth, the Spider Queen."
+drop_location = "Catalyst Crafting, Turn in Legendary Cowl of the Devotee, its Legendary Deep Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+icon = "Helmet_37"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 35
+slot = "Head"
+
+[[effect]]
+name = "Freedom of Movement"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Enhancement"
+value = 41
+
+[[socket]]
+slot = "crafting: nearly complete: healing amplification (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

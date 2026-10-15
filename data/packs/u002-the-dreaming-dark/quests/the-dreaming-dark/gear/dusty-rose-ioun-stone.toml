@@ -1,0 +1,21 @@
+name = "Dusty Rose Ioun Stone"
+description = "A dusty rose gem about 1 inch in diameter."
+drop_location = "Random, Highest drop rate from The Dreaming Dark"
+icon = "Trinket_3"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 2
+slot = "Trinket"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 1
+
+[[effect]]
+name = "Suppressed Power"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "The Dreaming Dark"

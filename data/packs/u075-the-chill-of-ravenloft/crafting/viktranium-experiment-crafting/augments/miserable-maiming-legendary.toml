@@ -1,0 +1,19 @@
+name = "Miserable Maiming (Legendary)"
+description = """
+Adds Maiming. When you score a critical hit with this weapon, it does an additional
++7d8 damage."""
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Untyped"
+dice_number = [7]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonusCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

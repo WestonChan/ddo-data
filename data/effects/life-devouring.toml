@@ -1,0 +1,3 @@
+name = "Life-Devouring"
+description_template = "This weapon deprives an enemy of its energy and passes it on to you. When you roll a 20 on an attack, the enemy must make a DC 28 Fortitude save or be subjected to a -6 penalty to all stats. At the same time you will feel your power return, as though Greater Restoration were cast on you. (Greater Restoration cures all temporary ability damage, restores all negative levels suffered from energy drain, and eliminates fatigue, exhaustion, confusion, and insanity suffered by you.)"
+verbose_name_template = "Life-Devouring"

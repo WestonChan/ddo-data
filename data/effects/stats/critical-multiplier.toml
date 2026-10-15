@@ -1,0 +1,3 @@
+name = "Critical Multiplier"
+category = "martial"
+verbose_name_template = "%b1 Critical Multiplier +{1}"

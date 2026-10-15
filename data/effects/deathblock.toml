@@ -1,0 +1,3 @@
+name = "Deathblock"
+description_template = "The wearer of this item is immune to all death spells and magical death effects."
+verbose_name_template = "Deathblock"

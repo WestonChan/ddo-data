@@ -1,0 +1,28 @@
+name = "Ring of Resonance"
+description = """
+The resonant crystals of the Shrieking Mines have an extreme affinity with sonic
+energy. A cunning ogre mage took advantage of this property, expertly fusing
+tiny crystal shards with metal to craft this powerful ring."""
+drop_location = "Slavers of the Shrieking Mines, locked chest"
+icon = "Ring_3"
+item_category = "Jewelry"
+material = "Silver"
+minimum_level = 9
+slot = "Ring"
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Sonic Guard"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "locked chest"
+kind = "quest"
+loot_type = "chest"
+name = "Slavers of the Shrieking Mines"

@@ -1,0 +1,27 @@
+name = "+1 Exceptional Will Save"
+adds_augment = """
+Accessory Aspect I
+Accessory Devastation"""
+variant = "Water:Opposition:Ethereal"
+description = """
+Will Save +1: +1 Exceptional Resistance bonus to your Will save.
+Water:Opposition:Ethereal"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Exceptional"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Exceptional"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[slot]]
+slot = "crafting: accessory subjugation"

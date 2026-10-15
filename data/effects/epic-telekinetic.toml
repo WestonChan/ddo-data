@@ -1,0 +1,3 @@
+name = "Epic Telekinetic"
+description_template = "Targets that suffer a critical hit from a Telekinetic weapon must make a DC 35 Strength or Dexterity check or be knocked down. The target will then be forced to make DC 16 Balance checks to recover from this effect."
+verbose_name_template = "Epic Telekinetic"

@@ -1,0 +1,46 @@
+name = "Bracers of the Hunter"
+description = """
+Powerful shamans and clerics of Vulkoor work together to create these scorpion-shell
+bracers to honor a clan's favored hunters. Although rare even among the drow
+tribes, a few pairs of these bracers have made their way into the hands of
+explorers, often through deadly combat with the chosen of Vulkoor."""
+drop_location = "Sands of Menechtarun, Drow Area: Wokran-Kull 's Chest (Rare Encounter) ; \n Masei Mkembe sells for 625 Antique Bronze Tokens"
+icon = "Bracers_1"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 11
+slot = "Wrists"
+
+[[effect]]
+name = "Hide"
+bonus_type = "Competence"
+value = 13
+
+[[effect]]
+name = "Deception"
+bonus_type = "Insight"
+value = 2
+value2 = 3
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 6
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "drow area: wokran-kull 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sands of Menechtarun"
+
+[[source]]
+kind = "vendor"
+name = "Masei Mkembe"

@@ -1,0 +1,52 @@
+name = "Legendary Goggles of Time-Sensing"
+description = """
+A strange, complex pair of goggles that allows the wearer to view the passage
+of time more slowly than normal. Through this awareness the actions of the
+wearer and his or her allies can occasionally be hastened."""
+drop_location = "Legendary version of Epic Goggles of Time-Sensing"
+icon = "Goggles_4c"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Goggles"
+
+[[clickie]]
+name = "Haste"
+clickie = "Haste"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Haste"]
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "colorless"

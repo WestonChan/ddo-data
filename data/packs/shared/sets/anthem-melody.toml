@@ -1,0 +1,34 @@
+name = "Anthem Melody"
+icon = "AnthemMelody"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Exceptional"
+effect = "Sonic Spell Power"
+value = 30
+
+[[tier.effect]]
+bonus_type = "Exceptional"
+effect = "Sonic Spell Lore"
+value = 15
+
+[[tier.effect]]
+effect = "Inspire Greatness Resistance"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Exceptional"
+effect = "Sonic Spell Lore"
+effect_type = "SpellPower"
+targets = ["Sonic"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Exceptional"
+effect = "Sonic Spell Lore"
+effect_type = "SpellLore"
+targets = ["Sonic"]

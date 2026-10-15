@@ -1,0 +1,1052 @@
+name = "Frenzied Berserker"
+background = "BarbarianBackground"
+icon = "Barbarian"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Frenzied Berserker: Die Hard"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain the Die Hard feat, automatically stabilizing when incapacitated."
+icon = "FBDieHard"
+internal_name = "FBCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Diehard"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Frenzied Berserker: Frenzied Toughness I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+20 hit points and +10 Healing Amplification."
+icon = "Toughness"
+internal_name = "FBCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["FBCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Frenzied Berserker: Frenzy"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
+This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power.
+Passive: +5 Melee Power
+Activation Cost: 10 Hit Points.
+Cooldown: 30 seconds.
+Note: Imbue only works with Melee weapons."""
+icon = "FBFrenzy"
+internal_name = "FBCore3"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+dice_number = [2]
+dice_sides = [8]
+effect_type = "WeaponOtherDamageBonusClass"
+extra_types = ["WeaponOtherDamageBonusCriticalClass"]
+targets = ["Melee"]
+
+[[enhancement.modifier.requirement]]
+items = ["Frenzy"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["FBCore2"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Frenzy"
+description = """
+Imbue Toggle: Expend 10 HP to coat your weapon in blood, entering a frenzy.
+This Frenzy adds 1d8 Bane damage to your attacks, scaling with 100% Melee Power."""
+group_name = "Imbue"
+icon = "FBFrenzy"
+
+[[enhancement]]
+name = "Frenzied Berserker: Frenzied Toughness II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "+60 maximum HP, +20 Healing Amplification and +10 Physical Resistance"
+icon = "Toughness"
+internal_name = "FBCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [60]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["FBCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Frenzied Berserker: Death Frenzy"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Expend 20 hit points to enter a Death Frenzy for one minute: \n+6 strength, +1 critical damage multiplier on rolls of 19-20. \n+3 Imbue Dice when Death Frenzy is active.\nPassive: +10 Melee Power\nActivation Cost: 20 Hit Points.\nCooldown: 30 seconds."
+icon = "FBDeathFrenzy"
+internal_name = "FBCore5"
+is_clickie = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement]]
+items = ["Death Frenzy"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "WeaponCriticalMultiplierClass"
+targets = ["Melee"]
+
+[[enhancement.modifier.requirement]]
+items = ["Death Frenzy"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier.requirement]]
+items = ["Death Frenzy"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    2,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Stacking"
+display_name = "Frenzied Berserker - 3 Piece bonus"
+effect_type = "AbilityBonus"
+extra_types = [
+    "AbilityBonus",
+    "AbilityBonus",
+]
+targets = [
+    "Strength",
+    "Constitution",
+]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["FBCore4"]
+req_type = "Enhancement"
+
+[[enhancement.stance]]
+name = "Death Frenzy"
+description = "Expend 20 hit points to enter a Death Frenzy for one minute: \n+6 strength, +1 critical damage multiplier on rolls of 19-20."
+icon = "FBDeathFrenzy"
+
+[[enhancement]]
+name = "Frenzied Berserker: Storm's Eye"
+cost_per_rank = [1]
+description = "Activate: You gain 25 stacks of Storm's Eye. \nStorm's Eye: +1 damage. One stack fades away every three seconds. \nPassive: +4 Constitution, +10 Melee Power.\nWhen raging your melee attacks have a 5% chance to deal 400 bludgeoning damage.\nThis damage scales with 100% Melee Power.\nActivation Cost: 100 Hit Points.\nCooldown: 2.5 minutes."
+icon = "FBStormsEye"
+internal_name = "FBCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FBCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    25,
+    0,
+    25,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Storm's Eye"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+stack_source = "Storm's Eye"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["FBCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "FBCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Frenzied Berserker: Extra Rage"
+cost_per_rank = [1]
+description = "+[2/4/6] Rage use per rest"
+icon = "FBExtraRage"
+internal_name = "FBExtraRage"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraRage"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Frenzied Berserker: Cracking Attack"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Melee Attack: On Hit: -3 AC and -20% Fortification for 20 seconds.
+Cooldown: 12 seconds"""
+icon = "FBCrackingAttack"
+internal_name = "FBCrackingAttack"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Frenzied Berserker: Die Harder"
+cost_per_rank = [1]
+description = """
+Your range of unconsciousness extends +[5/10/15] HP.
+When you drop below 1 health, you gain [10/20/30] temp hit points.
+This can only trigger once every five minutes"""
+icon = "FBDieHarder"
+internal_name = "FBDieHarder"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -5,
+    -10,
+    -15,
+]
+bonus_type = "Enhancement"
+effect_type = "UnconsciousRange"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Frenzied Berserker: Power Rage"
+cost_per_rank = [1]
+description = "+[1/2/3] Strength while raging"
+icon = "FBPowerRage"
+internal_name = "FBPowerRage"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Frenzied Berserker: Athletics"
+cost_per_rank = [1]
+description = """
++[1/2/3] Balance, Jump, Swim.
+Rank 3: When you activate Barbarian Rage, you gain +35% Action Boost bonus to movement
+speed for 20 seconds."""
+icon = "FBAthletics"
+internal_name = "FBAthletics"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Balance",
+    "Jump",
+    "Swim",
+]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Frenzied Berserker: Angry Arms"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "FBAngryArms"
+internal_name = "FBAngryArms"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["Two Handed Fighting"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Frenzied Berserker: Body Blow"
+arrows = ["LongArrowUp"]
+cost_per_rank = [1]
+description = """
+Damaging enemies with Cracking Attack reduces their Fortitude saving throws
+by [1/2/3] for 20 seconds."""
+icon = "FBBodyBlow"
+internal_name = "FBBodyBlow"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["FBCrackingAttack"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Frenzied Berserker: Blood Tribute"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Gain +150 Temporary Health for one minute.
+Each epic level adds +25 temporary hit points. You have a stacking -1 penalty to
+constitution until you rest or die. (Cooldown: 3 seconds)"""
+icon = "FBBloodTribute"
+internal_name = "FBBloodTribute"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Frenzied Berserker: Extra Action Boost"
+cost_per_rank = [1]
+description = "+[1/2/3] additional Action Boost use per rest"
+icon = "FBExtraActionBoost"
+internal_name = "FBExtraActionBoost"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraActionBoost"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Frenzied Berserker: Sprint Boost"
+cost_per_rank = [2]
+description = """
++50% Action Boost bonus to movement speed for 20 seconds.
+Cooldown: 30 seconds."""
+icon = "FBSprintBoost"
+internal_name = "FBSprintBoost"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Frenzied Berserker: Mad Munitions"
+arrows = ["LongArrowUp"]
+cost_per_rank = [1]
+description = "+[5/10/20]% Strikethrough"
+icon = "FBMadMunitions"
+internal_name = "FBMadMunitions"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "Strikethrough"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["FBAngryArms"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Greater Two Handed Fighting"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Frenzied Berserker: Blood Trail"
+cost_per_rank = [1]
+description = """
+Supreme Cleave costs [3/6/10] fewer hit points to activate.
+Rank 3: Supreme Cleave gives +1 Temp HP per hit, up to +10. (Hidden Effect)"""
+icon = "FBBloodTrail"
+internal_name = "FBBloodTrail"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["FBSupremeCleave"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["FBBloodTribute"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Frenzied Berserker: Supreme Cleave"
+arrows = [
+    "ArrowLeft",
+    "ArrowUp",
+]
+cost_per_rank = [2]
+description = """
+Deals: +30% Damage
+Tactical Melee Cleave: Attack enemies all around you. You lose 10 Hitpoints.
+Cooldown: 3 seconds"""
+icon = "FBSupremeCleave"
+internal_name = "FBSupremeCleave"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Frenzied Berserker: Constitution I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+internal_name = "FBConstitution"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Frenzied Berserker: Crazy Strike"
+cost_per_rank = [1]
+description = """
+When you hit with Cracking Attack, for 12 seconds you gain +[½/1/2][W]
+damage and +[1/2/3] Melee Power."""
+icon = "FBCrazyStrike"
+internal_name = "FBCrazyStrike"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["FBBodyBlow"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Frenzied Berserker: Exhausting Blow"
+cost_per_rank = [2]
+description = """
+Deals: +40% Damage
+Melee Attack: On Damage: Deals 3d6 Strength, and 3d6 Dexterity damage.
+Cooldown: 20 seconds"""
+icon = "FBExhaustingBlow"
+internal_name = "FBExhaustingBlow"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Frenzied Berserker: Wade In"
+cost_per_rank = [1]
+description = """
+When you Supreme Cleave, you gain +1 Primal bonus to Attack and -1 AC
+per enemy damaged, up to [3/6/10] maximum. Lasts for 4 seconds."""
+icon = "FBWadeIn"
+internal_name = "FBWadeIn"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["FBSupremeCleave"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Frenzied Berserker: Constitution II"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+internal_name = "FBConstitutionII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["FBConstitution"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Frenzied Berserker: Focus Wide"
+cost_per_rank = [2]
+description = "When you score a vorpal hit, you gain +50% Strikethrough for 12 seconds."
+icon = "FBFocusWide"
+internal_name = "FBFocusWide"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["FBMadMunitions"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Frenzied Berserker: Focused Wrath"
+cost_per_rank = [1]
+description = "+[1/2] Competence bonus to Critical Multiplier."
+icon = "FBFocusedWrath"
+internal_name = "FBFocusedWrath"
+is_tier5 = true
+min_spent = 30
+ranks = 2
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalMultiplier"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Frenzied Berserker: Lash Out"
+cost_per_rank = [1]
+description = """
+Supreme Cleave has a [50/75/82]% chance to bleed damaged enemies, inflicting up
+to [1/2/3] stacks. This can stack up to 5 times. Your Supreme Cleave also reduces
+the AC of enemies by [1/2/3] for six seconds. This stacks up to five times."""
+icon = "FBLashOut"
+internal_name = "FBLashOut"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Frenzied Berserker: Healing or Hurt"
+cost_per_rank = [1]
+description = "Choose between Accelerated Metabolism or Raging Blows:"
+icon = "FBHealingOrHurt"
+internal_name = "FBHealingOrHurt"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Accelerated Metabolism"
+cost_per_rank = [1]
+description = """
+While Barbarian raging, you gain 20 healing amplification and heal 3d6 hit
+points every 4 seconds. This healing scales with 100% Melee Power.
++25% Competence bonus to Maximum Hit Points."""
+icon = "FBAcceleratedMetabolism"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection]]
+name = "Raging Blows"
+cost_per_rank = [1]
+description = """
+While Barbarian raging, you gain +5 Melee Power and your melee attacks gain +1[W] to damage.
++25% Competence bonus to Maximum Hit Points."""
+icon = "FBRagingBlows"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = [
+    "Bastard Sword",
+    "Battle Axe",
+    "Club",
+    "Dagger",
+    "Dwarven Axe",
+    "Falchion",
+    "Great Axe",
+    "Great Club",
+    "Great Sword",
+    "Hand Axe",
+    "Handwraps",
+    "Heavy Mace",
+    "Heavy Pick",
+    "Kama",
+    "Khopesh",
+    "Kukri",
+    "Light Hammer",
+    "Light Mace",
+    "Light Pick",
+    "Longsword",
+    "Maul",
+    "Morningstar",
+    "Quarterstaff",
+    "Rapier",
+    "Scimitar",
+    "Shortsword",
+    "Sickle",
+    "Warhammer",
+]
+
+[[enhancement.selection.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement]]
+name = "Frenzied Berserker: Tantrum"
+cost_per_rank = [2]
+description = "Deals: +50% Damage\nTactical Melee Cleave: Expend 25 hit points to activate this ability and attack\nenemies around you. This has a 50% chance to knock down each damaged enemy briefly\non a failed Fortitude save vs. (10 + Strength modifier + Barbarian Level). \n\nAbilities that trigger on Supreme Cleave also trigger on Tantrum.\nActivation Cost: 25 Hit Points.\nCooldown: 30 seconds"
+icon = "FBTantrum"
+internal_name = "FBTantrum"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.dc]]
+name = "Tantrum"
+amount = [10]
+class_level = "Barbarian"
+dc_type = "Knockdown"
+dc_versus = "Fortitude"
+description = """
+Deals: +50% Damage
+Tactical Melee Cleave: Expend 25 hit points to activate this ability and attack
+enemies around you. This has a 50% chance to knock down each damaged enemy briefly
+on a failed Fortitude save."""
+icon = "FBTantrum"
+mod_ability = ["Strength"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Barbarian"]
+req_type = "Class"

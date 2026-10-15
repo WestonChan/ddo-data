@@ -1,0 +1,35 @@
+name = "Band of the Holy Way"
+description = "A silver ring, blessed by divine purpose."
+drop_location = "Ruins of Myth Drannor, Goranathanil 's chest"
+icon = "Ring_26b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 13
+slot = "Ring"
+
+[[effect]]
+name = "Extra Smites"
+value = 2
+
+[[effect]]
+name = "Sacred"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Lesser Turning"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Hallowed"
+bonus_type = "Enhancement"
+value = 7
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "goranathanil 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"

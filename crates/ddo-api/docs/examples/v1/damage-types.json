@@ -1,19 +1,22 @@
 {
   "damage_types": [
     {
-      "category": "physical",
-      "id": 1,
-      "name": "Slashing"
+      "category": "elemental",
+      "id": 1269083466878347,
+      "name": "Acid",
+      "slug": "acid"
     },
     {
       "category": "physical",
-      "id": 2,
-      "name": "Piercing"
+      "id": 1521019758769593,
+      "name": "Bludgeoning",
+      "slug": "bludgeoning"
     },
     {
-      "category": "physical",
-      "id": 3,
-      "name": "Bludgeoning"
+      "category": "alignment",
+      "id": 5509814973167990,
+      "name": "Chaotic",
+      "slug": "chaotic"
     }
   ],
   "limit": 100,

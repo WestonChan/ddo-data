@@ -1,0 +1,3 @@
+name = "Negative Healing Amplification"
+category = "other"
+verbose_name_template = "%b1 Negative Healing Amplification +{1}"

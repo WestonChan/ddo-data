@@ -1,0 +1,33 @@
+name = "Legendary Crown of Snow"
+description = "A crown of packed snow and arcane magic, both beautiful and cold."
+drop_location = "The Legend of the Lost Locket, End chest"
+icon = "Helmet_5"
+item_category = "Clothing"
+material = "Ice"
+minimum_level = 29
+slot = "Head"
+
+[[effect]]
+name = "Fire Shield (Cold)"
+
+[[effect]]
+name = "Paragon Cerulean Wave"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 3
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Legend of the Lost Locket"

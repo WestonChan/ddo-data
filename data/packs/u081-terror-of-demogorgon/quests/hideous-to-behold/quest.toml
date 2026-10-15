@@ -1,0 +1,30 @@
+name = "Hideous to Behold"
+bestowed_by = "Vizril Geemor"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Terror of Demogorgon"
+patron = "Battlehammer Expedition"
+zone = "Karazikar's Maw"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Hideous_to_Behold"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 37
+
+[[run]]
+tier = "legendary"
+level = 37

@@ -62,12 +62,15 @@ declare_query_parameters! {
 }
 
 const ITEM_LIST_COLUMNS: &str =
-    "i.id, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level,
+    "i.id, i.slug, i.name, es.name AS slot, i.item_category AS category, i.item_type, i.minimum_level,
      i.enhancement_bonus, i.icon, i.is_legacy,
      (SELECT MIN(ap.name) FROM loot_adventure_packs packs
       JOIN adventure_packs ap ON ap.id = packs.pack_id WHERE packs.item_id = i.id) AS pack,
-     (SELECT MIN(s.name) FROM set_bonus_items member JOIN set_bonuses s ON s.id = member.set_id
-      WHERE member.item_id = i.id) AS \"set\",
+     (SELECT s.name FROM set_bonus_items member JOIN set_bonuses s ON s.id = member.set_id
+      WHERE member.item_id = i.id ORDER BY (s.name <> i.set_bonus), s.name LIMIT 1) AS \"set\",
+     (SELECT COALESCE(json_group_array(name), '[]') FROM (
+        SELECT s.name FROM set_bonus_items member JOIN set_bonuses s ON s.id = member.set_id
+         WHERE member.item_id = i.id ORDER BY (s.name <> i.set_bonus), s.name)) AS sets,
      EXISTS (SELECT 1 FROM sources ql
              WHERE ql.item_id = i.id AND ql.kind = 'quest' AND ql.loot_type = 'raid') AS is_raid,
      EXISTS (SELECT 1 FROM sources ql
@@ -75,6 +78,7 @@ const ITEM_LIST_COLUMNS: &str =
 
 const ITEMS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "i.name"),
+    ("slug", "i.slug"),
     ("id", "i.id"),
     ("minimum_level", "i.minimum_level"),
     ("slot", "es.name"),
@@ -358,6 +362,7 @@ async fn item_detail(State(state): State<AppState>, Path(id): Path<i64>) -> Resu
 
 const EQUIPMENT_SLOTS_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.name"),
+    ("slug", "listed.name"),
     ("id", "listed.id"),
     ("sort_order", "listed.sort_order"),
     ("category", "listed.category"),
@@ -393,8 +398,13 @@ async fn equipment_slots(State(state): State<AppState>, ApiQuery(query, _): ApiQ
     .await
 }
 
-const WEAPON_TYPES_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("proficiency", "listed.proficiency"), ("is_shield", "is_shield")];
+const WEAPON_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
+    ("name", "listed.name"),
+    ("slug", "listed.name"),
+    ("id", "listed.id"),
+    ("proficiency", "listed.proficiency"),
+    ("is_shield", "is_shield"),
+];
 
 declare_list_parameters!(WeaponTypesParameters, WEAPON_TYPES_SORT_FIELDS, "");
 
@@ -419,7 +429,7 @@ async fn weapon_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
                          LEFT JOIN weapon_proficiencies p ON p.id = wt.proficiency_id",
             rows_key: "weapon_types",
             name_column: "listed.name",
-            default_order: "listed.id",
+            default_order: "listed.name",
             sortable_fields: WEAPON_TYPES_SORT_FIELDS,
             flag_columns: &["is_shield"],
         },
@@ -428,7 +438,7 @@ async fn weapon_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
 }
 
 const DAMAGE_TYPES_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "listed.name"), ("id", "listed.id"), ("category", "listed.category")];
+    &[("name", "listed.name"), ("slug", "listed.name"), ("id", "listed.id"), ("category", "listed.category")];
 
 declare_list_parameters!(DamageTypesParameters, DAMAGE_TYPES_SORT_FIELDS, "");
 
@@ -452,7 +462,7 @@ async fn damage_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
             select_sql: "SELECT id, name, category FROM damage_types",
             rows_key: "damage_types",
             name_column: "listed.name",
-            default_order: "listed.id",
+            default_order: "listed.name",
             sortable_fields: DAMAGE_TYPES_SORT_FIELDS,
             flag_columns: &[],
         },
@@ -462,6 +472,7 @@ async fn damage_types(State(state): State<AppState>, ApiQuery(query, _): ApiQuer
 
 const AUGMENT_SLOT_TYPES_SORT_FIELDS: &[(&str, &str)] = &[
     ("name", "listed.label"),
+    ("slug", "listed.label"),
     ("id", "listed.id"),
     ("family", "listed.family"),
     ("variant", "listed.variant"),

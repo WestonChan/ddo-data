@@ -1,0 +1,21 @@
+name = "Bottle of Smoke"
+description = 'A label on the bottle reads, "For when you need to shroud yourself in smoke."'
+drop_location = "The Home of Memory, End chest"
+icon = "Trinket_22"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 3
+slot = "Trinket"
+
+[[effect]]
+name = "Smoke Screen +20"
+bonus_type = "Enhancement"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Home of Memory"

@@ -1,0 +1,42 @@
+{
+  "$defs": {
+    "WeaponType": {
+      "additionalProperties": false,
+      "properties": {
+        "is_shield": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "proficiency": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "x-reference-kind": "weapon_proficiencies"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "type": "object",
+      "x-table": "weapon_types"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "row": {
+      "items": {
+        "$ref": "#/$defs/WeaponType"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "row"
+  ],
+  "title": "WeaponTypesFile",
+  "type": "object"
+}

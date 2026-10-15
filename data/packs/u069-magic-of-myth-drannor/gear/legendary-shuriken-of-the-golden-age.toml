@@ -1,0 +1,56 @@
+name = "Legendary Shuriken of the Golden Age"
+accepts_sentience = true
+description = "Forged in the glory of Cormanthor, this weapon is remarkably well-preserved."
+drop_location = "Magic of Myth Drannor, rare drop in any end chest"
+enhancement_bonus = 15
+icon = "Shuriken_1g"
+item_category = "Weapon"
+item_type = "Shuriken"
+material = "Steel"
+minimum_level = 33
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Force Blast 7"
+
+[[effect]]
+name = "Impactful 7"
+
+[[effect]]
+name = "Sovereign Vorpal"
+
+[[effect]]
+name = "Entropic 7"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "any end chest"
+is_rare = true
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Magic of Myth Drannor"
+
+[[weapon]]
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 6.1
+handedness = "Thrown"
+weapon_type = "Shuriken"

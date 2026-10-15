@@ -1,0 +1,21 @@
+name = "Heal +10"
+description = "Competence bonus to Heal"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect = "Heal"
+effect_type = "SkillBonus"
+targets = ["Heal"]
+
+[[slot]]
+slot = "crafting: slavelords extra"

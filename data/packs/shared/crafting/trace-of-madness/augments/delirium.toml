@@ -1,0 +1,8 @@
+name = "Delirium"
+description = "Delirium Guard: Displacement for 15 seconds."
+family = "Other"
+icon = "Delirium"
+min_level = 1
+
+[[slot]]
+slot = "crafting: trace of madness"

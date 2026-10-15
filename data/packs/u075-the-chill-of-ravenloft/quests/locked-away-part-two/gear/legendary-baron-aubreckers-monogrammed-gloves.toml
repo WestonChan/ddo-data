@@ -1,0 +1,39 @@
+name = "Legendary Baron Aubrecker's Monogrammed Gloves"
+description = "The material of these gloves is already flaking at the fingers."
+drop_location = "Locked Away (Part Two), Gallows Speakers chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 34
+slot = "Hands"
+
+[[effect]]
+name = "Transmutation Focus"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "gallows speakers chest"
+kind = "quest"
+loot_type = "chest"
+name = "Locked Away (Part Two)"

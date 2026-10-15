@@ -1,0 +1,22 @@
+name = "Come Out and Slay"
+bestowed_by = "Madhand Mulvaney"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+pack = "The Sharn Syndicate"
+patron = "The Coin Lords"
+zone = "The Tenements"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Come_Out_and_Slay"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

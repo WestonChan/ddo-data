@@ -1,0 +1,47 @@
+name = "Widowblight"
+description = """
+Kar'Thul ogres forged this wicked blade using a process which involved tempering
+it in the blood and venom of magically bred spiders.This particular one seems
+unfinished, which suggests it may have been a prototype. Nonetheless, this
+weapon is very deadly"""
+drop_location = "The Spawn of Whisperdoom, Turn in Splinterskull Historical Documents to the Ungurz Lieutenant for a small chance to get it"
+enhancement_bonus = 3
+icon = "Sickle_2a"
+item_category = "Weapon"
+item_type = "Sickle"
+material = "Steel"
+minimum_level = 10
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Paralyzing"
+
+[[effect]]
+name = "Bewildering"
+value = 1
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "turn in splinterskull historical documents to the ungurz lieutenant for a small chance to get it"
+kind = "quest"
+loot_type = "chest"
+name = "The Spawn of Whisperdoom"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Sickle"

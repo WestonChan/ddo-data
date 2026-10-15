@@ -1,0 +1,50 @@
+name = "Titan's Fist"
+description = "Elements of the Warforged Titan's cannon make up this scavenged rune arm."
+drop_location = "The Titan Awakes, Raid Warded chest"
+icon = "RuneArm_3"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 11
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier IV"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Kinetic Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Rune Arm Imbue - Force III"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Force Shot",
+    "None",
+]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Titan Awakes"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

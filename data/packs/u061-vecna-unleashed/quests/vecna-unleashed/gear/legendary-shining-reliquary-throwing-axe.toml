@@ -1,0 +1,60 @@
+name = "Legendary Shining Reliquary Throwing Axe"
+accepts_sentience = true
+description = "This shining weapon is a relic of a bygone age."
+drop_location = "Vecna Unleashed, any chest or trade with Steps Obliss"
+enhancement_bonus = 15
+icon = "ThrowingAxe_1d"
+item_category = "Weapon"
+item_type = "Throwing Axe"
+material = "Steel"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Coruscating 6"
+
+[[effect]]
+name = "Blazing 15"
+
+[[effect]]
+name = "Evil Outsider Bane 6"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "any chest or trade with steps obliss"
+kind = "quest"
+loot_type = "chest"
+name = "Vecna Unleashed"
+
+[[source]]
+kind = "vendor"
+name = "Steps Obliss"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "Thrown"
+weapon_type = "Throwing Axe"

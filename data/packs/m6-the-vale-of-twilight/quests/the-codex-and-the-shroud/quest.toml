@@ -1,0 +1,26 @@
+name = "The Codex and the Shroud"
+bestowed_by = "Rael Omastoro"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 14
+is_raid = true
+pack = "The Vale of Twilight"
+patron = "The Gatekeepers"
+zone = "The Shroud"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Codex_and_the_Shroud"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

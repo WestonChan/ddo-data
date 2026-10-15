@@ -1,0 +1,64 @@
+name = "Prototype II: Cooling Mechanism"
+description = """
+Prototype Notes II: This was fashioned from a ruined cooling system. The cooling
+magics seem stable, but it could use tuning for optimal output."""
+drop_location = "What Dreams May Come, End chest"
+icon = "RuneArm_3h"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 18
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier V"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Insight"
+value = 52
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Rune Arm Focus"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Efficient Metamagic - Empower II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Rune Arm Imbue - Cold IV"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cold Bolts",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Dreams May Come"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

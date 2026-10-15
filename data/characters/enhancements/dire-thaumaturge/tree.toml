@@ -1,0 +1,1119 @@
+name = "Dire Thaumaturge"
+background = "Reaper"
+icon = "ReaperTree"
+kind = "reaper"
+version = 1
+
+[[enhancement]]
+name = "Reaper's Arcanum I"
+cost_per_rank = [1]
+description = """
++50 Maximum Spell Points while in Reaper Difficulty.
+Every ability you take in this tree grants +4 Maximum Hit Points in Reaper Difficulty."""
+icon = "ReapersArcanum"
+internal_name = "DireCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [4]
+bonus_type = "Reaper"
+display_name = "Dire Thaumaturge: HP per action point"
+effect_type = "HitpointsReaper"
+stack_source = "Dire Thaumaturge"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Reaper"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Arcanum II"
+cost_per_rank = [1]
+description = "+50 Maximum Spell Points"
+icon = "ReapersArcanum"
+internal_name = "DireCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Reaper"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["DireCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 9
+
+[[enhancement]]
+name = "Reaper's Arcanum III"
+cost_per_rank = [1]
+description = "+1 Intelligence, Wisdom or Charisma"
+icon = "IntWisCha"
+internal_name = "DireCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.requirement]]
+items = ["DireCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 15
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [1]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 15
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [1]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 15
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [1]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 15
+
+[[enhancement]]
+name = "Reaper's Arcanum IV"
+cost_per_rank = [1]
+description = "+100 Maximum Spell Points"
+icon = "ReapersArcanum"
+internal_name = "DireCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Reaper"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["DireCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Arcanum V"
+cost_per_rank = [1]
+description = "+2 Universal Spell Power, +150 Maximum Spell Points"
+icon = "ReapersArcanum"
+internal_name = "DireCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Reaper"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Reaper"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["DireCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 25
+
+[[enhancement]]
+name = "Reaper's Arcanum VI"
+cost_per_rank = [1]
+description = "+4 Universal Spell Power, +200 Maximum Spell Points"
+icon = "ReapersArcanum"
+internal_name = "DireCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Reaper"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [200]
+bonus_type = "Reaper"
+effect_type = "SpellPoints"
+
+[[enhancement.requirement]]
+items = ["DireCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 30
+
+[[enhancement]]
+name = "Reaper's Arcana I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[2/4/6] Universal Spell Power while in Reaper Difficulty"
+icon = "ReapersArcana"
+internal_name = "DireArcanaI"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Focus I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Spell DCs while in Reaper Difficulty"
+icon = "ReapersFocus"
+internal_name = "DireFocusI"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Power"
+cost_per_rank = [1]
+description = """
+While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +45 Profane Bonus to Universal Spell Power for 30 Seconds."""
+icon = "ReapersPower"
+internal_name = "DirePower"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reapers's Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Intelligence, Wisdom or Charisma in Reaper Difficulty"
+icon = "IntWisCha"
+internal_name = "DireAbilityI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [1]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [1]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [1]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Deep Magic I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Spell Penetration while in Reaper Difficulty"
+icon = "ReapersDeepMagic"
+internal_name = "DireDeepMagicI"
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SpellPenetrationBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 4
+
+[[enhancement]]
+name = "Reaper's Arcana II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[2/4/6] Universal Spell Power while in Reaper Difficulty"
+icon = "ReapersArcana"
+internal_name = "DireArcanaII"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireArcanaI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Focus II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Spell DCs while in Reaper Difficulty"
+icon = "ReapersFocus"
+internal_name = "DireFocusII"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireFocusI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Ability II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Intelligence, Wisdom or Charisma in Reaper Difficulty"
+icon = "IntWisCha"
+internal_name = "DireAbilityII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["DireAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [1]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Intelligence",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [1]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Wisdom",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [1]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.modifier.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Charisma",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement.selection.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Charisma",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Reaper's Deep Magic II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Spell Penetration while in Reaper Difficulty"
+icon = "ReapersDeepMagic"
+internal_name = "DireDeepMagicII"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SpellPenetrationBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireDeepMagicI"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 10
+
+[[enhancement]]
+name = "Reaper's Arcana III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[2/4/6] Universal Spell Power while in Reaper Difficulty"
+icon = "ReapersArcana"
+internal_name = "DireArcanaIII"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireArcanaII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Focus III"
+cost_per_rank = [1]
+description = "+1 to Spell DCs while in Reaper Difficulty"
+icon = "ReapersFocus"
+internal_name = "DireFocusIII"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireFocusII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Ability III"
+cost_per_rank = [1]
+description = "+1 to Intelligence, Wisdom or Charisma in Reaper Difficulty"
+icon = "IntWisCha"
+internal_name = "DireAbilityIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["DireAbilityII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [1]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Intelligence",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [1]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Wisdom",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [1]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement.selection.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Charisma",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Reaper's Deep Magic III"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Spell Penetration while in Reaper Difficulty"
+icon = "ReapersDeepMagic"
+internal_name = "DireDeepMagicIII"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SpellPenetrationBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireDeepMagicII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 17
+
+[[enhancement]]
+name = "Reaper's Arcana IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[4/8/12] Universal Spell Power while in Reaper Difficulty"
+icon = "ReapersArcana"
+internal_name = "DireArcanaIV"
+min_spent = 20
+ranks = 3
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireArcanaIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Potency"
+cost_per_rank = [2]
+description = """
+While in Reaper Difficulty, activate to expend one Reaper Charge
+and gain a +3 Reaper Bonus to Spell DC's for 30 seconds."""
+icon = "ReapersPotency"
+internal_name = "DirePotency"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Efficiency"
+cost_per_rank = [2]
+description = """
+While in Reaper Difficulty, activate to expend one Reaper Charge
+and reduce the Spell point cost of your spells by 45% for 30 seconds."""
+icon = "ReapersEfficiency"
+internal_name = "DireEfficiency"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Deep Magic IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+1 to Spell Penetration while in Reaper Difficulty"
+icon = "ReapersDeepMagic"
+internal_name = "DireDeepMagicIV"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SpellPenetrationBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireDeepMagicIII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 21
+
+[[enhancement]]
+name = "Reaper's Arcana V"
+cost_per_rank = [1]
+description = "+[4/8/12] Universal Spell Power while in Reaper Difficulty"
+icon = "ReapersArcana"
+internal_name = "DireArcanaV"
+min_spent = 30
+ranks = 3
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Reaper"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireArcanaIV"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Focus V"
+cost_per_rank = [1]
+description = "+1 to Spell DCs while in Reaper Difficulty"
+icon = "ReapersFocus"
+internal_name = "DireFocusV"
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Charge"
+cost_per_rank = [1]
+description = "+1 Maximum Reaper Charge"
+icon = "ReapersCharge"
+internal_name = "DireCharge"
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement]]
+name = "Reaper's Ability V"
+cost_per_rank = [1]
+description = "+1 to Intelligence, Wisdom or Charisma in Reaper Difficulty"
+icon = "IntWisCha"
+internal_name = "DireAbilityV"
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection]]
+name = "+1 Intelligence"
+cost_per_rank = [1]
+description = "+1 Intelligence"
+icon = "Intelligence"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Intelligence",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Wisdom"
+cost_per_rank = [1]
+description = "+1 Wisdom"
+icon = "Wisdom"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Wisdom",
+]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [1]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.selection.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.selection.requirement]]
+req_type = "Level"
+value = 27
+
+[[enhancement.selection.requirement]]
+items = [
+    "DireAbilityI",
+    "+1 Charisma",
+]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Reaper's Deep Magic V"
+cost_per_rank = [1]
+description = "+1 to Spell Penetration while in Reaper Difficulty"
+icon = "ReapersDeepMagic"
+internal_name = "DireDeepMagicV"
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Reaper"
+effect_type = "SpellPenetrationBonus"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Reaper"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["DireDeepMagicIV"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 27

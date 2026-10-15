@@ -1,0 +1,20 @@
+name = "Fortification +70%"
+description = "Enhancement bonus to Fortification"
+family = "Slavelords_Heroic"
+icon = "SlavelordsPrefix"
+min_level = 8
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 70
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [70]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[slot]]
+slot = "crafting: slavelords prefix"

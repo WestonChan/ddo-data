@@ -1,0 +1,3 @@
+name = "Gashing 11"
+description_template = "The edges of this weapon are sharpened beyond belief, dealing an additional 11d6 slashing damage on each critical hit."
+verbose_name_template = "Gashing 11"

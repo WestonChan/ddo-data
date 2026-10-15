@@ -1,0 +1,43 @@
+name = "Torc of the Lords of the Abyss"
+description = """
+A corrupted crown found deep below. If the Demon Lords knew of it, they would
+surely fight to take it."""
+drop_location = "Catalyst Crafting, Turn in Torc of Prince Raiyum-de II, its Abyssal Catalyst and 50 Abyssal Gems at the Strange Catalyst Forge"
+icon = "Necklace_18c"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 11
+slot = "Neck"
+
+[[effect]]
+name = "Transform Kinetic Energy"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 134
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

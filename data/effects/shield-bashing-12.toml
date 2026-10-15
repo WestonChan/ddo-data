@@ -1,0 +1,3 @@
+name = "Shield Bashing +12"
+description_template = "+12 Enhancement bonus to Increased chance of Secondary Shield Bash."
+verbose_name_template = "Shield Bashing +12"

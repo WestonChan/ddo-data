@@ -1,0 +1,42 @@
+name = "Legendary Thresher's Pendant"
+description = """
+A token of Thresher's appreciation - this appears to be a battleworn medal from
+the Last War, scuffed and repurposed."""
+drop_location = "Growing Pains, end chest"
+icon = "Necklace_29"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Neck"
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 56
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 35
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 11
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Growing Pains"

@@ -1,0 +1,3 @@
+name = "Legendary Mineral"
+description_template = "This weapon bypasses Adamantine, Byeshk, Cold Iron, Mithral, and Adamantine DR. This weapon is considerably strengthened, gaining +150 Maximum Durability."
+verbose_name_template = "Legendary Mineral"

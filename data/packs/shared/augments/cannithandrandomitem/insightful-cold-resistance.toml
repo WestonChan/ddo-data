@@ -1,0 +1,91 @@
+name = "Insightful Cold Resistance"
+choose_level = true
+description = "You have an Insight bonus to resist Cold"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    2,
+    4,
+    5,
+    6,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    11,
+    12,
+    13,
+    14,
+    14,
+    15,
+    16,
+    17,
+    17,
+    18,
+    19,
+    20,
+    20,
+    21,
+    22,
+    23,
+    23,
+    24,
+    25,
+    26,
+    27,
+    27,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+    28,
+]
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Insight"
+value = 28
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [28]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: cannith armor extra"
+
+[[slot]]
+slot = "crafting: cannith bracers prefix"
+
+[[slot]]
+slot = "crafting: cannith cloak suffix"
+
+[[slot]]
+slot = "crafting: cannith shield extra"
+
+[[slot]]
+slot = "crafting: cannith orb extra"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random armor extra"
+
+[[slot]]
+slot = "crafting: random cloak suffix"
+
+[[slot]]
+slot = "crafting: random ring extra"
+
+[[slot]]
+slot = "crafting: random shield extra"

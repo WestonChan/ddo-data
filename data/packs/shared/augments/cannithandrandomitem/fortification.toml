@@ -1,0 +1,92 @@
+name = "Fortification"
+choose_level = true
+description = "Enhancement bonus to Fortification"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    38,
+    43,
+    47,
+    55,
+    59,
+    63,
+    66,
+    70,
+    73,
+    77,
+    80,
+    84,
+    87,
+    90,
+    94,
+    97,
+    101,
+    104,
+    108,
+    111,
+    115,
+    118,
+    122,
+    125,
+    128,
+    132,
+    135,
+    139,
+    142,
+    146,
+    149,
+    153,
+    156,
+    159,
+    163,
+    166,
+    166,
+    166,
+    166,
+    166,
+]
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 146
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [146]
+bonus_type = "Enhancement"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[slot]]
+slot = "crafting: cannith armor prefix"
+
+[[slot]]
+slot = "crafting: cannith bracers suffix"
+
+[[slot]]
+slot = "crafting: cannith helmet prefix"
+
+[[slot]]
+slot = "crafting: cannith shield prefix"
+
+[[slot]]
+slot = "crafting: cannith orb prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random armor prefix"
+
+[[slot]]
+slot = "crafting: random bracers suffix"
+
+[[slot]]
+slot = "crafting: random helmet prefix"
+
+[[slot]]
+slot = "crafting: random shield prefix"

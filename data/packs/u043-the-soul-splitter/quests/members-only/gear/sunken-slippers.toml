@@ -1,0 +1,88 @@
+name = "Sunken Slippers"
+description = "These are pretty damp. Ew."
+drop_location = "Members Only, end chest"
+icon = "Boots_4"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 17
+slot = "Feet"
+
+[[effect]]
+name = "Lesser Displacement"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Insight"
+value = 32
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 15
+
+[[socket]]
+slot = "crafting: nearly finished"
+
+[[socket.option]]
+name = "Quality Intelligence +1"
+description = "Quality Intelligence +1: This item focuses the power of the wearer's mind, granting a +1 quality bonus to Intelligence."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Intelligence"
+value = 1
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Intelligence"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[socket.option]]
+name = "Quality Wisdom +1"
+description = "Quality Wisdom +1: This item makes the wearer more in tune with her surroundings, granting a +1 quality bonus to Wisdom."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Wisdom"
+value = 1
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[socket.option]]
+name = "Quality Charisma +1"
+description = "Quality Charisma +1: This item makes the wearer have more flair, granting a +1 quality bonus to Charisma."
+min_level = 17
+
+[[socket.option.effect]]
+bonus_type = "Quality"
+effect = "Charisma"
+value = 1
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Quality"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Members Only"

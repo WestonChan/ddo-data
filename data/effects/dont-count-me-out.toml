@@ -1,0 +1,11 @@
+name = "Don't Count Me Out!"
+description_template = "You gain a +400 Enhancement Bonus to Unconsciousness Range."
+home_bonus_type = "Equipment"
+verbose_name_template = "Don't Count Me Out! -400"
+
+[[bonus]]
+amount_from = 0
+constant = -400
+rounding = "down"
+scale = 1.0
+target = "Unconsciousness Range"

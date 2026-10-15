@@ -1,0 +1,38 @@
+name = "Chaos in a Bottle"
+description = 'A note on the bottle reads, "Do Not Shake"'
+drop_location = "An Element of Chaos, End chest"
+icon = "Trinket_44"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 12
+slot = "Trinket"
+
+[[effect]]
+name = "Spell Turmoil"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 52
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 129
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Taint of Chaos"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "An Element of Chaos"

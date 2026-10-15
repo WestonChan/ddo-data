@@ -1,0 +1,40 @@
+name = "Arkat's Cord (Level 23)"
+description = """
+Found by a slain foe in Gianthold, this cloth belt's former owner is identified
+by the name sewn into its lining."""
+drop_location = "A Cry for Help, and Foundation of Discord, end chest (epic normal); Return to Gianthold chain end reward"
+icon = "Belt_2"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 23
+slot = "Waist"
+
+[[effect]]
+name = "Reinforced Fists"
+
+[[effect]]
+name = "Vitality"
+bonus_type = "Vitality"
+value = 20
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Cry for Help"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Foundation of Discord"
+
+[[source]]
+kind = "quest_chain"
+name = "Return to Gianthold"

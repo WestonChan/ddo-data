@@ -1,0 +1,112 @@
+[[row]]
+name = "Eternity's Ward"
+acquire = "Train"
+description = """
+Major Draconic Aura: You have taken on a significant aspect of Eternity, the
+Spectral Dragon of Night. You and allies close to you get a +3 Morale Bonus to
+MRR. Rolls. You may have only one Major Draconic Aura, which stacks with your
+Minor Draconic Aura."""
+icon = "EternitysWard"
+source_name = "Dragon Lord"
+
+[[row.group]]
+group_name = "Major Draconic Aura"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Eternity's Ward"
+effect_type = "MRR"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Dragon Lord"]
+req_type = "ClassMinLevel"
+value = 8
+
+[[row]]
+name = "Sinvala's Toughness"
+acquire = "Train"
+description = """
+Major Draconic Aura: You have taken on a significant aspect of Sinvala the Vile.
+You and allies close to you get a +3 Morale Bonus to PRR. Rolls. You may have only
+one Major Draconic Aura, which stacks with your Minor Draconic Aura."""
+icon = "SinvalasToughness"
+source_name = "Dragon Lord"
+
+[[row.group]]
+group_name = "Major Draconic Aura"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Sinvala's Toughness"
+effect_type = "PRR"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Dragon Lord"]
+req_type = "ClassMinLevel"
+value = 8
+
+[[row]]
+name = "Velah's Fury"
+acquire = "Train"
+description = """
+Major Draconic Aura: You have taken on a significant aspect of Vela, invader of
+the Vault of Night. You and allies close to you get a +3 Morale Bonus to Damage
+Rolls. You may have only one Major Draconic Aura, which stacks with your Minor
+Draconic Aura."""
+icon = "VelahsFury"
+source_name = "Dragon Lord"
+
+[[row.group]]
+group_name = "Major Draconic Aura"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    0,
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    8,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Velah's Fury"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Dragon Lord"]
+req_type = "ClassMinLevel"
+value = 8

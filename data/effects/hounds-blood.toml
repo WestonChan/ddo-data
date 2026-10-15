@@ -1,0 +1,3 @@
+name = "Hound's Blood"
+description_template = "This artifact, while equipped, grants you some of the innate protections of a Thaarak Hound. You are warded against Charms, Poison, and Petrification."
+verbose_name_template = "Hound's Blood"

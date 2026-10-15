@@ -1,0 +1,53 @@
+name = "Sceptre of Radiance"
+description = "This magical sceptre is attuned to Light spells."
+drop_location = "Morten Edgewright, Turn in 1 Arcane Ingot"
+enhancement_bonus = 1
+icon = "Club_2"
+item_category = "Weapon"
+item_type = "Club"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 2
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 6
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 43
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Morten Edgewright"
+
+[[source.price]]
+ingredient = "Arcane Ingot"
+quantity = 1
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

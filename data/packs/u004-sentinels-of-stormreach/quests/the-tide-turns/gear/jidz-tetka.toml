@@ -1,0 +1,44 @@
+name = "Jidz-Tet'ka"
+description = """
+Thri-kreen runes carved into these chitin bracers read 'The shell of the seeker
+of enlightenment'."""
+drop_location = "The Tide Turns, End chest"
+icon = "Bracers_15c"
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 5
+slot = "Wrists"
+
+[[effect]]
+name = "Tet-zik, The Enlightened Change"
+
+[[effect]]
+name = "Kos-zik, The Air-Change"
+
+[[effect]]
+name = "Riik-zik, The Fire-Change"
+
+[[effect]]
+name = "Thok-zik, The Earth-Change"
+
+[[effect]]
+name = "Sed-zik, The Water-Change"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 4
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tide Turns"

@@ -1,0 +1,35 @@
+name = "Wintery Wrappings"
+description = "Cold doesn't perturb those wearing thick wrappings like these."
+drop_location = "A Light in the Attic, end chest (rare)"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 8
+slot = "Wrists"
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Enhancement"
+value = 18
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"

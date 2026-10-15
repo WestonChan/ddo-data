@@ -1,0 +1,40 @@
+name = "Countenance"
+description = "They who look upon you shall see your glory, for it can no longer be overlooked."
+drop_location = "Defiler of the Just, Warded Chest"
+icon = "Cloak_4a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 26
+slot = "Back"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 8
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Defiler of the Just"

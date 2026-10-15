@@ -1,0 +1,3 @@
+name = "Sunsword's Power"
+description_template = "The Sunsword holds the power to render Strahd vulnerable to weapon damage for a short period of time."
+verbose_name_template = "Sunsword's Power"

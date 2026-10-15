@@ -1,0 +1,39 @@
+name = "Sheridan's Ruin"
+description = """
+Sheridan was a highwayman of little consequence. His blades, on the other hand,
+are of superb sharpness and balance. A shame he couldn't hold onto them."""
+drop_location = "Cult of the Six, End reward"
+enhancement_bonus = 4
+icon = "Rapier_1l"
+item_category = "Weapon"
+item_type = "Rapier"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Keen"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "quest_chain"
+name = "Cult of the Six"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "One-handed"
+weapon_type = "Rapier"

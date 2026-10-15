@@ -1,0 +1,41 @@
+name = "Pomura's Memento"
+description = """
+We'll meet again, don't know where, don't know when, oh I know we'll meet again
+some stormy day."""
+drop_location = "Hunt or Be Hunted, end chest"
+icon = "Ring_26e"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Spell Lore V"
+bonus_type = "Insight"
+value = 5
+
+[[effect]]
+name = "Frozen Storm Lore"
+value = 22
+
+[[effect]]
+name = "Power of the Frozen Storm"
+bonus_type = "Equipment"
+value = 148
+
+[[effect]]
+name = "Cold Absorption"
+bonus_type = "Enhancement"
+value = 35
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Hunt or Be Hunted"

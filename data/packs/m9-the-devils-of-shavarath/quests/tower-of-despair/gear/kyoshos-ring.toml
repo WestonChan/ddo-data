@@ -1,0 +1,46 @@
+name = "Kyosho's Ring"
+description = """
+This carved silver band was worn by Kyosho, a humble Shintao Monk popular for
+her gifts of charity, and respected for her towering state of mind."""
+drop_location = "Tower of Despair, right side end chest"
+icon = "Ring_5b"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 18
+slot = "Ring"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Strength"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Shintao Monk"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    2,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Exceptional"
+display_name = "Shintao Monk - 2 Piece bonus"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[socket]]
+slot = "crafting: incredible potential"
+
+[[source]]
+chest = "right side end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

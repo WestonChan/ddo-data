@@ -1,0 +1,22 @@
+name = "Ruby of Good DR Bypass"
+description = "Your weapons now bypass Good damage reduction type"
+family = "Ruby"
+icon = "Ruby"
+min_level = 12
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Good"
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

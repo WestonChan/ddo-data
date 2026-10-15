@@ -1,0 +1,49 @@
+name = "Legendary Great Forge Docent"
+description = "Protective gear made by Dwarven craftspeople."
+drop_location = "The Darklake, red-named rare encounter chests"
+enhancement_bonus = 16
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Crystal"
+minimum_level = 35
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+armor_type = "Docent"
+mithral_body = 15
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 62
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 15
+
+[[effect]]
+name = "Profane Well Rounded"
+bonus_type = "Profane"
+value = 3
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "red-named rare encounter chests"
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

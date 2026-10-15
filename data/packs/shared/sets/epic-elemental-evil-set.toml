@@ -1,0 +1,49 @@
+name = "Epic Elemental Evil Set"
+
+[[note]]
+kind = "set_bonus"
+field = "icon"
+upstream = "?"
+reason = "DDOBuilderV2's SetBonusImages folder has no ?.png."
+url = "Output/DataFiles/SetBonusImages"
+read = "2026-10-07"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "Melee Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "Ranged Power"
+value = 20
+
+[[tier.effect]]
+bonus_type = "Quality"
+effect = "Potency"
+value = 20
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Quality"
+effect = "Potency"
+effect_type = "MeleePower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Quality"
+effect = "Potency"
+effect_type = "RangedPower"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Quality"
+effect = "Potency"
+effect_type = "UniversalSpellPower"
+targets = ["Acid"]

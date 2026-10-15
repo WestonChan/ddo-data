@@ -1,0 +1,36 @@
+name = "Crumbling Gloves"
+drop_location = "Oath of Vengeance, end chest"
+icon = "Gloves_4"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 10
+slot = "Hands"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Oath of Vengeance"

@@ -1,0 +1,55 @@
+name = "Nightforge Aegis"
+description = """
+A skull-faced shield of forged adamantine, specifically made to use by a warrior
+armed with an Avenger blade."""
+drop_location = "A Relic of a Sovereign Past, Turn in 15 Adamantine Ore"
+enhancement_bonus = 5
+icon = "Shield_4l"
+item_category = "Shield"
+item_type = "Large Shield"
+material = "Adamantine"
+minimum_level = 8
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 15
+armor_check_penalty = -1
+armor_type = "Shield"
+damage_reduction = 9
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "turn in 15 adamantine ore"
+kind = "quest"
+loot_type = "chest"
+name = "A Relic of a Sovereign Past"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Large Shield"

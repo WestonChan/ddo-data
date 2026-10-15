@@ -1,0 +1,3 @@
+name = "Shielded by Moonlight"
+description_template = "Being struck in melee has a small chance to return some lost Hitpoints and Spell Points to you. Offensive spells have a chance to grant 100 temporary spell points. This has a one minute cooldown."
+verbose_name_template = "Shielded by Moonlight"

@@ -1,0 +1,620 @@
+[[row]]
+name = "Fiendskin"
+acquire = "Train"
+description = "You gain +1 Fire resistance per Warlock level"
+icon = "Fiendskin"
+source_name = "Acolyte of the Skin"
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "EnergyResistance"
+stack_source = "Acolyte of the Skin"
+targets = ["Fire"]
+
+[[row.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 6
+
+[[row]]
+name = "Warlock: Absolute Zero"
+acquire = "Train"
+description = """
+Attempt to lock a single enemy in ice - permanently.
+Enemies must success on a Will save vs DC(15 + Transmutation Bonus + Charisma Mod)
+or be forever trapped in solid ice. Enemies made of fire will instead be destroyed
+with no save. Does not affect bosses."""
+icon = "AbsoluteZero"
+source_name = "Warlock"
+
+[[row.dc]]
+name = "Warlock: Absolute Zero"
+amount = [15]
+dc_type = "Frozen Death"
+dc_versus = "Will"
+description = """
+Attempt to lock a single enemy in ice - permanently.
+Enemies must success on a Will save vs DC(15 + Transmutation Bonus + Charisma Mod)
+or be forever trapped in solid ice. Enemies made of fire will instead be destroyed
+with no save. Does not affect bosses."""
+icon = "AbsoluteZero"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.requirement]]
+items = ["Pact: The Carceri Storm"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 15
+
+[[row]]
+name = "Warlock: Ameliorate"
+acquire = "Train"
+description = """
+Attempt to obliterate an Undead, or severely weaken any non-Undead foe.
+Undead must succeed on a Will save vs DC(15 + Warlock level + Charisma Mod)
+or be destroyed. Undead who fail this save, or enemies who are not undead,
+instead are terrorized and have their Magical resistance Rating reduced by
+10 for 15 seconds."""
+icon = "Ameliorate"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    0,
+    0,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Ameliorate",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Celestial"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 15
+
+[[row]]
+name = "Warlock: Call on the Mists"
+acquire = "Train"
+description = """
+Enemies in a small area who are currently affected by Dread Mist must make a saving
+throw (DC 15 + [Int/Cha] mod + Necromancy Bonuses) or die, being consumed by the mists."""
+icon = "CallOnTheMists"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.requirement]]
+items = ["Pact: The Dark Powers"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 15
+
+[[row]]
+name = "Warlock: Celestial Attunement"
+acquire = "Train"
+description = "+5 Physical Resistance Rating, +1 to all Saving Throws"
+icon = "CelestialAttunement"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Saving Throws"
+value = 1
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Pact: Celestial"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 6
+
+[[row]]
+name = "Warlock: Channel the Abyss"
+acquire = "Train"
+description = """
+Shroud yourself in the Abyss, which will grant you unholy power at a cost.
+You gain +2 Charisma, +10 Negative Healing Amplification, and +10 Negative Spell Power.
+You have +100% critical hit resistance, are healed by Negative Energy, take 50% healing from
+Positive Energy, and take double damage from Light. You are considered Undead rather than
+your original type for the purposes of most effects."""
+icon = "ChannelTheAbyss"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Charisma"
+value = 2
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Negative Healing Amplification"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Negative Spell Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortification"
+value = 100
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+value = -50
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Charisma"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[row.modifier.requirement]]
+items = ["Channel the Abyss"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[row.modifier.requirement]]
+items = ["Channel the Abyss"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Negative Spell Power"
+effect_type = "SpellPower"
+targets = ["Negative"]
+
+[[row.modifier.requirement]]
+items = ["Channel the Abyss"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Feat"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[row.modifier.requirement]]
+items = ["Channel the Abyss"]
+req_type = "Stance"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [-50]
+bonus_type = "Feat"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[row.modifier.requirement]]
+items = ["Channel the Abyss"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Pact: The Abyss"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 15
+
+[[row.stance]]
+name = "Channel the Abyss"
+description = """
+Shroud yourself in the Abyss, which will grant you unholy power at a cost.
+You gain +2 Charisma, +10 Negative Healing Amplification, and +10 Negative Spell Power.
+You have +100% critical hit resistance, are healed by Negative Energy, take 50% healing from
+Positive Energy, and take double damage from Light. You are considered Undead rather than
+your original type for the purposes of most effects."""
+icon = "ChannelTheAbyss"
+
+[[row]]
+name = "Warlock: Create Thrall"
+acquire = "Train"
+description = "Charm monster"
+icon = "CreateThrall"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.requirement]]
+items = ["Pact: Great Old One"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 15
+
+[[row]]
+name = "Warlock: Dark Delirium"
+acquire = "Train"
+description = """
+Plunge one enemy's mind into an illusory realm. that enemy is dazed
+and cannot act for 20 seconds. Each time this enemy is damaged, there's a 10%
+chance they break free. Does not affect bosses. There is no saving throw."""
+icon = "DarkDelirium"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.requirement]]
+items = ["Pact: Fey"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 6
+
+[[row]]
+name = "Warlock: Dark One's Luck"
+acquire = "Train"
+description = "+2 to all saving throws"
+icon = "DarkOnesLuck"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Saving Throws"
+value = 2
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Pact: Fiend"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 6
+
+[[row]]
+name = "Warlock: Entropic Ward"
+acquire = "Train"
+description = "+5 MRR, 25 Fortification"
+icon = "EntropicWard"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortification"
+value = 25
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Feat"
+effect = "Fortification"
+effect_type = "Fortification"
+
+[[row.requirement]]
+items = ["Pact: Great Old One"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 6
+
+[[row]]
+name = "Warlock: Frozen Footsteps"
+acquire = "Train"
+description = "+10% Cold Absorption"
+icon = "FrozenFootsteps"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+value = 10
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.requirement]]
+items = ["Pact: The Carceri Storm"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 6
+
+[[row]]
+name = "Warlock: Hurl Through Hell"
+acquire = "Train"
+description = """
+Cooldown: 25 seconds. Exile one target enemy from this existence.
+An enemy succeeding on a Will save vs DC(15 + Charisma Modifier + Necromancy DCs)
+is instead paralyzed and helpless with fear for 6 seconds."""
+icon = "HurlThroughHell"
+source_name = "Warlock"
+
+[[row.dc]]
+name = "Warlock: Hurl Through Hell"
+amount = [15]
+dc_type = "Death"
+dc_versus = "Will"
+description = """
+Exile one target enemy from this existence.
+An enemy succeeding on a Will save is instead paralyzed and helpless with fear for 6 seconds."""
+icon = "HurlThroughHell"
+mod_ability = ["Charisma"]
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    25,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Hurl Through Hell",
+    "Warlock",
+]
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Pact: Fiend"]
+req_type = "Feat"
+
+[[row.requirement_group.requirement]]
+items = ["True Patron: Fiend"]
+req_type = "Feat"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["Warlock"]
+req_type = "BaseClass"
+value = 15
+
+[[row]]
+name = "Warlock: Mist Favored"
+acquire = "Train"
+description = """
+Your Dread Mists' damage changes to 1d3 per Caster Level.
+This increases to 1d4 at Character Level 12."""
+icon = "MistFavored"
+source_name = "Dhampir Dark Bargainer"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+value = 10
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Cold Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Cold"]
+
+[[row.requirement]]
+items = ["Pact: The Dark Powers"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 6
+
+[[row]]
+name = "Warlock: Misty escape"
+acquire = "Train"
+description = """
+You become invisible and charge forward.
+During your escape, you move through monsters as if you were ethereal.
+These effects last for six seconds"""
+icon = "MistyEscape"
+source_name = "Warlock"
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    25,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Misty escape",
+    "Warlock",
+]
+
+[[row.requirement]]
+items = ["Pact: Fey"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 15
+
+[[row]]
+name = "Warlock: Unhallowed Flesh"
+acquire = "Train"
+description = "+5 Physical and Magical Resistance Rating"
+icon = "UnhallowedFlesh"
+source_name = "Warlock"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+value = 5
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+value = 5
+
+[[row.group]]
+group_name = "Pact Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Feat"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[row.requirement]]
+items = ["Pact: The Abyss"]
+req_type = "Feat"
+
+[[row.requirement]]
+items = ["Warlock"]
+req_type = "Class"
+value = 6

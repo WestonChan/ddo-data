@@ -1,0 +1,3 @@
+name = "Slashing 7"
+description_template = "The edges of this weapon are sharpened, dealing an additional 7d6 slashing damage on each hit."
+verbose_name_template = "Slashing 7"

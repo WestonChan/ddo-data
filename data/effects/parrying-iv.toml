@@ -1,0 +1,16 @@
+name = "Parrying IV"
+description_template = "Passive: {1} %b1 bonus to Armor Class, {1} %b1 bonus to Fortitude, Reflex, and Will Saving throws."
+home_bonus_type = "Insight"
+verbose_name_template = "%b1 Parrying IV"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Armor Class"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Saving Throws"

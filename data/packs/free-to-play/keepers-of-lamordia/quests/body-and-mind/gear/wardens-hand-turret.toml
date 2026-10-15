@@ -1,0 +1,48 @@
+name = "Warden's Hand Turret"
+description = "Unruly experiments will be put back in their place. With force."
+drop_location = "Body and Mind, optional chest"
+enhancement_bonus = 4
+icon = "GreatCrossbow_1"
+item_category = "Weapon"
+item_type = "Great Crossbow"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Paralyzing"
+
+[[effect]]
+name = "Manslayer"
+
+[[effect]]
+name = "Lesser Boneshatter"
+
+[[effect]]
+name = "Bludgeoning 2"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Body and Mind"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 2
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Great Crossbow"

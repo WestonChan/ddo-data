@@ -1,0 +1,30 @@
+name = "The Cloven-jaw Scourge: Blockade"
+bestowed_by = "Wayfinder Dael"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+pack = "The Seal of Shan-To-Kor"
+patron = "The Coin Lords"
+zone = "The Kobold's Blockade"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Cloven-jaw_Scourge:_Blockade"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "The Cloven-jaw Scourge:Blockade"
+reason = "The wiki titles the quest The Cloven-jaw Scourge: Blockade."
+url = "https://ddowiki.com/page/The_Cloven-jaw_Scourge:_Blockade"
+read = "2026-10-02"
+
+[[run]]
+tier = "heroic"
+level = 3

@@ -1,0 +1,43 @@
+name = "Great Forge Shroud"
+description = "A sturdy cloak, combining Dwarven metalwork with exceptional tailoring."
+drop_location = "Hideous to Behold, end chest"
+icon = "Cloak_6"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 11
+slot = "Back"
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Magical Efficiency"
+bonus_type = "Enhancement"
+value = 5
+
+[[socket]]
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "quest"
+loot_type = "chest"
+name = "For Want of a Heart"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Hideous to Behold"

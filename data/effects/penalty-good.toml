@@ -1,0 +1,3 @@
+name = "Penalty Good"
+description_template = "If equipped by a Good user, they receive 1 Negative Level for as long as this item is equipped."
+verbose_name_template = "Penalty"

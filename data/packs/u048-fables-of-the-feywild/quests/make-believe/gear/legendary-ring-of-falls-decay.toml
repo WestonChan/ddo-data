@@ -1,0 +1,37 @@
+name = "Legendary Ring of Fall's Decay"
+description = "The decay beckons you."
+drop_location = "Make Believe, End Chest"
+icon = "Ring_16a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Ring"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 142
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Make Believe"

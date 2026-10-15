@@ -1,0 +1,39 @@
+name = "Blazing Sniper's Sights"
+description = """
+The Eternal Flame cannot be extinguished. Its flame grows with every invader
+defeated."""
+drop_location = "ToEE: Lower Temple Complex, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 8
+slot = "Goggles"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 4
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 2
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Lower Temple Complex"

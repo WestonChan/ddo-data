@@ -1,0 +1,10 @@
+name = "Aspect of Air"
+description = """
+Haste (3/Day)
+Air:Air"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: accessory aspect i"

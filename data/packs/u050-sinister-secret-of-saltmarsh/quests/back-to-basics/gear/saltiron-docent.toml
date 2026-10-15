@@ -1,0 +1,38 @@
+name = "Saltiron Docent"
+description = """
+With this Docent embedded, plates of Saltiron cover your body, mostly hidden
+by a fine coat."""
+drop_location = "Back to Basics, end chest"
+enhancement_bonus = 2
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 3
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = -1
+armor_type = "Docent"
+mithral_body = 5
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 53
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 3
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Back to Basics"

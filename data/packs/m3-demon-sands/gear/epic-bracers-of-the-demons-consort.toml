@@ -1,0 +1,38 @@
+name = "Epic Bracers of the Demon's Consort"
+description = """
+These jagged, spiked leather bracers are covered in barbs and wicked-looking
+blades that protrude from the wrists and forearms."""
+drop_location = "Epic version of Bracers of the Demon's Consort"
+icon = "Bracers_23a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Wrists"
+
+[[effect]]
+name = "Demonic Curse"
+
+[[effect]]
+name = "Demonic Shield"
+
+[[effect]]
+name = "Demonic Retribution"
+
+[[effect]]
+name = "Hidden Effect Demonic Drain"
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 9
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "green"

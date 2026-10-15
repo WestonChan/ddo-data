@@ -1,0 +1,62 @@
+name = "Legendary Splintermast"
+accepts_sentience = true
+description = "This broken shard of a wrecked ship seeks out enemies to take its revenge."
+drop_location = "Under the Cover of Darkness, end chest, or Legendary version of Epic Splintermast"
+enhancement_bonus = 15
+icon = "Dart_1d"
+item_category = "Weapon"
+item_type = "Dart"
+material = "Flametouched Iron"
+minimum_level = 30
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Bleeding 6"
+
+[[effect]]
+name = "Tidal 6"
+
+[[effect]]
+name = "Crushing Tsunami"
+
+[[effect]]
+name = "Ghostbane 6"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[effect]]
+name = "Concentrated Corrosive Salt"
+
+[[effect]]
+name = "Returning"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest, or legendary version of epic splintermast"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Cover of Darkness"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 5.0
+handedness = "Thrown"
+weapon_type = "Dart"

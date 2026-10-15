@@ -1,0 +1,170 @@
+name = "Epic Might of the Abishai"
+icon = "MightOfTheAbishai"
+
+[[item]]
+name = "Epic Belt of the Black Abishai"
+
+[[item]]
+name = "Epic Belt of the Blue Abishai"
+
+[[item]]
+name = "Epic Belt of the Green Abishai"
+
+[[item]]
+name = "Epic Belt of the Red Abishai"
+
+[[item]]
+name = "Epic Belt of the White Abishai"
+
+[[item]]
+name = "Epic Boots of Corrosion"
+
+[[item]]
+name = "Epic Charged Gauntlets"
+
+[[item]]
+name = "Epic Envenomed Cloak"
+
+[[item]]
+name = "Epic Helm of Frost"
+
+[[item]]
+name = "Epic Pendant of the Black Abishai"
+
+[[item]]
+name = "Epic Pendant of the Blue Abishai"
+
+[[item]]
+name = "Epic Pendant of the Green Abishai"
+
+[[item]]
+name = "Epic Pendant of the Red Abishai"
+
+[[item]]
+name = "Epic Pendant of the White Abishai"
+
+[[item]]
+name = "Epic Ring of the Black Abishai"
+
+[[item]]
+name = "Epic Ring of the Blue Abishai"
+
+[[item]]
+name = "Epic Ring of the Green Abishai"
+
+[[item]]
+name = "Epic Ring of the Red Abishai"
+
+[[item]]
+name = "Epic Ring of the White Abishai"
+
+[[item]]
+name = "Epic Scorched Bracers"
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Sheltering"
+value = 10
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Natural Armor"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Spell DCs"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "NaturalArmor"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Sheltering"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Natural Armor"
+value = 8
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "All Ability Scores"
+value = 2
+
+[[tier.effect]]
+bonus_type = "Profane"
+effect = "Spell DCs"
+value = 2
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "PRR"
+extra_types = ["MRR"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "NaturalArmor"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "AbilityBonus"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Profane"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]

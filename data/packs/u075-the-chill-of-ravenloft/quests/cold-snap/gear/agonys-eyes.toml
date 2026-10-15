@@ -1,0 +1,36 @@
+name = "Agony's Eyes"
+description = """
+On bringing these goggles over your eyes, you see a flash of a memory: Wasting
+away in the cold, then coming to in a Form distinctly unlike your own."""
+drop_location = "Cold Snap, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 8
+slot = "Goggles"
+
+[[effect]]
+name = "Soundproof"
+
+[[effect]]
+name = "Listen"
+bonus_type = "Competence"
+value = 10
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"

@@ -1,0 +1,56 @@
+name = "Morningstar of the Heretic"
+description = """
+This morningstar was wielded by a once-great Cardinal of the Silver Flame, who
+was disgraced after his dealings with the Lords of Dust were exposed."""
+drop_location = "The Crypt of Gerard Dryden, End chest"
+enhancement_bonus = 2
+icon = "Morningstar_1"
+item_category = "Weapon"
+item_type = "Morningstar"
+material = "Steel"
+minimum_level = 2
+slot = "Main Hand"
+
+[[clickie]]
+name = "Doom"
+clickie = "Doom"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Bodyfeeder"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Doom"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crypt of Gerard Dryden"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Morningstar"

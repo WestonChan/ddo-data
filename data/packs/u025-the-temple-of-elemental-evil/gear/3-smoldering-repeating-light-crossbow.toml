@@ -1,0 +1,109 @@
+name = "+3 Smoldering Repeating Light Crossbow"
+drop_location = "Temple of Elemental Evil Part One, and Temple of Elemental Evil Part Two any chest"
+enhancement_bonus = 3
+icon = "RepeatingLightCrossbow_6"
+is_legacy = true
+item_category = "Weapon"
+item_type = "Repeating Light Crossbow"
+material = "Steel"
+minimum_level = 7
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[socket]]
+slot = "upgrade: tier 1"
+
+[[socket.option]]
+name = "Maiming and Fiery Detonation"
+description = """
+Maiming: This weapon has a twisted haft or grip and spikes along its blade,
+head, or point. Whenever you score a critical hit with this weapon it deals an
+amount of extra untyped damage depending on its critical multiplier: x2 - 1 to 6,
+x3 - 2 to 12, x4 - 3 to 18.
+Fiery Detonation: This weapon is imbued with a fiery wrath. On an attack roll of 20
+which is confirmed as a critical hit this burning power will be released, dealing
+damage to the target and all enemies near it for 15d6 fire damage. A successful
+Fortitude save (DC 39) reduces this by half."""
+min_level = 7
+
+[[socket.option.modifier]]
+bonus_type = "Enhancement"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    6,
+    6,
+    6,
+    6,
+]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket.option.modifier]]
+bonus_type = "Enhancement"
+dice_damage = "Fire"
+dice_number = [15]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Flaming Blast and a Purple Augment slot."
+description = """
+Flaming Blast: A flaming blast weapon is sheathed in fire. Critical hits
+with this weapon deal an additional 1 to 10 fire damage for weapons with a
+x2 critical multiplier, 2 to 20 for a x3 critical multiplier, and 3 to 30 for
+a x4 multiplier. Additionally, if you roll a 20 when attacking and confirm the
+critical hit, the weapon blasts your target, doing 4 to 24 more fire damage."""
+min_level = 7
+
+[[socket.option.grant]]
+slot = "purple"
+
+[[socket.option.modifier]]
+bonus_type = "Enhancement"
+dice_damage = "Fire"
+dice_number = [
+    0,
+    0,
+    1,
+    2,
+    3,
+    4,
+]
+dice_sides = [
+    0,
+    0,
+    10,
+    10,
+    10,
+    10,
+]
+effect_type = "WeaponOtherDamageBonus"
+targets = ["All"]
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Repeating Light Crossbow"

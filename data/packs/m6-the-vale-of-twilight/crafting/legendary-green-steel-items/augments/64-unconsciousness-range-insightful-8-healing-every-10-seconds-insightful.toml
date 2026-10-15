@@ -1,0 +1,40 @@
+name = "+64 Unconsciousness Range (Insightful), 8 healing every 10 seconds (Insightful)"
+description = "Material/Opposition: +64 Unconsciousness Range (Insightful), 8 healing every 10 seconds (Insightful)"
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Opposition"""
+
+[[effect]]
+name = "Unconsciousness Range"
+bonus_type = "Insight"
+value = -64
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [-64]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Unconsciousness Range"
+effect_type = "UnconsciousRange"
+
+[[note]]
+kind = "augment"
+original_name = "+64 Unconsciousness Range (Insightful), 16 healing every 10 seconds (Insightful)"
+field = "description"
+upstream = "Material/Opposition: +64 Unconsciousness Range (Insightful), 16 healing every 10 seconds (Insightful)"
+reason = "The wiki's Legendary Green Steel tier 2 positive equipment heals 8 every 10 seconds."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_2"
+read = "2026-09-30"
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "+64 Unconsciousness Range (Insightful), 16 healing every 10 seconds (Insightful)"
+reason = "The wiki's Legendary Green Steel tier 2 positive equipment heals 8 every 10 seconds."
+url = "https://ddowiki.com/page/Legendary_Green_Steel_items/Tier_2"
+read = "2026-09-30"
+
+[[slot]]
+slot = "crafting: equipment tier 2"

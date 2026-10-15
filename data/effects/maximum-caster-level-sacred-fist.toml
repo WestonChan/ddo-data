@@ -1,0 +1,2 @@
+name = "Maximum Caster Level (Sacred Fist)"
+verbose_name_template = "Maximum Caster Level +{1} (Sacred Fist)"

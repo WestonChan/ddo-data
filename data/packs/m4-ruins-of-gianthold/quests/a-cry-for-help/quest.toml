@@ -1,0 +1,25 @@
+name = "A Cry for Help"
+bestowed_by = "Walk-up"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "Rakshasa Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/A_Cry_for_Help"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 24

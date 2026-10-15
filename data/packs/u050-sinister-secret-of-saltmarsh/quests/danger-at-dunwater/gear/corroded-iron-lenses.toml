@@ -1,0 +1,27 @@
+name = "Corroded Iron Lenses"
+description = "Salt and sea have done their work on these old frames."
+drop_location = "Danger at Dunwater, end chest"
+icon = "Goggles_2"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 3
+slot = "Goggles"
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 53
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Danger at Dunwater"

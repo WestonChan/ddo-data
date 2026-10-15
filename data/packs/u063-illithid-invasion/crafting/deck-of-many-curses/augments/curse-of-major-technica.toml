@@ -1,0 +1,21 @@
+name = "Curse of Major Technica"
+description = "+2 Fortune Bonus to Rune Arm DCs"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Rune Arm DC"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Rune Arm DC"
+effect_type = "TacticalDC"
+targets = ["Rune Arm"]
+
+[[slot]]
+slot = "crafting: deck curse"

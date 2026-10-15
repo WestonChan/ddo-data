@@ -1,0 +1,185 @@
+[[row]]
+name = "Unbreakable: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "Unbreakable"
+menu = "Sinister Secret of Saltmarsh"
+set = "Unbreakable"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Unbreakable: Constitution: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Unbreakable: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "Unbreakable"
+menu = "Sinister Secret of Saltmarsh"
+set = "Unbreakable"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Unbreakable: Dexterity: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Unbreakable: +10 Healing Amplification"
+description = """
++10 Healing Amplification
+Rare: +2 MRR"""
+icon = "Unbreakable"
+menu = "Sinister Secret of Saltmarsh"
+set = "Unbreakable"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "HealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Unbreakable: Healing Amplification: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Unbreakable: +10 Repair Amplification"
+description = """
++10 Repair Amplification
+Rare: +2 PRR"""
+icon = "Unbreakable"
+menu = "Sinister Secret of Saltmarsh"
+set = "Unbreakable"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Stacking"
+effect_type = "RepairAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Unbreakable: Repair Amplification: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Unbreakable: +20 Negative Amplification"
+description = """
++20 Negative Amplification
+Rare: +2 PRR"""
+icon = "Unbreakable"
+menu = "Sinister Secret of Saltmarsh"
+set = "Unbreakable"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect_type = "NegativeHealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Unbreakable: Negative Amplification: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Unbreakable: +3 MRR"
+description = """
++3 Magical Resistance rating
+Rare: +2 PRR"""
+icon = "Unbreakable"
+menu = "Sinister Secret of Saltmarsh"
+set = "Unbreakable"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Unbreakable: MRR: PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Unbreakable: +3 PRR"
+description = """
++3 Physical Resistance rating
+Rare: +2 MRR"""
+icon = "Unbreakable"
+menu = "Sinister Secret of Saltmarsh"
+set = "Unbreakable"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Unbreakable: PRR: MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Unbreakable: +50% Melee Threat Increase"
+description = """
++50% Melee Threat Increase
+Rare: +2 PRR"""
+icon = "Unbreakable"
+menu = "Sinister Secret of Saltmarsh"
+set = "Unbreakable"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Stacking"
+effect_type = "ThreatBonusMelee"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Unbreakable: Melee Threat Increase: PRR"
+effect_type = "PRR"
+is_rare = true

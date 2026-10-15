@@ -1,0 +1,4 @@
+name = "Fire Spell Critical Damage"
+category = "magical"
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Fire Spell Critical Damage +{1}"

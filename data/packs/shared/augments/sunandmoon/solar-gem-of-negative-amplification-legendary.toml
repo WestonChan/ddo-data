@@ -1,0 +1,35 @@
+name = "Solar Gem of Negative Amplification (Legendary)"
+description = """
++30 Artifact Bonus to Negative Healing Amplification.
+Drops in: Secrets of the Red Wizards, end chest
+Special Delivery, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Negative Healing Amplification"
+bonus_type = "Artifact"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Artifact"
+effect = "Negative Healing Amplification"
+effect_type = "NegativeHealingAmplification"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secrets of the Red Wizards"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"

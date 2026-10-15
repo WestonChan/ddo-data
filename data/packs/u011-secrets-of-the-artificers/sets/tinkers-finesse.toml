@@ -1,0 +1,63 @@
+name = "Tinker's Finesse"
+
+[[item]]
+name = "Tinker's Goggles"
+
+[[item]]
+name = "Tinker's Gloves"
+
+[[note]]
+kind = "set_bonus"
+field = "icon"
+upstream = "TinkersFinesse"
+reason = "DDOBuilderV2's SetBonusImages folder has no TinkersFinesse.png."
+url = "Output/DataFiles/SetBonusImages"
+read = "2026-10-07"
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "True Seeing"
+reason = "The wiki describes the 2-piece effect differently."
+url = "https://ddowiki.com/page/Named_item_sets"
+read = "2026-10-02"
+qualifier = "equipped_count 2"
+
+[[tier]]
+equipped_count = 2
+description = "True Seeing; +5 to hit and +8 damage on sneak-attack-qualifying attacks."
+
+[[tier.effect]]
+effect = "True Seeing"
+
+[[tier.effect]]
+bonus_type = "Equipment"
+effect = "Sneak Attack Hit"
+value = 5
+
+[[tier.effect]]
+bonus_type = "Equipment"
+effect = "Sneak Attack Damage"
+value = 8
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect = "Sneak Attack Hit"
+effect_type = "TrueSeeing"
+targets = ["All"]
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Equipment"
+effect = "Sneak Attack Hit"
+effect_type = "SneakAttackAttack"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus_type = "Equipment"
+effect = "Sneak Attack Damage"
+effect_type = "SneakAttackDamage"

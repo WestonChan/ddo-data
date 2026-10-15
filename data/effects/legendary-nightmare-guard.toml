@@ -1,0 +1,3 @@
+name = "Legendary Nightmare Guard"
+description_template = "On being hit or missed, this item has a chance to attempt to fear your enemy, ripping the life from them as if they were struck with a Phantasmal Killer spell. Enemies must make a DC 100 Will save versus the Fear or a DC 100 Fortitude save versus Death or be slain. Even if they make their save versus Death, they may still be feared."
+verbose_name_template = "Legendary Nightmare Guard"

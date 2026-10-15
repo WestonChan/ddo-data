@@ -1,0 +1,52 @@
+name = "Outburst, the Electric End"
+accepts_sentience = true
+description = """
+A wicked blade with the unbound power of lightning. Better in your hands than
+the Balor's."""
+drop_location = "Fire Over Morgrave, end chest"
+enhancement_bonus = 15
+icon = "Greatsword_1i"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Electricity"
+minimum_level = 32
+slot = "Main Hand"
+
+[[effect]]
+name = "Legendary Electric Storm"
+
+[[effect]]
+name = "Sovereign Lightning Strike"
+
+[[effect]]
+name = "Stormreaver's Thunderclap"
+
+[[effect]]
+name = "Legendary Slicing Winds"
+
+[[socket]]
+slot = "crafting: planar searing"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Fire Over Morgrave"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 6
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "Two-handed"
+weapon_type = "Great Sword"

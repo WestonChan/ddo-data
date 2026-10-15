@@ -1,0 +1,96 @@
+[[row]]
+name = "The Inevitable Grave: +1 Intelligence"
+description = """
++1 Intelligence
+Rare: +2 MRR"""
+icon = "TheInevitableGrave"
+menu = "Ravenloft"
+set = "The Inevitable Grave"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Intelligence"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Inevitable Grave: Intelligence: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "The Inevitable Grave: +20 Negative Healing Amplification"
+description = """
++20 Negative Healing Amplification
+Rare: +2 PRR"""
+icon = "TheInevitableGrave"
+menu = "Ravenloft"
+set = "The Inevitable Grave"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Stacking"
+effect_type = "NegativeHealingAmplification"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Inevitable Grave: Negative Healing Amplification: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Inevitable Grave: +3 PRR"
+description = """
++3 PRR
+Rare: +2 MRR"""
+icon = "TheInevitableGrave"
+menu = "Ravenloft"
+set = "The Inevitable Grave"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "PRR"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Inevitable Grave: PRR: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "The Inevitable Grave: +9 Negative/Poison Spell Power"
+description = """
++9 Negative/Poison spell power
+Rare: +4 Universal spell power"""
+icon = "TheInevitableGrave"
+menu = "Ravenloft"
+set = "The Inevitable Grave"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Stacking"
+effect_type = "SpellPower"
+targets = [
+    "Negative",
+    "Poison",
+]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Stacking"
+display_name = "The Inevitable Grave: Negative Spell Power: Rare +4 Universal Spell Power"
+effect_type = "UniversalSpellPower"
+is_rare = true

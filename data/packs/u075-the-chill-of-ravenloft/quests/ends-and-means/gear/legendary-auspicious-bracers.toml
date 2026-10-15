@@ -1,0 +1,41 @@
+name = "Legendary Auspicious Bracers"
+description = """
+Charms of good fortune have been worked into the surface of these bracers. Do
+they work? Time will tell."""
+drop_location = "Ends and Means, optional chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 34
+slot = "Wrists"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 22
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "optional chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ends and Means"

@@ -1,0 +1,29 @@
+name = "Symbol of the Shining Sun"
+description = """
+This golden amulet is the width of a man's fist, and is in the shape of a perfect,
+circular sun, with twelve spokes emerging at regular intervals around the periphery."""
+drop_location = "Eveningstar, Turn in 5 Commendations: Clerics of the Amaunator Commendation: Clerics of Amaunator : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Clerics of Amaunator. You can exchange it in Eveningstar for powerful equipment."
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 20
+slot = "Neck"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 7
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Concentration"
+bonus_type = "Competence"
+value = 15
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

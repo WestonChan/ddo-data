@@ -1,0 +1,10 @@
+name = "Legendary Conditioning"
+description_template = "You have a +{1}% Legendary bonus to Maximum Hit Points."
+home_bonus_type = "Legendary"
+verbose_name_template = "Legendary Conditioning +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Maximum Hit Points"

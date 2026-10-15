@@ -1,0 +1,10 @@
+name = "Vengeful"
+description = """
+When its wielder is hit in battle, this weapon has a 10% chance to cause him or her
+to become full of anger and go into a Rage."""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 1
+
+[[slot]]
+slot = "crafting: cannith weapon prefix"

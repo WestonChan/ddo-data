@@ -1,0 +1,62 @@
+name = "Arcing Sky (Level 13)"
+description = "Sparks dance across the surface of this armament."
+drop_location = "Gianthold Tor, Blue Dragon"
+icon = "RuneArm_1d"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 13
+slot = "Runearm"
+
+[[clickie]]
+name = "Electrical Blast"
+clickie = "Electrical Blast"
+
+[[effect]]
+name = "Maximum Charge Tier IV"
+
+[[effect]]
+name = "Rune Arm Imbue - Electrical III"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Inherent"
+value = 5
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "ItemClickie"
+targets = [
+    "Electrical Blast",
+    "Unknown",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+chest = "blue dragon"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

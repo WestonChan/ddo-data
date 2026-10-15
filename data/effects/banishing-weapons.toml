@@ -1,0 +1,3 @@
+name = "Banishing Weapons"
+description_template = "While wearing this item, your melee and ranged weapons gain Vorpal Effect: In addition, on an attack roll of 20 which is confirmed as a critical hit this weapon will banish a creature from this plan of existence. Powerful creatures may resist the vorpal effect until sufficiently wounded."
+verbose_name_template = "Banishing Weapons"

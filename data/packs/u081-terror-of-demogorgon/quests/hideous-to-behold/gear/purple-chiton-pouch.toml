@@ -1,0 +1,40 @@
+name = "Purple Chiton Pouch"
+description = """
+Filled with bits of a Purple Worm's armor, this Eldritch pouch amplifies the
+contents' resilience."""
+drop_location = "Hideous to Behold, end chest"
+icon = "Trinket_110"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 11
+slot = "Trinket"
+
+[[effect]]
+name = "Power in Pact"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Profane Lifeforce"
+bonus_type = "Profane"
+value = 20
+
+[[socket]]
+slot = "crafting: nearly complete: insightful ability score (heroic)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Hideous to Behold"

@@ -1,0 +1,4 @@
+name = "Carrying Capacity"
+description_template = "You gain a {1} %b1 Bonus to Carrying Capacity, increasing your Carrying Capacity as if you had an additional {1} Strength."
+home_bonus_type = "Enhancement"
+verbose_name_template = "Carrying Capacity +{1}"

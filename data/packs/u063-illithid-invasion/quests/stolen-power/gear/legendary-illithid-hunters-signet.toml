@@ -1,0 +1,42 @@
+name = "Legendary Illithid Hunter's Signet"
+description = """
+The signet ring of a powerful Illithid hunter whose zeal took them one step
+further than they could manage. Perhaps you will have better fortune."""
+drop_location = "Stolen Power, end chest"
+icon = "Ring_16"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 32
+slot = "Ring"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Force Absorption"
+bonus_type = "Enhancement"
+value = 16
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 12
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Stolen Power"

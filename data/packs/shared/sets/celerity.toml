@@ -1,0 +1,64 @@
+name = "Celerity"
+icon = "Celerity"
+is_filigree_set = true
+
+[[note]]
+kind = "set_tier"
+field = "description"
+upstream = "Permanent Haste spell"
+reason = "The wiki describes the 3-piece effect differently."
+url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-02"
+qualifier = "equipped_count 3"
+
+[[note]]
+kind = "set_tier_bonus"
+field = "remove"
+upstream = 32
+reason = "The wiki grants attack speed only at three pieces, not movement speed."
+url = "https://ddowiki.com/page/Sentient_Weapon/Filigrees"
+read = "2026-10-02"
+qualifier = "equipped_count 3, Movement Speed / Enhancement"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "+2 Doublestrike and Doubleshot"
+
+[[tier.modifier]]
+amount_type = "Stacks"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "Doublestrike"
+extra_types = ["Doubleshot"]
+
+[[tier]]
+equipped_count = 3
+description = "Permanent Haste: 15% melee and ranged attack speed."
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Melee Attack Speed"
+value = 15
+
+[[tier.effect]]
+bonus_type = "Enhancement"
+effect = "Ranged Attack Speed"
+value = 15
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [32]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [15]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect_type = "Weapon_Alacrity"
+targets = ["All"]

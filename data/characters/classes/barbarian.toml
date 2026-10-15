@@ -1,0 +1,375 @@
+name = "Barbarian"
+alignments = [
+    "Neutral Good",
+    "True Neutral",
+    "Chaotic Neutral",
+    "Chaotic Good",
+]
+bab = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+description = """
+A Barbarian is a warrior who has special powers when enraged and
+specializes in dealing heavy damage. Barbarians wear less armor than
+fighters or paladins, but have more hit points and some innate damage
+reduction. Uncanny Dodge allows them to have a high dodge chance and
+excellent Reflex saves in short bursts. While many Barbarian abilities
+are geared towards melee combat, they can also make passable ranged
+combatants should the need arise. A Barbarian's primary attributes are
+Strength and Constitution."""
+fortitude = "good"
+hit_points = 12
+large_icon = "Barbarian"
+reflex = "poor"
+skill_points = 4
+small_icon = "Barbarian_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+will = "poor"
+
+[[auto_buy_skill]]
+skill = "Intimidate"
+
+[[auto_buy_skill]]
+skill = "Balance"
+
+[[auto_feat]]
+level = 1
+feat = "Dismiss Rage"
+
+[[auto_feat]]
+level = 1
+feat = "Fast Movement (Barbarian)"
+
+[[auto_feat]]
+level = 1
+feat = "Light Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Battle Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Falchion"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Great Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Great Club"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Great Sword"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Hand Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Heavy Pick"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Kukri"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Light Hammer"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Light Pick"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Longbow"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Longsword"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Maul"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Rapier"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Scimitar"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Shortbow"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Shortsword"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Throwing Axe"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Throwing Hammer"
+
+[[auto_feat]]
+level = 1
+feat = "Martial Weapon Proficiency: Warhammer"
+
+[[auto_feat]]
+level = 1
+feat = "Medium Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Rage"
+
+[[auto_feat]]
+level = 1
+feat = "Shield Proficiency (General)"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Club"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dart"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Heavy Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Crossbow"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Light Mace"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Morningstar"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Quarterstaff"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Sickle"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Throwing Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Unarmed"
+
+[[auto_feat]]
+level = 1
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 2
+feat = "Damage Reduction 3%"
+
+[[auto_feat]]
+level = 2
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 3
+feat = "Trap Sense (Barbarian)"
+
+[[auto_feat]]
+level = 3
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 4
+feat = "Uncanny Dodge"
+
+[[auto_feat]]
+level = 4
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 5
+feat = "Damage Reduction 1% Increase"
+
+[[auto_feat]]
+level = 5
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 6
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 7
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 8
+feat = "Damage Reduction 1% Increase"
+
+[[auto_feat]]
+level = 8
+feat = "Improved Uncanny Dodge"
+
+[[auto_feat]]
+level = 8
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 9
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 10
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 11
+feat = "Damage Reduction 1% Increase"
+
+[[auto_feat]]
+level = 11
+feat = "Greater Rage"
+
+[[auto_feat]]
+level = 11
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 12
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 13
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 14
+feat = "Damage Reduction 1% Increase"
+
+[[auto_feat]]
+level = 14
+feat = "Indomitable Will"
+
+[[auto_feat]]
+level = 14
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 15
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 16
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 17
+feat = "Damage Reduction 1% Increase"
+
+[[auto_feat]]
+level = 17
+feat = "Tireless Rage"
+
+[[auto_feat]]
+level = 17
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 18
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 19
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 20
+feat = "Damage Reduction 1% Increase"
+
+[[auto_feat]]
+level = 20
+feat = "Mighty Rage"
+
+[[auto_feat]]
+level = 20
+feat = "Wilderness Lore"
+
+[[skill]]
+skill = "Intimidate"
+
+[[skill]]
+skill = "Jump"
+
+[[skill]]
+skill = "Listen"
+
+[[skill]]
+skill = "Swim"

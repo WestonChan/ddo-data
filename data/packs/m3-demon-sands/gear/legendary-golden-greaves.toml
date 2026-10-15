@@ -1,0 +1,32 @@
+name = "Legendary Golden Greaves"
+description = "These gold-plated greaves are embossed with a boar's head sigil."
+drop_location = "Legendary version of Epic Golden Greaves"
+icon = "Boots_1a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 30
+slot = "Feet"
+
+[[effect]]
+name = "Speed"
+value = 30
+value2 = 15
+
+[[effect]]
+name = "Proof Against Disease"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "DR 15/-"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"

@@ -1,0 +1,30 @@
+name = "Rosemary's Ballad"
+bestowed_by = "Lily Hargrove"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "The Lost Gatekeepers"
+patron = "The Gatekeepers"
+zone = "Hargrove Family Farm"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Rosemary%27s_Ballad"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 32
+
+[[run]]
+tier = "legendary"
+level = 32

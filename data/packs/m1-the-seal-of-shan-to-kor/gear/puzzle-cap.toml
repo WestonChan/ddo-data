@@ -1,0 +1,19 @@
+name = "Puzzle Cap"
+description = """
+When placed in the correct configuration, these loose pieces of misshapen cloth
+magically formed an elaborate headpiece."""
+drop_location = "The Seal of Shan-To-Kor, End reward"
+icon = "Helmet_70"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 1
+slot = "Head"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 2
+
+[[source]]
+kind = "quest_chain"
+name = "The Seal of Shan-To-Kor"

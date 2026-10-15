@@ -1,0 +1,36 @@
+name = "Lionheart Ring"
+description = "Be brave, be valiant, and above all else - be kind."
+drop_location = "The Thornwright, End Chest"
+icon = "Ring_26a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 5
+slot = "Ring"
+
+[[effect]]
+name = "Stunning"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Minor Action Boost Enhancement"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Insight"
+value = 1
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Thornwright"

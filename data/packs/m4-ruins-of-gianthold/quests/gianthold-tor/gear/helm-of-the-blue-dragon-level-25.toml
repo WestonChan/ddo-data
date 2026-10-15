@@ -1,0 +1,20 @@
+name = "Helm of the Blue Dragon (Level 25)"
+description = "This helm is crafted in the likeness of a cunning blue dragon."
+drop_location = "Return to Gianthold Tor, Blue Dragon 's chest (Epic Elite)"
+icon = "Helmet_42a"
+item_category = "Clothing"
+material = "Blue Dragonscale"
+minimum_level = 25
+slot = "Head"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "blue dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

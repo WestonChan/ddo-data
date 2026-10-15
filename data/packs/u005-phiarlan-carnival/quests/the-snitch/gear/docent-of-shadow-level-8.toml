@@ -1,0 +1,66 @@
+name = "Docent of Shadow (level 8)"
+description = """
+This docent is as dark as the night sky and almost seems to crawl visibly with
+moving shadows. It boosts the power of its wearer's negative energy magic,
+and grants a measure of necromantic protection against enemy attacks."""
+drop_location = "The Night Revels, Turn in Docent of Shadow (level 4) \n and 80 Piece of Darkest Chocolate; obtained in the Graveyard mob slayer, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 30 Shadowy Caramel; obtained in The Kobolds' Newest Ringleader, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace 10 Pinch of Sinister Cinnamon; obtained in The Snitch and the Lich, Hayweird Foundry, or Getting Ahead in Lordsmarch Palace"
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 8
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 12
+armor_bonus = 1
+armor_type = "Docent"
+mithral_body = 5
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 54
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    8,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[note]]
+kind = "item_bonus"
+field = "value"
+reason = "The wiki Void Lore tier grants 13% Negative and Poison spell lore."
+url = "https://ddowiki.com/page/Item:Docent_of_Shadow_(level_8)"
+read = "2026-10-04"
+qualifier = "Negative and Poison Spell Lore / Equipment"
+
+[[source]]
+kind = "event"
+name = "The Night Revels"
+
+[[source]]
+chest = "the lich, hayweird foundry, or getting ahead in lordsmarch palace"
+kind = "quest"
+loot_type = "chest"
+name = "The Snitch"

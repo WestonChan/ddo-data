@@ -1,0 +1,42 @@
+name = "University Mage's Hat"
+description = """
+Though it may have lost some of its original luster, this form of hat never
+goes out of style in Sharn."""
+drop_location = "The Devils to Pay, End chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 18
+slot = "Head"
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 4
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 178
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 68
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 17
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Devils to Pay"

@@ -1,0 +1,37 @@
+name = "Legendary Belt of Sure Strikes"
+description = "May you strike true!"
+drop_location = "Rosemary's Ballad, End chest"
+icon = "Belt_1"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 29
+slot = "Waist"
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Quality"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rosemary's Ballad"

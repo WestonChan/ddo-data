@@ -1,0 +1,20 @@
+name = "Ram's Might"
+description_template = "You permanently benefit from the spell Ram's Might."
+home_bonus_type = "Size"
+verbose_name_template = "Ram's Might +2"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Size"
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Strength"
+
+[[bonus]]
+amount_from = 0
+bonus_type = "Size"
+constant = 2
+rounding = "down"
+scale = 1.0
+target = "Damage Bonus"

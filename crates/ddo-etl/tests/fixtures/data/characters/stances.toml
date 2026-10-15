@@ -1,0 +1,77 @@
+[[row]]
+name = "Two Weapon Fighting"
+auto_controlled = true
+description = "You are fighting with a weapon in each hand or with handwraps"
+group_name = "Auto"
+icon = "TwoWeaponFighting"
+
+[[row.requirement_group]]
+kind = "all"
+
+[[row.requirement_group.requirement]]
+items = ["One Handed"]
+req_type = "GroupMember"
+
+[[row.requirement_group.requirement]]
+items = ["One Handed"]
+req_type = "GroupMember2"
+
+[[row.requirement_group]]
+kind = "none_of"
+
+[[row.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Blight Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Winter Wolf"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Dire Bear"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[row.requirement_group.requirement]]
+items = ["Water Elemental"]
+req_type = "Stance"
+
+[[row]]
+name = "Two Handed Fighting"
+auto_controlled = true
+description = "You are fighting with a single weapon in both hands"
+group_name = "Auto"
+icon = "TwoHandedFighting"
+
+[[row.requirement]]
+items = ["Two Handed"]
+req_type = "GroupMember"
+
+[[row]]
+name = "Aura of Good"
+auto_controlled = true
+description = """
+An aura of holiness surrounds you while near a Paladin, granting a bonus
+to saves and Armor Class against evil creatures."""
+group_name = "Auto"
+icon = "AuraOfGood"
+
+[[row.requirement]]
+items = ["Paladin"]
+req_type = "BaseClassMinLevel"
+value = 1

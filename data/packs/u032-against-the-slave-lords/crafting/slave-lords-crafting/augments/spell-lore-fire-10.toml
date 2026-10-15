@@ -1,0 +1,21 @@
+name = "Spell Lore Fire +10"
+description = "Equipment bonus to spell critical chance"
+family = "Slavelords_Heroic"
+icon = "SlavelordsSuffix"
+min_level = 8
+
+[[effect]]
+name = "Fire Spell Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[slot]]
+slot = "crafting: slavelords suffix"

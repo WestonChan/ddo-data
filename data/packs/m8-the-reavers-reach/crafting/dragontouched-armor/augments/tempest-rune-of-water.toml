@@ -1,0 +1,12 @@
+name = "Tempest Rune of Water"
+description = """
+Crushing Wave Guard: This item stores the unstoppable force of the ocean's fury deep
+within. When the wearer of this item is successfully attacked in melee, this
+power occasionally comes to the surface, crushing enemies beneath a torrent of
+frigid water."""
+family = "Dragontouched_TempestRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: tempest rune"

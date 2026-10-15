@@ -1,0 +1,11 @@
+name = "Permanent Efficacy"
+description_template = "Passive: +20 Alchemical bonus to each Spell Power."
+home_bonus_type = "Alchemical"
+verbose_name_template = "Permanent Efficacy +20"
+
+[[bonus]]
+amount_from = 0
+constant = 20
+rounding = "down"
+scale = 1.0
+target = "Universal Spell Power"

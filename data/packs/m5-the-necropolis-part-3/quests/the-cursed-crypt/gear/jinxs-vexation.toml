@@ -1,0 +1,41 @@
+name = "Jinx's Vexation"
+description = """
+Maldetto's servant never grasped how to get the full power out of this mystical
+plate mail and never wondered why he always seemed to obey Maldetto's merest
+whim."""
+drop_location = "The Cursed Crypt, End chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 10
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 12
+armor_check_penalty = -2
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 60
+
+[[effect]]
+name = "Hidden Effect - Will Save -3"
+bonus_type = "Penalty"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Cursed Crypt"

@@ -5,8 +5,8 @@
         "amount_source": "owner",
         "bonus_type": "Quality",
         "effect": "Strength",
-        "effect_id": 1,
-        "id": 1460,
+        "effect_id": 4051823190149989,
+        "id": 4612064944572336,
         "line": {
           "bonus_type": "Quality",
           "bonuses": [
@@ -22,7 +22,7 @@
           ],
           "damage": [],
           "description": "Passive: +1 Quality bonus to Strength.",
-          "effect_id": 1,
+          "effect_id": 4051823190149989,
           "name": "Strength",
           "tier": null,
           "value": 1,
@@ -34,7 +34,7 @@
             "amount_source": "owner",
             "bonus_type": "Quality",
             "effect": "Strength",
-            "effect_id": 1,
+            "effect_id": 4051823190149989,
             "line": {
               "bonus_type": "Quality",
               "bonuses": [
@@ -50,7 +50,7 @@
               ],
               "damage": [],
               "description": "Passive: +1 Quality bonus to Strength.",
-              "effect_id": 1,
+              "effect_id": 4051823190149989,
               "name": "Strength",
               "tier": null,
               "value": 1,
@@ -64,6 +64,7 @@
         ],
         "name": "+1 Quality Strength",
         "scale": 1.0,
+        "slug": "1-quality-strength",
         "value": 1,
         "value2": null
       },
@@ -71,8 +72,8 @@
         "amount_source": "owner",
         "bonus_type": "Enhancement",
         "effect": "Strength",
-        "effect_id": 1,
-        "id": 1479,
+        "effect_id": 4051823190149989,
+        "id": 4315702330403950,
         "line": {
           "bonus_type": "Enhancement",
           "bonuses": [
@@ -88,7 +89,7 @@
           ],
           "damage": [],
           "description": "Passive: +15 Enhancement bonus to Strength.",
-          "effect_id": 1,
+          "effect_id": 4051823190149989,
           "name": "Strength",
           "tier": null,
           "value": 15,
@@ -100,7 +101,7 @@
             "amount_source": "owner",
             "bonus_type": "Enhancement",
             "effect": "Strength",
-            "effect_id": 1,
+            "effect_id": 4051823190149989,
             "line": {
               "bonus_type": "Enhancement",
               "bonuses": [
@@ -116,7 +117,7 @@
               ],
               "damage": [],
               "description": "Passive: +15 Enhancement bonus to Strength.",
-              "effect_id": 1,
+              "effect_id": 4051823190149989,
               "name": "Strength",
               "tier": null,
               "value": 15,
@@ -130,6 +131,7 @@
         ],
         "name": "+15 Strength",
         "scale": 1.0,
+        "slug": "15-strength",
         "value": 15,
         "value2": null
       },
@@ -137,8 +139,8 @@
         "amount_source": "owner",
         "bonus_type": "Enhancement",
         "effect": "Strength",
-        "effect_id": 1,
-        "id": 969,
+        "effect_id": 4051823190149989,
+        "id": 2820971925111537,
         "line": {
           "bonus_type": "Enhancement",
           "bonuses": [
@@ -154,7 +156,7 @@
           ],
           "damage": [],
           "description": "Passive: +15 Enhancement bonus to Strength.",
-          "effect_id": 1,
+          "effect_id": 4051823190149989,
           "name": "Strength",
           "tier": null,
           "value": 15,
@@ -166,7 +168,7 @@
             "amount_source": "owner",
             "bonus_type": "Enhancement",
             "effect": "Strength",
-            "effect_id": 1,
+            "effect_id": 4051823190149989,
             "line": {
               "bonus_type": "Enhancement",
               "bonuses": [
@@ -182,7 +184,7 @@
               ],
               "damage": [],
               "description": "Passive: +15 Enhancement bonus to Strength.",
-              "effect_id": 1,
+              "effect_id": 4051823190149989,
               "name": "Strength",
               "tier": null,
               "value": 15,
@@ -196,6 +198,7 @@
         ],
         "name": "+15 Strength (Enhancement)",
         "scale": 1.0,
+        "slug": "15-strength-enhancement",
         "value": 15,
         "value2": null
       }
@@ -210,15 +213,15 @@
   "default_value": null,
   "default_value2": null,
   "description_template": "Passive: {1} %b1 bonus to Strength.",
-  "id": 1,
+  "id": 4051823190149989,
   "items": {
     "items": [
       {
         "amount_source": "constant",
         "bonus_type": "Penalty",
         "effect": "Curse of Weakness",
-        "effect_id": 329,
-        "id": 454,
+        "effect_id": 2325010283110527,
+        "id": 385053013333972,
         "line": {
           "bonus_type": "Penalty",
           "bonuses": [
@@ -234,7 +237,7 @@
           ],
           "damage": [],
           "description": "Passive -1 Penalty to Strength. The minimum level required to equip this item is lower than normal due to this curse.",
-          "effect_id": 329,
+          "effect_id": 2325010283110527,
           "name": "Curse of Weakness",
           "tier": null,
           "value": -1,
@@ -246,7 +249,7 @@
             "amount_source": "constant",
             "bonus_type": "Penalty",
             "effect": "Curse of Weakness",
-            "effect_id": 329,
+            "effect_id": 2325010283110527,
             "line": {
               "bonus_type": "Penalty",
               "bonuses": [
@@ -262,7 +265,7 @@
               ],
               "damage": [],
               "description": "Passive -1 Penalty to Strength. The minimum level required to equip this item is lower than normal due to this curse.",
-              "effect_id": 329,
+              "effect_id": 2325010283110527,
               "name": "Curse of Weakness",
               "tier": null,
               "value": -1,
@@ -276,6 +279,7 @@
         ],
         "name": "-1 Quarterstaff of Lesser Halfling Bane",
         "scale": 1.0,
+        "slug": "1-quarterstaff-of-lesser-halfling-bane",
         "value": -1,
         "value2": null
       },
@@ -283,8 +287,8 @@
         "amount_source": "owner",
         "bonus_type": "Enhancement",
         "effect": "Strength",
-        "effect_id": 1,
-        "id": 495,
+        "effect_id": 4051823190149989,
+        "id": 4108751501711309,
         "line": {
           "bonus_type": "Enhancement",
           "bonuses": [
@@ -300,7 +304,7 @@
           ],
           "damage": [],
           "description": "Passive: +3 Enhancement bonus to Strength.",
-          "effect_id": 1,
+          "effect_id": 4051823190149989,
           "name": "Strength",
           "tier": null,
           "value": 3,
@@ -312,7 +316,7 @@
             "amount_source": "owner",
             "bonus_type": "Enhancement",
             "effect": "Strength",
-            "effect_id": 1,
+            "effect_id": 4051823190149989,
             "line": {
               "bonus_type": "Enhancement",
               "bonuses": [
@@ -328,7 +332,7 @@
               ],
               "damage": [],
               "description": "Passive: +3 Enhancement bonus to Strength.",
-              "effect_id": 1,
+              "effect_id": 4051823190149989,
               "name": "Strength",
               "tier": null,
               "value": 3,
@@ -343,7 +347,7 @@
             "amount_source": "owner",
             "bonus_type": "Insight",
             "effect": "Strength",
-            "effect_id": 1,
+            "effect_id": 4051823190149989,
             "line": {
               "bonus_type": "Insight",
               "bonuses": [
@@ -359,7 +363,7 @@
               ],
               "damage": [],
               "description": "Passive: +1 Insight bonus to Strength.",
-              "effect_id": 1,
+              "effect_id": 4051823190149989,
               "name": "Strength",
               "tier": null,
               "value": 1,
@@ -374,7 +378,7 @@
             "amount_source": "constant",
             "bonus_type": "Size",
             "effect": "Ram's Might",
-            "effect_id": 394,
+            "effect_id": 1398627491331761,
             "line": {
               "bonus_type": "Size",
               "bonuses": [
@@ -399,7 +403,7 @@
               ],
               "damage": [],
               "description": "You permanently benefit from the spell Ram's Might.",
-              "effect_id": 394,
+              "effect_id": 1398627491331761,
               "name": "Ram's Might",
               "tier": null,
               "value": 2,
@@ -413,6 +417,7 @@
         ],
         "name": "Agarta's Belt",
         "scale": 1.0,
+        "slug": "agartas-belt",
         "value": 3,
         "value2": null
       },
@@ -420,8 +425,8 @@
         "amount_source": "owner",
         "bonus_type": "Enhancement",
         "effect": "Strength",
-        "effect_id": 1,
-        "id": 580,
+        "effect_id": 4051823190149989,
+        "id": 7393741405643800,
         "line": {
           "bonus_type": "Enhancement",
           "bonuses": [
@@ -437,7 +442,7 @@
           ],
           "damage": [],
           "description": "Passive: +1 Enhancement bonus to Strength.",
-          "effect_id": 1,
+          "effect_id": 4051823190149989,
           "name": "Strength",
           "tier": null,
           "value": 1,
@@ -449,7 +454,7 @@
             "amount_source": "owner",
             "bonus_type": "Enhancement",
             "effect": "Strength",
-            "effect_id": 1,
+            "effect_id": 4051823190149989,
             "line": {
               "bonus_type": "Enhancement",
               "bonuses": [
@@ -465,7 +470,7 @@
               ],
               "damage": [],
               "description": "Passive: +1 Enhancement bonus to Strength.",
-              "effect_id": 1,
+              "effect_id": 4051823190149989,
               "name": "Strength",
               "tier": null,
               "value": 1,
@@ -479,6 +484,7 @@
         ],
         "name": "Anger's Gift",
         "scale": 1.0,
+        "slug": "angers-gift",
         "value": 1,
         "value2": null
       }
@@ -497,9 +503,8 @@
         "amount_source": "owner",
         "bonus_type": "Artifact",
         "effect": "Strength",
-        "effect_id": 1,
+        "effect_id": 4051823190149989,
         "equipped_count": 3,
-        "id": 250,
         "line": {
           "bonus_type": "Artifact",
           "bonuses": [
@@ -515,7 +520,7 @@
           ],
           "damage": [],
           "description": "Passive: +3 Artifact bonus to Strength.",
-          "effect_id": 1,
+          "effect_id": 4051823190149989,
           "name": "Strength",
           "tier": null,
           "value": 3,
@@ -527,7 +532,7 @@
             "amount_source": "owner",
             "bonus_type": "Artifact",
             "effect": "Strength",
-            "effect_id": 1,
+            "effect_id": 4051823190149989,
             "line": {
               "bonus_type": "Artifact",
               "bonuses": [
@@ -543,7 +548,7 @@
               ],
               "damage": [],
               "description": "Passive: +3 Artifact bonus to Strength.",
-              "effect_id": 1,
+              "effect_id": 4051823190149989,
               "name": "Strength",
               "tier": null,
               "value": 3,
@@ -557,7 +562,7 @@
         ],
         "name": "Brutal Blows (3)",
         "scale": 1.0,
-        "set_id": 211,
+        "set_id": 8789534611859326,
         "set_name": "Brutal Blows",
         "value": 3,
         "value2": null
@@ -566,9 +571,8 @@
         "amount_source": "owner",
         "bonus_type": "Quality",
         "effect": "Strength",
-        "effect_id": 1,
+        "effect_id": 4051823190149989,
         "equipped_count": 2,
-        "id": 81,
         "line": {
           "bonus_type": "Quality",
           "bonuses": [
@@ -584,7 +588,7 @@
           ],
           "damage": [],
           "description": "Passive: +1 Quality bonus to Strength.",
-          "effect_id": 1,
+          "effect_id": 4051823190149989,
           "name": "Strength",
           "tier": null,
           "value": 1,
@@ -596,7 +600,7 @@
             "amount_source": "owner",
             "bonus_type": "Quality",
             "effect": "Strength",
-            "effect_id": 1,
+            "effect_id": 4051823190149989,
             "line": {
               "bonus_type": "Quality",
               "bonuses": [
@@ -612,7 +616,7 @@
               ],
               "damage": [],
               "description": "Passive: +1 Quality bonus to Strength.",
-              "effect_id": 1,
+              "effect_id": 4051823190149989,
               "name": "Strength",
               "tier": null,
               "value": 1,
@@ -626,7 +630,7 @@
         ],
         "name": "Captain's Set (2)",
         "scale": 1.0,
-        "set_id": 73,
+        "set_id": 5345236199686762,
         "set_name": "Captain's Set",
         "value": 1,
         "value2": null
@@ -635,9 +639,8 @@
         "amount_source": "owner",
         "bonus_type": "Artifact",
         "effect": "All Ability Scores",
-        "effect_id": 2012,
+        "effect_id": 4181448760937974,
         "equipped_count": 3,
-        "id": 280,
         "line": {
           "bonus_type": "Artifact",
           "bonuses": [
@@ -645,8 +648,9 @@
               "amount_source": "owner",
               "bonus_type": "Artifact",
               "group": {
-                "id": 2012,
-                "name": "All Ability Scores"
+                "id": 4181448760937974,
+                "name": "All Ability Scores",
+                "slug": "all-ability-scores"
               },
               "scale": 1.0,
               "stat": "Strength",
@@ -657,8 +661,9 @@
               "amount_source": "owner",
               "bonus_type": "Artifact",
               "group": {
-                "id": 2012,
-                "name": "All Ability Scores"
+                "id": 4181448760937974,
+                "name": "All Ability Scores",
+                "slug": "all-ability-scores"
               },
               "scale": 1.0,
               "stat": "Dexterity",
@@ -669,8 +674,9 @@
               "amount_source": "owner",
               "bonus_type": "Artifact",
               "group": {
-                "id": 2012,
-                "name": "All Ability Scores"
+                "id": 4181448760937974,
+                "name": "All Ability Scores",
+                "slug": "all-ability-scores"
               },
               "scale": 1.0,
               "stat": "Constitution",
@@ -680,7 +686,7 @@
           ],
           "damage": [],
           "description": "+1 Artifact bonus to all Ability Scores",
-          "effect_id": 2012,
+          "effect_id": 4181448760937974,
           "name": "All Ability Scores",
           "tier": null,
           "value": 1,
@@ -692,7 +698,7 @@
             "amount_source": "owner",
             "bonus_type": "Artifact",
             "effect": "All Ability Scores",
-            "effect_id": 2012,
+            "effect_id": 4181448760937974,
             "line": {
               "bonus_type": "Artifact",
               "bonuses": [
@@ -700,8 +706,9 @@
                   "amount_source": "owner",
                   "bonus_type": "Artifact",
                   "group": {
-                    "id": 2012,
-                    "name": "All Ability Scores"
+                    "id": 4181448760937974,
+                    "name": "All Ability Scores",
+                    "slug": "all-ability-scores"
                   },
                   "scale": 1.0,
                   "stat": "Strength",
@@ -712,8 +719,9 @@
                   "amount_source": "owner",
                   "bonus_type": "Artifact",
                   "group": {
-                    "id": 2012,
-                    "name": "All Ability Scores"
+                    "id": 4181448760937974,
+                    "name": "All Ability Scores",
+                    "slug": "all-ability-scores"
                   },
                   "scale": 1.0,
                   "stat": "Dexterity",
@@ -724,8 +732,9 @@
                   "amount_source": "owner",
                   "bonus_type": "Artifact",
                   "group": {
-                    "id": 2012,
-                    "name": "All Ability Scores"
+                    "id": 4181448760937974,
+                    "name": "All Ability Scores",
+                    "slug": "all-ability-scores"
                   },
                   "scale": 1.0,
                   "stat": "Constitution",
@@ -735,7 +744,7 @@
               ],
               "damage": [],
               "description": "+1 Artifact bonus to all Ability Scores",
-              "effect_id": 2012,
+              "effect_id": 4181448760937974,
               "name": "All Ability Scores",
               "tier": null,
               "value": 1,
@@ -749,7 +758,7 @@
         ],
         "name": "Devils' Infernal Dance (3)",
         "scale": 1.0,
-        "set_id": 237,
+        "set_id": 7096917509038214,
         "set_name": "Devils' Infernal Dance",
         "value": 1,
         "value2": null
@@ -757,6 +766,7 @@
     ],
     "total": 37
   },
+  "slug": "strength",
   "tier": null,
   "verbose_name_template": "%b1 Strength +{1}",
   "wiki_url": null

@@ -1,0 +1,19 @@
+name = "Peridot Ring"
+description = "A silver ring with a faceted green stone."
+drop_location = "Garrison's Missing Pack, Shaman Shiressis 's chest"
+icon = "Ring_10"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Ring"
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 2
+
+[[source]]
+chest = "shaman shiressis 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Garrison's Missing Pack"

@@ -1,0 +1,28 @@
+name = "Lunar Gem of Magical Protection (Epic)"
+description = """
++20 Profane Bonus to Magical Resistance Rating.
+Drops in: Toil and Trouble, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Magical Resistance Rating"
+bonus_type = "Profane"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Profane"
+effect = "Magical Resistance Rating"
+effect_type = "MRR"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Toil and Trouble"

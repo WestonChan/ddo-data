@@ -1,0 +1,52 @@
+name = "Thunder-Forged Alloy Scepter"
+description = "A scepter forged from metals long in proximity to dragons under Thunderholme."
+drop_location = "Magma Forge, Crafted from various ingredients"
+enhancement_bonus = 9
+icon = "Club_9"
+item_category = "Weapon"
+item_type = "Club"
+material = "Adamantine"
+minimum_level = 22
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "crafting: thunderforged tier 1"
+
+[[source]]
+kind = "crafting_system"
+name = "Thunder-Forged"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 4.6
+handedness = "One-handed"
+weapon_type = "Club"

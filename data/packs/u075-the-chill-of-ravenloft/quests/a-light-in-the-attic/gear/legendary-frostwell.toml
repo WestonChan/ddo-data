@@ -1,0 +1,58 @@
+name = "Legendary Frostwell"
+description = "A vessel for the biting cold of the wind whipping through the snowy streets."
+drop_location = "A Light in the Attic, end chest"
+icon = "Orb_1f"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Wood"
+minimum_level = 34
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 34
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 15
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Quality"
+value = 39
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Equipment"
+value = 10
+
+[[socket]]
+slot = "lamordia: melancholic (weapon)"
+
+[[socket]]
+slot = "lamordia: dolorous (weapon)"
+
+[[socket]]
+slot = "purple"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"
+
+[[weapon]]
+attack_modifier = "Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

@@ -161,6 +161,35 @@ fn drops_a_wiki_augment_maetrim_carries_in_that_family_and_reports_it() {
     );
 }
 
+fn assert_colliding_augment_variants_export(db: &Connection, scenario: &str) {
+    let output = std::env::temp_dir().join(format!("ddo-wiki-augment-variant-{}-{scenario}", std::process::id()));
+    ddo_etl::tree::export_database(db, &output).unwrap();
+    let mut select = db
+        .prepare(
+            "SELECT name, slug, variant FROM augments WHERE name IN ('Storm''s Bulwark', 'Storms Bulwark') ORDER BY id",
+        )
+        .unwrap();
+    let rows = select
+        .query_map([], |row| Ok((row.get::<_, String>(0)?, row.get::<_, String>(1)?, row.get::<_, String>(2)?)))
+        .unwrap()
+        .collect::<rusqlite::Result<Vec<_>>>()
+        .unwrap();
+    assert_eq!(rows.len(), 2);
+    for (name, slug, variant) in rows {
+        assert!(!variant.is_empty());
+        assert_eq!(slug, format!("{}-{}", ddo_etl::tree::slug(&name), ddo_etl::tree::slug(&variant)));
+        let path = walkdir::WalkDir::new(&output)
+            .into_iter()
+            .map(Result::unwrap)
+            .find(|entry| entry.path().file_stem().is_some_and(|stem| stem == slug.as_str()))
+            .unwrap()
+            .into_path();
+        let file: toml::Value = toml::from_str(&std::fs::read_to_string(path).unwrap()).unwrap();
+        assert_eq!(file["variant"].as_str(), Some(variant.as_str()));
+    }
+    std::fs::remove_dir_all(output).unwrap();
+}
+
 #[test]
 fn writes_a_wiki_augment_whose_name_maetrim_uses_only_in_another_family() {
     let wiki = parsed_edited_augments(|s| {
@@ -170,6 +199,7 @@ fn writes_a_wiki_augment_whose_name_maetrim_uses_only_in_another_family() {
     let (db, report) = built_db_with(&wiki).unwrap();
     assert_eq!(augment_count(&db, "name = 'Storm''s Bulwark' AND family = 'Ruby' AND provenance = 'wiki'"), 1);
     assert_eq!((report.wiki_augment_written_count, report.wiki_augment_superseded_count), (2, 0));
+    assert_colliding_augment_variants_export(&db, "family");
 }
 
 #[test]
@@ -179,6 +209,7 @@ fn writes_a_probable_duplicate_of_a_maetrim_augment_and_reports_both_names() {
     let (db, report) = built_db_with(&wiki).unwrap();
     assert_eq!(augment_count(&db, "name = 'Storms Bulwark' AND provenance = 'wiki'"), 1);
     assert_eq!((report.wiki_augment_written_count, report.wiki_augment_probable_duplicate_count), (2, 1));
+    assert_colliding_augment_variants_export(&db, "name");
     assert_eq!(
         report.probable_duplicate_wiki_augments,
         [ProbableDuplicateWikiEntry { name: "Storms Bulwark".into(), maetrim_name: "Storm's Bulwark".into() }]

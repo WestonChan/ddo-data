@@ -1,0 +1,46 @@
+name = "Solar Gem of Cruelty (Legendary)"
+description = """
++15% Artifact Bonus to Damage to helpless enemies.
+Drops in: Magic of Myth Drannor (Legendary), Elite and True Elite
+Oghma's Song, end chest (rare)
+A Miner Sacrifice, end chest
+The Chill of Ravenloft (Legendary), any difficulty"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Helpless Damage"
+bonus_type = "Artifact"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Artifact"
+effect = "Helpless Damage"
+effect_type = "HelplessDamage"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "A Miner Sacrifice"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Oghma's Song"
+
+[[source]]
+chest = "depthdigger's chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "The Darklake"

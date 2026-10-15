@@ -1,0 +1,37 @@
+name = "Eyes of Enlightenment"
+description = """
+Once, an adventurer gazed upon absolute truth. They are long gone, but the lenses
+they wore still remain."""
+drop_location = "Law and Order, End chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Goggles"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Potency"
+bonus_type = "Quality"
+value = 16
+
+[[effect]]
+name = "Temperance of Spirit"
+
+[[effect]]
+name = "Illusion Save"
+bonus_type = "Resistance"
+value = 7
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Law and Order"

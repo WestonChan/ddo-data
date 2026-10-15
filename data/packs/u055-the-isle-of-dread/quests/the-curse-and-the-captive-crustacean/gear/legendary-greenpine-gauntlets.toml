@@ -1,0 +1,38 @@
+name = "Legendary Greenpine Gauntlets"
+description = "These gloves are patterned to look like the bark of a pine tree."
+drop_location = "The Curse and the Captive Crustacean, end chest"
+icon = "Gloves_7b"
+item_category = "Clothing"
+material = "Wood"
+minimum_level = 31
+slot = "Hands"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 14
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 14
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 12
+
+[[socket]]
+slot = "isle of dread: scale (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Curse and the Captive Crustacean"

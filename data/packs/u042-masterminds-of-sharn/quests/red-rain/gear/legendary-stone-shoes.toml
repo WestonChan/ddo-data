@@ -1,0 +1,42 @@
+name = "Legendary Stone Shoes"
+description = "They sink in water."
+drop_location = "Red Rain, End chest"
+icon = "Boots_12"
+item_category = "Clothing"
+material = "Stone"
+minimum_level = 29
+slot = "Feet"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 71
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Quality"
+value = 35
+
+[[effect]]
+name = "Weighty Asset"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Parrying"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Sink Like a Brick"
+
+[[effect]]
+name = "Earthgrab Guard"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Red Rain"

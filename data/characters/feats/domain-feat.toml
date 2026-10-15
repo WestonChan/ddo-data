@@ -1,0 +1,1784 @@
+[[row]]
+name = "Greater Domain of Air"
+acquire = "Train"
+description = "You gain Lightning Bolt as an SLA. 8 Spell Points, 6 second cooldown."
+icon = "LightningBolt"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Lightning Bolt",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Air"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Animals"
+acquire = "Train"
+description = "You gain +15% Fortification bypass."
+icon = "AnimalDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortification Bypass"
+value = 15
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Feat"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[row.requirement]]
+items = ["Improved Domain of Animals"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Chaos"
+acquire = "Train"
+description = "Your spell critical chance is increased by 3%."
+icon = "ChaosDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Universal Spell Lore"
+value = 3
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Universal Spell Lore"
+effect_type = "SpellLore"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Improved Domain of Chaos"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Death"
+acquire = "Train"
+description = "You are immune to Energy Drain."
+icon = "DeathDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = ["Level Drain"]
+
+[[row.requirement]]
+items = ["Improved Domain of Death"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Destruction"
+acquire = "Train"
+description = "+3% Doublestrike and +5% Strikethrough"
+icon = "DestructionDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Doublestrike"
+value = 3
+
+[[row.effect]]
+bonus_type = "Enhancement"
+effect = "Strikethrough"
+value = 5
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect = "Strikethrough"
+effect_type = "Strikethrough"
+
+[[row.requirement]]
+items = ["Improved Domain of Destruction"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Earth"
+acquire = "Train"
+description = "You gain Stoneskin as an SLA. 6 SP, 4 second cooldown."
+icon = "EarthDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Stoneskin",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Earth"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Fire"
+acquire = "Train"
+description = "You gain Wall of Fire as an SLA. 15 SP, 30 second cooldown."
+icon = "FireDomainTier3"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    30,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Wall of Fire",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Fire"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Good"
+acquire = "Train"
+description = "You gain Blade Barrier as an SLA. 20 Spell Points, 30 second cooldown."
+icon = "BladeBarrier"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    0,
+    30,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Blade Barrier",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Good"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Healing"
+acquire = "Train"
+description = "You gain Panacea as an SLA. 8 SP, 6 second cooldown."
+icon = "Panacea"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Panacea",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Healing"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Knowledge"
+acquire = "Train"
+description = "You gain Feeblemind as an SLA. 10 SP, 6 second cooldown."
+icon = "Feeblemind"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Feeblemind",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Knowledge"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Law"
+acquire = "Train"
+description = "You gain Greater Command as an SLA. 15 SP, 12 second cooldown."
+icon = "GreaterCommand"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    12,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Command",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Law"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Luck"
+acquire = "Train"
+description = "You add +2 to the DC of your spells."
+icon = "LuckDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Improved Domain of Luck"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Magic"
+acquire = "Train"
+description = "You gain a number of bonus Spell Points equal to your character level x 10."
+icon = "MagicDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "TotalLevel"
+amounts = [
+    10,
+    20,
+    30,
+    40,
+    50,
+    60,
+    70,
+    80,
+    90,
+    100,
+    110,
+    120,
+    130,
+    140,
+    150,
+    160,
+    170,
+    180,
+    190,
+    200,
+    210,
+    220,
+    230,
+    240,
+    250,
+    260,
+    270,
+    280,
+    290,
+    300,
+    310,
+    320,
+    330,
+    340,
+    350,
+    360,
+    370,
+    380,
+    390,
+    400,
+]
+bonus_type = "Feat"
+effect_type = "SpellPoints"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Improved Domain of Magic"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Protection"
+acquire = "Train"
+description = "You gain Radiant Forcefield as an SLA. 10 Spell Points, 180 second cooldown."
+icon = "ProtectionDomainTier3"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    180,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Radiant Forcefield",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Protection"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Strength"
+acquire = "Train"
+description = "You become immune to knock down effects."
+icon = "StrengthDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = ["Knockdown"]
+
+[[row.requirement]]
+items = ["Improved Domain of Strength"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Sun"
+acquire = "Train"
+description = "You gain Sunbeam as an SLA. 8 SP, 6 second cooldown."
+icon = "SunBeam"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Sunbeam",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Sun"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Trickery"
+acquire = "Train"
+description = "You gain Mind Fog as an SLA. 15 SP, 10 second cooldown."
+icon = "MindFog"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    15,
+    0,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Mind Fog",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Trickery"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of War"
+acquire = "Train"
+description = "Your tactical DCs are increased by half your Cleric level."
+icon = "WarDomainTier3"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    0.5,
+    1,
+    1.5,
+    2,
+    2.5,
+    3,
+    3.5,
+    4,
+    4.5,
+    5,
+    5.5,
+    6,
+    6.5,
+    7,
+    7.5,
+    8,
+    8.5,
+    9,
+    9.5,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "TacticalDC"
+stack_source = "Cleric"
+targets = [
+    "Trip",
+    "Sunder",
+    "Stun",
+    "General",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of War"]
+req_type = "Feat"
+
+[[row]]
+name = "Greater Domain of Water"
+acquire = "Train"
+description = "You gain Cone of Cold as an SLA. 10 SP, 8 second cooldown."
+icon = "ConeOfCold"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    8,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cone of Cold",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Improved Domain of Water"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Air"
+acquire = "Train"
+description = "You gain Shocking Grasp as an SLA. 4 Spell Points, 4 second cooldown."
+icon = "ShockingGrasp"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shocking Grasp",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Air"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Animals"
+acquire = "Train"
+description = """
+You gain 4 hit points per Cleric level.
+You also add 2 hit points for each Epic/Legendary level you have gained."""
+icon = "AnimalDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    4,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32,
+    36,
+    40,
+    44,
+    48,
+    52,
+    56,
+    60,
+    64,
+    68,
+    72,
+    76,
+    80,
+]
+bonus_type = "Feat"
+display_name = "Animal Domain: Cleric Levels"
+effect_type = "Hitpoints"
+stack_source = "Cleric"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Animal Domain: Epic Levels"
+effect_type = "Hitpoints"
+stack_source = "Epic"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+display_name = "Animal Domain: Legendary Levels"
+effect_type = "Hitpoints"
+stack_source = "Legendary"
+
+[[row.requirement]]
+items = ["Domain of Animals"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Chaos"
+acquire = "Train"
+description = "You gain Chaos Hammer as an SLA. 6 SP, 6 second cooldown."
+icon = "ChaosHammer"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Chaos Hammer",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Chaos"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Death"
+acquire = "Train"
+description = "You gain Necrotic Ray as an SLA. 8 Spell Points, 6 second cooldown."
+icon = "NecroticRay"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Necrotic Ray",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Death"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Destruction"
+acquire = "Train"
+description = "Durability damage for your items is reduced by 75%."
+icon = "DestructionDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.requirement]]
+items = ["Domain of Destruction"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Earth"
+acquire = "Train"
+description = "You gain Melf's Acid Arrow as an SLA. 4 SP, 4 second cooldown."
+icon = "AcidArrow"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Melf's Acid Arrow",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Earth"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Fire"
+acquire = "Train"
+description = "You gain Scorching Ray as an SLA. 4 SP, 6 second cooldown."
+icon = "FireDomainTierII"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Scorching Ray",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Fire"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Good"
+acquire = "Train"
+description = "You gain Deific Vengeance as an SLA. 2 SP, 4 second cooldown."
+icon = "DeificVengeance"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Deific Vengeance",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Good"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Healing"
+acquire = "Train"
+description = "You gain Cure Moderate Wounds as an SLA. 4 SP, 6 second cooldown."
+icon = "CureModerateWounds"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cure Moderate Wounds",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Healing"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Knowledge"
+acquire = "Train"
+description = "You gain Suggestion as an SLA. 10 SP, 6 second cooldown."
+icon = "Suggestion"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Suggestion",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Knowledge"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Law"
+acquire = "Train"
+description = "You gain Order's Wrath as an SLA. 6 SP, 6 second cooldown."
+icon = "OrdersWrath"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Order's Wrath",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Law"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Luck"
+acquire = "Train"
+description = "You gain Displacement as an SLA. 10 SP, 6 second cooldown."
+icon = "Displacement"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Displacement",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Luck"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Magic"
+acquire = "Train"
+description = """
+You gain Chain Missiles as an SLA. 8 SP, 10 second cooldown.
+(This shares a cooldown with the Arch-mage SLA.)"""
+icon = "ChainMissiles"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    10,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Chain Missiles",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Magic"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Protection"
+acquire = "Train"
+description = "You gain the Shield spell as a permanent effect on you."
+icon = "ProtectionDomainTier2"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = ["Magic Missiles"]
+
+[[row.requirement]]
+items = ["Domain of Protection"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Strength"
+acquire = "Train"
+description = "Your Reflex saving throws are now based on Strength instead of Dexterity if it is higher."
+icon = "StrengthDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "SaveBonusAbility"
+targets = [
+    "Strength",
+    "Reflex",
+]
+
+[[row.requirement]]
+items = ["Domain of Strength"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Sun"
+acquire = "Train"
+description = "You gain Searing Light as an SLA. 4 SP, 4 second cooldown."
+icon = "SearingLight"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Searing Light",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Sun"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Trickery"
+acquire = "Train"
+description = "You gain Invisibility as an SLA. 4 SP, 4 second cooldown."
+icon = "Invisibility"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    4,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Invisibility",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Trickery"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of War"
+acquire = "Train"
+description = "You gain proficiency in all Martial and Exotic weapons."
+icon = "WarDomainTier2"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "AddGroupWeapon"
+targets = [
+    "Proficiency",
+    "Battle Axe",
+    "Falchion",
+    "Great Axe",
+    "Great Club",
+    "Great Sword",
+    "Hand Axe",
+    "Heavy Pick",
+    "Kukri",
+    "Light Hammer",
+    "Light Pick",
+    "Longbow",
+    "Longsword",
+    "Maul",
+    "Rapier",
+    "Scimitar",
+    "Shortsword",
+    "Shortbow",
+    "Throwing Axe",
+    "Throwing Hammer",
+    "Warhammer",
+    "Bastard Sword",
+    "Dwarven Axe",
+    "Great Crossbow",
+    "Kama",
+    "Khopesh",
+    "Repeating Heavy Crossbow",
+    "Repeating Light Crossbow",
+    "Shuriken",
+]
+
+[[row.requirement]]
+items = ["Domain of War"]
+req_type = "Feat"
+
+[[row]]
+name = "Improved Domain of Water"
+acquire = "Train"
+description = "You gain Solid Fog as an SLA. 10 SP, 12 second cooldown."
+icon = "SolidFog"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    12,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Solid Fog",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Domain of Water"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Air"
+acquire = "Train"
+description = "You gain Chain Lightning as an SLA. 12 Spell Points, 12 second cooldown."
+icon = "ChainLightning"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    12,
+    0,
+    12,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Chain Lightning",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Greater Domain of Air"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Animals"
+acquire = "Train"
+description = """
+You gain the Feral Charge ability.
+Your character briefly morphs into a bear and charges forward through foes,
+attacking all foes in the charge area. The attack does weapon damage based
+on your equipped weapon with a +3[W] bonus and enemies must make a Reflex
+saving throw with a DC of 19 + Wisdom modifier + Trip Bonuses or be knocked
+down. Cooldown is 15 seconds. This ability can only be used while holding
+a melee weapon."""
+icon = "FeralCharge"
+source_name = "Cleric"
+
+[[row.dc]]
+name = "Feral Charge"
+amount = [19]
+dc_type = "Knockdown"
+dc_versus = "Reflex"
+description = """
+The attack does weapon damage based on your equipped weapon with
+a +3[W] bonus and enemies must make a Reflex saving throw."""
+icon = "AnimalDomain"
+mod_ability = ["Wisdom"]
+tactical = "Trip"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.requirement]]
+items = ["Greater Domain of Animals"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Chaos"
+acquire = "Train"
+description = "You gain Prismatic Spray as an SLA. 25 SP, 15 second cooldown."
+icon = "PrismaticSpray"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    25,
+    0,
+    15,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Prismatic Spray",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Greater Domain of Chaos"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Death"
+acquire = "Train"
+description = "You gain Destruction as an SLA. 20 SP, 12 second cooldown."
+icon = "Destruction"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    0,
+    12,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Destruction",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Greater Domain of Death"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Destruction"
+acquire = "Train"
+description = "Your weapon strikes add a stack of Improved Destruction."
+icon = "DestructionDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Doublestrike"
+value = 3
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[row.requirement]]
+items = ["Greater Domain of Destruction"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Earth"
+acquire = "Train"
+description = "You gain Earthquake as an SLA. 25 SP, 30 second cooldown."
+icon = "Earthquake"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    25,
+    0,
+    30,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Earthquake",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Greater Domain of Earth"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Fire"
+acquire = "Train"
+description = "You gain Firestorm as an SLA. 8 Spell Points, 8 second cooldown."
+icon = "FireStorm"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    8,
+    0,
+    8,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fire Storm",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Greater Domain of Fire"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Good"
+acquire = "Train"
+description = """
+You gain +3 to hit, damage and armor class against evil creatures
+in combat. You gain +3 to saving throws against spells cast by evil creatures."""
+icon = "GoodDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.requirement]]
+items = ["Greater Domain of Good"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Healing"
+acquire = "Train"
+description = """
+Your healing spells are Empowered, as if you had the
+Empower Healing Metamagic Feat. This does not increase the cost of your
+healing spells."""
+icon = "HealingDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Positive Spell Power"
+value = 75
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [75]
+bonus_type = "Feat"
+effect = "Positive Spell Power"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[row.requirement]]
+items = ["Greater Domain of Healing"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Knowledge"
+acquire = "Train"
+description = "You gain +4 Spell Penetration. You gain +2 to the DC of all spells."
+icon = "KnowledgeDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell Penetration"
+value = 4
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Spell DCs"
+value = 2
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Feat"
+effect = "Spell Penetration"
+effect_type = "SpellPenetrationBonus"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect = "Spell DCs"
+effect_type = "SpellDC"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Greater Domain of Knowledge"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Law"
+acquire = "Train"
+description = """
+You gain +3 to hit, damage and Armor Class against Chaotic
+creatures in combat. You gain +3 to saving throws against spells cast by
+Chaotic creatures."""
+icon = "LawDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.requirement]]
+items = ["Greater Domain of Law"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Luck"
+acquire = "Train"
+description = "You no longer automatically fail your saving throws on a roll of 1."
+icon = "LuckDomain"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Saving Throws"
+value = 1
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Greater Domain of Luck"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Magic"
+acquire = "Train"
+description = "You gain points of Universal Spell Power equal to twice your Cleric level."
+icon = "MagicDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+]
+bonus_type = "Feat"
+effect_type = "SpellPower"
+stack_source = "Cleric"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Greater Domain of Magic"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Protection"
+acquire = "Train"
+description = "Your Armor Class and Physical Resistance Rating are increased by your Cleric level."
+icon = "ProtectionDomainTier4"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "BaseClassLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "ACBonus"
+extra_types = ["PRR"]
+stack_source = "Cleric"
+
+[[row.requirement]]
+items = ["Greater Domain of Protection"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Strength"
+acquire = "Train"
+description = "You always make your saving throw against Stun effects."
+icon = "StrengthDomain"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Feat"
+effect_type = "Immunity"
+targets = ["Stun"]
+
+[[row.requirement]]
+items = ["Greater Domain of Strength"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Sun"
+acquire = "Train"
+description = "You gain Sunburst as an SLA. 20 SP, 8 second cooldown."
+icon = "SunBurst"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    0,
+    8,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Sunburst",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Greater Domain of Sun"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Trickery"
+acquire = "Train"
+description = "You gain Charm Monster, Mass as an SLA. 40 SP, 20 second cooldown."
+icon = "MassCharmMonster"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    40,
+    0,
+    20,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Charm Monster, Mass",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Greater Domain of Trickery"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of War"
+acquire = "Train"
+description = """
++10 Melee and Ranged Power.
+You gain Holy Sword as an SLA. 10 SP, 6 second cooldown."""
+icon = "WarDomainTier4"
+source_name = "Cleric"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Melee Power"
+value = 10
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Ranged Power"
+value = 10
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect_type = "MeleePower"
+extra_types = ["RangedPower"]
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    6,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Holy Sword",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Greater Domain of War"]
+req_type = "Feat"
+
+[[row]]
+name = "Master of the Domain of Water"
+acquire = "Train"
+description = "You gain Greater Creeping Cold as an SLA. 10 SP, 8 second cooldown."
+icon = "GreaterCreepingCold"
+source_name = "Cleric"
+
+[[row.group]]
+group_name = "Domain Feat"
+
+[[row.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    0,
+    8,
+]
+bonus_type = "Feat"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Greater Creeping Cold",
+    "Cleric",
+]
+
+[[row.requirement]]
+items = ["Greater Domain of Water"]
+req_type = "Feat"

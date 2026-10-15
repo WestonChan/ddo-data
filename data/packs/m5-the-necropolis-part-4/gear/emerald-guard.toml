@@ -1,0 +1,47 @@
+name = "Emerald Guard"
+description = """
+This platemail has been tinted a bright emerald color. A deep imprint of a claw
+has been etched into the center of the chest."""
+drop_location = "Emerald Claw Nugget, End reward"
+enhancement_bonus = 5
+icon = "MediumArmor_9c"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 16
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 25
+armor_bonus = 17
+armor_type = "Medium"
+max_dex_bonus = 4
+
+[[clickie]]
+name = "Nightshield"
+clickie = "Nightshield"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 2
+
+[[effect]]
+name = "Mithral"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    14,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Nightshield"]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

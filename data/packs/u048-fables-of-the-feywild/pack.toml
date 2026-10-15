@@ -1,0 +1,13 @@
+name = "Fables of the Feywild"
+update = "Update 48"
+released = "2020-11-05"
+
+[[citation]]
+url = "https://ddowiki.com/page/Fables_of_the_Feywild"
+read = "2026-10-13"
+
+[[note]]
+kind = "release"
+reason = "Wiki adventure pack list says Update 48.4, but that patch (2021-02-24) only added the raid; the pack page gives Update 48 released 2020-11-05."
+url = "https://ddowiki.com/page/Fables_of_the_Feywild"
+read = "2026-10-13"

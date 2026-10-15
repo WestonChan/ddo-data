@@ -1,0 +1,46 @@
+name = "Mask of Comedy"
+description = """
+A mask crafted for and used by the actors of the Livewood Theater . It represents
+happiness and high spirits, and is invested with magic to match."""
+drop_location = "Under the Big Top, Maz'il'tilnik 's or Herli'nak the Untamed 's chest"
+icon = "Helmet_33"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 4
+slot = "Head"
+
+[[clickie]]
+name = "Good Hope"
+clickie = "Good Hope"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 55
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Good Hope"]
+
+[[source]]
+chest = "maz'il'tilnik 's or herli'nak the untamed 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Under the Big Top"

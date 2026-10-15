@@ -1,0 +1,27 @@
+name = "Hero's Plate (Level 27)"
+description = """
+This item currently cannot be fed to sentient jewels and probably should be
+able to."""
+drop_location = "Through a Mirror Darkly, End reward"
+enhancement_bonus = 10
+icon = "HeavyArmor_6"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Dwarven Iron"
+minimum_level = 27
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 30
+armor_bonus = 21
+armor_check_penalty = -4
+armor_type = "Heavy"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Greater Heroism"
+
+[[source]]
+kind = "quest"
+loot_type = "reward"
+name = "Through a Mirror Darkly"

@@ -1,0 +1,32 @@
+name = "The Balance Beam"
+description = """
+"Finally, perfect balance. This is totally going to be a template for all named
+items going forward, and that's a promise!""""
+drop_location = "Anniversary Party, Turn in 20"
+icon = "Quarterstaff_2g"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Anniversary Party"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 4
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

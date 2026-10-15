@@ -1,0 +1,22 @@
+name = "Tomb of the Burning Heart"
+bestowed_by = "Skorn"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "The Necropolis, Part 1"
+patron = "The Silver Flame"
+zone = "Tomb of the Burning Heart"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Tomb_of_the_Burning_Heart"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 5

@@ -1,0 +1,37 @@
+name = "Epic Platinum Prayer Beads"
+description = '"I wonder if Goldscuttle still wants these..."'
+drop_location = "Another Man's Treasure, End chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Platinum"
+minimum_level = 21
+slot = "Neck"
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 103
+
+[[effect]]
+name = "Healing Lore"
+bonus_type = "Equipment"
+value = 15
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 34
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 9
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Another Man's Treasure"

@@ -1,0 +1,24 @@
+name = "DM's Vision"
+icon = "DMsVision"
+
+[[item]]
+name = "Voice of the Master"
+
+[[item]]
+name = "Epic Voice of the Master"
+
+[[item]]
+name = "Mantle of the Worldshaper"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+effect = "True Seeing"
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect_type = "TrueSeeing"
+targets = ["All"]

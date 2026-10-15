@@ -1,0 +1,1566 @@
+name = "Spellsinger"
+background = "BardBackground"
+icon = "Bard"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Spellsinger"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Each AP spent in Spellsinger grants +1 Universal Spell Power.
+Each Spellsinger Core Ability including this one allows you to sing Bardic
+Inspiration as if you had 1 additional Bard level."""
+icon = "SSSpellsinger"
+internal_name = "SSCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Spellsinger: Universal Spell power per action point"
+effect_type = "UniversalSpellPower"
+stack_source = "Spellsinger"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Spellsinger: Music of the Sewers"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your Fascinate gains the power to mesmerize Oozes.
+They stop acting and behave like they have been fascinated.
+Unlike truly fascinated creatures, however, they are not susceptible to suggestion.
+Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells."""
+icon = "SSMusicOfTheSewers"
+internal_name = "SSCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Listen",
+    "Perform",
+    "Use Magic Device",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Enchantment",
+    "Evocation",
+    "Illusion",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Sonic",
+    "Positive",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["SSCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Spellsinger: Music of the Dead"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your Fascinate gains the power to mesmerize Undead.
+They stop acting and behave like they have been fascinated.
+Unlike truly fascinated creatures, however, they are not susceptible to suggestion.
+Your Sustaining Song melody now works on Undead Allies, providing them with a
+Negative heal over time. Your Inspire Greatness now provides a +10 Music bonus to
+Negative Healing Amplification.
+Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells."""
+icon = "SSMusicOfTheDead"
+internal_name = "SSCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Listen",
+    "Perform",
+    "Use Magic Device",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Enchantment",
+    "Evocation",
+    "Illusion",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Sonic",
+    "Positive",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SongNegativeHealingAmp"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["SSCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Spellsinger: Music of the Makers"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+Your Fascinate gains the power to mesmerize Constructs.
+They stop acting and behave like they have been fascinated.
+Unlike truly fascinated creatures, however, they are not susceptible to suggestion.
+Your Sustaining Song melody now works on Construct and Living Construct Allies,
+such as Warforged and Artificer Iron Defenders, providing them with a Repair over time.
+Your Inspire Greatness now provides a +10 Music bonus to Repair Amplification.
+Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells."""
+icon = "SSMusicOfTheMakers"
+internal_name = "SSCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Listen",
+    "Perform",
+    "Use Magic Device",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Enchantment",
+    "Evocation",
+    "Illusion",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Sonic",
+    "Positive",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SongRepairAmp"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SSCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Spellsinger: Virtuoso"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You regenerate 1 Song every 5 minutes. (Stacks with anthem)
++2 Songs per rest. You sing your Bardic Inspiration as if you had two more Bard
+levels (for a total of 3 for this enhancement)
+Your Enchantment, Evocation and Illusion spells gain +1 to their DCs.
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells."""
+icon = "SSVirtuoso"
+internal_name = "SSCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Listen",
+    "Perform",
+    "Use Magic Device",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = [
+    "Enchantment",
+    "Evocation",
+    "Illusion",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Sonic",
+    "Positive",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [90]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["SSCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Spellsinger: Maestro of Life and Death"
+cost_per_rank = [1]
+description = """
+Your songs can fill allies with healing energy or strike down those that
+oppose you. You gain the Heal and Wail of the Banshee spells as level 6 Bard spells.
++4 Charisma
++25 Universal Spell Power
++1 Diplomacy, Listen, Perform and Use Magic Device.
++2% critical chance with Sonic and Positive spells."""
+icon = "SSMaestroOfLifeAnddeath"
+internal_name = "SSCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "SSMaestroOfLifeAndDeath"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image SSMaestroOfLifeAnddeath.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SSCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Listen",
+    "Perform",
+    "Use Magic Device",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = [
+    "Sonic",
+    "Positive",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Heal",
+    "Bard",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    50,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Wail of the Banshee",
+    "Bard",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    50,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Heal",
+    "Stormsinger",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    6,
+    50,
+    -1,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Wail of the Banshee",
+    "Stormsinger",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["SSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "SSCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Spellsinger: Haunting Melody"
+cost_per_rank = [1]
+description = """
+You rework Fascinate with haunting notes, intoxicating yet unnerving.
+Fascinated creatures are Haunted for [20/40/60] seconds.
+Haunted: -2 on all Saving Throws, Skill checks and attack rolls."""
+icon = "SSHauntingMelody"
+internal_name = "SSHauntingMelody"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Spellsinger: Studies"
+cost_per_rank = [1]
+description = "Choose either Magical Studies or Musical Studies to advance your training:"
+icon = "SSStudies"
+internal_name = "SSStudies"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Magical Studies"
+cost_per_rank = [1]
+description = "+[30/60/100] maximum Spell Points."
+icon = "SSMagicalStudies"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    30,
+    60,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.selection]]
+name = "Musical Studies"
+cost_per_rank = [1]
+description = "+[1/2/3] Bard Songs per rest"
+icon = "SSMusicalStudies"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SongCount"
+
+[[enhancement]]
+name = "Spellsinger: Lingering Songs"
+cost_per_rank = [1]
+description = "You sing your Bardic Inspiration as if you had [2/4/6] more levels of Bard."
+icon = "SSLingeringSongs"
+internal_name = "SSLingeringSongs"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    60,
+    120,
+    180,
+]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Spellsinger: Spell Like Ability I"
+cost_per_rank = [1]
+description = """
+Choose either Sonic Blast or Cure Light Wounds:
+Metamagic Feats can be used at no additional cost."""
+icon = "SSSonicBlast"
+internal_name = "SSSonicBlast"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection]]
+name = "Sonic Blast"
+cost_per_rank = [1]
+description = """
+Spell-Like Ability: Sonic Blast.
+Activation cost: 4 SP.
+Cooldown: 4 seconds.
+Metamagic Feats can be used at no additional cost."""
+icon = "SSSonicBlast"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SSSonicBlast",
+    "Sonic Blast",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    10,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Sonic Blast",
+    "Bard",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.selection.requirement]]
+items = [
+    "SSSonicBlast",
+    "Sonic Blast",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Cure Light Wounds"
+cost_per_rank = [1]
+description = """
+Spell-Like Ability: Cure Light Wounds.
+Activation cost: 4 SP.
+Cooldown: 4 seconds.
+Metamagic Feats can be used at no additional cost."""
+icon = "CureLightWounds"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    5,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cure Light Wounds",
+    "Bard",
+]
+
+[[enhancement]]
+name = "Spellsinger: Charlatan"
+cost_per_rank = [1]
+description = "+[1/2/3] Concentration, Haggle and Perform"
+icon = "SSCharlatan"
+internal_name = "SSCharlatan"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Haggle",
+    "Perform",
+]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Spellsinger: Sharp Note"
+cost_per_rank = [1]
+description = """
+Your Fascinate ability now also grants nearby allies a +[1/2/3] bonus to
+damage for 60 seconds"""
+icon = "SSSharpNote"
+internal_name = "SSSharpNote"
+min_spent = 5
+ranks = 3
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Spellsinger: Flicker/Willful"
+cost_per_rank = [1]
+description = "Choose either Flicker or Willful to protect you"
+icon = "SSFlickerWillfull"
+internal_name = "SSFlickerWillfull"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Flicker"
+cost_per_rank = [1]
+description = "When you are damaged you have a 5% chance of turning invisible for [2/4/6] seconds"
+icon = "SSFlicker"
+
+[[enhancement.selection]]
+name = "Willful"
+cost_per_rank = [1]
+description = "+[1/2/3] Will Saving Throws."
+icon = "SSWillfull"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement]]
+name = "Spellsinger: Spell Like Ability II"
+cost_per_rank = [2]
+description = """
+Choose either Reverberate or Suggestion:
+Metamagic Feats can be used at no additional cost."""
+icon = "SSMultipleEnhancementSelector"
+internal_name = "SSMultipleEnhancementSelector"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Reverberate"
+cost_per_rank = [2]
+description = """
+Gain SLA "Reverberate" - Wrack the target's body with internal sonic booms,
+dealing 1 to 10 sonic damage +1 per three caster levels (up to caster level 18)
+every 2 seconds for a duration of 16 seconds. This spell can stack on the target
+up to three times, increasing the damage with each stack.
+Activation cost: 10 SP
+Cooldown: 9 seconds."""
+icon = "SSReverberate"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SSMultipleEnhancementSelector",
+    "Reverberate",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    10,
+    18,
+    9,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Reverberate",
+    "Bard",
+]
+
+[[enhancement.selection.requirement]]
+items = [
+    "SSMultipleEnhancementSelector",
+    "Reverberate",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Suggestion"
+cost_per_rank = [2]
+description = """
+You gain Suggestion as an SLA
+Activation cost: 9 SP
+Cooldown: 10 seconds"""
+icon = "SSSuggestion"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    9,
+    0,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Suggestion",
+    "Bard",
+]
+
+[[enhancement]]
+name = "Spellsinger: Wand and Scroll Mastery"
+cost_per_rank = [1]
+description = """
++[25/50/75]% to the effectiveness of your wands, scrolls, and other items
+that cast spells, and +[1/2/3] to the DCs of your offensive wands."""
+icon = "SSWandAndScrollMastery"
+internal_name = "SSWandAndScrollMastery"
+min_spent = 5
+ranks = 3
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SSWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "TacticalDC"
+targets = ["Wands"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = [
+    "SSWandAndScrollMastery",
+    "Wand and Scroll Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Spellsinger: Marigold Crown"
+cost_per_rank = [2]
+description = "Gain +1 to the DCs of your Enchantment, Illusion or Evocation spells."
+icon = "SSMarigoldCrown"
+internal_name = "SSMarigoldCrown"
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Blue Marigold Crown"
+cost_per_rank = [2]
+description = "+1 to DC's of Illusion spells."
+icon = "SSBlueMarigoldCrown"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Illusion"]
+
+[[enhancement.selection]]
+name = "Violet Marigold Crown"
+cost_per_rank = [2]
+description = "+1 to DC's of Evocation spells."
+icon = "SSVioletMarigoldCrown"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.selection]]
+name = "Yellow Marigold Crown"
+cost_per_rank = [2]
+description = "+1 to DC's of Enchantment spells."
+icon = "SSYellowMarigoldCrown"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement]]
+name = "Spellsinger: Enthrallment"
+cost_per_rank = [2]
+description = """
+Expend a use of Bardic Music to enthrall multiple enemies.
+Enthralled enemies stop what they are doing and have a chance of breaking free
+when damaged. Enthralled enemies suffer a -2 penalty to attack rolls and Will
+saves for 24 seconds plus 6 seconds per bard level, even after being disrupted
+from their reverie. This ability uses a Perform check as Will save DC.
+Cooldown: 10 seconds"""
+icon = "SSEnthrallment"
+internal_name = "SSEnthrallment"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.dc]]
+name = "Spellsinger: Enthrallment"
+dc_type = "Enthrallment"
+dc_versus = "Will"
+description = """
+Expend a use of Bardic Music to enthrall multiple enemies.
+Enthralled enemies stop what they are doing and have a chance of breaking free
+when damaged. Enthralled enemies suffer a -2 penalty to attack rolls and Will
+saves for 24 seconds plus 6 seconds per bard level, even after being disrupted
+from their reverie."""
+icon = "SSEnthrallment"
+skill = "Perform"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Spellsinger: Reviving Verse"
+cost_per_rank = [1]
+description = "Choose permanent bonuses for yourself, or improvements to Inspire Courage."
+icon = "SSMultipleEnhancementSelectorII"
+internal_name = "SSMultipleEnhancementSelectorII"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Raucous Refrain"
+cost_per_rank = [1]
+description = """
+Inspiring Melody: When you use your Bardic Inspiration, your target
+gains a +[1/2/3] Morale bonus to save vs. Sleep, Paralysis, Exhaustion and
+Energy Drain for the duration of your song.
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard."""
+icon = "SSRaucousRefrain"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.selection]]
+name = "Reviving Verse"
+cost_per_rank = [1]
+description = "+[1/2/3] saving throws vs. Sleep, Paralysis, Exhaustion and Energy Drain"
+icon = "SSRevivingVerse"
+
+[[enhancement]]
+name = "Spellsinger: Shout"
+cost_per_rank = [2]
+description = "Choose a spell like ability:"
+icon = "SSShout"
+internal_name = "SSShout"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "Shout"
+cost_per_rank = [2]
+description = """
+Spell-Like Ability: Shout.
+Activation cost: 9 SP
+Cooldown: 6 seconds
+Metamagic Feats can be used at no additional cost."""
+icon = "SSShout"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SSShout",
+    "Shout",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    9,
+    15,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Shout",
+    "Bard",
+]
+
+[[enhancement.selection.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection.requirement]]
+items = [
+    "SSShout",
+    "Shout",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection]]
+name = "Cure Moderate Wounds, Mass"
+cost_per_rank = [2]
+description = """
+Cure Light Wounds, Mass
+Activation cost: 9 SP.
+Cooldown: 6 seconds."""
+icon = "CureModerateWoundsMass"
+is_clickie = true
+
+[[enhancement.selection.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    9,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Cure Light Wounds, Mass",
+    "Bard",
+]
+
+[[enhancement]]
+name = "Spellsinger: Spell Song Trance"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Inspiration Melody: When you use your Bardic Inspiration, you grant
+a +1 Morale bonus to spell DC's and 10% Morale discount on spell point costs
+to your target for the duration of the song.
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard."""
+icon = "SSSpellSongTrance"
+internal_name = "SSSpellSongTrance"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Spellsinger: Charisma I"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+internal_name = "SSCharisma"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Spellsinger: Sustaining Song"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Inspiration Melody: When you use you Bardic Inspiration, you apply a temporary
+fast-healing effect to your target for the duration of your song.
+Heals for 2d3 every 2 seconds. Does not critical.
+Affected by your positive/negative/repair spell power.
+Spell power is *not* locked in when you sing, but is rechecked for every tick.
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard."""
+icon = "SSSustainingSong"
+internal_name = "SSSustainingSong"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Spellsinger: Spell Penetration"
+cost_per_rank = [1]
+description = "Choose Spell Penetration for yourself or for others."
+icon = "SSMultipleEnhancementSelectorIII"
+internal_name = "SSMultipleEnhancementSelectorIII"
+min_spent = 20
+ranks = 3
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.selection]]
+name = "Arcane Aid"
+cost_per_rank = [1]
+description = """
+Inspiration Melody: When you use your Bardic Inspiration, your target gains
+a +[1/2/3] Music Bonus to Spell Penetration for the duration of your song.
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard."""
+icon = "SSArcaneAid"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Music"
+effect_type = "SongSpellPenetration"
+
+[[enhancement.selection]]
+name = "Spell Penetration"
+cost_per_rank = [1]
+description = "+[1/2/3] to your level when trying to overcome enemy's Spell Resistance"
+icon = "SpellPenetration"
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement]]
+name = "Spellsinger: Frolic"
+cost_per_rank = [2]
+description = """
+Inspiration Melody: When you use your Bardic Inspiration, your target
+gains Freedom of Movement for the duration of the song.
+(This is a musical effect and cannot be dispelled).
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard."""
+icon = "SSFrolic"
+internal_name = "SSFrolic"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Spellsinger: Song of Arcane Might"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Inspiration Melody: When you use your Bardic Inspiration, your target gains
+a +1 Morale bonus to caster level for all spells for the duration of your song.
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard."""
+icon = "SSSongOfArcaneMight"
+internal_name = "SSSongOfArcaneMight"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SongCasterLevel"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SSSpellSongTrance"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Spellsinger: Charisma II"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+internal_name = "SSCharismaII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Spellsinger: Song of Capering"
+cost_per_rank = [2]
+description = """
+Expend a use of Bardic Music to make a single enemy to dance helplessly.
+This effect lasts for 6 seconds plus 2 seconds per Bard level.
+A successful Will save negates this effect."""
+icon = "SSSongOfCapering"
+internal_name = "SSSongOfCapering"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SSSustainingSong"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Spellsinger: Advanced Musical Studies"
+cost_per_rank = [2]
+description = """
++3 Bard Songs per rest. +200 maximum Spell Points.
+The spell Hold Monster, Mass is added to your Bard Spell book at level 5."""
+icon = "SSAdvancedStudies"
+internal_name = "SSAdvancedStudies"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [200]
+bonus_type = "Enhancement"
+effect_type = "SpellPoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SongCount"
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Hold Monster, Mass",
+    "Bard",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    5,
+    40,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "GrantSpell"
+targets = [
+    "Hold Monster, Mass",
+    "Stormsinger",
+]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Spellsinger: Prodigy"
+cost_per_rank = [1]
+description = """
++[1/2/2] Concentration and Perform
++[1/2/2] Spell Penetration
++[1/2/2] to DCs of your Enchantment spells
+Rank 3: Inspiration Melody: When you use your Bardic Inspiration, your target
+gains a moderate amount (10) of temporary spell points.
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard."""
+icon = "SSProdigy"
+internal_name = "SSProdigy"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Concentration",
+    "Perform",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    2,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    30,
+]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Spellsinger: Spell Song Vigor"
+cost_per_rank = [2]
+description = """
+Inspiration Melody: When you use your Bardic Inspiration, you apply
+an effect to your target that restores spell points over time for the duration
+of your song. (2 spell points every 2 seconds)
+Passive: You sing your Bardic Inspiration as if you had 1 more level of Bard."""
+icon = "SSSpellSongVigor"
+internal_name = "SSSpellSongVigor"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "SongDuration"
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SSSongOfArcaneMight"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Spellsinger: Horn of Thunder"
+cost_per_rank = [2]
+description = """
+Spell-Like Ability: Horn of Thunder.
+Activation cost: 20 SP
+Cooldown: 12 seconds.
+Blast your foes with 1d4 Sonic and 1d4 Electric damage per caster level.
+Sonic damage is doubled vs. Oozes, as the thunderous pressure disrupts
+their amorphous structure. Creatures making a Reflex save take half damage.
+Max caster level: 25. Affects liches."""
+icon = "SSHornOfThunder"
+internal_name = "SSMultipleEnhancementSelectorIV"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    20,
+    25,
+    12,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Horn of Thunder",
+    "Bard",
+]
+
+[[enhancement.requirement]]
+items = ["Bard"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Bard"]
+req_type = "BaseClass"

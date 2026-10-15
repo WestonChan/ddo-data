@@ -1,0 +1,3 @@
+name = "Crystal"
+description_template = "Crystal weapons are able to overcome the protective damage reduction of many Quori creatures, which can be resistant to other weapons. Spell failure chances for armors and shields made from crystal are also decreased by 10%."
+verbose_name_template = "Crystal"

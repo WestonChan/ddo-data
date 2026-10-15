@@ -1,0 +1,66 @@
+name = "Epic Bludgeoning Bankroll"
+accepts_sentience = true
+description = """
+This chunk of transmuted platnium might have been some sort of branch once.
+Either way, it's perfect for adventuring."""
+drop_location = "Another Man's Treasure, End chest"
+enhancement_bonus = 6
+icon = "Quarterstaff_1"
+item_category = "Weapon"
+item_type = "Quarterstaff"
+material = "Platinum"
+minimum_level = 21
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Transmuted Platinum"
+
+[[effect]]
+name = "Bludgeoning 5"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Smashing 11"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Another Man's Treasure"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 3.2
+handedness = "Two-handed"
+weapon_type = "Quarterstaff"

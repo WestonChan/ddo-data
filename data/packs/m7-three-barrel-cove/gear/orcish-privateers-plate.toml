@@ -1,0 +1,45 @@
+name = "Orcish Privateer's Plate"
+description = """
+Though the actual origin of this armor is unknown, it is obvious why the orcish
+pirate Captain Dustdyn claimed it as his own. Not only is it made of lightweight
+mithral, but the joints of this armor have been fitted in a novel way that
+allows for a flexibility and freedom of movement unparallelled in most plate
+armors. An important consideration when trying to move about on the deck of
+a ship, to be sure. Captain Dustdyn seems to have 'improved' this armor further
+with his own personal touch, adorning it with skulls and other threatening
+motifs."""
+drop_location = "Three-Barrel Cove (heroic), Captain Dustdyn 's Chest (Rare Encounter)"
+enhancement_bonus = 3
+icon = "HeavyArmor_1a"
+item_category = "Armor"
+item_type = "Medium"
+material = "Mithral"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 20
+armor_bonus = 8
+armor_check_penalty = -1
+armor_type = "Medium"
+max_dex_bonus = 3
+
+[[effect]]
+name = "Mithral"
+
+[[effect]]
+name = "Feat: Mobility"
+
+[[effect]]
+name = "Intimidate"
+bonus_type = "Competence"
+value = 5
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "captain dustdyn 's chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Three-Barrel Cove"

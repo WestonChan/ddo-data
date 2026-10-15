@@ -1,0 +1,10 @@
+name = "Fire Intensity"
+description_template = "{1}% %b1 bonus to critical damage with Fire spells."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Fire Intensity +{1}%"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Fire Spell Critical Damage"

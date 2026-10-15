@@ -1,0 +1,32 @@
+name = "Epic Envenomed Cloak"
+description = """
+A cloak with spikes that have been steeped in a dangerous poison. Enemies that
+attack the wearer may be subject to the effects of the venom that coats the
+cloak's barbs."""
+drop_location = "Epic version of Envenomed Cloak"
+icon = "Cloak_7c"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 20
+slot = "Back"
+
+[[effect]]
+name = "Greater Poison Guard"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 9
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 8
+
+[[effect]]
+name = "Proof Against Poison"
+bonus_type = "Enhancement"
+value = 8
+
+[[socket]]
+slot = "green"

@@ -1,0 +1,37 @@
+name = "Goggles of Dusk"
+description = "The world through these goggles looks dead and decayed."
+drop_location = "Army of Eternal Night, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 16
+slot = "Goggles"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 1
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 5
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Quality"
+value = 1
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Army of Eternal Night"

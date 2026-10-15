@@ -1,0 +1,3 @@
+name = "Arcane Archer"
+description_template = "This item in one of two pieces of the Arcane Archer set. When both items are equipped you will receive your ranged alacrity will be increased by 10%. This is a Competence bonus."
+verbose_name_template = "Arcane Archer"

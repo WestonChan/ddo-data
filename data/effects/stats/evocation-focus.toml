@@ -1,0 +1,5 @@
+name = "Evocation Focus"
+category = "magical"
+description_template = "{1} %b1 bonus to the DC of Evocation spells."
+home_bonus_type = "Equipment"
+verbose_name_template = "%b1 Evocation Focus +{1}"

@@ -1,0 +1,1276 @@
+name = "Acolyte of the Skin"
+background = "WarlockBackground"
+icon = "Warlock"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Fiendish Form I"
+cost_per_rank = [1]
+description = """
+You gain +3% Fortification and +1 Fortitude saving throws per Core
+Ability you take in this tree.
+"A drop of blood, an ancient tome, a lifetime of service bound together." -
+Journal Entry 1"""
+icon = "FiendishFormI"
+internal_name = "AotSCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore2"]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore3"]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore4"]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Fiendish Form II"
+cost_per_rank = [1]
+description = """
+You gain +3 Maximum HP per Core Ability you take in this tree.
+"The changes are beginning to show. I fear soon there is no hiding what I have
+become." - Journal Entry 17"""
+icon = "FiendishFormII"
+internal_name = "AotSCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore3"]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore4"]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["AotSCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fiendish Form III"
+cost_per_rank = [1]
+description = """
+You gain +3 Fire Resistance per Core Ability you take in this tree.
+"I feel as though the flames themselves are coursing through my veins. What shall
+I do with this newfound power?" - Journal Entry 25"""
+icon = "FiendishFormIII"
+internal_name = "AotSCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore4"]
+req_type = "Enhancement"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 6
+
+[[enhancement.requirement]]
+items = ["AotSCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fiendish Form IV"
+cost_per_rank = [1]
+description = """
+You gain +3 Magical Resistance Rating per Core Ability you take in this tree.
+"Am I mad? No, no, this is more than madness. It is obsession." - Journal Entry 31"""
+icon = "FiendishFormIV"
+internal_name = "AotSCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["AotSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 12
+
+[[enhancement.requirement]]
+items = ["AotSCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fiendish Form V"
+cost_per_rank = [1]
+description = """
+You gain +3 Physical Resistance Rating and Universal Spell Power per
+Core Ability you take in this tree.
+"They do not understand. they will never understand. I must have more, More!"
+- Journal Entry 44"""
+icon = "FiendishFormV"
+internal_name = "AotSCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 18
+
+[[enhancement.requirement]]
+items = ["AotSCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ultimate Fiendish Form"
+cost_per_rank = [1]
+description = """
++4 Charisma, +20% Competence bonus to Hit Points.
+You gain Spell Resistance equal to your Charisma score.
+"What have I done?" - Final Journal Entry"""
+icon = "FiendishFormVI"
+internal_name = "AotSCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "AotSCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "AbilityTotal"
+bonus_type = "Enhancement"
+effect_type = "SpellResistance"
+stack_source = "Charisma"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Fortitude"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 20
+
+[[enhancement.requirement]]
+items = ["AotSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "AotSCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Resilience of Body"
+cost_per_rank = [1]
+description = "You gain +[2/4/6] Physical Resistance Rating."
+icon = "AotSResilienceOfBody"
+internal_name = "AotSResilienceOfBody"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Guarded Mind"
+cost_per_rank = [2]
+description = "You are immune to Fear."
+icon = "AotSGuardedMind"
+internal_name = "AotSGuardedMind"
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Fear"]
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Power of Desecration: Fire I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+You gain +[3/6/10] Fire Spell Power and +[1/2/4] Universal Spell Power.
+"More kindling for the great destruction." - Journal Entry 15"""
+icon = "AotSPowerOfDesecration"
+internal_name = "AotSPowerOfDesecrationI"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Dark Deals"
+cost_per_rank = [1]
+description = """
++[1/2/3] Spellcraft, Haggle and Concentration.
+Rank 3: +1 Will Save.
+"The first of many benefits. A fine start to a long and luxurious career." -
+Journal Entry 2"""
+icon = "AotSDarkDeals"
+internal_name = "AotSDarkDeals"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Spellcraft",
+    "Haggle",
+    "Concentration",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Resilience of Soul"
+cost_per_rank = [1]
+description = "You gain +[2/4/6] Magical Resistance Rating."
+icon = "AotSResilienceOfSoul"
+internal_name = "AotSResilienceOfSoul"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Hellish Rebuke"
+cost_per_rank = [2]
+description = """
+Wreath yourself in fiendish flame that occasionally lashes out when you are
+struck in melee range. For 3 minutes, plus one per caster level, enemies that
+attack you have a chance to take 1d10 Fire damage plus 1 per caster level. This
+damage scales with Fire Spell Power."""
+icon = "AotSHellishRebuke"
+internal_name = "AotSHellishRebuke"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Mindrack"
+cost_per_rank = [2]
+description = """
+Your Eldritch Blast, Melee and Ranged attacks reduce the Will saving throw of the
+target by -1 for 6 seconds. The effect stacks up to 4 times."""
+icon = "AotSMindwrack"
+internal_name = "AotSMindwrack"
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Power of Desecration: Fire II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+You gain +[3/6/10] Fire Spell Power and +[1/2/4] Universal Spell Power.
+"Everything burns. Everything." - Journal Entry 20"""
+icon = "AotSPowerOfDesecrationII"
+internal_name = "AotSPowerOfDesecrationII"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["AotSPowerOfDesecrationI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Nightshield"
+cost_per_rank = [2]
+description = """
+You permanently gain the effects of the Nightshield spell.
+Nightshield: Grants a +1 resistance bonus to saves and protection from magic
+missiles.
+"A potent ward - advisable against an enemy magician to prevent an errant spell
+from striking true." - Journal Entry 23"""
+icon = "AotSNightshield"
+internal_name = "AotSNightshield"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+rank = 3
+targets = ["Magic Missiles"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+apply_as_item_effect = true
+bonus_type = "Resistance"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Hellfire"
+cost_per_rank = [1]
+description = "Your damaging spells now bypass [5/10/15] points of your target's Fire Resistance."
+icon = "AotSHellfire"
+internal_name = "AotSHellfire"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Eldritch Blast Shape: Beam"
+cost_per_rank = [1]
+description = """
+Eldritch Blast Shape: Transform your Eldritch Blast into a magical beam of Force
+dealing damage to all enemies in a straight line. This scales with 125% Spell Power.
+While active you have -1 Pact damage die.
+Note: Width of AoE is rather narrow, range is slightly less than Focused form.
+Does do punch-through on enemies, does NOT do punch through on destructibles.
+Unlike other forms, this one tends to be more effective if you disable
+Auto-Targeting and manually aim the shots to graze as many enemies as possible;
+Auto Targeting makes it aim dead-center on the torso of enemies which frequently
+makes it hit fewer targets."""
+icon = "BlastShapeBeam"
+internal_name = "AotSEldritchBlastShapeBeam"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-1]
+bonus_type = "Enhancement"
+effect_type = "EldritchBlastD6"
+
+[[enhancement.modifier.requirement]]
+items = ["Beam"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 3
+
+[[enhancement.stance]]
+name = "Beam"
+description = """
+Eldritch Blast Shape: Transform your Eldritch Blast into a magical beam
+of Force dealing damage to all enemies in a straight line. While active you have
+-1 Pact damage die."""
+group_name = "Blast Shape"
+icon = "BlastShapeBeam"
+
+[[enhancement]]
+name = "Devil's Bulwark I"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "While in any armor, your Fiendskin now grants +1 Natural Armor per 2 Warlock Levels."
+icon = "AotSDevilsBulwark"
+internal_name = "AotSDevilsBulwarkI"
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "NaturalArmor"
+stack_source = "Acolyte of the Skin"
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Power of Desecration: Fire III"
+cost_per_rank = [1]
+description = """
+You gain +[3/6/10] Fire Spell Power and +[1/2/4] Universal Spell Power.
+"Hot enough to scorch the soul." - Journal Entry 22"""
+icon = "AotSPowerOfDesecrationIII"
+internal_name = "AotSPowerOfDesecrationIII"
+min_spent = 10
+ranks = 3
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "UniversalSpellPower"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["AotSPowerOfDesecrationII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fiendish Glare"
+cost_per_rank = [2]
+description = """
+Unleash your Fiendish power as you fire your Eldritch Blast in a cone from your eyes.
+All enemies caught in the burst take 1d6 Evil Damage, plus any other effects
+and damage your Eldritch Blast produce, and may become Feared just at the
+glimpse of your true form. This ability shares a cooldown with Cleave, and the
+damage scales with spell power.
+Cooldown: 5 seconds."""
+icon = "FiendishGlare"
+internal_name = "AotSFiendishGlare"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Charisma I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+internal_name = "AotSAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Drink Their Fear"
+cost_per_rank = [1]
+description = """
+You deal double your Pact damage to enemies that are afraid of you.
+
+"Let them run! They'll meet their end soon enough." - Journal Entry 25."""
+icon = "DrinkTheirFear"
+internal_name = "AotSDrinkTheirFear"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Devil's Bulwark II"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+While in any armor, your Fiendskin now grants +1 Physical Resistance Rating
+per 2 Warlock Levels."""
+icon = "AotSDevilsBulwark"
+internal_name = "AotSDevilsBulwarkII"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+stack_source = "Acolyte of the Skin"
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AotSDevilsBulwarkI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Skin Adaptation"
+cost_per_rank = [1]
+description = "Your Fiendskin now grants an equivalent amount of Cold, Acid, and Lightning Resistance."
+icon = "SkinAdaptation"
+internal_name = "AotSSkinAdaptation"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+stack_source = "Acolyte of the Skin"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+]
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Luck of the Gambler"
+cost_per_rank = [1]
+description = "+[1/2/3] to all Saving throws."
+icon = "AotSLuckOfTheGambler"
+internal_name = "AotSLuckOfTheGambler"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Charisma II"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+internal_name = "AotSAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["AotSAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Glare of the Pit"
+cost_per_rank = [2]
+description = """
+Unleash your Fiendish power as you fire your Eldritch Blast in a cone
+from your eyes. All enemies caught in the burst take 4d6 Evil damage, plus any
+other effects and damage your Eldritch Blast produce, and may become Feared
+just at the glimpse of your true form. This ability shares a cooldown with Cleave,
+and the damage scales with spell power.
+Cooldown: 5 seconds."""
+icon = "GlareOfThePit"
+internal_name = "AotSGlareOfThePit"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Devil's Bulwark III"
+cost_per_rank = [1]
+description = """
+While in any armor, your Fiendskin now grants +1 Magical Resistance Rating
+and Magic Resistance Rating Cap per 2 Warlock Levels."""
+icon = "AotSDevilsBulwark"
+internal_name = "AotSDevilsBulwarkIII"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+    2,
+    2,
+    3,
+    3,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    7,
+    8,
+    8,
+    9,
+    9,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "MRR"
+extra_types = ["MRRCap"]
+stack_source = "Acolyte of the Skin"
+
+[[enhancement.modifier.requirement_group]]
+kind = "none_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Cloth Armor"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["AotSDevilsBulwarkII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fiendish Symbiosis"
+cost_per_rank = [2]
+description = """
+You call upon your fiendish patron, transforming into a Demon for a
+short time. You gain +100% Fortification, heal from Fire damage, and gain Natural
+Armor equal to your Pact Dice. While in this form, you no longer Eldritch Blast
+at range, instead you lash out with demonic claws as a melee attack. Each strike
+deals your full Eldritch Blast damage on hit. Entering this form is so frightening
+that activating this ability causes nearby enemies to become afraid. You may only
+maintain your Demonic form for 30 seconds, but its duration increases by 5
+seconds for each Core Ability you have in this tree.
+Cooldown: 3 minutes"""
+icon = "FiendishSymbiosis"
+internal_name = "AotSFiendishSymbiosis"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Dark Lore"
+cost_per_rank = [1]
+description = "+[1/2/3] Necromancy DCs."
+icon = "AotSDarkLore"
+internal_name = "AotSDarkLore"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[enhancement.requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Acolyte of the Skin"]
+req_type = "Class"

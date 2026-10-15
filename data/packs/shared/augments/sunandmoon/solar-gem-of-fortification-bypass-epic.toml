@@ -1,0 +1,29 @@
+name = "Solar Gem of Fortification Bypass (Epic)"
+description = """
++20% Artifact Bonus to Fortification Bypass.
+Drops in: Dinosaur Crisis, end chest (rare)"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 20
+
+[[effect]]
+name = "Fortification Bypass"
+bonus_type = "Artifact"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Artifact"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Dinosaur Crisis"

@@ -1,0 +1,3 @@
+name = "Anti-Magic Runes"
+description_template = "The runes inscribed on this weapon activate on a critical hit and attempt to suppress the spell casting abilities of the target. The target must make a DC 20 Fortitude save or be unable to cast spells for 18 seconds."
+verbose_name_template = "Anti-Magic Runes"

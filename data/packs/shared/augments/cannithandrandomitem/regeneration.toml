@@ -1,0 +1,13 @@
+name = "Regeneration"
+description = """
+This item is imbued with an undeniable goodness that slowly heals the wearer over time.
+Recovers 1 hp per minute."""
+family = "CannithAndRandomItem"
+icon = "Cannith"
+min_level = 6
+
+[[slot]]
+slot = "crafting: cannith ring suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"

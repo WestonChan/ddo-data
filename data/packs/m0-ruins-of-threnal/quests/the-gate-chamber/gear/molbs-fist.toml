@@ -1,0 +1,30 @@
+name = "Molb's Fist"
+description = """
+This pair of gloves are cold to the touch and once belonged to Molb, a powerful
+water savant."""
+drop_location = "The Gate Chamber, End chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 7
+slot = "Hands"
+
+[[effect]]
+name = "Wizardry II"
+bonus_type = "Enhancement"
+value = 50
+
+[[effect]]
+name = "Efficient Metamagic - Enlarge I"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Ice Lore"
+bonus_type = "Equipment"
+value = 13
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Gate Chamber"

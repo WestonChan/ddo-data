@@ -1,0 +1,43 @@
+name = "Legendary Lizardfolk Tooth Necklace"
+description = "A warning to Lizardfolk to watch their mouths around you."
+drop_location = "Danger at Dunwater, end chest, or Legendary version of Epic Lizardfolk Tooth Necklace"
+icon = "Necklace_35a"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Shatter"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Relentless Fury"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest, or legendary version of epic lizardfolk tooth necklace"
+kind = "quest"
+loot_type = "chest"
+name = "Danger at Dunwater"

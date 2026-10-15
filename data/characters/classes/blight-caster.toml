@@ -1,0 +1,1755 @@
+name = "Blight Caster"
+alignments = [
+    "True Neutral",
+    "Chaotic Neutral",
+    "Lawful Neutral",
+    "Neutral Good",
+]
+bab = [
+    0,
+    0.75,
+    1.5,
+    2.25,
+    3,
+    3.75,
+    4.5,
+    5.25,
+    6,
+    6.75,
+    7.5,
+    8.25,
+    9,
+    9.75,
+    10.5,
+    11.25,
+    12,
+    12.75,
+    13.5,
+    14.25,
+    15,
+]
+base_class = "Druid"
+casting_stats = ["Wisdom"]
+class_specific_feat_types = ["Wild Shape"]
+description = """
+Blight Caster is a variant Druid archetype that embraces death as a necessary part of
+life. Introduced in Update 58."""
+fortitude = "good"
+hit_points = 8
+large_icon = "Druid"
+reflex = "poor"
+skill_points = 4
+small_icon = "Druid_Small"
+spell_points_per_level = [
+    0,
+    50,
+    75,
+    100,
+    125,
+    150,
+    180,
+    215,
+    255,
+    300,
+    350,
+    405,
+    465,
+    530,
+    600,
+    675,
+    755,
+    840,
+    930,
+    1025,
+    1125,
+]
+will = "good"
+
+[[auto_buy_skill]]
+skill = "Concentration"
+
+[[auto_buy_skill]]
+skill = "Heal"
+
+[[auto_buy_skill]]
+skill = "Spellcraft"
+
+[[auto_feat]]
+level = 1
+feat = "Dismiss Charm"
+
+[[auto_feat]]
+feat_name = "Druidic Oath"
+level = 1
+
+[[auto_feat]]
+feat_name = "Druidic Spontaneous Casting"
+level = 1
+
+[[auto_feat]]
+level = 1
+feat = "Light Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Magical Training"
+
+[[auto_feat]]
+level = 1
+feat = "Medium Armor Proficiency"
+
+[[auto_feat]]
+level = 1
+feat = "Shield Proficiency (General)"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Club"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dagger"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Dart"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Quarterstaff"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Sickle"
+
+[[auto_feat]]
+level = 1
+feat = "Simple Weapon Proficiency: Unarmed"
+
+[[auto_feat]]
+level = 1
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 1
+feat = "Cantrip: Acid Splash"
+
+[[auto_feat]]
+level = 1
+feat = "Cantrip: Disrupt Living"
+
+[[auto_feat]]
+level = 2
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 3
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 4
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+feat_name = "Venom Immunity"
+level = 5
+
+[[auto_feat]]
+level = 5
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 6
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 7
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 8
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 9
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 10
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 11
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 12
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 13
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 14
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 15
+feat = "Timeless Body"
+
+[[auto_feat]]
+level = 15
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 16
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 17
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 18
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 19
+feat = "Wilderness Lore"
+
+[[auto_feat]]
+level = 20
+feat = "Wilderness Lore"
+
+[[feat_slot]]
+auto_populate = true
+feat_type = "Wild Shape"
+level = 2
+
+[[feat_slot]]
+feat_type = "Toggle Imbue"
+level = 2
+
+[[feat_slot]]
+feat_type = "Kin Form"
+level = 4
+
+[[feat_slot]]
+auto_populate = true
+feat_type = "Kin Form"
+level = 8
+
+[[feat_slot]]
+auto_populate = true
+feat_type = "Wild Shape"
+level = 11
+
+[[feat_slot]]
+auto_populate = true
+feat_type = "Toggle Imbue"
+level = 11
+
+[[feat_slot]]
+auto_populate = true
+feat_type = "Wild Shape"
+level = 13
+
+[[feat_slot]]
+auto_populate = true
+feat_type = "Wild Shape"
+level = 17
+
+[[skill]]
+skill = "Concentration"
+
+[[skill]]
+skill = "Diplomacy"
+
+[[skill]]
+skill = "Heal"
+
+[[skill]]
+skill = "Intimidate"
+
+[[skill]]
+skill = "Listen"
+
+[[skill]]
+skill = "Spellcraft"
+
+[[skill]]
+skill = "Spot"
+
+[[skill]]
+skill = "Swim"
+
+[[spell]]
+spell = "Acid Spray"
+spell_level = 1
+spell_name = "Acid Spray"
+
+[[spell]]
+spell = "Chill Touch"
+spell_level = 1
+spell_name = "Chill Touch"
+
+[[spell]]
+spell = "Entangle"
+spell_level = 1
+spell_name = "Entangle"
+
+[[spell]]
+spell = "Faerie Fire"
+spell_level = 1
+spell_name = "Faerie Fire"
+
+[[spell]]
+max_caster_level = 9
+spell = "Jump"
+spell_level = 1
+spell_name = "Jump"
+
+[[spell]]
+spell = "Longstrider"
+spell_level = 1
+spell_name = "Longstrider"
+
+[[spell]]
+spell = "Merfolk's Blessing"
+spell_level = 1
+spell_name = "Merfolk's Blessing"
+
+[[spell]]
+spell = "Nightshield"
+spell_level = 1
+spell_name = "Nightshield"
+
+[[spell]]
+spell = "Pass Without Trace"
+spell_level = 1
+spell_name = "Pass Without Trace"
+
+[[spell]]
+spell = "Ram's Might"
+spell_level = 1
+spell_name = "Ram's Might"
+
+[[spell]]
+max_caster_level = 1
+spell = "Shillelagh"
+spell_level = 1
+spell_name = "Shillelagh"
+
+[[spell]]
+spell = "Takedown"
+spell_level = 1
+spell_name = "Takedown"
+
+[[spell]]
+spell = "Thorn Strike"
+spell_level = 1
+spell_name = "Thorn Strike"
+
+[[spell]]
+spell = "Align Fang"
+spell_level = 2
+spell_name = "Align Fang"
+
+[[spell]]
+spell = "Animal Trance"
+spell_level = 2
+spell_name = "Animal Trance"
+
+[[spell]]
+max_caster_level = 12
+spell = "Barkskin"
+spell_level = 2
+spell_name = "Barkskin"
+
+[[spell]]
+spell = "Bear's Endurance"
+spell_level = 2
+spell_name = "Bear's Endurance"
+
+[[spell]]
+spell = "Bull's Strength"
+spell_level = 2
+spell_name = "Bull's Strength"
+
+[[spell]]
+spell = "Cat's Grace"
+spell_level = 2
+spell_name = "Cat's Grace"
+
+[[spell]]
+spell = "Contagion"
+spell_level = 2
+spell_name = "Contagion"
+
+[[spell]]
+max_caster_level = 18
+spell = "Creeping Cold"
+spell_level = 2
+spell_name = "Creeping Cold"
+
+[[spell]]
+spell = "Eagle's Splendor"
+spell_level = 2
+spell_name = "Eagle's Splendor"
+
+[[spell]]
+spell = "Fog Cloud"
+spell_level = 2
+spell_name = "Fog Cloud"
+
+[[spell]]
+spell = "Fox's Cunning"
+spell_level = 2
+spell_name = "Fox's Cunning"
+
+[[spell]]
+cost = 5
+spell = "Gust of Wind"
+spell_level = 2
+spell_name = "Gust of Wind"
+
+[[spell]]
+spell = "Hold Animal"
+spell_level = 2
+spell_name = "Hold Animal"
+
+[[spell]]
+cost = 10
+spell = "Lesser Restoration"
+spell_level = 2
+spell_name = "Lesser Restoration"
+
+[[spell]]
+spell = "Lesser Vigor"
+spell_level = 2
+spell_name = "Lesser Vigor"
+
+[[spell]]
+spell = "Melf's Acid Arrow"
+spell_level = 2
+spell_name = "Melf's Acid Arrow"
+
+[[spell]]
+spell = "Owl's Wisdom"
+spell_level = 2
+spell_name = "Owl's Wisdom"
+
+[[spell]]
+spell = "Resist Energy"
+spell_level = 2
+spell_name = "Resist Energy"
+
+[[spell]]
+max_caster_level = 12
+spell = "Splinterbolt"
+spell_level = 2
+spell_name = "Splinterbolt"
+
+[[spell]]
+spell = "Thorn Blade"
+spell_level = 2
+spell_name = "Thorn Blade"
+
+[[spell]]
+spell = "Web"
+spell_level = 2
+spell_name = "Web"
+
+[[spell]]
+spell = "Acid Blast"
+spell_level = 3
+spell_name = "Acid Blast"
+
+[[spell]]
+spell = "Baiting Bite"
+spell_level = 3
+spell_name = "Baiting Bite"
+
+[[spell]]
+max_caster_level = 15
+spell = "Call Lightning"
+spell_level = 3
+spell_name = "Call Lightning"
+
+[[spell]]
+spell = "Dominate Animal"
+spell_level = 3
+spell_name = "Dominate Animal"
+
+[[spell]]
+spell = "Neutralize Poison"
+spell_level = 3
+spell_name = "Neutralize Poison"
+
+[[spell]]
+cost = 10
+spell = "Poison"
+spell_level = 3
+spell_name = "Poison"
+
+[[spell]]
+max_caster_level = 10
+spell = "Protection From Energy"
+spell_level = 3
+spell_name = "Protection From Energy"
+
+[[spell]]
+spell = "Quench"
+spell_level = 3
+spell_name = "Quench"
+
+[[spell]]
+spell = "Remove Disease"
+spell_level = 3
+spell_name = "Remove Disease"
+
+[[spell]]
+max_caster_level = 10
+spell = "Salt Ray"
+spell_level = 3
+spell_name = "Salt Ray"
+
+[[spell]]
+cost = 10
+spell = "Sleet Storm"
+spell_level = 3
+spell_name = "Sleet Storm"
+
+[[spell]]
+cost = 5
+spell = "Snare"
+spell_level = 3
+spell_name = "Snare"
+
+[[spell]]
+spell = "Spiderskin"
+spell_level = 3
+spell_name = "Spiderskin"
+
+[[spell]]
+spell = "Spike Growth"
+spell_level = 3
+spell_name = "Spike Growth"
+
+[[spell]]
+spell = "Stinking Cloud"
+spell_level = 3
+spell_name = "Stinking Cloud"
+
+[[spell]]
+spell = "Thorn Bloom"
+spell_level = 3
+spell_name = "Thorn Bloom"
+
+[[spell]]
+spell = "Water Breathing"
+spell_level = 3
+spell_name = "Water Breathing"
+
+[[spell]]
+spell = "Acid Rain"
+spell_level = 4
+spell_name = "Acid Rain"
+
+[[spell]]
+cost = 15
+max_caster_level = 10
+spell = "Dispel Magic"
+spell_level = 4
+spell_name = "Dispel Magic"
+
+[[spell]]
+spell = "Enveloping Swarm"
+spell_level = 4
+spell_name = "Enveloping Swarm"
+
+[[spell]]
+spell = "Fear"
+spell_level = 4
+spell_name = "Fear"
+
+[[spell]]
+spell = "Freedom of Movement"
+spell_level = 4
+spell_name = "Freedom of Movement"
+
+[[spell]]
+max_caster_level = 15
+spell = "Ice Storm"
+spell_level = 4
+spell_name = "Ice Storm"
+
+[[spell]]
+spell = "Longstrider, Mass"
+spell_level = 4
+spell_name = "Longstrider, Mass"
+
+[[spell]]
+spell = "Vigor"
+spell_level = 4
+spell_name = "Vigor"
+
+[[spell]]
+max_caster_level = 24
+spell = "Waves of Fatigue"
+spell_level = 4
+spell_name = "Waves of Fatigue"
+
+[[spell]]
+spell = "Blighted Breath"
+spell_level = 5
+spell_name = "Blighted Breath"
+
+[[spell]]
+spell = "Call Lightning Storm"
+spell_level = 5
+spell_name = "Call Lightning Storm"
+
+[[spell]]
+spell = "Cloudkill"
+spell_level = 5
+spell_name = "Cloudkill"
+
+[[spell]]
+spell = "Death Ward"
+spell_level = 5
+spell_name = "Death Ward"
+
+[[spell]]
+max_caster_level = 12
+spell = "Lesser Vigor, Mass"
+spell_level = 5
+spell_name = "Lesser Vigor, Mass"
+
+[[spell]]
+spell = "Negative Energy Burst"
+spell_level = 5
+spell_name = "Negative Energy Burst"
+
+[[spell]]
+max_caster_level = 20
+spell = "Panacea"
+spell_level = 5
+spell_name = "Panacea"
+
+[[spell]]
+spell = "Plant Growth"
+spell_level = 5
+spell_name = "Plant Growth"
+
+[[spell]]
+spell = "Reincarnate"
+spell_level = 5
+spell_name = "Reincarnate"
+
+[[spell]]
+spell = "Stoneskin"
+spell_level = 5
+spell_name = "Stoneskin"
+
+[[spell]]
+spell = "Thorn Wave"
+spell_level = 5
+spell_name = "Thorn Wave"
+
+[[spell]]
+spell = "Bear's Endurance, Mass"
+spell_level = 6
+spell_name = "Bear's Endurance, Mass"
+
+[[spell]]
+spell = "Blighted Bite"
+spell_level = 6
+spell_name = "Blighted Bite"
+
+[[spell]]
+spell = "Bull's Strength, Mass"
+spell_level = 6
+spell_name = "Bull's Strength, Mass"
+
+[[spell]]
+spell = "Cat's Grace, Mass"
+spell_level = 6
+spell_name = "Cat's Grace, Mass"
+
+[[spell]]
+spell = "Eagle's Splendor, Mass"
+spell_level = 6
+spell_name = "Eagle's Splendor, Mass"
+
+[[spell]]
+max_caster_level = 15
+spell = "Fire Shield (Cold)"
+spell_level = 6
+spell_name = "Fire Shield (Cold)"
+
+[[spell]]
+spell = "Fox's Cunning, Mass"
+spell_level = 6
+spell_name = "Fox's Cunning, Mass"
+
+[[spell]]
+spell = "Grasping Thorns"
+spell_level = 6
+spell_name = "Grasping Thorns"
+
+[[spell]]
+max_caster_level = 20
+spell = "Greater Creeping Cold"
+spell_level = 6
+spell_name = "Greater Creeping Cold"
+
+[[spell]]
+cost = 30
+max_caster_level = 20
+spell = "Greater Dispel Magic"
+spell_level = 6
+spell_name = "Greater Dispel Magic"
+
+[[spell]]
+spell = "Greater Vigor"
+spell_level = 6
+spell_name = "Greater Vigor"
+
+[[spell]]
+spell = "Jaws of Doom"
+spell_level = 6
+spell_name = "Jaws of Doom"
+
+[[spell]]
+spell = "Necrotic Ray"
+spell_level = 6
+spell_name = "Necrotic Ray"
+
+[[spell]]
+spell = "Owl's Wisdom, Mass"
+spell_level = 6
+spell_name = "Owl's Wisdom, Mass"
+
+[[spell]]
+max_caster_level = 20
+spell = "Word of Balance"
+spell_level = 6
+spell_name = "Word of Balance"
+
+[[spell]]
+spell = "Acid Fog"
+spell_level = 7
+spell_name = "Acid Fog"
+
+[[spell]]
+spell = "Creeping Doom"
+spell_level = 7
+spell_name = "Creeping Doom"
+
+[[spell]]
+spell = "Finger of Death"
+spell_level = 7
+spell_name = "Finger of Death"
+
+[[spell]]
+spell = "Freedom of Movement, Mass"
+spell_level = 7
+spell_name = "Freedom of Movement, Mass"
+
+[[spell]]
+spell = "Horrid Wilting"
+spell_level = 7
+spell_name = "Horrid Wilting"
+
+[[spell]]
+spell = "Insidious Spores"
+spell_level = 7
+spell_name = "Insidious Spores"
+
+[[spell]]
+max_caster_level = 10
+spell = "Protection from Elements, Mass"
+spell_level = 7
+spell_name = "Protection from Elements, Mass"
+
+[[spell]]
+spell = "True Seeing"
+spell_level = 7
+spell_name = "True Seeing"
+
+[[spell]]
+spell = "Vigor, Mass"
+spell_level = 7
+spell_name = "Vigor, Mass"
+
+[[spell]]
+spell = "Waves of Exhaustion"
+spell_level = 7
+spell_name = "Waves of Exhaustion"
+
+[[spell]]
+spell = "Black Dragon Bolt"
+spell_level = 8
+spell_name = "Black Dragon Bolt"
+
+[[spell]]
+spell = "Earthquake"
+spell_level = 8
+spell_name = "Earthquake"
+
+[[spell]]
+spell = "Greater Vigor, Mass"
+spell_level = 8
+spell_name = "Greater Vigor, Mass"
+
+[[spell]]
+spell = "Howl of Terror"
+spell_level = 8
+spell_name = "Howl of Terror"
+
+[[spell]]
+spell = "Regenerate"
+spell_level = 8
+spell_name = "Regenerate"
+
+[[spell]]
+spell = "Stormrage"
+spell_level = 8
+spell_name = "Stormrage"
+
+[[spell]]
+spell = "Thorn Lance"
+spell_level = 8
+spell_name = "Thorn Lance"
+
+[[spell]]
+spell = "Acid Well"
+spell_level = 9
+spell_name = "Acid Well"
+
+[[spell]]
+spell = "Blighted Charge"
+spell_level = 9
+spell_name = "Blighted Charge"
+
+[[spell]]
+spell = "Rend the Soul"
+spell_level = 9
+spell_name = "Rend the Soul"
+
+[[spell]]
+spell = "Storm of Vengeance"
+spell_level = 9
+spell_name = "Storm of Vengeance"
+
+[[spell]]
+spell = "Tsunami"
+spell_level = 9
+spell_name = "Tsunami"
+
+[[spell]]
+spell = "Wail of the Banshee"
+spell_level = 9
+spell_name = "Wail of the Banshee"
+
+[[spell_slot]]
+class_level = 1
+slots = 2
+spell_level = 1
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 1
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 2
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 2
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 2
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 3
+slots = 3
+spell_level = 1
+
+[[spell_slot]]
+class_level = 3
+slots = 2
+spell_level = 2
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 3
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 4
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 4
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 3
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 4
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 5
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 5
+slots = 3
+spell_level = 2
+
+[[spell_slot]]
+class_level = 5
+slots = 2
+spell_level = 3
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 5
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 6
+slots = 4
+spell_level = 1
+
+[[spell_slot]]
+class_level = 6
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 6
+slots = 3
+spell_level = 3
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 4
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 6
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 7
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 7
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 7
+slots = 3
+spell_level = 3
+
+[[spell_slot]]
+class_level = 7
+slots = 2
+spell_level = 4
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 7
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 8
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 8
+slots = 4
+spell_level = 2
+
+[[spell_slot]]
+class_level = 8
+slots = 4
+spell_level = 3
+
+[[spell_slot]]
+class_level = 8
+slots = 3
+spell_level = 4
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 5
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 8
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 9
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 9
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 9
+slots = 4
+spell_level = 3
+
+[[spell_slot]]
+class_level = 9
+slots = 3
+spell_level = 4
+
+[[spell_slot]]
+class_level = 9
+slots = 2
+spell_level = 5
+
+[[spell_slot]]
+class_level = 9
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 9
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 9
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 9
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 10
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 10
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 10
+slots = 4
+spell_level = 3
+
+[[spell_slot]]
+class_level = 10
+slots = 4
+spell_level = 4
+
+[[spell_slot]]
+class_level = 10
+slots = 3
+spell_level = 5
+
+[[spell_slot]]
+class_level = 10
+slots = 0
+spell_level = 6
+
+[[spell_slot]]
+class_level = 10
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 10
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 10
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 11
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 11
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 11
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 11
+slots = 4
+spell_level = 4
+
+[[spell_slot]]
+class_level = 11
+slots = 3
+spell_level = 5
+
+[[spell_slot]]
+class_level = 11
+slots = 2
+spell_level = 6
+
+[[spell_slot]]
+class_level = 11
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 11
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 11
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 12
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 12
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 12
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 12
+slots = 4
+spell_level = 4
+
+[[spell_slot]]
+class_level = 12
+slots = 4
+spell_level = 5
+
+[[spell_slot]]
+class_level = 12
+slots = 3
+spell_level = 6
+
+[[spell_slot]]
+class_level = 12
+slots = 0
+spell_level = 7
+
+[[spell_slot]]
+class_level = 12
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 12
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 13
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 13
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 13
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 13
+slots = 5
+spell_level = 4
+
+[[spell_slot]]
+class_level = 13
+slots = 4
+spell_level = 5
+
+[[spell_slot]]
+class_level = 13
+slots = 3
+spell_level = 6
+
+[[spell_slot]]
+class_level = 13
+slots = 2
+spell_level = 7
+
+[[spell_slot]]
+class_level = 13
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 13
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 14
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 14
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 14
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 14
+slots = 5
+spell_level = 4
+
+[[spell_slot]]
+class_level = 14
+slots = 4
+spell_level = 5
+
+[[spell_slot]]
+class_level = 14
+slots = 4
+spell_level = 6
+
+[[spell_slot]]
+class_level = 14
+slots = 3
+spell_level = 7
+
+[[spell_slot]]
+class_level = 14
+slots = 0
+spell_level = 8
+
+[[spell_slot]]
+class_level = 14
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 15
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 15
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 15
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 15
+slots = 5
+spell_level = 4
+
+[[spell_slot]]
+class_level = 15
+slots = 5
+spell_level = 5
+
+[[spell_slot]]
+class_level = 15
+slots = 4
+spell_level = 6
+
+[[spell_slot]]
+class_level = 15
+slots = 3
+spell_level = 7
+
+[[spell_slot]]
+class_level = 15
+slots = 2
+spell_level = 8
+
+[[spell_slot]]
+class_level = 15
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 16
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 16
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 16
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 16
+slots = 5
+spell_level = 4
+
+[[spell_slot]]
+class_level = 16
+slots = 5
+spell_level = 5
+
+[[spell_slot]]
+class_level = 16
+slots = 4
+spell_level = 6
+
+[[spell_slot]]
+class_level = 16
+slots = 4
+spell_level = 7
+
+[[spell_slot]]
+class_level = 16
+slots = 3
+spell_level = 8
+
+[[spell_slot]]
+class_level = 16
+slots = 0
+spell_level = 9
+
+[[spell_slot]]
+class_level = 17
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 17
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 17
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 17
+slots = 5
+spell_level = 4
+
+[[spell_slot]]
+class_level = 17
+slots = 5
+spell_level = 5
+
+[[spell_slot]]
+class_level = 17
+slots = 5
+spell_level = 6
+
+[[spell_slot]]
+class_level = 17
+slots = 4
+spell_level = 7
+
+[[spell_slot]]
+class_level = 17
+slots = 3
+spell_level = 8
+
+[[spell_slot]]
+class_level = 17
+slots = 2
+spell_level = 9
+
+[[spell_slot]]
+class_level = 18
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 18
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 18
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 18
+slots = 5
+spell_level = 4
+
+[[spell_slot]]
+class_level = 18
+slots = 5
+spell_level = 5
+
+[[spell_slot]]
+class_level = 18
+slots = 5
+spell_level = 6
+
+[[spell_slot]]
+class_level = 18
+slots = 4
+spell_level = 7
+
+[[spell_slot]]
+class_level = 18
+slots = 4
+spell_level = 8
+
+[[spell_slot]]
+class_level = 18
+slots = 3
+spell_level = 9
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 4
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 5
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 6
+
+[[spell_slot]]
+class_level = 19
+slots = 5
+spell_level = 7
+
+[[spell_slot]]
+class_level = 19
+slots = 4
+spell_level = 8
+
+[[spell_slot]]
+class_level = 19
+slots = 4
+spell_level = 9
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 1
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 2
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 3
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 4
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 5
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 6
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 7
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 8
+
+[[spell_slot]]
+class_level = 20
+slots = 5
+spell_level = 9

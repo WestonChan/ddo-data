@@ -1,0 +1,63 @@
+name = "Deific Diadem"
+description = "The crown the abbot had made to signify his ascension and godhood."
+drop_location = "Ascension Chamber, Raid Warded chest"
+icon = "Helmet_17a"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 13
+slot = "Head"
+
+[[clickie]]
+name = "Lesser Heighten"
+clickie = "Lesser Heighten"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    12,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Lesser Heighten"]
+
+[[socket]]
+slot = "crafting: upgradeable item (black abbot)"
+
+[[socket.option]]
+name = "Adds Evocation Focus +2 and Increases Lesser Height Charges to 5"
+description = """
+Evocation Focus +2: +2 Equipment bonus to the DC of Evocation spells.
+Increases Lesser Height Charges to 5 (NOT MODELLED)"""
+icon = "BlackAbbot"
+min_level = 13
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+value = 2
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[source]]
+chest = "raid warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Ascension Chamber"

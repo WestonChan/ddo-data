@@ -1,0 +1,42 @@
+name = "Epic Carnifex"
+accepts_sentience = true
+description = """
+This axe once belonged to an executioner. His swiftness and skill lives on through
+this instrument of death."""
+drop_location = "Free Delera, End chest"
+enhancement_bonus = 8
+icon = "GreatAxe_10"
+item_category = "Weapon"
+item_type = "Great Axe"
+material = "Steel"
+minimum_level = 25
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Free Delera"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 12
+critical_multiplier = 3
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 4.0
+handedness = "Two-handed"
+weapon_type = "Great Axe"

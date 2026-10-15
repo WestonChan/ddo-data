@@ -1,0 +1,22 @@
+name = "Zulkash's Bone Necklace"
+description = """
+This necklace was crafted by Zulkash, Splinterskull witch-doctor. Some of the
+bones appear humanoid."""
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Necklace_1"
+item_category = "Jewelry"
+material = "Bone"
+minimum_level = 5
+slot = "Neck"
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 42
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

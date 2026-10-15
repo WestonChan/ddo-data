@@ -1,0 +1,11 @@
+name = "Weapon Invasion - NYI"
+adds_augment = "Weapon Subjugation"
+description = """
+TBD
+Water:Opposition:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfPower"
+min_level = 11
+
+[[slot]]
+slot = "crafting: weapon invasion"

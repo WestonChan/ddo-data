@@ -1,0 +1,44 @@
+name = "Royal Scimitar (Level 24)"
+description = """
+One of six swords passed down through the royal family of Aurelia. Its edge
+is sharp enough to cut through even the toughest armor."""
+drop_location = "Return to Prison of the Planes, Shavarath room's chest (Epic Hard)"
+enhancement_bonus = 7
+icon = "Scimitar_10"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 24
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Bloodletter VI"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "shavarath room's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Prison of the Planes"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.5
+handedness = "One-handed"
+weapon_type = "Scimitar"

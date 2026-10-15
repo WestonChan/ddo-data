@@ -1,0 +1,30 @@
+name = "Eyes of Stone"
+bestowed_by = "Tollis Kalmor"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+is_free_to_play = true
+pack = "Free to Play"
+patron = "The Coin Lords"
+zone = "Lordsmarch Plaza"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Eyes_of_Stone"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

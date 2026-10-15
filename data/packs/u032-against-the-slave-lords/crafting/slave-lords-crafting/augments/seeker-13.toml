@@ -1,0 +1,15 @@
+name = "Seeker +13"
+description = "Legendary Enhancement bonus to critical damage"
+family = "Slavelords_Legendary"
+icon = "SlavelordsSuffix"
+min_level = 28
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: legendary slavelords suffix"

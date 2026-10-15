@@ -1,0 +1,22 @@
+name = "Deep Red Ioun Stone (unsuppressed)"
+description = "A deep red gem about 1 inch in diameter."
+drop_location = "Dreamforge, Suppressed Power Crafting"
+icon = "Trinket_5b"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 5
+slot = "Trinket"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Dexterity Skills"
+bonus_type = "Enhancement"
+value = 2
+
+[[source]]
+kind = "crafting_system"
+name = "Suppressed Power"

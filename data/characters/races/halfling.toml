@@ -1,0 +1,39 @@
+name = "Halfling"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+Halflings are clever, capable, and resourceful survivors.
+They are notoriously curious and show a daring that many larger Races can't
+match."""
+short_name = "Halfling"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Strength"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Dexterity"
+
+[[granted_feat]]
+feat = "Small Size Bonus"
+
+[[granted_feat]]
+feat = "Halfling Agility"
+
+[[granted_feat]]
+feat = "Halfling Bravery"
+
+[[granted_feat]]
+feat = "Halfling Keen Ears"
+
+[[granted_feat]]
+feat = "Halfling Luck"
+
+[[granted_feat]]
+feat = "Halfling Thrown Weapon Focus"

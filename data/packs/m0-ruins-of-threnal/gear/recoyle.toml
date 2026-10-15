@@ -1,0 +1,56 @@
+name = "Recoyle"
+description = "A part of his spirit lingers on, and is STILL causing you problems."
+drop_location = "The Abandoned Excavation, End reward"
+icon = "RuneArm_3e"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 9
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier III"
+
+[[effect]]
+name = "Impulse"
+bonus_type = "Equipment"
+value = 54
+
+[[effect]]
+name = "Hidden effect"
+bonus_type = "Penalty"
+
+[[effect]]
+name = "Rune Arm Imbue - Force II"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Force Shot",
+    "None",
+]
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+kind = "quest_chain"
+name = "The Abandoned Excavation"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

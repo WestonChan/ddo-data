@@ -1,0 +1,11 @@
+name = "Blunt Trauma"
+description_template = "This weapon is incredibly dense and delivers especially powerful blows. When rolling a 19 or 20 on a melee attack, your critical multiplier is increased by +1."
+home_bonus_type = "Destiny"
+verbose_name_template = "Blunt Trauma +1"
+
+[[bonus]]
+amount_from = 0
+constant = 1
+rounding = "down"
+scale = 1.0
+target = "Critical Multiplier (19-20)"

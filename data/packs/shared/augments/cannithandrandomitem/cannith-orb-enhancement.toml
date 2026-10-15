@@ -1,0 +1,109 @@
+name = "Cannith Orb Enhancement"
+choose_level = true
+description = "Orb bonus to AC"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    1,
+    1,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    8,
+    10,
+    11,
+    12,
+    12,
+    12,
+    13,
+    13,
+    13,
+    14,
+    14,
+    14,
+    14,
+    14,
+]
+
+[[effect]]
+name = "Saving Throws"
+bonus_type = "Orb"
+value = 13
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Orb"
+value = 13
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Orb"
+value = 13
+
+[[effect]]
+name = "Electric Resistance"
+bonus_type = "Orb"
+value = 13
+
+[[effect]]
+name = "Fire Resistance"
+bonus_type = "Orb"
+value = 13
+
+[[effect]]
+name = "Sonic Resistance"
+bonus_type = "Orb"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Orb"
+effect = "Saving Throws"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Orb"
+effect_type = "EnergyResistance"
+targets = [
+    "Acid",
+    "Cold",
+    "Electric",
+    "Fire",
+    "Sonic",
+]
+
+[[modifier.requirement]]
+items = ["Blocking"]
+req_type = "Stance"
+
+[[slot]]
+slot = "crafting: cannith orb enhancement"

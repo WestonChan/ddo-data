@@ -1,0 +1,76 @@
+name = "Insightful Vertigo"
+choose_level = true
+description = "Adds an Insight bonus to the DC of your Trip and Improved Trip attempts"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    0,
+    0,
+    1,
+    1,
+    1,
+    2,
+    2,
+    2,
+    2,
+    2,
+    3,
+    3,
+    3,
+    3,
+    3,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+    8,
+]
+
+[[effect]]
+name = "Trip DC"
+bonus_type = "Insight"
+value = 8
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [8]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Trip DC"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[slot]]
+slot = "crafting: cannith gloves extra"
+
+[[slot]]
+slot = "crafting: cannith melee suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket extra"
+
+[[slot]]
+slot = "crafting: random gloves extra"
+
+[[slot]]
+slot = "crafting: random weapon extra"

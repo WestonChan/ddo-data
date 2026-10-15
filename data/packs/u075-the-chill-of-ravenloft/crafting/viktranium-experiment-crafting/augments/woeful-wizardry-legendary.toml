@@ -1,0 +1,20 @@
+name = "Woeful Wizardry (Legendary)"
+description = "+310 Enhancement bonus to Maximum SP."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Enhancement"
+value = 310
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [310]
+bonus_type = "Enhancement"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "lamordia: woeful (accessory)"

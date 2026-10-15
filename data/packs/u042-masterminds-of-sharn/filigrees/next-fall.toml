@@ -1,0 +1,142 @@
+[[row]]
+name = "Next Fall: +1 Attack and Damage"
+description = """
++1 Attack and Damage
+Rare: +2 PRR"""
+icon = "NextFall"
+menu = "Masterminds of Sharn"
+set = "Next Fall"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Next Fall: Attack and Damage: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Next Fall: +1 Dexterity"
+description = """
++1 Dexterity
+Rare: +2 PRR"""
+icon = "NextFall"
+menu = "Masterminds of Sharn"
+set = "Next Fall"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Dexterity"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Next Fall: Dexterity: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Next Fall: +1 Trip DC"
+description = """
++1 Trip DC
+Rare: +2 PRR"""
+icon = "NextFall"
+menu = "Masterminds of Sharn"
+set = "Next Fall"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "TacticalDC"
+targets = ["Trip"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Next Fall: Trip: +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "Next Fall: +1 Wisdom"
+description = """
++1 Wisdom
+Rare: +2 MRR"""
+icon = "NextFall"
+menu = "Masterminds of Sharn"
+set = "Next Fall"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Next Fall: Wisdom: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Next Fall: +2 Reflex Saves"
+description = """
++2 Reflex Save
+Rare: +2 MRR"""
+icon = "NextFall"
+menu = "Masterminds of Sharn"
+set = "Next Fall"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+effect_type = "SaveBonus"
+targets = ["Reflex"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Next Fall: Reflex: +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "Next Fall: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "NextFall"
+menu = "Masterminds of Sharn"
+set = "Next Fall"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "Next Fall: Melee Power: +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true

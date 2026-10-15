@@ -1,0 +1,28 @@
+name = "Fang: Repair Spell Critical Damage"
+description = "+10 Insightful bonus to Repair spell critical damage"
+family = "DinosaurBone"
+icon = "Fang"
+min_level = 31
+
+[[effect]]
+name = "Repair Spell Critical Damage"
+bonus_type = "Insight"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Repair Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = [
+    "Repair",
+    "Rust",
+]
+
+[[slot]]
+slot = "isle of dread: fang (accessory)"
+
+[[slot]]
+slot = "isle of dread: artifact fang (accessory)"

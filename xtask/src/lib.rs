@@ -1,7 +1,10 @@
+pub mod data_file_lints;
 pub mod dataset;
+pub mod diff_db;
 pub mod golden_refresh;
 pub mod integrity;
 pub mod response_examples;
+pub mod round_trip;
 pub mod wiki_tools;
 pub mod wiki_tooltips;
 

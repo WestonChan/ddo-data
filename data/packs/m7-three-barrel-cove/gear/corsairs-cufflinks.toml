@@ -1,0 +1,28 @@
+name = "Corsair's Cufflinks"
+description = "Fancy cufflinks! The sign of a pirate with a sense of fashion."
+drop_location = "Three-Barrel Cove (heroic), End reward"
+icon = "Bracers_32"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Wrists"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 5
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "reward"
+name = "Three-Barrel Cove"

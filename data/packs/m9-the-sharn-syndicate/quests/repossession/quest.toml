@@ -1,0 +1,23 @@
+name = "Repossession"
+bestowed_by = "Kear"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 2
+flagging = "Must complete The Stormreaver Fresco and return to Burgundy Tir for the reward to flag for this quest"
+pack = "The Sharn Syndicate"
+patron = "The Coin Lords"
+zone = "Goldstone Manor"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Repossession"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 4

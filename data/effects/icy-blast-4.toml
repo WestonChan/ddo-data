@@ -1,0 +1,3 @@
+name = "Icy Blast 4"
+description_template = "This weapon is sheathed in icy cold, dealing 4d6 Cold damage on a successful hit, and an additional 4d6 Cold damage on a critical hit."
+verbose_name_template = "Icy Blast 4"

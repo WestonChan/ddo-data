@@ -1,0 +1,3 @@
+name = "Legendary Virulent Poison Guard"
+description_template = "This item carries a potent venom that is delivered when enemies strike you. When an enemy strikes you, the poison has a chance to be applied, dealing 5d6 Constitution damage if your enemy fails a DC100 Fortitude saving throw."
+verbose_name_template = "Legendary Virulent Poison Guard"

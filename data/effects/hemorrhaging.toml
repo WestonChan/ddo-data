@@ -1,0 +1,3 @@
+name = "Hemorrhaging"
+description_template = "This weapon is viciously sharp and will do an additional 2 to 16 damage to targets that are vulnerable to bleeding."
+verbose_name_template = "Hemorrhaging"

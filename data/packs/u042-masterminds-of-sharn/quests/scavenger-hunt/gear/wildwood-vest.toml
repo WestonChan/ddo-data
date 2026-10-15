@@ -1,0 +1,46 @@
+name = "Wildwood Vest"
+description = "The faint smell of birchwood lingers in the air around these formal clothes."
+drop_location = "Scavenger Hunt, End Chest"
+enhancement_bonus = 5
+icon = "LightArmor_2"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 15
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 7
+armor_check_penalty = 0
+armor_type = "Light"
+max_dex_bonus = 10
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 94
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 19
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 30
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 29
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Scavenger Hunt"

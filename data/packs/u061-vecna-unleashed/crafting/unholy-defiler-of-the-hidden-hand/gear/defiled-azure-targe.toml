@@ -1,0 +1,66 @@
+name = "Defiled Azure Targe"
+description = "The blue skies are gone. Now, only blood and death remain."
+drop_location = "Unholy Defiler of the Hidden Hand, defiled version of Azure Targe"
+enhancement_bonus = 5
+icon = "Shield_4m"
+item_category = "Shield"
+item_type = "Small Shield"
+material = "Steel"
+minimum_level = 18
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 5
+armor_check_penalty = 0
+armor_type = "Shield"
+damage_reduction = 9
+max_dex_bonus = 0
+shield_bonus = 9
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Shield Bashing"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Unholy 4"
+
+[[effect]]
+name = "Penalty Good"
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Insight"
+value = 6
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "crafting_system"
+name = "Unholy Defiler of the Hidden Hand"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.6
+handedness = "Off-hand"
+weapon_type = "Small Shield"

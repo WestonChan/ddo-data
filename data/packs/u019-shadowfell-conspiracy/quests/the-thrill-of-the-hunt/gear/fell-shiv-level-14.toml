@@ -1,0 +1,45 @@
+name = "Fell Shiv (Level 14)"
+description = "The hidden knife is often the deadliest."
+drop_location = """
+The Thrill of the Hunt, Devouring Shadow chest (Heroic Normal);
+Shadow Over Wheloon, Quest chain end reward (Heroic)"""
+enhancement_bonus = 1
+icon = "Dagger_9"
+item_category = "Weapon"
+item_type = "Dagger"
+material = "Steel"
+minimum_level = 14
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Improved Vorpal"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "devouring shadow chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Thrill of the Hunt"
+
+[[source]]
+kind = "quest_chain"
+name = "Shadow Over Wheloon"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.0
+handedness = "One-handed"
+weapon_type = "Dagger"

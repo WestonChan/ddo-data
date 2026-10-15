@@ -1,0 +1,71 @@
+name = "Legendary Bow of the Elements (Air)"
+accepts_sentience = true
+description = "A composite longbow containing a bound air elemental."
+drop_location = "Legendary version of Epic Bow of the Elements (Air)"
+enhancement_bonus = 15
+icon = "Longbow_1p"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 30
+slot = "Main Hand"
+
+[[clickie]]
+name = "Whirlwind Absorption"
+clickie = "Whirlwind Absorption"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 30
+
+[[effect]]
+name = "Shocking Blast VI"
+
+[[effect]]
+name = "Sovereign Lightning Strike"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 146
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    0,
+    20,
+    20,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Whirlwind Absorption"]
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "red"
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 5.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

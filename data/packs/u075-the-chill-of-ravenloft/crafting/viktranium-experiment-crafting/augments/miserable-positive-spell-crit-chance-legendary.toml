@@ -1,0 +1,21 @@
+name = "Miserable Positive Spell Crit Chance (Legendary)"
+description = "Your Positive spells have a +23% Equipment Bonus to their chance to Critical Hit."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Positive Spell Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Equipment"
+effect = "Positive Spell Lore"
+effect_type = "SpellLore"
+targets = ["Positive"]
+
+[[slot]]
+slot = "lamordia: miserable (weapon)"

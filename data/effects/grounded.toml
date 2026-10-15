@@ -1,0 +1,11 @@
+name = "Grounded"
+description_template = "You are grounded. You cannot jump."
+home_bonus_type = "Penalty"
+verbose_name_template = "Grounded -999"
+
+[[bonus]]
+amount_from = 0
+constant = -999
+rounding = "down"
+scale = 1.0
+target = "Jump"

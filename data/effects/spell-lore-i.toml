@@ -1,0 +1,12 @@
+name = "Spell Lore I"
+description_template = "Passive: All of your spells gain a {1}% %b1 bonus to their chance to critical hit."
+home_bonus_type = "Insight"
+tier = 2
+tier_group = "Spell Lore"
+verbose_name_template = "%b1 Spell Lore I"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Spell Lore"

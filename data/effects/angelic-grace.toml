@@ -1,0 +1,3 @@
+name = "Angelic Grace"
+description_template = "When you are hit, 5% chance to gain 150 Temporary Hitpoints. This can only proc once every 10 seconds. These Temporary Hitpoints last for 10 minutes or until used up, whichever is first."
+verbose_name_template = "Angelic Grace"

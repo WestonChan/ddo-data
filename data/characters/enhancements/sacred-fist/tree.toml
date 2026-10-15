@@ -1,0 +1,1214 @@
+name = "Sacred Fist"
+background = "PaladinBackground"
+icon = "Paladin"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Sacred Fist: Sacred Flame"
+cost_per_rank = [1]
+description = """
+Toggle: Your melee attacks while centered deal an extra 1d6 Fire damage per Imbue
+Dice, scaling with 200% Melee Power. Each core ability in this tree grants you
++5 Healing Amplification and +5 Positive Spell Power."""
+icon = "SFSacredFlame"
+internal_name = "SFCore1"
+is_clickie = true
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[enhancement.stance]]
+name = "Sacred Flame"
+description = """
+Your melee attacks while centered deal an extra 1d6 Fire damage per Imbue dice,
+scaling with 200% Melee Power."""
+group_name = "Imbue"
+icon = "SFSacredFlame"
+
+[[enhancement]]
+name = "Sacred Fist: Strike Evil"
+cost_per_rank = [1]
+description = """
++1 Saves and AC. +1 Imbue dice. Your weapons while using Sacred Flame
+now bypass Lawful and Good DR."""
+icon = "SFStrikeEvil"
+internal_name = "SFCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Lawful"
+
+[[enhancement.modifier.requirement]]
+items = ["Sacred Flame"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+targets = ["All"]
+value = "Good"
+
+[[enhancement.modifier.requirement]]
+items = ["Sacred Flame"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["SFCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Fist: Soothe the Suffering"
+cost_per_rank = [1]
+description = """
++1 Saves and AC. +1 Imbue dice.
+Gain +3 Remove Disease Charges and your Remove Disease now applies Greater
+Restoration to your target."""
+icon = "SFSootheTheSuffering"
+internal_name = "SFCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 6
+
+[[enhancement.requirement]]
+items = ["SFCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Fist: Defend Against Darkness"
+cost_per_rank = [1]
+description = "+1 Saves and AC. +1 Imbue dice. You gain Immunity to Energy Drain."
+icon = "SFDefendAgainstDarkness"
+internal_name = "SFCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Energy Drain"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SFCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Fist: Rising Hope"
+cost_per_rank = [1]
+description = """
++1 Saves and AC. +1 Imbue dice. When you use Turn Undead, you and nearby allies
+gain +1 Ki on hit and +3 Ki on critical for 20 seconds."""
+icon = "SFRisingHope"
+internal_name = "SFCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ACBonus"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "KiHit"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "KiCritical"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 18
+
+[[enhancement.requirement]]
+items = ["SFCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Fist: Ultimate Flame"
+cost_per_rank = [1]
+description = """
++4 Charisma, +3 Saves, +1 Imbue dice.
++10 Melee Power. +1[W] with Weapons. You absorb 25% of all Fire damage."""
+icon = "SFUltimateFlame"
+internal_name = "SFCore6"
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SFCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_BaseDamage"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+bonus_type = "Enhancement"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+targets = ["All"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Positive"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 20
+
+[[enhancement.requirement]]
+items = ["SFCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "SFCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Sacred Fist: Sacred Strike I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to Attack and Damage with Favored Weapons."
+icon = "SFSacredStrikeI"
+internal_name = "SFSacredStrikeI"
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Sacred Fist: Extra Smite"
+cost_per_rank = [1]
+description = "You gain +[2/4/6] additional uses of Smite Evil per rest."
+icon = "SFExtraSmite"
+internal_name = "SFExtraSmite"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "ExtraSmite"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Sacred Fist: Disciple of the Fist"
+cost_per_rank = [1]
+description = """
++[1/2/3] to Heal, Concentration, and Intimidate.
+Rank 3: +1 Reflex saving throws."""
+icon = "SFDiscipleOfTheFist"
+internal_name = "SFDiscipleOfTheFist"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Heal",
+    "Concentration",
+    "Intimidate",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Reflex"]
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Sacred Fist: Deft Strikes"
+cost_per_rank = [1]
+description = "While centered, you gain +[3/6/10]% Offhand Strike Chance."
+icon = "SFDeftStrikes"
+internal_name = "SFDeftStrikes"
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "OffHandAttackBonus"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Sacred Fist: Ki Shout"
+cost_per_rank = [2]
+description = """
+Ki Activate: Intimidates nearby enemies, encouraging them to attack you.
+This ability uses your Concentration skill, and shares a cooldown with the
+Intimidate skill. Activation Cost: 5 Ki. Cooldown: 6 seconds"""
+icon = "SFKiShout"
+internal_name = "SFKiStrike"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 4
+y = 1
+
+[[enhancement.dc]]
+name = "Ki Shout"
+dc_type = "Intimidate"
+dc_versus = "10+HD+Wis Mod"
+description = """
+Ki Activate: Intimidates nearby enemies, encouraging them to attack you.
+This ability uses your Concentration skill, and shares a cooldown with the
+Intimidate skill. (Activation Cost: 15 Ki. Cooldown: 15 seconds)"""
+icon = "ShintaoKiShout"
+other = "d20"
+skill = "Concentration"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 1
+
+[[enhancement]]
+name = "Sacred Fist: Sacred Strike II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2 to Attack and +1 to Damage with Favored Weapons."
+icon = "SFSacredStrikeI"
+internal_name = "SFSacredStrikeII"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = ["SFSacredStrikeI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Fist: Exalted Whirlwind"
+cost_per_rank = [2]
+description = """
+Make a sweeping martial arts attack against all nearby enemies for +10% damage.
+This attack strikes twice. Shares its cooldown with the Cleave feat.
+Cost: 12 Ki Cooldown: 5 seconds."""
+icon = "SFExaltedWhirlwind"
+internal_name = "SFExaltedWhirlwind"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Sacred Fist: Critical Mastery"
+cost_per_rank = [1]
+description = "+[1/2/3] to confirm critical hits and critical hit damage (before weapon multipliers)"
+icon = "SFCriticalMastery"
+internal_name = "SFCriticalMastery"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SFCriticalMastery",
+    "Critical Mastery",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamageCritical"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 2
+
+[[enhancement.requirement]]
+items = [
+    "SFCriticalMastery",
+    "Critical Mastery",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Sacred Fist: Fast Movement"
+cost_per_rank = [2]
+description = "You run 1% faster for each of your Sacred Fist levels."
+icon = "SFFastMovement"
+internal_name = "SFFastMovement"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+]
+bonus_type = "Class"
+effect_type = "MovementSpeed"
+stack_source = "Sacred Fist"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Sacred Fist: Action Boost: Doublestrike"
+cost_per_rank = [2]
+description = """
+You gain a +30% Action Boost bonus to Doublestrike for 20 seconds.
+Usable 5 times per rest."""
+icon = "SFActionBoostDoublestrike"
+internal_name = "SFActionBoostDoublestrike"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 2
+
+[[enhancement]]
+name = "Sacred Fist: Sacred Strike III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+1 to Attack and Damage with Favored Weapons."
+icon = "SFSacredStrikeI"
+internal_name = "SFSacredStrikeIII"
+min_spent = 10
+ranks = 1
+x = 0
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 3
+
+[[enhancement.requirement]]
+items = ["SFSacredStrikeII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Fist: Exalted Smite"
+cost_per_rank = [2]
+description = "Active: An improved Smite Evil that adds \n+2 to your weapon's critical threat range\n+2 to your weapon's critical damage multiplier\nCooldown: 3 seconds\n\nSmite Evil: Using this attack, you call on the Paladin's ability to strike down\nevil creatures, gaining twice your Charisma bonus to your attack roll, and a\ndamage bonus based on your Paladin level. Smites return at a rate of one every\n90 seconds. In addition, your Smite Evil and Exalted Smite abilities increase\nMelee and Ranged Power by 5 for 10 seconds."
+icon = "SFExaltedSmite"
+internal_name = "SFExaltedSmite"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Sacred Fist: Light of Hope"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
++1 Imbue dice. Your Sacred Flame toggle now allows you to strike Incorporeal
+enemies as if you had Ghost Touch."""
+icon = "SFLightOfHope"
+internal_name = "SFLightOfHope"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Sacred Flame"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Sacred Fist: Instinctive Defense"
+cost_per_rank = [1]
+description = "You take [5/10/15]% less damage while Helpless."
+icon = "SFInstinctiveDefense"
+internal_name = "SFInstinctiveDefense"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamageReduction"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 3
+
+[[enhancement]]
+name = "Sacred Fist: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Strength or Charisma"
+icon = "StrCha"
+internal_name = "SFAbilityI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Sacred Fist: Sacred Strike IV"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "+2 to Attack and +1 to Damage with Favored Weapons."
+icon = "SFSacredStrikeI"
+internal_name = "SFSacredStrikeIV"
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Attack"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SFSacredStrikeIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Fist: Deflect Arrows"
+cost_per_rank = [2]
+description = """
+You gain the benefits of the Deflect Arrows feat, knocking aside one incoming
+projectile that would have struck you every 6 seconds."""
+icon = "SFDeflectArrows"
+internal_name = "SFDeflectArrows"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "SFDeflectArrows",
+    "Deflect Arrows",
+]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "GrantFeat"
+targets = ["Deflect Arrows"]
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = [
+    "SFDeflectArrows",
+    "Deflect Arrows",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Sacred Fist: Light of Glory"
+cost_per_rank = [1]
+description = """
++1 Imbue dice. Your Sacred Flame damage is now Light instead of Fire, and your
+Ki Spells now deal Light damage in addition to their Force and Fire, scaling
+with 300% Melee Power."""
+icon = "SFLightOfGlory"
+internal_name = "SFLightOfGlory"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "ImbueDice"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SFLightOfHope"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Fist: Iron Skin"
+cost_per_rank = [1]
+description = "While centered, you gain +[5/10/15] Physical Resistance Rating."
+icon = "SFIronSkin"
+internal_name = "SFIronSkin"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    20,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Centered"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 4
+
+[[enhancement]]
+name = "Sacred Fist: Ability II"
+cost_per_rank = [2]
+description = "Strength or Charisma"
+icon = "StrCha"
+internal_name = "SFAbilityII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 4
+
+[[enhancement.requirement]]
+items = ["SFAbilityI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Sacred Fist: Sacred Strike V"
+cost_per_rank = [1]
+description = "+3 to Attack and Damage with Favored Weapons, +10 Melee Power."
+icon = "SFSacredStrikeI"
+internal_name = "SFSacredStrikeV"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Enhancement"
+effect_type = "Weapon_AttackAndDamage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement]]
+items = ["Favored Weapon"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["SFSacredStrikeIV"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Sacred Fist: Evasive Dance"
+cost_per_rank = [1]
+description = """
+Improves your Evasion ability so on a failed Reflex saving throw against
+an attack that normally deals half damage on a successful save, you only take
+[85/70/50]% damage."""
+icon = "SFEvasiveDance"
+internal_name = "SFEvasiveDance"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Sacred Fist: Divine Striker"
+cost_per_rank = [2]
+description = """
+You gain On Vorpal: Stun any Demons or Devils with no save for 3 seconds.
++25% Competence bonus to Maximum Hit Points."""
+icon = "SFDivineStrike"
+internal_name = "SFDivineStrike"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Sacred Fist: Avenging Whirlwind"
+cost_per_rank = [2]
+description = """
+Make a sweeping martial arts attack against all nearby enemies for +20% damage.
+This attack strikes twice, and damaged enemies gain one stack of Vulnerability
+for each hit. Shares its cooldown with the Whirlwind Attack feat.
+Cost: 18 Ki
+Cooldown: 5 seconds.
+
+Vulnerability: You take 1% more damage for 3 seconds.
+This effect stacks up to 20 times, and loses one stack on expiration."""
+icon = "SFAvengingWhirlwind"
+internal_name = "SFAvengingWhirlwind"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Sacred Fist: Violence Begets Violence"
+cost_per_rank = [1]
+description = """
+While Centered, when an opponent misses you in melee, you gain +1 critical threat
+range for 6 seconds. This stacks up to 5 times and is reset if you critically hit."""
+icon = "SFViolenceBegetsViolence"
+internal_name = "SFViolenceBegetsViolence"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Sacred Fist"]
+req_type = "Class"

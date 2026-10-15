@@ -1,0 +1,37 @@
+name = "Mythic Vim and Vigor"
+description = """
+A charm representing vitality encompassed by strength, hangs from a thin titanium
+chain."""
+drop_location = "Terminal Delirium, second dance bonus chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 26
+slot = "Neck"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "False Life"
+bonus_type = "False Life"
+value = 50
+
+[[effect]]
+name = "Greater Heroism"
+
+[[effect]]
+name = "Natural Armor"
+bonus_type = "Natural Armor"
+value = 10
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "second dance bonus chest"
+kind = "quest"
+loot_type = "chest"
+name = "Terminal Delirium"

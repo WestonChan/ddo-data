@@ -1,0 +1,49 @@
+name = "Legendary Wildheart"
+description = "This is carved from burnished, smooth wood."
+drop_location = "Blown Deadline, End Chest"
+enhancement_bonus = 15
+icon = "Docent_3"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 29
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 26
+arcane_spell_failure = 0
+armor_bonus = -9
+armor_check_penalty = 0
+armor_type = "Docent"
+max_dex_bonus = 0
+mithral_body = 15
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Competence"
+value = 53
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 50
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Blown Deadline"

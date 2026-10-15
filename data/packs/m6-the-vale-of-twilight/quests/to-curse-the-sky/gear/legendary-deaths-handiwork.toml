@@ -1,0 +1,59 @@
+name = "Legendary Death's Handiwork"
+description = "Death is inevitable. Better to be on its side."
+drop_location = "To Curse the Sky, End Chest"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 29
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 29
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 9
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 53
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 50
+
+[[socket]]
+slot = "orange"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "To Curse the Sky"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

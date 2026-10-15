@@ -1,0 +1,24 @@
+name = "+10 Inherent Cold Resistance"
+adds_augment = "Accessory Aspect II"
+description = """
+Inherent Cold Resistance +10: +10 Inherent bonus to resist Cold damage.
+Water:Opposition:Material"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[effect]]
+name = "Cold Resistance"
+bonus_type = "Inherent"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Inherent"
+effect = "Cold Resistance"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[slot]]
+slot = "crafting: accessory devastation"

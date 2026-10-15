@@ -1,0 +1,63 @@
+name = "Devout Handwraps"
+description = """
+This strip of cloth, has a symbol of the silver flame embroidered into it. These
+sigils pulse with energy, and the appearance of the cloth itself appears to
+shift."""
+drop_location = 'The Shadow Crypt, Optional "big chest"'
+enhancement_bonus = 3
+icon = "HandWraps_1i"
+item_category = "Weapon"
+item_type = "Handwraps"
+material = "Cloth"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Cold"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Mithral"
+
+[[dr_bypass]]
+bypass = "Silver"
+
+[[effect]]
+name = "Metalline"
+
+[[effect]]
+name = "Pure Good"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = 'optional "big chest"'
+kind = "quest"
+loot_type = "chest"
+name = "The Shadow Crypt"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Handwraps"

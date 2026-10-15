@@ -1,0 +1,72 @@
+name = "Ol' Ironsides"
+description = '"Fire!"'
+drop_location = "Trials of the Triceratops, End chest"
+icon = "RuneArm_3a"
+item_category = "Weapon"
+item_type = "Rune Arm"
+material = "Gem"
+minimum_level = 7
+slot = "Runearm"
+
+[[effect]]
+name = "Maximum Charge Tier III"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 66
+
+[[effect]]
+name = "Protection"
+bonus_type = "Deflection"
+value = 4
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 11
+
+[[effect]]
+name = "Rune Arm Imbue - Fire II"
+
+[[modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    0,
+    0,
+    0,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Exploding Cannon Shot",
+    "None",
+]
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "crafting: cannith rune arm prefix"
+
+[[socket]]
+slot = "crafting: cannith rune arm suffix"
+
+[[socket]]
+slot = "crafting: cannith rune arm extra"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Trials of the Triceratops"
+
+[[weapon]]
+handedness = "Off-hand"
+weapon_type = "Rune Arm"

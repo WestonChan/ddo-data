@@ -1,0 +1,35 @@
+name = "+6 Constitution Skills, +14 Hit Points"
+description = "Material/Escalation: +6 Quality bonus to Constitution based skills. +14 Quality Hit Points"
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Escalation"""
+
+[[effect]]
+name = "Constitution Skills"
+bonus_type = "Quality"
+value = 6
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Quality"
+value = 14
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Quality"
+effect = "Constitution Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Constitution"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Quality"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[slot]]
+slot = "crafting: equipment tier 3"

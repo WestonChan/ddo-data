@@ -1,0 +1,27 @@
+name = "Yarkuch's Helm"
+description = "This helm once belonged to Yarkuch, mighty warrior chief of Splinterskull."
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Helmet_77"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Head"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 1
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 2
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 1
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

@@ -1,0 +1,54 @@
+name = "Legendary Illusionist's Garb"
+description = """
+This magician's robe catches the eye and appears to glitter prismatically in
+the light. The wearer becomes more clever and can conjure a number of hypnotic
+effects."""
+drop_location = "Legendary version of Epic Illusionist's Garb"
+enhancement_bonus = 15
+icon = "Cloth_1e"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 30
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[clickie]]
+name = "Prismatic Spray"
+clickie = "Prismatic Spray"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 12
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 51
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    10,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Prismatic Spray"]
+
+[[socket]]
+slot = "blue"

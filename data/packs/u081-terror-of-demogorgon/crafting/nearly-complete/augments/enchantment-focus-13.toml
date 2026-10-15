@@ -1,0 +1,21 @@
+name = "Enchantment Focus +13"
+description = "+13 Equipment bonus to the DCs of Enchantment spells."
+family = "NearlyComplete"
+icon = "NearlyComplete"
+min_level = 30
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Equipment"
+value = 13
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[slot]]
+slot = "crafting: nearly complete: spell focus (legendary)"

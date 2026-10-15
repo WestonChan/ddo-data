@@ -1,0 +1,354 @@
+name = "Stone of Change"
+npc = "Stone of Change, an Eldritch Device: outside The Marketplace Bank; just right of the entrance to the tower of The Twelve; Guild Airship amenity (Stone of Change Contract, Gold Seal lv 32 and Standard lv 40)"
+
+[[ingredient]]
+name = "Siberys Dragonshard Fragment"
+tier = "any"
+
+[[ingredient]]
+name = "Flawed Siberys Dragonshard"
+tier = "any"
+
+[[ingredient]]
+name = "Imperfect Siberys Dragonshard"
+tier = "any"
+
+[[ingredient]]
+name = "Siberys Dragonshard"
+tier = "any"
+
+[[ingredient]]
+name = "Exceptional Siberys Dragonshard"
+tier = "any"
+
+[[ingredient]]
+name = "Any Equipable Item"
+tier = "any"
+
+[[ingredient]]
+name = "Any Attuned Item"
+tier = "any"
+
+[[ingredient]]
+name = "Adamantine Ore"
+tier = "any"
+
+[[ingredient]]
+name = "Soul Gem: Essence of Earth"
+drop_location = "Earth elementals of any CR; The Lord of Eyes, Taming the Flames and ToEE: Earth Node contain many"
+tier = "any"
+
+[[ingredient]]
+name = "Any Attuned Armor"
+tier = "any"
+
+[[ingredient]]
+name = "Any Attuned Shield or Orb"
+tier = "any"
+
+[[ingredient]]
+name = "Any Attuned Weapon"
+tier = "any"
+
+[[ingredient]]
+name = "Any Attuned Jewelry"
+drop_location = "Goggles, necklace, ring, bracers or trinket"
+tier = "any"
+
+[[ingredient]]
+name = "String of Prayer Beads"
+tier = "any"
+
+[[ingredient]]
+name = "Vial of Pure Water"
+tier = "any"
+
+[[ingredient]]
+name = "Tome: Prophecies of Khyber"
+tier = "any"
+
+[[ingredient]]
+name = "Silver Flame Hymnal"
+tier = "any"
+
+[[ingredient]]
+name = "Luminescent Dust"
+tier = "any"
+
+[[ingredient]]
+name = "Fragrant Drowshood"
+tier = "any"
+
+[[ingredient]]
+name = "Sparkling Dust"
+tier = "any"
+
+[[ingredient]]
+name = "Deadly Feverblanch"
+tier = "any"
+
+[[ingredient]]
+name = "Lightning-Split Soarwood"
+tier = "any"
+
+[[ingredient]]
+name = "Funerary Token"
+tier = "any"
+
+[[ingredient]]
+name = "Tasty Ham"
+tier = "any"
+
+[[ingredient]]
+name = "Greater Token of the Twelve"
+tier = "any"
+
+[[citation]]
+url = "https://ddowiki.com/page/Stone_of_Change"
+read = "2026-09-29"
+
+[[recipe]]
+note = "Dragonshard combination, no augment counterpart. Stacks of up to 10,000 shards can be placed but are transmuted one batch at a time; some combinations work in 10x bulk (1000 fragments give 10 Flawed shards). Since Update 61 Fred in the House Jorasco Enclave converts Siberys shards and fragments by barter. Since Updates 50 and 56 the Stone will not combine Khyber Dragonshard Fragments."
+option = "Flawed Siberys Dragonshard"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Siberys Dragonshard Fragment"
+quantity = 100
+
+[[recipe]]
+note = "Dragonshard combination, no augment counterpart."
+option = "Imperfect Siberys Dragonshard"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Flawed Siberys Dragonshard"
+quantity = 10
+
+[[recipe]]
+note = "Dragonshard combination, no augment counterpart."
+option = "Siberys Dragonshard"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Imperfect Siberys Dragonshard"
+quantity = 10
+
+[[recipe]]
+note = "Dragonshard combination, no augment counterpart."
+option = "Exceptional Siberys Dragonshard"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Siberys Dragonshard"
+quantity = 10
+
+[[recipe]]
+note = "Dragonshard combination, no augment counterpart."
+option = "Flawless Siberys Dragonshard"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Exceptional Siberys Dragonshard"
+quantity = 10
+
+[[recipe]]
+note = "Binding and Attuning: the item becomes immune to future permanent damage (existing damage stays) and can take an Alchemical Ritual. Bound to Account items stay Bound to Account; Unbound items become Bound to Character. Does not destroy slotted augments and persists through Essence Crafting Disjunction, though a ritual laid on top does not. Only the required fragments are consumed from a larger stack. Changes the item's binding, not its sockets."
+option = "Attuned Equipable Item"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Equipable Item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Siberys Dragonshard Fragment"
+quantity = 400
+
+[[recipe]]
+note = "Alchemical Adamantine Ritual: +5 Hardness and +10 Durability. Rituals must be performed in order (I through V), can restore items Broken beyond Repair, and do not destroy mythic or reaper bonuses. An item holds one alchemical ritual at a time, Adamantine or Eldritch; applying another replaces it. No augment counterpart."
+option = "Adamantine Ritual I"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Adamantine Ore"
+quantity = 10
+
+[[recipe.ingredient]]
+ingredient = "Soul Gem: Essence of Earth"
+quantity = 10
+
+[[recipe]]
+note = "Alchemical Adamantine Ritual: an additional +5 Durability. Requires Ritual I first."
+option = "Adamantine Ritual II"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Adamantine Ore"
+quantity = 15
+
+[[recipe.ingredient]]
+ingredient = "Soul Gem: Essence of Earth"
+quantity = 20
+
+[[recipe]]
+note = "Alchemical Adamantine Ritual: an additional +5 Durability. Requires Ritual II first."
+option = "Adamantine Ritual III"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Adamantine Ore"
+quantity = 20
+
+[[recipe.ingredient]]
+ingredient = "Soul Gem: Essence of Earth"
+quantity = 30
+
+[[recipe]]
+note = "Alchemical Adamantine Ritual: an additional +5 Durability. Requires Ritual III first."
+option = "Adamantine Ritual IV"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Adamantine Ore"
+quantity = 25
+
+[[recipe.ingredient]]
+ingredient = "Soul Gem: Essence of Earth"
+quantity = 40
+
+[[recipe]]
+note = "Alchemical Adamantine Ritual: an additional +5 Durability. Requires Ritual IV first."
+option = "Adamantine Ritual V (Max)"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Item"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Adamantine Ore"
+quantity = 30
+
+[[recipe.ingredient]]
+ingredient = "Soul Gem: Essence of Earth"
+quantity = 50
+
+[[recipe]]
+note = "+1 Alchemical Bonus to AC on attuned armor; also applies to Cosmetic Armor and Cosmetic Helmets and stacks with the Shield ritual. The page reports a bug: it is coded as an item-based Dodge bonus to AC, so it does not stack with Ranger's Favored Defense or Fighter's Mobility. Replaces any other alchemical ritual on the item. No augment counterpart."
+option = "Alchemical Armor Eldritch Ritual"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Armor"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "String of Prayer Beads"
+quantity = 15
+
+[[recipe.ingredient]]
+ingredient = "Vial of Pure Water"
+quantity = 5
+
+[[recipe]]
+note = "+1 Alchemical Bonus to AC on an attuned shield or orb; same Dodge-bonus bug as the Armor ritual. Replaces any other alchemical ritual on the item. No augment counterpart."
+option = "Alchemical Shield Eldritch Ritual"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Shield or Orb"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Tome: Prophecies of Khyber"
+quantity = 2
+
+[[recipe.ingredient]]
+ingredient = "Silver Flame Hymnal"
+quantity = 6
+
+[[recipe]]
+note = "1 point of force damage on each successful hit; works on all handwraps (randomly generated handwraps may need a solo pass through the Stone, shown as Ritual of Second Chances). Replaces any other alchemical ritual on the item. No augment counterpart."
+option = "Force Damage Ritual"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Weapon"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Luminescent Dust"
+quantity = 3
+
+[[recipe.ingredient]]
+ingredient = "Fragrant Drowshood"
+quantity = 9
+
+[[recipe]]
+note = "1d4 points of force damage on each successful critical hit; works on all handwraps. Replaces any other alchemical ritual on the item. No augment counterpart."
+option = "Force Critical Ritual"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Weapon"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Sparkling Dust"
+quantity = 6
+
+[[recipe.ingredient]]
+ingredient = "Deadly Feverblanch"
+quantity = 12
+
+[[recipe]]
+note = "+1 competence bonus to saves on attuned jewelry (goggles, necklace, ring, bracers or trinket). Replaces any other alchemical ritual on the item. No augment counterpart."
+option = "Resistance Ritual"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Any Attuned Jewelry"
+quantity = 1
+
+[[recipe.ingredient]]
+ingredient = "Lightning-Split Soarwood"
+quantity = 4
+
+[[recipe.ingredient]]
+ingredient = "Funerary Token"
+quantity = 22
+
+[[recipe]]
+note = "Meat Smithing; a consumable, no augment counterpart."
+option = "Concentrated Tasty Ham Oil"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Tasty Ham"
+quantity = 1
+
+[[recipe]]
+note = "Epic Crafting ingredient conversion, no augment counterpart."
+option = "Token of the Twelve"
+tier = "any"
+
+[[recipe.ingredient]]
+ingredient = "Greater Token of the Twelve"
+quantity = 1

@@ -1,0 +1,40 @@
+name = "Gloves of the Strong"
+description = "Made of simple cloth, great strength lies in wait for those willing to use it."
+drop_location = "The House of Gems, end chest"
+icon = "Gloves_7k"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Hands"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Quality"
+value = 2
+
+[[effect]]
+name = "Speed"
+value = 23
+value2 = 9
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 17
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The House of Gems"

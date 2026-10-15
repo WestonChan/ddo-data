@@ -1,0 +1,10 @@
+name = "Profane Well Rounded"
+description_template = "{1} Profane bonus to all abilities."
+home_bonus_type = "Profane"
+verbose_name_template = "Profane Well Rounded +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Well Rounded"

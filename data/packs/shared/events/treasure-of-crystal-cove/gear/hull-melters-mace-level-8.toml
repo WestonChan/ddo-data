@@ -1,0 +1,61 @@
+name = "Hull-Melter's Mace (level 8)"
+description = """
+Used by ship mages. The bigger the holes you can melt in the enemy's hull, the
+faster they'll sink."""
+drop_location = "Treasure of Crystal Cove, Turn in 250 Silver Doubloon 100 Golden Doubloon 20 Stolen Obsidian 400 Green Dragonshard at Euphonia's Barter Box"
+enhancement_bonus = 3
+icon = "LightMace_6"
+item_category = "Weapon"
+item_type = "Light Mace"
+material = "Steel"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 8
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Insight"
+value = 35
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Conjuration Focus"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Insight"
+value = 35
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "event"
+name = "Treasure of Crystal Cove"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Light Mace"

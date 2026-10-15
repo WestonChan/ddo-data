@@ -1,0 +1,22 @@
+name = "Jade Ring"
+description = "A silver ring set with jade that gives its wearer +1 to all saves."
+drop_location = "Walk the Butcher's Path, Shaman Prysass ' chest"
+icon = "Ring_13"
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 1
+slot = "Ring"
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 1
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "shaman prysass ' chest"
+kind = "quest"
+loot_type = "chest"
+name = "Walk the Butcher's Path"

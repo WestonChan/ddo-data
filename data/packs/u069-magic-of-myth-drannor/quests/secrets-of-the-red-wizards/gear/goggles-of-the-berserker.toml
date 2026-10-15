@@ -1,0 +1,34 @@
+name = "Goggles of the Berserker"
+description = "Red lenses adorn these goggles made for those already used to seeing red."
+drop_location = "Secrets of the Red Wizards, end chest"
+icon = "Goggles_19"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 13
+slot = "Goggles"
+
+[[effect]]
+name = "Blood Rage"
+
+[[effect]]
+name = "Relentless Fury"
+
+[[effect]]
+name = "Lifesealed"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Secrets of the Red Wizards"

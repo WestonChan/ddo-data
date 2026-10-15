@@ -1,0 +1,41 @@
+name = "Bouquet of Flowers"
+description = """
+A fragrant bunch of flowers to celebrate an occasion, show appreciation, or
+give to the one you secretly admire. After their twenty charges are used, the
+flowers will wilt and disappear."""
+drop_location = "DDO Store, general buffs"
+icon = "Club_13"
+item_category = "Weapon"
+item_type = "Club"
+material = "Wood"
+minimum_level = 1
+slot = "Main Hand"
+
+[[clickie]]
+name = "Good Hope"
+clickie = "Good Hope"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    5,
+    20,
+    0,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Good Hope"]
+
+[[weapon]]
+attack_modifier = "Charisma"
+base_dice_count = 1
+base_dice_sides = 2
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Charisma"
+damage_multiplier = 1.0
+handedness = "One-handed"
+weapon_type = "Club"

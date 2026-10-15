@@ -1,0 +1,83 @@
+[[row]]
+name = "Biting Acid Imbue"
+acquire = "Train"
+description = """
+Imbue Toggle: Your mouth drips with acid coating all your weapon attacks,
+dealing 1d6 Acid damage on hit, scaling with Acid Spell Power. Only applies in
+any Wolf or Hive Forms."""
+icon = "BitingAcid"
+source_name = "Blight Caster"
+
+[[row.group]]
+group_name = "Toggle Imbue"
+
+[[row.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 2
+
+[[row.stance]]
+name = "Biting Acid Imbue"
+description = """
+Imbue Toggle: Your mouth drips with acid coating all your weapon attacks,
+dealing 1d6 Acid damage on hit, scaling with Acid Spell Power. Only applies in
+any Wolf or Hive Forms."""
+group_name = "Imbue"
+icon = "BitingAcid"
+
+[[row.stance.requirement_group]]
+kind = "one_of"
+
+[[row.stance.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.stance.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.stance.requirement_group.requirement]]
+items = ["Hive Master"]
+req_type = "Stance"
+
+[[row]]
+name = "Biting Poison Imbue"
+acquire = "Train"
+description = """
+Imbue Toggle: Your mouth drips with poison coating all your weapon attacks,
+dealing 1d8 Poison damage on hit, scaling with Poison Spell Power. Only applies
+in any Wolf or Hive Forms."""
+icon = "BitingPoison"
+source_name = "Blight Caster"
+
+[[row.group]]
+group_name = "Toggle Imbue"
+
+[[row.requirement]]
+items = ["Blight Caster"]
+req_type = "Class"
+value = 2
+
+[[row.stance]]
+name = "Biting Poison Imbue"
+description = """
+Imbue Toggle: Your mouth drips with poison coating all your weapon attacks,
+dealing 1d8 Poison damage on hit, scaling with Poison Spell Power. Only applies
+in any Wolf or Hive Forms."""
+group_name = "Imbue"
+icon = "BitingPoison"
+
+[[row.stance.requirement_group]]
+kind = "one_of"
+
+[[row.stance.requirement_group.requirement]]
+items = ["Plague Wolf"]
+req_type = "Stance"
+
+[[row.stance.requirement_group.requirement]]
+items = ["Blighted Wolf"]
+req_type = "Stance"
+
+[[row.stance.requirement_group.requirement]]
+items = ["Hive Master"]
+req_type = "Stance"

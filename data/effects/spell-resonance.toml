@@ -1,0 +1,3 @@
+name = "Spell Resonance"
+description_template = "This item hums ominously with suppressed energy. When casting Force spells, there is a chance that you will gain a +20 alchemical bonus to Force Spell Power for 30 seconds. When casting Sonic spells, there is a chance that you will gain a +20 alchemical bonus to Sonic Spell Power 30 seconds."
+verbose_name_template = "Spell Resonance"

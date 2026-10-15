@@ -1,0 +1,3 @@
+name = "Crown of Summer"
+description_template = "You permanently benefit from Crown of Summer."
+verbose_name_template = "Crown of Summer"

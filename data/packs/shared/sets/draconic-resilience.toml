@@ -1,0 +1,48 @@
+name = "Draconic Resilience"
+
+[[item]]
+name = "Flawless White Dragonhide Armor"
+
+[[item]]
+name = "Flawless White Dragonplate Armor"
+
+[[item]]
+name = "Flawless White Dragonscale Armor"
+
+[[item]]
+name = "Flawless White Dragonscale Docent"
+
+[[item]]
+name = "Flawless White Dragonscale Robe"
+
+[[item]]
+name = "Helm of the White Dragon (Level 23)"
+
+[[item]]
+name = "Helm of the White Dragon (Level 24)"
+
+[[item]]
+name = "Helm of the White Dragon (Level 25)"
+
+[[note]]
+kind = "set_bonus"
+field = "icon"
+upstream = "DraconicResilience"
+reason = "DDOBuilderV2's SetBonusImages folder has no DraconicResilience.png."
+url = "Output/DataFiles/SetBonusImages"
+read = "2026-10-07"
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Artifact"
+effect = "Hit Points"
+value = 50
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [50]
+bonus_type = "Artifact"
+effect = "Hit Points"
+effect_type = "Hitpoints"

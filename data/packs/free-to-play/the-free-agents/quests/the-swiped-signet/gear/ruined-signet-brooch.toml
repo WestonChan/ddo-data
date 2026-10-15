@@ -1,0 +1,22 @@
+name = "Ruined Signet Brooch"
+description = """
+This brooch bearing the signet of House Jorasco is well-crafted. It would be
+valuable if it weren't beaten, battered, cracked, covered in sludge, and missing
+its inset gems. Now it's a brooch that only a homeless thief could love."""
+drop_location = "The Swiped Signet, End Chest (guaranteed)"
+icon = "Trinket_89"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 1
+slot = "Trinket"
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 1
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Swiped Signet"

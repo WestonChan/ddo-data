@@ -1,0 +1,37 @@
+name = "MeltScale"
+description = """
+Adds Crystal and Byeshk material types.
+On Hit: +15d6 Acid Damage"""
+family = "DinosaurBone"
+icon = "ScaleGreen"
+min_level = 31
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Acid"
+dice_number = [15]
+dice_sides = [6]
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Crystal"
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "DRBypass"
+is_item_specific = true
+targets = ["All"]
+value = "Byeshk"
+
+[[slot]]
+slot = "isle of dread: scale (weapon)"

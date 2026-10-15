@@ -1,0 +1,37 @@
+name = "Legendary Cowl of the Devotee"
+description = "A covering made for those devoted to one of the Temple's twisted cults, reclaimed."
+drop_location = "ToEE: Lower Temple Complex, end chest"
+icon = "Helmet_37"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 31
+slot = "Head"
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Nullification"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Necromancy Focus"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Spell Penetration"
+bonus_type = "Insight"
+value = 5
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Lower Temple Complex"

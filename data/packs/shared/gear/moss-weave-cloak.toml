@@ -1,0 +1,22 @@
+name = "Moss Weave Cloak"
+description = """
+This cloak is made from stitched together pieces of moss and lichen which increases
+the hardiness of the wearer."""
+drop_location = "The Lost Seekers, End reward"
+icon = "Cloak_25"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 3
+slot = "Back"
+
+[[effect]]
+name = "Fortitude Save"
+bonus_type = "Resistance"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "The Lost Seekers"

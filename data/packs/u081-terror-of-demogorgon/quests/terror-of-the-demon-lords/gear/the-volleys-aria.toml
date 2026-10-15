@@ -1,0 +1,44 @@
+name = "The Volley's Aria"
+description = """
+A song of the epic battle that was waged here, spun into these fine gloves.
+Projectiles fired while using them carry that song."""
+drop_location = "Terror of the Demon Lords, end chest"
+icon = "Gloves_12a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 35
+slot = "Hands"
+
+[[effect]]
+name = "Shadow Striker"
+
+[[effect]]
+name = "Power of the Frozen Thunderstorm"
+bonus_type = "Equipment"
+value = 169
+
+[[effect]]
+name = "Enchantment Focus"
+bonus_type = "Insight"
+value = 7
+
+[[effect]]
+name = "Greater Marksmanship"
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Terror of the Demon Lords"

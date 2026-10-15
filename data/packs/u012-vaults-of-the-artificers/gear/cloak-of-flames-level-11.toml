@@ -1,0 +1,137 @@
+name = "Cloak of Flames (level 11)"
+description = """
+Imbued with the power of a bound Fire Elemental, this smooth cloak of crimson
+fabric absorbs harmful flames and makes your fire spells stronger."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Cloak_15"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 11
+slot = "Back"
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 82
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 12
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 21
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Combustion +88, Fire Lore +13%, Fire Absorption +22%"
+description = """
+Combustion +88: Passive: +88 Equipment bonus to Fire Spell Power.
+Fire Lore +13: Passive: Your Fire spells gain a 13% Equipment bonus to their chance to critical hit.
+Fire Absorption +21%: Passive: 21% Enhancement Bonus to Fire Absorption."""
+min_level = 11
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 88
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 13
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Absorption"
+value = 22
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [88]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [13]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Enhancement"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Combustion +94, Fire Lore +14%, Fire Absorption +24% and a Green Augment Slot"
+description = """
+Combustion +94: Passive: +94 Equipment bonus to Fire Spell Power.
+Fire Lore +14: Passive: Your Fire spells gain a 14% Equipment bonus to their chance to critical hit.
+Fire Absorption +24%: Passive: 24% Enhancement Bonus to Fire Absorption."""
+min_level = 11
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+value = 94
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+value = 14
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Fire Absorption"
+value = 24
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [94]
+bonus_type = "Equipment"
+effect = "Fire Spell Power"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [14]
+bonus_type = "Equipment"
+effect = "Fire Spell Lore"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [24]
+bonus_type = "Enhancement"
+effect = "Fire Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Fire"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

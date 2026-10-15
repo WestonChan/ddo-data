@@ -1,0 +1,980 @@
+name = "Ravager (Barbarian)"
+background = "BarbarianBackground"
+icon = "Barbarian"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Ravager: Furious Rage"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+When you are raging and miss your attack by rolling 1, you gain Fury for six seconds.
+Fury: +1 Rage bonus to attack and damage.
+This effect stacks and one stack fades every six seconds."""
+icon = "RavFuriousRage"
+internal_name = "RavCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.note]]
+kind = "enhancement"
+field = "icon"
+upstream = "RavFuriousrage"
+reason = "DDOBuilderV2's EnhancementImages folder spells the image RavFuriousRage.png."
+url = "Output/DataFiles/EnhancementImages"
+read = "2026-10-08"
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    100,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Fury"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [1]
+bonus_type = "Rage"
+effect_type = "Weapon_AttackAndDamage"
+stack_source = "Fury"
+targets = ["All"]
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["DLRavCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Pain Touch I"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Passive: +5 Melee power and +10 Healing Amplification"
+icon = "RavPainTouch"
+internal_name = "RavCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["RavCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Demoralizing Success"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+You gain +30 hit points and +10 Healing Amplification. When you score a vorpal
+hit in melee, you inflict Crushing Despair on nearby enemies for 30 seconds on
+a failed DC 20 Will saving throw. You then inflict Vulnerable Will for
+15 seconds, regardless of the Crushing Despair saving throw."""
+icon = "RavDemoralizingSuccess"
+internal_name = "RavCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.dc]]
+name = "Ravager: Demoralizing Success"
+amount = [20]
+dc_type = "Crushing Despair"
+dc_versus = "Will"
+description = """
+When you score a vorpal hit in melee, you inflict Crushing Despair on nearby
+enemies for 30 seconds on a failed DC 20 Will saving throw."""
+icon = "RavDemoralizingSuccess"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 6
+
+[[enhancement.requirement]]
+items = ["RavCore2"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Pain Touch II"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "You gain +60 hit points, +5 Melee power, +2 Intimidate and +20 Healing Amplification"
+icon = "RavPainTouch"
+internal_name = "RavCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [60]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "MeleePower"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 12
+
+[[enhancement.requirement]]
+items = ["RavCore3"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Subsiding Fury"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = """
+When you use Barbarian Rage, you gain 3 stacks of Fury.
+Passive: You gain +100 hit points, +2 Intimidate and +20 Healing Amplification."""
+icon = "RavSubsidingFury"
+internal_name = "RavCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 18
+
+[[enhancement.requirement]]
+items = ["RavCore4"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Visage of Terror"
+cost_per_rank = [1]
+description = """
+Terrorize up to six enemies, killing them with fear if they fail a Will
+save (1d20 + your Intimidate skill). Enemies who make their saving throw are
+paralyzed with Fear for six seconds instead.
+Does not affect bosses. (Cooldown: 30 seconds)
+Passive: +4 Constitution, +150 hit points, +2 intimidate and +40 Healing Amplification"""
+icon = "RavVisageOfTerror"
+internal_name = "RavCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.dc]]
+name = "Visage of Terror"
+dc_type = "Death"
+dc_versus = "Will"
+description = """
+Terrorize up to six enemies, killing them with fear if they fail a Will
+save. Enemies who make their saving throw are paralyzed with Fear for six seconds instead.
+Does not affect bosses. (Cost 1 Rage. Cooldown: 30 seconds)"""
+icon = "RavVisageOfTerror"
+other = "1d20"
+skill = "Intimidate"
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "RavCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [150]
+bonus_type = "Enhancement"
+effect_type = "Hitpoints"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = ["Intimidate"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Enhancement"
+effect_type = "HealingAmplification"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = ["RavCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = [
+    "RavCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement]]
+name = "Ravager: Ritual Scarring"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "+[1/2/3] Intimidate, Haggle and Physical Resistance."
+icon = "RavRitualScarring"
+internal_name = "RavRitualScarring"
+min_spent = 1
+ranks = 3
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Intimidate",
+    "Haggle",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Ravager: Hate"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Deals: +30% Damage
+Melee Attack: Generates extra threat.
+Cooldown: 6 seconds"""
+icon = "RavHate"
+internal_name = "RavHate"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 1
+y = 1
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Ravager: Do You Like Pain?"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "When you are hit: [20/40/60]% chance attacker loses 10 AC."
+icon = "RavDoYouLikePain"
+internal_name = "RavDoYouLikePain"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Ravager: Barbarian Power Attack"
+cost_per_rank = [1]
+description = """
+Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.
+Damage is doubled when Two Handed Fighting or fighting in an animal form.."""
+icon = "RavBarbarianPowerAttack"
+internal_name = "RavBarbarianPowerAttack"
+is_clickie = true
+min_spent = 1
+ranks = 3
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "Weapon_Damage"
+targets = ["All"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "WeaponDamageBonusClass"
+extra_types = ["WeaponDamageBonusCriticalClass"]
+targets = ["Two Handed"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Power Attack"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Heavy Draw"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement.requirement]]
+items = ["Power Attack"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Ravager: Hardy Rage"
+cost_per_rank = [1]
+description = "+[1/2/3] Constitution when raging."
+icon = "RavHardyRage"
+internal_name = "RavHardyRage"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+    3,
+]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.modifier.requirement_group]]
+kind = "one_of"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Rage"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Beasthide Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Wildhunt Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.modifier.requirement_group.requirement]]
+items = ["Razorclaw Shifter: Shifted Form"]
+req_type = "Stance"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Ravager: Fear me!"
+cost_per_rank = [2]
+description = """
+When you intimidate, affected enemies are Shaken for 6 seconds
+Shaken: -2 penalty on attack rolls, saves, and skill checks."""
+icon = "RavFearMe"
+internal_name = "RavFearMe"
+min_spent = 5
+ranks = 1
+x = 0
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["RavRitualScarring"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Mutilate"
+cost_per_rank = [1]
+description = """
+Hate additionally deals 1d[4/6/8] Charisma damage and 1d[4/6/8] Bane damage.
+The bane damage scales with 200% Melee Power.
+Cooldown: 10 seconds per monster on proccing its Charisma damage."""
+icon = "RavMutilate"
+internal_name = "RavMutilate"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["RavHate"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: I Like Pain"
+arrows = ["LongArrowUp"]
+cost_per_rank = [1]
+description = """
+When you are hit: Small chance to gain [50/100/150] Temporary HP.
+This gain scales with 100% Melee Power"""
+icon = "RavILikePain"
+internal_name = "RavILikePain"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["RavDoYouLikePain"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Cruel Cut"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Melee Attack: Deals 3d6 extra constitution damage as long as you damage your target.
+Also now adds +1d6 of additional Constitution Damage for every 2 Character Levels you have.
+Cooldown: 6 seconds"""
+icon = "RavCruelCut"
+internal_name = "RavCruelCut"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Ravager: Action Boost: Melee Power"
+cost_per_rank = [2]
+description = """
+Activate this ability to receive a +30 Action Boost bonus to Melee
+and Ranged Power for 20 seconds.
+Cooldown: 30 seconds"""
+icon = "RavActionBoostMeleePower"
+internal_name = "RavActionBoostMeleePower"
+is_clickie = true
+min_spent = 5
+ranks = 1
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 2
+
+[[enhancement]]
+name = "Ravager: Aura of Fear"
+cost_per_rank = [1]
+description = """
+Nearby enemies receive a -2 penalty to Strength and Charisma.
+Rank 2: Nearby enemies receive a -2 penalty to Strength, Charisma, Dexterity and Wisdom.
+Rank 3: Nearby enemies receive a -2 penalty to all ability scores."""
+icon = "RavAuraOfFear"
+internal_name = "RavAuraOfFear"
+min_spent = 10
+ranks = 3
+x = 0
+y = 3
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Ravager: Slaughter"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Deals: +100% Damage
+Melee Attack: Deals high amounts of damage.
+Cooldown: 12 seconds"""
+icon = "RavSlaughter"
+internal_name = "RavSlaughter"
+is_clickie = true
+min_spent = 10
+ranks = 1
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Ravager: Festering Wound"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Cruel Cut additionally inflicts [1/2/3] stacks of Festering Wound.
+Each stack deals 1d6 Poison damage that scales with 200% Melee Power every
+2 seconds, to a maximum of 10 stacks. In addition, enemies hit by Cruel Cut
+have their Positive Energy healing reduced by 50% for 5 seconds.
+Rank 3: Festering Wound becomes Greater Festering Wound and gains an additional
+1d6 Poison Damage for every 10 Character Levels you have. Also affects bosses."""
+icon = "RavFesteringWound"
+internal_name = "RavFesteringWound"
+min_spent = 10
+ranks = 3
+x = 3
+y = 3
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["RavCruelCut"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Constitution or Strength"
+icon = "StrCon"
+internal_name = "RavAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Ravager: Laughter"
+cost_per_rank = [2]
+description = """
+When Slaughter damages an enemy, you gain three stacks of Fury.
+When Slaughter scores a critical hit on an enemy, you gain three more Fury
+(for a total of six) and gain 10 Melee Power for 15 seconds."""
+icon = "RavLaughter"
+internal_name = "RavLaughter"
+min_spent = 20
+ranks = 1
+x = 1
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["RavSlaughter"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: I Hit Back!"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+When you are hit: 20% chance to deal [2/4/6]d8 bane damage to attacker.
+This damage scales with 100% Melee Power."""
+icon = "RavIHitBack"
+internal_name = "RavIHitBack"
+min_spent = 20
+ranks = 3
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["RavILikePain"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Dismember"
+cost_per_rank = [1]
+description = """
+When you use Cruel Cut, you gain +5 Melee Power for 10 seconds.
+In addition, targets hit by Cruel Cut take 6d[4/6/8] Slashing damage which scales
+with 200% Melee Power and have their movement speed reduced by 50% for 5 seconds.
+Rank 3: Your Slashing Damage from Dismember increases by +1d8 for every 2 Character
+Levels you have. (Movement and attack speed debuffs last for 5 seconds each and
+affect bosses.)"""
+icon = "RavDismember"
+internal_name = "RavDismember"
+min_spent = 20
+ranks = 3
+x = 3
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["RavFesteringWound"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Ability II"
+cost_per_rank = [2]
+description = "Choose either Constitution or Strength"
+icon = "StrCon"
+internal_name = "RavAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["RavAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Constitution"
+cost_per_rank = [2]
+description = "+1 Constitution"
+icon = "Constitution"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement]]
+name = "Ravager: Blood Strength"
+cost_per_rank = [2]
+description = """
+Each time you land a hit there is a 12% chance you heal positive damage equal
+to half your Barbarian level. Each time you kill an opponent you are healed for
+20 hit points. This healing scales with 100% Melee Power.
+Blood Strength has a one-second cooldown when you kill an enemy."""
+icon = "RavBloodStrength"
+internal_name = "RavBloodStrength"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Ravager: Bully"
+cost_per_rank = [1]
+description = "You deal +[5/10/15]% damage to helpless enemies."
+icon = "RavBully"
+internal_name = "RavBully"
+is_tier5 = true
+min_spent = 30
+ranks = 3
+x = 2
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    5,
+    10,
+    15,
+]
+bonus_type = "Enhancement"
+effect_type = "HelplessDamage"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["RavIHitBack"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Ravager: Uncanny Balance"
+cost_per_rank = [2]
+description = """
+You are immune to most knockdowns and slippery surfaces.
++25% Competence bonus to Maximum Hit Points."""
+icon = "RavUncannyBalance"
+internal_name = "RavUncannyBalance"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Knockdown"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Slippery Surfaces"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [25]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "HitpointsPercent"
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Ravager: Critical Rage"
+cost_per_rank = [1]
+description = """
+Increases your critical threat range by [1/2] (Competence bonus).
+Does not require rage."""
+icon = "RavCriticalRage"
+internal_name = "RavCriticalRage"
+is_tier5 = true
+min_spent = 30
+ranks = 2
+x = 4
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    1,
+    2,
+]
+apply_as_item_effect = true
+bonus_type = "Competence"
+effect_type = "Weapon_CriticalRange"
+targets = ["All"]
+
+[[enhancement.requirement]]
+items = ["Barbarian"]
+req_type = "ClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[requirement]]
+items = ["Barbarian"]
+req_type = "Class"

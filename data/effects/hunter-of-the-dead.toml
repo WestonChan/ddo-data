@@ -1,0 +1,3 @@
+name = "Hunter of the Dead"
+description_template = "This item in one of two pieces of the Hunter of the Dead set. When both items are equipped you will gain three additional uses of Remove Disease per rest after resting. If you have the Hunter of the Dead 3 Enhancement, this item will give your weapons additional damage versus Undead."
+verbose_name_template = "Hunter of the Dead"

@@ -1,0 +1,31 @@
+name = "Tarnished Blademark's Docent"
+description = """
+This docent was specially crafted for the warforged that serve as mercenaries
+for House Deneith, but seems to have been damaged in battle."""
+drop_location = "The Tide Turns, end chest, chain end reward"
+enhancement_bonus = 2
+icon = "Docent_1a"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 5
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 8
+armor_type = "Docent"
+mithral_body = 4
+
+[[effect]]
+name = "Unraveling Enchantments"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tide Turns"
+
+[[source]]
+kind = "quest_chain"
+name = "Sentinels of Stormreach"

@@ -1,0 +1,37 @@
+name = "Signet of Daanvi"
+description = "This signet ring bears the sigil of the plane of Daanvi."
+drop_location = "Order in the Court!, end chest"
+icon = "Ring_26a"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 16
+slot = "Ring"
+
+[[effect]]
+name = "Radiance Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Radiance"
+bonus_type = "Equipment"
+value = 97
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 6
+
+[[effect]]
+name = "Shield"
+bonus_type = "Shield"
+value = 8
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Order in the Court!"

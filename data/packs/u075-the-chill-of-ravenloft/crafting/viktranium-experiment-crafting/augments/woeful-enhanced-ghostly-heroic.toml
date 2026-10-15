@@ -1,0 +1,52 @@
+name = "Woeful Enhanced Ghostly (Heroic)"
+description = """
+Equipping this item causes you to become partially incorporeal.
+Your melee and missile attacks do not roll a miss chance for Incorporeal targets.
+Enemy attacks have a 15% chance to miss you due to your incorporeality.
+You receive a +5 enhancement bonus to your Hide and Move Silently skills."""
+family = "Lamordia_Heroic"
+icon = "Lamordia"
+min_level = 8
+
+[[effect]]
+name = "Hide"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Move Silently"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Incorporeality"
+bonus_type = "Equipment"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Equipment"
+effect_type = "GhostTouch"
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Hide",
+    "Move Silently",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Incorporeality"
+effect_type = "Incorporeality"
+targets = ["All"]
+
+[[slot]]
+slot = "lamordia: woeful (accessory)"

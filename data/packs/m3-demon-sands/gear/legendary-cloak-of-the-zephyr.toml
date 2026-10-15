@@ -1,0 +1,49 @@
+name = "Legendary Cloak of the Zephyr"
+description = "This diaphanous wrap enables its wearer to fade from sight."
+drop_location = "Legendary version of Epic Cloak of the Zephyr"
+icon = "Cloak_18a"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 30
+slot = "Back"
+
+[[clickie]]
+name = "Invisibility"
+clickie = "Invisibility"
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Invisibility Guard"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 22
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 151
+
+[[effect]]
+name = "Lightning Storm Guard"
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    30,
+    5,
+    5,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Invisibility"]
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"

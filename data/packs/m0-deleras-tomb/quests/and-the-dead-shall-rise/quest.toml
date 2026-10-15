@@ -1,0 +1,21 @@
+name = "And the Dead Shall Rise..."
+bestowed_by = "Siendra d'Jorasco"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Delera's Tomb"
+patron = "House Jorasco"
+zone = "Spire of Validus"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/And_the_Dead_Shall_Rise..."
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11

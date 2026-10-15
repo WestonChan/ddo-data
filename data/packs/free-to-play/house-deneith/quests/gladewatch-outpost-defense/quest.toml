@@ -1,0 +1,23 @@
+name = "Gladewatch Outpost Defense"
+bestowed_by = "Loghan d'Deneith"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 4
+is_free_to_play = true
+pack = "Free to Play"
+patron = "House Deneith"
+zone = "The Marketplace"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Gladewatch_Outpost_Defense"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 6

@@ -1,0 +1,25 @@
+name = "Lenses of the Woodsman"
+description = "These lenses have been enchanted to allow sight in even the darkest conditions."
+drop_location = "Eveningstar, Turn in 5 Commendations: Druids of the King's Forest Commendation: Druids of the King's Forest : This is a valuable item that can be exchanged for goods if brought to a Challenge Trader. This is a token of favor earned by helping the Druids of the King's Forest. You can exchange it in Eveningstar for powerful equipment."
+icon = "Goggles_4"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 20
+slot = "Goggles"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Attack Bonus"
+bonus_type = "Competence"
+value = 3
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 6
+
+[[source]]
+kind = "challenge"
+name = "Eveningstar Challenge Pack"

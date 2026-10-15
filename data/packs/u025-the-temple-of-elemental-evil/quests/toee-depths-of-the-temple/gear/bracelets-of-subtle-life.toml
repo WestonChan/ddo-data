@@ -1,0 +1,47 @@
+name = "Bracelets of Subtle Life"
+description = """
+Deep in the halls of the Temple, in the corners forgotten, grows a quiet hope
+grows in response."""
+drop_location = "ToEE: Depths of the Temple, end chest"
+icon = "Bracers_5"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 8
+slot = "Wrists"
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Mystic Diversion"
+bonus_type = "Insight"
+value = 3
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Enhancement"
+value = 12
+
+[[effect]]
+name = "Ghostly"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "ToEE: Depths of the Temple"

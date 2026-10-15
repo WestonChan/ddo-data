@@ -1,0 +1,29 @@
+name = "Sealed in Amber"
+bestowed_by = "Kasimir Velikov"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Mists of Ravenloft"
+patron = "Keepers of Barovia"
+zone = "The Amber Temple"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Sealed_in_Amber"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 11
+
+[[run]]
+tier = "epic"
+level = 31
+
+[[run]]
+tier = "legendary"
+level = 31

@@ -1,0 +1,41 @@
+name = "Utility Vest"
+description = """
+It looks like this leather outfit was designed by someone who wanted to be able
+to tamper with or escape from any trap or device. It is filled with secret
+pockets and odd tools."""
+drop_location = "The Maleficent Cabal, End reward"
+enhancement_bonus = 3
+icon = "LightArmor_1b"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 4
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 3
+armor_type = "Light"
+max_dex_bonus = 6
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Enhancement"
+value = 3
+
+[[effect]]
+name = "Disable Device"
+bonus_type = "Competence"
+value = 6
+
+[[effect]]
+name = "Open Lock"
+bonus_type = "Competence"
+value = 6
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "quest_chain"
+name = "The Maleficent Cabal"

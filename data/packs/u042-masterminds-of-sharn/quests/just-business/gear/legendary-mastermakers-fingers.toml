@@ -1,0 +1,35 @@
+name = "Legendary Mastermaker's Fingers"
+description = "NEW and IMPROVED: Now with built-in set of wrenches!"
+drop_location = "Just Business, End Chest"
+icon = "Gloves_1"
+item_category = "Clothing"
+material = "Magesteel"
+minimum_level = 29
+slot = "Hands"
+
+[[effect]]
+name = "Reconstruction"
+bonus_type = "Equipment"
+value = 142
+
+[[effect]]
+name = "Repair Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Evocation Focus"
+bonus_type = "Equipment"
+value = 7
+
+[[effect]]
+name = "Feat: Quick Draw"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Just Business"

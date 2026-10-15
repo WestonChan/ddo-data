@@ -1,0 +1,121 @@
+name = "Speed"
+choose_level = true
+description = "Bonus to your base movement speed and to attack speed"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    15,
+    15,
+    15,
+    15,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+    30,
+]
+level_values2 = [
+    1,
+    2,
+    2,
+    4,
+    4,
+    5,
+    5,
+    6,
+    6,
+    7,
+    8,
+    9,
+    9,
+    10,
+    11,
+    12,
+    12,
+    13,
+    14,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+    15,
+]
+
+[[effect]]
+name = "Movement Speed"
+bonus_type = "Enhancement"
+value = 30
+
+[[effect]]
+name = "Melee Alacrity"
+bonus_type = "Enhancement"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+apply_as_item_effect = true
+bonus_type = "Enhancement"
+effect = "Movement Speed"
+effect_type = "MovementSpeed"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect = "Melee Alacrity"
+effect_type = "WeaponAlacrityClass"
+targets = ["Melee"]
+
+[[slot]]
+slot = "crafting: random boots prefix"
+
+[[slot]]
+slot = "crafting: random ring suffix"

@@ -1,0 +1,41 @@
+name = "Bolt Insignia"
+description = """
+An Ancient Blue Dragonscale with a symbol of lightning carved into its face.
+Kor Kaza likely intended to grant this to one of her followers."""
+drop_location = "Riding the Storm Out, warded chest"
+icon = "Trinket_42"
+item_category = "Jewelry"
+material = "Blue Dragonscale"
+minimum_level = 27
+slot = "Trinket"
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 21
+
+[[effect]]
+name = "Efficient Metamagic - Intensify II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 133
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Quality"
+value = 34
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "warded chest"
+kind = "quest"
+loot_type = "raid"
+name = "Riding the Storm Out"

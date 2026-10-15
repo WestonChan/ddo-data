@@ -1,0 +1,18 @@
+name = "Deception"
+description_template = "{1} %b1 bonus to hit and {2} Damage for Sneak Attacks."
+home_bonus_type = "Insight"
+tier = 1
+tier_group = "Deception"
+verbose_name_template = "%b1 Deception +{1}"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Sneak Attack Hit"
+
+[[bonus]]
+amount_from = 2
+rounding = "down"
+scale = 1.0
+target = "Sneak Attack Damage"

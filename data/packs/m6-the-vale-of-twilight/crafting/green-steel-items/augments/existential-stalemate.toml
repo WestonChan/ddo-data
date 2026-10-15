@@ -1,0 +1,43 @@
+name = "Existential Stalemate"
+description = """
++10 Diplomacy, +10 Haggle, +6 Wisdom
+Negative:Positive or Positive:Negative"""
+family = "Greensteel_Heroic"
+icon = "ShardOfGreatPower"
+min_level = 11
+
+[[effect]]
+name = "Diplomacy"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Haggle"
+bonus_type = "Competence"
+value = 10
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Competence"
+effect_type = "SkillBonus"
+targets = [
+    "Diplomacy",
+    "Haggle",
+]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Wisdom"
+effect_type = "AbilityBonus"
+targets = ["Wisdom"]
+
+[[slot]]
+slot = "crafting: accessory aspect i"

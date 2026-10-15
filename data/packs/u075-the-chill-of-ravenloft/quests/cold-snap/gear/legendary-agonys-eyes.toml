@@ -1,0 +1,41 @@
+name = "Legendary Agony's Eyes"
+description = """
+On bringing these goggles over your eyes, you see a flash of a memory: Wasting
+away in the cold, then coming to in a Form distinctly unlike your own."""
+drop_location = "Cold Snap, end chest"
+icon = "Goggles_19"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 34
+slot = "Goggles"
+
+[[effect]]
+name = "Sound and Silence"
+
+[[socket]]
+slot = "lamordia: melancholic (accessory)"
+
+[[socket]]
+slot = "lamordia: dolorous (accessory)"
+
+[[socket]]
+slot = "lamordia: miserable (accessory)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Cold Snap"

@@ -1,0 +1,25 @@
+name = "Chains of Flame"
+bestowed_by = "Jaefan Druz"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Demon Sands"
+patron = "The Free Agents"
+zone = "The Burning City"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Chains_of_Flame"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 12
+
+[[run]]
+tier = "epic"
+level = 22

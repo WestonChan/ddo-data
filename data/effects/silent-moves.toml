@@ -1,0 +1,10 @@
+name = "Silent Moves"
+description_template = "This armor is well-oiled and magically constructed, so not only is it nearly silent, it also dampens surrounding sounds. It provides a {1} Competence bonus on its wearer's Move Silently checks."
+home_bonus_type = "Competence"
+verbose_name_template = "Silent Moves"
+
+[[bonus]]
+amount_from = 1
+rounding = "down"
+scale = 1.0
+target = "Move Silently"

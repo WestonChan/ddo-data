@@ -1,0 +1,3 @@
+name = "Minor Anger"
+description_template = "This will increase the total number of Rages you can use by 1. However, these additional Rages will only take effect after the wielder rests."
+verbose_name_template = "Minor Anger"

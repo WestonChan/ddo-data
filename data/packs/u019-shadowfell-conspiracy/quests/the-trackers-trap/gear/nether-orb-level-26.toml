@@ -1,0 +1,148 @@
+name = "Nether Orb (Level 26)"
+description = """
+Some more devious Netherse Wizard discovered how to syphon the life energies
+of his enemies and convert it into magical energies. Some called him mad. Some
+called him brilliant. The rest called him careless for allowing this ability
+to only function by touch."""
+drop_location = "The Tracker's Trap, End chest (Epic Normal) ; \n The Secret of the Storm Horns, Quest chain end reward (Epic)"
+icon = "Orb_9"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 26
+slot = "Off Hand"
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 7
+
+[[effect]]
+name = "Spell Lore IX"
+bonus_type = "Equipment"
+value = 9
+
+[[effect]]
+name = "Energy Siphon X"
+
+[[socket]]
+slot = "crafting: variant"
+
+[[socket.option]]
+name = "Evocation Focus IV"
+description = "Evocation Focus IV: +4 Equipment bonus to the DC of Evocation spells."
+icon = "Variant"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Equipment"
+effect = "Evocation Focus"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[socket.option]]
+name = "Conjuration Focus IV"
+description = "Conjuration Focus IV: +4 Equipment bonus to the DC of Conjuration spells."
+icon = "Variant"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Equipment"
+effect = "Conjuration Focus"
+effect_type = "SpellDC"
+targets = ["Conjuration"]
+
+[[socket.option]]
+name = "Enchantment Focus IV"
+description = "Enchantment Focus IV: +4 Equipment bonus to the DC of Enchantment spells."
+icon = "Variant"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Equipment"
+effect = "Enchantment Focus"
+effect_type = "SpellDC"
+targets = ["Enchantment"]
+
+[[socket.option]]
+name = "Necromancy Focus IV"
+description = "Necromancy Focus IV: +4 Equipment bonus to the DC of Necromancy spells."
+icon = "Variant"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Equipment"
+effect = "Necromancy Focus"
+effect_type = "SpellDC"
+targets = ["Necromancy"]
+
+[[socket.option]]
+name = "Transmutation Focus IV"
+description = "Transmutation Focus IV: +4 Equipment bonus to the DC of Transmutation spells."
+icon = "Variant"
+min_level = 26
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Transmutation Focus"
+value = 4
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Equipment"
+effect = "Transmutation Focus"
+effect_type = "SpellDC"
+targets = ["Transmutation"]
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Tracker's Trap"
+
+[[source]]
+kind = "quest_chain"
+name = "The Secret of the Storm Horns"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

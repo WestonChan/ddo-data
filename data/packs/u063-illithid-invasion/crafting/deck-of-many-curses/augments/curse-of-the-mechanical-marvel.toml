@@ -1,0 +1,35 @@
+name = "Curse of the Mechanical Marvel"
+description = """
++3% Fortune Bonus to Rune Arm Charge Rate
+-3% Fortune Bonus to Rune Arm Cooldown Rate
++3 Fortune Bonus to Repair Amplification"""
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Rune Arm Charge Rate"
+bonus_type = "Fortune"
+value = 3
+
+[[effect]]
+name = "Repair Amplification"
+bonus_type = "Fortune"
+value = 3
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Fortune"
+effect = "Rune Arm Charge Rate"
+effect_type = "RuneArmChargeRate"
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Fortune"
+effect = "Repair Amplification"
+effect_type = "RepairAmplification"
+
+[[slot]]
+slot = "crafting: deck curse"

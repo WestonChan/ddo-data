@@ -1,0 +1,43 @@
+name = "Giantcrafted Docent"
+description = """
+This docent was imbued with the power of the ancient giant empire for their
+warforged slaves."""
+drop_location = "Giantcraft Armor, Turn in 10 Ancient Giant Relics"
+enhancement_bonus = 5
+icon = "Docent_1"
+item_category = "Armor"
+item_type = "Docent"
+material = "Gem"
+minimum_level = 10
+race_required = "Construct"
+slot = "Body"
+
+[[armor]]
+adamantine_body = 16
+armor_bonus = -3
+armor_type = "Docent"
+mithral_body = 7
+
+[[clickie]]
+name = "Shield"
+clickie = "Shield"
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 75
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    1,
+    3,
+    3,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Shield"]
+
+[[source]]
+kind = "crafting_system"
+name = "Giantcraft Armor"

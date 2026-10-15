@@ -1,0 +1,38 @@
+name = "ToEE: Water Node"
+bestowed_by = "Calmert the Cleric"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Temple of Elemental Evil"
+patron = "The Gatekeepers"
+zone = "Lower Temple of Elemental Evil, Node of Water"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/ToEE:_Water_Node"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "Temple of Elemental Evil: Water Node"
+reason = "The wiki titles the quest ToEE: Water Node, the name his own items' drop text uses."
+url = "https://ddowiki.com/page/ToEE:_Water_Node"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

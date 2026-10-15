@@ -1,0 +1,25 @@
+name = "The Maze of Madness"
+bestowed_by = "Walk-up"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 6
+pack = "Ruins of Gianthold"
+patron = "Agents of Argonnessen"
+zone = "Minotaur Lair"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Maze_of_Madness"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 13
+
+[[run]]
+tier = "epic"
+level = 24

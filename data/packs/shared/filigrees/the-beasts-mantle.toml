@@ -1,0 +1,110 @@
+[[row]]
+name = "The Beast's Mantle: +1 Constitution"
+description = """
++1 Constitution
+Rare: +2 PRR"""
+icon = "TheBeastsMantle"
+menu = "Ravenloft"
+set = "The Beast's Mantle"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Beast's Mantle: Constitution: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Beast's Mantle: +1 Strength"
+description = """
++1 Strength
+Rare: +2 PRR"""
+icon = "TheBeastsMantle"
+menu = "Ravenloft"
+set = "The Beast's Mantle"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Beast's Mantle: Strength: Rare +2 PRR"
+effect_type = "PRR"
+is_rare = true
+
+[[row]]
+name = "The Beast's Mantle: +2 Rage Uses"
+description = """
++2 Uses of Rage
+Rare: +2 MRR"""
+icon = "TheBeastsMantle"
+menu = "Ravenloft"
+set = "The Beast's Mantle"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Beast's Mantle: Rage: Rare +2 MRR"
+effect_type = "MRR"
+is_rare = true
+
+[[row]]
+name = "The Beast's Mantle: +3 Melee Power"
+description = """
++3 Melee Power
+Rare: +2 Melee Power"""
+icon = "TheBeastsMantle"
+menu = "Ravenloft"
+set = "The Beast's Mantle"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "MeleePower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Beast's Mantle: Melee Power: Rare +2 Melee Power"
+effect_type = "MeleePower"
+is_rare = true
+
+[[row]]
+name = "The Beast's Mantle: +3 Ranged Power"
+description = """
++3 Ranged Power
+Rare: +2 Ranged Power"""
+icon = "TheBeastsMantle"
+menu = "Ravenloft"
+set = "The Beast's Mantle"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Stacking"
+effect_type = "RangedPower"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Stacking"
+display_name = "The Beast's Mantle: Ranged Power: Rare +2 Ranged Power"
+effect_type = "RangedPower"
+is_rare = true

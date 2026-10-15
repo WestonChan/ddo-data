@@ -1,0 +1,127 @@
+name = "Bracers of Wind (level 15)"
+description = """
+Bracers empowered by a bound Air Elemental. They surround you with a windy aura
+that deflects missiles occasionally, makes you harder to hit, and boosts the
+power of your electric spells."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Bracers_10"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 15
+slot = "Wrists"
+
+[[effect]]
+name = "Magnetism"
+bonus_type = "Equipment"
+value = 96
+
+[[effect]]
+name = "Lightning Lore"
+bonus_type = "Equipment"
+value = 14
+
+[[effect]]
+name = "Blurry"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Air Guard"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Magnetism +102, Lightning Lore +15%"
+description = """
+Magnetism +102: Passive: +102 Equipment bonus to Electricity Spell Power.
+Lightning Lore +15: Passive: Your Electricity spells gain a 15% Equipment bonus to their chance to critical hit."""
+min_level = 15
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 102
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 15
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [102]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Magnetism +108, Lightning Lore +16%, Dodge 9% and a Green augment slot"
+description = """
+Magnetism +108: Passive: +108 Equipment bonus to Electricity Spell Power.
+Lightning Lore +16: Passive: Your Electricity spells gain a 16% Equipment bonus to their chance to critical hit.
+Dodge +9%: +9% Enhancement bonus to Dodge.
+Adds a Green augment slot."""
+min_level = 11
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+value = 108
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+value = 16
+
+[[socket.option.effect]]
+bonus_type = "Enhancement"
+effect = "Dodge"
+value = 9
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [108]
+bonus_type = "Equipment"
+effect = "Electric Spell Power"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [16]
+bonus_type = "Equipment"
+effect = "Electric Spell Lore"
+effect_type = "SpellLore"
+targets = ["Electric"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [9]
+bonus_type = "Enhancement"
+effect = "Dodge"
+effect_type = "DodgeBonus"
+targets = ["Electric"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

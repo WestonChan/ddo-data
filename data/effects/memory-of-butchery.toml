@@ -1,0 +1,3 @@
+name = "Memory of Butchery"
+description_template = "You have a lingering voice in your mind, reminding you of the weak points in every body. On an attack roll of 20 which is confirmed as a critical hit, the weapon severs an opponent's limb from its body. Some opponents, including many aberrations and all oozes, have no limbs. Others, such as golems and undead creatures, are not affected by the loss of their limbs. Most other creatures, however, have their movement slowed by 75% and attacks slowed by 50% when a limb is cut off."
+verbose_name_template = "Memory of Butchery"

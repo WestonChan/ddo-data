@@ -1,0 +1,143 @@
+[[row]]
+name = "Crippling Strike"
+acquire = "Train"
+description = """
+A Rogue with this ability can sneak attack opponents with such precision
+that his or her blows weaken and hamper them. An opponent damaged by a sneak
+attack also takes 2 points of Strength damage."""
+icon = "CripplingStrike"
+source_name = "Rogue"
+
+[[row.group]]
+group_name = "Rogue Special Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Feat"
+effect_type = "WeaponDamageBonusStat"
+extra_types = ["WeaponDamageBonusCriticalStat"]
+targets = [
+    "Strength",
+    "All",
+]
+
+[[row.modifier.requirement]]
+items = ["Sneak Attack"]
+req_type = "Stance"
+
+[[row.requirement]]
+items = ["Rogue"]
+req_type = "Class"
+value = 10
+
+[[row]]
+name = "Defensive Roll"
+acquire = "Train"
+description = """
+Grants the Rogue a chance to cheat death when critically injured.
+When below 20% health, a Rogue with Defensive Roll has a chance equal to their
+total Reflex Save Modifier of taking half damage from melee or ranged weapon attacks
+and negating any special effects associated with the attack as if the Rogue were blocking.
+Defensive Roll is subject to the same armor and encumbrance restrictions as the
+Evasion class skill."""
+icon = "DefensiveRoll"
+source_name = "Rogue"
+
+[[row.group]]
+group_name = "Rogue Special Ability"
+
+[[row.requirement]]
+items = ["Rogue"]
+req_type = "Class"
+value = 10
+
+[[row]]
+name = "Opportunist"
+acquire = "Train"
+description = """
+A rogue with this ability gains a 3% chance to double strike with
+melee weapons and bypasses 10% fortification."""
+icon = "WeaponFinesse"
+source_name = "Rogue"
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Doublestrike"
+value = 3
+
+[[row.effect]]
+bonus_type = "Feat"
+effect = "Fortification Bypass"
+value = 10
+
+[[row.group]]
+group_name = "Rogue Special Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [3]
+bonus_type = "Feat"
+effect = "Doublestrike"
+effect_type = "Doublestrike"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Feat"
+effect = "Fortification Bypass"
+effect_type = "FortificationBypass"
+
+[[row.requirement]]
+items = ["Rogue"]
+req_type = "Class"
+value = 10
+
+[[row]]
+name = "Skill Mastery"
+acquire = "Train"
+description = "This ability gains +1 to all skills. A Rogue may take this ability multiple times."
+icon = "SkillFocus"
+max_times_acquire = 10
+source_name = "Rogue"
+
+[[row.group]]
+group_name = "Rogue Special Ability"
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Feat"
+effect_type = "SkillBonus"
+targets = ["All"]
+
+[[row.requirement_group]]
+kind = "one_of"
+
+[[row.requirement_group.requirement]]
+items = ["Artificer"]
+req_type = "Class"
+value = 10
+
+[[row.requirement_group.requirement]]
+items = ["Rogue"]
+req_type = "Class"
+value = 10
+
+[[row]]
+name = "Slippery Mind"
+acquire = "Train"
+description = """
+Grants the rogue a second chance to avoid harmful enchantments.
+Upon failure of a Will Save vs. Enchantments, the rogue immediately receives a
+second attempt at the saving throw."""
+icon = "SlipperyMind"
+source_name = "Rogue"
+
+[[row.group]]
+group_name = "Rogue Special Ability"
+
+[[row.requirement]]
+items = ["Rogue"]
+req_type = "Class"
+value = 10

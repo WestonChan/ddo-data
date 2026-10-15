@@ -1,0 +1,40 @@
+name = "Hermia's Owlfeather Cloak"
+description = "This cloak of beautiful owlfeather is soft and light against your skin."
+drop_location = "Through the Tulgey Wood, locked chest, end chest, second secret chest"
+icon = "Cloak_21a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 7
+slot = "Back"
+
+[[effect]]
+name = "Illusion Focus"
+bonus_type = "Equipment"
+value = 3
+
+[[effect]]
+name = "Spell Resistance"
+bonus_type = "Enhancement"
+value = 13
+
+[[effect]]
+name = "Spell Save"
+bonus_type = "Resistance"
+value = 4
+
+[[effect]]
+name = "Jump"
+bonus_type = "Competence"
+value = 9
+
+[[effect]]
+name = "Feather Falling"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "locked chest, end chest, second secret chest"
+kind = "quest"
+loot_type = "chest"
+name = "Through the Tulgey Wood"

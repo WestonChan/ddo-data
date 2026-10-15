@@ -1,0 +1,41 @@
+name = "Bladeforged"
+build_points = [
+    28,
+    32,
+    34,
+    36,
+]
+description = """
+You were built for war. With a greatsword in hand, you mercilessly smite your
+foes and leave behind only a wake of destruction."""
+iconic_class = "Paladin"
+is_construct = true
+short_name = "Bladeforged"
+starting_world = "Eberron"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Dexterity"
+
+[[ability_modifier]]
+modifier = 2
+stat = "Constitution"
+
+[[ability_modifier]]
+modifier = -2
+stat = "Wisdom"
+
+[[auto_buy_skill]]
+skill = "Repair"
+
+[[granted_feat]]
+feat = "Composite Plating"
+
+[[granted_feat]]
+feat = "Light Fortification"
+
+[[granted_feat]]
+feat = "Warforged Traits"
+
+[[granted_feat]]
+feat = "Bladeforged"

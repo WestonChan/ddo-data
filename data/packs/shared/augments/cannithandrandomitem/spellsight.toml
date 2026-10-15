@@ -1,0 +1,93 @@
+name = "Spellsight"
+choose_level = true
+description = "Competence bonus to Spellcraft"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    15,
+    16,
+    16,
+    16,
+    17,
+    17,
+    17,
+    18,
+    18,
+    18,
+    18,
+    19,
+    19,
+    19,
+    19,
+    20,
+    20,
+    20,
+    21,
+    21,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+    22,
+]
+
+[[effect]]
+name = "Spellcraft"
+bonus_type = "Competence"
+value = 22
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Competence"
+effect = "Spellcraft"
+effect_type = "SkillBonus"
+targets = ["Spellcraft"]
+
+[[slot]]
+slot = "crafting: cannith boots prefix"
+
+[[slot]]
+slot = "crafting: cannith bracers suffix"
+
+[[slot]]
+slot = "crafting: cannith cloak suffix"
+
+[[slot]]
+slot = "crafting: cannith helmet suffix"
+
+[[slot]]
+slot = "crafting: cannith necklace suffix"
+
+[[slot]]
+slot = "crafting: cannith trinket prefix"
+
+[[slot]]
+slot = "crafting: cannith trinket suffix"
+
+[[slot]]
+slot = "crafting: random cloak suffix"
+
+[[slot]]
+slot = "crafting: random helmet suffix"
+
+[[slot]]
+slot = "crafting: random necklace suffix"
+
+[[slot]]
+slot = "crafting: cannith rune arm prefix"

@@ -1,0 +1,34 @@
+name = "Gleaming Adamantine Plate"
+description = "An adamantine breastplate plated with polished silver."
+drop_location = "Tempest's Spine, left end chest"
+enhancement_bonus = 5
+icon = "HeavyArmor_1b"
+item_category = "Armor"
+item_type = "Heavy"
+material = "Adamantine"
+minimum_level = 8
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 35
+armor_bonus = 13
+armor_check_penalty = -5
+armor_type = "Heavy"
+max_dex_bonus = 1
+
+[[effect]]
+name = "Command"
+value = 2
+value2 = -6
+
+[[effect]]
+name = "Adamantine"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "left end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"

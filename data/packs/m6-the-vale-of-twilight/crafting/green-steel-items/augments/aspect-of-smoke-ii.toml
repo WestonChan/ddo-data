@@ -1,0 +1,23 @@
+name = "Aspect of Smoke II"
+description = """
+Smoke Screen: You are surrounded by wisps of concealing smoke, giving opponents a 20%
+concealment chance to miss you.
+Air:Fire:Fire+Air"""
+family = "Greensteel_Heroic"
+icon = "ShardOfSupremePower"
+min_level = 11
+
+[[effect]]
+name = "Displacement"
+bonus_type = "Equipment"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Equipment"
+effect = "Displacement"
+effect_type = "Displacement"
+
+[[slot]]
+slot = "crafting: accessory aspect ii"

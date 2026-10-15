@@ -1,0 +1,42 @@
+name = "Legendary Cherished Wedding Ring"
+description = """
+This looks as if it used to be a really nice ring. Its previous owner must have
+been quite heartbroken to throw it away."""
+drop_location = "Kill Ten Rats, End Chest"
+icon = "Ring_28"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 31
+slot = "Ring"
+
+[[effect]]
+name = "Alluring Skills Bonus"
+bonus_type = "Insight"
+value = 10
+
+[[effect]]
+name = "Devotion"
+bonus_type = "Equipment"
+value = 149
+
+[[effect]]
+name = "Heal"
+bonus_type = "Competence"
+value = 21
+
+[[effect]]
+name = "False Life"
+bonus_type = "Enhancement"
+value = 53
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Kill Ten Rats"

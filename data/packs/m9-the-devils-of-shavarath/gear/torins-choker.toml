@@ -1,0 +1,82 @@
+name = "Torin's Choker"
+description = """
+Worn by the famous Warchanter Torin, this thick golden choker looks to have
+deflected several potentially fatal attacks."""
+drop_location = "Sins of Attrition, Any chest ; Tower of Despair, Nythirios chest"
+icon = "Necklace_3d"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 18
+slot = "Neck"
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 48
+
+[[effect]]
+name = "Wizardry VI"
+bonus_type = "Enhancement"
+value = 150
+
+[[effect]]
+name = "Warchanter"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    1,
+    1,
+]
+bonus_type = "Stacking"
+display_name = "Warchanter - 2 Piece bonus"
+effect_type = "SongCount"
+extra_types = ["SongCount"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    -4,
+    -4,
+]
+bonus_type = "Equipment"
+display_name = "Warchanter - 2 Piece bonus"
+effect_type = "MetamagicCostMaximize"
+extra_types = ["MetamagicCostMaximize"]
+
+[[modifier.requirement]]
+items = ["Maximize"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    0,
+    0,
+    -1,
+    -1,
+]
+bonus_type = "Equipment"
+display_name = "Warchanter - 2 Piece bonus"
+effect_type = "MetamagicCostExtend"
+extra_types = ["MetamagicCostExtend"]
+
+[[modifier.requirement]]
+items = ["Extend"]
+req_type = "Stance"
+
+[[source]]
+chest = "any chest"
+kind = "quest"
+loot_type = "chest"
+name = "Sins of Attrition"
+
+[[source]]
+chest = "nythirios chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tower of Despair"

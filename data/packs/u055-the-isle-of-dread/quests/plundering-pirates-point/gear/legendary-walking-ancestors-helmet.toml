@@ -1,0 +1,40 @@
+name = "Legendary Walking Ancestor's Helmet"
+description = "The belt buckle accent on this hat is a good indication of its age."
+drop_location = "Plundering Pirates' Point, end chest"
+icon = "Helmet_3"
+item_category = "Clothing"
+material = "Gold"
+minimum_level = 31
+slot = "Head"
+
+[[effect]]
+name = "Curse Resistance"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 286
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 103
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Plundering Pirates' Point"

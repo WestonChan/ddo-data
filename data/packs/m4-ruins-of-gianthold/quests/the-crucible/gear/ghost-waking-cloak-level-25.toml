@@ -1,0 +1,33 @@
+name = "Ghost-Waking Cloak (Level 25)"
+description = """
+A fine woolen garment once belonging to Harza Ghsot-Waker of the Arzag-Khor.
+As you run your fingers over the material, you think you hear faint whispering
+in your ear."""
+drop_location = "The Crucible, Harza Ghost-Waker 's chest (Epic Elite)"
+icon = "Cloak_11"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 25
+slot = "Back"
+
+[[effect]]
+name = "Charisma"
+bonus_type = "Enhancement"
+value = 8
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 7
+
+[[effect]]
+name = "Ghostly"
+
+[[effect]]
+name = "DR 15/Evil"
+
+[[source]]
+chest = "harza ghost-waker 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Crucible"

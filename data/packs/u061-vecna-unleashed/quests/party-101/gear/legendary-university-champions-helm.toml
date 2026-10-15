@@ -1,0 +1,45 @@
+name = "Legendary University Champion's Helm"
+description = """
+This helm was clearly used by some past adventurer, but that hasn't diminished
+its potential."""
+drop_location = "Party 101, End chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 32
+slot = "Head"
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Competence"
+value = 11
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Armor-Piercing"
+bonus_type = "Enhancement"
+value = 22
+
+[[effect]]
+name = "Seeker"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "crafting: lost purpose"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Party 101"

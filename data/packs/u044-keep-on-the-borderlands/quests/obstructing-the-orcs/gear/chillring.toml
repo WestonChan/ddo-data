@@ -1,0 +1,27 @@
+name = "Chillring"
+description = "This silver ring contains a single, magical sapphire."
+drop_location = "Obstructing the Orcs, End Chest"
+icon = "Ring_6"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Ring"
+
+[[effect]]
+name = "Glaciation"
+bonus_type = "Equipment"
+value = 38
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 19
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Obstructing the Orcs"

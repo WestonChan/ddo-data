@@ -1,0 +1,40 @@
+name = "Night Brigade Necklace"
+description = """
+Emblazoned with a crude insignia, this lets members of the Night Brigade identify
+each other."""
+drop_location = "Rats in a Cage, end chest"
+icon = "Necklace_14"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 4
+slot = "Neck"
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Enhancement"
+value = 2
+
+[[effect]]
+name = "Doubleshot"
+bonus_type = "Insight"
+value = 1
+
+[[effect]]
+name = "Accuracy"
+bonus_type = "Competence"
+value = 5
+
+[[effect]]
+name = "Marksmanship"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "moon"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Rats in a Cage"

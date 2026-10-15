@@ -1,0 +1,35 @@
+name = "Helm of the White Dragon (historic)"
+description = "This helm is crafted in the likeness of a ferocious white dragon."
+drop_location = "Gianthold Tor, White Dragon 's chest"
+icon = "Helmet_45a"
+is_legacy = true
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 13
+slot = "Head"
+
+[[clickie]]
+name = "Cone of Cold"
+clickie = "Cone of Cold"
+
+[[effect]]
+name = "Strength"
+bonus_type = "Enhancement"
+value = 5
+
+[[modifier]]
+amount_type = "SLA"
+amounts = [
+    9,
+    1,
+    1,
+]
+bonus_type = "Equipment"
+effect_type = "ItemClickie"
+targets = ["Cone of Cold"]
+
+[[source]]
+chest = "white dragon 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "Gianthold Tor"

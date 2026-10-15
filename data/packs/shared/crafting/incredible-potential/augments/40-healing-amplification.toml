@@ -1,0 +1,20 @@
+name = "+40 Healing Amplification"
+description = "Healing Amplification +40: This effect amplifies all incoming positive energy healing by +40 (Equipment bonus). Includes spells, potions, and other effects."
+family = "IncrediblePotential"
+icon = "Upgrade"
+min_level = 18
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Equipment"
+value = 40
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [40]
+bonus_type = "Equipment"
+effect = "Healing Amplification"
+effect_type = "HealingAmplification"
+
+[[slot]]
+slot = "crafting: incredible potential"

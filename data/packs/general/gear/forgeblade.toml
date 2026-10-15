@@ -1,0 +1,44 @@
+name = "Forgeblade"
+description = "As you shall be my sword, let this blade serve as yours."
+drop_location = "Advance to level 15, End reward"
+enhancement_bonus = 3
+icon = "Greatsword_1k"
+item_category = "Weapon"
+item_type = "Great Sword"
+material = "Adamantine"
+minimum_level = 15
+race_required = "Bladeforged"
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Adamantine"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "True Law"
+
+[[effect]]
+name = "Bloodletter IV"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Great Sword"

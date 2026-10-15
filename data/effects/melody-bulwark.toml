@@ -1,0 +1,11 @@
+name = "Melody Bulwark"
+description_template = "Your Inspire Greatness grants you and your allies an additional +3 PRR."
+home_bonus_type = "Exceptional"
+verbose_name_template = "Melody Bulwark +3"
+
+[[bonus]]
+amount_from = 0
+constant = 3
+rounding = "down"
+scale = 1.0
+target = "Song Physical Resistance Rating"

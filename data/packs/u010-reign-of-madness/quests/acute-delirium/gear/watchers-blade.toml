@@ -1,0 +1,53 @@
+name = "Watcher's Blade"
+description = """
+An elegant but unsettling sword infused with the power of Belashyrra, the daelkyr
+Lord of Eyes. You feel as though someone is watching you as long as you're
+holding it. Nevertheless, it shares its awareness with you and is thus a good
+ward against danger."""
+drop_location = "Acute Delirium, End chest"
+enhancement_bonus = 5
+icon = "Longsword_8"
+item_category = "Weapon"
+item_type = "Longsword"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Heightened Awareness"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Improved Cursespewing"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Hidden Effect Sap"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Acute Delirium"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Longsword"

@@ -1,0 +1,20 @@
+name = "+30 Equipment bonus to Electric Absorption"
+description = "Opposition/Air: +30 Equipment bonus to Electric Absorption"
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[effect]]
+name = "Electric Absorption"
+bonus_type = "Equipment"
+value = 30
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [30]
+bonus_type = "Equipment"
+effect = "Electric Absorption"
+effect_type = "EnergyAbsorbance"
+targets = ["Electric"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 2"

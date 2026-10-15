@@ -1,0 +1,44 @@
+name = "Lumric's Longbow"
+description = """
+This longbow was enchanted for an elven ranger named Lumric as he had distinguished
+themselves in combat against evil. Arrows fired from this bow will find their
+target even if it is a non-corporeal undead."""
+drop_location = "Necropolis, Turn in Scarlet Scarab Powder"
+enhancement_bonus = 3
+icon = "Longbow_1"
+item_category = "Weapon"
+item_type = "Longbow"
+material = "Wood"
+minimum_level = 4
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Ghost Touch"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+kind = "vendor"
+name = "Squire Rale"
+
+[[source.price]]
+ingredient = "Scarlet Scarab Powder"
+quantity = 1
+
+[[weapon]]
+attack_modifier = "Dexterity"
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 3
+critical_threat_range = 1
+damage_modifier = "Dexterity"
+damage_multiplier = 1.0
+handedness = "Two-handed"
+weapon_type = "Longbow"

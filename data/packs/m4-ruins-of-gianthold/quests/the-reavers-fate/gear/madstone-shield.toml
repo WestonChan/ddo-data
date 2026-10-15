@@ -1,0 +1,71 @@
+name = "Madstone Shield"
+description = """
+The wielder of this shield must have used it to block the attacks of the dragons
+during the great cataclysm. While it probably didn't save its owner, the bombardment
+left the shield infused with a crystalline protective coating that is amazingly
+hard."""
+drop_location = "The Reaver's Fate, Raid Warded End Chest"
+enhancement_bonus = 5
+icon = "Shield_15"
+item_category = "Shield"
+item_type = "Tower Shield"
+material = "Crystal"
+minimum_level = 14
+slot = "Off Hand"
+
+[[armor]]
+arcane_spell_failure = 50
+armor_check_penalty = -9
+armor_type = "Shield"
+damage_reduction = 11
+max_dex_bonus = 3
+shield_bonus = 13
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Crystal"
+
+[[dr_bypass]]
+bypass = "Good"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Shield Proficiency"
+
+[[socket]]
+slot = "crafting: upgradeable item (stormreaver)"
+
+[[socket.option]]
+name = "Adds Improved Bashing, Adds Shield Bashing +10%"
+description = """
+Improved Bashing: This shield does an additional 2 to 12 damage when used to shield bash.
+Shield Bashing +10%: +10% Enhancement bonus to your chance of a Secondary Shield
+Bash. This stacks with bonuses granted by any relevant feats."""
+min_level = 14
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Shield"
+effect_type = "SecondaryShieldBash"
+
+[[source]]
+chest = "raid warded end chest"
+kind = "quest"
+loot_type = "raid"
+name = "The Reaver's Fate"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Strength"
+damage_multiplier = 1.4
+handedness = "Off-hand"
+weapon_type = "Tower Shield"

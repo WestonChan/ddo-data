@@ -1,0 +1,76 @@
+name = "1st Degree Burns"
+adds_augment = "Thunderforged Tier 2"
+description = "1st Degree Burns: On Hit: Applies a stack of Vulnerable (1% more damage for 3 seconds. This effect stacks up to 20 times, and loses one stack on expiration.) This effect may only occur on-hit once every two seconds. Also 5 to 30 Fire Damage."
+family = "Thunderforged"
+min_level = 24
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Fire"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "1st Degree Burns"
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Bane"
+dice_number = [
+    5,
+    8,
+]
+dice_sides = [
+    6,
+    6,
+]
+display_name = "Bane of Dragons"
+effect_type = "WeaponOtherDamageBonus"
+extra_types = ["WeaponOtherDamageBonusCritical"]
+is_item_specific = true
+targets = ["All"]
+
+[[modifier.requirement]]
+items = ["Dragon"]
+req_type = "Stance"
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    3.5,
+    4,
+    4.5,
+    4.5,
+]
+bonus_type = "Base"
+display_name = "Thunderforged Base Damage"
+effect_type = "Weapon_BaseDamage"
+is_item_specific = true
+targets = ["All"]
+
+[[modifier]]
+amount_type = "Stacks"
+amounts = [
+    9,
+    10,
+    11,
+    12,
+]
+bonus_type = "Weapon Enchantment"
+display_name = "Thunderforged Weapon Enchantment"
+effect_type = "Weapon_Enchantment"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: thunderforged tier 1"

@@ -52,7 +52,7 @@ const AUGMENT_COLUMNS: &str =
                        a.adds_augment, a.grants_augment, a.weapon_class";
 
 const AUGMENTS_SORT_FIELDS: &[(&str, &str)] =
-    &[("name", "a.name"), ("id", "a.id"), ("min_level", "a.min_level"), ("family", "a.family"),
+    &[("name", "a.name"), ("slug", "a.name"), ("id", "a.id"), ("min_level", "a.min_level"), ("family", "a.family"),
     ("adds_augment", "adds_augment"),
     ("choose_level", "choose_level"),
     ("description", "description"),
@@ -114,7 +114,7 @@ async fn augments(
                 AUGMENT_COLUMNS,
                 "augments a",
                 &query,
-                "a.name, a.min_level",
+                "a.name, a.min_level, a.slug",
                 AUGMENTS_SORT_FIELDS,
                 &where_clause,
             )?;

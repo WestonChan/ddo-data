@@ -1,0 +1,21 @@
+name = "The Sane Asylum"
+bestowed_by = "Horace Neble"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 7
+pack = "Reign of Madness"
+patron = "The Twelve"
+zone = "The Embers Asylum"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/The_Sane_Asylum"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 17

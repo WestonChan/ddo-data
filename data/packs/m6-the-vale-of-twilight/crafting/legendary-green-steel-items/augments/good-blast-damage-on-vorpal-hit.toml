@@ -1,0 +1,20 @@
+name = "Good Blast damage on Vorpal hit."
+description = """
+Dominion/Positive: This weapon does an additional 11d120  Good damage on a Vorpal hit.
+Makes this weapon Good-Aligned"""
+family = "Greensteel_Legendary"
+min_level = 1
+
+[[modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+dice_damage = "Good"
+dice_number = [11]
+dice_sides = [120]
+display_name = "Good Blast"
+effect_type = "WeaponOtherDamageBonusCritical"
+is_item_specific = true
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: greensteel weapon tier 3"

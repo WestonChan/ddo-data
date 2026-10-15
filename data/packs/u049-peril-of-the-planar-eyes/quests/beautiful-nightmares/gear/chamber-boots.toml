@@ -1,0 +1,37 @@
+name = "Chamber Boots"
+description = """
+These boots were left in an unattended closet of the Chamber, and seem to be
+exactly your size."""
+drop_location = "Beautiful Nightmares, End chest"
+icon = "Boots_8"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 12
+slot = "Feet"
+
+[[effect]]
+name = "Intelligence"
+bonus_type = "Insight"
+value = 2
+
+[[effect]]
+name = "Speed"
+value = 22
+value2 = 9
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 6
+
+[[effect]]
+name = "Feat: Quick Draw"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Beautiful Nightmares"

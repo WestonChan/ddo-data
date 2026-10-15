@@ -1,0 +1,53 @@
+name = "Legendary Deep Arcanum"
+description = """
+Drow wizards imbued these fine robes with an array of enchantments designed
+give its wearer the resilience one needs to survive in the Underdark."""
+drop_location = "Graveyard Shift, End chest; Strike Back, End chest"
+enhancement_bonus = 13
+icon = "Cloth_8a"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 28
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Resistance"
+bonus_type = "Resistance"
+value = 10
+
+[[effect]]
+name = "Magical Sheltering"
+bonus_type = "Quality"
+value = 8
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Insight"
+value = 16
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Insight"
+value = 134
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Graveyard Shift"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Strike Back"

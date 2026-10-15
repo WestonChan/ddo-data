@@ -1,0 +1,112 @@
+[[row]]
+name = "Aurgloroasa's Ascendend Wrath"
+acquire = "Train"
+description = """
+Major Draconic Aura: You have taken on a powerful aspect of Aurgloroasa, the
+Sibilant Shade. You and allies close to you get a +4 Morale Bonus to Ranged Power.
+You may have only one Superior Draconic Aura, which stacks with your Minor and
+Major Draconic Auras."""
+icon = "AurgloroasasAscendendWrath"
+source_name = "Dragon Lord"
+
+[[row.group]]
+group_name = "Superior Draconic Aura"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Aurgloroasa's Ascendend Wrath"
+effect_type = "RangedPower"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Dragon Lord"]
+req_type = "ClassMinLevel"
+value = 16
+
+[[row]]
+name = "Kor Kaza's Forbidden Power"
+acquire = "Train"
+description = """
+Major Draconic Aura: You have taken on a powerful aspect of Kor Kaza, scholar and
+temporal ravager. You and allies close to you get a +4 Morale Bonus to Universal
+Spell Power. You may have only one Superior Draconic Aura, which stacks with your
+Minor and Major Draconic Auras."""
+icon = "KorKazasForbiddenPower"
+source_name = "Dragon Lord"
+
+[[row.group]]
+group_name = "Superior Draconic Aura"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "Kor Kaza's Forbidden Power"
+effect_type = "UniversalSpellPower"
+
+[[row.requirement]]
+items = ["Dragon Lord"]
+req_type = "ClassMinLevel"
+value = 16
+
+[[row]]
+name = "The Truthful One's Might"
+acquire = "Train"
+description = """
+Major Draconic Aura: You have taken on a powerful aspect of The Truthful One,
+the ancient betrayer. You and allies close to you get a +4 Morale Bonus to
+Melee Power. You may have only one Superior Draconic Aura, which stacks with your
+Minor and Major Draconic Auras."""
+icon = "TheTruthfulOnesMight"
+source_name = "Dragon Lord"
+
+[[row.group]]
+group_name = "Superior Draconic Aura"
+
+[[row.modifier]]
+amount_type = "Stacks"
+amounts = [
+    4,
+    0,
+    5,
+    0,
+    6,
+    0,
+    7,
+    0,
+    9,
+]
+apply_as_item_effect = true
+bonus_type = "Morale"
+display_name = "The Truthful One's Might"
+effect_type = "MeleePower"
+targets = ["All"]
+
+[[row.requirement]]
+items = ["Dragon Lord"]
+req_type = "ClassMinLevel"
+value = 16

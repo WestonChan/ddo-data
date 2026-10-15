@@ -1,0 +1,831 @@
+[[row]]
+name = "Ball Lightning"
+description = """
+Launches one 3 feet sphere of lightning, dealing 1d6+5 Electricity damage per caster
+level. (Maximum damage 15d6+75.) A successful Reflex save reduces the damage by
+half."""
+icon = "BallLightning"
+max_caster_level = 15
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 5
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Burning Blood"
+description = """
+You taint a living creature's blood with a hot, corrosive infusion, dealing 2d4 + 1
+per 2 caster level of Acid damage and 2d4 + 1 per 2 caster level of Fire damage
+every 2 seconds for 10 seconds."""
+icon = "BurningBlood"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 2
+bonus_dice_sides = 4
+damage = "Acid"
+per_caster_levels = 2
+spell_power = "Acid"
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 2
+bonus_dice_sides = 4
+damage = "Fire"
+per_caster_levels = 2
+spell_power = "Fire"
+
+[[row]]
+name = "Burning Hands"
+description = """
+A harmful cone of searing flame shoots forth, damaging targets in the area of the
+flames for 1d6+1 Fire damage per caster level. (Maximum damage 5d6+5.)
+A successful Reflex save reduces the damage by half."""
+icon = "BurningHands"
+max_caster_level = 5
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Death Aura"
+description = """
+Envelops the caster in a sickly aura of negative energy. Living enemies stepping
+inside the aura take 2d4 damage plus 1 per caster level every 2 seconds as long
+as they remain within it. Undead are instead healed by the aura, and friendly
+Undead do not trigger spell resistance."""
+icon = "DeathAura"
+max_caster_level = 1
+metamagics = [
+    "Embolden",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+base_dice_number = 2
+base_dice_sides = 4
+bonus_dice_bonus = 1
+damage = "Negative"
+per_caster_levels = 1
+spell_power = "Negative"
+
+[[row]]
+name = "Disintegrate"
+description = """
+A sickly green ray emanates forth, doing 2d3+6 damage per caster level to the target.
+(Maximum damage 40d3+120.) Anything reduced to 0 hit points is disintegrated.
+A successful Fortitude save reduces this damage to 6d3+12."""
+icon = "Disintegrate"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Transmutation"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 2
+bonus_dice_sides = 3
+damage = "Untyped"
+spell_power = "Untyped"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Reduced Damage"
+dc_versus = "Fortitude"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Disrupt Undead"
+description = """
+This ray deals 2d3+6 positive energy damage plus an additional 1d3+3 damage per two
+caster levels to an enemy undead. This spell has nearly unlimited range."""
+icon = "DisruptUndead"
+max_caster_level = 999
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+base_dice_bonus = 6
+base_dice_number = 1
+base_dice_sides = 3
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 3
+damage = "Positive"
+per_caster_levels = 2
+spell_power = "Positive"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Eladar's Electric Surge"
+description = """
+The target's body is wracked with powerful Electric shocks, dealing 1 to 6 Electric
+damage + 1 per caster level every 2 seconds for a duration of 16 seconds. This
+spell can stack on the target up to 3 times, increasing the damage with each stack."""
+icon = "EladarsElectricSurge"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Electric"
+per_caster_levels = 2
+spell_power = "Electric"
+
+[[row]]
+name = "Electric Loop"
+description = """
+Zap one or more targets for 1d3+3 Electrical damage per two caster levels (Maximum
+damage 5d3+15.), then may leap erratically about to other nearby targets
+hitting each of them with a similar shock. A successful Reflex save reduces
+the damage by half. On a failed Reflex save, the target must make a successful
+Will save to avoid be Dazed for a short period of time or until takes damage."""
+icon = "ElectricLoop"
+max_caster_level = 5
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 3
+damage = "Electric"
+per_caster_levels = 2
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Daze on fail"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row]]
+name = "Feeblemind"
+description = """
+Creature's Intelligence and Charisma drops to 1. A successful Will saving throw
+negates this effect."""
+icon = "Feeblemind"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Enchantment"]
+
+[[row]]
+name = "Fireball"
+description = """
+Creates a ball of Fire dealing 1d6+3 per caster level (Maximum damage 10d6+30) Fire
+damage, to targets around it. A successful Reflex save reduces the damage by half."""
+icon = "Fireball"
+max_caster_level = 10
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 3
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Halt Undead"
+description = """
+Immobilizes Undead targets in range immobile for 6 seconds per caster level.
+A successful Will save negates this effect. Non-intelligent Undead do not get
+a Will save."""
+icon = "HaltUndead"
+metamagics = [
+    "Embolden",
+    "Enlarge",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Will"
+schools = ["Necromancy"]
+
+[[row]]
+name = "Iceberg"
+description = """
+Drops a gigantic shard of glacial ice on your target, which deals 1d6+28 Cold damage
+for every caster level (Max caster level 20). A successful Reflex save reduces
+the damage by half."""
+icon = "Iceberg"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 28
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Incendiary Cloud"
+description = """
+A cloud of roiling smoke and white-hot embers, obscuring the sight of all targets
+within its effect and dealing 2d4 + 1 per caster level of Fire damage every 2
+seconds. Creatures entering the cloud must save vs Reflex or become blinded
+until they leave
+the cloud."""
+icon = "IncendiaryCloud"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 2
+bonus_dice_sides = 4
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates Blind"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Knock"
+description = """
+Unlocks locked doors and chests as if a Rogue with a Open Lock skill of caster
+level+casting ability modifier (Intelligence for Wizards, and Charisma for
+Sorcerers) was attempting to pick the lock."""
+icon = "Knock"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Open Lock"
+dc_versus = "Lock DC"
+schools = ["Transmutation"]
+
+[[row]]
+name = "Lesser Death Aura"
+description = """
+Envelops the caster in a sickly aura of negative energy. Living enemies stepping
+inside the aura take 1d4 negative damage every 2 seconds as long as they
+remain within it. Undead are instead healed by the aura."""
+icon = "LesserDeathAura"
+metamagics = [
+    "Embolden",
+    "Extend",
+    "Heighten",
+    "Quicken",
+]
+schools = ["Necromancy"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 4
+damage = "Negative"
+spell_power = "Negative"
+
+[[row]]
+name = "Mage Armor"
+description = """
+An invisible, but tangible field of force surrounds an ally, providing a +4 Armor
+bonus to Armor Class for 5 minutes plus 1 minute per caster level."""
+icon = "MageArmor"
+metamagics = [
+    "Extend",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.modifier]]
+amount_type = "Simple"
+amounts = [4]
+bonus_type = "Armor"
+effect_type = "ACBonus"
+
+[[row]]
+name = "Meteor Swarm"
+description = """
+Chunks of flaming stone crush and burn your enemies causing 4 spheres of 2 ft.
+diameter explode on impact, each meteor deals 1d3+1 Fire damage per caster level
+(A successful Reflex save reduces the damage by half.), and 1d2 bludgeoning
+damage per caster level (No save.) to targets in the area. (Max 20d3+20 Fire,
+20d2 Bludgeon)"""
+icon = "MeteorSwarm"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 1
+bonus_dice_number = 1
+bonus_dice_sides = 3
+damage = "Fire"
+spell_power = "Fire"
+
+[[row.damage]]
+bonus_dice_number = 1
+bonus_dice_sides = 2
+damage = "Bludgeon"
+spell_power = "Force"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Niac's Biting Cold"
+description = """
+A deep and chilling Cold settles into the target's body, dealing 1 to 6 Cold damage
++1 per caster level every 2 seconds for a duration of 16 seconds. This spell
+can stack on the target up to 3 times, increasing the damage with each stack."""
+icon = "NiacsBitingCold"
+max_caster_level = 20
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+base_dice_number = 1
+base_dice_sides = 6
+bonus_dice_bonus = 1
+damage = "Cold"
+per_caster_levels = 2
+spell_power = "Cold"
+
+[[row]]
+name = "Niac's Cold Ray"
+description = """
+Shoots a ray of ice inflicting 1d5+5 Cold damage per caster level (Maximum damage
+5d5+25.) to a single target. A successful Reflex save negates damage."""
+icon = "NiacsColdRay"
+max_caster_level = 5
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row.damage]]
+bonus_dice_bonus = 5
+bonus_dice_number = 1
+bonus_dice_sides = 5
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates"
+dc_versus = "Reflex"
+schools = ["Conjuration"]
+
+[[row]]
+name = "Otiluke's Freezing Sphere"
+description = """
+A frigid globe of Cold energy streaks towards a target. On impact it explodes,
+causing 1d6+6 Cold damage per caster level (Maximum damage of 20d6+120 at
+caster level 20) to targets in the area. A successful Reflex save reduces the
+damage by half."""
+icon = "OtilukesFreezingSphere"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 6
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Polar Ray"
+description = """
+Strikes a creature for 1d6+10 Cold damage per caster level.
+(Maximum caster level 25.)"""
+icon = "PolarRay"
+max_caster_level = 25
+metamagics = [
+    "Empower",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 10
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+spell_power = "Cold"
+
+[[row]]
+name = "Power Word: Blind"
+description = """
+A single word of power is uttered, causing your target to become Blinded. Creatures
+are Blinded for at least 6+6d4 seconds, and players are Blinded for at least
+4+1d6 seconds. Creatures with more than 100,000 Hit Points are unaffected by
+Power Word: Blind."""
+icon = "PowerWordBlind"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Enchantment"]
+
+[[row]]
+name = "Power Word: Kill"
+description = """
+A single word causes the death of a single enemy with no saving throw allowed.
+Cooldown timer of 210 seconds."""
+icon = "PowerWordKill"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Prismatic Ray"
+description = """
+A shining ray of multicolored light blinds creatures with 8 Hit Die or less for 12
+to 48 seconds, and does 1 of 7 harmful effects at random to one target, with
+a 12.5% of inflicting a second different effect from that 7."""
+icon = "PrismaticRay"
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Blue Ray - Turn to Stone"
+dc_versus = "Fortitude"
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Indigo Ray - Fear"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Violet Ray - Death"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row]]
+name = "Prismatic Spray"
+description = """
+Prismatic Spray is a conical version of Prismatic Ray so area of effect and able to
+strike multiple targets. A shining blast of multicolored light blinds creatures
+with 8 Hit Die or less for 12 to 48 seconds, and does 1 of 7 harmful effects at
+random to one target, with a 12.5% of inflicting a second different effect from
+that 7."""
+icon = "PrismaticSpray"
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates Death"
+dc_versus = "Fortitude"
+schools = ["Evocation"]
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Negates Fear"
+dc_versus = "Will"
+schools = ["Evocation"]
+
+[[row]]
+name = "Scorch"
+description = """
+A jet of roaring flame bursts from your outstretched hand, dealing 1d6+2 Fire damage
+per 2 caster levels (max 5d6+10) to targets in its path. A successful Reflex
+save reduces the damage by half."""
+icon = "Scorch"
+max_caster_level = 5
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Fire"
+per_caster_levels = 2
+spell_power = "Fire"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Shocking Grasp"
+description = """
+Delivers a jolt of 1d12+2 Electricity damage per caster level (Maximum damage 20d12+40.)
+to any enemy you touch."""
+icon = "ShockingGrasp"
+max_caster_level = 5
+metamagics = [
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 12
+damage = "Electric"
+spell_power = "Electric"
+
+[[row]]
+name = "Snowball Swarm"
+description = """
+A flurry of magical snowballs erupt near your target, dealing 1d6+2 Cold damage per
+2 caster levels. (Maximum damage 5d6+10.) A successful Reflex save reduces
+the damage by half."""
+icon = "SnowballSwarm"
+max_caster_level = 5
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Heighten",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 2
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Cold"
+per_caster_levels = 2
+spell_power = "Cold"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]
+
+[[row]]
+name = "Solid Fog"
+description = """
+Obscures vision like Fog Cloud (20% concealment miss chance to all creatures within it.),
+but additionally slows movement, gives -2 penalty on melee Attack rolls and
+Damage rolls. Enemies in the cloud suffers a -5 penalty to their Reflex save."""
+icon = "SolidFog"
+metamagics = [
+    "Enlarge",
+    "Quicken",
+]
+schools = ["Conjuration"]
+
+[[row]]
+name = "Stone to Flesh"
+description = """
+Restores a Petrified creature, such as 1 affected by the Flesh to Stone spell to its
+normal state."""
+icon = "StoneToFlesh"
+metamagics = ["Quicken"]
+schools = ["Transmutation"]
+
+[[row]]
+name = "Thunderstroke"
+description = """
+Calls forth a tremendous bolt of lightning and thunder, which strikes your chosen target
+for 1d6+28 damage for every caster level (Max caster level 20). A successful
+Reflex save reduces the damage by half."""
+icon = "Thunderstroke"
+max_caster_level = 20
+metamagics = [
+    "Embolden",
+    "Empower",
+    "Enlarge",
+    "Intensify",
+    "Maximize",
+    "Quicken",
+]
+schools = ["Evocation"]
+
+[[row.damage]]
+bonus_dice_bonus = 28
+bonus_dice_number = 1
+bonus_dice_sides = 6
+damage = "Electric"
+spell_power = "Electric"
+
+[[row.dc]]
+casting_stat_mod = true
+dc_type = "Half Damage"
+dc_versus = "Reflex"
+schools = ["Evocation"]

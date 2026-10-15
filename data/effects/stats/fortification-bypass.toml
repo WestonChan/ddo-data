@@ -1,0 +1,5 @@
+name = "Fortification Bypass"
+category = "martial"
+home_bonus_type = "Enhancement"
+set_bonus_line_template = "+{1}% %b1 Bonus to Fortification Bypass"
+verbose_name_template = "%b1 Fortification Bypass +{1}"

@@ -2,21 +2,21 @@
   "classes": [
     {
       "class": "Sorcerer",
-      "class_id": 23,
+      "class_id": 6805469865182831,
       "cost": 15,
       "max_caster_level": 10,
       "spell_level": 3
     },
     {
       "class": "Wild Mage",
-      "class_id": 27,
+      "class_id": 7694755983250624,
       "cost": 15,
       "max_caster_level": 10,
       "spell_level": 3
     },
     {
       "class": "Wizard",
-      "class_id": 28,
+      "class_id": 6277508460285931,
       "cost": 15,
       "max_caster_level": 10,
       "spell_level": 3
@@ -50,7 +50,7 @@
   ],
   "description": "Creates a ball of Fire dealing 1d6+3 per caster level (Maximum damage 10d6+30) Fire\ndamage, to targets around it. A successful Reflex save reduces the damage by half.",
   "icon": "Fireball",
-  "id": 359,
+  "id": 6770340119025125,
   "max_caster_level": 10,
   "metamagics": [
     "Embolden",
@@ -62,5 +62,6 @@
   "schools": [
     "Evocation"
   ],
+  "slug": "fireball",
   "stances": []
 }

@@ -1,0 +1,21 @@
+name = "Stunning +6"
+description = "Enhancement bonus to Stunning Blow/Fist"
+family = "Slavelords_Heroic"
+icon = "SlavelordsExtra"
+min_level = 8
+
+[[effect]]
+name = "Stun DC"
+bonus_type = "Enhancement"
+value = 6
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [6]
+bonus_type = "Enhancement"
+effect = "Stun DC"
+effect_type = "TacticalDC"
+targets = ["Stun"]
+
+[[slot]]
+slot = "crafting: slavelords extra"

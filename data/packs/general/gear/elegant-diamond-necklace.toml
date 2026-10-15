@@ -1,0 +1,15 @@
+name = "Elegant Diamond Necklace"
+description = """
+This necklace is infused with a powerful, benevolent energy that is able to
+absorb and disperse energy drain and negative energy attacks such as those
+from the spells Enervation and Harm."""
+drop_location = "DDO Store, Healing &amp; Magic"
+icon = "Necklace_39"
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 1
+slot = "Neck"
+
+[[effect]]
+name = "Energy Absorption Negative"
+value = 3

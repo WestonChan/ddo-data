@@ -1,0 +1,30 @@
+name = "Beneath the City Streets"
+bestowed_by = "Erhard Gildemeister"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 5
+pack = "The Chill of Ravenloft"
+patron = "Keepers of Lamordia"
+zone = "Dead Man's Crossing"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Beneath_the_City_Streets"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 8
+
+[[run]]
+tier = "epic"
+level = 36
+
+[[run]]
+tier = "legendary"
+level = 36

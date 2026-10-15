@@ -1,0 +1,33 @@
+name = "Cormyrian Breeches"
+description = """
+This outfit, dyed in the purple of Cormyr's knights, is reinforced with metal
+plates."""
+drop_location = "Eveningstar Challenge Pack"
+icon = "Cloth_2"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 20
+slot = "Body"
+
+[[armor]]
+armor_type = "Cloth"
+
+[[effect]]
+name = "Armor Bonus"
+bonus_type = "Armor"
+value = 8
+
+[[effect]]
+name = "Greater False Life"
+bonus_type = "Enhancement"
+
+[[effect]]
+name = "Acid Resistance"
+bonus_type = "Enhancement"
+value = 30
+
+[[source]]
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Eveningstar Challenge Pack"

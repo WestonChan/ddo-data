@@ -1,0 +1,20 @@
+name = "Ruby of the Surging Tide"
+description = """
+Tidal Burst: This weapon is sheathed in water. The weapon deals an additional
+1 to 4 damage each hit. In addition, critical hits deal an additional 1 to 8
+damage for weapons with a x2 critical multiplier, 2 to 16 for a x3 critical
+multiplier and 3 to 24 for a x4 multiplier. Creatures with the Fire trait take
+double this damage instead.
+Drops in: Euphonia's Barter Box"""
+family = "Ruby"
+icon = "Ruby"
+min_level = 1
+
+[[slot]]
+slot = "red"
+
+[[slot]]
+slot = "purple"
+
+[[slot]]
+slot = "orange"

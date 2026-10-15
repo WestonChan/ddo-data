@@ -1,0 +1,3 @@
+name = "Greater Marksmanship"
+description_template = "This item is enchanted to enhance your skill with ranged weapons. You gain a +3 Competence Bonus to Ranged Attack and a +2 Competence Bonus to Ranged Damage."
+verbose_name_template = "Greater Marksmanship"

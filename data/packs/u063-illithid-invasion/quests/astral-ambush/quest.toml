@@ -1,0 +1,26 @@
+name = "Astral Ambush"
+bestowed_by = "Viryn Starglen"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 9
+is_free_to_play = true
+pack = "Illithid Invasion"
+patron = "The Twelve"
+zone = "Astral Plane Illithid Base"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Astral_Ambush"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 34
+
+[[run]]
+tier = "legendary"
+level = 34

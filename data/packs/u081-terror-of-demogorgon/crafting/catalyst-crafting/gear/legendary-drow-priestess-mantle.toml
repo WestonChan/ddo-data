@@ -1,0 +1,53 @@
+name = "Legendary Drow Priestess' Mantle"
+description = """
+This clothing is spun entirely from the silk of some arachnid. It is strong,
+flexible, and nearly weightless."""
+drop_location = "Catalyst Crafting, Turn in Spidersilk Robes, its Deep Catalyst and 5 Legendary Abyssal Gems at the Strange Catalyst Forge"
+enhancement_bonus = 16
+icon = "Cloth_1c"
+item_category = "Armor"
+item_type = "Cloth"
+material = "Cloth"
+minimum_level = 35
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 0
+armor_check_penalty = 0
+armor_type = "Cloth"
+max_dex_bonus = 0
+
+[[effect]]
+name = "Power of the Dark Restoration"
+value = 163
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 114
+
+[[effect]]
+name = "Undying"
+bonus_type = "Enhancement"
+value = 300
+
+[[effect]]
+name = "Void Lore"
+bonus_type = "Insight"
+value = 14
+
+[[socket]]
+slot = "crafting: nearly complete: ability score (legendary)"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+kind = "crafting_system"
+name = "Catalyst Crafting"

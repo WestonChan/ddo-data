@@ -1,0 +1,43 @@
+name = "Solar Gem of Spell Critical Damage (Legendary)"
+description = """
++15% Legendary Bonus to Spell Critical Damage.
+Drops in: The Zulkir's Plan, end chest
+Ruins of Myth Drannor, Romira and Juvian's right chest (requires completion of Sleeping with the Fishes)
+Special Delivery, end chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 30
+
+[[effect]]
+name = "Universal Spell Critical Damage"
+bonus_type = "Legendary"
+value = 15
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Legendary"
+effect = "Universal Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["All"]
+
+[[slot]]
+slot = "sun"
+
+[[source]]
+chest = "romira and juvian's right chest"
+kind = "quest"
+loot_type = "chest"
+name = "Ruins of Myth Drannor"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Special Delivery"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Zulkir's Plan"

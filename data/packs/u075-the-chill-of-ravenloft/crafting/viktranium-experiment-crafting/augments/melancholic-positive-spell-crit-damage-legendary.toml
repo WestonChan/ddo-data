@@ -1,0 +1,30 @@
+name = "Melancholic Positive Spell Crit Damage (Legendary)"
+description = "+23% Enhancement bonus to Positive Spell Critical Damage."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Positive Spell Critical Damage"
+bonus_type = "Enhancement"
+value = 23
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [23]
+bonus_type = "Enhancement"
+effect = "Positive Spell Critical Damage"
+effect_type = "SpellCriticalDamage"
+targets = ["Positive"]
+
+[[note]]
+kind = "augment"
+field = "name"
+upstream = "Melancholic Positive Spell Critical Damage (Legendary)"
+reason = "The wiki names it Melancholic Positive Spell Crit Damage (Legendary), where Maetrim names it Spell Critical Damage."
+url = "https://ddowiki.com/page/Viktranium_Experiment_crafting"
+read = "2026-10-02"
+qualifier = 'family "Lamordia_Legendary"'
+
+[[slot]]
+slot = "lamordia: melancholic (accessory)"

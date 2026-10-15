@@ -1,0 +1,54 @@
+name = "Legendary Demolition Maul"
+accepts_sentience = true
+description = "Can we break it? Yes we can!"
+drop_location = "This Old Haunt, end chest, Wraith chest"
+enhancement_bonus = 15
+icon = "Maul_1m"
+item_category = "Weapon"
+item_type = "Maul"
+material = "Steel"
+minimum_level = 32
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Bludgeon"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[effect]]
+name = "Force Blast 6"
+
+[[effect]]
+name = "Impact"
+
+[[effect]]
+name = "Blunt Trauma"
+bonus_type = "Destiny"
+
+[[effect]]
+name = "Construct Bane 6"
+
+[[socket]]
+slot = "orange"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "end chest, wraith chest"
+kind = "quest"
+loot_type = "chest"
+name = "This Old Haunt"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_bonus = 4
+base_dice_count = 1
+base_dice_sides = 10
+critical_multiplier = 3
+critical_threat_range = 2
+damage_modifier = "Strength"
+damage_multiplier = 5.4
+handedness = "Two-handed"
+weapon_type = "Maul"

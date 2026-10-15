@@ -1,0 +1,21 @@
+name = "Clear Lenses"
+description = "This item cannot be fed to sentient jewels ."
+drop_location = "Advance to level 15, End reward"
+icon = "Goggles_9a"
+item_category = "Jewelry"
+material = "Glass"
+minimum_level = 15
+race_required = "Sun Elf"
+slot = "Goggles"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Exceptional"
+value = 1
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[source]]
+kind = "starter"
+name = "Advance to level 15"

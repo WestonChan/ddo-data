@@ -1,0 +1,12 @@
+name = "Harbinger of Madness"
+pack = "Harbinger of Madness"
+quests = [
+    "Missing",
+    "Fear Factory",
+    "Sinister Storage",
+    "In The Flesh",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/Harbinger_of_Madness"
+read = "2026-10-02"

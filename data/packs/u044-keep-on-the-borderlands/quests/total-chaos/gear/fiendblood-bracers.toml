@@ -1,0 +1,30 @@
+name = "Fiendblood Bracers"
+description = """
+These look a little familiar, almost like you've seen them somewhere else before...
+But, well, with less blood."""
+drop_location = "Total Chaos, End chest"
+icon = "Bracers_11"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 21
+slot = "Wrists"
+
+[[effect]]
+name = "Improved Deception"
+bonus_type = "Enhancement"
+value = 5
+
+[[effect]]
+name = "Marksmanship"
+
+[[effect]]
+name = "Shrieking Bolt"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Total Chaos"

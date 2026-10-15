@@ -1,0 +1,37 @@
+name = "+22 Intelligence Skills, +151 Spell Points"
+description = """
+Ethereal/Escalation: +22 Competence bonus to Intelligence based skills.
++151 Profane spell points"""
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Ethereal
+Escalation"""
+
+[[effect]]
+name = "Intelligence Skills"
+bonus_type = "Competence"
+value = 22
+
+[[effect]]
+name = "Spell Points"
+bonus_type = "Profane"
+value = 151
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [22]
+bonus_type = "Competence"
+effect = "Intelligence Skills"
+effect_type = "SkillBonusAbility"
+targets = ["Intelligence"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [151]
+bonus_type = "Profane"
+effect = "Spell Points"
+effect_type = "SpellPoints"
+
+[[slot]]
+slot = "crafting: equipment tier 1"

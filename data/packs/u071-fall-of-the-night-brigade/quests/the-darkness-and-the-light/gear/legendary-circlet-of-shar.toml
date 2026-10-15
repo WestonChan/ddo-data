@@ -1,0 +1,41 @@
+name = "Legendary Circlet of Shar"
+description = "Shar's faithful have been known to wear this style of circlet."
+drop_location = "The Darkness and the Light, end chest"
+icon = "Helmet_2"
+item_category = "Clothing"
+material = "Gem"
+minimum_level = 33
+slot = "Head"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Enhancement"
+value = 15
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Intercession Ward"
+
+[[effect]]
+name = "Spell Focus"
+bonus_type = "Profane"
+value = 2
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"
+
+[[socket]]
+slot = "sun"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Darkness and the Light"

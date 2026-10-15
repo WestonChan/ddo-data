@@ -1,0 +1,48 @@
+name = "Legendary Screamshatter"
+accepts_sentience = true
+description = "Bolts fired from this weapon fire so fast it sounds like they're screaming."
+drop_location = "Safety in Numbers, End Chest"
+enhancement_bonus = 15
+icon = "LightCrossbow_1e"
+item_category = "Weapon"
+item_type = "Light Crossbow"
+material = "Steel"
+minimum_level = 29
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Pierce"
+
+[[effect]]
+name = "Reverberating 6"
+
+[[effect]]
+name = "Screeching 14"
+
+[[effect]]
+name = "Improved Destruction"
+
+[[effect]]
+name = "Lightning Strike"
+
+[[socket]]
+slot = "red"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Safety in Numbers"
+
+[[weapon]]
+base_dice_bonus = 2
+base_dice_count = 1
+base_dice_sides = 8
+critical_multiplier = 2
+critical_threat_range = 2
+damage_multiplier = 4.8
+handedness = "Two-handed"
+weapon_type = "Light Crossbow"

@@ -1,0 +1,20 @@
+name = "Curse of Major Imbuement"
+description = "+2 Fortune Bonus to Imbue Dice"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Imbue Dice"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Imbue Dice"
+effect_type = "ImbueDice"
+
+[[slot]]
+slot = "crafting: deck curse"

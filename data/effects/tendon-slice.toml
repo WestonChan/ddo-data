@@ -1,0 +1,3 @@
+name = "Tendon Slice"
+description_template = "On Hit: 6% chance to slow target's movement by 50% for {1} seconds."
+verbose_name_template = "Tendon Slice +{1}"

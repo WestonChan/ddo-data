@@ -1,0 +1,40 @@
+name = "Lunar Gem of Blast Dice (Heroic)"
+description = """
++1 Profane Bonus to Eldritch Blast Dice.
+Drops in: A Light in the Attic, secret area chest"""
+family = "SunAndMoon"
+icon = "HistoryBookWhite"
+min_level = 1
+
+[[effect]]
+name = "Eldritch Blast d8 Dice"
+bonus_type = "Profane"
+value = 1
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Profane"
+effect = "Eldritch Blast d8 Dice"
+effect_type = "EldritchBlastD8"
+
+[[slot]]
+slot = "moon"
+
+[[source]]
+chest = "secret area chest"
+kind = "quest"
+loot_type = "chest"
+name = "A Light in the Attic"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "Flocked Together"
+
+[[source]]
+is_rare = true
+kind = "quest"
+loot_type = "chest"
+name = "For Want of a Heart"

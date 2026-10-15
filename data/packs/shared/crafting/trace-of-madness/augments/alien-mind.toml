@@ -1,0 +1,21 @@
+name = "Alien Mind"
+description = "Will Save +10: This item gives a +10 Resistance bonus to your Will saves."
+family = "Other"
+icon = "AlienMind"
+min_level = 1
+
+[[effect]]
+name = "Will Save"
+bonus_type = "Resistance"
+value = 10
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Resistance"
+effect = "Will Save"
+effect_type = "SaveBonus"
+targets = ["Will"]
+
+[[slot]]
+slot = "crafting: trace of madness"

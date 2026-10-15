@@ -1,0 +1,42 @@
+name = "Legendary Lorik's Necklace"
+description = """
+This relic of the Silver Flame was supposedly once worn by the powerful cleric
+Lorrik. Lorrik and his brother Levik disappeared many years ago while investigating
+tales of an ancient creature residing beneath Stormreach."""
+drop_location = "Legendary Vision of Destruction, End chest"
+icon = "Necklace_3a"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 29
+slot = "Neck"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 283
+
+[[effect]]
+name = "Efficient Metamagic - Empower Healing II"
+bonus_type = "Equipment"
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Exceptional"
+value = 14
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "raid"
+name = "Legendary Vision of Destruction"

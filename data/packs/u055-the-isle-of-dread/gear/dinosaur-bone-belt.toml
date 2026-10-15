@@ -1,0 +1,41 @@
+name = "Dinosaur Bone Belt"
+description = "Fashioned of intricately carved bones of long-forgotten Dinosaurs."
+drop_location = "The Isle of Dread, any legendary chest; or Dread saga legendary end reward"
+icon = "Belt_4"
+is_minor_artifact = true
+item_category = "Clothing"
+material = "Bone"
+minimum_level = 31
+slot = "Waist"
+
+[[socket]]
+slot = "isle of dread: artifact scale (accessory)"
+
+[[socket]]
+slot = "isle of dread: artifact fang (accessory)"
+
+[[socket]]
+slot = "isle of dread: artifact claw (accessory)"
+
+[[socket]]
+slot = "isle of dread: artifact horn (accessory)"
+
+[[socket]]
+slot = "blue"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "any legendary chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "The Isle of Dread"
+
+[[source]]
+kind = "saga"
+name = "Dread"
+tier = "legendary"

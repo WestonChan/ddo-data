@@ -1,0 +1,3 @@
+name = "Shock III"
+description_template = "On Hit: 3 to 12 Electric Damage."
+verbose_name_template = "Shock III"

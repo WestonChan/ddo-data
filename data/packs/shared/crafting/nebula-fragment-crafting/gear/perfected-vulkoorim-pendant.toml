@@ -1,0 +1,47 @@
+name = "Perfected Vulkoorim Pendant"
+description = "A golden chain holds a carved jade scorpion."
+drop_location = "Lahar, Turn in Nebula Fragment"
+icon = "Necklace_4d"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Gold"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Vulkoor's Bite"
+
+[[effect]]
+name = "Dark Restoration Lore"
+bonus_type = "Equipment"
+value = 23
+
+[[effect]]
+name = "Power of the Dark Restoration"
+value = 157
+
+[[effect]]
+name = "Healing Amplification"
+bonus_type = "Competence"
+value = 59
+
+[[effect]]
+name = "Negative Amplification"
+bonus_type = "Profane"
+value = 59
+
+[[effect]]
+name = "Taint of Evil"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+kind = "crafting_system"
+name = "Nebula Fragment Crafting"

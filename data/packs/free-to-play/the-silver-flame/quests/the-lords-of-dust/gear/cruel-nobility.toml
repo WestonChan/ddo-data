@@ -1,0 +1,54 @@
+name = "Cruel Nobility"
+description = """
+A finely wrought scimitar that once belonged to a Rakshasa noble, glowing darkly
+with an unholy aura. It tears into enemies viciously and is especially debilitating
+against those whose hearts are not evil"""
+drop_location = "The Lords of Dust, Tahmael 's chest"
+enhancement_bonus = 5
+icon = "Scimitar_6d"
+item_category = "Weapon"
+item_type = "Scimitar"
+material = "Steel"
+minimum_level = 16
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Evil"
+
+[[dr_bypass]]
+bypass = "Lawful"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Axiomatic Burst 4"
+
+[[effect]]
+name = "Evil Blast 4"
+
+[[effect]]
+name = "Bleeding 4"
+
+[[effect]]
+name = "Disintegration"
+
+[[source]]
+chest = "tahmael 's chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Lords of Dust"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 2.2
+handedness = "One-handed"
+weapon_type = "Scimitar"

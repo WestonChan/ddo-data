@@ -1,0 +1,4 @@
+name = "Melee Threat Generation"
+category = "martial"
+home_bonus_type = "Insight"
+verbose_name_template = "%b1 Melee Threat Generation +{1}"

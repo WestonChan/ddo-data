@@ -1,0 +1,28 @@
+name = "Curse of the Visionary"
+description = "+2 Fortune Bonus to Spot, True Seeing"
+family = "DeckOfManyCurses"
+icon = "DeckOfCurses"
+min_level = 1
+
+[[effect]]
+name = "Spot"
+bonus_type = "Fortune"
+value = 2
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Fortune"
+effect = "Spot"
+effect_type = "SkillBonus"
+targets = ["Spot"]
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Fortune"
+effect_type = "TrueSeeing"
+targets = ["All"]
+
+[[slot]]
+slot = "crafting: deck curse"

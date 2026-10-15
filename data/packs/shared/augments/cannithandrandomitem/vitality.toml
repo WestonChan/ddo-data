@@ -1,0 +1,65 @@
+name = "Vitality"
+choose_level = true
+description = "A Vitality bonus to hitpoints"
+family = "CannithAndRandomItem"
+icon = "Cannith"
+level_values = [
+    4,
+    6,
+    7,
+    10,
+    12,
+    13,
+    15,
+    16,
+    17,
+    19,
+    20,
+    21,
+    23,
+    24,
+    25,
+    27,
+    28,
+    29,
+    31,
+    32,
+    33,
+    35,
+    36,
+    37,
+    39,
+    40,
+    41,
+    43,
+    44,
+    45,
+    47,
+    48,
+    49,
+    51,
+    52,
+    53,
+    53,
+    53,
+    53,
+    53,
+]
+
+[[effect]]
+name = "Hit Points"
+bonus_type = "Vitality"
+value = 20
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Vitality"
+effect = "Hit Points"
+effect_type = "Hitpoints"
+
+[[slot]]
+slot = "crafting: random armor suffix"
+
+[[slot]]
+slot = "crafting: cannith armor prefix"

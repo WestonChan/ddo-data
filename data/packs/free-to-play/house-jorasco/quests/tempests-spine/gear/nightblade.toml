@@ -1,0 +1,50 @@
+name = "Nightblade"
+description = """
+This large, curved sword is essentially a scimitar designed to be used with
+two hands."""
+drop_location = "Tempest's Spine, Zerisenz Chest"
+enhancement_bonus = 4
+icon = "Falchion_4"
+item_category = "Weapon"
+item_type = "Falchion"
+material = "Byeshk"
+minimum_level = 8
+slot = "Main Hand"
+
+[[dr_bypass]]
+bypass = "Byeshk"
+
+[[dr_bypass]]
+bypass = "Magic"
+
+[[dr_bypass]]
+bypass = "Slash"
+
+[[effect]]
+name = "Keen"
+
+[[effect]]
+name = "Byeshk"
+
+[[socket]]
+slot = "red"
+
+[[socket]]
+slot = "purple"
+
+[[source]]
+chest = "zerisenz chest"
+kind = "quest"
+loot_type = "raid"
+name = "Tempest's Spine"
+
+[[weapon]]
+attack_modifier = "Strength"
+base_dice_count = 2
+base_dice_sides = 4
+critical_multiplier = 2
+critical_threat_range = 3
+damage_modifier = "Strength"
+damage_multiplier = 1.5
+handedness = "Two-handed"
+weapon_type = "Falchion"

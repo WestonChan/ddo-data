@@ -1,0 +1,15 @@
+name = "Project Nemesis"
+difficulties = [
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 10
+is_raid = true
+pack = "Masterminds of Sharn"
+patron = "Sharn City Council"
+
+[[run]]
+tier = "heroic"
+level = 32

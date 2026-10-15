@@ -1,0 +1,3 @@
+name = "Superior Reinforced Fists"
+description_template = "This item surrounds your fists with kinetic energy. Your unarmed damage is boosted by one and one half die."
+verbose_name_template = "Superior Reinforced Fists"

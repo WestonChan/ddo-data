@@ -1,0 +1,34 @@
+name = "Setting the Wards: The Patriarchs' Crypt"
+bestowed_by = "None"
+difficulties = [
+    "casual",
+    "normal",
+    "hard",
+    "elite",
+    "reaper",
+]
+favor = 3
+pack = "The Catacombs"
+patron = "The Silver Flame"
+zone = "The Patriarch's Crypt"
+
+[[citation]]
+field = "quest facts"
+url = "https://ddowiki.com/page/Setting_the_Wards:_The_Patriarchs%27_Crypt"
+read = "2026-10-01"
+
+[[note]]
+kind = "quest"
+field = "name"
+upstream = "Setting the Wards: The Patriarch's Crypt"
+reason = "The wiki titles the quest Setting the Wards: The Patriarchs' Crypt, the spelling his own items' drop text uses."
+url = "https://ddowiki.com/page/Setting_the_Wards:_The_Patriarchs%27_Crypt"
+read = "2026-10-01"
+
+[[run]]
+tier = "heroic"
+level = 3
+
+[[run]]
+tier = "epic"
+level = 23

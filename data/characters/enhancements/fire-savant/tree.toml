@@ -1,0 +1,1794 @@
+name = "Fire Savant"
+background = "SorcererBackground"
+icon = "Sorcerer"
+kind = "class"
+version = 1
+
+[[enhancement]]
+name = "Fire Savant"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Every point you spend in the Fire Savant enhancement tree provides +0.75 Universal Spell Power.\nPassive: +10 Fire Spell Power \n+1 Caster Level when casting Fire spells\nSelecting this enhancement will prevent you from spending points in the Water\nSavant enhancement tree."
+icon = "FSFireSavant"
+internal_name = "FSCore1"
+min_spent = 0
+ranks = 1
+x = 0
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "APCount"
+amounts = [0.75]
+bonus_type = "Enhancement"
+display_name = "Fire Savant: Spell power per action point"
+effect_type = "UniversalSpellPower"
+stack_source = "Fire Savant"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+targets = [
+    "Fire Trap",
+    "Flame Arrow",
+    "Tactical Detonation",
+    "Symbol of Flame",
+    "Flame Strike",
+    "Fire Storm",
+    "Produce Flame",
+    "Flaming Sphere",
+    "Wall of Fire",
+    "Fire Seeds",
+    "Fire Shield",
+    "Body of the Sun",
+    "Burning Hands",
+    "Flaming Bolt",
+    "Scorch",
+    "Scorching Ray",
+    "Fireball",
+    "Burning Blood",
+    "Delayed Blast Fireball",
+    "Incendiary Cloud",
+    "Meteor Swarm",
+    "Illusory Mark of Flame",
+    "Hellball",
+    "Fire Shield (Fire)",
+    "Celestial Bombardment",
+    "Fire Storm: Red Dragon Breath",
+    "Fiendish Arpeggio",
+    "Vial of Flame",
+    "Vial Smash: Fire",
+    "Melt Armor",
+    "Flame Concentration",
+    "Molotov Cocktail",
+    "Cindersmoke",
+    "Multivial of Flame",
+    "Fiery Obliteration",
+    "Flame Pillar",
+    "Holy Fireball",
+    "Incinerating Wave",
+    "Ki Explosion",
+    "Scorching Summer",
+]
+
+[[enhancement.requirement_group]]
+kind = "all"
+
+[[enhancement.requirement_group.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement.requirement_group]]
+kind = "none_of"
+
+[[enhancement.requirement_group.requirement]]
+items = ["WSCore1"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fire Savant: Fire Affinity"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Passive: +10 Fire Spell Power \n+1 Caster Level when casting Fire spells."
+icon = "FSFireAffinity"
+internal_name = "FSCore2"
+min_spent = 5
+ranks = 1
+x = 1
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+targets = [
+    "Fire Trap",
+    "Flame Arrow",
+    "Tactical Detonation",
+    "Symbol of Flame",
+    "Flame Strike",
+    "Fire Storm",
+    "Produce Flame",
+    "Flaming Sphere",
+    "Wall of Fire",
+    "Fire Seeds",
+    "Fire Shield",
+    "Body of the Sun",
+    "Burning Hands",
+    "Flaming Bolt",
+    "Scorch",
+    "Scorching Ray",
+    "Fireball",
+    "Burning Blood",
+    "Delayed Blast Fireball",
+    "Incendiary Cloud",
+    "Meteor Swarm",
+    "Illusory Mark of Flame",
+    "Hellball",
+    "Fire Shield (Fire)",
+    "Celestial Bombardment",
+    "Fire Storm: Red Dragon Breath",
+    "Fiendish Arpeggio",
+    "Vial of Flame",
+    "Vial Smash: Fire",
+    "Melt Armor",
+    "Flame Concentration",
+    "Molotov Cocktail",
+    "Cindersmoke",
+    "Multivial of Flame",
+    "Fiery Obliteration",
+    "Flame Pillar",
+    "Holy Fireball",
+    "Incinerating Wave",
+    "Ki Explosion",
+    "Scorching Summer",
+]
+
+[[enhancement.requirement]]
+items = ["FSCore1"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Fire Savant: Greater Fire Affinity"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Passive: +10 Fire Spell Power \n+1 Caster Level when casting Fire spells \n+1 Maximum Caster Level when casting Fire spells."
+icon = "FSGreaterFireAffinity"
+internal_name = "FSCore3"
+min_spent = 10
+ranks = 1
+x = 2
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Fire Trap",
+    "Flame Arrow",
+    "Tactical Detonation",
+    "Symbol of Flame",
+    "Flame Strike",
+    "Fire Storm",
+    "Produce Flame",
+    "Flaming Sphere",
+    "Wall of Fire",
+    "Fire Seeds",
+    "Fire Shield",
+    "Body of the Sun",
+    "Burning Hands",
+    "Flaming Bolt",
+    "Scorch",
+    "Scorching Ray",
+    "Fireball",
+    "Burning Blood",
+    "Delayed Blast Fireball",
+    "Incendiary Cloud",
+    "Meteor Swarm",
+    "Illusory Mark of Flame",
+    "Hellball",
+    "Fire Shield (Fire)",
+    "Celestial Bombardment",
+    "Fire Storm: Red Dragon Breath",
+    "Fiendish Arpeggio",
+    "Vial of Flame",
+    "Vial Smash: Fire",
+    "Melt Armor",
+    "Flame Concentration",
+    "Molotov Cocktail",
+    "Cindersmoke",
+    "Multivial of Flame",
+    "Fiery Obliteration",
+    "Flame Pillar",
+    "Holy Fireball",
+    "Incinerating Wave",
+    "Ki Explosion",
+    "Scorching Summer",
+]
+
+[[enhancement.requirement]]
+items = ["FSCore2"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 6
+
+[[enhancement]]
+name = "Fire Savant: Immolation"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Passive: On Fire Spell Cast: Your target gains one stack of Burning\n(Target takes 1d6 fire damage every 2 seconds for 6 seconds. This effect can stack 20 times,\nand loses one stack on expiration.) \n+10 Fire Spell Power \n+1 Caster Level when casting Fire spells \n+1 Maximum Caster Level when casting Fire spells."
+icon = "FSImmolation"
+internal_name = "FSCore4"
+min_spent = 20
+ranks = 1
+x = 3
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Fire Trap",
+    "Flame Arrow",
+    "Tactical Detonation",
+    "Symbol of Flame",
+    "Flame Strike",
+    "Fire Storm",
+    "Produce Flame",
+    "Flaming Sphere",
+    "Wall of Fire",
+    "Fire Seeds",
+    "Fire Shield",
+    "Body of the Sun",
+    "Burning Hands",
+    "Flaming Bolt",
+    "Scorch",
+    "Scorching Ray",
+    "Fireball",
+    "Burning Blood",
+    "Delayed Blast Fireball",
+    "Incendiary Cloud",
+    "Meteor Swarm",
+    "Illusory Mark of Flame",
+    "Hellball",
+    "Fire Shield (Fire)",
+    "Celestial Bombardment",
+    "Fire Storm: Red Dragon Breath",
+    "Fiendish Arpeggio",
+    "Vial of Flame",
+    "Vial Smash: Fire",
+    "Melt Armor",
+    "Flame Concentration",
+    "Molotov Cocktail",
+    "Cindersmoke",
+    "Multivial of Flame",
+    "Fiery Obliteration",
+    "Flame Pillar",
+    "Holy Fireball",
+    "Incinerating Wave",
+    "Ki Explosion",
+    "Scorching Summer",
+]
+
+[[enhancement.requirement]]
+items = ["FSCore3"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 12
+
+[[enhancement]]
+name = "Fire Savant: Elemental Persistence"
+arrows = ["ArrowRight"]
+cost_per_rank = [1]
+description = "Passive: Immunity to Paralysis \n +10 Fire Spell Power \n +1 Caster Level when casting Fire spells \n +1 Maximum Caster Level when casting Fire spells."
+icon = "FSElementalPersistence"
+internal_name = "FSCore5"
+min_spent = 30
+ranks = 1
+x = 4
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Stacking"
+effect_type = "Immunity"
+targets = ["Paralysis"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Fire Trap",
+    "Flame Arrow",
+    "Tactical Detonation",
+    "Symbol of Flame",
+    "Flame Strike",
+    "Fire Storm",
+    "Produce Flame",
+    "Flaming Sphere",
+    "Wall of Fire",
+    "Fire Seeds",
+    "Fire Shield",
+    "Body of the Sun",
+    "Burning Hands",
+    "Flaming Bolt",
+    "Scorch",
+    "Scorching Ray",
+    "Fireball",
+    "Burning Blood",
+    "Delayed Blast Fireball",
+    "Incendiary Cloud",
+    "Meteor Swarm",
+    "Illusory Mark of Flame",
+    "Hellball",
+    "Fire Shield (Fire)",
+    "Celestial Bombardment",
+    "Fire Storm: Red Dragon Breath",
+    "Fiendish Arpeggio",
+    "Vial of Flame",
+    "Vial Smash: Fire",
+    "Melt Armor",
+    "Flame Concentration",
+    "Molotov Cocktail",
+    "Cindersmoke",
+    "Multivial of Flame",
+    "Fiery Obliteration",
+    "Flame Pillar",
+    "Holy Fireball",
+    "Incinerating Wave",
+    "Ki Explosion",
+    "Scorching Summer",
+]
+
+[[enhancement.requirement]]
+items = ["FSCore4"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 18
+
+[[enhancement]]
+name = "Fire Savant: Elemental Apotheosis: Fire"
+cost_per_rank = [1]
+description = "Activate this ability to transform into a Fire Elemental.\nWhile in elemental form, you gain +100% fortification. If you are a Warforged,\nyou are no longer considered a Living Construct, and so are immune to Repair spells,\nbut can be healed normally by Positive Energy spells. \n\nWhile in Fire Elemental form, you also gain an additional +20 Fire Spell Power,\n+2% Fire Spell Critical Chance, and a +1 bonus to caster level and max caster level\nfor Fire spells, but your air, earth, and water spells have a -3 penalty to caster\nlevel and max caster level. You also gain a +10 racial bonus to Fire resistance,\n+20 Physical Resistance Rating, and a -10 penalty to cold resistance.\nWhile in Elemental Form, your spells also cost an additional 10% Spell Points to cast.\n\nYou also gain the following passive benefits, even while not in elemental form:\n+2 Charisma \n+10 Fire Spell Power \n+1 Caster Level when casting Fire spells \n+1 Maximum Caster Level when casting Fire spells."
+icon = "FSElementalApotheosisFire"
+internal_name = "FSCore6"
+is_clickie = true
+min_spent = 40
+ranks = 1
+x = 5
+y = 0
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSCore6",
+    "Capstone Enhancement",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+display_name = "Fire Elemental Form"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Fire Trap",
+    "Flame Arrow",
+    "Tactical Detonation",
+    "Symbol of Flame",
+    "Flame Strike",
+    "Fire Storm",
+    "Produce Flame",
+    "Flaming Sphere",
+    "Wall of Fire",
+    "Fire Seeds",
+    "Fire Shield",
+    "Body of the Sun",
+    "Burning Hands",
+    "Flaming Bolt",
+    "Scorch",
+    "Scorching Ray",
+    "Fireball",
+    "Burning Blood",
+    "Delayed Blast Fireball",
+    "Incendiary Cloud",
+    "Meteor Swarm",
+    "Illusory Mark of Flame",
+    "Hellball",
+    "Fire Shield (Fire)",
+    "Celestial Bombardment",
+    "Fire Storm: Red Dragon Breath",
+    "Fiendish Arpeggio",
+    "Vial of Flame",
+    "Vial Smash: Fire",
+    "Melt Armor",
+    "Flame Concentration",
+    "Molotov Cocktail",
+    "Cindersmoke",
+    "Multivial of Flame",
+    "Fiery Obliteration",
+    "Flame Pillar",
+    "Holy Fireball",
+    "Incinerating Wave",
+    "Ki Explosion",
+    "Scorching Summer",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-3]
+bonus_type = "Enhancement"
+display_name = "Fire Elemental Form"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Enveloping Swarm",
+    "Creeping Doom",
+    "Storm of Vengeance",
+    "Acid Spray",
+    "Caustic Bolt",
+    "Melf's Acid Arrow",
+    "Acid Blast",
+    "Acid Rain",
+    "Burning Blood",
+    "Cloudkill",
+    "Acid Fog",
+    "Black Dragon Bolt",
+    "Acid Well",
+    "Hellball",
+    "Acid Storm: Black Dragon Breath",
+    "Vial of Acid",
+    "Vial Smash: Acid",
+    "Corrode Weapons",
+    "Acid Concentration",
+    "Caustic Solvent",
+    "Caustic Overload",
+    "Multivial of Acid",
+    "Caustic Obliteration",
+    "Blighted Breath",
+    "Autumn Decay",
+    "Creeping Cold",
+    "Ice Storm",
+    "Cold Breath",
+    "Fire Shield (Cold)",
+    "Greater Creeping Cold",
+    "Ice Flowers",
+    "Niac's Cold Ray",
+    "Freezing Bolt",
+    "Snowball Swarm",
+    "Frost Lance",
+    "Cone of Cold",
+    "Niac's Biting Cold",
+    "Niac's Cold Ray",
+    "Otiluke's Freezing Sphere",
+    "Polar Ray",
+    "Iceberg",
+    "Tsunami",
+    "Ice Storm: White Dragon Breath",
+    "Vial of Frost",
+    "Vial Smash: Cold",
+    "Cold Spike",
+    "Bitter Frost Burst",
+    "Frost Concentration",
+    "Vein Freeze",
+    "Multivial of Frost",
+    "Frost Obliteration",
+    "Static Shock",
+    "Lightning Sphere",
+    "Blast Rod",
+    "Lightning Bolt",
+    "Lightning Motes",
+    "Glyph of Warding",
+    "Call Lightning",
+    "Call Lightning Storm",
+    "Storm of Vengeance",
+    "Shocking Bolt",
+    "Shocking Grasp",
+    "Electric Loop",
+    "Ball Lightning",
+    "Eladar's Electric Surge",
+    "Chain Lightning",
+    "Thunderstroke",
+    "Hellball",
+    "Horn of Thunder",
+    "Lightning Storm: Blue Dragon Breath",
+    "Vial of Sparks",
+    "Vial Smash: Electric",
+    "Voltaic Backlash",
+    "Sparks Concentration",
+    "Voltaic Induction",
+    "Voltaic Burst",
+    "Multivial of Sparks",
+    "Voltaic Obliteration",
+]
+
+[[enhancement.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [100]
+bonus_type = "Enhancement"
+effect_type = "Fortification"
+
+[[enhancement.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [20]
+bonus_type = "Enhancement"
+effect_type = "PRR"
+
+[[enhancement.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [-10]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Cold"]
+
+[[enhancement.modifier.requirement]]
+items = ["Fire Elemental"]
+req_type = "Stance"
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Fire"]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "CasterLevelSpell"
+extra_types = ["MaxCasterLevelSpell"]
+targets = [
+    "Fire Trap",
+    "Flame Arrow",
+    "Tactical Detonation",
+    "Symbol of Flame",
+    "Flame Strike",
+    "Fire Storm",
+    "Produce Flame",
+    "Flaming Sphere",
+    "Wall of Fire",
+    "Fire Seeds",
+    "Fire Shield",
+    "Body of the Sun",
+    "Burning Hands",
+    "Flaming Bolt",
+    "Scorch",
+    "Scorching Ray",
+    "Fireball",
+    "Burning Blood",
+    "Delayed Blast Fireball",
+    "Incendiary Cloud",
+    "Meteor Swarm",
+    "Illusory Mark of Flame",
+    "Hellball",
+    "Fire Shield (Fire)",
+    "Celestial Bombardment",
+    "Fire Storm: Red Dragon Breath",
+    "Fiendish Arpeggio",
+    "Vial of Flame",
+    "Vial Smash: Fire",
+    "Melt Armor",
+    "Flame Concentration",
+    "Molotov Cocktail",
+    "Cindersmoke",
+    "Multivial of Flame",
+    "Fiery Obliteration",
+    "Flame Pillar",
+    "Holy Fireball",
+    "Incinerating Wave",
+    "Ki Explosion",
+    "Scorching Summer",
+]
+
+[[enhancement.requirement]]
+items = ["FSCore5"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 20
+
+[[enhancement.requirement]]
+items = [
+    "FSCore6",
+    "Capstone Enhancement",
+]
+req_type = "Exclusive"
+
+[[enhancement.stance]]
+name = "Fire Elemental"
+description = "While in elemental form, you gain +100% fortification. If you are a Warforged,\nyou are no longer considered a Living Construct, and so are immune to Repair spells,\nbut can be healed normally by Positive Energy spells. \nWhile in Fire Elemental form, you also gain an additional +20 Fire Spell Power,\n+2% Fire Spell Critical Chance, and a +1 bonus to caster level and max caster level\nfor Fire spells, but your air, earth, and water spells have a -3 penalty to caster\nlevel and max caster level. You also gain a +10 racial bonus to Fire resistance,\n+20 Physical Resistance Rating, and a -10 penalty to cold resistance."
+group_name = "Major Form"
+icon = "FSElementalApotheosisFire"
+
+[[enhancement]]
+name = "Fire Savant: Burning Hands"
+cost_per_rank = [1]
+description = """
+Spell Like Ability: Burning Hands
+Activation Cost: 2 Spell Points.
+Cooldown: 4 seconds.
+You may cast the spell Burning Hands at will as a Spell-Like Ability. You may use
+Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
+spent in this enhancement will reduce the cooldown and Spell Point Cost of this
+Spell-Like Ability."""
+icon = "FSBurningHands"
+internal_name = "FSBurningHands"
+is_clickie = true
+min_spent = 1
+ranks = 1
+x = 0
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    2,
+    0,
+    4,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Burning Hands",
+    "Sorcerer",
+]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Fire Savant: Intensity"
+cost_per_rank = [1]
+description = """
+You gain +[2/4/6] to your Haggle and Intimidation skills.
+Rank 3: as well as +1 to your Will Saving Throw."""
+icon = "FSIntensity"
+internal_name = "FSIntensity"
+min_spent = 1
+ranks = 3
+x = 1
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    2,
+    4,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SkillBonus"
+targets = [
+    "Haggle",
+    "Intimidate",
+]
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SaveBonus"
+rank = 3
+targets = ["Will"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Fire Savant: One with the Inferno"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = "You gain a +[3/6/10] bonus to your Fire Resistance."
+icon = "FSOneWithTheInferno"
+internal_name = "FSOneWithTheInferno"
+min_spent = 1
+ranks = 3
+x = 2
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    3,
+    6,
+    10,
+]
+bonus_type = "Enhancement"
+effect_type = "EnergyResistance"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Fire Savant: Spell Critical: Fire I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Fire damage spells have an additional 2% chance to critically hit."
+icon = "SpellCriticalFire"
+internal_name = "FSSpellCriticalFireI"
+min_spent = 1
+ranks = 1
+x = 3
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Fire Savant: Conflagration"
+arrows = ["ArrowUp"]
+cost_per_rank = [1]
+description = """
+Whenever you cast a Fire damage spell, you gain +5 to your Fire Spell Power
+for 6 seconds. This stacks up to [1/3/5] times."""
+icon = "FSConflagration"
+internal_name = "FSConflagration"
+min_spent = 1
+ranks = 3
+x = 4
+y = 1
+
+[[enhancement.modifier]]
+amount_type = "Slider"
+amounts = [
+    0,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "CreateSlider"
+targets = ["Conflagration"]
+
+[[enhancement.modifier]]
+amount_type = "SliderValue"
+amounts = [5]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+stack_source = "Conflagration"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 1
+
+[[enhancement]]
+name = "Fire Savant: Efficient Metamagic I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = """
+Choose one of the following Metamagic feats. Reduce the spell point cost of
+using that Metamagic."""
+icon = "EfficientMetamagic"
+internal_name = "FSEfficientMetamagicI"
+min_spent = 5
+ranks = 3
+x = 1
+y = 2
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "FSEfficientMetamagicI",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [2]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSEfficientMetamagicI",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "FSEfficientMetamagicI",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "FSEfficientMetamagicI",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "FSEfficientMetamagicI",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Fire Savant: Pierce Fire Resistance"
+cost_per_rank = [2]
+description = "Your Fire damage spells now bypass [5/10/15] points of your target's resistance to those damage types, if any."
+icon = "FSPierceFireResistance"
+internal_name = "FSPierceFireResistance"
+min_spent = 5
+ranks = 3
+x = 2
+y = 2
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["FSOneWithTheInferno"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fire Savant: Spell Critical: Fire II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Fire damage spells have an additional 2% chance to critically hit."
+icon = "SpellCriticalFire"
+internal_name = "FSSpellCriticalFireII"
+min_spent = 5
+ranks = 1
+x = 3
+y = 2
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["FSSpellCriticalFireI"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fire Savant: Fanning the Flames"
+cost_per_rank = [1]
+description = """
+Whenever you cast a Fire damage spell, you have a [10/20/30]% chance to gain 3
+Temporary Spell Points."""
+icon = "FSFanningTheFlames"
+internal_name = "FSFanningTheFlames"
+min_spent = 5
+ranks = 3
+x = 4
+y = 2
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 2
+
+[[enhancement.requirement]]
+items = ["FSConflagration"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fire Savant: Efficient Metamagic II"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose another Metamagic feat. Reduce the spell point cost of using that Metamagic."
+icon = "EfficientMetamagic"
+internal_name = "FSEfficientMetamagicII"
+min_spent = 10
+ranks = 3
+x = 1
+y = 3
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["FSEfficientMetamagicI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "Efficient Empower"
+cost_per_rank = [2]
+description = "Using the Empower Spell Metamagic costs you [2/4/6] fewer Spell Points."
+icon = "EfficientEmpower"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -2,
+    -4,
+    -6,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEmpower"
+
+[[enhancement.selection.requirement]]
+items = [
+    "FSEfficientMetamagicII",
+    "Efficient Empower Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Empower Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Enlarge"
+cost_per_rank = [2]
+description = "Using the Enlarge Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientEnlarge"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSEfficientMetamagicII",
+    "Efficient Enlarge Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostEnlarge"
+
+[[enhancement.selection.requirement]]
+items = [
+    "FSEfficientMetamagicII",
+    "Efficient Enlarge Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Enlarge Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Maximize"
+cost_per_rank = [2]
+description = "Using the Maximize Spell Metamagic costs you [3/6/9] fewer Spell Points."
+icon = "EfficientMaximize"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -3,
+    -6,
+    -9,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostMaximize"
+
+[[enhancement.selection.requirement]]
+items = [
+    "FSEfficientMetamagicII",
+    "Efficient Maximize Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Maximize Spell"]
+req_type = "Feat"
+
+[[enhancement.selection]]
+name = "Efficient Quicken"
+cost_per_rank = [2]
+description = "Using the Quicken Spell Metamagic costs you [1/2/4] fewer Spell Points."
+icon = "EfficientQuicken"
+
+[[enhancement.selection.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+
+[[enhancement.selection.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+    -4,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostQuicken"
+
+[[enhancement.selection.requirement]]
+items = [
+    "FSEfficientMetamagicII",
+    "Efficient Quicken Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.selection.requirement]]
+items = ["Quicken Spell"]
+req_type = "Feat"
+
+[[enhancement]]
+name = "Fire Savant: Spell Penetration"
+cost_per_rank = [2]
+description = "You add +1 to your Caster Level check to overcome an enemy's Spell Resistance."
+icon = "SpellPenetration"
+internal_name = "FSSpellPenetration"
+min_spent = 10
+ranks = 1
+x = 2
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellPenetrationBonus"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement]]
+name = "Fire Savant: Spell Critical: Fire III"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Your Fire damage spells have an additional 2% chance to critically hit."
+icon = "SpellCriticalFire"
+internal_name = "FSSpellCriticalFireIII"
+min_spent = 10
+ranks = 1
+x = 3
+y = 3
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.requirement]]
+items = ["FSSpellCriticalFireII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fire Savant: Ability I"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Choose either Strength or Charisma"
+icon = "StrCha"
+internal_name = "FSAbilityScoreI"
+min_spent = 10
+ranks = 1
+x = 4
+y = 3
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 3
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Fire Savant: Scorch"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Scorch.
+Activation Cost: 4 Spell Points.
+Cooldown: 5 seconds.
+You may cast the spell Scorch at will as a Spell-Like Ability. You may use
+Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
+spent in this enhancement will reduce the cooldown and Spell Point Cost of this
+Spell-Like Ability."""
+icon = "FSScortch"
+internal_name = "FSScortch"
+is_clickie = true
+min_spent = 20
+ranks = 1
+x = 0
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    4,
+    0,
+    5,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Scorch",
+    "Sorcerer",
+]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Fire Savant: Efficient Heighten"
+cost_per_rank = [2]
+description = "Using the Heighten Spell Metamagic costs you [1/2] fewer Spell Points per heightened level."
+icon = "EfficientHeighten"
+internal_name = "FSEfficientHeighten"
+min_spent = 20
+ranks = 2
+x = 1
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "NotNeeded"
+bonus_type = "Enhancement"
+effect_type = "ExclusionGroup"
+targets = [
+    "FSEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+
+[[enhancement.modifier]]
+amount_type = "Stacks"
+amounts = [
+    -1,
+    -2,
+]
+bonus_type = "Enhancement"
+effect_type = "MetamagicCostHeighten"
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = [
+    "FSEfficientHeighten",
+    "Efficient Heighten Spell",
+]
+req_type = "Exclusive"
+
+[[enhancement.requirement]]
+items = ["FSEfficientMetamagicII"]
+req_type = "Enhancement"
+
+[[enhancement.requirement]]
+items = ["Heighten Spell"]
+req_type = "FeatAnySource"
+
+[[enhancement]]
+name = "Fire Savant: Fire Guard"
+arrows = ["ArrowUp"]
+cost_per_rank = [2]
+description = "Enemies that attack you in melee take 3d6 Fire damage."
+icon = "FSFireGuard"
+internal_name = "FSFireGuard"
+min_spent = 20
+ranks = 1
+x = 2
+y = 4
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement]]
+name = "Fire Savant: Spell Critical: Fire IV"
+cost_per_rank = [2]
+description = "Your Fire damage spells have an additional 2% chance to critically hit."
+icon = "SpellCriticalFire"
+internal_name = "FSSpellCriticalFireIV"
+min_spent = 20
+ranks = 1
+x = 3
+y = 4
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [2]
+bonus_type = "Enhancement"
+effect_type = "SpellLore"
+targets = ["Fire"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["FSSpellCriticalFireIII"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fire Savant: Ability II"
+cost_per_rank = [2]
+description = "Choose either Strength or Charisma"
+icon = "StrCha"
+internal_name = "FSAbilityScoreII"
+min_spent = 20
+ranks = 1
+x = 4
+y = 4
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 4
+
+[[enhancement.requirement]]
+items = ["FSAbilityScoreI"]
+req_type = "Enhancement"
+
+[[enhancement.selection]]
+name = "+1 Strength"
+cost_per_rank = [2]
+description = "+1 Strength"
+icon = "Strength"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Strength"]
+
+[[enhancement.selection]]
+name = "+1 Charisma"
+cost_per_rank = [2]
+description = "+1 Charisma"
+icon = "Charisma"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "AbilityBonus"
+targets = ["Charisma"]
+
+[[enhancement]]
+name = "Fire Savant: Fireball"
+cost_per_rank = [2]
+description = """
+Spell Like Ability: Fireball.
+Activation Cost: 6 Spell Points.
+Cooldown: 6 seconds.
+You may cast the spell Fireball at will as a Spell-Like Ability. You may use
+Metamagic Feats with Spell-Like Abilities at no additional cost. Further points
+spent in this enhancement will reduce the cooldown and Spell Point Cost of this
+Spell-Like Ability."""
+icon = "FSFireball"
+internal_name = "FSFireball"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 0
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    6,
+    0,
+    6,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Fireball",
+    "Sorcerer",
+]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Fire Savant: Awaken Elemental Weakness: Fire"
+cost_per_rank = [2]
+description = """
+You are able to curse an enemy, increasing Fire damage they take by 15%.
+When cast on a creature that is immune to that tree's Element, it makes
+them vulnerable to that element for a short period of time.
+Activation Cost: 5 Spell Points.
+Cooldown: 2 seconds."""
+icon = "FSAwakenElementalWeaknessFire"
+internal_name = "FSAwakenElementalWeaknessFire"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 1
+y = 5
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Fire Savant: Heat Death"
+cost_per_rank = [2]
+description = """
+You raise the internal temperature of a living target to lethal levels.
+The target must succeed on a Fortitude save
+DC: 10 + Max[Con/Cha] + Sorcerer Level + evocation bonuses
+or take 2,000 points of fire damage as its blood (or other internal fluid)
+boils in a horrific manner. Fire creatures are immune to this effect.
+Activation Cost: 50 Spell Points.
+Cooldown: 1 minute."""
+icon = "FSHeatDeath"
+internal_name = "FSHeatDeath"
+is_clickie = true
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 2
+y = 5
+
+[[enhancement.dc]]
+name = "Fire Savant: Heat Death"
+amount = [10]
+base_class_level = "Sorcerer"
+dc_type = "Heat Death"
+dc_versus = "Fortitude"
+description = """
+You raise the internal temperature of a living target to lethal levels.
+The target must succeed on a Fortitude save."""
+icon = "FSHeatDeath"
+mod_ability = [
+    "Constitution",
+    "Charisma",
+]
+
+[[enhancement.modifier]]
+amount_type = "SpellInfo"
+amounts = [
+    0,
+    50,
+    0,
+    60,
+]
+bonus_type = "Enhancement"
+effect_type = "SpellLikeAbility"
+targets = [
+    "Heat Death",
+    "Sorcerer",
+]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.requirement]]
+items = ["FSFireGuard"]
+req_type = "Enhancement"
+
+[[enhancement]]
+name = "Fire Savant: Evocation Focus"
+cost_per_rank = [2]
+description = """
+You have trained extensively in Evocation magic, granting a +1 bonus to your spell
+DCs of that school."""
+icon = "FSEvocationFocus"
+internal_name = "FSEvocationFocus"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 3
+y = 5
+
+[[enhancement.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Enhancement"
+effect_type = "SpellDC"
+targets = ["Evocation"]
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement]]
+name = "Fire Savant: Elemental Diversification"
+cost_per_rank = [2]
+description = "Choose one"
+icon = "FSElementalDiversification"
+internal_name = "FSElementalDiversification"
+is_tier5 = true
+min_spent = 30
+ranks = 1
+x = 4
+y = 5
+
+[[enhancement.requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClassMinLevel"
+value = 5
+
+[[enhancement.requirement]]
+req_type = "Level"
+value = 12
+
+[[enhancement.selection]]
+name = "Power of Acid"
+cost_per_rank = [2]
+description = "You have extensively practiced with Acid magic, granting an additional +15 Acid Spell Power."
+icon = "FSPowerOfAcid"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[enhancement.selection]]
+name = "Power of Force"
+cost_per_rank = [2]
+description = "You have extensively practiced with Force magic, granting an additional +10 Force Spell Power."
+icon = "FSPowerOfForce"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [10]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = [
+    "Force",
+    "Physical",
+    "Untyped",
+]
+
+[[enhancement.selection]]
+name = "Power of Lightning"
+cost_per_rank = [2]
+description = "You have extensively practiced with Electric magic, granting an additional +15 Electric and Sonic Spell Power."
+icon = "FSPowerOfLightning"
+
+[[enhancement.selection.modifier]]
+amount_type = "Simple"
+amounts = [15]
+bonus_type = "Enhancement"
+effect_type = "SpellPower"
+targets = ["Electric"]
+
+[[requirement]]
+items = ["Sorcerer"]
+req_type = "BaseClass"

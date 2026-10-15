@@ -1,0 +1,48 @@
+name = "Legendary Allegience of the Wild Hunt"
+description = """
+With this, your Wolf will be able to channel the defensive abilities of the
+Hound of the Wild Hunt."""
+drop_location = "The Legend of the Lost Locket, End chest"
+enhancement_bonus = 15
+icon = "LightArmor_16"
+item_category = "Armor"
+item_type = "Light"
+material = "Leather"
+minimum_level = 29
+race_required = "Pet"
+slot = "Body"
+
+[[armor]]
+arcane_spell_failure = 10
+armor_bonus = 9
+armor_type = "Light"
+max_dex_bonus = 27
+
+[[effect]]
+name = "Fortification"
+bonus_type = "Enhancement"
+value = 142
+
+[[effect]]
+name = "Physical Sheltering"
+bonus_type = "Enhancement"
+value = 33
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 11
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 13
+
+[[socket]]
+slot = "green"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "The Legend of the Lost Locket"

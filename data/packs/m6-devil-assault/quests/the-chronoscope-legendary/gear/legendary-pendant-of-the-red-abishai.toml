@@ -1,0 +1,40 @@
+name = "Legendary Pendant of the Red Abishai"
+description = "This necklace seems to be attuned to elemental power."
+drop_location = "The Chronoscope (Legendary), End chest or Legendary version of Epic Pendant of the Red Abishai"
+icon = "Necklace_13l"
+item_category = "Jewelry"
+material = "Leather"
+minimum_level = 30
+slot = "Neck"
+
+[[effect]]
+name = "Wisdom"
+bonus_type = "Quality"
+value = 3
+
+[[effect]]
+name = "Fire Absorption"
+bonus_type = "Enhancement"
+value = 36
+
+[[effect]]
+name = "Combat Mastery"
+bonus_type = "Insight"
+value = 6
+
+[[effect]]
+name = "Enhanced Ki"
+bonus_type = "Enhancement"
+value = 4
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+chest = "end chest or legendary version of epic pendant of the red abishai"
+kind = "quest"
+loot_type = "raid"
+name = "The Chronoscope (Legendary)"

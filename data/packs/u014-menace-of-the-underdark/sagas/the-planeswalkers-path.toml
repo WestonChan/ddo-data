@@ -1,0 +1,20 @@
+name = "The Planeswalker's Path"
+pack = "Menace of the Underdark"
+wiki_url = "https://ddowiki.com/page/The_Planeswalker%27s_Path"
+quests = [
+    "A Stay at the Inn",
+    "Beyond the Rift",
+    "Detour",
+    "Lost in the Swamp",
+    "Reclaiming the Rift",
+    "Rest Stop",
+    "The Deal and the Demon",
+    "The End of the Road",
+    "The Lost Thread",
+    "Through a Mirror Darkly",
+    "Trial by Fury",
+]
+
+[[citation]]
+url = "https://ddowiki.com/page/The_Planeswalker%27s_Path"
+read = "2026-10-02"

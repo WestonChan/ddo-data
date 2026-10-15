@@ -1,0 +1,5 @@
+name = "Doublestrike"
+category = "martial"
+home_bonus_type = "Insight"
+set_bonus_line_template = "+{1}% %b1 Bonus to Doublestrike"
+verbose_name_template = "%b1 Doublestrike {1}%"

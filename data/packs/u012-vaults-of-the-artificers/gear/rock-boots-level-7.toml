@@ -1,0 +1,108 @@
+name = "Rock Boots (level 7)"
+description = """
+These boots are encased in a stony shell, bolstered by the power of a bound
+Earth Elemental. They allow the user to execute a ferocious stomp that knocks
+nearby enimes over, as well as turning your attackers to stone on occasion."""
+drop_location = "Vaults of the Artificers, Turn in various ingredients"
+icon = "Boots_12"
+item_category = "Clothing"
+material = "Steel"
+minimum_level = 7
+slot = "Feet"
+
+[[effect]]
+name = "Corrosion"
+bonus_type = "Equipment"
+value = 69
+
+[[effect]]
+name = "Acid Lore"
+bonus_type = "Equipment"
+value = 10
+
+[[effect]]
+name = "Lesser Stone Prison Guard"
+
+[[socket]]
+slot = "upgrade: tier 2"
+
+[[socket.option]]
+name = "Corrosion +74 and Acid Lore +11%"
+description = """
+Corrosion +74: Passive: +74 Equipment bonus to Acid Spell Power.
+Acid Lore +11: Passive: Your Acid spells gain a 11% Equipment bonus to their chance
+to critical hit."""
+icon = "Upgrade"
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 74
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+value = 11
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [74]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [11]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]
+
+[[socket]]
+slot = "upgrade: tier 3"
+
+[[socket.option]]
+name = "Corrosion +79 and Acid Lore +12%, and a Green augment slot"
+description = """
+Corrosion +79: Passive: +79 Equipment bonus to Acid Spell Power.
+Acid Lore +12: Passive: Your Acid spells gain a 12% Equipment bonus to their chance
+to critical hit.
+Adds a Green augment slot to this item"""
+icon = "Upgrade"
+min_level = 7
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+value = 79
+
+[[socket.option.effect]]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+value = 12
+
+[[socket.option.grant]]
+slot = "green"
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [79]
+bonus_type = "Equipment"
+effect = "Acid Spell Power"
+effect_type = "SpellPower"
+targets = ["Acid"]
+
+[[socket.option.modifier]]
+amount_type = "Simple"
+amounts = [12]
+bonus_type = "Equipment"
+effect = "Acid Spell Lore"
+effect_type = "SpellLore"
+targets = ["Acid"]
+
+[[source]]
+kind = "challenge"
+name = "Vaults of the Artificers"

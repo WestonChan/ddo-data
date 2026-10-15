@@ -1,0 +1,32 @@
+name = "Cinderfingers"
+description = """
+Sparks of flame dance between the fingertips of these heavy leather gloves.
+They're perfect for burning away Webs."""
+drop_location = "What Sleeps Below, end chest"
+icon = "Gloves_7a"
+item_category = "Clothing"
+material = "Cloth"
+minimum_level = 3
+slot = "Hands"
+
+[[effect]]
+name = "Fire Lore"
+bonus_type = "Equipment"
+value = 8
+
+[[effect]]
+name = "Combustion"
+bonus_type = "Equipment"
+value = 53
+
+[[effect]]
+name = "Web Immunity"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "What Sleeps Below"

@@ -1,0 +1,8 @@
+name = "Sovereign Rune of Dancing"
+description = "Melodic Guard: When being hit there is a chance for the opponent to dance."
+family = "Dragontouched_SovereignRune"
+icon = "DraconicRune"
+min_level = 16
+
+[[slot]]
+slot = "crafting: sovereign rune"

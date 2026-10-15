@@ -1,0 +1,3 @@
+name = "Suppress Madness"
+description_template = "This strange creature is enchanted with the ability to temporarily filter the maddening effects of certain Xoriat items. Wearing it will suppress the effects of the following: Curse Vector, Unwieldy, Overfocus, Mind Turbulence, Symbiotic Backlash, Metal Fatigue, Power Drain, and Single-Mindedness."
+verbose_name_template = "Suppress Madness"

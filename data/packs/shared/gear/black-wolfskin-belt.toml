@@ -1,0 +1,20 @@
+name = "Black Wolfskin Belt"
+description = "This belt is fashioned from the pelt of a dark wolf-like beast."
+drop_location = "Assault on Splinterskull, End reward"
+icon = "Belt_3"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 5
+slot = "Waist"
+
+[[effect]]
+name = "Constitution"
+bonus_type = "Enhancement"
+value = 3
+
+[[socket]]
+slot = "yellow"
+
+[[source]]
+kind = "quest_chain"
+name = "Assault on Splinterskull"

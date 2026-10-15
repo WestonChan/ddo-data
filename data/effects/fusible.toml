@@ -1,0 +1,3 @@
+name = "Fusible"
+description_template = "Something about this item looks incomplete. Perhaps in the future it will be compatible with another item to create a brand-new fusion of the two. (DDOBuilder Note: The Fusible versions of these items are separate items)"
+verbose_name_template = "Fusible"

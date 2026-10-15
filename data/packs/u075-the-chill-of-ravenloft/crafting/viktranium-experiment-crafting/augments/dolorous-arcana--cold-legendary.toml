@@ -1,0 +1,22 @@
+name = "Dolorous Arcana: Cold (Legendary)"
+description = "+79 Insight bonus to Cold Spellpower."
+family = "Lamordia_Legendary"
+icon = "Lamordia"
+min_level = 34
+
+[[effect]]
+name = "Cold Spell Power"
+bonus_type = "Insight"
+value = 79
+
+[[modifier]]
+amount_type = "Simple"
+amounts = [79]
+bonus = "Insightful"
+bonus_type = "Insight"
+effect = "Cold Spell Power"
+effect_type = "SpellPower"
+targets = ["Cold"]
+
+[[slot]]
+slot = "lamordia: dolorous (weapon)"

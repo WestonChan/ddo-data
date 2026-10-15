@@ -1,0 +1,88 @@
+name = "The Blood Feast"
+icon = "TheBloodFeast"
+is_filigree_set = true
+
+[[tier]]
+equipped_count = 2
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Constitution"
+value = 1
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [1]
+bonus_type = "Stacking"
+effect = "Constitution"
+effect_type = "AbilityBonus"
+targets = ["Constitution"]
+
+[[tier]]
+equipped_count = 3
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Physical Resistance Rating"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Physical Resistance Rating"
+effect_type = "PRR"
+
+[[tier]]
+equipped_count = 4
+
+[[tier.effect]]
+bonus_type = "Stacking"
+effect = "Melee Power"
+value = 5
+
+[[tier.modifier]]
+amount_type = "Simple"
+amounts = [5]
+bonus_type = "Stacking"
+effect = "Melee Power"
+effect_type = "MeleePower"
+
+[[tier]]
+equipped_count = 5
+
+[[tier.effect]]
+effect = "Rage Temporary Hit Points"
+
+[[tier.modifier]]
+amount_type = "ClassLevel"
+amounts = [
+    0,
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+    1000,
+]
+bonus_type = "Temporary"
+effect_type = "Hitpoints"
+stack_source = "Epic"
+
+[[tier.modifier.requirement]]
+items = ["Rage"]
+req_type = "Stance"

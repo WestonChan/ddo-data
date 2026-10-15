@@ -1,0 +1,50 @@
+name = "Baphomet's Reign"
+description = "A dream of a Demon Lord, ruling over everything."
+drop_location = "Terror of Demogorgon, any end chest; Terror of Demogorgon (Legendary) Elite/True Elite end reward"
+icon = "Ring_16e"
+is_minor_artifact = true
+item_category = "Jewelry"
+material = "Gem"
+minimum_level = 35
+slot = "Ring"
+
+[[effect]]
+name = "Legendary Conditioning"
+bonus_type = "Legendary"
+value = 15
+
+[[effect]]
+name = "Deadly"
+bonus_type = "Legendary"
+value = 3
+
+[[effect]]
+name = "Unstoppable Staggering Blow"
+
+[[effect]]
+name = "Sheltering"
+bonus_type = "Quality"
+value = 11
+
+[[effect]]
+name = "Mind Drain"
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "yellow"
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "any end chest"
+kind = "adventure_pack"
+loot_type = "chest"
+name = "Terror of Demogorgon"
+
+[[source]]
+kind = "saga"
+name = "Terror of Demogorgon"
+tier = "legendary"

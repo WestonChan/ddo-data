@@ -1,0 +1,56 @@
+name = "Unknown"
+alignments = ["Any"]
+bab = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+description = "You are yet to decide what class you want."
+fortitude = "none"
+hit_points = 0
+large_icon = "Unknown"
+reflex = "none"
+skill_points = 2
+small_icon = "Unknown_Small"
+spell_points_per_level = [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+]
+will = "none"

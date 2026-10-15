@@ -1,0 +1,37 @@
+name = "Epic Amethyst Loupe"
+description = """
+This single, jeweled Jewelers Loupe is able to magnify up to 100 times more
+than your bare eye."""
+drop_location = "Epic version of Amethyst Loupe"
+icon = "Goggles_2b"
+item_category = "Jewelry"
+material = "Steel"
+minimum_level = 20
+slot = "Goggles"
+
+[[effect]]
+name = "True Seeing"
+
+[[effect]]
+name = "Blindness Immunity"
+
+[[effect]]
+name = "Search"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Spot"
+bonus_type = "Competence"
+value = 17
+
+[[effect]]
+name = "Reflex Save"
+bonus_type = "Resistance"
+value = 9
+
+[[socket]]
+slot = "green"
+
+[[socket]]
+slot = "colorless"

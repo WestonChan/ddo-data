@@ -11,7 +11,6 @@ use anyhow::Result;
 use ddo_model::enums::{LootType, Provenance, SagaTier, SourceKind};
 use rusqlite::{params, Connection, OptionalExtension, Transaction};
 use std::ops::{Range, RangeInclusive};
-use std::sync::LazyLock;
 
 const MATCHED_TEXT_MASK: &str = "\0";
 
@@ -135,7 +134,7 @@ impl DropTextLinker {
         let mut unresolved_alias_texts = Vec::new();
         let mut packs_longest_name_first =
             named_sources_longest_name_first(db, "SELECT name, id FROM adventure_packs")?;
-        for alias in &source_aliases.adventure_packs {
+        for alias in source_aliases.adventure_packs.iter().filter(|alias| !alias.placement_only) {
             if let Some(pack_id) = db
                 .query_row("SELECT id FROM adventure_packs WHERE name = ?1", [&alias.pack], |row| row.get(0))
                 .optional()?
@@ -564,7 +563,6 @@ impl DropTextLinker {
                         is_rare: marks_rare_loot(segment),
                         chest: None,
                         tier: None,
-                        cost: None,
                         drop_text_segment: Some(segment),
                         source_match: Some(&named_source.source_match),
                     },
@@ -670,10 +668,6 @@ impl LootSource {
     fn same_source_as(self, other: Self) -> bool {
         self.kind() == other.kind() && self.identifying_value() == other.identifying_value()
     }
-
-    fn value_in_column(self, column: &str) -> Option<i64> {
-        (self.kind().identifying_column() == column).then_some(self.identifying_value())
-    }
 }
 
 #[derive(Clone, Copy)]
@@ -683,17 +677,16 @@ pub(super) enum DroppedLoot {
 }
 
 impl DroppedLoot {
-    pub(super) fn item_id(self) -> Option<i64> {
+    pub(super) fn kind(self) -> &'static str {
         match self {
-            Self::Item(id) => Some(id),
-            Self::Augment(_) => None,
+            Self::Item(_) => "item",
+            Self::Augment(_) => "augment",
         }
     }
 
-    pub(super) fn augment_id(self) -> Option<i64> {
+    pub(super) fn id(self) -> i64 {
         match self {
-            Self::Item(_) => None,
-            Self::Augment(id) => Some(id),
+            Self::Item(id) | Self::Augment(id) => id,
         }
     }
 
@@ -713,7 +706,6 @@ pub(super) struct SourceLink<'a> {
     pub(super) is_rare: bool,
     pub(super) chest: Option<&'a str>,
     pub(super) tier: Option<SagaTier>,
-    pub(super) cost: Option<&'a str>,
     pub(super) drop_text_segment: Option<&'a str>,
     pub(super) source_match: Option<&'a str>,
 }
@@ -727,126 +719,62 @@ impl SourceLink<'_> {
             is_rare: false,
             chest: None,
             tier: None,
-            cost: None,
             drop_text_segment: None,
             source_match: None,
         }
     }
 
-    fn execute(&self, transaction: &Transaction, sql: &str) -> Result<usize> {
-        let mut values: Vec<Box<dyn rusqlite::ToSql>> = vec![Box::new(self.source.kind().as_str())];
-        for column in SourceKind::identifying_columns() {
-            values.push(Box::new(self.source.value_in_column(column)));
+    fn row(&self) -> crate::loot_sources::LootSource<'_> {
+        crate::loot_sources::LootSource {
+            kind: self.source.kind(),
+            target_id: self.source.identifying_value(),
+            owner_kind: self.loot.kind(),
+            owner_id: self.loot.id(),
+            loot_type: self.loot_type.map(LootType::as_str),
+            chest: self.chest,
+            is_rare: self.is_rare,
+            tier: self.tier.map(SagaTier::as_str),
+            drop_text_segment: self.drop_text_segment,
+            source_match: self.source_match,
         }
-        values.push(Box::new(self.loot.item_id()));
-        values.push(Box::new(self.loot.augment_id()));
-        values.push(Box::new(self.loot_type.map(LootType::as_str)));
-        values.push(Box::new(self.is_rare));
-        values.push(Box::new(self.chest));
-        values.push(Box::new(self.tier.map(SagaTier::as_str)));
-        values.push(Box::new(self.cost));
-        values.push(Box::new(self.drop_text_segment));
-        values.push(Box::new(self.source_match));
-        let mut statement = transaction.prepare(sql)?;
-        let parameter_count = statement.parameter_count();
-        Ok(statement.execute(rusqlite::params_from_iter(values.into_iter().take(parameter_count)))?)
     }
 }
-
-struct SourceLinkSql {
-    columns: String,
-    values: String,
-    same_source_and_loot: String,
-    same_source_loot_type_and_tier: String,
-    same_drop_location: String,
-}
-
-static SOURCE_LINK_SQL: LazyLock<SourceLinkSql> = LazyLock::new(|| {
-    let identifying_columns = SourceKind::identifying_columns();
-    let columns: Vec<&str> = std::iter::once("kind")
-        .chain(identifying_columns.iter().copied())
-        .chain([
-            "item_id",
-            "augment_id",
-            "loot_type",
-            "is_rare",
-            "chest",
-            "tier",
-            "cost",
-            "drop_text_segment",
-            "source_match",
-        ])
-        .collect();
-    let values: Vec<String> = (1..=columns.len()).map(|position| format!("?{position}")).collect();
-    let same_source_and_loot: Vec<String> = columns[..identifying_columns.len() + 3]
-        .iter()
-        .enumerate()
-        .map(|(index, column)| format!("{column} IS ?{}", index + 1))
-        .collect();
-    let matching_columns = |excluded: &[&str]| {
-        columns
-            .iter()
-            .enumerate()
-            .filter(|(_, column)| !excluded.contains(column) && !["drop_text_segment", "source_match"].contains(column))
-            .map(|(index, column)| format!("{column} IS ?{}", index + 1))
-            .collect::<Vec<_>>()
-            .join(" AND ")
-    };
-    SourceLinkSql {
-        columns: format!("sources ({})", columns.join(", ")),
-        values: values.join(", "),
-        same_source_and_loot: same_source_and_loot.join(" AND "),
-        same_source_loot_type_and_tier: matching_columns(&["is_rare", "chest", "cost"]),
-        same_drop_location: matching_columns(&["is_rare"]),
-    }
-});
 
 pub(super) fn insert_source_link(transaction: &Transaction, source_link: &SourceLink) -> Result<usize> {
-    let sql = &*SOURCE_LINK_SQL;
-    if source_link.is_rare {
-        let updated = source_link.execute(
-            transaction,
-            &format!("UPDATE sources SET is_rare = 1 WHERE {} AND is_rare = 0", sql.same_drop_location),
-        )?;
-        if updated > 0 {
-            return Ok(updated);
+    let row = source_link.row();
+    if let Some(id) = row.matching_id(transaction, crate::loot_sources::SourceMatch::Location)? {
+        if row.is_rare {
+            return Ok(transaction.execute(
+                &format!("UPDATE {} SET is_rare = 1 WHERE id = ?1 AND is_rare = 0", row.kind.table_name()),
+                [id],
+            )?);
         }
+        return Ok(0);
     }
-    source_link.execute(
-        transaction,
-        &format!(
-            "INSERT INTO {} SELECT {} WHERE NOT EXISTS (SELECT 1 FROM sources WHERE {})",
-            sql.columns, sql.values, sql.same_drop_location
-        ),
-    )
+    row.insert(transaction)?;
+    Ok(1)
 }
 
 pub(super) fn insert_source_link_unless_loot_linked_there(
     transaction: &Transaction,
     source_link: &SourceLink,
 ) -> Result<usize> {
-    let sql = &*SOURCE_LINK_SQL;
-    source_link.execute(
-        transaction,
-        &format!(
-            "INSERT INTO {} SELECT {} WHERE NOT EXISTS (SELECT 1 FROM sources WHERE {})",
-            sql.columns, sql.values, sql.same_source_and_loot
-        ),
-    )
+    if source_link.row().matching_id(transaction, crate::loot_sources::SourceMatch::Owner)?.is_some() {
+        return Ok(0);
+    }
+    source_link.row().insert(transaction)?;
+    Ok(1)
 }
 
 pub(super) fn insert_source_link_unless_linked_as(
     transaction: &Transaction,
     source_link: &SourceLink,
 ) -> Result<usize> {
-    let sql = &*SOURCE_LINK_SQL;
-    source_link.execute(
-        transaction,
-        &format!(
-            "INSERT INTO {} SELECT {} WHERE NOT EXISTS (SELECT 1 FROM sources WHERE {})",
-            sql.columns, sql.values, sql.same_source_loot_type_and_tier
-        ),
-    )
+    if source_link.row().matching_id(transaction, crate::loot_sources::SourceMatch::LootType)?.is_some() {
+        return Ok(0);
+    }
+    source_link.row().insert(transaction)?;
+    Ok(1)
 }
 
 pub(super) fn mark_quest_source_link_rare(
@@ -855,15 +783,10 @@ pub(super) fn mark_quest_source_link_rare(
     loot: DroppedLoot,
     chest: Option<&str>,
 ) -> Result<usize> {
-    let same_quest_and_loot = "kind = 'quest' AND quest_id = ?1 AND item_id IS ?2 AND augment_id IS ?3";
-    Ok(transaction.execute(
-        &format!(
-            "UPDATE sources SET is_rare = 1, chest = CASE loot_type WHEN 'reward' THEN NULL ELSE COALESCE(chest, ?4) END
-              WHERE {same_quest_and_loot}
-                AND (loot_type <> 'reward' OR NOT EXISTS (SELECT 1 FROM sources WHERE {same_quest_and_loot} AND loot_type <> 'reward'))"
-        ),
-        params![quest_id, loot.item_id(), loot.augment_id(), chest],
-    )?)
+    Ok(transaction.execute("UPDATE quest_drops SET is_rare = 1, chest = CASE loot_type WHEN 'reward' THEN NULL ELSE COALESCE(chest, ?4) END
+        WHERE quest_id = ?1 AND owner_kind = ?2 AND owner_id = ?3
+          AND (loot_type <> 'reward' OR NOT EXISTS (SELECT 1 FROM quest_drops WHERE quest_id = ?1 AND owner_kind = ?2 AND owner_id = ?3 AND loot_type <> 'reward'))",
+        params![quest_id, loot.kind(), loot.id(), chest])?)
 }
 
 pub(super) struct LinkedDropTextQuest {
@@ -917,7 +840,6 @@ impl DropTextLinker {
                     is_rare: pack_link.is_rare,
                     chest: pack_link.chest.as_deref(),
                     tier: None,
-                    cost: None,
                     drop_text_segment: Some(&pack_link.drop_text_segment),
                     source_match: Some(&pack_link.source_match),
                 },
@@ -948,7 +870,6 @@ impl TableWriter<'_> {
                     is_rare: reward_giver_link.is_rare,
                     chest: None,
                     tier: reward_giver_link.tier,
-                    cost: None,
                     drop_text_segment: Some(&reward_giver_link.drop_text_segment),
                     source_match: Some(&reward_giver_link.source_match),
                 },

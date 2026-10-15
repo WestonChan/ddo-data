@@ -1,0 +1,51 @@
+name = "Nicked Orb"
+description = """
+This orb, held in the off hand, seems to radiate magical power. There is a small
+chip taken out of it."""
+drop_location = "The Sharn Syndicate, End reward"
+icon = "Orb_1b"
+item_category = "Weapon"
+item_type = "Orb"
+material = "Gem"
+minimum_level = 2
+slot = "Off Hand"
+
+[[effect]]
+name = "Spellcasting Implement"
+bonus_type = "Implement"
+value = 2
+
+[[effect]]
+name = "Orb Bonus"
+bonus_type = "Orb"
+value = 2
+
+[[effect]]
+name = "Potency"
+bonus_type = "Equipment"
+value = 29
+
+[[effect]]
+name = "Spell Focus Mastery"
+bonus_type = "Equipment"
+value = 1
+
+[[effect]]
+name = "Wizardry"
+bonus_type = "Enhancement"
+value = 60
+
+[[source]]
+kind = "quest_chain"
+name = "The Sharn Syndicate"
+
+[[weapon]]
+attack_modifier = "Intelligence, Charisma"
+base_dice_count = 1
+base_dice_sides = 6
+critical_multiplier = 2
+critical_threat_range = 1
+damage_modifier = "Intelligence, Charisma"
+damage_multiplier = 1.0
+handedness = "Off-hand"
+weapon_type = "Orb"

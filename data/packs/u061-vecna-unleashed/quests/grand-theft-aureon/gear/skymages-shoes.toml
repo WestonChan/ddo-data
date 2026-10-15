@@ -1,0 +1,39 @@
+name = "Skymage's Shoes"
+description = """
+While a Skymage certainly needs a great deal of magic, they also need the ability
+to move with grace."""
+drop_location = "Grand Theft Aureon, End chest"
+icon = "Boots_11d"
+item_category = "Clothing"
+material = "Leather"
+minimum_level = 18
+slot = "Feet"
+
+[[effect]]
+name = "Dexterity"
+bonus_type = "Insight"
+value = 4
+
+[[effect]]
+name = "Dodge"
+bonus_type = "Enhancement"
+value = 4
+
+[[effect]]
+name = "Diversion"
+bonus_type = "Enhancement"
+value = 14
+
+[[effect]]
+name = "Distant Diversion"
+bonus_type = "Enhancement"
+value = 14
+
+[[socket]]
+slot = "blue"
+
+[[source]]
+chest = "end chest"
+kind = "quest"
+loot_type = "chest"
+name = "Grand Theft Aureon"

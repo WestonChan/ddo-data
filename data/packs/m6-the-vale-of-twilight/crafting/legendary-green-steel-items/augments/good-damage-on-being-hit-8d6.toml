@@ -1,0 +1,10 @@
+name = "Good damage on being hit - 8d6"
+description = "Material/Dominion: Any successful attack against you deals 8d6 Good damage to your foe."
+family = "Greensteel_Legendary"
+min_level = 1
+set_bonus = """
+Material
+Dominion"""
+
+[[slot]]
+slot = "crafting: equipment tier 1"
