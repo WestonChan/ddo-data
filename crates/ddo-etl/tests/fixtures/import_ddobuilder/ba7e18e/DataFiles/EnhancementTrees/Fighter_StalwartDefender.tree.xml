@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Stalwart Defender</Name>
+    <Version>1</Version>
+    <Requirements>
+      <Requirement>
+        <Type>BaseClass</Type>
+        <Item>Fighter</Item>
+      </Requirement>
+    </Requirements>
+    <Icon>Fighter</Icon>
+    <Background>FighterBackground</Background>
+    <!--Core Items-->
+    
+    
+    
+    
+    
+    
+    <!--Tier 1-->
+    
+    
+    
+    <EnhancementTreeItem>
+      <Name>Stalwart Defender: Defense Boost</Name>
+      <InternalName>SDDefenseBoost</InternalName>
+      <Description>Activate to gain a +15 Action Boost bonus to Armor Class and Physical
+and Magical Resistance Rating for 20 seconds. (Cooldown: 30 seconds.)</Description>
+      <Icon>SDDefenseBoost</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">2</CostPerRank>
+      <Ranks>1</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>BaseClassMinLevel</Type>
+          <Item>Fighter</Item>
+          <Value>1</Value>
+        </Requirement>
+      </Requirements>
+    </EnhancementTreeItem>
+    
+    <!--Tier 2-->
+    
+    
+    
+    
+    <!--Tier 3-->
+    
+    
+    
+    
+    <!--Tier 4-->
+    
+    
+    
+    
+    
+    <!--Tier 5-->
+    
+    
+    
+    
+    
+  </EnhancementTree>
+</Enhancements>

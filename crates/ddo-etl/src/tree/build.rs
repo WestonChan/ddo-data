@@ -22,6 +22,53 @@ pub(super) fn validate_data_icons(db: &Connection, icon_index: &crate::icons::Ic
     Ok(())
 }
 
+pub(crate) struct DataIconReference {
+    pub(crate) kind: String,
+    pub(crate) tree: Option<String>,
+    pub(crate) icon: String,
+    pub(crate) field: &'static str,
+}
+
+pub(crate) fn data_file_icon_references(root: &Path, path: &Path, document: &SourceFile) -> Vec<DataIconReference> {
+    let relative_path = path.strip_prefix(root).unwrap_or(path);
+    let kind = crate::icons::icon_kind_for_data_path(relative_path).map_or("", |(_, kind)| kind);
+    let tree = if kind == "enhancements" {
+        path.parent().and_then(Path::file_name).and_then(|name| name.to_str()).map(str::to_string)
+    } else {
+        None
+    };
+    document
+        .icons(kind)
+        .into_iter()
+        .map(|(kind, icon, field)| DataIconReference {
+            kind: kind.to_string(),
+            tree: tree.clone(),
+            icon: icon.to_string(),
+            field,
+        })
+        .collect()
+}
+
+pub(crate) fn referenced_data_icons(root: &Path) -> Result<Vec<DataIconReference>> {
+    let mut references = Vec::new();
+    for entry in WalkDir::new(root).sort_by_file_name() {
+        let entry = entry?;
+        let path = entry.path();
+        if !entry.file_type().is_file()
+            || path.extension().is_none_or(|extension| extension != "toml")
+            || path.components().any(|component| component.as_os_str() == ".schemas")
+        {
+            continue;
+        }
+        schemas::file_kind(root, path)?;
+        let contents = std::fs::read_to_string(path).with_context(|| format!("reading {}", path.display()))?;
+        let document =
+            schemas::read_file(root, path, &contents).with_context(|| format!("reading {}", path.display()))?;
+        references.extend(data_file_icon_references(root, path, &document));
+    }
+    Ok(references)
+}
+
 pub(super) fn validate_file_icons(
     root: &Path,
     path: &Path,
@@ -29,16 +76,10 @@ pub(super) fn validate_file_icons(
     icon_index: &crate::icons::IconIndex,
     referenced_icons: &mut BTreeSet<(String, String)>,
 ) -> Result<()> {
-    let relative_path = path.strip_prefix(root)?;
-    let kind = crate::icons::icon_kind_for_data_path(relative_path).map_or("", |(_, kind)| kind);
-    let tree_name = if kind == "enhancements" {
-        path.parent().and_then(Path::file_name).and_then(|name| name.to_str())
-    } else {
-        None
-    };
-    for (kind, icon, field) in document.icons(kind) {
+    path.strip_prefix(root)?;
+    for DataIconReference { kind, tree, icon, field } in data_file_icon_references(root, path, document) {
         let reference = icon_index
-            .validate_reference(kind, tree_name, icon)
+            .validate_reference(&kind, tree.as_deref(), &icon)
             .with_context(|| format!("{}: {field} {icon:?}", path.display()))?;
         referenced_icons.insert(reference);
     }

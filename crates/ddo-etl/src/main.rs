@@ -113,24 +113,8 @@ fn main() -> Result<()> {
             let dataset_version = ddo_etl::upstream::dataset_version(&data_files_dir, None);
             let mut db = Connection::open_in_memory()?;
             ddo_etl::build::build_database(&data_files_dir, &wiki_overrides, &corrections, &mut db, &dataset_version)?;
-            let report = ddo_etl::tree::export_database(&db, &data_dir)?;
-            ddo_etl::icons::export_icons(&data_files_dir, &data_dir.join("icons"))?;
-            let icon_report = ddo_etl::icons::complete_referenced_icons(&db, &data_dir)?;
-            anyhow::ensure!(
-                icon_report.missing_icons.is_empty(),
-                "missing image files: {:?}",
-                icon_report.missing_icons
-            );
-            anyhow::ensure!(
-                icon_report.unresolved_case_aliases.is_empty(),
-                "icon references differ from upstream filenames; correct the references with notes: {:?}",
-                icon_report.unresolved_case_aliases
-            );
-            let enhancement_icon_report = ddo_etl::icons::place_enhancement_icons_beside_trees(&data_dir)?;
+            let report = ddo_etl::tree::export_ddobuilder_tree(&db, &data_files_dir, &data_dir)?;
             println!("{report}");
-            println!("completed icons: {icon_report:?}");
-            println!("enhancement icons: {enhancement_icon_report:?}");
-            anyhow::ensure!(report.icon_actions.is_empty(), "export has HARD image layout failures");
         }
         CliCommand::Find { text, data_dir } => print!("{}", ddo_etl::tree::find(&data_dir, &text)?),
         CliCommand::Icons { source: data_files_dir, data_dir, out: icons_dir } => {

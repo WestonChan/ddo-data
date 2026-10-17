@@ -413,6 +413,11 @@ fn deny_contract_or_scale_regressions() -> Result<()> {
             &["--lib"][..],
             "icons::icon_index_tests::copied_icons_preserve_upstream_case_and_report_mismatched_references",
         ),
+        (
+            "ddo-etl",
+            &["--test", "import_ddobuilder"][..],
+            "exported_ddobuilder_tree_builds_with_dc_icons_from_other_kinds",
+        ),
     ] {
         let test_status = Command::new("cargo")
             .args(["test", "-p", crate_name])

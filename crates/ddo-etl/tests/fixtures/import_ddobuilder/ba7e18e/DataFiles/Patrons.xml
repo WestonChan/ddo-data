@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patrons>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   <Patron>
+      <Name>Battlehammer Expedition</Name>
+      <FavorTiers size ="3">75 150 400</FavorTiers>
+      <AssociatedFavorFeat>Battlehammer Expedition Favor Rewards</AssociatedFavorFeat>
+   </Patron>
+   <!--If you add a new Patron, you also need to update the PatronTypes.h file-->
+   
+</Patrons>

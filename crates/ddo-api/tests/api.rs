@@ -135,7 +135,7 @@ async fn data_entities_build_and_serve_authored_fields_without_ids() {
     let original = rusqlite::Connection::open(fixture_db_path()).unwrap();
     ddo_etl::tree::export_database(&original, &data_dir).unwrap();
     ddo_etl::icons::export_icons(&fixture_data_files_dir(), &data_dir.join("icons")).unwrap();
-    let missing_icons = ddo_etl::icons::complete_referenced_icons(&original, &data_dir).unwrap().missing_icons;
+    let missing_icons = ddo_etl::icons::complete_referenced_icons(&data_dir).unwrap().missing_icons;
     for missing_icon in missing_icons {
         let path = data_dir.join("icons").join(missing_icon);
         std::fs::create_dir_all(path.parent().unwrap()).unwrap();

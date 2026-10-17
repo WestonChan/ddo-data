@@ -1,5 +1,4 @@
 use anyhow::{ensure, Context, Result};
-use rusqlite::Connection;
 use std::collections::{BTreeMap, BTreeSet};
 use std::ffi::OsStr;
 use std::path::{Path, PathBuf};
@@ -64,6 +63,24 @@ pub fn icon_kind_for_data_path(path: &Path) -> Option<(&'static str, &'static st
     }
 }
 
+fn image_reference_parts<'a>(kind: &'a str, reference: &'a str) -> Result<(&'a str, Option<&'a str>, &'a str)> {
+    ensure!(!reference.contains('\\'), "image reference contains a backslash");
+    let segments = reference.split('/').collect::<Vec<_>>();
+    ensure!(
+        segments.iter().all(|segment| !matches!(*segment, "" | "." | "..")),
+        "image reference has an empty or relative segment"
+    );
+    if kind != "*" {
+        ensure!(segments.len() == 1, "single-kind image must use a bare name");
+        return Ok((kind, None, reference));
+    }
+    match segments.as_slice() {
+        [kind, name] => Ok((kind, None, name)),
+        ["enhancements", tree, name] => Ok(("enhancements", Some(tree), name)),
+        _ => anyhow::bail!("cross-kind image must use kind/name or enhancements/tree/name"),
+    }
+}
+
 #[derive(Default)]
 pub(crate) struct IconIndex {
     global_paths: BTreeMap<(String, String), PathBuf>,
@@ -105,12 +122,16 @@ impl IconIndex {
     }
 
     pub(crate) fn from_data(root: &Path) -> Result<Self> {
-        let mut index = Self::from_global_icons(&root.join("icons"))?;
+        let index = Self::from_global_icons(&root.join("icons"))?;
         let issues = enhancement_icon_actions(root)?;
         ensure!(issues.is_empty(), "HARD enhancement icon layout:\n{}", issues.join("\n"));
+        index.with_tree_icons(root)
+    }
+
+    fn with_tree_icons(mut self, root: &Path) -> Result<Self> {
         let enhancement_root = root.join("characters/enhancements");
         if !enhancement_root.is_dir() {
-            return Ok(index);
+            return Ok(self);
         }
         for entry in std::fs::read_dir(enhancement_root)? {
             let entry = entry?;
@@ -142,12 +163,8 @@ impl IconIndex {
                     path.file_name().and_then(OsStr::to_str).context("enhancement icon has no UTF-8 name")?;
                 let key = file_name.to_lowercase();
                 ensure!(referenced_icons.contains(&key), "unreferenced enhancement icon {}", path.display());
-                ensure!(
-                    !index.global_paths.contains_key(&("enhancements".to_string(), key.clone())),
-                    "enhancement icon {file_name:?} exists in both {tree_name} and icons/enhancements"
-                );
                 if let Some((other_tree, other_path)) =
-                    index.enhancement_paths.insert(key, (tree_name.clone(), path.clone()))
+                    self.enhancement_paths.insert(key, (tree_name.clone(), path.clone()))
                 {
                     anyhow::bail!(
                         "enhancement icon {file_name:?} exists in both {other_tree} ({}) and {tree_name} ({})",
@@ -157,7 +174,7 @@ impl IconIndex {
                 }
             }
         }
-        Ok(index)
+        Ok(self)
     }
 
     fn insert_global(&mut self, kind: &str, path: PathBuf) -> Result<()> {
@@ -192,36 +209,20 @@ impl IconIndex {
         tree: Option<&str>,
         reference: &str,
     ) -> Result<(String, String)> {
-        ensure!(!reference.contains('\\'), "image reference contains a backslash");
-        let segments = reference.split('/').collect::<Vec<_>>();
-        ensure!(
-            segments.iter().all(|segment| !matches!(*segment, "" | "." | "..")),
-            "image reference has an empty or relative segment"
-        );
+        let (target_kind, target_tree, name) = image_reference_parts(kind, reference)?;
+        let file_name = format!("{name}.png");
         if kind != "*" {
-            ensure!(segments.len() == 1, "single-kind image must use a bare name");
-            let file_name = format!("{reference}.png");
-            self.validate_file_icon(kind, tree, &file_name)?;
-            return Ok((kind.to_string(), file_name.to_lowercase()));
+            self.validate_file_icon(target_kind, tree, &file_name)?;
+        } else if let Some(target_tree) = target_tree {
+            ensure!(
+                self.enhancement_paths.contains_key(&file_name.to_lowercase()),
+                "missing tree-local image {reference}.png"
+            );
+            self.validate_file_icon(target_kind, Some(target_tree), &file_name)?;
+        } else {
+            ensure!(self.global_exact(target_kind, &file_name).is_some(), "missing image {reference}.png");
         }
-        let (kind, file_name) = match segments.as_slice() {
-            [kind, name] => {
-                let file_name = format!("{name}.png");
-                ensure!(self.global_exact(kind, &file_name).is_some(), "missing image {reference}.png");
-                (*kind, file_name)
-            }
-            ["enhancements", tree, name] => {
-                let file_name = format!("{name}.png");
-                ensure!(
-                    self.enhancement_paths.contains_key(&file_name.to_lowercase()),
-                    "missing tree-local image {reference}.png"
-                );
-                self.validate_file_icon("enhancements", Some(tree), &file_name)?;
-                ("enhancements", file_name)
-            }
-            _ => anyhow::bail!("cross-kind image must use kind/name or enhancements/tree/name"),
-        };
-        Ok((kind.to_string(), file_name.to_lowercase()))
+        Ok((target_kind.to_string(), file_name.to_lowercase()))
     }
 
     pub(crate) fn validate_file_icon(&self, kind: &str, tree_name: Option<&str>, file_name: &str) -> Result<()> {
@@ -262,46 +263,67 @@ impl IconIndex {
     }
 }
 
-pub fn complete_referenced_icons(db: &Connection, data_dir: &Path) -> Result<IconCompletionReport> {
+pub fn complete_referenced_icons(data_dir: &Path) -> Result<IconCompletionReport> {
     let icons_dir = data_dir.join("icons");
-    let mut icon_index = IconIndex::from_global_icons(&icons_dir)?;
+    let mut icon_index = IconIndex::from_global_icons(&icons_dir)?.with_tree_icons(data_dir)?;
     let mut report = IconCompletionReport::default();
-    for &(table, kind) in ICON_TABLE_KINDS {
-        let mut statement =
-            db.prepare(&format!("SELECT DISTINCT icon FROM {table} WHERE icon IS NOT NULL AND icon <> ''"))?;
-        let icon_names: BTreeSet<String> =
-            statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<_>>()?;
-        for icon_name in &icon_names {
-            ensure!(
-                !icon_name.contains('/') && !icon_name.contains('\\'),
-                "{table} icon {icon_name:?} contains a path separator"
-            );
-            let destination = icons_dir.join(kind).join(format!("{icon_name}.png"));
-            let file_name = format!("{icon_name}.png");
-            if icon_index.global_exact(kind, &file_name).is_some() {
+    for reference in crate::tree::referenced_data_icons(data_dir)? {
+        if icon_index.validate_reference(&reference.kind, reference.tree.as_deref(), &reference.icon).is_ok() {
+            continue;
+        }
+        let (kind, tree, name) = image_reference_parts(&reference.kind, &reference.icon)
+            .with_context(|| format!("{} {:?}", reference.field, reference.icon))?;
+        ensure!(ICON_KIND_SOURCE_FOLDERS.iter().any(|(known, _)| *known == kind), "unknown icon kind {kind:?}");
+        let file_name = format!("{name}.png");
+        let label = match tree {
+            Some(tree) => format!("{kind}/{tree}/{file_name}"),
+            None => format!("{kind}/{file_name}"),
+        };
+        let local_icon =
+            (kind == "enhancements").then(|| icon_index.enhancement_paths.get(&file_name.to_lowercase())).flatten();
+        if let Some((_, path)) = local_icon {
+            if path.file_name() != Some(OsStr::new(&file_name)) {
+                report.unresolved_case_aliases.push(label);
                 continue;
             }
-            if icon_index.global(kind, &file_name).is_some() {
-                report.unresolved_case_aliases.push(format!("{kind}/{file_name}"));
-                continue;
+            icon_index.validate_reference(&reference.kind, reference.tree.as_deref(), &reference.icon)?;
+        }
+        if icon_index.global(kind, &file_name).is_some() && icon_index.global_exact(kind, &file_name).is_none() {
+            report.unresolved_case_aliases.push(label);
+            continue;
+        }
+        let source = ICON_KIND_SOURCE_FOLDERS
+            .iter()
+            .find_map(|(source_kind, _)| icon_index.global_exact(source_kind, &file_name));
+        let Some(source) = source else {
+            if ICON_KIND_SOURCE_FOLDERS
+                .iter()
+                .any(|(source_kind, _)| icon_index.global(source_kind, &file_name).is_some())
+            {
+                report.unresolved_case_aliases.push(label);
+            } else {
+                report.missing_icons.push(label);
             }
-            let Some(source) =
-                ICON_KIND_SOURCE_FOLDERS.iter().find_map(|(source_kind, _)| icon_index.global(source_kind, &file_name))
-            else {
-                report.missing_icons.push(format!("{kind}/{file_name}"));
-                continue;
-            };
-            if source.file_name() != Some(OsStr::new(&file_name)) {
-                report.unresolved_case_aliases.push(format!("{kind}/{file_name}"));
-                continue;
-            }
-            report.copied_from_other_kind += 1;
-            std::fs::create_dir_all(destination.parent().context("icon destination has no folder")?)?;
-            std::fs::copy(source, &destination)
-                .with_context(|| format!("copying {} to {}", source.display(), destination.display()))?;
+            continue;
+        };
+        let destination = match tree {
+            Some(tree) => data_dir.join("characters/enhancements").join(tree).join("icons").join(&file_name),
+            None => icons_dir.join(kind).join(&file_name),
+        };
+        std::fs::create_dir_all(destination.parent().context("icon destination has no folder")?)?;
+        std::fs::copy(source, &destination)
+            .with_context(|| format!("copying {} to {}", source.display(), destination.display()))?;
+        if let Some(tree) = tree {
+            icon_index.enhancement_paths.insert(file_name.to_lowercase(), (tree.to_string(), destination));
+        } else {
             icon_index.insert_global(kind, destination)?;
         }
+        report.copied_from_other_kind += 1;
     }
+    report.missing_icons.sort();
+    report.missing_icons.dedup();
+    report.unresolved_case_aliases.sort();
+    report.unresolved_case_aliases.dedup();
     Ok(report)
 }
 
@@ -590,18 +612,14 @@ mod icon_index_tests {
 
     #[test]
     fn copied_icons_preserve_upstream_case_and_report_mismatched_references() {
-        let db = rusqlite::Connection::open_in_memory().unwrap();
-        db.execute_batch(ddo_model::ddl()).unwrap();
-        db.execute(
-            "INSERT INTO feats (name, source_kind, icon, slug) VALUES ('Test Feat', 'standard', 'MobileSpellCasting', 'test-feat')",
-            [],
-        )
-        .unwrap();
         let root = std::env::temp_dir().join(format!("ddo-icon-normalize-{}", std::process::id()));
         let icons = root.join("icons/feats");
         std::fs::create_dir_all(&icons).unwrap();
         std::fs::write(icons.join("MobileSpellcasting.png"), b"icon").unwrap();
-        let report = super::complete_referenced_icons(&db, &root).unwrap();
+        let feats = root.join("characters/feats/standard.toml");
+        std::fs::create_dir_all(feats.parent().unwrap()).unwrap();
+        std::fs::write(feats, "[[row]]\nname = 'Test Feat'\nacquire = 'Train'\nicon = 'MobileSpellCasting'\n").unwrap();
+        let report = super::complete_referenced_icons(&root).unwrap();
         assert_eq!(report.unresolved_case_aliases, ["feats/MobileSpellCasting.png"]);
         let index = super::IconIndex::from_data(&root).unwrap();
         assert!(index.global_exact("feats", "MobileSpellcasting.png").is_some());
@@ -611,22 +629,46 @@ mod icon_index_tests {
 
     #[test]
     fn missing_upstream_art_is_reported_without_changing_the_baseline() {
-        let db = rusqlite::Connection::open_in_memory().unwrap();
-        for &(table, _) in super::ICON_TABLE_KINDS {
-            db.execute_batch(&format!("CREATE TABLE {table} (name TEXT, icon TEXT)")).unwrap();
-        }
-        db.execute("INSERT INTO items (name, icon) VALUES ('Null Blade', 'Shortsword_18')", []).unwrap();
         let root = std::env::temp_dir().join(format!("ddo-icon-missing-{}", std::process::id()));
-        for &(_, folder) in super::ICON_KIND_SOURCE_FOLDERS {
+        let item = root.join("packs/unsourced/gear/null-blade.toml");
+        std::fs::create_dir_all(item.parent().unwrap()).unwrap();
+        let contents = "name = 'Null Blade'\nicon = 'Shortsword_18'\nslot = 'Main Hand'\nitem_category = 'Weapon'\nminimum_level = 1\n";
+        std::fs::write(&item, contents).unwrap();
+        let report = super::complete_referenced_icons(&root).unwrap();
+        assert_eq!(report.missing_icons, vec!["items/Shortsword_18.png"]);
+        assert_eq!(std::fs::read_to_string(item).unwrap(), contents);
+        std::fs::remove_dir_all(root).unwrap();
+    }
+
+    #[test]
+    fn completion_preserves_qualified_paths_and_prefers_exact_source_names() {
+        let root = std::env::temp_dir().join(format!("ddo-icon-qualified-completion-{}", std::process::id()));
+        let fixture = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .join("tests/fixtures/import_ddobuilder/ba7e18e/DataFiles/FeatImages/Knock.png");
+        for folder in ["icons/items", "icons/feats", "characters/enhancements/example", ".schemas"] {
             std::fs::create_dir_all(root.join(folder)).unwrap();
         }
-        std::fs::write(root.join("ItemImages/Present.png"), b"icon").unwrap();
-        let report = super::complete_referenced_icons(&db, &root).unwrap();
-        assert_eq!(report.missing_icons, vec!["items/Shortsword_18.png"]);
-        assert_eq!(
-            db.query_row("SELECT icon FROM items", [], |row| row.get::<_, Option<String>>(0)).unwrap(),
-            Some("Shortsword_18".to_string())
-        );
+        std::fs::copy(&fixture, root.join("icons/items/knock.png")).unwrap();
+        std::fs::copy(&fixture, root.join("icons/feats/Knock.png")).unwrap();
+        std::fs::write(root.join(".schemas/ignored.toml"), "invalid TOML [").unwrap();
+        std::fs::write(
+            root.join("characters/enhancements/example/tree.toml"),
+            "name = 'Example'\nicon = 'Knock'\nbackground = 'Knock'\nkind = 'racial'\nversion = 1\n",
+        )
+        .unwrap();
+        std::fs::write(root.join("characters/optional-buffs.toml"),
+            "[[row]]\nname = 'Knock'\ndescription = 'Knock'\nicon = 'enhancements/example/Knock'\n[[row]]\nname = 'Other Knock'\ndescription = 'Knock'\nicon = 'spells/Knock'\n").unwrap();
+        let report = super::complete_referenced_icons(&root).unwrap();
+        assert!(report.missing_icons.is_empty(), "{report:?}");
+        assert!(report.unresolved_case_aliases.is_empty(), "{report:?}");
+        for path in ["characters/enhancements/example/icons/Knock.png", "icons/spells/Knock.png"] {
+            assert_eq!(std::fs::read(root.join(path)).unwrap(), std::fs::read(&fixture).unwrap());
+        }
+        super::place_enhancement_icons_beside_trees(&root).unwrap();
+        let index = super::IconIndex::from_data(&root).unwrap();
+        index.validate_reference("*", None, "enhancements/example/Knock").unwrap();
+        index.validate_reference("*", None, "spells/Knock").unwrap();
+        assert_eq!(super::complete_referenced_icons(&root).unwrap(), super::IconCompletionReport::default());
         std::fs::remove_dir_all(root).unwrap();
     }
 

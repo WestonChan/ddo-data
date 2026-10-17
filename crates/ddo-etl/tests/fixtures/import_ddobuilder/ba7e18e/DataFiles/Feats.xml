@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Feats>
+  
+  <!--A list of all the standard feats that can be selected in game-->
+  
+  
+  
+  <Feat>
+    <Name>Alertness</Name>
+    <Description>Provides a +2 bonus to your Listen and Spot skills.</Description>
+    <Group>Standard</Group>
+    <Group>Epic Feat</Group>
+    <Acquire>Train</Acquire>
+    <Icon>Alertness</Icon>
+    <Effect>
+      <Type>SkillBonus</Type>
+      <Bonus>Feat</Bonus>
+      <Item>Listen</Item>
+      <Item>Spot</Item>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+  </Feat>
+  
+  <Feat>
+    <Name>Attack</Name>
+    <Description>This is the standard attack for all characters. It can be toggled on to
+attack repeatedly until your target is defeated, or activated once by right-clicking the mouse.</Description>
+    <MaxTimesAcquire>1</MaxTimesAcquire>
+    <Acquire>Automatic</Acquire>
+    <Icon>Attack</Icon>
+    <AutomaticAcquisition>
+      <Requirement>
+        <Type>Level</Type>
+        <Value>1</Value>
+      </Requirement>
+    </AutomaticAcquisition>
+    <Attack>
+      <Name>Basic Attack</Name>
+      <Description>You attack with your weapon</Description>
+      <Icon>Attack</Icon>
+      <Cooldown size="1">0</Cooldown>
+      <ThisAttack>
+        <!--No special entries as its just standard damage-->
+      </ThisAttack>
+    </Attack>
+    <!--tumble charges-->
+    <Effect>
+      <DisplayName>Tumble Base Charges</DisplayName>
+      <Type>TumbleCharge</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">2</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>10 Skill Ranks in Tumble</DisplayName>
+      <Type>TumbleCharge</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Skill</Type>
+          <Item>Tumble</Item>
+          <Value>10</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Cloth Armor</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Light Armor</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>20 Skill Ranks in Tumble</DisplayName>
+      <Type>TumbleCharge</Type>
+      <Bonus>Enhancement</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Skill</Type>
+          <Item>Tumble</Item>
+          <Value>20</Value>
+        </Requirement>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Cloth Armor</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Light Armor</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+    <!--As this is a feat all characters gain, its used as a placeholder for adding some special effects and stances-->
+    <Effect>
+      <DisplayName>Standard Death at</DisplayName>
+      <Type>UnconsciousRange</Type>
+      <Bonus>Base</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">-10</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>Standard Helpless Damage Bonus</DisplayName>
+      <Type>HelplessDamage</Type>
+      <Bonus>Base</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">50</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>Standard off hand attack chance</DisplayName>
+      <Type>OffHandAttackBonus</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>Standard Strikethrough chance</DisplayName>
+      <Type>Strikethrough</Type>
+      <Bonus>Feat</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">20</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>Base AC</DisplayName>
+      <Type>ACBonus</Type>
+      <Bonus>Base</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>Base Dodge Cap</DisplayName>
+      <Type>DodgeCapBonus</Type>
+      <Bonus>Base</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">25</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>Base Main hand Weapon Multiplier</DisplayName>
+      <Type>DamageAbilityMultiplier</Type>
+      <Bonus>Base</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">1</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>Base Two Handed Fighting Weapon Multiplier</DisplayName>
+      <Type>DamageAbilityMultiplier</Type>
+      <Bonus>Base</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0.5</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Two Handed Fighting</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Base Hand and a Half Main hand Weapon Multiplier</DisplayName>
+      <Type>DamageAbilityMultiplier</Type>
+      <Bonus>Base</Bonus>
+      <Amount size="1">0.1</Amount>
+      <AType>Simple</AType>
+      <Requirements>
+        <RequiresOneOf>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Bastard Sword</Item>
+          </Requirement>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Dwarven Axe</Item>
+          </Requirement>
+        </RequiresOneOf>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Base Off hand Weapon Multiplier</DisplayName>
+      <Type>DamageAbilityMultiplierOffhand</Type>
+      <Bonus>Base</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0.5</Amount>
+    </Effect>
+    <Effect>
+      <DisplayName>No limit to Max Dex Bonus</DisplayName>
+      <Type>MaxDexBonus</Type>
+      <Bonus>Equipment</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">999</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Cloth Armor</Item>
+        </Requirement>
+        <RequiresNoneOf>
+          <Requirement>
+            <Type>Stance</Type>
+            <Item>Tower Shield</Item>
+          </Requirement>
+        </RequiresNoneOf>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Equipped Buckler PRR/MRR Bonus</DisplayName>
+      <Type>PRR</Type>
+      <Type>MRR</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">0</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Buckler</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Equipped Small Shield PRR/MRR Bonus</DisplayName>
+      <Type>PRR</Type>
+      <Type>MRR</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">5</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Small Shield</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Equipped Large Shield PRR/MRR Bonus</DisplayName>
+      <Type>PRR</Type>
+      <Type>MRR</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">10</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Large Shield</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Effect>
+      <DisplayName>Equipped Tower Shield PRR/MRR Bonus</DisplayName>
+      <Type>PRR</Type>
+      <Type>MRR</Type>
+      <Bonus>Shield</Bonus>
+      <AType>Simple</AType>
+      <Amount size="1">15</Amount>
+      <Requirements>
+        <Requirement>
+          <Type>Stance</Type>
+          <Item>Tower Shield</Item>
+        </Requirement>
+      </Requirements>
+    </Effect>
+    <Stance>
+      <Name>Reaper</Name>
+      <Icon>ReaperTree</Icon>
+      <Description>Activate to view your characters abilities when running in Reaper mode</Description>
+      <Group>User</Group>
+    </Stance>
+    <Stance>
+      <Name>Action Boost</Name>
+      <Icon>ActionBoostAttack</Icon>
+      <Description>An action boost is active</Description>
+      <Group>User</Group>
+    </Stance>
+    <Stance>
+      <Name>Blocking</Name>
+      <Icon>Blocking</Icon>
+      <Description>You are blocking.</Description>
+      <Group>User</Group>
+    </Stance>
+    <DC>
+      <Name>Intimidate</Name>
+      <Description>Allows you to intimidate certain NPCs and to draw the attention of monsters while in battle.
+You will suffer a -4 penalty to your intimidate skill for every size category
+you are smaller than the creature your are trying to intimidate, or +4 for every
+size category your are larger. (15 second cooldown)</Description>
+      <Icon>Intimidate</Icon>
+      <DCType>Intimidate</DCType>
+      <DCVersus>10+HD+Wis Mod</DCVersus>
+      <Other>d20</Other>
+      <Skill>Intimidate</Skill>
+    </DC>
+    <DC>
+      <Name>Diplomacy</Name>
+      <Description>Allows you to negotiate more effectively with certain NPCs and to encourage
+monsters to find targets other than yourself. Any accumulated threat you
+have with enemies that you successfully diplomacize is reduced.
+(15 second cooldown, Shares cooldown with Bluff)</Description>
+      <Icon>Diplomacy</Icon>
+      <DCType>Diplomacy</DCType>
+      <DCVersus>CR+Quest Level</DCVersus>
+      <Other>d20</Other>
+      <Skill>Diplomacy</Skill>
+    </DC>
+    <DC>
+      <Name>Bluff</Name>
+      <Description>Allows you to bluff certain NPCs, draw monsters away from their group,
+or make an individual monster vulnerable to sneak attack for six seconds.
+You also gain a decrease in threat generation for a short period of time after
+successfully using this ability. (15 second cooldown, Shares cooldown with Diplomacy)</Description>
+      <Icon>Bluff</Icon>
+      <DCType>Bluff</DCType>
+      <DCVersus>CR+Quest Level</DCVersus>
+      <Other>d20</Other>
+      <Skill>Bluff</Skill>
+    </DC>
+  </Feat>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--Epic Past Lives-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--Special feats-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--Lore Feats-->
+  
+  
+  
+  <!--Follower of feats-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--Child of feats-->
+  
+  <!--Deity feats-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--Beloved of feats-->
+  
+  
+  
+  <!--New U41 Patch 3 Favor feats-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--shortcut feats to gain access to universal enhancement trees-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--Alchemist feats-->
+  
+  
+  <!--U51 Destiny Tree Claimed Feats-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!--Update 81 new feats-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <!--Cantrips and associated feats-->
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</Feats>

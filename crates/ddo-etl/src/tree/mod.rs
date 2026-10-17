@@ -26,10 +26,11 @@ mod tables;
 mod xml_slugs;
 use annotations::wiki_url_for_name;
 pub use build::build_from_data;
+pub(crate) use build::referenced_data_icons;
 pub(crate) use crafting::recipe_focus_path;
 pub use ddo_model::identity::slug;
 use export::*;
-pub use export::{data_file_bytes, export_database};
+pub use export::{data_file_bytes, export_database, export_ddobuilder_tree};
 pub(crate) use kinds::insert_xml_vendor_currencies;
 use kinds::UpstreamCommitFile;
 pub use kinds::{ExceptionsFile, PackException, QuestPackException};
@@ -542,7 +543,7 @@ mod tests {
         crate::icons::export_icons(&fixtures.join("DataFiles"), &root.join("icons")).unwrap();
         std::fs::create_dir_all(root.join("icons/ui")).unwrap();
         std::fs::copy(root.join("icons/feats/PowerAttack.png"), root.join("icons/ui/Unknown.png")).unwrap();
-        let icon_report = crate::icons::complete_referenced_icons(&baseline, &root).unwrap();
+        let icon_report = crate::icons::complete_referenced_icons(&root).unwrap();
         for missing_icon in icon_report.missing_icons {
             let icon_path = root.join("icons").join(missing_icon);
             std::fs::create_dir_all(icon_path.parent().unwrap()).unwrap();

@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Enhancements>
+  <EnhancementTree>
+    <Name>Ravager (Fighter)</Name>
+    <Version>1</Version>
+    <Icon>Fighter</Icon>
+    <Background>FighterBackground</Background>
+    <Requirements>
+      <Requirement>
+        <Type>Class</Type>
+        <Item>Dragon Lord</Item>
+      </Requirement>
+    </Requirements>
+    <!--tree DLRavCore items-->
+    
+    
+    
+    
+    
+    
+    <!--Tier 1 Enhancements-->
+    
+    
+    
+    <EnhancementTreeItem>
+      <Name>Ravager: Draconic Power Attack</Name>
+      <InternalName>DLRavDraconicPowerAttack</InternalName>
+      <Description>Your Power Attack feat does [1/2/3] additional point(s) of bonus damage.
+Note: Stacks with Improved Power Attack. Damage is doubled when Two Handed
+Fighting or fighting in an animal form.</Description>
+      <Icon>RavBarbarianPowerAttack</Icon>
+      <XPosition>3</XPosition>
+      <YPosition>1</YPosition>
+      <CostPerRank size="1">1</CostPerRank>
+      <Ranks>3</Ranks>
+      <MinSpent>1</MinSpent>
+      <Clickie />
+      <Requirements>
+        <Requirement>
+          <Type>Class</Type>
+          <Item>Dragon Lord</Item>
+          <Value>1</Value>
+        </Requirement>
+        <Requirement>
+          <Type>Feat</Type>
+          <Item>Power Attack</Item>
+        </Requirement>
+      </Requirements>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+           <RequiresOneOf>
+             <Requirement>
+               <Type>Stance</Type>
+               <Item>Power Attack</Item>
+             </Requirement>
+             <Requirement>
+               <Type>Stance</Type>
+               <Item>Heavy Draw</Item>
+             </Requirement>
+           </RequiresOneOf>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+      <Effect>
+        <Type>Weapon_Damage</Type>
+        <Bonus>Enhancement</Bonus>
+        <AType>Stacks</AType>
+        <Amount size="3">1 2 3</Amount>
+        <Requirements>
+           <Requirement>
+              <Type>Stance</Type>
+              <Item>Power Attack</Item>
+           </Requirement>
+          <RequiresOneOf>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Winter Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Plague Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Blighted Wolf</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Bear</Item>
+            </Requirement>
+            <Requirement>
+              <Type>Stance</Type>
+              <Item>Dire Bear</Item>
+            </Requirement>
+           <Requirement>
+              <Type>Stance</Type>
+              <Item>Two Handed Fighting</Item>
+           </Requirement>
+          </RequiresOneOf>
+        </Requirements>
+        <Item>All</Item>
+      </Effect>
+    </EnhancementTreeItem>
+    
+    <!--Tier 2 Enhancements-->
+    
+    
+    
+    
+    
+    <!--Tier 3 Enhancements-->
+    
+    
+    
+    
+    <!--Tier 4 Enhancements-->
+    
+    
+    
+    
+    <!--Tier 5 Enhancements-->
+    
+    
+    
+    
+  </EnhancementTree>
+</Enhancements>

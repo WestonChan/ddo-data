@@ -320,6 +320,21 @@ pub(super) fn write_export_file(
     Ok(())
 }
 
+pub fn export_ddobuilder_tree(db: &Connection, data_files_dir: &Path, root: &Path) -> Result<DatasetFileReport> {
+    let report = export_database(db, root)?;
+    crate::icons::export_icons(data_files_dir, &root.join("icons"))?;
+    let icon_report = crate::icons::complete_referenced_icons(root)?;
+    ensure!(icon_report.missing_icons.is_empty(), "missing image files: {:?}", icon_report.missing_icons);
+    ensure!(
+        icon_report.unresolved_case_aliases.is_empty(),
+        "icon references differ from upstream filenames; correct the references with notes: {:?}",
+        icon_report.unresolved_case_aliases
+    );
+    crate::icons::place_enhancement_icons_beside_trees(root)?;
+    ensure!(report.icon_actions.is_empty(), "export has HARD image layout failures");
+    Ok(report)
+}
+
 pub fn export_database(db: &Connection, root: &Path) -> Result<DatasetFileReport> {
     let mut report = DatasetFileReport::default();
     let annotations = annotations::EntityAnnotations::from_database(db)?;
