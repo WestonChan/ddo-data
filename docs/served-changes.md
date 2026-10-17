@@ -142,3 +142,7 @@ The upstream differences include these families:
 - Lamordia augment target and amount edits change effect links and their carrier lists; Cannith augment levels gain a tier. Purity's rare Healing Amplification filigree changes PRR to MRR, Frozen Wanderer changes Cold Spell Critical Chance to Damage, and Champion of the Twins gains set membership. Derived effect templates and carrier values follow the changed upstream buffs and owners.
 
 The comparison walks arrays by position. Recipe ingredient/output reordering and effect-bonus ordering are documented changes; an upstream addition or removal also shifts later array positions. The audit compares owner/link membership and resolved bonus values independently of those positions before attributing mixed paths. It does not treat every changed array element as a new balance change or every missing old effect name as lost data.
+
+## Icons served from the data files (2026-10-17)
+
+The deploy builds icons from the data files (`ddo-etl icons --data data`). Every path the XML build served (8,735) is served with identical bytes; 3,014 further paths are served that the XML build did not place, the tree-local enhancement images and the per-kind copies the data files hold. No path disappeared.

@@ -10,6 +10,17 @@ These files are for correcting and completing what already exists: a wrong bonus
 
 A change that touches many entities at once is a database change, not a hand edit: a new pack with its quests, chains and gear; a new crafting system and the augments it makes; a stat or effect renamed everywhere it appears; Maetrim's update arriving. Build the database, make the change there (or import his files into it), and run `ddo-etl export --db ddo.db --out data` to write every file back in the layout the placement rule gives it. The export is the only writer that places hundreds of files consistently; editing them by hand invites the drift the round trip exists to catch.
 
+The database path, step by step: build it, change it, write it back, prove it.
+
+```bash
+cargo run --release -p ddo-etl -- build --data data --out ddo.db
+sqlite3 ddo.db "UPDATE items SET minimum_level = 32 WHERE slug = 'legendary-fang-of-the-wolf'"
+cargo run --release -p ddo-etl -- export --db ddo.db --out data
+cargo xtask round-trip --data data
+```
+
+The export rewrites every file in the layout the placement rule gives it, so a moved pack or a renamed entity lands where it now belongs, and files no entity owns any more are removed. Review `git diff --stat data` before committing: a change meant for one entity that touches hundreds of files means the SQL did more than intended. `ddo-etl import-ddobuilder` is this path automated for Maetrim's updates (`docs/update-from-maetrim.md`): it builds the database from the files, merges his delta into it, and exports. Nothing edits the TOML except the export and a person.
+
 ## Layout
 
 Quests, crafting systems, vendors and events are folders holding their record and what they yield. Chains, sagas, sets, patrons, filigree sets and challenges are files in their kind folders. Quests never nest inside chains. The root has seven entries:

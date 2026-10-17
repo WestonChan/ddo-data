@@ -38,16 +38,7 @@ Requires a stable Rust toolchain (`rustup`). `rust-toolchain.toml` pins the chan
 cargo test
 ```
 
-The ETL needs a sparse checkout of DDOBuilderV2 limited to its data files (~87 MB). It is ignored
-by git.
-
-```bash
-git clone --depth 1 --filter=blob:none --sparse https://github.com/Maetrim/DDOBuilderV2 upstream
-git -C upstream sparse-checkout set Output/DataFiles
-cargo run -p ddo-etl -- build --source upstream/Output/DataFiles --out ddo.db
-```
-
-The editable dataset is also checked in under [`data/`](data/README.md), one TOML file per entity or existing rules group. Build it without an upstream checkout:
+The dataset is checked in under [`data/`](data/README.md), one TOML file per entity or existing rules group, and the deploy builds from it. Maetrim's DDOBuilderV2 files enter through `ddo-etl import-ddobuilder` ([`docs/update-from-maetrim.md`](docs/update-from-maetrim.md)); the XML build path (`build --source`, a sparse checkout of DDOBuilderV2 under the gitignored `upstream/`) remains until V9 chunk 2 removes it. Build the data files:
 
 ```bash
 cargo run -p ddo-etl -- build --data data --out ddo.db
@@ -102,8 +93,8 @@ download the whole database once from `/v1/dump.sqlite` rather than paging the l
 
 ## Deployment
 
-`.github/workflows/deploy.yml` runs on every push to `main`, weekly, and on demand. It sparse-clones
-DDOBuilderV2, skips the run when the live API already serves both that data commit and this code commit, builds the ETL and the API, builds the database
+`.github/workflows/deploy.yml` runs on every push to `main` and on demand. It reads the dataset commit from
+`data/upstream/commit.toml`, skips the run when the live API already serves both that data commit and this code commit, builds the ETL and the API, builds the database
 and the icon tree, checks row-count floors, keeps the database as a workflow artifact, and runs
 `flyctl deploy --remote-only` with the `Dockerfile` (a prebuilt binary, the database and the icons
 copied into a slim Debian image; nothing compiles on Fly). The database is baked into the image, so
