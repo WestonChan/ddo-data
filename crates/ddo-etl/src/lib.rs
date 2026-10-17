@@ -1,5 +1,7 @@
 pub mod build;
 pub mod corrections;
+pub mod database_tables;
+pub mod delta;
 pub mod diff;
 pub mod icons;
 mod loot_sources;

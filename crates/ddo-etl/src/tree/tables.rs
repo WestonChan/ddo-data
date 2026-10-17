@@ -364,19 +364,6 @@ pub(super) fn modifier_rows_by_owner(db: &Connection) -> Result<ModifierRowsByOw
     Ok(modifiers)
 }
 
-pub(super) fn table_names(db: &Connection) -> Result<Vec<String>> {
-    let mut statement =
-        db.prepare("SELECT name FROM sqlite_master WHERE type = 'table' AND name NOT LIKE 'sqlite_%' ORDER BY name")?;
-    let names = statement.query_map([], |row| row.get::<_, String>(0))?.collect::<rusqlite::Result<_>>()?;
-    Ok(names)
-}
-
-pub(super) fn table_columns(db: &Connection, table: &str) -> Result<Vec<String>> {
-    let mut statement = db.prepare(&format!("PRAGMA table_info(\"{table}\")"))?;
-    let columns = statement.query_map([], |row| row.get::<_, String>(1))?.collect::<rusqlite::Result<_>>()?;
-    Ok(columns)
-}
-
 pub(super) fn id_for_name(db: &Connection, table: &str, name: &str) -> Result<i64> {
     db.query_row(&format!("SELECT id FROM \"{table}\" WHERE name = ?1"), [name], |row| row.get(0))
         .with_context(|| format!("unknown {table} name {name:?}"))

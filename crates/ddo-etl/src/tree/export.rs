@@ -1,5 +1,25 @@
 use super::*;
 
+pub fn data_file_bytes(root: &Path) -> Result<BTreeMap<PathBuf, Vec<u8>>> {
+    walkdir::WalkDir::new(root)
+        .into_iter()
+        .filter_map(|entry| match entry {
+            Ok(entry)
+                if entry.file_type().is_file()
+                    && entry.path().extension().is_some_and(|extension| extension == "toml") =>
+            {
+                Some(Ok(entry))
+            }
+            Ok(_) => None,
+            Err(error) => Some(Err(error)),
+        })
+        .map(|entry| {
+            let entry = entry?;
+            Ok((entry.path().strip_prefix(root)?.to_path_buf(), std::fs::read(entry.path())?))
+        })
+        .collect()
+}
+
 struct CorrectionNote {
     note: EntityNote,
     name: String,

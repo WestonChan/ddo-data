@@ -1,3 +1,4 @@
+use crate::database_tables::{table_columns, table_names};
 use crate::map::source_alias::SourceAliases;
 use crate::wiki::WikiOverrides;
 use anyhow::{bail, ensure, Context, Result};
@@ -27,8 +28,8 @@ use annotations::wiki_url_for_name;
 pub use build::build_from_data;
 pub(crate) use crafting::recipe_focus_path;
 pub use ddo_model::identity::slug;
-pub use export::export_database;
 use export::*;
+pub use export::{data_file_bytes, export_database};
 pub(crate) use kinds::insert_xml_vendor_currencies;
 use kinds::UpstreamCommitFile;
 pub use kinds::{ExceptionsFile, PackException, QuestPackException};

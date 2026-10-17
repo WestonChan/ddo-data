@@ -1,28 +1,8 @@
 use anyhow::{ensure, Context, Result};
+use ddo_etl::tree::data_file_bytes;
 use rusqlite::Connection;
-use std::collections::BTreeMap;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 use std::time::Instant;
-
-fn toml_files(root: &Path) -> Result<BTreeMap<PathBuf, Vec<u8>>> {
-    walkdir::WalkDir::new(root)
-        .into_iter()
-        .filter_map(|entry| match entry {
-            Ok(entry)
-                if entry.file_type().is_file()
-                    && entry.path().extension().is_some_and(|extension| extension == "toml") =>
-            {
-                Some(Ok(entry))
-            }
-            Ok(_) => None,
-            Err(error) => Some(Err(error)),
-        })
-        .map(|entry| {
-            let entry = entry?;
-            Ok((entry.path().strip_prefix(root)?.to_path_buf(), std::fs::read(entry.path())?))
-        })
-        .collect()
-}
 
 fn copy_data_images(source_dir: &Path, destination_dir: &Path) -> Result<()> {
     for entry in walkdir::WalkDir::new(source_dir) {
@@ -49,8 +29,8 @@ pub fn verify_round_trip(data_dir: &Path) -> Result<()> {
     ddo_etl::tree::build_from_data(data_dir, &mut first_db)?;
     let first_build_time = start.elapsed();
     ddo_etl::tree::export_database(&first_db, &exported_files)?;
-    let first_files = toml_files(data_dir)?;
-    let second_files = toml_files(&exported_files)?;
+    let first_files = data_file_bytes(data_dir)?;
+    let second_files = data_file_bytes(&exported_files)?;
     for file in first_files.keys().chain(second_files.keys()) {
         ensure!(first_files.get(file) == second_files.get(file), "data round trip changed {}", file.display());
     }
