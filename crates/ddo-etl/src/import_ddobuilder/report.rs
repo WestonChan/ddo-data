@@ -48,6 +48,10 @@ fn quoted(value: &str) -> String {
     serde_json::to_string(value).expect("string serialization cannot fail")
 }
 
+fn report_value(encoded: &str) -> String {
+    serde_json::from_str::<serde_json::Value>(encoded).map_or_else(|_| quoted(encoded), |value| value.to_string())
+}
+
 fn subject_name(subject: &ConflictSubject) -> &str {
     match subject {
         ConflictSubject::Column(column) => column,
@@ -80,25 +84,50 @@ pub(super) fn report(
         tables.entry(conflict.table.clone()).or_default().conflicts += 1;
         conflict_count += 1;
         let conflict_paths = if conflict.identity == "dataset" {
-            let mut files = paths.dataset_paths(&conflict.table);
-            files.extend(incoming_paths.dataset_paths(&conflict.table));
-            files.extend(old_paths.dataset_paths(&conflict.table));
+            let mut files = std::collections::BTreeSet::new();
+            if conflict.table == "pack_exceptions" {
+                for encoded in [&conflict.previous, &conflict.new, &conflict.ours] {
+                    let rows: serde_json::Value = serde_json::from_str(encoded)?;
+                    for row in rows.as_array().context("pack exception conflict is not an array")? {
+                        let name = row["fields"]["pack_name"].as_str().context("pack exception has no owner")?;
+                        let path = paths
+                            .pack_path(name)
+                            .or_else(|| incoming_paths.pack_path(name))
+                            .or_else(|| old_paths.pack_path(name))
+                            .context("pack exception owner has no path")?;
+                        files.insert(path.clone());
+                    }
+                }
+            } else {
+                files.extend(paths.dataset_paths(&conflict.table));
+                files.extend(incoming_paths.dataset_paths(&conflict.table));
+                files.extend(old_paths.dataset_paths(&conflict.table));
+            }
             anyhow::ensure!(!files.is_empty(), "dataset conflict {} has no file", conflict.table);
             files
         } else {
             std::collections::BTreeSet::from([paths.path(&conflict.table, conflict.ours_id)?])
         };
-        for path in conflict_paths {
+        let mut conflict_paths = conflict_paths.into_iter();
+        if let Some(path) = conflict_paths.next() {
             entries.push(ImportReportEntry {
                 path,
                 category: "CONFLICT",
                 detail: format!(
-                    "{} {} previous={} new={} ours={}",
+                    "{} {} previous={} new={} ours={}{}",
                     conflict.identity,
                     subject_name(&conflict.subject),
-                    quoted(&conflict.previous),
-                    quoted(&conflict.new),
-                    quoted(&conflict.ours)
+                    report_value(&conflict.previous),
+                    report_value(&conflict.new),
+                    report_value(&conflict.ours),
+                    {
+                        let others = conflict_paths.map(|path| path.display().to_string()).collect::<Vec<_>>();
+                        if others.is_empty() {
+                            String::new()
+                        } else {
+                            format!("; files={}", quoted(&others.join(", ")))
+                        }
+                    }
                 ),
             });
         }
@@ -131,6 +160,16 @@ pub(super) fn report(
             ))
         })?
         .collect::<rusqlite::Result<BTreeMap<_, _>>>()?;
+    let mut retained_index = IdentityIndex::from_db(rebuilt)?;
+    for (key, id) in &correction_ids {
+        if outcome.kept_correction_notes.contains(&retained_index.identity("corrections", *id)?) {
+            entries.push(ImportReportEntry {
+                path: paths.path("corrections", *id)?,
+                category: "KEPT NOTE",
+                detail: format!("{} {} [{}].{}", key.kind, quoted(&key.name), key.qualifier, key.field),
+            });
+        }
+    }
     for event in events {
         let (key, previous, new, ours) = match event {
             CorrectionEvent::ResolvedNote { key, previous, new } => (key, previous, new, None),
@@ -141,7 +180,7 @@ pub(super) fn report(
         let (category, suffix) = if let Some(ours) = ours {
             conflict_count += 1;
             counts.conflicts += 1;
-            ("CONFLICT", format!(" ours={}", quoted(&ours)))
+            ("CONFLICT", format!(" ours={}", report_value(&ours)))
         } else {
             counts.resolved_notes += 1;
             ("RESOLVED NOTE", String::new())
@@ -155,8 +194,8 @@ pub(super) fn report(
                 quoted(&key.name),
                 key.qualifier,
                 key.field,
-                quoted(&previous),
-                quoted(&new),
+                report_value(&previous),
+                report_value(&new),
                 suffix
             ),
         });
@@ -206,7 +245,11 @@ pub(super) fn report(
         }
     }
     for (table, id) in outcome.deleted {
-        old_paths.path(&table, id)?;
+        entries.push(ImportReportEntry {
+            path: old_paths.path(&table, id)?,
+            category: "REMOVED",
+            detail: format!("{table}/{id}"),
+        });
     }
     let icon_counts = tables.entry("icons".into()).or_default();
     icon_counts.added = icons.added;

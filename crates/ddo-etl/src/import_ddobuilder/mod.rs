@@ -247,7 +247,11 @@ mod tests {
         let edited = |folder: &str, reason: &str| {
             let root = scratch.path().join(folder);
             let db = fixture_database(&root);
-            db.execute("UPDATE source_aliases SET reason = ?1", [reason]).unwrap();
+            db.execute(
+                "UPDATE source_aliases SET reason = ?1 WHERE rowid = (SELECT MIN(rowid) FROM source_aliases)",
+                [reason],
+            )
+            .unwrap();
             tree::export_database(&db, &root).unwrap();
             let mut rebuilt = Connection::open_in_memory().unwrap();
             tree::build_from_data(&root, &mut rebuilt).unwrap();
@@ -275,5 +279,79 @@ mod tests {
         assert_eq!(report.entries[0].path, PathBuf::from("upstream/source-aliases.toml"));
         assert!(report.entries[0].detail.contains("His revised alias research"));
         assert!(report.entries[0].detail.contains("Our revised alias research"));
+        assert!(!report.entries[0].detail.contains("integer:"));
+        assert!(!report.entries[0].detail.contains("text:"));
+        let values = report.entries[0].detail.split("previous=").nth(1).unwrap().split(" new=").next().unwrap();
+        let rows: serde_json::Value = serde_json::from_str(values).unwrap();
+        assert_eq!(rows.as_array().unwrap().len(), 1);
+    }
+
+    #[test]
+    fn report_lists_kept_correction_notes() {
+        let scratch = tempfile::tempdir().unwrap();
+        let with_note = |folder: &str| {
+            let root = scratch.path().join(folder);
+            let original = fixture_database(&root);
+            original.execute("INSERT INTO corrections (kind, name, field, from_value, to_value, reason, source, read) SELECT 'enhancement', name, 'description', '\"Previous prose\"', json_quote(description), 'Retained research', 'https://ddowiki.com/page/Stalwart_Defender_enhancements', '2026-10-17' FROM enhancements WHERE internal_name = 'SDDefenseBoost'", []).unwrap();
+            tree::export_database(&original, &root).unwrap();
+            let mut rebuilt = Connection::open_in_memory().unwrap();
+            tree::build_from_data(&root, &mut rebuilt).unwrap();
+            rebuilt
+        };
+        let previous = with_note("previous");
+        let mut ours = with_note("ours");
+        let new = fixture_database(&scratch.path().join("new"));
+        let paths = DataFilePaths::from_database(&ours).unwrap();
+        let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+        tree::rederive_data_build_tables(&ours).unwrap();
+        let report = report::report(
+            ("previous".into(), "new".into()),
+            outcome,
+            Vec::new(),
+            icons::IconMerge::default(),
+            &ours,
+            &new,
+            &paths,
+        )
+        .unwrap();
+        assert!(report.to_string().contains("characters/enhancements/stalwart-defender/tree.toml: KEPT NOTE enhancement \"Stalwart Defender: Defense Boost\""), "{report}");
+    }
+
+    #[test]
+    fn pack_exception_conflict_names_owners_once_and_omits_unchanged_rows() {
+        let scratch = tempfile::tempdir().unwrap();
+        let side = |folder: &str, url: &str| {
+            let root = scratch.path().join(folder);
+            let original = fixture_database(&root);
+            original.execute_batch("INSERT INTO adventure_packs (id, slug, name) VALUES (-1, 'another-pack', 'Another Pack'); INSERT INTO pack_exceptions (pack_name, rule, row_index, entity_kind, entity_name, url) SELECT name, 'patron', 0, 'patron', name, 'https://ddowiki.com/page/Unchanged' FROM adventure_packs").unwrap();
+            original.execute("UPDATE pack_exceptions SET url = ?1 WHERE pack_name = 'Another Pack'", [url]).unwrap();
+            tree::rederive_data_build_tables(&original).unwrap();
+            tree::export_database(&original, &root).unwrap();
+            let mut rebuilt = Connection::open_in_memory().unwrap();
+            tree::build_from_data(&root, &mut rebuilt).unwrap();
+            rebuilt
+        };
+        let previous = side("previous", "https://ddowiki.com/page/Previous");
+        let new = side("new", "https://ddowiki.com/page/New");
+        let mut ours = side("ours", "https://ddowiki.com/page/Ours");
+        let paths = DataFilePaths::from_database(&ours).unwrap();
+        let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+        tree::rederive_data_build_tables(&ours).unwrap();
+        let report = report::report(
+            ("previous".into(), "new".into()),
+            outcome,
+            Vec::new(),
+            icons::IconMerge::default(),
+            &ours,
+            &new,
+            &paths,
+        )
+        .unwrap();
+        assert_eq!(report.conflict_count(), 1);
+        assert_eq!(report.entries.len(), 1);
+        assert_eq!(report.entries[0].path, PathBuf::from("packs/another-pack/pack.toml"));
+        assert!(!report.entries[0].detail.contains("Unchanged"));
+        assert!(!report.entries[0].detail.contains("Terror of Demogorgon"));
+        assert_eq!(report.to_string().lines().filter(|line| line.contains(": CONFLICT")).count(), 1);
     }
 }

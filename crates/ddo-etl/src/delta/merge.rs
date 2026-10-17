@@ -1,4 +1,5 @@
 use super::compute::{snapshot_delta, DatabaseSnapshot, RowAddress};
+use super::table_merges::position_column;
 use super::{table_merge, ArrayKey, RowFields, TableMerge, TABLE_MERGES};
 use anyhow::{ensure, Context, Result};
 use rusqlite::{params_from_iter, types::Value as SqlValue, Connection};
@@ -115,16 +116,19 @@ pub fn merge_delta_into(
             let incoming = entity_row(&new, &table, &identity).unwrap().clone();
             if let Some(address) = entity_row(&current, &table, &identity).cloned() {
                 for (column, incoming_value) in new.normalized_fields(&incoming)? {
+                    if is_group_position(&new, &incoming, &column)? {
+                        continue;
+                    }
                     let local_value = current.normalized_fields(&address)?[&column].clone();
                     if local_value != incoming_value {
                         edits.outcome.conflicts.push(Conflict {
                             table: table.clone(),
                             identity: identity.clone(),
                             ours_id: current.id(&address)?,
-                            subject: ConflictSubject::Column(column),
+                            subject: ConflictSubject::Column(column.clone()),
                             previous: "absent".into(),
-                            new: incoming_value,
-                            ours: local_value,
+                            new: new.report_cell(&incoming, &column)?.to_string(),
+                            ours: current.report_cell(&address, &column)?.to_string(),
                         });
                     }
                 }
@@ -134,6 +138,10 @@ pub fn merge_delta_into(
             }
         }
         for change in changes.changed {
+            let incoming = entity_row(&new, &table, &change.identity).unwrap().clone();
+            if is_group_position(&new, &incoming, &change.column)? {
+                continue;
+            }
             let Some(address) = entity_row(&current, &table, &change.identity).cloned() else {
                 edits.outcome.absent_in_ours.push(AbsentChange {
                     table: table.clone(),
@@ -155,12 +163,16 @@ pub fn merge_delta_into(
             } else {
                 edits.outcome.conflicts.push(Conflict {
                     table: table.clone(),
-                    identity: change.identity,
+                    identity: change.identity.clone(),
                     ours_id: current.id(&address)?,
-                    subject: ConflictSubject::Column(change.column),
-                    previous: change.previous,
-                    new: change.new,
-                    ours: local_value,
+                    subject: ConflictSubject::Column(change.column.clone()),
+                    previous: previous
+                        .report_cell(&entity_row(&previous, &table, &change.identity).unwrap().clone(), &change.column)?
+                        .to_string(),
+                    new: new
+                        .report_cell(&entity_row(&new, &table, &change.identity).unwrap().clone(), &change.column)?
+                        .to_string(),
+                    ours: current.report_cell(&address, &change.column)?.to_string(),
                 });
             }
         }
@@ -181,7 +193,7 @@ pub fn merge_delta_into(
         if edits.removals.contains_key(&key.owner) || (before == incoming && !added_owner) {
             continue;
         }
-        let local_owner = entity_row(&current, &table, &key.owner);
+        let local_owner = entity_row(&current, &table, &key.owner).cloned();
         let inserted_owner =
             entity_row(&new, &table, &key.owner).is_some_and(|address| edits.inserted.contains(address));
         if key.owner != "dataset" && local_owner.is_none() && !inserted_owner {
@@ -197,16 +209,24 @@ pub fn merge_delta_into(
         } else if inserted_owner || (!added_owner && local == before) || key.owner == "dataset" && local == before {
             edits.deleted.extend(current.array_rows.get(&key).into_iter().flatten().cloned());
             edits.inserted.extend(new.array_rows.get(&key).into_iter().flatten().cloned());
-            edits.outcome.applied.entry(table).or_default().arrays_replaced += 1;
+            if !inserted_owner {
+                edits.outcome.applied.entry(table).or_default().arrays_replaced += 1;
+            }
         } else {
+            let differing = (0..before.len().max(incoming.len()).max(local.len()))
+                .filter(|index| before.get(*index) != incoming.get(*index) || before.get(*index) != local.get(*index))
+                .collect();
+            let previous_text = previous.report_array(&key, &differing)?;
+            let new_text = new.report_array(&key, &differing)?;
+            let ours_text = current.report_array(&key, &differing)?;
             edits.outcome.conflicts.push(Conflict {
                 table,
                 identity: key.owner,
-                ours_id: local_owner.map(|address| current.id(address)).transpose()?.unwrap_or(0),
+                ours_id: local_owner.as_ref().map(|address| current.id(address)).transpose()?.unwrap_or(0),
                 subject: ConflictSubject::Array(key.array),
-                previous: if added_owner { "absent".into() } else { array_text(&before) },
-                new: array_text(&incoming),
-                ours: array_text(&local),
+                previous: if added_owner { "absent".into() } else { previous_text },
+                new: new_text,
+                ours: ours_text,
             });
         }
     }
@@ -248,6 +268,15 @@ pub fn merge_delta_into(
 
 fn entity_row<'a>(snapshot: &'a DatabaseSnapshot, table: &str, identity: &str) -> Option<&'a RowAddress> {
     snapshot.entity_rows.get(table)?.get(identity)
+}
+
+fn is_group_position(snapshot: &DatabaseSnapshot, address: &RowAddress, column: &str) -> Result<bool> {
+    let Some(TableMerge::Entity { owner_column: Some(owner), position_column: Some(position) }) =
+        table_merge(&address.table)
+    else {
+        return Ok(false);
+    };
+    Ok(column == *position && snapshot.reference(address, owner)?.is_some())
 }
 
 fn array_table(key: &ArrayKey) -> &str {
@@ -306,7 +335,7 @@ fn decline_removals(
             if declined.contains_key(identity) {
                 continue;
             }
-            if let Some(TableMerge::Entity { owner_column: Some(column) }) = table_merge(&address.table) {
+            if let Some(TableMerge::Entity { owner_column: Some(column), .. }) = table_merge(&address.table) {
                 if let Some(owner) = current.reference(address, column)? {
                     if let Some(owner_identity) = identities_by_address.get(&owner) {
                         if declined.contains_key(owner_identity) {
@@ -373,14 +402,12 @@ type OrderedEntitiesByOwner = BTreeMap<(String, String), Vec<(i64, String, RowAd
 fn ordered_entities(snapshot: &mut DatabaseSnapshot) -> Result<OrderedEntitiesByOwner> {
     let mut groups: OrderedEntitiesByOwner = BTreeMap::new();
     for (table, rows) in snapshot.entity_rows.clone() {
-        let Some(TableMerge::Entity { owner_column: Some(owner_column) }) = table_merge(&table) else { continue };
-        if !snapshot.tables[&table].columns.iter().any(|column| column == "sort_order") {
-            continue;
-        }
+        let Some(TableMerge::Entity { owner_column: Some(owner_column), .. }) = table_merge(&table) else { continue };
+        let Some(position_column) = position_column(&table) else { continue };
         for (identity, address) in rows {
             let Some(owner) = snapshot.reference(&address, owner_column)? else { continue };
             let owner_identity = snapshot.index.identity(&owner.table, snapshot.id(&owner)?)?;
-            let SqlValue::Integer(position) = snapshot.fields(&address)["sort_order"] else {
+            let SqlValue::Integer(position) = snapshot.fields(&address)[position_column] else {
                 anyhow::bail!("{table} position is not an integer")
             };
             groups.entry((table.clone(), owner_identity)).or_default().push((position, identity, address));
@@ -413,6 +440,34 @@ fn assign_merged_positions(
             continue;
         }
         let local_rows = local.get(&key).cloned().unwrap_or_default();
+        let previous_identities = previous_rows.iter().map(|(_, identity, _)| identity.clone()).collect::<Vec<_>>();
+        let incoming_identities = incoming_rows.iter().map(|(_, identity, _)| identity.clone()).collect::<Vec<_>>();
+        let local_identities = local_rows.iter().map(|(_, identity, _)| identity.clone()).collect::<Vec<_>>();
+        let common_order = |identities: &[String], other: &[String]| {
+            identities.iter().filter(|identity| other.contains(identity)).cloned().collect::<Vec<_>>()
+        };
+        let ours_changed = common_order(&local_identities, &previous_identities)
+            != common_order(&previous_identities, &local_identities);
+        let his_changed = common_order(&incoming_identities, &previous_identities)
+            != common_order(&previous_identities, &incoming_identities);
+        if ours_changed
+            && his_changed
+            && common_order(&local_identities, &incoming_identities)
+                != common_order(&incoming_identities, &local_identities)
+        {
+            let owner_table = key.1.split('/').next().unwrap();
+            if let Some(owner) = entity_row(current, owner_table, &key.1) {
+                edits.outcome.conflicts.push(Conflict {
+                    table: owner_table.into(),
+                    identity: key.1.clone(),
+                    ours_id: current.id(owner)?,
+                    subject: ConflictSubject::Array(position_column(&key.0).unwrap()),
+                    previous: serde_json::to_string(&previous_identities)?,
+                    new: serde_json::to_string(&incoming_identities)?,
+                    ours: serde_json::to_string(&local_identities)?,
+                });
+            }
+        }
         let incoming_by_identity = incoming_rows
             .iter()
             .map(|(position, identity, _)| (identity.clone(), *position))
@@ -424,26 +479,44 @@ fn assign_merged_positions(
             }
             let incoming_position = incoming_by_identity.get(&identity);
             positions.push((
-                incoming_position.copied().unwrap_or(position),
+                if ours_changed { position } else { incoming_position.copied().unwrap_or(position) },
                 incoming_position.is_none(),
                 identity,
                 false,
                 address,
             ));
         }
-        for (position, identity, address) in incoming_rows {
-            if edits.inserted.contains(&address) {
-                positions.push((position, false, identity, true, address));
+        positions.sort();
+        for (offset, (position, identity, address)) in incoming_rows.iter().enumerate() {
+            if !edits.inserted.contains(address) {
+                continue;
+            }
+            let entry = (*position, false, identity.clone(), true, address.clone());
+            if ours_changed {
+                let preceding = offset
+                    .checked_sub(1)
+                    .and_then(|index| positions.iter().position(|(_, _, name, _, _)| name == &incoming_rows[index].1));
+                positions.insert(preceding.map_or(positions.len(), |index| index + 1), entry);
+            } else {
+                positions.push(entry);
             }
         }
-        positions.sort();
+        if !ours_changed {
+            positions.sort();
+        }
         for (position, (_, _, identity, is_incoming, address)) in positions.into_iter().enumerate() {
             let position = i64::try_from(position)?;
             if is_incoming {
                 edits.incoming_positions.insert(address, position);
             } else {
-                let changed = current.fields(&address)["sort_order"] != SqlValue::Integer(position);
-                if changed && !edits.columns.get(&address).is_some_and(|columns| columns.contains_key("sort_order")) {
+                let changed =
+                    current.fields(&address)[position_column(&address.table).unwrap()] != SqlValue::Integer(position);
+                if changed
+                    && !edits
+                        .columns
+                        .get(&address)
+                        .is_some_and(|columns| columns.contains_key(position_column(&address.table).unwrap()))
+                {
                     edits.outcome.applied.entry(address.table.clone()).or_default().changed += 1;
                 }
                 for removal in &mut edits.outcome.declined_removals {
@@ -451,9 +524,6 @@ fn assign_merged_positions(
                         removal.position_renumbered = changed;
                     }
                 }
-                edits.outcome.conflicts.retain(|conflict| {
-                    conflict.identity != identity || conflict.subject != ConflictSubject::Column("sort_order".into())
-                });
                 edits.current_positions.insert(address, position);
             }
         }
@@ -562,7 +632,11 @@ fn apply_edits(
             .rows
             .iter()
             .map(|(_, row)| {
-                let column = current.tables[table].columns.iter().position(|column| column == "sort_order").unwrap();
+                let column = current.tables[table]
+                    .columns
+                    .iter()
+                    .position(|column| Some(column.as_str()) == position_column(table))
+                    .unwrap();
                 match row[column] {
                     SqlValue::Integer(position) => position,
                     _ => 0,
@@ -570,7 +644,8 @@ fn apply_edits(
             })
             .min()
             .unwrap_or(0);
-        let mut statement = db.prepare(&format!("UPDATE \"{table}\" SET sort_order = ?1 WHERE rowid = ?2"))?;
+        let position = position_column(table).unwrap();
+        let mut statement = db.prepare(&format!("UPDATE \"{table}\" SET \"{position}\" = ?1 WHERE rowid = ?2"))?;
         for (offset, address) in addresses.into_iter().enumerate() {
             let temporary =
                 minimum.checked_sub(i64::try_from(offset)? + 1).context("merge exhausted temporary positions")?;
@@ -609,7 +684,7 @@ fn apply_edits(
             }
             let mut fields = translation.fields(&address, new)?;
             if let Some(position) = edits.incoming_positions.get(&address) {
-                fields.insert("sort_order".into(), SqlValue::Integer(*position));
+                fields.insert(position_column(&address.table).unwrap().into(), SqlValue::Integer(*position));
             }
             insert_statements
                 .get_mut(&address.table)
@@ -641,7 +716,7 @@ fn apply_edits(
                 fields.insert(column.clone(), translation.cell(incoming, column, new)?);
             }
             if let Some(position) = edits.current_positions.get(address) {
-                fields.insert("sort_order".into(), SqlValue::Integer(*position));
+                fields.insert(position_column(&address.table).unwrap().into(), SqlValue::Integer(*position));
             }
             let mut values = contents.columns.iter().map(|column| fields[column].clone()).collect::<Vec<_>>();
             values.push(SqlValue::Integer(contents.rows[address.row_index].0));

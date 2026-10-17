@@ -740,6 +740,7 @@ pub(super) fn fixed_data_file(table: &str) -> Result<&'static Path> {
 pub struct DataFilePaths {
     paths: BTreeMap<(String, i64), PathBuf>,
     dataset_files: BTreeMap<String, BTreeSet<PathBuf>>,
+    pack_files: BTreeMap<String, PathBuf>,
 }
 
 impl DataFilePaths {
@@ -767,7 +768,7 @@ impl DataFilePaths {
                     continue;
                 }
                 let owner_column = match table_merge(table) {
-                    Some(TableMerge::Entity { owner_column }) => *owner_column,
+                    Some(TableMerge::Entity { owner_column, .. }) => *owner_column,
                     Some(TableMerge::Array { owner_column, .. }) => Some(*owner_column),
                     _ => None,
                 };
@@ -846,11 +847,16 @@ impl DataFilePaths {
             dataset_files.entry("pack_exceptions".into()).or_default().insert(path.clone());
             paths.insert(("pack_exceptions".into(), id), path);
         }
-        Ok(Self { paths, dataset_files })
+        let pack_files = folders.into_iter().map(|(name, folder)| (name, folder.join("pack.toml"))).collect();
+        Ok(Self { paths, dataset_files, pack_files })
     }
 
     pub(crate) fn dataset_paths(&self, table: &str) -> BTreeSet<PathBuf> {
         self.dataset_files.get(table).cloned().unwrap_or_default()
+    }
+
+    pub(crate) fn pack_path(&self, name: &str) -> Option<&PathBuf> {
+        self.pack_files.get(name)
     }
 
     pub fn path(&self, table: &str, id: i64) -> Result<PathBuf> {

@@ -59,9 +59,9 @@ fn merge_columns_preserves_ours_and_accepts_unedited_fields() {
     let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
     assert_eq!(outcome.conflicts.len(), 1);
     assert_eq!(outcome.conflicts[0].subject, ConflictSubject::Column("cost_per_rank".into()));
-    assert_eq!(outcome.conflicts[0].previous, "text:\"[2]\"");
-    assert_eq!(outcome.conflicts[0].new, "text:\"[1]\"");
-    assert_eq!(outcome.conflicts[0].ours, "text:\"[3]\"");
+    assert_eq!(outcome.conflicts[0].previous, "\"[2]\"");
+    assert_eq!(outcome.conflicts[0].new, "\"[1]\"");
+    assert_eq!(outcome.conflicts[0].ours, "\"[3]\"");
     let fields: (String, String) = ours
         .query_row(
             "SELECT cost_per_rank, description FROM enhancements WHERE internal_name = 'SDDefenseBoost'",
@@ -328,6 +328,48 @@ fn selection_reordering_takes_his_order_without_unique_position_collisions() {
     assert_foreign_keys(&ours);
 }
 
+fn selection_names(db: &Connection) -> Vec<String> {
+    db.prepare("SELECT name FROM enhancement_selections WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection') ORDER BY sort_order")
+        .unwrap().query_map([], |row| row.get(0)).unwrap().collect::<rusqlite::Result<_>>().unwrap()
+}
+
+#[test]
+fn selection_rename_preserves_our_unrelated_reordering() {
+    let previous = fixture_database();
+    let new = edited_database("UPDATE enhancement_selections SET name = 'SLA: Vial Smash Acid', slug = 'bomspellvialselection-sla-vial-smash-acid' WHERE slug = 'bomspellvialselection-sla-vial-of-acid'");
+    let mut ours = edited_database("UPDATE enhancement_selections SET sort_order = -sort_order - 1 WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection'); UPDATE enhancement_selections SET sort_order = CASE sort_order WHEN -1 THEN 4 WHEN -5 THEN 0 ELSE -sort_order - 1 END WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection')");
+    let mut expected = selection_names(&ours);
+    expected.remove(1);
+    expected.push("SLA: Vial Smash Acid".into());
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert_eq!(selection_names(&ours), expected);
+    assert!(outcome.conflicts.is_empty(), "{:?}", outcome.conflicts);
+}
+
+#[test]
+fn selection_two_sided_reordering_keeps_ours_with_one_order_conflict() {
+    let previous = fixture_database();
+    let new = edited_database("UPDATE enhancement_selections SET sort_order = -sort_order - 1 WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection'); UPDATE enhancement_selections SET sort_order = CASE sort_order WHEN -1 THEN 2 WHEN -3 THEN 0 ELSE -sort_order - 1 END WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection')");
+    let mut ours = edited_database("UPDATE enhancement_selections SET sort_order = -sort_order - 1 WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection'); UPDATE enhancement_selections SET sort_order = CASE sort_order WHEN -1 THEN 4 WHEN -5 THEN 0 ELSE -sort_order - 1 END WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection')");
+    let expected = selection_names(&ours);
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert_eq!(selection_names(&ours), expected);
+    assert_eq!(outcome.conflicts.len(), 1);
+    assert_eq!(outcome.conflicts[0].identity, "enhancements/bomspellvialselection");
+}
+
+#[test]
+fn selection_addition_follows_his_neighbour_without_losing_our_order() {
+    let previous = edited_database("DELETE FROM modifiers WHERE source_kind = 'enhancement_selection' AND source_id = (SELECT id FROM enhancement_selections WHERE slug = 'bomspellvialselection-sla-vial-of-acid'); DELETE FROM enhancement_selections WHERE slug = 'bomspellvialselection-sla-vial-of-acid'");
+    let new = fixture_database();
+    let mut ours = edited_database("DELETE FROM modifiers WHERE source_kind = 'enhancement_selection' AND source_id = (SELECT id FROM enhancement_selections WHERE slug = 'bomspellvialselection-sla-vial-of-acid'); DELETE FROM enhancement_selections WHERE slug = 'bomspellvialselection-sla-vial-of-acid'; UPDATE enhancement_selections SET sort_order = -sort_order - 1 WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection'); UPDATE enhancement_selections SET sort_order = CASE sort_order WHEN -1 THEN 4 WHEN -5 THEN 0 ELSE -sort_order - 1 END WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection')");
+    let mut expected = selection_names(&ours);
+    expected.push("SLA: Vial of Acid".into());
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert_eq!(selection_names(&ours), expected);
+    assert!(outcome.conflicts.is_empty(), "{:?}", outcome.conflicts);
+}
+
 #[test]
 fn merge_preserves_correction_notes_removed_upstream() {
     let previous = ordinary_fixture_database("INSERT INTO corrections (kind, name, field, from_value, to_value, reason, source, read) SELECT 'feat', name, 'description', '\"Upstream prose\"', json_quote(description), 'Wiki research', 'https://ddowiki.com/page/Power_Attack', '2026-10-17' FROM feats WHERE name = 'Power Attack'");
@@ -411,21 +453,66 @@ fn merge_read_query_count_does_not_grow_with_rows() {
     }
     let mut counts = Vec::new();
     for is_committed in [false, true] {
-        let (previous, mut ours) = if is_committed {
-            let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
-            let mut previous = Connection::open_in_memory().unwrap();
-            let mut ours = Connection::open_in_memory().unwrap();
-            crate::tree::build_from_data(&root, &mut previous).unwrap();
-            crate::tree::build_from_data(&root, &mut ours).unwrap();
-            (previous, ours)
-        } else {
-            (fixture_database(), fixture_database())
+        let build_side = |incoming: bool| {
+            let scratch = tempfile::tempdir().unwrap();
+            let root = scratch.path().join("data");
+            let mut original = if is_committed {
+                let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data");
+                for entry in walkdir::WalkDir::new(&source).into_iter().map(Result::unwrap) {
+                    if entry.file_type().is_file()
+                        && entry.path().extension().is_some_and(|extension| extension == "png")
+                    {
+                        let destination = root.join(entry.path().strip_prefix(&source).unwrap());
+                        std::fs::create_dir_all(destination.parent().unwrap()).unwrap();
+                        std::fs::copy(entry.path(), destination).unwrap();
+                    }
+                }
+                let mut db = Connection::open_in_memory().unwrap();
+                crate::tree::build_from_data(&source, &mut db).unwrap();
+                db
+            } else {
+                let db = fixture_database();
+                let source = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+                    .join("tests/fixtures/import_ddobuilder/ba7e18e/DataFiles");
+                crate::tree::export_ddobuilder_tree(&db, &source, &root).unwrap();
+                db
+            };
+            let columns = crate::database_tables::table_columns(&original, "feats").unwrap();
+            let selected = columns
+                .iter()
+                .map(|column| match column.as_str() {
+                    "id" => "-1".to_string(),
+                    "name" => if incoming { "'Query count added'" } else { "'Query count removed'" }.into(),
+                    "slug" => if incoming { "'query-count-added'" } else { "'query-count-removed'" }.into(),
+                    _ => format!("[{column}]"),
+                })
+                .collect::<Vec<_>>()
+                .join(", ");
+            original
+                .execute(&format!("INSERT INTO feats SELECT {selected} FROM feats WHERE name = 'Alertness'"), [])
+                .unwrap();
+            if incoming {
+                original.execute("UPDATE enhancements SET description = 'A measured column edit' WHERE internal_name = 'SDDefenseBoost'", []).unwrap();
+                original.execute("UPDATE modifiers SET amounts = '[7]' WHERE source_kind = 'enhancement' AND source_id IN (SELECT id FROM enhancements WHERE internal_name = 'RavBarbarianPowerAttack')", []).unwrap();
+            }
+            crate::tree::export_database(&original, &root).unwrap();
+            original = Connection::open_in_memory().unwrap();
+            crate::tree::build_from_data(&root, &mut original).unwrap();
+            original
         };
+        let previous = build_side(false);
+        let new = build_side(true);
+        let mut ours = build_side(false);
+        new.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
         previous.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
         ours.trace_v2(TraceEventCodes::SQLITE_TRACE_STMT, Some(trace));
         SELECT_COUNT.store(0, Ordering::SeqCst);
-        let outcome = merge_delta_into(&mut ours, &previous, &previous, &BTreeSet::new()).unwrap();
-        assert!(outcome.applied.is_empty());
+        let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+        assert!(outcome.conflicts.is_empty());
+        assert_eq!(outcome.applied["feats"].added, 1);
+        assert_eq!(outcome.applied["feats"].removed, 1);
+        assert!(outcome.applied["enhancements"].changed >= 1);
+        assert!(outcome.applied["enhancements"].arrays_replaced >= 1);
         counts.push(SELECT_COUNT.load(Ordering::SeqCst));
     }
     assert_eq!(counts[0], counts[1]);
@@ -453,13 +540,35 @@ fn unique_positions_follow_entity_or_array_merge_policy() {
                 .unwrap()
                 .collect::<rusqlite::Result<Vec<_>>>()
                 .unwrap();
-            for position in
-                columns.iter().flatten().filter(|column| column.ends_with("_order") || column.ends_with("_index"))
-            {
+            let mut metadata = db.prepare(&format!("PRAGMA table_info('{table}')")).unwrap();
+            let scalar_integers = metadata
+                .query_map([], |row| {
+                    Ok((
+                        row.get::<_, String>(1)?,
+                        row.get::<_, String>(2)?,
+                        row.get::<_, bool>(3)?,
+                        row.get::<_, i64>(5)?,
+                    ))
+                })
+                .unwrap()
+                .collect::<rusqlite::Result<Vec<_>>>()
+                .unwrap();
+            let mut foreign_keys = db.prepare(&format!("PRAGMA foreign_key_list('{table}')")).unwrap();
+            let references = foreign_keys
+                .query_map([], |row| row.get::<_, String>(3))
+                .unwrap()
+                .collect::<rusqlite::Result<BTreeSet<_>>>()
+                .unwrap();
+            for position in columns.iter().flatten().filter(|column| {
+                !references.contains(*column)
+                    && scalar_integers.iter().any(|(name, kind, required, primary)| {
+                        name == *column && kind == "INTEGER" && *required && (*primary == 0 || name != "id")
+                    })
+            }) {
                 match rule {
-                    TableMerge::Array { .. } | TableMerge::DatasetArray { .. } => {}
-                    TableMerge::Entity { owner_column: Some(owner) } => {
-                        assert_eq!(position, "sort_order", "{table}");
+                    TableMerge::Array { .. } | TableMerge::DatasetArray { .. } | TableMerge::Rederived => {}
+                    TableMerge::Entity { owner_column: Some(owner), position_column: Some(declared) } => {
+                        assert_eq!(position, declared, "{table} position has no declared group policy");
                         assert!(columns.contains(&Some((*owner).into())), "{table}");
                     }
                     _ => panic!("{table}.{position} has no position merge policy"),

@@ -201,6 +201,41 @@ impl DatabaseSnapshot {
             .collect()
     }
 
+    pub(super) fn report_cell(&mut self, address: &RowAddress, column: &str) -> Result<serde_json::Value> {
+        let fields = self.fields(address);
+        let cell = &fields[column];
+        if matches!(cell, SqlValue::Integer(_))
+            && self
+                .index
+                .reference_target(&address.table, column, &fields)
+                .is_some_and(|target| matches!(table_merge(&target), Some(TableMerge::Entity { .. })))
+        {
+            return Ok(self.index.normalized_cell(&address.table, column, cell, &fields)?.into());
+        }
+        Ok(match cell {
+            SqlValue::Null => serde_json::Value::Null,
+            SqlValue::Integer(number) => (*number).into(),
+            SqlValue::Real(number) => (*number).into(),
+            SqlValue::Text(text) => text.clone().into(),
+            SqlValue::Blob(bytes) => serde_json::to_value(bytes)?,
+        })
+    }
+
+    pub(super) fn report_array(&mut self, key: &ArrayKey, differing: &BTreeSet<usize>) -> Result<String> {
+        let mut rows = Vec::new();
+        for (index, address) in self.array_rows.get(key).cloned().unwrap_or_default().into_iter().enumerate() {
+            if !differing.contains(&index) {
+                continue;
+            }
+            let mut fields = serde_json::Map::new();
+            for column in self.normalized_fields(&address)?.keys() {
+                fields.insert(column.clone(), self.report_cell(&address, column)?);
+            }
+            rows.push(serde_json::json!({"table": address.table, "fields": fields}));
+        }
+        Ok(serde_json::to_string(&rows)?)
+    }
+
     fn version(&self, table: &str, column: &str) -> Result<String> {
         let contents = self.tables.get(table).with_context(|| format!("missing {table}"))?;
         ensure!(contents.rows.len() == 1, "{table} must have exactly one row");

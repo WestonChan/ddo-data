@@ -173,12 +173,18 @@ fn import_takes_no_action_when_we_already_made_his_change() {
     world.edit("UPDATE enhancements SET cost_per_rank = '[1]' WHERE internal_name = 'SDDefenseBoost'");
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");
+    assert_eq!(world.cost("SDDefenseBoost"), "[1]");
 }
 
 #[test]
 fn import_adds_his_new_file_where_the_layout_puts_it() {
     let world = ImportWorld::new(Corrections::default());
-    import_ddobuilder(&world.options).unwrap();
+    let report = import_ddobuilder(&world.options).unwrap();
+    assert_eq!(report.tables["filigrees"].added, 8);
+    assert_eq!(report.tables["filigrees"].changed, 0);
+    assert_eq!(report.tables["set_bonuses"].added, 1);
+    assert_eq!(report.tables["set_bonuses"].changed, 0);
+    assert!(report.to_string().contains("characters/enhancements/bombardier/tree.toml: REMOVED"));
     assert!(world.options.data_dir.join("packs/shared/filigrees/night-revels-gifts.toml").is_file());
     assert_eq!(
         std::fs::read(world.options.data_dir.join("icons/filigrees/NightRevelsGifts.png")).unwrap(),
@@ -235,7 +241,13 @@ fn import_keeps_a_corrected_value_he_changed_again() {
     assert!(report.has_conflicts(), "{report}");
     let result = Corrections::from_database(&world.database()).unwrap();
     assert_eq!(result.entries[0].to, corrections.entries[0].to);
-    assert_ne!(result.entries[0].from, corrections.entries[0].from);
+    let parsed =
+        ddo_etl::xml::trees::parse(&world.options.source_dir.join("EnhancementTrees/Barbarian_Ravager.tree.xml"))
+            .unwrap();
+    assert_eq!(
+        result.entries[0].from,
+        ddo_etl::corrections::CorrectionValue::Text(parsed.enhancements[0].description.clone().unwrap())
+    );
     assert!(report.to_string().contains("ravager-barbarian/tree.toml"));
 }
 
@@ -436,9 +448,18 @@ fn import_cli_uses_the_data_files_corrections_by_default() {
 
 #[test]
 fn import_cli_accepts_a_corrections_override() {
-    let world = ImportWorld::new(Corrections::default());
-    let output = cli(&world).arg("--corrections").arg(fixture_root().join("wiki")).output().unwrap();
-    assert!(output.status.success(), "{}", String::from_utf8_lossy(&output.stderr));
+    let world = ImportWorld::new(ravager_corrections());
+    let override_dir = world.scratch.path().join("corrections");
+    std::fs::create_dir(&override_dir).unwrap();
+    let original = std::fs::read_to_string(fixture_root().join("corrections/ravager.toml")).unwrap();
+    let draconic = original.split("[[correction]]").nth(1).unwrap();
+    std::fs::write(override_dir.join("ravager.toml"), format!("[[correction]]{draconic}")).unwrap();
+    let output = cli(&world).arg("--corrections").arg(override_dir).output().unwrap();
+    assert_eq!(output.status.code(), Some(2), "{}", String::from_utf8_lossy(&output.stderr));
+    let report = String::from_utf8(output.stdout).unwrap();
+    assert!(report.contains("RESOLVED NOTE") && report.contains("Our researched Barbarian"), "{report}");
+    assert!(!report.contains("CONFLICT enhancement \"Ravager: Barbarian Power Attack\""), "{report}");
+    assert!(report.contains("enhancements/ravbarbarianpowerattack description"), "{report}");
 }
 
 #[test]
