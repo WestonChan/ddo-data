@@ -289,13 +289,14 @@ fn stale_correction_warnings(report: &BuildReport) -> Vec<String> {
         .stale_corrections
         .iter()
         .map(|stale_correction| {
-            let StaleCorrection { kind, name, field, cause, file_name } = stale_correction;
+            let StaleCorrection { kind, name, field, cause, file_name, qualifier } = stale_correction;
+            let qualifier = if qualifier.is_empty() { String::new() } else { format!(" [{qualifier}]") };
             match cause {
                 StaleCorrectionCause::ValueChanged { expected_value, maetrim_value } => format!(
-                    "warning: correction {kind} {name:?}.{field} expects {expected_value} but Maetrim now has {maetrim_value}; delete it from {file_name}"
+                    "warning: correction {kind} {name:?}{qualifier}.{field} expects {expected_value} but Maetrim now has {maetrim_value}; delete it from {file_name}"
                 ),
                 StaleCorrectionCause::RenameDoneUpstream { new_name } => format!(
-                    "warning: correction {kind} {name:?}.{field} is done upstream: {new_name:?} exists; delete it from {file_name}"
+                    "warning: correction {kind} {name:?}{qualifier}.{field} is done upstream: {new_name:?} exists; delete it from {file_name}"
                 ),
             }
         })

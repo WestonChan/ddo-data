@@ -448,6 +448,43 @@ fn duplicate_bonus_correction_names_the_exact_augment_stat_type_and_value() {
 }
 
 #[test]
+fn stale_corrections_keep_the_qualified_child_identity() {
+    let correction = correction_toml(
+        "enhancement",
+        "Legendary Dreadnought: Dire Attack",
+        "icon",
+        "\"OldIcon\"",
+        "\"SelectionIcon\"",
+    ) + "selection = \"Dire Charge\"\n";
+    let (_, report) = built_db_with(&[("selection.toml", &correction)]).unwrap();
+    assert_eq!(report.stale_corrections.len(), 1);
+    assert_eq!(report.stale_corrections[0].qualifier, "selection \"Dire Charge\"");
+}
+
+#[test]
+fn correction_json_values_round_trip_the_real_writer() {
+    for correction in Corrections::embedded().unwrap().entries {
+        for original in [correction.from, correction.to] {
+            assert_eq!(CorrectionValue::from_json(&original.to_json()).unwrap(), original);
+        }
+    }
+    for original in [
+        CorrectionValue::Integer(i64::MIN),
+        CorrectionValue::Integer(i64::MAX),
+        CorrectionValue::Float(0.5),
+        CorrectionValue::Text("null".into()),
+        CorrectionValue::Text("line\nbreak \"quoted\"".into()),
+        CorrectionValue::Null,
+    ] {
+        assert_eq!(CorrectionValue::from_json(&original.to_json()).unwrap(), original);
+    }
+    assert_eq!(CorrectionValue::from_json("true").unwrap(), CorrectionValue::Integer(1));
+    for malformed in ["", "[1]", "{", "{\"unknown\":1}"] {
+        assert!(CorrectionValue::from_json(malformed).is_err(), "{malformed}");
+    }
+}
+
+#[test]
 fn leaves_his_value_and_reports_a_correction_whose_from_is_stale() {
     let (db, report) = built_db_with(&[(
         "corrections.toml",
@@ -460,6 +497,7 @@ fn leaves_his_value_and_reports_a_correction_whose_from_is_stale() {
     assert_eq!(
         report.stale_corrections,
         [StaleCorrection {
+            qualifier: String::new(),
             kind: "augment".into(),
             name: "Perfect Silence".into(),
             field: "min_level".into(),
@@ -933,6 +971,7 @@ fn a_rename_his_files_already_carry_goes_stale_for_every_renamable_kind() {
     assert_eq!(
         report.stale_corrections.iter().find(|stale_correction| stale_correction.kind == "item").unwrap(),
         &StaleCorrection {
+            qualifier: String::new(),
             kind: "item".into(),
             name: "Docent of Defiant".into(),
             field: "name".into(),

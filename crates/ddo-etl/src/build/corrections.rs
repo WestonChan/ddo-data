@@ -186,6 +186,7 @@ fn record_applied_correction(
 
 fn record_stale_correction(report: &mut BuildReport, correction: &Correction, cause: StaleCorrectionCause) {
     report.stale_corrections.push(StaleCorrection {
+        qualifier: correction.qualifier(),
         kind: correction.kind.as_str().to_string(),
         name: correction.name.clone(),
         field: correction.field.clone(),

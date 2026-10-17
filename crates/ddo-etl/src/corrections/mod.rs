@@ -94,6 +94,31 @@ impl From<TomlCorrectionValue> for CorrectionValue {
 }
 
 impl CorrectionValue {
+    pub fn from_json(encoded: &str) -> Result<Self> {
+        let value: serde_json::Value = serde_json::from_str(encoded)?;
+        Ok(match value {
+            serde_json::Value::Null => CorrectionValue::Null,
+            serde_json::Value::Bool(flag) => CorrectionValue::Integer(i64::from(flag)),
+            serde_json::Value::Number(number) => number
+                .as_i64()
+                .map_or_else(|| CorrectionValue::Float(number.as_f64().unwrap_or_default()), CorrectionValue::Integer),
+            serde_json::Value::String(text) => CorrectionValue::Text(text),
+            serde_json::Value::Object(fields) => {
+                let object = serde_json::Value::Object(fields);
+                if object.get("stat").is_some() {
+                    CorrectionValue::Bonus(serde_json::from_value(object)?)
+                } else if object.get("equipped_count").is_some() {
+                    CorrectionValue::Tier(serde_json::from_value(object)?)
+                } else if object.get("trigger").is_some() {
+                    CorrectionValue::Damage(serde_json::from_value(object)?)
+                } else {
+                    CorrectionValue::Effect(serde_json::from_value(object)?)
+                }
+            }
+            serde_json::Value::Array(_) => bail!("correction value cannot be an array"),
+        })
+    }
+
     pub fn to_json(&self) -> String {
         match self {
             Self::Integer(number) => number.to_string(),
@@ -637,8 +662,8 @@ impl Corrections {
                 kind: CorrectionKind::parse(&kind).with_context(|| format!("unknown correction kind {kind:?}"))?,
                 name,
                 field,
-                from: correction_value_from_json(&from_value)?,
-                to: correction_value_from_json(&to_value)?,
+                from: CorrectionValue::from_json(&from_value)?,
+                to: CorrectionValue::from_json(&to_value)?,
                 family: None,
                 selection: None,
                 stance: None,
@@ -723,31 +748,6 @@ impl Corrections {
         }
         Ok(corrections)
     }
-}
-
-fn correction_value_from_json(encoded: &str) -> Result<CorrectionValue> {
-    let value: serde_json::Value = serde_json::from_str(encoded)?;
-    Ok(match value {
-        serde_json::Value::Null => CorrectionValue::Null,
-        serde_json::Value::Bool(flag) => CorrectionValue::Integer(i64::from(flag)),
-        serde_json::Value::Number(number) => number
-            .as_i64()
-            .map_or_else(|| CorrectionValue::Float(number.as_f64().unwrap_or_default()), CorrectionValue::Integer),
-        serde_json::Value::String(text) => CorrectionValue::Text(text),
-        serde_json::Value::Object(fields) => {
-            let object = serde_json::Value::Object(fields);
-            if object.get("stat").is_some() {
-                CorrectionValue::Bonus(serde_json::from_value(object)?)
-            } else if object.get("equipped_count").is_some() {
-                CorrectionValue::Tier(serde_json::from_value(object)?)
-            } else if object.get("trigger").is_some() {
-                CorrectionValue::Damage(serde_json::from_value(object)?)
-            } else {
-                CorrectionValue::Effect(serde_json::from_value(object)?)
-            }
-        }
-        serde_json::Value::Array(_) => bail!("correction value cannot be an array"),
-    })
 }
 
 fn set_correction_qualifiers(correction: &mut Correction, qualifier: &str) -> Result<()> {

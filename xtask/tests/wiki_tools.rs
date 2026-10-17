@@ -44,6 +44,34 @@ fn wiki_check_counts_corrections_and_warns_about_each_stale_one() {
 }
 
 #[test]
+fn wiki_check_names_the_child_of_a_stale_correction() {
+    let corrections = tempfile::tempdir().unwrap();
+    std::fs::write(
+        corrections.path().join("selection.toml"),
+        r#"
+[[correction]]
+kind = "enhancement"
+name = "Legendary Dreadnought: Dire Attack"
+selection = "Dire Charge"
+field = "icon"
+from = "OldIcon"
+to = "SelectionIcon"
+reason = "Test qualified correction."
+source = "https://ddowiki.com/page/Test"
+read = "2026-10-17"
+"#,
+    )
+    .unwrap();
+    let report = wiki_check_report(
+        &fixtures_dir().join("DataFiles"),
+        Some(&fixtures_dir().join("wiki")),
+        Some(corrections.path()),
+    )
+    .unwrap();
+    assert!(report.contains("warning: correction enhancement \"Legendary Dreadnought: Dire Attack\" [selection \"Dire Charge\"].icon expects \"OldIcon\" but Maetrim now has \"DireAttack\"; delete it from selection.toml"), "{report}");
+}
+
+#[test]
 fn wiki_check_warns_to_delete_a_rename_done_upstream() {
     let corrections_dir = tempfile::tempdir().unwrap();
     std::fs::write(

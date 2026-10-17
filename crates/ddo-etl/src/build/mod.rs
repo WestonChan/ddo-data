@@ -139,6 +139,7 @@ pub struct SupersededWikiEntry {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct StaleCorrection {
+    pub qualifier: String,
     pub kind: String,
     pub name: String,
     pub field: String,
