@@ -258,7 +258,7 @@ fn unreferenced_removal_clears_derived_rows_before_foreign_key_check() {
     let mut ours = fixture_database();
     let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
     assert!(outcome.declined_removals.is_empty());
-    assert!(outcome.deleted.iter().any(|(table, _)| table == "bonus_types"));
+    assert!(outcome.deleted.iter().any(|entity| entity.table == "bonus_types"));
     for (table, rule) in TABLE_MERGES {
         if matches!(rule, TableMerge::Rederived) {
             let count: i64 = ours.query_row(&format!("SELECT count(*) FROM {table}"), [], |row| row.get(0)).unwrap();
@@ -333,6 +333,33 @@ fn selection_names(db: &Connection) -> Vec<String> {
         .unwrap().query_map([], |row| row.get(0)).unwrap().collect::<rusqlite::Result<_>>().unwrap()
 }
 
+fn ordered_selection_database(names: &[&str]) -> Connection {
+    let original = fixture_database();
+    let selections = original
+        .prepare("SELECT id, name FROM enhancement_selections WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection')")
+        .unwrap().query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))
+        .unwrap().collect::<rusqlite::Result<Vec<_>>>().unwrap();
+    original.execute("UPDATE enhancement_selections SET sort_order = -sort_order - 1 WHERE enhancement_id = (SELECT id FROM enhancements WHERE internal_name = 'BomSpellVialSelection')", []).unwrap();
+    for (id, name) in selections {
+        if let Some(position) = names.iter().position(|expected| *expected == name) {
+            original
+                .execute(
+                    "UPDATE enhancement_selections SET sort_order = ?1 WHERE id = ?2",
+                    (i64::try_from(position).unwrap(), id),
+                )
+                .unwrap();
+        } else {
+            original
+                .execute("DELETE FROM modifiers WHERE source_kind = 'enhancement_selection' AND source_id = ?1", [id])
+                .unwrap();
+            original.execute("DELETE FROM enhancement_selections WHERE id = ?1", [id]).unwrap();
+        }
+    }
+    let rebuilt = rebuilt_database(&original);
+    assert_eq!(selection_names(&rebuilt), names);
+    rebuilt
+}
+
 #[test]
 fn selection_rename_preserves_our_unrelated_reordering() {
     let previous = fixture_database();
@@ -368,6 +395,84 @@ fn selection_addition_follows_his_neighbour_without_losing_our_order() {
     let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
     assert_eq!(selection_names(&ours), expected);
     assert!(outcome.conflicts.is_empty(), "{:?}", outcome.conflicts);
+}
+
+#[test]
+fn selection_head_addition_precedes_his_following_neighbour_in_our_order() {
+    let previous = ordered_selection_database(&[
+        "SLA: Vial of Acid",
+        "SLA: Vial of Flame",
+        "SLA: Vial of Frost",
+        "SLA: Vial of Sparks",
+    ]);
+    let new = fixture_database();
+    let mut ours = ordered_selection_database(&[
+        "SLA: Vial of Sparks",
+        "SLA: Vial of Acid",
+        "SLA: Vial of Flame",
+        "SLA: Vial of Frost",
+    ]);
+    let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+    assert_eq!(
+        selection_names(&ours),
+        ["SLA: Vial of Sparks", "SLA: Venom Vial", "SLA: Vial of Acid", "SLA: Vial of Flame", "SLA: Vial of Frost",]
+    );
+    assert!(outcome.conflicts.is_empty(), "{:?}", outcome.conflicts);
+    rederive_data_build_tables(&ours).unwrap();
+    assert!(database_delta(&ours, &rebuilt_database(&ours)).unwrap().is_empty());
+    assert_foreign_keys(&ours);
+}
+
+#[test]
+fn selection_addition_skips_his_deleted_neighbours_in_our_order() {
+    for (previous_names, local_names, expected) in [
+        (
+            vec!["SLA: Venom Vial", "SLA: Vial of Acid", "SLA: Vial of Flame", "SLA: Vial of Sparks"],
+            vec!["SLA: Vial of Acid", "SLA: Venom Vial", "SLA: Vial of Sparks"],
+            vec!["SLA: Vial of Acid", "SLA: Vial of Frost", "SLA: Venom Vial", "SLA: Vial of Sparks"],
+        ),
+        (
+            vec!["SLA: Venom Vial", "SLA: Vial of Flame", "SLA: Vial of Frost", "SLA: Vial of Sparks"],
+            vec!["SLA: Vial of Sparks", "SLA: Vial of Flame", "SLA: Vial of Frost"],
+            vec!["SLA: Vial of Sparks", "SLA: Vial of Acid", "SLA: Vial of Flame", "SLA: Vial of Frost"],
+        ),
+    ] {
+        let previous = ordered_selection_database(&previous_names);
+        let new = fixture_database();
+        let mut ours = ordered_selection_database(&local_names);
+        let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+        assert_eq!(selection_names(&ours), expected);
+        assert!(outcome.conflicts.is_empty(), "{:?}", outcome.conflicts);
+        rederive_data_build_tables(&ours).unwrap();
+        assert!(database_delta(&ours, &rebuilt_database(&ours)).unwrap().is_empty());
+        assert_foreign_keys(&ours);
+    }
+}
+
+#[test]
+fn selection_position_shifts_do_not_decline_his_removal() {
+    for local_names in [
+        vec!["SLA: Vial of Sparks", "SLA: Venom Vial", "SLA: Vial of Acid", "SLA: Vial of Flame", "SLA: Vial of Frost"],
+        vec!["SLA: Venom Vial", "SLA: Vial of Flame", "SLA: Vial of Frost", "SLA: Vial of Sparks"],
+    ] {
+        let previous = fixture_database();
+        let new = ordered_selection_database(&[
+            "SLA: Venom Vial",
+            "SLA: Vial of Acid",
+            "SLA: Vial of Flame",
+            "SLA: Vial of Sparks",
+        ]);
+        let mut ours = ordered_selection_database(&local_names);
+        let expected = local_names.into_iter().filter(|name| *name != "SLA: Vial of Frost").collect::<Vec<_>>();
+        let outcome = merge_delta_into(&mut ours, &previous, &new, &BTreeSet::new()).unwrap();
+        assert!(outcome.declined_removals.is_empty(), "{:?}", outcome.declined_removals);
+        assert_eq!(outcome.applied["enhancement_selections"].removed, 1);
+        assert_eq!(selection_names(&ours), expected);
+        assert!(outcome.conflicts.is_empty(), "{:?}", outcome.conflicts);
+        rederive_data_build_tables(&ours).unwrap();
+        assert!(database_delta(&ours, &rebuilt_database(&ours)).unwrap().is_empty());
+        assert_foreign_keys(&ours);
+    }
 }
 
 #[test]

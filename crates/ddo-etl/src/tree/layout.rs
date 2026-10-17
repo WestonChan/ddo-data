@@ -740,7 +740,7 @@ pub(super) fn fixed_data_file(table: &str) -> Result<&'static Path> {
 pub struct DataFilePaths {
     paths: BTreeMap<(String, i64), PathBuf>,
     dataset_files: BTreeMap<String, BTreeSet<PathBuf>>,
-    pack_files: BTreeMap<String, PathBuf>,
+    pack_exception_rows: BTreeMap<String, i64>,
 }
 
 impl DataFilePaths {
@@ -835,6 +835,7 @@ impl DataFilePaths {
             .map(|(table, path)| ((*table).to_string(), BTreeSet::from([PathBuf::from(path)])))
             .collect();
         let folders = pack_folders(db)?;
+        let mut pack_exception_rows = BTreeMap::new();
         let columns = crate::database_tables::table_columns(db, "pack_exceptions")?;
         let pack_column =
             columns.iter().position(|name| name == "pack_name").context("pack exceptions lack pack_name")?;
@@ -846,17 +847,17 @@ impl DataFilePaths {
                 .join("exceptions.toml");
             dataset_files.entry("pack_exceptions".into()).or_default().insert(path.clone());
             paths.insert(("pack_exceptions".into(), id), path);
+            pack_exception_rows.entry(pack.to_string()).or_insert(id);
         }
-        let pack_files = folders.into_iter().map(|(name, folder)| (name, folder.join("pack.toml"))).collect();
-        Ok(Self { paths, dataset_files, pack_files })
+        Ok(Self { paths, dataset_files, pack_exception_rows })
     }
 
     pub(crate) fn dataset_paths(&self, table: &str) -> BTreeSet<PathBuf> {
         self.dataset_files.get(table).cloned().unwrap_or_default()
     }
 
-    pub(crate) fn pack_path(&self, name: &str) -> Option<&PathBuf> {
-        self.pack_files.get(name)
+    pub(crate) fn pack_exception_path(&self, name: &str) -> Option<&PathBuf> {
+        self.pack_exception_rows.get(name).and_then(|id| self.paths.get(&("pack_exceptions".into(), *id)))
     }
 
     pub fn path(&self, table: &str, id: i64) -> Result<PathBuf> {

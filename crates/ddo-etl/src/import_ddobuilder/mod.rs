@@ -349,7 +349,7 @@ mod tests {
         .unwrap();
         assert_eq!(report.conflict_count(), 1);
         assert_eq!(report.entries.len(), 1);
-        assert_eq!(report.entries[0].path, PathBuf::from("packs/another-pack/pack.toml"));
+        assert_eq!(report.entries[0].path, PathBuf::from("packs/another-pack/exceptions.toml"));
         assert!(!report.entries[0].detail.contains("Unchanged"));
         assert!(!report.entries[0].detail.contains("Terror of Demogorgon"));
         assert_eq!(report.to_string().lines().filter(|line| line.contains(": CONFLICT")).count(), 1);

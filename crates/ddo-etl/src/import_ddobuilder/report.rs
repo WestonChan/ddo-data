@@ -91,9 +91,9 @@ pub(super) fn report(
                     for row in rows.as_array().context("pack exception conflict is not an array")? {
                         let name = row["fields"]["pack_name"].as_str().context("pack exception has no owner")?;
                         let path = paths
-                            .pack_path(name)
-                            .or_else(|| incoming_paths.pack_path(name))
-                            .or_else(|| old_paths.pack_path(name))
+                            .pack_exception_path(name)
+                            .or_else(|| incoming_paths.pack_exception_path(name))
+                            .or_else(|| old_paths.pack_exception_path(name))
                             .context("pack exception owner has no path")?;
                         files.insert(path.clone());
                     }
@@ -244,11 +244,11 @@ pub(super) fn report(
             }
         }
     }
-    for (table, id) in outcome.deleted {
+    for entity in outcome.deleted {
         entries.push(ImportReportEntry {
-            path: old_paths.path(&table, id)?,
+            path: old_paths.path(&entity.table, entity.ours_id)?,
             category: "REMOVED",
-            detail: format!("{table}/{id}"),
+            detail: entity.identity,
         });
     }
     let icon_counts = tables.entry("icons".into()).or_default();

@@ -290,6 +290,7 @@ fn import_removes_an_entity_we_left_alone() {
     let world = ImportWorld::new(Corrections::default());
     let report = import_ddobuilder(&world.options).unwrap();
     assert!(!report.has_conflicts(), "{report}");
+    assert!(report.to_string().contains("characters/enhancements/bombardier/tree.toml: REMOVED enhancement_selections/bomspellvialselection-sla-vial-of-acid"), "{report}");
     let count: i64 = world
         .database()
         .query_row("SELECT count(*) FROM enhancements WHERE internal_name = 'BomSpellvialSelectionII'", [], |row| {

@@ -13,7 +13,7 @@ pub struct MergeOutcome {
     pub absent_in_ours: Vec<AbsentChange>,
     pub kept_correction_notes: Vec<String>,
     pub inserted: Vec<(String, i64)>,
-    pub deleted: Vec<(String, i64)>,
+    pub deleted: Vec<DeletedEntity>,
 }
 
 #[derive(Debug, Default)]
@@ -48,6 +48,13 @@ pub struct DeclinedRemoval {
     pub ours_id: i64,
     pub reason: RemovalDeclineReason,
     pub position_renumbered: bool,
+}
+
+#[derive(Debug)]
+pub struct DeletedEntity {
+    pub table: String,
+    pub identity: String,
+    pub ours_id: i64,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -230,12 +237,15 @@ pub fn merge_delta_into(
             });
         }
     }
-    let edited_entities: BTreeSet<_> = local_delta
-        .entities
-        .values()
-        .flat_map(|changes| changes.changed.iter().map(|change| change.identity.clone()))
-        .chain(local_delta.arrays.keys().map(|key| key.owner.clone()))
-        .collect();
+    let mut edited_entities: BTreeSet<_> = local_delta.arrays.keys().map(|key| key.owner.clone()).collect();
+    for (table, changes) in &local_delta.entities {
+        for change in &changes.changed {
+            let address = entity_row(&current, table, &change.identity).unwrap();
+            if !is_group_position(&current, address, &change.column)? {
+                edited_entities.insert(change.identity.clone());
+            }
+        }
+    }
     decline_removals(&mut edits, &mut current, annotated, &edited_entities)?;
     assign_merged_positions(&mut edits, &mut previous, &mut current, &mut new)?;
     let foreign_keys: bool = ours.pragma_query_value(None, "foreign_keys", |row| row.get(0))?;
@@ -391,7 +401,11 @@ fn decline_removals(
             });
         } else {
             edits.outcome.applied.entry(address.table.clone()).or_default().removed += 1;
-            edits.outcome.deleted.push((address.table.clone(), current.id(address)?));
+            edits.outcome.deleted.push(DeletedEntity {
+                table: address.table.clone(),
+                identity: identity.clone(),
+                ours_id: current.id(address)?,
+            });
         }
     }
     Ok(())
@@ -493,10 +507,18 @@ fn assign_merged_positions(
             }
             let entry = (*position, false, identity.clone(), true, address.clone());
             if ours_changed {
-                let preceding = offset
-                    .checked_sub(1)
-                    .and_then(|index| positions.iter().position(|(_, _, name, _, _)| name == &incoming_rows[index].1));
-                positions.insert(preceding.map_or(positions.len(), |index| index + 1), entry);
+                let insertion_index = incoming_rows[..offset]
+                    .iter()
+                    .rev()
+                    .find_map(|(_, preceding, _)| positions.iter().position(|(_, _, name, _, _)| name == preceding))
+                    .map(|index| index + 1)
+                    .or_else(|| {
+                        incoming_rows[offset + 1..].iter().find_map(|(_, following, _)| {
+                            positions.iter().position(|(_, _, name, _, _)| name == following)
+                        })
+                    })
+                    .unwrap_or(0);
+                positions.insert(insertion_index, entry);
             } else {
                 positions.push(entry);
             }
