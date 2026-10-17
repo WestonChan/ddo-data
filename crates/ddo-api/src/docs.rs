@@ -31,10 +31,9 @@ pub(crate) fn attach_examples(spec: &mut OpenApi, examples: &[ResponseExample]) 
         let Some(RefOr::T(response)) = operation.responses.responses.get_mut("200") else {
             panic!("{route} has no inline 200 response");
         };
-        let json_content = response
-            .content
-            .get_mut("application/json")
-            .unwrap_or_else(|| panic!("{route} 200 response is not application/json"));
+        let Some(RefOr::T(json_content)) = response.content.get_mut("application/json") else {
+            panic!("{route} 200 response has no inline application/json content");
+        };
         if let Some(name) = name {
             json_content.example = None;
             json_content
