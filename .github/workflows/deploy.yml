@@ -1,7 +1,7 @@
-# Build the dataset from DDOBuilderV2 and deploy the API image to Fly.io.
+# Build the dataset from the data files and deploy the API image to Fly.io.
 #
-# Runs on every push to main, weekly, and on demand. Skips the deploy when the live API already
-# serves both this commit and the current upstream dataset. Needs one repository secret:
+# Runs on every push to main and on demand. Skips the deploy when the live API already
+# serves both this commit and the data files' recorded dataset. Needs one repository secret:
 # FLY_API_TOKEN, a deploy token scoped to the app (`fly tokens create deploy -x 999999h`).
 name: Deploy
 
@@ -11,8 +11,6 @@ on:
     paths-ignore:
       - "**.md"
       - "LICENSE"
-  schedule:
-    - cron: "0 9 * * 1"
   workflow_dispatch:
     inputs:
       force:
@@ -26,7 +24,6 @@ concurrency:
 
 env:
   CARGO_TERM_COLOR: always
-  UPSTREAM: https://github.com/Maetrim/DDOBuilderV2
   LIVE_API: https://ddo-data.fly.dev
 
 jobs:
@@ -35,11 +32,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch DDOBuilderV2 data files
+      - name: Read the data files' recorded commit
         run: |
-          git clone --depth 1 --filter=blob:none --sparse "$UPSTREAM" upstream
-          git -C upstream sparse-checkout set Output/DataFiles
-          echo "UPSTREAM_SHA=$(git -C upstream rev-parse HEAD)" >> "$GITHUB_ENV"
+          echo "DATA_SHA=$(sed -n 's/^sha = "\(.*\)"/\1/p' data/upstream/commit.toml)" >> "$GITHUB_ENV"
 
       - name: Compare with the live API
         id: compare
@@ -47,8 +42,8 @@ jobs:
           live=$(curl -sf -H 'Cache-Control: no-cache' "$LIVE_API/v1/version" || echo '{}')
           live_data=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("dataset",{}).get("upstream_sha","none"))')
           live_code=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("api_commit") or "none")')
-          echo "live data=$live_data upstream=$UPSTREAM_SHA; live code=$live_code this=$GITHUB_SHA"
-          if [ "$live_data" = "$UPSTREAM_SHA" ] && [ "$live_code" = "$GITHUB_SHA" ] && [ "${{ inputs.force }}" != "true" ]; then
+          echo "live data=$live_data recorded=$DATA_SHA; live code=$live_code this=$GITHUB_SHA"
+          if [ "$live_data" = "$DATA_SHA" ] && [ "$live_code" = "$GITHUB_SHA" ] && [ "${{ inputs.force }}" != "true" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -68,9 +63,8 @@ jobs:
       - name: Build the dataset
         if: steps.compare.outputs.changed == 'true'
         run: |
-          set -o pipefail
-          ./target/release/ddo-etl build --source upstream/Output/DataFiles --out ddo.db --sha "$UPSTREAM_SHA" | tee build-report.txt
-          ./target/release/ddo-etl icons --source upstream/Output/DataFiles --out icons
+          ./target/release/ddo-etl build --data data --out ddo.db
+          ./target/release/ddo-etl icons --data data --out icons
 
       - name: Validate the dataset
         if: steps.compare.outputs.changed == 'true'
@@ -102,12 +96,6 @@ jobs:
           check crafting_recipes 2500
           check crafting_ingredients 600
           check crafting_recipe_augments 1100
-          grep -E 'wiki_item_(written|superseded|probable_duplicate)_count' build-report.txt | tr -d ' ,'
-          grep -E 'wiki_quest_(created|superseded|probable_duplicate)_count' build-report.txt | tr -d ' ,'
-          grep -E 'wiki_augment_(written|superseded|probable_duplicate)_count' build-report.txt | tr -d ' ,'
-          grep -E 'correction_(applied|stale)_count' build-report.txt | tr -d ' ,'
-          grep -E '(wiki_quest_chain|quest_chain_quest_link|quest_chain_reward|drop_text_quest_chain_reward)_count' build-report.txt | tr -d ' ,'
-          grep -E '(wiki_saga|saga_quest_link|saga_reward|drop_text_saga_reward)_count' build-report.txt | tr -d ' ,'
           echo "wiki_items: $(sqlite3 ddo.db "SELECT COUNT(*) FROM items WHERE provenance = 'wiki'")"
           echo "wiki_quests: $(sqlite3 ddo.db "SELECT COUNT(*) FROM quests WHERE provenance = 'wiki'")"
           echo "wiki_augments: $(sqlite3 ddo.db "SELECT COUNT(*) FROM augments WHERE provenance = 'wiki'")"
@@ -122,14 +110,13 @@ jobs:
 
       - name: Compare served lines with the wiki's tooltips
         if: steps.compare.outputs.changed == 'true'
-        continue-on-error: ${{ github.event_name == 'schedule' }}
         run: cargo run --release -q -p xtask -- wiki-tooltips --db ddo.db
 
       - name: Keep the dataset as a workflow artifact
         if: steps.compare.outputs.changed == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: ddo-${{ env.UPSTREAM_SHA }}
+          name: ddo-${{ env.DATA_SHA }}
           path: ddo.db
           retention-days: 90
 
@@ -149,7 +136,7 @@ jobs:
             live=$(curl -sf -H 'Cache-Control: no-cache' "$LIVE_API/v1/version" || echo '{}')
             live_data=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("dataset",{}).get("upstream_sha","none"))')
             live_code=$(echo "$live" | python3 -c 'import sys,json;print(json.load(sys.stdin).get("api_commit") or "none")')
-            [ "$live_data" = "$UPSTREAM_SHA" ] && [ "$live_code" = "$GITHUB_SHA" ] && echo "live API serves data $live_data at code $live_code" && exit 0
+            [ "$live_data" = "$DATA_SHA" ] && [ "$live_code" = "$GITHUB_SHA" ] && echo "live API serves data $live_data at code $live_code" && exit 0
             sleep 10
           done
           echo "live API still serves data $live_data at code $live_code" && exit 1
