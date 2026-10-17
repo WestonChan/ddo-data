@@ -39,6 +39,20 @@ impl DiffReport {
     }
 }
 
+pub fn write_allowed_differences(report: &DiffReport, path: &Path) -> Result<()> {
+    anyhow::ensure!(
+        report.pairing_failures.is_empty(),
+        "response identity pairing failed: {:?}",
+        report.pairing_failures
+    );
+    let mut contents = String::new();
+    for difference in report.table_differences.iter().chain(&report.response_differences) {
+        contents.push_str(difference);
+        contents.push('\n');
+    }
+    fs::write(path, contents).with_context(|| format!("writing {}", path.display()))
+}
+
 pub fn check_allowed_differences(report: &DiffReport, path: &Path) -> Result<()> {
     anyhow::ensure!(
         report.pairing_failures.is_empty(),

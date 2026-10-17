@@ -60,6 +60,13 @@ enum Task {
         against_api: Option<String>,
         #[arg(long, help = "Accept exactly the committed, reviewed differences listed in this file")]
         allow_list: Option<PathBuf>,
+        #[arg(
+            long,
+            requires = "by_slug",
+            conflicts_with = "allow_list",
+            help = "Write the observed differences for review"
+        )]
+        write_allow_list: Option<PathBuf>,
     },
     RoundTrip {
         #[arg(long = "data")]
@@ -165,13 +172,17 @@ fn main() -> Result<()> {
             println!("validated {responses} real responses across {routes} JSON routes");
             Ok(())
         }
-        Task::DiffDb { first, second, by_slug, against_api, allow_list } => {
+        Task::DiffDb { first, second, by_slug, against_api, allow_list, write_allow_list } => {
             let report = if by_slug {
                 xtask::diff_db::diff_databases_by_slug_against_api(&first, &second, against_api.as_deref())?
             } else {
                 xtask::diff_db::diff_databases_against_api(&first, &second, against_api.as_deref())?
             };
-            if let Some(allow_list) = allow_list {
+            if let Some(path) = write_allow_list {
+                xtask::diff_db::write_allowed_differences(&report, &path)?;
+                println!("{report}");
+                println!("wrote differences to {}", path.display());
+            } else if let Some(allow_list) = allow_list {
                 ensure!(by_slug, "--allow-list requires --by-slug");
                 xtask::diff_db::check_allowed_differences(&report, &allow_list)?;
                 println!("{}", report.to_string().lines().next().unwrap_or_default());
