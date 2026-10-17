@@ -40,3 +40,30 @@ pub fn table_rows(db: &Connection, table: &str) -> Result<Vec<Vec<SqlValue>>> {
         .collect::<rusqlite::Result<Vec<_>>>()?;
     Ok(rows)
 }
+
+pub fn table_rows_by_rowid(db: &Connection, table: &str) -> Result<Vec<(i64, Vec<SqlValue>)>> {
+    let mut statement = db.prepare(&format!("SELECT rowid, * FROM \"{table}\" ORDER BY rowid"))?;
+    let column_count = statement.column_count();
+    let rows = statement
+        .query_map([], |row| {
+            Ok((row.get(0)?, (1..column_count).map(|index| row.get(index)).collect::<rusqlite::Result<Vec<_>>>()?))
+        })?
+        .collect::<rusqlite::Result<Vec<_>>>()?;
+    Ok(rows)
+}
+
+pub(crate) struct DatabaseTable {
+    pub(crate) columns: Vec<String>,
+    pub(crate) rows: Vec<(i64, Vec<SqlValue>)>,
+}
+
+pub(crate) fn database_tables(db: &Connection) -> Result<std::collections::BTreeMap<String, DatabaseTable>> {
+    table_names(db)?
+        .into_iter()
+        .map(|table| {
+            let columns = table_columns(db, &table)?;
+            let rows = table_rows_by_rowid(db, &table)?;
+            Ok((table, DatabaseTable { columns, rows }))
+        })
+        .collect()
+}

@@ -1,4 +1,4 @@
-use crate::database_tables::{table_columns, table_names, table_rows};
+use crate::database_tables::{database_tables, table_columns, table_rows, DatabaseTable};
 use anyhow::{ensure, Context, Result};
 use rusqlite::{types::Value as SqlValue, Connection};
 use std::collections::{BTreeMap, BTreeSet};
@@ -16,13 +16,17 @@ pub struct IdentityIndex {
 
 impl IdentityIndex {
     pub fn from_db(db: &Connection) -> Result<Self> {
+        Self::from_tables(db, &database_tables(db)?)
+    }
+
+    pub(crate) fn from_tables(db: &Connection, tables: &BTreeMap<String, DatabaseTable>) -> Result<Self> {
         let mut rows = BTreeMap::new();
         let mut foreign_keys = BTreeMap::new();
-        for table in table_names(db)? {
-            let columns = table_columns(db, &table)?;
+        for (table, contents) in tables {
+            let columns = &contents.columns;
             if columns.iter().any(|column| column == "id") && !table.starts_with("effect_vocabulary_") {
-                for values in table_rows(db, &table)? {
-                    let fields: RowFields = columns.iter().cloned().zip(values).collect();
+                for (_, values) in &contents.rows {
+                    let fields: RowFields = columns.iter().cloned().zip(values.iter().cloned()).collect();
                     if let Some(SqlValue::Integer(id)) = fields.get("id") {
                         rows.insert((table.clone(), *id), fields);
                     }
@@ -40,10 +44,18 @@ impl IdentityIndex {
             }
         }
         let mut feat_groups: BTreeMap<i64, Vec<String>> = BTreeMap::new();
-        let mut statement = db.prepare("SELECT feat_id, group_name FROM feat_groups ORDER BY group_name")?;
-        for group in statement.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, String>(1)?)))? {
-            let (feat_id, group_name) = group?;
-            feat_groups.entry(feat_id).or_default().push(group_name);
+        let groups = tables.get("feat_groups").context("database has no feat_groups table")?;
+        let owner_column =
+            groups.columns.iter().position(|column| column == "feat_id").context("feat_groups has no feat_id")?;
+        let name_column =
+            groups.columns.iter().position(|column| column == "group_name").context("feat_groups has no group_name")?;
+        for (_, row) in &groups.rows {
+            if let (SqlValue::Integer(feat_id), SqlValue::Text(name)) = (&row[owner_column], &row[name_column]) {
+                feat_groups.entry(*feat_id).or_default().push(name.clone());
+            }
+        }
+        for names in feat_groups.values_mut() {
+            names.sort();
         }
         Ok(Self {
             rows,
