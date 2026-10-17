@@ -4,6 +4,12 @@ A gear file lives under the one quest that drops it; with several quests, in the
 
 Each TOML file states the facts for one named entity or an existing group. The build assigns numeric IDs from names and variants, independently of folders, and derives foreign keys, ordering columns and version counts. Run `ddo-etl build --data data --out ddo.db` without XML or wiki inputs.
 
+## Editing a file, or rebuilding through the database
+
+These files are for correcting and completing what already exists: a wrong bonus value, a missing source, a note citing the wiki, an icon spelled as its file is. Edit the file, run `ddo-etl build --data data --out ddo.db`, commit. Nothing else is needed, and the build's errors name the file, the row and the nearest existing names when a reference does not resolve.
+
+A change that touches many entities at once is a database change, not a hand edit: a new pack with its quests, chains and gear; a new crafting system and the augments it makes; a stat or effect renamed everywhere it appears; Maetrim's update arriving. Build the database, make the change there (or import his files into it), and run `ddo-etl export --db ddo.db --out data` to write every file back in the layout the placement rule gives it. The export is the only writer that places hundreds of files consistently; editing them by hand invites the drift the round trip exists to catch.
+
 ## Layout
 
 Quests, crafting systems, vendors and events are folders holding their record and what they yield. Chains, sagas, sets, patrons, filigree sets and challenges are files in their kind folders. Quests never nest inside chains. The root has seven entries:
